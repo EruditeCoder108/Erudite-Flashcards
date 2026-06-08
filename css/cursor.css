@@ -1,0 +1,291 @@
+/* Custom Cursor Styles */
+:root {
+    --cursor-bg-color: #111827;
+    --cursor-text-color: #E5E7EB;
+    --cursor-accent-dot: #38BDF8;
+    --cursor-accent-outline: rgba(255, 255, 255, 0.8);
+    --cursor-pointer-dot: #F472B6;
+    --cursor-pointer-outline: rgba(255, 255, 255, 0.9);
+    --cursor-text-beam: #A78BFA;
+}
+
+/* Custom cursor styles when enabled - only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+    body.custom-cursor-enabled * {
+        cursor: none !important;
+    }
+
+    /* Ensure cursor is visible on the body when custom cursor is enabled */
+    body.custom-cursor-enabled {
+        cursor: none;
+    }
+}
+
+/* On touch devices, keep normal cursor behavior */
+@media (hover: none) and (pointer: coarse) {
+    body.custom-cursor-enabled * {
+        cursor: auto !important;
+    }
+
+    body.custom-cursor-enabled {
+        cursor: auto;
+    }
+}
+
+/* Ensure modals and popups work properly with custom cursor */
+@media (hover: hover) and (pointer: fine) {
+    body.custom-cursor-enabled .settings-popup,
+    body.custom-cursor-enabled #settings-popup,
+    body.custom-cursor-enabled #ambient-popup,
+    body.custom-cursor-enabled .study-break-modal,
+    body.custom-cursor-enabled .study-break-modal *,
+    body.custom-cursor-enabled #study-break-modal,
+    body.custom-cursor-enabled #study-break-modal *,
+    body.custom-cursor-enabled .study-danger-modal,
+    body.custom-cursor-enabled .study-danger-modal *,
+    body.custom-cursor-enabled #study-quit-danger-modal,
+    body.custom-cursor-enabled #study-quit-danger-modal *,
+    body.custom-cursor-enabled .study-toast,
+    body.custom-cursor-enabled .study-toast * {
+        /* Keep normal cursor behavior in modals */
+        cursor: auto !important;
+    }
+
+    /* Ensure modal content is scrollable */
+    body.custom-cursor-enabled .settings-popup {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+}
+
+/* ===== FLUID CURSOR (Style 1) ===== */
+body.cursor-style-fluid #cursor-dot {
+    width: 25px;
+    height: 25px;
+    background: #ffffff;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 10001; /* Higher z-index to appear over modals */
+    pointer-events: none;
+    transform-origin: center center;
+    mix-blend-mode: difference;
+    will-change: transform, left, top;
+    /* Reset any potential browser styles */
+    border: none !important;
+    outline: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Click Ripple Effect for Fluid Cursor */
+body.cursor-style-fluid .click-ripple {
+    position: fixed;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    pointer-events: none;
+    z-index: 10002; /* Highest z-index to appear over everything */
+    animation: ripple-effect 0.5s ease-out;
+    mix-blend-mode: difference;
+}
+
+@keyframes ripple-effect {
+    to {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Pointer Mode - make the orb smaller and more precise for buttons/sliders */
+body.cursor-style-fluid.cursor-mode-pointer #cursor-dot {
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    mix-blend-mode: difference;
+}
+
+/* Text Mode - transform orb into I-beam cursor */
+body.cursor-style-fluid.cursor-mode-text #cursor-dot {
+    width: 2px;
+    height: 24px;
+    border-radius: 1px;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%) !important;
+}
+
+/* Click Effect - scale down slightly */
+body.cursor-style-fluid.cursor-clicking #cursor-dot {
+    transform: translate(-50%, -50%) scale(0.85);
+}
+
+/* ===== CONTEXT-AWARE CURSOR (Style 2) ===== */
+body.cursor-style-context #cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001; /* Higher z-index to appear over modals */
+    mix-blend-mode: difference;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 0 10px #fff;
+}
+
+body.cursor-style-context #cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border: 1.2px solid #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000; /* Higher z-index to appear over modals */
+    transition: border-color 0.3s ease, transform 0.1s ease-out, width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
+    display: block !important;
+}
+
+/* Context cursor states */
+body.cursor-style-context.cursor-state-copy #cursor-outline {
+    border-color: #3498db;
+}
+
+body.cursor-style-context.cursor-state-paste #cursor-outline {
+    border-color: #2ecc71;
+}
+
+body.cursor-style-context.cursor-state-typing #cursor-outline {
+    border-color: #f1c40f;
+}
+
+body.cursor-style-context.cursor-state-disabled #cursor-outline {
+    border-color: #e74c3c;
+}
+
+/* Text mode for context cursor */
+body.cursor-style-context.cursor-mode-text #cursor-dot {
+    opacity: 0;
+}
+
+body.cursor-style-context.cursor-mode-text #cursor-outline {
+    width: 1px;
+    height: 28px;
+    border-radius: 2px;
+    border-color: #000;
+}
+
+/* ===== COMET CURSOR (Style 3) ===== */
+body.cursor-style-comet #cursor-dot {
+    width: 20px;
+    height: 20px;
+    background-color: #00aaff;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10001; /* Higher z-index to appear over modals */
+    box-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff;
+    transition: transform 0.1s ease-out;
+    transform-origin: center center;
+    /* Reset any potential browser styles */
+    border: none !important;
+    outline: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+body.cursor-style-comet .trail {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background-color: #00aaff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000; /* Higher z-index to appear over modals */
+    will-change: transform;
+}
+
+/* Comet cursor link hover effect */
+body.cursor-style-comet.cursor-mode-pointer #cursor-dot {
+    transform: scale(1.5);
+}
+
+/* ===== HIDE UNUSED ELEMENTS ===== */
+/* Hide outline for fluid and comet cursors */
+body.cursor-style-fluid #cursor-outline,
+body.cursor-style-comet #cursor-outline {
+    display: none;
+}
+
+/* Hide trails for fluid and context cursors */
+body.cursor-style-fluid .trail,
+body.cursor-style-context .trail {
+    display: none;
+}
+
+/* Cursor viewport bounds are now handled by JavaScript in cursor.js */
+
+/* Disabled cursor style selector styling */
+#cursor-style-group select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#cursor-style-group select:disabled + .select-container::after {
+    opacity: 0.5;
+}
+/* Disabled cursor style selector styling */
+#cursor-style-group select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#cursor-style-group select:disabled + .select-container::after {
+    opacity: 0.5;
+}
+
+/* Disabled timer button styles for plant mode */
+.btn-icon:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+    filter: grayscale(0.5);
+    transition: all 0.3s ease;
+}
+
+.btn-icon:disabled:hover {
+    transform: none !important;
+    background-color: rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Specific styling for disabled stopwatch and pomodoro buttons */
+#mode-toggle-btn:disabled,
+#pomodoro-btn:disabled {
+    position: relative;
+}
+
+#mode-toggle-btn:disabled::after,
+#pomodoro-btn:disabled::after {
+    content: "🙅‍♂️";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 12px;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* Disabled timer style selector styling for pomodoro mode */
+#timer-style-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#timer-style-select:disabled + .select-container::after {
+    opacity: 0.5;
+}

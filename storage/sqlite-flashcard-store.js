@@ -1,0 +1,696 @@
+const fs = require('fs/promises');
+const path = require('path');
+
+const DB_SCHEMA_VERSION = 1;
+
+function jsonParse(value, fallback) {
+  if (value === null || value === undefined || value === '') return fallback;
+  try {
+    return JSON.parse(value);
+  } catch (_error) {
+    return fallback;
+  }
+}
+
+function jsonString(value) {
+  return JSON.stringify(value ?? null);
+}
+
+function getStatementRows(statement, params = []) {
+  statement.bind(params);
+  const rows = [];
+  while (statement.step()) {
+    rows.push(statement.getAsObject());
+  }
+  statement.free();
+  return rows;
+}
+
+class SqliteFlashcardStore {
+  constructor(options) {
+    this.SQL = options.SQL;
+    this.dataDir = options.dataDir;
+    this.backupsDir = options.backupsDir;
+    this.dbPath = path.join(this.dataDir, 'erudite-flashcards.sqlite');
+    this.normalizers = options.normalizers;
+    this.db = null;
+  }
+
+  async init() {
+    await fs.mkdir(this.dataDir, { recursive: true });
+    await fs.mkdir(this.backupsDir, { recursive: true });
+
+    try {
+      const existing = await fs.readFile(this.dbPath);
+      this.db = new this.SQL.Database(existing);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+      this.db = new this.SQL.Database();
+    }
+
+    this.createSchema();
+    await this.migrateLegacyJsonIfNeeded();
+    await this.persist();
+    return this;
+  }
+
+  createSchema() {
+    this.db.exec(`
+      PRAGMA foreign_keys = ON;
+
+      CREATE TABLE IF NOT EXISTS meta (
+        key TEXT PRIMARY KEY,
+        value TEXT NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS classes (
+        id TEXT PRIMARY KEY,
+        name TEXT NOT NULL,
+        color TEXT NOT NULL,
+        created INTEGER NOT NULL,
+        last_modified INTEGER NOT NULL,
+        deleted_at INTEGER,
+        rev INTEGER NOT NULL DEFAULT 1,
+        device_id TEXT,
+        payload_json TEXT NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS sets (
+        id TEXT PRIMARY KEY,
+        name TEXT NOT NULL,
+        description TEXT,
+        class_id TEXT,
+        srs_settings_json TEXT NOT NULL,
+        created INTEGER NOT NULL,
+        opened_count INTEGER NOT NULL DEFAULT 0,
+        last_opened INTEGER,
+        last_modified INTEGER NOT NULL,
+        deleted_at INTEGER,
+        rev INTEGER NOT NULL DEFAULT 1,
+        device_id TEXT,
+        payload_json TEXT NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS cards (
+        id TEXT PRIMARY KEY,
+        set_id TEXT NOT NULL,
+        position INTEGER NOT NULL,
+        term TEXT,
+        definition TEXT,
+        term_image TEXT,
+        definition_image TEXT,
+        tags_json TEXT NOT NULL,
+        suspended INTEGER NOT NULL DEFAULT 0,
+        buried_until TEXT,
+        srs_json TEXT,
+        review_history_json TEXT NOT NULL,
+        created INTEGER,
+        last_modified INTEGER,
+        deleted_at INTEGER,
+        rev INTEGER NOT NULL DEFAULT 1,
+        device_id TEXT,
+        payload_json TEXT NOT NULL,
+        FOREIGN KEY (set_id) REFERENCES sets(id) ON DELETE CASCADE
+      );
+
+      CREATE TABLE IF NOT EXISTS settings (
+        key TEXT PRIMARY KEY,
+        value_json TEXT NOT NULL,
+        updated_at INTEGER NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS progress (
+        set_id TEXT PRIMARY KEY,
+        value_json TEXT NOT NULL,
+        updated_at INTEGER NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS state (
+        key TEXT PRIMARY KEY,
+        value_json TEXT NOT NULL,
+        updated_at INTEGER NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS tombstones (
+        id TEXT PRIMARY KEY,
+        record_type TEXT NOT NULL,
+        deleted_at INTEGER NOT NULL,
+        rev INTEGER NOT NULL DEFAULT 1,
+        device_id TEXT
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_sets_class ON sets(class_id);
+      CREATE INDEX IF NOT EXISTS idx_sets_visible ON sets(deleted_at, last_modified);
+      CREATE INDEX IF NOT EXISTS idx_cards_set_position ON cards(set_id, position);
+      CREATE INDEX IF NOT EXISTS idx_cards_visible ON cards(deleted_at);
+    `);
+
+    this.setMeta('schemaVersion', String(DB_SCHEMA_VERSION));
+  }
+
+  getMeta(key) {
+    const statement = this.db.prepare('SELECT value FROM meta WHERE key = ?');
+    const rows = getStatementRows(statement, [key]);
+    return rows[0]?.value ?? null;
+  }
+
+  setMeta(key, value) {
+    const statement = this.db.prepare('INSERT OR REPLACE INTO meta (key, value) VALUES (?, ?)');
+    statement.run([key, String(value)]);
+    statement.free();
+  }
+
+  countVisibleSets() {
+    const statement = this.db.prepare('SELECT COUNT(*) AS count FROM sets WHERE deleted_at IS NULL');
+    const rows = getStatementRows(statement);
+    return Number(rows[0]?.count || 0);
+  }
+
+  async readLegacyJson(name, fallback) {
+    try {
+      const raw = await fs.readFile(path.join(this.dataDir, name), 'utf8');
+      return JSON.parse(raw);
+    } catch (_error) {
+      return fallback;
+    }
+  }
+
+  async migrateLegacyJsonIfNeeded() {
+    if (this.getMeta('legacyJsonMigrated') === 'true') return;
+
+    const legacySets = await this.readLegacyJson('sets.json', []);
+    const legacyClasses = await this.readLegacyJson('classes.json', []);
+    const legacySettings = await this.readLegacyJson('settings.json', {});
+    const legacyProgress = await this.readLegacyJson('progress.json', {});
+    const legacyState = await this.readLegacyJson('state.json', {});
+    const hasLegacyData = (
+      (Array.isArray(legacySets) && legacySets.length > 0) ||
+      (Array.isArray(legacyClasses) && legacyClasses.length > 0) ||
+      Object.keys(legacySettings || {}).length > 0 ||
+      Object.keys(legacyProgress || {}).length > 0 ||
+      Object.keys(legacyState || {}).length > 0
+    );
+
+    if (!hasLegacyData || this.countVisibleSets() > 0) {
+      this.setMeta('legacyJsonMigrated', 'true');
+      return;
+    }
+
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const backupPath = path.join(this.backupsDir, `before-sqlite-migration-${stamp}.json`);
+    await fs.writeFile(backupPath, JSON.stringify({
+      app: 'Erudite Flashcards',
+      schemaVersion: 1,
+      exportedAt: new Date().toISOString(),
+      reason: 'before-sqlite-migration',
+      data: {
+        sets: Array.isArray(legacySets) ? legacySets : [],
+        classes: Array.isArray(legacyClasses) ? legacyClasses : [],
+        settings: legacySettings && typeof legacySettings === 'object' ? legacySettings : {},
+        progress: legacyProgress && typeof legacyProgress === 'object' ? legacyProgress : {},
+        state: legacyState && typeof legacyState === 'object' ? legacyState : {}
+      }
+    }, null, 2), 'utf8');
+
+    await this.replaceClasses(Array.isArray(legacyClasses) ? legacyClasses : [], { persist: false });
+    await this.replaceSets(Array.isArray(legacySets) ? legacySets : [], { persist: false });
+
+    if (legacySettings && typeof legacySettings === 'object') {
+      await this.saveSettings(legacySettings, { persist: false });
+    }
+    if (legacyProgress && typeof legacyProgress === 'object') {
+      for (const [setId, value] of Object.entries(legacyProgress)) {
+        await this.saveProgress(setId, value, { persist: false });
+      }
+    }
+    if (legacyState && typeof legacyState === 'object') {
+      for (const [key, value] of Object.entries(legacyState)) {
+        await this.setState(key, value, { persist: false });
+      }
+    }
+
+    this.setMeta('legacyJsonMigrated', 'true');
+  }
+
+  async persist() {
+    const bytes = this.db.export();
+    const temp = `${this.dbPath}.${process.pid}.${Date.now()}.tmp`;
+    await fs.writeFile(temp, Buffer.from(bytes));
+    try {
+      await fs.rename(temp, this.dbPath);
+    } catch (error) {
+      if (error && (error.code === 'EEXIST' || error.code === 'EPERM')) {
+        await fs.copyFile(temp, this.dbPath);
+        await fs.rm(temp, { force: true });
+        return;
+      }
+      await fs.rm(temp, { force: true }).catch(() => {});
+      throw error;
+    }
+  }
+
+  begin() {
+    this.db.exec('BEGIN TRANSACTION;');
+  }
+
+  commit() {
+    this.db.exec('COMMIT;');
+  }
+
+  rollback() {
+    try {
+      this.db.exec('ROLLBACK;');
+    } catch (_error) {}
+  }
+
+  upsertClass(classData) {
+    const statement = this.db.prepare(`
+      INSERT INTO classes (id, name, color, created, last_modified, deleted_at, rev, device_id, payload_json)
+      VALUES (?, ?, ?, ?, ?, NULL, COALESCE((SELECT rev + 1 FROM classes WHERE id = ?), 1), ?, ?)
+      ON CONFLICT(id) DO UPDATE SET
+        name = excluded.name,
+        color = excluded.color,
+        created = excluded.created,
+        last_modified = excluded.last_modified,
+        deleted_at = NULL,
+        rev = classes.rev + 1,
+        device_id = excluded.device_id,
+        payload_json = excluded.payload_json
+    `);
+    statement.run([
+      String(classData.id),
+      classData.name,
+      classData.color,
+      Number(classData.created || Date.now()),
+      Number(classData.lastModified || Date.now()),
+      String(classData.id),
+      classData.deviceId || null,
+      jsonString(classData)
+    ]);
+    statement.free();
+  }
+
+  upsertSet(set) {
+    const payload = { ...set, cards: undefined };
+    const statement = this.db.prepare(`
+      INSERT INTO sets (
+        id, name, description, class_id, srs_settings_json, created, opened_count,
+        last_opened, last_modified, deleted_at, rev, device_id, payload_json
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, COALESCE((SELECT rev + 1 FROM sets WHERE id = ?), 1), ?, ?)
+      ON CONFLICT(id) DO UPDATE SET
+        name = excluded.name,
+        description = excluded.description,
+        class_id = excluded.class_id,
+        srs_settings_json = excluded.srs_settings_json,
+        created = excluded.created,
+        opened_count = excluded.opened_count,
+        last_opened = excluded.last_opened,
+        last_modified = excluded.last_modified,
+        deleted_at = NULL,
+        rev = sets.rev + 1,
+        device_id = excluded.device_id,
+        payload_json = excluded.payload_json
+    `);
+    statement.run([
+      String(set.id),
+      set.name,
+      set.description || '',
+      set.classId || null,
+      jsonString(set.srsSettings || {}),
+      Number(set.created || Date.now()),
+      Number(set.openedCount || 0),
+      set.lastOpened ?? null,
+      Number(set.lastModified || Date.now()),
+      String(set.id),
+      set.deviceId || null,
+      jsonString(payload)
+    ]);
+    statement.free();
+  }
+
+  replaceCardsForSet(setId, cards = []) {
+    let statement = this.db.prepare('DELETE FROM cards WHERE set_id = ?');
+    statement.run([String(setId)]);
+    statement.free();
+
+    statement = this.db.prepare(`
+      INSERT INTO cards (
+        id, set_id, position, term, definition, term_image, definition_image,
+        tags_json, suspended, buried_until, srs_json, review_history_json,
+        created, last_modified, deleted_at, rev, device_id, payload_json
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, COALESCE((SELECT rev + 1 FROM cards WHERE id = ?), 1), ?, ?)
+    `);
+
+    cards.forEach((card, index) => {
+      statement.run([
+        String(card.id),
+        String(setId),
+        index,
+        card.term || '',
+        card.definition || '',
+        card.termImage || '',
+        card.definitionImage || '',
+        jsonString(Array.isArray(card.tags) ? card.tags : []),
+        card.suspended ? 1 : 0,
+        card.buriedUntil || null,
+        jsonString(card.srs || null),
+        jsonString(Array.isArray(card.reviewHistory) ? card.reviewHistory : []),
+        card.created || null,
+        card.lastModified || null,
+        String(card.id),
+        card.deviceId || null,
+        jsonString(card)
+      ]);
+    });
+
+    statement.free();
+  }
+
+  rows(sql, params = []) {
+    return getStatementRows(this.db.prepare(sql), params);
+  }
+
+  count(sql, params = []) {
+    const rows = this.rows(sql, params);
+    return Number(rows[0]?.count || 0);
+  }
+
+  async getDiagnostics() {
+    return {
+      schemaVersion: this.getMeta('schemaVersion'),
+      legacyJsonMigrated: this.getMeta('legacyJsonMigrated') === 'true',
+      dbPath: this.dbPath,
+      dataDir: this.dataDir,
+      backupsDir: this.backupsDir,
+      counts: {
+        sets: this.count('SELECT COUNT(*) AS count FROM sets WHERE deleted_at IS NULL'),
+        deletedSets: this.count('SELECT COUNT(*) AS count FROM sets WHERE deleted_at IS NOT NULL'),
+        classes: this.count('SELECT COUNT(*) AS count FROM classes WHERE deleted_at IS NULL'),
+        deletedClasses: this.count('SELECT COUNT(*) AS count FROM classes WHERE deleted_at IS NOT NULL'),
+        cards: this.count(`
+          SELECT COUNT(*) AS count
+          FROM cards
+          JOIN sets ON sets.id = cards.set_id
+          WHERE cards.deleted_at IS NULL AND sets.deleted_at IS NULL
+        `),
+        cardsInDeletedSets: this.count(`
+          SELECT COUNT(*) AS count
+          FROM cards
+          JOIN sets ON sets.id = cards.set_id
+          WHERE cards.deleted_at IS NULL AND sets.deleted_at IS NOT NULL
+        `),
+        orphanedCards: this.count(`
+          SELECT COUNT(*) AS count
+          FROM cards
+          LEFT JOIN sets ON sets.id = cards.set_id
+          WHERE sets.id IS NULL
+        `),
+        progressRows: this.count('SELECT COUNT(*) AS count FROM progress'),
+        stateRows: this.count('SELECT COUNT(*) AS count FROM state'),
+        tombstones: this.count('SELECT COUNT(*) AS count FROM tombstones')
+      }
+    };
+  }
+
+  async listSets() {
+    const setRows = this.rows('SELECT * FROM sets WHERE deleted_at IS NULL ORDER BY last_modified DESC, created DESC');
+    const sets = [];
+
+    for (const row of setRows) {
+      const payload = jsonParse(row.payload_json, {});
+      const cards = this.rows(
+        'SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL ORDER BY position ASC',
+        [row.id]
+      ).map(cardRow => ({
+        ...jsonParse(cardRow.payload_json, {}),
+        id: cardRow.id,
+        term: cardRow.term || '',
+        definition: cardRow.definition || '',
+        termImage: cardRow.term_image || '',
+        definitionImage: cardRow.definition_image || '',
+        tags: jsonParse(cardRow.tags_json, []),
+        suspended: Boolean(cardRow.suspended),
+        buriedUntil: cardRow.buried_until || null,
+        srs: jsonParse(cardRow.srs_json, null) || undefined,
+        reviewHistory: jsonParse(cardRow.review_history_json, [])
+      }));
+      sets.push({
+        ...payload,
+        id: row.id,
+        name: row.name,
+        description: row.description || '',
+        classId: row.class_id || null,
+        srsSettings: jsonParse(row.srs_settings_json, {}),
+        created: Number(row.created),
+        openedCount: Number(row.opened_count || 0),
+        lastOpened: row.last_opened ?? null,
+        lastModified: Number(row.last_modified),
+        cards
+      });
+    }
+
+    return sets;
+  }
+
+  async getSet(id) {
+    const sets = await this.listSets();
+    return sets.find(set => String(set.id) === String(id)) || null;
+  }
+
+  async saveSet(rawSet) {
+    const id = rawSet.id || this.normalizers.generateId('set');
+    const existing = await this.getSet(id);
+    const normalized = await this.normalizers.normalizeSet({ ...rawSet, id }, existing);
+
+    this.begin();
+    try {
+      this.upsertSet(normalized);
+      this.replaceCardsForSet(normalized.id, normalized.cards || []);
+      this.commit();
+    } catch (error) {
+      this.rollback();
+      throw error;
+    }
+
+    await this.persist();
+    return normalized;
+  }
+
+  async replaceSets(rawSets = [], options = {}) {
+    const normalizedSets = [];
+    const seen = new Set();
+
+    for (const rawSet of Array.isArray(rawSets) ? rawSets : []) {
+      if (!rawSet) continue;
+      const id = rawSet.id || this.normalizers.generateId('set');
+      if (seen.has(String(id))) continue;
+      seen.add(String(id));
+      normalizedSets.push(await this.normalizers.normalizeSet({ ...rawSet, id }, null, { preserveLastModified: true }));
+    }
+
+    const now = Date.now();
+    this.begin();
+    try {
+      this.db.exec(`UPDATE sets SET deleted_at = ${now}, last_modified = ${now} WHERE deleted_at IS NULL;`);
+      for (const set of normalizedSets) {
+        this.upsertSet(set);
+        this.replaceCardsForSet(set.id, set.cards || []);
+      }
+      this.commit();
+    } catch (error) {
+      this.rollback();
+      throw error;
+    }
+
+    if (options.persist !== false) await this.persist();
+    return this.listSets();
+  }
+
+  async deleteSet(id) {
+    const now = Date.now();
+    this.begin();
+    try {
+      let statement = this.db.prepare('UPDATE sets SET deleted_at = ?, last_modified = ?, rev = rev + 1 WHERE id = ?');
+      statement.run([now, now, String(id)]);
+      statement.free();
+      statement = this.db.prepare('INSERT OR REPLACE INTO tombstones (id, record_type, deleted_at, rev) VALUES (?, ?, ?, COALESCE((SELECT rev + 1 FROM tombstones WHERE id = ?), 1))');
+      statement.run([String(id), 'set', now, String(id)]);
+      statement.free();
+      statement = this.db.prepare('DELETE FROM progress WHERE set_id = ?');
+      statement.run([String(id)]);
+      statement.free();
+      this.commit();
+    } catch (error) {
+      this.rollback();
+      throw error;
+    }
+    await this.persist();
+    return true;
+  }
+
+  async listClasses() {
+    return this.rows('SELECT * FROM classes WHERE deleted_at IS NULL ORDER BY name ASC').map(row => ({
+      ...jsonParse(row.payload_json, {}),
+      id: row.id,
+      name: row.name,
+      color: row.color,
+      created: Number(row.created),
+      lastModified: Number(row.last_modified)
+    }));
+  }
+
+  async saveClass(rawClass) {
+    const classes = await this.listClasses();
+    const id = rawClass.id || this.normalizers.generateId('class');
+    const existing = classes.find(classItem => String(classItem.id) === String(id));
+    const normalized = this.normalizers.normalizeClass({ ...rawClass, id }, existing);
+    normalized.lastModified = Date.now();
+
+    this.begin();
+    try {
+      this.upsertClass(normalized);
+      this.commit();
+    } catch (error) {
+      this.rollback();
+      throw error;
+    }
+    await this.persist();
+    return normalized;
+  }
+
+  async replaceClasses(rawClasses = [], options = {}) {
+    const normalizedClasses = [];
+    const seen = new Set();
+
+    for (const rawClass of Array.isArray(rawClasses) ? rawClasses : []) {
+      if (!rawClass) continue;
+      const normalized = this.normalizers.normalizeClass(rawClass);
+      if (seen.has(String(normalized.id))) continue;
+      seen.add(String(normalized.id));
+      normalizedClasses.push(normalized);
+    }
+
+    const now = Date.now();
+    this.begin();
+    try {
+      this.db.exec(`UPDATE classes SET deleted_at = ${now}, last_modified = ${now} WHERE deleted_at IS NULL;`);
+      normalizedClasses.forEach(classData => this.upsertClass(classData));
+      this.commit();
+    } catch (error) {
+      this.rollback();
+      throw error;
+    }
+
+    if (options.persist !== false) await this.persist();
+    return this.listClasses();
+  }
+
+  async deleteClass(classId) {
+    const now = Date.now();
+    this.begin();
+    try {
+      let statement = this.db.prepare('UPDATE classes SET deleted_at = ?, last_modified = ?, rev = rev + 1 WHERE id = ?');
+      statement.run([now, now, String(classId)]);
+      statement.free();
+      statement = this.db.prepare('UPDATE sets SET class_id = NULL, last_modified = ?, rev = rev + 1 WHERE class_id = ? AND deleted_at IS NULL');
+      statement.run([now, String(classId)]);
+      statement.free();
+      statement = this.db.prepare('INSERT OR REPLACE INTO tombstones (id, record_type, deleted_at, rev) VALUES (?, ?, ?, COALESCE((SELECT rev + 1 FROM tombstones WHERE id = ?), 1))');
+      statement.run([String(classId), 'class', now, String(classId)]);
+      statement.free();
+      this.commit();
+    } catch (error) {
+      this.rollback();
+      throw error;
+    }
+    await this.persist();
+    return true;
+  }
+
+  async getSettings() {
+    const rows = this.rows('SELECT value_json FROM settings WHERE key = ?', ['app']);
+    return jsonParse(rows[0]?.value_json, {});
+  }
+
+  async saveSettings(settings = {}, options = {}) {
+    const statement = this.db.prepare('INSERT OR REPLACE INTO settings (key, value_json, updated_at) VALUES (?, ?, ?)');
+    statement.run(['app', jsonString(settings || {}), Date.now()]);
+    statement.free();
+    if (options.persist !== false) await this.persist();
+    return true;
+  }
+
+  async getProgress(setId) {
+    const rows = this.rows('SELECT value_json FROM progress WHERE set_id = ?', [String(setId)]);
+    return jsonParse(rows[0]?.value_json, null);
+  }
+
+  async saveProgress(setId, value, options = {}) {
+    const statement = this.db.prepare('INSERT OR REPLACE INTO progress (set_id, value_json, updated_at) VALUES (?, ?, ?)');
+    statement.run([String(setId), jsonString(value), Date.now()]);
+    statement.free();
+    if (options.persist !== false) await this.persist();
+    return true;
+  }
+
+  async getAllProgress() {
+    const progress = {};
+    this.rows('SELECT set_id, value_json FROM progress').forEach(row => {
+      progress[row.set_id] = jsonParse(row.value_json, null);
+    });
+    return progress;
+  }
+
+  async replaceProgress(progress = {}, options = {}) {
+    this.db.exec('DELETE FROM progress;');
+    for (const [setId, value] of Object.entries(progress || {})) {
+      await this.saveProgress(setId, value, { persist: false });
+    }
+    if (options.persist !== false) await this.persist();
+    return true;
+  }
+
+  async getState(key) {
+    const rows = this.rows('SELECT value_json FROM state WHERE key = ?', [String(key)]);
+    return jsonParse(rows[0]?.value_json, null);
+  }
+
+  async setState(key, value, options = {}) {
+    const statement = this.db.prepare('INSERT OR REPLACE INTO state (key, value_json, updated_at) VALUES (?, ?, ?)');
+    statement.run([String(key), jsonString(value), Date.now()]);
+    statement.free();
+    if (options.persist !== false) await this.persist();
+    return true;
+  }
+
+  async removeState(key) {
+    const statement = this.db.prepare('DELETE FROM state WHERE key = ?');
+    statement.run([String(key)]);
+    statement.free();
+    await this.persist();
+    return true;
+  }
+
+  async getAllState() {
+    const state = {};
+    this.rows('SELECT key, value_json FROM state').forEach(row => {
+      state[row.key] = jsonParse(row.value_json, null);
+    });
+    return state;
+  }
+
+  async replaceState(state = {}, options = {}) {
+    this.db.exec('DELETE FROM state;');
+    for (const [key, value] of Object.entries(state || {})) {
+      await this.setState(key, value, { persist: false });
+    }
+    if (options.persist !== false) await this.persist();
+    return true;
+  }
+}
+
+module.exports = {
+  SqliteFlashcardStore
+};

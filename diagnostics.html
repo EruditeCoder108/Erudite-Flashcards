@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Erudite Diagnostics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/icons/icon.png">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="css/diagnostics.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <script src="js/storage-client.js"></script>
+</head>
+<body>
+    <main class="diagnostics-shell">
+        <header class="diagnostics-header">
+            <div>
+                <p class="eyebrow">Local Library</p>
+                <h1>Diagnostics</h1>
+                <p id="generated-at" class="subtitle">Reading local storage health...</p>
+            </div>
+            <div class="header-actions">
+                <button id="refresh-btn" type="button" class="icon-button" title="Refresh diagnostics">
+                    <i class="fas fa-rotate-right"></i>
+                </button>
+                <button id="back-btn" type="button" class="secondary-button">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </button>
+            </div>
+        </header>
+
+        <section id="health-banner" class="health-banner loading">
+            <i class="fas fa-circle-notch fa-spin"></i>
+            <div>
+                <strong>Checking storage...</strong>
+                <span>Please wait.</span>
+            </div>
+        </section>
+
+        <section class="metric-grid" aria-label="Library counts">
+            <article class="metric-card">
+                <span id="set-count">0</span>
+                <small>Sets</small>
+            </article>
+            <article class="metric-card">
+                <span id="card-count">0</span>
+                <small>Cards</small>
+            </article>
+            <article class="metric-card">
+                <span id="class-count">0</span>
+                <small>Classes</small>
+            </article>
+            <article class="metric-card">
+                <span id="backup-count">0</span>
+                <small>Recent Backups</small>
+            </article>
+        </section>
+
+        <section class="panel-grid">
+            <article class="panel">
+                <h2><i class="fas fa-database"></i> Storage</h2>
+                <dl id="storage-details" class="detail-list"></dl>
+            </article>
+
+            <article class="panel">
+                <h2><i class="fas fa-heart-pulse"></i> Integrity</h2>
+                <dl id="integrity-details" class="detail-list"></dl>
+            </article>
+        </section>
+
+        <section class="panel">
+            <h2><i class="fas fa-folder-tree"></i> Paths</h2>
+            <div id="path-list" class="path-list"></div>
+        </section>
+
+        <section class="panel">
+            <h2><i class="fas fa-image"></i> Broken Image Links</h2>
+            <div id="broken-images" class="table-wrap"></div>
+        </section>
+
+        <section class="panel">
+            <h2><i class="fas fa-clock-rotate-left"></i> Recent Backups</h2>
+            <div id="backup-list" class="table-wrap"></div>
+        </section>
+    </main>
+
+    <script src="js/flashcard-settings.js"></script>
+    <script src="js/app-menu.js"></script>
+    <script src="js/diagnostics.js"></script>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+    <script src="js/cursor.js"></script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Create Flashcards</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+
+    <link rel="stylesheet" href="css/creator.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/toast-notifications.css">
+
+    <script src="js/storage-client.js"></script>
+    <script src="node_modules/sortablejs/Sortable.min.js"></script>
+    <script src="js/sortable-fallback.js"></script>
+    <script src="node_modules/ts-fsrs/dist/index.umd.js"></script>
+    <script src="js/srs-manager.js"></script>
+    <script src="js/flashcard-settings.js"></script>
+    <script src="js/app-menu.js"></script>
+    <script src="js/creator.js"></script>
+</head>
+<body>
+   
+    <!-- Custom Cursor Elements -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+    <script src="js/cursor.js"></script>
+    <div class="app-container">
+        <!-- Navigation Bar -->
+        <nav class="top-nav glass-effect">
+            <div class="nav-left">
+                <a href="#" id="back-button" class="nav-logo">
+                    <i class="fas fa-chevron-left"></i>
+                    <span id="back-button-text">Back to Library</span>
+                </a>
+                <div class="set-info">
+                    <input type="text" id="set-name" class="set-title-input" placeholder="Enter set title..." maxlength="100">
+                    <div class="set-meta-row">
+                        <span class="card-count">0 cards</span>
+                        <span class="class-select-shell creator-class-select-shell">
+                            <select id="set-class-select" class="set-class-select" title="Class">
+                                <option value="">General</option>
+                                <option value="__new">+ New Class</option>
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="file-actions">
+                    <button id="import-btn" class="file-btn" title="Import Set (Ctrl+O)">
+                        <i class="fas fa-file-import"></i>
+                    </button>
+                    <button id="export-btn" class="file-btn" title="Export Set (Ctrl+E)">
+                        <i class="fas fa-file-export"></i>
+                    </button>
+                    <button id="file-help-btn" class="file-btn help-btn" title="Import/Export Help">
+                        <i class="fas fa-question"></i>
+                    </button>
+                </div>
+                <div class="autosave-indicator">
+                    <i class="fas fa-save"></i>
+                    <span>Saved</span>
+                </div>
+                <button id="save-set-btn" class="primary-btn">
+                    <i class="fas fa-check"></i>
+                    <span>Save Set</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="creator-main">
+            <div class="creator-content">
+                <!-- Toolbar -->
+                <div class="cards-toolbar glass-effect">
+                    <div class="toolbar-left">
+                        <button id="add-card-btn" class="tool-button primary">
+                            <i class="fas fa-layer-group"></i>
+                            Add Bulk Cards
+                        </button>
+                    </div>
+                    <div class="toolbar-right">
+                    </div>
+                </div>
+
+                <!-- Cards Container -->
+                <div id="cards-container" class="cards-grid">
+                    <!-- Cards will be dynamically added here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Add Button -->
+    <button id="floating-add-btn" class="floating-add-btn" title="Add Card (Ctrl+N)">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Keyboard Shortcuts Help -->
+    <button id="shortcuts-help-btn" class="shortcuts-help-btn" title="Keyboard Shortcuts">
+        <i class="fas fa-keyboard"></i>
+    </button>
+
+    <!-- Shortcuts Modal -->
+    <div id="shortcuts-modal" class="shortcuts-modal">
+        <div class="shortcuts-content glass-effect">
+            <div class="shortcuts-header">
+                <h2>Keyboard Shortcuts</h2>
+                <button class="close-shortcuts-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="shortcuts-body">
+                <div class="shortcuts-section">
+                    <h3>General</h3>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>S</kbd></span>
+                        <span class="shortcut-desc">Save flashcard set</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>O</kbd></span>
+                        <span class="shortcut-desc">Import flashcard set</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>E</kbd></span>
+                        <span class="shortcut-desc">Export flashcard set</span>
+                    </div>
+                </div>
+                <div class="shortcuts-section">
+                    <h3>Cards</h3>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>N</kbd></span>
+                        <span class="shortcut-desc">Add new card</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd></span>
+                        <span class="shortcut-desc">Add multiple cards</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>Delete</kbd></span>
+                        <span class="shortcut-desc">Delete current card</span>
+                    </div>
+                </div>
+                <div class="shortcuts-section">
+                    <h3>Formatting</h3>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>B</kbd></span>
+                        <span class="shortcut-desc">Bold text</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>I</kbd></span>
+                        <span class="shortcut-desc">Italic text</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>U</kbd></span>
+                        <span class="shortcut-desc">Underline text</span>
+                    </div>
+                </div>
+            </div>
+            <div class="shortcuts-footer">
+                <p>Note: On Mac, use <kbd>Cmd</kbd> instead of <kbd>Ctrl</kbd></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Class Modal -->
+    <div id="creator-class-modal" class="shortcuts-modal">
+        <div class="shortcuts-content glass-effect creator-class-content">
+            <div class="shortcuts-header">
+                <h2>New Class</h2>
+                <button id="close-creator-class" class="close-creator-class-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="shortcuts-body">
+                <div class="creator-class-form">
+                    <label>
+                        Class name
+                        <input type="text" id="creator-class-name" placeholder="Biology" maxlength="80">
+                    </label>
+                    <label>
+                        Class color
+                        <input type="color" id="creator-class-color" value="#3B82F6">
+                    </label>
+                </div>
+            </div>
+            <div class="shortcuts-footer creator-class-actions">
+                <button id="cancel-creator-class" class="secondary-btn">Cancel</button>
+                <button id="save-creator-class" class="primary-btn">
+                    <i class="fas fa-save"></i>
+                    <span>Create Class</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Template -->
+    <template id="card-template">
+        <div class="card-editor glass-effect">
+            <div class="card-number">1</div>
+            <button class="delete-card" title="Delete Card">
+                <i class="fas fa-trash"></i>
+            </button>
+            <div class="card-content">
+                <div class="card-side term-side">
+                    <div class="side-header">
+                        <span class="side-label">TERM</span>
+                        <div class="side-tools">
+                            <button class="tool-btn image-btn" title="Add Image">
+                                <i class="fas fa-image"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="editor-container">
+                        <div class="format-toolbar">
+                            <button data-format="bold" title="Bold">
+                                <i class="fas fa-bold"></i>
+                            </button>
+                            <button data-format="italic" title="Italic">
+                                <i class="fas fa-italic"></i>
+                            </button>
+                            <button data-format="underline" title="Underline">
+                                <i class="fas fa-underline"></i>
+                            </button>
+                        </div>
+                        <div class="editor" contenteditable="true" spellcheck="true" autocapitalize="sentences" wrap="hard" style="word-wrap: break-word; overflow-wrap: break-word; white-space: pre-wrap;"></div>
+                        <div class="image-preview-container">
+                            <img class="image-preview" style="display: none;">
+                            <button class="remove-image-btn" style="display: none;" title="Remove image">&times;</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-side definition-side">
+                    <div class="side-header">
+                        <span class="side-label">DEFINITION</span>
+                        <div class="side-tools">
+                            <button class="tool-btn image-btn" title="Add Image">
+                                <i class="fas fa-image"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="editor-container">
+                        <div class="format-toolbar">
+                            <button data-format="bold" title="Bold">
+                                <i class="fas fa-bold"></i>
+                            </button>
+                            <button data-format="italic" title="Italic">
+                                <i class="fas fa-italic"></i>
+                            </button>
+                            <button data-format="underline" title="Underline">
+                                <i class="fas fa-underline"></i>
+                            </button>
+                        </div>
+                        <div class="editor" contenteditable="true" spellcheck="true" autocapitalize="sentences" wrap="hard" style="word-wrap: break-word; overflow-wrap: break-word; white-space: pre-wrap;"></div>
+                        <div class="image-preview-container">
+                            <img class="image-preview" style="display: none;">
+                            <button class="remove-image-btn" style="display: none;" title="Remove image">&times;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <!-- Draft Recovery Modal -->
+    <div id="draft-modal" class="shortcuts-modal">
+        <div class="shortcuts-content glass-effect">
+            <div class="shortcuts-header">
+                <h2>Draft Found</h2>
+                <button class="close-draft-btn" type="button" aria-label="Close and continue draft">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="shortcuts-body">
+                <p>You have an unsaved set that was automatically saved as a draft.</p>
+                <p>Would you like to continue working on this draft or start a new set?</p>
+                <div class="draft-buttons">
+                    <button id="continue-draft-btn" class="primary-btn" type="button">
+                        <i class="fas fa-edit"></i>
+                        Continue Draft
+                    </button>
+                    <button id="delete-draft-btn" class="primary-btn" type="button">
+                        <i class="fas fa-trash"></i>
+                        Start New
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Help Modal -->
+    <div id="file-help-modal" class="shortcuts-modal">
+        <div class="shortcuts-content glass-effect">
+            <div class="shortcuts-header">
+                <h2>Import & Export Help</h2>
+                <button class="close-file-help-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="shortcuts-body">
+                <div class="help-section">
+                    <h3><i class="fas fa-file-export"></i> Export Set</h3>
+                    <p>Export your flashcard set as a JSON file that can be shared or backed up.</p>
+                    <div class="help-details">
+                        <h4>What gets exported:</h4>
+                        <ul>
+                            <li>Set name and all cards</li>
+                            <li>Text content (terms and definitions)</li>
+                            <li>Images (as base64 data)</li>
+                            <li>Export timestamp</li>
+                        </ul>
+                        <h4>File format:</h4>
+                        <p>JSON file with the following structure:</p>
+                        <pre><code>{
+  "name": "My Flashcard Set",
+  "cards": [
+    {
+      "term": "Question text",
+      "definition": "Answer text",
+      "termImage": "data:image/...",
+      "definitionImage": "data:image/..."
+    }
+  ],
+  "exportDate": 1234567890
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h3><i class="fas fa-file-import"></i> Import Set</h3>
+                    <p>Import a previously exported flashcard set from a JSON file.</p>
+                    <div class="help-details">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>File must be in JSON format</li>
+                            <li>Must contain a "cards" array</li>
+                            <li>Each card should have "term" and "definition" fields</li>
+                            <li>Images are optional but supported</li>
+                        </ul>
+                        <h4>What happens when importing:</h4>
+                        <ul>
+                            <li>Current set content is replaced</li>
+                            <li>Set name is updated from the file</li>
+                            <li>All cards are recreated with their content</li>
+                            <li>Images are restored if present</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h3><i class="fas fa-lightbulb"></i> Tips</h3>
+                    <ul>
+                        <li>Use export to backup your sets regularly</li>
+                        <li>Share sets with others by sending the JSON file</li>
+                        <li>Import works with sets from other users</li>
+                        <li>Large sets with many images may create large files</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

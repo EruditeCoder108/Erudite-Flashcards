@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Erudite Flashcards</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/icon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/icons/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+
+    <link rel="stylesheet" href="css/library.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/toast-notifications.css">
+
+    <script src="js/storage-client.js"></script>
+    <script src="node_modules/ts-fsrs/dist/index.umd.js"></script>
+    <script src="js/srs-manager.js"></script>
+
+</head>
+<body>
+    
+    <div class="app-container">
+        <!-- Header -->
+        <header class="library-header">
+            <div class="header-content">
+                <div class="header-title-group">
+                    <div class="brand-heading">
+                        <img src="assets/icons/icon.png" alt="" class="brand-logo">
+                        <h1>Erudite Flashcards</h1>
+                    </div>
+                    <p id="library-subtitle">0 sets | 0 due | ready to study</p>
+                </div>
+                <div class="header-actions">
+                    <button id="settings-btn" class="settings-button" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button id="review-due-btn" class="primary-button review-due-button hidden">
+                        <i class="fas fa-brain"></i>
+                        <span>Review Due Cards</span>
+                    </button>
+                    <button id="import-set-btn" class="secondary-button header-import-button">
+                        <i class="fas fa-file-import"></i>
+                        Import
+                    </button>
+                    <button id="card-browser-btn" class="secondary-button header-import-button">
+                        <i class="fas fa-table-list"></i>
+                        Cards
+                    </button>
+                    <button id="create-set-btn" class="primary-button">
+                        <i class="fas fa-plus"></i>
+                        Create New Set
+                    </button>
+                </div>
+            </div>
+            <!-- Library Stats -->
+            <div class="library-stats">
+                <div class="stat-item">
+                    <i class="fas fa-layer-group"></i>
+                    <div class="stat-info">
+                        <span id="total-sets">0</span>
+                        <span class="stat-label">Total Sets</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-clock-rotate-left"></i>
+                    <div class="stat-info">
+                        <span id="recent-activity">0</span>
+                        <span class="stat-label">Recent Activity</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-brain"></i>
+                    <div class="stat-info">
+                        <span id="due-cards">0</span>
+                        <span class="stat-label">Due Cards</span>
+                    </div>
+                </div>
+                
+                <!-- Flashcard Type Selector -->
+                <div class="flashcard-type-selector">
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="flashcard-type" value="my-flashcards" checked>
+                            <span class="radio-custom"></span>
+                            <span class="radio-label">My Sets</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="flashcard-type" value="premade-flashcards">
+                            <span class="radio-custom"></span>
+                            <span class="radio-label">Premade</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- SRS Mode Toggle -->
+                <div class="srs-toggle-container">
+                    <div class="srs-toggle">
+                        <input type="checkbox" id="srs-mode-toggle" class="srs-toggle-input">
+                        <label for="srs-mode-toggle" class="srs-toggle-label">
+                            <span class="srs-toggle-slider"></span>
+                            <span class="srs-toggle-text">
+                                <i class="fas fa-brain"></i>
+                                <span>SRS Mode</span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="srs-status" id="srs-status">
+                        <span class="srs-status-text">Normal Study</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="srs-dashboard" id="srs-dashboard">
+                <div class="srs-dashboard-item">
+                    <span id="srs-new-count">0</span>
+                    <small>New</small>
+                </div>
+                <div class="srs-dashboard-item">
+                    <span id="srs-learning-count">0</span>
+                    <small>Learning</small>
+                </div>
+                <div class="srs-dashboard-item">
+                    <span id="srs-review-count">0</span>
+                    <small>Review</small>
+                </div>
+                <div class="srs-dashboard-item">
+                    <span id="srs-mature-count">0</span>
+                    <small>Mature</small>
+                </div>
+                <div class="srs-dashboard-item">
+                    <span id="srs-retention">--</span>
+                    <small>Retention</small>
+                </div>
+                <div class="srs-dashboard-item srs-dashboard-next">
+                    <span id="srs-next-due">No due cards</span>
+                    <small>Next due</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="library-content">
+            <!-- Search and Filter -->
+            <div class="library-toolbar">
+                <div class="library-view-tabs" role="tablist" aria-label="Library view">
+                    <button class="library-view-tab active" data-view="all" type="button">
+                        <i class="fas fa-border-all"></i>
+                        All
+                    </button>
+                    <button class="library-view-tab" data-view="classes" type="button">
+                        <i class="fas fa-chalkboard-user"></i>
+                        Classes
+                    </button>
+                    <button class="library-view-tab" data-view="general" type="button">
+                        <i class="fas fa-inbox"></i>
+                        General
+                    </button>
+                </div>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search flashcard sets...">
+                </div>
+                <div class="sort-options">
+                    <select id="sort-select">
+                        <option value="recent">Most Recent</option>
+                        <option value="name">Name</option>
+                        <option value="cards">Number of Cards</option>
+                        <option value="studied">Most Studied</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Flashcard Sets Grid -->
+            <div class="sets-grid" id="sets-container">
+                <!-- Empty State -->
+                <div id="empty-state" class="empty-state hidden">
+                    <div class="empty-state-icon">
+                        <i class="fas fa-folder-plus"></i>
+                    </div>
+                    <h2>No Flashcard Sets Yet</h2>
+                    <p>Create your first set to start studying!</p>
+                    <button class="primary-button" id="empty-state-create-btn">
+                        <i class="fas fa-plus"></i>
+                        Create Set
+                    </button>
+                </div>
+                <!-- Template for Flashcard Set -->
+                <template id="set-template">
+                    <div class="set-card">
+                        <div class="set-content">
+                            <div class="set-header">
+                                <h3 class="set-name"></h3>
+                                <span class="card-count"></span>
+                            </div>
+                            <div class="set-meta">
+                                <span class="created-date"></span>
+                                <span class="study-count"></span>
+                            </div>
+                            <div class="set-class-pill"></div>
+                            <div class="set-srs-summary"></div>
+                        </div>
+                        <div class="set-actions">
+                            <button class="action-btn study-btn">
+                                <i class="fas fa-play"></i>
+                                Study
+                            </button>
+                            <button class="action-btn edit-btn">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </button>
+                            <button class="action-btn deck-settings-btn" title="Deck SRS settings">
+                                <i class="fas fa-sliders"></i>
+                            </button>
+                            <button class="action-btn delete-btn">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </main>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="delete-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Delete Flashcard Set</h2>
+                <p>Are you sure you want to delete this set? This action cannot be undone.</p>
+                <div class="modal-actions">
+                    <button id="cancel-delete" class="secondary-button">Cancel</button>
+                    <button id="confirm-delete" class="danger-button">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deck SRS Settings Modal -->
+        <div id="deck-settings-modal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-btn" id="close-deck-settings">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Deck SRS Settings</h2>
+                <p class="settings-note" id="deck-settings-name">Set-specific review limits and FSRS tuning.</p>
+                <div class="settings-section">
+                    <label class="checkbox-row">
+                        <input type="checkbox" id="deck-srs-enabled">
+                        <span>Enable SRS scheduling for this deck</span>
+                    </label>
+                    <div class="settings-grid">
+                        <label>
+                            Desired retention
+                            <input type="number" id="deck-request-retention" min="0.7" max="0.99" step="0.01">
+                        </label>
+                        <label>
+                            Max interval days
+                            <input type="number" id="deck-max-interval" min="1" step="1">
+                        </label>
+                        <label>
+                            New cards/day
+                            <input type="number" id="deck-new-limit" min="0" step="1" placeholder="Unlimited">
+                        </label>
+                        <label>
+                            Reviews/day
+                            <input type="number" id="deck-review-limit" min="0" step="1" placeholder="Unlimited">
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button id="cancel-deck-settings" class="secondary-button">Cancel</button>
+                    <button id="save-deck-settings" class="primary-button">
+                        <i class="fas fa-save"></i>
+                        Save Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Class Editor Modal -->
+        <div id="class-modal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-btn" id="close-class-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 id="class-modal-title">Class</h2>
+                <p class="settings-note">Group related flashcard sets under a class.</p>
+                <div class="settings-section">
+                    <div class="settings-grid">
+                        <label>
+                            Class name
+                            <input type="text" id="class-name-input" maxlength="80" placeholder="Biology">
+                        </label>
+                        <label>
+                            Class color
+                            <input type="color" id="class-color-input" value="#3B82F6">
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-actions class-modal-actions">
+                    <button id="delete-class-btn" class="danger-button hidden">
+                        <i class="fas fa-trash"></i>
+                        Delete Class
+                    </button>
+                    <button id="cancel-class" class="secondary-button">Cancel</button>
+                    <button id="save-class" class="primary-button">
+                        <i class="fas fa-save"></i>
+                        Save Class
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Import Flashcards Modal -->
+        <div id="import-modal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-btn" id="close-import-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Import Flashcards</h2>
+                <p class="import-instructions">
+                    Paste your text below.<br>
+                    Format: <code>Term1;Definition1@Term2;Definition2</code><br>
+                    Use <code>;</code> to separate a term from its definition, and <code>@</code> to separate individual cards.
+                </p>
+                <div class="import-form">
+                    <div class="form-group">
+                        <label for="import-set-name">Set Name</label>
+                        <input type="text" id="import-set-name" placeholder="Enter set name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="import-class-select">Class</label>
+                        <span class="class-select-shell">
+                            <select id="import-class-select" class="class-select">
+                                <option value="">General</option>
+                                <option value="__new">+ New Class</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="import-content">Flashcard Content</label>
+                        <textarea id="import-content" placeholder="Term1;Definition1@Term2;Definition2@Term3;Definition3" rows="10" required></textarea>
+                    </div>
+                    <div class="import-preview">
+                        <h3>Preview <span id="preview-count">(0 cards)</span></h3>
+                        <div id="preview-cards" class="preview-cards-container">
+                            <!-- Preview cards will be added here -->
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button id="cancel-import" class="secondary-button">Cancel</button>
+                        <button id="confirm-import" class="primary-button">
+                            <i class="fas fa-file-import"></i>
+                            Import Flashcards
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-btn" id="close-settings-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2><i class="fas fa-sliders-h"></i> Settings</h2>
+                
+                <div class="settings-section">
+                    <h3>Appearance</h3>
+                    <div class="settings-grid">
+                        <label>
+                            App Theme
+                            <select id="app-theme" class="font-dropdown">
+                                <option value="dark">Dark</option>
+                                <option value="light">Light</option>
+                                <option value="high-contrast">Black and White</option>
+                                <option value="blue-gray">Grayish Blue</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Font Settings</h3>
+                    
+                    <div class="font-settings-group">
+                        <label>Flashcard Content Font</label>
+                        <div class="font-selection">
+                            <select id="content-font" class="font-dropdown">
+                                <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans (Modern)</option>
+                                <option value="'Georgia', serif">Georgia (Serif)</option>
+                                <option value="'Arial', sans-serif">Arial (Classic Sans)</option>
+                                <option value="'Courier New', monospace">Courier New (Monospace)</option>
+                                <option value="'Verdana', sans-serif">Verdana (Clear Sans)</option>
+                                <option value="custom">Custom Font...</option>
+                            </select>
+                            <div id="custom-content-font" class="custom-font-upload hidden">
+                                <input type="file" id="content-font-upload" accept=".ttf,.otf" />
+                                <p class="font-upload-note">Upload TTF or OTF file</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Local Backup</h3>
+                    <p class="settings-note">Export a full local backup before major edits, or restore from a previous backup file.</p>
+                    <div class="backup-actions">
+                        <button id="export-backup" class="secondary-button">
+                            <i class="fas fa-file-export"></i> Export Backup
+                        </button>
+                        <button id="restore-backup" class="secondary-button">
+                            <i class="fas fa-file-import"></i> Restore Backup
+                        </button>
+                        <button id="export-csv" class="secondary-button">
+                            <i class="fas fa-file-csv"></i> Export CSV
+                        </button>
+                        <button id="export-tsv" class="secondary-button">
+                            <i class="fas fa-file-lines"></i> Export TSV
+                        </button>
+                        <button id="import-delimited" class="secondary-button">
+                            <i class="fas fa-table"></i> Import CSV/TSV
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button id="reset-settings" class="secondary-button">
+                        <i class="fas fa-undo"></i> Reset to Default
+                    </button>
+                    <button id="save-settings" class="primary-button">
+                        <i class="fas fa-save"></i> Save Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subject Selection Modal -->
+        <div id="subject-modal" class="modal hidden">
+            <div class="modal-content subject-modal-content">
+                <button class="close-btn" id="close-subject-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2><i class="fas fa-graduation-cap"></i> Select Subject</h2>
+                <p class="modal-description">Choose a subject to explore premade flashcards</p>
+                
+                <div class="subjects-grid" id="subjects-container">
+                    <!-- Subjects will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Topic Selection Modal -->
+        <div id="topic-modal" class="modal hidden">
+            <div class="modal-content topic-modal-content">
+                <button class="close-btn" id="close-topic-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="back-btn" id="back-to-subject-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Subjects
+                </button>
+                <h2><i class="fas fa-tags"></i> <span id="selected-subject-name">Biology</span> Topics</h2>
+                <p class="modal-description">Choose a specific topic to study</p>
+                
+                <div class="topics-grid" id="topics-container">
+                    <!-- Topics will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/flashcard-settings.js"></script>
+    <script src="js/app-menu.js"></script>
+    <script src="js/library.js"></script>
+    <!-- Custom Cursor Elements -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+    <script src="js/cursor.js"></script>
+    
+</body>
+</html>

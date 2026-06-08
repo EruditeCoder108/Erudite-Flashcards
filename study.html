@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Study Flashcards</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/icon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/icons/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+
+    <link rel="stylesheet" href="css/study.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/toast-notifications.css">
+
+    <script src="js/storage-client.js"></script>
+    <script src="node_modules/ts-fsrs/dist/index.umd.js"></script>
+    <script src="js/srs-manager.js"></script>
+    
+    <style>
+        html, body {
+            overflow: hidden;
+            max-width: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="study-container is-loading">
+        <!-- Header -->
+        <header class="study-header">
+            <div class="header-left">
+                <a href="flashcards.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Library</span>
+                </a>
+                <h1 id="set-name-display" class="set-title">Loading...</h1>
+            </div>
+            <div class="header-right">
+                <div class="study-progress">
+                    <div class="progress-text">Progress: <span id="progress">0/0</span></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Study Area -->
+        <main class="study-area">
+            <button id="prev-btn" class="nav-button">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="card-container">
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <!-- Front of Card -->
+                        <div class="card-face front">
+                            <div class="card-content">
+                                <div class="card-header">Term</div>
+                                <div class="term-text"></div>
+                                <div class="image-container">
+                                    <img class="term-image" alt="Term illustration">
+                                    <button class="zoom-image-btn" title="View larger image">
+                                        <i class="fas fa-search-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flip-hint">
+                                <span>Click to flip</span>
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                        </div>
+                        <!-- Back of Card -->
+                        <div class="card-face back">
+                            <div class="card-content">
+                                <div class="card-header">Definition</div>
+                                <div class="definition-text"></div>
+                                <div class="image-container">
+                                    <img class="definition-image" alt="Definition illustration">
+                                    <button class="zoom-image-btn" title="View larger image">
+                                        <i class="fas fa-search-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flip-hint">
+                                <span>Click to flip</span>
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="next-btn" class="nav-button">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </main>
+
+        <!-- Completion Screen -->
+        <div id="completion-screen" class="completion-screen hidden">
+            <div class="completion-content">
+                <button class="close-btn" id="close-completion-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="completion-header">
+                    <i class="fas fa-trophy"></i>
+                    <h2>Congratulations!</h2>
+                    <p>You've completed this set!</p>
+                </div>
+                <div id="completion-summary" class="completion-summary hidden"></div>
+                <div class="completion-buttons">
+                    <button id="practice-again-btn" class="primary-button">
+                        <i class="fas fa-redo"></i>
+                        Practice Again
+                    </button>
+                    <button id="go-home-btn" class="secondary-button">
+                        <i class="fas fa-home"></i>
+                        Back to Library
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Zoom Modal -->
+        <div id="image-modal" class="modal hidden">
+            <div class="modal-content image-modal-content">
+                <button class="close-btn" id="close-image-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img id="zoomed-image" src="" alt="Enlarged image">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/flashcard-settings.js"></script>
+    <script src="js/app-menu.js"></script>
+    <script src="js/study.js"></script>
+    <!-- Custom Cursor Elements -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+    <script src="js/cursor.js"></script>
+   
+</body>
+</html>

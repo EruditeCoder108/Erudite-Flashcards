@@ -1,0 +1,48 @@
+{
+  "name": "erudite-flashcards",
+  "version": "0.1.0",
+  "description": "A local-first Electron flashcard app extracted from the Productivity Toolkit.",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": ".\\node_modules\\electron\\dist\\electron.exe .",
+    "package": "electron-builder --win portable",
+    "dist": "electron-builder --win"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "sortablejs": "^1.15.2",
+    "sql.js": "^1.14.1",
+    "ts-fsrs": "^5.2.3"
+  },
+  "devDependencies": {
+    "electron": "^30.5.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.erudite.flashcards",
+    "productName": "Erudite Flashcards",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "**/*",
+      "!release/**",
+      "!**/*.map"
+    ],
+    "win": {
+      "icon": "assets/icons/icon.png",
+      "target": [
+        "portable",
+        "nsis"
+      ]
+    },
+    "portable": {
+      "artifactName": "Erudite-Flashcards-${version}-portable.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

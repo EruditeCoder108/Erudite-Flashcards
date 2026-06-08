@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Browser - Erudite Flashcards</title>
+    <link rel="icon" type="image/png" href="assets/icons/icon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/icons/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="css/library.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/toast-notifications.css">
+
+    <script src="js/storage-client.js"></script>
+    <script src="node_modules/ts-fsrs/dist/index.umd.js"></script>
+    <script src="js/srs-manager.js"></script>
+</head>
+<body>
+    <div class="app-container browser-page">
+        <header class="browser-header">
+            <div>
+                <a class="back-link" href="flashcards.html">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Library
+                </a>
+                <div class="brand-heading browser-title">
+                    <img src="assets/icons/icon.png" alt="" class="brand-logo">
+                    <h1>Card Browser</h1>
+                </div>
+                <p id="browser-subtitle">Search and manage individual local cards.</p>
+            </div>
+            <div class="browser-stats" aria-label="Card browser stats">
+                <span><strong id="browser-total-cards">0</strong><small>Cards</small></span>
+                <span><strong id="browser-due-cards">0</strong><small>Due</small></span>
+                <span><strong id="browser-suspended-cards">0</strong><small>Suspended</small></span>
+            </div>
+        </header>
+
+        <main class="browser-content">
+            <div class="browser-toolbar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="card-search" placeholder="Search term, definition, deck, state, or tags...">
+                </div>
+                <select id="card-state-filter" class="browser-select">
+                    <option value="all">All States</option>
+                    <option value="New">New</option>
+                    <option value="Learning">Learning</option>
+                    <option value="Review">Review</option>
+                    <option value="Relearning">Relearning</option>
+                    <option value="Suspended">Suspended</option>
+                </select>
+            </div>
+
+            <div class="card-browser-table-wrap">
+                <table class="card-browser-table">
+                    <thead>
+                        <tr>
+                            <th>Deck</th>
+                            <th>Term</th>
+                            <th>Definition</th>
+                            <th>SRS</th>
+                            <th>Due</th>
+                            <th>Reps</th>
+                            <th>Tags</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="card-browser-body"></tbody>
+                </table>
+                <div id="card-browser-empty" class="browser-empty hidden">
+                    <i class="fas fa-table-list"></i>
+                    <h2>No Cards Found</h2>
+                    <p>Try a different search or create a new flashcard set.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app-menu.js"></script>
+    <script src="js/card-browser.js"></script>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+    <script src="js/cursor.js"></script>
+</body>
+</html>
