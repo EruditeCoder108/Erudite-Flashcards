@@ -1616,18 +1616,20 @@ html[data-theme="high-contrast"] .floating-add-btn {
 }
 
 .set-class-select {
-    min-height: 2rem;
-    max-width: 13rem;
-    padding: 0.3rem 2rem 0.3rem 0.75rem;
+    min-height: 2.28rem;
+    max-width: 12.2rem;
+    padding: 0 2.25rem 0 0.86rem;
     border: 1px solid var(--creator-border, rgba(148, 163, 184, 0.18));
     border-radius: 999px;
     background: var(--creator-control, #111A2B);
     color: var(--creator-text, #F8FAFC);
     font: inherit;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-weight: 800;
+    line-height: 1.1;
     outline: none;
     cursor: pointer;
+    box-shadow: none;
 }
 
 html[data-theme] .set-class-select {
@@ -1734,7 +1736,7 @@ html[data-theme="high-contrast"] .format-toolbar button[aria-pressed="true"] {
 .set-class-select {
     appearance: none;
     -webkit-appearance: none;
-    padding-right: 1.65rem !important;
+    padding-right: 2.25rem !important;
     background-image: none !important;
 }
 
@@ -1742,7 +1744,8 @@ html[data-theme="high-contrast"] .format-toolbar button[aria-pressed="true"] {
     position: relative;
     display: inline-flex;
     align-items: center;
-    max-width: 13rem;
+    max-width: 12.2rem;
+    min-width: 9.6rem;
 }
 
 .class-select-shell::after {
@@ -1750,11 +1753,11 @@ html[data-theme="high-contrast"] .format-toolbar button[aria-pressed="true"] {
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     position: absolute;
-    right: 0.68rem;
+    right: 0.86rem;
     top: 50%;
     transform: translateY(-50%);
     color: var(--creator-muted, #A7B0C0);
-    font-size: 0.62rem;
+    font-size: 0.66rem;
     line-height: 1;
     pointer-events: none;
 }
@@ -1762,6 +1765,10 @@ html[data-theme="high-contrast"] .format-toolbar button[aria-pressed="true"] {
 .class-select-shell .set-class-select {
     width: 100%;
     max-width: none;
+}
+
+.creator-class-select-shell {
+    margin-left: 0.2rem;
 }
 
 /* Draft recovery is a compact decision dialog, not a full help modal. */

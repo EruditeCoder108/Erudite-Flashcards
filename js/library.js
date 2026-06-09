@@ -343,6 +343,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateDueCardsCount();
     }
 
+    function updateLibrarySubtitle(dueCount = null) {
+        if (!librarySubtitle) return;
+        const recentActivity = recentActivityDisplay ? recentActivityDisplay.textContent || '0' : '0';
+        librarySubtitle.textContent = srsModeEnabled && dueCount !== null
+            ? `${flashcardSets.length} sets | ${dueCount} due | ${recentActivity} recent`
+            : `${flashcardSets.length} sets | ${recentActivity} recent`;
+    }
+
     // Render flashcard sets
     function renderSets(searchTerm = '') {
         const filteredSets = filterSets(searchTerm);
@@ -429,23 +437,30 @@ document.addEventListener('DOMContentLoaded', async () => {
         card.className = 'class-card';
         card.style.setProperty('--class-color', classItem.color || '#3B82F6');
 
-        const setPreview = classSets.slice(0, 6).map(set => `<span>${escapeHtml(set.name || 'Untitled Set')}</span>`).join('');
+        const setPreview = classSets.slice(0, 5).map(set => `<span>${escapeHtml(set.name || 'Untitled Set')}</span>`).join('');
+        const extraCount = Math.max(0, classSets.length - 5);
         card.innerHTML = `
             <button class="class-edit-btn" type="button" title="Edit class">
                 <i class="fas fa-pen"></i>
             </button>
-            <div class="class-stack" aria-hidden="true"></div>
             <div class="class-card-content">
-                <div class="class-card-header">
-                    <span class="class-color-dot"></span>
-                    <h3>${escapeHtml(classItem.name)}</h3>
-                </div>
-                <div class="class-card-meta">
-                    <span>${classSets.length} ${classSets.length === 1 ? 'set' : 'sets'}</span>
-                    ${srsModeEnabled ? `<span>${dueCount} due</span>` : ''}
+                <div class="class-card-top" aria-hidden="true"></div>
+                <div class="class-card-main">
+                    <div class="class-card-header">
+                        <span class="class-color-dot"></span>
+                        <div class="class-card-title">
+                            <h3>${escapeHtml(classItem.name)}</h3>
+                            <p>${classSets.length === 0 ? 'No sets yet' : `${classSets.length} ${classSets.length === 1 ? 'set' : 'sets'}`}</p>
+                        </div>
+                    </div>
+                    <div class="class-card-meta">
+                        <span><i class="fas fa-layer-group"></i>${classSets.length} ${classSets.length === 1 ? 'set' : 'sets'}</span>
+                        ${srsModeEnabled ? `<span><i class="fas fa-brain"></i>${dueCount} due</span>` : ''}
+                    </div>
                 </div>
                 <div class="class-set-preview">
-                    ${setPreview || '<span>No sets yet</span>'}
+                    ${setPreview || '<span class="class-card-empty">Add sets from creator</span>'}
+                    ${extraCount ? `<span>+${extraCount} more</span>` : ''}
                 </div>
             </div>
         `;
@@ -1669,6 +1684,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function updateDueCardsCount() {
+        const dueStatItem = dueCardsDisplay?.closest('.stat-item');
+        if (dueStatItem) {
+            dueStatItem.hidden = !srsModeEnabled;
+        }
+
         if (!srsModeEnabled || !window.srsManager || !window.srsManager.isReady()) {
             if (dueCardsDisplay) {
                 dueCardsDisplay.textContent = '0';
@@ -1682,6 +1702,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             firstDueSetId = null;
             updateReviewDueButton(0);
+            updateLibrarySubtitle(null);
             return;
         }
 
@@ -1740,11 +1761,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             nextDue: getNextDueLabel(allCards, totalDueCards)
         });
         updateReviewDueButton(totalDueCards);
-
-        if (librarySubtitle) {
-            const recentActivity = recentActivityDisplay ? recentActivityDisplay.textContent || '0' : '0';
-            librarySubtitle.textContent = `${flashcardSets.length} sets | ${totalDueCards} due | ${recentActivity} recent`;
-        }
+        updateLibrarySubtitle(totalDueCards);
     }
 
     function updateReviewDueButton(totalDueCards) {

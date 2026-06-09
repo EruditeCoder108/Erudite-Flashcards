@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, protocol, session, dialog, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, protocol, session, dialog, Menu, screen } = require('electron');
 const fs = require('fs/promises');
 const path = require('path');
 const { randomUUID } = require('crypto');
@@ -13,6 +13,7 @@ let dataDir;
 let imagesDir;
 let fontsDir;
 let backupsDir;
+let windowStatePath;
 let flashcardStoreDb;
 const smokeTest = process.argv.includes('--smoke-test');
 
@@ -29,6 +30,7 @@ function getPaths() {
   imagesDir = path.join(dataDir, 'images');
   fontsDir = path.join(dataDir, 'fonts');
   backupsDir = path.join(dataDir, 'backups');
+  windowStatePath = path.join(dataDir, 'window-state.json');
   return { dataDir, imagesDir, fontsDir, backupsDir };
 }
 
@@ -37,6 +39,64 @@ async function ensureDataDirs() {
   await fs.mkdir(imagesDir, { recursive: true });
   await fs.mkdir(fontsDir, { recursive: true });
   await fs.mkdir(backupsDir, { recursive: true });
+}
+
+async function loadWindowState() {
+  const fallback = {
+    width: 1280,
+    height: 840,
+    maximized: false,
+    fullScreen: false
+  };
+
+  try {
+    const raw = await fs.readFile(windowStatePath, 'utf8');
+    const saved = JSON.parse(raw);
+    const width = Math.max(960, Math.min(3840, Math.round(Number(saved.width) || fallback.width)));
+    const height = Math.max(640, Math.min(2160, Math.round(Number(saved.height) || fallback.height)));
+    const x = Number.isFinite(Number(saved.x)) ? Math.round(Number(saved.x)) : undefined;
+    const y = Number.isFinite(Number(saved.y)) ? Math.round(Number(saved.y)) : undefined;
+    const display = x !== undefined && y !== undefined
+      ? screen.getDisplayMatching({ x, y, width, height })
+      : screen.getPrimaryDisplay();
+    const area = display.workArea;
+    const visibleEnough = x === undefined || y === undefined || (
+      x < area.x + area.width - 120 &&
+      y < area.y + area.height - 120 &&
+      x + width > area.x + 120 &&
+      y + height > area.y + 120
+    );
+
+    return {
+      ...fallback,
+      width,
+      height,
+      x: visibleEnough ? x : undefined,
+      y: visibleEnough ? y : undefined,
+      maximized: Boolean(saved.maximized),
+      fullScreen: Boolean(saved.fullScreen)
+    };
+  } catch (_error) {
+    return fallback;
+  }
+}
+
+async function saveWindowState(window) {
+  if (!window || window.isDestroyed() || !windowStatePath) return;
+
+  try {
+    const bounds = window.isMaximized() || window.isFullScreen()
+      ? window.getNormalBounds()
+      : window.getBounds();
+    await fs.writeFile(windowStatePath, JSON.stringify({
+      ...bounds,
+      maximized: window.isMaximized(),
+      fullScreen: window.isFullScreen(),
+      savedAt: new Date().toISOString()
+    }, null, 2));
+  } catch (error) {
+    console.warn('Could not save window state:', error);
+  }
 }
 
 async function initializeFlashcardStore() {
@@ -886,10 +946,13 @@ function createAppMenu() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
-function createWindow() {
+async function createWindow() {
+  const windowState = await loadWindowState();
   mainWindow = new BrowserWindow({
-    width: 1280,
-    height: 840,
+    width: windowState.width,
+    height: windowState.height,
+    x: windowState.x,
+    y: windowState.y,
     minWidth: 960,
     minHeight: 640,
     title: 'Erudite Flashcards',
@@ -900,6 +963,27 @@ function createWindow() {
       nodeIntegration: false,
       sandbox: false
     }
+  });
+
+  if (windowState.maximized) {
+    mainWindow.maximize();
+  } else if (windowState.fullScreen) {
+    mainWindow.setFullScreen(true);
+  }
+
+  let windowStateTimer = null;
+  const saveWindowStateSoon = () => {
+    if (windowStateTimer) clearTimeout(windowStateTimer);
+    windowStateTimer = setTimeout(() => saveWindowState(mainWindow), 350);
+  };
+
+  ['resize', 'move', 'maximize', 'unmaximize', 'enter-full-screen', 'leave-full-screen'].forEach((eventName) => {
+    mainWindow.on(eventName, saveWindowStateSoon);
+  });
+
+  mainWindow.on('close', () => {
+    if (windowStateTimer) clearTimeout(windowStateTimer);
+    saveWindowState(mainWindow);
   });
 
   if (smokeTest) {
@@ -943,10 +1027,10 @@ app.whenReady().then(async () => {
     callback(permission === 'media');
   });
 
-  createWindow();
+  await createWindow();
 
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  app.on('activate', async () => {
+    if (BrowserWindow.getAllWindows().length === 0) await createWindow();
   });
 });
 
