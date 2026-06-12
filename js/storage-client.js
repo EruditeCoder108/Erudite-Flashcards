@@ -16,6 +16,7 @@
     'studyProgress'
   ];
   let isHydrating = false;
+  let isWritingStateMirror = false;
 
   function readLocal(key, fallback) {
     try {
@@ -29,6 +30,39 @@
   function writeLocal(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
     return value;
+  }
+
+  function parseMirroredStateValue(key, raw) {
+    if (raw === null || raw === undefined) return null;
+    if (key === 'srsModeEnabled') return raw === true || raw === 'true';
+    try {
+      return JSON.parse(raw);
+    } catch (_error) {
+      return raw;
+    }
+  }
+
+  function writeStateMirror(key, value) {
+    if (!mirroredStateKeys.has(key)) return;
+    isWritingStateMirror = true;
+    try {
+      const serialized = key === 'srsModeEnabled'
+        ? String(Boolean(value))
+        : JSON.stringify(value);
+      localStorage.setItem(key, serialized);
+    } finally {
+      isWritingStateMirror = false;
+    }
+  }
+
+  function removeStateMirror(key) {
+    if (!mirroredStateKeys.has(key)) return;
+    isWritingStateMirror = true;
+    try {
+      localStorage.removeItem(key);
+    } finally {
+      isWritingStateMirror = false;
+    }
   }
 
   function readFileAsDataUrl(file) {
@@ -152,7 +186,7 @@
   }
 
   async function mirrorLocalStorageWrite(key, value) {
-    if (isHydrating || window.__eruditeApplyingSettings || !api) return;
+    if (isHydrating || isWritingStateMirror || window.__eruditeApplyingSettings || !api) return;
 
     try {
       if (key === 'flashcardSets' || key === 'flashcardClasses') {
@@ -164,11 +198,7 @@
         const current = await getSettings();
         await saveSettings({ ...current, theme: value || 'dark' });
       } else if (mirroredStateKeys.has(key)) {
-        const parsedValue = key === 'srsModeEnabled'
-          ? value === 'true'
-          : (() => {
-              try { return JSON.parse(value); } catch (_error) { return value; }
-            })();
+        const parsedValue = parseMirroredStateValue(key, value);
         await setState(key, parsedValue);
 
         if (key === 'currentStudyProgress' && parsedValue && parsedValue.setId !== undefined) {
@@ -181,7 +211,7 @@
   }
 
   async function mirrorLocalStorageRemove(key) {
-    if (isHydrating || !api) return;
+    if (isHydrating || isWritingStateMirror || !api) return;
     if (mirroredStateKeys.has(key)) {
       await removeState(key);
     }
@@ -230,14 +260,10 @@
       }
 
       for (const key of mirroredStateKeys) {
-        const currentValue = await getState(key);
+        const currentValue = api ? await api.getState(key) : await getState(key);
         const localRaw = localStorage.getItem(key);
         if ((currentValue === null || currentValue === undefined) && localRaw !== null) {
-          const parsedValue = key === 'srsModeEnabled'
-            ? localRaw === 'true'
-            : (() => {
-                try { return JSON.parse(localRaw); } catch (_error) { return localRaw; }
-              })();
+          const parsedValue = parseMirroredStateValue(key, localRaw);
           await setState(key, parsedValue);
 
           if (key === 'currentStudyProgress' && parsedValue && parsedValue.setId !== undefined) {
@@ -323,18 +349,31 @@
   }
 
   async function getState(key) {
-    if (api) return api.getState(key);
+    if (api) {
+      const value = await api.getState(key);
+      if (value !== null && value !== undefined) return value;
+      if (mirroredStateKeys.has(key)) {
+        return parseMirroredStateValue(key, localStorage.getItem(key));
+      }
+      return value;
+    }
     return readLocal(`erudite-state-${key}`, null);
   }
 
   async function setState(key, value) {
-    if (api) return api.setState(key, value);
+    if (api) {
+      writeStateMirror(key, value);
+      return api.setState(key, value);
+    }
     writeLocal(`erudite-state-${key}`, value);
     return true;
   }
 
   async function removeState(key) {
-    if (api) return api.removeState(key);
+    if (api) {
+      removeStateMirror(key);
+      return api.removeState(key);
+    }
     localStorage.removeItem(`erudite-state-${key}`);
     return true;
   }

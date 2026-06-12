@@ -102,6 +102,25 @@
     return Math.min(max, Math.max(min, number));
   }
 
+  function readStoredBoolean(value, fallback = false) {
+    if (value === true || value === 'true') return true;
+    if (value === false || value === 'false') return false;
+    return Boolean(fallback);
+  }
+
+  function readSrsMode(storedValue) {
+    return readStoredBoolean(storedValue, localStorage.getItem('srsModeEnabled') === 'true');
+  }
+
+  function persistSrsMode(enabled) {
+    state.srsMode = Boolean(enabled);
+    localStorage.setItem('srsModeEnabled', String(state.srsMode));
+    window.flashcardStore?.setState?.('srsModeEnabled', state.srsMode).catch(error => {
+      console.error('SRS mode save failed:', error);
+      showToast('Could not save SRS setting');
+    });
+  }
+
   function plural(count, singular, pluralText = `${singular}s`) {
     return `${count} ${count === 1 ? singular : pluralText}`;
   }
@@ -352,7 +371,7 @@
     state.sets = (sets || []).map(set => schema?.normalizeSet ? schema.normalizeSet(set, null, { preserveLastModified: true }) : set);
     state.classes = (classes || []).map(item => schema?.normalizeClass ? schema.normalizeClass(item, null, { preserveLastModified: true }) : item);
     state.settings = settings || {};
-    state.srsMode = srsMode === true || srsMode === 'true';
+    state.srsMode = readSrsMode(srsMode);
   }
 
   function setHeader() {
@@ -437,15 +456,17 @@
     const totals = totalStats({ forceDue: true });
     const todayReviews = reviewsToday();
     const streak = streakDays();
-    const plannedReviews = todayReviews + totals.dueCards;
-    const progress = plannedReviews > 0 ? clamp(Math.round((todayReviews / plannedReviews) * 100), 0, 100) : 0;
+    const remainingReviews = Number(totals.dueCards || 0);
+    const dailyWork = todayReviews + remainingReviews;
+    const progress = dailyWork > 0 ? clamp(Math.round((todayReviews / dailyWork) * 100), 0, 100) : 0;
+    const progressLabel = dailyWork > 0 ? 'Goal' : 'Ready';
     const reviewAction = totals.dueCards > 0 ? 'review-due-smart' : 'tab-library';
     const reviewLabel = totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : 'Open Library';
 
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
         <button type="button" class="goal-ring" data-action="${reviewAction}" style="--progress:${progress * 3.6}deg" aria-label="${escapeAttr(reviewLabel)}">
-          <div><strong>${progress}%</strong><span>Today</span></div>
+          <div><strong>${progress}%</strong><span>${progressLabel}</span></div>
         </button>
         <div class="hero-metrics">
           <button type="button" class="metric-pill" data-action="tab-library"><strong>${totals.setCount}</strong><span>Decks</span></button>
@@ -1089,15 +1110,10 @@
   }
 
   async function toggleSrs() {
-    state.srsMode = !state.srsMode;
-    localStorage.setItem('srsModeEnabled', String(state.srsMode));
+    persistSrsMode(!state.srsMode);
     playClick();
     render();
     showToast(state.srsMode ? 'SRS mode on' : 'SRS mode off');
-    window.flashcardStore.setState('srsModeEnabled', state.srsMode).catch(error => {
-      console.error('SRS toggle save failed:', error);
-      showToast('Could not save SRS setting');
-    });
   }
 
   async function togglePin(setId) {
@@ -1142,11 +1158,15 @@
   }
 
   async function reviewDue(options = {}) {
-    const force = Boolean(options.force);
+    const force = Boolean(options.force || !state.srsMode);
     const first = dueSets({ force })[0]?.set;
     if (!first) {
       showToast('No reviews due');
       return;
+    }
+    if (!state.srsMode) {
+      persistSrsMode(true);
+      render();
     }
     navigateTo(mobileStudyUrl(first.id, true), {
       title: 'Opening Review',
@@ -1161,12 +1181,8 @@
       return;
     }
     if (!state.srsMode) {
-      state.srsMode = true;
-      localStorage.setItem('srsModeEnabled', 'true');
+      persistSrsMode(true);
       render();
-      await window.flashcardStore.setState('srsModeEnabled', true).catch(error => {
-        console.error('SRS auto-enable failed:', error);
-      });
     }
     playClick();
     navigateTo(mobileStudyUrl(first.id, true), {

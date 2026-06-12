@@ -203,6 +203,12 @@
     return state.srsMode ? state.srsIndex : state.normalIndex;
   }
 
+  function readStoredBoolean(value, fallback = false) {
+    if (value === true || value === 'true') return true;
+    if (value === false || value === 'false') return false;
+    return Boolean(fallback);
+  }
+
   function setActiveIndex(value) {
     const max = Math.max(0, state.activeCards.length - 1);
     const next = Math.min(max, Math.max(0, Number(value) || 0));
@@ -304,7 +310,11 @@
     ]);
     if (!found) throw new Error('Flashcard set not found');
 
-    state.srsMode = srsMode === true || srsMode === 'true';
+    state.srsMode = reviewDueSession || readStoredBoolean(srsMode, localStorage.getItem('srsModeEnabled') === 'true');
+    if (reviewDueSession) {
+      localStorage.setItem('srsModeEnabled', 'true');
+      window.flashcardStore.setState('srsModeEnabled', true).catch(() => {});
+    }
     state.set = schema?.normalizeSet ? schema.normalizeSet({
       ...found,
       openedCount: (found.openedCount || 0) + 1,

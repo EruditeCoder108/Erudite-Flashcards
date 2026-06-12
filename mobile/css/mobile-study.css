@@ -68,6 +68,32 @@ body.study-ready .study-loading-cover {
   place-items: center;
   width: 5.1rem;
   height: 5.1rem;
+  isolation: isolate;
+}
+
+.study-loader-mark::before,
+.study-loader-mark::after {
+  content: "";
+  position: absolute;
+  width: 3.95rem;
+  height: 2.68rem;
+  border-radius: 0.92rem;
+  border: 1px solid rgba(96, 165, 250, 0.34);
+  background:
+    linear-gradient(135deg, rgba(59, 130, 246, 0.24), rgba(20, 184, 166, 0.08)),
+    rgba(18, 31, 52, 0.94);
+  box-shadow: 0 0.62rem 1.35rem rgba(0, 0, 0, 0.28);
+  z-index: 0;
+}
+
+.study-loader-mark::before {
+  transform: translate3d(-0.42rem, 0.32rem, 0) rotate(-8deg);
+  opacity: 0.52;
+}
+
+.study-loader-mark::after {
+  transform: translate3d(0.4rem, 0.22rem, 0) rotate(7deg);
+  opacity: 0.36;
 }
 
 .study-loader-mark img {
@@ -75,15 +101,18 @@ body.study-ready .study-loading-cover {
   height: 3rem;
   object-fit: contain;
   filter: drop-shadow(0 0 1.1rem rgba(96, 165, 250, 0.32));
+  z-index: 2;
 }
 
 .study-loader-mark span {
   position: absolute;
-  inset: 0;
+  inset: 0.08rem;
   border-radius: 999px;
-  border: 2px solid rgba(148, 163, 184, 0.14);
+  border: 1.5px solid rgba(148, 163, 184, 0.14);
   border-top-color: var(--primary-2);
-  animation: studyLoaderSpin 820ms linear infinite;
+  border-right-color: rgba(52, 211, 153, 0.4);
+  animation: studyLoaderSpin 980ms cubic-bezier(0.55, 0, 0.28, 1) infinite;
+  z-index: 3;
 }
 
 .study-loading-cover strong {
