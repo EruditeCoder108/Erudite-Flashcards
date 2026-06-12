@@ -25,6 +25,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     const definitionImage = document.querySelector('.definition-image');
     const backBtn = document.querySelector('.back-btn');
 
+    function isMobileRuntime() {
+        return Boolean(window.Capacitor) || document.documentElement.classList.contains('is-capacitor');
+    }
+
+    function libraryUrl(isPremade = false) {
+        if (!isMobileRuntime()) {
+            return isPremade ? 'premade-library.html' : 'flashcards.html';
+        }
+        return 'index.html#library';
+    }
+
+    function studyUrl(setId, reviewDue = false) {
+        const suffix = reviewDue ? '&reviewDue=true' : '';
+        if (!isMobileRuntime()) {
+            return `study.html?setId=${encodeURIComponent(setId)}${suffix}`;
+        }
+        return `mobile/study.html?setId=${encodeURIComponent(setId)}${suffix}`;
+    }
+
+    function goToLibrary(isPremade = false) {
+        window.location.href = libraryUrl(isPremade);
+    }
+
     // Create audio elements for sound effects
     const successSound = new Audio('assets/audio/success.mp3');
     successSound.volume = 0.6;
@@ -364,7 +387,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 
                 if (!classParam || !subjectParam || !setId) {
                     showToast('Invalid premade flashcard parameters!', 'error');
-                    window.location.href = 'premade-library.html';
+                    goToLibrary(true);
                     return;
                 }
                 
@@ -444,7 +467,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (!flashcardSet) {
                     showToast('Flashcard set not found!', 'error');
-                    window.location.href = 'flashcards.html';
+                    goToLibrary(false);
                     return;
                 }
 
@@ -467,9 +490,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             // Update back button based on flashcard type
             if (flashcardSet.isPremade) {
-                backBtn.href = `premade-library.html`;
+                backBtn.href = libraryUrl(true);
             } else {
-                backBtn.href = 'flashcards.html';
+                backBtn.href = libraryUrl(false);
             }
             
             await loadSavedProgress();
@@ -493,9 +516,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const urlParams = new URLSearchParams(window.location.search);
                 const isPremade = urlParams.get('premade') === 'true';
                 if (isPremade) {
-                    window.location.href = 'premade-library.html';
+                    goToLibrary(true);
                 } else {
-                    window.location.href = 'flashcards.html';
+                    goToLibrary(false);
                 }
             }, 3000);
         }
@@ -1015,7 +1038,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     practiceAgainBtn.addEventListener('click', () => {
         const nextDueSetId = completionScreen.dataset.nextDueSetId;
         if (srsModeEnabled && reviewDueSession && nextDueSetId) {
-            window.location.href = `study.html?setId=${encodeURIComponent(nextDueSetId)}&reviewDue=true`;
+            window.location.href = studyUrl(nextDueSetId, true);
             return;
         }
 
@@ -1046,9 +1069,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             localStorage.removeItem(STORAGE_KEY);
         }
         if (flashcardSet && flashcardSet.isPremade) {
-            window.location.href = `premade-library.html`;
+            goToLibrary(true);
         } else {
-            window.location.href = 'flashcards.html';
+            goToLibrary(false);
         }
     });
 
@@ -1618,7 +1641,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 localStorage.removeItem(STORAGE_KEY);
             }
-            window.location.href = 'flashcards.html';
+            goToLibrary(false);
         });
     }
 

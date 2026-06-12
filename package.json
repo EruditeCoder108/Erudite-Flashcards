@@ -7,7 +7,10 @@
   "scripts": {
     "start": ".\\node_modules\\electron\\dist\\electron.exe .",
     "package": "electron-builder --win portable",
-    "dist": "electron-builder --win"
+    "dist": "electron-builder --win",
+    "build:mobile": "node scripts/build-mobile-web.js",
+    "cap:sync": "npm run build:mobile && cap sync android",
+    "cap:open": "cap open android"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
@@ -16,6 +19,12 @@
     "ts-fsrs": "^5.2.3"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/cli": "^8.4.0",
+    "@capacitor/core": "^8.4.0",
+    "@capacitor/filesystem": "^8.1.2",
+    "@capacitor/preferences": "^8.0.1",
+    "@capacitor/share": "^8.0.1",
     "electron": "^30.5.1",
     "electron-builder": "^24.13.3"
   },
@@ -28,6 +37,11 @@
     "files": [
       "**/*",
       "!release/**",
+      "!android/**",
+      "!www/**",
+      "!scripts/**",
+      "!capacitor.config.json",
+      "!node_modules/@capacitor/**",
       "!**/*.map"
     ],
     "win": {

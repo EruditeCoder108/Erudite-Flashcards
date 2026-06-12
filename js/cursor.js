@@ -27,6 +27,8 @@ let stateResetTimer = null;
 // The old check used window.innerWidth <= 768 which broke on any small window
 // or on any laptop with a built-in touchscreen (very common).
 const shouldDisableCustomCursor = () => {
+    if (document.documentElement.classList.contains('is-mobile-shell')) return true;
+    if (window.Capacitor?.isNativePlatform?.()) return true;
     // If the browser reports a fine pointer exists, keep the cursor.
     if (window.matchMedia('(pointer: fine)').matches) return false;
     // Pure coarse-only devices (phones, tablets without mouse): disable.

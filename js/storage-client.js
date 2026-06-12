@@ -1,5 +1,5 @@
 (function () {
-  const api = window.eruditeFlashcards;
+  const api = window.eruditeFlashcards || window.eruditeMobileFlashcards;
   const mirroredStateKeys = new Set([
     'flashcardSetDraft',
     'currentStudyProgress',

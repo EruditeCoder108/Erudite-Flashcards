@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" class="mobile-study-shell">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <title>Study - Erudite Flashcards</title>
+  <link rel="icon" type="image/png" href="../assets/icons/icon.png">
+  <link rel="stylesheet" href="../vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/mobile-study.css">
+</head>
+<body>
+  <div class="study-shell is-loading" id="study-shell">
+    <header class="study-topbar">
+      <button type="button" class="icon-button" id="back-button" aria-label="Back to library">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="study-title-block">
+        <p id="study-mode-label">Study</p>
+        <h1 id="study-title">Loading...</h1>
+      </div>
+      <div class="study-progress-chip" aria-live="polite">
+        <strong id="progress-current">0</strong>
+        <span>/</span>
+        <span id="progress-total">0</span>
+      </div>
+    </header>
+
+    <main class="study-main" id="study-main">
+      <section class="study-card-stage" id="card-stage" aria-live="polite">
+        <div class="study-card" id="study-card">
+          <div class="study-card-inner">
+            <article class="card-face front" aria-label="Term side">
+              <div class="card-scroll">
+                <div class="card-label">Term</div>
+                <div class="card-text" id="term-text"></div>
+                <figure class="card-image-wrap hidden" id="term-image-wrap">
+                  <img id="term-image" alt="Term image">
+                  <button type="button" class="image-zoom-button" data-image-side="term" aria-label="View term image larger">
+                    <i class="fas fa-magnifying-glass-plus"></i>
+                  </button>
+                </figure>
+              </div>
+              <div class="tap-hint">Tap to reveal</div>
+            </article>
+
+            <article class="card-face back" aria-label="Definition side">
+              <div class="card-scroll">
+                <div class="card-label">Definition</div>
+                <div class="card-text" id="definition-text"></div>
+                <figure class="card-image-wrap hidden" id="definition-image-wrap">
+                  <img id="definition-image" alt="Definition image">
+                  <button type="button" class="image-zoom-button" data-image-side="definition" aria-label="View definition image larger">
+                    <i class="fas fa-magnifying-glass-plus"></i>
+                  </button>
+                </figure>
+              </div>
+              <div class="tap-hint">Tap to hide</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="rating-dock hidden" id="rating-dock" aria-label="SRS rating buttons">
+        <button type="button" class="rating-button again" data-rating="Again">
+          <span>Again</span>
+          <small id="interval-again">soon</small>
+        </button>
+        <button type="button" class="rating-button hard" data-rating="Hard">
+          <span>Hard</span>
+          <small id="interval-hard">soon</small>
+        </button>
+        <button type="button" class="rating-button good" data-rating="Good">
+          <span>Good</span>
+          <small id="interval-good">soon</small>
+        </button>
+        <button type="button" class="rating-button easy" data-rating="Easy">
+          <span>Easy</span>
+          <small id="interval-easy">soon</small>
+        </button>
+      </section>
+    </main>
+
+    <div class="study-footer">
+      <div class="progress-bar"><span id="progress-fill"></span></div>
+      <p id="gesture-hint">Tap to flip. Swipe sideways to move cards.</p>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="completion-modal" role="dialog" aria-modal="true">
+    <div class="modal-panel">
+      <div class="modal-icon"><i class="fas fa-trophy"></i></div>
+      <h2 id="completion-title">Session Complete</h2>
+      <p id="completion-copy">You finished this set.</p>
+      <div class="completion-stats hidden" id="completion-stats"></div>
+      <div class="modal-actions">
+        <button type="button" class="primary-action" id="continue-button">Practice Again</button>
+        <button type="button" class="secondary-action" id="library-button">Back to Library</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="empty-modal" role="dialog" aria-modal="true">
+    <div class="modal-panel">
+      <div class="modal-icon calm"><i class="fas fa-check"></i></div>
+      <h2 id="empty-title">No Cards Due</h2>
+      <p id="empty-copy">You are caught up for this set.</p>
+      <div class="modal-actions">
+        <button type="button" class="primary-action" id="empty-check-button">Check Again</button>
+        <button type="button" class="secondary-action" id="empty-library-button">Back to Library</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-modal hidden" id="image-modal" role="dialog" aria-modal="true">
+    <button type="button" class="image-modal-close" id="image-close-button" aria-label="Close image">
+      <i class="fas fa-xmark"></i>
+    </button>
+    <img id="zoomed-image" alt="Enlarged flashcard image">
+  </div>
+
+  <div class="mobile-toast" id="study-toast" role="status" aria-live="polite"></div>
+
+  <script src="../capacitor.js"></script>
+  <script src="../js/core/schema.js"></script>
+  <script src="../js/core/backup.js"></script>
+  <script src="../js/core/stats.js"></script>
+  <script src="../js/core/srs.js"></script>
+  <script src="../js/core/review-session.js"></script>
+  <script src="../js/core/draft.js"></script>
+  <script src="../vendor/sql.js/sql-wasm.js"></script>
+  <script src="../js/mobile/mobile-store.js"></script>
+  <script src="../js/storage-client.js"></script>
+  <script src="../vendor/ts-fsrs/index.umd.js"></script>
+  <script src="../js/srs-manager.js"></script>
+  <script src="../mobile/js/mobile-study.js"></script>
+</body>
+</html>

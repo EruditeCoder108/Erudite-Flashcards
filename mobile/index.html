@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" class="mobile-app-shell">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <title>Erudite Flashcards</title>
+  <link rel="icon" type="image/png" href="assets/icons/icon.png">
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="mobile/css/mobile-app.css">
+</head>
+<body>
+  <div class="mobile-shell" id="mobile-shell">
+    <header class="mobile-topbar" id="mobile-topbar">
+      <div class="mobile-brand" id="mobile-brand">
+        <img src="assets/icons/icon.png" alt="" class="mobile-brand-logo">
+        <div>
+          <p class="mobile-eyebrow" id="mobile-eyebrow">Today</p>
+          <h1 id="mobile-title">Erudite</h1>
+        </div>
+      </div>
+      <div class="mobile-top-actions">
+        <button type="button" class="icon-button" data-action="open-backup" aria-label="Backup">
+          <i class="fas fa-cloud-arrow-up"></i>
+        </button>
+        <button type="button" class="icon-button" data-action="open-settings" aria-label="Settings">
+          <i class="fas fa-gear"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="mobile-main" id="mobile-main">
+      <section class="mobile-view active" id="view-today" aria-labelledby="today-heading">
+        <div class="today-hero surface-card" id="today-hero"></div>
+        <div class="section-block">
+          <div class="section-title-row">
+            <h2 id="today-heading">Continue Studying</h2>
+            <button type="button" class="text-button" data-action="tab-library">See all</button>
+          </div>
+          <div class="deck-stack" id="continue-list"></div>
+        </div>
+        <div class="section-block">
+          <div class="section-title-row">
+            <h2>Recent Activity</h2>
+          </div>
+          <div class="activity-list" id="activity-list"></div>
+        </div>
+      </section>
+
+      <section class="mobile-view" id="view-library" aria-labelledby="library-heading">
+        <div class="library-screen-head">
+          <div>
+            <p class="mobile-eyebrow">Library</p>
+            <h2 id="library-heading">Your decks</h2>
+          </div>
+          <button type="button" class="icon-button raised" data-action="open-create" aria-label="Create set">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+
+        <div class="search-row">
+          <label class="mobile-search">
+            <i class="fas fa-magnifying-glass"></i>
+            <input id="mobile-search-input" type="search" placeholder="Search decks, cards, classes">
+          </label>
+          <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
+            <i class="fas fa-arrow-down-wide-short"></i>
+          </button>
+        </div>
+
+        <div class="filter-strip" id="library-filters" aria-label="Library filters">
+          <button type="button" class="filter-chip active" data-filter="all"><i class="fas fa-table-cells-large"></i>All</button>
+          <button type="button" class="filter-chip" data-filter="classes"><i class="fas fa-chalkboard-user"></i>Classes</button>
+          <button type="button" class="filter-chip" data-filter="general"><i class="fas fa-box-archive"></i>General</button>
+          <button type="button" class="filter-chip" data-filter="starred"><i class="fas fa-star"></i>Starred</button>
+        </div>
+
+        <div class="library-meta-row">
+          <span id="library-count-label">0 decks</span>
+          <span id="library-sort-label">Recent</span>
+        </div>
+
+        <div class="mobile-list" id="library-list"></div>
+      </section>
+
+      <section class="mobile-view" id="view-study" aria-labelledby="study-heading">
+        <div class="section-block first">
+          <p class="mobile-eyebrow">Study</p>
+          <h2 id="study-heading">Choose a session</h2>
+          <p class="muted-copy">Start due reviews or continue any deck in normal mode.</p>
+        </div>
+        <div class="study-actions surface-card" id="study-actions"></div>
+        <div class="section-block">
+          <div class="section-title-row">
+            <h2>Decks</h2>
+          </div>
+          <div class="deck-stack" id="study-deck-list"></div>
+        </div>
+      </section>
+
+      <section class="mobile-view" id="view-create" aria-labelledby="create-heading">
+        <div class="create-panel surface-card">
+          <div class="create-icon"><i class="fas fa-layer-group"></i></div>
+          <p class="mobile-eyebrow">Create</p>
+          <h2 id="create-heading">Build a clean deck</h2>
+          <p class="muted-copy">The full editor is available now. A phone-native creator will come after the library and study screens are stable.</p>
+          <div class="button-column">
+            <button type="button" class="primary-action" data-action="open-create">
+              <i class="fas fa-plus"></i>
+              New Flashcard Set
+            </button>
+            <button type="button" class="secondary-action" data-action="open-premade">
+              <i class="fas fa-book-open"></i>
+              Browse Premade
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="mobile-view" id="view-more" aria-labelledby="more-heading">
+        <div class="section-block first">
+          <p class="mobile-eyebrow">More</p>
+          <h2 id="more-heading">App tools</h2>
+        </div>
+        <div class="settings-list">
+          <button type="button" class="settings-row" data-action="toggle-srs">
+            <span class="settings-icon brain"><i class="fas fa-brain"></i></span>
+            <span>
+              <strong>SRS Mode</strong>
+              <small id="more-srs-label">Off</small>
+            </span>
+            <span class="switch" id="srs-switch"><span></span></span>
+          </button>
+          <button type="button" class="settings-row" data-action="export-backup">
+            <span class="settings-icon"><i class="fas fa-file-export"></i></span>
+            <span><strong>Export Backup</strong><small>Share a full local JSON backup</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="import-backup">
+            <span class="settings-icon"><i class="fas fa-file-import"></i></span>
+            <span><strong>Import Backup</strong><small>Restore from desktop or another phone</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="open-browser">
+            <span class="settings-icon"><i class="fas fa-table-list"></i></span>
+            <span><strong>Card Browser</strong><small>Advanced desktop-style card table</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="open-desktop-library">
+            <span class="settings-icon"><i class="fas fa-display"></i></span>
+            <span><strong>Desktop Library View</strong><small>Fallback while mobile UI is being completed</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <nav class="mobile-tabbar" aria-label="Primary">
+      <button type="button" class="tab-button active" data-tab="today">
+        <i class="fas fa-sun"></i>
+        <span>Today</span>
+      </button>
+      <button type="button" class="tab-button" data-tab="library">
+        <i class="fas fa-layer-group"></i>
+        <span>Library</span>
+      </button>
+      <button type="button" class="tab-button" data-tab="study">
+        <i class="fas fa-play"></i>
+        <span>Study</span>
+      </button>
+      <button type="button" class="tab-button" data-tab="create">
+        <i class="fas fa-plus"></i>
+        <span>Create</span>
+      </button>
+      <button type="button" class="tab-button" data-tab="more">
+        <i class="fas fa-ellipsis"></i>
+        <span>More</span>
+      </button>
+    </nav>
+  </div>
+
+  <div class="mobile-toast" id="mobile-toast" role="status" aria-live="polite"></div>
+
+  <script src="capacitor.js"></script>
+  <script src="js/core/schema.js"></script>
+  <script src="js/core/backup.js"></script>
+  <script src="js/core/stats.js"></script>
+  <script src="js/core/srs.js"></script>
+  <script src="js/core/review-session.js"></script>
+  <script src="js/core/draft.js"></script>
+  <script src="vendor/sql.js/sql-wasm.js"></script>
+  <script src="js/mobile/mobile-store.js"></script>
+  <script src="js/storage-client.js"></script>
+  <script src="vendor/ts-fsrs/index.umd.js"></script>
+  <script src="js/srs-manager.js"></script>
+  <script src="mobile/js/mobile-app.js"></script>
+</body>
+</html>
