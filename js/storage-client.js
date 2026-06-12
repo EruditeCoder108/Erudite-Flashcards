@@ -45,6 +45,11 @@
     return readLocal('flashcardSets', []);
   }
 
+  async function listSetsMeta() {
+    if (api?.listSetsMeta) return api.listSetsMeta();
+    return listSets(); // fallback: load full sets
+  }
+
   async function getSet(id) {
     if (api) return api.getSet(id);
     const sets = await listSets();
@@ -452,6 +457,7 @@
 
   window.flashcardStore = {
     listSets,
+    listSetsMeta,
     getSet,
     saveSet,
     replaceSets,

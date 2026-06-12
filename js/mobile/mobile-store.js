@@ -7,6 +7,11 @@
   const backup = window.EruditeCore?.backup;
 
   if (!capacitor || !Filesystem || !schema || !backup || typeof initSqlJs === 'undefined') {
+    console.warn('[mobile-store] Guard failed — missing:', {
+      capacitor: !!capacitor, Filesystem: !!Filesystem,
+      schema: !!schema, backup: !!backup,
+      initSqlJs: typeof initSqlJs !== 'undefined'
+    });
     return;
   }
 
@@ -141,36 +146,127 @@
     `);
   }
 
-  async function persist() {
+  const DB_TMP_PATH = DB_PATH + '.tmp';
+  let _persistTimer = null;
+  let _persistInFlight = null;
+  let _persistQueued = false;
+
+  async function _doPersist() {
     const bytes = db.export();
+    const data = bytesToBase64(bytes);
+    // Write to temp file first (safety net if main write is interrupted)
     await Filesystem.writeFile({
-      path: DB_PATH,
-      data: bytesToBase64(bytes),
+      path: DB_TMP_PATH,
+      data,
       directory: DIRECTORY_DATA,
       recursive: true
     });
+    // Now write the main file
+    await Filesystem.writeFile({
+      path: DB_PATH,
+      data,
+      directory: DIRECTORY_DATA,
+      recursive: true
+    });
+    // Clean up temp
+    try {
+      await Filesystem.deleteFile({ path: DB_TMP_PATH, directory: DIRECTORY_DATA });
+    } catch (_) {}
+  }
+
+  async function persist() {
+    // If a write is already scheduled, just mark queued and return the existing promise
+    if (_persistTimer) {
+      _persistQueued = true;
+      return _persistInFlight || Promise.resolve();
+    }
+
+    return new Promise((resolve, reject) => {
+      _persistTimer = setTimeout(async () => {
+        _persistTimer = null;
+        _persistQueued = false;
+
+        // Wait for any in-flight write to finish first
+        if (_persistInFlight) {
+          try { await _persistInFlight; } catch (_) {}
+        }
+
+        _persistInFlight = _doPersist();
+        try {
+          await _persistInFlight;
+          resolve();
+        } catch (error) {
+          console.error('[mobile-store] persist failed:', error);
+          reject(error);
+        } finally {
+          _persistInFlight = null;
+          // If more writes were queued while this one was running, flush again
+          if (_persistQueued) {
+            _persistQueued = false;
+            persist().catch(() => {});
+          }
+        }
+      }, 80);
+    });
+  }
+
+  /** Await any in-flight or scheduled persist. Call before navigation. */
+  async function flush() {
+    if (_persistTimer) {
+      clearTimeout(_persistTimer);
+      _persistTimer = null;
+      _persistQueued = false;
+      if (_persistInFlight) {
+        try { await _persistInFlight; } catch (_) {}
+      }
+      _persistInFlight = _doPersist();
+      try { await _persistInFlight; } catch (_) {}
+      _persistInFlight = null;
+    } else if (_persistInFlight) {
+      try { await _persistInFlight; } catch (_) {}
+    }
   }
 
   async function init() {
     if (readyPromise) return readyPromise;
 
     readyPromise = (async () => {
+      const scriptBase = (() => {
+        try {
+          const scripts = document.querySelectorAll('script[src*="mobile-store"]');
+          const src = scripts[scripts.length - 1]?.src || '';
+          return src.substring(0, src.lastIndexOf('/js/mobile/'));
+        } catch (_e) { return ''; }
+      })();
+      const wasmBase = scriptBase ? `${scriptBase}/vendor/sql.js/` : 'vendor/sql.js/';
       SQL = await initSqlJs({
-        locateFile: file => `${window.location.origin}/vendor/sql.js/${file}`
+        locateFile: file => `${wasmBase}${file}`
       });
 
-      try {
-        const file = await Filesystem.readFile({
-          path: DB_PATH,
-          directory: DIRECTORY_DATA
-        });
-        db = new SQL.Database(base64ToBytes(file.data));
-      } catch (_error) {
+      // Try main DB file, then temp file as fallback
+      db = null;
+      for (const path of [DB_PATH, DB_TMP_PATH]) {
+        if (db) break;
+        try {
+          const file = await Filesystem.readFile({ path, directory: DIRECTORY_DATA });
+          const candidate = new SQL.Database(base64ToBytes(file.data));
+          // Probe query to verify integrity
+          candidate.exec('SELECT count(*) FROM sqlite_master;');
+          db = candidate;
+        } catch (error) {
+          console.warn(`[mobile-store] Could not open ${path}:`, error?.message || error);
+        }
+      }
+
+      const isFresh = !db;
+      if (!db) {
+        console.warn('[mobile-store] Starting with empty database');
         db = new SQL.Database();
       }
 
       createSchema();
-      await persist();
+      // Only persist on first-time setup to avoid a costly full write on every cold start
+      if (isFresh) await _doPersist();
       return true;
     })();
 
@@ -309,52 +405,271 @@
   async function listSets() {
     await ensureReady();
     const setRows = rows('SELECT * FROM sets WHERE deleted_at IS NULL ORDER BY last_modified DESC, created DESC');
+    return setRows.map(row => hydrateSetRow(row));
+  }
+
+  function hydrateSetRow(row) {
+    const payload = jsonParse(row.payload_json, {});
+    const cards = rows(
+      'SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL ORDER BY position ASC',
+      [row.id]
+    ).map(cardRow => hydrateCardRow(cardRow));
+
+    return {
+      ...payload,
+      id: row.id,
+      name: row.name,
+      description: row.description || '',
+      classId: row.class_id || null,
+      srsSettings: jsonParse(row.srs_settings_json, {}),
+      created: Number(row.created),
+      openedCount: Number(row.opened_count || 0),
+      lastOpened: row.last_opened ?? null,
+      lastModified: Number(row.last_modified),
+      cards
+    };
+  }
+
+  function hydrateSetMetaRow(row) {
+    const payload = jsonParse(row.payload_json, {});
+    return {
+      ...payload,
+      id: row.id,
+      name: row.name,
+      description: row.description || '',
+      classId: row.class_id || null,
+      srsSettings: jsonParse(row.srs_settings_json, {}),
+      created: Number(row.created),
+      openedCount: Number(row.opened_count || 0),
+      lastOpened: row.last_opened ?? null,
+      lastModified: Number(row.last_modified)
+    };
+  }
+
+  async function getSetMeta(id) {
+    await ensureReady();
+    const setRows = rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL', [String(id)]);
+    return setRows.length ? hydrateSetMetaRow(setRows[0]) : null;
+  }
+
+  function hydrateCardRow(cardRow) {
+    return {
+      ...jsonParse(cardRow.payload_json, {}),
+      id: cardRow.id,
+      term: cardRow.term || '',
+      definition: cardRow.definition || '',
+      termImage: cardRow.term_image || '',
+      definitionImage: cardRow.definition_image || '',
+      tags: jsonParse(cardRow.tags_json, []),
+      suspended: Boolean(cardRow.suspended),
+      buriedUntil: cardRow.buried_until || null,
+      srs: jsonParse(cardRow.srs_json, null) || undefined,
+      reviewHistory: jsonParse(cardRow.review_history_json, [])
+    };
+  }
+
+  /** Lightweight listing — returns set metadata + card count, NO card data loaded. */
+  function createMetaStats() {
+    return {
+      totalCards: 0,
+      newCards: 0,
+      dueCards: 0,
+      reviewDueCards: 0,
+      learningCards: 0,
+      reviewCards: 0,
+      relearningCards: 0,
+      matureCards: 0,
+      reviewCount: 0,
+      reviewedToday: 0,
+      remembered30: 0,
+      reviewed30: 0,
+      retention: null,
+      nextDue: null,
+      lastReviewAt: null,
+      reviewDayKeys: []
+    };
+  }
+
+  function normalizeSrsState(value) {
+    if (typeof value === 'number') {
+      return ['New', 'Learning', 'Review', 'Relearning'][value] || 'New';
+    }
+    return value || 'New';
+  }
+
+  function timeValue(value) {
+    if (!value) return 0;
+    const number = Number(value);
+    if (Number.isFinite(number) && number > 0) return number;
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? 0 : date.getTime();
+  }
+
+  function dayKey(value) {
+    const timestamp = timeValue(value);
+    if (!timestamp) return null;
+    const date = new Date(timestamp);
+    date.setHours(0, 0, 0, 0);
+    return String(date.getTime());
+  }
+
+  function isBuried(buriedUntil, nowMs) {
+    const until = timeValue(buriedUntil);
+    return until > nowMs;
+  }
+
+  function isSrsDue(srs, nowMs) {
+    if (!srs || !srs.due) return true;
+    const due = timeValue(srs.due);
+    return !due || due <= nowMs;
+  }
+
+  function buildMetaStatsBySet() {
+    const nowMs = Date.now();
+    const todayKey = dayKey(nowMs);
+    const thirtyDaysAgo = nowMs - 30 * 24 * 60 * 60 * 1000;
+    const statsBySet = new Map();
+    const dayKeysBySet = new Map();
+
+    rows(`
+      SELECT c.set_id, c.srs_json, c.review_history_json, c.suspended, c.buried_until
+      FROM cards c
+      INNER JOIN sets s ON s.id = c.set_id
+      WHERE c.deleted_at IS NULL AND s.deleted_at IS NULL
+    `).forEach(row => {
+      const setId = String(row.set_id);
+      const stats = statsBySet.get(setId) || createMetaStats();
+      const dayKeys = dayKeysBySet.get(setId) || new Set();
+      const history = jsonParse(row.review_history_json, []);
+
+      (Array.isArray(history) ? history : []).forEach(review => {
+        const reviewedAt = timeValue(review.reviewedAt || review.time || review.date);
+        if (!reviewedAt) return;
+        stats.reviewCount += 1;
+        if (!stats.lastReviewAt || reviewedAt > stats.lastReviewAt) stats.lastReviewAt = reviewedAt;
+        const key = dayKey(reviewedAt);
+        if (key) dayKeys.add(key);
+        if (key === todayKey) stats.reviewedToday += 1;
+        if (reviewedAt >= thirtyDaysAgo) {
+          stats.reviewed30 += 1;
+          if (String(review.rating || '').toLowerCase() !== 'again') stats.remembered30 += 1;
+        }
+      });
+
+      if (!Number(row.suspended || 0) && !isBuried(row.buried_until, nowMs)) {
+        stats.totalCards += 1;
+        const srs = jsonParse(row.srs_json, null);
+        const state = normalizeSrsState(srs?.state);
+
+        if (!srs || state === 'New') {
+          stats.newCards += 1;
+          stats.dueCards += 1;
+        } else {
+          if (state === 'Learning') stats.learningCards += 1;
+          if (state === 'Review') stats.reviewCards += 1;
+          if (state === 'Relearning') stats.relearningCards += 1;
+
+          if (isSrsDue(srs, nowMs)) {
+            stats.dueCards += 1;
+            stats.reviewDueCards += 1;
+          } else if (state === 'Review') {
+            stats.matureCards += 1;
+          }
+        }
+
+        const dueTime = timeValue(srs?.due);
+        if (dueTime && (!stats.nextDue || dueTime < stats.nextDue)) stats.nextDue = dueTime;
+      }
+
+      statsBySet.set(setId, stats);
+      dayKeysBySet.set(setId, dayKeys);
+    });
+
+    statsBySet.forEach((stats, setId) => {
+      stats.reviewDayKeys = Array.from(dayKeysBySet.get(setId) || []);
+      stats.retention = stats.reviewed30 > 0 ? Math.round((stats.remembered30 / stats.reviewed30) * 100) : null;
+    });
+
+    return statsBySet;
+  }
+
+  function dailyLimit(value) {
+    if (value === null || value === undefined || value === '') return null;
+    const number = Number(value);
+    return Number.isFinite(number) ? Math.max(0, Math.round(number)) : null;
+  }
+
+  function limitedDueCount(stats, settings = {}) {
+    if (settings.enabled === false) return 0;
+    const newLimit = dailyLimit(settings.newCardsPerDay);
+    const reviewLimit = dailyLimit(settings.reviewsPerDay);
+    const newDue = Number(stats.newCards || 0);
+    const reviewDue = Number(stats.reviewDueCards ?? Math.max(0, Number(stats.dueCards || 0) - newDue));
+    return (newLimit === null ? newDue : Math.min(newDue, newLimit))
+      + (reviewLimit === null ? reviewDue : Math.min(reviewDue, reviewLimit));
+  }
+
+  async function listSetsMeta() {
+    await ensureReady();
+    const statsBySet = buildMetaStatsBySet();
+    const setRows = rows(`
+      SELECT s.*,
+        (SELECT COUNT(*) FROM cards c WHERE c.set_id = s.id AND c.deleted_at IS NULL) AS card_count
+      FROM sets s
+      WHERE s.deleted_at IS NULL
+      ORDER BY s.last_modified DESC, s.created DESC
+    `);
     return setRows.map(row => {
       const payload = jsonParse(row.payload_json, {});
-      const cards = rows(
-        'SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL ORDER BY position ASC',
-        [row.id]
-      ).map(cardRow => ({
-        ...jsonParse(cardRow.payload_json, {}),
-        id: cardRow.id,
-        term: cardRow.term || '',
-        definition: cardRow.definition || '',
-        termImage: cardRow.term_image || '',
-        definitionImage: cardRow.definition_image || '',
-        tags: jsonParse(cardRow.tags_json, []),
-        suspended: Boolean(cardRow.suspended),
-        buriedUntil: cardRow.buried_until || null,
-        srs: jsonParse(cardRow.srs_json, null) || undefined,
-        reviewHistory: jsonParse(cardRow.review_history_json, [])
-      }));
-
+      const settings = jsonParse(row.srs_settings_json, {});
+      const stats = {
+        ...createMetaStats(),
+        ...(statsBySet.get(String(row.id)) || {}),
+        totalCards: Number(row.card_count || 0)
+      };
+      stats.dueCards = limitedDueCount(stats, settings);
       return {
         ...payload,
         id: row.id,
         name: row.name,
         description: row.description || '',
         classId: row.class_id || null,
-        srsSettings: jsonParse(row.srs_settings_json, {}),
+        srsSettings: settings,
         created: Number(row.created),
         openedCount: Number(row.opened_count || 0),
         lastOpened: row.last_opened ?? null,
         lastModified: Number(row.last_modified),
-        cards
+        cardCount: Number(row.card_count || 0),
+        mobileStats: stats,
+        __metaOnly: true,
+        cards: [] // empty — use getSet(id) when you need cards
       };
     });
   }
 
   async function getSet(id) {
-    return (await listSets()).find(set => String(set.id) === String(id)) || null;
+    await ensureReady();
+    const setRows = rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL', [String(id)]);
+    if (!setRows.length) return null;
+    return hydrateSetRow(setRows[0]);
   }
 
   async function saveSet(set) {
     await ensureReady();
-    const existing = set.id ? await getSet(set.id) : null;
-    const normalized = schema.normalizeSet(set, existing);
+    const hasCardsField = Object.prototype.hasOwnProperty.call(set || {}, 'cards');
+    const wantsMetaOnly = Boolean(set?.__metaOnly) || !hasCardsField;
+    const existing = set.id
+      ? (wantsMetaOnly ? await getSetMeta(set.id) : await getSet(set.id))
+      : null;
+    const metaOnlyUpdate = Boolean(set?.__metaOnly)
+      || (existing && !hasCardsField)
+      || (existing && hasCardsField && Array.isArray(set.cards) && set.cards.length === 0 && Number(set.cardCount || 0) > 0);
+    const { mobileStats: _mobileStats, __metaOnly: _metaOnly, cardCount: _cardCount, ...cleanSet } = set || {};
+    if (metaOnlyUpdate && existing) cleanSet.cards = [];
+    const normalized = schema.normalizeSet(cleanSet, existing);
     upsertSet(normalized);
-    replaceCardsForSet(normalized.id, normalized.cards || []);
-    await persist();
+    if (!metaOnlyUpdate) replaceCardsForSet(normalized.id, normalized.cards || []);
+    persist(); // fire-and-forget — flush() ensures it completes before navigation
     return normalized;
   }
 
@@ -410,7 +725,7 @@
       jsonString(value),
       Date.now()
     ]);
-    await persist();
+    persist(); // fire-and-forget — flush() ensures completion before navigation
     return true;
   }
 
@@ -448,14 +763,14 @@
       jsonString(value),
       Date.now()
     ]);
-    await persist();
+    persist();
     return true;
   }
 
   async function removeState(key) {
     await ensureReady();
     run('DELETE FROM state WHERE key = ?', [String(key)]);
-    await persist();
+    persist();
     return true;
   }
 
@@ -630,6 +945,7 @@
 
   window.eruditeMobileFlashcards = {
     listSets,
+    listSetsMeta,
     getSet,
     saveSet,
     replaceSets,
@@ -653,7 +969,8 @@
     exportBackup,
     importBackup,
     exportDelimited: async () => ({ canceled: true, unsupported: true }),
-    importDelimited: async () => ({ canceled: true, unsupported: true })
+    importDelimited: async () => ({ canceled: true, unsupported: true }),
+    flush
   };
 
   window.eruditeMobileReady = init();

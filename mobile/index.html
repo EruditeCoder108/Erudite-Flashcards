@@ -83,38 +83,82 @@
         <div class="mobile-list" id="library-list"></div>
       </section>
 
-      <section class="mobile-view" id="view-study" aria-labelledby="study-heading">
-        <div class="section-block first">
-          <p class="mobile-eyebrow">Study</p>
-          <h2 id="study-heading">Choose a session</h2>
-          <p class="muted-copy">Start due reviews or continue any deck in normal mode.</p>
-        </div>
-        <div class="study-actions surface-card" id="study-actions"></div>
-        <div class="section-block">
-          <div class="section-title-row">
-            <h2>Decks</h2>
-          </div>
-          <div class="deck-stack" id="study-deck-list"></div>
-        </div>
-      </section>
 
       <section class="mobile-view" id="view-create" aria-labelledby="create-heading">
-        <div class="create-panel surface-card">
-          <div class="create-icon"><i class="fas fa-layer-group"></i></div>
-          <p class="mobile-eyebrow">Create</p>
-          <h2 id="create-heading">Build a clean deck</h2>
-          <p class="muted-copy">The full editor is available now. A phone-native creator will come after the library and study screens are stable.</p>
-          <div class="button-column">
-            <button type="button" class="primary-action" data-action="open-create">
-              <i class="fas fa-plus"></i>
-              New Flashcard Set
-            </button>
-            <button type="button" class="secondary-action" data-action="open-premade">
-              <i class="fas fa-book-open"></i>
-              Browse Premade
+        <form class="mobile-creator" id="mobile-create-form">
+          <div class="creator-header surface-card">
+            <div>
+              <p class="mobile-eyebrow">Create</p>
+              <h2 id="create-heading">Deck editor</h2>
+            </div>
+            <button type="submit" class="primary-action compact-action">
+              <i class="fas fa-check"></i>
+              Save
             </button>
           </div>
+
+          <div class="creator-meta surface-card">
+            <label class="mobile-field">
+              <span>Deck name</span>
+              <input id="mobile-create-title" type="text" autocomplete="off" placeholder="English vocabulary">
+            </label>
+            <label class="mobile-field">
+              <span>Class</span>
+              <select id="mobile-create-class"></select>
+            </label>
+          </div>
+
+          <div class="creator-actions">
+            <button type="button" class="secondary-action compact-action" data-creator-action="add-card">
+              <i class="fas fa-plus"></i>
+              Card
+            </button>
+            <button type="button" class="secondary-action compact-action" data-creator-action="import-txt">
+              <i class="fas fa-file-lines"></i>
+              Import TXT
+            </button>
+            <button type="button" class="secondary-action compact-action" data-action="open-premade">
+              <i class="fas fa-book-open"></i>
+              Premade
+            </button>
+          </div>
+
+          <div class="mobile-creator-cards" id="mobile-creator-cards"></div>
+          <input id="mobile-image-input" type="file" accept="image/*" hidden>
+          <input id="mobile-txt-input" type="file" accept=".txt,text/plain" hidden>
+        </form>
+      </section>
+
+      <section class="mobile-view" id="view-premade" aria-labelledby="premade-heading">
+        <div class="library-screen-head">
+          <div>
+            <p class="mobile-eyebrow">Premade</p>
+            <h2 id="premade-heading">Starter decks</h2>
+          </div>
+          <button type="button" class="icon-button" data-action="tab-library" aria-label="Back to library">
+            <i class="fas fa-arrow-left"></i>
+          </button>
         </div>
+        <div class="filter-strip" id="premade-class-filters" aria-label="Premade classes"></div>
+        <div class="filter-strip" id="premade-subject-filters" aria-label="Premade subjects"></div>
+        <div class="mobile-list" id="premade-list"></div>
+      </section>
+
+      <section class="mobile-view" id="view-browser" aria-labelledby="browser-heading">
+        <div class="library-screen-head">
+          <div>
+            <p class="mobile-eyebrow">Browser</p>
+            <h2 id="browser-heading">All cards</h2>
+          </div>
+          <button type="button" class="icon-button" data-action="tab-library" aria-label="Back to library">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+        </div>
+        <label class="mobile-search">
+          <i class="fas fa-magnifying-glass"></i>
+          <input id="browser-search-input" type="search" placeholder="Search cards and decks">
+        </label>
+        <div class="mobile-list browser-list" id="browser-list"></div>
       </section>
 
       <section class="mobile-view" id="view-more" aria-labelledby="more-heading">
@@ -146,11 +190,6 @@
             <span><strong>Card Browser</strong><small>Advanced desktop-style card table</small></span>
             <i class="fas fa-chevron-right"></i>
           </button>
-          <button type="button" class="settings-row" data-action="open-desktop-library">
-            <span class="settings-icon"><i class="fas fa-display"></i></span>
-            <span><strong>Desktop Library View</strong><small>Fallback while mobile UI is being completed</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
         </div>
       </section>
     </main>
@@ -163,10 +202,6 @@
       <button type="button" class="tab-button" data-tab="library">
         <i class="fas fa-layer-group"></i>
         <span>Library</span>
-      </button>
-      <button type="button" class="tab-button" data-tab="study">
-        <i class="fas fa-play"></i>
-        <span>Study</span>
       </button>
       <button type="button" class="tab-button" data-tab="create">
         <i class="fas fa-plus"></i>

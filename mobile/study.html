@@ -7,7 +7,7 @@
   <title>Study - Erudite Flashcards</title>
   <link rel="icon" type="image/png" href="../assets/icons/icon.png">
   <link rel="stylesheet" href="../vendor/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="css/mobile-study.css">
+  <link rel="stylesheet" href="../mobile/css/mobile-study.css">
 </head>
 <body>
   <div class="study-shell is-loading" id="study-shell">
@@ -28,6 +28,10 @@
 
     <main class="study-main" id="study-main">
       <section class="study-card-stage" id="card-stage" aria-live="polite">
+        <button type="button" class="prev-card-button" id="prev-button" aria-label="Previous card" disabled>
+          <i class="fas fa-rotate-left"></i>
+          <span>Prev</span>
+        </button>
         <div class="study-card" id="study-card">
           <div class="study-card-inner">
             <article class="card-face front" aria-label="Term side">
@@ -83,7 +87,7 @@
 
     <div class="study-footer">
       <div class="progress-bar"><span id="progress-fill"></span></div>
-      <p id="gesture-hint">Tap to flip. Swipe sideways to move cards.</p>
+      <p id="gesture-hint">Tap to flip. Swipe any direction to move cards.</p>
     </div>
   </div>
 

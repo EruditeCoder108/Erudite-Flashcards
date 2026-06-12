@@ -34,6 +34,7 @@
     fill: document.getElementById('progress-fill'),
     hint: document.getElementById('gesture-hint'),
     back: document.getElementById('back-button'),
+    prev: document.getElementById('prev-button'),
     card: document.getElementById('study-card'),
     stage: document.getElementById('card-stage'),
     termText: document.getElementById('term-text'),
@@ -67,7 +68,10 @@
 
   let toastTimer = null;
   let pointer = null;
-  let gestureLock = false;
+  let animating = false;
+  let openedSaveTimer = null;
+  let dragFrame = 0;
+  let queuedDrag = null;
 
   function showToast(message) {
     clearTimeout(toastTimer);
@@ -85,7 +89,18 @@
     return `study.html?setId=${encodeURIComponent(setId)}${suffix}`;
   }
 
-  function goLibrary() {
+  async function goLibrary() {
+    try { await saveProgress(); } catch (_) {}
+    // Give the DB a short safety window without making Back feel frozen.
+    try {
+      const flush = window.eruditeMobileFlashcards?.flush?.();
+      if (flush?.then) {
+        await Promise.race([
+          flush.catch(() => {}),
+          new Promise(resolve => window.setTimeout(resolve, 140))
+        ]);
+      }
+    } catch (_) {}
     window.location.href = libraryUrl();
   }
 
@@ -198,10 +213,11 @@
   }
 
   async function waitForStore() {
-    await Promise.all([
-      window.eruditeMobileReady?.catch?.(() => {}),
-      window.flashcardLocalReady?.catch?.(() => {})
-    ].filter(Boolean));
+    const promises = [
+      window.eruditeMobileReady,
+      window.flashcardLocalReady
+    ].filter(Boolean);
+    await Promise.all(promises);
     if (!window.flashcardStore) throw new Error('Flashcard store unavailable');
   }
 
@@ -212,12 +228,10 @@
       throw new Error('No set selected');
     }
 
-    const [sets, srsMode] = await Promise.all([
-      window.flashcardStore.listSets(),
+    const [found, srsMode] = await Promise.all([
+      window.flashcardStore.getSet(setId),
       window.flashcardStore.getState('srsModeEnabled')
     ]);
-    state.allSets = Array.isArray(sets) ? sets : [];
-    const found = state.allSets.find(set => String(set.id) === String(setId));
     if (!found) throw new Error('Flashcard set not found');
 
     state.srsMode = srsMode === true || srsMode === 'true';
@@ -230,10 +244,23 @@
       openedCount: (found.openedCount || 0) + 1,
       lastOpened: Date.now()
     };
-    state.set = await window.flashcardStore.saveSet(state.set);
 
     await loadProgress();
     prepareActiveCards();
+  }
+
+  function scheduleOpenedSave() {
+    if (!state.set) return;
+    clearTimeout(openedSaveTimer);
+    const { id, openedCount, lastOpened } = state.set;
+    openedSaveTimer = window.setTimeout(() => {
+      window.flashcardStore.saveSet({
+        id,
+        openedCount,
+        lastOpened,
+        __metaOnly: true
+      }).catch(error => console.warn('[mobile-study] opened metadata save failed:', error));
+    }, 210);
   }
 
   async function loadProgress() {
@@ -260,7 +287,6 @@
   function prepareActiveCards() {
     if (!Array.isArray(state.set.cards)) state.set.cards = [];
     if (state.srsMode && window.srsManager?.isReady?.()) {
-      state.set.cards = state.set.cards.map(card => card.srs ? card : window.srsManager.createSRSCard(card));
       const settings = getDeckSrsSettings();
       state.activeCards = window.srsManager.getDueCards(state.set.cards, {
         maxNewCards: settings.newCardsPerDay,
@@ -311,7 +337,7 @@
     if (visible) updateRatingIntervals();
     els.hint.textContent = state.srsMode
       ? (state.flipped ? 'Choose how well you remembered it.' : 'Tap to reveal the answer.')
-      : 'Tap to flip. Swipe sideways to move cards.';
+      : 'Tap to flip. Swipe left or right to go next.';
   }
 
   function renderCard(options = {}) {
@@ -333,6 +359,24 @@
     updateProgress();
   }
 
+  function applyDrag(x = 0) {
+    const rotate = Math.max(-7, Math.min(7, x * 0.032));
+    els.card.style.setProperty('--drag-x', `${x}px`);
+    els.card.style.setProperty('--drag-y', '0px');
+    els.card.style.setProperty('--drag-rotate', `${rotate}deg`);
+  }
+
+  function setDrag(x = 0) {
+    queuedDrag = { x };
+    if (dragFrame) return;
+    dragFrame = requestAnimationFrame(() => {
+      dragFrame = 0;
+      const next = queuedDrag || { x: 0 };
+      queuedDrag = null;
+      applyDrag(next.x);
+    });
+  }
+
   function updateProgress() {
     const total = state.activeCards.length;
     const index = total ? activeIndex() + 1 : 0;
@@ -341,10 +385,14 @@
     els.fill.style.width = total ? `${Math.round((index / total) * 100)}%` : '0%';
     els.modeLabel.textContent = state.srsMode ? 'SRS Review' : 'Study';
     els.title.textContent = state.set?.name || 'Study';
+    // Prev button: hidden at first card or in SRS mode
+    if (els.prev) {
+      els.prev.disabled = activeIndex() <= 0 || state.srsMode;
+    }
   }
 
-  async function navigate(direction) {
-    if (!state.activeCards.length || state.complete) return;
+  async function navigateForward(exitVector) {
+    if (!state.activeCards.length || state.complete || animating) return;
     if (state.srsMode) {
       if (!state.flipped) {
         setFlipped(true);
@@ -354,36 +402,58 @@
       return;
     }
 
-    const nextIndex = activeIndex() + (direction === 'next' ? 1 : -1);
-    if (nextIndex < 0) {
-      showToast('First card');
-      return;
-    }
+    const nextIndex = activeIndex() + 1;
     if (nextIndex >= state.activeCards.length) {
       await showCompletion();
       return;
     }
-    animateOut(direction, () => {
+    animateOut(exitVector || { x: -1, y: 0 }, () => {
       setActiveIndex(nextIndex);
       renderCard();
       saveProgress();
     });
   }
 
-  function animateOut(direction, done) {
-    const sign = direction === 'next' ? -1 : 1;
+  function navigateBack() {
+    if (!state.activeCards.length || state.complete || state.srsMode || animating) return;
+    const prevIndex = activeIndex() - 1;
+    if (prevIndex < 0) {
+      showToast('First card');
+      return;
+    }
+    animateOut({ x: 1, y: 0 }, () => {
+      setActiveIndex(prevIndex);
+      renderCard();
+      saveProgress();
+    });
+  }
+
+  function animateOut(vector, done) {
+    const vx = (vector?.x || 0) < 0 ? -1 : 1;
+    animating = true;
     els.card.classList.add('animating-out');
-    els.card.style.setProperty('--drag-x', `${sign * 105}vw`);
-    els.card.style.setProperty('--drag-y', '-0.35rem');
-    els.card.style.setProperty('--drag-rotate', `${sign * -8}deg`);
+    if (dragFrame) cancelAnimationFrame(dragFrame);
+    dragFrame = 0;
+    queuedDrag = null;
+    els.card.style.setProperty('--drag-x', `${vx * 118}vw`);
+    els.card.style.setProperty('--drag-y', '0px');
+    els.card.style.setProperty('--drag-rotate', `${vx * 8}deg`);
     window.setTimeout(() => {
+      // Reset position with no transition so new card appears instantly
       els.card.classList.remove('animating-out');
+      els.card.classList.add('no-transition');
+      applyDrag(0);
+      animating = false;
       done();
-    }, 210);
+      // Remove no-transition after one frame so future animations work
+      requestAnimationFrame(() => {
+        els.card.classList.remove('no-transition');
+      });
+    }, 220);
   }
 
   function flipCard() {
-    if (!activeCard() || state.complete) return;
+    if (!activeCard() || state.complete || animating) return;
     setFlipped(!state.flipped);
   }
 
@@ -427,7 +497,8 @@
       return;
     }
 
-    animateOut('next', () => {
+    animateOut({ x: -1, y: 0 }, () => {
+      animating = false;
       renderCard();
       saveProgress();
     });
@@ -435,7 +506,12 @@
 
   async function findNextDueSetId() {
     if (!reviewDueSession || !state.srsMode || !window.srsManager?.isReady?.()) return null;
-    for (const set of state.allSets || []) {
+    // Lazy-load other sets only at completion — use lightweight meta + individual getSet as needed
+    let allSets;
+    try {
+      allSets = await window.flashcardStore.listSets();
+    } catch (_) { return null; }
+    for (const set of allSets || []) {
       if (String(set.id) === String(state.set.id)) continue;
       if (set.srsSettings?.enabled === false) continue;
       const cards = (set.cards || []).map(card => card.srs ? card : window.srsManager.createSRSCard(card));
@@ -486,17 +562,21 @@
   }
 
   function installPointerGestures() {
+    const SWIPE_THRESHOLD = 50;
+    const VELOCITY_THRESHOLD = 0.42;
+    const DEAD_ZONE = 10;
+    const DRAG_LIMIT = 104;
+    const HORIZONTAL_BIAS = 1.12;
+
     els.card.addEventListener('pointerdown', event => {
-      if (isInteractive(event.target) || gestureLock) return;
+      if (isInteractive(event.target) || animating) return;
       pointer = {
         id: event.pointerId,
         x: event.clientX,
         y: event.clientY,
-        lastX: event.clientX,
-        lastY: event.clientY,
         time: performance.now(),
-        horizontal: false,
-        verticalScroll: false,
+        dragging: false,
+        scrolling: false,
         scrollable: isScrollableContent(event.target)
       };
     });
@@ -505,26 +585,28 @@
       if (!pointer || pointer.id !== event.pointerId) return;
       const dx = event.clientX - pointer.x;
       const dy = event.clientY - pointer.y;
-      pointer.lastX = event.clientX;
-      pointer.lastY = event.clientY;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
 
-      if (!pointer.horizontal && !pointer.verticalScroll) {
-        if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx) && pointer.scrollable) {
-          pointer.verticalScroll = true;
+      if (!pointer.dragging && !pointer.scrolling) {
+        if (absDy > DEAD_ZONE && absDy > absDx * 1.18 && pointer.scrollable) {
+          pointer.scrolling = true;
           return;
         }
-        if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) {
-          pointer.horizontal = true;
+        if (absDx > DEAD_ZONE && absDx > absDy * HORIZONTAL_BIAS) {
+          pointer.dragging = true;
           els.card.setPointerCapture?.(event.pointerId);
+        } else if (absDy > DEAD_ZONE && absDy >= absDx) {
+          pointer.scrolling = Boolean(pointer.scrollable);
+          return;
         }
       }
 
-      if (pointer.horizontal) {
+      if (pointer.scrolling) return;
+
+      if (pointer.dragging) {
         event.preventDefault();
-        const limitedX = Math.max(-90, Math.min(90, dx));
-        els.card.style.setProperty('--drag-x', `${limitedX}px`);
-        els.card.style.setProperty('--drag-y', `${Math.max(-10, Math.min(10, dy * 0.15))}px`);
-        els.card.style.setProperty('--drag-rotate', `${limitedX * 0.045}deg`);
+        setDrag(Math.sign(dx) * Math.min(absDx, DRAG_LIMIT));
       }
     }, { passive: false });
 
@@ -533,19 +615,24 @@
       const dx = event.clientX - pointer.x;
       const dy = event.clientY - pointer.y;
       const dt = Math.max(1, performance.now() - pointer.time);
-      const velocity = Math.abs(dx) / dt;
-      const wasHorizontal = pointer.horizontal && Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy);
-      const wasTap = Math.abs(dx) < 9 && Math.abs(dy) < 9 && !pointer.verticalScroll;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+      const velocity = absDx / dt;
+      const wasTap = absDx < 9 && absDy < 9 && !pointer.scrolling;
+      const wasSwipe = !pointer.scrolling
+        && absDx > absDy * HORIZONTAL_BIAS
+        && (absDx >= SWIPE_THRESHOLD || velocity >= VELOCITY_THRESHOLD)
+        && !wasTap;
       pointer = null;
 
-      els.card.style.setProperty('--drag-x', '0px');
-      els.card.style.setProperty('--drag-y', '0px');
-      els.card.style.setProperty('--drag-rotate', '0deg');
-
-      if (wasHorizontal || velocity > 0.45) {
-        navigate(dx < 0 ? 'next' : 'prev');
+      if (wasSwipe) {
+        // Don't reset drag — let animateOut continue from current position
+        navigateForward({ x: dx < 0 ? -1 : 1, y: 0 });
         return;
       }
+
+      // Reset drag visuals (non-swipe: snap back)
+      setDrag(0);
 
       if (wasTap) {
         flipCard();
@@ -556,16 +643,15 @@
     els.card.addEventListener('pointercancel', event => {
       if (!pointer || pointer.id !== event.pointerId) return;
       pointer = null;
-      els.card.style.setProperty('--drag-x', '0px');
-      els.card.style.setProperty('--drag-y', '0px');
-      els.card.style.setProperty('--drag-rotate', '0deg');
+      setDrag(0);
     });
   }
 
   function installEvents() {
-    els.back.addEventListener('click', goLibrary);
-    els.libraryButton.addEventListener('click', goLibrary);
-    els.emptyLibraryButton.addEventListener('click', goLibrary);
+    els.back.addEventListener('click', () => goLibrary());
+    els.prev?.addEventListener('click', () => navigateBack());
+    els.libraryButton.addEventListener('click', () => goLibrary());
+    els.emptyLibraryButton.addEventListener('click', () => goLibrary());
     els.continueButton.addEventListener('click', async () => {
       if (state.srsMode && state.nextDueSetId) {
         window.location.href = studyUrl(state.nextDueSetId, true);
@@ -618,7 +704,7 @@
     });
 
     document.addEventListener('keydown', event => {
-      if (event.repeat || isInteractive(event.target)) return;
+      if (event.repeat || isInteractive(event.target) || animating) return;
       if (event.key === 'Escape') {
         els.imageModal.classList.add('hidden');
         return;
@@ -629,18 +715,21 @@
         flipCard();
       } else if (event.key === 'ArrowLeft') {
         event.preventDefault();
-        navigate('prev');
+        navigateBack();
       } else if (event.key === 'ArrowRight') {
         event.preventDefault();
-        navigate('next');
+        navigateForward({ x: -1, y: 0 });
       } else if (state.srsMode && state.flipped && ['1', '2', '3', '4'].includes(event.key)) {
         event.preventDefault();
         handleRating(['Again', 'Hard', 'Good', 'Easy'][Number(event.key) - 1]);
       }
     });
 
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) saveProgress();
+    document.addEventListener('visibilitychange', async () => {
+      if (document.hidden) {
+        try { await saveProgress(); } catch (_) {}
+        try { await window.eruditeMobileFlashcards?.flush?.(); } catch (_) {}
+      }
     });
   }
 
@@ -657,6 +746,7 @@
       } else {
         renderCard({ noTransition: true });
       }
+      scheduleOpenedSave();
     } catch (error) {
       console.error(error);
       showToast(error.message || 'Could not open study session');

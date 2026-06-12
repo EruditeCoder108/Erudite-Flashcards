@@ -12,7 +12,32 @@
     libraryFilter: 'all',
     search: '',
     sort: 'recent',
+    browserCards: [],
+    browserLoaded: false,
+    browserSearch: '',
+    premadeClass: '10th',
+    premadeSubject: 'Science',
+    premadeSets: [],
+    creator: {
+      editingSetId: null,
+      originalSet: null,
+      classId: '',
+      cards: []
+    },
+    pendingImageTarget: null,
     busy: false
+  };
+
+  const premadeClasses = [
+    { id: '10th', name: 'Class 10' },
+    { id: '11th', name: 'Class 11' },
+    { id: '12th', name: 'Class 12' }
+  ];
+
+  const premadeSubjects = {
+    '10th': ['Science', 'Maths', 'English', 'Civics', 'Geography', 'History', 'Hindi', 'Politics'],
+    '11th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education'],
+    '12th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education']
   };
 
   const sortOrder = ['recent', 'name', 'cards', 'due'];
@@ -36,8 +61,17 @@
     continueList: document.getElementById('continue-list'),
     activityList: document.getElementById('activity-list'),
     libraryList: document.getElementById('library-list'),
-    studyActions: document.getElementById('study-actions'),
-    studyDeckList: document.getElementById('study-deck-list'),
+    createForm: document.getElementById('mobile-create-form'),
+    createTitle: document.getElementById('mobile-create-title'),
+    createClass: document.getElementById('mobile-create-class'),
+    creatorCards: document.getElementById('mobile-creator-cards'),
+    imageInput: document.getElementById('mobile-image-input'),
+    txtInput: document.getElementById('mobile-txt-input'),
+    premadeClassFilters: document.getElementById('premade-class-filters'),
+    premadeSubjectFilters: document.getElementById('premade-subject-filters'),
+    premadeList: document.getElementById('premade-list'),
+    browserSearchInput: document.getElementById('browser-search-input'),
+    browserList: document.getElementById('browser-list'),
     srsSwitch: document.getElementById('srs-switch'),
     moreSrsLabel: document.getElementById('more-srs-label'),
     toast: document.getElementById('mobile-toast')
@@ -54,6 +88,11 @@
 
   function escapeAttr(value) {
     return escapeHtml(value).replace(/`/g, '&#096;');
+  }
+
+  function cssEscape(value) {
+    if (window.CSS?.escape) return CSS.escape(String(value));
+    return String(value).replace(/["\\]/g, '\\$&');
   }
 
   function clamp(number, min, max) {
@@ -111,36 +150,89 @@
     return classMap().get(String(set.classId)) || null;
   }
 
+  function metaStats(set) {
+    return set?.mobileStats && typeof set.mobileStats === 'object' ? set.mobileStats : null;
+  }
+
+  function setCardCount(set) {
+    return Number(set?.cardCount ?? metaStats(set)?.totalCards ?? (Array.isArray(set?.cards) ? set.cards.length : 0)) || 0;
+  }
+
   function setStats(set) {
-    if (statsCore?.getSetSrsStats) return statsCore.getSetSrsStats(set);
-    const totalCards = Array.isArray(set?.cards) ? set.cards.length : 0;
+    const meta = metaStats(set);
+    if (meta) {
+      return {
+        totalCards: setCardCount(set),
+        dueCards: Number(meta.dueCards || 0),
+        newCards: Number(meta.newCards || 0),
+        learningCards: Number(meta.learningCards || 0),
+        reviewCards: Number(meta.reviewCards || 0),
+        relearningCards: Number(meta.relearningCards || 0),
+        matureCards: Number(meta.matureCards || 0),
+        retention: meta.retention ?? null,
+        nextDue: meta.nextDue || null
+      };
+    }
+    if (set.cards?.length && statsCore?.getSetSrsStats) return statsCore.getSetSrsStats(set);
+    const totalCards = setCardCount(set);
     return { totalCards, dueCards: totalCards, newCards: totalCards, learningCards: 0, reviewCards: 0, matureCards: 0 };
   }
 
-  function dueCardsForSet(set) {
-    if (!state.srsMode) return [];
+  function dueCountForSet(set, options = {}) {
+    const force = Boolean(options.force);
+    if (!force && !state.srsMode) return 0;
+    if (set?.srsSettings?.enabled === false) return 0;
+    const meta = metaStats(set);
+    if (meta) return Number(meta.dueCards || 0);
+    return dueCardsForSet(set, { force }).length;
+  }
+
+  function dueCardsForSet(set, options = {}) {
+    const force = Boolean(options.force);
+    if (!force && !state.srsMode) return [];
     if (set?.srsSettings?.enabled === false) return [];
+    if (!set.cards?.length) return [];
     if (window.srsManager?.getDueCards) {
       return window.srsManager.getDueCards(set.cards || [], { settings: set.srsSettings || {} });
     }
     return (set.cards || []).filter(card => statsCore?.isDue ? statsCore.isDue(card.srs) : true);
   }
 
-  function totalStats() {
-    if (statsCore?.getLibraryStats) return statsCore.getLibraryStats(state.sets, state.classes);
-    return {
+  function totalStats(options = {}) {
+    const forceDue = options.forceDue !== false;
+    const totals = {
       setCount: state.sets.length,
       classCount: state.classes.length,
-      cardCount: state.sets.reduce((total, set) => total + (set.cards || []).length, 0),
-      dueCards: state.sets.reduce((total, set) => total + dueCardsForSet(set).length, 0),
+      cardCount: 0,
+      dueCards: 0,
+      newCards: 0,
+      learningCards: 0,
+      reviewCards: 0,
+      matureCards: 0,
       retention: null
     };
+    const retentions = [];
+    state.sets.forEach(set => {
+      const stats = setStats(set);
+      totals.cardCount += setCardCount(set);
+      totals.dueCards += dueCountForSet(set, { force: forceDue });
+      totals.newCards += Number(stats.newCards || 0);
+      totals.learningCards += Number(stats.learningCards || 0);
+      totals.reviewCards += Number(stats.reviewCards || 0);
+      totals.matureCards += Number(stats.matureCards || 0);
+      if (stats.retention !== null && stats.retention !== undefined) retentions.push(Number(stats.retention));
+    });
+    if (retentions.length) {
+      totals.retention = Math.round(retentions.reduce((sum, value) => sum + value, 0) / retentions.length);
+    }
+    return totals;
   }
 
-  function dueSets() {
-    if (!state.srsMode) return [];
+  function dueSets(options = {}) {
+    const force = Boolean(options.force);
+    if (!force && !state.srsMode) return [];
     return state.sets
-      .map(set => ({ set, due: dueCardsForSet(set).length }))
+      .map(set => ({ set, due: dueCountForSet(set, { force }) }))
       .filter(item => item.due > 0)
       .sort((a, b) => b.due - a.due || normalizeTimestamp(b.set.lastOpened || b.set.lastModified) - normalizeTimestamp(a.set.lastOpened || a.set.lastModified));
   }
@@ -148,6 +240,8 @@
   function reviewedDates() {
     const dates = [];
     state.sets.forEach(set => {
+      const meta = metaStats(set);
+      if (meta?.lastReviewAt) dates.push(Number(meta.lastReviewAt));
       (set.cards || []).forEach(card => {
         (card.reviewHistory || []).forEach(review => {
           const time = normalizeTimestamp(review.reviewedAt || review.time || review.date);
@@ -159,21 +253,29 @@
   }
 
   function reviewsToday() {
+    const metaTotal = state.sets.reduce((total, set) => total + Number(metaStats(set)?.reviewedToday || 0), 0);
+    if (metaTotal > 0 || state.sets.some(set => metaStats(set))) return metaTotal;
     const start = new Date();
     start.setHours(0, 0, 0, 0);
     return reviewedDates().filter(time => time >= start.getTime()).length;
   }
 
   function streakDays() {
-    const dayKeys = new Set(reviewedDates().map(time => {
-      const date = new Date(time);
-      date.setHours(0, 0, 0, 0);
-      return date.getTime();
-    }));
+    const dayKeys = new Set();
+    state.sets.forEach(set => {
+      (metaStats(set)?.reviewDayKeys || []).forEach(key => dayKeys.add(String(key)));
+    });
+    if (!dayKeys.size) {
+      reviewedDates().forEach(time => {
+        const date = new Date(time);
+        date.setHours(0, 0, 0, 0);
+        dayKeys.add(String(date.getTime()));
+      });
+    }
     let streak = 0;
     const cursor = new Date();
     cursor.setHours(0, 0, 0, 0);
-    while (dayKeys.has(cursor.getTime())) {
+    while (dayKeys.has(String(cursor.getTime()))) {
       streak += 1;
       cursor.setDate(cursor.getDate() - 1);
     }
@@ -181,10 +283,22 @@
   }
 
   function progressPercent(set) {
-    const cards = set.cards || [];
-    if (!cards.length) return 0;
-    const touched = cards.filter(card => (card.srs?.reps || 0) > 0 || (card.reviewHistory || []).length > 0).length;
-    return clamp(Math.round((touched / cards.length) * 100), 0, 100);
+    const cardCount = setCardCount(set);
+    if (!cardCount) return 0;
+    const meta = metaStats(set);
+    if (meta?.reviewCount) {
+      return clamp(Math.round((Math.min(Number(meta.reviewCount || 0), cardCount) / cardCount) * 100), 0, 100);
+    }
+    if (set.cards?.length) {
+      const srsReviewed = set.cards.filter(card => (card.srs?.reps || 0) > 0 || (card.reviewHistory || []).length > 0).length;
+      if (srsReviewed > 0) {
+        return clamp(Math.round((srsReviewed / cardCount) * 100), 0, 100);
+      }
+    }
+    if ((set.openedCount || 0) > 0) {
+      return clamp(Math.min(Math.round(((set.openedCount || 0) / Math.max(3, cardCount)) * 100), 95), 5, 95);
+    }
+    return 0;
   }
 
   function playClick() {
@@ -213,10 +327,11 @@
   }
 
   async function waitForStorage() {
-    await Promise.all([
-      window.eruditeMobileReady?.catch?.(() => {}),
-      window.flashcardLocalReady?.catch?.(() => {})
-    ].filter(Boolean));
+    const promises = [
+      window.eruditeMobileReady,
+      window.flashcardLocalReady
+    ].filter(Boolean);
+    await Promise.all(promises);
     if (!window.flashcardStore) {
       throw new Error('Flashcard store is not available.');
     }
@@ -224,8 +339,9 @@
 
   async function loadData() {
     await waitForStorage();
+    const listSetsFast = window.flashcardStore.listSetsMeta || window.flashcardStore.listSets;
     const [sets, classes, settings, srsMode] = await Promise.all([
-      window.flashcardStore.listSets(),
+      listSetsFast.call(window.flashcardStore),
       window.flashcardStore.listClasses(),
       window.flashcardStore.getSettings(),
       window.flashcardStore.getState('srsModeEnabled')
@@ -237,16 +353,16 @@
   }
 
   function setHeader() {
-    const labels = {
-      today: ['Today', 'Erudite'],
-      library: ['Library', 'Flashcards'],
-      study: ['Study', 'Review'],
-      create: ['Create', 'New set'],
-      more: ['More', 'Tools']
+    const titles = {
+      today: 'Today',
+      library: 'Library',
+      create: 'Create',
+      premade: 'Premade',
+      browser: 'Cards',
+      more: 'Settings'
     };
-    const [eyebrow, title] = labels[state.activeTab] || labels.today;
-    selectors.eyebrow.textContent = eyebrow;
-    selectors.title.textContent = title;
+    selectors.eyebrow.textContent = 'Erudite Flashcards';
+    selectors.title.textContent = titles[state.activeTab] || 'Today';
   }
 
   function setActiveTab(tab) {
@@ -261,7 +377,7 @@
     const currentClass = getClassForSet(set);
     const color = validColor(currentClass?.color, '#3b82f6');
     const stats = setStats(set);
-    const due = dueCardsForSet(set).length;
+    const due = dueCountForSet(set);
     const percent = progressPercent(set);
     const showDue = state.srsMode && due > 0;
     const title = escapeHtml(set.name || 'Untitled Set');
@@ -291,6 +407,9 @@
             <button type="button" class="small-icon-button ${set.pinned ? 'starred' : ''}" data-action="toggle-pin" data-set-id="${escapeAttr(set.id)}" aria-label="${set.pinned ? 'Unpin' : 'Pin'} deck">
               <i class="${set.pinned ? 'fas' : 'far'} fa-star"></i>
             </button>
+            <button type="button" class="small-icon-button" data-action="edit-set" data-set-id="${escapeAttr(set.id)}" aria-label="Edit ${title}">
+              <i class="fas fa-pen"></i>
+            </button>
           `}
           <button type="button" class="small-icon-button primary" data-action="study-set" data-set-id="${escapeAttr(set.id)}" aria-label="Study ${title}">
             <i class="fas fa-play"></i>
@@ -312,46 +431,30 @@
   }
 
   function renderToday() {
-    const totals = totalStats();
-    const due = dueSets();
+    const totals = totalStats({ forceDue: true });
     const todayReviews = reviewsToday();
     const streak = streakDays();
-    const progress = totals.cardCount > 0 ? clamp(Math.round((todayReviews / Math.max(10, todayReviews + due.length)) * 100), 0, 100) : 0;
-    const heroTitle = state.srsMode
-      ? (totals.dueCards > 0 ? `${totals.dueCards} due today` : 'All clear today')
-      : 'Ready when you are';
-    const heroCopy = state.srsMode
-      ? (totals.dueCards > 0 ? `Across ${plural(due.length, 'deck')}. Start with the highest workload first.` : 'No reviews are due. You can still study any deck normally.')
-      : 'SRS is off. Study any deck normally or turn on SRS from More when you want scheduled reviews.';
+    const plannedReviews = todayReviews + totals.dueCards;
+    const progress = plannedReviews > 0 ? clamp(Math.round((todayReviews / plannedReviews) * 100), 0, 100) : 0;
+    const reviewAction = totals.dueCards > 0 ? 'review-due-smart' : 'tab-library';
+    const reviewLabel = totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : 'Open Library';
 
     selectors.todayHero.innerHTML = `
-      <div class="hero-grid">
-        <div>
-          <p class="mobile-eyebrow">${state.srsMode ? 'Review plan' : 'Study plan'}</p>
-          <h2 class="hero-title">${escapeHtml(heroTitle)}</h2>
-          <p class="hero-copy">${escapeHtml(heroCopy)}</p>
-        </div>
-        <div class="goal-ring" style="--progress:${progress * 3.6}deg">
+      <div class="hero-dashboard">
+        <button type="button" class="goal-ring" data-action="${reviewAction}" style="--progress:${progress * 3.6}deg" aria-label="${escapeAttr(reviewLabel)}">
           <div><strong>${progress}%</strong><span>Today</span></div>
+        </button>
+        <div class="hero-metrics">
+          <button type="button" class="metric-pill" data-action="tab-library"><strong>${totals.setCount}</strong><span>Decks</span></button>
+          <button type="button" class="metric-pill" data-action="${reviewAction}"><strong>${todayReviews}</strong><span>Reviewed</span></button>
+          <button type="button" class="metric-pill" data-action="${reviewAction}"><strong>${streak}</strong><span>Day streak</span></button>
         </div>
-      </div>
-      <div class="hero-metrics">
-        <div class="metric-pill"><strong>${state.srsMode ? totals.dueCards : totals.setCount}</strong><span>${state.srsMode ? 'Due cards' : 'Decks'}</span></div>
-        <div class="metric-pill"><strong>${todayReviews}</strong><span>Reviewed</span></div>
-        <div class="metric-pill"><strong>${streak}</strong><span>Day streak</span></div>
       </div>
       <div class="hero-actions">
-        ${state.srsMode && due.length ? `
-          <button type="button" class="primary-action" data-action="review-due">
-            <i class="fas fa-brain"></i>
-            Review Now
-          </button>
-        ` : `
-          <button type="button" class="primary-action" data-action="tab-library">
-            <i class="fas fa-layer-group"></i>
-            Open Library
-          </button>
-        `}
+        <button type="button" class="primary-action" data-action="${reviewAction}">
+          <i class="fas ${totals.dueCards > 0 ? 'fa-brain' : 'fa-layer-group'}"></i>
+          ${escapeHtml(reviewLabel)}
+        </button>
         <button type="button" class="secondary-action" data-action="open-create">
           <i class="fas fa-plus"></i>
           New
@@ -361,7 +464,7 @@
 
     const continueSets = [...state.sets]
       .sort((a, b) => {
-        const dueDiff = dueCardsForSet(b).length - dueCardsForSet(a).length;
+        const dueDiff = dueCountForSet(b, { force: true }) - dueCountForSet(a, { force: true });
         if (state.srsMode && dueDiff !== 0) return dueDiff;
         return normalizeTimestamp(b.lastOpened || b.lastModified) - normalizeTimestamp(a.lastOpened || a.lastModified);
       })
@@ -377,6 +480,15 @@
   function renderActivity() {
     const events = [];
     state.sets.forEach(set => {
+      const meta = metaStats(set);
+      if (meta?.lastReviewAt) {
+        events.push({
+          time: Number(meta.lastReviewAt),
+          icon: 'fa-check',
+          title: `Reviewed ${plural(Number(meta.reviewCount || 1), 'card')}`,
+          copy: set.name || 'Untitled Set'
+        });
+      }
       (set.cards || []).forEach(card => {
         (card.reviewHistory || []).forEach(review => {
           const time = normalizeTimestamp(review.reviewedAt || review.time || review.date);
@@ -396,7 +508,7 @@
           time: modified,
           icon: 'fa-layer-group',
           title: set.lastOpened ? `Studied ${set.name || 'a deck'}` : `Updated ${set.name || 'a deck'}`,
-          copy: plural((set.cards || []).length, 'card')
+          copy: plural(setCardCount(set), 'card')
         });
       }
     });
@@ -444,8 +556,8 @@
     return sets.sort((a, b) => {
       if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
       if (state.sort === 'name') return String(a.name || '').localeCompare(String(b.name || ''));
-      if (state.sort === 'cards') return (b.cards || []).length - (a.cards || []).length;
-      if (state.sort === 'due') return dueCardsForSet(b).length - dueCardsForSet(a).length;
+      if (state.sort === 'cards') return setCardCount(b) - setCardCount(a);
+      if (state.sort === 'due') return dueCountForSet(b, { force: true }) - dueCountForSet(a, { force: true });
       return normalizeTimestamp(b.lastOpened || b.lastModified || b.created) - normalizeTimestamp(a.lastOpened || a.lastModified || a.created);
     });
   }
@@ -510,7 +622,7 @@
       const sets = state.sets.filter(set => String(set.classId || '') === String(classItem.id));
       const preview = sets.slice(0, 4).map(set => `<span>${escapeHtml(set.name || 'Untitled')}</span>`).join('');
       const extra = sets.length > 4 ? `<span>+${sets.length - 4} more</span>` : '';
-      const due = state.srsMode ? sets.reduce((total, set) => total + dueCardsForSet(set).length, 0) : 0;
+      const due = state.srsMode ? sets.reduce((total, set) => total + dueCountForSet(set), 0) : 0;
       return `
         <button type="button" class="class-card" data-action="open-class" data-class-id="${escapeAttr(classItem.id)}" style="--class-color:${color}">
           <div class="class-card-content">
@@ -531,35 +643,353 @@
     }).join('');
   }
 
-  function renderStudy() {
-    const due = dueSets();
-    selectors.studyActions.innerHTML = `
-      <div class="study-action-grid">
-        ${state.srsMode && due.length ? `
-          <button type="button" class="primary-action" data-action="review-due">
-            <i class="fas fa-brain"></i>
-            Review ${due.reduce((total, item) => total + item.due, 0)} Due Cards
-          </button>
-        ` : `
-          <button type="button" class="primary-action" data-action="tab-library">
-            <i class="fas fa-play"></i>
-            Pick a Deck
-          </button>
-        `}
-        <button type="button" class="secondary-action" data-action="toggle-srs">
-          <i class="fas fa-brain"></i>
-          ${state.srsMode ? 'Turn SRS Off' : 'Turn SRS On'}
-        </button>
-      </div>
-    `;
-
-    const sets = [...state.sets]
-      .sort((a, b) => dueCardsForSet(b).length - dueCardsForSet(a).length || normalizeTimestamp(b.lastOpened || b.lastModified) - normalizeTimestamp(a.lastOpened || a.lastModified))
-      .slice(0, 8);
-    selectors.studyDeckList.innerHTML = sets.length
-      ? sets.map(set => deckRow(set, { compact: true })).join('')
-      : emptyPanel('fa-play', 'Nothing to study yet', 'Create a deck first, then your study sessions will appear here.');
+  function plainTextFromHtml(value) {
+    const element = document.createElement('div');
+    element.innerHTML = String(value || '');
+    return element.textContent || '';
   }
+
+  function sanitizeEditorHtml(value) {
+    const template = document.createElement('template');
+    template.innerHTML = String(value || '').trim();
+    const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'DIV', 'P', 'UL', 'OL', 'LI', 'SPAN']);
+    const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
+    const nodes = [];
+    while (walk.nextNode()) nodes.push(walk.currentNode);
+    nodes.forEach(node => {
+      if (!allowed.has(node.tagName)) {
+        node.replaceWith(document.createTextNode(node.textContent || ''));
+        return;
+      }
+      Array.from(node.attributes).forEach(attr => node.removeAttribute(attr.name));
+    });
+    return template.innerHTML;
+  }
+
+  function emptyCreatorCard() {
+    const now = Date.now();
+    return {
+      id: schema?.createId ? schema.createId('card') : `card-${now}-${Math.random().toString(36).slice(2)}`,
+      term: '',
+      definition: '',
+      termImage: '',
+      definitionImage: '',
+      tags: [],
+      suspended: false,
+      buriedUntil: null,
+      reviewHistory: [],
+      created: now,
+      lastModified: now
+    };
+  }
+
+  function ensureCreatorCard() {
+    if (!state.creator.cards.length) state.creator.cards = [emptyCreatorCard()];
+  }
+
+  function resetCreator() {
+    state.creator.editingSetId = null;
+    state.creator.originalSet = null;
+    state.creator.classId = '';
+    state.creator.cards = [emptyCreatorCard()];
+    if (selectors.createTitle) selectors.createTitle.value = '';
+    if (selectors.createClass) selectors.createClass.value = '';
+  }
+
+  function syncCreatorFromDom() {
+    if (!selectors.creatorCards) return;
+    state.creator.cards = state.creator.cards.map(card => {
+      const term = selectors.creatorCards.querySelector(`[data-editor-id="${cssEscape(card.id)}"][data-side="term"]`);
+      const definition = selectors.creatorCards.querySelector(`[data-editor-id="${cssEscape(card.id)}"][data-side="definition"]`);
+      return {
+        ...card,
+        term: sanitizeEditorHtml(term?.innerHTML || card.term || ''),
+        definition: sanitizeEditorHtml(definition?.innerHTML || card.definition || '')
+      };
+    });
+  }
+
+  function formatButton(command, label, icon) {
+    return `
+      <button type="button" class="format-button" data-creator-action="format" data-command="${command}" aria-label="${label}">
+        <i class="fas ${icon}"></i>
+      </button>
+    `;
+  }
+
+  function cardEditor(card, index) {
+    const termImage = card.termImage
+      ? `<div class="creator-image-preview"><img src="${escapeAttr(card.termImage)}" alt=""><button type="button" data-creator-action="remove-image" data-card-id="${escapeAttr(card.id)}" data-side="term" aria-label="Remove term image"><i class="fas fa-xmark"></i></button></div>`
+      : '';
+    const definitionImage = card.definitionImage
+      ? `<div class="creator-image-preview"><img src="${escapeAttr(card.definitionImage)}" alt=""><button type="button" data-creator-action="remove-image" data-card-id="${escapeAttr(card.id)}" data-side="definition" aria-label="Remove definition image"><i class="fas fa-xmark"></i></button></div>`
+      : '';
+
+    return `
+      <article class="mobile-card-editor" data-card-id="${escapeAttr(card.id)}">
+        <header>
+          <span>Card ${index + 1}</span>
+          <button type="button" class="small-icon-button" data-creator-action="delete-card" data-card-id="${escapeAttr(card.id)}" aria-label="Delete card">
+            <i class="fas fa-trash"></i>
+          </button>
+        </header>
+        <section class="editor-side">
+          <div class="editor-side-head">
+            <strong>Term</strong>
+            <div class="creator-toolbar">
+              ${formatButton('bold', 'Bold', 'fa-bold')}
+              ${formatButton('italic', 'Italic', 'fa-italic')}
+              ${formatButton('underline', 'Underline', 'fa-underline')}
+              <button type="button" class="format-button" data-creator-action="image" data-card-id="${escapeAttr(card.id)}" data-side="term" aria-label="Add term image">
+                <i class="fas fa-image"></i>
+              </button>
+            </div>
+          </div>
+          <div class="rich-editor" contenteditable="true" data-editor-id="${escapeAttr(card.id)}" data-side="term" data-placeholder="Enter term">${card.term || ''}</div>
+          ${termImage}
+        </section>
+        <section class="editor-side">
+          <div class="editor-side-head">
+            <strong>Definition</strong>
+            <div class="creator-toolbar">
+              ${formatButton('bold', 'Bold', 'fa-bold')}
+              ${formatButton('italic', 'Italic', 'fa-italic')}
+              ${formatButton('underline', 'Underline', 'fa-underline')}
+              <button type="button" class="format-button" data-creator-action="image" data-card-id="${escapeAttr(card.id)}" data-side="definition" aria-label="Add definition image">
+                <i class="fas fa-image"></i>
+              </button>
+            </div>
+          </div>
+          <div class="rich-editor" contenteditable="true" data-editor-id="${escapeAttr(card.id)}" data-side="definition" data-placeholder="Enter definition">${card.definition || ''}</div>
+          ${definitionImage}
+        </section>
+      </article>
+    `;
+  }
+
+  function renderCreate() {
+    if (!selectors.createClass) return;
+    const current = state.creator.classId || '';
+    selectors.createClass.innerHTML = [
+      '<option value="">General</option>',
+      ...state.classes.map(item => `<option value="${escapeAttr(item.id)}">${escapeHtml(item.name)}</option>`)
+    ].join('');
+    selectors.createClass.value = state.classes.some(item => String(item.id) === String(current)) ? current : '';
+
+    ensureCreatorCard();
+    if (selectors.creatorCards) {
+      selectors.creatorCards.innerHTML = state.creator.cards.map((card, index) => cardEditor(card, index)).join('');
+    }
+  }
+
+  function parseBulkCards(text) {
+    return String(text || '')
+      .split(/\r?\n+/)
+      .map(line => line.trim())
+      .filter(Boolean)
+      .map(line => {
+        const separator = line.includes(';') ? ';' : (line.includes('\t') ? '\t' : null);
+        if (!separator) return null;
+        const [term, ...rest] = line.split(separator);
+        const definition = rest.join(separator).trim();
+        if (!term.trim() || !definition) return null;
+        return {
+          ...emptyCreatorCard(),
+          term: escapeHtml(term.trim()),
+          definition: escapeHtml(definition)
+        };
+      })
+      .filter(Boolean);
+  }
+
+  async function loadSetIntoCreator(setId) {
+    const found = await window.flashcardStore.getSet(setId);
+    if (!found) {
+      showToast('Could not open deck');
+      return;
+    }
+    const normalized = schema?.normalizeSet ? schema.normalizeSet(found, null, { preserveLastModified: true }) : found;
+    state.creator.editingSetId = normalized.id;
+    state.creator.originalSet = normalized;
+    state.creator.classId = normalized.classId || '';
+    state.creator.cards = (normalized.cards || []).map(card => ({ ...card }));
+    if (!state.creator.cards.length) state.creator.cards = [emptyCreatorCard()];
+    selectors.createTitle.value = normalized.name || '';
+    selectors.createClass.value = state.creator.classId;
+    setActiveTab('create');
+  }
+
+  function hasCardContent(card) {
+    return Boolean(
+      plainTextFromHtml(card.term).trim()
+      || plainTextFromHtml(card.definition).trim()
+      || card.termImage
+      || card.definitionImage
+    );
+  }
+
+  async function saveMobileDeck() {
+    syncCreatorFromDom();
+    const name = String(selectors.createTitle?.value || '').trim();
+    const cards = state.creator.cards
+      .map(card => ({
+        ...card,
+        term: sanitizeEditorHtml(card.term),
+        definition: sanitizeEditorHtml(card.definition),
+        lastModified: Date.now()
+      }))
+      .filter(hasCardContent);
+    if (!name) {
+      showToast('Add a deck name');
+      selectors.createTitle?.focus();
+      return;
+    }
+    if (!cards.length) {
+      showToast('Add at least one card');
+      selectors.creatorCards?.querySelector('[contenteditable="true"]')?.focus();
+      return;
+    }
+    const original = state.creator.originalSet || {};
+    await window.flashcardStore.saveSet({
+      ...original,
+      id: state.creator.editingSetId || original.id,
+      name,
+      classId: state.creator.classId || null,
+      cards,
+      srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings(original.srsSettings || {}) : (original.srsSettings || { enabled: true }),
+      pinned: Boolean(original.pinned)
+    });
+    showToast(`Saved ${plural(cards.length, 'card')}`);
+    state.browserLoaded = false;
+    resetCreator();
+    await refresh();
+    setActiveTab('library');
+  }
+
+  function subjectLabel(subject) {
+    return String(subject || '').replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+  }
+
+  function renderPremade() {
+    if (!selectors.premadeList) return;
+    selectors.premadeClassFilters.innerHTML = premadeClasses.map(item => `
+      <button type="button" class="filter-chip ${state.premadeClass === item.id ? 'active' : ''}" data-action="premade-class" data-class-id="${escapeAttr(item.id)}">
+        ${escapeHtml(item.name)}
+      </button>
+    `).join('');
+
+    const subjects = premadeSubjects[state.premadeClass] || [];
+    if (!subjects.includes(state.premadeSubject)) state.premadeSubject = subjects[0] || '';
+    selectors.premadeSubjectFilters.innerHTML = subjects.map(subject => `
+      <button type="button" class="filter-chip ${state.premadeSubject === subject ? 'active' : ''}" data-action="premade-subject" data-subject-id="${escapeAttr(subject)}">
+        ${escapeHtml(subjectLabel(subject))}
+      </button>
+    `).join('');
+
+    selectors.premadeList.innerHTML = state.premadeSets.length
+      ? state.premadeSets.map(item => {
+          const file = item.fileName || item.filename || item.file || item.path || '';
+          return `
+            <article class="premade-row">
+              <div class="deck-icon"><i class="fas fa-book-open"></i></div>
+              <div class="deck-main">
+                <h3 class="deck-title">${escapeHtml(item.name || item.title || file || 'Premade Deck')}</h3>
+                <div class="deck-subline">
+                  <span>${escapeHtml(subjectLabel(state.premadeSubject))}</span>
+                  ${item.cardCount ? `<span>${plural(Number(item.cardCount) || 0, 'card')}</span>` : ''}
+                </div>
+              </div>
+              <button type="button" class="small-icon-button primary" data-action="import-premade" data-file="${escapeAttr(file)}" aria-label="Import premade deck">
+                <i class="fas fa-plus"></i>
+              </button>
+            </article>
+          `;
+        }).join('')
+      : emptyPanel('fa-book-open', 'No premade decks here yet', 'This subject has no bundled decks in the current build.');
+  }
+
+  async function loadPremade() {
+    selectors.premadeList.innerHTML = emptyPanel('fa-spinner', 'Loading premade decks', 'Checking bundled starter decks.');
+    const sets = await window.flashcardStore.listPremadeSets(state.premadeClass, state.premadeSubject);
+    state.premadeSets = Array.isArray(sets) ? sets : [];
+    renderPremade();
+  }
+
+  async function importPremade(fileName) {
+    if (!fileName) {
+      showToast('Premade file missing');
+      return;
+    }
+    const data = await window.flashcardStore.getPremadeSet(state.premadeClass, state.premadeSubject, fileName);
+    if (!data) {
+      showToast('Could not import deck');
+      return;
+    }
+    const saved = await window.flashcardStore.saveSet({
+      ...data,
+      id: null,
+      name: data.name || data.title || fileName.replace(/\.json$/i, ''),
+      classId: null
+    });
+    showToast(`Imported ${saved.name || 'deck'}`);
+    state.browserLoaded = false;
+    await refresh();
+    setActiveTab('library');
+  }
+
+  async function loadBrowserCards() {
+    if (state.browserLoaded) return;
+    selectors.browserList.innerHTML = emptyPanel('fa-spinner', 'Loading cards', 'Building a searchable local card list.');
+    const sets = await window.flashcardStore.listSets();
+    const classLookup = classMap();
+    state.browserCards = [];
+    (sets || []).forEach(set => {
+      const className = set.classId ? classLookup.get(String(set.classId))?.name : 'General';
+      (set.cards || []).forEach(card => {
+        state.browserCards.push({
+          setId: set.id,
+          deck: set.name || 'Untitled Set',
+          className: className || 'General',
+          term: card.term || '',
+          definition: card.definition || '',
+          tags: Array.isArray(card.tags) ? card.tags : [],
+          srsState: card.srs?.state || 'New'
+        });
+      });
+    });
+    state.browserLoaded = true;
+  }
+
+  function renderBrowser() {
+    if (!selectors.browserList) return;
+    selectors.browserSearchInput.value = state.browserSearch;
+    const query = state.browserSearch.trim().toLowerCase();
+    const cards = state.browserCards.filter(card => {
+      if (!query) return true;
+      return [card.deck, card.className, card.term, card.definition, card.srsState, ...(card.tags || [])]
+        .join(' ')
+        .toLowerCase()
+        .includes(query);
+    }).slice(0, 120);
+
+    selectors.browserList.innerHTML = cards.length
+      ? cards.map(card => `
+        <article class="browser-card">
+          <div class="browser-card-head">
+            <span>${escapeHtml(card.deck)}</span>
+            <small>${escapeHtml(card.className)}</small>
+          </div>
+          <strong>${escapeHtml(card.term || 'Empty term')}</strong>
+          <p>${escapeHtml(card.definition || 'Empty definition')}</p>
+          <div class="deck-subline">
+            <span>${escapeHtml(card.srsState)}</span>
+            ${(card.tags || []).slice(0, 3).map(tag => `<span>#${escapeHtml(tag)}</span>`).join('')}
+          </div>
+        </article>
+      `).join('')
+      : emptyPanel('fa-table-list', 'No cards found', query ? 'Try another search.' : 'Create or import a deck first.');
+  }
+
 
   function renderMore() {
     selectors.srsSwitch?.classList.toggle('on', state.srsMode);
@@ -569,7 +999,9 @@
   function render() {
     renderToday();
     renderLibrary();
-    renderStudy();
+    renderCreate();
+    renderPremade();
+    renderBrowser();
     renderMore();
   }
 
@@ -578,9 +1010,13 @@
       await loadData();
       render();
     } catch (error) {
-      console.error(error);
-      selectors.todayHero.innerHTML = emptyPanel('fa-triangle-exclamation', 'Could not load library', error.message || 'Storage failed to open.');
-      showToast('Storage error');
+      console.error('Refresh error:', error);
+      const errorHtml = emptyPanel('fa-triangle-exclamation', 'Could not load library', error.message || 'Storage failed to open.');
+      selectors.todayHero.innerHTML = errorHtml;
+      selectors.libraryList.innerHTML = errorHtml;
+      selectors.continueList.innerHTML = '';
+      selectors.activityList.innerHTML = '';
+      showToast('Storage error — try restarting the app');
     }
   }
 
@@ -593,13 +1029,25 @@
     return `mobile/study.html?setId=${encodeURIComponent(setId)}${suffix}`;
   }
 
+  async function flushStore(timeoutMs = 180) {
+    const flush = window.eruditeMobileFlashcards?.flush || window.flashcardStore?.flush;
+    if (typeof flush !== 'function') return;
+    await Promise.race([
+      flush().catch(() => {}),
+      new Promise(resolve => window.setTimeout(resolve, timeoutMs))
+    ]);
+  }
+
   async function toggleSrs() {
     state.srsMode = !state.srsMode;
-    await window.flashcardStore.setState('srsModeEnabled', state.srsMode);
     localStorage.setItem('srsModeEnabled', String(state.srsMode));
     playClick();
     render();
     showToast(state.srsMode ? 'SRS mode on' : 'SRS mode off');
+    window.flashcardStore.setState('srsModeEnabled', state.srsMode).catch(error => {
+      console.error('SRS toggle save failed:', error);
+      showToast('Could not save SRS setting');
+    });
   }
 
   async function togglePin(setId) {
@@ -643,13 +1091,94 @@
     }
   }
 
-  function reviewDue() {
-    const first = dueSets()[0]?.set;
+  async function reviewDue(options = {}) {
+    const force = Boolean(options.force);
+    const first = dueSets({ force })[0]?.set;
     if (!first) {
       showToast('No reviews due');
       return;
     }
+    await flushStore();
     navigateTo(mobileStudyUrl(first.id, true));
+  }
+
+  async function reviewDueSmart() {
+    const first = dueSets({ force: true })[0]?.set;
+    if (!first) {
+      showToast('No reviews due');
+      return;
+    }
+    if (!state.srsMode) {
+      state.srsMode = true;
+      localStorage.setItem('srsModeEnabled', 'true');
+      render();
+      await window.flashcardStore.setState('srsModeEnabled', true).catch(error => {
+        console.error('SRS auto-enable failed:', error);
+      });
+    }
+    playClick();
+    await flushStore();
+    navigateTo(mobileStudyUrl(first.id, true));
+  }
+
+  function updateFormatState() {
+    if (!selectors.creatorCards) return;
+    const activeEditor = document.activeElement?.closest?.('.rich-editor');
+    selectors.creatorCards.querySelectorAll('[data-creator-action="format"]').forEach(button => {
+      const command = button.dataset.command;
+      const active = Boolean(activeEditor && command && document.queryCommandState(command));
+      button.classList.toggle('active', active);
+    });
+  }
+
+  async function handleCreatorAction(action, target) {
+    switch (action) {
+      case 'add-card': {
+        syncCreatorFromDom();
+        const card = emptyCreatorCard();
+        state.creator.cards.push(card);
+        renderCreate();
+        requestAnimationFrame(() => {
+          selectors.creatorCards?.querySelector(`[data-editor-id="${cssEscape(card.id)}"][data-side="term"]`)?.focus();
+        });
+        break;
+      }
+      case 'delete-card': {
+        syncCreatorFromDom();
+        state.creator.cards = state.creator.cards.filter(card => String(card.id) !== String(target.dataset.cardId));
+        ensureCreatorCard();
+        renderCreate();
+        break;
+      }
+      case 'format': {
+        const command = target.dataset.command;
+        if (!command) break;
+        document.execCommand(command, false, null);
+        updateFormatState();
+        break;
+      }
+      case 'image':
+        state.pendingImageTarget = {
+          cardId: target.dataset.cardId,
+          side: target.dataset.side === 'definition' ? 'definition' : 'term'
+        };
+        selectors.imageInput?.click();
+        break;
+      case 'remove-image': {
+        syncCreatorFromDom();
+        const key = target.dataset.side === 'definition' ? 'definitionImage' : 'termImage';
+        state.creator.cards = state.creator.cards.map(card => (
+          String(card.id) === String(target.dataset.cardId) ? { ...card, [key]: '' } : card
+        ));
+        renderCreate();
+        break;
+      }
+      case 'import-txt':
+        selectors.txtInput?.click();
+        break;
+      default:
+        break;
+    }
   }
 
   async function handleAction(action, target) {
@@ -658,16 +1187,16 @@
         setActiveTab('library');
         break;
       case 'open-create':
-        navigateTo('creator.html');
+        setActiveTab('create');
         break;
       case 'open-premade':
-        navigateTo('premade-library.html');
+        setActiveTab('premade');
+        await loadPremade();
         break;
       case 'open-browser':
-        navigateTo('card-browser.html');
-        break;
-      case 'open-desktop-library':
-        navigateTo('index.html#library');
+        setActiveTab('browser');
+        await loadBrowserCards();
+        renderBrowser();
         break;
       case 'open-backup':
         setActiveTab('more');
@@ -676,7 +1205,10 @@
         setActiveTab('more');
         break;
       case 'review-due':
-        reviewDue();
+        await reviewDue();
+        break;
+      case 'review-due-smart':
+        await reviewDueSmart();
         break;
       case 'toggle-srs':
         await toggleSrs();
@@ -688,10 +1220,11 @@
         await deleteSet(target.dataset.setId);
         break;
       case 'study-set':
+        await flushStore();
         navigateTo(mobileStudyUrl(target.dataset.setId || ''));
         break;
       case 'edit-set':
-        navigateTo(`creator.html?setId=${encodeURIComponent(target.dataset.setId || '')}`);
+        await loadSetIntoCreator(target.dataset.setId);
         break;
       case 'open-class':
         state.libraryFilter = `class:${target.dataset.classId}`;
@@ -711,6 +1244,22 @@
         renderLibrary();
         break;
       }
+      case 'premade-class':
+        state.premadeClass = target.dataset.classId || '10th';
+        state.premadeSubject = (premadeSubjects[state.premadeClass] || [])[0] || '';
+        playClick();
+        renderPremade();
+        await loadPremade();
+        break;
+      case 'premade-subject':
+        state.premadeSubject = target.dataset.subjectId || '';
+        playClick();
+        renderPremade();
+        await loadPremade();
+        break;
+      case 'import-premade':
+        await importPremade(target.dataset.file || '');
+        break;
       case 'export-backup':
         await exportBackup();
         break;
@@ -723,7 +1272,20 @@
   }
 
   function installEvents() {
+    document.addEventListener('pointerdown', event => {
+      if (event.target.closest('[data-creator-action="format"]')) {
+        event.preventDefault();
+      }
+    });
+
     document.addEventListener('click', async event => {
+      const creatorTarget = event.target.closest('[data-creator-action]');
+      if (creatorTarget) {
+        event.preventDefault();
+        await handleCreatorAction(creatorTarget.dataset.creatorAction, creatorTarget);
+        return;
+      }
+
       const actionTarget = event.target.closest('[data-action]');
       if (actionTarget) {
         event.preventDefault();
@@ -741,6 +1303,9 @@
       if (tab) {
         event.preventDefault();
         playClick();
+        if (tab.dataset.tab === 'create' && state.activeTab !== 'create' && !state.creator.editingSetId) {
+          ensureCreatorCard();
+        }
         setActiveTab(tab.dataset.tab);
       }
     });
@@ -758,8 +1323,76 @@
       renderLibrary();
     });
 
+    selectors.browserSearchInput?.addEventListener('input', event => {
+      state.browserSearch = event.target.value || '';
+      renderBrowser();
+    });
+
+    selectors.createClass?.addEventListener('change', event => {
+      state.creator.classId = event.target.value || '';
+    });
+
+    selectors.createForm?.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (state.busy) return;
+      state.busy = true;
+      try {
+        await saveMobileDeck();
+      } finally {
+        state.busy = false;
+      }
+    });
+
+    selectors.imageInput?.addEventListener('change', async event => {
+      const file = event.target.files?.[0];
+      const target = state.pendingImageTarget;
+      event.target.value = '';
+      state.pendingImageTarget = null;
+      if (!file || !target) return;
+      syncCreatorFromDom();
+      try {
+        const src = await window.flashcardStore.saveImageFromFile(file, {
+          deckId: state.creator.editingSetId || 'draft',
+          side: target.side
+        });
+        const key = target.side === 'definition' ? 'definitionImage' : 'termImage';
+        state.creator.cards = state.creator.cards.map(card => (
+          String(card.id) === String(target.cardId) ? { ...card, [key]: src } : card
+        ));
+        renderCreate();
+        showToast('Image added');
+      } catch (error) {
+        console.error(error);
+        showToast('Could not add image');
+      }
+    });
+
+    selectors.txtInput?.addEventListener('change', async event => {
+      const file = event.target.files?.[0];
+      event.target.value = '';
+      if (!file) return;
+      try {
+        const text = await file.text();
+        const imported = parseBulkCards(text);
+        if (!imported.length) {
+          showToast('No Term;Definition pairs found');
+          return;
+        }
+        syncCreatorFromDom();
+        const existing = state.creator.cards.filter(hasCardContent);
+        state.creator.cards = [...existing, ...imported];
+        renderCreate();
+        showToast(`Imported ${plural(imported.length, 'card')}`);
+      } catch (error) {
+        console.error(error);
+        showToast('Could not import TXT');
+      }
+    });
+
+    document.addEventListener('selectionchange', updateFormatState);
+
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) refresh();
+      if (!document.hidden && state.activeTab !== 'create') refresh();
     });
   }
 
@@ -767,9 +1400,15 @@
     document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'mobile-app-shell');
     await configureSystemBars();
     installEvents();
-    await refresh();
+    // Set tab first so the correct view is visible during data loading
     const initialTab = String(window.location.hash || '').replace('#', '');
-    setActiveTab(['today', 'library', 'study', 'create', 'more'].includes(initialTab) ? initialTab : 'today');
+    const tab = ['today', 'library', 'create', 'premade', 'browser', 'more'].includes(initialTab) ? initialTab : 'today';
+    state.activeTab = tab;
+    selectors.views.forEach(view => view.classList.toggle('active', view.id === `view-${tab}`));
+    selectors.tabs.forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
+    setHeader();
+    // Now load data and render once
+    await refresh();
   }
 
   if (document.readyState === 'loading') {

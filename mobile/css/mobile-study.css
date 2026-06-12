@@ -37,12 +37,24 @@ body {
   text-rendering: geometricPrecision;
   overscroll-behavior: none;
   -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 button {
   border: 0;
   color: inherit;
   font: inherit;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 .study-shell {
@@ -51,9 +63,7 @@ button {
   width: 100%;
   height: 100dvh;
   padding: max(0.7rem, var(--safe-top)) max(0.85rem, var(--safe-right)) calc(max(0.65rem, var(--safe-bottom)) + 0.2rem) max(0.85rem, var(--safe-left));
-  background:
-    radial-gradient(circle at 16% -8%, rgba(59, 130, 246, 0.16), transparent 19rem),
-    linear-gradient(180deg, #0a1424 0%, #07111f 100%);
+  background: linear-gradient(180deg, #0a1424 0%, #07111f 100%);
   opacity: 1;
   transition: opacity 140ms ease;
 }
@@ -68,6 +78,33 @@ button {
   gap: 0.72rem;
   align-items: center;
   min-height: 3.5rem;
+}
+
+.prev-card-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.42rem 0.72rem 0.42rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(23, 38, 60, 0.88);
+  border: 1px solid var(--line);
+  color: #dbeafe;
+  font-size: 0.72rem;
+  font-weight: 850;
+  transition: opacity 160ms ease;
+}
+
+.prev-card-button i {
+  font-size: 0.78rem;
+}
+
+.prev-card-button:disabled {
+  pointer-events: none;
+  opacity: 0;
 }
 
 .icon-button {
@@ -154,9 +191,10 @@ button {
   min-height: 26rem;
   border-radius: 1.55rem;
   transform: translate3d(var(--drag-x, 0), var(--drag-y, 0), 0) rotate(var(--drag-rotate, 0deg));
-  transition: transform 180ms ease, height 220ms ease;
-  touch-action: pan-y;
+  transition: none;
+  touch-action: none;
   will-change: transform;
+  contain: layout paint style;
 }
 
 .study-shell.srs-back-visible .study-card {
@@ -165,7 +203,8 @@ button {
 }
 
 .study-card.animating-out {
-  transition: transform 230ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 230ms ease;
+  transition: transform 220ms cubic-bezier(0.22, 0.76, 0.26, 1), opacity 220ms ease;
+  opacity: 0;
 }
 
 .study-card::before {
@@ -185,11 +224,12 @@ button {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 350ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
 }
 
 .study-card.is-flipped .study-card-inner {
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
 
 .study-card.no-transition .study-card-inner {
@@ -213,7 +253,7 @@ button {
 }
 
 .card-face.back {
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
 
 .card-scroll {
@@ -225,6 +265,10 @@ button {
   scrollbar-width: thin;
   scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
   touch-action: pan-y;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
 }
 
 .card-scroll::-webkit-scrollbar {
@@ -237,14 +281,14 @@ button {
 }
 
 .card-label {
-  position: sticky;
-  top: -1.1rem;
+  position: relative;
   z-index: 2;
-  width: fit-content;
-  margin: 0 auto 1rem;
+  width: 100%;
+  margin: 0 auto 0;
   padding: 1.05rem 0 0.35rem;
+  flex-shrink: 0;
   color: #aebbd0;
-  background: linear-gradient(180deg, rgba(32, 51, 78, 0.98), rgba(32, 51, 78, 0));
+  background: transparent;
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.14em;
@@ -262,8 +306,13 @@ button {
 }
 
 .card-text {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 auto;
   max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   color: #f8fafc;
   overflow-wrap: anywhere;
@@ -300,9 +349,10 @@ button {
   display: grid;
   place-items: center;
   width: 100%;
-  max-height: 18rem;
-  min-height: 9rem;
-  margin: 1rem auto 0;
+  flex: 0 1 auto;
+  max-height: min(40dvh, 17rem);
+  min-height: 7.5rem;
+  margin: 0.45rem auto 0;
   overflow: hidden;
   border-radius: 1.1rem;
   background: rgba(7, 17, 31, 0.42);
@@ -316,8 +366,27 @@ button {
   display: block;
   width: 100%;
   height: 100%;
-  max-height: 18rem;
+  max-height: min(40dvh, 17rem);
   object-fit: contain;
+}
+
+.card-scroll:has(.card-text:not(:empty)) .card-image-wrap {
+  flex-basis: 38%;
+  margin-top: auto;
+}
+
+.card-scroll:has(.card-text:empty) {
+  justify-content: center;
+}
+
+.card-scroll:has(.card-text:empty) .card-image-wrap {
+  flex: 1 1 auto;
+  max-height: 100%;
+  min-height: 17rem;
+}
+
+.card-scroll:has(.card-text:empty) .card-image-wrap img {
+  max-height: 100%;
 }
 
 .image-zoom-button {
