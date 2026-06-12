@@ -17,6 +17,7 @@
 
   const DB_PATH = 'erudite-flashcards/erudite-flashcards.sqlite';
   const BACKUP_DIR = 'erudite-flashcards/backups';
+  const STUDY_PATCHES_KEY = 'erudite-mobile-study-card-patches-v1';
   const DIRECTORY_DATA = 'DATA';
   const DIRECTORY_DOCUMENTS = 'DOCUMENTS';
   const ENCODING_UTF8 = 'utf8';
@@ -150,6 +151,11 @@
   let _persistTimer = null;
   let _persistInFlight = null;
   let _persistQueued = false;
+  let _clearStudyPatchesAfterPersist = false;
+
+  function shouldDeferHeavyPersist() {
+    return document.documentElement.classList.contains('study-session-active') && !document.hidden;
+  }
 
   async function _doPersist() {
     const bytes = db.export();
@@ -172,9 +178,13 @@
     try {
       await Filesystem.deleteFile({ path: DB_TMP_PATH, directory: DIRECTORY_DATA });
     } catch (_) {}
+    if (_clearStudyPatchesAfterPersist) {
+      try { localStorage.removeItem(STUDY_PATCHES_KEY); } catch (_) {}
+      _clearStudyPatchesAfterPersist = false;
+    }
   }
 
-  async function persist() {
+  async function persist(delayMs = 2000) {
     // If a write is already scheduled, just mark queued and return the existing promise
     if (_persistTimer) {
       _persistQueued = true;
@@ -185,6 +195,11 @@
       _persistTimer = setTimeout(async () => {
         _persistTimer = null;
         _persistQueued = false;
+
+        if (shouldDeferHeavyPersist()) {
+          persist(Math.max(1800, Math.min(Number(delayMs) || 2000, 2600))).then(resolve, reject);
+          return;
+        }
 
         // Wait for any in-flight write to finish first
         if (_persistInFlight) {
@@ -203,10 +218,10 @@
           // If more writes were queued while this one was running, flush again
           if (_persistQueued) {
             _persistQueued = false;
-            persist().catch(() => {});
+            persist(delayMs).catch(() => {});
           }
         }
-      }, 80);
+      }, Math.max(0, Number(delayMs) || 2000));
     });
   }
 
@@ -225,6 +240,72 @@
     } else if (_persistInFlight) {
       try { await _persistInFlight; } catch (_) {}
     }
+  }
+
+  function updateCardProgressRow(setId, cardId, patch = {}) {
+    const setKey = String(setId);
+    const cardKey = String(cardId);
+    const result = rows(
+      'SELECT payload_json FROM cards WHERE id = ? AND set_id = ? AND deleted_at IS NULL',
+      [cardKey, setKey]
+    );
+    if (!result.length) return false;
+
+    const existing = jsonParse(result[0].payload_json, {});
+    const updated = {
+      ...existing,
+      lastModified: Number(patch.lastModified || Date.now())
+    };
+
+    if (Object.prototype.hasOwnProperty.call(patch, 'srs')) updated.srs = patch.srs || undefined;
+    if (Object.prototype.hasOwnProperty.call(patch, 'reviewHistory')) {
+      updated.reviewHistory = Array.isArray(patch.reviewHistory) ? patch.reviewHistory : [];
+    }
+    if (Object.prototype.hasOwnProperty.call(patch, 'suspended')) updated.suspended = Boolean(patch.suspended);
+    if (Object.prototype.hasOwnProperty.call(patch, 'buriedUntil')) updated.buriedUntil = patch.buriedUntil || null;
+
+    run(`
+      UPDATE cards SET
+        srs_json = ?,
+        review_history_json = ?,
+        suspended = ?,
+        buried_until = ?,
+        last_modified = ?,
+        payload_json = ?
+      WHERE id = ? AND set_id = ?
+    `, [
+      jsonString(updated.srs || null),
+      jsonString(Array.isArray(updated.reviewHistory) ? updated.reviewHistory : []),
+      updated.suspended ? 1 : 0,
+      updated.buriedUntil || null,
+      updated.lastModified,
+      jsonString(updated),
+      cardKey,
+      setKey
+    ]);
+
+    run('UPDATE sets SET last_modified = ? WHERE id = ? AND deleted_at IS NULL', [updated.lastModified, setKey]);
+    return true;
+  }
+
+  function applyPendingStudyPatches() {
+    let payload = null;
+    try {
+      payload = JSON.parse(localStorage.getItem(STUDY_PATCHES_KEY) || 'null');
+    } catch (_) {
+      payload = null;
+    }
+    if (!payload || !payload.sets || typeof payload.sets !== 'object') return false;
+
+    let changed = false;
+    Object.entries(payload.sets).forEach(([setId, setPatch]) => {
+      Object.entries(setPatch?.cards || {}).forEach(([cardId, cardPatch]) => {
+        if (updateCardProgressRow(setId, cardId, cardPatch)) changed = true;
+      });
+    });
+
+    if (changed) _clearStudyPatchesAfterPersist = true;
+    return changed;
   }
 
   async function init() {
@@ -265,8 +346,10 @@
       }
 
       createSchema();
+      const appliedStudyPatches = applyPendingStudyPatches();
       // Only persist on first-time setup to avoid a costly full write on every cold start
       if (isFresh) await _doPersist();
+      else if (appliedStudyPatches) persist(2500).catch(() => {});
       return true;
     })();
 
@@ -729,6 +812,13 @@
     return true;
   }
 
+  async function saveCardProgress(setId, cardId, patch = {}) {
+    await ensureReady();
+    updateCardProgressRow(setId, cardId, patch);
+    persist(12000);
+    return true;
+  }
+
   function getAllProgress() {
     const progress = {};
     rows('SELECT set_id, value_json FROM progress').forEach(row => {
@@ -955,6 +1045,7 @@
     deleteClass,
     getProgress,
     saveProgress,
+    saveCardProgress,
     getSettings,
     saveSettings,
     getState,

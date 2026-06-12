@@ -26,7 +26,6 @@ function Save-Png($Bitmap, $Path) {
   if (Test-Path $TempPath) {
     Remove-Item -LiteralPath $TempPath -Force
   }
-  Write-Host "Saving $Path"
   $Bitmap.Save($TempPath, [System.Drawing.Imaging.ImageFormat]::Png)
   Move-Item -LiteralPath $TempPath -Destination $Path -Force
 }

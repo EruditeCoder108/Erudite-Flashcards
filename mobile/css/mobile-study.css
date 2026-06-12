@@ -34,11 +34,79 @@ body {
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision;
+  text-rendering: optimizeSpeed;
   overscroll-behavior: none;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
+}
+
+body.study-ready .study-loading-cover {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.study-loading-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.65rem;
+  padding: max(1rem, var(--safe-top)) max(1rem, var(--safe-right)) max(1rem, var(--safe-bottom)) max(1rem, var(--safe-left));
+  background:
+    radial-gradient(circle at 50% 38%, rgba(96, 165, 250, 0.16), transparent 34%),
+    linear-gradient(180deg, #0a1424 0%, #07111f 100%);
+  color: var(--text);
+  transition: opacity 160ms ease;
+}
+
+.study-loader-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 5.1rem;
+  height: 5.1rem;
+}
+
+.study-loader-mark img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 1.1rem rgba(96, 165, 250, 0.32));
+}
+
+.study-loader-mark span {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 2px solid rgba(148, 163, 184, 0.14);
+  border-top-color: var(--primary-2);
+  animation: studyLoaderSpin 820ms linear infinite;
+}
+
+.study-loading-cover strong {
+  font-size: 1.14rem;
+  font-weight: 900;
+}
+
+.study-loading-cover p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 760;
+}
+
+body.is-route-loading .study-loading-cover {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+@keyframes studyLoaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 button {
@@ -180,21 +248,21 @@ textarea,
   display: grid;
   place-items: center;
   min-height: 0;
-  perspective: 1200px;
+  perspective: 1450px;
+  perspective-origin: center center;
   overflow: visible;
 }
 
 .study-card {
-  position: relative;
+  position: absolute;
   width: min(100%, 28rem);
   height: min(100%, 34rem);
   min-height: 26rem;
   border-radius: 1.55rem;
-  transform: translate3d(var(--drag-x, 0), var(--drag-y, 0), 0) rotate(var(--drag-rotate, 0deg));
-  transition: none;
   touch-action: none;
-  will-change: transform;
+  will-change: transform, opacity;
   contain: layout paint style;
+  transition: transform 175ms cubic-bezier(0.18, 0.82, 0.24, 1), opacity 150ms ease;
 }
 
 .study-shell.srs-back-visible .study-card {
@@ -202,21 +270,51 @@ textarea,
   min-height: 21.5rem;
 }
 
-.study-card.animating-out {
-  transition: transform 220ms cubic-bezier(0.22, 0.76, 0.26, 1), opacity 220ms ease;
-  opacity: 0;
+/* Stack Positions */
+.study-card.slot-active {
+  z-index: 3;
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.study-card::before {
-  content: "";
-  position: absolute;
-  inset: 0.65rem 0.75rem -0.65rem;
-  z-index: -1;
-  border-radius: inherit;
-  background: rgba(30, 48, 75, 0.58);
-  border: 1px solid rgba(148, 163, 184, 0.1);
-  transform: scale(0.965);
-  opacity: 0.82;
+.study-card:not(.slot-active) {
+  pointer-events: none !important;
+}
+
+.study-card.slot-next {
+  z-index: 2;
+  transform: translate3d(0, 10px, 0) scale(0.96);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.study-card.slot-prev {
+  z-index: 1;
+  transform: translate3d(-100vw, 0, 0) rotate(-8deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.study-card.dragging {
+  transition: none !important;
+  z-index: 4 !important;
+}
+
+.study-card.dragging .study-card-inner {
+  transition: none !important;
+}
+
+.study-card.no-transition {
+  transition: none !important;
+}
+
+.study-card.no-transition .study-card-inner {
+  transition: none !important;
+}
+
+.study-card.empty-card {
+  display: none !important;
 }
 
 .study-card-inner {
@@ -224,16 +322,14 @@ textarea,
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 350ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  -webkit-transform-style: preserve-3d;
+  transition: transform 360ms cubic-bezier(0.2, 0.72, 0.18, 1);
+  transform-origin: center center;
   will-change: transform;
 }
 
 .study-card.is-flipped .study-card-inner {
-  transform: rotateX(180deg);
-}
-
-.study-card.no-transition .study-card-inner {
-  transition: none;
+  transform: rotateY(180deg);
 }
 
 .card-face {
@@ -243,17 +339,18 @@ textarea,
   grid-template-rows: minmax(0, 1fr) auto;
   overflow: hidden;
   border-radius: 1.55rem;
-  background:
-    linear-gradient(155deg, rgba(32, 51, 78, 0.98), rgba(18, 31, 50, 0.99)),
-    var(--surface);
+  background: var(--surface);
   border: 1px solid var(--line-strong);
-  box-shadow: 0 1.5rem 3.4rem rgba(0, 0, 0, 0.34);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform: rotateY(0deg) translateZ(0.1px);
+  -webkit-transform: rotateY(0deg) translateZ(0.1px);
 }
 
 .card-face.back {
-  transform: rotateX(180deg);
+  transform: rotateY(180deg) translateZ(0.1px);
+  -webkit-transform: rotateY(180deg) translateZ(0.1px);
 }
 
 .card-scroll {

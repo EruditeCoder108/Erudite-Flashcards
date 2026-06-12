@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warp Wind Mobile Loader</title>
+  <!-- Tailwind CSS for modern glassmorphic interface -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons for high-fidelity UI -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      background-color: #050508;
+    }
+    /* Hide scrollbars completely */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    /* Smooth glassmorphism style */
+    .glassmorphism {
+      background: rgba(15, 15, 25, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="w-screen h-screen select-none text-slate-100 flex items-center justify-center relative">
+
+  <!-- Background Canvas for Wind Particles -->
+  <canvas id="warpCanvas" class="absolute inset-0 w-full h-full block z-0"></canvas>
+
+  <!-- Interactive Mobile Device Shell Mockup to preview Loader in Context -->
+  <div class="relative z-10 w-full max-w-sm h-[800px] max-h-[90vh] glassmorphism rounded-[48px] border-[6px] border-slate-800 shadow-2xl flex flex-col justify-between overflow-hidden mx-4">
+    <!-- Top Notch/Island -->
+    <div class="absolute top-3 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-full z-30 flex items-center justify-between px-4">
+      <div class="w-2.5 h-2.5 rounded-full bg-slate-900"></div>
+      <div class="w-12 h-1 bg-slate-900 rounded"></div>
+    </div>
+
+    <!-- Inside Screen Area -->
+    <div class="relative w-full h-full flex flex-col justify-between p-6 pt-12 pb-8 z-20">
+      
+      <!-- Top Status Indicators (Cellular, Wifi, Battery) -->
+      <div class="flex justify-between items-center text-xs text-slate-400 font-medium px-2">
+        <span id="mock-time">09:41</span>
+        <div class="flex items-center space-x-1.5">
+          <i data-lucide="signal" class="w-3.5 h-3.5"></i>
+          <i data-lucide="wifi" class="w-3.5 h-3.5"></i>
+          <i data-lucide="battery" class="w-4 h-4 text-emerald-400"></i>
+        </div>
+      </div>
+
+      <!-- Main Loader Core Content -->
+      <div id="loader-content" class="flex flex-col items-center justify-center flex-grow transition-all duration-700 ease-in-out">
+        <!-- Main Icon/Brand Logo with animated pulsing aura -->
+        <div class="relative mb-8 group cursor-pointer" onclick="accelerateInstantly()">
+          <div class="absolute inset-0 bg-blue-500/30 rounded-full blur-xl animate-pulse"></div>
+          <div class="relative w-20 h-20 bg-gradient-to-tr from-slate-900 to-slate-800 rounded-2xl border border-white/10 flex items-center justify-center shadow-lg transform active:scale-95 transition-transform duration-100">
+            <i id="brand-logo" data-lucide="wind" class="w-10 h-10 text-cyan-400 animate-bounce"></i>
+          </div>
+        </div>
+
+        <!-- Heading Text -->
+        <h1 id="brand-title" class="text-2xl font-bold tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-300 to-slate-400">
+          Aero Drive
+        </h1>
+        <p class="text-xs text-slate-400 mt-1 tracking-widest uppercase">Connecting to Stream</p>
+
+        <!-- Dynamic Status Progress Readout -->
+        <div class="mt-16 w-full px-6 flex flex-col items-center">
+          <div class="text-sm font-semibold tracking-wide text-cyan-300 transition-all duration-300" id="status-text">
+            Initializing atmosphere...
+          </div>
+          <!-- Custom Premium Progress Bar -->
+          <div class="w-full h-1.5 bg-slate-900/80 rounded-full mt-4 overflow-hidden border border-white/5 relative">
+            <div id="progress-bar" class="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-400 w-0 transition-all duration-300 rounded-full shadow-[0_0_8px_rgba(34,211,238,0.5)]"></div>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-2 font-mono" id="progress-percentage">
+            0% COMPLETE
+          </div>
+        </div>
+      </div>
+
+      <!-- App Loaded Success State (Hidden initially) -->
+      <div id="dashboard-content" class="hidden flex-col justify-between flex-grow pt-10 text-left transition-all duration-700 ease-in-out">
+        <div>
+          <div class="flex justify-between items-center mb-6">
+            <div>
+              <span class="text-xs font-semibold text-cyan-400 tracking-wider uppercase">Welcome Back</span>
+              <h2 class="text-xl font-bold text-white">Pilot Commander</h2>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center">
+              <i data-lucide="user" class="w-5 h-5 text-slate-300"></i>
+            </div>
+          </div>
+
+          <!-- Quick Stats Cards Grid -->
+          <div class="grid grid-cols-2 gap-3 mb-6">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+              <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider block mb-1">Velocity</span>
+              <span class="text-lg font-bold text-cyan-300">Mach 1.2</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+              <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider block mb-1">Altitude</span>
+              <span class="text-lg font-bold text-indigo-300">42,000 ft</span>
+            </div>
+          </div>
+
+          <!-- Flight Map Mockup -->
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/5 mb-6 relative overflow-hidden h-40">
+            <div class="absolute inset-0 bg-slate-900/40 z-0"></div>
+            <!-- Mock Gridlines -->
+            <div class="absolute inset-0 grid grid-cols-6 grid-rows-4 opacity-10">
+              <div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div>
+              <div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div><div class="border-r border-b border-white"></div>
+            </div>
+            <!-- Mock Route -->
+            <svg class="absolute inset-0 w-full h-full z-10" viewBox="0 0 300 160">
+              <path d="M 50,120 Q 150,20 250,60" fill="none" stroke="#22d3ee" stroke-width="3" stroke-dasharray="6,4" class="animate-pulse"></path>
+              <circle cx="50" cy="120" r="4" fill="#6366f1"></circle>
+              <circle cx="250" cy="60" r="4" fill="#14b8a6"></circle>
+            </svg>
+            <span class="relative z-20 text-[10px] text-slate-300 font-semibold uppercase bg-slate-900/60 px-2 py-0.5 rounded-md">Live Stream Route</span>
+          </div>
+        </div>
+
+        <button onclick="resetLoader()" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-2xl transition duration-200 active:scale-95 shadow-lg shadow-indigo-900/40 flex items-center justify-center space-x-2">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+          <span>Restart Flight simulation</span>
+        </button>
+      </div>
+
+      <!-- Quick Hint Footer -->
+      <div id="loader-footer" class="text-[10px] text-center text-slate-600 tracking-wider">
+        TAP THE CENTRAL ICON TO BOOST SPEEDS
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Control Panel Overlay (Tweak wind particles in real time!) -->
+  <div id="control-panel" class="absolute bottom-6 right-6 lg:bottom-10 lg:right-10 z-30 w-80 glassmorphism rounded-3xl p-5 shadow-2xl transition-all duration-300 transform scale-100 opacity-100 max-h-[85vh] overflow-y-auto">
+    <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+      <div class="flex items-center space-x-2">
+        <i data-lucide="sliders" class="w-4 h-4 text-cyan-400"></i>
+        <span class="text-sm font-semibold tracking-wider uppercase text-slate-200">Wind Simulator Controls</span>
+      </div>
+      <button onclick="toggleControls()" class="text-slate-400 hover:text-white transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Speed Slider -->
+    <div class="mb-4">
+      <div class="flex justify-between text-xs text-slate-400 mb-1">
+        <span>Wind Speed (Warp Momentum)</span>
+        <span id="speed-val" class="font-mono text-cyan-400">12</span>
+      </div>
+      <input id="slider-speed" type="range" min="2" max="60" value="12" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400">
+    </div>
+
+    <!-- Density Slider -->
+    <div class="mb-4">
+      <div class="flex justify-between text-xs text-slate-400 mb-1">
+        <span>Wind Density (Particle Count)</span>
+        <span id="density-val" class="font-mono text-cyan-400">150</span>
+      </div>
+      <input id="slider-density" type="range" min="30" max="500" value="150" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400">
+    </div>
+
+    <!-- Turbulence/Twist Slider -->
+    <div class="mb-4">
+      <div class="flex justify-between text-xs text-slate-400 mb-1">
+        <span>Vortex Turbulence (Curve Twist)</span>
+        <span id="twist-val" class="font-mono text-cyan-400">0</span>
+      </div>
+      <input id="slider-twist" type="range" min="-10" max="10" step="0.5" value="0" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400">
+    </div>
+
+    <!-- Color Profile Pickers -->
+    <div class="mb-4">
+      <span class="text-xs text-slate-400 block mb-2">Wind Stream Hue Spectrum</span>
+      <div class="grid grid-cols-4 gap-2">
+        <button onclick="setTheme('cyan')" class="flex flex-col items-center p-2 rounded-xl bg-white/5 border border-white/5 hover:border-cyan-400/40 transition">
+          <div class="w-4 h-4 rounded-full bg-cyan-400 mb-1"></div>
+          <span class="text-[9px] text-slate-400">Ice Blue</span>
+        </button>
+        <button onclick="setTheme('purple')" class="flex flex-col items-center p-2 rounded-xl bg-white/5 border border-white/5 hover:border-purple-400/40 transition">
+          <div class="w-4 h-4 rounded-full bg-purple-500 mb-1"></div>
+          <span class="text-[9px] text-slate-400">Nebula</span>
+        </button>
+        <button onclick="setTheme('emerald')" class="flex flex-col items-center p-2 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-400/40 transition">
+          <div class="w-4 h-4 rounded-full bg-emerald-400 mb-1"></div>
+          <span class="text-[9px] text-slate-400">Aurora</span>
+        </button>
+        <button onclick="setTheme('white')" class="flex flex-col items-center p-2 rounded-xl bg-white/5 border border-white/5 hover:border-slate-300/40 transition">
+          <div class="w-4 h-4 rounded-full bg-slate-100 mb-1"></div>
+          <span class="text-[9px] text-slate-400">Warp</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Simulation Info Details -->
+    <div class="text-[10px] text-slate-500 bg-black/40 p-2.5 rounded-xl border border-white/5 mt-4 space-y-1">
+      <div class="flex justify-between"><span>Active Projection:</span> <span class="font-mono">3D perspective perspective mapping</span></div>
+      <div class="flex justify-between"><span>Render engine:</span> <span class="font-mono text-emerald-400">60 FPS Native Canvas</span></div>
+    </div>
+  </div>
+
+  <!-- Small floating trigger button to reveal control panel when closed -->
+  <button id="controls-trigger" onclick="toggleControls()" class="hidden absolute bottom-6 right-6 lg:bottom-10 lg:right-10 z-30 w-12 h-12 glassmorphism rounded-full flex items-center justify-center hover:bg-white/10 text-cyan-400 transition shadow-lg">
+    <i data-lucide="sliders" class="w-5 h-5"></i>
+  </button>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Setup dynamic phone clock time
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('mock-time').innerText = `${hours}:${minutes}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // -------------------------------------------------------------
+    // Core Particle Simulation Canvas Engine
+    // -------------------------------------------------------------
+    const canvas = document.getElementById("warpCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener("resize", () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // Particle Parameters State
+    let speed = 12;
+    let particleCount = 150;
+    let spiralStrength = 0; // Curve/vortex coefficient
+    let themeColor = 'cyan'; // Options: cyan, purple, emerald, white
+
+    const maxDepth = 1000;
+    let particles = [];
+
+    // Initialize/Regenerate Particle arrays
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: (Math.random() - 0.5) * width * 1.5,
+          y: (Math.random() - 0.5) * height * 1.5,
+          z: Math.random() * maxDepth,
+          prevZ: 0
+        });
+      }
+    }
+
+    initParticles();
+
+    // Theme Color Mapping
+    function getThemeRGB(theme, depthAlpha) {
+      switch (theme) {
+        case 'purple':
+          // Purple into neon cyan edge
+          return `rgba(${139 + (1 - depthAlpha) * 110}, ${92 - (1 - depthAlpha) * 50}, ${246}, ${depthAlpha})`;
+        case 'emerald':
+          // Aurora Emerald into pale teal
+          return `rgba(${16 + (1 - depthAlpha) * 100}, ${185}, ${129 + (1 - depthAlpha) * 80}, ${depthAlpha})`;
+        case 'white':
+          // Classic clean starlight wind lines
+          return `rgba(240, 246, 255, ${depthAlpha * 0.9})`;
+        case 'cyan':
+        default:
+          // Premium electric/ice blue
+          return `rgba(${34 + (1 - depthAlpha) * 100}, ${211}, ${238}, ${depthAlpha})`;
+      }
+    }
+
+    // Animation Loop
+    function render() {
+      // Clear with dark alpha wipe for elegant visual trail retention (motion blur)
+      ctx.fillStyle = "rgba(4, 4, 8, 0.2)";
+      ctx.fillRect(0, 0, width, height);
+
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      particles.forEach((p) => {
+        p.prevZ = p.z;
+        p.z -= speed;
+
+        // Reset particle position to the deep horizon background when passing the viewer screen
+        if (p.z <= 0) {
+          p.z = maxDepth;
+          p.x = (Math.random() - 0.5) * width * 1.5;
+          p.y = (Math.random() - 0.5) * height * 1.5;
+          p.prevZ = p.z;
+        }
+
+        // Apply dynamic depth spiral twist rotation if requested
+        let rx = p.x;
+        let ry = p.y;
+        if (spiralStrength !== 0) {
+          const angle = (p.z * 0.002) * (spiralStrength * 0.1);
+          const cos = Math.cos(angle);
+          const sin = Math.sin(angle);
+          rx = p.x * cos - p.y * sin;
+          ry = p.x * sin + p.y * cos;
+        }
+
+        // 3D Perspective Projection mapping math equations
+        const fovFactor = 650;
+        const k = fovFactor / p.z;
+        const px = rx * k + centerX;
+        const py = ry * k + centerY;
+
+        const kPrev = fovFactor / p.prevZ;
+        const pXPrev = rx * kPrev + centerX;
+        const pYPrev = ry * kPrev + centerY;
+
+        // Render trails if inside physical coordinate window bounds
+        if (px >= 0 && px <= width && py >= 0 && py <= height) {
+          const depthAlpha = 1 - (p.z / maxDepth); // Brighter as they approach screen
+
+          ctx.beginPath();
+          ctx.moveTo(pXPrev, pYPrev);
+          ctx.lineTo(px, py);
+
+          ctx.strokeStyle = getThemeRGB(themeColor, depthAlpha);
+          // Scale width proportional to proximity depth
+          ctx.lineWidth = 0.5 + depthAlpha * 2.5; 
+          ctx.stroke();
+        }
+      });
+
+      requestAnimationFrame(render);
+    }
+
+    requestAnimationFrame(render);
+
+    // -------------------------------------------------------------
+    // Mock Loading Sequence State Machine
+    // -------------------------------------------------------------
+    let currentProgress = 0;
+    let loadingFinished = false;
+    const progressTextNode = document.getElementById("status-text");
+    const progressPercentageNode = document.getElementById("progress-percentage");
+    const progressBar = document.getElementById("progress-bar");
+
+    const loaderContent = document.getElementById("loader-content");
+    const dashboardContent = document.getElementById("dashboard-content");
+    const loaderFooter = document.getElementById("loader-footer");
+
+    const loadingPhases = [
+      { max: 20, text: "Calibrating sensors..." },
+      { max: 45, text: "Seeding wind vectors..." },
+      { max: 70, text: "Streaming environmental dynamics..." },
+      { max: 90, text: "Establishing secure cockpit uplink..." },
+      { max: 100, text: "Launch vector clear! Ready." }
+    ];
+
+    function updateLoaderProgress() {
+      if (loadingFinished) return;
+
+      // Realistic slow and fast loading steps
+      const increment = Math.random() * 3 + 0.5;
+      currentProgress = Math.min(100, currentProgress + increment);
+
+      progressBar.style.width = `${currentProgress}%`;
+      progressPercentageNode.innerText = `${Math.floor(currentProgress)}% COMPLETE`;
+
+      // Select description according to progress boundaries
+      const activePhase = loadingPhases.find(p => currentProgress <= p.max) || loadingPhases[loadingPhases.length - 1];
+      progressTextNode.innerText = activePhase.text;
+
+      if (currentProgress < 100) {
+        setTimeout(updateLoaderProgress, 100 + Math.random() * 200);
+      } else {
+        triggerCompletion();
+      }
+    }
+
+    // Trigger loading sequence on initial load
+    setTimeout(updateLoaderProgress, 800);
+
+    // Tap logo to accelerate progress loading speed instantly
+    function accelerateInstantly() {
+      if (loadingFinished) return;
+      currentProgress = Math.min(99, currentProgress + 15);
+      // Temporarily blast wind particle speed to feel tactile feedback
+      const prevSpeed = speed;
+      speed = Math.min(60, speed + 18);
+      document.getElementById("slider-speed").value = speed;
+      document.getElementById("speed-val").innerText = Math.round(speed);
+      
+      setTimeout(() => {
+        speed = prevSpeed;
+        document.getElementById("slider-speed").value = speed;
+        document.getElementById("speed-val").innerText = Math.round(speed);
+      }, 600);
+    }
+
+    // Loading Complete Transition
+    function triggerCompletion() {
+      loadingFinished = true;
+      // Gently ramp down particle speeds when transitioning
+      const transitionInterval = setInterval(() => {
+        if (speed > 3) {
+          speed -= 0.8;
+          document.getElementById("slider-speed").value = Math.max(2, speed);
+          document.getElementById("speed-val").innerText = Math.round(Math.max(2, speed));
+        } else {
+          clearInterval(transitionInterval);
+        }
+      }, 50);
+
+      // Transition app screens elegantly
+      loaderContent.classList.add("opacity-0", "scale-90");
+      setTimeout(() => {
+        loaderContent.classList.add("hidden");
+        dashboardContent.classList.remove("hidden");
+        setTimeout(() => {
+          dashboardContent.classList.remove("opacity-0", "scale-90");
+          dashboardContent.classList.add("opacity-100", "scale-100");
+        }, 50);
+      }, 400);
+
+      loaderFooter.innerText = "COCKPIT CONSOLE STABLE";
+    }
+
+    // Reset simulator back to original loading state
+    function resetLoader() {
+      currentProgress = 0;
+      loadingFinished = false;
+      speed = 12;
+
+      document.getElementById("slider-speed").value = speed;
+      document.getElementById("speed-val").innerText = speed;
+
+      dashboardContent.classList.add("opacity-0", "scale-90");
+      setTimeout(() => {
+        dashboardContent.classList.add("hidden");
+        loaderContent.classList.remove("hidden");
+        setTimeout(() => {
+          loaderContent.classList.remove("opacity-0", "scale-90");
+          loaderContent.classList.add("opacity-100", "scale-100");
+          updateLoaderProgress();
+        }, 50);
+      }, 400);
+
+      loaderFooter.innerText = "TAP THE CENTRAL ICON TO BOOST SPEEDS";
+    }
+
+    // -------------------------------------------------------------
+    // Interface Interactive Controls Bindings
+    // -------------------------------------------------------------
+    const speedSlider = document.getElementById("slider-speed");
+    const speedVal = document.getElementById("speed-val");
+    speedSlider.addEventListener("input", (e) => {
+      speed = parseFloat(e.target.value);
+      speedVal.innerText = Math.round(speed);
+    });
+
+    const densitySlider = document.getElementById("slider-density");
+    const densityVal = document.getElementById("density-val");
+    densitySlider.addEventListener("input", (e) => {
+      particleCount = parseInt(e.target.value);
+      densityVal.innerText = particleCount;
+      initParticles();
+    });
+
+    const twistSlider = document.getElementById("slider-twist");
+    const twistVal = document.getElementById("twist-val");
+    twistSlider.addEventListener("input", (e) => {
+      spiralStrength = parseFloat(e.target.value);
+      twistVal.innerText = spiralStrength;
+    });
+
+    function setTheme(colorName) {
+      themeColor = colorName;
+      // Pulse brand accent logo matches theme Color
+      const logo = document.getElementById("brand-logo");
+      logo.className = "w-10 h-10 animate-bounce";
+      if (colorName === 'purple') logo.classList.add("text-purple-400");
+      else if (colorName === 'emerald') logo.classList.add("text-emerald-400");
+      else if (colorName === 'white') logo.classList.add("text-slate-100");
+      else logo.classList.add("text-cyan-400");
+    }
+
+    // Toggle controls visibility UI transitions
+    function toggleControls() {
+      const panel = document.getElementById("control-panel");
+      const trigger = document.getElementById("controls-trigger");
+      if (panel.classList.contains("hidden")) {
+        panel.classList.remove("hidden");
+        setTimeout(() => {
+          panel.classList.remove("scale-95", "opacity-0");
+          panel.classList.add("scale-100", "opacity-100");
+        }, 10);
+        trigger.classList.add("hidden");
+      } else {
+        panel.classList.add("scale-95", "opacity-0");
+        setTimeout(() => {
+          panel.classList.add("hidden");
+          trigger.classList.remove("hidden");
+        }, 300);
+      }
+    }
+  </script>
+</body>
+</html>

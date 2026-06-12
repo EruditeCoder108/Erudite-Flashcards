@@ -1,0 +1,492 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+
+.screen {
+  min-height: 660px;
+  background: var(--color-background-tertiary);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  background: var(--color-background-primary);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+
+.header-left { display: flex; align-items: center; gap: 10px; }
+.header-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+.deck-label { font-size: 12px; color: var(--color-text-secondary); margin-top: 1px; }
+
+.icon-btn {
+  width: 34px; height: 34px;
+  border-radius: var(--border-radius-md);
+  border: 0.5px solid var(--color-border-tertiary);
+  background: var(--color-background-secondary);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.15s;
+  color: var(--color-text-secondary);
+  font-size: 17px;
+}
+.icon-btn:hover { background: var(--color-background-tertiary); }
+
+.progress-bar-wrap {
+  padding: 10px 20px 6px;
+  background: var(--color-background-primary);
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+.progress-stats span {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+.progress-stats strong { color: var(--color-text-primary); font-weight: 500; }
+
+.progress-track {
+  height: 3px;
+  background: var(--color-border-tertiary);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--color-text-primary);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.card-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 20px 8px;
+  gap: 0;
+}
+
+.card-counter {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  margin-bottom: 14px;
+  letter-spacing: 0.03em;
+}
+
+.card-stack {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  height: 240px;
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.card-ghost {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 0.5px solid var(--color-border-tertiary);
+  background: var(--color-background-primary);
+  transform: translateY(6px) scale(0.97);
+  z-index: 0;
+  opacity: 0.5;
+}
+.card-ghost2 {
+  transform: translateY(12px) scale(0.94);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.card-flipper {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.45, 0.05, 0.1, 1);
+  z-index: 1;
+}
+
+.card-flipper.flipped { transform: rotateY(180deg); }
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 0.5px solid var(--color-border-tertiary);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 24px;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.card-front {
+  background: var(--color-background-primary);
+}
+
+.card-back {
+  background: var(--color-background-secondary);
+  transform: rotateY(180deg);
+}
+
+.card-tag {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.card-content {
+  text-align: center;
+}
+
+.card-question {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.card-answer {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.tap-hint {
+  position: absolute;
+  bottom: 14px;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card-stack.dragging .card-ghost,
+.card-stack.dragging .card-ghost2 { transition: none; }
+
+.swipe-indicator {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.1s;
+  pointer-events: none;
+  padding: 3px 8px;
+  border-radius: var(--border-radius-md);
+}
+.swipe-indicator.got-it {
+  color: var(--color-text-success);
+  background: var(--color-background-success);
+  opacity: 1;
+}
+.swipe-indicator.again {
+  color: var(--color-text-danger);
+  background: var(--color-background-danger);
+  right: auto;
+  left: 16px;
+  opacity: 1;
+}
+
+.actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 20px 20px;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 18px;
+  border-radius: var(--border-radius-lg);
+  border: 0.5px solid var(--color-border-tertiary);
+  background: var(--color-background-primary);
+  cursor: pointer;
+  transition: transform 0.12s, background 0.15s;
+  min-width: 90px;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+}
+.action-btn i { font-size: 20px; }
+.action-btn:active { transform: scale(0.96); }
+
+.action-btn.again-btn { color: #A32D2D; border-color: #F7C1C1; background: #FCEBEB; }
+.action-btn.again-btn:hover { background: #F7C1C1; }
+.action-btn.hard-btn { color: #854F0B; border-color: #FAC775; background: #FAEEDA; }
+.action-btn.hard-btn:hover { background: #FAC775; }
+.action-btn.good-btn { color: var(--color-text-primary); border-color: var(--color-border-secondary); }
+.action-btn.good-btn:hover { background: var(--color-background-secondary); }
+.action-btn.easy-btn { color: #0F6E56; border-color: #9FE1CB; background: #E1F5EE; }
+.action-btn.easy-btn:hover { background: #9FE1CB; }
+
+.actions-hint {
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  padding-bottom: 4px;
+  margin-top: -6px;
+}
+
+.hidden-actions { display: none; }
+.shown { display: flex; }
+
+.card-stack {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.exit-anim {
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.6, 1), opacity 0.32s ease !important;
+}
+.exit-right { transform: translateX(120%) rotate(14deg) !important; opacity: 0 !important; }
+.exit-left  { transform: translateX(-120%) rotate(-14deg) !important; opacity: 0 !important; }
+.enter-anim {
+  transform: scale(0.9) translateY(18px) !important;
+  opacity: 0 !important;
+  transition: none !important;
+}
+.enter-anim-active {
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease !important;
+  transform: scale(1) translateY(0) !important;
+  opacity: 1 !important;
+}
+</style>
+
+<h2 class="sr-only">Flashcard study session — tap the card to reveal answer, then rate your recall</h2>
+
+<div class="screen">
+  <div class="header">
+    <div class="header-left">
+      <div class="icon-btn" aria-label="Back"><i class="ti ti-arrow-left" aria-hidden="true"></i></div>
+      <div>
+        <div class="header-title">Study session</div>
+        <div class="deck-label">Data Structures · Exam prep</div>
+      </div>
+    </div>
+    <div class="icon-btn" aria-label="Settings"><i class="ti ti-dots" aria-hidden="true"></i></div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-stats">
+      <span><strong id="done-count">2</strong> done</span>
+      <span id="remain-count">6 remaining</span>
+      <span style="color: var(--color-text-success);"><strong id="easy-count">1</strong> easy</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:25%"></div>
+    </div>
+  </div>
+
+  <div class="card-area">
+    <div class="card-counter" id="card-counter">Card 3 of 8</div>
+
+    <div class="card-stack" id="card-stack">
+      <div class="card-ghost card-ghost2"></div>
+      <div class="card-ghost"></div>
+
+      <div class="card-flipper" id="card-flipper">
+        <div class="card-face card-front">
+          <span class="card-tag">Question</span>
+          <div class="card-content">
+            <p class="card-question" id="card-question">What is the time complexity of searching in a balanced BST?</p>
+          </div>
+          <span class="tap-hint"><i class="ti ti-hand-finger" aria-hidden="true"></i> tap to reveal</span>
+        </div>
+        <div class="card-face card-back">
+          <span class="card-tag">Answer</span>
+          <div class="card-content">
+            <p class="card-answer" id="card-answer">O(log n) — at each node we eliminate half the remaining nodes, giving log₂n comparisons for a balanced tree of n nodes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="swipe-indicator" id="swipe-ind"></div>
+    </div>
+
+    <div class="actions-hint" id="actions-hint" style="margin-top:16px">tap card to reveal answer</div>
+    <div class="actions-row hidden-actions" id="actions-row">
+      <button class="action-btn again-btn" onclick="rate('again')"><i class="ti ti-refresh" aria-hidden="true"></i>Again</button>
+      <button class="action-btn hard-btn" onclick="rate('hard')"><i class="ti ti-flame" aria-hidden="true"></i>Hard</button>
+      <button class="action-btn good-btn" onclick="rate('good')"><i class="ti ti-check" aria-hidden="true"></i>Good</button>
+      <button class="action-btn easy-btn" onclick="rate('easy')"><i class="ti ti-star" aria-hidden="true"></i>Easy</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const cards = [
+  { q: "What is the time complexity of searching in a balanced BST?", a: "O(log n) — at each node we eliminate half the remaining nodes, giving log₂n comparisons for a balanced tree of n nodes." },
+  { q: "Define a Max-Heap.", a: "A complete binary tree where every parent node is greater than or equal to its children. The root always holds the maximum element." },
+  { q: "What differentiates a stack from a queue?", a: "Stack is LIFO (last in, first out), queue is FIFO (first in, first out). Stacks use push/pop; queues use enqueue/dequeue." },
+  { q: "What is the worst-case time complexity of QuickSort?", a: "O(n²) — occurs when the pivot is always the smallest or largest element, creating maximally unbalanced partitions." },
+  { q: "Explain a hash collision.", a: "When two different keys hash to the same index. Resolved via chaining (linked list at index) or open addressing (probing for next free slot)." },
+  { q: "What is the height of a complete binary tree with n nodes?", a: "⌊log₂ n⌋ — the height grows logarithmically, so a tree with 8 nodes has height 3." },
+  { q: "Difference between DFS and BFS?", a: "DFS explores depth-first using a stack (or recursion); BFS explores breadth-first using a queue. BFS guarantees shortest path in unweighted graphs." },
+  { q: "What is an adjacency matrix?", a: "A 2D array of size V×V representing a graph. cell[i][j] = 1 if edge exists between vertices i and j. Space: O(V²)." },
+];
+
+let current = 2;
+let flipped = false;
+let isAnimating = false;
+let easyCount = 1;
+let doneCount = 2;
+
+const flipper = document.getElementById('card-flipper');
+const qEl = document.getElementById('card-question');
+const aEl = document.getElementById('card-answer');
+const actionsRow = document.getElementById('actions-row');
+const actionsHint = document.getElementById('actions-hint');
+const counter = document.getElementById('card-counter');
+const progressFill = document.getElementById('progress-fill');
+const doneEl = document.getElementById('done-count');
+const remainEl = document.getElementById('remain-count');
+const easyEl = document.getElementById('easy-count');
+const swipeInd = document.getElementById('swipe-ind');
+const stack = document.getElementById('card-stack');
+
+function updateProgress() {
+  const total = cards.length;
+  const pct = Math.round((doneCount / total) * 100);
+  progressFill.style.width = pct + '%';
+  doneEl.textContent = doneCount;
+  remainEl.textContent = (total - doneCount) + ' remaining';
+  easyEl.textContent = easyCount;
+  counter.textContent = 'Card ' + (current + 1) + ' of ' + total;
+}
+
+function flipCard() {
+  if (isAnimating) return;
+  flipped = !flipped;
+  flipper.classList.toggle('flipped', flipped);
+  if (flipped) {
+    actionsHint.style.display = 'none';
+    actionsRow.classList.remove('hidden-actions');
+    actionsRow.classList.add('shown');
+  }
+}
+
+function loadCard(idx, dir) {
+  qEl.textContent = cards[idx].q;
+  aEl.textContent = cards[idx].a;
+}
+
+function rate(rating) {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  if (rating === 'easy') easyCount++;
+  doneCount = Math.min(doneCount + 1, cards.length);
+
+  const exitClass = (rating === 'again' || rating === 'hard') ? 'exit-left' : 'exit-right';
+  flipper.classList.add('exit-anim', exitClass);
+
+  swipeInd.className = 'swipe-indicator';
+  swipeInd.textContent = (rating === 'again') ? '↩ again' : (rating === 'hard') ? '↩ hard' : (rating === 'easy') ? '✓ easy' : '✓ good';
+  if (rating === 'easy' || rating === 'good') {
+    swipeInd.classList.add('got-it');
+  } else {
+    swipeInd.classList.add('again');
+  }
+
+  setTimeout(() => {
+    current = (current + 1) % cards.length;
+    loadCard(current);
+    flipped = false;
+    flipper.classList.remove('flipped', 'exit-anim', exitClass);
+    flipper.classList.add('enter-anim');
+
+    actionsRow.classList.remove('shown');
+    actionsRow.classList.add('hidden-actions');
+    actionsHint.style.display = '';
+    swipeInd.className = 'swipe-indicator';
+
+    updateProgress();
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        flipper.classList.remove('enter-anim');
+        flipper.classList.add('enter-anim-active');
+        setTimeout(() => {
+          flipper.classList.remove('enter-anim-active');
+          isAnimating = false;
+        }, 380);
+      });
+    });
+  }, 360);
+}
+
+let touchStartX = 0, touchStartY = 0, isDragging = false;
+
+stack.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  isDragging = false;
+}, { passive: true });
+
+stack.addEventListener('touchmove', e => {
+  const dx = e.touches[0].clientX - touchStartX;
+  const dy = e.touches[0].clientY - touchStartY;
+  if (!isDragging && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
+    isDragging = true;
+  }
+  if (isDragging && flipped) {
+    const progress = Math.min(Math.abs(dx) / 100, 1);
+    flipper.style.transform = 'rotateY(180deg) translateX(' + (-dx * 0.4) + 'px) rotate(' + (dx * 0.03) + 'deg)';
+    swipeInd.className = 'swipe-indicator';
+    if (progress > 0.3) {
+      swipeInd.textContent = dx > 0 ? '✓ good' : '↩ again';
+      swipeInd.classList.add(dx > 0 ? 'got-it' : 'again');
+    }
+  }
+}, { passive: true });
+
+stack.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (isDragging && flipped) {
+    flipper.style.transform = '';
+    swipeInd.className = 'swipe-indicator';
+    if (Math.abs(dx) > 60) {
+      rate(dx > 0 ? 'good' : 'again');
+    }
+    isDragging = false;
+    return;
+  }
+  flipper.style.transform = '';
+  isDragging = false;
+  if (Math.abs(dx) < 10) flipCard();
+});
+
+stack.addEventListener('click', e => {
+  if (!isDragging) flipCard();
+});
+
+loadCard(current);
+updateProgress();
+</script>

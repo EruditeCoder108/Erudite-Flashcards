@@ -42,6 +42,75 @@ body {
   -webkit-user-select: none;
 }
 
+body.app-ready .app-loading-cover {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.app-loading-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.7rem;
+  padding: max(1rem, var(--safe-top)) max(1rem, var(--safe-right)) max(1rem, var(--safe-bottom)) max(1rem, var(--safe-left));
+  background:
+    radial-gradient(circle at 50% 36%, rgba(59, 130, 246, 0.18), transparent 34%),
+    linear-gradient(180deg, #0a1424 0%, #07111f 100%);
+  color: var(--text);
+  transition: opacity 180ms ease;
+}
+
+.app-loader-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 5.4rem;
+  height: 5.4rem;
+}
+
+.app-loader-mark img {
+  width: 3.25rem;
+  height: 3.25rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 1.2rem rgba(96, 165, 250, 0.34));
+}
+
+.app-loader-mark span {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 2px solid rgba(148, 163, 184, 0.16);
+  border-top-color: var(--primary-2);
+  animation: loaderSpin 860ms linear infinite;
+}
+
+.app-loading-cover strong {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.app-loading-cover p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+html.is-route-loading .app-loading-cover,
+body.is-route-loading .app-loading-cover {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+@keyframes loaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 button,
 input,
 select {

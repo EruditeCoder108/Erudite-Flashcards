@@ -4,6 +4,8 @@
 
   const params = new URLSearchParams(window.location.search);
   const reviewDueSession = params.get('reviewDue') === 'true';
+  const PROGRESS_MIRROR_PREFIX = 'erudite-mobile-progress:';
+  const STUDY_PATCHES_KEY = 'erudite-mobile-study-card-patches-v1';
 
   const state = {
     set: null,
@@ -35,14 +37,8 @@
     hint: document.getElementById('gesture-hint'),
     back: document.getElementById('back-button'),
     prev: document.getElementById('prev-button'),
-    card: document.getElementById('study-card'),
+    card: null,
     stage: document.getElementById('card-stage'),
-    termText: document.getElementById('term-text'),
-    definitionText: document.getElementById('definition-text'),
-    termImage: document.getElementById('term-image'),
-    definitionImage: document.getElementById('definition-image'),
-    termImageWrap: document.getElementById('term-image-wrap'),
-    definitionImageWrap: document.getElementById('definition-image-wrap'),
     ratingDock: document.getElementById('rating-dock'),
     completionModal: document.getElementById('completion-modal'),
     completionTitle: document.getElementById('completion-title'),
@@ -56,8 +52,21 @@
     imageModal: document.getElementById('image-modal'),
     zoomedImage: document.getElementById('zoomed-image'),
     imageClose: document.getElementById('image-close-button'),
+    loadingCover: document.getElementById('study-loading-cover'),
+    loadingTitle: document.getElementById('study-loading-title'),
+    loadingCopy: document.getElementById('study-loading-copy'),
     toast: document.getElementById('study-toast')
   };
+
+  const cards = [
+    document.getElementById('card-0'),
+    document.getElementById('card-1'),
+    document.getElementById('card-2')
+  ];
+
+  let activeCardIndex = 1;
+  let nextCardIndex = 2;
+  let prevCardIndex = 0;
 
   const intervals = {
     Again: document.getElementById('interval-again'),
@@ -69,9 +78,18 @@
   let toastTimer = null;
   let pointer = null;
   let animating = false;
+  let ratingInFlight = false;
+  let ratingTimer = null;
+  let queuedNavigation = null;
   let openedSaveTimer = null;
+  let progressSaveTimer = null;
+  let cardProgressSaveTimer = null;
   let dragFrame = 0;
   let queuedDrag = null;
+  let transitionToken = 0;
+  const preloadedImages = new Set();
+  const SWIPE_DURATION = 175;
+  const FLIP_DURATION = 360;
 
   function showToast(message) {
     clearTimeout(toastTimer);
@@ -89,19 +107,30 @@
     return `study.html?setId=${encodeURIComponent(setId)}${suffix}`;
   }
 
+  function showStudyLoader(title = 'Opening Study', copy = 'Preparing your cards') {
+    if (els.loadingTitle) els.loadingTitle.textContent = title;
+    if (els.loadingCopy) els.loadingCopy.textContent = copy;
+    document.body.classList.remove('study-ready');
+    document.body.classList.add('is-route-loading');
+  }
+
+  function hideStudyLoader() {
+    document.body.classList.add('study-ready');
+    document.body.classList.remove('is-route-loading');
+  }
+
+  function navigateAway(url, title, copy) {
+    showStudyLoader(title, copy);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.location.href = url;
+      });
+    });
+  }
+
   async function goLibrary() {
-    try { await saveProgress(); } catch (_) {}
-    // Give the DB a short safety window without making Back feel frozen.
-    try {
-      const flush = window.eruditeMobileFlashcards?.flush?.();
-      if (flush?.then) {
-        await Promise.race([
-          flush.catch(() => {}),
-          new Promise(resolve => window.setTimeout(resolve, 140))
-        ]);
-      }
-    } catch (_) {}
-    window.location.href = libraryUrl();
+    try { saveProgress(); } catch (_) {}
+    navigateAway(libraryUrl(), 'Opening Library', 'Refreshing your decks');
   }
 
   function getSetId() {
@@ -185,15 +214,56 @@
     return state.activeCards[activeIndex()] || null;
   }
 
-  function setFlipped(flipped, options = {}) {
-    state.flipped = Boolean(flipped);
-    if (options.noTransition) els.card.classList.add('no-transition');
-    els.card.classList.toggle('is-flipped', state.flipped);
-    updateRatingVisibility();
-    if (options.noTransition) {
-      void els.card.offsetWidth;
-      els.card.classList.remove('no-transition');
+  function getCardElements(cardEl) {
+    if (!cardEl) return null;
+    return {
+      termText: cardEl.querySelector('.term-text'),
+      definitionText: cardEl.querySelector('.definition-text'),
+      termImage: cardEl.querySelector('.term-image'),
+      definitionImage: cardEl.querySelector('.definition-image'),
+      termImageWrap: cardEl.querySelector('.term-image-wrap'),
+      definitionImageWrap: cardEl.querySelector('.definition-image-wrap'),
+      cardInner: cardEl.querySelector('.study-card-inner')
+    };
+  }
+
+  function setCardFlipped(cardEl, flipped, options = {}) {
+    if (!cardEl) return;
+    if (options.noTransition) cardEl.classList.add('no-transition');
+    cardEl.classList.toggle('is-flipped', flipped);
+    if (cardEl === cards[activeCardIndex]) {
+      state.flipped = Boolean(flipped);
+      clearTimeout(ratingTimer);
+      if (!options.noTransition && state.srsMode && flipped) {
+        els.hint.textContent = 'Revealing answer...';
+        ratingTimer = window.setTimeout(updateRatingVisibility, FLIP_DURATION);
+      } else {
+        updateRatingVisibility();
+      }
     }
+    if (options.noTransition) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          cardEl.classList.remove('no-transition');
+        });
+      });
+    }
+  }
+
+  function setFlipped(flipped, options = {}) {
+    setCardFlipped(cards[activeCardIndex], flipped, options);
+  }
+
+  function queueNavigation(vector = { x: -1, y: 0 }) {
+    if (state.srsMode || state.complete) return;
+    queuedNavigation = vector;
+  }
+
+  function runQueuedNavigation() {
+    if (!queuedNavigation || animating || state.srsMode || state.complete) return;
+    const vector = queuedNavigation;
+    queuedNavigation = null;
+    requestAnimationFrame(() => navigateForward(vector));
   }
 
   function isScrollableContent(target) {
@@ -265,15 +335,23 @@
 
   async function loadProgress() {
     const saved = await window.flashcardStore.getProgress(state.set.id);
-    if (!saved || String(saved.setId) !== String(state.set.id)) return;
+    const mirrored = readProgressMirror();
+    const progress = mirrored && (!saved || Number(mirrored.timestamp || 0) >= Number(saved.timestamp || 0))
+      ? mirrored
+      : saved;
+    if (!progress || String(progress.setId) !== String(state.set.id)) return;
     const cardCount = state.set.cards?.length || 0;
-    state.normalIndex = Math.min(Math.max(0, Number(saved.normalModeIndex ?? saved.cardIndex ?? 0) || 0), Math.max(0, cardCount - 1));
-    state.srsIndex = Math.max(0, Number(saved.srsModeIndex ?? 0) || 0);
+    state.normalIndex = Math.min(Math.max(0, Number(progress.normalModeIndex ?? progress.cardIndex ?? 0) || 0), Math.max(0, cardCount - 1));
+    state.srsIndex = Math.max(0, Number(progress.srsModeIndex ?? 0) || 0);
   }
 
-  async function saveProgress() {
-    if (!state.set) return;
-    await window.flashcardStore.saveProgress(state.set.id, {
+  function progressMirrorKey() {
+    return state.set ? `${PROGRESS_MIRROR_PREFIX}${state.set.id}` : '';
+  }
+
+  function buildProgressPayload() {
+    if (!state.set) return null;
+    return {
       setId: state.set.id,
       cardIndex: activeIndex(),
       normalModeIndex: state.normalIndex,
@@ -281,7 +359,76 @@
       srsModeLength: state.activeCards.length,
       srsCurrentCardKey: state.srsMode ? cardKey(activeCard()) : null,
       timestamp: Date.now()
-    });
+    };
+  }
+
+  function readProgressMirror() {
+    try {
+      const key = progressMirrorKey();
+      return key ? JSON.parse(localStorage.getItem(key) || 'null') : null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function writeProgressMirror(payload) {
+    try {
+      const key = progressMirrorKey();
+      if (key && payload) localStorage.setItem(key, JSON.stringify(payload));
+    } catch (_) {}
+  }
+
+  function saveProgress(options = {}) {
+    const payload = buildProgressPayload();
+    if (!payload) return Promise.resolve(false);
+    writeProgressMirror(payload);
+    clearTimeout(progressSaveTimer);
+    const delay = options.immediate ? 0 : 900;
+    progressSaveTimer = window.setTimeout(() => {
+      window.flashcardStore.saveProgress(state.set.id, payload).catch(() => {});
+    }, delay);
+    return Promise.resolve(true);
+  }
+
+  function queueStudyCardPatch(card) {
+    if (!state.set || !card?.id) return;
+    let payload = null;
+    try {
+      payload = JSON.parse(localStorage.getItem(STUDY_PATCHES_KEY) || 'null');
+    } catch (_) {
+      payload = null;
+    }
+    const next = payload && payload.sets ? payload : { version: 1, updatedAt: Date.now(), sets: {} };
+    const setId = String(state.set.id);
+    const cardId = String(card.id);
+    next.updatedAt = Date.now();
+    next.sets[setId] = next.sets[setId] || { cards: {} };
+    next.sets[setId].cards[cardId] = {
+      srs: card.srs || null,
+      reviewHistory: Array.isArray(card.reviewHistory) ? card.reviewHistory : [],
+      suspended: Boolean(card.suspended),
+      buriedUntil: card.buriedUntil || null,
+      lastModified: Date.now()
+    };
+    try { localStorage.setItem(STUDY_PATCHES_KEY, JSON.stringify(next)); } catch (_) {}
+  }
+
+  function scheduleCardProgressSave(card, delay = 420) {
+    if (!state.set || !card?.id) return;
+    queueStudyCardPatch(card);
+    clearTimeout(cardProgressSaveTimer);
+    cardProgressSaveTimer = window.setTimeout(() => {
+      const saveCard = window.flashcardStore.saveCardProgress || window.eruditeMobileFlashcards?.saveCardProgress;
+      if (typeof saveCard === 'function') {
+        saveCard(state.set.id, card.id, {
+          srs: card.srs || null,
+          reviewHistory: Array.isArray(card.reviewHistory) ? card.reviewHistory : [],
+          suspended: Boolean(card.suspended),
+          buriedUntil: card.buriedUntil || null,
+          lastModified: Date.now()
+        }).catch(() => {});
+      }
+    }, delay);
   }
 
   function prepareActiveCards() {
@@ -295,10 +442,41 @@
         settings
       });
       state.srsIndex = Math.min(state.srsIndex, Math.max(0, state.activeCards.length - 1));
-      return;
+    } else {
+      state.activeCards = state.set.cards || [];
+      state.normalIndex = Math.min(state.normalIndex, Math.max(0, state.activeCards.length - 1));
     }
-    state.activeCards = state.set.cards || [];
-    state.normalIndex = Math.min(state.normalIndex, Math.max(0, state.activeCards.length - 1));
+
+  }
+
+  function ensureCardSanitized(card) {
+    if (!card || card.__sanitizedReady) return card;
+    Object.defineProperties(card, {
+      sanitizedTerm: {
+        value: sanitizeRichText(card.term),
+        writable: true,
+        configurable: true
+      },
+      sanitizedDefinition: {
+        value: sanitizeRichText(card.definition),
+        writable: true,
+        configurable: true
+      },
+      __sanitizedReady: {
+        value: true,
+        writable: true,
+        configurable: true
+      }
+    });
+    return card;
+  }
+
+  function warmVisibleCards() {
+    const currentIdx = activeIndex();
+    [currentIdx - 1, currentIdx, currentIdx + 1, currentIdx + 2].forEach(index => {
+      const card = state.activeCards[index];
+      if (card) ensureCardSanitized(card);
+    });
   }
 
   function renderImage(img, wrap, src) {
@@ -307,15 +485,22 @@
       img.removeAttribute('src');
       return;
     }
-    img.src = src;
+    if (img.getAttribute('src') !== src) {
+      img.decoding = 'async';
+      img.src = src;
+    }
     wrap.classList.remove('hidden');
   }
 
   function preloadNeighborImages() {
     [state.activeCards[activeIndex() + 1], state.activeCards[activeIndex() - 1]].forEach(card => {
       [card?.termImage, card?.definitionImage].filter(Boolean).forEach(src => {
+        if (preloadedImages.has(src)) return;
+        preloadedImages.add(src);
         const img = new Image();
+        img.decoding = 'async';
         img.src = src;
+        img.decode?.().catch(() => {});
       });
     });
   }
@@ -340,30 +525,90 @@
       : 'Tap to flip. Swipe left or right to go next.';
   }
 
-  function renderCard(options = {}) {
-    const card = activeCard();
-    if (!card) return;
+  function populateCardElement(cardEl, cardData) {
+    if (!cardEl) return;
+    if (!cardData) {
+      cardEl.classList.add('empty-card');
+      return;
+    }
+    ensureCardSanitized(cardData);
+    cardEl.classList.remove('empty-card');
+    const elements = getCardElements(cardEl);
+    if (!elements) return;
 
-    els.termText.innerHTML = sanitizeRichText(card.term);
-    els.definitionText.innerHTML = sanitizeRichText(card.definition);
-    renderImage(els.termImage, els.termImageWrap, card.termImage);
-    renderImage(els.definitionImage, els.definitionImageWrap, card.definitionImage);
-    els.card.style.setProperty('--drag-x', '0px');
-    els.card.style.setProperty('--drag-y', '0px');
-    els.card.style.setProperty('--drag-rotate', '0deg');
-    setFlipped(false, { noTransition: options.noTransition !== false });
-    els.card.querySelectorAll('.card-scroll').forEach(scroll => {
+    elements.termText.innerHTML = cardData.sanitizedTerm;
+    elements.definitionText.innerHTML = cardData.sanitizedDefinition;
+    renderImage(elements.termImage, elements.termImageWrap, cardData.termImage);
+    renderImage(elements.definitionImage, elements.definitionImageWrap, cardData.definitionImage);
+    
+    cardEl.querySelectorAll('.card-scroll').forEach(scroll => {
       scroll.scrollTop = 0;
     });
+
+    setCardFlipped(cardEl, false, { noTransition: true });
+  }
+
+  function clearCardRuntimeStyles(card) {
+    if (!card) return;
+    card.classList.remove('dragging');
+    card.style.transform = '';
+    card.style.opacity = '';
+    card.style.zIndex = '';
+  }
+
+  function updateRoles() {
+    cards.forEach((card, idx) => {
+      if (!card) return;
+      card.classList.remove('slot-active', 'slot-next', 'slot-prev', 'dragging');
+      clearCardRuntimeStyles(card);
+      
+      const elements = getCardElements(card);
+      if (elements && elements.termImage) {
+        elements.termImage.style.transform = '';
+      }
+      
+      if (idx === activeCardIndex) {
+        card.classList.add('slot-active');
+        els.card = card;
+      } else if (idx === nextCardIndex) {
+        card.classList.add('slot-next');
+      } else if (idx === prevCardIndex) {
+        card.classList.add('slot-prev');
+      }
+    });
+
+    state.flipped = cards[activeCardIndex] ? cards[activeCardIndex].classList.contains('is-flipped') : false;
+    updateRatingVisibility();
+  }
+
+  function renderStack() {
+    const currentIdx = activeIndex();
+    warmVisibleCards();
+    
+    populateCardElement(cards[activeCardIndex], state.activeCards[currentIdx]);
+    populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
+    populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
+    
+    updateRoles();
     preloadNeighborImages();
     updateProgress();
   }
 
-  function applyDrag(x = 0) {
+  function applyActiveDrag(x = 0) {
+    const activeEl = cards[activeCardIndex];
+    const nextEl = cards[nextCardIndex];
+    if (!activeEl) return;
+    
     const rotate = Math.max(-7, Math.min(7, x * 0.032));
-    els.card.style.setProperty('--drag-x', `${x}px`);
-    els.card.style.setProperty('--drag-y', '0px');
-    els.card.style.setProperty('--drag-rotate', `${rotate}deg`);
+    activeEl.style.transform = `translate3d(${x}px, 0px, 0) rotate(${rotate}deg)`;
+    
+    if (nextEl && !nextEl.classList.contains('empty-card')) {
+      const progress = Math.min(1, Math.abs(x) / 50);
+      const nextScale = 0.96 + (0.04 * progress);
+      const nextOffset = 10 - (10 * progress);
+      nextEl.style.transform = `translate3d(0, ${nextOffset}px, 0) scale(${nextScale})`;
+      nextEl.style.opacity = 0.9 + (0.1 * progress);
+    }
   }
 
   function setDrag(x = 0) {
@@ -373,7 +618,7 @@
       dragFrame = 0;
       const next = queuedDrag || { x: 0 };
       queuedDrag = null;
-      applyDrag(next.x);
+      applyActiveDrag(next.x);
     });
   }
 
@@ -385,17 +630,20 @@
     els.fill.style.width = total ? `${Math.round((index / total) * 100)}%` : '0%';
     els.modeLabel.textContent = state.srsMode ? 'SRS Review' : 'Study';
     els.title.textContent = state.set?.name || 'Study';
-    // Prev button: hidden at first card or in SRS mode
     if (els.prev) {
-      els.prev.disabled = activeIndex() <= 0 || state.srsMode;
+      els.prev.disabled = animating || activeIndex() <= 0 || state.srsMode;
     }
   }
 
   async function navigateForward(exitVector) {
-    if (!state.activeCards.length || state.complete || animating) return;
+    if (animating) {
+      queueNavigation(exitVector || { x: -1, y: 0 });
+      return;
+    }
+    if (!state.activeCards.length || state.complete) return;
     if (state.srsMode) {
       if (!state.flipped) {
-        setFlipped(true);
+        flipCard();
       } else {
         showToast('Rate this card to continue');
       }
@@ -407,60 +655,129 @@
       await showCompletion();
       return;
     }
+    
     animateOut(exitVector || { x: -1, y: 0 }, () => {
       setActiveIndex(nextIndex);
-      renderCard();
+      
+      prevCardIndex = activeCardIndex;
+      activeCardIndex = nextCardIndex;
+      nextCardIndex = (nextCardIndex + 1) % 3;
+      
+      const currentIdx = activeIndex();
+      populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
+      
+      updateRoles();
+      preloadNeighborImages();
+      updateProgress();
       saveProgress();
+      runQueuedNavigation();
     });
   }
 
   function navigateBack() {
-    if (!state.activeCards.length || state.complete || state.srsMode || animating) return;
+    if (animating) return;
+    if (!state.activeCards.length || state.complete || state.srsMode) return;
     const prevIndex = activeIndex() - 1;
     if (prevIndex < 0) {
       showToast('First card');
       return;
     }
-    animateOut({ x: 1, y: 0 }, () => {
+    
+    animating = true;
+    const token = ++transitionToken;
+    if (els.prev) els.prev.disabled = true;
+    if (dragFrame) cancelAnimationFrame(dragFrame);
+    dragFrame = 0;
+    queuedDrag = null;
+    
+    const activeEl = cards[activeCardIndex];
+    const prevEl = cards[prevCardIndex];
+    
+    if (prevEl) {
+      prevEl.classList.add('no-transition');
+      prevEl.style.transform = 'translate3d(-100vw, 0, 0) rotate(-8deg)';
+      prevEl.style.opacity = 0;
+      prevEl.style.zIndex = 4;
+      requestAnimationFrame(() => {
+        if (token !== transitionToken) return;
+        prevEl.classList.remove('no-transition');
+        prevEl.style.transform = 'translate3d(0, 0, 0) scale(1)';
+        prevEl.style.opacity = 1;
+      });
+    }
+    
+    if (activeEl) {
+      activeEl.style.transform = 'translate3d(0, 10px, 0) scale(0.96)';
+      activeEl.style.opacity = 0.9;
+    }
+    
+    window.setTimeout(() => {
+      if (token !== transitionToken) return;
       setActiveIndex(prevIndex);
-      renderCard();
+      
+      nextCardIndex = activeCardIndex;
+      activeCardIndex = prevCardIndex;
+      prevCardIndex = (prevCardIndex + 2) % 3;
+      
+      const currentIdx = activeIndex();
+      populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
+      
+      updateRoles();
+      preloadNeighborImages();
+      animating = false;
+      updateProgress();
       saveProgress();
-    });
+      runQueuedNavigation();
+    }, SWIPE_DURATION);
   }
 
   function animateOut(vector, done) {
     const vx = (vector?.x || 0) < 0 ? -1 : 1;
     animating = true;
-    els.card.classList.add('animating-out');
+    const token = ++transitionToken;
+    updateProgress();
+    
+    const activeEl = cards[activeCardIndex];
+    const nextEl = cards[nextCardIndex];
+    
     if (dragFrame) cancelAnimationFrame(dragFrame);
     dragFrame = 0;
     queuedDrag = null;
-    els.card.style.setProperty('--drag-x', `${vx * 118}vw`);
-    els.card.style.setProperty('--drag-y', '0px');
-    els.card.style.setProperty('--drag-rotate', `${vx * 8}deg`);
+    
+    if (activeEl) {
+      activeEl.classList.remove('dragging');
+      activeEl.style.transform = `translate3d(${vx * 118}vw, 0px, 0) rotate(${vx * 8}deg)`;
+      activeEl.style.opacity = 0;
+    }
+    
+    if (nextEl) {
+      nextEl.classList.remove('no-transition');
+      if (!nextEl.classList.contains('empty-card')) {
+        nextEl.style.transform = 'translate3d(0, 0, 0) scale(1)';
+        nextEl.style.opacity = 1;
+      }
+    }
+    
     window.setTimeout(() => {
-      // Reset position with no transition so new card appears instantly
-      els.card.classList.remove('animating-out');
-      els.card.classList.add('no-transition');
-      applyDrag(0);
+      if (token !== transitionToken) return;
       animating = false;
       done();
-      // Remove no-transition after one frame so future animations work
-      requestAnimationFrame(() => {
-        els.card.classList.remove('no-transition');
-      });
-    }, 220);
+      runQueuedNavigation();
+    }, SWIPE_DURATION);
   }
 
   function flipCard() {
-    if (!activeCard() || state.complete || animating) return;
-    setFlipped(!state.flipped);
+    if (animating) return;
+    const activeEl = cards[activeCardIndex];
+    if (!activeCard() || state.complete) return;
+    setCardFlipped(activeEl, !state.flipped);
   }
 
   async function handleRating(rating) {
-    if (!state.srsMode || !state.flipped || state.complete || !window.srsManager?.isReady?.()) return;
+    if (ratingInFlight || animating || !state.srsMode || !state.flipped || state.complete || !window.srsManager?.isReady?.()) return;
     const current = activeCard();
     if (!current) return;
+    ratingInFlight = true;
 
     const previous = current.srs ? { ...current.srs } : null;
     const reviewedAt = new Date().toISOString();
@@ -483,24 +800,35 @@
     const originalIndex = state.set.cards.findIndex(card => sameCard(card, current));
     if (originalIndex >= 0) state.set.cards[originalIndex] = updatedCard;
     state.activeCards[state.srsIndex] = updatedCard;
-    state.set = await window.flashcardStore.saveSet(state.set);
 
     state.sessionStats.reviewed += 1;
     state.sessionStats[rating] += 1;
     state.sessionStats.nextDue = updatedCard.srs?.due || state.sessionStats.nextDue;
 
     state.srsIndex += 1;
-    await saveProgress();
+    saveProgress();
+    scheduleCardProgressSave(updatedCard);
 
     if (state.srsIndex >= state.activeCards.length) {
       await showCompletion();
+      ratingInFlight = false;
       return;
     }
 
     animateOut({ x: -1, y: 0 }, () => {
-      animating = false;
-      renderCard();
+      prevCardIndex = activeCardIndex;
+      activeCardIndex = nextCardIndex;
+      nextCardIndex = (nextCardIndex + 1) % 3;
+      
+      const currentIdx = activeIndex();
+      populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
+      
+      updateRoles();
+      preloadNeighborImages();
+      updateProgress();
       saveProgress();
+      animating = false;
+      ratingInFlight = false;
     });
   }
 
@@ -568,8 +896,15 @@
     const DRAG_LIMIT = 104;
     const HORIZONTAL_BIAS = 1.12;
 
-    els.card.addEventListener('pointerdown', event => {
-      if (isInteractive(event.target) || animating) return;
+    els.stage.addEventListener('pointerdown', event => {
+      if (animating) {
+        if (!isInteractive(event.target)) queueNavigation({ x: -1, y: 0 });
+        return;
+      }
+      const activeCardEl = cards[activeCardIndex];
+      if (!activeCardEl || !activeCardEl.contains(event.target)) return;
+      if (isInteractive(event.target)) return;
+      
       pointer = {
         id: event.pointerId,
         x: event.clientX,
@@ -579,10 +914,15 @@
         scrolling: false,
         scrollable: isScrollableContent(event.target)
       };
+      
+      activeCardEl.classList.add('dragging');
     });
 
-    els.card.addEventListener('pointermove', event => {
+    els.stage.addEventListener('pointermove', event => {
       if (!pointer || pointer.id !== event.pointerId) return;
+      const activeCardEl = cards[activeCardIndex];
+      if (!activeCardEl) return;
+      
       const dx = event.clientX - pointer.x;
       const dy = event.clientY - pointer.y;
       const absDx = Math.abs(dx);
@@ -591,13 +931,17 @@
       if (!pointer.dragging && !pointer.scrolling) {
         if (absDy > DEAD_ZONE && absDy > absDx * 1.18 && pointer.scrollable) {
           pointer.scrolling = true;
+          activeCardEl.classList.remove('dragging');
           return;
         }
         if (absDx > DEAD_ZONE && absDx > absDy * HORIZONTAL_BIAS) {
           pointer.dragging = true;
-          els.card.setPointerCapture?.(event.pointerId);
+          els.stage.setPointerCapture?.(event.pointerId);
         } else if (absDy > DEAD_ZONE && absDy >= absDx) {
           pointer.scrolling = Boolean(pointer.scrollable);
+          if (pointer.scrolling) {
+            activeCardEl.classList.remove('dragging');
+          }
           return;
         }
       }
@@ -612,6 +956,13 @@
 
     function finishPointer(event) {
       if (!pointer || pointer.id !== event.pointerId) return;
+      const activeCardEl = cards[activeCardIndex];
+      const nextCardEl = cards[nextCardIndex];
+      
+      if (activeCardEl) {
+        activeCardEl.classList.remove('dragging');
+      }
+      
       const dx = event.clientX - pointer.x;
       const dy = event.clientY - pointer.y;
       const dt = Math.max(1, performance.now() - pointer.time);
@@ -623,27 +974,43 @@
         && absDx > absDy * HORIZONTAL_BIAS
         && (absDx >= SWIPE_THRESHOLD || velocity >= VELOCITY_THRESHOLD)
         && !wasTap;
+      
       pointer = null;
 
       if (wasSwipe) {
-        // Don't reset drag — let animateOut continue from current position
         navigateForward({ x: dx < 0 ? -1 : 1, y: 0 });
         return;
       }
 
-      // Reset drag visuals (non-swipe: snap back)
-      setDrag(0);
+      if (activeCardEl) {
+        activeCardEl.style.transform = '';
+        activeCardEl.style.opacity = '';
+      }
+      if (nextCardEl) {
+        nextCardEl.style.transform = '';
+        nextCardEl.style.opacity = '';
+      }
 
       if (wasTap) {
         flipCard();
       }
     }
 
-    els.card.addEventListener('pointerup', finishPointer);
-    els.card.addEventListener('pointercancel', event => {
+    els.stage.addEventListener('pointerup', finishPointer);
+    els.stage.addEventListener('pointercancel', event => {
       if (!pointer || pointer.id !== event.pointerId) return;
+      const activeCardEl = cards[activeCardIndex];
+      const nextCardEl = cards[nextCardIndex];
       pointer = null;
-      setDrag(0);
+      if (activeCardEl) {
+        activeCardEl.classList.remove('dragging');
+        activeCardEl.style.transform = '';
+        activeCardEl.style.opacity = '';
+      }
+      if (nextCardEl) {
+        nextCardEl.style.transform = '';
+        nextCardEl.style.opacity = '';
+      }
     });
   }
 
@@ -654,7 +1021,7 @@
     els.emptyLibraryButton.addEventListener('click', () => goLibrary());
     els.continueButton.addEventListener('click', async () => {
       if (state.srsMode && state.nextDueSetId) {
-        window.location.href = studyUrl(state.nextDueSetId, true);
+        navigateAway(studyUrl(state.nextDueSetId, true), 'Opening Review', 'Loading the next due deck');
         return;
       }
       els.completionModal.classList.add('hidden');
@@ -671,7 +1038,7 @@
         state.normalIndex = 0;
         state.activeCards = state.set.cards || [];
       }
-      renderCard();
+      renderStack();
       await saveProgress();
     });
 
@@ -679,7 +1046,7 @@
       els.emptyModal.classList.add('hidden');
       await loadData();
       if (!state.activeCards.length) showEmptyDue();
-      else renderCard();
+      else renderStack();
     });
 
     els.ratingDock.addEventListener('click', event => {
@@ -691,8 +1058,11 @@
     document.addEventListener('click', event => {
       const zoom = event.target.closest('[data-image-side]');
       if (!zoom) return;
+      const activeEl = cards[activeCardIndex];
+      const elements = getCardElements(activeEl);
+      if (!elements) return;
       const side = zoom.dataset.imageSide;
-      const src = side === 'term' ? els.termImage.src : els.definitionImage.src;
+      const src = side === 'term' ? elements.termImage.src : elements.definitionImage.src;
       if (!src) return;
       els.zoomedImage.src = src;
       els.imageModal.classList.remove('hidden');
@@ -704,7 +1074,14 @@
     });
 
     document.addEventListener('keydown', event => {
-      if (event.repeat || isInteractive(event.target) || animating) return;
+      if (event.repeat || isInteractive(event.target)) return;
+      if (animating) {
+        if (!state.srsMode && event.key === 'ArrowRight') {
+          event.preventDefault();
+          queueNavigation({ x: -1, y: 0 });
+        }
+        return;
+      }
       if (event.key === 'Escape') {
         els.imageModal.classList.add('hidden');
         return;
@@ -727,14 +1104,14 @@
 
     document.addEventListener('visibilitychange', async () => {
       if (document.hidden) {
-        try { await saveProgress(); } catch (_) {}
+        try { await saveProgress({ immediate: true }); } catch (_) {}
         try { await window.eruditeMobileFlashcards?.flush?.(); } catch (_) {}
       }
     });
   }
 
   async function init() {
-    document.documentElement.classList.add('is-capacitor', 'is-mobile-shell');
+    document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'study-session-active');
     configureSystemBars();
     installEvents();
     installPointerGestures();
@@ -744,7 +1121,7 @@
       if (!state.activeCards.length) {
         showEmptyDue();
       } else {
-        renderCard({ noTransition: true });
+        renderStack();
       }
       scheduleOpenedSave();
     } catch (error) {
@@ -752,7 +1129,10 @@
       showToast(error.message || 'Could not open study session');
       window.setTimeout(goLibrary, 900);
     } finally {
-      requestAnimationFrame(() => els.shell.classList.remove('is-loading'));
+      requestAnimationFrame(() => {
+        els.shell.classList.remove('is-loading');
+        hideStudyLoader();
+      });
     }
   }
 

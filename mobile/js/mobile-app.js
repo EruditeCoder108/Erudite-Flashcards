@@ -74,6 +74,9 @@
     browserList: document.getElementById('browser-list'),
     srsSwitch: document.getElementById('srs-switch'),
     moreSrsLabel: document.getElementById('more-srs-label'),
+    loadingCover: document.getElementById('app-loading-cover'),
+    loadingTitle: document.getElementById('app-loading-title'),
+    loadingCopy: document.getElementById('app-loading-copy'),
     toast: document.getElementById('mobile-toast')
   };
 
@@ -996,13 +999,43 @@
     selectors.moreSrsLabel.textContent = state.srsMode ? 'On - due reviews are scheduled' : 'Off - normal study only';
   }
 
-  function render() {
-    renderToday();
-    renderLibrary();
-    renderCreate();
-    renderPremade();
-    renderBrowser();
-    renderMore();
+  function renderActive() {
+    switch (state.activeTab) {
+      case 'today':
+        renderToday();
+        break;
+      case 'library':
+        renderLibrary();
+        break;
+      case 'create':
+        renderCreate();
+        break;
+      case 'premade':
+        renderPremade();
+        break;
+      case 'browser':
+        renderBrowser();
+        break;
+      case 'more':
+        renderMore();
+        break;
+      default:
+        renderToday();
+        break;
+    }
+  }
+
+  function render(options = {}) {
+    if (options.all) {
+      renderToday();
+      renderLibrary();
+      renderCreate();
+      renderPremade();
+      renderBrowser();
+      renderMore();
+      return;
+    }
+    renderActive();
   }
 
   async function refresh() {
@@ -1020,8 +1053,25 @@
     }
   }
 
-  function navigateTo(url) {
-    window.location.href = url;
+  function showAppLoader(title = 'Erudite Flashcards', copy = 'Loading') {
+    if (selectors.loadingTitle) selectors.loadingTitle.textContent = title;
+    if (selectors.loadingCopy) selectors.loadingCopy.textContent = copy;
+    document.body.classList.remove('app-ready');
+    document.body.classList.add('is-route-loading');
+  }
+
+  function hideAppLoader() {
+    document.body.classList.add('app-ready');
+    document.body.classList.remove('is-route-loading');
+  }
+
+  function navigateTo(url, options = {}) {
+    showAppLoader(options.title || 'Opening Study', options.copy || 'Preparing your cards');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.location.href = url;
+      });
+    });
   }
 
   function mobileStudyUrl(setId, reviewDue = false) {
@@ -1029,7 +1079,7 @@
     return `mobile/study.html?setId=${encodeURIComponent(setId)}${suffix}`;
   }
 
-  async function flushStore(timeoutMs = 180) {
+  async function flushStore(timeoutMs = 100) {
     const flush = window.eruditeMobileFlashcards?.flush || window.flashcardStore?.flush;
     if (typeof flush !== 'function') return;
     await Promise.race([
@@ -1098,8 +1148,10 @@
       showToast('No reviews due');
       return;
     }
-    await flushStore();
-    navigateTo(mobileStudyUrl(first.id, true));
+    navigateTo(mobileStudyUrl(first.id, true), {
+      title: 'Opening Review',
+      copy: 'Finding cards due now'
+    });
   }
 
   async function reviewDueSmart() {
@@ -1117,8 +1169,10 @@
       });
     }
     playClick();
-    await flushStore();
-    navigateTo(mobileStudyUrl(first.id, true));
+    navigateTo(mobileStudyUrl(first.id, true), {
+      title: 'Opening Review',
+      copy: 'Finding cards due now'
+    });
   }
 
   function updateFormatState() {
@@ -1220,8 +1274,10 @@
         await deleteSet(target.dataset.setId);
         break;
       case 'study-set':
-        await flushStore();
-        navigateTo(mobileStudyUrl(target.dataset.setId || ''));
+        navigateTo(mobileStudyUrl(target.dataset.setId || ''), {
+          title: 'Opening Study',
+          copy: 'Preparing your deck'
+        });
         break;
       case 'edit-set':
         await loadSetIntoCreator(target.dataset.setId);
@@ -1398,7 +1454,7 @@
 
   async function init() {
     document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'mobile-app-shell');
-    await configureSystemBars();
+    configureSystemBars().catch(() => {});
     installEvents();
     // Set tab first so the correct view is visible during data loading
     const initialTab = String(window.location.hash || '').replace('#', '');
@@ -1409,6 +1465,7 @@
     setHeader();
     // Now load data and render once
     await refresh();
+    hideAppLoader();
   }
 
   if (document.readyState === 'loading') {

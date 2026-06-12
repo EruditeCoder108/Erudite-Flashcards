@@ -135,6 +135,11 @@
     return true;
   }
 
+  async function saveCardProgress(setId, cardId, patch) {
+    if (api?.saveCardProgress) return api.saveCardProgress(setId, cardId, patch);
+    return false;
+  }
+
   async function getSettings() {
     if (api) return api.getSettings();
     return readLocal('flashcards-settings', {});
@@ -467,6 +472,7 @@
     deleteClass,
     getProgress,
     saveProgress,
+    saveCardProgress,
     getSettings,
     saveSettings,
     getState,

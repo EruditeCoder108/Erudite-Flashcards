@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="../mobile/css/mobile-study.css">
 </head>
 <body>
+  <div class="study-loading-cover" id="study-loading-cover" aria-live="polite">
+    <div class="study-loader-mark">
+      <img src="../assets/icons/icon.png" alt="">
+      <span></span>
+    </div>
+    <strong id="study-loading-title">Opening Study</strong>
+    <p id="study-loading-copy">Preparing your cards</p>
+  </div>
+
   <div class="study-shell is-loading" id="study-shell">
     <header class="study-topbar">
       <button type="button" class="icon-button" id="back-button" aria-label="Back to library">
@@ -32,14 +41,14 @@
           <i class="fas fa-rotate-left"></i>
           <span>Prev</span>
         </button>
-        <div class="study-card" id="study-card">
+        <div class="study-card slot-prev" id="card-0">
           <div class="study-card-inner">
             <article class="card-face front" aria-label="Term side">
               <div class="card-scroll">
                 <div class="card-label">Term</div>
-                <div class="card-text" id="term-text"></div>
-                <figure class="card-image-wrap hidden" id="term-image-wrap">
-                  <img id="term-image" alt="Term image">
+                <div class="card-text term-text"></div>
+                <figure class="card-image-wrap hidden term-image-wrap">
+                  <img class="term-image" alt="Term image">
                   <button type="button" class="image-zoom-button" data-image-side="term" aria-label="View term image larger">
                     <i class="fas fa-magnifying-glass-plus"></i>
                   </button>
@@ -51,9 +60,73 @@
             <article class="card-face back" aria-label="Definition side">
               <div class="card-scroll">
                 <div class="card-label">Definition</div>
-                <div class="card-text" id="definition-text"></div>
-                <figure class="card-image-wrap hidden" id="definition-image-wrap">
-                  <img id="definition-image" alt="Definition image">
+                <div class="card-text definition-text"></div>
+                <figure class="card-image-wrap hidden definition-image-wrap">
+                  <img class="definition-image" alt="Definition image">
+                  <button type="button" class="image-zoom-button" data-image-side="definition" aria-label="View definition image larger">
+                    <i class="fas fa-magnifying-glass-plus"></i>
+                  </button>
+                </figure>
+              </div>
+              <div class="tap-hint">Tap to hide</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="study-card slot-active" id="card-1">
+          <div class="study-card-inner">
+            <article class="card-face front" aria-label="Term side">
+              <div class="card-scroll">
+                <div class="card-label">Term</div>
+                <div class="card-text term-text"></div>
+                <figure class="card-image-wrap hidden term-image-wrap">
+                  <img class="term-image" alt="Term image">
+                  <button type="button" class="image-zoom-button" data-image-side="term" aria-label="View term image larger">
+                    <i class="fas fa-magnifying-glass-plus"></i>
+                  </button>
+                </figure>
+              </div>
+              <div class="tap-hint">Tap to reveal</div>
+            </article>
+
+            <article class="card-face back" aria-label="Definition side">
+              <div class="card-scroll">
+                <div class="card-label">Definition</div>
+                <div class="card-text definition-text"></div>
+                <figure class="card-image-wrap hidden definition-image-wrap">
+                  <img class="definition-image" alt="Definition image">
+                  <button type="button" class="image-zoom-button" data-image-side="definition" aria-label="View definition image larger">
+                    <i class="fas fa-magnifying-glass-plus"></i>
+                  </button>
+                </figure>
+              </div>
+              <div class="tap-hint">Tap to hide</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="study-card slot-next" id="card-2">
+          <div class="study-card-inner">
+            <article class="card-face front" aria-label="Term side">
+              <div class="card-scroll">
+                <div class="card-label">Term</div>
+                <div class="card-text term-text"></div>
+                <figure class="card-image-wrap hidden term-image-wrap">
+                  <img class="term-image" alt="Term image">
+                  <button type="button" class="image-zoom-button" data-image-side="term" aria-label="View term image larger">
+                    <i class="fas fa-magnifying-glass-plus"></i>
+                  </button>
+                </figure>
+              </div>
+              <div class="tap-hint">Tap to reveal</div>
+            </article>
+
+            <article class="card-face back" aria-label="Definition side">
+              <div class="card-scroll">
+                <div class="card-label">Definition</div>
+                <div class="card-text definition-text"></div>
+                <figure class="card-image-wrap hidden definition-image-wrap">
+                  <img class="definition-image" alt="Definition image">
                   <button type="button" class="image-zoom-button" data-image-side="definition" aria-label="View definition image larger">
                     <i class="fas fa-magnifying-glass-plus"></i>
                   </button>
@@ -87,7 +160,7 @@
 
     <div class="study-footer">
       <div class="progress-bar"><span id="progress-fill"></span></div>
-      <p id="gesture-hint">Tap to flip. Swipe any direction to move cards.</p>
+      <p id="gesture-hint">Tap to flip. Swipe left or right to move cards.</p>
     </div>
   </div>
 

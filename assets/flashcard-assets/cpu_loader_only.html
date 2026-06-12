@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPU Microchip Loader</title>
+  
+  <!-- Tailwind CSS for modern layout container -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Inter Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #030305;
+    }
+
+    /* --- Keyframe Animations --- */
+    @keyframes flow {
+      0% { stroke-dashoffset: 240px; }
+      100% { stroke-dashoffset: -240px; }
+    }
+    @keyframes waveRotation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes gridMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 30px 30px; }
+    }
+
+    /* Ambient grid background overlay */
+    .bg-grid {
+      background-image: radial-gradient(rgba(6, 182, 212, 0.15) 1px, transparent 1px);
+      background-size: 24px 24px;
+      animation: gridMove 12s linear infinite;
+    }
+
+    /* --- SVG Circuit Trace Lines --- */
+    .trace-bg {
+      stroke: #121217;
+      stroke-width: 4px;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .trace-core {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8px;
+      stroke-dasharray: 45 105;
+      animation: flow 3.8s linear infinite;
+    }
+    .trace-glow {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 6px;
+      stroke-dasharray: 45 105;
+      animation: flow 3.8s linear infinite;
+      opacity: 0.35;
+    }
+
+    /* --- Asymmetric flow delays to give organic asynchronous signals --- */
+    .flow-1 .trace-glow, .flow-1 .trace-core { animation-delay: 0s; }
+    .flow-2 .trace-glow, .flow-2 .trace-core { animation-delay: -1.2s; }
+    .flow-3 .trace-glow, .flow-3 .trace-core { animation-delay: -2.4s; }
+    .flow-4 .trace-glow, .flow-4 .trace-core { animation-delay: -0.6s; }
+    .flow-5 .trace-glow, .flow-5 .trace-core { animation-delay: -3.0s; }
+    .flow-6 .trace-glow, .flow-6 .trace-core { animation-delay: -1.8s; }
+    .flow-7 .trace-glow, .flow-7 .trace-core { animation-delay: -0.9s; }
+    .flow-8 .trace-glow, .flow-8 .trace-core { animation-delay: -2.1s; }
+
+    /* --- Glowing node pins --- */
+    .node-outer {
+      fill: #06060c;
+      stroke: #1f1f2e;
+      stroke-width: 1.5px;
+    }
+    .glow-pink { fill: #d946ef; filter: drop-shadow(0 0 5px #d946ef); }
+    .glow-blue { fill: #3b82f6; filter: drop-shadow(0 0 5px #3b82f6); }
+    .glow-yellow { fill: #eab308; filter: drop-shadow(0 0 5px #eab308); }
+    .glow-green { fill: #22c55e; filter: drop-shadow(0 0 5px #22c55e); }
+    .glow-cyan { fill: #06b6d4; filter: drop-shadow(0 0 5px #06b6d4); }
+    .glow-red { fill: #ef4444; filter: drop-shadow(0 0 5px #ef4444); }
+
+    /* --- Morphing Liquid Core inside Processor --- */
+    .fluid-core-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+    .fluid-loader {
+      position: relative;
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: #020204;
+      overflow: hidden;
+      border: 2px solid #06b6d4;
+      box-shadow: 
+        inset 0 0 14px rgba(6, 182, 212, 0.4),
+        0 0 20px rgba(6, 182, 212, 0.15);
+    }
+    .fluid-box {
+      position: absolute;
+      bottom: -45%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(180deg, rgba(6, 182, 212, 0.85) 0%, rgba(168, 85, 247, 0.85) 100%);
+      border-radius: 39%;
+      animation: waveRotation 7s linear infinite;
+      transform-origin: 50% 48%;
+    }
+    .fluid-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 41%;
+      animation: waveRotation 5.2s linear infinite;
+      transform-origin: 50% 46%;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-100 flex items-center justify-center p-6 relative overflow-hidden">
+
+  <!-- Cyberpunk background grid -->
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-grid"></div>
+
+  <!-- Main Standalone Loader Display -->
+  <div class="w-full max-w-[640px] aspect-[8/5] relative flex items-center justify-center border border-slate-900/60 bg-[#040408]/60 rounded-2xl p-6 shadow-2xl shadow-black/80">
+    <svg 
+      width="100%" 
+      height="100%" 
+      viewBox="0 0 800 500" 
+      xmlns="http://www.w3.org/2000/svg"
+      class="select-none"
+    >
+      <defs>
+        <linearGradient id="chipGradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#1e1e26"></stop>
+          <stop offset="25%" stopColor="#111115"></stop>
+          <stop offset="70%" stopColor="#08080a"></stop>
+          <stop offset="100%" stopColor="#020203"></stop>
+        </linearGradient>
+
+        <linearGradient id="goldPin" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#ffdf00"></stop>
+          <stop offset="40%" stopColor="#d4af37"></stop>
+          <stop offset="60%" stopColor="#aa7c11"></stop>
+          <stop offset="100%" stopColor="#553e05"></stop>
+        </linearGradient>
+
+        <pattern id="circuit-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 10 0 L 10 20 M 0 10 L 20 10" fill="none" stroke="#06b6d4" strokeWidth="0.5" strokeOpacity="0.1" />
+          <circle cx="10" cy="10" r="1.5" fill="#06b6d4" fillOpacity="0.15" />
+        </pattern>
+
+        <pattern id="bg-grid-svg" width="30" height="30" patternUnits="userSpaceOnUse">
+          <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#06b6d4" strokeWidth="0.8" strokeOpacity="0.1" />
+        </pattern>
+
+        <radialGradient id="grid-mask-grad" cx="400" cy="240" r="280" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+          <stop offset="40%" stopColor="#ffffff" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+        </radialGradient>
+
+        <mask id="grid-mask">
+          <rect width="100%" height="100%" fill="url(#grid-mask-grad)" />
+        </mask>
+      </defs>
+
+      <!-- Ambient Center Glow -->
+      <circle cx="400" cy="240" r="180" fill="#06b6d4" filter="blur(65px)" opacity="0.07"></circle>
+      
+      <!-- Internal Grid Background -->
+      <rect width="100%" height="100%" fill="url(#bg-grid-svg)" mask="url(#grid-mask)"></rect>
+
+      <!-- --- TRACE BACKGROUND TRACKS --- -->
+      <g id="traces-bg">
+        <path d="M100 100 H180 L200 120 V200 L210 210 H326" className="trace-bg" class="trace-bg"></path>
+        <path d="M80 180 H160 L180 200 V220 L190 230 H326" className="trace-bg" class="trace-bg"></path>
+        <path d="M60 260 H130 L150 240 V240 L160 250 H326" className="trace-bg" class="trace-bg"></path>
+        <path d="M100 350 H180 L200 330 V280 L210 270 H326" className="trace-bg" class="trace-bg"></path>
+        <path d="M700 90 H600 L560 130 V200 L550 210 H474" className="trace-bg" class="trace-bg"></path>
+        <path d="M740 160 H620 L580 200 V220 L570 230 H474" className="trace-bg" class="trace-bg"></path>
+        <path d="M720 250 H610 L590 250 V250 L590 250 H474" className="trace-bg" class="trace-bg"></path>
+        <path d="M680 340 H610 L570 300 V280 L560 270 H474" className="trace-bg" class="trace-bg"></path>
+      </g>
+
+      <!-- --- ACTIVE FLOW SIGNALS --- -->
+      <g class="flow-1">
+        <path d="M100 100 H180 L200 120 V200 L210 210 H326" class="trace-glow" stroke="#d946ef"></path>
+        <path d="M100 100 H180 L200 120 V200 L210 210 H326" class="trace-core" stroke="#f472b6"></path>
+      </g>
+      <g class="flow-2">
+        <path d="M80 180 H160 L180 200 V220 L190 230 H326" class="trace-glow" stroke="#3b82f6"></path>
+        <path d="M80 180 H160 L180 200 V220 L190 230 H326" class="trace-core" stroke="#60a5fa"></path>
+      </g>
+      <g class="flow-3">
+        <path d="M60 260 H130 L150 240 V240 L160 250 H326" class="trace-glow" stroke="#eab308"></path>
+        <path d="M60 260 H130 L150 240 V240 L160 250 H326" class="trace-core" stroke="#fde047"></path>
+      </g>
+      <g class="flow-4">
+        <path d="M100 350 H180 L200 330 V280 L210 270 H326" class="trace-glow" stroke="#22c55e"></path>
+        <path d="M100 350 H180 L200 330 V280 L210 270 H326" class="trace-core" stroke="#4ade80"></path>
+      </g>
+      <g class="flow-5">
+        <path d="M700 90 H600 L560 130 V200 L550 210 H474" class="trace-glow" stroke="#06b6d4"></path>
+        <path d="M700 90 H600 L560 130 V200 L550 210 H474" class="trace-core" stroke="#22d3ee"></path>
+      </g>
+      <g class="flow-6">
+        <path d="M740 160 H620 L580 200 V220 L570 230 H474" class="trace-glow" stroke="#22c55e"></path>
+        <path d="M740 160 H620 L580 200 V220 L570 230 H474" class="trace-core" stroke="#4ade80"></path>
+      </g>
+      <g class="flow-7">
+        <path d="M720 250 H610 L590 250 V250 L590 250 H474" class="trace-glow" stroke="#ef4444"></path>
+        <path d="M720 250 H610 L590 250 V250 L590 250 H474" class="trace-core" stroke="#f87171"></path>
+      </g>
+      <g class="flow-8">
+        <path d="M680 340 H610 L570 300 V280 L560 270 H474" class="trace-glow" stroke="#eab308"></path>
+        <path d="M680 340 H610 L570 300 V280 L560 270 H474" class="trace-core" stroke="#fde047"></path>
+      </g>
+
+      <!-- --- INTERFACE BUS CONNECTION NODES --- -->
+      <g id="nodes">
+        <circle cx="100" cy="100" r="7" class="node-outer"></circle>
+        <circle cx="100" cy="100" r="3.5" class="node-inner glow-pink"></circle>
+        
+        <circle cx="80" cy="180" r="7" class="node-outer"></circle>
+        <circle cx="80" cy="180" r="3.5" class="node-inner glow-blue"></circle>
+        
+        <circle cx="60" cy="260" r="7" class="node-outer"></circle>
+        <circle cx="60" cy="260" r="3.5" class="node-inner glow-yellow"></circle>
+        
+        <circle cx="100" cy="350" r="7" class="node-outer"></circle>
+        <circle cx="100" cy="350" r="3.5" class="node-inner glow-green"></circle>
+        
+        <circle cx="700" cy="90" r="7" class="node-outer"></circle>
+        <circle cx="700" cy="90" r="3.5" class="node-inner glow-cyan"></circle>
+        
+        <circle cx="740" cy="160" r="7" class="node-outer"></circle>
+        <circle cx="740" cy="160" r="3.5" class="node-inner glow-green"></circle>
+        
+        <circle cx="720" cy="250" r="7" class="node-outer"></circle>
+        <circle cx="720" cy="250" r="3.5" class="node-inner glow-red"></circle>
+        
+        <circle cx="680" cy="340" r="7" class="node-outer"></circle>
+        <circle cx="680" cy="340" r="3.5" class="node-inner glow-yellow"></circle>
+      </g>
+
+      <!-- --- CENTRAL PROCESSOR CHIP GROUP --- -->
+      <g class="chip-group">
+        <!-- Underlay Shadow structure -->
+        <rect x="325" y="178" width="150" height="140" fill="#040406" stroke="#121217" strokeWidth="1" rx="14" ry="14"></rect>
+
+        <!-- Microprocessor Golden Connective Pins (Left side) -->
+        <g>
+          <path d="M312 198 h16 v12 h-16 a3 3 0 0 1 -3 -3 v-6 a3 3 0 0 1 3 -3 z" fill="url(#goldPin)"></path>
+          <path d="M312 222 h16 v12 h-16 a3 3 0 0 1 -3 -3 v-6 a3 3 0 0 1 3 -3 z" fill="url(#goldPin)"></path>
+          <path d="M312 246 h16 v12 h-16 a3 3 0 0 1 -3 -3 v-6 a3 3 0 0 1 3 -3 z" fill="url(#goldPin)"></path>
+          <path d="M312 270 h16 v12 h-16 a3 3 0 0 1 -3 -3 v-6 a3 3 0 0 1 3 -3 z" fill="url(#goldPin)"></path>
+        </g>
+        
+        <!-- Microprocessor Golden Connective Pins (Right side scaled/mirrored) -->
+        <g transform="scale(-1, 1) translate(-800, 0)">
+          <path d="M312 198 h16 v12 h-16 a3 3 0 0 1 -3 -3 v-6 a3 3 0 0 1 3 -3 z" fill="url(#goldPin)"></path>
+          <path d="M312 222 h16 v12 h-16 a3 3 0 0 1 -3 -3 v-6 a3 3 0 0 1 3 -3 z" fill="url(#goldPin)"></path>
+          <path d="M312 246 h16 v12 h-16 a3 3 0 0 1 -3 -3 v-6 a3 3 0 0 1 3 -3 z" fill="url(#goldPin)"></path>
+          <path d="M312 270 h16 v12 h-16 a3 3 0 0 1 -3 -3 v-6 a3 3 0 0 1 3 -3 z" fill="url(#goldPin)"></path>
+        </g>
+
+        <!-- Matte Finish Chip Body -->
+        <rect x="325" y="170" width="150" height="140" fill="url(#chipGradient)" stroke="#2a2a35" strokeWidth="1.5" rx="14" ry="14"></rect>
+        <rect x="331" y="176" width="138" height="128" fill="none" stroke="#23232f" strokeWidth="1" strokeOpacity="0.8" rx="10" ry="10"></rect>
+        
+        <!-- Silicon Core Grid Die Pattern -->
+        <rect x="340" y="185" width="120" height="110" fill="url(#circuit-pattern)" rx="8" ry="8"></rect>
+        
+        <!-- Central Capsule Border and Inner Bezel Glow -->
+        <circle cx="400" cy="240" r="44" fill="none" stroke="#06b6d4" strokeWidth="1.5" strokeOpacity="0.3"></circle>
+        
+        <!-- FOREIGN OBJECT: Wave cylinder capsule core -->
+        <foreignObject x="250" y="90" width="300" height="300">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="fluid-core-container">
+            <div class="fluid-loader">
+              <div class="fluid-box"></div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </svg>
+  </div>
+
+</body>
+</html>
