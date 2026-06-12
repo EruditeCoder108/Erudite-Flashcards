@@ -1,0 +1,261 @@
+--- study.js
++++ study.fixed.js
+@@ -53,6 +53,7 @@
+     let touchStart = null;
+     let lastSwipeAt = 0;
+     let suppressNextClick = false;
++    let lastImageZoomAt = 0;
+     let srsCurrentCardKey = null;
+     let hasRenderedInitialCard = false;
+     const FLIP_LOCK_MS = 380;
+@@ -142,9 +143,32 @@
+         };
+     }
+ 
++    function getZoomableImage(target) {
++        if (!target?.closest) return null;
++
++        const directImage = target.closest(
++            'img.card-image-zoomable, img.term-image, img.definition-image, .term-text img, .definition-text img'
++        );
++
++        if (directImage instanceof HTMLImageElement && directImage.src && directImage.style.display !== 'none') {
++            return directImage;
++        }
++
++        const imageWrapper = target.closest('.image-container.has-image, .card-image-zoomable');
++        const wrappedImage = imageWrapper?.querySelector?.('img[src]');
++        if (wrappedImage instanceof HTMLImageElement && wrappedImage.style.display !== 'none') {
++            return wrappedImage;
++        }
++
++        return null;
++    }
++
+     function isInteractiveTarget(target) {
+-        if (!target) return false;
+-        return Boolean(target.closest('button, a, input, textarea, select, [contenteditable="true"], .modal.visible, .completion-screen.visible, .card-image-zoomable'));
++        if (!target?.closest) return false;
++        return Boolean(
++            target.closest('button, a, input, textarea, select, [contenteditable="true"], .modal.visible, .completion-screen.visible') ||
++            getZoomableImage(target)
++        );
+     }
+ 
+     function getScrollableCardContent(target) {
+@@ -555,10 +579,12 @@
+ 
+         fadeElement(termText, () => {
+             termText.innerHTML = formatContent(card.term);
++            enhanceInlineImages(termText);
+         });
+ 
+         fadeElement(definitionText, () => {
+             definitionText.innerHTML = formatContent(card.definition);
++            enhanceInlineImages(definitionText);
+         });
+ 
+         // Handle images before sizing text so mixed cards pick the right layout.
+@@ -649,16 +675,78 @@
+         if (imgSrc) {
+             imgElement.src = imgSrc;
+             imgElement.style.display = 'block';
+-            imgElement.style.cursor = 'zoom-in';
+-            imgElement.classList.add('card-image-zoomable');
++            prepareZoomableImage(imgElement);
+             imageContainer?.classList.add('has-image');
+         } else {
+             imgElement.style.display = 'none';
+             imgElement.removeAttribute('src');
+             imgElement.style.cursor = '';
+             imgElement.classList.remove('card-image-zoomable');
++            imgElement.removeAttribute('role');
++            imgElement.removeAttribute('tabindex');
++            imgElement.removeAttribute('aria-label');
+             imageContainer?.classList.remove('has-image');
+         }
++    }
++
++    function enhanceInlineImages(root) {
++        root?.querySelectorAll?.('img').forEach(prepareZoomableImage);
++    }
++
++    function stopCardInteraction(event) {
++        event?.preventDefault?.();
++        event?.stopPropagation?.();
++        event?.stopImmediatePropagation?.();
++
++        // Covers the synthetic click that mobile browsers may emit after touchend.
++        suppressNextClick = true;
++        setTimeout(() => {
++            suppressNextClick = false;
++        }, 260);
++    }
++
++    function openZoomableImageFromEvent(event, imgElement) {
++        if (!imgElement?.src || imgElement.style.display === 'none') return;
++
++        stopCardInteraction(event);
++
++        const now = performance.now();
++        if (now - lastImageZoomAt < 260) return;
++        lastImageZoomAt = now;
++
++        openImageModal(imgElement.currentSrc || imgElement.src);
++    }
++
++    function prepareZoomableImage(imgElement) {
++        if (!(imgElement instanceof HTMLImageElement)) return;
++
++        imgElement.classList.add('card-image-zoomable');
++        imgElement.style.cursor = 'zoom-in';
++        imgElement.setAttribute('role', 'button');
++        imgElement.setAttribute('tabindex', '0');
++        imgElement.setAttribute('aria-label', 'Open image preview');
++        imgElement.draggable = false;
++
++        if (imgElement.dataset.zoomBound === 'true') return;
++        imgElement.dataset.zoomBound = 'true';
++
++        imgElement.addEventListener('click', (event) => {
++            openZoomableImageFromEvent(event, imgElement);
++        });
++
++        imgElement.addEventListener('touchend', (event) => {
++            openZoomableImageFromEvent(event, imgElement);
++        }, { passive: false });
++
++        imgElement.addEventListener('pointerdown', (event) => {
++            event.stopPropagation();
++        });
++
++        imgElement.addEventListener('keydown', (event) => {
++            if (event.key === 'Enter' || event.key === ' ') {
++                openZoomableImageFromEvent(event, imgElement);
++            }
++        });
+     }
+ 
+     // Update progress
+@@ -911,8 +999,11 @@
+             event.preventDefault();
+             return;
+         }
+-        // Belt-and-suspenders: if a zoomable image was clicked, never flip
+-        if (event.target.closest('.card-image-zoomable')) return;
++        // Image areas are separate controls; clicking them should never flip the card.
++        if (getZoomableImage(event.target)) {
++            event.preventDefault();
++            return;
++        }
+         if (isInteractiveTarget(event.target)) return;
+         flipCard();
+     });
+@@ -1063,21 +1154,17 @@
+     // stopPropagation alone only prevents propagation past this element;
+     // it does NOT prevent other listeners registered on the same element.
+     flashcardContainer.addEventListener('click', (e) => {
+-        const img = e.target.closest('.card-image-zoomable');
+-        if (!img || !img.src) return;
+-        e.stopImmediatePropagation(); // kill ALL remaining listeners on this element
+-        e.preventDefault();
+-        openImageModal(img.src);
++        const img = getZoomableImage(e.target);
++        if (!img) return;
++        openZoomableImageFromEvent(e, img);
+     }, true); // capture phase — fires before the bubble-phase flip handler
+ 
+     // Touch: handle touchend directly on the card container (capture phase)
+     // so we don't rely on the synthetic click that browsers generate after a tap.
+     flashcardContainer.addEventListener('touchend', (e) => {
+-        const img = e.target.closest('.card-image-zoomable');
+-        if (!img || !img.src) return;
+-        e.stopImmediatePropagation();
+-        e.preventDefault(); // suppress the follow-up synthetic click
+-        openImageModal(img.src);
++        const img = getZoomableImage(e.target);
++        if (!img) return;
++        openZoomableImageFromEvent(e, img);
+     }, { capture: true, passive: false });
+     
+     // Close image modal when clicking the close button
+
+--- study.css
++++ study.fixed.css
+@@ -1894,3 +1894,76 @@
+     opacity: 1;
+ }
+ 
++/* Final image-click isolation and mobile card sizing overrides */
++.flashcard {
++    cursor: default;
++}
++
++.flashcard .card-face {
++    cursor: pointer;
++}
++
++.image-container.has-image,
++.image-container.has-image *,
++.card-image-zoomable {
++    cursor: zoom-in !important;
++}
++
++.card-image-zoomable {
++    pointer-events: auto !important;
++    user-select: none;
++    -webkit-user-select: none;
++    -webkit-user-drag: none;
++    touch-action: manipulation;
++}
++
++@media (max-width: 720px) {
++    .study-area {
++        display: grid !important;
++        grid-template-columns: 3rem minmax(0, calc(100vw - 7.25rem)) 3rem !important;
++        gap: 0.6rem !important;
++        padding: 0 0.45rem !important;
++    }
++
++    .card-container {
++        width: min(760px, calc(100vw - 7.25rem)) !important;
++        max-width: none !important;
++    }
++
++    .flashcard {
++        height: min(440px, calc(100vh - 205px)) !important;
++        min-height: min(320px, calc(100vh - 205px));
++    }
++}
++
++@media (max-width: 520px) {
++    .study-area {
++        grid-template-columns: 1fr !important;
++        padding: 0 !important;
++    }
++
++    .nav-button {
++        display: none !important;
++    }
++
++    .card-container {
++        width: calc(100vw - 1.25rem) !important;
++        max-width: none !important;
++    }
++
++    .flashcard {
++        height: min(460px, calc(100vh - 185px)) !important;
++        min-height: min(330px, calc(100vh - 185px));
++    }
++
++    .card-face {
++        padding: 0.85rem !important;
++    }
++
++    .term-text,
++    .definition-text {
++        padding-left: 0.5rem !important;
++        padding-right: 0.5rem !important;
++    }
++}
++

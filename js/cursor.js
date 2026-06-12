@@ -1,206 +1,89 @@
-// Cursor elements
+// ─── Erudite Custom Cursor ───────────────────────────────────────────────────
+// Supported styles: 'default' (system), 'fluid', 'context'
+// Comet cursor removed.
+// ─────────────────────────────────────────────────────────────────────────────
+
 let cursorDot, cursorOutline;
-let mouseX = 0;
-let mouseY = 0;
-let cursorX = 0;
-let cursorY = 0;
-let lastX = 0;
-let lastY = 0;
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+let lastX = 0, lastY = 0;
 let angle = 0;
 let isCursorHidden = false;
-let customCursorEnabled = true;
-let currentCursorStyle = 'fluid'; // Default style
+let customCursorEnabled = false;
+let currentCursorStyle = 'fluid';
 let animationFrameId = null;
 
-// Touch device detection - disable custom cursors on mobile
-const isTouchDevice = () => {
-    return (('ontouchstart' in window) ||
-        (navigator.maxTouchPoints > 0) ||
-        (navigator.msMaxTouchPoints > 0));
-};
-
-const isMobileDevice = () => {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-           (window.innerWidth <= 768 && window.innerHeight <= 1024);
-};
-
-// Disable custom cursors completely on touch devices
-const shouldDisableCustomCursor = () => {
-    return isTouchDevice() || isMobileDevice();
-};
-
-// Context-aware cursor variables
+// Context cursor state
 let orbitX = 0, orbitY = 0;
 let orbitScale = 1;
 let isMouseDown = false;
 let isIBeamActive = false;
 let stateResetTimer = null;
 
-// Comet cursor variables
-let trailCount = 15;
-let trails = [];
+// ─── Device guard ─────────────────────────────────────────────────────────────
+// Disable the custom cursor ONLY when the device has NO fine pointer (mouse /
+// trackpad). Touch-screen laptops, Surface Pros etc. still have a fine pointer
+// available, so they should keep the custom cursor.
+// The old check used window.innerWidth <= 768 which broke on any small window
+// or on any laptop with a built-in touchscreen (very common).
+const shouldDisableCustomCursor = () => {
+    // If the browser reports a fine pointer exists, keep the cursor.
+    if (window.matchMedia('(pointer: fine)').matches) return false;
+    // Pure coarse-only devices (phones, tablets without mouse): disable.
+    return true;
+};
 
-// Initialize cursor elements
+// ─── DOM helpers ─────────────────────────────────────────────────────────────
+function removeCursorElements() {
+    document.querySelectorAll('#cursor-dot, #cursor-outline').forEach(el => el.remove());
+}
+
+function applyNoCursorClass(enable) {
+    // Apply cursor:none to BOTH html and body so it covers every pixel of the page,
+    // including areas outside the app-container (this fixes the dual-cursor bug).
+    document.documentElement.classList.toggle('custom-cursor-active', enable);
+    document.body.classList.toggle('custom-cursor-enabled', enable);
+    if (enable) {
+        document.body.classList.add(`cursor-style-${currentCursorStyle}`);
+    } else {
+        document.body.classList.remove('cursor-style-fluid', 'cursor-style-context');
+    }
+}
+
+// ─── Initialise cursor DOM elements ─────────────────────────────────────────
 function initCursor() {
-    // Remove any existing cursor elements
-    const existingDots = document.querySelectorAll('#cursor-dot');
-    const existingOutlines = document.querySelectorAll('#cursor-outline');
-    const existingTrails = document.querySelectorAll('.trail');
-    
-    existingDots.forEach(el => el.remove());
-    existingOutlines.forEach(el => el.remove());
-    existingTrails.forEach(el => el.remove());
-    
-    // Create new cursor elements based on style
+    stopCursorAnimation();
+    removeCursorElements();
+
+    if (!customCursorEnabled || currentCursorStyle === 'default') return;
+
+    // Always create the dot
     cursorDot = document.createElement('div');
     cursorDot.id = 'cursor-dot';
     document.body.appendChild(cursorDot);
-    
-    // Create outline for context-aware cursor
+
+    // Context needs the orbiting outline ring
     if (currentCursorStyle === 'context') {
         cursorOutline = document.createElement('div');
         cursorOutline.id = 'cursor-outline';
         document.body.appendChild(cursorOutline);
-    }
-    
-    // Create trails for comet cursor
-    if (currentCursorStyle === 'comet') {
-        trails = [];
-        for (let i = 0; i < trailCount; i++) {
-            const trail = document.createElement('div');
-            trail.classList.add('trail');
-            document.body.appendChild(trail);
-            trails.push({ el: trail, x: 0, y: 0 });
-        }
-    }
-    
-    // Reset cursor state
-    isCursorHidden = false;
-    
-    // Initialize cursor position to center of screen
-    mouseX = window.innerWidth / 2;
-    mouseY = window.innerHeight / 2;
-    cursorX = mouseX;
-    cursorY = mouseY;
-    lastX = mouseX;
-    lastY = mouseY;
-    orbitX = mouseX;
-    orbitY = mouseY;
-    
-    // Start animation if cursor is enabled
-    if (customCursorEnabled) {
-        startCursorAnimation();
-    }
-}
-
-// Toggle cursor on/off
-function toggleCustomCursor(enable) {
-    // Always disable custom cursors on touch devices
-    if (shouldDisableCustomCursor()) {
-        customCursorEnabled = false;
-        localStorage.setItem('customCursorEnabled', 'false');
-
-        // Remove custom cursor class and hide elements
-        document.body.classList.remove('custom-cursor-enabled');
-        if (cursorDot) {
-            cursorDot.style.display = 'none';
-            if (cursorOutline) cursorOutline.style.display = 'none';
-            stopCursorAnimation();
-        }
-
-        // Clean up comet cursor trails
-        const trails = document.querySelectorAll('.trail');
-        trails.forEach(trail => {
-            trail.style.display = 'none';
-            trail.style.opacity = '0';
-        });
-
-        // Disable cursor style selector
-        const cursorStyleSelect = document.getElementById('cursor-style-select');
-        if (cursorStyleSelect) {
-            cursorStyleSelect.disabled = true;
-            cursorStyleSelect.parentElement.style.opacity = '0.5';
-        }
-
-        // Also disable the toggle
-        const cursorToggle = document.getElementById('custom-cursor-toggle');
-        if (cursorToggle) {
-            cursorToggle.checked = false;
-            cursorToggle.disabled = true;
-        }
-
-        return;
-    }
-
-    customCursorEnabled = enable;
-    localStorage.setItem('customCursorEnabled', enable ? 'true' : 'false');
-
-    // Get cursor style selector to enable/disable it
-    const cursorStyleSelect = document.getElementById('cursor-style-select');
-
-    if (enable) {
-        // Enable custom cursor
-        document.body.classList.add('custom-cursor-enabled');
-        if (cursorDot) {
-            cursorDot.style.display = 'block';
-            if (cursorOutline) cursorOutline.style.display = 'block';
-            startCursorAnimation();
-        } else {
-            initCursor();
-        }
-
-        // Enable cursor style selector
-        if (cursorStyleSelect) {
-            cursorStyleSelect.disabled = false;
-            cursorStyleSelect.parentElement.style.opacity = '1';
-        }
     } else {
-        // Disable custom cursor
-        document.body.classList.remove('custom-cursor-enabled');
-
-        // Hide custom cursor elements
-        if (cursorDot) {
-            cursorDot.style.display = 'none';
-            if (cursorOutline) cursorOutline.style.display = 'none';
-            stopCursorAnimation();
-        }
-
-        // Clean up comet cursor trails
-        const trails = document.querySelectorAll('.trail');
-        trails.forEach(trail => {
-            trail.style.display = 'none';
-            trail.style.opacity = '0';
-        });
-
-        // Disable cursor style selector
-        if (cursorStyleSelect) {
-            cursorStyleSelect.disabled = true;
-            cursorStyleSelect.parentElement.style.opacity = '0.5';
-        }
+        cursorOutline = null;
     }
+
+    // Seed position to avoid initial jump
+    mouseX = cursorX = lastX = orbitX = window.innerWidth / 2;
+    mouseY = cursorY = lastY = orbitY = window.innerHeight / 2;
+    isCursorHidden = false;
+
+    startCursorAnimation();
 }
 
-// Change cursor style
-function changeCursorStyle(style) {
-    currentCursorStyle = style;
-    localStorage.setItem('cursorStyle', style);
-    
-    // Update body classes
-    document.body.classList.remove('cursor-style-fluid', 'cursor-style-context', 'cursor-style-comet');
-    document.body.classList.add(`cursor-style-${style}`);
-    
-    // Reinitialize cursor with new style
-    initCursor();
-}
-
-// Start cursor animation
+// ─── Animation loop ───────────────────────────────────────────────────────────
 function startCursorAnimation() {
-    if (!animationFrameId) {
-        animateCursor();
-    }
+    if (!animationFrameId) animateCursor();
 }
 
-// Stop cursor animation
 function stopCursorAnimation() {
     if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
@@ -208,279 +91,208 @@ function stopCursorAnimation() {
     }
 }
 
-// Fluid cursor animation function
-function animateFluidCursor() {
-    // Smooth following with easing
+function animateCursor() {
+    if (!customCursorEnabled) return;
+
+    if (currentCursorStyle === 'fluid') {
+        animateFluid();
+    } else if (currentCursorStyle === 'context') {
+        animateContext();
+    }
+
+    animationFrameId = requestAnimationFrame(animateCursor);
+}
+
+// ─── Fluid cursor ─────────────────────────────────────────────────────────────
+function animateFluid() {
     const dx = mouseX - cursorX;
     const dy = mouseY - cursorY;
     cursorX += dx * 0.5;
     cursorY += dy * 0.5;
 
-    // Keep cursor within viewport bounds to prevent scrollbars
-    const cursorSize = 25; // Size of fluid cursor dot
-    const halfSize = cursorSize / 2;
-    cursorX = Math.max(halfSize, Math.min(window.innerWidth - halfSize, cursorX));
-    cursorY = Math.max(halfSize, Math.min(window.innerHeight - halfSize, cursorY));
-
-    // Calculate follow speed for stretching effect
-    const followSpeed = Math.hypot(cursorX - lastX, cursorY - lastY);
+    const speed = Math.hypot(cursorX - lastX, cursorY - lastY);
     lastX = cursorX;
     lastY = cursorY;
 
-    // Update angle for rotation
-    if (followSpeed > 0.1) {
-        angle = Math.atan2(dy, dx);
-    }
+    if (speed > 0.1) angle = Math.atan2(dy, dx);
 
-    // Calculate stretch based on movement speed
-    const stretch = Math.min(followSpeed * 0.06, 0.4);
+    const stretch = Math.min(speed * 0.06, 0.4);
     const scaleX = 1 + stretch;
     const scaleY = Math.max(0.4, 1 - stretch);
 
-    // Apply transform to cursor
-    if (cursorDot) {
-        cursorDot.style.left = cursorX + 'px';
-        cursorDot.style.top = cursorY + 'px';
-        
-        // Don't apply rotation/scaling when in text mode (I-beam) or pointer mode (precise)
-        if (document.body.classList.contains('cursor-mode-text')) {
-            cursorDot.style.transform = 'translate(-50%, -50%)';
-        } else if (document.body.classList.contains('cursor-mode-pointer')) {
-            // In pointer mode, use minimal animation for precision
-            const preciseScale = Math.min(followSpeed * 0.02, 0.1);
-            cursorDot.style.transform = `translate(-50%, -50%) scale(${1 + preciseScale})`;
-        } else {
-            cursorDot.style.transform = `translate(-50%, -50%) rotate(${angle}rad) scaleX(${scaleX}) scaleY(${scaleY})`;
-        }
+    if (!cursorDot) return;
+    cursorDot.style.left = cursorX + 'px';
+    cursorDot.style.top  = cursorY + 'px';
+
+    if (document.body.classList.contains('cursor-mode-text')) {
+        cursorDot.style.transform = 'translate(-50%, -50%)';
+    } else if (document.body.classList.contains('cursor-mode-pointer')) {
+        cursorDot.style.transform = `translate(-50%, -50%) scale(${1 + Math.min(speed * 0.02, 0.1)})`;
+    } else {
+        cursorDot.style.transform = `translate(-50%, -50%) rotate(${angle}rad) scaleX(${scaleX}) scaleY(${scaleY})`;
     }
 }
 
-// Context-aware cursor animation function
-function animateContextCursor() {
+// ─── Context-aware cursor ─────────────────────────────────────────────────────
+function animateContext() {
     orbitX += (mouseX - orbitX) * 0.65;
     orbitY += (mouseY - orbitY) * 0.65;
 
-    // Keep cursor elements within viewport bounds to prevent scrollbars
-    const dotSize = 8; // Size of context cursor dot
-    const outlineSize = 30; // Size of context cursor outline
-    const halfDotSize = dotSize / 2;
-    const halfOutlineSize = outlineSize / 2;
-
-    const clampedMouseX = Math.max(halfDotSize, Math.min(window.innerWidth - halfDotSize, mouseX));
-    const clampedMouseY = Math.max(halfDotSize, Math.min(window.innerHeight - halfDotSize, mouseY));
-    const clampedOrbitX = Math.max(halfOutlineSize, Math.min(window.innerWidth - halfOutlineSize, orbitX));
-    const clampedOrbitY = Math.max(halfOutlineSize, Math.min(window.innerHeight - halfOutlineSize, orbitY));
-
     if (cursorDot) {
-        cursorDot.style.transform = `translate(${clampedMouseX}px, ${clampedMouseY}px) translate(-50%, -50%)`;
+        cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
     }
 
     if (cursorOutline) {
-        const currentClickScale = isMouseDown ? 0.8 : 1;
-        const totalScale = orbitScale * currentClickScale;
-
+        const scale = orbitScale * (isMouseDown ? 0.8 : 1);
         if (isIBeamActive) {
-            cursorOutline.style.transform = `translate(${clampedOrbitX}px, ${clampedOrbitY}px) translate(-50%, -50%)`;
+            cursorOutline.style.transform = `translate(${orbitX}px, ${orbitY}px) translate(-50%, -50%)`;
         } else {
-            cursorOutline.style.transform = `translate(${clampedOrbitX}px, ${clampedOrbitY}px) translate(-50%, -50%) scale(${totalScale})`;
+            cursorOutline.style.transform = `translate(${orbitX}px, ${orbitY}px) translate(-50%, -50%) scale(${scale})`;
         }
     }
 }
 
-// Comet cursor animation function
-function animateCometCursor() {
-    // Keep cursor elements within viewport bounds to prevent scrollbars
-    const dotSize = 20; // Size of comet cursor dot
-    const trailSize = 8; // Size of comet trail elements
-    const halfDotSize = dotSize / 2;
-    const halfTrailSize = trailSize / 2;
-
-    const clampedMouseX = Math.max(halfDotSize, Math.min(window.innerWidth - halfDotSize, mouseX));
-    const clampedMouseY = Math.max(halfDotSize, Math.min(window.innerHeight - halfDotSize, mouseY));
-
-    if (cursorDot) {
-        cursorDot.style.left = `${clampedMouseX - cursorDot.offsetWidth / 2}px`;
-        cursorDot.style.top = `${clampedMouseY - cursorDot.offsetHeight / 2}px`;
-    }
-
-    let prevX = clampedMouseX, prevY = clampedMouseY;
-    trails.forEach((t, index) => {
-        const currentX = t.x, currentY = t.y;
-        t.x += (prevX - currentX) * 0.4;
-        t.y += (prevY - currentY) * 0.4;
-
-        // Keep trail elements within viewport bounds
-        const clampedTrailX = Math.max(halfTrailSize, Math.min(window.innerWidth - halfTrailSize, t.x));
-        const clampedTrailY = Math.max(halfTrailSize, Math.min(window.innerHeight - halfTrailSize, t.y));
-
-        t.el.style.left = `${clampedTrailX - t.el.offsetWidth / 2}px`;
-        t.el.style.top = `${clampedTrailY - t.el.offsetHeight / 2}px`;
-        const opacity = 1 - (index / trailCount) * 0.8;
-        const scale = 1 - (index / trailCount) * 0.5;
-        t.el.style.opacity = opacity;
-        t.el.style.transform = `scale(${scale})`;
-        prevX = clampedTrailX; prevY = clampedTrailY;
-    });
-}
-
-// Main cursor animation function
-function animateCursor() {
-    if (!customCursorEnabled) return;
-    
-    switch (currentCursorStyle) {
-        case 'fluid':
-            animateFluidCursor();
-            break;
-        case 'context':
-            animateContextCursor();
-            break;
-        case 'comet':
-            animateCometCursor();
-            break;
-    }
-    
-    animationFrameId = requestAnimationFrame(animateCursor);
-}
-
-// Create click ripple effect (for fluid cursor)
+// ─── Click ripple (fluid only) ────────────────────────────────────────────────
 function createClickRipple(x, y) {
     if (currentCursorStyle !== 'fluid') return;
-    
     const ripple = document.createElement('div');
     ripple.className = 'click-ripple';
-    ripple.style.width = '50px';
-    ripple.style.height = '50px';
-    ripple.style.left = x + 'px';
-    ripple.style.top = y + 'px';
+    ripple.style.cssText = `width:50px;height:50px;left:${x}px;top:${y}px`;
     document.body.appendChild(ripple);
-    
-    // Remove ripple after animation completes
-    setTimeout(() => {
-        if (ripple && ripple.parentNode) {
-            ripple.remove();
-        }
-    }, 500);
+    setTimeout(() => ripple?.parentNode && ripple.remove(), 500);
 }
 
-// Context-aware cursor state management
+// ─── Context cursor semantic states ──────────────────────────────────────────
 function setCursorState(state) {
     if (currentCursorStyle !== 'context') return;
-    
     if (stateResetTimer) clearTimeout(stateResetTimer);
+    document.body.classList.remove('cursor-state-copy', 'cursor-state-paste', 'cursor-state-typing', 'cursor-state-disabled');
+
     let duration = 0;
-    
-    switch(state) {
-        case 'copy': 
-            document.body.classList.add('cursor-state-copy');
-            duration = 1000; 
-            break;
-        case 'paste': 
-            document.body.classList.add('cursor-state-paste');
-            duration = 1000; 
-            break;
-        case 'typing': 
-            document.body.classList.add('cursor-state-typing');
-            duration = 1500; 
-            break;
-        case 'disabled': 
-            document.body.classList.add('cursor-state-disabled');
-            break;
-        default: 
-            document.body.classList.remove('cursor-state-copy', 'cursor-state-paste', 'cursor-state-typing', 'cursor-state-disabled');
-            break;
+    if (state === 'copy')    { document.body.classList.add('cursor-state-copy');    duration = 1000; }
+    if (state === 'paste')   { document.body.classList.add('cursor-state-paste');   duration = 1000; }
+    if (state === 'typing')  { document.body.classList.add('cursor-state-typing');  duration = 1500; }
+    if (state === 'disabled'){ document.body.classList.add('cursor-state-disabled'); }
+
+    if (duration > 0) stateResetTimer = setTimeout(() => setCursorState('default'), duration);
+}
+
+// ─── Public API ───────────────────────────────────────────────────────────────
+/**
+ * Activate or deactivate the custom cursor.
+ * @param {boolean} enable
+ */
+function toggleCustomCursor(enable) {
+    if (shouldDisableCustomCursor()) enable = false;
+
+    customCursorEnabled = enable;
+    localStorage.setItem('customCursorEnabled', enable ? 'true' : 'false');
+
+    if (!enable || currentCursorStyle === 'default') {
+        stopCursorAnimation();
+        removeCursorElements();
+        applyNoCursorClass(false);
+        return;
     }
-    
-    if (duration > 0) {
-        stateResetTimer = setTimeout(() => setCursorState('default'), duration);
+
+    applyNoCursorClass(true);
+    initCursor();
+}
+
+/**
+ * Switch between cursor styles.
+ * @param {'default'|'fluid'|'context'} style
+ */
+function changeCursorStyle(style) {
+    currentCursorStyle = style;
+    localStorage.setItem('cursorStyle', style);
+
+    // Remove old body classes
+    document.body.classList.remove('cursor-style-fluid', 'cursor-style-context');
+
+    if (style === 'default') {
+        stopCursorAnimation();
+        removeCursorElements();
+        applyNoCursorClass(false);
+        return;
+    }
+
+    applyNoCursorClass(customCursorEnabled);
+    if (customCursorEnabled) {
+        document.body.classList.add(`cursor-style-${style}`);
+        initCursor();
     }
 }
 
-// Initialize cursor when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Load cursor preferences from localStorage
-    const savedCursorPref = localStorage.getItem('customCursorEnabled');
-    const savedCursorStyle = localStorage.getItem('cursorStyle');
+// ─── Initialise on DOMContentLoaded ──────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    if (shouldDisableCustomCursor()) return;
 
-    customCursorEnabled = savedCursorPref === null ? true : savedCursorPref === 'true';
-    currentCursorStyle = savedCursorStyle || 'fluid';
+    // Load saved prefs
+    const savedEnabled = localStorage.getItem('customCursorEnabled');
+    const savedStyle   = localStorage.getItem('cursorStyle') || 'fluid';
 
-    // Skip cursor initialization on touch devices
-    if (shouldDisableCustomCursor()) {
-        customCursorEnabled = false;
-        // Don't initialize cursor at all on touch devices
+    // Map legacy 'comet' to 'fluid' so old saves don't break
+    currentCursorStyle = (savedStyle === 'comet') ? 'fluid' : savedStyle;
+    customCursorEnabled = savedEnabled === null ? true : savedEnabled === 'true';
 
-        // Disable cursor controls in settings
-        const cursorToggle = document.getElementById('custom-cursor-toggle');
-        const cursorStyleSelect = document.getElementById('cursor-style-select');
-
-        if (cursorToggle) {
-            cursorToggle.checked = false;
-            cursorToggle.disabled = true;
-        }
-
-        if (cursorStyleSelect) {
-            cursorStyleSelect.disabled = true;
-            cursorStyleSelect.parentElement.style.opacity = '0.5';
-        }
-
-        return; // Exit early, don't set up cursor event listeners
+    // Reflect style onto body immediately (needed for CSS scoping)
+    if (customCursorEnabled && currentCursorStyle !== 'default') {
+        applyNoCursorClass(true);
+        initCursor();
     }
 
-    // Initialize cursor for non-touch devices
-    initCursor();
-
-    // Set initial state based on preference
-    if (customCursorEnabled) {
-        document.body.classList.add('custom-cursor-enabled');
-        document.body.classList.add(`cursor-style-${currentCursorStyle}`);
-    } else {
-        document.body.classList.remove('custom-cursor-enabled');
-    }
-    toggleCustomCursor(customCursorEnabled);
-    
-    // Update the toggle in settings if it exists
-    const cursorToggle = document.getElementById('custom-cursor-toggle');
-    if (cursorToggle) {
-        cursorToggle.checked = customCursorEnabled;
-        cursorToggle.addEventListener('change', (e) => {
-            toggleCustomCursor(e.target.checked);
-        });
-    }
-    
-    // Update cursor style selector if it exists
-    const cursorStyleSelect = document.getElementById('cursor-style-select');
-    if (cursorStyleSelect) {
-        cursorStyleSelect.value = currentCursorStyle;
-        cursorStyleSelect.addEventListener('change', (e) => {
-            changeCursorStyle(e.target.value);
-        });
-        
-        // Set initial disabled state if custom cursor is off
-        if (!customCursorEnabled) {
-            cursorStyleSelect.disabled = true;
-            cursorStyleSelect.parentElement.style.opacity = '0.5';
-        }
-    }
-
-    // Simplified modal cursor handling - cursor stays visible but modals handle their own cursor
-    // This ensures cursor appears properly over all modals without complex hide/show logic
-
-    // Update cursor position
-    document.addEventListener('mousemove', (e) => {
+    // ── Mouse tracking ────────────────────────────────────────────────────────
+    document.addEventListener('mousemove', e => {
         if (!customCursorEnabled) return;
-        
         mouseX = e.clientX;
         mouseY = e.clientY;
-        
-        // Show cursor if it was hidden
+
         if (isCursorHidden && cursorDot) {
             cursorDot.style.opacity = '1';
             if (cursorOutline) cursorOutline.style.opacity = '1';
             isCursorHidden = false;
         }
+
+        // ── Cursor mode detection ─────────────────────────────────────────
+        document.body.classList.remove('cursor-mode-pointer', 'cursor-mode-text');
+        const target = e.target;
+
+        if (target.closest('a, button, [role="button"], [onclick], [tabindex="0"], input[type="checkbox"], input[type="radio"], select, label')) {
+            document.body.classList.add('cursor-mode-pointer');
+            if (currentCursorStyle === 'context') orbitScale = 1.5;
+        } else {
+            const style = window.getComputedStyle(target);
+            const isText = style.cursor === 'text' ||
+                           target.isContentEditable ||
+                           target.nodeName === 'INPUT' ||
+                           target.nodeName === 'TEXTAREA';
+            if (isText) {
+                document.body.classList.add('cursor-mode-text');
+                if (currentCursorStyle === 'context') {
+                    isIBeamActive = true;
+                    if (cursorDot) cursorDot.style.opacity = '0';
+                    if (cursorOutline) {
+                        cursorOutline.style.width  = '1px';
+                        cursorOutline.style.height = '28px';
+                        cursorOutline.style.borderRadius = '2px';
+                    }
+                }
+            } else {
+                if (currentCursorStyle === 'context') {
+                    orbitScale = 1;
+                    isIBeamActive = false;
+                    if (cursorDot) cursorDot.style.opacity = '1';
+                    if (cursorOutline) {
+                        cursorOutline.style.width  = '30px';
+                        cursorOutline.style.height = '30px';
+                        cursorOutline.style.borderRadius = '50%';
+                    }
+                }
+            }
+        }
     });
 
-    // Hide cursor when leaving window
     document.addEventListener('mouseleave', () => {
         if (customCursorEnabled && cursorDot) {
             cursorDot.style.opacity = '0';
@@ -489,7 +301,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Show cursor when entering window
     document.addEventListener('mouseenter', () => {
         if (customCursorEnabled && cursorDot && !isCursorHidden) {
             cursorDot.style.opacity = '1';
@@ -497,13 +308,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Click effect with ripple
-    document.addEventListener('mousedown', (e) => {
-        if (customCursorEnabled) {
-            document.body.classList.add('cursor-clicking');
-            isMouseDown = true;
-            createClickRipple(e.clientX, e.clientY);
-        }
+    document.addEventListener('mousedown', e => {
+        if (!customCursorEnabled) return;
+        document.body.classList.add('cursor-clicking');
+        isMouseDown = true;
+        createClickRipple(e.clientX, e.clientY);
     });
 
     document.addEventListener('mouseup', () => {
@@ -511,95 +320,40 @@ document.addEventListener('DOMContentLoaded', function() {
         isMouseDown = false;
     });
 
-    // Update cursor mode based on hovered elements
-    document.addEventListener('mousemove', (e) => {
-        const target = e.target;
-        
-        // Reset all cursor modes
-        document.body.classList.remove('cursor-mode-pointer', 'cursor-mode-text');
-        
-        // Check if we're hovering over a clickable element or precise UI element
-        if (target.closest('a, button, [role="button"], [onclick], [tabindex="0"], input[type="range"], input[type="slider"], .slider, .range, .clean-slider, .settings-slider, .compact-slider, .toggle-slider, .slider-container, .slider-with-value, [data-slider], [data-range]')) {
-            document.body.classList.add('cursor-mode-pointer');
-            
-            // Context cursor hover effects
-            if (currentCursorStyle === 'context') {
-                orbitScale = 1.5;
-            }
-        } 
-        // Check if we're hovering over text
-        else if (target.closest('p, h1, h2, h3, h4, h5, h6, span, div, label, input[type="text"], textarea, [contenteditable]')) {
-            const style = window.getComputedStyle(target);
-            const isTextElement = style.cursor === 'text' || 
-                                target.isContentEditable ||
-                                target.nodeName === 'INPUT' || 
-                                target.nodeName === 'TEXTAREA';
-            
-            if (isTextElement) {
-                document.body.classList.add('cursor-mode-text');
-                
-                // Context cursor text mode
-                if (currentCursorStyle === 'context') {
-                    isIBeamActive = true;
-                    if (cursorDot) cursorDot.style.opacity = '0';
-                    if (cursorOutline) {
-                        cursorOutline.style.width = '1px';
-                        cursorOutline.style.height = '28px';
-                        cursorOutline.style.borderRadius = '2px';
-                    }
-                }
-                // Fluid cursor text mode - I-beam transformation is handled by CSS
-            }
-        } else {
-            // Reset context cursor states
-            if (currentCursorStyle === 'context') {
-                orbitScale = 1;
-                isIBeamActive = false;
-                if (cursorDot) cursorDot.style.opacity = '1';
-                if (cursorOutline) {
-                    cursorOutline.style.width = '30px';
-                    cursorOutline.style.height = '30px';
-                    cursorOutline.style.borderRadius = '50%';
-                }
-            }
-            // Fluid cursor reset is handled by CSS class removal
-        }
-    });
-
-    // Context cursor event listeners
-    document.addEventListener('copy', () => setCursorState('copy'));
-    document.addEventListener('paste', () => setCursorState('paste'));
+    // Semantic state hooks for context cursor
+    document.addEventListener('copy',    () => setCursorState('copy'));
+    document.addEventListener('paste',   () => setCursorState('paste'));
     document.addEventListener('keydown', () => setCursorState('typing'));
 
-    // Handle window resize to update cursor bounds
-    window.addEventListener('resize', () => {
-        // Ensure cursor stays within new viewport bounds after resize
-        if (customCursorEnabled && cursorDot) {
-            const cursorSize = currentCursorStyle === 'fluid' ? 25 :
-                              currentCursorStyle === 'comet' ? 20 : 8;
-            const halfSize = cursorSize / 2;
-
-            // Clamp current cursor position to new viewport
-            mouseX = Math.max(halfSize, Math.min(window.innerWidth - halfSize, mouseX));
-            mouseY = Math.max(halfSize, Math.min(window.innerHeight - halfSize, mouseY));
-            cursorX = Math.max(halfSize, Math.min(window.innerWidth - halfSize, cursorX));
-            cursorY = Math.max(halfSize, Math.min(window.innerHeight - halfSize, cursorY));
-        }
-    });
-
-    // Handle touch devices
-    document.addEventListener('touchstart', () => {
-        if (cursorDot) {
-            cursorDot.style.opacity = '0';
-            if (cursorOutline) cursorOutline.style.opacity = '0';
-        }
-    });
-
-    // Re-enable cursor after touch end
-    document.addEventListener('touchend', () => {
-        if (cursorDot) {
-            cursorDot.style.opacity = '1';
-            if (cursorOutline) cursorOutline.style.opacity = '1';
-        }
-    });
+    // Sync the radio buttons in settings if they exist on this page
+    syncCursorRadios();
 });
+
+// ─── Radio button sync helper (called after DOM ready) ───────────────────────
+function syncCursorRadios() {
+    const radios = document.querySelectorAll('input[name="cursor-style"]');
+    if (!radios.length) return;
+
+    // Set initial state
+    const activeValue = customCursorEnabled ? currentCursorStyle : 'default';
+    radios.forEach(r => { r.checked = (r.value === activeValue); });
+
+    // Listen for changes
+    radios.forEach(r => r.addEventListener('change', () => {
+        const val = r.value;
+        if (val === 'default') {
+            customCursorEnabled = false;
+            localStorage.setItem('customCursorEnabled', 'false');
+            changeCursorStyle('default');
+        } else {
+            customCursorEnabled = true;
+            localStorage.setItem('customCursorEnabled', 'true');
+            changeCursorStyle(val);
+        }
+    }));
+}
+
+// Expose globally so other pages (study.html etc.) can call these
+window.toggleCustomCursor  = toggleCustomCursor;
+window.changeCursorStyle   = changeCursorStyle;
+window.syncCursorRadios    = syncCursorRadios;

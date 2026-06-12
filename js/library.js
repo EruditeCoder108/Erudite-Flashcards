@@ -124,9 +124,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             id: classData.id || `class-${now}`,
             name: String(classData.name || 'Untitled Class').trim() || 'Untitled Class',
             color: /^#[0-9a-f]{6}$/i.test(String(classData.color || '')) ? classData.color : '#3B82F6',
+            icon: classData.icon || 'fa-graduation-cap',
             created: classData.created || now,
             lastModified: classData.lastModified || now
         };
+    }
+
+    function getClassIcon(classId) {
+        return getClassById(classId)?.icon || 'fa-layer-group';
     }
 
     function getClassById(classId) {
@@ -175,7 +180,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         newOption.value = '__new';
         newOption.textContent = '+ New Class';
         selectElement.appendChild(newOption);
-        selectElement.value = [...selectElement.options].some(option => option.value === valueToSelect) ? valueToSelect : '';
+        const finalValue = [...selectElement.options].some(option => option.value === valueToSelect) ? valueToSelect : '';
+        selectElement.value = finalValue;
+
+        if (selectElement.id === 'import-class-select') {
+            const editBtn = document.getElementById('edit-import-class-btn');
+            if (editBtn) {
+                editBtn.style.display = (finalValue && finalValue !== '__new') ? 'inline-flex' : 'none';
+            }
+        }
     }
 
     let premadeSubjects = [
@@ -413,19 +426,45 @@ document.addEventListener('DOMContentLoaded', async () => {
                 classSets.some(set => String(set.name || '').toLowerCase().includes(term));
         });
 
-        if (classesToShow.length === 0) {
+        if (classesToShow.length === 0 && term) {
             const heading = emptyState.querySelector('h2');
             const description = emptyState.querySelector('p');
-            if (heading) heading.textContent = 'No Classes Yet';
-            if (description) description.textContent = 'Create a class from the editor or import flow to organize your sets.';
+            if (heading) heading.textContent = 'No Classes Found';
+            if (description) description.textContent = 'Try adjusting your search term.';
             showEmptyState();
             return;
         }
 
         hideEmptyState();
+
+        if (!term) {
+            setsContainer.appendChild(createAddClassCard());
+        }
+
         classesToShow.forEach(classItem => {
             setsContainer.appendChild(createClassCard(classItem));
         });
+    }
+
+    function createAddClassCard() {
+        const card = document.createElement('article');
+        card.className = 'class-card add-class-card';
+        card.innerHTML = `
+            <div class="class-card-content add-class-content">
+                <div class="add-class-inner">
+                    <div class="add-class-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h3>Create New Class</h3>
+                    <p>Organize sets by subject</p>
+                </div>
+            </div>
+        `;
+        card.addEventListener('click', () => {
+            playClickSound();
+            showClassModal();
+        });
+        return card;
     }
 
     function createClassCard(classItem) {
@@ -506,6 +545,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (classNameInput) classNameInput.value = classItem?.name || '';
         if (classColorInput) classColorInput.value = classItem?.color || '#3B82F6';
         if (deleteClassBtn) deleteClassBtn.classList.toggle('hidden', !classItem);
+        
+        // Highlight active icon
+        const activeIcon = classItem?.icon || 'fa-graduation-cap';
+        const iconGrid = document.getElementById('class-icon-grid');
+        if (iconGrid) {
+            iconGrid.querySelectorAll('.icon-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-icon') === activeIcon);
+            });
+        }
+        
         classModal.classList.remove('hidden');
         classModal.classList.add('visible');
         setTimeout(() => classNameInput?.focus(), 40);
@@ -526,19 +575,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             classNameInput?.focus();
             return;
         }
+        
+        const activeIconBtn = document.querySelector('#class-icon-grid .icon-btn.active');
+        const icon = activeIconBtn ? activeIconBtn.getAttribute('data-icon') : 'fa-graduation-cap';
 
         try {
+            const classPayload = {
+                ...(classForEditor || {}),
+                name,
+                color: classColorInput?.value || '#3B82F6',
+                icon
+            };
             const savedClass = window.flashcardStore?.saveClass
-                ? await window.flashcardStore.saveClass({
-                    ...(classForEditor || {}),
-                    name,
-                    color: classColorInput?.value || '#3B82F6'
-                })
-                : normalizeClassRecord({
-                    ...(classForEditor || {}),
-                    name,
-                    color: classColorInput?.value || '#3B82F6'
-                });
+                ? await window.flashcardStore.saveClass(classPayload)
+                : normalizeClassRecord(classPayload);
 
             if (!window.flashcardStore?.saveClass) {
                 const updated = flashcardClasses.filter(item => String(item.id) !== String(savedClass.id));
@@ -601,7 +651,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const card = setTemplate.content.cloneNode(true).querySelector('.set-card');
         
         // Set content
-        card.querySelector('.set-name').textContent = set.name;
+        const setNameEl = card.querySelector('.set-name');
+        setNameEl.textContent = set.name;
+        setNameEl.title = set.name; // show full name on hover when truncated
         const cardCount = Array.isArray(set.cards) ? set.cards.length : 0;
         card.querySelector('.card-count').textContent = `${cardCount} ${cardCount === 1 ? 'card' : 'cards'}`;
         
@@ -613,15 +665,54 @@ document.addEventListener('DOMContentLoaded', async () => {
         const studyCount = set.openedCount || 0;
         card.querySelector('.study-count').textContent = `${studyCount} ${studyCount === 1 ? 'time' : 'times'} studied`;
 
+        const color = getClassColor(set.classId);
+        const icon = getClassIcon(set.classId);
+
+        // Render themed icon box
+        const iconBox = card.querySelector('.set-icon-box');
+        if (iconBox) {
+            iconBox.style.backgroundColor = `${color}20`; // semi-transparent class color
+            iconBox.style.color = color;
+            iconBox.innerHTML = `<i class="fas ${icon}"></i>`;
+        }
+
         const classPill = card.querySelector('.set-class-pill');
         if (classPill) {
-            const color = getClassColor(set.classId);
-            classPill.innerHTML = `
-                <span style="--class-color: ${color}">
-                    <i class="fas fa-circle"></i>
-                    ${escapeHtml(getClassLabel(set.classId))}
-                </span>
-            `;
+            classPill.style.backgroundColor = `${color}15`;
+            classPill.style.color = color;
+            classPill.style.borderColor = `${color}30`;
+            classPill.textContent = escapeHtml(getClassLabel(set.classId));
+        }
+
+        // Star Pinning (Favorite) logic
+        const favoriteBtn = card.querySelector('.favorite-btn');
+        if (favoriteBtn) {
+            const isPinned = Boolean(set.pinned);
+            favoriteBtn.innerHTML = isPinned ? `<i class="fas fa-star"></i>` : `<i class="far fa-star"></i>`;
+            favoriteBtn.classList.toggle('active', isPinned);
+            favoriteBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                set.pinned = !isPinned;
+                try {
+                    if (window.flashcardStore?.saveSet) {
+                        await window.flashcardStore.saveSet(set);
+                    } else {
+                        const currentSets = JSON.parse(localStorage.getItem('flashcardSets') || '[]');
+                        const index = currentSets.findIndex(item => String(item.id) === String(set.id));
+                        if (index !== -1) {
+                            currentSets[index].pinned = set.pinned;
+                            localStorage.setItem('flashcardSets', JSON.stringify(currentSets));
+                        }
+                    }
+                    showToast(set.pinned ? 'Set pinned to top' : 'Set unpinned', 'success');
+                    reloadLibraryData().then(() => renderSets(searchInput.value));
+                    playClickSound();
+                } catch (err) {
+                    console.error('Error toggling pin state:', err);
+                }
+            });
         }
 
         const srsSummary = card.querySelector('.set-srs-summary');
@@ -642,6 +733,24 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
+        // Action Buttons & Dropdown Options
+        const menuTriggerBtn = card.querySelector('.menu-trigger-btn');
+        const dropdownMenu = card.querySelector('.card-dropdown-menu');
+        
+        if (menuTriggerBtn && dropdownMenu) {
+            menuTriggerBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                document.querySelectorAll('.card-dropdown-menu').forEach(menu => {
+                    if (menu !== dropdownMenu) menu.classList.add('hidden');
+                });
+                
+                dropdownMenu.classList.toggle('hidden');
+                playClickSound();
+            });
+        }
+
         // Action buttons with error handling
         card.querySelector('.study-btn').addEventListener('click', (e) => {
             e.preventDefault();
@@ -650,6 +759,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         card.querySelector('.edit-btn').addEventListener('click', (e) => {
             e.preventDefault();
+            if (dropdownMenu) dropdownMenu.classList.add('hidden');
             window.location.href = `creator.html?setId=${set.id}`;
         });
 
@@ -657,12 +767,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (deckSettingsBtn) {
             deckSettingsBtn.addEventListener('click', (e) => {
                 e.preventDefault();
+                if (dropdownMenu) dropdownMenu.classList.add('hidden');
                 showDeckSettingsModal(set);
             });
         }
 
         card.querySelector('.delete-btn').addEventListener('click', (e) => {
             e.preventDefault();
+            if (dropdownMenu) dropdownMenu.classList.add('hidden');
             setToDelete = set;
             showDeleteModal();
         });
@@ -689,21 +801,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         );
     }
 
-    // Sort sets based on selected option
+    // Sort sets based on selected option (pinned sets always at top)
     function sortSets(sets) {
         const sortBy = sortSelect.value;
         
         return [...sets].sort((a, b) => {
+            const pinnedA = a.pinned ? 1 : 0;
+            const pinnedB = b.pinned ? 1 : 0;
+            if (pinnedA !== pinnedB) {
+                return pinnedB - pinnedA;
+            }
+
             switch (sortBy) {
                 case 'name':
                     return a.name.localeCompare(b.name);
                 case 'cards':
-                    return b.cards.length - a.cards.length;
+                    const countA = Array.isArray(a.cards) ? a.cards.length : 0;
+                    const countB = Array.isArray(b.cards) ? b.cards.length : 0;
+                    return countB - countA;
                 case 'studied':
                     return (b.openedCount || 0) - (a.openedCount || 0);
                 case 'recent':
                 default:
-                    // Handle case where createdAt might be missing
                     const dateA = a.createdAt || a.created || 0;
                     const dateB = b.createdAt || b.created || 0;
                     return dateB - dateA;
@@ -1017,6 +1136,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 contentFontSelect.value = userSettings.fonts.content;
             }
+        }
+
+        // Sync cursor-style radio buttons to current saved preference
+        const cursorRadios = document.querySelectorAll('input[name="cursor-style"]');
+        if (cursorRadios.length) {
+            const savedEnabled = localStorage.getItem('customCursorEnabled');
+            const savedStyle   = localStorage.getItem('cursorStyle') || 'fluid';
+            const isEnabled    = savedEnabled === null ? true : savedEnabled === 'true';
+            // Map legacy 'comet' to 'fluid'
+            const style        = (savedStyle === 'comet') ? 'fluid' : savedStyle;
+            const activeValue  = (!isEnabled || style === 'default') ? 'default' : style;
+            cursorRadios.forEach(r => { r.checked = (r.value === activeValue); });
         }
     }
 
@@ -1353,12 +1484,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
+    const editImportClassBtn = document.getElementById('edit-import-class-btn');
     if (importClassSelect) {
         importClassSelect.addEventListener('change', () => {
             playClickSound();
-            if (importClassSelect.value === '__new') {
+            const val = importClassSelect.value;
+            if (editImportClassBtn) {
+                editImportClassBtn.style.display = (val && val !== '__new') ? 'inline-flex' : 'none';
+            }
+            if (val === '__new') {
                 importClassSelect.value = '';
+                if (editImportClassBtn) editImportClassBtn.style.display = 'none';
                 showClassModal(null, { selectElement: importClassSelect });
+            }
+        });
+    }
+
+    if (editImportClassBtn) {
+        editImportClassBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            playClickSound();
+            const classId = importClassSelect.value;
+            const classItem = flashcardClasses.find(c => String(c.id) === String(classId));
+            if (classItem) {
+                showClassModal(classItem, { selectElement: importClassSelect });
             }
         });
     }
@@ -1406,6 +1556,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     saveClassBtn?.addEventListener('click', saveClassFromModal);
     deleteClassBtn?.addEventListener('click', deleteCurrentClass);
     
+    // Class Icon selection click handler
+    const classIconGrid = document.getElementById('class-icon-grid');
+    if (classIconGrid) {
+        classIconGrid.addEventListener('click', (e) => {
+            const btn = e.target.closest('.icon-btn');
+            if (!btn) return;
+            classIconGrid.querySelectorAll('.icon-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            playClickSound();
+        });
+    }
+
+    // Close dropdowns on clicking outside
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.card-dropdown-menu').forEach(menu => {
+            menu.classList.add('hidden');
+        });
+    });
+    
     // Live preview as user types
     importContentTextarea.addEventListener('input', () => {
         parseImportContent();
@@ -1439,6 +1608,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (exportTsvBtn) exportTsvBtn.addEventListener('click', () => handleExportDelimited('tsv'));
     if (importDelimitedBtn) importDelimitedBtn.addEventListener('click', handleImportDelimited);
     appThemeSelect?.addEventListener('change', previewAppearanceSettings);
+
+    // Cursor style radio — applies immediately on change (no Save needed)
+    document.querySelectorAll('input[name="cursor-style"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            const val = radio.value;
+            if (typeof window.changeCursorStyle === 'function') {
+                if (val === 'default') {
+                    localStorage.setItem('customCursorEnabled', 'false');
+                    window.changeCursorStyle('default');
+                } else {
+                    localStorage.setItem('customCursorEnabled', 'true');
+                    window.changeCursorStyle(val);
+                }
+            }
+        });
+    });
+
     if (closeDeckSettingsBtn) closeDeckSettingsBtn.addEventListener('click', hideDeckSettingsModal);
     if (cancelDeckSettingsBtn) cancelDeckSettingsBtn.addEventListener('click', hideDeckSettingsModal);
     if (saveDeckSettingsBtn) saveDeckSettingsBtn.addEventListener('click', saveDeckSettings);

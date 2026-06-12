@@ -72,7 +72,7 @@
                         <span class="stat-label">Recent Activity</span>
                     </div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" id="due-cards-stat">
                     <i class="fas fa-brain"></i>
                     <div class="stat-info">
                         <span id="due-cards">0</span>
@@ -192,32 +192,43 @@
                 <template id="set-template">
                     <div class="set-card">
                         <div class="set-content">
-                            <div class="set-header">
-                                <h3 class="set-name"></h3>
-                                <span class="card-count"></span>
+                            <div class="set-header-row">
+                                <div class="set-icon-box">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="set-title-group">
+                                    <h3 class="set-name"></h3>
+                                    <span class="card-count"></span>
+                                </div>
+                                <button class="favorite-btn" title="Pin Set">
+                                    <i class="far fa-star"></i>
+                                </button>
                             </div>
-                            <div class="set-meta">
-                                <span class="created-date"></span>
-                                <span class="study-count"></span>
+                            
+                            <div class="set-details-row">
+                                <div class="set-class-pill"></div>
+                                <div class="set-meta-info">
+                                    <span class="study-count"></span> &bull; <span class="created-date"></span>
+                                </div>
+                                <div class="set-srs-summary"></div>
                             </div>
-                            <div class="set-class-pill"></div>
-                            <div class="set-srs-summary"></div>
                         </div>
-                        <div class="set-actions">
-                            <button class="action-btn study-btn">
+                        
+                        <div class="set-actions-row">
+                            <button class="action-btn study-btn-primary study-btn">
                                 <i class="fas fa-play"></i>
-                                Study
+                                <span>Study</span>
                             </button>
-                            <button class="action-btn edit-btn">
-                                <i class="fas fa-edit"></i>
-                                Edit
-                            </button>
-                            <button class="action-btn deck-settings-btn" title="Deck SRS settings">
-                                <i class="fas fa-sliders"></i>
-                            </button>
-                            <button class="action-btn delete-btn">
-                                <i class="fas fa-trash"></i>
-                            </button>
+                            <div class="card-menu-container">
+                                <button class="action-btn menu-trigger-btn" title="More options">
+                                    <i class="fas fa-ellipsis"></i>
+                                </button>
+                                <div class="card-dropdown-menu hidden">
+                                    <button class="dropdown-item edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="dropdown-item deck-settings-btn"><i class="fas fa-sliders"></i> SRS Settings</button>
+                                    <button class="dropdown-item delete-btn danger"><i class="fas fa-trash"></i> Delete</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </template>
@@ -297,6 +308,22 @@
                             <input type="color" id="class-color-input" value="#3B82F6">
                         </label>
                     </div>
+                    <div class="icon-selector-section">
+                        <span class="selector-label">Class Icon</span>
+                        <div class="icon-selection-grid" id="class-icon-grid">
+                            <button type="button" class="icon-btn active" data-icon="fa-graduation-cap" title="General"><i class="fas fa-graduation-cap"></i></button>
+                            <button type="button" class="icon-btn" data-icon="fa-book" title="English / Languages"><i class="fas fa-book"></i></button>
+                            <button type="button" class="icon-btn" data-icon="fa-calculator" title="Mathematics"><i class="fas fa-calculator"></i></button>
+                            <button type="button" class="icon-btn" data-icon="fa-flask" title="Science"><i class="fas fa-flask"></i></button>
+                            <button type="button" class="icon-btn" data-icon="fa-dna" title="Biology / Medicine"><i class="fas fa-dna"></i></button>
+                            <button type="button" class="icon-btn" data-icon="fa-landmark" title="History"><i class="fas fa-landmark"></i></button>
+                            <button type="button" class="icon-btn" data-icon="fa-globe" title="Geography"><i class="fas fa-globe"></i></button>
+                            <button type="button" class="icon-btn" data-icon="fa-palette" title="Art"><i class="fas fa-palette"></i></button>
+                            <button type="button" class="icon-btn" data-icon="fa-music" title="Music"><i class="fas fa-music"></i></button>
+                            <button type="button" class="icon-btn" data-icon="fa-code" title="Tech / CS"><i class="fas fa-code"></i></button>
+                            <button type="button" class="icon-btn" data-icon="fa-quote-left" title="Idioms / Quotes"><i class="fas fa-quote-left"></i></button>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-actions class-modal-actions">
                     <button id="delete-class-btn" class="danger-button hidden">
@@ -331,12 +358,17 @@
                     </div>
                     <div class="form-group">
                         <label for="import-class-select">Class</label>
-                        <span class="class-select-shell">
-                            <select id="import-class-select" class="class-select">
-                                <option value="">General</option>
-                                <option value="__new">+ New Class</option>
-                            </select>
-                        </span>
+                        <div class="import-class-select-row" style="display: flex; align-items: center; gap: 0.55rem;">
+                            <span class="class-select-shell" style="flex: 1;">
+                                <select id="import-class-select" class="class-select">
+                                    <option value="">General</option>
+                                    <option value="__new">+ New Class</option>
+                                </select>
+                            </span>
+                            <button type="button" id="edit-import-class-btn" class="edit-class-btn" title="Edit selected class" style="display: none;">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="import-content">Flashcard Content</label>
@@ -401,6 +433,35 @@
                                 <p class="font-upload-note">Upload TTF or OTF file</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Cursor Style</h3>
+                    <p class="settings-note">Choose how the mouse cursor looks across the app.</p>
+                    <div class="cursor-option-group" id="cursor-option-group">
+
+                        <label class="cursor-option">
+                            <input type="radio" name="cursor-style" value="default">
+                            <span class="cursor-option-icon"><i class="fas fa-arrow-pointer"></i></span>
+                            <span class="cursor-option-label">System Default</span>
+                            <span class="cursor-option-desc">Standard OS cursor</span>
+                        </label>
+
+                        <label class="cursor-option">
+                            <input type="radio" name="cursor-style" value="fluid">
+                            <span class="cursor-option-icon"><i class="fas fa-circle"></i></span>
+                            <span class="cursor-option-label">FluidToon</span>
+                            <span class="cursor-option-desc">Morphing blob, inverts colour</span>
+                        </label>
+
+                        <label class="cursor-option">
+                            <input type="radio" name="cursor-style" value="context">
+                            <span class="cursor-option-icon"><i class="fas fa-crosshairs"></i></span>
+                            <span class="cursor-option-label">Context-Aware</span>
+                            <span class="cursor-option-desc">Dot and ring, adapts to context</span>
+                        </label>
+
                     </div>
                 </div>
 

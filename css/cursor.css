@@ -1,83 +1,81 @@
-/* Custom Cursor Styles */
+/* ═══════════════════════════════════════════════════════════════════════════
+   Erudite Custom Cursor Stylesheet
+   Supports: default (system), fluid, context-aware
+   Comet cursor removed.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 :root {
-    --cursor-bg-color: #111827;
-    --cursor-text-color: #E5E7EB;
-    --cursor-accent-dot: #38BDF8;
-    --cursor-accent-outline: rgba(255, 255, 255, 0.8);
-    --cursor-pointer-dot: #F472B6;
-    --cursor-pointer-outline: rgba(255, 255, 255, 0.9);
-    --cursor-text-beam: #A78BFA;
+    --cursor-accent: #38BDF8;
+    --cursor-white: rgba(255, 255, 255, 0.92);
 }
 
-/* Custom cursor styles when enabled - only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-    body.custom-cursor-enabled * {
-        cursor: none !important;
-    }
-
-    /* Ensure cursor is visible on the body when custom cursor is enabled */
-    body.custom-cursor-enabled {
-        cursor: none;
-    }
+/* ── Global cursor:none ──────────────────────────────────────────────────────
+   Applied to BOTH html and body so the system cursor vanishes everywhere on
+   the page, not just inside the app-container. This fixes the dual-cursor
+   bug where the system arrow would reappear on margins / padding areas.      */
+html.custom-cursor-active,
+html.custom-cursor-active body,
+html.custom-cursor-active * {
+    cursor: none !important;
 }
 
-/* On touch devices, keep normal cursor behavior */
-@media (hover: none) and (pointer: coarse) {
-    body.custom-cursor-enabled * {
+/* On true touch/coarse-pointer devices keep the system cursor regardless */
+@media (hover: none), (pointer: coarse) {
+    html.custom-cursor-active,
+    html.custom-cursor-active body,
+    html.custom-cursor-active * {
         cursor: auto !important;
     }
-
-    body.custom-cursor-enabled {
-        cursor: auto;
-    }
 }
 
-/* Ensure modals and popups work properly with custom cursor */
-@media (hover: hover) and (pointer: fine) {
-    body.custom-cursor-enabled .settings-popup,
-    body.custom-cursor-enabled #settings-popup,
-    body.custom-cursor-enabled #ambient-popup,
-    body.custom-cursor-enabled .study-break-modal,
-    body.custom-cursor-enabled .study-break-modal *,
-    body.custom-cursor-enabled #study-break-modal,
-    body.custom-cursor-enabled #study-break-modal *,
-    body.custom-cursor-enabled .study-danger-modal,
-    body.custom-cursor-enabled .study-danger-modal *,
-    body.custom-cursor-enabled #study-quit-danger-modal,
-    body.custom-cursor-enabled #study-quit-danger-modal *,
-    body.custom-cursor-enabled .study-toast,
-    body.custom-cursor-enabled .study-toast * {
-        /* Keep normal cursor behavior in modals */
-        cursor: auto !important;
-    }
-
-    /* Ensure modal content is scrollable */
-    body.custom-cursor-enabled .settings-popup {
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-    }
+/* ── Shared cursor element base ──────────────────────────────────────────────
+   Both #cursor-dot and #cursor-outline must be fixed, pointer-events:none,
+   and above everything including modals.                                      */
+#cursor-dot,
+#cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    will-change: transform;
 }
 
-/* ===== FLUID CURSOR (Style 1) ===== */
+/* ══════════════════════════════════════════════════════════════════════════════
+   FLUID CURSOR
+   A glowing white blob that stretches in the direction of travel and
+   inverts colours beneath it via mix-blend-mode: difference.
+   ══════════════════════════════════════════════════════════════════════════════ */
 body.cursor-style-fluid #cursor-dot {
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
     background: #ffffff;
     border-radius: 50%;
-    position: fixed;
-    z-index: 10001; /* Higher z-index to appear over modals */
-    pointer-events: none;
     transform-origin: center center;
     mix-blend-mode: difference;
-    will-change: transform, left, top;
-    /* Reset any potential browser styles */
-    border: none !important;
-    outline: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
+    transition: width 0.15s ease, height 0.15s ease;
 }
 
-/* Click Ripple Effect for Fluid Cursor */
+/* Shrink when over a clickable element for precision */
+body.cursor-style-fluid.cursor-mode-pointer #cursor-dot {
+    width: 10px;
+    height: 10px;
+}
+
+/* I-beam when over editable text */
+body.cursor-style-fluid.cursor-mode-text #cursor-dot {
+    width: 2px;
+    height: 22px;
+    border-radius: 1px;
+    transform: translate(-50%, -50%) !important;
+}
+
+/* Squeeze slightly on click */
+body.cursor-style-fluid.cursor-clicking #cursor-dot {
+    transform: translate(-50%, -50%) scale(0.82) !important;
+}
+
+/* Click ripple */
 body.cursor-style-fluid .click-ripple {
     position: fixed;
     border: 2px solid #fff;
@@ -85,207 +83,147 @@ body.cursor-style-fluid .click-ripple {
     transform: translate(-50%, -50%) scale(0);
     opacity: 1;
     pointer-events: none;
-    z-index: 10002; /* Highest z-index to appear over everything */
-    animation: ripple-effect 0.5s ease-out;
+    z-index: 99998;
+    animation: cursor-ripple 0.45s ease-out forwards;
     mix-blend-mode: difference;
 }
 
-@keyframes ripple-effect {
+@keyframes cursor-ripple {
     to {
-        transform: translate(-50%, -50%) scale(1.5);
+        transform: translate(-50%, -50%) scale(1.6);
         opacity: 0;
     }
 }
 
-/* Pointer Mode - make the orb smaller and more precise for buttons/sliders */
-body.cursor-style-fluid.cursor-mode-pointer #cursor-dot {
-    width: 12px;
-    height: 12px;
-    background: #ffffff;
-    mix-blend-mode: difference;
-}
-
-/* Text Mode - transform orb into I-beam cursor */
-body.cursor-style-fluid.cursor-mode-text #cursor-dot {
-    width: 2px;
-    height: 24px;
-    border-radius: 1px;
-    mix-blend-mode: difference;
-    transform: translate(-50%, -50%) !important;
-}
-
-/* Click Effect - scale down slightly */
-body.cursor-style-fluid.cursor-clicking #cursor-dot {
-    transform: translate(-50%, -50%) scale(0.85);
-}
-
-/* ===== CONTEXT-AWARE CURSOR (Style 2) ===== */
+/* ══════════════════════════════════════════════════════════════════════════════
+   CONTEXT-AWARE CURSOR
+   A crisp white dot (exact position) + a lagging outline ring that reacts
+   to what is under the cursor.
+   ══════════════════════════════════════════════════════════════════════════════ */
 body.cursor-style-context #cursor-dot {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 8px;
-    height: 8px;
-    background-color: #fff;
+    width: 7px;
+    height: 7px;
+    background: #ffffff;
     border-radius: 50%;
-    pointer-events: none;
-    z-index: 10001; /* Higher z-index to appear over modals */
     mix-blend-mode: difference;
-    transition: opacity 0.3s ease;
-    box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+    transition: opacity 0.2s ease;
 }
 
 body.cursor-style-context #cursor-outline {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 30px;
     height: 30px;
-    border: 1.2px solid #fff;
+    border: 1.5px solid var(--cursor-white);
     border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000; /* Higher z-index to appear over modals */
-    transition: border-color 0.3s ease, transform 0.1s ease-out, width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
-    display: block !important;
+    transition:
+        width        0.18s ease,
+        height       0.18s ease,
+        border-radius 0.18s ease,
+        border-color  0.25s ease,
+        transform     0.08s ease-out;
 }
 
-/* Context cursor states */
-body.cursor-style-context.cursor-state-copy #cursor-outline {
-    border-color: #3498db;
+/* Hover over clickable → ring expands */
+body.cursor-style-context.cursor-mode-pointer #cursor-outline {
+    width: 44px;
+    height: 44px;
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
-body.cursor-style-context.cursor-state-paste #cursor-outline {
-    border-color: #2ecc71;
-}
-
-body.cursor-style-context.cursor-state-typing #cursor-outline {
-    border-color: #f1c40f;
-}
-
-body.cursor-style-context.cursor-state-disabled #cursor-outline {
-    border-color: #e74c3c;
-}
-
-/* Text mode for context cursor */
+/* Text mode → dot hides, ring collapses to I-beam */
 body.cursor-style-context.cursor-mode-text #cursor-dot {
     opacity: 0;
 }
 
 body.cursor-style-context.cursor-mode-text #cursor-outline {
-    width: 1px;
-    height: 28px;
+    width: 2px;
+    height: 26px;
     border-radius: 2px;
-    border-color: #000;
+    border-color: var(--cursor-white);
 }
 
-/* ===== COMET CURSOR (Style 3) ===== */
-body.cursor-style-comet #cursor-dot {
-    width: 20px;
-    height: 20px;
-    background-color: #00aaff;
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 10001; /* Higher z-index to appear over modals */
-    box-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff;
-    transition: transform 0.1s ease-out;
-    transform-origin: center center;
-    /* Reset any potential browser styles */
-    border: none !important;
-    outline: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
+/* Semantic state colours on the ring */
+body.cursor-style-context.cursor-state-copy    #cursor-outline { border-color: #38BDF8; }
+body.cursor-style-context.cursor-state-paste   #cursor-outline { border-color: #34D399; }
+body.cursor-style-context.cursor-state-typing  #cursor-outline { border-color: #FBBF24; }
+body.cursor-style-context.cursor-state-disabled #cursor-outline { border-color: #F87171; }
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   SETTINGS MODAL — Cursor radio-button group styling
+   ══════════════════════════════════════════════════════════════════════════════ */
+.cursor-option-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
 }
 
-body.cursor-style-comet .trail {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background-color: #00aaff;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000; /* Higher z-index to appear over modals */
-    will-change: transform;
-}
-
-/* Comet cursor link hover effect */
-body.cursor-style-comet.cursor-mode-pointer #cursor-dot {
-    transform: scale(1.5);
-}
-
-/* ===== HIDE UNUSED ELEMENTS ===== */
-/* Hide outline for fluid and comet cursors */
-body.cursor-style-fluid #cursor-outline,
-body.cursor-style-comet #cursor-outline {
-    display: none;
-}
-
-/* Hide trails for fluid and context cursors */
-body.cursor-style-fluid .trail,
-body.cursor-style-context .trail {
-    display: none;
-}
-
-/* Cursor viewport bounds are now handled by JavaScript in cursor.js */
-
-/* Disabled cursor style selector styling */
-#cursor-style-group select:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-#cursor-style-group select:disabled + .select-container::after {
-    opacity: 0.5;
-}
-/* Disabled cursor style selector styling */
-#cursor-style-group select:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-#cursor-style-group select:disabled + .select-container::after {
-    opacity: 0.5;
-}
-
-/* Disabled timer button styles for plant mode */
-.btn-icon:disabled {
-    opacity: 0.5 !important;
-    cursor: not-allowed !important;
-    pointer-events: none;
-    filter: grayscale(0.5);
-    transition: all 0.3s ease;
-}
-
-.btn-icon:disabled:hover {
-    transform: none !important;
-    background-color: rgba(0, 0, 0, 0.15) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Specific styling for disabled stopwatch and pomodoro buttons */
-#mode-toggle-btn:disabled,
-#pomodoro-btn:disabled {
+.cursor-option {
+    flex: 1 1 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0.75rem 0.85rem;
+    background: var(--bg-tertiary, #374151);
+    border: 1.5px solid var(--border, rgba(255, 255, 255, 0.08));
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    user-select: none;
     position: relative;
 }
 
-#mode-toggle-btn:disabled::after,
-#pomodoro-btn:disabled::after {
-    content: "🙅‍♂️";
+.cursor-option:hover {
+    border-color: var(--primary, #7C3AED);
+    background: var(--primary-light, rgba(124, 58, 237, 0.08));
+    transform: translateY(-2px);
+}
+
+.cursor-option input[type="radio"] {
     position: absolute;
-    top: -8px;
-    right: -8px;
-    font-size: 12px;
-    opacity: 0.8;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.cursor-option:has(input[type="radio"]:checked) {
+    border-color: var(--primary, #7C3AED);
+    background: var(--primary-light, rgba(124, 58, 237, 0.1));
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.cursor-option-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--text-secondary, #9CA3AF);
+    transition: color 0.2s ease;
     pointer-events: none;
 }
 
-/* Disabled timer style selector styling for pomodoro mode */
-#timer-style-select:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background-color: rgba(0, 0, 0, 0.1);
+.cursor-option:has(input[type="radio"]:checked) .cursor-option-icon {
+    color: var(--primary, #7C3AED);
 }
 
-#timer-style-select:disabled + .select-container::after {
-    opacity: 0.5;
+.cursor-option-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary, #9CA3AF);
+    text-align: center;
+    line-height: 1.2;
+    transition: color 0.2s ease;
+    pointer-events: none;
+}
+
+.cursor-option:has(input[type="radio"]:checked) .cursor-option-label {
+    color: var(--primary, #7C3AED);
+}
+
+.cursor-option-desc {
+    font-size: 0.72rem;
+    color: var(--text-secondary, #9CA3AF);
+    text-align: center;
+    opacity: 0.75;
+    line-height: 1.3;
+    pointer-events: none;
 }

@@ -23,8 +23,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const closeImageBtn = document.getElementById('close-image-btn');
     const termImage = document.querySelector('.term-image');
     const definitionImage = document.querySelector('.definition-image');
-    const termZoomBtn = document.querySelector('.term-side .zoom-image-btn');
-    const defZoomBtn = document.querySelector('.definition-side .zoom-image-btn');
     const backBtn = document.querySelector('.back-btn');
 
     // Create audio elements for sound effects
@@ -145,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function isInteractiveTarget(target) {
         if (!target) return false;
-        return Boolean(target.closest('button, a, input, textarea, select, [contenteditable="true"], .modal.visible, .completion-screen.visible, .zoom-image-btn'));
+        return Boolean(target.closest('button, a, input, textarea, select, [contenteditable="true"], .modal.visible, .completion-screen.visible, .zoom-image-btn, .image-container.has-image'));
     }
 
     function getScrollableCardContent(target) {
@@ -908,7 +906,46 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // Event Handlers
+    // ── Image zoom intercept (capture phase) ──
+    // The 3D card flip uses position:absolute overlapping faces with
+    // backface-visibility:hidden. In Chromium's preserve-3d context,
+    // pointer-events can land on the wrong face. Rather than fight
+    // the 3D hit-testing, we intercept at the capture phase: if the
+    // currently-visible face has an image, open zoom and kill the event.
+    flashcardContainer.addEventListener('click', (event) => {
+        // Determine which face is currently visible
+        const isFlippedNow = flashcardContainer.classList.contains('flipped');
+        const visibleFace = flashcardContainer.querySelector(
+            isFlippedNow ? '.card-face.back' : '.card-face.front'
+        );
+        const imgContainer = visibleFace?.querySelector('.image-container.has-image');
+        if (!imgContainer) return; // no image on visible face — let it through
+
+        // Check if the click landed on or near the image area.
+        // Because 3D transforms can misdirect event.target, we also
+        // check if the click coordinates fall inside the image container.
+        const rect = imgContainer.getBoundingClientRect();
+        const inBounds = (
+            event.clientX >= rect.left &&
+            event.clientX <= rect.right &&
+            event.clientY >= rect.top &&
+            event.clientY <= rect.bottom
+        );
+
+        // Direct hit: target is inside image container (normal case)
+        const directHit = imgContainer.contains(event.target);
+
+        if (directHit || inBounds) {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+            const img = imgContainer.querySelector('img[src]');
+            if (img?.src) {
+                openImageModal(img.currentSrc || img.src);
+            }
+        }
+    }, true); // capture phase — fires BEFORE the bubble-phase flip handler
+
+    // Event Handlers — flip card on click (bubble phase)
     flashcardContainer.addEventListener('click', (event) => {
         if (suppressNextClick) {
             event.preventDefault();
@@ -1058,16 +1095,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 300);
     }
     
-    // Don't propagate clicks from zoom button to flashcard
-    document.querySelectorAll('.zoom-image-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const imgElement = btn.previousElementSibling;
-            if (imgElement && imgElement.src) {
-                openImageModal(imgElement.src);
-            }
-        });
-    });
+    // Pointer-down isolation: prevent swipe gesture from starting
+    // when the user presses on the image area.
+    flashcardContainer.addEventListener('pointerdown', (event) => {
+        const isFlippedNow = flashcardContainer.classList.contains('flipped');
+        const visibleFace = flashcardContainer.querySelector(
+            isFlippedNow ? '.card-face.back' : '.card-face.front'
+        );
+        const imgContainer = visibleFace?.querySelector('.image-container.has-image');
+        if (!imgContainer) return;
+
+        const rect = imgContainer.getBoundingClientRect();
+        const inBounds = (
+            event.clientX >= rect.left &&
+            event.clientX <= rect.right &&
+            event.clientY >= rect.top &&
+            event.clientY <= rect.bottom
+        );
+        if (imgContainer.contains(event.target) || inBounds) {
+            event.stopPropagation();
+        }
+    }, true);
     
     // Close image modal when clicking the close button
     closeImageBtn.addEventListener('click', closeImageModal);

@@ -1872,3 +1872,77 @@ html[data-theme="high-contrast"] .format-toolbar button[aria-pressed="true"] {
         width: 100%;
     }
 }
+
+/* Icon Selection Grid styles for Creator Class Modal */
+.icon-selector-section {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.selector-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--creator-muted, #A7B0C0);
+}
+
+.icon-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.55rem;
+    padding: 0.2rem;
+}
+
+.icon-btn {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--creator-border, rgba(148, 163, 184, 0.18));
+    background: var(--creator-control, #111A2B);
+    color: var(--creator-muted, #A7B0C0);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-btn:hover {
+    color: var(--creator-text, #F8FAFC);
+    border-color: var(--primary);
+    transform: scale(1.08);
+}
+
+.icon-btn.active {
+    background: var(--primary) !important;
+    color: white !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3) !important;
+    transform: scale(1.08);
+}
+
+/* Edit Class Button styles */
+.edit-class-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.28rem;
+    height: 2.28rem;
+    border-radius: 50%;
+    border: 1px solid var(--creator-border, rgba(148, 163, 184, 0.18));
+    background: var(--creator-control, #111A2B);
+    color: var(--creator-muted, #A7B0C0);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.edit-class-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary);
+    color: var(--creator-text, #F8FAFC);
+    transform: scale(1.05);
+}
+

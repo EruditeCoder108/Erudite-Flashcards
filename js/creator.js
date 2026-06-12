@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let draftWritesSuppressed = false;
     let successfulSaveRedirecting = false;
     let flashcardClasses = [];
+    let classForCreatorEditor = null;
     const clickSound = new Audio('assets/flashcard-assets/click.mp3');
     clickSound.volume = 0.3;
 
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             id: classData.id || `class-${now}`,
             name: String(classData.name || 'Untitled Class').trim() || 'Untitled Class',
             color: /^#[0-9a-f]{6}$/i.test(String(classData.color || '')) ? classData.color : '#3B82F6',
+            icon: classData.icon || 'fa-graduation-cap',
             created: classData.created || now,
             lastModified: classData.lastModified || now
         };
@@ -79,14 +81,46 @@ document.addEventListener('DOMContentLoaded', async () => {
         newOption.value = '__new';
         newOption.textContent = '+ New Class';
         setClassSelect.appendChild(newOption);
-        setClassSelect.value = [...setClassSelect.options].some(option => option.value === valueToSelect) ? valueToSelect : '';
+        const finalValue = [...setClassSelect.options].some(option => option.value === valueToSelect) ? valueToSelect : '';
+        setClassSelect.value = finalValue;
+        
+        if (editClassBtn) {
+            editClassBtn.style.display = (finalValue && finalValue !== '__new') ? 'inline-flex' : 'none';
+        }
     }
 
-    function showCreatorClassModal() {
+    function showCreatorClassModal(classItem = null) {
         if (!creatorClassModal) return;
-        if (setClassSelect) setClassSelect.value = '';
-        if (creatorClassNameInput) creatorClassNameInput.value = '';
-        if (creatorClassColorInput) creatorClassColorInput.value = '#3B82F6';
+        classForCreatorEditor = classItem;
+        
+        const modalTitle = creatorClassModal.querySelector('h2');
+        if (modalTitle) {
+            modalTitle.textContent = classItem ? 'Edit Class' : 'New Class';
+        }
+        
+        const submitBtnText = creatorClassModal.querySelector('#save-creator-class span');
+        if (submitBtnText) {
+            submitBtnText.textContent = classItem ? 'Save Class' : 'Create Class';
+        }
+
+        const deleteBtn = creatorClassModal.querySelector('#delete-creator-class');
+        if (deleteBtn) {
+            deleteBtn.classList.toggle('hidden', !classItem);
+        }
+        
+        if (setClassSelect) setClassSelect.value = classItem?.id || '';
+        if (creatorClassNameInput) creatorClassNameInput.value = classItem?.name || '';
+        if (creatorClassColorInput) creatorClassColorInput.value = classItem?.color || '#3B82F6';
+        
+        // Highlight active icon
+        const activeIcon = classItem?.icon || 'fa-graduation-cap';
+        const iconGrid = document.getElementById('creator-class-icon-grid');
+        if (iconGrid) {
+            iconGrid.querySelectorAll('.icon-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-icon') === activeIcon);
+            });
+        }
+        
         creatorClassModal.classList.add('show');
         setTimeout(() => creatorClassNameInput?.focus(), 40);
     }
@@ -107,8 +141,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         const color = /^#[0-9a-f]{6}$/i.test(String(creatorClassColorInput?.value || ''))
             ? creatorClassColorInput.value
             : '#3B82F6';
+            
+        // Get active icon
+        const activeIconBtn = document.querySelector('#creator-class-icon-grid .icon-btn.active');
+        const icon = activeIconBtn ? activeIconBtn.getAttribute('data-icon') : 'fa-graduation-cap';
+        
         try {
-            const classData = normalizeClassRecord({ name, color });
+            const classData = normalizeClassRecord({
+                ...(classForCreatorEditor || {}),
+                name,
+                color,
+                icon
+            });
             const savedClass = window.flashcardStore?.saveClass
                 ? await window.flashcardStore.saveClass(classData)
                 : classData;
@@ -120,10 +164,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             await loadFlashcardClasses(savedClass.id);
+            const editClassBtn = document.getElementById('edit-class-btn');
+            if (editClassBtn) editClassBtn.style.display = 'inline-flex';
             hideCreatorClassModal();
             playClickSound();
             saveDraft();
-            showToast('Class created', 'success');
+            showToast(classForCreatorEditor ? 'Class updated' : 'Class created', 'success');
         } catch (error) {
             console.error('Error creating class:', error);
             setClassSelect.value = '';
@@ -375,19 +421,85 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     setNameInput.addEventListener('input', triggerAutosave);
     setNameInput.addEventListener('input', saveDraft);
+    const editClassBtn = document.getElementById('edit-class-btn');
+    const deleteCreatorClassBtn = document.getElementById('delete-creator-class');
+    
     if (setClassSelect) {
         setClassSelect.addEventListener('change', () => {
+            const val = setClassSelect.value;
+            if (editClassBtn) {
+                editClassBtn.style.display = (val && val !== '__new') ? 'inline-flex' : 'none';
+            }
             playClickSound();
-            if (setClassSelect.value === '__new') {
+            if (val === '__new') {
                 showCreatorClassModal();
             } else {
                 saveDraft();
             }
         });
     }
+
+    if (editClassBtn) {
+        editClassBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const classId = setClassSelect.value;
+            const classItem = flashcardClasses.find(c => String(c.id) === String(classId));
+            if (classItem) {
+                showCreatorClassModal(classItem);
+            }
+        });
+    }
+
+    if (deleteCreatorClassBtn) {
+        deleteCreatorClassBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!classForCreatorEditor) return;
+            
+            try {
+                if (window.flashcardStore?.deleteClass) {
+                    await window.flashcardStore.deleteClass(classForCreatorEditor.id);
+                } else {
+                    const currentClasses = JSON.parse(localStorage.getItem('flashcardClasses') || '[]');
+                    const updatedClasses = currentClasses.filter(c => String(c.id) !== String(classForCreatorEditor.id));
+                    localStorage.setItem('flashcardClasses', JSON.stringify(updatedClasses));
+                    
+                    const currentSets = JSON.parse(localStorage.getItem('flashcardSets') || '[]');
+                    const updatedSets = currentSets.map(set => 
+                        String(set.classId || '') === String(classForCreatorEditor.id) ? { ...set, classId: null } : set
+                    );
+                    localStorage.setItem('flashcardSets', JSON.stringify(updatedSets));
+                }
+
+                await loadFlashcardClasses('');
+                if (editClassBtn) editClassBtn.style.display = 'none';
+                hideCreatorClassModal();
+                playClickSound();
+                saveDraft();
+                showToast('Class deleted', 'success');
+            } catch (err) {
+                console.error('Error deleting class:', err);
+                showToast('Could not delete class', 'error');
+            }
+        });
+    }
     closeCreatorClassBtn?.addEventListener('click', hideCreatorClassModal);
     cancelCreatorClassBtn?.addEventListener('click', hideCreatorClassModal);
     saveCreatorClassBtn?.addEventListener('click', saveCreatorClassFromModal);
+    
+    // Creator Class Modal Icon Selection Listener
+    const creatorClassIconGrid = document.getElementById('creator-class-icon-grid');
+    if (creatorClassIconGrid) {
+        creatorClassIconGrid.addEventListener('click', (e) => {
+            const btn = e.target.closest('.icon-btn');
+            if (!btn) return;
+            creatorClassIconGrid.querySelectorAll('.icon-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            playClickSound();
+        });
+    }
+    
     creatorClassNameInput?.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
