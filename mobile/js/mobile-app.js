@@ -31,6 +31,7 @@
     },
     pendingImageTarget: null,
     busy: false,
+    creatorSaving: false,
     selectMode: false,
     selectedDecks: new Set()
   };
@@ -97,6 +98,7 @@
     browserList: document.getElementById('browser-list'),
     srsSwitch: document.getElementById('srs-switch'),
     moreSrsLabel: document.getElementById('more-srs-label'),
+    normalStudyOrder: document.getElementById('mobile-normal-study-order'),
     loadingCover: document.getElementById('app-loading-cover'),
     loadingTitle: document.getElementById('app-loading-title'),
     loadingCopy: document.getElementById('app-loading-copy'),
@@ -406,6 +408,10 @@
     selectors.toast.textContent = message;
     selectors.toast.classList.add('show');
     toastTimer = setTimeout(() => selectors.toast.classList.remove('show'), 2200);
+  }
+
+  function normalizeNormalStudyOrder(value) {
+    return ['forward', 'backward', 'random'].includes(value) ? value : 'forward';
   }
 
   async function configureSystemBars() {
@@ -802,8 +808,8 @@
     const media = normalizeCardMedia(card);
     const background = normalizeCardBackground(card);
     return Boolean(
-      stripHtml(card.term || '').trim()
-      || stripHtml(card.definition || '').trim()
+      plainTextFromHtml(card.term || '').trim()
+      || plainTextFromHtml(card.definition || '').trim()
       || card.termImage
       || card.definitionImage
       || media.term.length
@@ -1329,6 +1335,9 @@
   }
 
   async function saveMobileDeck() {
+    if (!window.flashcardStore?.saveSet) {
+      throw new Error('Storage is still starting. Try again in a moment.');
+    }
     syncCreatorFromDom();
     const name = String(selectors.createTitle?.value || '').trim();
     const cards = state.creator.cards
@@ -1499,6 +1508,9 @@
   function renderMore() {
     selectors.srsSwitch?.classList.toggle('on', state.srsMode);
     selectors.moreSrsLabel.textContent = state.srsMode ? 'On - due reviews are scheduled' : 'Off - normal study only';
+    if (selectors.normalStudyOrder) {
+      selectors.normalStudyOrder.value = normalizeNormalStudyOrder(state.settings?.normalStudyOrder);
+    }
   }
 
   function renderActive() {
@@ -2271,6 +2283,28 @@
       renderBrowser();
     });
 
+    selectors.normalStudyOrder?.addEventListener('change', async event => {
+      const nextOrder = normalizeNormalStudyOrder(event.target.value);
+      state.settings = {
+        ...(state.settings || {}),
+        normalStudyOrder: nextOrder
+      };
+      renderMore();
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+        showToast(
+          nextOrder === 'forward'
+            ? 'Normal study starts at the beginning'
+            : nextOrder === 'backward'
+              ? 'Normal study starts at the end'
+              : 'Normal study randomizes every session'
+        );
+      } catch (error) {
+        console.error('Could not save study order:', error);
+        showToast('Could not save study order');
+      }
+    });
+
     selectors.createForm?.addEventListener('input', event => {
       if (!event.target.closest('#view-create')) return;
       scheduleCreatorDraftSave();
@@ -2280,12 +2314,15 @@
 
     selectors.createForm?.addEventListener('submit', async event => {
       event.preventDefault();
-      if (state.busy) return;
-      state.busy = true;
+      if (state.creatorSaving) return;
+      state.creatorSaving = true;
       try {
         await saveMobileDeck();
+      } catch (error) {
+        console.error('Could not save deck:', error);
+        showToast(error?.message || 'Could not save deck');
       } finally {
-        state.busy = false;
+        state.creatorSaving = false;
       }
     });
 

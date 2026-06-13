@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const termImage = document.querySelector('.term-image');
     const definitionImage = document.querySelector('.definition-image');
     const backBtn = document.querySelector('.back-btn');
-    const shuffleModeBtn = document.getElementById('shuffle-mode-btn');
 
     function isMobileRuntime() {
         return Boolean(window.Capacitor) || document.documentElement.classList.contains('is-capacitor');
@@ -85,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Mode-specific progress tracking
     let normalModeCardIndex = 0;
     let srsModeCardIndex = 0;
-    let shuffleMode = pageParams.get('shuffle') === 'true';
+    let normalStudyOrder = 'forward';
     let normalOrder = [];
     let normalStudyCards = [];
     let restoredProgress = null;
@@ -178,10 +177,38 @@ document.addEventListener('DOMContentLoaded', async () => {
         return indices;
     }
 
-    function isValidOrder(order, length) {
-        if (!Array.isArray(order) || order.length !== length) return false;
-        const seen = new Set(order.map(Number));
-        return seen.size === length && [...seen].every(index => Number.isInteger(index) && index >= 0 && index < length);
+    function normalizeNormalStudyOrder(value) {
+        return ['forward', 'backward', 'random'].includes(value) ? value : 'forward';
+    }
+
+    async function loadStudyPreferences() {
+        try {
+            const settings = window.getFlashcardSettings
+                ? await window.getFlashcardSettings()
+                : (window.flashcardStore?.getSettings
+                    ? await window.flashcardStore.getSettings()
+                    : JSON.parse(localStorage.getItem('flashcards-settings') || '{}'));
+            normalStudyOrder = normalizeNormalStudyOrder(settings?.normalStudyOrder);
+        } catch (error) {
+            console.warn('Could not load study order setting:', error);
+            normalStudyOrder = 'forward';
+        }
+    }
+
+    function buildNormalOrder(length) {
+        if (normalStudyOrder === 'random') return shuffledIndices(length);
+        const order = Array.from({ length }, (_, index) => index);
+        return normalStudyOrder === 'backward' ? order.reverse() : order;
+    }
+
+    function getSavedNormalIndex(progress, length) {
+        if (normalStudyOrder === 'random') return 0;
+        const legacyIndex = progress?.cardIndex ?? 0;
+        const normalProgress = progress?.normalProgress || {};
+        const value = normalStudyOrder === 'backward'
+            ? (normalProgress.backward ?? progress?.normalBackwardIndex ?? 0)
+            : (normalProgress.forward ?? progress?.normalForwardIndex ?? progress?.normalModeIndex ?? legacyIndex);
+        return clampIndex(value, length || 1);
     }
 
     function prepareNormalStudyCards(options = {}) {
@@ -193,24 +220,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        if (shuffleMode) {
-            const savedOrder = options.useSavedOrder && isValidOrder(restoredProgress?.normalOrder, cards.length)
-                ? restoredProgress.normalOrder.map(Number)
-                : null;
-            normalOrder = savedOrder || shuffledIndices(cards.length);
-        } else {
-            normalOrder = Array.from({ length: cards.length }, (_, index) => index);
-        }
+        normalOrder = buildNormalOrder(cards.length);
 
         normalStudyCards = normalOrder.map(index => cards[index]).filter(Boolean);
         normalModeCardIndex = clampIndex(normalModeCardIndex, normalStudyCards.length || 1);
-    }
-
-    function updateShuffleButton() {
-        if (!shuffleModeBtn) return;
-        shuffleModeBtn.classList.toggle('active', shuffleMode);
-        shuffleModeBtn.setAttribute('aria-pressed', String(shuffleMode));
-        shuffleModeBtn.style.display = srsModeEnabled ? 'none' : 'inline-flex';
     }
 
     function isInteractiveTarget(target) {
@@ -295,21 +308,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (savedProgress && String(savedProgress.setId) === String(progressId)) {
                 restoredProgress = savedProgress;
-                if (!pageParams.has('shuffle')) {
-                    shuffleMode = Boolean(savedProgress.shuffleMode);
-                }
-                const legacyIndex = savedProgress.cardIndex ?? 0;
-                normalModeCardIndex = clampIndex(
-                    savedProgress.normalModeIndex ?? legacyIndex,
-                    flashcardSet?.cards?.length || 1
-                );
+                normalModeCardIndex = getSavedNormalIndex(savedProgress, flashcardSet?.cards?.length || 1);
                 srsModeCardIndex = clampIndex(
                     savedProgress.srsModeIndex ?? 0,
                     savedProgress.srsModeLength || flashcardSet?.cards?.length || 1
                 );
                 srsCurrentCardKey = savedProgress.srsCurrentCardKey || null;
                 currentCardIndex = srsModeEnabled ? srsModeCardIndex : normalModeCardIndex;
-                updateShuffleButton();
             }
         } catch (error) {
             console.error('Error loading saved progress:', error);
@@ -322,18 +327,29 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!flashcardSet) return;
             const progressId = getProgressId();
             if (progressId === null || progressId === undefined) return;
+            if (!srsModeEnabled && normalStudyOrder === 'random') return;
 
             const currentSrsCard = srsCards[srsModeCardIndex] || null;
             if (srsModeEnabled) {
                 srsCurrentCardKey = currentSrsCard ? cardProgressKey(currentSrsCard) : null;
             }
 
+            const normalProgress = {
+                ...(restoredProgress?.normalProgress || {})
+            };
+            if (!srsModeEnabled && normalStudyOrder !== 'random') {
+                normalProgress[normalStudyOrder] = normalModeCardIndex;
+            }
+
             const progress = {
                 setId: progressId,
                 cardIndex: currentCardIndex, // Keep for compatibility
-                normalModeIndex: normalModeCardIndex,
+                normalModeIndex: normalProgress.forward ?? normalModeCardIndex,
+                normalForwardIndex: normalProgress.forward ?? 0,
+                normalBackwardIndex: normalProgress.backward ?? 0,
+                normalProgress,
+                normalStudyOrder,
                 normalModeLength: normalStudyCards.length || flashcardSet.cards.length,
-                shuffleMode,
                 normalOrder,
                 srsModeIndex: srsModeCardIndex,
                 srsModeLength: srsCards.length,
@@ -346,6 +362,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
             }
+
+            restoredProgress = progress;
 
             if (options.notify) {
                 showToast('Progress saved', 'success');
@@ -552,6 +570,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 backBtn.href = libraryUrl(false);
             }
             
+            await loadStudyPreferences();
             await loadSavedProgress();
             prepareNormalStudyCards({ useSavedOrder: true });
 
@@ -807,7 +826,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Update navigation buttons
     function updateNavButtons() {
         const { cards: cardsToUse, index: currentIndex } = getActiveCards();
-        updateShuffleButton();
 
         if (srsModeEnabled) {
             // In SRS mode, disable navigation buttons completely
@@ -1200,20 +1218,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    if (shuffleModeBtn) {
-        shuffleModeBtn.addEventListener('click', () => {
-            if (srsModeEnabled) return;
-            shuffleMode = !shuffleMode;
-            normalModeCardIndex = 0;
-            prepareNormalStudyCards({ useSavedOrder: false });
-            updateShuffleButton();
-            showCard();
-            updateProgress();
-            saveProgress();
-            showToast(shuffleMode ? 'Shuffle mode on' : 'Shuffle mode off', 'info');
-        });
-    }
-
     // Image Zoom functionality
     function openImageModal(imgSrc) {
         if (!imgSrc) return;
@@ -1291,7 +1295,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             : localStorage.getItem('srsModeEnabled');
         srsModeEnabled = savedSRSMode === true || savedSRSMode === 'true';
         studyContainer?.classList.toggle('srs-mode-active', srsModeEnabled);
-        updateShuffleButton();
 
         window.getSRSMode = () => srsModeEnabled;
         window.setSRSMode = async (enabled) => {
@@ -1316,7 +1319,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 updateNavButtons();
                 updateProgress();
             }
-            updateShuffleButton();
         };
 
         if (srsModeEnabled && window.srsManager && window.srsManager.isReady()) {

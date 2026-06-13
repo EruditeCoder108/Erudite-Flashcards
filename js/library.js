@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const saveSettingsBtn = document.getElementById('save-settings');
     const resetSettingsBtn = document.getElementById('reset-settings');
     const appThemeSelect = document.getElementById('app-theme');
+    const normalStudyOrderSelect = document.getElementById('normal-study-order');
     const exportBackupBtn = document.getElementById('export-backup');
     const restoreBackupBtn = document.getElementById('restore-backup');
     const exportCsvBtn = document.getElementById('export-csv');
@@ -1129,6 +1130,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             appThemeSelect.value = userSettings.theme;
         }
 
+        if (normalStudyOrderSelect) {
+            normalStudyOrderSelect.value = userSettings.normalStudyOrder || 'forward';
+        }
+
         if (userSettings.fonts) {
             if (userSettings.fonts.content.startsWith('custom-')) {
                 contentFontSelect.value = 'custom';
@@ -1170,6 +1175,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const userSettings = normalizeAppSettings(existingSettings);
 
         userSettings.theme = appThemeSelect?.value || userSettings.theme;
+        userSettings.normalStudyOrder = ['forward', 'backward', 'random'].includes(normalStudyOrderSelect?.value)
+            ? normalStudyOrderSelect.value
+            : (userSettings.normalStudyOrder || 'forward');
         delete userSettings.studyCard;
 
         if (contentFontSelect.value === 'custom' && customFonts.content) {
@@ -1196,6 +1204,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const defaultSettings = normalizeAppSettings(getDefaultAppSettings());
 
         if (appThemeSelect) appThemeSelect.value = defaultSettings.theme;
+        if (normalStudyOrderSelect) normalStudyOrderSelect.value = defaultSettings.normalStudyOrder || 'forward';
         contentFontSelect.value = defaultSettings.fonts.content;
         customContentFontDiv.classList.add('hidden');
         customFonts = { content: null };

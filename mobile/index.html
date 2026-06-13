@@ -240,6 +240,18 @@
             </span>
             <span class="switch" id="srs-switch"><span></span></span>
           </button>
+          <label class="settings-row settings-select-row" for="mobile-normal-study-order">
+            <span class="settings-icon"><i class="fas fa-route"></i></span>
+            <span>
+              <strong>Normal Study Order</strong>
+              <small>Applies to non-SRS decks only</small>
+            </span>
+            <select id="mobile-normal-study-order" class="mobile-settings-select">
+              <option value="forward">Beginning</option>
+              <option value="backward">End</option>
+              <option value="random">Random</option>
+            </select>
+          </label>
           <button type="button" class="settings-row" data-action="export-backup">
             <span class="settings-icon"><i class="fas fa-file-export"></i></span>
             <span><strong>Export Backup</strong><small>Share a full local JSON backup</small></span>

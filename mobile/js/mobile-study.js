@@ -34,7 +34,7 @@
     srsMode: false,
     activeCards: [],
     normalOrder: [],
-    shuffleMode: params.get('shuffle') === 'true',
+    studyOrder: 'forward',
     normalIndex: 0,
     srsIndex: 0,
     flipped: false,
@@ -60,7 +60,6 @@
     hint: document.getElementById('gesture-hint'),
     back: document.getElementById('back-button'),
     prev: document.getElementById('prev-button'),
-    shuffle: document.getElementById('shuffle-button'),
     card: null,
     stage: document.getElementById('card-stage'),
     ratingDock: document.getElementById('rating-dock'),
@@ -277,17 +276,24 @@
     return indices;
   }
 
-  function isValidOrder(order, length) {
-    if (!Array.isArray(order) || order.length !== length) return false;
-    const seen = new Set(order.map(Number));
-    return seen.size === length && [...seen].every(index => Number.isInteger(index) && index >= 0 && index < length);
+  function normalizeStudyOrder(value) {
+    return ['forward', 'backward', 'random'].includes(value) ? value : 'forward';
   }
 
-  function updateShuffleButton() {
-    if (!els.shuffle) return;
-    els.shuffle.classList.toggle('active', state.shuffleMode);
-    els.shuffle.setAttribute('aria-pressed', String(state.shuffleMode));
-    els.shuffle.style.display = state.srsMode ? 'none' : 'inline-grid';
+  function buildNormalOrder(length) {
+    if (state.studyOrder === 'random') return shuffledIndices(length);
+    const order = Array.from({ length }, (_, index) => index);
+    return state.studyOrder === 'backward' ? order.reverse() : order;
+  }
+
+  function savedNormalIndex(progress, length) {
+    if (state.studyOrder === 'random') return 0;
+    const normalProgress = progress?.normalProgress || {};
+    const legacyIndex = progress?.cardIndex ?? 0;
+    const value = state.studyOrder === 'backward'
+      ? (normalProgress.backward ?? progress?.normalBackwardIndex ?? 0)
+      : (normalProgress.forward ?? progress?.normalForwardIndex ?? progress?.normalModeIndex ?? legacyIndex);
+    return Math.min(Math.max(0, Number(value) || 0), Math.max(0, length - 1));
   }
 
   function readStoredBoolean(value, fallback = false) {
@@ -412,13 +418,15 @@
       throw new Error('No set selected');
     }
 
-    const [found, srsMode] = await Promise.all([
+    const [found, srsMode, settings] = await Promise.all([
       window.flashcardStore.getSet(setId),
-      window.flashcardStore.getState('srsModeEnabled')
+      window.flashcardStore.getState('srsModeEnabled'),
+      window.flashcardStore.getSettings?.()
     ]);
     if (!found) throw new Error('Flashcard set not found');
 
     state.srsMode = resolveSrsMode(srsMode);
+    state.studyOrder = normalizeStudyOrder(settings?.normalStudyOrder);
     if (reviewDueSession) {
       localStorage.setItem('srsModeEnabled', 'true');
       window.flashcardStore.setState('srsModeEnabled', true).catch(() => {});
@@ -467,11 +475,8 @@
       : saved;
     if (!progress || String(progress.setId) !== String(state.set.id)) return;
     restoredProgress = progress;
-    if (!params.has('shuffle')) {
-      state.shuffleMode = Boolean(progress.shuffleMode);
-    }
     const cardCount = state.set.cards?.length || 0;
-    state.normalIndex = Math.min(Math.max(0, Number(progress.normalModeIndex ?? progress.cardIndex ?? 0) || 0), Math.max(0, cardCount - 1));
+    state.normalIndex = savedNormalIndex(progress, cardCount || 1);
     state.srsIndex = Math.max(0, Number(progress.srsModeIndex ?? 0) || 0);
   }
 
@@ -481,12 +486,21 @@
 
   function buildProgressPayload() {
     if (!state.set) return null;
+    const normalProgress = {
+      ...(restoredProgress?.normalProgress || {})
+    };
+    if (!state.srsMode && state.studyOrder !== 'random') {
+      normalProgress[state.studyOrder] = state.normalIndex;
+    }
     return {
       setId: state.set.id,
       cardIndex: activeIndex(),
-      normalModeIndex: state.normalIndex,
+      normalModeIndex: normalProgress.forward ?? state.normalIndex,
+      normalForwardIndex: normalProgress.forward ?? 0,
+      normalBackwardIndex: normalProgress.backward ?? 0,
+      normalProgress,
+      normalStudyOrder: state.studyOrder,
       normalModeLength: state.set?.cards?.length || state.activeCards.length || 0,
-      shuffleMode: state.shuffleMode,
       normalOrder: state.normalOrder,
       srsModeIndex: state.srsIndex,
       srsModeLength: state.activeCards.length,
@@ -512,8 +526,10 @@
   }
 
   function saveProgress(options = {}) {
+    if (!state.srsMode && state.studyOrder === 'random') return Promise.resolve(false);
     const payload = buildProgressPayload();
     if (!payload) return Promise.resolve(false);
+    restoredProgress = payload;
     writeProgressMirror(payload);
     clearTimeout(progressSaveTimer);
     if (options.immediate) {
@@ -599,19 +615,10 @@
       state.srsIndex = Math.min(state.srsIndex, Math.max(0, state.activeCards.length - 1));
     } else {
       const cards = state.set.cards || [];
-      if (state.shuffleMode) {
-        const savedOrder = isValidOrder(restoredProgress?.normalOrder, cards.length)
-          ? restoredProgress.normalOrder.map(Number)
-          : shuffledIndices(cards.length);
-        state.normalOrder = savedOrder;
-        state.activeCards = savedOrder.map(index => cards[index]).filter(Boolean);
-      } else {
-        state.normalOrder = Array.from({ length: cards.length }, (_, index) => index);
-        state.activeCards = cards;
-      }
+      state.normalOrder = buildNormalOrder(cards.length);
+      state.activeCards = state.normalOrder.map(index => cards[index]).filter(Boolean);
       state.normalIndex = Math.min(state.normalIndex, Math.max(0, state.activeCards.length - 1));
     }
-    updateShuffleButton();
   }
 
   function ensureCardSanitized(card) {
@@ -1253,17 +1260,6 @@
   function installEvents() {
     els.back.addEventListener('click', () => goLibrary(els.back));
     els.prev?.addEventListener('click', () => navigateBack());
-    els.shuffle?.addEventListener('click', () => {
-      if (state.srsMode) return;
-      state.shuffleMode = !state.shuffleMode;
-      state.normalIndex = 0;
-      restoredProgress = null;
-      prepareActiveCards();
-      populateStack();
-      updateProgress();
-      saveProgress();
-      showToast(state.shuffleMode ? 'Shuffle on' : 'Shuffle off');
-    });
     const handleModalLibraryRoute = event => {
       if (event.type === 'pointerdown' && event.button !== undefined && event.button !== 0) return;
       event.preventDefault();

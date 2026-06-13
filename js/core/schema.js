@@ -14,6 +14,7 @@
 
   const DEFAULT_SETTINGS = {
     theme: 'dark',
+    normalStudyOrder: 'forward',
     fonts: {},
     cursor: {
       enabled: true,
@@ -193,10 +194,14 @@
     const theme = ['dark', 'light', 'high-contrast', 'blue-gray'].includes(settings.theme)
       ? settings.theme
       : DEFAULT_SETTINGS.theme;
+    const normalStudyOrder = ['forward', 'backward', 'random'].includes(settings.normalStudyOrder)
+      ? settings.normalStudyOrder
+      : DEFAULT_SETTINGS.normalStudyOrder;
     return {
       ...DEFAULT_SETTINGS,
       ...settings,
       theme,
+      normalStudyOrder,
       fonts: {
         ...DEFAULT_SETTINGS.fonts,
         ...(settings.fonts || {})

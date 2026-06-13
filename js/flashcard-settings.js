@@ -6,6 +6,7 @@
 
 const DEFAULT_FLASHCARD_SETTINGS = {
     theme: 'dark',
+    normalStudyOrder: 'forward',
     fonts: {
         content: "'Plus Jakarta Sans', sans-serif"
     }
@@ -19,6 +20,7 @@ const THEME_ALIASES = {
 };
 
 const VALID_THEMES = new Set(['dark', 'light', 'high-contrast', 'blue-gray']);
+const VALID_NORMAL_STUDY_ORDERS = new Set(['forward', 'backward', 'random']);
 
 function normalizeTheme(theme) {
     const normalized = THEME_ALIASES[theme] || theme || DEFAULT_FLASHCARD_SETTINGS.theme;
@@ -30,6 +32,9 @@ function normalizeFlashcardSettings(settings = {}) {
         ...DEFAULT_FLASHCARD_SETTINGS,
         ...settings,
         theme: normalizeTheme(settings.theme || localStorage.getItem('flashcards-theme')),
+        normalStudyOrder: VALID_NORMAL_STUDY_ORDERS.has(settings.normalStudyOrder)
+            ? settings.normalStudyOrder
+            : DEFAULT_FLASHCARD_SETTINGS.normalStudyOrder,
         matteTexture: false,
         fonts: {
             ...DEFAULT_FLASHCARD_SETTINGS.fonts,
