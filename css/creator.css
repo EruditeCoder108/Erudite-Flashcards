@@ -448,6 +448,8 @@ body {
     position: relative;
     margin-top: 10px;
     width: 100%;
+    display: grid;
+    gap: 0.6rem;
 }
 
 .image-preview {
@@ -481,6 +483,102 @@ body {
 .remove-image-btn:hover {
     background: var(--error);
     transform: scale(1.1);
+}
+
+.media-preview-list {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.media-preview-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 3rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--border-light);
+    border-radius: 0.75rem;
+    background: color-mix(in srgb, var(--surface-dark), transparent 12%);
+    color: var(--text-secondary);
+}
+
+.media-preview-item img,
+.media-preview-item video {
+    width: 100%;
+    max-height: 9rem;
+    object-fit: contain;
+    border-radius: 0.65rem;
+    background: rgba(0, 0, 0, 0.18);
+}
+
+.media-preview-item audio {
+    width: 100%;
+}
+
+.media-preview-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    font-size: 0.86rem;
+    font-weight: 700;
+}
+
+.media-preview-meta span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.remove-media-btn,
+.remove-background-btn {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(239, 68, 68, 0.28);
+    background: rgba(239, 68, 68, 0.14);
+    color: #fecaca;
+    cursor: pointer;
+}
+
+.remove-media-btn:hover,
+.remove-background-btn:hover {
+    background: rgba(239, 68, 68, 0.28);
+}
+
+.background-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid color-mix(in srgb, var(--primary), transparent 58%);
+    border-radius: 0.75rem;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+.background-preview::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 17, 31, 0.58);
+}
+
+.background-preview > * {
+    position: relative;
+    z-index: 1;
+}
+
+.background-preview.hidden {
+    display: none;
 }
 
 .delete-card {
@@ -1951,4 +2049,3 @@ select option {
   background-color: #111A2B !important;
   color: #F8FAFC !important;
 }
-

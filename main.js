@@ -142,6 +142,17 @@ function extensionFromMime(mime, fallback = 'bin') {
     'image/png': 'png',
     'image/webp': 'webp',
     'image/gif': 'gif',
+    'audio/mpeg': 'mp3',
+    'audio/mp3': 'mp3',
+    'audio/wav': 'wav',
+    'audio/x-wav': 'wav',
+    'audio/ogg': 'ogg',
+    'audio/mp4': 'm4a',
+    'audio/aac': 'aac',
+    'video/mp4': 'mp4',
+    'video/webm': 'webm',
+    'video/quicktime': 'mov',
+    'video/x-m4v': 'm4v',
     'font/ttf': 'ttf',
     'font/otf': 'otf',
     'font/woff': 'woff',
@@ -161,7 +172,16 @@ function mimeFromExtension(filePath) {
     '.jpeg': 'image/jpeg',
     '.png': 'image/png',
     '.webp': 'image/webp',
-    '.gif': 'image/gif'
+    '.gif': 'image/gif',
+    '.mp3': 'audio/mpeg',
+    '.wav': 'audio/wav',
+    '.ogg': 'audio/ogg',
+    '.m4a': 'audio/mp4',
+    '.aac': 'audio/aac',
+    '.mp4': 'video/mp4',
+    '.webm': 'video/webm',
+    '.mov': 'video/quicktime',
+    '.m4v': 'video/x-m4v'
   };
   return map[ext] || 'application/octet-stream';
 }
@@ -275,6 +295,37 @@ async function normalizeSetImages(set) {
     }
     if (next.definitionImage && next.definitionImage.startsWith('data:image/')) {
       next.definitionImage = await saveDataUrlFile(next.definitionImage, imagesDir, 'definition-image');
+    }
+    if (next.media && typeof next.media === 'object') {
+      next.media = { ...next.media };
+      for (const side of ['term', 'definition']) {
+        const items = Array.isArray(next.media[side]) ? next.media[side] : [];
+        next.media[side] = [];
+        for (const item of items) {
+          const normalizedItem = { ...item };
+          if (normalizedItem.src && String(normalizedItem.src).startsWith('data:')) {
+            normalizedItem.src = await saveDataUrlFile(
+              normalizedItem.src,
+              imagesDir,
+              `${side}-${normalizedItem.kind || 'media'}`,
+              normalizedItem.name
+            );
+          }
+          next.media[side].push(normalizedItem);
+        }
+      }
+    }
+    if (next.background && typeof next.background === 'object') {
+      next.background = { ...next.background };
+      for (const side of ['term', 'definition']) {
+        const background = next.background[side];
+        if (background?.src && String(background.src).startsWith('data:')) {
+          next.background[side] = {
+            ...background,
+            src: await saveDataUrlFile(background.src, imagesDir, `${side}-background`, background.name)
+          };
+        }
+      }
     }
     normalizedCards.push(next);
   }
@@ -412,10 +463,41 @@ async function embedSetImages(set) {
 
   const cards = [];
   for (const card of set.cards) {
-    cards.push({
+    const next = {
       ...card,
       termImage: await managedFileUrlToDataUrl(card.termImage, imagesDir),
       definitionImage: await managedFileUrlToDataUrl(card.definitionImage, imagesDir)
+    };
+
+    if (next.media && typeof next.media === 'object') {
+      next.media = { ...next.media };
+      for (const side of ['term', 'definition']) {
+        const items = Array.isArray(next.media[side]) ? next.media[side] : [];
+        next.media[side] = [];
+        for (const item of items) {
+          next.media[side].push({
+            ...item,
+            src: await managedFileUrlToDataUrl(item?.src, imagesDir)
+          });
+        }
+      }
+    }
+
+    if (next.background && typeof next.background === 'object') {
+      next.background = { ...next.background };
+      for (const side of ['term', 'definition']) {
+        const background = next.background[side];
+        next.background[side] = background?.src
+          ? {
+              ...background,
+              src: await managedFileUrlToDataUrl(background.src, imagesDir)
+            }
+          : null;
+      }
+    }
+
+    cards.push({
+      ...next
     });
   }
 
@@ -510,7 +592,20 @@ async function findBrokenManagedImages(sets = []) {
 
   for (const set of sets) {
     for (const card of set.cards || []) {
-      for (const [side, fileUrl] of [['term', card.termImage], ['definition', card.definitionImage]]) {
+      const managedLinks = [
+        ['term', card.termImage],
+        ['definition', card.definitionImage]
+      ];
+
+      for (const side of ['term', 'definition']) {
+        const mediaItems = Array.isArray(card.media?.[side]) ? card.media[side] : [];
+        mediaItems.forEach((item, index) => {
+          managedLinks.push([`${side}-media-${index + 1}`, item?.src]);
+        });
+        managedLinks.push([`${side}-background`, card.background?.[side]?.src]);
+      }
+
+      for (const [side, fileUrl] of managedLinks) {
         if (!fileUrl || !String(fileUrl).startsWith('file://')) continue;
 
         const managedPath = assertManagedFileUrl(fileUrl, imagesDir);

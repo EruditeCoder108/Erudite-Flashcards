@@ -23,6 +23,7 @@
     <script src="js/core/srs.js"></script>
     <script src="js/core/review-session.js"></script>
     <script src="js/core/draft.js"></script>
+    <script src="js/core/card-media.js"></script>
     <script src="js/core/math-render.js"></script>
     <script src="js/storage-client.js"></script>
     <script src="node_modules/katex/dist/katex.min.js"></script>
@@ -51,6 +52,10 @@
                 <h1 id="set-name-display" class="set-title">Loading...</h1>
             </div>
             <div class="header-right">
+                <button id="shuffle-mode-btn" class="study-mode-button" type="button" aria-pressed="false" title="Shuffle normal study order">
+                    <i class="fas fa-shuffle"></i>
+                    <span>Shuffle</span>
+                </button>
                 <div class="study-progress">
                     <div class="progress-text">Progress: <span id="progress">0/0</span></div>
                     <div class="progress-bar">
@@ -70,6 +75,7 @@
                     <div class="flashcard-inner">
                         <!-- Front of Card -->
                         <div class="card-face front">
+                            <div class="card-bg term-bg"></div>
                             <div class="card-content">
                                 <div class="card-header">Term</div>
                                 <div class="term-text"></div>
@@ -79,6 +85,7 @@
                                         <i class="fas fa-search-plus"></i>
                                     </button>
                                 </div>
+                                <div class="card-media-list term-media-list"></div>
                             </div>
                             <div class="flip-hint">
                                 <span>Click to flip</span>
@@ -87,6 +94,7 @@
                         </div>
                         <!-- Back of Card -->
                         <div class="card-face back">
+                            <div class="card-bg definition-bg"></div>
                             <div class="card-content">
                                 <div class="card-header">Definition</div>
                                 <div class="definition-text"></div>
@@ -96,6 +104,7 @@
                                         <i class="fas fa-search-plus"></i>
                                     </button>
                                 </div>
+                                <div class="card-media-list definition-media-list"></div>
                             </div>
                             <div class="flip-hint">
                                 <span>Click to flip</span>

@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const termImage = document.querySelector('.term-image');
     const definitionImage = document.querySelector('.definition-image');
     const backBtn = document.querySelector('.back-btn');
+    const shuffleModeBtn = document.getElementById('shuffle-mode-btn');
 
     function isMobileRuntime() {
         return Boolean(window.Capacitor) || document.documentElement.classList.contains('is-capacitor');
@@ -84,6 +85,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Mode-specific progress tracking
     let normalModeCardIndex = 0;
     let srsModeCardIndex = 0;
+    let shuffleMode = pageParams.get('shuffle') === 'true';
+    let normalOrder = [];
+    let normalStudyCards = [];
+    let restoredProgress = null;
 
     function getSetIdFromParams(params = pageParams) {
         const rawSetId = params.get('setId');
@@ -155,7 +160,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         return {
-            cards: flashcardSet?.cards || [],
+            cards: normalStudyCards.length ? normalStudyCards : (flashcardSet?.cards || []),
             index: normalModeCardIndex,
             setIndex: (value) => {
                 normalModeCardIndex = value;
@@ -164,9 +169,53 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
     }
 
+    function shuffledIndices(length) {
+        const indices = Array.from({ length }, (_, index) => index);
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        return indices;
+    }
+
+    function isValidOrder(order, length) {
+        if (!Array.isArray(order) || order.length !== length) return false;
+        const seen = new Set(order.map(Number));
+        return seen.size === length && [...seen].every(index => Number.isInteger(index) && index >= 0 && index < length);
+    }
+
+    function prepareNormalStudyCards(options = {}) {
+        const cards = Array.isArray(flashcardSet?.cards) ? flashcardSet.cards : [];
+        if (!cards.length) {
+            normalOrder = [];
+            normalStudyCards = [];
+            normalModeCardIndex = 0;
+            return;
+        }
+
+        if (shuffleMode) {
+            const savedOrder = options.useSavedOrder && isValidOrder(restoredProgress?.normalOrder, cards.length)
+                ? restoredProgress.normalOrder.map(Number)
+                : null;
+            normalOrder = savedOrder || shuffledIndices(cards.length);
+        } else {
+            normalOrder = Array.from({ length: cards.length }, (_, index) => index);
+        }
+
+        normalStudyCards = normalOrder.map(index => cards[index]).filter(Boolean);
+        normalModeCardIndex = clampIndex(normalModeCardIndex, normalStudyCards.length || 1);
+    }
+
+    function updateShuffleButton() {
+        if (!shuffleModeBtn) return;
+        shuffleModeBtn.classList.toggle('active', shuffleMode);
+        shuffleModeBtn.setAttribute('aria-pressed', String(shuffleMode));
+        shuffleModeBtn.style.display = srsModeEnabled ? 'none' : 'inline-flex';
+    }
+
     function isInteractiveTarget(target) {
         if (!target) return false;
-        return Boolean(target.closest('button, a, input, textarea, select, [contenteditable="true"], .modal.visible, .completion-screen.visible, .zoom-image-btn, .image-container.has-image'));
+        return Boolean(target.closest('button, a, input, textarea, select, audio, video, [contenteditable="true"], .modal.visible, .completion-screen.visible, .zoom-image-btn, .media-zoom-button, .image-container.has-image, .card-media-item'));
     }
 
     function getScrollableCardContent(target) {
@@ -245,6 +294,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 : JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 
             if (savedProgress && String(savedProgress.setId) === String(progressId)) {
+                restoredProgress = savedProgress;
+                if (!pageParams.has('shuffle')) {
+                    shuffleMode = Boolean(savedProgress.shuffleMode);
+                }
                 const legacyIndex = savedProgress.cardIndex ?? 0;
                 normalModeCardIndex = clampIndex(
                     savedProgress.normalModeIndex ?? legacyIndex,
@@ -256,6 +309,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 );
                 srsCurrentCardKey = savedProgress.srsCurrentCardKey || null;
                 currentCardIndex = srsModeEnabled ? srsModeCardIndex : normalModeCardIndex;
+                updateShuffleButton();
             }
         } catch (error) {
             console.error('Error loading saved progress:', error);
@@ -278,6 +332,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 setId: progressId,
                 cardIndex: currentCardIndex, // Keep for compatibility
                 normalModeIndex: normalModeCardIndex,
+                normalModeLength: normalStudyCards.length || flashcardSet.cards.length,
+                shuffleMode,
+                normalOrder,
                 srsModeIndex: srsModeCardIndex,
                 srsModeLength: srsCards.length,
                 srsCurrentCardKey,
@@ -496,6 +553,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             
             await loadSavedProgress();
+            prepareNormalStudyCards({ useSavedOrder: true });
 
             // Activate SRS mode if enabled
             if (srsModeEnabled && window.srsManager && window.srsManager.isReady()) {
@@ -529,28 +587,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!flashcardSet || flashcardSet.cards.length === 0) return;
         const isInitialRender = options.initial || !hasRenderedInitialCard;
 
-        // Use different card arrays based on mode
-        let cardsToUse;
-        let currentIndex;
-
-        if (srsModeEnabled && srsCards.length > 0) {
-            // SRS mode: use filtered cards and SRS index
-            cardsToUse = srsCards;
-            currentIndex = srsModeCardIndex;
-        } else {
-            // Normal mode: use all cards and normal index
-            cardsToUse = flashcardSet.cards;
-            currentIndex = normalModeCardIndex;
-        }
+        const active = getActiveCards();
+        let cardsToUse = active.cards;
+        let currentIndex = active.index;
 
         if (currentIndex >= cardsToUse.length || currentIndex < 0) {
             console.warn('Invalid card index:', currentIndex, 'for cards length:', cardsToUse.length);
             currentIndex = 0;
-            if (srsModeEnabled && srsCards.length > 0) {
-                srsModeCardIndex = 0;
-            } else {
-                normalModeCardIndex = 0;
-            }
+            active.setIndex(0);
         }
 
         // Update the global currentCardIndex for compatibility with existing functions
@@ -560,6 +604,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const definitionText = document.querySelector('.definition-text');
         const termImage = document.querySelector('.term-image');
         const definitionImage = document.querySelector('.definition-image');
+        const termFace = document.querySelector('.card-face.front');
+        const definitionFace = document.querySelector('.card-face.back');
+        const termMediaList = document.querySelector('.term-media-list');
+        const definitionMediaList = document.querySelector('.definition-media-list');
 
         // Make sure the card is in term view (not flipped)
         // We no longer need to reset the flip state here since it's handled in navigate
@@ -588,6 +636,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Handle images before sizing text so mixed cards pick the right layout.
         handleImage(termImage, card.termImage);
         handleImage(definitionImage, card.definitionImage);
+        applyCardBackground(termFace, card, 'term');
+        applyCardBackground(definitionFace, card, 'definition');
+        renderMediaList(termMediaList, card, 'term');
+        renderMediaList(definitionMediaList, card, 'definition');
 
         adjustContentCentering(termText);
         adjustContentCentering(definitionText);
@@ -613,6 +665,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         return content;
     }
 
+    function escapeAttribute(value) {
+        return String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
     // Adjust content centering based on length and type
     function adjustContentCentering(element) {
         // Remove existing classes
@@ -625,7 +686,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const hasLineBreaks = element.innerHTML.includes('<br');
         const cardFace = element.closest('.card-face');
         const imageContainer = cardFace?.querySelector('.image-container');
-        const hasImages = Boolean(imageContainer?.classList.contains('has-image'));
+        const mediaList = cardFace?.querySelector('.card-media-list');
+        const hasImages = Boolean(imageContainer?.classList.contains('has-image') || mediaList?.children?.length);
         
         // Get the card content container parent
         const cardContent = element.closest('.card-content');
@@ -687,6 +749,45 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    function applyCardBackground(faceElement, card, side) {
+        const backgroundEl = faceElement?.querySelector(side === 'definition' ? '.definition-bg' : '.term-bg');
+        const background = window.EruditeMedia?.getSideBackground?.(card, side) || null;
+        if (!backgroundEl) return;
+        if (!background?.src) {
+            backgroundEl.classList.remove('visible');
+            backgroundEl.style.backgroundImage = '';
+            return;
+        }
+        backgroundEl.style.backgroundImage = `url("${background.src}")`;
+        backgroundEl.style.backgroundSize = background.fit || 'cover';
+        backgroundEl.style.setProperty('--card-bg-opacity', String(background.opacity ?? 0.32));
+        backgroundEl.classList.add('visible');
+    }
+
+    function renderMediaList(container, card, side) {
+        if (!container) return;
+        const items = (window.EruditeMedia?.getSideMedia?.(card, side, { includeLegacy: false }) || [])
+            .filter(item => item && item.src);
+        container.innerHTML = items.map(item => {
+            const src = escapeAttribute(item.src || '');
+            const name = escapeAttribute(item.name || item.kind || 'Media');
+            if (item.kind === 'audio') {
+                return `<div class="card-media-item"><audio src="${src}" controls preload="metadata" title="${name}"></audio></div>`;
+            }
+            if (item.kind === 'video') {
+                return `<div class="card-media-item"><video src="${src}" controls preload="metadata" title="${name}"></video></div>`;
+            }
+            return `
+                <div class="card-media-item">
+                    <img src="${src}" alt="${name}" loading="lazy">
+                    <button type="button" class="media-zoom-button" data-zoom-src="${src}" aria-label="View image larger">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            `;
+        }).join('');
+    }
+
     // Update progress
     function updateProgress() {
         if (!flashcardSet || !progressDisplay) return;
@@ -706,6 +807,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Update navigation buttons
     function updateNavButtons() {
         const { cards: cardsToUse, index: currentIndex } = getActiveCards();
+        updateShuffleButton();
 
         if (srsModeEnabled) {
             // In SRS mode, disable navigation buttons completely
@@ -1059,6 +1161,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         } else {
             normalModeCardIndex = 0;
+            prepareNormalStudyCards({ useSavedOrder: false });
             showCard();
             updateNavButtons();
         }
@@ -1097,6 +1200,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    if (shuffleModeBtn) {
+        shuffleModeBtn.addEventListener('click', () => {
+            if (srsModeEnabled) return;
+            shuffleMode = !shuffleMode;
+            normalModeCardIndex = 0;
+            prepareNormalStudyCards({ useSavedOrder: false });
+            updateShuffleButton();
+            showCard();
+            updateProgress();
+            saveProgress();
+            showToast(shuffleMode ? 'Shuffle mode on' : 'Shuffle mode off', 'info');
+        });
+    }
+
     // Image Zoom functionality
     function openImageModal(imgSrc) {
         if (!imgSrc) return;
@@ -1127,7 +1244,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const visibleFace = flashcardContainer.querySelector(
             isFlippedNow ? '.card-face.back' : '.card-face.front'
         );
-        const imgContainer = visibleFace?.querySelector('.image-container.has-image');
+        const imgContainer = visibleFace?.querySelector('.image-container.has-image, .card-media-item');
         if (!imgContainer) return;
 
         const rect = imgContainer.getBoundingClientRect();
@@ -1144,6 +1261,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Close image modal when clicking the close button
     closeImageBtn.addEventListener('click', closeImageModal);
+
+    flashcardContainer.addEventListener('click', event => {
+        const zoomButton = event.target.closest('[data-zoom-src]');
+        if (!zoomButton) return;
+        event.preventDefault();
+        event.stopPropagation();
+        openImageModal(zoomButton.dataset.zoomSrc);
+    });
     
     // Close image modal when clicking outside the image
     imageModal.addEventListener('click', (e) => {
@@ -1166,6 +1291,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             : localStorage.getItem('srsModeEnabled');
         srsModeEnabled = savedSRSMode === true || savedSRSMode === 'true';
         studyContainer?.classList.toggle('srs-mode-active', srsModeEnabled);
+        updateShuffleButton();
 
         window.getSRSMode = () => srsModeEnabled;
         window.setSRSMode = async (enabled) => {
@@ -1185,10 +1311,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             } else {
                 deactivateSRSMode();
+                prepareNormalStudyCards({ useSavedOrder: true });
                 showCard();
                 updateNavButtons();
                 updateProgress();
             }
+            updateShuffleButton();
         };
 
         if (srsModeEnabled && window.srsManager && window.srsManager.isReady()) {

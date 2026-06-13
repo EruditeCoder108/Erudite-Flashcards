@@ -1218,6 +1218,69 @@ button.metric-pill {
   object-fit: contain;
 }
 
+.creator-image-preview video {
+  width: 100%;
+  max-height: 14rem;
+  border-radius: 0.85rem;
+}
+
+.creator-image-preview audio {
+  width: calc(100% - 1rem);
+  margin: 0.6rem;
+}
+
+.creator-image-preview.media-preview-item {
+  place-items: stretch;
+  padding: 0.55rem;
+  gap: 0.45rem;
+}
+
+.media-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.media-preview-head span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.creator-background-preview {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  min-height: 3.15rem;
+  padding: 0.7rem 0.8rem;
+  overflow: hidden;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  border-radius: 1rem;
+  background-position: center;
+  background-size: cover;
+  color: #f8fafc;
+  font-weight: 850;
+}
+
+.creator-background-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 17, 31, 0.6);
+}
+
+.creator-background-preview > * {
+  position: relative;
+  z-index: 1;
+}
+
 .creator-image-preview button {
   position: absolute;
   top: 0.55rem;

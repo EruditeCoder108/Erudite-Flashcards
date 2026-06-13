@@ -88,6 +88,7 @@
     createClassLabel: document.getElementById('mobile-create-class-label'),
     creatorCards: document.getElementById('mobile-creator-cards'),
     imageInput: document.getElementById('mobile-image-input'),
+    backgroundInput: document.getElementById('mobile-background-input'),
     txtInput: document.getElementById('mobile-txt-input'),
     premadeClassFilters: document.getElementById('premade-class-filters'),
     premadeSubjectFilters: document.getElementById('premade-subject-filters'),
@@ -779,6 +780,39 @@
     return template.innerHTML;
   }
 
+  function normalizeCardMedia(card = {}) {
+    return window.EruditeMedia?.normalizeCardMedia
+      ? window.EruditeMedia.normalizeCardMedia(card.media || {})
+      : {
+          term: Array.isArray(card.media?.term) ? card.media.term : [],
+          definition: Array.isArray(card.media?.definition) ? card.media.definition : []
+        };
+  }
+
+  function normalizeCardBackground(card = {}) {
+    return window.EruditeMedia?.normalizeCardBackground
+      ? window.EruditeMedia.normalizeCardBackground(card.background || {}, card)
+      : {
+          term: card.background?.term || null,
+          definition: card.background?.definition || null
+        };
+  }
+
+  function cardHasContent(card = {}) {
+    const media = normalizeCardMedia(card);
+    const background = normalizeCardBackground(card);
+    return Boolean(
+      stripHtml(card.term || '').trim()
+      || stripHtml(card.definition || '').trim()
+      || card.termImage
+      || card.definitionImage
+      || media.term.length
+      || media.definition.length
+      || background.term
+      || background.definition
+    );
+  }
+
   function emptyCreatorCard() {
     const now = Date.now();
     return {
@@ -787,6 +821,8 @@
       definition: '',
       termImage: '',
       definitionImage: '',
+      media: { term: [], definition: [] },
+      background: { term: null, definition: null },
       tags: [],
       suspended: false,
       buriedUntil: null,
@@ -832,13 +868,56 @@
     `;
   }
 
+  function mediaPreviewHtml(card, side) {
+    const media = normalizeCardMedia(card)[side] || [];
+    const legacyKey = side === 'definition' ? 'definitionImage' : 'termImage';
+    const legacy = card[legacyKey]
+      ? [{
+          id: `${side}-legacy-image`,
+          kind: 'image',
+          name: side === 'definition' ? 'Definition image' : 'Term image',
+          src: card[legacyKey],
+          legacy: true
+        }]
+      : [];
+    const items = [...legacy, ...media];
+    const background = normalizeCardBackground(card)[side];
+    const mediaHtml = items.map(item => {
+      const icon = item.kind === 'audio' ? 'fa-volume-high' : item.kind === 'video' ? 'fa-film' : 'fa-image';
+      let preview = '';
+      if (item.kind === 'audio') {
+        preview = `<audio src="${escapeAttr(item.src)}" controls preload="metadata"></audio>`;
+      } else if (item.kind === 'video') {
+        preview = `<video src="${escapeAttr(item.src)}" controls preload="metadata"></video>`;
+      } else {
+        preview = `<img src="${escapeAttr(item.src)}" alt="">`;
+      }
+      return `
+        <div class="creator-image-preview media-preview-item">
+          <div class="media-preview-head">
+            <span><i class="fas ${icon}"></i> ${escapeHtml(item.name || 'Media')}</span>
+            <button type="button" data-creator-action="${item.legacy ? 'remove-image' : 'remove-media'}" data-card-id="${escapeAttr(card.id)}" data-side="${side}" data-media-id="${escapeAttr(item.id)}" aria-label="Remove media"><i class="fas fa-xmark"></i></button>
+          </div>
+          ${preview}
+        </div>
+      `;
+    }).join('');
+    const backgroundHtml = background ? `
+      <div class="creator-background-preview" style="background-image:url('${escapeAttr(background.src)}')">
+        <span><i class="fas fa-panorama"></i> Background</span>
+        <button type="button" data-creator-action="remove-background" data-card-id="${escapeAttr(card.id)}" data-side="${side}" aria-label="Remove background">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
+    ` : '';
+    return `${backgroundHtml}${mediaHtml}`;
+  }
+
   function cardEditor(card, index) {
-    const termImage = card.termImage
-      ? `<div class="creator-image-preview"><img src="${escapeAttr(card.termImage)}" alt=""><button type="button" data-creator-action="remove-image" data-card-id="${escapeAttr(card.id)}" data-side="term" aria-label="Remove term image"><i class="fas fa-xmark"></i></button></div>`
-      : '';
-    const definitionImage = card.definitionImage
-      ? `<div class="creator-image-preview"><img src="${escapeAttr(card.definitionImage)}" alt=""><button type="button" data-creator-action="remove-image" data-card-id="${escapeAttr(card.id)}" data-side="definition" aria-label="Remove definition image"><i class="fas fa-xmark"></i></button></div>`
-      : '';
+    card.media = normalizeCardMedia(card);
+    card.background = normalizeCardBackground(card);
+    const termMedia = mediaPreviewHtml(card, 'term');
+    const definitionMedia = mediaPreviewHtml(card, 'definition');
 
     return `
       <article class="mobile-card-editor" data-card-id="${escapeAttr(card.id)}">
@@ -856,13 +935,16 @@
               ${formatButton('italic', 'Italic', 'fa-italic')}
               ${formatButton('underline', 'Underline', 'fa-underline')}
               ${formatButton('formula', 'Formula', 'fa-square-root-variable')}
-              <button type="button" class="format-button" data-creator-action="image" data-card-id="${escapeAttr(card.id)}" data-side="term" aria-label="Add term image">
-                <i class="fas fa-image"></i>
+              <button type="button" class="format-button" data-creator-action="media" data-card-id="${escapeAttr(card.id)}" data-side="term" aria-label="Add term media">
+                <i class="fas fa-paperclip"></i>
+              </button>
+              <button type="button" class="format-button" data-creator-action="background" data-card-id="${escapeAttr(card.id)}" data-side="term" aria-label="Set term background">
+                <i class="fas fa-panorama"></i>
               </button>
             </div>
           </div>
           <div class="rich-editor" contenteditable="true" data-editor-id="${escapeAttr(card.id)}" data-side="term" data-placeholder="Enter term">${card.term || ''}</div>
-          ${termImage}
+          ${termMedia}
         </section>
         <section class="editor-side">
           <div class="editor-side-head">
@@ -872,13 +954,16 @@
               ${formatButton('italic', 'Italic', 'fa-italic')}
               ${formatButton('underline', 'Underline', 'fa-underline')}
               ${formatButton('formula', 'Formula', 'fa-square-root-variable')}
-              <button type="button" class="format-button" data-creator-action="image" data-card-id="${escapeAttr(card.id)}" data-side="definition" aria-label="Add definition image">
-                <i class="fas fa-image"></i>
+              <button type="button" class="format-button" data-creator-action="media" data-card-id="${escapeAttr(card.id)}" data-side="definition" aria-label="Add definition media">
+                <i class="fas fa-paperclip"></i>
+              </button>
+              <button type="button" class="format-button" data-creator-action="background" data-card-id="${escapeAttr(card.id)}" data-side="definition" aria-label="Set definition background">
+                <i class="fas fa-panorama"></i>
               </button>
             </div>
           </div>
           <div class="rich-editor" contenteditable="true" data-editor-id="${escapeAttr(card.id)}" data-side="definition" data-placeholder="Enter definition">${card.definition || ''}</div>
-          ${definitionImage}
+          ${definitionMedia}
         </section>
       </article>
     `;
@@ -1099,12 +1184,11 @@
   }
 
   function hasCardContent(card) {
-    return Boolean(
-      plainTextFromHtml(card.term).trim()
-      || plainTextFromHtml(card.definition).trim()
-      || card.termImage
-      || card.definitionImage
-    );
+    return cardHasContent({
+      ...card,
+      term: plainTextFromHtml(card.term || card.sanitizedTerm || '').trim(),
+      definition: plainTextFromHtml(card.definition || card.sanitizedDefinition || '').trim()
+    });
   }
 
   function creatorSnapshot() {
@@ -1658,12 +1742,21 @@
         scheduleCreatorDraftSave();
         break;
       }
-      case 'image':
+      case 'media':
         state.pendingImageTarget = {
           cardId: target.dataset.cardId,
-          side: target.dataset.side === 'definition' ? 'definition' : 'term'
+          side: target.dataset.side === 'definition' ? 'definition' : 'term',
+          mode: 'media'
         };
         selectors.imageInput?.click();
+        break;
+      case 'background':
+        state.pendingImageTarget = {
+          cardId: target.dataset.cardId,
+          side: target.dataset.side === 'definition' ? 'definition' : 'term',
+          mode: 'background'
+        };
+        selectors.backgroundInput?.click();
         break;
       case 'remove-image': {
         syncCreatorFromDom();
@@ -1671,6 +1764,43 @@
         state.creator.cards = state.creator.cards.map(card => (
           String(card.id) === String(target.dataset.cardId) ? { ...card, [key]: '' } : card
         ));
+        renderCreate();
+        scheduleCreatorDraftSave();
+        break;
+      }
+      case 'remove-media': {
+        syncCreatorFromDom();
+        const side = target.dataset.side === 'definition' ? 'definition' : 'term';
+        const mediaId = target.dataset.mediaId;
+        state.creator.cards = state.creator.cards.map(card => {
+          if (String(card.id) !== String(target.dataset.cardId)) return card;
+          const media = normalizeCardMedia(card);
+          return {
+            ...card,
+            media: {
+              ...media,
+              [side]: (media[side] || []).filter(item => String(item.id) !== String(mediaId))
+            }
+          };
+        });
+        renderCreate();
+        scheduleCreatorDraftSave();
+        break;
+      }
+      case 'remove-background': {
+        syncCreatorFromDom();
+        const side = target.dataset.side === 'definition' ? 'definition' : 'term';
+        state.creator.cards = state.creator.cards.map(card => {
+          if (String(card.id) !== String(target.dataset.cardId)) return card;
+          const background = normalizeCardBackground(card);
+          return {
+            ...card,
+            background: {
+              ...background,
+              [side]: null
+            }
+          };
+        });
         renderCreate();
         scheduleCreatorDraftSave();
         break;
@@ -2160,27 +2290,93 @@
     });
 
     selectors.imageInput?.addEventListener('change', async event => {
+      const files = Array.from(event.target.files || []);
+      const target = state.pendingImageTarget;
+      event.target.value = '';
+      state.pendingImageTarget = null;
+      if (!files.length || !target) return;
+      syncCreatorFromDom();
+      try {
+        const added = [];
+        for (const file of files) {
+          if (!file.type.startsWith('image/') && !file.type.startsWith('audio/') && !file.type.startsWith('video/')) continue;
+          const src = await window.flashcardStore.saveImageFromFile(file, {
+            deckId: state.creator.editingSetId || 'draft',
+            side: target.side,
+            prefix: `${target.side}-media`
+          });
+          added.push(window.EruditeMedia?.mediaItemFromSource
+            ? window.EruditeMedia.mediaItemFromSource(src, file)
+            : {
+                id: `media-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+                kind: file.type.startsWith('audio/') ? 'audio' : file.type.startsWith('video/') ? 'video' : 'image',
+                mime: file.type,
+                name: file.name,
+                src,
+                created: Date.now()
+              });
+        }
+        if (!added.length) {
+          showToast('No supported media files selected');
+          return;
+        }
+        state.creator.cards = state.creator.cards.map(card => (
+          String(card.id) === String(target.cardId)
+            ? {
+                ...card,
+                media: {
+                  ...normalizeCardMedia(card),
+                  [target.side]: [...(normalizeCardMedia(card)[target.side] || []), ...added]
+                }
+              }
+            : card
+        ));
+        renderCreate();
+        scheduleCreatorDraftSave();
+        showToast(added.length === 1 ? 'Media added' : `${added.length} media files added`);
+      } catch (error) {
+        console.error(error);
+        showToast('Could not add media');
+      }
+    });
+
+    selectors.backgroundInput?.addEventListener('change', async event => {
       const file = event.target.files?.[0];
       const target = state.pendingImageTarget;
       event.target.value = '';
       state.pendingImageTarget = null;
       if (!file || !target) return;
+      if (!file.type.startsWith('image/')) {
+        showToast('Use an image for the background');
+        return;
+      }
       syncCreatorFromDom();
       try {
         const src = await window.flashcardStore.saveImageFromFile(file, {
           deckId: state.creator.editingSetId || 'draft',
-          side: target.side
+          side: target.side,
+          prefix: `${target.side}-background`
         });
-        const key = target.side === 'definition' ? 'definitionImage' : 'termImage';
+        const backgroundItem = window.EruditeMedia?.normalizeCardBackground
+          ? window.EruditeMedia.normalizeCardBackground({ [target.side]: { src, mime: file.type, name: file.name } })[target.side]
+          : { src, mime: file.type, name: file.name, fit: 'cover', opacity: 0.32 };
         state.creator.cards = state.creator.cards.map(card => (
-          String(card.id) === String(target.cardId) ? { ...card, [key]: src } : card
+          String(card.id) === String(target.cardId)
+            ? {
+                ...card,
+                background: {
+                  ...normalizeCardBackground(card),
+                  [target.side]: backgroundItem
+                }
+              }
+            : card
         ));
         renderCreate();
         scheduleCreatorDraftSave();
-        showToast('Image added');
+        showToast('Background set');
       } catch (error) {
         console.error(error);
-        showToast('Could not add image');
+        showToast('Could not set background');
       }
     });
 

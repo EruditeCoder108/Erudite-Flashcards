@@ -54,6 +54,59 @@
       : [];
   }
 
+  function normalizeMediaItem(item = {}) {
+    const src = String(item?.src || item?.url || item?.dataUrl || '').trim();
+    if (!src) return null;
+    const mime = String(item.mime || item.type || '').trim();
+    const kind = ['image', 'audio', 'video'].includes(item.kind || item.mediaType)
+      ? (item.kind || item.mediaType)
+      : (mime.startsWith('audio/') ? 'audio' : mime.startsWith('video/') ? 'video' : 'image');
+    return {
+      id: item.id || createId('media'),
+      kind,
+      mime,
+      name: String(item.name || item.fileName || kind).trim() || kind,
+      src,
+      created: item.created || now()
+    };
+  }
+
+  function normalizeCardMedia(media = {}) {
+    const side = value => Array.isArray(value)
+      ? value.map(normalizeMediaItem).filter(Boolean)
+      : [];
+    return {
+      term: side(media.term),
+      definition: side(media.definition)
+    };
+  }
+
+  function normalizeBackgroundSide(value = {}) {
+    if (!value) return null;
+    if (typeof value === 'string') {
+      const src = value.trim();
+      return src ? { src, fit: 'cover', opacity: 0.32 } : null;
+    }
+    const src = String(value.src || value.url || value.dataUrl || '').trim();
+    if (!src) return null;
+    return {
+      id: value.id || createId('background'),
+      src,
+      mime: String(value.mime || value.type || '').trim(),
+      name: String(value.name || value.fileName || 'Background').trim() || 'Background',
+      fit: ['cover', 'contain'].includes(value.fit) ? value.fit : 'cover',
+      opacity: Math.min(0.7, Math.max(0.08, Number(value.opacity ?? 0.32) || 0.32)),
+      created: value.created || now()
+    };
+  }
+
+  function normalizeCardBackground(background = {}, card = {}) {
+    return {
+      term: normalizeBackgroundSide(background.term || card.termBackgroundImage || card.termBackground),
+      definition: normalizeBackgroundSide(background.definition || card.definitionBackgroundImage || card.definitionBackground)
+    };
+  }
+
   function normalizeSrsSettings(settings = {}) {
     const requestRetention = numberOrNull(settings.requestRetention, DEFAULT_SRS_SETTINGS.requestRetention);
     const maxIntervalDays = numberOrNull(settings.maxIntervalDays, DEFAULT_SRS_SETTINGS.maxIntervalDays);
@@ -80,6 +133,8 @@
       definition: card.definition || '',
       termImage: card.termImage || '',
       definitionImage: card.definitionImage || '',
+      media: normalizeCardMedia(card.media || {}),
+      background: normalizeCardBackground(card.background || {}, card),
       tags: normalizeStringArray(card.tags),
       suspended: Boolean(card.suspended),
       buriedUntil: card.buriedUntil || null,
@@ -179,6 +234,9 @@
     numberOrNull,
     normalizeStringArray,
     normalizeReviewHistory,
+    normalizeMediaItem,
+    normalizeCardMedia,
+    normalizeCardBackground,
     normalizeSrsSettings,
     normalizeCard,
     normalizeClass,

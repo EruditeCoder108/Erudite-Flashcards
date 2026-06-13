@@ -33,6 +33,8 @@
     allSets: [],
     srsMode: false,
     activeCards: [],
+    normalOrder: [],
+    shuffleMode: params.get('shuffle') === 'true',
     normalIndex: 0,
     srsIndex: 0,
     flipped: false,
@@ -58,6 +60,7 @@
     hint: document.getElementById('gesture-hint'),
     back: document.getElementById('back-button'),
     prev: document.getElementById('prev-button'),
+    shuffle: document.getElementById('shuffle-button'),
     card: null,
     stage: document.getElementById('card-stage'),
     ratingDock: document.getElementById('rating-dock'),
@@ -110,6 +113,7 @@
   let transitionToken = 0;
   let flipTimer = null;
   let routeLeaving = false;
+  let restoredProgress = null;
   const preloadedImages = new Set();
   const pendingCardPatches = new Map();
   const SWIPE_DURATION = 175;
@@ -206,6 +210,10 @@
       .replace(/'/g, '&#039;');
   }
 
+  function escapeAttr(value) {
+    return escapeHtml(value).replace(/`/g, '&#096;');
+  }
+
   function sanitizeRichText(value) {
     const raw = String(value || '').trim();
     if (!raw) return '';
@@ -260,6 +268,28 @@
     return state.srsMode ? state.srsIndex : state.normalIndex;
   }
 
+  function shuffledIndices(length) {
+    const indices = Array.from({ length }, (_, index) => index);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    return indices;
+  }
+
+  function isValidOrder(order, length) {
+    if (!Array.isArray(order) || order.length !== length) return false;
+    const seen = new Set(order.map(Number));
+    return seen.size === length && [...seen].every(index => Number.isInteger(index) && index >= 0 && index < length);
+  }
+
+  function updateShuffleButton() {
+    if (!els.shuffle) return;
+    els.shuffle.classList.toggle('active', state.shuffleMode);
+    els.shuffle.setAttribute('aria-pressed', String(state.shuffleMode));
+    els.shuffle.style.display = state.srsMode ? 'none' : 'inline-grid';
+  }
+
   function readStoredBoolean(value, fallback = false) {
     if (value === true || value === 'true') return true;
     if (value === false || value === 'false') return false;
@@ -295,6 +325,10 @@
       definitionImage: cardEl.querySelector('.definition-image'),
       termImageWrap: cardEl.querySelector('.term-image-wrap'),
       definitionImageWrap: cardEl.querySelector('.definition-image-wrap'),
+      termMediaList: cardEl.querySelector('.term-media-list'),
+      definitionMediaList: cardEl.querySelector('.definition-media-list'),
+      termBg: cardEl.querySelector('.term-bg'),
+      definitionBg: cardEl.querySelector('.definition-bg'),
       cardInner: cardEl.querySelector('.study-card-inner')
     };
   }
@@ -352,7 +386,7 @@
   }
 
   function isInteractive(target) {
-    return Boolean(target.closest?.('button, a, input, textarea, select, [contenteditable="true"], .modal:not(.hidden), .image-modal:not(.hidden)'));
+    return Boolean(target.closest?.('button, a, input, textarea, select, audio, video, [contenteditable="true"], .modal:not(.hidden), .image-modal:not(.hidden)'));
   }
 
   function configureSystemBars() {
@@ -432,6 +466,10 @@
       ? mirrored
       : saved;
     if (!progress || String(progress.setId) !== String(state.set.id)) return;
+    restoredProgress = progress;
+    if (!params.has('shuffle')) {
+      state.shuffleMode = Boolean(progress.shuffleMode);
+    }
     const cardCount = state.set.cards?.length || 0;
     state.normalIndex = Math.min(Math.max(0, Number(progress.normalModeIndex ?? progress.cardIndex ?? 0) || 0), Math.max(0, cardCount - 1));
     state.srsIndex = Math.max(0, Number(progress.srsModeIndex ?? 0) || 0);
@@ -448,6 +486,8 @@
       cardIndex: activeIndex(),
       normalModeIndex: state.normalIndex,
       normalModeLength: state.set?.cards?.length || state.activeCards.length || 0,
+      shuffleMode: state.shuffleMode,
+      normalOrder: state.normalOrder,
       srsModeIndex: state.srsIndex,
       srsModeLength: state.activeCards.length,
       srsCurrentCardKey: state.srsMode ? cardKey(activeCard()) : null,
@@ -558,10 +598,20 @@
       });
       state.srsIndex = Math.min(state.srsIndex, Math.max(0, state.activeCards.length - 1));
     } else {
-      state.activeCards = state.set.cards || [];
+      const cards = state.set.cards || [];
+      if (state.shuffleMode) {
+        const savedOrder = isValidOrder(restoredProgress?.normalOrder, cards.length)
+          ? restoredProgress.normalOrder.map(Number)
+          : shuffledIndices(cards.length);
+        state.normalOrder = savedOrder;
+        state.activeCards = savedOrder.map(index => cards[index]).filter(Boolean);
+      } else {
+        state.normalOrder = Array.from({ length: cards.length }, (_, index) => index);
+        state.activeCards = cards;
+      }
       state.normalIndex = Math.min(state.normalIndex, Math.max(0, state.activeCards.length - 1));
     }
-
+    updateShuffleButton();
   }
 
   function ensureCardSanitized(card) {
@@ -607,9 +657,54 @@
     wrap.classList.remove('hidden');
   }
 
+  function renderCardBackground(element, card, side) {
+    const background = window.EruditeMedia?.getSideBackground?.(card, side) || null;
+    if (!element) return;
+    if (!background?.src) {
+      element.classList.remove('visible');
+      element.style.backgroundImage = '';
+      return;
+    }
+    element.style.backgroundImage = `url("${background.src}")`;
+    element.style.backgroundSize = background.fit || 'cover';
+    element.style.setProperty('--card-bg-opacity', String(background.opacity ?? 0.32));
+    element.classList.add('visible');
+  }
+
+  function renderMediaList(container, card, side) {
+    if (!container) return;
+    const items = (window.EruditeMedia?.getSideMedia?.(card, side, { includeLegacy: false }) || [])
+      .filter(item => item && item.src);
+    container.innerHTML = items.map(item => {
+      const src = escapeAttr(item.src || '');
+      const name = escapeAttr(item.name || item.kind || 'Media');
+      if (item.kind === 'audio') {
+        return `<div class="card-media-item"><audio src="${src}" controls preload="metadata" title="${name}"></audio></div>`;
+      }
+      if (item.kind === 'video') {
+        return `<div class="card-media-item"><video src="${src}" controls preload="metadata" title="${name}"></video></div>`;
+      }
+      return `
+        <div class="card-media-item">
+          <img src="${src}" alt="${name}" loading="lazy">
+          <button type="button" class="media-zoom-button" data-zoom-src="${src}" aria-label="View image larger">
+            <i class="fas fa-magnifying-glass-plus"></i>
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
   function preloadNeighborImages() {
     [state.activeCards[activeIndex() + 1], state.activeCards[activeIndex() - 1]].forEach(card => {
-      [card?.termImage, card?.definitionImage].filter(Boolean).forEach(src => {
+      const mediaImages = ['term', 'definition']
+        .flatMap(side => window.EruditeMedia?.getSideMedia?.(card, side, { includeLegacy: false }) || [])
+        .filter(item => item.kind === 'image')
+        .map(item => item.src);
+      const backgrounds = ['term', 'definition']
+        .map(side => window.EruditeMedia?.getSideBackground?.(card, side)?.src)
+        .filter(Boolean);
+      [card?.termImage, card?.definitionImage, ...mediaImages, ...backgrounds].filter(Boolean).forEach(src => {
         if (preloadedImages.has(src)) return;
         preloadedImages.add(src);
         const img = new Image();
@@ -657,6 +752,10 @@
     window.EruditeMath?.renderMath?.(elements.definitionText);
     renderImage(elements.termImage, elements.termImageWrap, cardData.termImage);
     renderImage(elements.definitionImage, elements.definitionImageWrap, cardData.definitionImage);
+    renderCardBackground(elements.termBg, cardData, 'term');
+    renderCardBackground(elements.definitionBg, cardData, 'definition');
+    renderMediaList(elements.termMediaList, cardData, 'term');
+    renderMediaList(elements.definitionMediaList, cardData, 'definition');
     
     cardEl.querySelectorAll('.card-scroll').forEach(scroll => {
       scroll.scrollTop = 0;
@@ -1154,6 +1253,17 @@
   function installEvents() {
     els.back.addEventListener('click', () => goLibrary(els.back));
     els.prev?.addEventListener('click', () => navigateBack());
+    els.shuffle?.addEventListener('click', () => {
+      if (state.srsMode) return;
+      state.shuffleMode = !state.shuffleMode;
+      state.normalIndex = 0;
+      restoredProgress = null;
+      prepareActiveCards();
+      populateStack();
+      updateProgress();
+      saveProgress();
+      showToast(state.shuffleMode ? 'Shuffle on' : 'Shuffle off');
+    });
     const handleModalLibraryRoute = event => {
       if (event.type === 'pointerdown' && event.button !== undefined && event.button !== 0) return;
       event.preventDefault();
@@ -1189,7 +1299,8 @@
           }
         } else {
           state.normalIndex = 0;
-          state.activeCards = state.set.cards || [];
+          restoredProgress = null;
+          prepareActiveCards();
         }
         renderStack();
         await saveProgress();
@@ -1212,6 +1323,14 @@
     });
 
     document.addEventListener('click', event => {
+      const mediaZoom = event.target.closest('[data-zoom-src]');
+      if (mediaZoom) {
+        event.preventDefault();
+        event.stopPropagation();
+        els.zoomedImage.src = mediaZoom.dataset.zoomSrc || '';
+        if (els.zoomedImage.src) els.imageModal.classList.remove('hidden');
+        return;
+      }
       const zoom = event.target.closest('[data-image-side]');
       if (!zoom) return;
       const activeEl = cards[activeCardIndex];

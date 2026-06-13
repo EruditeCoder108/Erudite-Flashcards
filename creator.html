@@ -21,6 +21,7 @@
     <script src="js/core/srs.js"></script>
     <script src="js/core/review-session.js"></script>
     <script src="js/core/draft.js"></script>
+    <script src="js/core/card-media.js"></script>
     <script src="js/core/math-render.js"></script>
     <script src="js/storage-client.js"></script>
     <script src="node_modules/sortablejs/Sortable.min.js"></script>
@@ -238,8 +239,11 @@
                     <div class="side-header">
                         <span class="side-label">TERM</span>
                         <div class="side-tools">
-                            <button class="tool-btn image-btn" title="Add Image">
-                                <i class="fas fa-image"></i>
+                            <button class="tool-btn image-btn media-btn" title="Add media">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <button class="tool-btn bg-btn" title="Set background image">
+                                <i class="fas fa-panorama"></i>
                             </button>
                         </div>
                     </div>
@@ -262,6 +266,11 @@
                         <div class="image-preview-container">
                             <img class="image-preview" style="display: none;">
                             <button class="remove-image-btn" style="display: none;" title="Remove image">&times;</button>
+                            <div class="media-preview-list"></div>
+                            <div class="background-preview hidden">
+                                <span><i class="fas fa-panorama"></i> Background</span>
+                                <button type="button" class="remove-background-btn" title="Remove background image">&times;</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -269,8 +278,11 @@
                     <div class="side-header">
                         <span class="side-label">DEFINITION</span>
                         <div class="side-tools">
-                            <button class="tool-btn image-btn" title="Add Image">
-                                <i class="fas fa-image"></i>
+                            <button class="tool-btn image-btn media-btn" title="Add media">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <button class="tool-btn bg-btn" title="Set background image">
+                                <i class="fas fa-panorama"></i>
                             </button>
                         </div>
                     </div>
@@ -293,6 +305,11 @@
                         <div class="image-preview-container">
                             <img class="image-preview" style="display: none;">
                             <button class="remove-image-btn" style="display: none;" title="Remove image">&times;</button>
+                            <div class="media-preview-list"></div>
+                            <div class="background-preview hidden">
+                                <span><i class="fas fa-panorama"></i> Background</span>
+                                <button type="button" class="remove-background-btn" title="Remove background image">&times;</button>
+                            </div>
                         </div>
                     </div>
                 </div>

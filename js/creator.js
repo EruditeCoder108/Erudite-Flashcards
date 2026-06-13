@@ -39,12 +39,80 @@ document.addEventListener('DOMContentLoaded', async () => {
     let successfulSaveRedirecting = false;
     let flashcardClasses = [];
     let classForCreatorEditor = null;
+    const MEDIA_ACCEPT = 'image/*,audio/*,video/*';
+    const BACKGROUND_ACCEPT = 'image/*';
     const clickSound = new Audio('assets/flashcard-assets/click.mp3');
     clickSound.volume = 0.3;
 
     function playClickSound() {
         clickSound.currentTime = 0;
         clickSound.play().catch(() => {});
+    }
+
+    function normalizeCardMedia(card = {}) {
+        return window.EruditeMedia?.normalizeCardMedia
+            ? window.EruditeMedia.normalizeCardMedia(card.media || {})
+            : {
+                term: Array.isArray(card.media?.term) ? card.media.term : [],
+                definition: Array.isArray(card.media?.definition) ? card.media.definition : []
+            };
+    }
+
+    function normalizeCardBackground(card = {}) {
+        return window.EruditeMedia?.normalizeCardBackground
+            ? window.EruditeMedia.normalizeCardBackground(card.background || {}, card)
+            : {
+                term: card.background?.term || null,
+                definition: card.background?.definition || null
+            };
+    }
+
+    function mediaIcon(kind) {
+        if (kind === 'audio') return 'fa-volume-high';
+        if (kind === 'video') return 'fa-film';
+        return 'fa-image';
+    }
+
+    function escapeAttribute(value) {
+        return String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    function escapeText(value) {
+        return String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    function getSideKeyFromElement(sideElement) {
+        return sideElement?.classList?.contains('definition-side') ? 'definition' : 'term';
+    }
+
+    function ensureCardMediaState(cardElement) {
+        cardElement.__cardData = cardElement.__cardData || {};
+        cardElement.__cardData.media = normalizeCardMedia(cardElement.__cardData);
+        cardElement.__cardData.background = normalizeCardBackground(cardElement.__cardData);
+        return cardElement.__cardData;
+    }
+
+    function cardHasContent(card = {}) {
+        const media = normalizeCardMedia(card.media || {});
+        const background = normalizeCardBackground(card);
+        return Boolean(
+            String(card.term || '').trim() ||
+            String(card.definition || '').trim() ||
+            card.termImage ||
+            card.definitionImage ||
+            media.term.length ||
+            media.definition.length ||
+            background.term ||
+            background.definition
+        );
     }
 
     function normalizeClassRecord(classData = {}) {
@@ -592,7 +660,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const cardFragment = document.importNode(cardTemplate.content, true);
         const cardElement = cardFragment.querySelector('.card-editor');
-        cardElement.__cardData = { ...cardData };
+        cardElement.__cardData = {
+            ...cardData,
+            media: normalizeCardMedia(cardData),
+            background: normalizeCardBackground(cardData)
+        };
         if (cardData.id) {
             cardElement.dataset.cardId = cardData.id;
         }
@@ -635,6 +707,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             cardElement.querySelector('.definition-side .image-btn'), 
             defPreviewContainer
         );
+        setupBackgroundUpload(
+            cardElement.querySelector('.term-side .bg-btn'),
+            termPreviewContainer
+        );
+        setupBackgroundUpload(
+            cardElement.querySelector('.definition-side .bg-btn'),
+            defPreviewContainer
+        );
         
         // Setup drag and drop
         setupDragAndDrop(cardElement);
@@ -647,28 +727,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             definitionEditor.innerHTML = cardData.definition;
         }
         
-        // Load existing images if provided
-        if (cardData.termImage) {
-            const preview = termPreviewContainer.querySelector('.image-preview');
-            preview.src = cardData.termImage;
-            preview.style.display = 'block';
-            
-            const removeBtn = termPreviewContainer.querySelector('.remove-image-btn');
-            if (removeBtn) {
-                removeBtn.style.display = 'block';
-            }
-        }
-        
-        if (cardData.definitionImage) {
-            const preview = defPreviewContainer.querySelector('.image-preview');
-            preview.src = cardData.definitionImage;
-            preview.style.display = 'block';
-            
-            const removeBtn = defPreviewContainer.querySelector('.remove-image-btn');
-            if (removeBtn) {
-                removeBtn.style.display = 'block';
-            }
-        }
+        renderSideMedia(cardElement, 'term');
+        renderSideMedia(cardElement, 'definition');
         
         // Add delete button functionality
         const deleteBtn = cardElement.querySelector('.delete-card');
@@ -805,27 +865,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 
                 const blob = imageItem.getAsFile();
                 if (!blob) return;
-                
-                if (blob.size > IMAGE_MAX_SIZE) {
-                    showToast('Image size should be less than 5MB', 'error');
-                    return;
-                }
-                
-                // Get the image preview container for this side
-                const previewContainer = container.querySelector('.image-preview-container');
-                const preview = previewContainer.querySelector('.image-preview');
-                const removeBtn = previewContainer.querySelector('.remove-image-btn');
-                
-                // Process and display the image
-                processImage(blob).then(imageUrl => {
-                    preview.src = imageUrl;
-                    preview.style.display = 'block';
-                    
-                    // Show the remove button
-                    if (removeBtn) {
-                        removeBtn.style.display = 'block';
-                    }
-                    
+
+                const cardElement = container.closest('.card-editor');
+                const side = getSideKeyFromElement(container);
+                addMediaFileToCard(cardElement, side, blob).then(() => {
+                    renderSideMedia(cardElement, side);
                     triggerAutosave();
                     showToast('Image pasted successfully', 'success');
                 }).catch(error => {
@@ -1421,28 +1465,118 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
+    function renderSideMedia(cardElement, side) {
+        const cardData = ensureCardMediaState(cardElement);
+        const sideElement = cardElement.querySelector(side === 'definition' ? '.definition-side' : '.term-side');
+        const previewContainer = sideElement?.querySelector('.image-preview-container');
+        const previewList = previewContainer?.querySelector('.media-preview-list');
+        const legacyPreview = previewContainer?.querySelector('.image-preview');
+        const legacyRemove = previewContainer?.querySelector('.remove-image-btn');
+        const backgroundPreview = previewContainer?.querySelector('.background-preview');
+        if (!previewContainer || !previewList) return;
+
+        const legacyKey = side === 'definition' ? 'definitionImage' : 'termImage';
+        const legacySrc = cardData[legacyKey] || '';
+        if (legacyPreview) {
+            legacyPreview.src = legacySrc;
+            legacyPreview.style.display = legacySrc ? 'block' : 'none';
+        }
+        if (legacyRemove) legacyRemove.style.display = legacySrc ? 'block' : 'none';
+
+        const sideMedia = normalizeCardMedia(cardData)[side] || [];
+        previewList.innerHTML = sideMedia.map(item => {
+            const icon = mediaIcon(item.kind);
+            const src = escapeAttribute(item.src || '');
+            const name = escapeText(item.name || item.kind || 'media');
+            const attrName = escapeAttribute(item.name || item.kind || 'media');
+            let preview = '';
+            if (item.kind === 'audio') {
+                preview = `<audio src="${src}" controls preload="metadata" title="${attrName}"></audio>`;
+            } else if (item.kind === 'video') {
+                preview = `<video src="${src}" controls preload="metadata" title="${attrName}"></video>`;
+            } else {
+                preview = `<img src="${src}" alt="${attrName}">`;
+            }
+            return `
+                <div class="media-preview-item" data-media-id="${item.id}">
+                    <div>
+                        <div class="media-preview-meta">
+                            <i class="fas ${icon}"></i>
+                            <span>${name}</span>
+                        </div>
+                        ${preview}
+                    </div>
+                    <button type="button" class="remove-media-btn" data-remove-media="${item.id}" title="Remove media">&times;</button>
+                </div>
+            `;
+        }).join('');
+
+        previewList.querySelectorAll('[data-remove-media]').forEach(button => {
+            button.addEventListener('click', async event => {
+                event.preventDefault();
+                event.stopPropagation();
+                const id = button.dataset.removeMedia;
+                const mediaState = normalizeCardMedia(cardData);
+                const item = (mediaState[side] || []).find(entry => String(entry.id) === String(id));
+                if (item?.src && window.flashcardStore?.deleteImage) {
+                    await window.flashcardStore.deleteImage(item.src).catch(() => {});
+                }
+                cardData.media = {
+                    ...mediaState,
+                    [side]: (mediaState[side] || []).filter(entry => String(entry.id) !== String(id))
+                };
+                renderSideMedia(cardElement, side);
+                triggerAutosave();
+            });
+        });
+
+        const background = normalizeCardBackground(cardData)[side];
+        if (backgroundPreview) {
+            backgroundPreview.classList.toggle('hidden', !background);
+            backgroundPreview.style.backgroundImage = background ? `url("${background.src}")` : '';
+            const removeBackground = backgroundPreview.querySelector('.remove-background-btn');
+            if (removeBackground) {
+                removeBackground.onclick = async event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (background?.src && window.flashcardStore?.deleteImage) {
+                        await window.flashcardStore.deleteImage(background.src).catch(() => {});
+                    }
+                    cardData.background = {
+                        ...normalizeCardBackground(cardData),
+                        [side]: null
+                    };
+                    renderSideMedia(cardElement, side);
+                    triggerAutosave();
+                };
+            }
+        }
+    }
+
     function setupImageUpload(button, previewContainer) {
         const input = document.createElement('input');
         input.type = 'file';
-        input.accept = 'image/*';
+        input.accept = MEDIA_ACCEPT;
+        input.multiple = true;
 
-        // Get image preview and remove button
+        const cardElement = previewContainer.closest('.card-editor');
+        const side = getSideKeyFromElement(previewContainer.closest('.card-side'));
         const preview = previewContainer.querySelector('.image-preview');
         const removeBtn = previewContainer.querySelector('.remove-image-btn');
 
-        // Set up remove button click handler
         if (removeBtn) {
             removeBtn.addEventListener('click', async (e) => {
                 e.stopPropagation(); // Prevent event from bubbling up
 
-                const currentSrc = preview.src;
+                const data = ensureCardMediaState(cardElement);
+                const legacyKey = side === 'definition' ? 'definitionImage' : 'termImage';
+                const currentSrc = data[legacyKey] || preview.src;
                 if (currentSrc && window.flashcardStore?.deleteImage) {
                     await window.flashcardStore.deleteImage(currentSrc);
                 }
 
-                preview.src = '';
-                preview.style.display = 'none';
-                removeBtn.style.display = 'none';
+                data[legacyKey] = '';
+                renderSideMedia(cardElement, side);
                 triggerAutosave();
             });
         }
@@ -1450,51 +1584,114 @@ document.addEventListener('DOMContentLoaded', async () => {
         button.addEventListener('click', () => input.click());
 
         input.addEventListener('change', async () => {
-            const file = input.files[0];
-            if (!file) return;
-
-            if (!file.type.startsWith('image/')) {
-                showToast('Please select an image file', 'error');
-                return;
-            }
+            const files = Array.from(input.files || []);
+            if (!files.length) return;
 
             try {
                 button.disabled = true;
                 button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
 
-                // Determine card index and image type
-                const cardElement = button.closest('.card-editor');
-                const cardsContainer = document.getElementById('cards-container');
-                const cardIndex = Array.from(cardsContainer.children).indexOf(cardElement);
-                const isTermSide = button.closest('.term-side') !== null;
-                const imageType = isTermSide ? 'term' : 'definition';
-
-                const imageUrl = await processImage(file, {
-                    setId: editMode ? editSetId : 'draft',
-                    cardIndex,
-                    imageType,
-                    prefix: `${imageType}-image`
-                });
-
-                // Display the image
-                preview.src = imageUrl;
-                preview.style.display = 'block';
-
-                // Show remove button
-                if (removeBtn) {
-                    removeBtn.style.display = 'block';
+                let added = 0;
+                for (const file of files) {
+                    if (!file.type.startsWith('image/') && !file.type.startsWith('audio/') && !file.type.startsWith('video/')) continue;
+                    await addMediaFileToCard(cardElement, side, file);
+                    added += 1;
                 }
 
+                if (!added) {
+                    showToast('No supported media files selected', 'error');
+                    return;
+                }
+
+                renderSideMedia(cardElement, side);
                 triggerAutosave();
-                showToast('Image added successfully', 'success');
+                showToast(added === 1 ? 'Media added successfully' : `${added} media files added`, 'success');
             } catch (error) {
-                console.error('Error processing image:', error);
-                showToast('Error processing image', 'error');
+                console.error('Error processing media:', error);
+                showToast('Error processing media', 'error');
             } finally {
+                input.value = '';
                 button.disabled = false;
-                button.innerHTML = '<i class="fas fa-image"></i>';
+                button.innerHTML = '<i class="fas fa-paperclip"></i>';
             }
         });
+    }
+
+    function setupBackgroundUpload(button, previewContainer) {
+        if (!button) return;
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = BACKGROUND_ACCEPT;
+        const cardElement = previewContainer.closest('.card-editor');
+        const side = getSideKeyFromElement(previewContainer.closest('.card-side'));
+
+        button.addEventListener('click', () => input.click());
+        input.addEventListener('change', async () => {
+            const file = input.files?.[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                showToast('Please select an image for the background', 'error');
+                return;
+            }
+            try {
+                button.disabled = true;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                const src = await processMediaFile(file, {
+                    setId: editMode ? editSetId : 'draft',
+                    side,
+                    prefix: `${side}-background`
+                });
+                const data = ensureCardMediaState(cardElement);
+                data.background = {
+                    ...normalizeCardBackground(data),
+                    [side]: window.EruditeMedia?.normalizeCardBackground
+                        ? window.EruditeMedia.normalizeCardBackground({ [side]: { src, mime: file.type, name: file.name } })[side]
+                        : { src, mime: file.type, name: file.name, fit: 'cover', opacity: 0.32 }
+                };
+                renderSideMedia(cardElement, side);
+                triggerAutosave();
+                showToast('Background image set', 'success');
+            } catch (error) {
+                console.error('Error setting background:', error);
+                showToast('Could not set background', 'error');
+            } finally {
+                input.value = '';
+                button.disabled = false;
+                button.innerHTML = '<i class="fas fa-panorama"></i>';
+            }
+        });
+    }
+
+    async function addMediaFileToCard(cardElement, side, file) {
+        if (!file.type.startsWith('image/') && !file.type.startsWith('audio/') && !file.type.startsWith('video/')) {
+            throw new Error('Unsupported media type');
+        }
+
+        const cardIndex = Array.from(cardsContainer.children)
+            .filter(child => child.classList?.contains('card-editor'))
+            .indexOf(cardElement);
+        const src = await processMediaFile(file, {
+            setId: editMode ? editSetId : 'draft',
+            cardIndex,
+            side,
+            prefix: `${side}-media`
+        });
+        const data = ensureCardMediaState(cardElement);
+        const mediaState = normalizeCardMedia(data);
+        const item = window.EruditeMedia?.mediaItemFromSource
+            ? window.EruditeMedia.mediaItemFromSource(src, file)
+            : {
+                id: `media-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+                kind: file.type.startsWith('audio/') ? 'audio' : file.type.startsWith('video/') ? 'video' : 'image',
+                mime: file.type,
+                name: file.name,
+                src,
+                created: Date.now()
+            };
+        data.media = {
+            ...mediaState,
+            [side]: [...(mediaState[side] || []), item]
+        };
     }
 
     function setupDragAndDrop(cardElement) {
@@ -1538,52 +1735,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             const files = e.dataTransfer.files;
             if (files.length === 0) return;
 
-            const file = files[0];
-            if (!file.type.startsWith('image/')) {
-                showToast('Please drop an image file', 'error');
-                return;
-            }
-
-            // Size limitation removed to allow larger images
-
-            const preview = side.querySelector('.image-preview');
-            const removeBtn = side.querySelector('.remove-image-btn');
-
-            if (!preview) {
-                console.error('Image preview element not found');
-                return;
-            }
-
             try {
                 const cardElement = side.closest('.card-editor');
-                const cardsContainer = document.getElementById('cards-container');
-                const cardIndex = Array.from(cardsContainer.children).indexOf(cardElement);
-                const isTermSide = side.classList.contains('term-side');
-                const imageType = isTermSide ? 'term' : 'definition';
-                const imageUrl = await processImage(file, {
-                    setId: editMode ? editSetId : 'draft',
-                    cardIndex,
-                    imageType,
-                    prefix: `${imageType}-image`
-                });
-
-                preview.src = imageUrl;
-                preview.style.display = 'block';
-
-                if (removeBtn) {
-                    removeBtn.style.display = 'block';
+                const targetSide = getSideKeyFromElement(side);
+                let added = 0;
+                for (const file of Array.from(files)) {
+                    if (!file.type.startsWith('image/') && !file.type.startsWith('audio/') && !file.type.startsWith('video/')) continue;
+                    await addMediaFileToCard(cardElement, targetSide, file);
+                    added += 1;
                 }
-
+                if (!added) {
+                    showToast('No supported media files selected', 'error');
+                    return;
+                }
+                renderSideMedia(cardElement, targetSide);
                 triggerAutosave();
-                showToast('Image added successfully', 'success');
+                showToast(added === 1 ? 'Media added successfully' : `${added} media files added`, 'success');
             } catch (error) {
-                console.error('Error processing dragged image:', error);
-                showToast('Error processing image', 'error');
+                console.error('Error processing dragged media:', error);
+                showToast('Error processing media', 'error');
             }
         }
     }
 
-    async function processImage(file, meta = {}) {
+    async function processMediaFile(file, meta = {}) {
         if (window.flashcardStore?.saveImageFromFile) {
             return await window.flashcardStore.saveImageFromFile(file, meta);
         }
@@ -1686,7 +1861,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             term: String(card.term || '').trim(),
             definition: String(card.definition || '').trim(),
             termImage: String(card.termImage || ''),
-            definitionImage: String(card.definitionImage || '')
+            definitionImage: String(card.definitionImage || ''),
+            media: normalizeCardMedia(card.media || {}),
+            background: normalizeCardBackground(card)
         };
     }
 
@@ -1709,7 +1886,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             return card.term === savedCard.term &&
                 card.definition === savedCard.definition &&
                 card.termImage === savedCard.termImage &&
-                card.definitionImage === savedCard.definitionImage;
+                card.definitionImage === savedCard.definitionImage &&
+                JSON.stringify(card.media) === JSON.stringify(savedCard.media) &&
+                JSON.stringify(card.background) === JSON.stringify(savedCard.background);
         });
     }
 
@@ -1738,8 +1917,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             // Only save if there's actual content
             const cards = getCardsData();
-            const hasContent = setNameInput.value.trim() || cards.some(card => 
-                card.term || card.definition || card.termImage || card.definitionImage);
+            const hasContent = setNameInput.value.trim() || cards.some(cardHasContent);
             
             if (hasContent) {
                 const draft = {
@@ -1887,6 +2065,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 definition: defEditor ? defEditor.innerHTML : '',
                 termImage: termImg && termImg.style.display !== 'none' && termImg.src ? termImg.src : '',
                 definitionImage: defImg && defImg.style.display !== 'none' && defImg.src ? defImg.src : '',
+                media: normalizeCardMedia(card.__cardData?.media || {}),
+                background: normalizeCardBackground(card.__cardData || {}),
                 tags: Array.isArray(card.__cardData?.tags) ? card.__cardData.tags : [],
                 suspended: Boolean(card.__cardData?.suspended),
                 buriedUntil: card.__cardData?.buriedUntil || null,
@@ -1915,7 +2095,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const allCards = await Promise.all(cardPromises);
 
             // Then filter out empty cards
-            const cards = allCards.filter(card => card.term || card.definition);
+            const cards = allCards.filter(cardHasContent);
 
             const flashcardSet = {
                 ...(editMode && existingSetData ? existingSetData : {}),
@@ -1995,7 +2175,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const allCards = await Promise.all(cardPromises);
             
             // Filter out empty cards
-            const cards = allCards.filter(card => card.term || card.definition);
+            const cards = allCards.filter(cardHasContent);
 
             if (cards.length === 0) {
                 showToast('Please add at least one card with content', 'error');
@@ -2036,6 +2216,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             definition: defEditor ? defEditor.innerHTML : '',
             termImage: getImageSrc(termImg),
             definitionImage: getImageSrc(defImg),
+            media: normalizeCardMedia(previous.media || {}),
+            background: normalizeCardBackground(previous),
             tags: Array.isArray(previous.tags) ? previous.tags : [],
             suspended: Boolean(previous.suspended),
             buriedUntil: previous.buriedUntil || null,
@@ -2065,7 +2247,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const hasTermImage = termImg && termImg.style.display !== 'none' && termImg.src;
         const hasDefImage = defImg && defImg.style.display !== 'none' && defImg.src;
         
-        return termContent !== '' || definitionContent !== '' || hasTermImage || hasDefImage;
+        return cardHasContent({
+            ...(cardElement.__cardData || {}),
+            term: termContent,
+            definition: definitionContent,
+            termImage: hasTermImage ? termImg.src : '',
+            definitionImage: hasDefImage ? defImg.src : ''
+        });
     }
 
     function updateCardNumbers() {
@@ -2230,7 +2418,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const setName = setNameInput.value.trim() || 'Untitled Set';
             
             // Get cards data
-            const cards = getCardsData().filter(card => card.term || card.definition);
+            const cards = getCardsData().filter(cardHasContent);
             
             if (cards.length === 0) {
                 showToast('Cannot export empty set', 'error');

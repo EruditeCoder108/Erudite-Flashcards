@@ -20,6 +20,7 @@ const sharedCoreScripts = [
   '<script src="js/core/srs.js"></script>',
   '<script src="js/core/review-session.js"></script>',
   '<script src="js/core/draft.js"></script>',
+  '<script src="js/core/card-media.js"></script>',
   '<script src="js/core/math-render.js"></script>'
 ].join('\n    ');
 

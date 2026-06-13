@@ -188,7 +188,8 @@
           </div>
 
           <div class="mobile-creator-cards" id="mobile-creator-cards"></div>
-          <input id="mobile-image-input" type="file" accept="image/*" hidden>
+          <input id="mobile-image-input" type="file" accept="image/*,audio/*,video/*" multiple hidden>
+          <input id="mobile-background-input" type="file" accept="image/*" hidden>
           <input id="mobile-txt-input" type="file" accept=".txt,text/plain" hidden>
         </form>
       </section>
@@ -338,6 +339,7 @@
   <script src="js/core/srs.js"></script>
   <script src="js/core/review-session.js"></script>
   <script src="js/core/draft.js"></script>
+  <script src="js/core/card-media.js"></script>
   <script src="js/core/math-render.js"></script>
   <script src="vendor/sql.js/sql-wasm.js"></script>
   <script src="js/mobile/mobile-store.js"></script>
