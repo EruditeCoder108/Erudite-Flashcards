@@ -1,5 +1,10 @@
 (function () {
-  const api = window.eruditeFlashcards || window.eruditeMobileFlashcards;
+  let api = window.eruditeFlashcards || window.eruditeMobileFlashcards || null;
+
+  function getNativeApi() {
+    api = window.eruditeFlashcards || window.eruditeMobileFlashcards || api || null;
+    return api;
+  }
   const mirroredStateKeys = new Set([
     'flashcardSetDraft',
     'currentStudyProgress',
@@ -75,23 +80,27 @@
   }
 
   async function listSets() {
-    if (api) return api.listSets();
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.listSets();
     return readLocal('flashcardSets', []);
   }
 
   async function listSetsMeta() {
-    if (api?.listSetsMeta) return api.listSetsMeta();
+    const nativeApi = getNativeApi();
+    if (nativeApi?.listSetsMeta) return nativeApi.listSetsMeta();
     return listSets(); // fallback: load full sets
   }
 
   async function getSet(id) {
-    if (api) return api.getSet(id);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.getSet(id);
     const sets = await listSets();
     return sets.find((set) => String(set.id) === String(id)) || null;
   }
 
   async function saveSet(set) {
-    if (api) return api.saveSet(set);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.saveSet(set);
     const sets = await listSets();
     const existing = sets.find((item) => String(item.id) === String(set.id));
     const next = {
@@ -109,25 +118,29 @@
   }
 
   async function replaceSets(sets) {
-    if (api) return api.replaceSets(sets);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.replaceSets(sets);
     writeLocal('flashcardSets', Array.isArray(sets) ? sets : []);
     return Array.isArray(sets) ? sets : [];
   }
 
   async function deleteSet(id) {
-    if (api) return api.deleteSet(id);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.deleteSet(id);
     const sets = await listSets();
     writeLocal('flashcardSets', sets.filter((set) => String(set.id) !== String(id)));
     return true;
   }
 
   async function listClasses() {
-    if (api) return api.listClasses();
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.listClasses();
     return readLocal('flashcardClasses', []);
   }
 
   async function saveClass(classData) {
-    if (api) return api.saveClass(classData);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.saveClass(classData);
     const classes = await listClasses();
     const now = Date.now();
     const next = {
@@ -145,7 +158,8 @@
   }
 
   async function deleteClass(classId) {
-    if (api) return api.deleteClass(classId);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.deleteClass(classId);
     const classes = await listClasses();
     writeLocal('flashcardClasses', classes.filter((item) => String(item.id) !== String(classId)));
     const sets = await listSets();
@@ -156,13 +170,15 @@
   }
 
   async function getProgress(setId) {
-    if (api) return api.getProgress(setId);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.getProgress(setId);
     const progress = readLocal('studyProgress', {});
     return progress[String(setId)] || null;
   }
 
   async function saveProgress(setId, value) {
-    if (api) return api.saveProgress(setId, value);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.saveProgress(setId, value);
     const progress = readLocal('studyProgress', {});
     progress[String(setId)] = value;
     writeLocal('studyProgress', progress);
@@ -170,23 +186,27 @@
   }
 
   async function saveCardProgress(setId, cardId, patch) {
-    if (api?.saveCardProgress) return api.saveCardProgress(setId, cardId, patch);
+    const nativeApi = getNativeApi();
+    if (nativeApi?.saveCardProgress) return nativeApi.saveCardProgress(setId, cardId, patch);
     return false;
   }
 
   async function getSettings() {
-    if (api) return api.getSettings();
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.getSettings();
     return readLocal('flashcards-settings', {});
   }
 
   async function saveSettings(settings) {
-    if (api) return api.saveSettings(settings);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.saveSettings(settings);
     writeLocal('flashcards-settings', settings || {});
     return true;
   }
 
   async function mirrorLocalStorageWrite(key, value) {
-    if (isHydrating || isWritingStateMirror || window.__eruditeApplyingSettings || !api) return;
+    const nativeApi = getNativeApi();
+    if (isHydrating || isWritingStateMirror || window.__eruditeApplyingSettings || !nativeApi) return;
 
     try {
       if (key === 'flashcardSets' || key === 'flashcardClasses') {
@@ -211,7 +231,8 @@
   }
 
   async function mirrorLocalStorageRemove(key) {
-    if (isHydrating || isWritingStateMirror || !api) return;
+    const nativeApi = getNativeApi();
+    if (isHydrating || isWritingStateMirror || !nativeApi) return;
     if (mirroredStateKeys.has(key)) {
       await removeState(key);
     }
@@ -236,7 +257,8 @@
   }
 
   async function migrateLegacyBrowserStorage() {
-    if (!api) return;
+    const nativeApi = getNativeApi();
+    if (!nativeApi) return;
 
     try {
       const localSets = readLocal('flashcardSets', null);
@@ -260,7 +282,7 @@
       }
 
       for (const key of mirroredStateKeys) {
-        const currentValue = api ? await api.getState(key) : await getState(key);
+        const currentValue = nativeApi ? await nativeApi.getState(key) : await getState(key);
         const localRaw = localStorage.getItem(key);
         if ((currentValue === null || currentValue === undefined) && localRaw !== null) {
           const parsedValue = parseMirroredStateValue(key, localRaw);
@@ -277,7 +299,7 @@
   }
 
   function clearLegacyBrowserStorage() {
-    if (!api) return;
+    if (!getNativeApi()) return;
     legacyDurableKeys.forEach(key => localStorage.removeItem(key));
   }
 
@@ -286,9 +308,10 @@
     isHydrating = true;
 
     try {
+      const nativeApi = getNativeApi();
       await migrateLegacyBrowserStorage();
 
-      if (api) {
+      if (nativeApi) {
         const settings = await getSettings();
         if (settings && typeof settings === 'object') {
           localStorage.setItem('flashcards-settings', JSON.stringify(settings));
@@ -296,7 +319,8 @@
             localStorage.setItem('flashcards-theme', settings.theme);
           }
         }
-        clearLegacyBrowserStorage();
+        // Do not clear legacy localStorage mirrors on mobile. They are a useful
+        // read-only safety net if the native API is briefly unavailable.
         return;
       }
 
@@ -349,12 +373,13 @@
   }
 
   async function getState(key) {
-    if (api) {
+    const nativeApi = getNativeApi();
+    if (nativeApi) {
       if (key === 'srsModeEnabled') {
         const mirrored = localStorage.getItem(key);
         if (mirrored !== null) return parseMirroredStateValue(key, mirrored);
       }
-      const value = await api.getState(key);
+      const value = await nativeApi.getState(key);
       if (value !== null && value !== undefined) return value;
       if (mirroredStateKeys.has(key)) {
         return parseMirroredStateValue(key, localStorage.getItem(key));
@@ -365,18 +390,20 @@
   }
 
   async function setState(key, value) {
-    if (api) {
+    const nativeApi = getNativeApi();
+    if (nativeApi) {
       writeStateMirror(key, value);
-      return api.setState(key, value);
+      return nativeApi.setState(key, value);
     }
     writeLocal(`erudite-state-${key}`, value);
     return true;
   }
 
   async function removeState(key) {
-    if (api) {
+    const nativeApi = getNativeApi();
+    if (nativeApi) {
       removeStateMirror(key);
-      return api.removeState(key);
+      return nativeApi.removeState(key);
     }
     localStorage.removeItem(`erudite-state-${key}`);
     return true;
@@ -384,33 +411,39 @@
 
   async function saveImageFromFile(file, meta = {}) {
     const dataUrl = await readFileAsDataUrl(file);
-    if (api) return api.saveImage(dataUrl, { ...meta, fileName: file.name });
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.saveImage(dataUrl, { ...meta, fileName: file.name });
     return dataUrl;
   }
 
   async function saveImageDataUrl(dataUrl, meta = {}) {
-    if (api) return api.saveImage(dataUrl, meta);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.saveImage(dataUrl, meta);
     return dataUrl;
   }
 
   async function deleteImage(fileUrl) {
-    if (api?.deleteImage) return api.deleteImage(fileUrl);
+    const nativeApi = getNativeApi();
+    if (nativeApi?.deleteImage) return nativeApi.deleteImage(fileUrl);
     return true;
   }
 
   async function saveFontFromFile(file) {
     const dataUrl = await readFileAsDataUrl(file);
-    if (api) return api.saveFont(dataUrl, { fileName: file.name, prefix: 'content-font' });
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.saveFont(dataUrl, { fileName: file.name, prefix: 'content-font' });
     return dataUrl;
   }
 
   async function listPremadeSets(classId, subjectId) {
-    if (api) return api.listPremadeSets(classId, subjectId);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.listPremadeSets(classId, subjectId);
     return [];
   }
 
   async function getPremadeSet(classId, subjectId, fileName) {
-    if (api) return api.getPremadeSet(classId, subjectId, fileName);
+    const nativeApi = getNativeApi();
+    if (nativeApi) return nativeApi.getPremadeSet(classId, subjectId, fileName);
     try {
       const response = await fetch(`premade-cards/${classId}/${subjectId}/${fileName}`);
       return response.ok ? response.json() : null;
@@ -420,7 +453,8 @@
   }
 
   async function getDiagnostics() {
-    if (api?.getDiagnostics) return api.getDiagnostics();
+    const nativeApi = getNativeApi();
+    if (nativeApi?.getDiagnostics) return nativeApi.getDiagnostics();
 
     const sets = await listSets();
     const classes = await listClasses();
@@ -448,7 +482,8 @@
   }
 
   async function exportBackup() {
-    if (api?.exportBackup) return api.exportBackup();
+    const nativeApi = getNativeApi();
+    if (nativeApi?.exportBackup) return nativeApi.exportBackup();
 
     const sets = await listSets();
     const classes = await listClasses();
@@ -480,7 +515,8 @@
   }
 
   async function importBackup() {
-    if (api?.importBackup) return api.importBackup();
+    const nativeApi = getNativeApi();
+    if (nativeApi?.importBackup) return nativeApi.importBackup();
     return {
       canceled: true,
       unsupported: true
@@ -488,7 +524,8 @@
   }
 
   async function exportDelimited(format) {
-    if (api?.exportDelimited) return api.exportDelimited(format);
+    const nativeApi = getNativeApi();
+    if (nativeApi?.exportDelimited) return nativeApi.exportDelimited(format);
     return {
       canceled: true,
       unsupported: true
@@ -496,7 +533,8 @@
   }
 
   async function importDelimited() {
-    if (api?.importDelimited) return api.importDelimited();
+    const nativeApi = getNativeApi();
+    if (nativeApi?.importDelimited) return nativeApi.importDelimited();
     return {
       canceled: true,
       unsupported: true
@@ -534,8 +572,9 @@
     importDelimited
   };
 
-  window.flashcardMenuReady = api?.onMenuCommand
-    ? api.onMenuCommand(command => {
+  const menuApi = getNativeApi();
+  window.flashcardMenuReady = menuApi?.onMenuCommand
+    ? menuApi.onMenuCommand(command => {
         window.dispatchEvent(new CustomEvent('erudite-menu-command', { detail: command }));
       })
     : null;

@@ -77,9 +77,6 @@
         </div>
       </div>
       <div class="mobile-top-actions">
-        <button type="button" class="icon-button" data-action="open-backup" aria-label="Backup">
-          <i class="fas fa-cloud-arrow-up"></i>
-        </button>
         <button type="button" class="icon-button" data-action="open-settings" aria-label="Settings">
           <i class="fas fa-gear"></i>
         </button>
@@ -159,10 +156,13 @@
               <span>Deck name</span>
               <input id="mobile-create-title" type="text" autocomplete="off" placeholder="English vocabulary">
             </label>
-            <label class="mobile-field">
+            <div class="mobile-field">
               <span>Class</span>
-              <select id="mobile-create-class"></select>
-            </label>
+              <button type="button" class="custom-select-trigger" id="mobile-create-class-trigger">
+                <span id="mobile-create-class-label">General</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
           </div>
 
           <div class="creator-actions">
@@ -269,6 +269,57 @@
         <span>More</span>
       </button>
     </nav>
+
+    <!-- Selection Bar for Multi-Select Actions -->
+    <div class="selection-bar" id="selection-bar" style="display: none;">
+      <div class="selection-info">
+        <span id="selection-count">0 selected</span>
+      </div>
+      <div class="selection-actions">
+        <button type="button" class="selection-btn cancel-btn" id="btn-cancel-selection">
+          <i class="fas fa-xmark"></i> Cancel
+        </button>
+        <button type="button" class="selection-btn delete-btn" id="btn-delete-selected">
+          <i class="fas fa-trash-can"></i> Delete
+        </button>
+      </div>
+    </div>
+
+    <!-- Context Menu Modal for Decks -->
+    <div class="deck-context-modal" id="deck-context-modal" style="display: none;">
+      <div class="context-modal-backdrop" id="context-backdrop"></div>
+      <div class="context-modal-content">
+        <div class="context-modal-header">
+          <h3 id="context-deck-title">Deck Options</h3>
+        </div>
+        <div class="context-modal-body">
+          <button type="button" class="context-option-row delete" id="context-opt-delete">
+            <i class="fas fa-trash-can"></i>
+            <span>Delete Deck</span>
+          </button>
+          <button type="button" class="context-option-row select" id="context-opt-select">
+            <i class="fas fa-square-check"></i>
+            <span>Select Deck</span>
+          </button>
+          <button type="button" class="context-option-row cancel" id="context-opt-cancel">
+            <i class="fas fa-xmark"></i>
+            <span>Cancel</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Class Selection Modal -->
+    <div class="deck-context-modal" id="class-select-modal" style="display: none;">
+      <div class="context-modal-backdrop" id="class-select-backdrop"></div>
+      <div class="context-modal-content">
+        <div class="context-modal-header">
+          <h3>Select Class</h3>
+        </div>
+        <div class="context-modal-body" id="class-select-options">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="mobile-toast" id="mobile-toast" role="status" aria-live="polite"></div>

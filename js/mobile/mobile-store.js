@@ -18,6 +18,10 @@
   const DB_PATH = 'erudite-flashcards/erudite-flashcards.sqlite';
   const BACKUP_DIR = 'erudite-flashcards/backups';
   const STUDY_PATCHES_KEY = 'erudite-mobile-study-card-patches-v1';
+  const SET_BACKUP_PREFIX = 'erudite-mobile-set-backup:';
+  const SET_BACKUP_INDEX_KEY = 'erudite-mobile-set-backup-index-v1';
+  const CLASS_BACKUP_PREFIX = 'erudite-mobile-class-backup:';
+  const CLASS_BACKUP_INDEX_KEY = 'erudite-mobile-class-backup-index-v1';
   const DIRECTORY_DATA = 'DATA';
   const DIRECTORY_DOCUMENTS = 'DOCUMENTS';
   const ENCODING_UTF8 = 'utf8';
@@ -39,6 +43,204 @@
 
   function jsonString(value) {
     return JSON.stringify(value ?? null);
+  }
+
+  function readSetBackupIndex() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(SET_BACKUP_INDEX_KEY) || '[]');
+      return Array.isArray(parsed) ? parsed.map(String) : [];
+    } catch (_) {
+      return [];
+    }
+  }
+
+  function readClassBackupIndex() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(CLASS_BACKUP_INDEX_KEY) || '[]');
+      return Array.isArray(parsed) ? parsed.map(String) : [];
+    } catch (_) {
+      return [];
+    }
+  }
+
+  function writeClassBackupIndex(ids) {
+    try {
+      localStorage.setItem(CLASS_BACKUP_INDEX_KEY, JSON.stringify(Array.from(new Set(ids.map(String)))));
+    } catch (_) {}
+  }
+
+  function writeSetBackupIndex(ids) {
+    try {
+      localStorage.setItem(SET_BACKUP_INDEX_KEY, JSON.stringify(Array.from(new Set(ids.map(String)))));
+    } catch (_) {}
+  }
+
+  function rememberSetBackup(set) {
+    if (!set?.id || !Array.isArray(set.cards) || !set.cards.length) return;
+    try {
+      const normalized = schema.normalizeSet(set, null, { preserveLastModified: true });
+      localStorage.setItem(`${SET_BACKUP_PREFIX}${normalized.id}`, JSON.stringify(normalized));
+      const ids = readSetBackupIndex();
+      if (!ids.includes(String(normalized.id))) {
+        ids.push(String(normalized.id));
+        writeSetBackupIndex(ids);
+      }
+      const legacySets = jsonParse(localStorage.getItem('flashcardSets'), []);
+      const updated = Array.isArray(legacySets)
+        ? legacySets.filter(item => String(item?.id) !== String(normalized.id))
+        : [];
+      updated.push(normalized);
+      localStorage.setItem('flashcardSets', JSON.stringify(updated));
+    } catch (error) {
+      console.warn('[mobile-store] Could not write emergency deck mirror:', error?.message || error);
+    }
+  }
+
+  function forgetSetBackup(id) {
+    try {
+      localStorage.removeItem(`${SET_BACKUP_PREFIX}${id}`);
+      writeSetBackupIndex(readSetBackupIndex().filter(item => String(item) !== String(id)));
+      const legacySets = jsonParse(localStorage.getItem('flashcardSets'), []);
+      if (Array.isArray(legacySets)) {
+        localStorage.setItem('flashcardSets', JSON.stringify(legacySets.filter(item => String(item?.id) !== String(id))));
+      }
+    } catch (_) {}
+  }
+
+  function clearSetBackups() {
+    try {
+      readSetBackupIndex().forEach(id => localStorage.removeItem(`${SET_BACKUP_PREFIX}${id}`));
+      localStorage.removeItem(SET_BACKUP_INDEX_KEY);
+      localStorage.removeItem('flashcardSets');
+    } catch (_) {}
+  }
+
+  function rememberClassBackup(classData) {
+    if (!classData?.id) return;
+    try {
+      const normalized = schema.normalizeClass(classData, null, { preserveLastModified: true });
+      localStorage.setItem(`${CLASS_BACKUP_PREFIX}${normalized.id}`, JSON.stringify(normalized));
+      const ids = readClassBackupIndex();
+      if (!ids.includes(String(normalized.id))) {
+        ids.push(String(normalized.id));
+        writeClassBackupIndex(ids);
+      }
+      const legacyClasses = jsonParse(localStorage.getItem('flashcardClasses'), []);
+      const updated = Array.isArray(legacyClasses)
+        ? legacyClasses.filter(item => String(item?.id) !== String(normalized.id))
+        : [];
+      updated.push(normalized);
+      localStorage.setItem('flashcardClasses', JSON.stringify(updated));
+    } catch (error) {
+      console.warn('[mobile-store] Could not write emergency class mirror:', error?.message || error);
+    }
+  }
+
+  function forgetClassBackup(id) {
+    try {
+      localStorage.removeItem(`${CLASS_BACKUP_PREFIX}${id}`);
+      writeClassBackupIndex(readClassBackupIndex().filter(item => String(item) !== String(id)));
+      const legacyClasses = jsonParse(localStorage.getItem('flashcardClasses'), []);
+      if (Array.isArray(legacyClasses)) {
+        localStorage.setItem('flashcardClasses', JSON.stringify(legacyClasses.filter(item => String(item?.id) !== String(id))));
+      }
+    } catch (_) {}
+  }
+
+  function clearClassBackups() {
+    try {
+      readClassBackupIndex().forEach(id => localStorage.removeItem(`${CLASS_BACKUP_PREFIX}${id}`));
+      localStorage.removeItem(CLASS_BACKUP_INDEX_KEY);
+      localStorage.removeItem('flashcardClasses');
+    } catch (_) {}
+  }
+
+  function readClassBackups() {
+    const mirrored = readClassBackupIndex()
+      .map(id => {
+        try {
+          return JSON.parse(localStorage.getItem(`${CLASS_BACKUP_PREFIX}${id}`) || 'null');
+        } catch (_) {
+          return null;
+        }
+      })
+      .filter(item => item && item.id);
+    const legacyClasses = jsonParse(localStorage.getItem('flashcardClasses'), []);
+    const all = [...mirrored, ...(Array.isArray(legacyClasses) ? legacyClasses : [])];
+    const unique = new Map();
+    all.forEach(item => {
+      if (item?.id) unique.set(String(item.id), item);
+    });
+    return Array.from(unique.values());
+  }
+
+  function readSetBackups() {
+    return readSetBackupIndex()
+      .map(id => {
+        try {
+          return JSON.parse(localStorage.getItem(`${SET_BACKUP_PREFIX}${id}`) || 'null');
+        } catch (_) {
+          return null;
+        }
+      })
+      .filter(set => set && Array.isArray(set.cards) && set.cards.length)
+      .concat((() => {
+        const legacySets = jsonParse(localStorage.getItem('flashcardSets'), []);
+        return Array.isArray(legacySets) ? legacySets.filter(set => set && Array.isArray(set.cards) && set.cards.length) : [];
+      })());
+  }
+
+  function recoverLocalSetBackupsIfEmpty() {
+    try {
+      const currentCount = Number(rows('SELECT COUNT(*) AS count FROM sets WHERE deleted_at IS NULL')[0]?.count || 0);
+      if (currentCount > 0) return false;
+      const backups = readSetBackups();
+      if (!backups.length) return false;
+      backups.forEach(set => {
+        const normalized = schema.normalizeSet(set, null, { preserveLastModified: true });
+        upsertSet(normalized);
+        replaceCardsForSet(normalized.id, normalized.cards || []);
+      });
+      console.warn(`[mobile-store] Recovered ${backups.length} deck(s) from emergency local mirrors`);
+      return true;
+    } catch (error) {
+      console.warn('[mobile-store] Emergency mirror recovery failed:', error?.message || error);
+      return false;
+    }
+  }
+
+  function recoverLocalClassBackupsIfEmptyOrMissing() {
+    try {
+      const current = rows('SELECT id FROM classes WHERE deleted_at IS NULL').map(row => String(row.id));
+      const currentIds = new Set(current);
+      const backups = readClassBackups().filter(item => item?.id && !currentIds.has(String(item.id)));
+      if (!backups.length) return false;
+      backups.forEach(classData => {
+        upsertClass(schema.normalizeClass(classData, null, { preserveLastModified: true }));
+      });
+      console.warn(`[mobile-store] Recovered ${backups.length} class record(s) from emergency local mirrors`);
+      return true;
+    } catch (error) {
+      console.warn('[mobile-store] Emergency class mirror recovery failed:', error?.message || error);
+      return false;
+    }
+  }
+
+  function repairOrphanedClassIds() {
+    try {
+      const validIds = new Set(rows('SELECT id FROM classes WHERE deleted_at IS NULL').map(row => String(row.id)));
+      const orphaned = rows('SELECT id, class_id FROM sets WHERE deleted_at IS NULL AND class_id IS NOT NULL')
+        .filter(row => row.class_id && !validIds.has(String(row.class_id)));
+      if (!orphaned.length) return false;
+      orphaned.forEach(row => {
+        run('UPDATE sets SET class_id = NULL, last_modified = ? WHERE id = ?', [Date.now(), String(row.id)]);
+      });
+      console.warn(`[mobile-store] Moved ${orphaned.length} deck(s) with missing classes back to General`);
+      return true;
+    } catch (error) {
+      console.warn('[mobile-store] Could not repair orphaned class ids:', error?.message || error);
+      return false;
+    }
   }
 
   function bytesToBase64(bytes) {
@@ -145,6 +347,23 @@
       CREATE INDEX IF NOT EXISTS idx_mobile_sets_class ON sets(class_id);
       CREATE INDEX IF NOT EXISTS idx_mobile_cards_set_position ON cards(set_id, position);
     `);
+  }
+
+  function isMissingFileError(error) {
+    const message = String(error?.message || error || '').toLowerCase();
+    return message.includes('not exist')
+      || message.includes('not found')
+      || message.includes('enoent')
+      || message.includes('no such file');
+  }
+
+  function probeDatabase(candidate) {
+    candidate.exec('SELECT count(*) FROM sqlite_master;');
+    const integrity = candidate.exec('PRAGMA integrity_check;');
+    const firstValue = integrity?.[0]?.values?.[0]?.[0];
+    if (firstValue && String(firstValue).toLowerCase() !== 'ok') {
+      throw new Error(`SQLite integrity check failed: ${firstValue}`);
+    }
   }
 
   const DB_TMP_PATH = DB_PATH + '.tmp';
@@ -324,31 +543,49 @@
         locateFile: file => `${wasmBase}${file}`
       });
 
-      // Try main DB file, then temp file as fallback
+      // Try main DB file, then temp file as fallback. Never overwrite an existing
+      // unreadable DB with a fresh empty DB; that would turn recoverable corruption
+      // or an interrupted write into permanent data loss.
       db = null;
+      let foundExistingFile = false;
+      let openedFromTemp = false;
+      let lastOpenError = null;
       for (const path of [DB_PATH, DB_TMP_PATH]) {
         if (db) break;
         try {
           const file = await Filesystem.readFile({ path, directory: DIRECTORY_DATA });
+          foundExistingFile = true;
           const candidate = new SQL.Database(base64ToBytes(file.data));
-          // Probe query to verify integrity
-          candidate.exec('SELECT count(*) FROM sqlite_master;');
+          probeDatabase(candidate);
           db = candidate;
+          openedFromTemp = path === DB_TMP_PATH;
         } catch (error) {
+          if (!isMissingFileError(error)) {
+            foundExistingFile = true;
+            lastOpenError = error;
+          }
           console.warn(`[mobile-store] Could not open ${path}:`, error?.message || error);
         }
       }
 
       const isFresh = !db;
       if (!db) {
+        if (foundExistingFile) {
+          throw new Error(`Local database could not be opened safely. Existing data was not overwritten. ${lastOpenError?.message || ''}`.trim());
+        }
         console.warn('[mobile-store] Starting with empty database');
         db = new SQL.Database();
       }
 
       createSchema();
+      const recoveredClassBackups = recoverLocalClassBackupsIfEmptyOrMissing();
+      const recoveredLocalBackups = recoverLocalSetBackupsIfEmpty();
+      const repairedOrphans = repairOrphanedClassIds();
       const appliedStudyPatches = applyPendingStudyPatches();
       // Only persist on first-time setup to avoid a costly full write on every cold start
       if (isFresh) await _doPersist();
+      else if (openedFromTemp) await _doPersist();
+      else if (recoveredClassBackups || recoveredLocalBackups || repairedOrphans) await _doPersist();
       else if (appliedStudyPatches) persist(2500).catch(() => {});
       return true;
     })();
@@ -362,7 +599,7 @@
 
   async function listClasses() {
     await ensureReady();
-    return rows('SELECT * FROM classes WHERE deleted_at IS NULL ORDER BY name ASC').map(row => ({
+    const classes = rows('SELECT * FROM classes WHERE deleted_at IS NULL ORDER BY name ASC').map(row => ({
       ...jsonParse(row.payload_json, {}),
       id: row.id,
       name: row.name,
@@ -370,6 +607,8 @@
       created: Number(row.created),
       lastModified: Number(row.last_modified)
     }));
+    classes.forEach(rememberClassBackup);
+    return classes;
   }
 
   function upsertClass(classData) {
@@ -398,6 +637,7 @@
     const existing = (await listClasses()).find(item => String(item.id) === String(classData.id));
     const normalized = schema.normalizeClass(classData, existing);
     upsertClass(normalized);
+    rememberClassBackup(normalized);
     await persist();
     return normalized;
   }
@@ -406,8 +646,11 @@
     await ensureReady();
     const now = Date.now();
     db.exec(`UPDATE classes SET deleted_at = ${now}, last_modified = ${now} WHERE deleted_at IS NULL;`);
+    clearClassBackups();
     for (const classData of Array.isArray(classes) ? classes : []) {
-      upsertClass(schema.normalizeClass(classData, null, { preserveLastModified: true }));
+      const normalized = schema.normalizeClass(classData, null, { preserveLastModified: true });
+      upsertClass(normalized);
+      rememberClassBackup(normalized);
     }
     if (options.persist !== false) await persist();
     return listClasses();
@@ -418,6 +661,7 @@
     const now = Date.now();
     run('UPDATE classes SET deleted_at = ?, last_modified = ? WHERE id = ?', [now, now, String(classId)]);
     run('UPDATE sets SET class_id = NULL, last_modified = ? WHERE class_id = ? AND deleted_at IS NULL', [now, String(classId)]);
+    forgetClassBackup(classId);
     await persist();
     return true;
   }
@@ -488,7 +732,9 @@
   async function listSets() {
     await ensureReady();
     const setRows = rows('SELECT * FROM sets WHERE deleted_at IS NULL ORDER BY last_modified DESC, created DESC');
-    return setRows.map(row => hydrateSetRow(row));
+    const sets = setRows.map(row => hydrateSetRow(row));
+    sets.forEach(rememberSetBackup);
+    return sets;
   }
 
   function hydrateSetRow(row) {
@@ -734,7 +980,9 @@
     await ensureReady();
     const setRows = rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL', [String(id)]);
     if (!setRows.length) return null;
-    return hydrateSetRow(setRows[0]);
+    const set = hydrateSetRow(setRows[0]);
+    rememberSetBackup(set);
+    return set;
   }
 
   async function saveSet(set) {
@@ -748,10 +996,51 @@
       || (existing && !hasCardsField)
       || (existing && hasCardsField && Array.isArray(set.cards) && set.cards.length === 0 && Number(set.cardCount || 0) > 0);
     const { mobileStats: _mobileStats, __metaOnly: _metaOnly, cardCount: _cardCount, ...cleanSet } = set || {};
-    if (metaOnlyUpdate && existing) cleanSet.cards = [];
+
+    if (metaOnlyUpdate && existing) {
+      const hasOwn = key => Object.prototype.hasOwnProperty.call(cleanSet, key);
+      const next = {
+        ...existing,
+        ...cleanSet,
+        id: existing.id,
+        name: hasOwn('name') ? (String(cleanSet.name || existing.name || 'Untitled Set').trim() || 'Untitled Set') : existing.name,
+        description: hasOwn('description') ? (cleanSet.description || '') : (existing.description || ''),
+        classId: hasOwn('classId') ? (cleanSet.classId || null) : (existing.classId || null),
+        srsSettings: schema.normalizeSrsSettings(cleanSet.srsSettings || existing.srsSettings || {}),
+        created: existing.created || Date.now(),
+        openedCount: hasOwn('openedCount') ? Number(cleanSet.openedCount || 0) : Number(existing.openedCount || 0),
+        lastOpened: hasOwn('lastOpened') ? (cleanSet.lastOpened ?? null) : (existing.lastOpened ?? null),
+        lastModified: hasOwn('lastModified') ? Number(cleanSet.lastModified || Date.now()) : Number(existing.lastModified || Date.now())
+      };
+      const payload = { ...next };
+      delete payload.cards;
+      delete payload.mobileStats;
+      delete payload.cardCount;
+      delete payload.__metaOnly;
+      run(`
+        UPDATE sets
+        SET name = ?, description = ?, class_id = ?, srs_settings_json = ?,
+            opened_count = ?, last_opened = ?, last_modified = ?, payload_json = ?, deleted_at = NULL
+        WHERE id = ?
+      `, [
+        next.name,
+        next.description || '',
+        next.classId || null,
+        jsonString(next.srsSettings || {}),
+        Number(next.openedCount || 0),
+        next.lastOpened ?? null,
+        Number(next.lastModified || Date.now()),
+        jsonString(payload),
+        String(existing.id)
+      ]);
+      persist();
+      return { ...next, cards: [], __metaOnly: true };
+    }
+
     const normalized = schema.normalizeSet(cleanSet, existing);
     upsertSet(normalized);
     if (!metaOnlyUpdate) replaceCardsForSet(normalized.id, normalized.cards || []);
+    if (!metaOnlyUpdate) rememberSetBackup(normalized);
     persist(); // fire-and-forget — flush() ensures it completes before navigation
     return normalized;
   }
@@ -760,10 +1049,12 @@
     await ensureReady();
     const now = Date.now();
     db.exec(`UPDATE sets SET deleted_at = ${now}, last_modified = ${now} WHERE deleted_at IS NULL;`);
+    clearSetBackups();
     for (const set of Array.isArray(sets) ? sets : []) {
       const normalized = schema.normalizeSet(set, null, { preserveLastModified: true });
       upsertSet(normalized);
       replaceCardsForSet(normalized.id, normalized.cards || []);
+      rememberSetBackup(normalized);
     }
     if (options.persist !== false) await persist();
     return listSets();
@@ -774,6 +1065,7 @@
     const now = Date.now();
     run('UPDATE sets SET deleted_at = ?, last_modified = ? WHERE id = ?', [now, now, String(id)]);
     run('DELETE FROM progress WHERE set_id = ?', [String(id)]);
+    forgetSetBackup(id);
     await persist();
     return true;
   }

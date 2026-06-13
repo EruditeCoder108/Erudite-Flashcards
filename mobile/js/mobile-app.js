@@ -2,6 +2,9 @@
   const core = window.EruditeCore || {};
   const schema = core.schema;
   const statsCore = core.stats;
+  const draftCore = core.draft;
+
+  const CREATOR_DRAFT_KEY = 'mobileCreatorDraft';
 
   const state = {
     sets: [],
@@ -22,11 +25,18 @@
       editingSetId: null,
       originalSet: null,
       classId: '',
-      cards: []
+      cards: [],
+      draftLoaded: false
     },
     pendingImageTarget: null,
-    busy: false
+    busy: false,
+    selectMode: false,
+    selectedDecks: new Set()
   };
+
+  let creatorDraftTimer = null;
+  let formatStateFrame = 0;
+  let orphanRepairTimer = null;
 
   const premadeClasses = [
     { id: '10th', name: 'Class 10' },
@@ -48,6 +58,9 @@
     due: 'Due'
   };
 
+  const classColorChoices = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444', '#06B6D4', '#EC4899', '#64748B'];
+  const classIconChoices = ['fa-graduation-cap', 'fa-book', 'fa-calculator', 'fa-flask', 'fa-dna', 'fa-landmark', 'fa-globe', 'fa-palette', 'fa-music', 'fa-code', 'fa-quote-left'];
+
   const selectors = {
     title: document.getElementById('mobile-title'),
     eyebrow: document.getElementById('mobile-eyebrow'),
@@ -63,7 +76,7 @@
     libraryList: document.getElementById('library-list'),
     createForm: document.getElementById('mobile-create-form'),
     createTitle: document.getElementById('mobile-create-title'),
-    createClass: document.getElementById('mobile-create-class'),
+    createClassLabel: document.getElementById('mobile-create-class-label'),
     creatorCards: document.getElementById('mobile-creator-cards'),
     imageInput: document.getElementById('mobile-image-input'),
     txtInput: document.getElementById('mobile-txt-input'),
@@ -172,6 +185,31 @@
   function getClassForSet(set) {
     if (!set?.classId) return null;
     return classMap().get(String(set.classId)) || null;
+  }
+
+  function normalizeSetClassReferences(sets, classes) {
+    const classIds = new Set((classes || []).map(item => String(item.id)));
+    return (sets || []).map(set => (
+      set?.classId && !classIds.has(String(set.classId))
+        ? { ...set, classId: null, __classOrphanRepaired: true }
+        : set
+    ));
+  }
+
+  function scheduleOrphanClassRepair() {
+    clearTimeout(orphanRepairTimer);
+    const orphaned = state.sets.filter(set => set.__classOrphanRepaired && set.id);
+    if (!orphaned.length) return;
+    orphanRepairTimer = window.setTimeout(async () => {
+      try {
+        for (const set of orphaned) {
+          await window.flashcardStore.saveSet({ id: set.id, classId: null, __metaOnly: true });
+        }
+        await flushStore(900);
+      } catch (error) {
+        console.warn('[mobile] Could not repair orphaned class references:', error);
+      }
+    }, 700);
   }
 
   function metaStats(set) {
@@ -333,6 +371,14 @@
     } catch (_error) {}
   }
 
+  function playStar() {
+    try {
+      const audio = new Audio('assets/audio/Star.mp3');
+      audio.volume = 0.85;
+      audio.play().catch(() => {});
+    } catch (_error) {}
+  }
+
   let toastTimer = null;
   function showToast(message) {
     if (!selectors.toast) return;
@@ -370,10 +416,12 @@
       window.flashcardStore.getSettings(),
       window.flashcardStore.getState('srsModeEnabled')
     ]);
-    state.sets = (sets || []).map(set => schema?.normalizeSet ? schema.normalizeSet(set, null, { preserveLastModified: true }) : set);
     state.classes = (classes || []).map(item => schema?.normalizeClass ? schema.normalizeClass(item, null, { preserveLastModified: true }) : item);
+    const normalizedSets = (sets || []).map(set => schema?.normalizeSet ? schema.normalizeSet(set, null, { preserveLastModified: true }) : set);
+    state.sets = normalizeSetClassReferences(normalizedSets, state.classes);
     state.settings = settings || {};
     state.srsMode = readSrsMode(srsMode);
+    scheduleOrphanClassRepair();
   }
 
   function setHeader() {
@@ -394,6 +442,9 @@
     selectors.views.forEach(view => view.classList.toggle('active', view.id === `view-${tab}`));
     selectors.tabs.forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
     setHeader();
+    if (tab !== 'library') {
+      exitSelectMode();
+    }
     render();
   }
 
@@ -409,8 +460,11 @@
     const icon = iconClass(currentClass?.icon, 'fa-layer-group');
     const lastActivity = set.lastOpened || set.lastModified || set.created;
 
+    const isSelected = state.selectMode && state.selectedDecks && state.selectedDecks.has(String(set.id));
+    const isSelectMode = state.selectMode;
+
     return `
-      <article class="deck-row" data-set-card="${escapeAttr(set.id)}">
+      <article class="deck-row ${isSelected ? 'selected' : ''}" data-set-card="${escapeAttr(set.id)}">
         <div class="deck-icon" style="background:${color}24;color:${color}">
           <i class="${escapeAttr(icon)}"></i>
         </div>
@@ -426,7 +480,7 @@
           </div>
           <div class="progress-track" style="--progress:${percent}%"><span></span></div>
         </div>
-        <div class="deck-actions">
+        <div class="deck-actions" style="${isSelectMode ? 'display:none;' : ''}">
           ${options.compact ? '' : `
             <button type="button" class="small-icon-button ${set.pinned ? 'starred' : ''}" data-action="toggle-pin" data-set-id="${escapeAttr(set.id)}" aria-label="${set.pinned ? 'Unpin' : 'Pin'} deck">
               <i class="${set.pinned ? 'fas' : 'far'} fa-star"></i>
@@ -714,12 +768,14 @@
   }
 
   function resetCreator() {
+    clearTimeout(creatorDraftTimer);
     state.creator.editingSetId = null;
     state.creator.originalSet = null;
     state.creator.classId = '';
     state.creator.cards = [emptyCreatorCard()];
+    state.creator.draftLoaded = false;
     if (selectors.createTitle) selectors.createTitle.value = '';
-    if (selectors.createClass) selectors.createClass.value = '';
+    if (selectors.createClassLabel) selectors.createClassLabel.textContent = 'General';
   }
 
   function syncCreatorFromDom() {
@@ -794,17 +850,180 @@
   }
 
   function renderCreate() {
-    if (!selectors.createClass) return;
-    const current = state.creator.classId || '';
-    selectors.createClass.innerHTML = [
-      '<option value="">General</option>',
-      ...state.classes.map(item => `<option value="${escapeAttr(item.id)}">${escapeHtml(item.name)}</option>`)
-    ].join('');
-    selectors.createClass.value = state.classes.some(item => String(item.id) === String(current)) ? current : '';
+    const currentId = state.creator.classId || '';
+    const currentClass = state.classes.find(item => String(item.id) === String(currentId));
+    const labelSpan = document.getElementById('mobile-create-class-label');
+    if (labelSpan) {
+      labelSpan.textContent = currentClass ? currentClass.name : 'General';
+    }
+
+    // Populate custom select options
+    const optionsContainer = document.getElementById('class-select-options');
+    if (optionsContainer) {
+      optionsContainer.innerHTML = [
+        `<button type="button" class="context-option-row ${!currentId ? 'selected-class-opt' : ''}" data-class-val="">
+          <i class="fas fa-layer-group"></i>
+          <span>General</span>
+        </button>`,
+        ...state.classes.map(item => {
+          const isSel = String(item.id) === String(currentId);
+          const icon = iconClass(item.icon, 'fa-graduation-cap');
+          return `<button type="button" class="context-option-row ${isSel ? 'selected-class-opt' : ''}" data-class-val="${escapeAttr(item.id)}">
+            <i class="fas ${escapeAttr(icon)}"></i>
+            <span>${escapeHtml(item.name)}</span>
+          </button>`;
+        }),
+        `<button type="button" class="context-option-row create-class-option" data-class-action="new">
+          <i class="fas fa-plus"></i>
+          <span>New class</span>
+        </button>`
+      ].join('');
+    }
 
     ensureCreatorCard();
     if (selectors.creatorCards) {
-      selectors.creatorCards.innerHTML = state.creator.cards.map((card, index) => cardEditor(card, index)).join('');
+      selectors.creatorCards.innerHTML = `
+        ${state.creator.cards.map((card, index) => cardEditor(card, index)).join('')}
+        <button type="button" class="creator-bottom-add" data-creator-action="add-card" aria-label="Add another card">
+          <i class="fas fa-plus"></i>
+          <span>Add card</span>
+        </button>
+      `;
+    }
+  }
+
+  function openMobileClassEditor() {
+    return new Promise(resolve => {
+      const existing = document.getElementById('mobile-class-editor-modal');
+      if (existing) existing.remove();
+
+      let selectedColor = classColorChoices[0];
+      let selectedIcon = classIconChoices[0];
+      const modal = document.createElement('div');
+      modal.className = 'deck-context-modal class-editor-sheet';
+      modal.id = 'mobile-class-editor-modal';
+      modal.innerHTML = `
+        <div class="context-modal-backdrop" data-class-editor-cancel></div>
+        <div class="context-modal-content">
+          <div class="context-modal-header">
+            <h3>New Class</h3>
+          </div>
+          <div class="mobile-class-editor-form">
+            <label class="mobile-field">
+              <span>Name</span>
+              <input id="mobile-class-editor-name" type="text" maxlength="80" autocomplete="off" placeholder="Biology">
+            </label>
+            <div class="mobile-field">
+              <span>Color</span>
+              <div class="class-color-grid">
+                ${classColorChoices.map(color => `
+                  <button type="button" class="class-color-choice ${color === selectedColor ? 'active' : ''}" data-color="${color}" style="--swatch:${color}" aria-label="Use ${color}"></button>
+                `).join('')}
+                <label class="class-color-custom" aria-label="Custom color">
+                  <i class="fas fa-eye-dropper"></i>
+                  <input id="mobile-class-editor-color" type="color" value="${selectedColor}">
+                </label>
+              </div>
+            </div>
+            <div class="mobile-field">
+              <span>Icon</span>
+              <div class="class-icon-grid">
+                ${classIconChoices.map(icon => `
+                  <button type="button" class="class-icon-choice ${icon === selectedIcon ? 'active' : ''}" data-icon="${icon}" aria-label="${icon}">
+                    <i class="fas ${icon}"></i>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+            <div class="class-editor-actions">
+              <button type="button" class="secondary-action" data-class-editor-cancel>Cancel</button>
+              <button type="button" class="primary-action" data-class-editor-save><i class="fas fa-check"></i>Create</button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const close = value => {
+        modal.remove();
+        resolve(value);
+      };
+
+      modal.addEventListener('click', event => {
+        const colorButton = event.target.closest('[data-color]');
+        if (colorButton) {
+          selectedColor = validColor(colorButton.dataset.color, selectedColor);
+          modal.querySelectorAll('.class-color-choice').forEach(button => button.classList.toggle('active', button === colorButton));
+          const input = modal.querySelector('#mobile-class-editor-color');
+          if (input) input.value = selectedColor;
+          playClick();
+          return;
+        }
+
+        const iconButton = event.target.closest('[data-icon]');
+        if (iconButton) {
+          selectedIcon = iconButton.dataset.icon || selectedIcon;
+          modal.querySelectorAll('.class-icon-choice').forEach(button => button.classList.toggle('active', button === iconButton));
+          playClick();
+          return;
+        }
+
+        if (event.target.closest('[data-class-editor-cancel]')) {
+          event.preventDefault();
+          close(null);
+          return;
+        }
+
+        if (event.target.closest('[data-class-editor-save]')) {
+          event.preventDefault();
+          const name = String(modal.querySelector('#mobile-class-editor-name')?.value || '').trim();
+          if (!name) {
+            modal.querySelector('#mobile-class-editor-name')?.focus();
+            showToast('Name the class');
+            return;
+          }
+          close({ name, color: selectedColor, icon: selectedIcon });
+        }
+      });
+
+      modal.querySelector('#mobile-class-editor-color')?.addEventListener('input', event => {
+        selectedColor = validColor(event.target.value, selectedColor);
+        modal.querySelectorAll('.class-color-choice').forEach(button => button.classList.remove('active'));
+      });
+
+      document.body.appendChild(modal);
+      requestAnimationFrame(() => modal.querySelector('#mobile-class-editor-name')?.focus());
+    });
+  }
+
+  async function createClassFromCreator() {
+    const result = await openMobileClassEditor();
+    if (!result) return;
+    const classData = schema?.normalizeClass
+      ? schema.normalizeClass({
+          name: result.name,
+          color: validColor(result.color, '#3B82F6'),
+          icon: result.icon || 'fa-graduation-cap'
+        })
+      : {
+          id: `class-${Date.now()}`,
+          name: result.name,
+          color: validColor(result.color, '#3B82F6'),
+          icon: result.icon || 'fa-graduation-cap',
+          created: Date.now(),
+          lastModified: Date.now()
+        };
+    try {
+      const saved = await window.flashcardStore.saveClass(classData);
+      state.classes = await window.flashcardStore.listClasses();
+      state.creator.classId = saved?.id || classData.id;
+      await flushStore(900);
+      playClick();
+      showToast('Class created');
+      renderCreate();
+      scheduleCreatorDraftSave();
+    } catch (error) {
+      console.error(error);
+      showToast('Could not create class');
     }
   }
 
@@ -841,7 +1060,6 @@
     state.creator.cards = (normalized.cards || []).map(card => ({ ...card }));
     if (!state.creator.cards.length) state.creator.cards = [emptyCreatorCard()];
     selectors.createTitle.value = normalized.name || '';
-    selectors.createClass.value = state.creator.classId;
     setActiveTab('create');
   }
 
@@ -852,6 +1070,143 @@
       || card.termImage
       || card.definitionImage
     );
+  }
+
+  function creatorSnapshot() {
+    syncCreatorFromDom();
+    return {
+      version: 1,
+      editingSetId: state.creator.editingSetId || null,
+      savedSetId: state.creator.originalSet?.id || state.creator.editingSetId || null,
+      name: String(selectors.createTitle?.value || '').trim(),
+      classId: state.creator.classId || null,
+      cards: state.creator.cards.map(card => ({
+        ...card,
+        term: sanitizeEditorHtml(card.term),
+        definition: sanitizeEditorHtml(card.definition)
+      })),
+      updatedAt: Date.now()
+    };
+  }
+
+  function isMeaningfulCreatorDraft(draft) {
+    if (draftCore?.hasMeaningfulDraft) return draftCore.hasMeaningfulDraft(draft);
+    if (!draft || typeof draft !== 'object') return false;
+    if (String(draft.name || '').trim()) return true;
+    if (draft.classId) return true;
+    return Array.isArray(draft.cards) && draft.cards.some(hasCardContent);
+  }
+
+  function hasVisibleCreatorWork() {
+    const snapshot = creatorSnapshot();
+    return isMeaningfulCreatorDraft(snapshot);
+  }
+
+  async function saveCreatorDraft(options = {}) {
+    clearTimeout(creatorDraftTimer);
+    const snapshot = creatorSnapshot();
+    try {
+      if (isMeaningfulCreatorDraft(snapshot)) {
+        localStorage.setItem(CREATOR_DRAFT_KEY, JSON.stringify(snapshot));
+        if (options.persistStore) {
+          await window.flashcardStore.setState(CREATOR_DRAFT_KEY, snapshot);
+        }
+      } else {
+        localStorage.removeItem(CREATOR_DRAFT_KEY);
+        if (options.persistStore) {
+          await window.flashcardStore.removeState(CREATOR_DRAFT_KEY);
+        }
+      }
+      if (options.flush) await flushStore(options.flushTimeout || 900);
+    } catch (error) {
+      console.warn('[mobile] draft save failed:', error);
+    }
+  }
+
+  function scheduleCreatorDraftSave() {
+    clearTimeout(creatorDraftTimer);
+    creatorDraftTimer = window.setTimeout(() => {
+      const run = () => saveCreatorDraft().catch(error => console.warn('[mobile] draft autosave failed:', error));
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(run, { timeout: 1800 });
+      } else {
+        window.setTimeout(run, 80);
+      }
+    }, 2200);
+  }
+
+  async function clearCreatorDraft() {
+    clearTimeout(creatorDraftTimer);
+    localStorage.removeItem(CREATOR_DRAFT_KEY);
+    try {
+      await window.flashcardStore.removeState(CREATOR_DRAFT_KEY);
+    } catch (error) {
+      console.warn('[mobile] draft clear failed:', error);
+    }
+  }
+
+  async function loadDraftIntoCreator(draft) {
+    const editingId = draft?.editingSetId || draft?.savedSetId || null;
+    let original = null;
+    if (editingId) {
+      try {
+        original = await window.flashcardStore.getSet(editingId);
+      } catch (_) {
+        original = null;
+      }
+    }
+    const normalizedOriginal = original && schema?.normalizeSet
+      ? schema.normalizeSet(original, null, { preserveLastModified: true })
+      : original;
+    state.creator.editingSetId = normalizedOriginal?.id || null;
+    state.creator.originalSet = normalizedOriginal || null;
+    state.creator.classId = draft?.classId || '';
+    state.creator.cards = Array.isArray(draft?.cards) && draft.cards.length
+      ? draft.cards.map(card => schema?.normalizeCard ? schema.normalizeCard(card) : { ...emptyCreatorCard(), ...card })
+      : [emptyCreatorCard()];
+    state.creator.draftLoaded = true;
+    if (selectors.createTitle) selectors.createTitle.value = draft?.name || normalizedOriginal?.name || '';
+  }
+
+  async function maybeRestoreCreatorDraft() {
+    if (hasVisibleCreatorWork()) return;
+    let draft = null;
+    try {
+      draft = JSON.parse(localStorage.getItem(CREATOR_DRAFT_KEY) || 'null');
+    } catch (_) {
+      draft = null;
+    }
+    try {
+      draft = draft || await window.flashcardStore.getState(CREATOR_DRAFT_KEY);
+    } catch (_) {
+      draft = draft || null;
+    }
+    if (!isMeaningfulCreatorDraft(draft)) return;
+
+    const savedId = draft.savedSetId || draft.editingSetId || null;
+    if (savedId && draftCore?.isDraftSameAsSavedSet) {
+      try {
+        const saved = await window.flashcardStore.getSet(savedId);
+        if (saved && draftCore.isDraftSameAsSavedSet(draft, saved)) {
+          await clearCreatorDraft();
+          return;
+        }
+      } catch (_) {}
+    }
+
+    const shouldContinue = window.confirm('Continue your unsaved draft?\n\nOK = Continue draft\nCancel = Start a new deck');
+    if (shouldContinue) {
+      await loadDraftIntoCreator(draft);
+      showToast('Draft restored');
+    } else {
+      await clearCreatorDraft();
+      resetCreator();
+    }
+  }
+
+  async function openCreator() {
+    await maybeRestoreCreatorDraft();
+    setActiveTab('create');
   }
 
   async function saveMobileDeck() {
@@ -876,7 +1231,7 @@
       return;
     }
     const original = state.creator.originalSet || {};
-    await window.flashcardStore.saveSet({
+    const saved = await window.flashcardStore.saveSet({
       ...original,
       id: state.creator.editingSetId || original.id,
       name,
@@ -885,9 +1240,14 @@
       srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings(original.srsSettings || {}) : (original.srsSettings || { enabled: true }),
       pinned: Boolean(original.pinned)
     });
+    await clearCreatorDraft();
+    await flushStore(1800);
     showToast(`Saved ${plural(cards.length, 'card')}`);
     state.browserLoaded = false;
     resetCreator();
+    if (saved?.id) {
+      state.sets = state.sets.map(item => String(item.id) === String(saved.id) ? saved : item);
+    }
     await refresh();
     setActiveTab('library');
   }
@@ -1129,8 +1489,13 @@
   async function togglePin(setId) {
     const set = state.sets.find(item => String(item.id) === String(setId));
     if (!set) return;
-    await window.flashcardStore.saveSet({ ...set, pinned: !set.pinned });
-    playClick();
+    const nextPinned = !set.pinned;
+    await window.flashcardStore.saveSet({ ...set, pinned: nextPinned });
+    if (nextPinned) {
+      playStar();
+    } else {
+      playClick();
+    }
     await refresh();
   }
 
@@ -1178,6 +1543,7 @@
       persistSrsMode(true);
       render();
     }
+    await flushStore(500);
     navigateTo(mobileStudyUrl(first.id, { reviewDue: true, srsMode: true }), {
       title: 'Opening Review',
       copy: 'Finding cards due now'
@@ -1195,6 +1561,7 @@
       render();
     }
     playClick();
+    await flushStore(500);
     navigateTo(mobileStudyUrl(first.id, { reviewDue: true, srsMode: true }), {
       title: 'Opening Review',
       copy: 'Finding cards due now'
@@ -1211,6 +1578,14 @@
     });
   }
 
+  function scheduleFormatStateUpdate() {
+    if (formatStateFrame) return;
+    formatStateFrame = requestAnimationFrame(() => {
+      formatStateFrame = 0;
+      updateFormatState();
+    });
+  }
+
   async function handleCreatorAction(action, target) {
     switch (action) {
       case 'add-card': {
@@ -1218,6 +1593,7 @@
         const card = emptyCreatorCard();
         state.creator.cards.push(card);
         renderCreate();
+        scheduleCreatorDraftSave();
         requestAnimationFrame(() => {
           selectors.creatorCards?.querySelector(`[data-editor-id="${cssEscape(card.id)}"][data-side="term"]`)?.focus();
         });
@@ -1228,6 +1604,7 @@
         state.creator.cards = state.creator.cards.filter(card => String(card.id) !== String(target.dataset.cardId));
         ensureCreatorCard();
         renderCreate();
+        scheduleCreatorDraftSave();
         break;
       }
       case 'format': {
@@ -1235,6 +1612,7 @@
         if (!command) break;
         document.execCommand(command, false, null);
         updateFormatState();
+        scheduleCreatorDraftSave();
         break;
       }
       case 'image':
@@ -1251,6 +1629,7 @@
           String(card.id) === String(target.dataset.cardId) ? { ...card, [key]: '' } : card
         ));
         renderCreate();
+        scheduleCreatorDraftSave();
         break;
       }
       case 'import-txt':
@@ -1267,7 +1646,7 @@
         setActiveTab('library');
         break;
       case 'open-create':
-        setActiveTab('create');
+        await openCreator();
         break;
       case 'open-premade':
         setActiveTab('premade');
@@ -1300,6 +1679,7 @@
         await deleteSet(target.dataset.setId);
         break;
       case 'study-set':
+        await flushStore(1200);
         navigateTo(mobileStudyUrl(target.dataset.setId || '', { srsMode: state.srsMode }), {
           title: 'Opening Study',
           copy: 'Preparing your deck'
@@ -1353,6 +1733,199 @@
     }
   }
 
+  // --- Long Press & Multi-Select Logic ---
+  let longPressTimer = null;
+  let longPressTarget = null;
+  let isLongPress = false;
+  let startX = 0;
+  let startY = 0;
+  let activeContextDeckId = null;
+
+  function handlePointerDown(e) {
+    const deckRow = e.target.closest('.deck-row');
+    if (!deckRow) return;
+
+    if (state.selectMode) {
+      return; // Handled by click event
+    }
+
+    if (e.target.closest('button') || e.target.closest('a')) {
+      return;
+    }
+
+    longPressTarget = deckRow;
+    isLongPress = false;
+    startX = e.clientX;
+    startY = e.clientY;
+
+    deckRow.classList.add('long-pressing');
+
+    longPressTimer = setTimeout(() => {
+      isLongPress = true;
+      deckRow.classList.remove('long-pressing');
+      const setId = deckRow.dataset.setCard;
+      openDeckContextModal(setId);
+    }, 600);
+  }
+
+  async function handlePointerUp(e) {
+    if (longPressTimer) {
+      clearTimeout(longPressTimer);
+      longPressTimer = null;
+    }
+    if (longPressTarget) {
+      longPressTarget.classList.remove('long-pressing');
+      
+      if (!isLongPress && !state.selectMode) {
+        const setId = longPressTarget.dataset.setCard;
+        await flushStore(1200);
+        navigateTo(mobileStudyUrl(setId || '', { srsMode: state.srsMode }), {
+          title: 'Opening Study',
+          copy: 'Preparing your deck'
+        });
+      }
+      longPressTarget = null;
+    }
+  }
+
+  function handlePointerMove(e) {
+    if (longPressTarget) {
+      const diffX = Math.abs(e.clientX - startX);
+      const diffY = Math.abs(e.clientY - startY);
+      if (diffX > 10 || diffY > 10) {
+        clearTimeout(longPressTimer);
+        longPressTimer = null;
+        longPressTarget.classList.remove('long-pressing');
+        longPressTarget = null;
+      }
+    }
+  }
+
+  function handlePointerCancel(e) {
+    if (longPressTimer) {
+      clearTimeout(longPressTimer);
+      longPressTimer = null;
+    }
+    if (longPressTarget) {
+      longPressTarget.classList.remove('long-pressing');
+      longPressTarget = null;
+    }
+  }
+
+  function openDeckContextModal(setId) {
+    const set = state.sets.find(item => String(item.id) === String(setId));
+    if (!set) return;
+
+    activeContextDeckId = setId;
+
+    const modal = document.getElementById('deck-context-modal');
+    const titleLabel = document.getElementById('context-deck-title');
+    if (modal && titleLabel) {
+      titleLabel.textContent = set.name || 'Untitled Set';
+      modal.style.display = 'flex';
+      playClick();
+    }
+  }
+
+  function closeDeckContextModal() {
+    const modal = document.getElementById('deck-context-modal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+    activeContextDeckId = null;
+  }
+
+  function enterSelectMode(initialSetId) {
+    state.selectMode = true;
+    state.selectedDecks = new Set();
+    if (initialSetId) {
+      state.selectedDecks.add(String(initialSetId));
+    }
+    
+    const bar = document.getElementById('selection-bar');
+    if (bar) bar.style.display = 'flex';
+    
+    const tabbar = document.querySelector('.mobile-tabbar');
+    if (tabbar) tabbar.style.display = 'none';
+
+    document.querySelectorAll('.deck-row').forEach(row => {
+      const setId = String(row.dataset.setCard);
+      row.classList.toggle('selected', state.selectedDecks.has(setId));
+      const actions = row.querySelector('.deck-actions');
+      if (actions) actions.style.display = 'none';
+    });
+
+    updateSelectionBar();
+  }
+
+  function exitSelectMode() {
+    state.selectMode = false;
+    state.selectedDecks = new Set();
+
+    const bar = document.getElementById('selection-bar');
+    if (bar) bar.style.display = 'none';
+
+    const tabbar = document.querySelector('.mobile-tabbar');
+    if (tabbar) tabbar.style.display = 'grid';
+
+    document.querySelectorAll('.deck-row').forEach(row => {
+      row.classList.remove('selected');
+      const actions = row.querySelector('.deck-actions');
+      if (actions) actions.style.display = '';
+    });
+  }
+
+  function toggleDeckSelection(setId) {
+    if (!state.selectedDecks) {
+      state.selectedDecks = new Set();
+    }
+    const idStr = String(setId);
+    if (state.selectedDecks.has(idStr)) {
+      state.selectedDecks.delete(idStr);
+    } else {
+      state.selectedDecks.add(idStr);
+    }
+    
+    document.querySelectorAll('.deck-row').forEach(row => {
+      if (String(row.dataset.setCard) === idStr) {
+        row.classList.toggle('selected', state.selectedDecks.has(idStr));
+      }
+    });
+
+    updateSelectionBar();
+  }
+
+  function updateSelectionBar() {
+    const count = state.selectedDecks ? state.selectedDecks.size : 0;
+    const countLabel = document.getElementById('selection-count');
+    if (countLabel) {
+      countLabel.textContent = `${count} ${count === 1 ? 'deck' : 'decks'} selected`;
+    }
+  }
+
+  async function deleteSelectedDecks() {
+    if (!state.selectedDecks || !state.selectedDecks.size) return;
+    
+    const count = state.selectedDecks.size;
+    const ok = window.confirm(`Delete ${count} selected ${count === 1 ? 'deck' : 'decks'}? This cannot be undone.`);
+    if (!ok) return;
+
+    state.busy = true;
+    try {
+      for (const setId of state.selectedDecks) {
+        await window.flashcardStore.deleteSet(setId);
+      }
+      showToast(`${count} ${count === 1 ? 'deck' : 'decks'} deleted`);
+      exitSelectMode();
+      await refresh();
+    } catch (error) {
+      console.error(error);
+      showToast('Could not delete some decks');
+    } finally {
+      state.busy = false;
+    }
+  }
+
   function installEvents() {
     document.addEventListener('pointerdown', event => {
       if (event.target.closest('[data-creator-action="format"]')) {
@@ -1361,6 +1934,16 @@
     });
 
     document.addEventListener('click', async event => {
+      if (state.selectMode) {
+        const deckRow = event.target.closest('.deck-row');
+        if (deckRow) {
+          event.preventDefault();
+          event.stopPropagation();
+          toggleDeckSelection(deckRow.dataset.setCard);
+          return;
+        }
+      }
+
       const creatorTarget = event.target.closest('[data-creator-action]');
       if (creatorTarget) {
         event.preventDefault();
@@ -1385,10 +1968,115 @@
       if (tab) {
         event.preventDefault();
         playClick();
-        if (tab.dataset.tab === 'create' && state.activeTab !== 'create' && !state.creator.editingSetId) {
-          ensureCreatorCard();
+        if (tab.dataset.tab === 'create' && state.activeTab !== 'create') {
+          await openCreator();
+          return;
         }
         setActiveTab(tab.dataset.tab);
+        return;
+      }
+
+      // 1. Custom Class Select Trigger click
+      const classTrigger = event.target.closest('#mobile-create-class-trigger');
+      if (classTrigger) {
+        event.preventDefault();
+        playClick();
+        const modal = document.getElementById('class-select-modal');
+        if (modal) modal.style.display = 'flex';
+        return;
+      }
+
+      // 2. Class select backdrop click
+      const classBackdrop = event.target.closest('#class-select-backdrop');
+      if (classBackdrop) {
+        event.preventDefault();
+        playClick();
+        const modal = document.getElementById('class-select-modal');
+        if (modal) modal.style.display = 'none';
+        return;
+      }
+
+      // 3. Class option selection click
+      const classAction = event.target.closest('[data-class-action]');
+      if (classAction && event.target.closest('#class-select-options')) {
+        event.preventDefault();
+        const modal = document.getElementById('class-select-modal');
+        if (modal) modal.style.display = 'none';
+        if (classAction.dataset.classAction === 'new') {
+          await createClassFromCreator();
+        }
+        return;
+      }
+
+      const classOpt = event.target.closest('[data-class-val]');
+      if (classOpt && event.target.closest('#class-select-options')) {
+        event.preventDefault();
+        playClick();
+        state.creator.classId = classOpt.dataset.classVal || '';
+        const modal = document.getElementById('class-select-modal');
+        if (modal) modal.style.display = 'none';
+        renderCreate();
+        scheduleCreatorDraftSave();
+        return;
+      }
+
+      // 4. Cancel selection button
+      const cancelSel = event.target.closest('#btn-cancel-selection');
+      if (cancelSel) {
+        event.preventDefault();
+        playClick();
+        exitSelectMode();
+        return;
+      }
+
+      // 5. Delete selected button
+      const deleteSel = event.target.closest('#btn-delete-selected');
+      if (deleteSel) {
+        event.preventDefault();
+        await deleteSelectedDecks();
+        return;
+      }
+
+      // 6. Context backdrop click to cancel
+      const ctxBackdrop = event.target.closest('#context-backdrop');
+      if (ctxBackdrop) {
+        event.preventDefault();
+        playClick();
+        closeDeckContextModal();
+        return;
+      }
+
+      // 7. Context option - Delete
+      const ctxDelete = event.target.closest('#context-opt-delete');
+      if (ctxDelete) {
+        event.preventDefault();
+        if (activeContextDeckId) {
+          const setId = activeContextDeckId;
+          closeDeckContextModal();
+          await deleteSet(setId);
+        }
+        return;
+      }
+
+      // 8. Context option - Select
+      const ctxSelect = event.target.closest('#context-opt-select');
+      if (ctxSelect) {
+        event.preventDefault();
+        if (activeContextDeckId) {
+          const setId = activeContextDeckId;
+          closeDeckContextModal();
+          enterSelectMode(setId);
+        }
+        return;
+      }
+
+      // 9. Context option - Cancel
+      const ctxCancel = event.target.closest('#context-opt-cancel');
+      if (ctxCancel) {
+        event.preventDefault();
+        playClick();
+        closeDeckContextModal();
+        return;
       }
     });
 
@@ -1410,9 +2098,12 @@
       renderBrowser();
     });
 
-    selectors.createClass?.addEventListener('change', event => {
-      state.creator.classId = event.target.value || '';
+    selectors.createForm?.addEventListener('input', event => {
+      if (!event.target.closest('#view-create')) return;
+      scheduleCreatorDraftSave();
     });
+
+
 
     selectors.createForm?.addEventListener('submit', async event => {
       event.preventDefault();
@@ -1442,6 +2133,7 @@
           String(card.id) === String(target.cardId) ? { ...card, [key]: src } : card
         ));
         renderCreate();
+        scheduleCreatorDraftSave();
         showToast('Image added');
       } catch (error) {
         console.error(error);
@@ -1464,6 +2156,7 @@
         const existing = state.creator.cards.filter(hasCardContent);
         state.creator.cards = [...existing, ...imported];
         renderCreate();
+        scheduleCreatorDraftSave();
         showToast(`Imported ${plural(imported.length, 'card')}`);
       } catch (error) {
         console.error(error);
@@ -1471,11 +2164,25 @@
       }
     });
 
-    document.addEventListener('selectionchange', updateFormatState);
+    document.addEventListener('selectionchange', scheduleFormatStateUpdate);
 
     document.addEventListener('visibilitychange', () => {
+      if (document.hidden && state.activeTab === 'create') {
+        saveCreatorDraft({ persistStore: true, flush: true, flushTimeout: 900 }).catch(() => {});
+        return;
+      }
       if (!document.hidden && state.activeTab !== 'create') refresh();
     });
+
+    // Pointer gesture listeners for long-press on library list
+    if (selectors.libraryList) {
+      selectors.libraryList.addEventListener('pointerdown', handlePointerDown);
+      selectors.libraryList.addEventListener('pointerup', handlePointerUp);
+      selectors.libraryList.addEventListener('pointermove', handlePointerMove);
+      selectors.libraryList.addEventListener('pointercancel', handlePointerCancel);
+    }
+
+
   }
 
   async function init() {

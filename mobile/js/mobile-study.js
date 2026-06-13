@@ -110,6 +110,7 @@
   let transitionToken = 0;
   let flipTimer = null;
   const preloadedImages = new Set();
+  const pendingCardPatches = new Map();
   const SWIPE_DURATION = 175;
   const FLIP_DURATION = 420;
 
@@ -154,8 +155,22 @@
     });
   }
 
+  async function flushStore(timeoutMs = 1200) {
+    const flush = window.eruditeMobileFlashcards?.flush || window.flashcardStore?.flush;
+    if (typeof flush !== 'function') return;
+    await Promise.race([
+      flush().catch(() => {}),
+      new Promise(resolve => window.setTimeout(resolve, timeoutMs))
+    ]);
+  }
+
   async function goLibrary() {
-    try { saveProgress(); } catch (_) {}
+    try {
+      await saveProgress({ immediate: true });
+      await saveOpenedMeta({ immediate: true });
+      await flushCardProgress();
+      await flushStore(1400);
+    } catch (_) {}
     navigateAway(libraryUrl(), 'Opening Library', 'Refreshing your decks');
   }
 
@@ -375,15 +390,23 @@
   function scheduleOpenedSave() {
     if (!state.set) return;
     clearTimeout(openedSaveTimer);
-    const { id, openedCount, lastOpened } = state.set;
     openedSaveTimer = window.setTimeout(() => {
-      window.flashcardStore.saveSet({
-        id,
-        openedCount,
-        lastOpened,
-        __metaOnly: true
-      }).catch(error => console.warn('[mobile-study] opened metadata save failed:', error));
+      saveOpenedMeta().catch(error => console.warn('[mobile-study] opened metadata save failed:', error));
     }, 210);
+  }
+
+  async function saveOpenedMeta(options = {}) {
+    if (!state.set) return false;
+    clearTimeout(openedSaveTimer);
+    const { id, openedCount, lastOpened } = state.set;
+    await window.flashcardStore.saveSet({
+      id,
+      openedCount,
+      lastOpened,
+      __metaOnly: true
+    });
+    if (options.immediate) await flushStore(options.flushTimeout || 900);
+    return true;
   }
 
   async function loadProgress() {
@@ -436,6 +459,11 @@
     if (!payload) return Promise.resolve(false);
     writeProgressMirror(payload);
     clearTimeout(progressSaveTimer);
+    if (options.immediate) {
+      return window.flashcardStore.saveProgress(state.set.id, payload)
+        .then(() => true)
+        .catch(() => false);
+    }
     const delay = options.immediate ? 0 : 900;
     progressSaveTimer = window.setTimeout(() => {
       window.flashcardStore.saveProgress(state.set.id, payload).catch(() => {});
@@ -469,19 +497,36 @@
   function scheduleCardProgressSave(card, delay = 420) {
     if (!state.set || !card?.id) return;
     queueStudyCardPatch(card);
+    pendingCardPatches.set(String(card.id), {
+      srs: card.srs || null,
+      reviewHistory: Array.isArray(card.reviewHistory) ? card.reviewHistory : [],
+      suspended: Boolean(card.suspended),
+      buriedUntil: card.buriedUntil || null,
+      lastModified: Date.now()
+    });
     clearTimeout(cardProgressSaveTimer);
     cardProgressSaveTimer = window.setTimeout(() => {
       const saveCard = window.flashcardStore.saveCardProgress || window.eruditeMobileFlashcards?.saveCardProgress;
       if (typeof saveCard === 'function') {
-        saveCard(state.set.id, card.id, {
-          srs: card.srs || null,
-          reviewHistory: Array.isArray(card.reviewHistory) ? card.reviewHistory : [],
-          suspended: Boolean(card.suspended),
-          buriedUntil: card.buriedUntil || null,
-          lastModified: Date.now()
-        }).catch(() => {});
+        const patch = pendingCardPatches.get(String(card.id));
+        pendingCardPatches.delete(String(card.id));
+        if (patch) saveCard(state.set.id, card.id, patch).catch(() => {});
       }
     }, delay);
+  }
+
+  async function flushCardProgress() {
+    if (!state.set || !pendingCardPatches.size) return;
+    clearTimeout(cardProgressSaveTimer);
+    const saveCard = window.flashcardStore.saveCardProgress || window.eruditeMobileFlashcards?.saveCardProgress;
+    if (typeof saveCard !== 'function') {
+      await window.flashcardStore.saveSet(state.set);
+      pendingCardPatches.clear();
+      return;
+    }
+    const entries = Array.from(pendingCardPatches.entries());
+    pendingCardPatches.clear();
+    await Promise.all(entries.map(([cardId, patch]) => saveCard(state.set.id, cardId, patch).catch(() => {})));
   }
 
   function prepareActiveCards() {
@@ -971,10 +1016,11 @@
         time: performance.now(),
         dragging: false,
         scrolling: false,
-        scrollable: isScrollableContent(event.target)
+        scrollable: isScrollableContent(event.target),
+        srsLocked: state.srsMode
       };
-      
-      activeCardEl.classList.add('dragging');
+
+      if (!state.srsMode) activeCardEl.classList.add('dragging');
     });
 
     els.stage.addEventListener('pointermove', event => {
@@ -986,6 +1032,13 @@
       const dy = event.clientY - pointer.y;
       const absDx = Math.abs(dx);
       const absDy = Math.abs(dy);
+
+      if (pointer.srsLocked) {
+        if (!pointer.scrolling && absDy > DEAD_ZONE && absDy > absDx * 1.18 && pointer.scrollable) {
+          pointer.scrolling = true;
+        }
+        return;
+      }
 
       if (!pointer.dragging && !pointer.scrolling) {
         if (absDy > DEAD_ZONE && absDy > absDx * 1.18 && pointer.scrollable) {
@@ -1033,8 +1086,14 @@
         && absDx > absDy * HORIZONTAL_BIAS
         && (absDx >= SWIPE_THRESHOLD || velocity >= VELOCITY_THRESHOLD)
         && !wasTap;
+      const wasSrsLocked = pointer.srsLocked;
       
       pointer = null;
+
+      if (wasSrsLocked) {
+        if (wasTap && !state.flipped) flipCard();
+        return;
+      }
 
       if (wasSwipe) {
         navigateForward({ x: dx < 0 ? -1 : 1, y: 0 });
@@ -1080,6 +1139,9 @@
     els.emptyLibraryButton.addEventListener('click', () => goLibrary());
     els.continueButton.addEventListener('click', async () => {
       if (state.srsMode && state.nextDueSetId) {
+        await saveProgress({ immediate: true });
+        await flushCardProgress();
+        await flushStore(1400);
         navigateAway(studyUrl(state.nextDueSetId, true), 'Opening Review', 'Loading the next due deck');
         return;
       }
@@ -1164,7 +1226,9 @@
     document.addEventListener('visibilitychange', async () => {
       if (document.hidden) {
         try { await saveProgress({ immediate: true }); } catch (_) {}
-        try { await window.eruditeMobileFlashcards?.flush?.(); } catch (_) {}
+        try { await saveOpenedMeta({ immediate: true }); } catch (_) {}
+        try { await flushCardProgress(); } catch (_) {}
+        try { await flushStore(1400); } catch (_) {}
       }
     });
   }
