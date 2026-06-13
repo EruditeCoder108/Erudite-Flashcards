@@ -109,7 +109,9 @@
   }
 
   function readSrsMode(storedValue) {
-    return readStoredBoolean(storedValue, localStorage.getItem('srsModeEnabled') === 'true');
+    const mirrored = localStorage.getItem('srsModeEnabled');
+    if (mirrored !== null) return mirrored === 'true';
+    return readStoredBoolean(storedValue, false);
   }
 
   function persistSrsMode(enabled) {
@@ -326,7 +328,7 @@
   function playClick() {
     try {
       const audio = new Audio('assets/flashcard-assets/click.mp3');
-      audio.volume = 0.22;
+      audio.volume = 0.85;
       audio.play().catch(() => {});
     } catch (_error) {}
   }
@@ -1095,9 +1097,17 @@
     });
   }
 
-  function mobileStudyUrl(setId, reviewDue = false) {
-    const suffix = reviewDue ? '&reviewDue=true' : '';
-    return `mobile/study.html?setId=${encodeURIComponent(setId)}${suffix}`;
+  function mobileStudyUrl(setId, options = {}) {
+    const reviewDue = typeof options === 'boolean' ? options : Boolean(options.reviewDue);
+    const srsMode = typeof options === 'object' && Object.prototype.hasOwnProperty.call(options, 'srsMode')
+      ? Boolean(options.srsMode)
+      : state.srsMode;
+    const query = new URLSearchParams({
+      setId: String(setId),
+      srs: String(Boolean(reviewDue || srsMode))
+    });
+    if (reviewDue) query.set('reviewDue', 'true');
+    return `mobile/study.html?${query.toString()}`;
   }
 
   async function flushStore(timeoutMs = 100) {
@@ -1168,7 +1178,7 @@
       persistSrsMode(true);
       render();
     }
-    navigateTo(mobileStudyUrl(first.id, true), {
+    navigateTo(mobileStudyUrl(first.id, { reviewDue: true, srsMode: true }), {
       title: 'Opening Review',
       copy: 'Finding cards due now'
     });
@@ -1185,7 +1195,7 @@
       render();
     }
     playClick();
-    navigateTo(mobileStudyUrl(first.id, true), {
+    navigateTo(mobileStudyUrl(first.id, { reviewDue: true, srsMode: true }), {
       title: 'Opening Review',
       copy: 'Finding cards due now'
     });
@@ -1290,7 +1300,7 @@
         await deleteSet(target.dataset.setId);
         break;
       case 'study-set':
-        navigateTo(mobileStudyUrl(target.dataset.setId || ''), {
+        navigateTo(mobileStudyUrl(target.dataset.setId || '', { srsMode: state.srsMode }), {
           title: 'Opening Study',
           copy: 'Preparing your deck'
         });
@@ -1479,9 +1489,15 @@
     selectors.views.forEach(view => view.classList.toggle('active', view.id === `view-${tab}`));
     selectors.tabs.forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
     setHeader();
-    // Now load data and render once
-    await refresh();
-    hideAppLoader();
+    
+    const startTime = Date.now();
+    // Defer CPU-intensive database load to allow transition/loader animation to initialize smoothly
+    setTimeout(async () => {
+      await refresh();
+      const elapsed = Date.now() - startTime;
+      const delay = Math.max(0, 3000 - elapsed);
+      setTimeout(hideAppLoader, delay);
+    }, 150);
   }
 
   if (document.readyState === 'loading') {

@@ -1,0 +1,116 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:transparent;display:flex;justify-content:center;align-items:center;min-height:420px;font-family:var(--font-sans,system-ui)}
+.stack{overflow:hidden;position:relative;width:14em;height:32em}
+.stack__card{
+  position:absolute;inset:0;
+  top:10%;
+  margin:auto;
+  width:68%;
+  aspect-ratio:0.72;
+  transform:rotateX(45deg) rotateZ(-45deg);
+  transform-style:preserve-3d;
+}
+.stack__card:nth-child(2){top:0}
+.stack__card:nth-child(3){top:calc(10% * -1)}
+.stack__card:nth-child(4){top:calc(10% * -2)}
+.stack__card:nth-child(5){top:calc(10% * -3)}
+
+.card-shell{
+  position:absolute;inset:0;
+  border-radius:12px;
+  border:0.5px solid var(--color-border-tertiary,rgba(0,0,0,0.15));
+  background:var(--color-background-primary,#fff);
+  animation:card 3s infinite;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:0.5rem;padding:1.4rem 1rem;text-align:center;
+  box-shadow:-0.5em 0.5em 1.5em rgba(0,0,0,0.1);
+}
+.stack__card:nth-child(2) .card-shell{animation-delay:calc(3s*(-1 + 0.05))}
+.stack__card:nth-child(3) .card-shell{animation-delay:calc(3s*(-1 + 0.05*2))}
+.stack__card:nth-child(4) .card-shell{animation-delay:calc(3s*(-1 + 0.05*3))}
+.stack__card:nth-child(5) .card-shell{animation-delay:calc(3s*(-1 + 0.05*4))}
+
+.card-accent{width:100%;height:3px;border-radius:2px;margin-bottom:0.3rem;flex-shrink:0}
+.c1 .card-accent{background:#7F77DD}
+.c2 .card-accent{background:#1D9E75}
+.c3 .card-accent{background:#D85A30}
+.c4 .card-accent{background:#378ADD}
+.c5 .card-accent{background:#E24B4A}
+
+.card-label{font-size:8px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-secondary,#888)}
+.card-icon{font-size:1.5rem;color:var(--color-text-secondary,#aaa)}
+.card-term{font-size:0.85rem;font-weight:500;color:var(--color-text-primary,#111);line-height:1.35;margin-top:0.1rem}
+.card-divider{width:28px;height:1px;background:var(--color-border-tertiary,rgba(0,0,0,0.12));flex-shrink:0}
+.card-hint{font-size:0.65rem;color:var(--color-text-tertiary,#bbb)}
+
+@keyframes card{
+  0%,100%{animation-timing-function:cubic-bezier(0.65,0,0.35,1);transform:translateZ(0);opacity:1}
+  11%{animation-timing-function:cubic-bezier(0.32,0,0.67,0);opacity:1;transform:translateZ(0.125em)}
+  34%{animation-timing-function:steps(1);opacity:0;transform:translateZ(-12em)}
+  48%{animation-timing-function:linear;opacity:0;transform:translateZ(12em)}
+  57%{animation-timing-function:cubic-bezier(0.33,1,0.68,1);opacity:1;transform:translateZ(0)}
+  61%{animation-timing-function:cubic-bezier(0.65,0,0.35,1);transform:translateZ(-1.8em)}
+  74%{animation-timing-function:cubic-bezier(0.65,0,0.35,1);transform:translateZ(0.6em)}
+  87%{animation-timing-function:cubic-bezier(0.65,0,0.35,1);transform:translateZ(-0.2em)}
+}
+</style>
+
+<div class="stack">
+
+  <div class="stack__card c1">
+    <div class="card-shell">
+      <div class="card-accent"></div>
+      <div class="card-label">Computer Science</div>
+      <i class="ti ti-binary-tree card-icon" aria-hidden="true"></i>
+      <div class="card-term">What is a Binary Search Tree?</div>
+      <div class="card-divider"></div>
+      <div class="card-hint">tap to reveal</div>
+    </div>
+  </div>
+
+  <div class="stack__card c2">
+    <div class="card-shell">
+      <div class="card-accent"></div>
+      <div class="card-label">Mathematics</div>
+      <i class="ti ti-math card-icon" aria-hidden="true"></i>
+      <div class="card-term">Define the Pythagorean theorem</div>
+      <div class="card-divider"></div>
+      <div class="card-hint">tap to reveal</div>
+    </div>
+  </div>
+
+  <div class="stack__card c3">
+    <div class="card-shell">
+      <div class="card-accent"></div>
+      <div class="card-label">History</div>
+      <i class="ti ti-world card-icon" aria-hidden="true"></i>
+      <div class="card-term">When did World War II end?</div>
+      <div class="card-divider"></div>
+      <div class="card-hint">tap to reveal</div>
+    </div>
+  </div>
+
+  <div class="stack__card c4">
+    <div class="card-shell">
+      <div class="card-accent"></div>
+      <div class="card-label">Chemistry</div>
+      <i class="ti ti-atom card-icon" aria-hidden="true"></i>
+      <div class="card-term">What is the atomic number of Carbon?</div>
+      <div class="card-divider"></div>
+      <div class="card-hint">tap to reveal</div>
+    </div>
+  </div>
+
+  <div class="stack__card c5">
+    <div class="card-shell">
+      <div class="card-accent"></div>
+      <div class="card-label">Programming</div>
+      <i class="ti ti-code card-icon" aria-hidden="true"></i>
+      <div class="card-term">Explain Big O notation</div>
+      <div class="card-divider"></div>
+      <div class="card-hint">tap to reveal</div>
+    </div>
+  </div>
+
+</div>

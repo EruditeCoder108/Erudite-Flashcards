@@ -350,6 +350,10 @@
 
   async function getState(key) {
     if (api) {
+      if (key === 'srsModeEnabled') {
+        const mirrored = localStorage.getItem(key);
+        if (mirrored !== null) return parseMirroredStateValue(key, mirrored);
+      }
       const value = await api.getState(key);
       if (value !== null && value !== undefined) return value;
       if (mirroredStateKeys.has(key)) {

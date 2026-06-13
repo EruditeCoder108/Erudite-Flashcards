@@ -4,8 +4,29 @@
 
   const params = new URLSearchParams(window.location.search);
   const reviewDueSession = params.get('reviewDue') === 'true';
+  const requestedSrsMode = params.get('srs');
   const PROGRESS_MIRROR_PREFIX = 'erudite-mobile-progress:';
   const STUDY_PATCHES_KEY = 'erudite-mobile-study-card-patches-v1';
+
+  const sounds = {
+    flip: new Audio('../assets/flashcard-assets/flip-sound.mp3'),
+    next: new Audio('../assets/flashcard-assets/Next-card.mp3'),
+    success: new Audio('../assets/audio/success.mp3')
+  };
+
+  Object.values(sounds).forEach(audio => {
+    audio.volume = 0.85;
+  });
+
+  function playSound(type) {
+    try {
+      const audio = sounds[type];
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      }
+    } catch (_) {}
+  }
 
   const state = {
     set: null,
@@ -87,9 +108,10 @@
   let dragFrame = 0;
   let queuedDrag = null;
   let transitionToken = 0;
+  let flipTimer = null;
   const preloadedImages = new Set();
   const SWIPE_DURATION = 175;
-  const FLIP_DURATION = 360;
+  const FLIP_DURATION = 420;
 
   function showToast(message) {
     clearTimeout(toastTimer);
@@ -103,8 +125,12 @@
   }
 
   function studyUrl(setId, reviewDue = false) {
-    const suffix = reviewDue ? '&reviewDue=true' : '';
-    return `study.html?setId=${encodeURIComponent(setId)}${suffix}`;
+    const query = new URLSearchParams({
+      setId: String(setId),
+      srs: String(Boolean(reviewDue || state.srsMode))
+    });
+    if (reviewDue) query.set('reviewDue', 'true');
+    return `study.html?${query.toString()}`;
   }
 
   function showStudyLoader(title = 'Opening Study', copy = 'Preparing your cards') {
@@ -209,6 +235,15 @@
     return Boolean(fallback);
   }
 
+  function resolveSrsMode(storedValue) {
+    if (reviewDueSession) return true;
+    if (requestedSrsMode === 'true') return true;
+    if (requestedSrsMode === 'false') return false;
+    const mirrored = localStorage.getItem('srsModeEnabled');
+    if (mirrored !== null) return mirrored === 'true';
+    return readStoredBoolean(storedValue, false);
+  }
+
   function setActiveIndex(value) {
     const max = Math.max(0, state.activeCards.length - 1);
     const next = Math.min(max, Math.max(0, Number(value) || 0));
@@ -236,6 +271,14 @@
   function setCardFlipped(cardEl, flipped, options = {}) {
     if (!cardEl) return;
     if (options.noTransition) cardEl.classList.add('no-transition');
+    const shouldAnimateFlip = !options.noTransition && cardEl === cards[activeCardIndex];
+    if (shouldAnimateFlip) {
+      clearTimeout(flipTimer);
+      els.stage?.classList.add('card-is-flipping');
+      flipTimer = window.setTimeout(() => {
+        els.stage?.classList.remove('card-is-flipping');
+      }, FLIP_DURATION + 70);
+    }
     cardEl.classList.toggle('is-flipped', flipped);
     if (cardEl === cards[activeCardIndex]) {
       state.flipped = Boolean(flipped);
@@ -310,7 +353,7 @@
     ]);
     if (!found) throw new Error('Flashcard set not found');
 
-    state.srsMode = reviewDueSession || readStoredBoolean(srsMode, localStorage.getItem('srsModeEnabled') === 'true');
+    state.srsMode = resolveSrsMode(srsMode);
     if (reviewDueSession) {
       localStorage.setItem('srsModeEnabled', 'true');
       window.flashcardStore.setState('srsModeEnabled', true).catch(() => {});
@@ -593,6 +636,8 @@
 
   function renderStack() {
     const currentIdx = activeIndex();
+    clearTimeout(flipTimer);
+    els.stage?.classList.remove('card-is-flipping');
     warmVisibleCards();
     
     populateCardElement(cards[activeCardIndex], state.activeCards[currentIdx]);
@@ -695,6 +740,7 @@
     
     animating = true;
     const token = ++transitionToken;
+    playSound('next');
     if (els.prev) els.prev.disabled = true;
     if (dragFrame) cancelAnimationFrame(dragFrame);
     dragFrame = 0;
@@ -746,6 +792,7 @@
     animating = true;
     const token = ++transitionToken;
     updateProgress();
+    playSound('next');
     
     const activeEl = cards[activeCardIndex];
     const nextEl = cards[nextCardIndex];
@@ -781,6 +828,7 @@
     const activeEl = cards[activeCardIndex];
     if (!activeCard() || state.complete) return;
     setCardFlipped(activeEl, !state.flipped);
+    playSound('flip');
   }
 
   async function handleRating(rating) {
@@ -869,6 +917,7 @@
     state.nextDueSetId = await findNextDueSetId();
     els.ratingDock.classList.add('hidden');
     els.shell.classList.remove('srs-back-visible');
+    playSound('success');
 
     if (state.srsMode) {
       els.completionTitle.textContent = state.nextDueSetId ? 'Set Complete' : 'SRS Complete';
@@ -1125,25 +1174,34 @@
     configureSystemBars();
     installEvents();
     installPointerGestures();
-    try {
-      await loadData();
-      updateProgress();
-      if (!state.activeCards.length) {
-        showEmptyDue();
-      } else {
-        renderStack();
+    
+    const startTime = Date.now();
+    // Defer CPU-intensive database load to allow transition/loader animation to initialize smoothly
+    setTimeout(async () => {
+      try {
+        await loadData();
+        updateProgress();
+        if (!state.activeCards.length) {
+          showEmptyDue();
+        } else {
+          renderStack();
+        }
+        scheduleOpenedSave();
+      } catch (error) {
+        console.error(error);
+        showToast(error.message || 'Could not open study session');
+        window.setTimeout(goLibrary, 900);
+      } finally {
+        const elapsed = Date.now() - startTime;
+        const delay = Math.max(0, 3000 - elapsed);
+        setTimeout(() => {
+          requestAnimationFrame(() => {
+            els.shell.classList.remove('is-loading');
+            hideStudyLoader();
+          });
+        }, delay);
       }
-      scheduleOpenedSave();
-    } catch (error) {
-      console.error(error);
-      showToast(error.message || 'Could not open study session');
-      window.setTimeout(goLibrary, 900);
-    } finally {
-      requestAnimationFrame(() => {
-        els.shell.classList.remove('is-loading');
-        hideStudyLoader();
-      });
-    }
+    }, 150);
   }
 
   if (document.readyState === 'loading') {
