@@ -1490,13 +1490,10 @@
     selectors.tabs.forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
     setHeader();
     
-    const startTime = Date.now();
     // Defer CPU-intensive database load to allow transition/loader animation to initialize smoothly
     setTimeout(async () => {
       await refresh();
-      const elapsed = Date.now() - startTime;
-      const delay = Math.max(0, 3000 - elapsed);
-      setTimeout(hideAppLoader, delay);
+      hideAppLoader();
     }, 150);
   }
 

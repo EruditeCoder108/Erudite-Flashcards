@@ -1175,7 +1175,6 @@
     installEvents();
     installPointerGestures();
     
-    const startTime = Date.now();
     // Defer CPU-intensive database load to allow transition/loader animation to initialize smoothly
     setTimeout(async () => {
       try {
@@ -1192,14 +1191,10 @@
         showToast(error.message || 'Could not open study session');
         window.setTimeout(goLibrary, 900);
       } finally {
-        const elapsed = Date.now() - startTime;
-        const delay = Math.max(0, 3000 - elapsed);
-        setTimeout(() => {
-          requestAnimationFrame(() => {
-            els.shell.classList.remove('is-loading');
-            hideStudyLoader();
-          });
-        }, delay);
+        requestAnimationFrame(() => {
+          els.shell.classList.remove('is-loading');
+          hideStudyLoader();
+        });
       }
     }, 150);
   }
