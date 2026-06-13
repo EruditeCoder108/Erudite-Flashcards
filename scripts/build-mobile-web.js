@@ -19,7 +19,8 @@ const sharedCoreScripts = [
   '<script src="js/core/stats.js"></script>',
   '<script src="js/core/srs.js"></script>',
   '<script src="js/core/review-session.js"></script>',
-  '<script src="js/core/draft.js"></script>'
+  '<script src="js/core/draft.js"></script>',
+  '<script src="js/core/math-render.js"></script>'
 ].join('\n    ');
 
 const mobileBootstrapScripts = [
@@ -60,6 +61,9 @@ async function copyDir(source, target) {
 function transformHtml(html) {
   let next = html
     .replace(/node_modules\/@fortawesome\/fontawesome-free\/css\/all\.min\.css/g, 'vendor/fontawesome/css/all.min.css')
+    .replace(/node_modules\/katex\/dist\/katex\.min\.css/g, 'vendor/katex/katex.min.css')
+    .replace(/node_modules\/katex\/dist\/katex\.min\.js/g, 'vendor/katex/katex.min.js')
+    .replace(/node_modules\/katex\/dist\/contrib\/auto-render\.min\.js/g, 'vendor/katex/auto-render.min.js')
     .replace(/node_modules\/ts-fsrs\/dist\/index\.umd\.js/g, 'vendor/ts-fsrs/index.umd.js')
     .replace(/node_modules\/sortablejs\/Sortable\.min\.js/g, 'vendor/sortablejs/Sortable.min.js');
 
@@ -121,6 +125,22 @@ async function copyVendor() {
   await copyFile(
     path.join(root, 'node_modules', 'sortablejs', 'Sortable.min.js'),
     path.join(outDir, 'vendor', 'sortablejs', 'Sortable.min.js')
+  );
+  await copyFile(
+    path.join(root, 'node_modules', 'katex', 'dist', 'katex.min.css'),
+    path.join(outDir, 'vendor', 'katex', 'katex.min.css')
+  );
+  await copyFile(
+    path.join(root, 'node_modules', 'katex', 'dist', 'katex.min.js'),
+    path.join(outDir, 'vendor', 'katex', 'katex.min.js')
+  );
+  await copyFile(
+    path.join(root, 'node_modules', 'katex', 'dist', 'contrib', 'auto-render.min.js'),
+    path.join(outDir, 'vendor', 'katex', 'auto-render.min.js')
+  );
+  await copyDir(
+    path.join(root, 'node_modules', 'katex', 'dist', 'fonts'),
+    path.join(outDir, 'vendor', 'katex', 'fonts')
   );
   await copyFile(
     path.join(root, 'node_modules', 'sql.js', 'dist', 'sql-wasm.js'),

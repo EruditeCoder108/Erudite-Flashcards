@@ -38,6 +38,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         content: null
     };
 
+    const classLabels = {
+        '10th': 'Class 10th',
+        '11th': 'Class 11th',
+        '12th': 'Class 12th',
+        'neet-ug': 'NEET UG',
+        'jee-main': 'JEE Main',
+        'jee-advanced': 'JEE Advanced',
+        'ssc': 'SSC'
+    };
+
     // Subject definitions for each class
     const subjectsByClass = {
         '10th': [
@@ -69,6 +79,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             { id: 'Maths', name: 'Mathematics', icon: 'fas fa-calculator', description: 'Algebra, Calculus, Statistics' },
             { id: 'Biology', name: 'Biology', icon: 'fas fa-dna', description: 'Botany, Zoology, Human Biology' },
             { id: 'Physical-education', name: 'Physical Education', icon: 'fas fa-running', description: 'Sports, Health, Fitness' }
+        ],
+        'neet-ug': [
+            { id: 'Physics', name: 'Physics', icon: 'fas fa-atom', description: 'Mechanics, electricity, optics, modern physics' },
+            { id: 'Chemistry', name: 'Chemistry', icon: 'fas fa-flask', description: 'Physical, organic, and inorganic chemistry' },
+            { id: 'Biology', name: 'Biology', icon: 'fas fa-dna', description: 'Botany, zoology, and human biology' }
+        ],
+        'jee-main': [
+            { id: 'Physics', name: 'Physics', icon: 'fas fa-atom', description: 'JEE Main physics practice' },
+            { id: 'Chemistry', name: 'Chemistry', icon: 'fas fa-flask', description: 'JEE Main chemistry practice' },
+            { id: 'Maths', name: 'Mathematics', icon: 'fas fa-calculator', description: 'JEE Main mathematics practice' }
+        ],
+        'jee-advanced': [
+            { id: 'Physics', name: 'Physics', icon: 'fas fa-atom', description: 'Advanced physics practice' },
+            { id: 'Chemistry', name: 'Chemistry', icon: 'fas fa-flask', description: 'Advanced chemistry practice' },
+            { id: 'Maths', name: 'Mathematics', icon: 'fas fa-calculator', description: 'Advanced mathematics practice' }
+        ],
+        'ssc': [
+            { id: 'general-awareness', name: 'General Awareness', icon: 'fas fa-landmark', description: 'Static GK, current affairs, polity, history, geography' },
+            { id: 'quantitative-aptitude', name: 'Quantitative Aptitude', icon: 'fas fa-calculator', description: 'Arithmetic, algebra, geometry, and data interpretation' },
+            { id: 'reasoning', name: 'Reasoning', icon: 'fas fa-brain', description: 'Verbal and non-verbal reasoning' },
+            { id: 'english', name: 'English', icon: 'fas fa-book', description: 'Vocabulary, grammar, and comprehension' }
         ]
     };
 
@@ -109,7 +140,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         flashcardSetsDisplay.classList.add('hidden');
         
         // Update header stats
-        classNameDisplay.textContent = `Class ${selectedClass}`;
+        classNameDisplay.textContent = classLabels[selectedClass] || selectedClass;
         subjectNameDisplay.textContent = 'Select Subject';
         totalSetsDisplay.textContent = '0';
         
@@ -181,11 +212,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 'Hindi': 'Hindi',
                 'Politics': 'Politics',
                 'Physics': 'Physics',
+                'Chemistry': 'chemistry',
                 'Inorganic Chemistry': 'inorganic-chemistry',
                 'Organic Chemistry': 'organic-chemistry',
                 'Physical Chemistry': 'physical-chemistry',
                 'Biology': 'Biology',
-                'Physical Education': 'Physical-education'
+                'Physical Education': 'Physical-education',
+                'General Awareness': 'general-awareness',
+                'Quantitative Aptitude': 'quantitative-aptitude',
+                'Reasoning': 'reasoning'
             };
             
             const folderName = subjectFolderMap[selectedSubject] || selectedSubject;
@@ -241,10 +276,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             'Hindi': [],
             'Politics': [],
             'Physics': [],
+            'chemistry': [],
             'inorganic-chemistry': [],
             'organic-chemistry': [],
             'physical-chemistry': [],
-            'Physical-education': []
+            'Physical-education': [],
+            'general-awareness': [],
+            'quantitative-aptitude': [],
+            'reasoning': [],
+            'english': []
         };
         
         return knownFiles[folderName] || [];

@@ -112,6 +112,17 @@
           </button>
         </div>
 
+        <div class="deck-source-switch" role="radiogroup" aria-label="Deck source">
+          <button type="button" class="source-option active" data-action="tab-library" aria-checked="true" role="radio">
+            <span class="source-dot"></span>
+            Your decks
+          </button>
+          <button type="button" class="source-option" data-action="open-premade" aria-checked="false" role="radio">
+            <span class="source-dot"></span>
+            Premade
+          </button>
+        </div>
+
         <div class="search-row">
           <label class="mobile-search">
             <i class="fas fa-magnifying-glass"></i>
@@ -173,10 +184,6 @@
             <button type="button" class="secondary-action compact-action" data-creator-action="import-txt">
               <i class="fas fa-file-lines"></i>
               Import TXT
-            </button>
-            <button type="button" class="secondary-action compact-action" data-action="open-premade">
-              <i class="fas fa-book-open"></i>
-              Premade
             </button>
           </div>
 
@@ -331,6 +338,7 @@
   <script src="js/core/srs.js"></script>
   <script src="js/core/review-session.js"></script>
   <script src="js/core/draft.js"></script>
+  <script src="js/core/math-render.js"></script>
   <script src="vendor/sql.js/sql-wasm.js"></script>
   <script src="js/mobile/mobile-store.js"></script>
   <script src="js/storage-client.js"></script>

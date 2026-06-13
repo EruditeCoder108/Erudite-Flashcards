@@ -577,10 +577,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         fadeElement(termText, () => {
             termText.innerHTML = formatContent(card.term);
+            window.EruditeMath?.renderMath?.(termText);
         });
 
         fadeElement(definitionText, () => {
             definitionText.innerHTML = formatContent(card.definition);
+            window.EruditeMath?.renderMath?.(definitionText);
         });
 
         // Handle images before sizing text so mixed cards pick the right layout.

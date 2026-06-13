@@ -109,6 +109,7 @@
   let queuedDrag = null;
   let transitionToken = 0;
   let flipTimer = null;
+  let routeLeaving = false;
   const preloadedImages = new Set();
   const pendingCardPatches = new Map();
   const SWIPE_DURATION = 175;
@@ -164,13 +165,28 @@
     ]);
   }
 
-  async function goLibrary() {
-    try {
-      await saveProgress({ immediate: true });
-      await saveOpenedMeta({ immediate: true });
-      await flushCardProgress();
-      await flushStore(1400);
-    } catch (_) {}
+  async function flushStudyStateBeforeRoute() {
+    try { await saveProgress({ immediate: true }); } catch (_) {}
+    try { await saveOpenedMeta({ immediate: true }); } catch (_) {}
+    try { await flushCardProgress(); } catch (_) {}
+    try { await flushStore(1400); } catch (_) {}
+  }
+
+  function markRouteTrigger(trigger) {
+    const button = trigger?.currentTarget || trigger;
+    if (!button?.classList) return;
+    button.classList.add('is-busy');
+    button.setAttribute('aria-busy', 'true');
+    if ('disabled' in button) button.disabled = true;
+  }
+
+  async function goLibrary(trigger = null) {
+    markRouteTrigger(trigger);
+    if (routeLeaving) return;
+    routeLeaving = true;
+    showStudyLoader('Opening Library', 'Refreshing your decks');
+    await new Promise(resolve => requestAnimationFrame(resolve));
+    await flushStudyStateBeforeRoute();
     navigateAway(libraryUrl(), 'Opening Library', 'Refreshing your decks');
   }
 
@@ -431,6 +447,7 @@
       setId: state.set.id,
       cardIndex: activeIndex(),
       normalModeIndex: state.normalIndex,
+      normalModeLength: state.set?.cards?.length || state.activeCards.length || 0,
       srsModeIndex: state.srsIndex,
       srsModeLength: state.activeCards.length,
       srsCurrentCardKey: state.srsMode ? cardKey(activeCard()) : null,
@@ -636,6 +653,8 @@
 
     elements.termText.innerHTML = cardData.sanitizedTerm;
     elements.definitionText.innerHTML = cardData.sanitizedDefinition;
+    window.EruditeMath?.renderMath?.(elements.termText);
+    window.EruditeMath?.renderMath?.(elements.definitionText);
     renderImage(elements.termImage, elements.termImageWrap, cardData.termImage);
     renderImage(elements.definitionImage, elements.definitionImageWrap, cardData.definitionImage);
     
@@ -1133,34 +1152,50 @@
   }
 
   function installEvents() {
-    els.back.addEventListener('click', () => goLibrary());
+    els.back.addEventListener('click', () => goLibrary(els.back));
     els.prev?.addEventListener('click', () => navigateBack());
-    els.libraryButton.addEventListener('click', () => goLibrary());
-    els.emptyLibraryButton.addEventListener('click', () => goLibrary());
+    const handleModalLibraryRoute = event => {
+      if (event.type === 'pointerdown' && event.button !== undefined && event.button !== 0) return;
+      event.preventDefault();
+      event.stopPropagation();
+      goLibrary(event.currentTarget);
+    };
+    els.libraryButton.addEventListener('pointerdown', handleModalLibraryRoute, { passive: false });
+    els.libraryButton.addEventListener('click', handleModalLibraryRoute);
+    els.emptyLibraryButton.addEventListener('pointerdown', handleModalLibraryRoute, { passive: false });
+    els.emptyLibraryButton.addEventListener('click', handleModalLibraryRoute);
     els.continueButton.addEventListener('click', async () => {
       if (state.srsMode && state.nextDueSetId) {
-        await saveProgress({ immediate: true });
-        await flushCardProgress();
-        await flushStore(1400);
+        if (routeLeaving) return;
+        routeLeaving = true;
+        els.continueButton.disabled = true;
+        showStudyLoader('Opening Review', 'Loading the next due deck');
+        await new Promise(resolve => requestAnimationFrame(resolve));
+        await flushStudyStateBeforeRoute();
         navigateAway(studyUrl(state.nextDueSetId, true), 'Opening Review', 'Loading the next due deck');
         return;
       }
-      els.completionModal.classList.add('hidden');
-      state.complete = false;
-      state.nextDueSetId = null;
-      if (state.srsMode) {
-        state.srsIndex = 0;
-        prepareActiveCards();
-        if (!state.activeCards.length) {
-          showEmptyDue();
-          return;
+      els.continueButton.disabled = true;
+      try {
+        els.completionModal.classList.add('hidden');
+        state.complete = false;
+        state.nextDueSetId = null;
+        if (state.srsMode) {
+          state.srsIndex = 0;
+          prepareActiveCards();
+          if (!state.activeCards.length) {
+            showEmptyDue();
+            return;
+          }
+        } else {
+          state.normalIndex = 0;
+          state.activeCards = state.set.cards || [];
         }
-      } else {
-        state.normalIndex = 0;
-        state.activeCards = state.set.cards || [];
+        renderStack();
+        await saveProgress();
+      } finally {
+        els.continueButton.disabled = false;
       }
-      renderStack();
-      await saveProgress();
     });
 
     els.emptyCheckButton.addEventListener('click', async () => {

@@ -819,6 +819,33 @@ textarea,
   color: #dbeafe;
 }
 
+.primary-action.is-busy,
+.secondary-action.is-busy,
+.primary-action:disabled,
+.secondary-action:disabled {
+  opacity: 0.72;
+  transform: scale(0.985);
+  pointer-events: none;
+}
+
+.primary-action.is-busy::after,
+.secondary-action.is-busy::after {
+  content: "";
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-left: 0.55rem;
+  border-radius: 999px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: tinySpin 700ms linear infinite;
+}
+
+@keyframes tinySpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .image-modal {
   z-index: 60;
   background: rgba(0, 0, 0, 0.88);

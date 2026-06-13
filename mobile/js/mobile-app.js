@@ -10,6 +10,7 @@
     sets: [],
     classes: [],
     settings: {},
+    progressBySet: new Map(),
     srsMode: false,
     activeTab: 'today',
     libraryFilter: 'all',
@@ -41,13 +42,21 @@
   const premadeClasses = [
     { id: '10th', name: 'Class 10' },
     { id: '11th', name: 'Class 11' },
-    { id: '12th', name: 'Class 12' }
+    { id: '12th', name: 'Class 12' },
+    { id: 'neet-ug', name: 'NEET UG' },
+    { id: 'jee-main', name: 'JEE Main' },
+    { id: 'jee-advanced', name: 'JEE Advanced' },
+    { id: 'ssc', name: 'SSC' }
   ];
 
   const premadeSubjects = {
     '10th': ['Science', 'Maths', 'English', 'Civics', 'Geography', 'History', 'Hindi', 'Politics'],
     '11th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education'],
-    '12th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education']
+    '12th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education'],
+    'neet-ug': ['physics', 'chemistry', 'biology'],
+    'jee-main': ['physics', 'chemistry', 'maths'],
+    'jee-advanced': ['physics', 'chemistry', 'maths'],
+    'ssc': ['general-awareness', 'quantitative-aptitude', 'reasoning', 'english']
   };
 
   const sortOrder = ['recent', 'name', 'cards', 'due'];
@@ -347,6 +356,16 @@
   function progressPercent(set) {
     const cardCount = setCardCount(set);
     if (!cardCount) return 0;
+    if (state.srsMode) {
+      const due = dueCountForSet(set, { force: true });
+      return clamp(Math.round(((cardCount - Math.min(due, cardCount)) / cardCount) * 100), 0, 100);
+    }
+    const savedProgress = state.progressBySet?.get(String(set.id));
+    const savedIndex = Number(savedProgress?.normalModeIndex ?? savedProgress?.cardIndex);
+    if (Number.isFinite(savedIndex) && savedIndex >= 0) {
+      const progressLength = Math.max(cardCount, Number(savedProgress?.normalModeLength || 0) || 0);
+      return clamp(Math.round(((Math.min(savedIndex, progressLength - 1) + 1) / Math.max(1, progressLength)) * 100), 0, 100);
+    }
     const meta = metaStats(set);
     if (meta?.reviewCount) {
       return clamp(Math.round((Math.min(Number(meta.reviewCount || 0), cardCount) / cardCount) * 100), 0, 100);
@@ -421,6 +440,17 @@
     state.sets = normalizeSetClassReferences(normalizedSets, state.classes);
     state.settings = settings || {};
     state.srsMode = readSrsMode(srsMode);
+    const progressEntries = await Promise.all(
+      state.sets.map(async set => {
+        try {
+          const stored = await window.flashcardStore.getProgress(set.id);
+          return [String(set.id), stored || null];
+        } catch (_) {
+          return [String(set.id), null];
+        }
+      })
+    );
+    state.progressBySet = new Map(progressEntries.filter(([, progress]) => Boolean(progress)));
     scheduleOrphanClassRepair();
   }
 
@@ -514,10 +544,13 @@
     const streak = streakDays();
     const remainingReviews = Number(totals.dueCards || 0);
     const dailyWork = todayReviews + remainingReviews;
-    const progress = dailyWork > 0 ? clamp(Math.round((todayReviews / dailyWork) * 100), 0, 100) : 0;
-    const progressLabel = dailyWork > 0 ? 'Goal' : 'Ready';
-    const reviewAction = totals.dueCards > 0 ? 'review-due-smart' : 'tab-library';
-    const reviewLabel = totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : 'Open Library';
+    const hasDecks = totals.setCount > 0 || totals.cardCount > 0;
+    const progress = dailyWork > 0
+      ? clamp(Math.round((todayReviews / dailyWork) * 100), 0, 100)
+      : (hasDecks ? 100 : 0);
+    const progressLabel = dailyWork > 0 ? 'Goal' : (hasDecks ? 'Ready' : 'Start');
+    const reviewAction = totals.dueCards > 0 ? 'review-due-smart' : (hasDecks ? 'tab-library' : 'open-create');
+    const reviewLabel = totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : (hasDecks ? 'Open Library' : 'Create Deck');
 
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
@@ -822,6 +855,7 @@
               ${formatButton('bold', 'Bold', 'fa-bold')}
               ${formatButton('italic', 'Italic', 'fa-italic')}
               ${formatButton('underline', 'Underline', 'fa-underline')}
+              ${formatButton('formula', 'Formula', 'fa-square-root-variable')}
               <button type="button" class="format-button" data-creator-action="image" data-card-id="${escapeAttr(card.id)}" data-side="term" aria-label="Add term image">
                 <i class="fas fa-image"></i>
               </button>
@@ -837,6 +871,7 @@
               ${formatButton('bold', 'Bold', 'fa-bold')}
               ${formatButton('italic', 'Italic', 'fa-italic')}
               ${formatButton('underline', 'Underline', 'fa-underline')}
+              ${formatButton('formula', 'Formula', 'fa-square-root-variable')}
               <button type="button" class="format-button" data-creator-action="image" data-card-id="${escapeAttr(card.id)}" data-side="definition" aria-label="Add definition image">
                 <i class="fas fa-image"></i>
               </button>
@@ -1573,7 +1608,7 @@
     const activeEditor = document.activeElement?.closest?.('.rich-editor');
     selectors.creatorCards.querySelectorAll('[data-creator-action="format"]').forEach(button => {
       const command = button.dataset.command;
-      const active = Boolean(activeEditor && command && document.queryCommandState(command));
+      const active = Boolean(activeEditor && command && command !== 'formula' && document.queryCommandState(command));
       button.classList.toggle('active', active);
     });
   }
@@ -1610,7 +1645,15 @@
       case 'format': {
         const command = target.dataset.command;
         if (!command) break;
-        document.execCommand(command, false, null);
+        if (command === 'formula') {
+          const input = window.prompt('Enter formula (LaTeX). Examples: x^2, \\\\frac{a}{b}, E=mc^2', '');
+          const formula = window.EruditeMath?.inlineFormula
+            ? window.EruditeMath.inlineFormula(input)
+            : (String(input || '').trim() ? `\\(${String(input).trim()}\\)` : '');
+          if (formula) document.execCommand('insertText', false, formula);
+        } else {
+          document.execCommand(command, false, null);
+        }
         updateFormatState();
         scheduleCreatorDraftSave();
         break;

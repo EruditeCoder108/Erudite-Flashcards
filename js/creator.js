@@ -863,7 +863,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                     e.stopPropagation();
                     const format = button.dataset.format;
                     
-                    if (format === 'list') {
+                    if (format === 'formula') {
+                        editor.focus();
+                        const input = window.prompt('Enter formula (LaTeX). Examples: x^2, \\\\frac{a}{b}, E=mc^2', '');
+                        const formula = window.EruditeMath?.inlineFormula
+                            ? window.EruditeMath.inlineFormula(input)
+                            : (String(input || '').trim() ? `\\(${String(input).trim()}\\)` : '');
+                        if (formula) {
+                            document.execCommand('insertText', false, formula);
+                            triggerAutosave();
+                        }
+                        setFormatButtonState(button, false);
+                    } else if (format === 'list') {
                         setFormatButtonState(button, !button.classList.contains('active'));
                         if (!button.classList.contains('active')) {
                             const selection = window.getSelection();
@@ -897,14 +908,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // Update button state when text is selected
                 editor.addEventListener('mouseup', () => {
-                    if (button.dataset.format !== 'list') {
+                    if (!['list', 'formula'].includes(button.dataset.format)) {
                         const isFormatActive = document.queryCommandState(button.dataset.format);
                         setFormatButtonState(button, isFormatActive);
                     }
                 });
                 
                 editor.addEventListener('keyup', () => {
-                    if (button.dataset.format !== 'list') {
+                    if (!['list', 'formula'].includes(button.dataset.format)) {
                         const isFormatActive = document.queryCommandState(button.dataset.format);
                         setFormatButtonState(button, isFormatActive);
                     }
