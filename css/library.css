@@ -4277,3 +4277,8 @@ html[data-theme] .set-name {
     margin: 0;
 }
 
+/* Ensure select options are always visible in dark mode */
+select option {
+    background-color: #111A2B !important;
+    color: #F8FAFC !important;
+}

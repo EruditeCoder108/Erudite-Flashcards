@@ -40,6 +40,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     const contentFontSelect = document.getElementById('content-font');
     const customContentFontDiv = document.getElementById('custom-content-font');
     const contentFontUpload = document.getElementById('content-font-upload');
+    const cardBgOpacitySlider = document.getElementById('card-bg-opacity');
+    const cardBgOpacityLabel = document.getElementById('card-bg-opacity-label');
+    const copyPasteExportBtn = document.getElementById('copy-paste-export-btn');
+    const copyPasteImportBtn = document.getElementById('copy-paste-import-btn');
+    // Copy-paste export modal
+    const copyPasteExportModal = document.getElementById('copy-paste-export-modal');
+    const closeCopyExportBtn = document.getElementById('close-copy-export-btn');
+    const cancelCopyExportBtn = document.getElementById('cancel-copy-export');
+    const generateCopyExportBtn = document.getElementById('generate-copy-export');
+    const doCopyExportBtn = document.getElementById('do-copy-export');
+    const copyExportDeckSelect = document.getElementById('copy-export-deck-select');
+    const copyExportTermSep = document.getElementById('copy-export-term-sep');
+    const copyExportCardSep = document.getElementById('copy-export-card-sep');
+    const copyExportTextArea = document.getElementById('copy-export-text-area');
+    // Import separator inputs
+    const importTermSepInput = document.getElementById('import-term-sep');
+    const importCardSepInput = document.getElementById('import-card-sep');
     const deckSettingsModal = document.getElementById('deck-settings-modal');
     const closeDeckSettingsBtn = document.getElementById('close-deck-settings');
     const deckSettingsName = document.getElementById('deck-settings-name');
@@ -965,25 +982,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        // Split by @ symbol instead of new lines
-        const cards = content.split('@');
+        // Read custom separators from inputs (support escape sequences \n and \t)
+        const rawTermSep = importTermSepInput?.value || ';';
+        const rawCardSep = importCardSepInput?.value || '@';
+        const termSep = rawTermSep.replace(/\\n/g, '\n').replace(/\\t/g, '\t') || ';';
+        const cardSep = rawCardSep.replace(/\\n/g, '\n').replace(/\\t/g, '\t') || '@';
+
+        const cards = content.split(cardSep);
         parsedImportCards = cards
             .map(cardContent => {
-                // Skip empty card content
                 if (!cardContent.trim()) return null;
-                
-                // Split by semicolon to get term and definition
-                const parts = cardContent.trim().split(';');
-                if (parts.length < 2) return null;
-                
+                const idx = cardContent.trim().indexOf(termSep);
+                if (idx < 0) return null;
                 return {
-                    term: parts[0].trim(),
-                    definition: parts.slice(1).join(';').trim() // Handle multiple semicolons
+                    term: cardContent.trim().slice(0, idx).trim(),
+                    definition: cardContent.trim().slice(idx + termSep.length).trim()
                 };
             })
             .filter(card => card !== null && (card.term || card.definition));
 
-        // Update preview
         updateImportPreview();
     }
 
@@ -1154,6 +1171,32 @@ document.addEventListener('DOMContentLoaded', async () => {
             const activeValue  = (!isEnabled || style === 'default') ? 'default' : style;
             cursorRadios.forEach(r => { r.checked = (r.value === activeValue); });
         }
+
+        // Initialize opacity slider
+        if (cardBgOpacitySlider) {
+            const opacityVal = parseFloat(userSettings.cardBgOpacity ?? 0.32);
+            cardBgOpacitySlider.value = String(Number.isFinite(opacityVal) ? opacityVal : 0.32);
+            if (cardBgOpacityLabel) cardBgOpacityLabel.textContent = (Number.isFinite(opacityVal) ? opacityVal : 0.32).toFixed(2);
+        }
+    }
+
+    function showCopyPasteExportModal() {
+        if (!copyPasteExportModal) return;
+        if (copyExportDeckSelect) {
+            copyExportDeckSelect.innerHTML = flashcardSets
+                .map(s => `<option value="${s.id}">${s.name || 'Untitled'}</option>`)
+                .join('');
+        }
+        if (copyExportTextArea) copyExportTextArea.value = '';
+        if (doCopyExportBtn) doCopyExportBtn.style.display = 'none';
+        copyPasteExportModal.classList.remove('hidden');
+        copyPasteExportModal.classList.add('visible');
+    }
+
+    function hideCopyPasteExportModal() {
+        if (!copyPasteExportModal) return;
+        copyPasteExportModal.classList.remove('visible');
+        setTimeout(() => copyPasteExportModal.classList.add('hidden'), 300);
     }
 
     function previewAppearanceSettings() {
@@ -1179,6 +1222,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             ? normalStudyOrderSelect.value
             : (userSettings.normalStudyOrder || 'forward');
         delete userSettings.studyCard;
+
+        // Save card background opacity
+        if (cardBgOpacitySlider) {
+            const opacityVal = parseFloat(cardBgOpacitySlider.value);
+            if (Number.isFinite(opacityVal)) userSettings.cardBgOpacity = opacityVal;
+        }
 
         if (contentFontSelect.value === 'custom' && customFonts.content) {
             userSettings.fonts.content = 'custom-' + customFonts.content.name;
@@ -1588,6 +1637,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     importContentTextarea.addEventListener('input', () => {
         parseImportContent();
     });
+
+    // Re-parse when separators change
+    importTermSepInput?.addEventListener('input', () => parseImportContent());
+    importCardSepInput?.addEventListener('input', () => parseImportContent());
     
     // Clear form errors on input
     importSetNameInput.addEventListener('input', () => {
@@ -1617,6 +1670,58 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (exportTsvBtn) exportTsvBtn.addEventListener('click', () => handleExportDelimited('tsv'));
     if (importDelimitedBtn) importDelimitedBtn.addEventListener('click', handleImportDelimited);
     appThemeSelect?.addEventListener('change', previewAppearanceSettings);
+
+    // Opacity slider live label
+    cardBgOpacitySlider?.addEventListener('input', () => {
+        if (cardBgOpacityLabel) cardBgOpacityLabel.textContent = parseFloat(cardBgOpacitySlider.value).toFixed(2);
+    });
+
+    // Copy-paste import button (opens import modal)
+    copyPasteImportBtn?.addEventListener('click', () => { hideSettingsModal(); showImportModal(); });
+
+    // Copy-paste export modal
+    copyPasteExportBtn?.addEventListener('click', () => { hideSettingsModal(); showCopyPasteExportModal(); });
+    closeCopyExportBtn?.addEventListener('click', hideCopyPasteExportModal);
+    cancelCopyExportBtn?.addEventListener('click', hideCopyPasteExportModal);
+    copyPasteExportModal?.addEventListener('click', e => { if (e.target === copyPasteExportModal) hideCopyPasteExportModal(); });
+
+    generateCopyExportBtn?.addEventListener('click', async () => {
+        const setId = copyExportDeckSelect?.value;
+        if (!setId) { showToast('Select a deck', 'error'); return; }
+        const rawTermSep = copyExportTermSep?.value || ';';
+        const rawCardSep = copyExportCardSep?.value || '@';
+        const termSep = rawTermSep.replace(/\\n/g, '\n').replace(/\\t/g, '\t') || ';';
+        const cardSep = rawCardSep.replace(/\\n/g, '\n').replace(/\\t/g, '\t') || '@';
+        try {
+            const set = await window.flashcardStore.getSet(setId);
+            if (!set) { showToast('Deck not found', 'error'); return; }
+            const text = (set.cards || [])
+                .filter(c => c.term || c.definition)
+                .map(c => {
+                    const term = String(c.term || '').replace(/<[^>]+>/g, '').trim();
+                    const def = String(c.definition || '').replace(/<[^>]+>/g, '').trim();
+                    return `${term}${termSep}${def}`;
+                })
+                .join(cardSep);
+            if (copyExportTextArea) copyExportTextArea.value = text;
+            if (doCopyExportBtn) doCopyExportBtn.style.display = '';
+        } catch (err) {
+            showToast('Could not generate export', 'error');
+        }
+    });
+
+    doCopyExportBtn?.addEventListener('click', async () => {
+        const text = copyExportTextArea?.value || '';
+        if (!text) return;
+        try {
+            await navigator.clipboard.writeText(text);
+            showToast('Copied to clipboard!', 'success');
+        } catch (_) {
+            copyExportTextArea?.select();
+            document.execCommand('copy');
+            showToast('Copied!', 'success');
+        }
+    });
 
     // Cursor style radio — applies immediately on change (no Save needed)
     document.querySelectorAll('input[name="cursor-style"]').forEach(radio => {

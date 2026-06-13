@@ -99,10 +99,34 @@
     srsSwitch: document.getElementById('srs-switch'),
     moreSrsLabel: document.getElementById('more-srs-label'),
     normalStudyOrder: document.getElementById('mobile-normal-study-order'),
+    bgOpacitySlider: document.getElementById('mobile-bg-opacity'),
     loadingCover: document.getElementById('app-loading-cover'),
     loadingTitle: document.getElementById('app-loading-title'),
     loadingCopy: document.getElementById('app-loading-copy'),
-    toast: document.getElementById('mobile-toast')
+    toast: document.getElementById('mobile-toast'),
+    // Custom modals
+    formulaOverlay: document.getElementById('formula-modal-overlay'),
+    formulaInput: document.getElementById('formula-modal-input'),
+    formulaConfirm: document.getElementById('formula-modal-confirm'),
+    formulaCancel: document.getElementById('formula-modal-cancel'),
+    draftRestoreOverlay: document.getElementById('draft-restore-overlay'),
+    draftRestoreContinue: document.getElementById('draft-restore-continue'),
+    draftRestoreDiscard: document.getElementById('draft-restore-discard'),
+    copyExportOverlay: document.getElementById('copy-export-overlay'),
+    copyExportDeck: document.getElementById('copy-export-deck'),
+    copyExportTermSep: document.getElementById('copy-export-term-sep'),
+    copyExportCardSep: document.getElementById('copy-export-card-sep'),
+    copyExportText: document.getElementById('copy-export-text'),
+    copyExportGenerate: document.getElementById('copy-export-generate'),
+    copyExportCopy: document.getElementById('copy-export-copy'),
+    copyExportCancel: document.getElementById('copy-export-cancel'),
+    pasteImportOverlay: document.getElementById('paste-import-overlay'),
+    pasteImportName: document.getElementById('paste-import-name'),
+    pasteImportTermSep: document.getElementById('paste-import-term-sep'),
+    pasteImportCardSep: document.getElementById('paste-import-card-sep'),
+    pasteImportText: document.getElementById('paste-import-text'),
+    pasteImportConfirm: document.getElementById('paste-import-confirm'),
+    pasteImportCancel: document.getElementById('paste-import-cancel')
   };
 
   function escapeHtml(value) {
@@ -1140,9 +1164,11 @@
         };
     try {
       const saved = await window.flashcardStore.saveClass(classData);
+      // Immediately update local state and re-render so the new class appears in the dropdown
       state.classes = await window.flashcardStore.listClasses();
       state.creator.classId = saved?.id || classData.id;
-      await flushStore(900);
+      // Flush store in background — do not await to avoid blocking UI
+      flushStore(900).catch(err => console.warn('[mobile] flushStore after class create:', err));
       playClick();
       showToast('Class created');
       renderCreate();
@@ -1319,7 +1345,7 @@
       } catch (_) {}
     }
 
-    const shouldContinue = window.confirm('Continue your unsaved draft?\n\nOK = Continue draft\nCancel = Start a new deck');
+    const shouldContinue = await showDraftRestoreModal();
     if (shouldContinue) {
       await loadDraftIntoCreator(draft);
       showToast('Draft restored');
@@ -1369,7 +1395,8 @@
       pinned: Boolean(original.pinned)
     });
     await clearCreatorDraft();
-    await flushStore(1800);
+    // Flush store in background — no need to block navigation on it
+    flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
     showToast(`Saved ${plural(cards.length, 'card')}`);
     state.browserLoaded = false;
     resetCreator();
@@ -1640,6 +1667,281 @@
     await refresh();
   }
 
+  // ─── Custom Modal Helpers ──────────────────────────────────────────────
+
+  /**
+   * Opens the formula modal. Resolves when user confirms/cancels.
+   * savedRange: Selection range to restore before inserting formula.
+   */
+  function openFormulaModal(onReady) {
+    const overlay = selectors.formulaOverlay;
+    const input = selectors.formulaInput;
+    if (!overlay || !input) {
+      const raw = window.prompt('Enter formula (LaTeX):', '');
+      if (!raw) return;
+      const formula = window.EruditeMath?.inlineFormula
+        ? window.EruditeMath.inlineFormula(raw)
+        : `\\(${raw.trim()}\\)`;
+      if (formula) document.execCommand('insertText', false, formula);
+      return;
+    }
+
+    // Capture current selection range so we can restore it after modal interaction
+    let savedRange = null;
+    const sel = window.getSelection();
+    if (sel && sel.rangeCount > 0) savedRange = sel.getRangeAt(0).cloneRange();
+
+    input.value = '';
+    overlay.classList.remove('hidden');
+    requestAnimationFrame(() => input.focus());
+
+    function doInsert() {
+      const rawInput = String(input.value || '').trim();
+      overlay.classList.add('hidden');
+      cleanup();
+      if (!rawInput) return;
+      const formula = window.EruditeMath?.inlineFormula
+        ? window.EruditeMath.inlineFormula(rawInput)
+        : `\\(${rawInput}\\)`;
+      if (onReady) onReady(savedRange);
+      if (formula) document.execCommand('insertText', false, formula);
+      updateFormatState();
+      scheduleCreatorDraftSave();
+    }
+
+    function doCancel() {
+      overlay.classList.add('hidden');
+      cleanup();
+    }
+
+    function handleKeydown(e) {
+      if (e.key === 'Enter') { e.preventDefault(); doInsert(); }
+      if (e.key === 'Escape') doCancel();
+    }
+
+    function cleanup() {
+      selectors.formulaConfirm?.removeEventListener('click', doInsert);
+      selectors.formulaCancel?.removeEventListener('click', doCancel);
+      input.removeEventListener('keydown', handleKeydown);
+    }
+
+    selectors.formulaConfirm?.addEventListener('click', doInsert);
+    selectors.formulaCancel?.addEventListener('click', doCancel);
+    input.addEventListener('keydown', handleKeydown);
+  }
+
+  /**
+   * Shows the draft restore confirm modal. Returns promise<boolean>.
+   */
+  function showDraftRestoreModal() {
+    return new Promise(resolve => {
+      const overlay = selectors.draftRestoreOverlay;
+      if (!overlay) {
+        resolve(window.confirm('Continue your unsaved draft?\n\nOK = Continue draft\nCancel = Start a new deck'));
+        return;
+      }
+      overlay.classList.remove('hidden');
+
+      function cleanup() {
+        selectors.draftRestoreContinue?.removeEventListener('click', onContinue);
+        selectors.draftRestoreDiscard?.removeEventListener('click', onDiscard);
+        overlay.classList.add('hidden');
+      }
+      function onContinue() { cleanup(); resolve(true); }
+      function onDiscard() { cleanup(); resolve(false); }
+
+      selectors.draftRestoreContinue?.addEventListener('click', onContinue);
+      selectors.draftRestoreDiscard?.addEventListener('click', onDiscard);
+    });
+  }
+
+  /**
+   * Parses a separator string, supporting \n, \t escape sequences.
+   */
+  function parseSeparator(raw) {
+    return String(raw || '')
+      .replace(/\\n/g, '\n')
+      .replace(/\\t/g, '\t')
+      || ';';
+  }
+
+  /**
+   * Opens the copy-export modal and populates it with current decks.
+   */
+  async function openCopyExportModal() {
+    const overlay = selectors.copyExportOverlay;
+    if (!overlay) return;
+    // Populate deck dropdown
+    const deckSelect = selectors.copyExportDeck;
+    if (deckSelect) {
+      deckSelect.innerHTML = state.sets.map(s =>
+        `<option value="${escapeAttr(String(s.id))}">${escapeHtml(s.name || 'Untitled')}</option>`
+      ).join('');
+    }
+    if (selectors.copyExportText) selectors.copyExportText.value = '';
+    if (selectors.copyExportCopy) selectors.copyExportCopy.style.display = 'none';
+    overlay.classList.remove('hidden');
+
+    function doGenerate() {
+      const setId = selectors.copyExportDeck?.value;
+      const set = state.sets.find(s => String(s.id) === String(setId));
+      if (!set) { showToast('Select a deck'); return; }
+      const termSep = parseSeparator(selectors.copyExportTermSep?.value || ';');
+      const cardSep = parseSeparator(selectors.copyExportCardSep?.value || '@');
+      // Need full set with cards - fetch it
+      window.flashcardStore.getSet(setId).then(fullSet => {
+        const cards = (fullSet?.cards || set.cards || []);
+        const text = cards
+          .filter(c => c.term || c.definition)
+          .map(c => {
+            const term = String(c.term || '').replace(/<[^>]+>/g, '').trim();
+            const def = String(c.definition || '').replace(/<[^>]+>/g, '').trim();
+            return `${term}${termSep}${def}`;
+          })
+          .join(cardSep);
+        if (selectors.copyExportText) selectors.copyExportText.value = text;
+        if (selectors.copyExportCopy) selectors.copyExportCopy.style.display = '';
+      }).catch(() => showToast('Could not load deck'));
+    }
+
+    async function doCopy() {
+      const text = selectors.copyExportText?.value || '';
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Copied to clipboard!');
+      } catch (_) {
+        // Fallback: select all text in textarea
+        selectors.copyExportText?.select();
+        document.execCommand('copy');
+        showToast('Copied!');
+      }
+    }
+
+    function doClose() {
+      overlay.classList.add('hidden');
+      cleanup();
+    }
+
+    function cleanup() {
+      selectors.copyExportGenerate?.removeEventListener('click', doGenerate);
+      selectors.copyExportCopy?.removeEventListener('click', doCopy);
+      selectors.copyExportCancel?.removeEventListener('click', doClose);
+    }
+    selectors.copyExportGenerate?.addEventListener('click', doGenerate);
+    selectors.copyExportCopy?.addEventListener('click', doCopy);
+    selectors.copyExportCancel?.addEventListener('click', doClose);
+  }
+
+  /**
+   * Opens the paste-import modal.
+   */
+  function openPasteImportModal() {
+    const overlay = selectors.pasteImportOverlay;
+    if (!overlay) return;
+    if (selectors.pasteImportText) selectors.pasteImportText.value = '';
+    if (selectors.pasteImportName) selectors.pasteImportName.value = '';
+    overlay.classList.remove('hidden');
+
+    async function doImport() {
+      const name = String(selectors.pasteImportName?.value || '').trim() || 'Imported Deck';
+      const text = String(selectors.pasteImportText?.value || '').trim();
+      if (!text) { showToast('Paste some cards first'); return; }
+
+      const termSep = parseSeparator(selectors.pasteImportTermSep?.value || ';');
+      const cardSep = parseSeparator(selectors.pasteImportCardSep?.value || '@');
+
+      const cards = text.split(cardSep)
+        .map(chunk => {
+          const idx = chunk.indexOf(termSep);
+          if (idx < 0) return null;
+          const term = chunk.slice(0, idx).trim();
+          const definition = chunk.slice(idx + termSep.length).trim();
+          if (!term && !definition) return null;
+          return { ...emptyCreatorCard(), term: term.trim(), definition: definition.trim() };
+        })
+        .filter(Boolean);
+
+      if (!cards.length) { showToast('No valid term/definition pairs found'); return; }
+
+      try {
+        const set = { name, cards, classId: null };
+        await window.flashcardStore.saveSet(set);
+        overlay.classList.add('hidden');
+        cleanup();
+        await refresh();
+        showToast(`Imported ${plural(cards.length, 'card')}`);
+      } catch (err) {
+        console.error(err);
+        showToast('Import failed');
+      }
+    }
+
+    function doCancel() {
+      overlay.classList.add('hidden');
+      cleanup();
+    }
+
+    function cleanup() {
+      selectors.pasteImportConfirm?.removeEventListener('click', doImport);
+      selectors.pasteImportCancel?.removeEventListener('click', doCancel);
+    }
+    selectors.pasteImportConfirm?.addEventListener('click', doImport);
+    selectors.pasteImportCancel?.addEventListener('click', doCancel);
+  }
+
+  // ─── Capacitor Back Button (double-press to exit) ────────────────────────
+
+  let lastBackPressTime = 0;
+
+  function setupCapacitorBackButton() {
+    if (typeof window.Capacitor === 'undefined' || !window.Capacitor?.Plugins?.App) return;
+    const { App } = window.Capacitor.Plugins;
+    App.addListener('backButton', () => {
+      // 1. Close any open custom modals first
+      const openOverlays = Array.from(document.querySelectorAll('.mobile-modal-overlay:not(.hidden)'));
+      if (openOverlays.length > 0) {
+        openOverlays.forEach(el => el.classList.add('hidden'));
+        return;
+      }
+      // 2. Close deck context modal if open
+      const deckCtx = document.getElementById('deck-context-modal');
+      if (deckCtx && deckCtx.style.display !== 'none') {
+        closeDeckContextModal();
+        return;
+      }
+      // 3. Close class select modal
+      const classSelect = document.getElementById('class-select-modal');
+      if (classSelect && classSelect.style.display !== 'none') {
+        classSelect.style.display = 'none';
+        return;
+      }
+      // 4. Exit select mode
+      if (state.selectMode) {
+        exitSelectMode();
+        return;
+      }
+      // 5. If in create tab, go to library
+      if (state.activeTab === 'create') {
+        setActiveTab('library');
+        return;
+      }
+      // 6. If not on today tab, switch to today
+      if (state.activeTab !== 'today') {
+        setActiveTab('today');
+        return;
+      }
+      // 7. On main screen: double-press to exit
+      const now = Date.now();
+      if (now - lastBackPressTime < 2000) {
+        App.exitApp();
+      } else {
+        lastBackPressTime = now;
+        showToast('Press back again to exit');
+      }
+    });
+  }
+
   async function exportBackup() {
     try {
       const result = await window.flashcardStore.exportBackup();
@@ -1726,7 +2028,12 @@
         renderCreate();
         scheduleCreatorDraftSave();
         requestAnimationFrame(() => {
-          selectors.creatorCards?.querySelector(`[data-editor-id="${cssEscape(card.id)}"][data-side="term"]`)?.focus();
+          const newCardEl = selectors.creatorCards?.querySelector(`[data-editor-id="${cssEscape(card.id)}"][data-side="term"]`);
+          if (newCardEl) {
+            newCardEl.focus();
+            // Scroll the new card smoothly into view
+            newCardEl.closest('.creator-card')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
         });
         break;
       }
@@ -1742,11 +2049,14 @@
         const command = target.dataset.command;
         if (!command) break;
         if (command === 'formula') {
-          const input = window.prompt('Enter formula (LaTeX). Examples: x^2, \\\\frac{a}{b}, E=mc^2', '');
-          const formula = window.EruditeMath?.inlineFormula
-            ? window.EruditeMath.inlineFormula(input)
-            : (String(input || '').trim() ? `\\(${String(input).trim()}\\)` : '');
-          if (formula) document.execCommand('insertText', false, formula);
+          // Use custom HTML modal instead of window.prompt
+          openFormulaModal(savedRange => {
+            if (savedRange) {
+              const sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(savedRange);
+            }
+          });
         } else {
           document.execCommand(command, false, null);
         }
@@ -1912,6 +2222,12 @@
         break;
       case 'import-backup':
         await importBackup();
+        break;
+      case 'copy-export':
+        await openCopyExportModal();
+        break;
+      case 'paste-import':
+        openPasteImportModal();
         break;
       default:
         break;
@@ -2458,6 +2774,17 @@
       selectors.libraryList.addEventListener('pointercancel', handlePointerCancel);
     }
 
+    // Card background opacity slider
+    selectors.bgOpacitySlider?.addEventListener('input', async event => {
+      const opacity = parseFloat(event.target.value);
+      if (!Number.isFinite(opacity)) return;
+      state.settings = { ...(state.settings || {}), cardBgOpacity: opacity };
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+      } catch (err) {
+        console.warn('[mobile] Could not save card bg opacity:', err);
+      }
+    });
 
   }
 
@@ -2465,6 +2792,7 @@
     document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'mobile-app-shell');
     configureSystemBars().catch(() => {});
     installEvents();
+    setupCapacitorBackButton();
     // Set tab first so the correct view is visible during data loading
     const initialTab = String(window.location.hash || '').replace('#', '');
     const tab = ['today', 'library', 'create', 'premade', 'browser', 'more'].includes(initialTab) ? initialTab : 'today';
@@ -2476,6 +2804,11 @@
     // Defer CPU-intensive database load to allow transition/loader animation to initialize smoothly
     setTimeout(async () => {
       await refresh();
+      // Initialize opacity slider from loaded settings
+      if (selectors.bgOpacitySlider) {
+        const opacity = parseFloat(state.settings?.cardBgOpacity ?? 0.32);
+        if (Number.isFinite(opacity)) selectors.bgOpacitySlider.value = String(opacity);
+      }
       hideAppLoader();
     }, 150);
   }

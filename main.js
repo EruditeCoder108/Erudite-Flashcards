@@ -1134,6 +1134,7 @@ app.on('window-all-closed', () => {
 });
 
 ipcMain.handle('flashcards:listSets', listSets);
+ipcMain.handle('flashcards:listSetsMeta', () => getFlashcardStore().listSetsMeta());
 ipcMain.handle('flashcards:getSet', (_event, id) => getSet(id));
 ipcMain.handle('flashcards:saveSet', (_event, set) => saveSet(set));
 ipcMain.handle('flashcards:replaceSets', (_event, sets) => replaceSets(sets));

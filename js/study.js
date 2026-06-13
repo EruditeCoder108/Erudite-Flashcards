@@ -189,6 +189,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     ? await window.flashcardStore.getSettings()
                     : JSON.parse(localStorage.getItem('flashcards-settings') || '{}'));
             normalStudyOrder = normalizeNormalStudyOrder(settings?.normalStudyOrder);
+            // Store for use in rendering (e.g. cardBgOpacity)
+            window._studyAppSettings = settings || {};
         } catch (error) {
             console.warn('Could not load study order setting:', error);
             normalStudyOrder = 'forward';
@@ -779,7 +781,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         backgroundEl.style.backgroundImage = `url("${background.src}")`;
         backgroundEl.style.backgroundSize = background.fit || 'cover';
-        backgroundEl.style.setProperty('--card-bg-opacity', String(background.opacity ?? 0.32));
+        // Use global cardBgOpacity from loaded settings if available
+        const globalOpacity = parseFloat(window._studyAppSettings?.cardBgOpacity);
+        const opacity = Number.isFinite(globalOpacity) ? globalOpacity : (background.opacity ?? 0.32);
+        backgroundEl.style.setProperty('--card-bg-opacity', String(opacity));
         backgroundEl.classList.add('visible');
     }
 

@@ -47,7 +47,8 @@
       Good: 0,
       Easy: 0,
       nextDue: null
-    }
+    },
+    settings: {}
   };
 
   const els = {
@@ -427,6 +428,7 @@
 
     state.srsMode = resolveSrsMode(srsMode);
     state.studyOrder = normalizeStudyOrder(settings?.normalStudyOrder);
+    state.settings = settings || {};
     if (reviewDueSession) {
       localStorage.setItem('srsModeEnabled', 'true');
       window.flashcardStore.setState('srsModeEnabled', true).catch(() => {});
@@ -674,7 +676,13 @@
     }
     element.style.backgroundImage = `url("${background.src}")`;
     element.style.backgroundSize = background.fit || 'cover';
-    element.style.setProperty('--card-bg-opacity', String(background.opacity ?? 0.32));
+    // Use global cardBgOpacity setting if available, otherwise fall back to per-card opacity
+    const globalOpacity = window.flashcardStore?.getSettingsSync?.()?.cardBgOpacity
+      ?? state.settings?.cardBgOpacity;
+    const opacity = Number.isFinite(parseFloat(globalOpacity))
+      ? parseFloat(globalOpacity)
+      : (background.opacity ?? 0.32);
+    element.style.setProperty('--card-bg-opacity', String(opacity));
     element.classList.add('visible');
   }
 
@@ -1388,6 +1396,19 @@
     configureSystemBars();
     installEvents();
     installPointerGestures();
+
+    // Capacitor hardware back button: go back to library
+    if (window.Capacitor?.Plugins?.App) {
+      window.Capacitor.Plugins.App.addListener('backButton', () => {
+        // Close any open modals first
+        const openModal = document.querySelector('.image-modal:not(.hidden), .mobile-modal-overlay:not(.hidden)');
+        if (openModal) {
+          openModal.classList.add('hidden');
+          return;
+        }
+        goLibrary();
+      });
+    }
     
     // Defer CPU-intensive database load to allow transition/loader animation to initialize smoothly
     setTimeout(async () => {

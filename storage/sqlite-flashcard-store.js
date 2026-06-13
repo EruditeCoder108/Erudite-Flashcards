@@ -414,29 +414,67 @@ class SqliteFlashcardStore {
     };
   }
 
+  _rowToSet(row, cards) {
+    const payload = jsonParse(row.payload_json, {});
+    return {
+      ...payload,
+      id: row.id,
+      name: row.name,
+      description: row.description || '',
+      classId: row.class_id || null,
+      srsSettings: jsonParse(row.srs_settings_json, {}),
+      created: Number(row.created),
+      openedCount: Number(row.opened_count || 0),
+      lastOpened: row.last_opened ?? null,
+      lastModified: Number(row.last_modified),
+      cards
+    };
+  }
+
+  _rowToCard(cardRow) {
+    return {
+      ...jsonParse(cardRow.payload_json, {}),
+      id: cardRow.id,
+      term: cardRow.term || '',
+      definition: cardRow.definition || '',
+      termImage: cardRow.term_image || '',
+      definitionImage: cardRow.definition_image || '',
+      tags: jsonParse(cardRow.tags_json, []),
+      suspended: Boolean(cardRow.suspended),
+      buriedUntil: cardRow.buried_until || null,
+      srs: jsonParse(cardRow.srs_json, null) || undefined,
+      reviewHistory: jsonParse(cardRow.review_history_json, [])
+    };
+  }
+
+  _loadCardsForSet(setId) {
+    return this.rows(
+      'SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL ORDER BY position ASC',
+      [setId]
+    ).map(cardRow => this._rowToCard(cardRow));
+  }
+
   async listSets() {
     const setRows = this.rows('SELECT * FROM sets WHERE deleted_at IS NULL ORDER BY last_modified DESC, created DESC');
-    const sets = [];
+    return setRows.map(row => this._rowToSet(row, this._loadCardsForSet(row.id)));
+  }
 
-    for (const row of setRows) {
+  /**
+   * Returns set metadata and card counts without loading card content.
+   * Much faster than listSets() for the library screen.
+   */
+  async listSetsMeta() {
+    const setRows = this.rows(`
+      SELECT s.*, COUNT(c.id) AS card_count
+      FROM sets s
+      LEFT JOIN cards c ON c.set_id = s.id AND c.deleted_at IS NULL
+      WHERE s.deleted_at IS NULL
+      GROUP BY s.id
+      ORDER BY s.last_modified DESC, s.created DESC
+    `);
+    return setRows.map(row => {
       const payload = jsonParse(row.payload_json, {});
-      const cards = this.rows(
-        'SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL ORDER BY position ASC',
-        [row.id]
-      ).map(cardRow => ({
-        ...jsonParse(cardRow.payload_json, {}),
-        id: cardRow.id,
-        term: cardRow.term || '',
-        definition: cardRow.definition || '',
-        termImage: cardRow.term_image || '',
-        definitionImage: cardRow.definition_image || '',
-        tags: jsonParse(cardRow.tags_json, []),
-        suspended: Boolean(cardRow.suspended),
-        buriedUntil: cardRow.buried_until || null,
-        srs: jsonParse(cardRow.srs_json, null) || undefined,
-        reviewHistory: jsonParse(cardRow.review_history_json, [])
-      }));
-      sets.push({
+      return {
         ...payload,
         id: row.id,
         name: row.name,
@@ -447,16 +485,17 @@ class SqliteFlashcardStore {
         openedCount: Number(row.opened_count || 0),
         lastOpened: row.last_opened ?? null,
         lastModified: Number(row.last_modified),
-        cards
-      });
-    }
-
-    return sets;
+        cardCount: Number(row.card_count || 0)
+      };
+    });
   }
 
   async getSet(id) {
-    const sets = await this.listSets();
-    return sets.find(set => String(set.id) === String(id)) || null;
+    const setRows = this.rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL LIMIT 1', [String(id)]);
+    if (!setRows.length) return null;
+    const row = setRows[0];
+    const cards = this._loadCardsForSet(row.id);
+    return this._rowToSet(row, cards);
   }
 
   async saveSet(rawSet) {

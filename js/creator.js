@@ -909,13 +909,59 @@ document.addEventListener('DOMContentLoaded', async () => {
                     
                     if (format === 'formula') {
                         editor.focus();
-                        const input = window.prompt('Enter formula (LaTeX). Examples: x^2, \\\\frac{a}{b}, E=mc^2', '');
-                        const formula = window.EruditeMath?.inlineFormula
-                            ? window.EruditeMath.inlineFormula(input)
-                            : (String(input || '').trim() ? `\\(${String(input).trim()}\\)` : '');
-                        if (formula) {
-                            document.execCommand('insertText', false, formula);
-                            triggerAutosave();
+                        // Capture selection range before modal opens
+                        const sel = window.getSelection();
+                        let savedRange = null;
+                        if (sel && sel.rangeCount > 0) savedRange = sel.getRangeAt(0).cloneRange();
+
+                        const modal = document.getElementById('formula-modal');
+                        const inputEl = document.getElementById('formula-modal-input');
+                        if (!modal || !inputEl) {
+                            // Fallback to native prompt if modal not found
+                            const raw = window.prompt('Enter formula (LaTeX):', '');
+                            const formula = window.EruditeMath?.inlineFormula
+                                ? window.EruditeMath.inlineFormula(raw)
+                                : (raw ? `\\(${raw.trim()}\\)` : '');
+                            if (formula) { document.execCommand('insertText', false, formula); triggerAutosave(); }
+                        } else {
+                            inputEl.value = '';
+                            // Use .show class — matches .shortcuts-modal CSS pattern
+                            modal.classList.add('show');
+                            requestAnimationFrame(() => inputEl.focus());
+
+                            const doInsert = () => {
+                                const raw = String(inputEl.value || '').trim();
+                                modal.classList.remove('show');
+                                cleanup();
+                                if (!raw) return;
+                                const formula = window.EruditeMath?.inlineFormula
+                                    ? window.EruditeMath.inlineFormula(raw)
+                                    : `\\(${raw}\\)`;
+                                if (savedRange) {
+                                    const s = window.getSelection();
+                                    s.removeAllRanges();
+                                    s.addRange(savedRange);
+                                }
+                                document.execCommand('insertText', false, formula);
+                                triggerAutosave();
+                            };
+                            const doCancel = () => { modal.classList.remove('show'); cleanup(); };
+                            const onKey = (e) => {
+                                if (e.key === 'Enter') { e.preventDefault(); doInsert(); }
+                                if (e.key === 'Escape') doCancel();
+                            };
+                            const cleanup = () => {
+                                document.getElementById('formula-modal-confirm')?.removeEventListener('click', doInsert);
+                                document.getElementById('formula-modal-cancel')?.removeEventListener('click', doCancel);
+                                document.getElementById('formula-modal-close')?.removeEventListener('click', doCancel);
+                                inputEl.removeEventListener('keydown', onKey);
+                            };
+                            document.getElementById('formula-modal-confirm')?.addEventListener('click', doInsert);
+                            document.getElementById('formula-modal-cancel')?.addEventListener('click', doCancel);
+                            document.getElementById('formula-modal-close')?.addEventListener('click', doCancel);
+                            inputEl.addEventListener('keydown', onKey);
+                            // Clicking backdrop (the modal itself) cancels
+                            modal.addEventListener('click', e => { if (e.target === modal) doCancel(); }, { once: true });
                         }
                         setFormatButtonState(button, false);
                     } else if (format === 'list') {

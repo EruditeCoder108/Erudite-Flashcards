@@ -411,5 +411,30 @@
             </div>
         </div>
     </div>
+
+    <!-- Math Formula Modal -->
+    <div class="shortcuts-modal" id="formula-modal" role="dialog" aria-modal="true" aria-labelledby="formula-modal-title">
+        <div class="shortcuts-content" style="max-width:480px; max-height:unset;">
+            <div class="shortcuts-header">
+                <h2 id="formula-modal-title"><i class="fas fa-square-root-variable"></i> Insert Formula</h2>
+                <button class="close-shortcuts-btn" id="formula-modal-close" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="shortcuts-body" style="max-height:unset; overflow:visible;">
+                <p style="color:var(--text-secondary); margin-bottom:1rem; font-size:0.9rem; line-height:1.6;">
+                    Enter a LaTeX formula &mdash; e.g.
+                    <code style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;">x^2</code>,
+                    <code style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;">\frac{a}{b}</code>,
+                    <code style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;">E=mc^2</code>
+                </p>
+                <div class="form-group" style="margin-bottom:1.25rem;">
+                    <input type="text" id="formula-modal-input" class="form-input" placeholder="Enter LaTeX formula…" autocomplete="off" spellcheck="false" style="font-family:monospace; font-size:1rem; width:100%; box-sizing:border-box;">
+                </div>
+                <div style="display:flex; gap:0.75rem; justify-content:flex-end;">
+                    <button id="formula-modal-cancel" class="secondary-button">Cancel</button>
+                    <button id="formula-modal-confirm" class="primary-button"><i class="fas fa-check"></i> Insert</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html> 

@@ -262,6 +262,24 @@
             <span><strong>Import Backup</strong><small>Restore from desktop or another phone</small></span>
             <i class="fas fa-chevron-right"></i>
           </button>
+          <button type="button" class="settings-row" data-action="copy-export">
+            <span class="settings-icon"><i class="fas fa-copy"></i></span>
+            <span><strong>Copy Export</strong><small>Copy decks as text to clipboard</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="paste-import">
+            <span class="settings-icon"><i class="fas fa-clipboard"></i></span>
+            <span><strong>Paste Import</strong><small>Import decks from clipboard text</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <label class="settings-row settings-select-row" for="mobile-bg-opacity">
+            <span class="settings-icon"><i class="fas fa-image"></i></span>
+            <span>
+              <strong>Card Background Opacity</strong>
+              <small>Controls background image transparency on study cards</small>
+            </span>
+            <input type="range" id="mobile-bg-opacity" class="mobile-opacity-slider" min="0" max="1" step="0.05" value="0.32">
+          </label>
           <button type="button" class="settings-row" data-action="open-browser">
             <span class="settings-icon"><i class="fas fa-table-list"></i></span>
             <span><strong>Card Browser</strong><small>Advanced desktop-style card table</small></span>
@@ -342,7 +360,86 @@
     </div>
   </div>
 
+  <!-- Formula Modal (replaces window.prompt) -->
+  <div class="mobile-modal-overlay hidden" id="formula-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="formula-modal-title">
+    <div class="mobile-modal-card">
+      <h3 id="formula-modal-title"><i class="fas fa-square-root-variable"></i> Insert Formula</h3>
+      <p class="mobile-modal-hint">Enter a LaTeX formula. Examples: <code>x^2</code>, <code>\frac{a}{b}</code>, <code>E=mc^2</code></p>
+      <input type="text" id="formula-modal-input" class="mobile-modal-input" placeholder="Enter LaTeX formula..." autocomplete="off" spellcheck="false">
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="formula-modal-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="formula-modal-confirm">Insert</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Draft Restore Modal (replaces window.confirm) -->
+  <div class="mobile-modal-overlay hidden" id="draft-restore-overlay" role="dialog" aria-modal="true" aria-labelledby="draft-restore-title">
+    <div class="mobile-modal-card">
+      <h3 id="draft-restore-title"><i class="fas fa-file-circle-question"></i> Unsaved Draft</h3>
+      <p class="mobile-modal-hint">You have an unsaved draft. Would you like to continue editing it?</p>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="draft-restore-discard">Start Fresh</button>
+        <button type="button" class="mobile-modal-btn confirm" id="draft-restore-continue">Continue Draft</button>
+      </div>
+    </div>
+  </div>
+
   <div class="mobile-toast" id="mobile-toast" role="status" aria-live="polite"></div>
+
+  <!-- Copy-Paste Export Modal -->
+  <div class="mobile-modal-overlay hidden" id="copy-export-overlay" role="dialog" aria-modal="true" aria-labelledby="copy-export-title">
+    <div class="mobile-modal-card mobile-modal-card--wide">
+      <h3 id="copy-export-title"><i class="fas fa-copy"></i> Copy Export</h3>
+      <p class="mobile-modal-hint">Choose a deck and separators, then copy the text.</p>
+      <div class="mobile-modal-field">
+        <label for="copy-export-deck">Deck</label>
+        <select id="copy-export-deck" class="mobile-modal-select"></select>
+      </div>
+      <div class="mobile-modal-row">
+        <div class="mobile-modal-field">
+          <label for="copy-export-term-sep">Term/Definition separator</label>
+          <input type="text" id="copy-export-term-sep" class="mobile-modal-input" value=";" placeholder="e.g. ;">
+        </div>
+        <div class="mobile-modal-field">
+          <label for="copy-export-card-sep">Card separator</label>
+          <input type="text" id="copy-export-card-sep" class="mobile-modal-input" value="@" placeholder="e.g. @">
+        </div>
+      </div>
+      <textarea id="copy-export-text" class="mobile-modal-textarea" rows="6" readonly placeholder="Export text will appear here…"></textarea>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="copy-export-cancel">Close</button>
+        <button type="button" class="mobile-modal-btn confirm" id="copy-export-generate">Generate</button>
+        <button type="button" class="mobile-modal-btn confirm" id="copy-export-copy" style="display:none;"><i class="fas fa-copy"></i> Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paste Import Modal -->
+  <div class="mobile-modal-overlay hidden" id="paste-import-overlay" role="dialog" aria-modal="true" aria-labelledby="paste-import-title">
+    <div class="mobile-modal-card mobile-modal-card--wide">
+      <h3 id="paste-import-title"><i class="fas fa-clipboard"></i> Paste Import</h3>
+      <div class="mobile-modal-field">
+        <label for="paste-import-name">Deck name</label>
+        <input type="text" id="paste-import-name" class="mobile-modal-input" placeholder="My Imported Deck">
+      </div>
+      <div class="mobile-modal-row">
+        <div class="mobile-modal-field">
+          <label for="paste-import-term-sep">Term/Definition separator</label>
+          <input type="text" id="paste-import-term-sep" class="mobile-modal-input" value=";" placeholder="e.g. ;">
+        </div>
+        <div class="mobile-modal-field">
+          <label for="paste-import-card-sep">Card separator</label>
+          <input type="text" id="paste-import-card-sep" class="mobile-modal-input" value="@" placeholder="e.g. @">
+        </div>
+      </div>
+      <textarea id="paste-import-text" class="mobile-modal-textarea" rows="6" placeholder="Paste your cards here…"></textarea>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="paste-import-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="paste-import-confirm">Import</button>
+      </div>
+    </div>
+  </div>
 
   <script src="capacitor.js"></script>
   <script src="js/core/schema.js"></script>

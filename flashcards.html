@@ -386,6 +386,16 @@
                             <!-- Preview cards will be added here -->
                         </div>
                     </div>
+                    <div class="form-group separator-fields" style="display:flex;gap:1rem;">
+                        <div style="flex:1;">
+                            <label for="import-term-sep">Term/Definition separator</label>
+                            <input type="text" id="import-term-sep" class="form-input" value=";" placeholder="e.g. ;" style="font-family:monospace;">
+                        </div>
+                        <div style="flex:1;">
+                            <label for="import-card-sep">Card separator</label>
+                            <input type="text" id="import-card-sep" class="form-input" value="@" placeholder="e.g. @" style="font-family:monospace;">
+                        </div>
+                    </div>
                     <div class="modal-actions">
                         <button id="cancel-import" class="secondary-button">Cancel</button>
                         <button id="confirm-import" class="primary-button">
@@ -487,6 +497,33 @@
                 </div>
 
                 <div class="settings-section">
+                    <h3>Card Background Opacity</h3>
+                    <p class="settings-note">Controls the opacity of background images on study cards (0 = transparent, 1 = opaque).</p>
+                    <div class="settings-grid">
+                        <label>
+                            Background Opacity
+                            <div style="display:flex;align-items:center;gap:0.75rem;">
+                                <input type="range" id="card-bg-opacity" min="0" max="1" step="0.05" value="0.32" style="flex:1;">
+                                <span id="card-bg-opacity-label" style="font-size:0.85rem;min-width:2.5rem;">0.32</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Copy-Paste Import &amp; Export</h3>
+                    <p class="settings-note">Import from or export to clipboard text with custom separators.</p>
+                    <div class="backup-actions">
+                        <button id="copy-paste-export-btn" class="secondary-button">
+                            <i class="fas fa-copy"></i> Copy Export
+                        </button>
+                        <button id="copy-paste-import-btn" class="secondary-button">
+                            <i class="fas fa-clipboard"></i> Open Import
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-section">
                     <h3>Local Backup</h3>
                     <p class="settings-note">Export a full local backup before major edits, or restore from a previous backup file.</p>
                     <div class="backup-actions">
@@ -530,6 +567,37 @@
                 
                 <div class="subjects-grid" id="subjects-container">
                     <!-- Subjects will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Copy-Paste Export Modal -->
+        <div id="copy-paste-export-modal" class="modal hidden">
+            <div class="modal-content" style="max-width:520px;">
+                <button class="close-btn" id="close-copy-export-btn"><i class="fas fa-times"></i></button>
+                <h2><i class="fas fa-copy"></i> Copy Export</h2>
+                <p class="import-instructions">Choose a deck and separators, then generate and copy the text.</p>
+                <div class="form-group">
+                    <label for="copy-export-deck-select">Deck</label>
+                    <select id="copy-export-deck-select" class="form-input"></select>
+                </div>
+                <div class="form-group separator-fields" style="display:flex;gap:1rem;">
+                    <div style="flex:1;">
+                        <label for="copy-export-term-sep">Term/Definition separator</label>
+                        <input type="text" id="copy-export-term-sep" class="form-input" value=";" placeholder="e.g. ;" style="font-family:monospace;">
+                    </div>
+                    <div style="flex:1;">
+                        <label for="copy-export-card-sep">Card separator</label>
+                        <input type="text" id="copy-export-card-sep" class="form-input" value="@" placeholder="e.g. @" style="font-family:monospace;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea id="copy-export-text-area" class="form-input" rows="8" readonly placeholder="Click 'Generate' to create export text…" style="font-family:monospace;font-size:0.85rem;resize:vertical;"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button id="cancel-copy-export" class="secondary-button">Close</button>
+                    <button id="generate-copy-export" class="secondary-button"><i class="fas fa-gear"></i> Generate</button>
+                    <button id="do-copy-export" class="primary-button" style="display:none;"><i class="fas fa-copy"></i> Copy to Clipboard</button>
                 </div>
             </div>
         </div>

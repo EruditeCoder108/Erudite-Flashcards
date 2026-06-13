@@ -2,6 +2,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('eruditeFlashcards', {
   listSets: () => ipcRenderer.invoke('flashcards:listSets'),
+  listSetsMeta: () => ipcRenderer.invoke('flashcards:listSetsMeta'),
   getSet: (id) => ipcRenderer.invoke('flashcards:getSet', id),
   saveSet: (set) => ipcRenderer.invoke('flashcards:saveSet', set),
   replaceSets: (sets) => ipcRenderer.invoke('flashcards:replaceSets', sets),
