@@ -481,6 +481,11 @@ textarea,
   background: linear-gradient(180deg, rgba(7, 17, 31, 0.54), rgba(7, 17, 31, 0.76));
 }
 
+.card-bg.no-overlay::after {
+  display: none !important;
+}
+
+
 .card-face.back {
   transform: rotateY(180deg) translateZ(0.1px);
   -webkit-transform: rotateY(180deg) translateZ(0.1px);
@@ -608,8 +613,9 @@ textarea,
 }
 
 .card-scroll:has(.card-text:empty) {
-  justify-content: center;
+  justify-content: flex-start;
 }
+
 
 .card-scroll:has(.card-text:empty) .card-image-wrap {
   flex: 1 1 auto;

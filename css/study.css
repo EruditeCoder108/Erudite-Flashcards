@@ -472,6 +472,11 @@ html::-webkit-scrollbar {
     background: linear-gradient(180deg, rgba(15, 23, 42, 0.62), rgba(15, 23, 42, 0.78));
 }
 
+.card-bg.no-overlay::after {
+    display: none !important;
+}
+
+
 .card-face.back {
     transform: rotateX(180deg);
 }
@@ -609,6 +614,12 @@ html::-webkit-scrollbar {
     height: auto;
     min-height: 0;
 }
+
+.term-text:empty,
+.definition-text:empty {
+    display: none !important;
+}
+
 
 /* Content sizing tiers — set by JS based on text length */
 .term-text.small-content,

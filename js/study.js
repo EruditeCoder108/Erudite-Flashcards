@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const reviewDueSession = pageParams.get('reviewDue') === 'true';
     let srsModeEnabled = false;
     let srsCards = [];
+    let srsReviewedCardIds = new Set();
     let isCardFlipped = false;
     let srsSessionComplete = false;
     let srsSessionStats = { reviewed: 0, Again: 0, Hard: 0, Good: 0, Easy: 0, nextDue: null };
@@ -316,6 +317,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     savedProgress.srsModeLength || flashcardSet?.cards?.length || 1
                 );
                 srsCurrentCardKey = savedProgress.srsCurrentCardKey || null;
+                if (savedProgress.srsReviewedCardIds && Array.isArray(savedProgress.srsReviewedCardIds)) {
+                    srsReviewedCardIds = new Set(savedProgress.srsReviewedCardIds);
+                } else {
+                    srsReviewedCardIds = new Set();
+                }
                 currentCardIndex = srsModeEnabled ? srsModeCardIndex : normalModeCardIndex;
             }
         } catch (error) {
@@ -356,6 +362,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 srsModeIndex: srsModeCardIndex,
                 srsModeLength: srsCards.length,
                 srsCurrentCardKey,
+                srsReviewedCardIds: Array.from(srsReviewedCardIds),
                 timestamp: Date.now()
             };
 
@@ -775,7 +782,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const background = window.EruditeMedia?.getSideBackground?.(card, side) || null;
         if (!backgroundEl) return;
         if (!background?.src) {
-            backgroundEl.classList.remove('visible');
+            backgroundEl.classList.remove('visible', 'no-overlay');
             backgroundEl.style.backgroundImage = '';
             return;
         }
@@ -786,6 +793,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const opacity = Number.isFinite(globalOpacity) ? globalOpacity : (background.opacity ?? 0.32);
         backgroundEl.style.setProperty('--card-bg-opacity', String(opacity));
         backgroundEl.classList.add('visible');
+        if (opacity >= 1.0) {
+            backgroundEl.classList.add('no-overlay');
+        } else {
+            backgroundEl.classList.remove('no-overlay');
+        }
     }
 
     function renderMediaList(container, card, side) {
@@ -815,6 +827,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Update progress
     function updateProgress() {
         if (!flashcardSet || !progressDisplay) return;
+
+        if (srsModeEnabled) {
+            const completed = srsReviewedCardIds.size;
+            const total = srsCards.length + completed;
+            const progress = Math.min(100, (completed / Math.max(1, total)) * 100);
+
+            progressDisplay.textContent = `${completed}/${total}`;
+            if (progressFill) {
+                progressFill.style.width = `${progress}%`;
+            }
+            return;
+        }
 
         const { cards: cardsToUse, index: currentIndex } = getActiveCards();
 
@@ -1177,6 +1201,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (srsModeEnabled && window.srsManager && window.srsManager.isReady()) {
             srsSessionComplete = false;
             srsModeCardIndex = 0;
+            srsReviewedCardIds.clear();
+            srsCurrentCardKey = null;
             if (activateSRSMode()) {
                 showCard();
                 updateNavButtons();
@@ -1334,6 +1360,132 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    function sortSrsSessionQueue(queue, now = new Date()) {
+        const dueNow = [];
+        const dueFuture = [];
+
+        queue.forEach(card => {
+            const isDueNow = !card.srs || !card.srs.due || new Date(card.srs.due) <= now;
+            if (isDueNow) {
+                dueNow.push(card);
+            } else {
+                dueFuture.push(card);
+            }
+        });
+
+        // Sort dueNow by priority: Learning/Relearning first, then Review, then New
+        dueNow.sort((a, b) => {
+            const stateA = a.srs?.state || 'New';
+            const stateB = b.srs?.state || 'New';
+
+            const priority = (state) => {
+                if (state === 'Learning' || state === 'Relearning') return 0;
+                if (state === 'Review') return 1;
+                return 2;
+            };
+
+            const pA = priority(stateA);
+            const pB = priority(stateB);
+            if (pA !== pB) return pA - pB;
+
+            // If same priority, sort by due date ascending
+            const dueA = new Date(a.srs?.due || 0).getTime();
+            const dueB = new Date(b.srs?.due || 0).getTime();
+            return dueA - dueB;
+        });
+
+        // Sort dueFuture by due date ascending (the one that will be due first comes first)
+        dueFuture.sort((a, b) => {
+            const dueA = new Date(a.srs?.due || 0).getTime();
+            const dueB = new Date(b.srs?.due || 0).getTime();
+            return dueA - dueB;
+        });
+
+        return [...dueNow, ...dueFuture];
+    }
+
+    let dueSoonTimer = null;
+
+    function showLearningCardsDueSoonMessage(dueCount, nextDueTime) {
+        const existingMessage = document.getElementById('mastered-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        if (dueSoonTimer) {
+            clearInterval(dueSoonTimer);
+            dueSoonTimer = null;
+        }
+
+        const messageContainer = document.createElement('div');
+        messageContainer.id = 'mastered-message';
+        messageContainer.className = 'mastered-message-container';
+        
+        const updateText = () => {
+            const diffSec = Math.max(0, Math.ceil((nextDueTime - Date.now()) / 1000));
+            const min = Math.floor(diffSec / 60);
+            const sec = diffSec % 60;
+            const timeStr = min > 0 ? `${min}m ${sec}s` : `${sec}s`;
+            
+            const content = messageContainer.querySelector('.mastered-message-content');
+            if (content) {
+                content.innerHTML = `
+                    <div class="mastered-icon">
+                        <i class="fas fa-hourglass-half fa-spin"></i>
+                    </div>
+                    <h2>Learning Cards Due Soon</h2>
+                    <p>You have ${dueCount} learning card${dueCount === 1 ? '' : 's'} that will be due in <strong>${timeStr}</strong>.</p>
+                    <div class="mastered-actions">
+                        <button id="due-soon-continue" class="primary-button">
+                            <i class="fas fa-play"></i>
+                            Review Now (Bypass Wait)
+                        </button>
+                        <button id="due-soon-finish" class="secondary-button">
+                            <i class="fas fa-check-double"></i>
+                            Finish Session
+                        </button>
+                    </div>
+                `;
+                
+                // Re-bind listeners because we replaced innerHTML
+                document.getElementById('due-soon-continue').addEventListener('click', () => {
+                    if (dueSoonTimer) clearInterval(dueSoonTimer);
+                    messageContainer.remove();
+                    // Force show the card immediately
+                    showCard();
+                    updateNavButtons();
+                    updateProgress();
+                });
+                
+                document.getElementById('due-soon-finish').addEventListener('click', () => {
+                    if (dueSoonTimer) clearInterval(dueSoonTimer);
+                    messageContainer.remove();
+                    srsSessionComplete = true;
+                    showCompletionScreen();
+                });
+            }
+        };
+
+        messageContainer.innerHTML = `<div class="mastered-message-content"></div>`;
+        const studyContainer = document.querySelector('.study-container');
+        studyContainer.parentNode.insertBefore(messageContainer, studyContainer);
+        
+        updateText();
+        dueSoonTimer = setInterval(() => {
+            const diffMs = nextDueTime - Date.now();
+            if (diffMs <= 0) {
+                clearInterval(dueSoonTimer);
+                dueSoonTimer = null;
+                messageContainer.remove();
+                // Show the card now that it's due
+                showCard();
+                updateNavButtons();
+                updateProgress();
+            } else {
+                updateText();
+            }
+        }, 1000);
+    }
+
     // Activate SRS mode
     function activateSRSMode() {
         if (!flashcardSet || !flashcardSet.cards || flashcardSet.cards.length === 0) {
@@ -1370,13 +1522,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return card;
             });
 
-            // Filter cards for SRS mode (no daily limits - show all due cards)
-            srsCards = window.srsManager.getDueCards(flashcardSet.cards, {
+            // Filter cards for SRS mode
+            const allDueCards = window.srsManager.getDueCards(flashcardSet.cards, {
                 maxNewCards: getDeckSrsSettings().newCardsPerDay,
                 maxDueCards: getDeckSrsSettings().reviewsPerDay,
                 allowMultipleSessions: true,
                 settings: getDeckSrsSettings()
             });
+
+            // Filter out already reviewed cards in this session
+            srsCards = allDueCards.filter(card => !srsReviewedCardIds.has(cardProgressKey(card)));
+
+            // Re-sort the session queue
+            srsCards = sortSrsSessionQueue(srsCards);
 
             if (srsCards.length === 0) {
                 showAllCardsMasteredMessage();
@@ -1384,24 +1542,38 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             srsSessionComplete = false;
-            srsSessionStats = { reviewed: 0, Again: 0, Hard: 0, Good: 0, Easy: 0, nextDue: null };
+            srsSessionStats = {
+                reviewed: srsReviewedCardIds.size,
+                Again: srsSessionStats.Again || 0,
+                Hard: srsSessionStats.Hard || 0,
+                Good: srsSessionStats.Good || 0,
+                Easy: srsSessionStats.Easy || 0,
+                nextDue: srsSessionStats.nextDue || null
+            };
 
             // Add rating interface to the study page
             addRatingInterface();
 
-            // Resume the saved SRS card when it is still due. If it was already rated
-            // and dropped out of the due list, start at the first remaining due card.
-            const keyedIndex = srsCurrentCardKey
-                ? srsCards.findIndex(card => cardProgressKey(card) === srsCurrentCardKey)
-                : -1;
-
-            if (keyedIndex >= 0) {
-                srsModeCardIndex = keyedIndex;
-            } else {
-                srsModeCardIndex = 0;
+            // Resume the saved SRS card when it is still due and in the active queue.
+            // Move it to index 0 (front of queue) so it is shown first.
+            if (srsCurrentCardKey) {
+                const keyedIndex = srsCards.findIndex(card => cardProgressKey(card) === srsCurrentCardKey);
+                if (keyedIndex > 0) {
+                    const resumedCard = srsCards.splice(keyedIndex, 1)[0];
+                    srsCards.unshift(resumedCard);
+                }
             }
 
-            currentCardIndex = srsModeCardIndex;
+            srsModeCardIndex = 0;
+            currentCardIndex = 0;
+
+            // Check if the first card in the queue is in the future
+            const firstCardDue = srsCards[0].srs?.due ? new Date(srsCards[0].srs.due).getTime() : 0;
+            const diffMs = firstCardDue - Date.now();
+            if (diffMs > 0) {
+                showLearningCardsDueSoonMessage(srsCards.length, firstCardDue);
+            }
+
             return true;
         } catch (error) {
             console.error('Error activating SRS mode:', error);
@@ -1433,8 +1605,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 ratingContainer.remove();
             }
 
+            if (dueSoonTimer) {
+                clearInterval(dueSoonTimer);
+                dueSoonTimer = null;
+            }
+            const existingMessage = document.getElementById('mastered-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+
             // Reset to use all cards and normal mode index
             srsCards = [];
+            srsReviewedCardIds.clear();
+            srsCurrentCardKey = null;
             currentCardIndex = normalModeCardIndex; // Restore normal mode progress
         } catch (error) {
             console.error('Error deactivating SRS mode:', error);
@@ -1526,15 +1709,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function handleSRSRating(rating) {
         if (!srsModeEnabled || !window.srsManager || srsSessionComplete) return;
 
-        // Check bounds
-        if (currentCardIndex < 0 || currentCardIndex >= srsCards.length) {
-            console.error('Invalid card index in SRS rating:', currentCardIndex);
-            return;
-        }
-
-        const currentCard = srsCards[currentCardIndex];
+        // Current card in dynamic queue is always at index 0
+        const currentCard = srsCards[0];
         if (!currentCard) return;
-        
         
         try {
             const previousState = currentCard.srs ? { ...currentCard.srs } : null;
@@ -1560,12 +1737,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (cardIndex !== -1) {
                 flashcardSet.cards[cardIndex] = updatedCard;
 
-                // Update the card in srsCards array as well
-                const srsCardIndex = srsCards.findIndex(card => sameCard(card, currentCard));
-                if (srsCardIndex !== -1) {
-                    srsCards[srsCardIndex] = updatedCard;
-                }
-
                 if (flashcardSet.isPremade) {
                     await savePremadeSrsOverlay();
                 } else if (window.flashcardStore?.saveSet) {
@@ -1576,29 +1747,60 @@ document.addEventListener('DOMContentLoaded', async () => {
                     localStorage.setItem('flashcardSets', JSON.stringify(updatedSets));
                 }
 
-                srsSessionStats.reviewed += 1;
                 srsSessionStats[rating] = (srsSessionStats[rating] || 0) + 1;
                 srsSessionStats.nextDue = updatedCard.srs?.due || srsSessionStats.nextDue;
             } else {
                 console.error('Could not find card in original set to update SRS data');
             }
             
-            // Move to next card in SRS mode
-            srsModeCardIndex++;
-            currentCardIndex = srsModeCardIndex;
+            // Remove the card from the front of the queue
+            srsCards.shift();
+
+            const nextState = updatedCard.srs?.state || 'New';
+            const nextDueTime = new Date(updatedCard.srs?.due || 0).getTime();
+            const diffMs = nextDueTime - Date.now();
+
+            const SHORT_TERM_LIMIT_MS = 20 * 60 * 1000; // 20 minutes
+            const isShortTerm = (nextState === 'Learning' || nextState === 'Relearning') && diffMs < SHORT_TERM_LIMIT_MS;
+
+            if (rating === 'Again' || isShortTerm) {
+                // Keep in active session queue
+                srsCards.push(updatedCard);
+            } else {
+                // Successfully reviewed (passed) and graduated/long-term: mark it completed in this session
+                srsReviewedCardIds.add(cardProgressKey(currentCard));
+            }
+
+            // Re-sort the session queue
+            srsCards = sortSrsSessionQueue(srsCards);
+
+            srsSessionStats.reviewed = srsReviewedCardIds.size;
+            srsModeCardIndex = 0;
+            currentCardIndex = 0;
+            srsCurrentCardKey = srsCards[0] ? cardProgressKey(srsCards[0]) : null;
+
             await saveProgress();
 
             // Check if session is complete
-            if (srsModeCardIndex >= srsCards.length) {
+            if (srsCards.length === 0) {
                 hideRatingInterface();
                 srsSessionComplete = true;
                 await showCompletionScreen();
             } else {
-                // Hide rating interface and show next card
-                hideRatingInterface();
-                showCard();
-                updateNavButtons();
-                updateProgress();
+                // Check if the next card is in the future
+                const nextCardDue = srsCards[0].srs?.due ? new Date(srsCards[0].srs.due).getTime() : 0;
+                const nextDiffMs = nextCardDue - Date.now();
+                
+                if (nextDiffMs > 0) {
+                    hideRatingInterface();
+                    showLearningCardsDueSoonMessage(srsCards.length, nextCardDue);
+                } else {
+                    // Hide rating interface and show next card
+                    hideRatingInterface();
+                    showCard();
+                    updateNavButtons();
+                    updateProgress();
+                }
             }
             
         } catch (error) {
@@ -1764,6 +1966,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             messageContainer.remove();
             // Reactivate SRS mode to show cards again
             if (srsModeEnabled && window.srsManager && window.srsManager.isReady()) {
+                srsReviewedCardIds.clear();
+                srsCurrentCardKey = null;
                 if (activateSRSMode()) {
                     showCard();
                     updateNavButtons();

@@ -272,6 +272,57 @@ class SRSManager {
         }
     }
 
+    getSRSDay(dateVal, rolloverHour = 4) {
+        const d = new Date(dateVal);
+        if (isNaN(d.getTime())) return null;
+        // Subtract rollover hours to align with the SRS day rollover boundary (default 4:00 AM)
+        const adjusted = new Date(d.getTime() - rolloverHour * 60 * 60 * 1000);
+        const yyyy = adjusted.getFullYear();
+        const mm = String(adjusted.getMonth() + 1).padStart(2, '0');
+        const dd = String(adjusted.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    }
+
+    getReviewsStatsToday(cards, settings = {}) {
+        const rolloverHour = 4; // default 4 AM rollover
+        const todaySRS = this.getSRSDay(new Date(), rolloverHour);
+
+        let newCardsToday = 0;
+        let reviewsToday = 0;
+
+        cards.forEach(card => {
+            if (!Array.isArray(card.reviewHistory) || card.reviewHistory.length === 0) return;
+
+            // Sort review history by time ascending to inspect the first review
+            const sortedHistory = [...card.reviewHistory].sort((a, b) => {
+                const timeA = new Date(a.reviewedAt || a.time || a.timestamp || a.date || 0).getTime();
+                const timeB = new Date(b.reviewedAt || b.time || b.timestamp || b.date || 0).getTime();
+                return timeA - timeB;
+            });
+
+            // Find first review of this card (when it was introduced)
+            const firstReview = sortedHistory[0];
+            const firstReviewTime = firstReview.reviewedAt || firstReview.time || firstReview.timestamp || firstReview.date;
+            const firstReviewDay = this.getSRSDay(firstReviewTime, rolloverHour);
+            if (firstReviewDay === todaySRS && (firstReview.previousState === 'New' || !firstReview.previousState)) {
+                newCardsToday++;
+            }
+
+            // Count mature reviews completed today
+            sortedHistory.forEach(review => {
+                const reviewTime = review.reviewedAt || review.time || review.timestamp || review.date;
+                const reviewDay = this.getSRSDay(reviewTime, rolloverHour);
+                if (reviewDay === todaySRS) {
+                    if (review.previousState === 'Review') {
+                        reviewsToday++;
+                    }
+                }
+            });
+        });
+
+        return { newCardsToday, reviewsToday };
+    }
+
     /**
      * Get cards that are due for review
      * @param {Array} cards - Array of cards with SRS data
@@ -292,12 +343,23 @@ class SRSManager {
 
         const normalizedSettings = this.normalizeSettings(settings);
         if (!normalizedSettings.enabled) return [];
+
+        const now = new Date();
+
+        // 1. Calculate how many reviews/new cards have already been done today on this deck
+        const { newCardsToday, reviewsToday } = this.getReviewsStatsToday(cards, settings);
+
+        // 2. Determine remaining limits
         const effectiveMaxNewCards = maxNewCards ?? normalizedSettings.newCardsPerDay;
         const effectiveMaxDueCards = maxDueCards ?? normalizedSettings.reviewsPerDay;
 
-        const now = new Date();
+        const allowedNew = effectiveMaxNewCards === null ? null : Math.max(0, effectiveMaxNewCards - newCardsToday);
+        const allowedReviews = effectiveMaxDueCards === null ? null : Math.max(0, effectiveMaxDueCards - reviewsToday);
+
+        // 3. Separate cards into categories
+        let dueLearningRelearning = [];
+        let dueReviews = [];
         let newCards = [];
-        let dueCards = [];
 
         cards.forEach(card => {
             if (card.suspended) return;
@@ -306,48 +368,51 @@ class SRSManager {
                 if (!isNaN(buriedUntil.getTime()) && buriedUntil > now) return;
             }
 
-            if (!card.srs) {
+            // Determine if card is New
+            const isCardNew = !card.srs || card.srs.state === 'New';
+            if (isCardNew) {
                 newCards.push(card);
                 return;
             }
 
-            // Include New cards (never studied)
-            if (card.srs.state === 'New') {
-                newCards.push(card);
-                return;
-            }
-
-            // Include Learning and Relearning cards only when FSRS says they are due.
-            if (card.srs.state === 'Learning' || card.srs.state === 'Relearning') {
+            const state = card.srs.state;
+            if (state === 'Learning' || state === 'Relearning') {
                 if (this.isDue(card.srs, now)) {
-                    dueCards.push(card);
+                    dueLearningRelearning.push(card);
                 }
-                return;
-            }
-
-            // Include Review cards that are due
-            if (card.srs.state === 'Review') {
+            } else if (state === 'Review') {
                 if (this.isDue(card.srs, now)) {
-                    dueCards.push(card);
+                    dueReviews.push(card);
                 }
             }
         });
 
-        // Apply limits if specified
-        if (effectiveMaxNewCards !== null && effectiveMaxNewCards !== undefined) {
-            newCards = newCards.slice(0, Math.max(0, Number(effectiveMaxNewCards) || 0));
+        // 4. Sort reviews and learning cards by due date (ascending)
+        dueLearningRelearning.sort((a, b) => {
+            const dueA = new Date(a.srs?.due || 0).getTime();
+            const dueB = new Date(b.srs?.due || 0).getTime();
+            return dueA - dueB;
+        });
+
+        dueReviews.sort((a, b) => {
+            const dueA = new Date(a.srs?.due || 0).getTime();
+            const dueB = new Date(b.srs?.due || 0).getTime();
+            return dueA - dueB;
+        });
+
+        // 5. Apply limits to categories
+        // Learning/Relearning cards are never capped!
+        if (allowedReviews !== null) {
+            dueReviews = dueReviews.slice(0, allowedReviews);
         }
-        if (effectiveMaxDueCards !== null && effectiveMaxDueCards !== undefined) {
-            dueCards = dueCards.slice(0, Math.max(0, Number(effectiveMaxDueCards) || 0));
+
+        if (allowedNew !== null) {
+            newCards = newCards.slice(0, allowedNew);
         }
 
-        const totalDueCards = [...newCards, ...dueCards];
-
-        // Log detailed statistics for debugging
-        const totalCards = cards.length;
-        const masteredCards = totalCards - newCards.length - dueCards.length;
-
-        return totalDueCards;
+        // 6. Concatenate in prioritized order:
+        // Due Learning/Relearning first, then due mature Review cards, then New cards.
+        return [...dueLearningRelearning, ...dueReviews, ...newCards];
     }
 
     /**
@@ -359,6 +424,7 @@ class SRSManager {
         if (!this.isInitialized) {
             return {
                 totalCards: cards.length,
+                activeCards: cards.length,
                 newCards: cards.length,
                 dueCards: cards.length,
                 learningCards: 0,
@@ -370,6 +436,7 @@ class SRSManager {
 
         const stats = {
             totalCards: cards.length,
+            activeCards: 0,
             newCards: 0,
             dueCards: 0,
             learningCards: 0,
@@ -386,6 +453,8 @@ class SRSManager {
                 const buriedUntil = new Date(card.buriedUntil);
                 if (!isNaN(buriedUntil.getTime()) && buriedUntil > now) return;
             }
+
+            stats.activeCards++;
 
             if (!card.srs) {
                 stats.newCards++;

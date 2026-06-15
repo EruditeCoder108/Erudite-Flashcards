@@ -17,7 +17,8 @@
 
   function getSetSrsStats(set = {}, now = new Date()) {
     const stats = {
-      totalCards: 0,
+      totalCards: set.cards ? set.cards.length : 0,
+      activeCards: 0,
       newCards: 0,
       dueCards: 0,
       learningCards: 0,
@@ -31,7 +32,11 @@
     const history = [];
     for (const card of set.cards || []) {
       if (card.suspended) continue;
-      stats.totalCards += 1;
+      if (card.buriedUntil) {
+        const buriedUntil = new Date(card.buriedUntil);
+        if (!isNaN(buriedUntil.getTime()) && buriedUntil > now) continue;
+      }
+      stats.activeCards += 1;
       const state = getCardState(card);
       if (Array.isArray(card.reviewHistory)) history.push(...card.reviewHistory);
 

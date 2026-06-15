@@ -673,7 +673,7 @@
     const background = window.EruditeMedia?.getSideBackground?.(card, side) || null;
     if (!element) return;
     if (!background?.src) {
-      element.classList.remove('visible');
+      element.classList.remove('visible', 'no-overlay');
       element.style.backgroundImage = '';
       return;
     }
@@ -687,6 +687,11 @@
       : (background.opacity ?? 0.32);
     element.style.setProperty('--card-bg-opacity', String(opacity));
     element.classList.add('visible');
+    if (opacity >= 1.0) {
+      element.classList.add('no-overlay');
+    } else {
+      element.classList.remove('no-overlay');
+    }
   }
 
   function renderMediaList(container, card, side) {
