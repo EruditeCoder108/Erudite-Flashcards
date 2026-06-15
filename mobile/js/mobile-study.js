@@ -92,6 +92,9 @@
   let nextCardIndex = 2;
   let prevCardIndex = 0;
 
+  let srsUndoStack = [];
+  const studySessionId = 'session-mobile-' + Date.now() + '-' + Math.random().toString(36).substring(2, 7);
+
   const intervals = {
     Again: document.getElementById('interval-again'),
     Hard: document.getElementById('interval-hard'),
@@ -294,9 +297,14 @@
     if (state.studyOrder === 'random') return 0;
     const normalProgress = progress?.normalProgress || {};
     const legacyIndex = progress?.cardIndex ?? 0;
+    
+    // Decouple progress: if progress holds SRS keys, ignore cardIndex as fallback
+    const hasSrsProgress = progress?.srsModeLength !== undefined || progress?.srsModeIndex !== undefined || progress?.srsCurrentCardKey !== undefined;
+    const fallbackIndex = hasSrsProgress ? 0 : legacyIndex;
+    
     const value = state.studyOrder === 'backward'
       ? (normalProgress.backward ?? progress?.normalBackwardIndex ?? 0)
-      : (normalProgress.forward ?? progress?.normalForwardIndex ?? progress?.normalModeIndex ?? legacyIndex);
+      : (normalProgress.forward ?? progress?.normalForwardIndex ?? progress?.normalModeIndex ?? fallbackIndex);
     return Math.min(Math.max(0, Number(value) || 0), Math.max(0, length - 1));
   }
 
@@ -874,6 +882,19 @@
     if (els.prev) {
       els.prev.disabled = animating || activeIndex() <= 0 || state.srsMode;
     }
+
+    const srsUndoBtn = document.getElementById('srs-undo-btn');
+    const srsActionsBtn = document.getElementById('srs-actions-btn');
+    if (srsUndoBtn && srsActionsBtn) {
+      if (state.srsMode) {
+        srsUndoBtn.classList.remove('hidden');
+        srsActionsBtn.classList.remove('hidden');
+        srsUndoBtn.disabled = srsUndoStack.length === 0;
+      } else {
+        srsUndoBtn.classList.add('hidden');
+        srsActionsBtn.classList.add('hidden');
+      }
+    }
   }
 
   async function navigateForward(exitVector) {
@@ -1025,6 +1046,10 @@
 
     const previous = current.srs ? { ...current.srs } : null;
     const reviewedAt = new Date().toISOString();
+    
+    // Save undo transaction snapshot
+    pushUndoTransaction('review', current, { rating });
+
     const reviewed = window.srsManager.reviewCard(current, rating, getDeckSrsSettings());
     const updatedCard = {
       ...reviewed,
@@ -1273,6 +1298,252 @@
     });
   }
 
+  // Undo & Manual Card Actions for Mobile SRS Mode
+  function pushUndoTransaction(actionType, card, extra = {}) {
+    srsUndoStack.push({
+      type: actionType,
+      cardId: card.id,
+      srsIndexSnapshot: state.srsIndex,
+      sessionStatsSnapshot: { ...state.sessionStats },
+      activeCardsSnapshot: JSON.parse(JSON.stringify(state.activeCards)),
+      setCardsSnapshot: JSON.parse(JSON.stringify(state.set.cards)),
+      extra
+    });
+    if (srsUndoStack.length > 10) {
+      srsUndoStack.shift();
+    }
+    updateUndoButtonState();
+  }
+
+  function updateUndoButtonState() {
+    const srsUndoBtn = document.getElementById('srs-undo-btn');
+    if (srsUndoBtn) {
+      srsUndoBtn.disabled = srsUndoStack.length === 0;
+    }
+  }
+
+  async function undoLastReview() {
+    if (srsUndoStack.length === 0) return;
+    const transaction = srsUndoStack.pop();
+
+    state.activeCards = transaction.activeCardsSnapshot;
+    state.set.cards = transaction.setCardsSnapshot;
+    state.srsIndex = transaction.srsIndexSnapshot;
+    state.sessionStats = transaction.sessionStatsSnapshot;
+    state.complete = false;
+
+    // Persist reverted card progress
+    const currentIdx = activeIndex();
+    const revertedCard = state.activeCards[currentIdx];
+    if (revertedCard) {
+      scheduleCardProgressSave(revertedCard);
+    }
+    await saveProgress();
+    updateUndoButtonState();
+
+    // Re-hide rating dock initially on card revert (until card is flipped again)
+    state.flipped = false;
+    els.ratingDock.classList.add('hidden');
+    
+    // Hide completion modal if it was shown
+    els.completionModal.classList.add('hidden');
+
+    // Re-render carousel cards
+    populateCardElement(cards[activeCardIndex], state.activeCards[currentIdx]);
+    populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
+    populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
+
+    const activeEl = cards[activeCardIndex];
+    if (activeEl) {
+      activeEl.classList.remove('flipped');
+      activeEl.style.transform = '';
+      activeEl.style.opacity = '';
+    }
+
+    updateRoles();
+    updateProgress();
+    showToast('Review undone');
+  }
+
+  async function buryActiveCard() {
+    const current = activeCard();
+    if (!current) return;
+
+    const now = new Date();
+    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 4, 0, 0, 0);
+
+    pushUndoTransaction('bury', current);
+
+    const updatedCard = {
+      ...current,
+      buriedUntil: tomorrow.toISOString()
+    };
+
+    const originalIndex = state.set.cards.findIndex(card => sameCard(card, current));
+    if (originalIndex >= 0) state.set.cards[originalIndex] = updatedCard;
+
+    // Remove from active reviews queue
+    state.activeCards.splice(state.srsIndex, 1);
+    
+    // Persist
+    scheduleCardProgressSave(updatedCard);
+    await saveProgress();
+
+    showToast('Card buried until tomorrow');
+    handlePostActionTransition();
+  }
+
+  async function suspendActiveCard() {
+    const current = activeCard();
+    if (!current) return;
+
+    pushUndoTransaction('suspend', current);
+
+    const updatedCard = {
+      ...current,
+      suspended: true
+    };
+
+    const originalIndex = state.set.cards.findIndex(card => sameCard(card, current));
+    if (originalIndex >= 0) state.set.cards[originalIndex] = updatedCard;
+
+    // Remove from active reviews queue
+    state.activeCards.splice(state.srsIndex, 1);
+    
+    // Persist
+    scheduleCardProgressSave(updatedCard);
+    await saveProgress();
+
+    showToast('Card suspended');
+    handlePostActionTransition();
+  }
+
+  async function resetActiveCard() {
+    const current = activeCard();
+    if (!current) return;
+
+    pushUndoTransaction('reset', current);
+
+    const updatedCard = {
+      ...current,
+      srs: undefined,
+      reviewHistory: []
+    };
+
+    const originalIndex = state.set.cards.findIndex(card => sameCard(card, current));
+    if (originalIndex >= 0) state.set.cards[originalIndex] = updatedCard;
+
+    // Remove from active reviews queue since it is no longer due
+    state.activeCards.splice(state.srsIndex, 1);
+    
+    // Persist
+    scheduleCardProgressSave(updatedCard);
+    await saveProgress();
+
+    showToast('SRS scheduling reset');
+    handlePostActionTransition();
+  }
+
+  async function setDueDateActiveCard(dueDateStr) {
+    const current = activeCard();
+    if (!current) return;
+
+    pushUndoTransaction('set_due', current);
+
+    const updatedCard = {
+      ...current,
+      srs: current.srs ? {
+        ...current.srs,
+        due: new Date(dueDateStr).toISOString()
+      } : {
+        state: 'New',
+        due: new Date(dueDateStr).toISOString(),
+        interval: 0,
+        stability: 0,
+        difficulty: 0
+      }
+    };
+
+    const originalIndex = state.set.cards.findIndex(card => sameCard(card, current));
+    if (originalIndex >= 0) state.set.cards[originalIndex] = updatedCard;
+
+    // Check if the due date is in the future
+    const isDueLater = new Date(dueDateStr) > new Date();
+    if (isDueLater) {
+      state.activeCards.splice(state.srsIndex, 1);
+    } else {
+      state.activeCards[state.srsIndex] = updatedCard;
+    }
+    
+    // Persist
+    scheduleCardProgressSave(updatedCard);
+    await saveProgress();
+
+    showToast('Card due date updated');
+    handlePostActionTransition();
+  }
+
+  function handlePostActionTransition() {
+    if (state.srsIndex >= state.activeCards.length) {
+      showCompletion();
+    } else {
+      // Re-hide rating dock until card is flipped
+      state.flipped = false;
+      els.ratingDock.classList.add('hidden');
+
+      // Populate current and neighbor cards in the carousel
+      const currentIdx = activeIndex();
+      populateCardElement(cards[activeCardIndex], state.activeCards[currentIdx]);
+      populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
+      populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
+
+      const activeEl = cards[activeCardIndex];
+      if (activeEl) {
+        activeEl.classList.remove('flipped');
+        activeEl.style.transform = '';
+        activeEl.style.opacity = '';
+      }
+
+      updateRoles();
+      updateProgress();
+    }
+  }
+
+  // Bottom Sheet Panel handlers
+  function showActionsSheet() {
+    const sheet = document.getElementById('srs-actions-sheet');
+    if (sheet) {
+      sheet.classList.remove('hidden');
+    }
+  }
+
+  function hideActionsSheet() {
+    const sheet = document.getElementById('srs-actions-sheet');
+    if (sheet) {
+      sheet.classList.add('hidden');
+    }
+  }
+
+  function showDateModal() {
+    const modal = document.getElementById('srs-mobile-date-modal');
+    const input = document.getElementById('srs-mobile-due-date-input');
+    if (modal && input) {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      input.value = `${year}-${month}-${day}`;
+      modal.classList.remove('hidden');
+    }
+  }
+
+  function hideDateModal() {
+    const modal = document.getElementById('srs-mobile-date-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+    }
+  }
+
   function installEvents() {
     els.back.addEventListener('click', () => goLibrary(els.back));
     els.prev?.addEventListener('click', () => navigateBack());
@@ -1304,6 +1575,8 @@
         state.nextDueSetId = null;
         if (state.srsMode) {
           state.srsIndex = 0;
+          srsUndoStack = [];
+          updateUndoButtonState();
           prepareActiveCards();
           if (!state.activeCards.length) {
             showEmptyDue();
@@ -1333,6 +1606,60 @@
       if (!button) return;
       handleRating(button.dataset.rating);
     });
+
+    // SRS Undo & Actions listeners
+    const srsUndoBtn = document.getElementById('srs-undo-btn');
+    const srsActionsBtn = document.getElementById('srs-actions-btn');
+    const srsActionsSheetBackdrop = document.getElementById('srs-actions-sheet-backdrop');
+    const actionCancelBtn = document.getElementById('action-cancel');
+    const actionBuryBtn = document.getElementById('action-bury');
+    const actionSuspendBtn = document.getElementById('action-suspend');
+    const actionResetBtn = document.getElementById('action-reset');
+    const actionSetDueBtn = document.getElementById('action-set-due');
+    const srsMobileDateCancelBtn = document.getElementById('srs-mobile-date-cancel');
+    const srsMobileDateConfirmBtn = document.getElementById('srs-mobile-date-confirm');
+    const srsMobileDueDateInput = document.getElementById('srs-mobile-due-date-input');
+
+    if (srsUndoBtn) srsUndoBtn.addEventListener('click', () => undoLastReview());
+    if (srsActionsBtn) srsActionsBtn.addEventListener('click', () => showActionsSheet());
+    if (srsActionsSheetBackdrop) srsActionsSheetBackdrop.addEventListener('click', () => hideActionsSheet());
+    if (actionCancelBtn) actionCancelBtn.addEventListener('click', () => hideActionsSheet());
+
+    if (actionBuryBtn) {
+      actionBuryBtn.addEventListener('click', () => {
+        hideActionsSheet();
+        buryActiveCard();
+      });
+    }
+    if (actionSuspendBtn) {
+      actionSuspendBtn.addEventListener('click', () => {
+        hideActionsSheet();
+        suspendActiveCard();
+      });
+    }
+    if (actionResetBtn) {
+      actionResetBtn.addEventListener('click', () => {
+        hideActionsSheet();
+        resetActiveCard();
+      });
+    }
+    if (actionSetDueBtn) {
+      actionSetDueBtn.addEventListener('click', () => {
+        hideActionsSheet();
+        showDateModal();
+      });
+    }
+
+    if (srsMobileDateCancelBtn) srsMobileDateCancelBtn.addEventListener('click', () => hideDateModal());
+    if (srsMobileDateConfirmBtn) {
+      srsMobileDateConfirmBtn.addEventListener('click', () => {
+        const dateVal = srsMobileDueDateInput?.value;
+        if (dateVal) {
+          hideDateModal();
+          setDueDateActiveCard(dateVal);
+        }
+      });
+    }
 
     document.addEventListener('click', event => {
       const mediaZoom = event.target.closest('[data-zoom-src]');

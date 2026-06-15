@@ -90,6 +90,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     let normalStudyCards = [];
     let restoredProgress = null;
 
+    // Phased SRS State & Session UUID
+    const studySessionId = (typeof crypto !== 'undefined' && crypto.randomUUID) 
+        ? crypto.randomUUID() 
+        : 'session-' + Date.now() + '-' + Math.random().toString(36).substring(2, 9);
+    let srsUndoStack = [];
+    let cardIdForDueDate = null;
+
     function getSetIdFromParams(params = pageParams) {
         const rawSetId = params.get('setId');
         if (rawSetId === null) return null;
@@ -208,9 +215,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (normalStudyOrder === 'random') return 0;
         const legacyIndex = progress?.cardIndex ?? 0;
         const normalProgress = progress?.normalProgress || {};
+        
+        // Decouple progress: if progress holds SRS keys, ignore cardIndex as fallback
+        const hasSrsProgress = progress?.srsModeLength !== undefined || progress?.srsModeIndex !== undefined || progress?.srsCurrentCardKey !== undefined;
+        const fallbackIndex = hasSrsProgress ? 0 : legacyIndex;
+
         const value = normalStudyOrder === 'backward'
             ? (normalProgress.backward ?? progress?.normalBackwardIndex ?? 0)
-            : (normalProgress.forward ?? progress?.normalForwardIndex ?? progress?.normalModeIndex ?? legacyIndex);
+            : (normalProgress.forward ?? progress?.normalForwardIndex ?? progress?.normalModeIndex ?? fallbackIndex);
         return clampIndex(value, length || 1);
     }
 
@@ -311,17 +323,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (savedProgress && String(savedProgress.setId) === String(progressId)) {
                 restoredProgress = savedProgress;
-                normalModeCardIndex = getSavedNormalIndex(savedProgress, flashcardSet?.cards?.length || 1);
+                
+                // Decoupled structure loading
+                if (savedProgress.normal) {
+                    normalModeCardIndex = savedProgress.normal.studyOrder === 'backward'
+                        ? (savedProgress.normal.backwardIndex ?? 0)
+                        : (savedProgress.normal.forwardIndex ?? 0);
+                } else {
+                    normalModeCardIndex = getSavedNormalIndex(savedProgress, flashcardSet?.cards?.length || 1);
+                }
+                
+                if (savedProgress.srs) {
+                    srsCurrentCardKey = savedProgress.srs.currentCardKey || null;
+                    if (savedProgress.srs.reviewedCardIds && Array.isArray(savedProgress.srs.reviewedCardIds)) {
+                        srsReviewedCardIds = new Set(savedProgress.srs.reviewedCardIds);
+                    } else {
+                        srsReviewedCardIds = new Set();
+                    }
+                } else {
+                    srsCurrentCardKey = savedProgress.srsCurrentCardKey || null;
+                    if (savedProgress.srsReviewedCardIds && Array.isArray(savedProgress.srsReviewedCardIds)) {
+                        srsReviewedCardIds = new Set(savedProgress.srsReviewedCardIds);
+                    } else {
+                        srsReviewedCardIds = new Set();
+                    }
+                }
+                
                 srsModeCardIndex = clampIndex(
                     savedProgress.srsModeIndex ?? 0,
                     savedProgress.srsModeLength || flashcardSet?.cards?.length || 1
                 );
-                srsCurrentCardKey = savedProgress.srsCurrentCardKey || null;
-                if (savedProgress.srsReviewedCardIds && Array.isArray(savedProgress.srsReviewedCardIds)) {
-                    srsReviewedCardIds = new Set(savedProgress.srsReviewedCardIds);
-                } else {
-                    srsReviewedCardIds = new Set();
-                }
                 currentCardIndex = srsModeEnabled ? srsModeCardIndex : normalModeCardIndex;
             }
         } catch (error) {
@@ -363,7 +394,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 srsModeLength: srsCards.length,
                 srsCurrentCardKey,
                 srsReviewedCardIds: Array.from(srsReviewedCardIds),
-                timestamp: Date.now()
+                timestamp: Date.now(),
+                
+                // Decoupled structure saving
+                normal: {
+                    forwardIndex: normalProgress.forward ?? (normalStudyOrder === 'forward' ? normalModeCardIndex : 0),
+                    backwardIndex: normalProgress.backward ?? (normalStudyOrder === 'backward' ? normalModeCardIndex : 0),
+                    studyOrder: normalStudyOrder
+                },
+                srs: {
+                    currentCardKey: srsCurrentCardKey,
+                    reviewedCardIds: Array.from(srsReviewedCardIds),
+                    sessionStats: srsSessionStats
+                }
             };
 
             if (window.flashcardStore?.saveProgress) {
@@ -1151,6 +1194,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
+            // Bind Z or Ctrl+Z for undo review
+            if (e.key.toLowerCase() === 'z' || (e.ctrlKey && e.key.toLowerCase() === 'z')) {
+                e.preventDefault();
+                undoLastReview();
+                return;
+            }
+
             if (e.key === ' ' || e.key === 'Enter') {
                 e.preventDefault();
                 flipCard({ onlyReveal: true });
@@ -1297,6 +1347,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Close image modal when clicking the close button
     closeImageBtn.addEventListener('click', closeImageModal);
 
+    // Set Due Date modal bindings
+    const closeSrsDateBtn = document.getElementById('close-srs-date');
+    const cancelSrsDateBtn = document.getElementById('cancel-srs-date');
+    const saveSrsDateBtn = document.getElementById('save-srs-date');
+    const srsDateModal = document.getElementById('srs-date-modal');
+    const srsDueDateInput = document.getElementById('srs-due-date-input');
+
+    if (closeSrsDateBtn) closeSrsDateBtn.addEventListener('click', hideSrsDateModal);
+    if (cancelSrsDateBtn) cancelSrsDateBtn.addEventListener('click', hideSrsDateModal);
+    if (saveSrsDateBtn) {
+        saveSrsDateBtn.addEventListener('click', () => {
+            if (cardIdForDueDate && srsDueDateInput?.value) {
+                setDueDateActiveCard(srsDueDateInput.value);
+                hideSrsDateModal();
+            }
+        });
+    }
+    if (srsDateModal) {
+        srsDateModal.addEventListener('click', (e) => {
+            if (e.target === srsDateModal) {
+                hideSrsDateModal();
+            }
+        });
+    }
+
     flashcardContainer.addEventListener('click', event => {
         const zoomButton = event.target.closest('[data-zoom-src]');
         if (!zoomButton) return;
@@ -1312,10 +1387,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
     
-    // Close image modal with escape key
+    // Close image modal or date modal with escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !imageModal.classList.contains('hidden')) {
-            closeImageModal();
+        if (e.key === 'Escape') {
+            if (!imageModal.classList.contains('hidden')) {
+                closeImageModal();
+            }
+            const dateModal = document.getElementById('srs-date-modal');
+            if (dateModal && !dateModal.classList.contains('hidden')) {
+                hideSrsDateModal();
+            }
         }
     });
 
@@ -1624,6 +1705,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    // Show rating interface
+    function showRatingInterface() {
+        if (srsSessionComplete) return;
+        const ratingContainer = document.getElementById('srs-rating-container');
+        if (ratingContainer) {
+            updateRatingIntervals();
+            ratingContainer.classList.remove('hidden');
+            studyContainer?.classList.add('rating-visible');
+        }
+    }
+
+    // Hide rating interface
+    function hideRatingInterface() {
+        const ratingContainer = document.getElementById('srs-rating-container');
+        if (ratingContainer) {
+            ratingContainer.classList.add('hidden');
+        }
+        studyContainer?.classList.remove('rating-visible');
+    }
+
     // Add rating interface to the study page
     function addRatingInterface() {
         const existingRatingContainer = document.getElementById('srs-rating-container');
@@ -1641,6 +1742,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <h3>How well did you know this card?</h3>
             </div>
             <div class="srs-rating-buttons">
+                <button class="srs-rating-action-btn srs-undo-btn" id="srs-undo-btn" title="Undo review (Z)" disabled>
+                    <i class="fas fa-undo"></i>
+                    <span>Undo</span>
+                </button>
                 <button class="srs-rating-btn again-btn" data-rating="Again">
                     <i class="fas fa-times"></i>
                     <span>Again</span>
@@ -1665,6 +1770,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <small class="rating-shortcut">4</small>
                     <em class="rating-interval">...</em>
                 </button>
+                <div class="srs-actions-dropdown-container">
+                    <button class="srs-rating-action-btn srs-actions-btn" id="srs-actions-btn" title="More options">
+                        <i class="fas fa-ellipsis-h"></i>
+                        <span>More</span>
+                    </button>
+                    <div class="srs-actions-dropdown-menu hidden" id="srs-actions-menu">
+                        <button class="dropdown-item srs-action-bury"><i class="fas fa-eye-slash"></i> Bury Card</button>
+                        <button class="dropdown-item srs-action-suspend"><i class="fas fa-pause"></i> Suspend Card</button>
+                        <button class="dropdown-item srs-action-reset"><i class="fas fa-rotate-left"></i> Reset Card</button>
+                        <button class="dropdown-item srs-action-due"><i class="fas fa-calendar-alt"></i> Set Due Date...</button>
+                    </div>
+                </div>
             </div>
         `;
         
@@ -1680,13 +1797,56 @@ document.addEventListener('DOMContentLoaded', async () => {
                 handleSRSRating(rating);
             });
         });
+
+        // Add event listeners for Undo and More Actions
+        const undoBtn = ratingContainer.querySelector('#srs-undo-btn');
+        if (undoBtn) {
+            undoBtn.addEventListener('click', () => {
+                undoLastReview();
+            });
+        }
+
+        const actionsBtn = ratingContainer.querySelector('#srs-actions-btn');
+        const actionsMenu = ratingContainer.querySelector('#srs-actions-menu');
+        if (actionsBtn && actionsMenu) {
+            actionsBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                actionsMenu.classList.toggle('hidden');
+            });
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!actionsBtn.contains(e.target) && !actionsMenu.contains(e.target)) {
+                    actionsMenu.classList.add('hidden');
+                }
+            });
+        }
+
+        const buryBtn = ratingContainer.querySelector('.srs-action-bury');
+        if (buryBtn) buryBtn.addEventListener('click', () => { actionsMenu?.classList.add('hidden'); buryActiveCard(); });
+
+        const suspendBtn = ratingContainer.querySelector('.srs-action-suspend');
+        if (suspendBtn) suspendBtn.addEventListener('click', () => { actionsMenu?.classList.add('hidden'); suspendActiveCard(); });
+
+        const resetBtn = ratingContainer.querySelector('.srs-action-reset');
+        if (resetBtn) resetBtn.addEventListener('click', () => { actionsMenu?.classList.add('hidden'); resetActiveCard(); });
+
+        const dueBtn = ratingContainer.querySelector('.srs-action-due');
+        if (dueBtn) dueBtn.addEventListener('click', () => {
+            actionsMenu?.classList.add('hidden');
+            const currentCard = srsCards[0];
+            if (currentCard) {
+                showSrsDateModal(currentCard.id);
+            }
+        });
+
+        updateUndoButtonState();
     }
 
     function updateRatingIntervals() {
         const ratingContainer = document.getElementById('srs-rating-container');
         if (!ratingContainer || !window.srsManager || !window.srsManager.isReady()) return;
 
-        const currentCard = srsCards[currentCardIndex];
+        const currentCard = srsCards[0];
         if (!currentCard) return;
 
         const previews = window.srsManager.getRatingPreviews(currentCard, getDeckSrsSettings());
@@ -1697,10 +1857,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (interval) {
                 interval.textContent = preview?.intervalLabel || 'soon';
-            }
-
-            if (preview?.due) {
-                button.title = `${rating}: next review ${preview.intervalLabel}`;
             }
         });
     }
@@ -1714,44 +1870,73 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!currentCard) return;
         
         try {
-            const previousState = currentCard.srs ? { ...currentCard.srs } : null;
-            const reviewedAt = new Date().toISOString();
+            let logId = null;
+            let updatedCard = null;
+            const previousSrs = currentCard.srs ? { ...currentCard.srs } : null;
+            const reviewedAt = Date.now();
+            
             const updatedCardBase = window.srsManager.reviewCard(currentCard, rating, getDeckSrsSettings());
-            const updatedCard = {
-                ...updatedCardBase,
-                reviewHistory: [
-                    ...(Array.isArray(currentCard.reviewHistory) ? currentCard.reviewHistory : []),
-                    {
-                        reviewedAt,
-                        rating,
-                        previousState: previousState?.state || 'New',
-                        nextState: updatedCardBase.srs?.state || null,
-                        previousDue: previousState?.due || null,
-                        nextDue: updatedCardBase.srs?.due || null
-                    }
-                ]
-            };
             
-            const cardIndex = flashcardSet.cards.findIndex(card => sameCard(card, currentCard));
-            
-            if (cardIndex !== -1) {
-                flashcardSet.cards[cardIndex] = updatedCard;
-
-                if (flashcardSet.isPremade) {
-                    await savePremadeSrsOverlay();
-                } else if (window.flashcardStore?.saveSet) {
-                    flashcardSet = await window.flashcardStore.saveSet(flashcardSet);
-                } else if (!flashcardSet.isPremade) {
-                    const sets = JSON.parse(localStorage.getItem('flashcardSets') || '[]');
-                    const updatedSets = sets.map(set => String(set.id) === String(flashcardSet.id) ? flashcardSet : set);
-                    localStorage.setItem('flashcardSets', JSON.stringify(updatedSets));
-                }
-
-                srsSessionStats[rating] = (srsSessionStats[rating] || 0) + 1;
-                srsSessionStats.nextDue = updatedCard.srs?.due || srsSessionStats.nextDue;
+            if (window.flashcardStore?.recordReview) {
+                updatedCard = await window.flashcardStore.recordReview({
+                    cardId: currentCard.id,
+                    rating,
+                    previousSrs,
+                    nextSrs: updatedCardBase.srs,
+                    reviewedAt,
+                    elapsedMs: 0,
+                    sessionId: studySessionId
+                });
+                const lastHistory = updatedCard.reviewHistory[updatedCard.reviewHistory.length - 1];
+                logId = lastHistory?.id;
             } else {
-                console.error('Could not find card in original set to update SRS data');
+                // Fallback local memory and saveSet
+                const generatedLogId = `log-${currentCard.id}-${reviewedAt}-${Math.random().toString(36).substring(2, 7)}`;
+                const newHistoryEntry = {
+                    id: generatedLogId,
+                    rating,
+                    time: reviewedAt,
+                    elapsed: 0,
+                    sessionId: studySessionId,
+                    previousState: previousSrs?.state || 'New',
+                    nextState: updatedCardBase.srs?.state || 'New',
+                    previousDue: previousSrs?.due || null,
+                    nextDue: updatedCardBase.srs?.due || null,
+                    previousInterval: previousSrs?.interval || 0,
+                    nextInterval: updatedCardBase.srs?.interval || 0,
+                    previousStability: previousSrs?.stability || 0,
+                    nextStability: updatedCardBase.srs?.stability || 0,
+                    previousDifficulty: previousSrs?.difficulty || 0,
+                    nextDifficulty: updatedCardBase.srs?.difficulty || 0
+                };
+                const reviewHistory = Array.isArray(currentCard.reviewHistory) ? [...currentCard.reviewHistory, newHistoryEntry] : [newHistoryEntry];
+                updatedCard = {
+                    ...currentCard,
+                    srs: updatedCardBase.srs,
+                    reviewHistory
+                };
+                
+                const setCardIndex = flashcardSet.cards.findIndex(card => sameCard(card, currentCard));
+                if (setCardIndex !== -1) {
+                    flashcardSet.cards[setCardIndex] = updatedCard;
+                    if (flashcardSet.isPremade) {
+                        await savePremadeSrsOverlay();
+                    } else if (window.flashcardStore?.saveSet) {
+                        flashcardSet = await window.flashcardStore.saveSet(flashcardSet);
+                    } else {
+                        const sets = JSON.parse(localStorage.getItem('flashcardSets') || '[]');
+                        const updatedSets = sets.map(set => String(set.id) === String(flashcardSet.id) ? flashcardSet : set);
+                        localStorage.setItem('flashcardSets', JSON.stringify(updatedSets));
+                    }
+                }
+                logId = generatedLogId;
             }
+            
+            // Push undo transaction before changing queue
+            pushUndoTransaction('review', currentCard, { logId });
+
+            srsSessionStats[rating] = (srsSessionStats[rating] || 0) + 1;
+            srsSessionStats.nextDue = updatedCard.srs?.due || srsSessionStats.nextDue;
             
             // Remove the card from the front of the queue
             srsCards.shift();
@@ -1795,7 +1980,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     hideRatingInterface();
                     showLearningCardsDueSoonMessage(srsCards.length, nextCardDue);
                 } else {
-                    // Hide rating interface and show next card
                     hideRatingInterface();
                     showCard();
                     updateNavButtons();
@@ -1809,24 +1993,282 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Show rating interface
-    function showRatingInterface() {
-        if (srsSessionComplete) return;
-        const ratingContainer = document.getElementById('srs-rating-container');
-        if (ratingContainer) {
-            updateRatingIntervals();
-            ratingContainer.classList.remove('hidden');
-            studyContainer?.classList.add('rating-visible');
+    // Phased SRS Undo & Actions Helpers
+    function pushUndoTransaction(actionType, card, extra = {}) {
+        srsUndoStack.push({
+            type: actionType,
+            cardId: card.id,
+            cardStateSnapshot: JSON.parse(JSON.stringify(card)),
+            queueSnapshot: JSON.parse(JSON.stringify(srsCards)),
+            reviewedIdsSnapshot: Array.from(srsReviewedCardIds),
+            sessionStatsSnapshot: { ...srsSessionStats },
+            extra
+        });
+        if (srsUndoStack.length > 10) {
+            srsUndoStack.shift();
+        }
+        updateUndoButtonState();
+    }
+
+    function updateUndoButtonState() {
+        const undoBtn = document.getElementById('srs-undo-btn');
+        if (undoBtn) {
+            undoBtn.disabled = srsUndoStack.length === 0;
         }
     }
 
-    // Hide rating interface
-    function hideRatingInterface() {
-        const ratingContainer = document.getElementById('srs-rating-container');
-        if (ratingContainer) {
-            ratingContainer.classList.add('hidden');
+    async function undoLastReview() {
+        if (srsUndoStack.length === 0) return;
+        const transaction = srsUndoStack.pop();
+        
+        try {
+            let revertedCard = transaction.cardStateSnapshot;
+            if (window.flashcardStore?.undoReviewLog && transaction.type === 'review') {
+                const logId = transaction.extra?.logId;
+                if (logId) {
+                    revertedCard = await window.flashcardStore.undoReviewLog(transaction.cardId, logId);
+                }
+            } else {
+                // Revert local and persist
+                const setCardIndex = flashcardSet.cards.findIndex(c => String(c.id) === String(transaction.cardId));
+                if (setCardIndex !== -1) {
+                    flashcardSet.cards[setCardIndex] = transaction.cardStateSnapshot;
+                }
+                if (window.flashcardStore?.saveSet) {
+                    flashcardSet = await window.flashcardStore.saveSet(flashcardSet);
+                } else {
+                    const sets = JSON.parse(localStorage.getItem('flashcardSets') || '[]');
+                    const updatedSets = sets.map(set => String(set.id) === String(flashcardSet.id) ? flashcardSet : set);
+                    localStorage.setItem('flashcardSets', JSON.stringify(updatedSets));
+                }
+            }
+
+            srsCards = transaction.queueSnapshot;
+            const queueIndex = srsCards.findIndex(c => String(c.id) === String(transaction.cardId));
+            if (queueIndex !== -1) {
+                srsCards[queueIndex] = revertedCard;
+            }
+            srsReviewedCardIds = new Set(transaction.reviewedIdsSnapshot);
+            srsSessionStats = transaction.sessionStatsSnapshot;
+            srsSessionComplete = false;
+            
+            srsModeCardIndex = 0;
+            currentCardIndex = 0;
+            srsCurrentCardKey = srsCards[0] ? cardProgressKey(srsCards[0]) : null;
+
+            await saveProgress();
+            updateUndoButtonState();
+
+            hideRatingInterface();
+            const existingMessage = document.getElementById('mastered-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            const firstCardDue = srsCards[0]?.srs?.due ? new Date(srsCards[0].srs.due).getTime() : 0;
+            const diffMs = firstCardDue - Date.now();
+            if (diffMs > 0) {
+                showLearningCardsDueSoonMessage(srsCards.length, firstCardDue);
+            } else {
+                showCard();
+                updateNavButtons();
+                updateProgress();
+            }
+            
+            showToast('Review undone', 'info');
+        } catch (error) {
+            console.error('Error undoing review:', error);
+            showToast('Failed to undo review', 'error');
         }
-        studyContainer?.classList.remove('rating-visible');
+    }
+
+    async function updateSingleCardAndPersist(card) {
+        const setCardIndex = flashcardSet.cards.findIndex(c => String(c.id) === String(card.id));
+        if (setCardIndex !== -1) {
+            flashcardSet.cards[setCardIndex] = card;
+        }
+        if (window.flashcardStore?.saveSet) {
+            flashcardSet = await window.flashcardStore.saveSet(flashcardSet);
+        } else {
+            const sets = JSON.parse(localStorage.getItem('flashcardSets') || '[]');
+            const updatedSets = sets.map(set => String(set.id) === String(flashcardSet.id) ? flashcardSet : set);
+            localStorage.setItem('flashcardSets', JSON.stringify(updatedSets));
+        }
+    }
+
+    async function buryActiveCard() {
+        const currentCard = srsCards[0];
+        if (!currentCard) return;
+
+        const now = new Date();
+        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 4, 0, 0, 0);
+        
+        pushUndoTransaction('bury', currentCard);
+
+        const updatedCard = {
+            ...currentCard,
+            buriedUntil: tomorrow.toISOString()
+        };
+
+        try {
+            await updateSingleCardAndPersist(updatedCard);
+            srsCards.shift();
+            srsCurrentCardKey = srsCards[0] ? cardProgressKey(srsCards[0]) : null;
+            await saveProgress();
+            
+            showToast('Card buried until tomorrow', 'success');
+            handlePostActionTransition();
+        } catch (error) {
+            console.error('Error burying card:', error);
+            showToast('Failed to bury card', 'error');
+        }
+    }
+
+    async function suspendActiveCard() {
+        const currentCard = srsCards[0];
+        if (!currentCard) return;
+
+        pushUndoTransaction('suspend', currentCard);
+
+        const updatedCard = {
+            ...currentCard,
+            suspended: true
+        };
+
+        try {
+            await updateSingleCardAndPersist(updatedCard);
+            srsCards.shift();
+            srsCurrentCardKey = srsCards[0] ? cardProgressKey(srsCards[0]) : null;
+            await saveProgress();
+
+            showToast('Card suspended', 'success');
+            handlePostActionTransition();
+        } catch (error) {
+            console.error('Error suspending card:', error);
+            showToast('Failed to suspend card', 'error');
+        }
+    }
+
+    async function resetActiveCard() {
+        const currentCard = srsCards[0];
+        if (!currentCard) return;
+
+        pushUndoTransaction('reset', currentCard);
+
+        const updatedCard = {
+            ...currentCard,
+            srs: undefined,
+            reviewHistory: []
+        };
+
+        try {
+            await updateSingleCardAndPersist(updatedCard);
+            
+            const initializedCard = window.srsManager?.createSRSCard ? window.srsManager.createSRSCard(updatedCard) : updatedCard;
+            srsCards[0] = initializedCard;
+            srsCards = sortSrsSessionQueue(srsCards);
+            srsCurrentCardKey = srsCards[0] ? cardProgressKey(srsCards[0]) : null;
+            await saveProgress();
+
+            showToast('SRS scheduling reset', 'success');
+            
+            hideRatingInterface();
+            showCard();
+            updateNavButtons();
+            updateProgress();
+        } catch (error) {
+            console.error('Error resetting card:', error);
+            showToast('Failed to reset card', 'error');
+        }
+    }
+
+    async function setDueDateActiveCard(dueDateStr) {
+        const currentCard = srsCards[0];
+        if (!currentCard) return;
+
+        pushUndoTransaction('set_due', currentCard);
+
+        const updatedSrs = currentCard.srs ? {
+            ...currentCard.srs,
+            due: new Date(dueDateStr).toISOString()
+        } : {
+            state: 'New',
+            due: new Date(dueDateStr).toISOString(),
+            interval: 0,
+            stability: 0,
+            difficulty: 0
+        };
+
+        const updatedCard = {
+            ...currentCard,
+            srs: updatedSrs
+        };
+
+        try {
+            await updateSingleCardAndPersist(updatedCard);
+            
+            const isDueNow = new Date(dueDateStr) <= new Date();
+            if (isDueNow) {
+                srsCards[0] = updatedCard;
+                srsCards = sortSrsSessionQueue(srsCards);
+            } else {
+                srsCards.shift();
+            }
+            
+            srsCurrentCardKey = srsCards[0] ? cardProgressKey(srsCards[0]) : null;
+            await saveProgress();
+
+            showToast('Card due date updated', 'success');
+            handlePostActionTransition();
+        } catch (error) {
+            console.error('Error setting due date:', error);
+            showToast('Failed to update due date', 'error');
+        }
+    }
+
+    function handlePostActionTransition() {
+        if (srsCards.length === 0) {
+            hideRatingInterface();
+            srsSessionComplete = true;
+            showCompletionScreen();
+        } else {
+            const firstCardDue = srsCards[0].srs?.due ? new Date(srsCards[0].srs.due).getTime() : 0;
+            const diffMs = firstCardDue - Date.now();
+            if (diffMs > 0) {
+                hideRatingInterface();
+                showLearningCardsDueSoonMessage(srsCards.length, firstCardDue);
+            } else {
+                hideRatingInterface();
+                showCard();
+                updateNavButtons();
+                updateProgress();
+            }
+        }
+    }
+
+    function showSrsDateModal(cardId) {
+        const dateModal = document.getElementById('srs-date-modal');
+        const dateInput = document.getElementById('srs-due-date-input');
+        if (dateModal && dateInput) {
+            cardIdForDueDate = cardId;
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            dateInput.value = `${year}-${month}-${day}`;
+            
+            dateModal.classList.remove('hidden');
+            dateModal.classList.add('visible');
+        }
+    }
+
+    function hideSrsDateModal() {
+        const dateModal = document.getElementById('srs-date-modal');
+        if (dateModal) {
+            dateModal.classList.remove('visible');
+            setTimeout(() => dateModal.classList.add('hidden'), 300);
+        }
+        cardIdForDueDate = null;
     }
 
     async function findNextDueSetId(excludedSetId) {

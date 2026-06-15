@@ -149,6 +149,24 @@
                 <img id="zoomed-image" src="" alt="Enlarged image">
             </div>
         </div>
+
+        <!-- Set Due Date Modal -->
+        <div id="srs-date-modal" class="modal hidden">
+            <div class="modal-content" style="max-width: 320px;">
+                <button class="close-btn" id="close-srs-date">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Set Card Due Date</h2>
+                <p class="settings-note" style="margin-bottom: 1rem;">Choose when this card should be due next.</p>
+                <div class="settings-section" style="margin-bottom: 1.25rem;">
+                    <input type="date" id="srs-due-date-input" class="srs-due-date-modal-input">
+                </div>
+                <div class="modal-actions">
+                    <button id="cancel-srs-date" class="secondary-button">Cancel</button>
+                    <button id="save-srs-date" class="primary-button">Save</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js/flashcard-settings.js"></script>

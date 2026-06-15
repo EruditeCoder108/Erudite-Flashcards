@@ -1146,6 +1146,10 @@ ipcMain.handle('flashcards:exportBackup', exportBackup);
 ipcMain.handle('flashcards:importBackup', importBackup);
 ipcMain.handle('flashcards:exportDelimited', (_event, format) => exportDelimited(format));
 ipcMain.handle('flashcards:importDelimited', importDelimited);
+ipcMain.handle('flashcards:recordReview', (_event, params) => getFlashcardStore().recordReview(params));
+ipcMain.handle('flashcards:undoReviewLog', (_event, cardId, logId) => getFlashcardStore().undoReviewLog(cardId, logId));
+ipcMain.handle('flashcards:resetDeckSRS', (_event, setId, deleteHistory) => getFlashcardStore().resetDeckSRS(setId, deleteHistory));
+ipcMain.handle('flashcards:createDeckBackup', (_event, setId) => getFlashcardStore().createDeckBackup(setId));
 ipcMain.handle('flashcards:getProgress', async (_event, setId) => {
   return getFlashcardStore().getProgress(setId);
 });

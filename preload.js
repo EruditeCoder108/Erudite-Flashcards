@@ -26,6 +26,10 @@ contextBridge.exposeInMainWorld('eruditeFlashcards', {
   saveFont: (dataUrl, meta) => ipcRenderer.invoke('flashcards:saveFont', dataUrl, meta),
   listPremadeSets: (classId, subjectId) => ipcRenderer.invoke('flashcards:listPremadeSets', classId, subjectId),
   getPremadeSet: (classId, subjectId, fileName) => ipcRenderer.invoke('flashcards:getPremadeSet', classId, subjectId, fileName),
+  recordReview: (params) => ipcRenderer.invoke('flashcards:recordReview', params),
+  undoReviewLog: (cardId, logId) => ipcRenderer.invoke('flashcards:undoReviewLog', cardId, logId),
+  resetDeckSRS: (setId, deleteHistory) => ipcRenderer.invoke('flashcards:resetDeckSRS', setId, deleteHistory),
+  createDeckBackup: (setId) => ipcRenderer.invoke('flashcards:createDeckBackup', setId),
   getDiagnostics: () => ipcRenderer.invoke('flashcards:getDiagnostics'),
   onMenuCommand: (callback) => {
     const listener = (_event, command) => callback(command);

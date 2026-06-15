@@ -77,10 +77,18 @@
         <p id="study-mode-label">Study</p>
         <h1 id="study-title">Loading...</h1>
       </div>
-      <div class="study-progress-chip" aria-live="polite">
-        <strong id="progress-current">0</strong>
-        <span>/</span>
-        <span id="progress-total">0</span>
+      <div class="topbar-right-group">
+        <button type="button" class="icon-button hidden" id="srs-undo-btn" aria-label="Undo last review" disabled>
+          <i class="fas fa-rotate-left"></i>
+        </button>
+        <button type="button" class="icon-button hidden" id="srs-actions-btn" aria-label="More actions">
+          <i class="fas fa-ellipsis-vertical"></i>
+        </button>
+        <div class="study-progress-chip" aria-live="polite">
+          <strong id="progress-current">0</strong>
+          <span>/</span>
+          <span id="progress-total">0</span>
+        </div>
       </div>
     </header>
 
@@ -255,6 +263,54 @@
       <i class="fas fa-xmark"></i>
     </button>
     <img id="zoomed-image" alt="Enlarged flashcard image">
+  </div>
+
+  <!-- Mobile SRS Actions Bottom Sheet -->
+  <div class="bottom-sheet hidden" id="srs-actions-sheet" role="dialog" aria-modal="true">
+    <div class="bottom-sheet-backdrop" id="srs-actions-sheet-backdrop"></div>
+    <div class="bottom-sheet-content">
+      <div class="bottom-sheet-drag-handle"></div>
+      <div class="bottom-sheet-header">
+        <h3>Card Actions</h3>
+      </div>
+      <div class="bottom-sheet-list">
+        <button type="button" class="bottom-sheet-item" id="action-bury">
+          <i class="fas fa-box-archive"></i>
+          <span>Bury Card (Hide until tomorrow)</span>
+        </button>
+        <button type="button" class="bottom-sheet-item" id="action-suspend">
+          <i class="fas fa-ban"></i>
+          <span>Suspend Card (Exclude from deck)</span>
+        </button>
+        <button type="button" class="bottom-sheet-item" id="action-reset">
+          <i class="fas fa-rotate"></i>
+          <span>Reset Card (Wipe SRS scheduling)</span>
+        </button>
+        <button type="button" class="bottom-sheet-item" id="action-set-due">
+          <i class="fas fa-calendar-days"></i>
+          <span>Set Due Date...</span>
+        </button>
+      </div>
+      <div class="bottom-sheet-footer">
+        <button type="button" class="bottom-sheet-cancel" id="action-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile SRS Set Due Date Modal -->
+  <div class="modal hidden" id="srs-mobile-date-modal" role="dialog" aria-modal="true">
+    <div class="modal-panel">
+      <div class="modal-icon calm"><i class="fas fa-calendar-days"></i></div>
+      <h2>Set Card Due Date</h2>
+      <p>Choose when you next want to review this card:</p>
+      <div class="date-input-wrapper" style="margin: 1rem 0; width: 100%;">
+        <input type="date" id="srs-mobile-due-date-input" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--line, #2a3e5c); background: #0f172a; color: #fff; font-size: 1rem;">
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="secondary-action" id="srs-mobile-date-cancel">Cancel</button>
+        <button type="button" class="primary-action" id="srs-mobile-date-confirm">Set Date</button>
+      </div>
+    </div>
   </div>
 
   <div class="mobile-toast" id="study-toast" role="status" aria-live="polite"></div>

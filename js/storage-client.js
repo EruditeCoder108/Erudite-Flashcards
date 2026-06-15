@@ -541,6 +541,30 @@
     };
   }
 
+  async function recordReview(params) {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.recordReview) return nativeApi.recordReview(params);
+    return null;
+  }
+
+  async function undoReviewLog(cardId, logId) {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.undoReviewLog) return nativeApi.undoReviewLog(cardId, logId);
+    return null;
+  }
+
+  async function resetDeckSRS(setId, deleteHistory) {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.resetDeckSRS) return nativeApi.resetDeckSRS(setId, deleteHistory);
+    return null;
+  }
+
+  async function createDeckBackup(setId) {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.createDeckBackup) return nativeApi.createDeckBackup(setId);
+    return null;
+  }
+
   window.flashcardStore = {
     listSets,
     listSetsMeta,
@@ -569,7 +593,11 @@
     exportBackup,
     importBackup,
     exportDelimited,
-    importDelimited
+    importDelimited,
+    recordReview,
+    undoReviewLog,
+    resetDeckSRS,
+    createDeckBackup
   };
 
   const menuApi = getNativeApi();

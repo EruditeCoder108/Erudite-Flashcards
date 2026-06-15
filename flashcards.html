@@ -285,6 +285,15 @@
                         </label>
                     </div>
                 </div>
+                <div class="settings-section srs-danger-zone">
+                    <h3>Danger Zone</h3>
+                    <div class="danger-box">
+                        <p>Reset SRS scheduling data for all cards in this set. This makes all cards behave like new cards again. Card content will not be modified.</p>
+                        <button id="reset-deck-srs-btn" class="danger-button" type="button">
+                            <i class="fas fa-trash-restore"></i> Reset SRS Data...
+                        </button>
+                    </div>
+                </div>
                 <div class="modal-actions">
                     <button id="cancel-deck-settings" class="secondary-button">Cancel</button>
                     <button id="save-deck-settings" class="primary-button">
@@ -294,6 +303,42 @@
                 </div>
             </div>
         </div>
+
+        <!-- Deck SRS Reset Confirmation Modal -->
+        <div id="deck-reset-confirm-modal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-btn" id="close-deck-reset-confirm">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Reset SRS Scheduling Data</h2>
+                <div class="warning-text">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span><strong>Warning:</strong> This will reset the SRS progress for all cards in this deck. Card terms, definitions, and media will not be affected.</span>
+                </div>
+                <div class="settings-section">
+                    <label class="checkbox-row">
+                        <input type="checkbox" id="reset-keep-history" checked>
+                        <span>Keep review history for stats & analytics</span>
+                    </label>
+                    <label class="checkbox-row">
+                        <input type="checkbox" id="reset-delete-history">
+                        <span>Delete review history permanently</span>
+                    </label>
+                    
+                    <div class="confirmation-input-group">
+                        <p>Type <strong id="reset-confirm-text-match">RESET</strong> below to confirm:</p>
+                        <input type="text" id="reset-confirm-input" placeholder="Type RESET" autocomplete="off">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button id="cancel-deck-reset-confirm" class="secondary-button">Cancel</button>
+                    <button id="confirm-deck-reset" class="danger-button" disabled>
+                        <i class="fas fa-trash-restore"></i> Reset Deck SRS
+                    </button>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Class Editor Modal -->
         <div id="class-modal" class="modal hidden">

@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 
-const DB_SCHEMA_VERSION = 1;
+const DB_SCHEMA_VERSION = 2;
 
 function jsonParse(value, fallback) {
   if (value === null || value === undefined || value === '') return fallback;
@@ -49,6 +49,7 @@ class SqliteFlashcardStore {
     }
 
     this.createSchema();
+    await this.runMigrationsIfNeeded();
     await this.migrateLegacyJsonIfNeeded();
     await this.persist();
     return this;
@@ -139,13 +140,154 @@ class SqliteFlashcardStore {
         device_id TEXT
       );
 
+      CREATE TABLE IF NOT EXISTS review_log (
+        id TEXT PRIMARY KEY,
+        card_id TEXT NOT NULL,
+        note_id TEXT,
+        set_id TEXT NOT NULL,
+        session_id TEXT NOT NULL,
+        rating TEXT NOT NULL,
+        previous_state TEXT,
+        next_state TEXT,
+        previous_due TEXT,
+        next_due TEXT,
+        previous_interval INTEGER,
+        next_interval INTEGER,
+        previous_stability REAL,
+        next_stability REAL,
+        previous_difficulty REAL,
+        next_difficulty REAL,
+        elapsed_ms INTEGER,
+        reviewed_at INTEGER NOT NULL,
+        is_preview INTEGER NOT NULL DEFAULT 0,
+        undone INTEGER NOT NULL DEFAULT 0,
+        undone_at INTEGER,
+        device_id TEXT,
+        rev INTEGER NOT NULL DEFAULT 1,
+        FOREIGN KEY (card_id) REFERENCES cards(id) ON DELETE CASCADE
+      );
+
       CREATE INDEX IF NOT EXISTS idx_sets_class ON sets(class_id);
       CREATE INDEX IF NOT EXISTS idx_sets_visible ON sets(deleted_at, last_modified);
       CREATE INDEX IF NOT EXISTS idx_cards_set_position ON cards(set_id, position);
       CREATE INDEX IF NOT EXISTS idx_cards_visible ON cards(deleted_at);
+      CREATE INDEX IF NOT EXISTS idx_revlog_card ON review_log(card_id);
+      CREATE INDEX IF NOT EXISTS idx_revlog_time ON review_log(reviewed_at);
+      CREATE INDEX IF NOT EXISTS idx_revlog_set ON review_log(set_id);
+      CREATE INDEX IF NOT EXISTS idx_revlog_session ON review_log(session_id);
     `);
 
-    this.setMeta('schemaVersion', String(DB_SCHEMA_VERSION));
+    if (!this.getMeta('schemaVersion')) {
+      this.setMeta('schemaVersion', String(DB_SCHEMA_VERSION));
+    }
+  }
+
+  async runMigrationsIfNeeded() {
+    let currentVersion = Number(this.getMeta('schemaVersion') || 1);
+    if (currentVersion < 2) {
+      this.db.exec(`
+        CREATE TABLE IF NOT EXISTS review_log (
+          id TEXT PRIMARY KEY,
+          card_id TEXT NOT NULL,
+          note_id TEXT,
+          set_id TEXT NOT NULL,
+          session_id TEXT NOT NULL,
+          rating TEXT NOT NULL,
+          previous_state TEXT,
+          next_state TEXT,
+          previous_due TEXT,
+          next_due TEXT,
+          previous_interval INTEGER,
+          next_interval INTEGER,
+          previous_stability REAL,
+          next_stability REAL,
+          previous_difficulty REAL,
+          next_difficulty REAL,
+          elapsed_ms INTEGER,
+          reviewed_at INTEGER NOT NULL,
+          is_preview INTEGER NOT NULL DEFAULT 0,
+          undone INTEGER NOT NULL DEFAULT 0,
+          undone_at INTEGER,
+          device_id TEXT,
+          rev INTEGER NOT NULL DEFAULT 1,
+          FOREIGN KEY (card_id) REFERENCES cards(id) ON DELETE CASCADE
+        );
+        CREATE INDEX IF NOT EXISTS idx_revlog_card ON review_log(card_id);
+        CREATE INDEX IF NOT EXISTS idx_revlog_time ON review_log(reviewed_at);
+        CREATE INDEX IF NOT EXISTS idx_revlog_set ON review_log(set_id);
+        CREATE INDEX IF NOT EXISTS idx_revlog_session ON review_log(session_id);
+      `);
+
+      const selectCardsStatement = this.db.prepare('SELECT id, set_id, review_history_json FROM cards WHERE deleted_at IS NULL');
+      const cardRows = getStatementRows(selectCardsStatement);
+      
+      this.db.exec('BEGIN TRANSACTION');
+      try {
+        const insertLogStmt = this.db.prepare(`
+          INSERT OR IGNORE INTO review_log (
+            id, card_id, set_id, session_id, rating,
+            previous_state, next_state, previous_due, next_due,
+            previous_interval, next_interval, previous_stability, next_stability,
+            previous_difficulty, next_difficulty, elapsed_ms, reviewed_at
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `);
+
+        for (const row of cardRows) {
+          const history = jsonParse(row.review_history_json, []);
+          if (!Array.isArray(history)) continue;
+
+          for (const entry of history) {
+            const logId = entry.id || `migration-log-${row.id}-${entry.reviewedAt || entry.time || Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+            const rating = entry.rating || 'Good';
+            const reviewedAt = entry.reviewedAt || entry.time || entry.date || Date.now();
+            const elapsedMs = entry.elapsedMs || entry.elapsed || 0;
+            const sessionId = entry.sessionId || 'migration-session';
+
+            const prevState = entry.previousState || entry.prevState || null;
+            const nextState = entry.nextState || entry.state || null;
+
+            const prevDue = entry.previousDue || null;
+            const nextDue = entry.nextDue || entry.due || null;
+
+            const prevInterval = entry.previousInterval || entry.prevInterval || 0;
+            const nextInterval = entry.nextInterval || entry.interval || 0;
+
+            const prevStability = entry.previousStability || entry.prevStability || 0;
+            const nextStability = entry.nextStability || entry.stability || 0;
+
+            const prevDifficulty = entry.previousDifficulty || entry.prevDifficulty || 0;
+            const nextDifficulty = entry.nextDifficulty || entry.difficulty || 0;
+
+            insertLogStmt.run([
+              logId,
+              row.id,
+              row.set_id,
+              sessionId,
+              rating,
+              prevState,
+              nextState,
+              prevDue,
+              nextDue,
+              prevInterval,
+              nextInterval,
+              prevStability,
+              nextStability,
+              prevDifficulty,
+              nextDifficulty,
+              elapsedMs,
+              reviewedAt
+            ]);
+          }
+        }
+        insertLogStmt.free();
+        this.db.exec('COMMIT');
+      } catch (err) {
+        this.db.exec('ROLLBACK');
+        console.error('Error migrating review history to review_log:', err);
+      }
+
+      this.setMeta('schemaVersion', '2');
+    }
   }
 
   getMeta(key) {
@@ -726,6 +868,193 @@ class SqliteFlashcardStore {
       await this.setState(key, value, { persist: false });
     }
     if (options.persist !== false) await this.persist();
+    return true;
+  }
+
+  async recordReview({ cardId, rating, previousSrs, nextSrs, reviewedAt, elapsedMs, sessionId }) {
+    const cardRows = this.rows('SELECT * FROM cards WHERE id = ? LIMIT 1', [String(cardId)]);
+    if (!cardRows.length) throw new Error('Card not found: ' + cardId);
+    const cardRow = cardRows[0];
+    const card = this._rowToCard(cardRow);
+
+    const newHistoryEntry = {
+      id: `log-${cardId}-${reviewedAt}-${Math.random().toString(36).substring(2, 7)}`,
+      rating,
+      time: reviewedAt,
+      elapsed: elapsedMs,
+      sessionId,
+      previousState: previousSrs?.state || 'New',
+      nextState: nextSrs?.state || 'New',
+      previousDue: previousSrs?.due || null,
+      nextDue: nextSrs?.due || null,
+      previousInterval: previousSrs?.interval || 0,
+      nextInterval: nextSrs?.interval || 0,
+      previousStability: previousSrs?.stability || 0,
+      nextStability: nextSrs?.stability || 0,
+      previousDifficulty: previousSrs?.difficulty || 0,
+      nextDifficulty: nextSrs?.difficulty || 0
+    };
+
+    const reviewHistory = Array.isArray(card.reviewHistory) ? [...card.reviewHistory, newHistoryEntry] : [newHistoryEntry];
+    card.srs = nextSrs;
+    card.reviewHistory = reviewHistory;
+
+    this.begin();
+    try {
+      let stmt = this.db.prepare('UPDATE cards SET srs_json = ?, review_history_json = ?, payload_json = ?, last_modified = ?, rev = rev + 1 WHERE id = ?');
+      stmt.run([
+        jsonString(nextSrs),
+        jsonString(reviewHistory),
+        jsonString(card),
+        Date.now(),
+        String(cardId)
+      ]);
+      stmt.free();
+
+      stmt = this.db.prepare(`
+        INSERT INTO review_log (
+          id, card_id, set_id, session_id, rating,
+          previous_state, next_state, previous_due, next_due,
+          previous_interval, next_interval, previous_stability, next_stability,
+          previous_difficulty, next_difficulty, elapsed_ms, reviewed_at,
+          is_preview, undone, rev
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 1)
+      `);
+      stmt.run([
+        newHistoryEntry.id,
+        String(cardId),
+        String(cardRow.set_id),
+        String(sessionId),
+        String(rating),
+        newHistoryEntry.previousState,
+        newHistoryEntry.nextState,
+        newHistoryEntry.previousDue,
+        newHistoryEntry.nextDue,
+        newHistoryEntry.previousInterval,
+        newHistoryEntry.nextInterval,
+        newHistoryEntry.previousStability,
+        newHistoryEntry.nextStability,
+        newHistoryEntry.previousDifficulty,
+        newHistoryEntry.nextDifficulty,
+        elapsedMs,
+        reviewedAt
+      ]);
+      stmt.free();
+
+      this.commit();
+    } catch (error) {
+      this.rollback();
+      throw error;
+    }
+
+    await this.persist();
+    return card;
+  }
+
+  async undoReviewLog(cardId, logId) {
+    const logRows = this.rows('SELECT * FROM review_log WHERE id = ? AND card_id = ? LIMIT 1', [String(logId), String(cardId)]);
+    if (!logRows.length) throw new Error('Review log not found: ' + logId);
+    const log = logRows[0];
+
+    const cardRows = this.rows('SELECT * FROM cards WHERE id = ? LIMIT 1', [String(cardId)]);
+    if (!cardRows.length) throw new Error('Card not found: ' + cardId);
+    const cardRow = cardRows[0];
+    const card = this._rowToCard(cardRow);
+
+    const previousSrs = log.previous_state ? {
+      state: log.previous_state,
+      due: log.previous_due || null,
+      interval: Number(log.previous_interval || 0),
+      stability: Number(log.previous_stability || 0),
+      difficulty: Number(log.previous_difficulty || 0)
+    } : null;
+
+    const reviewHistory = Array.isArray(card.reviewHistory)
+      ? card.reviewHistory.filter(entry => String(entry.id) !== String(logId))
+      : [];
+
+    card.srs = previousSrs || undefined;
+    card.reviewHistory = reviewHistory;
+
+    this.begin();
+    try {
+      let stmt = this.db.prepare('UPDATE cards SET srs_json = ?, review_history_json = ?, payload_json = ?, last_modified = ?, rev = rev + 1 WHERE id = ?');
+      stmt.run([
+        jsonString(previousSrs),
+        jsonString(reviewHistory),
+        jsonString(card),
+        Date.now(),
+        String(cardId)
+      ]);
+      stmt.free();
+
+      stmt = this.db.prepare('UPDATE review_log SET undone = 1, undone_at = ?, rev = rev + 1 WHERE id = ?');
+      stmt.run([Date.now(), String(logId)]);
+      stmt.free();
+
+      this.commit();
+    } catch (error) {
+      this.rollback();
+      throw error;
+    }
+
+    await this.persist();
+    return card;
+  }
+
+  async createDeckBackup(setId) {
+    const set = await this.getSet(setId);
+    if (!set) throw new Error('Set not found: ' + setId);
+
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const backupPath = path.join(this.backupsDir, `set_backup_RESET_${setId}-${stamp}.json`);
+
+    const backupContent = {
+      app: 'Erudite Flashcards',
+      backupType: 'reset-deck-srs',
+      exportedAt: new Date().toISOString(),
+      setData: set
+    };
+
+    await fs.writeFile(backupPath, JSON.stringify(backupContent, null, 2), 'utf8');
+    return backupPath;
+  }
+
+  async resetDeckSRS(setId, deleteHistory) {
+    const cardRows = this.rows('SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL', [String(setId)]);
+
+    this.begin();
+    try {
+      for (const cardRow of cardRows) {
+        const card = this._rowToCard(cardRow);
+        card.srs = undefined;
+        if (deleteHistory) {
+          card.reviewHistory = [];
+        }
+
+        let stmt = this.db.prepare('UPDATE cards SET srs_json = NULL, review_history_json = ?, payload_json = ?, last_modified = ?, rev = rev + 1 WHERE id = ?');
+        stmt.run([
+          jsonString(card.reviewHistory),
+          jsonString(card),
+          Date.now(),
+          String(card.id)
+        ]);
+        stmt.free();
+      }
+
+      if (deleteHistory) {
+        let stmt = this.db.prepare('DELETE FROM review_log WHERE set_id = ?');
+        stmt.run([String(setId)]);
+        stmt.free();
+      }
+
+      this.commit();
+    } catch (error) {
+      this.rollback();
+      throw error;
+    }
+
+    await this.persist();
     return true;
   }
 }

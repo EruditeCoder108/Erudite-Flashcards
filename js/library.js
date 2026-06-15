@@ -1417,6 +1417,119 @@ document.addEventListener('DOMContentLoaded', async () => {
             showToast('Could not save deck settings', 'error');
         }
     }
+
+    // Danger Zone Reset SRS functions
+    const resetDeckSrsBtn = document.getElementById('reset-deck-srs-btn');
+    const deckResetConfirmModal = document.getElementById('deck-reset-confirm-modal');
+    const closeDeckResetConfirmBtn = document.getElementById('close-deck-reset-confirm');
+    const cancelDeckResetConfirmBtn = document.getElementById('cancel-deck-reset-confirm');
+    const resetKeepHistory = document.getElementById('reset-keep-history');
+    const resetDeleteHistory = document.getElementById('reset-delete-history');
+    const resetConfirmInput = document.getElementById('reset-confirm-input');
+    const confirmDeckResetBtn = document.getElementById('confirm-deck-reset');
+    const resetConfirmTextMatch = document.getElementById('reset-confirm-text-match');
+
+    // Mutually exclusive checkboxes
+    if (resetKeepHistory && resetDeleteHistory) {
+        resetKeepHistory.addEventListener('change', () => {
+            if (resetKeepHistory.checked) resetDeleteHistory.checked = false;
+        });
+        resetDeleteHistory.addEventListener('change', () => {
+            if (resetDeleteHistory.checked) resetKeepHistory.checked = false;
+        });
+    }
+
+    function showDeckResetConfirmModal() {
+        if (!setForDeckSettings) return;
+
+        // Hide deck settings modal first (but keep setForDeckSettings populated)
+        if (deckSettingsModal) {
+            deckSettingsModal.classList.add('hidden');
+            deckSettingsModal.classList.remove('visible');
+        }
+
+        if (resetConfirmInput) resetConfirmInput.value = '';
+        if (confirmDeckResetBtn) confirmDeckResetBtn.disabled = true;
+
+        // Reset checkboxes to default
+        if (resetKeepHistory) resetKeepHistory.checked = true;
+        if (resetDeleteHistory) resetDeleteHistory.checked = false;
+
+        if (deckResetConfirmModal) {
+            deckResetConfirmModal.classList.remove('hidden');
+            deckResetConfirmModal.classList.add('visible');
+        }
+    }
+
+    function hideDeckResetConfirmModal() {
+        if (deckResetConfirmModal) {
+            deckResetConfirmModal.classList.remove('visible');
+            setTimeout(() => deckResetConfirmModal.classList.add('hidden'), 300);
+        }
+        // Reopen deck settings modal
+        if (setForDeckSettings && deckSettingsModal) {
+            deckSettingsModal.classList.remove('hidden');
+            deckSettingsModal.classList.add('visible');
+        }
+    }
+
+    if (resetConfirmInput) {
+        resetConfirmInput.addEventListener('input', () => {
+            if (!setForDeckSettings) return;
+            const inputVal = resetConfirmInput.value.trim().toLowerCase();
+            const matchReset = 'reset';
+            const matchName = setForDeckSettings.name.trim().toLowerCase();
+            if (inputVal === matchReset || inputVal === matchName) {
+                confirmDeckResetBtn.disabled = false;
+            } else {
+                confirmDeckResetBtn.disabled = true;
+            }
+        });
+    }
+
+    async function executeDeckReset() {
+        if (!setForDeckSettings) return;
+
+        const setId = setForDeckSettings.id;
+        const deleteHistory = resetDeleteHistory ? resetDeleteHistory.checked : false;
+
+        try {
+            // 1. Create automatic backup JSON
+            let backupPath = '';
+            if (window.flashcardStore?.createDeckBackup) {
+                backupPath = await window.flashcardStore.createDeckBackup(setId);
+            }
+
+            // 2. Perform reset
+            if (window.flashcardStore?.resetDeckSRS) {
+                await window.flashcardStore.resetDeckSRS(setId, deleteHistory);
+            }
+
+            // Close confirm modal
+            if (deckResetConfirmModal) {
+                deckResetConfirmModal.classList.remove('visible');
+                deckResetConfirmModal.classList.add('hidden');
+            }
+            // Clear settings set ref
+            setForDeckSettings = null;
+
+            // Reload and refresh UI
+            await reloadLibraryData();
+            updateLibraryStats();
+            renderSets(searchInput.value);
+
+            // Show toast message with backup location
+            let msg = 'SRS progress reset successfully.';
+            if (backupPath) {
+                const baseName = backupPath.split(/[\\/]/).pop();
+                msg += ` Backup created: ${baseName}`;
+            }
+            showToast(msg, 'success');
+        } catch (error) {
+            console.error('Error resetting deck SRS:', error);
+            showToast('Failed to reset deck SRS scheduling', 'error');
+        }
+    }
     
     // Handle custom font uploads
     function handleFontUpload(event, fontType) {
@@ -1743,6 +1856,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (cancelDeckSettingsBtn) cancelDeckSettingsBtn.addEventListener('click', hideDeckSettingsModal);
     if (saveDeckSettingsBtn) saveDeckSettingsBtn.addEventListener('click', saveDeckSettings);
     
+    // Reset SRS listeners
+    if (resetDeckSrsBtn) resetDeckSrsBtn.addEventListener('click', showDeckResetConfirmModal);
+    if (closeDeckResetConfirmBtn) closeDeckResetConfirmBtn.addEventListener('click', hideDeckResetConfirmModal);
+    if (cancelDeckResetConfirmBtn) cancelDeckResetConfirmBtn.addEventListener('click', hideDeckResetConfirmModal);
+    if (confirmDeckResetBtn) confirmDeckResetBtn.addEventListener('click', executeDeckReset);
+
     // Font dropdowns
     contentFontSelect.addEventListener('change', function() {
         if (this.value === 'custom') {
@@ -1766,6 +1885,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         deckSettingsModal.addEventListener('click', function(e) {
             if (e.target === deckSettingsModal) {
                 hideDeckSettingsModal();
+            }
+        });
+    }
+
+    if (deckResetConfirmModal) {
+        deckResetConfirmModal.addEventListener('click', function(e) {
+            if (e.target === deckResetConfirmModal) {
+                hideDeckResetConfirmModal();
             }
         });
     }

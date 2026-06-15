@@ -4282,3 +4282,74 @@ select option {
     background-color: #111A2B !important;
     color: #F8FAFC !important;
 }
+
+/* SRS Danger Zone Styles */
+.srs-danger-zone {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.srs-danger-zone h3 {
+    color: var(--danger);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.danger-box {
+    border: 1px dashed var(--danger);
+    background-color: rgba(239, 68, 68, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.danger-box p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.danger-box .danger-button {
+    align-self: flex-start;
+}
+
+.warning-text {
+    background-color: rgba(245, 158, 11, 0.1);
+    border-left: 4px solid #F59E0B;
+    color: #D97706;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+.warning-text i {
+    margin-top: 0.15rem;
+}
+.confirmation-input-group {
+    margin-top: 1.25rem;
+}
+.confirmation-input-group p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+.confirmation-input-group input {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: #0f172a;
+    color: var(--text-primary);
+}
+.confirmation-input-group input:focus {
+    border-color: var(--danger);
+    outline: none;
+}
+
+
