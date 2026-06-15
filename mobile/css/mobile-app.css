@@ -307,11 +307,12 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 1.25rem;
-  font-family: Georgia, serif;
-  font-weight: 500;
-  color: var(--muted);
-  opacity: 0.85;
+  font-size: 1.35rem;
+  font-family: inherit;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  opacity: 0.95;
   line-height: 1.1;
 }
 
@@ -1623,7 +1624,7 @@ button.metric-pill {
 .context-modal-header h3 {
   margin: 0;
   font-size: 1.15rem;
-  font-family: Georgia, serif;
+  font-family: inherit;
   font-weight: 700;
   color: var(--text);
   text-align: center;
@@ -1986,4 +1987,126 @@ select option,
   background-color: #0d1624 !important;
   color: #f1f5f9 !important;
 }
+
+/* Class card container, main button and delete button */
+.class-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 8.75rem;
+  padding: 0 !important;
+}
+
+.class-card-click-area {
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 0.95rem;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.class-delete-btn {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 10;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 50%;
+  color: #f87171;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.class-delete-btn:hover {
+  background: rgba(239, 68, 68, 0.16);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+}
+
+.class-delete-btn:active {
+  background: #f87171;
+  color: #000000;
+  transform: scale(0.9);
+}
+
+/* Custom modal list & option styling */
+.mobile-modal-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1.1rem 0;
+}
+
+.mobile-modal-option-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 0.95rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.mobile-modal-option-btn:active {
+  background: rgba(255, 255, 255, 0.06);
+  transform: scale(0.98);
+}
+
+.mobile-modal-option-btn.selected {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: var(--primary);
+}
+
+.mobile-modal-option-btn .option-icon {
+  font-size: 1.25rem;
+  color: var(--muted);
+  width: 1.5rem;
+  text-align: center;
+}
+
+.mobile-modal-option-btn.selected .option-icon {
+  color: var(--primary-2);
+}
+
+.mobile-modal-option-btn .option-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mobile-modal-option-btn .option-details strong {
+  font-size: 0.95rem;
+}
+
+.mobile-modal-option-btn .option-details small {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+.mobile-modal-option-btn .check-icon {
+  font-size: 1.15rem;
+  color: transparent;
+  transition: color 0.15s;
+}
+
+.mobile-modal-option-btn.selected .check-icon {
+  color: var(--primary-2);
+}
+
 

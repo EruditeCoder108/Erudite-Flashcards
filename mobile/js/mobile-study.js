@@ -127,13 +127,16 @@
   }
 
   function libraryUrl() {
-    return '../index.html#library';
+    const fromTab = params.get('from') || 'library';
+    return `../index.html#${fromTab}`;
   }
 
   function studyUrl(setId, reviewDue = false) {
+    const fromTab = params.get('from') || 'library';
     const query = new URLSearchParams({
       setId: String(setId),
-      srs: String(Boolean(reviewDue || state.srsMode))
+      srs: String(Boolean(reviewDue || state.srsMode)),
+      from: fromTab
     });
     if (reviewDue) query.set('reviewDue', 'true');
     return `study.html?${query.toString()}`;

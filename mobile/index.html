@@ -240,18 +240,14 @@
             </span>
             <span class="switch" id="srs-switch"><span></span></span>
           </button>
-          <label class="settings-row settings-select-row" for="mobile-normal-study-order">
+          <button type="button" class="settings-row" data-action="select-study-order">
             <span class="settings-icon"><i class="fas fa-route"></i></span>
             <span>
               <strong>Normal Study Order</strong>
-              <small>Applies to non-SRS decks only</small>
+              <small id="more-study-order-label">Beginning</small>
             </span>
-            <select id="mobile-normal-study-order" class="mobile-settings-select">
-              <option value="forward">Beginning</option>
-              <option value="backward">End</option>
-              <option value="random">Random</option>
-            </select>
-          </label>
+            <i class="fas fa-chevron-right"></i>
+          </button>
           <button type="button" class="settings-row" data-action="export-backup">
             <span class="settings-icon"><i class="fas fa-file-export"></i></span>
             <span><strong>Export Backup</strong><small>Share a full local JSON backup</small></span>
@@ -437,6 +433,42 @@
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="paste-import-cancel">Cancel</button>
         <button type="button" class="mobile-modal-btn confirm" id="paste-import-confirm">Import</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Study Order Selector Modal -->
+  <div class="mobile-modal-overlay hidden" id="study-order-overlay" role="dialog" aria-modal="true" aria-labelledby="study-order-title">
+    <div class="mobile-modal-card">
+      <h3 id="study-order-title" class="modal-title"><i class="fas fa-route"></i> Study Order</h3>
+      <div class="mobile-modal-list">
+        <button type="button" class="mobile-modal-option-btn" data-value="forward">
+          <i class="fas fa-arrow-down-1-9 option-icon"></i>
+          <span class="option-details">
+            <strong>Beginning</strong>
+            <small>Start studying from the first card (Default)</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="backward">
+          <i class="fas fa-arrow-up-9-1 option-icon"></i>
+          <span class="option-details">
+            <strong>End</strong>
+            <small>Start studying from the last card</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="random">
+          <i class="fas fa-shuffle option-icon"></i>
+          <span class="option-details">
+            <strong>Random</strong>
+            <small>Shuffle cards for every study session</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="study-order-cancel">Cancel</button>
       </div>
     </div>
   </div>

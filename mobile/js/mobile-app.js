@@ -98,7 +98,7 @@
     browserList: document.getElementById('browser-list'),
     srsSwitch: document.getElementById('srs-switch'),
     moreSrsLabel: document.getElementById('more-srs-label'),
-    normalStudyOrder: document.getElementById('mobile-normal-study-order'),
+    normalStudyOrder: null,
     bgOpacitySlider: document.getElementById('mobile-bg-opacity'),
     loadingCover: document.getElementById('app-loading-cover'),
     loadingTitle: document.getElementById('app-loading-title'),
@@ -166,10 +166,12 @@
   function persistSrsMode(enabled) {
     state.srsMode = Boolean(enabled);
     localStorage.setItem('srsModeEnabled', String(state.srsMode));
-    window.flashcardStore?.setState?.('srsModeEnabled', state.srsMode).catch(error => {
-      console.error('SRS mode save failed:', error);
-      showToast('Could not save SRS setting');
-    });
+    window.flashcardStore?.setState?.('srsModeEnabled', state.srsMode)
+      .then(() => flushStore(900))
+      .catch(error => {
+        console.error('SRS mode save failed:', error);
+        showToast('Could not save SRS setting');
+      });
   }
 
   function plural(count, singular, pluralText = `${singular}s`) {
@@ -373,6 +375,9 @@
     let streak = 0;
     const cursor = new Date();
     cursor.setHours(0, 0, 0, 0);
+    if (!dayKeys.has(String(cursor.getTime()))) {
+      cursor.setDate(cursor.getDate() - 1);
+    }
     while (dayKeys.has(String(cursor.getTime()))) {
       streak += 1;
       cursor.setDate(cursor.getDate() - 1);
@@ -500,6 +505,11 @@
 
   function setActiveTab(tab) {
     state.activeTab = tab;
+    try {
+      window.history.replaceState(null, null, '#' + tab);
+    } catch (e) {
+      console.warn('[mobile] Could not update hash state:', e);
+    }
     selectors.views.forEach(view => view.classList.toggle('active', view.id === `view-${tab}`));
     selectors.tabs.forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
     setHeader();
@@ -768,21 +778,26 @@
       const extra = sets.length > 4 ? `<span>+${sets.length - 4} more</span>` : '';
       const due = state.srsMode ? sets.reduce((total, set) => total + dueCountForSet(set), 0) : 0;
       return `
-        <button type="button" class="class-card" data-action="open-class" data-class-id="${escapeAttr(classItem.id)}" style="--class-color:${color}">
-          <div class="class-card-content">
-            <div class="class-title-row">
-              <span class="class-icon"><i class="${escapeAttr(iconClass(classItem.icon, 'fa-graduation-cap'))}"></i></span>
-              <div>
-                <h3 class="class-name">${escapeHtml(classItem.name)}</h3>
-                <div class="deck-subline">
-                  <span>${plural(sets.length, 'deck')}</span>
-                  ${state.srsMode ? `<span>${due} due</span>` : ''}
+        <div class="class-card" style="--class-color:${color}; position: relative;">
+          <button type="button" class="class-card-click-area" data-action="open-class" data-class-id="${escapeAttr(classItem.id)}">
+            <div class="class-card-content">
+              <div class="class-title-row">
+                <span class="class-icon"><i class="${escapeAttr(iconClass(classItem.icon, 'fa-graduation-cap'))}"></i></span>
+                <div>
+                  <h3 class="class-name">${escapeHtml(classItem.name)}</h3>
+                  <div class="deck-subline">
+                    <span>${plural(sets.length, 'deck')}</span>
+                    ${state.srsMode ? `<span>${due} due</span>` : ''}
+                  </div>
                 </div>
               </div>
+              <div class="class-preview">${preview || '<span>No decks yet</span>'}${extra}</div>
             </div>
-            <div class="class-preview">${preview || '<span>No decks yet</span>'}${extra}</div>
-          </div>
-        </button>
+          </button>
+          <button type="button" class="class-delete-btn" data-action="delete-class" data-class-id="${escapeAttr(classItem.id)}" aria-label="Delete Class">
+            <i class="fas fa-trash-can"></i>
+          </button>
+        </div>
       `;
     }).join('');
   }
@@ -1535,8 +1550,15 @@
   function renderMore() {
     selectors.srsSwitch?.classList.toggle('on', state.srsMode);
     selectors.moreSrsLabel.textContent = state.srsMode ? 'On - due reviews are scheduled' : 'Off - normal study only';
-    if (selectors.normalStudyOrder) {
-      selectors.normalStudyOrder.value = normalizeNormalStudyOrder(state.settings?.normalStudyOrder);
+    const order = normalizeNormalStudyOrder(state.settings?.normalStudyOrder);
+    const orderLabels = {
+      forward: 'Beginning',
+      backward: 'End',
+      random: 'Random'
+    };
+    const label = document.getElementById('more-study-order-label');
+    if (label) {
+      label.textContent = orderLabels[order] || 'Beginning';
     }
   }
 
@@ -1622,7 +1644,8 @@
       : state.srsMode;
     const query = new URLSearchParams({
       setId: String(setId),
-      srs: String(Boolean(reviewDue || srsMode))
+      srs: String(Boolean(reviewDue || srsMode)),
+      from: state.activeTab || 'library'
     });
     if (reviewDue) query.set('reviewDue', 'true');
     return `mobile/study.html?${query.toString()}`;
@@ -1665,6 +1688,27 @@
     await window.flashcardStore.deleteSet(setId);
     showToast('Deck deleted');
     await refresh();
+  }
+
+  async function deleteClass(classId) {
+    const classItem = state.classes.find(c => String(c.id) === String(classId));
+    if (!classItem) return;
+    const sets = state.sets.filter(set => String(set.classId || '') === String(classId));
+    const deckText = sets.length > 0 
+      ? `\n\nAny decks in this class (${sets.length} total) will be moved to General.`
+      : '';
+    const ok = window.confirm(`Delete the class "${classItem.name}"?${deckText}\nThis cannot be undone.`);
+    if (!ok) return;
+
+    try {
+      await window.flashcardStore.deleteClass(classId);
+      playClick();
+      showToast('Class deleted');
+      await refresh();
+    } catch (error) {
+      console.error('[mobile] Could not delete class:', error);
+      showToast('Could not delete class');
+    }
   }
 
   // ─── Custom Modal Helpers ──────────────────────────────────────────────
@@ -1753,6 +1797,64 @@
       selectors.draftRestoreContinue?.addEventListener('click', onContinue);
       selectors.draftRestoreDiscard?.addEventListener('click', onDiscard);
     });
+  }
+
+  function openStudyOrderModal() {
+    const overlay = document.getElementById('study-order-overlay');
+    const cancelBtn = document.getElementById('study-order-cancel');
+    if (!overlay) return;
+
+    const currentOrder = normalizeNormalStudyOrder(state.settings?.normalStudyOrder);
+    const optionButtons = Array.from(overlay.querySelectorAll('.mobile-modal-option-btn'));
+    
+    // Highlight the current active choice
+    optionButtons.forEach(btn => {
+      btn.classList.toggle('selected', btn.dataset.value === currentOrder);
+    });
+
+    overlay.classList.remove('hidden');
+
+    function close() {
+      overlay.classList.add('hidden');
+      cleanup();
+    }
+
+    async function handleSelect(event) {
+      const btn = event.target.closest('[data-value]');
+      if (!btn) return;
+      
+      const nextOrder = btn.dataset.value;
+      state.settings = {
+        ...(state.settings || {}),
+        normalStudyOrder: nextOrder
+      };
+      
+      playClick();
+      close();
+      renderMore();
+
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+        showToast(
+          nextOrder === 'forward'
+            ? 'Normal study starts at the beginning'
+            : nextOrder === 'backward'
+              ? 'Normal study starts at the end'
+              : 'Normal study randomizes every session'
+        );
+      } catch (error) {
+        console.error('Could not save study order:', error);
+        showToast('Could not save study order');
+      }
+    }
+
+    function cleanup() {
+      optionButtons.forEach(btn => btn.removeEventListener('click', handleSelect));
+      cancelBtn?.removeEventListener('click', close);
+    }
+
+    optionButtons.forEach(btn => btn.addEventListener('click', handleSelect));
+    cancelBtn?.addEventListener('click', close);
   }
 
   /**
@@ -2172,6 +2274,12 @@
         break;
       case 'delete-set':
         await deleteSet(target.dataset.setId);
+        break;
+      case 'delete-class':
+        await deleteClass(target.dataset.classId);
+        break;
+      case 'select-study-order':
+        openStudyOrderModal();
         break;
       case 'study-set':
         await flushStore(1200);
@@ -2599,27 +2707,7 @@
       renderBrowser();
     });
 
-    selectors.normalStudyOrder?.addEventListener('change', async event => {
-      const nextOrder = normalizeNormalStudyOrder(event.target.value);
-      state.settings = {
-        ...(state.settings || {}),
-        normalStudyOrder: nextOrder
-      };
-      renderMore();
-      try {
-        await window.flashcardStore.saveSettings(state.settings);
-        showToast(
-          nextOrder === 'forward'
-            ? 'Normal study starts at the beginning'
-            : nextOrder === 'backward'
-              ? 'Normal study starts at the end'
-              : 'Normal study randomizes every session'
-        );
-      } catch (error) {
-        console.error('Could not save study order:', error);
-        showToast('Could not save study order');
-      }
-    });
+
 
     selectors.createForm?.addEventListener('input', event => {
       if (!event.target.closest('#view-create')) return;
@@ -2758,13 +2846,37 @@
 
     document.addEventListener('selectionchange', scheduleFormatStateUpdate);
 
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden && state.activeTab === 'create') {
-        saveCreatorDraft({ persistStore: true, flush: true, flushTimeout: 900 }).catch(() => {});
-        return;
+    const handleAppPause = async () => {
+      if (state.activeTab === 'create') {
+        await saveCreatorDraft({ persistStore: true, flush: true, flushTimeout: 900 }).catch(() => {});
+      } else {
+        await flushStore(900).catch(() => {});
       }
-      if (!document.hidden && state.activeTab !== 'create') refresh();
+    };
+
+    const handleAppResume = async () => {
+      if (state.activeTab !== 'create') {
+        await refresh();
+      }
+    };
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        handleAppPause().catch(() => {});
+      } else {
+        handleAppResume().catch(() => {});
+      }
     });
+
+    if (window.Capacitor?.Plugins?.App) {
+      window.Capacitor.Plugins.App.addListener('appStateChange', ({ isActive }) => {
+        if (!isActive) {
+          handleAppPause().catch(() => {});
+        } else {
+          handleAppResume().catch(() => {});
+        }
+      });
+    }
 
     // Pointer gesture listeners for long-press on library list
     if (selectors.libraryList) {
