@@ -1151,10 +1151,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             normalStudyOrderSelect.value = userSettings.normalStudyOrder || 'forward';
         }
 
-        if (userSettings.fonts) {
+        if (userSettings.fonts && contentFontSelect) {
             if (userSettings.fonts.content.startsWith('custom-')) {
                 contentFontSelect.value = 'custom';
-                customContentFontDiv.classList.remove('hidden');
+                if (customContentFontDiv) customContentFontDiv.classList.remove('hidden');
             } else {
                 contentFontSelect.value = userSettings.fonts.content;
             }
@@ -1229,10 +1229,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (Number.isFinite(opacityVal)) userSettings.cardBgOpacity = opacityVal;
         }
 
-        if (contentFontSelect.value === 'custom' && customFonts.content) {
-            userSettings.fonts.content = 'custom-' + customFonts.content.name;
-        } else {
-            userSettings.fonts.content = contentFontSelect.value;
+        if (contentFontSelect) {
+            if (contentFontSelect.value === 'custom' && customFonts.content) {
+                userSettings.fonts.content = 'custom-' + customFonts.content.name;
+            } else {
+                userSettings.fonts.content = contentFontSelect.value;
+            }
         }
         
         if (window.saveFlashcardSettings) {
@@ -1254,9 +1256,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (appThemeSelect) appThemeSelect.value = defaultSettings.theme;
         if (normalStudyOrderSelect) normalStudyOrderSelect.value = defaultSettings.normalStudyOrder || 'forward';
-        contentFontSelect.value = defaultSettings.fonts.content;
-        customContentFontDiv.classList.add('hidden');
-        customFonts = { content: null };
+        if (contentFontSelect) {
+            contentFontSelect.value = defaultSettings.fonts.content;
+            if (customContentFontDiv) customContentFontDiv.classList.add('hidden');
+            customFonts = { content: null };
+        }
 
         if (window.saveFlashcardSettings) {
             await window.saveFlashcardSettings(defaultSettings);
@@ -1863,16 +1867,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (confirmDeckResetBtn) confirmDeckResetBtn.addEventListener('click', executeDeckReset);
 
     // Font dropdowns
-    contentFontSelect.addEventListener('change', function() {
-        if (this.value === 'custom') {
-            customContentFontDiv.classList.remove('hidden');
-        } else {
-            customContentFontDiv.classList.add('hidden');
-        }
-    });
+    if (contentFontSelect) {
+        contentFontSelect.addEventListener('change', function() {
+            if (this.value === 'custom') {
+                if (customContentFontDiv) customContentFontDiv.classList.remove('hidden');
+            } else {
+                if (customContentFontDiv) customContentFontDiv.classList.add('hidden');
+            }
+        });
+    }
     
     // Font file uploads
-    contentFontUpload.addEventListener('change', (e) => handleFontUpload(e, 'content'));
+    if (contentFontUpload) {
+        contentFontUpload.addEventListener('change', (e) => handleFontUpload(e, 'content'));
+    }
     
     // Close settings when clicking outside
     settingsModal.addEventListener('click', function(e) {

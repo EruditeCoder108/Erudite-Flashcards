@@ -269,24 +269,17 @@
                 <h2><i class="fas fa-sliders-h"></i> Settings</h2>
                 
                 <div class="settings-section">
-                    <h3>Font Settings</h3>
-                    
-                    <div class="font-settings-group">
-                        <label>Flashcard Content Font</label>
-                        <div class="font-selection">
-                            <select id="content-font" class="font-dropdown">
-                                <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans (Modern)</option>
-                                <option value="'Georgia', serif">Georgia (Serif)</option>
-                                <option value="'Arial', sans-serif">Arial (Classic Sans)</option>
-                                <option value="'Courier New', monospace">Courier New (Monospace)</option>
-                                <option value="'Verdana', sans-serif">Verdana (Clear Sans)</option>
-                                <option value="custom">Custom Font...</option>
+                    <h3>Appearance</h3>
+                    <div class="settings-grid">
+                        <label>
+                            App Theme
+                            <select id="app-theme" class="font-dropdown">
+                                <option value="dark">Dark</option>
+                                <option value="light">Light</option>
+                                <option value="high-contrast">Black and White</option>
+                                <option value="blue-gray">Grayish Blue</option>
                             </select>
-                            <div id="custom-content-font" class="custom-font-upload hidden">
-                                <input type="file" id="content-font-upload" accept=".ttf,.otf" />
-                                <p class="font-upload-note">Upload TTF or OTF file</p>
-                            </div>
-                        </div>
+                        </label>
                     </div>
                 </div>
                 

@@ -20,9 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const closeSettingsBtn = document.getElementById('close-settings-btn');
     const saveSettingsBtn = document.getElementById('save-settings');
     const resetSettingsBtn = document.getElementById('reset-settings');
-    const contentFontSelect = document.getElementById('content-font');
-    const customContentFontDiv = document.getElementById('custom-content-font');
-    const contentFontUpload = document.getElementById('content-font-upload');
+    const appThemeSelect = document.getElementById('app-theme');
 
     // Navigation elements
     const classStat = document.getElementById('class-stat');
@@ -500,99 +498,50 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function loadSettingsValues() {
-        // Load saved settings from localStorage
-        const defaultSettings = {
-            fonts: {
-                content: "'Plus Jakarta Sans', sans-serif"
-            }
-        };
-        
-        // Load saved settings or use defaults
         const savedSettings = JSON.parse(localStorage.getItem('flashcards-settings') || '{}');
-        const userSettings = { ...defaultSettings, ...savedSettings };
-        
-        // Set font dropdown values
-        if (userSettings.fonts) {
-            if (userSettings.fonts.content.startsWith('custom-')) {
-                contentFontSelect.value = 'custom';
-                customContentFontDiv.classList.remove('hidden');
-            } else {
-                contentFontSelect.value = userSettings.fonts.content;
-            }
+        if (appThemeSelect) {
+            appThemeSelect.value = savedSettings.theme || 'dark';
         }
-        
     }
     
-    function saveSettings() {
-        // Get saved settings to update or use defaults
-        const defaultSettings = {
-            fonts: {
-                content: "'Plus Jakarta Sans', sans-serif"
-            }
-        };
-        
-        // Load existing settings if available
+    async function saveSettings() {
         const existingSettings = JSON.parse(localStorage.getItem('flashcards-settings') || '{}');
-        const userSettings = { ...defaultSettings, ...existingSettings };
+        const userSettings = { ...existingSettings };
         
-        // Update font settings
-        if (contentFontSelect.value === 'custom' && customFonts.content) {
-            userSettings.fonts.content = 'custom-' + customFonts.content.name;
-        } else {
-            userSettings.fonts.content = contentFontSelect.value;
+        if (appThemeSelect) {
+            userSettings.theme = appThemeSelect.value;
         }
         
-        // Save to localStorage
-        localStorage.setItem('flashcards-settings', JSON.stringify(userSettings));
-        
-        // Apply settings using the functions from settings.js
-        if (window.loadAndApplySettings) {
-            window.loadAndApplySettings();
+        if (window.saveFlashcardSettings) {
+            await window.saveFlashcardSettings(userSettings);
         } else {
-            // Fallback implementation if settings.js functions are not available
-            const fontStyle = document.getElementById('custom-fonts') || document.createElement('style');
-            fontStyle.id = 'custom-fonts';
-            document.head.appendChild(fontStyle);
-            
-            const selectedFont = contentFontSelect.value;
-            fontStyle.textContent = `
-                .flashcard .card-face .term-text,
-                .flashcard .card-face .definition-text {
-                    font-family: ${selectedFont} !important;
-                }
-            `;
+            localStorage.setItem('flashcards-settings', JSON.stringify(userSettings));
+            localStorage.setItem('flashcards-theme', userSettings.theme);
+            if (window.loadAndApplySettings) {
+                window.loadAndApplySettings(userSettings);
+            }
         }
         
-        // Show feedback
         showToast('Settings saved successfully', 'success');
         hideSettingsModal();
     }
     
-    function resetSettings() {
-        // Default settings
-        const defaultSettings = {
-            fonts: {
-                content: "'Plus Jakarta Sans', sans-serif"
+    async function resetSettings() {
+        const existingSettings = JSON.parse(localStorage.getItem('flashcards-settings') || '{}');
+        const userSettings = { ...existingSettings, theme: 'dark' };
+        
+        if (appThemeSelect) {
+            appThemeSelect.value = 'dark';
+        }
+        
+        if (window.saveFlashcardSettings) {
+            await window.saveFlashcardSettings(userSettings);
+        } else {
+            localStorage.setItem('flashcards-settings', JSON.stringify(userSettings));
+            localStorage.setItem('flashcards-theme', 'dark');
+            if (window.loadAndApplySettings) {
+                window.loadAndApplySettings(userSettings);
             }
-        };
-        
-        // Update UI
-        contentFontSelect.value = defaultSettings.fonts.content;
-        
-        // Hide custom font uploads
-        customContentFontDiv.classList.add('hidden');
-        
-        // Clear custom fonts
-        customFonts = {
-            content: null
-        };
-        
-        // Apply default settings
-        localStorage.setItem('flashcards-settings', JSON.stringify(defaultSettings));
-        
-        // Apply settings using the functions from settings.js
-        if (typeof loadAndApplySettings === 'function') {
-            loadAndApplySettings();
         }
         
         showToast('Settings reset to default', 'info');
@@ -659,17 +608,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     saveSettingsBtn.addEventListener('click', saveSettings);
     resetSettingsBtn.addEventListener('click', resetSettings);
     
-    // Font dropdowns
-    contentFontSelect.addEventListener('change', function() {
-        if (this.value === 'custom') {
-            customContentFontDiv.classList.remove('hidden');
-        } else {
-            customContentFontDiv.classList.add('hidden');
-        }
-    });
-    
-    // Font file uploads
-    contentFontUpload.addEventListener('change', (e) => handleFontUpload(e, 'content'));
+    // App theme dynamic preview
+    if (appThemeSelect) {
+        appThemeSelect.addEventListener('change', () => {
+            document.documentElement.setAttribute('data-theme', appThemeSelect.value);
+        });
+    }
     
     // Close settings when clicking outside
     settingsModal.addEventListener('click', function(e) {

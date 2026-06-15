@@ -461,8 +461,8 @@
                 <h2><i class="fas fa-sliders-h"></i> Settings</h2>
                 
                 <div class="settings-section">
-                    <h3>Appearance</h3>
-                    <div class="settings-grid">
+                    <h3>General Settings</h3>
+                    <div class="settings-grid" style="margin-bottom: 0.75rem;">
                         <label>
                             App Theme
                             <select id="app-theme" class="font-dropdown">
@@ -472,35 +472,6 @@
                                 <option value="blue-gray">Grayish Blue</option>
                             </select>
                         </label>
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h3>Font Settings</h3>
-                    
-                    <div class="font-settings-group">
-                        <label>Flashcard Content Font</label>
-                        <div class="font-selection">
-                            <select id="content-font" class="font-dropdown">
-                                <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans (Modern)</option>
-                                <option value="'Georgia', serif">Georgia (Serif)</option>
-                                <option value="'Arial', sans-serif">Arial (Classic Sans)</option>
-                                <option value="'Courier New', monospace">Courier New (Monospace)</option>
-                                <option value="'Verdana', sans-serif">Verdana (Clear Sans)</option>
-                                <option value="custom">Custom Font...</option>
-                            </select>
-                            <div id="custom-content-font" class="custom-font-upload hidden">
-                                <input type="file" id="content-font-upload" accept=".ttf,.otf" />
-                                <p class="font-upload-note">Upload TTF or OTF file</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h3>Study Behavior</h3>
-                    <p class="settings-note">Choose the default order for normal study. SRS review always uses due scheduling.</p>
-                    <div class="settings-grid">
                         <label>
                             Normal Study Order
                             <select id="normal-study-order" class="font-dropdown">
@@ -510,13 +481,18 @@
                             </select>
                         </label>
                     </div>
+                    <label style="color: var(--text-secondary); font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                        Card Background Opacity
+                        <div style="display:flex;align-items:center;gap:0.75rem;margin-top:0.25rem;">
+                            <input type="range" id="card-bg-opacity" min="0" max="1" step="0.05" value="0.32" style="flex:1;">
+                            <span id="card-bg-opacity-label" style="font-size:0.85rem;min-width:2.5rem;color:var(--text-primary);">0.32</span>
+                        </div>
+                    </label>
                 </div>
 
                 <div class="settings-section">
                     <h3>Cursor Style</h3>
-                    <p class="settings-note">Choose how the mouse cursor looks across the app.</p>
-                    <div class="cursor-option-group" id="cursor-option-group">
-
+                    <div class="cursor-option-group" id="cursor-option-group" style="margin-top: 0.25rem;">
                         <label class="cursor-option">
                             <input type="radio" name="cursor-style" value="default">
                             <span class="cursor-option-icon"><i class="fas fa-arrow-pointer"></i></span>
@@ -535,29 +511,14 @@
                             <input type="radio" name="cursor-style" value="context">
                             <span class="cursor-option-icon"><i class="fas fa-crosshairs"></i></span>
                             <span class="cursor-option-label">Context-Aware</span>
-                            <span class="cursor-option-desc">Dot and ring, adapts to context</span>
-                        </label>
-
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h3>Card Background Opacity</h3>
-                    <p class="settings-note">Controls the opacity of background images on study cards (0 = transparent, 1 = opaque).</p>
-                    <div class="settings-grid">
-                        <label>
-                            Background Opacity
-                            <div style="display:flex;align-items:center;gap:0.75rem;">
-                                <input type="range" id="card-bg-opacity" min="0" max="1" step="0.05" value="0.32" style="flex:1;">
-                                <span id="card-bg-opacity-label" style="font-size:0.85rem;min-width:2.5rem;">0.32</span>
-                            </div>
+                            <span class="cursor-option-desc">Dot and ring, adapts context</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="settings-section">
-                    <h3>Copy-Paste Import &amp; Export</h3>
-                    <p class="settings-note">Import from or export to clipboard text with custom separators.</p>
+                    <h3>Data &amp; Backups</h3>
+                    <p class="settings-note" style="margin-bottom: 0.50rem;">Import/Export from clipboard or manage local backups and CSV/TSV spreadsheets.</p>
                     <div class="backup-actions">
                         <button id="copy-paste-export-btn" class="secondary-button">
                             <i class="fas fa-copy"></i> Copy Export
@@ -565,13 +526,6 @@
                         <button id="copy-paste-import-btn" class="secondary-button">
                             <i class="fas fa-clipboard"></i> Open Import
                         </button>
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h3>Local Backup</h3>
-                    <p class="settings-note">Export a full local backup before major edits, or restore from a previous backup file.</p>
-                    <div class="backup-actions">
                         <button id="export-backup" class="secondary-button">
                             <i class="fas fa-file-export"></i> Export Backup
                         </button>

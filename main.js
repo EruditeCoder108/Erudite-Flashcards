@@ -1113,25 +1113,38 @@ async function createWindow() {
   }
 }
 
-app.whenReady().then(async () => {
-  await ensureDataDirs();
-  await initializeFlashcardStore();
-  createAppMenu();
+const gotTheLock = app.requestSingleInstanceLock();
 
-  session.defaultSession.setPermissionRequestHandler((webContents, permission, callback) => {
-    callback(permission === 'media');
+if (!gotTheLock) {
+  app.quit();
+} else {
+  app.on('second-instance', () => {
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
+    }
   });
 
-  await createWindow();
+  app.whenReady().then(async () => {
+    await ensureDataDirs();
+    await initializeFlashcardStore();
+    createAppMenu();
 
-  app.on('activate', async () => {
-    if (BrowserWindow.getAllWindows().length === 0) await createWindow();
+    session.defaultSession.setPermissionRequestHandler((webContents, permission, callback) => {
+      callback(permission === 'media');
+    });
+
+    await createWindow();
+
+    app.on('activate', async () => {
+      if (BrowserWindow.getAllWindows().length === 0) await createWindow();
+    });
   });
-});
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
-});
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') app.quit();
+  });
+}
 
 ipcMain.handle('flashcards:listSets', listSets);
 ipcMain.handle('flashcards:listSetsMeta', () => getFlashcardStore().listSetsMeta());

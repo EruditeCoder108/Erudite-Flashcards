@@ -1620,25 +1620,25 @@ body {
 .settings-section {
     background: rgba(31, 41, 55, 0.5);
     border-radius: var(--radius-md);
-    padding: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    padding: 0.85rem var(--spacing-md);
+    margin-bottom: 0.85rem;
     border: 1px solid var(--border);
 }
 
 .settings-section h3 {
     color: var(--text-primary);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    margin-bottom: var(--spacing-md);
-    padding-bottom: var(--spacing-xs);
+    margin-bottom: 0.65rem;
+    padding-bottom: 0.25rem;
     border-bottom: 1px solid var(--border);
 }
 
 .settings-note {
     color: var(--text-secondary);
-    font-size: 0.92rem;
-    line-height: 1.5;
-    margin: 0 0 var(--spacing-md);
+    font-size: 0.82rem;
+    line-height: 1.4;
+    margin: 0 0 0.5rem;
 }
 
 .backup-actions {
@@ -1679,6 +1679,55 @@ body {
     color: var(--text-primary);
     min-height: 2.35rem;
     padding: 0.55rem 0.7rem;
+}
+
+/* Custom opacity range slider style to prevent visual gaps and add custom thumb style */
+input[type="range"]#card-bg-opacity {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border) !important;
+    outline: none;
+    border: none !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0;
+    cursor: pointer;
+}
+
+input[type="range"]#card-bg-opacity::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary, #7C3AED) !important;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.1s ease;
+    border: none !important;
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
+}
+
+input[type="range"]#card-bg-opacity::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: var(--primary-light, #9F67FF) !important;
+}
+
+input[type="range"]#card-bg-opacity::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border: none !important;
+    border-radius: 50%;
+    background: var(--primary, #7C3AED) !important;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
+}
+
+input[type="range"]#card-bg-opacity::-moz-range-thumb:hover {
+    transform: scale(1.2);
 }
 
 /* Card Browser */

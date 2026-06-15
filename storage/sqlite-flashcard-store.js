@@ -34,6 +34,7 @@ class SqliteFlashcardStore {
     this.dbPath = path.join(this.dataDir, 'erudite-flashcards.sqlite');
     this.normalizers = options.normalizers;
     this.db = null;
+    this.persistPromise = Promise.resolve();
   }
 
   async init() {
@@ -375,20 +376,23 @@ class SqliteFlashcardStore {
   }
 
   async persist() {
-    const bytes = this.db.export();
-    const temp = `${this.dbPath}.${process.pid}.${Date.now()}.tmp`;
-    await fs.writeFile(temp, Buffer.from(bytes));
-    try {
-      await fs.rename(temp, this.dbPath);
-    } catch (error) {
-      if (error && (error.code === 'EEXIST' || error.code === 'EPERM')) {
-        await fs.copyFile(temp, this.dbPath);
-        await fs.rm(temp, { force: true });
-        return;
+    this.persistPromise = this.persistPromise.then(async () => {
+      const bytes = this.db.export();
+      const temp = `${this.dbPath}.${process.pid}.${Date.now()}.${Math.random().toString(36).substring(2, 7)}.tmp`;
+      await fs.writeFile(temp, Buffer.from(bytes));
+      try {
+        await fs.rename(temp, this.dbPath);
+      } catch (error) {
+        if (error && (error.code === 'EEXIST' || error.code === 'EPERM' || error.code === 'EBUSY')) {
+          await fs.copyFile(temp, this.dbPath);
+          await fs.rm(temp, { force: true });
+          return;
+        }
+        await fs.rm(temp, { force: true }).catch(() => {});
+        throw error;
       }
-      await fs.rm(temp, { force: true }).catch(() => {});
-      throw error;
-    }
+    });
+    return this.persistPromise;
   }
 
   begin() {
