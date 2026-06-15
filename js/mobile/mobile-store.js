@@ -1217,6 +1217,32 @@
     });
   }
 
+  async function resetDeckSRS(setId, deleteHistory) {
+    await ensureReady();
+    const cardRows = rows('SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL', [String(setId)]);
+
+    for (const cardRow of cardRows) {
+      const card = hydrateCardRow(cardRow);
+      card.srs = undefined;
+      if (deleteHistory) {
+        card.reviewHistory = [];
+      }
+
+      run(
+        'UPDATE cards SET srs_json = NULL, review_history_json = ?, payload_json = ?, last_modified = ? WHERE id = ?',
+        [
+          jsonString(card.reviewHistory),
+          jsonString(card),
+          Date.now(),
+          String(card.id)
+        ]
+      );
+    }
+
+    await persist();
+    return true;
+  }
+
   async function exportBackup() {
     const payload = await createBackupPayload();
     const fileName = `erudite-flashcards-backup-${new Date().toISOString().slice(0, 10)}.json`;
@@ -1332,6 +1358,7 @@
     saveSet,
     replaceSets,
     deleteSet,
+    resetDeckSRS,
     listClasses,
     saveClass,
     deleteClass,

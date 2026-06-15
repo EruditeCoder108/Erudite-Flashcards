@@ -1322,6 +1322,25 @@ body {
     transform: translateY(-2px);
 }
 
+.warning-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: #d97706;
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.warning-button:hover {
+    background: #b45309;
+    transform: translateY(-2px);
+}
+
 /* Utilities */
 .hidden {
     display: none !important;

@@ -1424,6 +1424,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Danger Zone Reset SRS functions
     const resetDeckSrsBtn = document.getElementById('reset-deck-srs-btn');
+    const resetDeckProgressBtn = document.getElementById('reset-deck-progress-btn');
     const deckResetConfirmModal = document.getElementById('deck-reset-confirm-modal');
     const closeDeckResetConfirmBtn = document.getElementById('close-deck-reset-confirm');
     const cancelDeckResetConfirmBtn = document.getElementById('cancel-deck-reset-confirm');
@@ -1865,6 +1866,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (closeDeckResetConfirmBtn) closeDeckResetConfirmBtn.addEventListener('click', hideDeckResetConfirmModal);
     if (cancelDeckResetConfirmBtn) cancelDeckResetConfirmBtn.addEventListener('click', hideDeckResetConfirmModal);
     if (confirmDeckResetBtn) confirmDeckResetBtn.addEventListener('click', executeDeckReset);
+
+    if (resetDeckProgressBtn) {
+        resetDeckProgressBtn.addEventListener('click', async () => {
+            if (!setForDeckSettings) return;
+            const setId = setForDeckSettings.id;
+            if (confirm("Are you sure you want to reset the normal (non-SRS) study progress for this deck? This will reset the card navigation index to the beginning.")) {
+                try {
+                    const saved = await window.flashcardStore.getProgress(setId);
+                    if (saved) {
+                        saved.cardIndex = 0;
+                        saved.normalModeIndex = 0;
+                        saved.normalForwardIndex = 0;
+                        saved.normalBackwardIndex = 0;
+                        if (saved.normalProgress) {
+                            saved.normalProgress.forward = 0;
+                            saved.normalProgress.backward = 0;
+                        }
+                        if (saved.normal) {
+                            saved.normal.forwardIndex = 0;
+                            saved.normal.backwardIndex = 0;
+                        }
+                        await window.flashcardStore.saveProgress(setId, saved);
+                    }
+                    showToast('Normal study progress reset successfully', 'success');
+                    hideDeckSettingsModal();
+                } catch (error) {
+                    console.error('Error resetting progress:', error);
+                    showToast('Could not reset study progress', 'error');
+                }
+            }
+        });
+    }
 
     // Font dropdowns
     if (contentFontSelect) {

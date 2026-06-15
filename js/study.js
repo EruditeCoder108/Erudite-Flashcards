@@ -1037,7 +1037,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         studyArea.addEventListener('pointerdown', (event) => {
             if (event.pointerType === 'touch') return;
             if (event.button !== undefined && event.button !== 0) return;
-            if (isInteractiveTarget(event.target)) return;
+            if (isInteractiveTarget(event.target) || event.target.closest('#prev-btn, #next-btn, .nav-button')) return;
+
+            // Prevent starting swipe gestures near the navigation buttons
+            const prevRect = prevBtn.getBoundingClientRect();
+            const nextRect = nextBtn.getBoundingClientRect();
+            const margin = 15;
+            const inPrev = (
+                event.clientX >= prevRect.left - margin &&
+                event.clientX <= prevRect.right + margin &&
+                event.clientY >= prevRect.top - margin &&
+                event.clientY <= prevRect.bottom + margin
+            );
+            const inNext = (
+                event.clientX >= nextRect.left - margin &&
+                event.clientX <= nextRect.right + margin &&
+                event.clientY >= nextRect.top - margin &&
+                event.clientY <= nextRect.bottom + margin
+            );
+            if (inPrev || inNext) return;
+
             pointerStart = {
                 id: event.pointerId,
                 x: event.clientX,

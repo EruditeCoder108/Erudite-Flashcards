@@ -276,6 +276,22 @@
             </span>
             <input type="range" id="mobile-bg-opacity" class="mobile-opacity-slider" min="0" max="1" step="0.05" value="0.32">
           </label>
+          <div class="settings-row settings-input-row">
+            <span class="settings-icon"><i class="fas fa-divide"></i></span>
+            <span style="flex: 1;">
+              <strong>Import Term Separator</strong>
+              <small>Separates term and definition (e.g. ; or \t)</small>
+            </span>
+            <input type="text" id="mobile-import-term-sep" class="mobile-settings-input" value=";" style="width: 3.5rem; text-align: center; background: var(--theme-input, rgba(255, 255, 255, 0.05)); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-family: inherit; padding: 0.25rem;">
+          </div>
+          <div class="settings-row settings-input-row">
+            <span class="settings-icon"><i class="fas fa-grip-lines"></i></span>
+            <span style="flex: 1;">
+              <strong>Import Card Separator</strong>
+              <small>Separates distinct cards (e.g. @ or \n)</small>
+            </span>
+            <input type="text" id="mobile-import-card-sep" class="mobile-settings-input" value="@" style="width: 3.5rem; text-align: center; background: var(--theme-input, rgba(255, 255, 255, 0.05)); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-family: inherit; padding: 0.25rem;">
+          </div>
           <button type="button" class="settings-row" data-action="open-browser">
             <span class="settings-icon"><i class="fas fa-table-list"></i></span>
             <span><strong>Card Browser</strong><small>Advanced desktop-style card table</small></span>
@@ -335,6 +351,14 @@
             <i class="fas fa-square-check"></i>
             <span>Select Deck</span>
           </button>
+          <button type="button" class="context-option-row reset-progress" id="context-opt-reset-progress">
+            <i class="fas fa-undo"></i>
+            <span>Reset Progress</span>
+          </button>
+          <button type="button" class="context-option-row delete" id="context-opt-reset-srs">
+            <i class="fas fa-trash-restore"></i>
+            <span>Reset SRS Data</span>
+          </button>
           <button type="button" class="context-option-row cancel" id="context-opt-cancel">
             <i class="fas fa-xmark"></i>
             <span>Cancel</span>
@@ -351,6 +375,17 @@
         </div>
         <div class="context-modal-body" id="class-select-options">
           <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </div>
+    <!-- Reusable Mobile Confirmation Modal (replaces window.confirm) -->
+    <div class="mobile-modal-overlay hidden" id="mobile-confirm-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-confirm-title">
+      <div class="mobile-modal-card">
+        <h3 id="mobile-confirm-title"><i class="fas fa-exclamation-triangle" style="color: #f87171;"></i> Confirm Action</h3>
+        <p class="mobile-modal-hint" id="mobile-confirm-message" style="color: var(--text); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.5;"></p>
+        <div class="mobile-modal-actions">
+          <button type="button" class="mobile-modal-btn cancel" id="mobile-confirm-cancel">Cancel</button>
+          <button type="button" class="mobile-modal-btn confirm" id="mobile-confirm-ok">Confirm</button>
         </div>
       </div>
     </div>

@@ -100,6 +100,8 @@
     moreSrsLabel: document.getElementById('more-srs-label'),
     normalStudyOrder: null,
     bgOpacitySlider: document.getElementById('mobile-bg-opacity'),
+    importTermSepInput: document.getElementById('mobile-import-term-sep'),
+    importCardSepInput: document.getElementById('mobile-import-card-sep'),
     loadingCover: document.getElementById('app-loading-cover'),
     loadingTitle: document.getElementById('app-loading-title'),
     loadingCopy: document.getElementById('app-loading-copy'),
@@ -1195,20 +1197,21 @@
   }
 
   function parseBulkCards(text) {
+    const termSep = parseSeparator(state.settings?.importTermSep || ';');
+    const cardSep = parseSeparator(state.settings?.importCardSep || '@');
+
     return String(text || '')
-      .split(/\r?\n+/)
-      .map(line => line.trim())
-      .filter(Boolean)
-      .map(line => {
-        const separator = line.includes(';') ? ';' : (line.includes('\t') ? '\t' : null);
-        if (!separator) return null;
-        const [term, ...rest] = line.split(separator);
-        const definition = rest.join(separator).trim();
-        if (!term.trim() || !definition) return null;
+      .split(cardSep)
+      .map(chunk => {
+        const idx = chunk.indexOf(termSep);
+        if (idx < 0) return null;
+        const term = chunk.slice(0, idx).trim();
+        const definition = chunk.slice(idx + termSep.length).trim();
+        if (!term && !definition) return null;
         return {
           ...emptyCreatorCard(),
           term: escapeHtml(term.trim()),
-          definition: escapeHtml(definition)
+          definition: escapeHtml(definition.trim())
         };
       })
       .filter(Boolean);
@@ -1680,10 +1683,124 @@
     await refresh();
   }
 
+  function showMobileConfirm({ title, message, okText = 'Delete', cancelText = 'Cancel', isDanger = true }) {
+    return new Promise((resolve) => {
+      const overlay = document.getElementById('mobile-confirm-overlay');
+      const titleEl = document.getElementById('mobile-confirm-title');
+      const msgEl = document.getElementById('mobile-confirm-message');
+      const cancelBtn = document.getElementById('mobile-confirm-cancel');
+      const okBtn = document.getElementById('mobile-confirm-ok');
+
+      if (!overlay || !titleEl || !msgEl || !cancelBtn || !okBtn) {
+        resolve(false);
+        return;
+      }
+
+      titleEl.innerHTML = `<i class="fas fa-exclamation-triangle" style="color: ${isDanger ? '#f87171' : '#f59e0b'}; margin-right: 0.5rem;"></i> ${title}`;
+      msgEl.textContent = message;
+      okBtn.textContent = okText;
+      cancelBtn.textContent = cancelText;
+
+      if (isDanger) {
+        okBtn.classList.add('danger');
+      } else {
+        okBtn.classList.remove('danger');
+      }
+
+      overlay.classList.remove('hidden');
+
+      function cleanUp() {
+        cancelBtn.removeEventListener('click', onCancel);
+        okBtn.removeEventListener('click', onOk);
+        overlay.classList.add('hidden');
+      }
+
+      function onCancel() {
+        if (typeof playClick === 'function') playClick();
+        cleanUp();
+        resolve(false);
+      }
+
+      function onOk() {
+        if (typeof playClick === 'function') playClick();
+        cleanUp();
+        resolve(true);
+      }
+
+      cancelBtn.addEventListener('click', onCancel);
+      okBtn.addEventListener('click', onOk);
+    });
+  }
+
+  async function resetNonSrsProgress(setId) {
+    const ok = await showMobileConfirm({
+      title: 'Reset Progress',
+      message: 'Are you sure you want to reset the normal (non-SRS) study progress for this deck? This will reset the card navigation index to the beginning.',
+      okText: 'Reset',
+      isDanger: false
+    });
+    if (!ok) return;
+
+    try {
+      const saved = await window.flashcardStore.getProgress(setId);
+      if (saved) {
+        saved.cardIndex = 0;
+        saved.normalModeIndex = 0;
+        saved.normalForwardIndex = 0;
+        saved.normalBackwardIndex = 0;
+        if (saved.normalProgress) {
+          saved.normalProgress.forward = 0;
+          saved.normalProgress.backward = 0;
+        }
+        if (saved.normal) {
+          saved.normal.forwardIndex = 0;
+          saved.normal.backwardIndex = 0;
+        }
+        await window.flashcardStore.saveProgress(setId, saved);
+      }
+      showToast('Normal study progress reset');
+      await refresh();
+    } catch (error) {
+      console.error('Error resetting progress:', error);
+      showToast('Could not reset study progress');
+    }
+  }
+
+  async function executeDeckSrsReset(setId) {
+    const deleteHistory = await showMobileConfirm({
+      title: 'Delete History?',
+      message: 'Do you want to delete the review history as well? (Select Delete History to clear logs, or Keep History to retain stats)',
+      okText: 'Delete History',
+      cancelText: 'Keep History',
+      isDanger: true
+    });
+    const ok = await showMobileConfirm({
+      title: 'Reset SRS Data',
+      message: 'Are you sure you want to reset the SRS scheduling data for this deck? This will make all cards behave like new cards again. Card content will not be modified.',
+      okText: 'Reset',
+      isDanger: true
+    });
+    if (!ok) return;
+
+    try {
+      await window.flashcardStore.resetDeckSRS(setId, deleteHistory);
+      showToast('SRS scheduling reset successfully');
+      await refresh();
+    } catch (error) {
+      console.error('Error resetting SRS data:', error);
+      showToast('Could not reset SRS data');
+    }
+  }
+
   async function deleteSet(setId) {
     const set = state.sets.find(item => String(item.id) === String(setId));
     if (!set) return;
-    const ok = window.confirm(`Delete "${set.name || 'Untitled Set'}"? This cannot be undone.`);
+    const ok = await showMobileConfirm({
+      title: 'Delete Deck',
+      message: `Are you sure you want to delete "${set.name || 'Untitled Set'}"? This cannot be undone.`,
+      okText: 'Delete',
+      isDanger: true
+    });
     if (!ok) return;
     await window.flashcardStore.deleteSet(setId);
     showToast('Deck deleted');
@@ -1695,9 +1812,14 @@
     if (!classItem) return;
     const sets = state.sets.filter(set => String(set.classId || '') === String(classId));
     const deckText = sets.length > 0 
-      ? `\n\nAny decks in this class (${sets.length} total) will be moved to General.`
+      ? `Any decks in this class (${sets.length} total) will be moved to General.`
       : '';
-    const ok = window.confirm(`Delete the class "${classItem.name}"?${deckText}\nThis cannot be undone.`);
+    const ok = await showMobileConfirm({
+      title: 'Delete Class',
+      message: `Are you sure you want to delete the class "${classItem.name}"? ${deckText} This cannot be undone.`,
+      okText: 'Delete',
+      isDanger: true
+    });
     if (!ok) return;
 
     try {
@@ -1943,6 +2065,8 @@
     if (!overlay) return;
     if (selectors.pasteImportText) selectors.pasteImportText.value = '';
     if (selectors.pasteImportName) selectors.pasteImportName.value = '';
+    if (selectors.pasteImportTermSep) selectors.pasteImportTermSep.value = state.settings?.importTermSep || ';';
+    if (selectors.pasteImportCardSep) selectors.pasteImportCardSep.value = state.settings?.importCardSep || '@';
     overlay.classList.remove('hidden');
 
     async function doImport() {
@@ -2516,7 +2640,12 @@
     if (!state.selectedDecks || !state.selectedDecks.size) return;
     
     const count = state.selectedDecks.size;
-    const ok = window.confirm(`Delete ${count} selected ${count === 1 ? 'deck' : 'decks'}? This cannot be undone.`);
+    const ok = await showMobileConfirm({
+      title: 'Delete Decks',
+      message: `Are you sure you want to delete ${count} selected ${count === 1 ? 'deck' : 'decks'}? This cannot be undone.`,
+      okText: 'Delete',
+      isDanger: true
+    });
     if (!ok) return;
 
     state.busy = true;
@@ -2675,6 +2804,30 @@
           const setId = activeContextDeckId;
           closeDeckContextModal();
           enterSelectMode(setId);
+        }
+        return;
+      }
+
+      // 8b. Context option - Reset Progress
+      const ctxResetProgress = event.target.closest('#context-opt-reset-progress');
+      if (ctxResetProgress) {
+        event.preventDefault();
+        if (activeContextDeckId) {
+          const setId = activeContextDeckId;
+          closeDeckContextModal();
+          await resetNonSrsProgress(setId);
+        }
+        return;
+      }
+
+      // 8c. Context option - Reset SRS Data
+      const ctxResetSrs = event.target.closest('#context-opt-reset-srs');
+      if (ctxResetSrs) {
+        event.preventDefault();
+        if (activeContextDeckId) {
+          const setId = activeContextDeckId;
+          closeDeckContextModal();
+          await executeDeckSrsReset(setId);
         }
         return;
       }
@@ -2898,6 +3051,28 @@
       }
     });
 
+    // Import Term Separator input
+    selectors.importTermSepInput?.addEventListener('input', async event => {
+      const val = event.target.value;
+      state.settings = { ...(state.settings || {}), importTermSep: val };
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+      } catch (err) {
+        console.warn('[mobile] Could not save importTermSep:', err);
+      }
+    });
+
+    // Import Card Separator input
+    selectors.importCardSepInput?.addEventListener('input', async event => {
+      const val = event.target.value;
+      state.settings = { ...(state.settings || {}), importCardSep: val };
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+      } catch (err) {
+        console.warn('[mobile] Could not save importCardSep:', err);
+      }
+    });
+
   }
 
   async function init() {
@@ -2920,6 +3095,13 @@
       if (selectors.bgOpacitySlider) {
         const opacity = parseFloat(state.settings?.cardBgOpacity ?? 0.32);
         if (Number.isFinite(opacity)) selectors.bgOpacitySlider.value = String(opacity);
+      }
+      // Initialize import separators from loaded settings
+      if (selectors.importTermSepInput) {
+        selectors.importTermSepInput.value = state.settings?.importTermSep ?? ';';
+      }
+      if (selectors.importCardSepInput) {
+        selectors.importCardSepInput.value = state.settings?.importCardSep ?? '@';
       }
       hideAppLoader();
     }, 150);

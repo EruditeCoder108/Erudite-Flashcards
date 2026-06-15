@@ -1168,6 +1168,19 @@
 
     els.stage.addEventListener('pointerdown', event => {
       if (animating) {
+        // Do not queue navigation if click is on or near the previous button
+        const prevEl = els.prev;
+        if (prevEl) {
+          const rect = prevEl.getBoundingClientRect();
+          const margin = 15;
+          const inPrev = (
+            event.clientX >= rect.left - margin &&
+            event.clientX <= rect.right + margin &&
+            event.clientY >= rect.top - margin &&
+            event.clientY <= rect.bottom + margin
+          );
+          if (inPrev) return;
+        }
         if (!isInteractive(event.target)) queueNavigation({ x: -1, y: 0 });
         return;
       }
