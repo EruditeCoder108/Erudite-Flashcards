@@ -508,6 +508,64 @@ class SqliteFlashcardStore {
     });
 
     statement.free();
+
+    // Backfill review_log rows for the newly replaced cards
+    const insertLogStmt = this.db.prepare(`
+      INSERT OR IGNORE INTO review_log (
+        id, card_id, set_id, session_id, rating,
+        previous_state, next_state, previous_due, next_due,
+        previous_interval, next_interval, previous_stability, next_stability,
+        previous_difficulty, next_difficulty, elapsed_ms, reviewed_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    cards.forEach((card) => {
+      const history = Array.isArray(card.reviewHistory) ? card.reviewHistory : [];
+      for (const entry of history) {
+        const logId = entry.id || `import-log-${card.id}-${entry.reviewedAt || entry.time || Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+        const rating = entry.rating || 'Good';
+        const reviewedAt = entry.reviewedAt || entry.time || entry.date || Date.now();
+        const elapsedMs = entry.elapsedMs || entry.elapsed || 0;
+        const sessionId = entry.sessionId || 'import-session';
+
+        const prevState = entry.previousState || entry.prevState || null;
+        const nextState = entry.nextState || entry.state || null;
+
+        const prevDue = entry.previousDue || null;
+        const nextDue = entry.nextDue || entry.due || null;
+
+        const prevInterval = entry.previousInterval || entry.prevInterval || 0;
+        const nextInterval = entry.nextInterval || entry.interval || 0;
+
+        const prevStability = entry.previousStability || entry.prevStability || 0;
+        const nextStability = entry.nextStability || entry.stability || 0;
+
+        const prevDifficulty = entry.previousDifficulty || entry.prevDifficulty || 0;
+        const nextDifficulty = entry.nextDifficulty || entry.difficulty || 0;
+
+        insertLogStmt.run([
+          logId,
+          String(card.id),
+          String(setId),
+          sessionId,
+          rating,
+          prevState,
+          nextState,
+          prevDue,
+          nextDue,
+          prevInterval,
+          nextInterval,
+          prevStability,
+          nextStability,
+          prevDifficulty,
+          nextDifficulty,
+          elapsedMs,
+          reviewedAt
+        ]);
+      }
+    });
+
+    insertLogStmt.free();
   }
 
   rows(sql, params = []) {
