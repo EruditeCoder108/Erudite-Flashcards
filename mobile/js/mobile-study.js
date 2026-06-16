@@ -92,6 +92,7 @@
   let nextCardIndex = 2;
   let prevCardIndex = 0;
 
+  let srsReviewedCardIds = new Set();
   let srsUndoStack = [];
   const studySessionId = 'session-mobile-' + Date.now() + '-' + Math.random().toString(36).substring(2, 7);
 
@@ -103,6 +104,7 @@
   };
 
   let toastTimer = null;
+  let dueSoonTimer = null;
   let pointer = null;
   let animating = false;
   let ratingInFlight = false;
@@ -486,11 +488,19 @@
     const progress = mirrored && (!saved || Number(mirrored.timestamp || 0) >= Number(saved.timestamp || 0))
       ? mirrored
       : saved;
-    if (!progress || String(progress.setId) !== String(state.set.id)) return;
+    if (!progress || String(progress.setId) !== String(state.set.id)) {
+      srsReviewedCardIds = new Set();
+      return;
+    }
     restoredProgress = progress;
     const cardCount = state.set.cards?.length || 0;
     state.normalIndex = savedNormalIndex(progress, cardCount || 1);
     state.srsIndex = Math.max(0, Number(progress.srsModeIndex ?? 0) || 0);
+    if (progress.srsReviewedCardIds && Array.isArray(progress.srsReviewedCardIds)) {
+      srsReviewedCardIds = new Set(progress.srsReviewedCardIds);
+    } else {
+      srsReviewedCardIds = new Set();
+    }
   }
 
   function progressMirrorKey() {
@@ -518,6 +528,7 @@
       srsModeIndex: state.srsIndex,
       srsModeLength: state.activeCards.length,
       srsCurrentCardKey: state.srsMode ? cardKey(activeCard()) : null,
+      srsReviewedCardIds: Array.from(srsReviewedCardIds),
       timestamp: Date.now()
     };
   }
@@ -615,17 +626,168 @@
     await Promise.all(entries.map(([cardId, patch]) => saveCard(state.set.id, cardId, patch).catch(() => {})));
   }
 
+  function sortSrsSessionQueue(queue, now = new Date()) {
+    const dueNow = [];
+    const dueFuture = [];
+
+    queue.forEach(card => {
+      const isDueNow = !card.srs || !card.srs.due || new Date(card.srs.due) <= now;
+      if (isDueNow) {
+        dueNow.push(card);
+      } else {
+        dueFuture.push(card);
+      }
+    });
+
+    // Sort dueNow by priority: Learning/Relearning first, then Review, then New
+    dueNow.sort((a, b) => {
+      const stateA = a.srs?.state || 'New';
+      const stateB = b.srs?.state || 'New';
+
+      const priority = (state) => {
+        if (state === 'Learning' || state === 'Relearning') return 0;
+        if (state === 'Review') return 1;
+        return 2;
+      };
+
+      const pA = priority(stateA);
+      const pB = priority(stateB);
+      if (pA !== pB) return pA - pB;
+
+      // If same priority, sort by due date ascending
+      const dueA = new Date(a.srs?.due || 0).getTime();
+      const dueB = new Date(b.srs?.due || 0).getTime();
+      return dueA - dueB;
+    });
+
+    // Sort dueFuture by due date ascending (the one that will be due first comes first)
+    dueFuture.sort((a, b) => {
+      const dueA = new Date(a.srs?.due || 0).getTime();
+      const dueB = new Date(b.srs?.due || 0).getTime();
+      return dueA - dueB;
+    });
+
+    return [...dueNow, ...dueFuture];
+  }
+
+  function showLearningCardsDueSoonMessage(dueCount, nextDueTime) {
+    const existingMessage = document.getElementById('mastered-message');
+    if (existingMessage) {
+      existingMessage.remove();
+    }
+    if (dueSoonTimer) {
+      clearInterval(dueSoonTimer);
+      dueSoonTimer = null;
+    }
+
+    const messageContainer = document.createElement('div');
+    messageContainer.id = 'mastered-message';
+    messageContainer.className = 'mastered-message-container';
+    
+    const updateText = () => {
+      const diffSec = Math.max(0, Math.ceil((nextDueTime - Date.now()) / 1000));
+      const min = Math.floor(diffSec / 60);
+      const sec = diffSec % 60;
+      const timeStr = min > 0 ? `${min}m ${sec}s` : `${sec}s`;
+      
+      const content = messageContainer.querySelector('.mastered-message-content');
+      if (content) {
+        content.innerHTML = `
+          <div class="mastered-icon">
+            <i class="fas fa-hourglass-half fa-spin"></i>
+          </div>
+          <h2>Learning Cards Due Soon</h2>
+          <p>You have ${dueCount} learning card${dueCount === 1 ? '' : 's'} that will be due in <strong>${timeStr}</strong>.</p>
+          <div class="mastered-actions">
+            <button id="due-soon-continue" class="primary-action">
+              <i class="fas fa-play" style="margin-right: 0.5rem;"></i>
+              Review Now (Bypass Wait)
+            </button>
+            <button id="due-soon-finish" class="secondary-action">
+              <i class="fas fa-check-double" style="margin-right: 0.5rem;"></i>
+              Finish Session
+            </button>
+          </div>
+        `;
+        
+        // Re-bind listeners because we replaced innerHTML
+        const contBtn = document.getElementById('due-soon-continue');
+        if (contBtn) {
+          contBtn.addEventListener('click', () => {
+            if (dueSoonTimer) clearInterval(dueSoonTimer);
+            messageContainer.remove();
+            renderStack();
+            updateProgress();
+          });
+        }
+        
+        const finBtn = document.getElementById('due-soon-finish');
+        if (finBtn) {
+          finBtn.addEventListener('click', () => {
+            if (dueSoonTimer) clearInterval(dueSoonTimer);
+            messageContainer.remove();
+            showCompletion();
+          });
+        }
+      }
+    };
+
+    messageContainer.innerHTML = `<div class="mastered-message-content"></div>`;
+    document.body.appendChild(messageContainer);
+    
+    updateText();
+    dueSoonTimer = setInterval(() => {
+      const diffMs = nextDueTime - Date.now();
+      if (diffMs <= 0) {
+        clearInterval(dueSoonTimer);
+        dueSoonTimer = null;
+        messageContainer.remove();
+        renderStack();
+        updateProgress();
+      } else {
+        updateText();
+      }
+    }, 1000);
+  }
+
   function prepareActiveCards() {
+    const existingMessage = document.getElementById('mastered-message');
+    if (existingMessage) {
+      existingMessage.remove();
+    }
+    if (dueSoonTimer) {
+      clearInterval(dueSoonTimer);
+      dueSoonTimer = null;
+    }
+
     if (!Array.isArray(state.set.cards)) state.set.cards = [];
     if (state.srsMode && window.srsManager?.isReady?.()) {
       const settings = getDeckSrsSettings();
-      state.activeCards = window.srsManager.getDueCards(state.set.cards, {
+      const allDueCards = window.srsManager.getDueCards(state.set.cards, {
         maxNewCards: settings.newCardsPerDay,
         maxDueCards: settings.reviewsPerDay,
         allowMultipleSessions: true,
         settings
       });
-      state.srsIndex = Math.min(state.srsIndex, Math.max(0, state.activeCards.length - 1));
+
+      // Filter out already reviewed cards in this session
+      state.activeCards = allDueCards.filter(card => !srsReviewedCardIds.has(cardKey(card)));
+
+      // Sort the session queue
+      state.activeCards = sortSrsSessionQueue(state.activeCards);
+
+      // Resume the saved SRS card when it is still due and in the active queue.
+      // Move it to index 0 (front of queue) so it is shown first.
+      const resumedKey = restoredProgress?.srsCurrentCardKey;
+      if (resumedKey) {
+        const keyedIndex = state.activeCards.findIndex(card => cardKey(card) === resumedKey);
+        if (keyedIndex > 0) {
+          const resumedCard = state.activeCards.splice(keyedIndex, 1)[0];
+          state.activeCards.unshift(resumedCard);
+        }
+      }
+
+      state.srsIndex = 0;
     } else {
       const cards = state.set.cards || [];
       state.normalOrder = buildNormalOrder(cards.length);
@@ -1074,37 +1236,95 @@
 
     const originalIndex = state.set.cards.findIndex(card => sameCard(card, current));
     if (originalIndex >= 0) state.set.cards[originalIndex] = updatedCard;
-    state.activeCards[state.srsIndex] = updatedCard;
 
-    state.sessionStats.reviewed += 1;
+    // Cache the next card in the queue before modifying
+    const oldNextCard = state.activeCards[1];
+
+    // Remove the current card from the front of the queue
+    state.activeCards.shift();
+
+    const nextState = updatedCard.srs?.state || 'New';
+    const nextDueTime = new Date(updatedCard.srs?.due || 0).getTime();
+    const diffMs = nextDueTime - Date.now();
+
+    const SHORT_TERM_LIMIT_MS = 20 * 60 * 1000; // 20 minutes
+    const isShortTerm = (nextState === 'Learning' || nextState === 'Relearning') && diffMs < SHORT_TERM_LIMIT_MS;
+
+    if (rating === 'Again' || isShortTerm) {
+      // Keep in active session queue
+      state.activeCards.push(updatedCard);
+    } else {
+      // Successfully reviewed (passed) and graduated: mark it completed in this session
+      srsReviewedCardIds.add(cardKey(current));
+    }
+
+    // Sort queue
+    state.activeCards = sortSrsSessionQueue(state.activeCards);
+    state.srsIndex = 0;
+
+    state.sessionStats.reviewed = srsReviewedCardIds.size;
     state.sessionStats[rating] += 1;
     state.sessionStats.nextDue = updatedCard.srs?.due || state.sessionStats.nextDue;
 
-    state.srsIndex += 1;
     saveProgress();
     scheduleCardProgressSave(updatedCard);
 
-    if (state.srsIndex >= state.activeCards.length) {
+    // Check if session is complete
+    if (state.activeCards.length === 0) {
       await showCompletion();
       ratingInFlight = false;
       return;
     }
 
-    animateOut({ x: -1, y: 0 }, () => {
-      prevCardIndex = activeCardIndex;
-      activeCardIndex = nextCardIndex;
-      nextCardIndex = (nextCardIndex + 1) % 3;
-      
-      const currentIdx = activeIndex();
-      populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
-      
-      updateRoles();
-      preloadNeighborImages();
-      updateProgress();
-      saveProgress();
-      animating = false;
+    // Check if the next card is in the future
+    const nextCardDue = state.activeCards[0].srs?.due ? new Date(state.activeCards[0].srs.due).getTime() : 0;
+    const nextDiffMs = nextCardDue - Date.now();
+    if (nextDiffMs > 0) {
+      els.ratingDock.classList.add('hidden');
+      showLearningCardsDueSoonMessage(state.activeCards.length, nextCardDue);
       ratingInFlight = false;
-    });
+      return;
+    }
+
+    // Get the new active card
+    const newActiveCard = state.activeCards[0];
+    const isSameCard = newActiveCard && sameCard(newActiveCard, current);
+
+    if (isSameCard) {
+      // Flip back to the front
+      const activeEl = cards[activeCardIndex];
+      setCardFlipped(activeEl, false);
+      window.setTimeout(() => {
+        populateCardElement(activeEl, newActiveCard);
+        updateRoles();
+        preloadNeighborImages();
+        updateProgress();
+        saveProgress();
+        ratingInFlight = false;
+      }, FLIP_DURATION);
+    } else {
+      // If the new active card is different from the card that was in the next slot,
+      // populate the next slot element with the new active card first so it transitions correctly.
+      if (!oldNextCard || !sameCard(newActiveCard, oldNextCard)) {
+        populateCardElement(cards[nextCardIndex], newActiveCard);
+      }
+
+      animateOut({ x: -1, y: 0 }, () => {
+        prevCardIndex = activeCardIndex;
+        activeCardIndex = nextCardIndex;
+        nextCardIndex = (nextCardIndex + 1) % 3;
+        
+        const currentIdx = activeIndex(); // which is 0
+        populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
+        
+        updateRoles();
+        preloadNeighborImages();
+        updateProgress();
+        saveProgress();
+        animating = false;
+        ratingInFlight = false;
+      });
+    }
   }
 
   async function findNextDueSetId() {
@@ -1326,6 +1546,7 @@
       sessionStatsSnapshot: { ...state.sessionStats },
       activeCardsSnapshot: JSON.parse(JSON.stringify(state.activeCards)),
       setCardsSnapshot: JSON.parse(JSON.stringify(state.set.cards)),
+      reviewedCardIdsSnapshot: Array.from(srsReviewedCardIds),
       extra
     });
     if (srsUndoStack.length > 10) {
@@ -1349,6 +1570,7 @@
     state.set.cards = transaction.setCardsSnapshot;
     state.srsIndex = transaction.srsIndexSnapshot;
     state.sessionStats = transaction.sessionStatsSnapshot;
+    srsReviewedCardIds = new Set(transaction.reviewedCardIdsSnapshot || []);
     state.complete = false;
 
     // Persist reverted card progress
@@ -1366,6 +1588,16 @@
     
     // Hide completion modal if it was shown
     els.completionModal.classList.add('hidden');
+
+    // Clean up wait overlay if it was shown
+    const existingMessage = document.getElementById('mastered-message');
+    if (existingMessage) {
+      existingMessage.remove();
+    }
+    if (dueSoonTimer) {
+      clearInterval(dueSoonTimer);
+      dueSoonTimer = null;
+    }
 
     // Re-render carousel cards
     populateCardElement(cards[activeCardIndex], state.activeCards[currentIdx]);
