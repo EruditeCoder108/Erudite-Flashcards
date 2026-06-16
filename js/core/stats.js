@@ -4,10 +4,31 @@
   root.EruditeCore.stats = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof globalThis !== 'undefined' ? globalThis : window, function () {
-  function isDue(srsData, now = new Date()) {
+  function isDue(srsData, now = new Date(), rolloverHour = 4) {
     if (!srsData || !srsData.due) return true;
     const dueDate = new Date(srsData.due);
-    return isNaN(dueDate.getTime()) || dueDate <= now;
+    if (isNaN(dueDate.getTime())) return true;
+    const state = srsData.state || 'New';
+    if (state === 'Learning' || state === 'Relearning') {
+      return dueDate <= now;
+    }
+    
+    // For mature Review cards, check SRS day boundaries
+    const d = new Date(dueDate);
+    const adjustedDue = new Date(d.getTime() - rolloverHour * 60 * 60 * 1000);
+    const dueY = adjustedDue.getFullYear();
+    const dueM = String(adjustedDue.getMonth() + 1).padStart(2, '0');
+    const dueD = String(adjustedDue.getDate()).padStart(2, '0');
+    const dueStr = `${dueY}-${dueM}-${dueD}`;
+
+    const n = new Date(now);
+    const adjustedNow = new Date(n.getTime() - rolloverHour * 60 * 60 * 1000);
+    const nowY = adjustedNow.getFullYear();
+    const nowM = String(adjustedNow.getMonth() + 1).padStart(2, '0');
+    const nowD = String(adjustedNow.getDate()).padStart(2, '0');
+    const nowStr = `${nowY}-${nowM}-${nowD}`;
+
+    return dueStr <= nowStr;
   }
 
   function getCardState(card) {
@@ -25,16 +46,24 @@
       reviewCards: 0,
       relearningCards: 0,
       matureCards: 0,
+      suspendedCards: 0,
+      buriedCards: 0,
       nextDue: null,
       retention: null
     };
 
     const history = [];
     for (const card of set.cards || []) {
-      if (card.suspended) continue;
+      if (card.suspended) {
+        stats.suspendedCards += 1;
+        continue;
+      }
       if (card.buriedUntil) {
         const buriedUntil = new Date(card.buriedUntil);
-        if (!isNaN(buriedUntil.getTime()) && buriedUntil > now) continue;
+        if (!isNaN(buriedUntil.getTime()) && buriedUntil > now) {
+          stats.buriedCards += 1;
+          continue;
+        }
       }
       stats.activeCards += 1;
       const state = getCardState(card);

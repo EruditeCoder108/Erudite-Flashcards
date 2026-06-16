@@ -365,6 +365,9 @@
       }, FLIP_DURATION + 70);
     }
     cardEl.classList.toggle('is-flipped', flipped);
+    requestAnimationFrame(() => {
+      updateCardScrollability(cardEl);
+    });
     if (cardEl === cards[activeCardIndex]) {
       state.flipped = Boolean(flipped);
       clearTimeout(ratingTimer);
@@ -631,7 +634,7 @@
     const dueFuture = [];
 
     queue.forEach(card => {
-      const isDueNow = !card.srs || !card.srs.due || new Date(card.srs.due) <= now;
+      const isDueNow = !card.srs || !card.srs.due || (window.srsManager && window.srsManager.isReady() ? window.srsManager.isDue(card.srs, now) : new Date(card.srs.due) <= now);
       if (isDueNow) {
         dueNow.push(card);
       } else {
@@ -928,10 +931,19 @@
     const visible = state.srsMode && state.flipped && !state.complete && Boolean(activeCard());
     els.ratingDock.classList.toggle('hidden', !visible);
     els.shell.classList.toggle('srs-back-visible', visible);
+    els.shell.classList.toggle('srs-mode-active', state.srsMode && !state.complete);
     if (visible) updateRatingIntervals();
     els.hint.textContent = state.srsMode
       ? (state.flipped ? 'Choose how well you remembered it.' : 'Tap to reveal the answer.')
       : 'Tap to flip. Swipe left or right to go next.';
+  }
+
+  function updateCardScrollability(cardEl) {
+    if (!cardEl) return;
+    cardEl.querySelectorAll('.card-scroll').forEach(scroll => {
+      const isScrollable = scroll.scrollHeight > scroll.clientHeight + 4;
+      scroll.style.touchAction = isScrollable ? 'pan-y' : 'none';
+    });
   }
 
   function populateCardElement(cardEl, cardData) {
@@ -961,6 +973,10 @@
     });
 
     setCardFlipped(cardEl, false, { noTransition: true });
+
+    requestAnimationFrame(() => {
+      updateCardScrollability(cardEl);
+    });
   }
 
   function clearCardRuntimeStyles(card) {
@@ -1011,16 +1027,17 @@
     updateProgress();
   }
 
-  function applyActiveDrag(x = 0) {
+  function applyActiveDrag(x = 0, y = 0) {
     const activeEl = cards[activeCardIndex];
     const nextEl = cards[nextCardIndex];
     if (!activeEl) return;
     
     const rotate = Math.max(-7, Math.min(7, x * 0.032));
-    activeEl.style.transform = `translate3d(${x}px, 0px, 0) rotate(${rotate}deg)`;
+    activeEl.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg)`;
     
     if (nextEl && !nextEl.classList.contains('empty-card')) {
-      const progress = Math.min(1, Math.abs(x) / 50);
+      const dist = Math.sqrt(x * x + y * y);
+      const progress = Math.min(1, dist / 50);
       const nextScale = 0.96 + (0.04 * progress);
       const nextOffset = 10 - (10 * progress);
       nextEl.style.transform = `translate3d(0, ${nextOffset}px, 0) scale(${nextScale})`;
@@ -1028,14 +1045,14 @@
     }
   }
 
-  function setDrag(x = 0) {
-    queuedDrag = { x };
+  function setDrag(x = 0, y = 0) {
+    queuedDrag = { x, y };
     if (dragFrame) return;
     dragFrame = requestAnimationFrame(() => {
       dragFrame = 0;
-      const next = queuedDrag || { x: 0 };
+      const next = queuedDrag || { x: 0, y: 0 };
       queuedDrag = null;
-      applyActiveDrag(next.x);
+      applyActiveDrag(next.x, next.y);
     });
   }
 
@@ -1178,7 +1195,11 @@
     
     if (activeEl) {
       activeEl.classList.remove('dragging');
-      activeEl.style.transform = `translate3d(${vx * 118}vw, 0px, 0) rotate(${vx * 8}deg)`;
+      // If it's a vertical swipe, translate vertically, otherwise translate horizontally
+      const tx = vector?.y ? 0 : (vx * 118);
+      const ty = vector?.y ? (vector.y * 118) : 0;
+      const rotate = vector?.y ? 0 : (vx * 8);
+      activeEl.style.transform = `translate3d(${tx}vw, ${ty}vh, 0) rotate(${rotate}deg)`;
       activeEl.style.opacity = 0;
     }
     
@@ -1206,7 +1227,7 @@
     playSound('flip');
   }
 
-  async function handleRating(rating) {
+  async function handleRating(rating, exitVector = { x: -1, y: 0 }) {
     if (ratingInFlight || animating || !state.srsMode || !state.flipped || state.complete || !window.srsManager?.isReady?.()) return;
     const current = activeCard();
     if (!current) return;
@@ -1309,7 +1330,7 @@
         populateCardElement(cards[nextCardIndex], newActiveCard);
       }
 
-      animateOut({ x: -1, y: 0 }, () => {
+      animateOut(exitVector, () => {
         prevCardIndex = activeCardIndex;
         activeCardIndex = nextCardIndex;
         nextCardIndex = (nextCardIndex + 1) % 3;
@@ -1389,8 +1410,92 @@
     const SWIPE_THRESHOLD = 50;
     const VELOCITY_THRESHOLD = 0.42;
     const DEAD_ZONE = 10;
-    const DRAG_LIMIT = 104;
-    const HORIZONTAL_BIAS = 1.12;
+
+    // Create swipe glow overlay dynamically and append to body for full-screen edge glow
+    let overlay = document.querySelector('.swipe-glow-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'swipe-glow-overlay';
+      const directions = ['top', 'bottom', 'left', 'right'];
+      directions.forEach(dir => {
+        const d = document.createElement('div');
+        d.className = `swipe-glow-${dir}`;
+        d.style.display = 'none';
+        overlay.appendChild(d);
+      });
+      document.body.appendChild(overlay);
+    }
+
+    const ratingButtons = {
+      Again: document.querySelector('.rating-button.again'),
+      Hard: document.querySelector('.rating-button.hard'),
+      Good: document.querySelector('.rating-button.good'),
+      Easy: document.querySelector('.rating-button.easy')
+    };
+
+    function updateSwipeFeedback(dx, dy) {
+      if (!overlay) return;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < 15) {
+        overlay.style.opacity = '0';
+        Object.values(ratingButtons).forEach(btn => btn?.classList.remove('active-drag'));
+        return;
+      }
+
+      let activeDir = '';
+      let activeRating = '';
+
+      if (absDx >= absDy) {
+        if (dx < 0) {
+          activeDir = 'left';
+          activeRating = 'Again';
+        } else {
+          activeDir = 'right';
+          activeRating = 'Good';
+        }
+      } else {
+        if (dy < 0) {
+          activeDir = 'top';
+          activeRating = 'Easy';
+        } else {
+          activeDir = 'bottom';
+          activeRating = 'Hard';
+        }
+      }
+
+      const glows = {
+        top: overlay.querySelector('.swipe-glow-top'),
+        bottom: overlay.querySelector('.swipe-glow-bottom'),
+        left: overlay.querySelector('.swipe-glow-left'),
+        right: overlay.querySelector('.swipe-glow-right')
+      };
+
+      Object.entries(glows).forEach(([dir, el]) => {
+        if (el) el.style.display = dir === activeDir ? 'block' : 'none';
+      });
+
+      // Highlight the correct rating button
+      Object.entries(ratingButtons).forEach(([rating, btn]) => {
+        if (btn) {
+          if (rating === activeRating) {
+            btn.classList.add('active-drag');
+          } else {
+            btn.classList.remove('active-drag');
+          }
+        }
+      });
+
+      const opacity = Math.min(1, dist / 120);
+      overlay.style.opacity = String(opacity);
+    }
+
+    function clearSwipeFeedback() {
+      if (overlay) overlay.style.opacity = '0';
+      Object.values(ratingButtons).forEach(btn => btn?.classList.remove('active-drag'));
+    }
 
     els.stage.addEventListener('pointerdown', event => {
       if (animating) {
@@ -1413,6 +1518,9 @@
       const activeCardEl = cards[activeCardIndex];
       if (!activeCardEl || !activeCardEl.contains(event.target)) return;
       if (isInteractive(event.target)) return;
+
+      // Dynamically sync scrollability/touch-action at touch start
+      updateCardScrollability(activeCardEl);
       
       pointer = {
         id: event.pointerId,
@@ -1424,8 +1532,6 @@
         scrollable: isScrollableContent(event.target),
         srsLocked: state.srsMode
       };
-
-      if (!state.srsMode) activeCardEl.classList.add('dragging');
     });
 
     els.stage.addEventListener('pointermove', event => {
@@ -1438,41 +1544,39 @@
       const absDx = Math.abs(dx);
       const absDy = Math.abs(dy);
 
-      if (pointer.srsLocked) {
-        if (!pointer.scrolling && absDy > DEAD_ZONE && absDy > absDx * 1.18 && pointer.scrollable) {
-          pointer.scrolling = true;
-        }
-        return;
-      }
-
-      if (!pointer.dragging && !pointer.scrolling) {
-        if (absDy > DEAD_ZONE && absDy > absDx * 1.18 && pointer.scrollable) {
-          pointer.scrolling = true;
-          activeCardEl.classList.remove('dragging');
-          return;
-        }
-        if (absDx > DEAD_ZONE && absDx > absDy * HORIZONTAL_BIAS) {
-          pointer.dragging = true;
-          els.stage.setPointerCapture?.(event.pointerId);
-        } else if (absDy > DEAD_ZONE && absDy >= absDx) {
-          pointer.scrolling = Boolean(pointer.scrollable);
-          if (pointer.scrolling) {
-            activeCardEl.classList.remove('dragging');
-          }
-          return;
-        }
-      }
-
       if (pointer.scrolling) return;
+
+      if (!pointer.dragging) {
+        if (absDx > DEAD_ZONE || absDy > DEAD_ZONE) {
+          // Primarily vertical swipe on scrollable content -> scroll instead of drag
+          if (absDy > DEAD_ZONE && absDy > absDx * 1.18 && pointer.scrollable) {
+            pointer.scrolling = true;
+            activeCardEl.classList.remove('dragging');
+            return;
+          }
+
+          // Drag is allowed if not SRS, or SRS when card is flipped
+          const dragAllowed = !state.srsMode || state.flipped;
+          if (dragAllowed) {
+            pointer.dragging = true;
+            els.stage.setPointerCapture?.(event.pointerId);
+            activeCardEl.classList.add('dragging');
+          }
+        }
+      }
 
       if (pointer.dragging) {
         event.preventDefault();
-        setDrag(Math.sign(dx) * Math.min(absDx, DRAG_LIMIT));
+        setDrag(dx, dy);
+        if (pointer.srsLocked && state.flipped) {
+          updateSwipeFeedback(dx, dy);
+        }
       }
     }, { passive: false });
 
     function finishPointer(event) {
       if (!pointer || pointer.id !== event.pointerId) return;
+      clearSwipeFeedback();
       const activeCardEl = cards[activeCardIndex];
       const nextCardEl = cards[nextCardIndex];
       
@@ -1485,23 +1589,64 @@
       const dt = Math.max(1, performance.now() - pointer.time);
       const absDx = Math.abs(dx);
       const absDy = Math.abs(dy);
-      const velocity = absDx / dt;
-      const wasTap = absDx < 9 && absDy < 9 && !pointer.scrolling;
-      const wasSwipe = !pointer.scrolling
-        && absDx > absDy * HORIZONTAL_BIAS
-        && (absDx >= SWIPE_THRESHOLD || velocity >= VELOCITY_THRESHOLD)
-        && !wasTap;
-      const wasSrsLocked = pointer.srsLocked;
       
+      const wasTap = absDx < 9 && absDy < 9 && !pointer.scrolling;
+      
+      const isSwipe = !pointer.scrolling && !wasTap && (
+        absDx >= SWIPE_THRESHOLD ||
+        absDy >= SWIPE_THRESHOLD ||
+        (absDx / dt) >= VELOCITY_THRESHOLD ||
+        (absDy / dt) >= VELOCITY_THRESHOLD
+      );
+
+      const wasSrsLocked = pointer.srsLocked;
       pointer = null;
 
       if (wasSrsLocked) {
-        if (wasTap && !state.flipped) flipCard();
+        if (state.flipped) {
+          if (wasTap) {
+            flipCard();
+          } else if (isSwipe) {
+            if (absDx >= absDy) {
+              if (dx < 0) {
+                handleRating('Again', { x: -1, y: 0 });
+              } else {
+                handleRating('Good', { x: 1, y: 0 });
+              }
+            } else {
+              if (dy < 0) {
+                handleRating('Easy', { x: 0, y: -1 });
+              } else {
+                handleRating('Hard', { x: 0, y: 1 });
+              }
+            }
+            return;
+          }
+        } else {
+          // If unflipped, any tap or flick/swipe flips the card
+          if (wasTap || absDx >= 25 || absDy >= 25) {
+            flipCard();
+          }
+        }
+        
+        // Reset card transform on release
+        if (activeCardEl) {
+          activeCardEl.style.transform = '';
+          activeCardEl.style.opacity = '';
+        }
+        if (nextCardEl) {
+          nextCardEl.style.transform = '';
+          nextCardEl.style.opacity = '';
+        }
         return;
       }
 
-      if (wasSwipe) {
-        navigateForward({ x: dx < 0 ? -1 : 1, y: 0 });
+      if (isSwipe) {
+        if (absDx >= absDy) {
+          navigateForward({ x: dx < 0 ? -1 : 1, y: 0 });
+        } else {
+          navigateForward({ x: 0, y: dy < 0 ? -1 : 1 });
+        }
         return;
       }
 
@@ -1522,6 +1667,7 @@
     els.stage.addEventListener('pointerup', finishPointer);
     els.stage.addEventListener('pointercancel', event => {
       if (!pointer || pointer.id !== event.pointerId) return;
+      clearSwipeFeedback();
       const activeCardEl = cards[activeCardIndex];
       const nextCardEl = cards[nextCardIndex];
       pointer = null;
@@ -1719,7 +1865,8 @@
     if (originalIndex >= 0) state.set.cards[originalIndex] = updatedCard;
 
     // Check if the due date is in the future
-    const isDueLater = new Date(dueDateStr) > new Date();
+    const isDueNow = window.srsManager && window.srsManager.isReady() ? window.srsManager.isDue({ state: updatedCard.srs?.state, due: dueDateStr }, new Date()) : new Date(dueDateStr) <= new Date();
+    const isDueLater = !isDueNow;
     if (isDueLater) {
       state.activeCards.splice(state.srsIndex, 1);
     } else {
@@ -1735,29 +1882,42 @@
   }
 
   function handlePostActionTransition() {
-    if (state.srsIndex >= state.activeCards.length) {
+    if (state.activeCards.length === 0) {
       showCompletion();
-    } else {
-      // Re-hide rating dock until card is flipped
+      return;
+    }
+
+    state.srsIndex = 0; // Reset index in dynamic queue mode
+    
+    // Check if the next card is in the future
+    const nextCardDue = state.activeCards[0].srs?.due ? new Date(state.activeCards[0].srs.due).getTime() : 0;
+    const nextDiffMs = nextCardDue - Date.now();
+    if (state.srsMode && nextDiffMs > 0) {
       state.flipped = false;
       els.ratingDock.classList.add('hidden');
-
-      // Populate current and neighbor cards in the carousel
-      const currentIdx = activeIndex();
-      populateCardElement(cards[activeCardIndex], state.activeCards[currentIdx]);
-      populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
-      populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
-
-      const activeEl = cards[activeCardIndex];
-      if (activeEl) {
-        activeEl.classList.remove('flipped');
-        activeEl.style.transform = '';
-        activeEl.style.opacity = '';
-      }
-
-      updateRoles();
-      updateProgress();
+      showLearningCardsDueSoonMessage(state.activeCards.length, nextCardDue);
+      return;
     }
+
+    // Otherwise, reveal the next card
+    state.flipped = false;
+    els.ratingDock.classList.add('hidden');
+
+    // Populate current and neighbor cards in the carousel
+    const currentIdx = activeIndex();
+    populateCardElement(cards[activeCardIndex], state.activeCards[currentIdx]);
+    populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
+    populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
+
+    const activeEl = cards[activeCardIndex];
+    if (activeEl) {
+      activeEl.classList.remove('flipped');
+      activeEl.style.transform = '';
+      activeEl.style.opacity = '';
+    }
+
+    updateRoles();
+    updateProgress();
   }
 
   // Bottom Sheet Panel handlers

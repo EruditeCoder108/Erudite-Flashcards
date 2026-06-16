@@ -1469,7 +1469,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const dueFuture = [];
 
         queue.forEach(card => {
-            const isDueNow = !card.srs || !card.srs.due || new Date(card.srs.due) <= now;
+            const isDueNow = !card.srs || !card.srs.due || (window.srsManager && window.srsManager.isReady() ? window.srsManager.isDue(card.srs, now) : new Date(card.srs.due) <= now);
             if (isDueNow) {
                 dueNow.push(card);
             } else {
@@ -2230,7 +2230,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             await updateSingleCardAndPersist(updatedCard);
             
-            const isDueNow = new Date(dueDateStr) <= new Date();
+            const isDueNow = window.srsManager && window.srsManager.isReady() ? window.srsManager.isDue({ state: updatedCard.srs?.state, due: dueDateStr }, new Date()) : new Date(dueDateStr) <= new Date();
             if (isDueNow) {
                 srsCards[0] = updatedCard;
                 srsCards = sortSrsSessionQueue(srsCards);

@@ -11,6 +11,24 @@ class SRSManager {
         this.init();
     }
 
+    hashCode(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = (hash << 5) - hash + str.charCodeAt(i);
+            hash |= 0;
+        }
+        return Math.abs(hash);
+    }
+
+    mulberry32(a) {
+        return function() {
+            let t = a += 0x6D2B79F5;
+            t = Math.imul(t ^ (t >>> 15), t | 1);
+            t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        }
+    }
+
     /**
      * Initialize the FSRS instance
      */
@@ -97,11 +115,21 @@ class SRSManager {
         return isNaN(date.getTime()) ? null : date.toISOString();
     }
 
-    isDue(srsData, now = new Date()) {
+    isDue(srsData, now = new Date(), rolloverHour = 4) {
         if (!srsData || !srsData.due) return true;
 
         const dueDate = new Date(srsData.due);
-        return isNaN(dueDate.getTime()) || dueDate <= now;
+        if (isNaN(dueDate.getTime())) return true;
+
+        const state = srsData.state || 'New';
+        if (state === 'Learning' || state === 'Relearning') {
+            return dueDate <= now;
+        }
+
+        // For mature Review cards, check SRS day boundaries
+        const dueDay = this.getSRSDay(dueDate, rolloverHour);
+        const todayDay = this.getSRSDay(now, rolloverHour);
+        return dueDay <= todayDay;
     }
 
     toFSRSCard(card) {
@@ -148,6 +176,11 @@ class SRSManager {
     getRatingPreviews(card, settings = {}) {
         if (!this.isInitialized) return {};
 
+        const seedSource = (card.id || '') + '-' + (card.srs?.reps || 0);
+        const seed = this.hashCode(seedSource);
+        const originalRandom = Math.random;
+        Math.random = this.mulberry32(seed);
+
         try {
             const scheduler = this.getScheduler(settings);
             const srsCard = card.srs ? this.toFSRSCard(card) : FSRS.createEmptyCard();
@@ -171,6 +204,8 @@ class SRSManager {
         } catch (error) {
             console.error('Error previewing SRS ratings:', error);
             return {};
+        } finally {
+            Math.random = originalRandom;
         }
     }
 
@@ -231,6 +266,11 @@ class SRSManager {
             card = this.createSRSCard(card);
         }
 
+        const seedSource = (card.id || '') + '-' + (card.srs?.reps || 0);
+        const seed = this.hashCode(seedSource);
+        const originalRandom = Math.random;
+        Math.random = this.mulberry32(seed);
+
         try {
             const scheduler = this.getScheduler(settings);
             // Convert our card format to FSRS format
@@ -260,8 +300,6 @@ class SRSManager {
                 learningSteps: result.card.learning_steps
             };
 
-            // Debug logging
-
             return {
                 ...card,
                 srs: updatedSRS
@@ -269,6 +307,8 @@ class SRSManager {
         } catch (error) {
             console.error('Error reviewing card:', error);
             return card;
+        } finally {
+            Math.random = originalRandom;
         }
     }
 
@@ -430,7 +470,9 @@ class SRSManager {
                 learningCards: 0,
                 reviewCards: 0,
                 relearningCards: 0,
-                masteredCards: 0
+                masteredCards: 0,
+                suspendedCards: 0,
+                buriedCards: 0
             };
         }
 
@@ -442,16 +484,24 @@ class SRSManager {
             learningCards: 0,
             reviewCards: 0,
             relearningCards: 0,
-            masteredCards: 0
+            masteredCards: 0,
+            suspendedCards: 0,
+            buriedCards: 0
         };
 
         const now = new Date();
 
         cards.forEach(card => {
-            if (card.suspended) return;
+            if (card.suspended) {
+                stats.suspendedCards++;
+                return;
+            }
             if (card.buriedUntil) {
                 const buriedUntil = new Date(card.buriedUntil);
-                if (!isNaN(buriedUntil.getTime()) && buriedUntil > now) return;
+                if (!isNaN(buriedUntil.getTime()) && buriedUntil > now) {
+                    stats.buriedCards++;
+                    return;
+                }
             }
 
             stats.activeCards++;
