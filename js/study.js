@@ -823,10 +823,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     function applyCardBackground(faceElement, card, side) {
         const backgroundEl = faceElement?.querySelector(side === 'definition' ? '.definition-bg' : '.term-bg');
         const background = window.EruditeMedia?.getSideBackground?.(card, side) || null;
+        const labelEl = faceElement?.querySelector('.card-header');
         if (!backgroundEl) return;
         if (!background?.src) {
             backgroundEl.classList.remove('visible', 'no-overlay');
             backgroundEl.style.backgroundImage = '';
+            if (labelEl) labelEl.style.display = '';
             return;
         }
         backgroundEl.style.backgroundImage = `url("${background.src}")`;
@@ -838,8 +840,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         backgroundEl.classList.add('visible');
         if (opacity >= 1.0) {
             backgroundEl.classList.add('no-overlay');
+            if (labelEl) labelEl.style.display = 'none';
         } else {
             backgroundEl.classList.remove('no-overlay');
+            if (labelEl) labelEl.style.display = '';
         }
     }
 

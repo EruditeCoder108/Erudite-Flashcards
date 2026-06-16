@@ -679,10 +679,13 @@
 
   function renderCardBackground(element, card, side) {
     const background = window.EruditeMedia?.getSideBackground?.(card, side) || null;
+    const faceEl = element.closest('.card-face');
+    const labelEl = faceEl?.querySelector('.card-label');
     if (!element) return;
     if (!background?.src) {
       element.classList.remove('visible', 'no-overlay');
       element.style.backgroundImage = '';
+      if (labelEl) labelEl.style.display = '';
       return;
     }
     element.style.backgroundImage = `url("${background.src}")`;
@@ -697,8 +700,10 @@
     element.classList.add('visible');
     if (opacity >= 1.0) {
       element.classList.add('no-overlay');
+      if (labelEl) labelEl.style.display = 'none';
     } else {
       element.classList.remove('no-overlay');
+      if (labelEl) labelEl.style.display = '';
     }
   }
 
@@ -727,7 +732,7 @@
   }
 
   function preloadNeighborImages() {
-    [state.activeCards[activeIndex() + 1], state.activeCards[activeIndex() - 1]].forEach(card => {
+    [state.activeCards[activeIndex() + 1], state.activeCards[activeIndex() - 1]].filter(Boolean).forEach(card => {
       const mediaImages = ['term', 'definition']
         .flatMap(side => window.EruditeMedia?.getSideMedia?.(card, side, { includeLegacy: false }) || [])
         .filter(item => item.kind === 'image')
@@ -736,6 +741,7 @@
         .map(side => window.EruditeMedia?.getSideBackground?.(card, side)?.src)
         .filter(Boolean);
       [card?.termImage, card?.definitionImage, ...mediaImages, ...backgrounds].filter(Boolean).forEach(src => {
+        if (src.startsWith('data:')) return; // Skip base64 data URLs to save memory
         if (preloadedImages.has(src)) return;
         preloadedImages.add(src);
         const img = new Image();

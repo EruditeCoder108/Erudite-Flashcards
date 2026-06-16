@@ -364,6 +364,11 @@
     if (firstValue && String(firstValue).toLowerCase() !== 'ok') {
       throw new Error(`SQLite integrity check failed: ${firstValue}`);
     }
+    const tables = candidate.exec("SELECT name FROM sqlite_master WHERE type='table';");
+    const tableNames = tables?.[0]?.values?.map(val => val[0]) || [];
+    if (tableNames.length === 0 || !tableNames.includes('sets')) {
+      throw new Error('Database is empty or missing core tables.');
+    }
   }
 
   const DB_TMP_PATH = DB_PATH + '.tmp';
