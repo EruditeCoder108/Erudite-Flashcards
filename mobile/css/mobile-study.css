@@ -53,13 +53,13 @@ body.study-ready .study-loading-cover {
   display: grid;
   place-content: center;
   justify-items: center;
-  gap: 0.65rem;
+  gap: 0.7rem;
   padding: max(1rem, var(--safe-top)) max(1rem, var(--safe-right)) max(1rem, var(--safe-bottom)) max(1rem, var(--safe-left));
   background:
-    radial-gradient(circle at 50% 38%, rgba(96, 165, 250, 0.12), transparent 34%),
+    radial-gradient(circle at 50% 36%, rgba(59, 130, 246, 0.12), transparent 34%),
     linear-gradient(180deg, #0a1424 0%, #07111f 100%);
   color: var(--text);
-  transition: opacity 160ms ease;
+  transition: opacity 180ms ease;
 }
 
 .deck-loader {
@@ -123,12 +123,23 @@ body.study-ready .study-loading-cover {
 .loader-card-4 .card-accent { background: #378ADD; }
 .loader-card-5 .card-accent { background: #E24B4A; }
 
-.card-label {
+.loader-card-inner .card-label {
   font-size: 8px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #94a3b8;
+  position: static;
+  z-index: auto;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 1;
+}
+
+.loader-card-inner .card-label::after {
+  content: none !important;
+  display: none !important;
 }
 
 .card-icon {
@@ -198,15 +209,15 @@ body.study-ready .study-loading-cover {
 }
 
 .study-loading-cover strong {
-  font-size: 1.14rem;
+  font-size: 1.2rem;
   font-weight: 900;
 }
 
 .study-loading-cover p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.86rem;
-  font-weight: 760;
+  font-size: 0.88rem;
+  font-weight: 750;
 }
 
 body.is-route-loading .study-loading-cover {
@@ -696,6 +707,11 @@ textarea,
 }
 
 .rating-dock {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.45rem;
@@ -1287,20 +1303,13 @@ textarea,
   background: linear-gradient(180deg, rgba(96, 165, 250, 0.38), rgba(30, 64, 175, 0.28)) !important;
 }
 
-/* Prevent layout shift in SRS mode by preserving dock space at all times */
-.study-shell:not(.srs-mode-active) .rating-dock {
+/* Show rating dock only when the back side is visible to keep cards centered by default */
+.study-shell:not(.srs-back-visible) .rating-dock {
   display: none !important;
 }
 
-.study-shell.srs-mode-active .rating-dock {
+.study-shell.srs-back-visible .rating-dock {
   display: grid !important;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 170ms ease, visibility 170ms ease;
-}
-
-.study-shell.srs-mode-active.srs-back-visible .rating-dock {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;

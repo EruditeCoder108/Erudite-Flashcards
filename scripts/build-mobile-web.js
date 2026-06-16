@@ -164,6 +164,12 @@ async function main() {
   await copyDir(path.join(root, 'assets'), path.join(outDir, 'assets'));
   await copyDir(path.join(root, 'premade-cards'), path.join(outDir, 'premade-cards'));
   await copyVendor();
+  
+  // Bundle Capacitor SQLite plugin
+  console.log('Bundling Capacitor SQLite plugin...');
+  const { execSync } = require('child_process');
+  execSync('npx esbuild node_modules/@capacitor-community/sqlite/dist/esm/index.js --bundle --minify --format=iife --global-name=CapacitorSqliteHelper --outfile=www/vendor/sqlite/sqlite.js', { stdio: 'inherit', cwd: root });
+
   console.log(`Mobile web build written to ${outDir}`);
 }
 

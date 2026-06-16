@@ -26,6 +26,9 @@
   const DIRECTORY_DOCUMENTS = 'DOCUMENTS';
   const ENCODING_UTF8 = 'utf8';
 
+  const isNative = !!(capacitor && (capacitor.getPlatform() === 'android' || capacitor.getPlatform() === 'ios') && window.CapacitorSqliteHelper);
+  const { SQLiteConnection, CapacitorSQLite } = window.CapacitorSqliteHelper || {};
+
   let readyPromise = null;
   let SQL = null;
   let db = null;
@@ -190,17 +193,18 @@
       })());
   }
 
-  function recoverLocalSetBackupsIfEmpty() {
+  async function recoverLocalSetBackupsIfEmpty() {
     try {
-      const currentCount = Number(rows('SELECT COUNT(*) AS count FROM sets WHERE deleted_at IS NULL')[0]?.count || 0);
+      const setsCount = await rows('SELECT COUNT(*) AS count FROM sets WHERE deleted_at IS NULL');
+      const currentCount = Number(setsCount[0]?.count || 0);
       if (currentCount > 0) return false;
       const backups = readSetBackups();
       if (!backups.length) return false;
-      backups.forEach(set => {
+      for (const set of backups) {
         const normalized = schema.normalizeSet(set, null, { preserveLastModified: true });
-        upsertSet(normalized);
-        replaceCardsForSet(normalized.id, normalized.cards || []);
-      });
+        await upsertSet(normalized);
+        await replaceCardsForSet(normalized.id, normalized.cards || []);
+      }
       console.warn(`[mobile-store] Recovered ${backups.length} deck(s) from emergency local mirrors`);
       return true;
     } catch (error) {
@@ -209,15 +213,16 @@
     }
   }
 
-  function recoverLocalClassBackupsIfEmptyOrMissing() {
+  async function recoverLocalClassBackupsIfEmptyOrMissing() {
     try {
-      const current = rows('SELECT id FROM classes WHERE deleted_at IS NULL').map(row => String(row.id));
+      const currentRows = await rows('SELECT id FROM classes WHERE deleted_at IS NULL');
+      const current = currentRows.map(row => String(row.id));
       const currentIds = new Set(current);
       const backups = readClassBackups().filter(item => item?.id && !currentIds.has(String(item.id)));
       if (!backups.length) return false;
-      backups.forEach(classData => {
-        upsertClass(schema.normalizeClass(classData, null, { preserveLastModified: true }));
-      });
+      for (const classData of backups) {
+        await upsertClass(schema.normalizeClass(classData, null, { preserveLastModified: true }));
+      }
       console.warn(`[mobile-store] Recovered ${backups.length} class record(s) from emergency local mirrors`);
       return true;
     } catch (error) {
@@ -226,15 +231,16 @@
     }
   }
 
-  function repairOrphanedClassIds() {
+  async function repairOrphanedClassIds() {
     try {
-      const validIds = new Set(rows('SELECT id FROM classes WHERE deleted_at IS NULL').map(row => String(row.id)));
-      const orphaned = rows('SELECT id, class_id FROM sets WHERE deleted_at IS NULL AND class_id IS NOT NULL')
-        .filter(row => row.class_id && !validIds.has(String(row.class_id)));
+      const classRows = await rows('SELECT id FROM classes WHERE deleted_at IS NULL');
+      const validIds = new Set(classRows.map(row => String(row.id)));
+      const setRows = await rows('SELECT id, class_id FROM sets WHERE deleted_at IS NULL AND class_id IS NOT NULL');
+      const orphaned = setRows.filter(row => row.class_id && !validIds.has(String(row.class_id)));
       if (!orphaned.length) return false;
-      orphaned.forEach(row => {
-        run('UPDATE sets SET class_id = NULL, last_modified = ? WHERE id = ?', [Date.now(), String(row.id)]);
-      });
+      for (const row of orphaned) {
+        await run('UPDATE sets SET class_id = NULL, last_modified = ? WHERE id = ?', [Date.now(), String(row.id)]);
+      }
       console.warn(`[mobile-store] Moved ${orphaned.length} deck(s) with missing classes back to General`);
       return true;
     } catch (error) {
@@ -262,7 +268,11 @@
     return bytes;
   }
 
-  function rows(sql, params = []) {
+  async function rows(sql, params = []) {
+    if (isNative && db) {
+      const res = await db.query(sql, params);
+      return res.values || [];
+    }
     const statement = db.prepare(sql);
     statement.bind(params);
     const result = [];
@@ -271,14 +281,147 @@
     return result;
   }
 
-  function run(sql, params = []) {
+  async function run(sql, params = []) {
+    if (isNative && db) {
+      await db.run(sql, params);
+      return;
+    }
     const statement = db.prepare(sql);
     statement.run(params);
     statement.free();
   }
 
-  function createSchema() {
-    db.exec(`
+  async function executeRaw(sql) {
+    if (isNative && db) {
+      await db.execute(sql);
+      return;
+    }
+    db.exec(sql);
+  }
+
+  async function executeSet(set) {
+    if (isNative && db) {
+      await db.executeSet(set);
+      return;
+    }
+    db.exec('BEGIN TRANSACTION;');
+    try {
+      for (const item of set) {
+        const statement = db.prepare(item.statement);
+        statement.run(item.values);
+        statement.free();
+      }
+      db.exec('COMMIT;');
+    } catch (error) {
+      db.exec('ROLLBACK;');
+      throw error;
+    }
+  }
+
+  async function migrateFromLegacySqlJs() {
+    try {
+      const exists = await Filesystem.stat({ path: DB_PATH, directory: DIRECTORY_DATA })
+        .then(() => true)
+        .catch(() => false);
+      if (!exists) return;
+
+      console.log('[mobile-store] Legacy SQLite file found. Starting migration...');
+
+      const file = await Filesystem.readFile({ path: DB_PATH, directory: DIRECTORY_DATA });
+      if (!file || !file.data) return;
+
+      const bytes = base64ToBytes(file.data);
+      const legacyDb = new SQL.Database(bytes);
+
+      const legacyRows = (sql) => {
+        const statement = legacyDb.prepare(sql);
+        const result = [];
+        while (statement.step()) result.push(statement.getAsObject());
+        statement.free();
+        return result;
+      };
+
+      const safeQuery = (sql) => {
+        try { return legacyRows(sql); } catch (_) { return []; }
+      };
+
+      const legacyClasses = safeQuery('SELECT * FROM classes');
+      const legacySets = safeQuery('SELECT * FROM sets');
+      const legacyCards = safeQuery('SELECT * FROM cards');
+      const legacySettings = safeQuery('SELECT * FROM settings');
+      const legacyProgress = safeQuery('SELECT * FROM progress');
+      const legacyState = safeQuery('SELECT * FROM state');
+
+      console.log(`[mobile-store] Migration counts: Classes=${legacyClasses.length}, Sets=${legacySets.length}, Cards=${legacyCards.length}`);
+
+      await db.execute('BEGIN TRANSACTION;');
+      try {
+        for (const item of legacyClasses) {
+          await db.run(
+            'INSERT INTO classes (id, name, color, created, last_modified, deleted_at, payload_json) VALUES (?, ?, ?, ?, ?, ?, ?)',
+            [item.id, item.name, item.color, item.created, item.last_modified, item.deleted_at, item.payload_json]
+          );
+        }
+        for (const item of legacySets) {
+          await db.run(
+            'INSERT INTO sets (id, name, description, class_id, srs_settings_json, created, opened_count, last_opened, last_modified, deleted_at, payload_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [item.id, item.name, item.description, item.class_id, item.srs_settings_json, item.created, item.opened_count, item.last_opened, item.last_modified, item.deleted_at, item.payload_json]
+          );
+        }
+        for (const item of legacyCards) {
+          await db.run(
+            'INSERT INTO cards (id, set_id, position, term, definition, term_image, definition_image, tags_json, suspended, buried_until, srs_json, review_history_json, created, last_modified, deleted_at, payload_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [item.id, item.set_id, item.position, item.term, item.definition, item.term_image, item.definition_image, item.tags_json, item.suspended, item.buried_until, item.srs_json, item.review_history_json, item.created, item.last_modified, item.deleted_at, item.payload_json]
+          );
+        }
+        for (const item of legacySettings) {
+          await db.run(
+            'INSERT INTO settings (key, value_json, updated_at) VALUES (?, ?, ?)',
+            [item.key, item.value_json, item.updated_at]
+          );
+        }
+        for (const item of legacyProgress) {
+          await db.run(
+            'INSERT INTO progress (set_id, value_json, updated_at) VALUES (?, ?, ?)',
+            [item.set_id, item.value_json, item.updated_at]
+          );
+        }
+        for (const item of legacyState) {
+          await db.run(
+            'INSERT INTO state (key, value_json, updated_at) VALUES (?, ?, ?)',
+            [item.key, item.value_json, item.updated_at]
+          );
+        }
+        await db.execute('COMMIT;');
+        console.log('[mobile-store] Migration transaction committed successfully.');
+      } catch (err) {
+        await db.execute('ROLLBACK;');
+        throw err;
+      }
+
+      legacyDb.close();
+
+      // Rename legacy database file to prevent running migration again
+      await Filesystem.rename({
+        from: DB_PATH,
+        to: DB_PATH + '.migrated',
+        directory: DIRECTORY_DATA
+      });
+
+      // Also delete the tmp file if it exists
+      await Filesystem.deleteFile({
+        path: DB_TMP_PATH,
+        directory: DIRECTORY_DATA
+      }).catch(() => {});
+
+      console.log('[mobile-store] Legacy database migration complete!');
+    } catch (error) {
+      console.error('[mobile-store] Error during legacy database migration:', error);
+    }
+  }
+
+  async function createSchema() {
+    await executeRaw(`
       PRAGMA foreign_keys = ON;
 
       CREATE TABLE IF NOT EXISTS classes (
@@ -382,6 +525,7 @@
   }
 
   async function _doPersist() {
+    if (isNative) return;
     const bytes = db.export();
     const data = bytesToBase64(bytes);
     // Write to temp file first (safety net if main write is interrupted)
@@ -409,6 +553,7 @@
   }
 
   async function persist(delayMs = 2000) {
+    if (isNative) return Promise.resolve();
     // If a write is already scheduled, just mark queued and return the existing promise
     if (_persistTimer) {
       _persistQueued = true;
@@ -451,6 +596,7 @@
 
   /** Await any in-flight or scheduled persist. Call before navigation. */
   async function flush() {
+    if (isNative) return;
     if (_persistTimer) {
       clearTimeout(_persistTimer);
       _persistTimer = null;
@@ -466,10 +612,10 @@
     }
   }
 
-  function updateCardProgressRow(setId, cardId, patch = {}) {
+  async function updateCardProgressRow(setId, cardId, patch = {}) {
     const setKey = String(setId);
     const cardKey = String(cardId);
-    const result = rows(
+    const result = await rows(
       'SELECT payload_json FROM cards WHERE id = ? AND set_id = ? AND deleted_at IS NULL',
       [cardKey, setKey]
     );
@@ -488,7 +634,7 @@
     if (Object.prototype.hasOwnProperty.call(patch, 'suspended')) updated.suspended = Boolean(patch.suspended);
     if (Object.prototype.hasOwnProperty.call(patch, 'buriedUntil')) updated.buriedUntil = patch.buriedUntil || null;
 
-    run(`
+    await run(`
       UPDATE cards SET
         srs_json = ?,
         review_history_json = ?,
@@ -508,11 +654,11 @@
       setKey
     ]);
 
-    run('UPDATE sets SET last_modified = ? WHERE id = ? AND deleted_at IS NULL', [updated.lastModified, setKey]);
+    await run('UPDATE sets SET last_modified = ? WHERE id = ? AND deleted_at IS NULL', [updated.lastModified, setKey]);
     return true;
   }
 
-  function applyPendingStudyPatches() {
+  async function applyPendingStudyPatches() {
     let payload = null;
     try {
       payload = JSON.parse(localStorage.getItem(STUDY_PATCHES_KEY) || 'null');
@@ -522,11 +668,11 @@
     if (!payload || !payload.sets || typeof payload.sets !== 'object') return false;
 
     let changed = false;
-    Object.entries(payload.sets).forEach(([setId, setPatch]) => {
-      Object.entries(setPatch?.cards || {}).forEach(([cardId, cardPatch]) => {
-        if (updateCardProgressRow(setId, cardId, cardPatch)) changed = true;
-      });
-    });
+    for (const [setId, setPatch] of Object.entries(payload.sets)) {
+      for (const [cardId, cardPatch] of Object.entries(setPatch?.cards || {})) {
+        if (await updateCardProgressRow(setId, cardId, cardPatch)) changed = true;
+      }
+    }
 
     if (changed) _clearStudyPatchesAfterPersist = true;
     return changed;
@@ -548,50 +694,73 @@
         locateFile: file => `${wasmBase}${file}`
       });
 
-      // Try main DB file, then temp file as fallback. Never overwrite an existing
-      // unreadable DB with a fresh empty DB; that would turn recoverable corruption
-      // or an interrupted write into permanent data loss.
       db = null;
       let foundExistingFile = false;
       let openedFromTemp = false;
       let lastOpenError = null;
-      for (const path of [DB_PATH, DB_TMP_PATH]) {
-        if (db) break;
+
+      if (isNative) {
         try {
-          const file = await Filesystem.readFile({ path, directory: DIRECTORY_DATA });
-          foundExistingFile = true;
-          const candidate = new SQL.Database(base64ToBytes(file.data));
-          probeDatabase(candidate);
-          db = candidate;
-          openedFromTemp = path === DB_TMP_PATH;
-        } catch (error) {
-          if (!isMissingFileError(error)) {
-            foundExistingFile = true;
-            lastOpenError = error;
+          const sqlite = new SQLiteConnection(CapacitorSQLite);
+          const dbName = 'erudite_flashcards';
+
+          const retCC = (await sqlite.checkConnectionsConsistency()).result;
+          const isConn = (await sqlite.isConnection(dbName, false)).result;
+          if (retCC && isConn) {
+            db = await sqlite.retrieveConnection(dbName, false);
+          } else {
+            db = await sqlite.createConnection(dbName, false, 'no-encryption', 1, false);
           }
-          console.warn(`[mobile-store] Could not open ${path}:`, error?.message || error);
+          await db.open();
+        } catch (error) {
+          console.error('[mobile-store] Failed to open native SQLite database:', error);
+          lastOpenError = error;
         }
       }
 
-      const isFresh = !db;
-      if (!db) {
-        if (foundExistingFile) {
-          throw new Error(`Local database could not be opened safely. Existing data was not overwritten. ${lastOpenError?.message || ''}`.trim());
+      if (isNative && db) {
+        await createSchema();
+        await migrateFromLegacySqlJs();
+      } else {
+        // Fallback to WebAssembly SQL.js
+        for (const path of [DB_PATH, DB_TMP_PATH]) {
+          if (db) break;
+          try {
+            const file = await Filesystem.readFile({ path, directory: DIRECTORY_DATA });
+            foundExistingFile = true;
+            const candidate = new SQL.Database(base64ToBytes(file.data));
+            probeDatabase(candidate);
+            db = candidate;
+            openedFromTemp = path === DB_TMP_PATH;
+          } catch (error) {
+            if (!isMissingFileError(error)) {
+              foundExistingFile = true;
+              lastOpenError = error;
+            }
+            console.warn(`[mobile-store] Could not open ${path}:`, error?.message || error);
+          }
         }
-        console.warn('[mobile-store] Starting with empty database');
-        db = new SQL.Database();
-      }
 
-      createSchema();
-      const recoveredClassBackups = recoverLocalClassBackupsIfEmptyOrMissing();
-      const recoveredLocalBackups = recoverLocalSetBackupsIfEmpty();
-      const repairedOrphans = repairOrphanedClassIds();
-      const appliedStudyPatches = applyPendingStudyPatches();
-      // Only persist on first-time setup to avoid a costly full write on every cold start
-      if (isFresh) await _doPersist();
-      else if (openedFromTemp) await _doPersist();
-      else if (recoveredClassBackups || recoveredLocalBackups || repairedOrphans) await _doPersist();
-      else if (appliedStudyPatches) persist(2500).catch(() => {});
+        const isFresh = !db;
+        if (!db) {
+          if (foundExistingFile) {
+            throw new Error(`Local database could not be opened safely. Existing data was not overwritten. ${lastOpenError?.message || ''}`.trim());
+          }
+          console.warn('[mobile-store] Starting with empty database');
+          db = new SQL.Database();
+        }
+
+        await createSchema();
+        const recoveredClassBackups = await recoverLocalClassBackupsIfEmptyOrMissing();
+        const recoveredLocalBackups = await recoverLocalSetBackupsIfEmpty();
+        const repairedOrphans = await repairOrphanedClassIds();
+        const appliedStudyPatches = await applyPendingStudyPatches();
+        // Only persist on first-time setup to avoid a costly full write on every cold start
+        if (isFresh) await _doPersist();
+        else if (openedFromTemp) await _doPersist();
+        else if (recoveredClassBackups || recoveredLocalBackups || repairedOrphans) await _doPersist();
+        else if (appliedStudyPatches) persist(2500).catch(() => {});
+      }
       return true;
     })();
 
@@ -604,7 +773,8 @@
 
   async function listClasses() {
     await ensureReady();
-    const classes = rows('SELECT * FROM classes WHERE deleted_at IS NULL ORDER BY name ASC').map(row => ({
+    const result = await rows('SELECT * FROM classes WHERE deleted_at IS NULL ORDER BY name ASC');
+    const classes = result.map(row => ({
       ...jsonParse(row.payload_json, {}),
       id: row.id,
       name: row.name,
@@ -616,8 +786,8 @@
     return classes;
   }
 
-  function upsertClass(classData) {
-    run(`
+  async function upsertClass(classData) {
+    await run(`
       INSERT INTO classes (id, name, color, created, last_modified, deleted_at, payload_json)
       VALUES (?, ?, ?, ?, ?, NULL, ?)
       ON CONFLICT(id) DO UPDATE SET
@@ -641,7 +811,7 @@
     await ensureReady();
     const existing = (await listClasses()).find(item => String(item.id) === String(classData.id));
     const normalized = schema.normalizeClass(classData, existing);
-    upsertClass(normalized);
+    await upsertClass(normalized);
     rememberClassBackup(normalized);
     await persist();
     return normalized;
@@ -650,11 +820,11 @@
   async function replaceClasses(classes = [], options = {}) {
     await ensureReady();
     const now = Date.now();
-    db.exec(`UPDATE classes SET deleted_at = ${now}, last_modified = ${now} WHERE deleted_at IS NULL;`);
+    await executeRaw(`UPDATE classes SET deleted_at = ${now}, last_modified = ${now} WHERE deleted_at IS NULL;`);
     clearClassBackups();
     for (const classData of Array.isArray(classes) ? classes : []) {
       const normalized = schema.normalizeClass(classData, null, { preserveLastModified: true });
-      upsertClass(normalized);
+      await upsertClass(normalized);
       rememberClassBackup(normalized);
     }
     if (options.persist !== false) await persist();
@@ -664,16 +834,16 @@
   async function deleteClass(classId) {
     await ensureReady();
     const now = Date.now();
-    run('UPDATE classes SET deleted_at = ?, last_modified = ? WHERE id = ?', [now, now, String(classId)]);
-    run('UPDATE sets SET class_id = NULL, last_modified = ? WHERE class_id = ? AND deleted_at IS NULL', [now, String(classId)]);
+    await run('UPDATE classes SET deleted_at = ?, last_modified = ? WHERE id = ?', [now, now, String(classId)]);
+    await run('UPDATE sets SET class_id = NULL, last_modified = ? WHERE class_id = ? AND deleted_at IS NULL', [now, String(classId)]);
     forgetClassBackup(classId);
     await persist();
     return true;
   }
 
-  function upsertSet(set) {
+  async function upsertSet(set) {
     const payload = { ...set, cards: undefined };
-    run(`
+    await run(`
       INSERT INTO sets (
         id, name, description, class_id, srs_settings_json, created,
         opened_count, last_opened, last_modified, deleted_at, payload_json
@@ -704,50 +874,61 @@
     ]);
   }
 
-  function replaceCardsForSet(setId, cards = []) {
-    run('DELETE FROM cards WHERE set_id = ?', [String(setId)]);
-    cards.forEach((card, index) => {
-      run(`
-        INSERT INTO cards (
-          id, set_id, position, term, definition, term_image, definition_image,
-          tags_json, suspended, buried_until, srs_json, review_history_json,
-          created, last_modified, deleted_at, payload_json
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?)
-      `, [
-        String(card.id),
-        String(setId),
-        index,
-        card.term || '',
-        card.definition || '',
-        card.termImage || '',
-        card.definitionImage || '',
-        jsonString(Array.isArray(card.tags) ? card.tags : []),
-        card.suspended ? 1 : 0,
-        card.buriedUntil || null,
-        jsonString(card.srs || null),
-        jsonString(Array.isArray(card.reviewHistory) ? card.reviewHistory : []),
-        card.created || null,
-        card.lastModified || null,
-        jsonString(card)
-      ]);
-    });
+  async function replaceCardsForSet(setId, cards = []) {
+    const set = [
+      { statement: 'DELETE FROM cards WHERE set_id = ?', values: [String(setId)] }
+    ];
+    for (let index = 0; index < cards.length; index++) {
+      const card = cards[index];
+      set.push({
+        statement: `
+          INSERT INTO cards (
+            id, set_id, position, term, definition, term_image, definition_image,
+            tags_json, suspended, buried_until, srs_json, review_history_json,
+            created, last_modified, deleted_at, payload_json
+          )
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?)
+        `,
+        values: [
+          String(card.id),
+          String(setId),
+          index,
+          card.term || '',
+          card.definition || '',
+          card.termImage || '',
+          card.definitionImage || '',
+          jsonString(Array.isArray(card.tags) ? card.tags : []),
+          card.suspended ? 1 : 0,
+          card.buriedUntil || null,
+          jsonString(card.srs || null),
+          jsonString(Array.isArray(card.reviewHistory) ? card.reviewHistory : []),
+          card.created || null,
+          card.lastModified || null,
+          jsonString(card)
+        ]
+      });
+    }
+    await executeSet(set);
   }
 
   async function listSets() {
     await ensureReady();
-    const setRows = rows('SELECT * FROM sets WHERE deleted_at IS NULL ORDER BY last_modified DESC, created DESC');
-    const sets = setRows.map(row => hydrateSetRow(row));
+    const setRows = await rows('SELECT * FROM sets WHERE deleted_at IS NULL ORDER BY last_modified DESC, created DESC');
+    const sets = [];
+    for (const row of setRows) {
+      sets.push(await hydrateSetRow(row));
+    }
     sets.forEach(rememberSetBackup);
     return sets;
   }
 
-  function hydrateSetRow(row) {
+  async function hydrateSetRow(row) {
     const payload = jsonParse(row.payload_json, {});
-    const cards = rows(
+    const cardRows = await rows(
       'SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL ORDER BY position ASC',
       [row.id]
-    ).map(cardRow => hydrateCardRow(cardRow));
+    );
+    const cards = cardRows.map(cardRow => hydrateCardRow(cardRow));
 
     return {
       ...payload,
@@ -782,7 +963,7 @@
 
   async function getSetMeta(id) {
     await ensureReady();
-    const setRows = rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL', [String(id)]);
+    const setRows = await rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL', [String(id)]);
     return setRows.length ? hydrateSetMetaRow(setRows[0]) : null;
   }
 
@@ -858,19 +1039,21 @@
     return !due || due <= nowMs;
   }
 
-  function buildMetaStatsBySet() {
+  async function buildMetaStatsBySet() {
     const nowMs = Date.now();
     const todayKey = dayKey(nowMs);
     const thirtyDaysAgo = nowMs - 30 * 24 * 60 * 60 * 1000;
     const statsBySet = new Map();
     const dayKeysBySet = new Map();
 
-    rows(`
+    const cardRows = await rows(`
       SELECT c.set_id, c.srs_json, c.review_history_json, c.suspended, c.buried_until
       FROM cards c
       INNER JOIN sets s ON s.id = c.set_id
       WHERE c.deleted_at IS NULL AND s.deleted_at IS NULL
-    `).forEach(row => {
+    `);
+
+    cardRows.forEach(row => {
       const setId = String(row.set_id);
       const stats = statsBySet.get(setId) || createMetaStats();
       const dayKeys = dayKeysBySet.get(setId) || new Set();
@@ -945,8 +1128,8 @@
 
   async function listSetsMeta() {
     await ensureReady();
-    const statsBySet = buildMetaStatsBySet();
-    const setRows = rows(`
+    const statsBySet = await buildMetaStatsBySet();
+    const setRows = await rows(`
       SELECT s.*,
         (SELECT COUNT(*) FROM cards c WHERE c.set_id = s.id AND c.deleted_at IS NULL) AS card_count
       FROM sets s
@@ -983,9 +1166,9 @@
 
   async function getSet(id) {
     await ensureReady();
-    const setRows = rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL', [String(id)]);
+    const setRows = await rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL', [String(id)]);
     if (!setRows.length) return null;
-    const set = hydrateSetRow(setRows[0]);
+    const set = await hydrateSetRow(setRows[0]);
     rememberSetBackup(set);
     return set;
   }
@@ -1022,7 +1205,7 @@
       delete payload.mobileStats;
       delete payload.cardCount;
       delete payload.__metaOnly;
-      run(`
+      await run(`
         UPDATE sets
         SET name = ?, description = ?, class_id = ?, srs_settings_json = ?,
             opened_count = ?, last_opened = ?, last_modified = ?, payload_json = ?, deleted_at = NULL
@@ -1038,27 +1221,27 @@
         jsonString(payload),
         String(existing.id)
       ]);
-      persist();
+      await persist();
       return { ...next, cards: [], __metaOnly: true };
     }
 
     const normalized = schema.normalizeSet(cleanSet, existing);
-    upsertSet(normalized);
-    if (!metaOnlyUpdate) replaceCardsForSet(normalized.id, normalized.cards || []);
+    await upsertSet(normalized);
+    if (!metaOnlyUpdate) await replaceCardsForSet(normalized.id, normalized.cards || []);
     if (!metaOnlyUpdate) rememberSetBackup(normalized);
-    persist(); // fire-and-forget — flush() ensures it completes before navigation
+    await persist(); // fire-and-forget — flush() ensures it completes before navigation
     return normalized;
   }
 
   async function replaceSets(sets = [], options = {}) {
     await ensureReady();
     const now = Date.now();
-    db.exec(`UPDATE sets SET deleted_at = ${now}, last_modified = ${now} WHERE deleted_at IS NULL;`);
+    await executeRaw(`UPDATE sets SET deleted_at = ${now}, last_modified = ${now} WHERE deleted_at IS NULL;`);
     clearSetBackups();
     for (const set of Array.isArray(sets) ? sets : []) {
       const normalized = schema.normalizeSet(set, null, { preserveLastModified: true });
-      upsertSet(normalized);
-      replaceCardsForSet(normalized.id, normalized.cards || []);
+      await upsertSet(normalized);
+      await replaceCardsForSet(normalized.id, normalized.cards || []);
       rememberSetBackup(normalized);
     }
     if (options.persist !== false) await persist();
@@ -1068,8 +1251,8 @@
   async function deleteSet(id) {
     await ensureReady();
     const now = Date.now();
-    run('UPDATE sets SET deleted_at = ?, last_modified = ? WHERE id = ?', [now, now, String(id)]);
-    run('DELETE FROM progress WHERE set_id = ?', [String(id)]);
+    await run('UPDATE sets SET deleted_at = ?, last_modified = ? WHERE id = ?', [now, now, String(id)]);
+    await run('DELETE FROM progress WHERE set_id = ?', [String(id)]);
     forgetSetBackup(id);
     await persist();
     return true;
@@ -1077,13 +1260,13 @@
 
   async function getSettings() {
     await ensureReady();
-    const result = rows('SELECT value_json FROM settings WHERE key = ?', ['app']);
+    const result = await rows('SELECT value_json FROM settings WHERE key = ?', ['app']);
     return schema.normalizeSettings(jsonParse(result[0]?.value_json, {}));
   }
 
   async function saveSettings(settings = {}) {
     await ensureReady();
-    run('INSERT OR REPLACE INTO settings (key, value_json, updated_at) VALUES (?, ?, ?)', [
+    await run('INSERT OR REPLACE INTO settings (key, value_json, updated_at) VALUES (?, ?, ?)', [
       'app',
       jsonString(schema.normalizeSettings(settings)),
       Date.now()
@@ -1094,90 +1277,98 @@
 
   async function getProgress(setId) {
     await ensureReady();
-    const result = rows('SELECT value_json FROM progress WHERE set_id = ?', [String(setId)]);
+    const result = await rows('SELECT value_json FROM progress WHERE set_id = ?', [String(setId)]);
     return jsonParse(result[0]?.value_json, null);
   }
 
   async function saveProgress(setId, value) {
     await ensureReady();
-    run('INSERT OR REPLACE INTO progress (set_id, value_json, updated_at) VALUES (?, ?, ?)', [
+    await run('INSERT OR REPLACE INTO progress (set_id, value_json, updated_at) VALUES (?, ?, ?)', [
       String(setId),
       jsonString(value),
       Date.now()
     ]);
-    persist(); // fire-and-forget — flush() ensures completion before navigation
+    await persist(); // fire-and-forget — flush() ensures completion before navigation
     return true;
   }
 
   async function saveCardProgress(setId, cardId, patch = {}) {
     await ensureReady();
-    updateCardProgressRow(setId, cardId, patch);
-    persist(12000);
+    await updateCardProgressRow(setId, cardId, patch);
+    await persist(12000);
     return true;
   }
 
-  function getAllProgress() {
+  async function getAllProgress() {
     const progress = {};
-    rows('SELECT set_id, value_json FROM progress').forEach(row => {
+    const result = await rows('SELECT set_id, value_json FROM progress');
+    result.forEach(row => {
       progress[row.set_id] = jsonParse(row.value_json, null);
     });
     return progress;
   }
 
   async function replaceProgress(progress = {}, options = {}) {
-    db.exec('DELETE FROM progress;');
+    await ensureReady();
+    const set = [
+      { statement: 'DELETE FROM progress;', values: [] }
+    ];
     for (const [setId, value] of Object.entries(progress || {})) {
-      run('INSERT OR REPLACE INTO progress (set_id, value_json, updated_at) VALUES (?, ?, ?)', [
-        String(setId),
-        jsonString(value),
-        Date.now()
-      ]);
+      set.push({
+        statement: 'INSERT OR REPLACE INTO progress (set_id, value_json, updated_at) VALUES (?, ?, ?)',
+        values: [String(setId), jsonString(value), Date.now()]
+      });
     }
+    await executeSet(set);
     if (options.persist !== false) await persist();
     return true;
   }
 
   async function getState(key) {
     await ensureReady();
-    const result = rows('SELECT value_json FROM state WHERE key = ?', [String(key)]);
+    const result = await rows('SELECT value_json FROM state WHERE key = ?', [String(key)]);
     return jsonParse(result[0]?.value_json, null);
   }
 
   async function setState(key, value) {
     await ensureReady();
-    run('INSERT OR REPLACE INTO state (key, value_json, updated_at) VALUES (?, ?, ?)', [
+    await run('INSERT OR REPLACE INTO state (key, value_json, updated_at) VALUES (?, ?, ?)', [
       String(key),
       jsonString(value),
       Date.now()
     ]);
-    persist();
+    await persist();
     return true;
   }
 
   async function removeState(key) {
     await ensureReady();
-    run('DELETE FROM state WHERE key = ?', [String(key)]);
-    persist();
+    await run('DELETE FROM state WHERE key = ?', [String(key)]);
+    await persist();
     return true;
   }
 
-  function getAllState() {
+  async function getAllState() {
     const state = {};
-    rows('SELECT key, value_json FROM state').forEach(row => {
+    const result = await rows('SELECT key, value_json FROM state');
+    result.forEach(row => {
       state[row.key] = jsonParse(row.value_json, null);
     });
     return state;
   }
 
   async function replaceState(state = {}, options = {}) {
-    db.exec('DELETE FROM state;');
+    await ensureReady();
+    const set = [
+      { statement: 'DELETE FROM state;', values: [] }
+    ];
     for (const [key, value] of Object.entries(state || {})) {
-      run('INSERT OR REPLACE INTO state (key, value_json, updated_at) VALUES (?, ?, ?)', [
-        String(key),
-        jsonString(value),
-        Date.now()
-      ]);
+      set.push({
+        statement: 'INSERT OR REPLACE INTO state (key, value_json, updated_at) VALUES (?, ?, ?)',
+        values: [String(key), jsonString(value), Date.now()]
+      });
     }
+    await executeSet(set);
     if (options.persist !== false) await persist();
     return true;
   }
@@ -1201,8 +1392,8 @@
       sets: await listSets(),
       classes: await listClasses(),
       settings: await getSettings(),
-      progress: getAllProgress(),
-      state: getAllState()
+      progress: await getAllProgress(),
+      state: await getAllState()
     });
   }
 
@@ -1224,7 +1415,7 @@
 
   async function resetDeckSRS(setId, deleteHistory) {
     await ensureReady();
-    const cardRows = rows('SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL', [String(setId)]);
+    const cardRows = await rows('SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL', [String(setId)]);
 
     for (const cardRow of cardRows) {
       const card = hydrateCardRow(cardRow);
@@ -1233,7 +1424,7 @@
         card.reviewHistory = [];
       }
 
-      run(
+      await run(
         'UPDATE cards SET srs_json = NULL, review_history_json = ?, payload_json = ?, last_modified = ? WHERE id = ?',
         [
           jsonString(card.reviewHistory),
@@ -1335,7 +1526,7 @@
       appName: 'Erudite Flashcards',
       appVersion: 'mobile',
       generatedAt: new Date().toISOString(),
-      storageEngine: 'SQLite (Capacitor sql.js)',
+      storageEngine: isNative ? 'SQLite (Capacitor Native)' : 'SQLite (Capacitor WebAssembly)',
       paths: {
         database: DB_PATH,
         backupsDir: BACKUP_DIR
@@ -1344,8 +1535,8 @@
         sets: sets.length,
         classes: classes.length,
         cards: sets.reduce((total, set) => total + (Array.isArray(set.cards) ? set.cards.length : 0), 0),
-        progressEntries: Object.keys(getAllProgress()).length,
-        stateEntries: Object.keys(getAllState()).length
+        progressEntries: Object.keys(await getAllProgress()).length,
+        stateEntries: Object.keys(await getAllState()).length
       },
       health: {
         status: 'ok',
