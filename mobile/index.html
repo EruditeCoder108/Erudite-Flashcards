@@ -538,48 +538,50 @@
   <div class="mobile-modal-overlay hidden" id="paste-import-overlay" role="dialog" aria-modal="true" aria-labelledby="paste-import-title">
     <div class="mobile-modal-card mobile-modal-card--wide">
       <h3 id="paste-import-title"><i class="fas fa-clipboard"></i> Paste Import</h3>
-      <div class="mobile-modal-field">
-        <label for="paste-import-name">Deck name</label>
-        <input type="text" id="paste-import-name" class="mobile-modal-input" placeholder="My Imported Deck">
-      </div>
-      <div class="mobile-modal-field" style="margin-top: 0.75rem; margin-bottom: 0.25rem;">
-        <label>Assign to Class</label>
-        <button type="button" class="custom-select-trigger" id="mobile-paste-import-class-trigger">
-          <span id="mobile-paste-import-class-label">General</span>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-      </div>
-      <div class="mobile-modal-field" style="margin-top: 0.75rem; margin-bottom: 0.25rem;">
-        <label>Format Preset</label>
-        <button type="button" class="custom-select-trigger" id="mobile-paste-import-preset-trigger">
-          <span id="mobile-paste-import-preset-label">Standard (Word ; Meaning @ Card)</span>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <input type="hidden" id="paste-import-preset" value="standard">
-      </div>
-      <div class="mobile-modal-row" id="paste-import-separator-row" style="margin-top: 0.5rem; display: none;">
+      <div class="mobile-modal-scroll-content">
         <div class="mobile-modal-field">
-          <label for="paste-import-term-sep">Term/Definition separator</label>
-          <input type="text" id="paste-import-term-sep" class="mobile-modal-input" value=";" placeholder="e.g. ;">
+          <label for="paste-import-name">Deck name</label>
+          <input type="text" id="paste-import-name" class="mobile-modal-input" placeholder="My Imported Deck">
         </div>
-        <div class="mobile-modal-field">
-          <label for="paste-import-card-sep">Card separator</label>
-          <input type="text" id="paste-import-card-sep" class="mobile-modal-input" value="@" placeholder="e.g. @">
+        <div class="mobile-modal-field" style="margin-top: 0.75rem; margin-bottom: 0.25rem;">
+          <label>Assign to Class</label>
+          <button type="button" class="custom-select-trigger" id="mobile-paste-import-class-trigger">
+            <span id="mobile-paste-import-class-label">General</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
         </div>
-      </div>
-      <textarea id="paste-import-text" class="mobile-modal-textarea" rows="6" placeholder="Paste your cards here…&#10;Example:&#10;term1;definition1@term2;definition2..."></textarea>
-      <p class="mobile-modal-hint" style="color: var(--text-muted, #94a3b8); font-size: 0.8rem; margin: 0.4rem 0 0.8rem; line-height: 1.4; opacity: 0.85;">
-        <i class="fas fa-info-circle"></i> Use the default separator (<code>;</code>) between each word and its meaning, and (<code>@</code>) between different cards. You can customize these separators above if needed.
-      </p>
-      
-      <!-- Live Preview Container -->
-      <div class="mobile-modal-field" id="mobile-paste-preview-container" style="margin-top: 0.4rem; margin-bottom: 0.4rem;">
-        <label style="font-size: 0.78rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em; display: flex; justify-content: space-between; align-items: center;">
-          <span>Preview</span>
-          <span id="mobile-paste-preview-count">(0 cards)</span>
-        </label>
-        <div id="mobile-paste-preview-cards" style="display: flex; flex-direction: column; gap: 0.45rem; max-height: 8rem; overflow-y: auto; padding: 0.25rem 0.1rem; border-radius: 0.5rem;">
-          <!-- Populated dynamically via JS -->
+        <div class="mobile-modal-field" style="margin-top: 0.75rem; margin-bottom: 0.25rem;">
+          <label>Format Preset</label>
+          <button type="button" class="custom-select-trigger" id="mobile-paste-import-preset-trigger">
+            <span id="mobile-paste-import-preset-label">Standard (Word ; Meaning @ Card)</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <input type="hidden" id="paste-import-preset" value="standard">
+        </div>
+        <div class="mobile-modal-row" id="paste-import-separator-row" style="margin-top: 0.5rem; display: none;">
+          <div class="mobile-modal-field">
+            <label for="paste-import-term-sep">Term/Definition separator</label>
+            <input type="text" id="paste-import-term-sep" class="mobile-modal-input" value=";" placeholder="e.g. ;">
+          </div>
+          <div class="mobile-modal-field">
+            <label for="paste-import-card-sep">Card separator</label>
+            <input type="text" id="paste-import-card-sep" class="mobile-modal-input" value="@" placeholder="e.g. @">
+          </div>
+        </div>
+        <textarea id="paste-import-text" class="mobile-modal-textarea" rows="6" placeholder="Paste your cards here…&#10;Example:&#10;term1;definition1@term2;definition2..."></textarea>
+        <p class="mobile-modal-hint" style="color: var(--text-muted, #94a3b8); font-size: 0.8rem; margin: 0.4rem 0 0.8rem; line-height: 1.4; opacity: 0.85;">
+          <i class="fas fa-info-circle"></i> Use the default separator (<code>;</code>) between each word and its meaning, and (<code>@</code>) between different cards. You can customize these separators above if needed.
+        </p>
+        
+        <!-- Live Preview Container -->
+        <div class="mobile-modal-field" id="mobile-paste-preview-container" style="margin-top: 0.4rem; margin-bottom: 0.4rem;">
+          <label style="font-size: 0.78rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em; display: flex; justify-content: space-between; align-items: center;">
+            <span>Preview</span>
+            <span id="mobile-paste-preview-count">(0 cards)</span>
+          </label>
+          <div id="mobile-paste-preview-cards" style="display: flex; flex-direction: column; gap: 0.45rem; max-height: 8rem; overflow-y: auto; padding: 0.25rem 0.1rem; border-radius: 0.5rem;">
+            <!-- Populated dynamically via JS -->
+          </div>
         </div>
       </div>
 

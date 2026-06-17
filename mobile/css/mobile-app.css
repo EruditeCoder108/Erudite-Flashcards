@@ -1896,6 +1896,7 @@ select option {
 .mobile-modal-card {
   width: 100%;
   max-width: 32rem;
+  max-height: 90vh;
   background: var(--surface);
   border: 1px solid var(--line-strong);
   border-bottom: none;
@@ -1905,6 +1906,17 @@ select option {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.mobile-modal-scroll-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-right: 0.2rem;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-modal-card--wide {
