@@ -94,6 +94,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const studySessionId = (typeof crypto !== 'undefined' && crypto.randomUUID) 
         ? crypto.randomUUID() 
         : 'session-' + Date.now() + '-' + Math.random().toString(36).substring(2, 9);
+    let sessionStartedAt = Date.now();
+    let sessionCardsViewed = new Set();
     let srsUndoStack = [];
     let cardIdForDueDate = null;
 
@@ -360,10 +362,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    async function saveSessionLog() {
+        if (!flashcardSet || !sessionStartedAt) return;
+        const durationMs = Date.now() - sessionStartedAt;
+        if (durationMs < 5000) return;
+        const sessionPayload = {
+            id: studySessionId,
+            setId: flashcardSet.id,
+            startedAt: sessionStartedAt,
+            durationMs: durationMs,
+            cardsViewed: sessionCardsViewed?.size || 0,
+            mode: srsModeEnabled ? 'srs' : 'normal'
+        };
+        try {
+            if (window.flashcardStore?.saveStudySession) {
+                await window.flashcardStore.saveStudySession(sessionPayload);
+            }
+        } catch (err) {
+            console.warn('[study] Could not save study session:', err);
+        }
+    }
+
     // Save current progress
     async function saveProgress(options = {}) {
         try {
             if (!flashcardSet) return;
+            try { await saveSessionLog(); } catch (_) {}
             const progressId = getProgressId();
             if (progressId === null || progressId === undefined) return;
             if (!srsModeEnabled && normalStudyOrder === 'random') return;
@@ -625,6 +649,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             await loadStudyPreferences();
             await loadSavedProgress();
             prepareNormalStudyCards({ useSavedOrder: true });
+            sessionStartedAt = Date.now();
+            sessionCardsViewed = new Set();
 
             // Activate SRS mode if enabled
             if (srsModeEnabled && window.srsManager && window.srsManager.isReady()) {
@@ -671,6 +697,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Update the global currentCardIndex for compatibility with existing functions
         currentCardIndex = currentIndex;
         const card = cardsToUse[currentIndex];
+        if (card && card.id && sessionCardsViewed) {
+            sessionCardsViewed.add(String(card.id));
+        }
         const termText = document.querySelector('.term-text');
         const definitionText = document.querySelector('.definition-text');
         const termImage = document.querySelector('.term-image');
@@ -2454,4 +2483,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initialize
     await initializeSRS();
     await loadFlashcardSet();
+
+    window.addEventListener('beforeunload', () => {
+        saveSessionLog();
+    });
 });

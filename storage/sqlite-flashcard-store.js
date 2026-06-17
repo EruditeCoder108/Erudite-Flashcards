@@ -133,6 +133,15 @@ class SqliteFlashcardStore {
         updated_at INTEGER NOT NULL
       );
 
+      CREATE TABLE IF NOT EXISTS study_sessions (
+        id TEXT PRIMARY KEY,
+        set_id TEXT,
+        started_at INTEGER NOT NULL,
+        duration_ms INTEGER NOT NULL,
+        cards_viewed INTEGER NOT NULL,
+        mode TEXT NOT NULL
+      );
+
       CREATE TABLE IF NOT EXISTS tombstones (
         id TEXT PRIMARY KEY,
         record_type TEXT NOT NULL,
@@ -764,6 +773,9 @@ class SqliteFlashcardStore {
       statement = this.db.prepare('DELETE FROM progress WHERE set_id = ?');
       statement.run([String(id)]);
       statement.free();
+      statement = this.db.prepare('DELETE FROM study_sessions WHERE set_id = ?');
+      statement.run([String(id)]);
+      statement.free();
       this.commit();
     } catch (error) {
       this.rollback();
@@ -1135,6 +1147,40 @@ class SqliteFlashcardStore {
 
     await this.persist();
     return true;
+  }
+
+  async saveStudySession(session, options = {}) {
+    const { id, setId, startedAt, durationMs, cardsViewed, mode } = session;
+    const statement = this.db.prepare('INSERT OR REPLACE INTO study_sessions (id, set_id, started_at, duration_ms, cards_viewed, mode) VALUES (?, ?, ?, ?, ?, ?)');
+    statement.run([
+      String(id),
+      setId ? String(setId) : null,
+      Number(startedAt),
+      Number(durationMs),
+      Number(cardsViewed),
+      String(mode)
+    ]);
+    statement.free();
+    if (options.persist !== false) await this.persist();
+    return true;
+  }
+
+  async getStudySessions(sinceMs) {
+    let sql = 'SELECT * FROM study_sessions';
+    const params = [];
+    if (sinceMs !== undefined && sinceMs !== null) {
+      sql += ' WHERE started_at >= ?';
+      params.push(Number(sinceMs));
+    }
+    sql += ' ORDER BY started_at ASC';
+    return this.rows(sql, params).map(row => ({
+      id: row.id,
+      setId: row.set_id,
+      startedAt: Number(row.started_at),
+      durationMs: Number(row.duration_ms),
+      cardsViewed: Number(row.cards_viewed),
+      mode: row.mode
+    }));
   }
 }
 

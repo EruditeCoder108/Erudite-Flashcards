@@ -1163,8 +1163,13 @@ ipcMain.handle('flashcards:recordReview', (_event, params) => getFlashcardStore(
 ipcMain.handle('flashcards:undoReviewLog', (_event, cardId, logId) => getFlashcardStore().undoReviewLog(cardId, logId));
 ipcMain.handle('flashcards:resetDeckSRS', (_event, setId, deleteHistory) => getFlashcardStore().resetDeckSRS(setId, deleteHistory));
 ipcMain.handle('flashcards:createDeckBackup', (_event, setId) => getFlashcardStore().createDeckBackup(setId));
+ipcMain.handle('flashcards:saveStudySession', (_event, session) => getFlashcardStore().saveStudySession(session));
+ipcMain.handle('flashcards:getStudySessions', (_event, sinceMs) => getFlashcardStore().getStudySessions(sinceMs));
 ipcMain.handle('flashcards:getProgress', async (_event, setId) => {
   return getFlashcardStore().getProgress(setId);
+});
+ipcMain.handle('flashcards:getAllProgress', async () => {
+  return getFlashcardStore().getAllProgress();
 });
 ipcMain.handle('flashcards:saveProgress', async (_event, setId, value) => {
   return getFlashcardStore().saveProgress(setId, value);

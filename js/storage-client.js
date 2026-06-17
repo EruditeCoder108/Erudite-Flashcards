@@ -176,6 +176,12 @@
     return progress[String(setId)] || null;
   }
 
+  async function getAllProgress() {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.getAllProgress) return nativeApi.getAllProgress();
+    return readLocal('studyProgress', {});
+  }
+
   async function saveProgress(setId, value) {
     const nativeApi = getNativeApi();
     if (nativeApi) return nativeApi.saveProgress(setId, value);
@@ -565,6 +571,18 @@
     return null;
   }
 
+  async function saveStudySession(session) {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.saveStudySession) return nativeApi.saveStudySession(session);
+    return null;
+  }
+
+  async function getStudySessions(sinceMs) {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.getStudySessions) return nativeApi.getStudySessions(sinceMs);
+    return [];
+  }
+
   window.flashcardStore = {
     listSets,
     listSetsMeta,
@@ -576,6 +594,7 @@
     saveClass,
     deleteClass,
     getProgress,
+    getAllProgress,
     saveProgress,
     saveCardProgress,
     getSettings,
@@ -597,7 +616,9 @@
     recordReview,
     undoReviewLog,
     resetDeckSRS,
-    createDeckBackup
+    createDeckBackup,
+    saveStudySession,
+    getStudySessions
   };
 
   const menuApi = getNativeApi();

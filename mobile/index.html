@@ -1,7 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="mobile-app-shell" style="background-color: #07111f;">
+<html lang="en" class="mobile-app-shell">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('erudite-theme');
+        if (theme === 'light') {
+          document.documentElement.classList.add('theme-light');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#07111f">
   <title>Erudite Flashcards</title>
@@ -9,7 +19,7 @@
   <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="mobile/css/mobile-app.css">
 </head>
-<body style="background-color: #07111f;">
+<body>
   <div class="app-loading-cover" id="app-loading-cover" aria-live="polite">
     <div class="deck-loader">
       <div class="loader-card loader-card-1">
@@ -107,23 +117,18 @@
 
       <section class="mobile-view" id="view-library" aria-labelledby="library-heading">
         <div class="library-screen-head">
-          <div>
-            <p class="mobile-eyebrow">Library</p>
-            <h2 id="library-heading">Your decks</h2>
+          <div class="deck-source-switch" role="radiogroup" aria-label="Deck source">
+            <button type="button" class="source-option active" data-action="tab-library" aria-checked="true" role="radio">
+              <span class="source-dot"></span>
+              Your decks
+            </button>
+            <button type="button" class="source-option" data-action="open-premade" aria-checked="false" role="radio">
+              <span class="source-dot"></span>
+              Premade
+            </button>
           </div>
           <button type="button" class="icon-button raised" data-action="open-create" aria-label="Create set">
             <i class="fas fa-plus"></i>
-          </button>
-        </div>
-
-        <div class="deck-source-switch" role="radiogroup" aria-label="Deck source">
-          <button type="button" class="source-option active" data-action="tab-library" aria-checked="true" role="radio">
-            <span class="source-dot"></span>
-            Your decks
-          </button>
-          <button type="button" class="source-option" data-action="open-premade" aria-checked="false" role="radio">
-            <span class="source-dot"></span>
-            Premade
           </button>
         </div>
 
@@ -155,16 +160,6 @@
 
       <section class="mobile-view" id="view-create" aria-labelledby="create-heading">
         <form class="mobile-creator" id="mobile-create-form">
-          <div class="creator-header surface-card">
-            <div>
-              <p class="mobile-eyebrow">Create</p>
-              <h2 id="create-heading">Deck editor</h2>
-            </div>
-            <button type="submit" class="primary-action compact-action">
-              <i class="fas fa-check"></i>
-              Save
-            </button>
-          </div>
 
           <div class="creator-meta surface-card">
             <label class="mobile-field">
@@ -232,7 +227,7 @@
 
       <section class="mobile-view" id="view-more" aria-labelledby="more-heading">
         <div class="section-block first">
-          <p class="mobile-eyebrow">More</p>
+          <p class="mobile-eyebrow">Settings</p>
           <h2 id="more-heading">App tools</h2>
         </div>
         <div class="settings-list">
@@ -271,6 +266,17 @@
             <span class="settings-icon"><i class="fas fa-clipboard"></i></span>
             <span><strong>Paste Import</strong><small>Import decks from clipboard text</small></span>
             <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="select-theme">
+            <span class="settings-icon"><i class="fas fa-palette"></i></span>
+            <span>
+              <strong>Theme Mode</strong>
+              <small>Toggle between Dark Blue and Aura Light theme</small>
+            </span>
+            <div class="custom-select-trigger-pill">
+              <span id="more-theme-label">Dark Blue</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
           </button>
           <label class="settings-row settings-select-row" for="mobile-bg-opacity">
             <span class="settings-icon"><i class="fas fa-image"></i></span>
@@ -320,8 +326,8 @@
         <span>Create</span>
       </button>
       <button type="button" class="tab-button" data-tab="more">
-        <i class="fas fa-ellipsis"></i>
-        <span>More</span>
+        <i class="fas fa-gear"></i>
+        <span>Settings</span>
       </button>
     </nav>
 
@@ -530,6 +536,34 @@
       </div>
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="study-order-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme Selector Modal -->
+  <div class="mobile-modal-overlay hidden" id="theme-select-overlay" role="dialog" aria-modal="true" aria-labelledby="theme-select-title">
+    <div class="mobile-modal-card">
+      <h3 id="theme-select-title" class="modal-title"><i class="fas fa-palette"></i> Theme Mode</h3>
+      <div class="mobile-modal-list">
+        <button type="button" class="mobile-modal-option-btn" data-value="dark">
+          <i class="fas fa-moon option-icon"></i>
+          <span class="option-details">
+            <strong>Dark Blue</strong>
+            <small>Deep dark blue background with vibrant accents</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="light">
+          <i class="fas fa-sun option-icon"></i>
+          <span class="option-details">
+            <strong>Aura Light</strong>
+            <small>Clean, pristine light background with soft shadows</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="theme-select-cancel">Cancel</button>
       </div>
     </div>
   </div>

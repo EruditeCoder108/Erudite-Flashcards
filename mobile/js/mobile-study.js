@@ -59,7 +59,9 @@
       Easy: 0,
       nextDue: null
     },
-    settings: {}
+    settings: {},
+    sessionStartedAt: null,
+    sessionCardsViewed: null
   };
 
   const els = {
@@ -161,6 +163,8 @@
   function showStudyLoader(title = 'Opening Study', copy = 'Preparing your cards') {
     if (els.loadingTitle) els.loadingTitle.textContent = title;
     if (els.loadingCopy) els.loadingCopy.textContent = copy;
+    const cover = document.getElementById('study-loading-cover');
+    if (cover) cover.style.display = '';
     document.body.classList.remove('study-ready');
     document.body.classList.add('is-route-loading');
   }
@@ -168,6 +172,10 @@
   function hideStudyLoader() {
     document.body.classList.add('study-ready');
     document.body.classList.remove('is-route-loading');
+    setTimeout(() => {
+      const cover = document.getElementById('study-loading-cover');
+      if (cover) cover.style.display = 'none';
+    }, 200);
   }
 
   function navigateAway(url, title, copy) {
@@ -189,6 +197,7 @@
   }
 
   async function flushStudyStateBeforeRoute() {
+    try { await saveSessionLog(); } catch (_) {}
     try { await saveProgress({ immediate: true }); } catch (_) {}
     try { await saveOpenedMeta({ immediate: true }); } catch (_) {}
     try { await flushCardProgress(); } catch (_) {}
@@ -208,7 +217,7 @@
     if (routeLeaving) return;
     routeLeaving = true;
     showStudyLoader('Opening Library', 'Refreshing your decks');
-    await new Promise(resolve => requestAnimationFrame(resolve));
+    await new Promise(resolve => setTimeout(resolve, 50));
     await flushStudyStateBeforeRoute();
     navigateAway(libraryUrl(), 'Opening Library', 'Refreshing your decks');
   }
@@ -426,7 +435,8 @@
   function configureSystemBars() {
     const SystemBars = window.Capacitor?.Plugins?.SystemBars;
     if (!SystemBars) return;
-    SystemBars.setStyle?.({ style: 'DARK' }).catch(() => {});
+    const isLight = state.settings?.theme === 'light';
+    SystemBars.setStyle?.({ style: isLight ? 'LIGHT' : 'DARK' }).catch(() => {});
     SystemBars.show?.().catch(() => {});
   }
 
@@ -456,6 +466,10 @@
     state.srsMode = resolveSrsMode(srsMode);
     state.studyOrder = normalizeStudyOrder(settings?.normalStudyOrder);
     state.settings = settings || {};
+    const theme = state.settings?.theme || 'dark';
+    localStorage.setItem('erudite-theme', theme);
+    document.body.classList.toggle('theme-light', theme === 'light');
+    document.documentElement.classList.toggle('theme-light', theme === 'light');
     if (reviewDueSession) {
       localStorage.setItem('srsModeEnabled', 'true');
       window.flashcardStore.setState('srsModeEnabled', true).catch(() => {});
@@ -472,6 +486,8 @@
 
     await loadProgress();
     prepareActiveCards();
+    state.sessionStartedAt = Date.now();
+    state.sessionCardsViewed = new Set();
   }
 
   function scheduleOpenedSave() {
@@ -494,6 +510,25 @@
     });
     if (options.immediate) await flushStore(options.flushTimeout || 900);
     return true;
+  }
+
+  async function saveSessionLog() {
+    if (!state.set || !state.sessionStartedAt) return;
+    const durationMs = Date.now() - state.sessionStartedAt;
+    if (durationMs < 5000) return;
+    const sessionPayload = {
+      id: studySessionId,
+      setId: state.set.id,
+      startedAt: state.sessionStartedAt,
+      durationMs: durationMs,
+      cardsViewed: state.sessionCardsViewed?.size || 0,
+      mode: state.srsMode ? 'srs' : 'normal'
+    };
+    try {
+      await window.flashcardStore.saveStudySession(sessionPayload);
+    } catch (err) {
+      console.warn('[mobile-study] Could not save study session:', err);
+    }
   }
 
   async function loadProgress() {
@@ -1032,6 +1067,11 @@
     populateCardElement(cards[activeCardIndex], state.activeCards[currentIdx]);
     populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
     populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
+    
+    const activeCardData = state.activeCards[currentIdx];
+    if (activeCardData && activeCardData.id && state.sessionCardsViewed) {
+      state.sessionCardsViewed.add(String(activeCardData.id));
+    }
     
     updateRoles();
     preloadNeighborImages();
@@ -1985,7 +2025,7 @@
         routeLeaving = true;
         els.continueButton.disabled = true;
         showStudyLoader('Opening Review', 'Loading the next due deck');
-        await new Promise(resolve => requestAnimationFrame(resolve));
+        await new Promise(resolve => setTimeout(resolve, 50));
         await flushStudyStateBeforeRoute();
         navigateAway(studyUrl(state.nextDueSetId, true), 'Opening Review', 'Loading the next due deck');
         return;
@@ -2166,6 +2206,7 @@
 
     document.addEventListener('visibilitychange', async () => {
       if (document.hidden) {
+        try { await saveSessionLog(); } catch (_) {}
         try { await saveProgress({ immediate: true }); } catch (_) {}
         try { await saveOpenedMeta({ immediate: true }); } catch (_) {}
         try { await flushCardProgress(); } catch (_) {}
@@ -2214,7 +2255,7 @@
           hideStudyLoader();
         });
       }
-    }, 150);
+    }, 280);
   }
 
   if (document.readyState === 'loading') {

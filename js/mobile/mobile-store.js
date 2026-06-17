@@ -486,6 +486,15 @@
         updated_at INTEGER NOT NULL
       );
 
+      CREATE TABLE IF NOT EXISTS study_sessions (
+        id TEXT PRIMARY KEY,
+        set_id TEXT,
+        started_at INTEGER NOT NULL,
+        duration_ms INTEGER NOT NULL,
+        cards_viewed INTEGER NOT NULL,
+        mode TEXT NOT NULL
+      );
+
       CREATE INDEX IF NOT EXISTS idx_mobile_sets_visible ON sets(deleted_at, last_modified);
       CREATE INDEX IF NOT EXISTS idx_mobile_sets_class ON sets(class_id);
       CREATE INDEX IF NOT EXISTS idx_mobile_cards_set_position ON cards(set_id, position);
@@ -1253,6 +1262,7 @@
     const now = Date.now();
     await run('UPDATE sets SET deleted_at = ?, last_modified = ? WHERE id = ?', [now, now, String(id)]);
     await run('DELETE FROM progress WHERE set_id = ?', [String(id)]);
+    await run('DELETE FROM study_sessions WHERE set_id = ?', [String(id)]);
     forgetSetBackup(id);
     await persist();
     return true;
@@ -1507,6 +1517,41 @@
     };
   }
 
+  async function saveStudySession(session) {
+    await ensureReady();
+    const { id, setId, startedAt, durationMs, cardsViewed, mode } = session;
+    await run('INSERT OR REPLACE INTO study_sessions (id, set_id, started_at, duration_ms, cards_viewed, mode) VALUES (?, ?, ?, ?, ?, ?)', [
+      String(id),
+      setId ? String(setId) : null,
+      Number(startedAt),
+      Number(durationMs),
+      Number(cardsViewed),
+      String(mode)
+    ]);
+    await persist();
+    return true;
+  }
+
+  async function getStudySessions(sinceMs) {
+    await ensureReady();
+    let sql = 'SELECT * FROM study_sessions';
+    const params = [];
+    if (sinceMs !== undefined && sinceMs !== null) {
+      sql += ' WHERE started_at >= ?';
+      params.push(Number(sinceMs));
+    }
+    sql += ' ORDER BY started_at ASC';
+    const result = await rows(sql, params);
+    return result.map(row => ({
+      id: row.id,
+      setId: row.set_id,
+      startedAt: Number(row.started_at),
+      durationMs: Number(row.duration_ms),
+      cardsViewed: Number(row.cards_viewed),
+      mode: row.mode
+    }));
+  }
+
   async function saveImage(dataUrl) {
     return dataUrl;
   }
@@ -1573,10 +1618,13 @@
     replaceSets,
     deleteSet,
     resetDeckSRS,
+    saveStudySession,
+    getStudySessions,
     listClasses,
     saveClass,
     deleteClass,
     getProgress,
+    getAllProgress,
     saveProgress,
     saveCardProgress,
     getSettings,

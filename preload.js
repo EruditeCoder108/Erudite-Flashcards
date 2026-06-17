@@ -15,6 +15,7 @@ contextBridge.exposeInMainWorld('eruditeFlashcards', {
   exportDelimited: (format) => ipcRenderer.invoke('flashcards:exportDelimited', format),
   importDelimited: () => ipcRenderer.invoke('flashcards:importDelimited'),
   getProgress: (setId) => ipcRenderer.invoke('flashcards:getProgress', setId),
+  getAllProgress: () => ipcRenderer.invoke('flashcards:getAllProgress'),
   saveProgress: (setId, value) => ipcRenderer.invoke('flashcards:saveProgress', setId, value),
   getSettings: () => ipcRenderer.invoke('flashcards:getSettings'),
   saveSettings: (settings) => ipcRenderer.invoke('flashcards:saveSettings', settings),
@@ -30,6 +31,8 @@ contextBridge.exposeInMainWorld('eruditeFlashcards', {
   undoReviewLog: (cardId, logId) => ipcRenderer.invoke('flashcards:undoReviewLog', cardId, logId),
   resetDeckSRS: (setId, deleteHistory) => ipcRenderer.invoke('flashcards:resetDeckSRS', setId, deleteHistory),
   createDeckBackup: (setId) => ipcRenderer.invoke('flashcards:createDeckBackup', setId),
+  saveStudySession: (session) => ipcRenderer.invoke('flashcards:saveStudySession', session),
+  getStudySessions: (sinceMs) => ipcRenderer.invoke('flashcards:getStudySessions', sinceMs),
   getDiagnostics: () => ipcRenderer.invoke('flashcards:getDiagnostics'),
   onMenuCommand: (callback) => {
     const listener = (_event, command) => callback(command);

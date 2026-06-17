@@ -12,6 +12,7 @@
     settings: {},
     progressBySet: new Map(),
     srsMode: false,
+    studySessions: [],
     activeTab: 'today',
     libraryFilter: 'all',
     search: '',
@@ -101,6 +102,7 @@
     moreSrsLabel: document.getElementById('more-srs-label'),
     normalStudyOrder: null,
     bgOpacitySlider: document.getElementById('mobile-bg-opacity'),
+    themeLabel: document.getElementById('more-theme-label'),
     importTermSepInput: document.getElementById('mobile-import-term-sep'),
     importCardSepInput: document.getElementById('mobile-import-card-sep'),
     loadingCover: document.getElementById('app-loading-cover'),
@@ -368,12 +370,22 @@
     state.sets.forEach(set => {
       (metaStats(set)?.reviewDayKeys || []).forEach(key => dayKeys.add(String(key)));
     });
-    if (!dayKeys.size) {
-      reviewedDates().forEach(time => {
-        const date = new Date(time);
-        date.setHours(0, 0, 0, 0);
-        dayKeys.add(String(date.getTime()));
+    reviewedDates().forEach(time => {
+      const date = new Date(time);
+      date.setHours(0, 0, 0, 0);
+      dayKeys.add(String(date.getTime()));
+    });
+    if (Array.isArray(state.studySessions)) {
+      state.studySessions.forEach(session => {
+        if (session.durationMs >= 60000) {
+          const date = new Date(session.startedAt);
+          date.setHours(0, 0, 0, 0);
+          dayKeys.add(String(date.getTime()));
+        }
       });
+    }
+    if (!dayKeys.size) {
+      return 0;
     }
     let streak = 0;
     const cursor = new Date();
@@ -461,7 +473,8 @@
   async function configureSystemBars() {
     const SystemBars = window.Capacitor?.Plugins?.SystemBars;
     if (!SystemBars) return;
-    await SystemBars.setStyle?.({ style: 'DARK' }).catch(() => {});
+    const isLight = state.settings?.theme === 'light';
+    await SystemBars.setStyle?.({ style: isLight ? 'LIGHT' : 'DARK' }).catch(() => {});
     await SystemBars.setAnimation?.({ animation: 'NONE' }).catch(() => {});
     await SystemBars.show?.().catch(() => {});
   }
@@ -480,27 +493,35 @@
   async function loadData() {
     await waitForStorage();
     const listSetsFast = window.flashcardStore.listSetsMeta || window.flashcardStore.listSets;
-    const [sets, classes, settings, srsMode] = await Promise.all([
+    const [sets, classes, settings, srsMode, studySessions] = await Promise.all([
       listSetsFast.call(window.flashcardStore),
       window.flashcardStore.listClasses(),
       window.flashcardStore.getSettings(),
-      window.flashcardStore.getState('srsModeEnabled')
+      window.flashcardStore.getState('srsModeEnabled'),
+      window.flashcardStore.getStudySessions ? window.flashcardStore.getStudySessions() : []
     ]);
     state.classes = (classes || []).map(item => schema?.normalizeClass ? schema.normalizeClass(item, null, { preserveLastModified: true }) : item);
     const normalizedSets = (sets || []).map(set => schema?.normalizeSet ? schema.normalizeSet(set, null, { preserveLastModified: true }) : set);
     state.sets = normalizeSetClassReferences(normalizedSets, state.classes);
     state.settings = settings || {};
     state.srsMode = readSrsMode(srsMode);
-    const progressEntries = await Promise.all(
-      state.sets.map(async set => {
-        try {
-          const stored = await window.flashcardStore.getProgress(set.id);
-          return [String(set.id), stored || null];
-        } catch (_) {
-          return [String(set.id), null];
-        }
-      })
-    );
+    state.studySessions = studySessions || [];
+    const theme = state.settings?.theme || 'dark';
+    localStorage.setItem('erudite-theme', theme);
+    document.body.classList.toggle('theme-light', theme === 'light');
+    document.documentElement.classList.toggle('theme-light', theme === 'light');
+    configureSystemBars().catch(() => {});
+    
+    let allProgress = {};
+    try {
+      allProgress = await window.flashcardStore.getAllProgress();
+    } catch (err) {
+      console.warn('[mobile] Could not fetch all progress:', err);
+    }
+    const progressEntries = state.sets.map(set => {
+      const stored = allProgress[String(set.id)];
+      return [String(set.id), stored || null];
+    });
     state.progressBySet = new Map(progressEntries.filter(([, progress]) => Boolean(progress)));
     scheduleOrphanClassRepair();
   }
@@ -1439,32 +1460,27 @@
       return;
     }
 
-    showMicroLoader('Saving deck...');
-    try {
-      const original = state.creator.originalSet || {};
-      const saved = await window.flashcardStore.saveSet({
-        ...original,
-        id: state.creator.editingSetId || original.id,
-        name,
-        classId: state.creator.classId || null,
-        cards,
-        srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings(original.srsSettings || {}) : (original.srsSettings || { enabled: true }),
-        pinned: Boolean(original.pinned)
-      });
-      await clearCreatorDraft();
-      // Flush store in background — no need to block navigation on it
-      flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
-      showToast(`Saved ${plural(cards.length, 'card')}`);
-      state.browserLoaded = false;
-      resetCreator();
-      if (saved?.id) {
-        state.sets = state.sets.map(item => String(item.id) === String(saved.id) ? saved : item);
-      }
-      await refresh();
-      setActiveTab('library');
-    } finally {
-      hideMicroLoader();
+    const original = state.creator.originalSet || {};
+    const saved = await window.flashcardStore.saveSet({
+      ...original,
+      id: state.creator.editingSetId || original.id,
+      name,
+      classId: state.creator.classId || null,
+      cards,
+      srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings(original.srsSettings || {}) : (original.srsSettings || { enabled: true }),
+      pinned: Boolean(original.pinned)
+    });
+    await clearCreatorDraft();
+    // Flush store in background — no need to block navigation on it
+    flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
+    showToast(`Saved ${plural(cards.length, 'card')}`);
+    state.browserLoaded = false;
+    resetCreator();
+    if (saved?.id) {
+      state.sets = state.sets.map(item => String(item.id) === String(saved.id) ? saved : item);
     }
+    await refresh();
+    setActiveTab('library');
   }
 
   function subjectLabel(subject) {
@@ -1605,6 +1621,10 @@
     if (label) {
       label.textContent = orderLabels[order] || 'Beginning';
     }
+    if (selectors.themeLabel) {
+      const theme = state.settings?.theme || 'dark';
+      selectors.themeLabel.textContent = theme === 'light' ? 'Aura Light' : 'Dark Blue';
+    }
   }
 
   function renderActive() {
@@ -1664,6 +1684,8 @@
   function showAppLoader(title = 'Erudite Flashcards', copy = 'Loading') {
     if (selectors.loadingTitle) selectors.loadingTitle.textContent = title;
     if (selectors.loadingCopy) selectors.loadingCopy.textContent = copy;
+    const cover = document.getElementById('app-loading-cover');
+    if (cover) cover.style.display = '';
     document.body.classList.remove('app-ready');
     document.body.classList.add('is-route-loading');
   }
@@ -1671,6 +1693,10 @@
   function hideAppLoader() {
     document.body.classList.add('app-ready');
     document.body.classList.remove('is-route-loading');
+    setTimeout(() => {
+      const cover = document.getElementById('app-loading-cover');
+      if (cover) cover.style.display = 'none';
+    }, 200);
   }
 
   function showMicroLoader(text = 'Saving changes...') {
@@ -2084,6 +2110,62 @@
       } catch (error) {
         console.error('Could not save study order:', error);
         showToast('Could not save study order');
+      }
+    }
+
+    function cleanup() {
+      optionButtons.forEach(btn => btn.removeEventListener('click', handleSelect));
+      cancelBtn?.removeEventListener('click', close);
+    }
+
+    optionButtons.forEach(btn => btn.addEventListener('click', handleSelect));
+    cancelBtn?.addEventListener('click', close);
+  }
+
+  function openThemeSelectModal() {
+    const overlay = document.getElementById('theme-select-overlay');
+    const cancelBtn = document.getElementById('theme-select-cancel');
+    if (!overlay) return;
+
+    const currentTheme = state.settings?.theme || 'dark';
+    const optionButtons = Array.from(overlay.querySelectorAll('.mobile-modal-option-btn'));
+    
+    // Highlight the current active choice
+    optionButtons.forEach(btn => {
+      btn.classList.toggle('selected', btn.dataset.value === currentTheme);
+    });
+
+    overlay.classList.remove('hidden');
+
+    function close() {
+      overlay.classList.add('hidden');
+      cleanup();
+      state.lastModalClosedAt = Date.now();
+    }
+
+    async function handleSelect(event) {
+      const btn = event.target.closest('[data-value]');
+      if (!btn) return;
+      
+      const nextTheme = btn.dataset.value;
+      localStorage.setItem('erudite-theme', nextTheme);
+      state.settings = {
+        ...(state.settings || {}),
+        theme: nextTheme
+      };
+      
+      document.body.classList.toggle('theme-light', nextTheme === 'light');
+      document.documentElement.classList.toggle('theme-light', nextTheme === 'light');
+      configureSystemBars().catch(() => {});
+      
+      playClick();
+      close();
+      renderMore();
+
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+      } catch (err) {
+        console.warn('[mobile] Could not save theme:', err);
       }
     }
 
@@ -2535,7 +2617,12 @@
       case 'select-study-order':
         openStudyOrderModal();
         break;
+      case 'select-theme':
+        openThemeSelectModal();
+        break;
       case 'study-set':
+        showAppLoader('Opening Study', 'Preparing your deck');
+        await new Promise(resolve => setTimeout(resolve, 50));
         await flushStore(1200);
         navigateTo(mobileStudyUrl(target.dataset.setId || '', { srsMode: state.srsMode }), {
           title: 'Opening Study',
@@ -2645,6 +2732,8 @@
       
       if (!isLongPress && !state.selectMode) {
         const setId = longPressTarget.dataset.setCard;
+        showAppLoader('Opening Study', 'Preparing your deck');
+        await new Promise(resolve => setTimeout(resolve, 50));
         await flushStore(1200);
         navigateTo(mobileStudyUrl(setId || '', { srsMode: state.srsMode }), {
           title: 'Opening Study',
@@ -3260,6 +3349,8 @@
       }
     });
 
+
+
     // Import Term Separator input
     selectors.importTermSepInput?.addEventListener('input', async event => {
       const val = event.target.value;
@@ -3289,10 +3380,85 @@
     });
   }
 
+  function initSwipeNavigation() {
+    let startX = 0;
+    let startY = 0;
+    let startTime = 0;
+    const tabsOrder = ['today', 'library', 'create', 'more'];
+
+    document.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 1) return;
+
+      const target = e.target;
+      
+      // Exclude range inputs, horizontal filter strips, text inputs/textareas
+      const ignoreSelector = 'input[type="range"], .mobile-opacity-slider, .filter-strip, .deck-source-switch, input[type="text"], input[type="search"], textarea';
+      if (target.closest(ignoreSelector)) {
+        return;
+      }
+
+      // Also exclude if inside any active popup/modal
+      if (target.closest('.mobile-modal-overlay') || target.closest('.deck-context-modal') || target.closest('.micro-loader-overlay')) {
+        return;
+      }
+
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      startTime = Date.now();
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      if (startX === 0 && startY === 0) return;
+
+      const endX = e.changedTouches[0].clientX;
+      const endY = e.changedTouches[0].clientY;
+      const endTime = Date.now();
+
+      const deltaX = endX - startX;
+      const deltaY = endY - startY;
+      const timeDiff = endTime - startTime;
+
+      startX = 0;
+      startY = 0;
+      startTime = 0;
+
+      const minDistance = 75;
+      const maxTime = 400;
+
+      if (Math.abs(deltaX) > minDistance && Math.abs(deltaX) > Math.abs(deltaY) * 1.8 && timeDiff < maxTime) {
+        const currentIdx = tabsOrder.indexOf(state.activeTab);
+        if (currentIdx === -1) return;
+
+        if (deltaX > 0) {
+          // Swipe right -> Previous Tab
+          if (currentIdx > 0) {
+            const prevTab = tabsOrder[currentIdx - 1];
+            playClick();
+            setActiveTab(prevTab);
+          }
+        } else {
+          // Swipe left -> Next Tab
+          if (currentIdx < tabsOrder.length - 1) {
+            const nextTab = tabsOrder[currentIdx + 1];
+            playClick();
+            setActiveTab(nextTab);
+          }
+        }
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', () => {
+      startX = 0;
+      startY = 0;
+      startTime = 0;
+    }, { passive: true });
+  }
+
   async function init() {
     document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'mobile-app-shell');
     configureSystemBars().catch(() => {});
     installEvents();
+    initSwipeNavigation();
     setupCapacitorBackButton();
     // Set tab first so the correct view is visible during data loading
     const initialTab = String(window.location.hash || '').replace('#', '');
@@ -3318,6 +3484,8 @@
         const opacity = parseFloat(state.settings?.cardBgOpacity ?? 0.32);
         if (Number.isFinite(opacity)) selectors.bgOpacitySlider.value = String(opacity);
       }
+      // Initialize theme selection from loaded settings
+      renderMore();
       // Initialize import separators from loaded settings
       if (selectors.importTermSepInput) {
         selectors.importTermSepInput.value = state.settings?.importTermSep ?? ';';
@@ -3326,7 +3494,7 @@
         selectors.importCardSepInput.value = state.settings?.importCardSep ?? '@';
       }
       hideAppLoader();
-    }, 150);
+    }, 280);
   }
 
   if (document.readyState === 'loading') {

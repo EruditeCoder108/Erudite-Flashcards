@@ -18,6 +18,66 @@
   --safe-right: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
   --safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
   --safe-left: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
+
+  --glass-bg: rgba(7, 17, 31, 0.45);
+  --glass-border: rgba(148, 163, 184, 0.08);
+  --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --theme-input: rgba(7, 17, 31, 0.55);
+  --theme-border: rgba(148, 163, 184, 0.18);
+  --modal-overlay-bg: rgba(4, 9, 17, 0.72);
+  --card-bg-overlay: linear-gradient(180deg, rgba(7, 17, 31, 0.54), rgba(7, 17, 31, 0.76));
+  --bg-gradient: linear-gradient(180deg, #0a1424 0%, #07111f 100%);
+
+  /* Rating Button specific variables */
+  --rating-btn-bg: rgba(23, 38, 60, 0.92);
+  --rating-btn-border: rgba(148, 163, 184, 0.16);
+  --rating-btn-again-bg: linear-gradient(180deg, rgba(251, 113, 133, 0.24), rgba(127, 29, 29, 0.18));
+  --rating-btn-again-border: rgba(251, 113, 133, 0.38);
+  --rating-btn-hard-bg: linear-gradient(180deg, rgba(245, 184, 75, 0.24), rgba(120, 53, 15, 0.16));
+  --rating-btn-hard-border: rgba(245, 184, 75, 0.36);
+  --rating-btn-good-bg: linear-gradient(180deg, rgba(53, 208, 127, 0.23), rgba(20, 83, 45, 0.18));
+  --rating-btn-good-border: rgba(53, 208, 127, 0.36);
+  --rating-btn-easy-bg: linear-gradient(180deg, rgba(96, 165, 250, 0.24), rgba(30, 64, 175, 0.18));
+  --rating-btn-easy-border: rgba(96, 165, 250, 0.36);
+}
+
+.theme-light {
+  color-scheme: light;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --surface-3: #e2e8f0;
+  --line: rgba(15, 23, 42, 0.08);
+  --line-strong: rgba(15, 23, 42, 0.16);
+  --text: #0f172a;
+  --muted: #475569;
+  --subtle: #64748b;
+  --primary: #2563eb;
+  --primary-2: #3b82f6;
+  --green: #16a34a;
+  --amber: #d97706;
+  --red: #dc2626;
+
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(15, 23, 42, 0.06);
+  --glass-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  --theme-input: #ffffff;
+  --theme-border: rgba(15, 23, 42, 0.15);
+  --modal-overlay-bg: rgba(15, 23, 42, 0.45);
+  --card-bg-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.76));
+  --bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+
+  /* Rating Button specific variables (Light) */
+  --rating-btn-bg: #ffffff;
+  --rating-btn-border: rgba(15, 23, 42, 0.08);
+  --rating-btn-again-bg: linear-gradient(180deg, rgba(239, 68, 68, 0.12), rgba(239, 68, 68, 0.06));
+  --rating-btn-again-border: rgba(239, 68, 68, 0.25);
+  --rating-btn-hard-bg: linear-gradient(180deg, rgba(245, 158, 11, 0.12), rgba(245, 158, 11, 0.06));
+  --rating-btn-hard-border: rgba(245, 158, 11, 0.25);
+  --rating-btn-good-bg: linear-gradient(180deg, rgba(34, 197, 94, 0.12), rgba(34, 197, 94, 0.06));
+  --rating-btn-good-border: rgba(34, 197, 94, 0.25);
+  --rating-btn-easy-bg: linear-gradient(180deg, rgba(59, 130, 246, 0.12), rgba(59, 130, 246, 0.06));
+  --rating-btn-easy-border: rgba(59, 130, 246, 0.25);
 }
 
 * {
@@ -43,24 +103,29 @@ body {
 
 body.study-ready .study-loading-cover {
   pointer-events: none;
-  opacity: 0;
+  opacity: 0 !important;
+  transition: opacity 180ms ease;
 }
 
 .study-loading-cover {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  display: grid;
-  place-content: center;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
   gap: 0.7rem;
-  padding: max(1rem, var(--safe-top)) max(1rem, var(--safe-right)) max(1rem, var(--safe-bottom)) max(1rem, var(--safe-left));
   background:
     radial-gradient(circle at 50% 36%, rgba(59, 130, 246, 0.12), transparent 34%),
-    linear-gradient(180deg, #0a1424 0%, #07111f 100%);
+    var(--bg-gradient);
   color: var(--text);
-  transition: opacity 180ms ease;
+  opacity: 1;
+  transition: none;
 }
+
+
 
 .deck-loader {
   position: relative;
@@ -177,17 +242,17 @@ body.study-ready .study-loading-cover {
   11% {
     animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
     opacity: 1;
-    transform: translateZ(0.125em);
+    transform: translateZ(2px);
   }
   34% {
     animation-timing-function: steps(1);
     opacity: 0;
-    transform: translateZ(-12em);
+    transform: translateZ(-192px);
   }
   48% {
     animation-timing-function: linear;
     opacity: 0;
-    transform: translateZ(12em);
+    transform: translateZ(192px);
   }
   57% {
     animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
@@ -196,15 +261,15 @@ body.study-ready .study-loading-cover {
   }
   61% {
     animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(-1.8em);
+    transform: translateZ(-29px);
   }
   74% {
     animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(0.6em);
+    transform: translateZ(10px);
   }
   87% {
     animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(-0.2em);
+    transform: translateZ(-3px);
   }
 }
 
@@ -247,7 +312,7 @@ textarea,
   width: 100%;
   height: 100dvh;
   padding: max(0.7rem, var(--safe-top)) max(0.85rem, var(--safe-right)) calc(max(0.65rem, var(--safe-bottom)) + 0.2rem) max(0.85rem, var(--safe-left));
-  background: linear-gradient(180deg, #0a1424 0%, #07111f 100%);
+  background: var(--bg-gradient);
   opacity: 1;
   transition: opacity 140ms ease;
 }
@@ -274,9 +339,9 @@ textarea,
   gap: 0.3rem;
   padding: 0.42rem 0.72rem 0.42rem 0.55rem;
   border-radius: 999px;
-  background: rgba(23, 38, 60, 0.88);
+  background: var(--surface-3);
   border: 1px solid var(--line);
-  color: #dbeafe;
+  color: var(--text);
   font-size: 0.72rem;
   font-weight: 850;
   transition: opacity 160ms ease;
@@ -299,9 +364,9 @@ textarea,
   min-width: 2.85rem;
   height: 2.85rem;
   border-radius: 1rem;
-  background: rgba(23, 38, 60, 0.9);
+  background: var(--surface-3);
   border: 1px solid var(--line);
-  color: #dbeafe;
+  color: var(--text);
 }
 
 .study-title-block {
@@ -339,7 +404,7 @@ textarea,
   justify-content: center;
   padding: 0 0.72rem;
   border-radius: 999px;
-  background: rgba(23, 38, 60, 0.9);
+  background: var(--surface-3);
   border: 1px solid var(--line);
   color: var(--muted);
   font-weight: 850;
@@ -486,7 +551,7 @@ textarea,
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7, 17, 31, 0.54), rgba(7, 17, 31, 0.76));
+  background: var(--card-bg-overlay);
 }
 
 .card-bg.no-overlay::after {
@@ -532,7 +597,7 @@ textarea,
   margin: 0 auto 0;
   padding: 1.05rem 0 0.35rem;
   flex-shrink: 0;
-  color: #aebbd0;
+  color: var(--muted);
   background: transparent;
   font-size: 0.78rem;
   font-weight: 900;
@@ -559,7 +624,7 @@ textarea,
   max-width: 100%;
   width: 100%;
   margin: 0 auto;
-  color: #f8fafc;
+  color: var(--text);
   overflow-wrap: anywhere;
   word-break: break-word;
   font-size: clamp(1.15rem, 5.3vw, 1.62rem);
@@ -733,36 +798,36 @@ textarea,
   min-height: 3.45rem;
   padding: 0.45rem 0.2rem;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  background: rgba(23, 38, 60, 0.92);
+  border: 1px solid var(--rating-btn-border);
+  background: var(--rating-btn-bg);
   color: var(--text);
   font-weight: 900;
 }
 
 .rating-button small {
-  color: rgba(248, 250, 252, 0.72);
+  color: var(--muted);
   font-size: 0.68rem;
   font-weight: 850;
 }
 
 .rating-button.again {
-  background: linear-gradient(180deg, rgba(251, 113, 133, 0.24), rgba(127, 29, 29, 0.18));
-  border-color: rgba(251, 113, 133, 0.38);
+  background: var(--rating-btn-again-bg);
+  border-color: var(--rating-btn-again-border);
 }
 
 .rating-button.hard {
-  background: linear-gradient(180deg, rgba(245, 184, 75, 0.24), rgba(120, 53, 15, 0.16));
-  border-color: rgba(245, 184, 75, 0.36);
+  background: var(--rating-btn-hard-bg);
+  border-color: var(--rating-btn-hard-border);
 }
 
 .rating-button.good {
-  background: linear-gradient(180deg, rgba(53, 208, 127, 0.23), rgba(20, 83, 45, 0.18));
-  border-color: rgba(53, 208, 127, 0.36);
+  background: var(--rating-btn-good-bg);
+  border-color: var(--rating-btn-good-border);
 }
 
 .rating-button.easy {
-  background: linear-gradient(180deg, rgba(96, 165, 250, 0.24), rgba(30, 64, 175, 0.18));
-  border-color: rgba(96, 165, 250, 0.36);
+  background: var(--rating-btn-easy-bg);
+  border-color: var(--rating-btn-easy-border);
 }
 
 .study-footer {
@@ -1335,5 +1400,124 @@ button:active,
   transform: scale(0.93) !important;
   transition: transform 0.06s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
+
+/* Aura Light Theme Overrides */
+.theme-light .study-topbar {
+  border-bottom: 1px solid var(--line) !important;
+}
+
+.theme-light .prev-card-button,
+.theme-light .study-topbar .icon-button,
+.theme-light .study-progress-chip {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.theme-light .prev-card-button i,
+.theme-light .study-topbar .icon-button i {
+  color: var(--muted) !important;
+}
+
+.theme-light .tap-hint {
+  background: var(--surface-2) !important;
+  border-top: 1px solid var(--line) !important;
+  color: var(--muted) !important;
+}
+
+.theme-light .gesture-hint {
+  color: var(--muted) !important;
+}
+
+.theme-light .study-footer {
+  border-top: 1px solid var(--line) !important;
+}
+
+.theme-light .study-progress-chip strong {
+  color: var(--text) !important;
+}
+
+.theme-light .modal-panel {
+  background: var(--surface) !important;
+  box-shadow: var(--shadow) !important;
+  border-color: var(--line-strong) !important;
+}
+
+.theme-light .modal-icon {
+  background: rgba(217, 119, 6, 0.08) !important;
+  color: var(--amber) !important;
+}
+
+.theme-light .modal-icon.calm {
+  background: rgba(22, 163, 74, 0.08) !important;
+  color: var(--green) !important;
+}
+
+.theme-light .bottom-sheet-content {
+  background-color: var(--surface) !important;
+  border-top: 1px solid var(--line) !important;
+}
+
+.theme-light .bottom-sheet-drag-handle {
+  background-color: var(--line-strong) !important;
+}
+
+.theme-light .bottom-sheet-header h3 {
+  color: var(--text) !important;
+}
+
+.theme-light .bottom-sheet-item {
+  background: var(--surface-2) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--text) !important;
+}
+
+.theme-light .bottom-sheet-item:active {
+  background: var(--surface-3) !important;
+}
+
+.theme-light .bottom-sheet-item i {
+  color: var(--primary) !important;
+}
+
+.theme-light .bottom-sheet-cancel {
+  border: 1px solid var(--line) !important;
+  color: var(--muted) !important;
+  background: transparent !important;
+}
+
+.theme-light .bottom-sheet-cancel:active {
+  background: var(--surface-3) !important;
+}
+
+/* Light Loader Overrides */
+.theme-light .study-loading-cover {
+  background:
+    radial-gradient(circle at 50% 36%, rgba(37, 99, 235, 0.06), transparent 34%),
+    var(--bg-gradient) !important;
+}
+
+.theme-light .loader-card-inner {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: -0.5em 0.5em 1.5em rgba(15, 23, 42, 0.12) !important;
+}
+
+.theme-light .loader-card-inner .card-label {
+  color: var(--muted) !important;
+}
+
+.theme-light .loader-card-inner .card-term {
+  color: var(--text) !important;
+}
+
+.theme-light .loader-card-inner .card-divider {
+  background: rgba(15, 23, 42, 0.08) !important;
+}
+
+.theme-light .loader-card-inner .card-hint {
+  color: var(--subtle) !important;
+}
+
 
 
