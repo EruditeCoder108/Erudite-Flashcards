@@ -78,14 +78,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Premade flashcards elements
     const flashcardTypeRadios = document.querySelectorAll('input[name="flashcard-type"]');
-    const subjectModal = document.getElementById('subject-modal');
-    const topicModal = document.getElementById('topic-modal');
-    const closeSubjectBtn = document.getElementById('close-subject-btn');
-    const closeTopicBtn = document.getElementById('close-topic-btn');
-    const backToSubjectBtn = document.getElementById('back-to-subject-btn');
-    const subjectsContainer = document.getElementById('subjects-container');
-    const topicsContainer = document.getElementById('topics-container');
-    const selectedSubjectName = document.getElementById('selected-subject-name');
+    const mySetsView = document.getElementById('my-sets-view');
+    const premadeSetsView = document.getElementById('premade-sets-view');
+    const premadeClassSelection = document.getElementById('premade-class-selection');
+    const premadeSubjectSelection = document.getElementById('premade-subject-selection');
+    const premadeSetsDisplay = document.getElementById('premade-sets-display');
+    const premadeSetsContainer = document.getElementById('premade-sets-container');
+    const premadeEmptyState = document.getElementById('premade-empty-state');
+    const premadeSetTemplate = document.getElementById('premade-set-template');
+    const premadeSearchInput = document.getElementById('premade-search-input');
+    const premadeSortSelect = document.getElementById('premade-sort-select');
+    const premadeSubjectGrid = document.getElementById('premade-subject-grid');
+    const premadeTotalSets = document.getElementById('premade-total-sets');
+    const premadeClassNameDisplay = document.getElementById('premade-class-name');
+    const premadeSubjectNameDisplay = document.getElementById('premade-subject-name');
+    const premadeClassStat = document.getElementById('premade-class-stat');
+    const premadeSubjectStat = document.getElementById('premade-subject-stat');
+    const premadeTotalSetsStat = document.getElementById('premade-total-sets-stat');
+
+    // Take Deck Modal elements
+    const takeDeckModal = document.getElementById('take-deck-modal');
+    const closeTakeDeckBtn = document.getElementById('close-take-deck-btn');
+    const cancelTakeDeckBtn = document.getElementById('cancel-take-deck');
+    const confirmTakeDeckBtn = document.getElementById('confirm-take-deck');
+    const takeDeckNameInput = document.getElementById('take-deck-name');
+    const takeDeckClassSelect = document.getElementById('take-deck-class');
     
     // SRS elements
     const srsToggle = document.getElementById('srs-mode-toggle');
@@ -125,6 +142,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentFlashcardType = 'my-flashcards'; // 'my-flashcards' or 'premade-flashcards'
     let selectedSubject = null;
     let firstDueSetId = null;
+    let premadeCurrentClass = null;
+    let premadeCurrentSubject = null;
+    let premadeFlashcardSets = [];
+    let premadeSetToAdd = null;
     
     // SRS state
     let srsModeEnabled = false; // Stored in Electron state.json; localStorage is fallback only.
@@ -1556,91 +1577,443 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Premade Flashcards Functions
+    const classLabels = {
+        '10th': 'Class 10th',
+        '11th': 'Class 11th',
+        '12th': 'Class 12th',
+        'neet-ug': 'NEET UG',
+        'jee-main': 'JEE Main',
+        'jee-advanced': 'JEE Advanced',
+        'ssc': 'SSC'
+    };
+
+    const subjectsByClass = {
+        '10th': [
+            { id: 'Science', name: 'Science', icon: 'fas fa-flask', description: 'Physics, Chemistry, Biology' },
+            { id: 'Maths', name: 'Mathematics', icon: 'fas fa-calculator', description: 'Algebra, Geometry, Statistics' },
+            { id: 'English', name: 'English', icon: 'fas fa-book', description: 'Literature, Grammar, Writing' },
+            { id: 'Civics', name: 'Civics', icon: 'fas fa-landmark', description: 'Government, Constitution, Rights' },
+            { id: 'Geography', name: 'Geography', icon: 'fas fa-globe', description: 'Physical & Human Geography' },
+            { id: 'History', name: 'History', icon: 'fas fa-monument', description: 'World & Indian History' },
+            { id: 'Hindi', name: 'Hindi', icon: 'fas fa-language', description: 'Hindi Literature & Grammar' },
+            { id: 'Politics', name: 'Politics', icon: 'fas fa-vote-yea', description: 'Political Science' }
+        ],
+        '11th': [
+            { id: 'Physics', name: 'Physics', icon: 'fas fa-atom', description: 'Mechanics, Thermodynamics, Waves' },
+            { id: 'inorganic-chemistry', name: 'Inorganic Chemistry', icon: 'fas fa-vial', description: 'Elements, Compounds, Reactions' },
+            { id: 'organic-chemistry', name: 'Organic Chemistry', icon: 'fas fa-flask', description: 'Carbon Compounds, Reactions' },
+            { id: 'physical-chemistry', name: 'Physical Chemistry', icon: 'fas fa-microscope', description: 'Kinetics, Thermodynamics' },
+            { id: 'English', name: 'English', icon: 'fas fa-book', description: 'Literature, Grammar, Writing' },
+            { id: 'Maths', name: 'Mathematics', icon: 'fas fa-calculator', description: 'Algebra, Calculus, Statistics' },
+            { id: 'Biology', name: 'Biology', icon: 'fas fa-dna', description: 'Botany, Zoology, Human Biology' },
+            { id: 'Physical-education', name: 'Physical Education', icon: 'fas fa-running', description: 'Sports, Health, Fitness' }
+        ],
+        '12th': [
+            { id: 'Physics', name: 'Physics', icon: 'fas fa-atom', description: 'Electromagnetism, Optics, Modern Physics' },
+            { id: 'inorganic-chemistry', name: 'Inorganic Chemistry', icon: 'fas fa-vial', description: 'Elements, Compounds, Reactions' },
+            { id: 'organic-chemistry', name: 'Organic Chemistry', icon: 'fas fa-flask', description: 'Carbon Compounds, Reactions' },
+            { id: 'physical-chemistry', name: 'Physical Chemistry', icon: 'fas fa-microscope', description: 'Kinetics, Thermodynamics' },
+            { id: 'English', name: 'English', icon: 'fas fa-book', description: 'Literature, Grammar, Writing' },
+            { id: 'Maths', name: 'Mathematics', icon: 'fas fa-calculator', description: 'Algebra, Calculus, Statistics' },
+            { id: 'Biology', name: 'Biology', icon: 'fas fa-dna', description: 'Botany, Zoology, Human Biology' },
+            { id: 'Physical-education', name: 'Physical Education', icon: 'fas fa-running', description: 'Sports, Health, Fitness' }
+        ],
+        'neet-ug': [
+            { id: 'Physics', name: 'Physics', icon: 'fas fa-atom', description: 'Mechanics, electricity, optics, modern physics' },
+            { id: 'Chemistry', name: 'Chemistry', icon: 'fas fa-flask', description: 'Physical, organic, and inorganic chemistry' },
+            { id: 'Biology', name: 'Biology', icon: 'fas fa-dna', description: 'Botany, zoology, and human biology' }
+        ],
+        'jee-main': [
+            { id: 'Physics', name: 'Physics', icon: 'fas fa-atom', description: 'JEE Main physics practice' },
+            { id: 'Chemistry', name: 'Chemistry', icon: 'fas fa-flask', description: 'JEE Main chemistry practice' },
+            { id: 'Maths', name: 'Mathematics', icon: 'fas fa-calculator', description: 'JEE Main mathematics practice' }
+        ],
+        'jee-advanced': [
+            { id: 'Physics', name: 'Physics', icon: 'fas fa-atom', description: 'Advanced physics practice' },
+            { id: 'Chemistry', name: 'Chemistry', icon: 'fas fa-flask', description: 'Advanced chemistry practice' },
+            { id: 'Maths', name: 'Mathematics', icon: 'fas fa-calculator', description: 'Advanced mathematics practice' }
+        ],
+        'ssc': [
+            { id: 'general-awareness', name: 'General Awareness', icon: 'fas fa-landmark', description: 'Static GK, current affairs, polity, history, geography' },
+            { id: 'quantitative-aptitude', name: 'Quantitative Aptitude', icon: 'fas fa-calculator', description: 'Arithmetic, algebra, geometry, and data interpretation' },
+            { id: 'reasoning', name: 'Reasoning', icon: 'fas fa-brain', description: 'Verbal and non-verbal reasoning' },
+            { id: 'english', name: 'English', icon: 'fas fa-book', description: 'Vocabulary, grammar, and comprehension' }
+        ]
+    };
+
     function handleFlashcardTypeChange() {
         const selectedType = document.querySelector('input[name="flashcard-type"]:checked').value;
         currentFlashcardType = selectedType;
         
+        const userStatElements = document.querySelectorAll('.user-stat');
+        const premadeStatElements = document.querySelectorAll('.premade-stat');
+
         if (selectedType === 'premade-flashcards') {
-            // Redirect to the new premade flashcards page
-            window.location.href = 'premade-library.html';
+            // Hide My Sets View
+            mySetsView.classList.add('hidden');
+            // Show Premade Sets View
+            premadeSetsView.classList.remove('hidden');
+            
+            // Hide User Stats & SRS items
+            userStatElements.forEach(el => el.classList.add('hidden'));
+            if (srsDashboard) srsDashboard.classList.add('hidden');
+            
+            // Show Premade Stats
+            premadeStatElements.forEach(el => el.classList.remove('hidden'));
+
+            // Show current level of selection
+            if (premadeCurrentSubject) {
+                showPremadeFlashcardSets(premadeCurrentSubject);
+            } else if (premadeCurrentClass) {
+                showPremadeSubjectSelection(premadeCurrentClass);
+            } else {
+                showPremadeClassSelection();
+            }
         } else {
+            // Show My Sets View
+            mySetsView.classList.remove('hidden');
+            // Hide Premade Sets View
+            premadeSetsView.classList.add('hidden');
+            
+            // Show User Stats & SRS items
+            userStatElements.forEach(el => el.classList.remove('hidden'));
+            if (srsModeEnabled && srsDashboard) srsDashboard.classList.remove('hidden');
+            
+            // Hide Premade Stats
+            premadeStatElements.forEach(el => el.classList.add('hidden'));
+
             // Show user's flashcards
             renderSets();
         }
     }
 
-    function showSubjectModal() {
-        subjectModal.classList.remove('hidden');
-        subjectModal.classList.add('visible');
-        renderSubjects();
-    }
-
-    function hideSubjectModal() {
-        subjectModal.classList.remove('visible');
-        setTimeout(() => subjectModal.classList.add('hidden'), 300);
-    }
-
-    function showTopicModal(subject) {
-        selectedSubject = subject;
-        selectedSubjectName.textContent = subject.name;
-        topicModal.classList.remove('hidden');
-        topicModal.classList.add('visible');
-        renderTopics(subject);
-    }
-
-    function hideTopicModal() {
-        topicModal.classList.remove('visible');
-        setTimeout(() => topicModal.classList.add('hidden'), 300);
-    }
-
-    function renderSubjects() {
-        subjectsContainer.innerHTML = '';
+    function showPremadeClassSelection() {
+        premadeClassSelection.classList.remove('hidden');
+        premadeSubjectSelection.classList.add('hidden');
+        premadeSetsDisplay.classList.add('hidden');
         
-        premadeSubjects.forEach(subject => {
+        premadeCurrentClass = null;
+        premadeCurrentSubject = null;
+        premadeFlashcardSets = [];
+        
+        premadeClassNameDisplay.textContent = 'Select Class';
+        premadeSubjectNameDisplay.textContent = 'Select Subject';
+        premadeTotalSets.textContent = '0';
+        
+        premadeClassStat.style.opacity = '0.6';
+        premadeSubjectStat.style.opacity = '0.6';
+    }
+
+    function showPremadeSubjectSelection(selectedClass) {
+        premadeCurrentClass = selectedClass;
+        
+        premadeClassSelection.classList.add('hidden');
+        premadeSubjectSelection.classList.remove('hidden');
+        premadeSetsDisplay.classList.add('hidden');
+        
+        premadeClassNameDisplay.textContent = classLabels[selectedClass] || selectedClass;
+        premadeSubjectNameDisplay.textContent = 'Select Subject';
+        premadeTotalSets.textContent = '0';
+        
+        premadeClassStat.style.opacity = '1';
+        premadeSubjectStat.style.opacity = '0.6';
+        
+        populatePremadeSubjects(selectedClass);
+    }
+
+    function showPremadeFlashcardSets(selectedSubject) {
+        premadeCurrentSubject = selectedSubject;
+        
+        premadeClassSelection.classList.add('hidden');
+        premadeSubjectSelection.classList.add('hidden');
+        premadeSetsDisplay.classList.remove('hidden');
+        
+        premadeSubjectNameDisplay.textContent = selectedSubject;
+        
+        premadeClassStat.style.opacity = '1';
+        premadeSubjectStat.style.opacity = '1';
+        
+        loadPremadeSets(premadeCurrentClass, selectedSubject);
+    }
+
+    function populatePremadeSubjects(selectedClass) {
+        const subjects = subjectsByClass[selectedClass] || [];
+        premadeSubjectGrid.innerHTML = '';
+        
+        subjects.forEach(subject => {
             const subjectCard = document.createElement('div');
             subjectCard.className = 'subject-card';
+            subjectCard.dataset.subject = subject.id;
+            
             subjectCard.innerHTML = `
                 <div class="subject-icon">
                     <i class="${subject.icon}"></i>
                 </div>
-                <div class="subject-name">${subject.name}</div>
-                <div class="subject-description">${subject.description}</div>
+                <h3>${subject.name}</h3>
+                <p>${subject.description}</p>
             `;
             
             subjectCard.addEventListener('click', () => {
-                hideSubjectModal();
-                showTopicModal(subject);
+                playClickSound();
+                showPremadeFlashcardSets(subject.name);
             });
             
-            subjectsContainer.appendChild(subjectCard);
+            premadeSubjectGrid.appendChild(subjectCard);
         });
     }
 
-    function renderTopics(subject) {
-        topicsContainer.innerHTML = '';
+    async function loadPremadeSets(selectedClass, selectedSubject) {
+        try {
+            premadeSetsContainer.innerHTML = '';
+            premadeEmptyState.classList.add('hidden');
+            
+            // Map subject names to folder names
+            const subjectFolderMap = {
+                'Science': 'Science',
+                'Mathematics': 'Maths',
+                'Maths': 'Maths',
+                'English': 'English',
+                'Civics': 'Civics',
+                'Geography': 'Geography',
+                'History': 'History',
+                'Hindi': 'Hindi',
+                'Politics': 'Politics',
+                'Physics': 'Physics',
+                'Chemistry': 'chemistry',
+                'Inorganic Chemistry': 'inorganic-chemistry',
+                'Organic Chemistry': 'organic-chemistry',
+                'Physical Chemistry': 'physical-chemistry',
+                'Biology': 'Biology',
+                'Physical Education': 'Physical-education',
+                'General Awareness': 'general-awareness',
+                'Quantitative Aptitude': 'quantitative-aptitude',
+                'Reasoning': 'reasoning'
+            };
+            
+            let folderName = subjectFolderMap[selectedSubject] || selectedSubject;
+            if (selectedClass === 'ssc' && folderName === 'English') {
+                folderName = 'english';
+            }
+            
+            let sets = [];
+            // Try fetching via store API first
+            if (window.flashcardStore?.listPremadeSets) {
+                sets = await window.flashcardStore.listPremadeSets(selectedClass, folderName);
+            }
+            
+            // Fallback to manifest fetch if store returns empty or is web
+            if (!sets || sets.length === 0) {
+                try {
+                    const response = await fetch(`premade-cards/${selectedClass}/${folderName}/manifest.json`);
+                    if (response.ok) {
+                        const manifest = await response.json();
+                        for (const item of manifest) {
+                            try {
+                                const detailResponse = await fetch(`premade-cards/${selectedClass}/${folderName}/${item.fileName}`);
+                                if (detailResponse.ok) {
+                                    const details = await detailResponse.json();
+                                    sets.push({ ...details, fileName: item.fileName });
+                                }
+                            } catch (e) {
+                                console.warn(`Failed loading details for ${item.fileName}:`, e);
+                            }
+                        }
+                    }
+                } catch (manifestError) {
+                    console.log('Manifest fetch failed, trying hardcoded fallback:', manifestError);
+                }
+            }
+
+            // Secondary hardcoded fallback if still empty (so offline development works)
+            if (!sets || sets.length === 0) {
+                const knownFilesMap = {
+                    'Biology': ['Allbotanyexamplesexceptecology-neetug.json', 'Anatomyoffloweringplants-neetug.json', 'completeecology-neetug.json', 'Morphologyoffloweringplants-neetug.json', 'cell-biology.json'],
+                    'Science': ['basic-physics.json', 'basic-chemistry.json'],
+                    'Maths': ['algebra-basics.json'],
+                    'English': ['grammar-basics.json'],
+                    'History': ['indian-independence.json']
+                };
+                const knownFiles = knownFilesMap[folderName] || [];
+                for (const file of knownFiles) {
+                    try {
+                        const response = await fetch(`premade-cards/${selectedClass}/${folderName}/${file}`);
+                        if (response.ok) {
+                            const details = await response.json();
+                            sets.push({ ...details, fileName: file });
+                        }
+                    } catch (e) {}
+                }
+            }
+            
+            premadeFlashcardSets = sets || [];
+            premadeTotalSets.textContent = premadeFlashcardSets.length;
+            renderPremadeSets();
+            
+        } catch (error) {
+            console.error('Error loading flashcard sets:', error);
+            showToast('Error loading flashcard sets', 'error');
+            premadeSetsContainer.innerHTML = '';
+            premadeEmptyState.classList.remove('hidden');
+        }
+    }
+
+    function renderPremadeSets(searchTerm = '') {
+        const term = searchTerm.toLowerCase();
+        let filtered = premadeFlashcardSets;
         
-        subject.topics.forEach(topic => {
-            const topicCard = document.createElement('div');
-            topicCard.className = 'topic-card';
-            
-            const tagsHtml = topic.tags.map(tag => `<span class="topic-tag">${tag}</span>`).join('');
-            
-            topicCard.innerHTML = `
-                <div class="topic-icon">
-                    <i class="${subject.icon}"></i>
-                </div>
-                <div class="topic-name">${topic.name}</div>
-                <div class="topic-description">${topic.description}</div>
-                <div class="topic-tags">${tagsHtml}</div>
-            `;
-            
-            topicCard.addEventListener('click', () => {
-                // Navigate to premade library page
-                window.location.href = `premade-library.html?subject=${subject.id}&topic=${topic.id}`;
-            });
-            
-            topicsContainer.appendChild(topicCard);
+        if (term) {
+            filtered = premadeFlashcardSets.filter(set => 
+                set.name.toLowerCase().includes(term) ||
+                (set.description && set.description.toLowerCase().includes(term)) ||
+                (set.tags && set.tags.some(tag => tag.toLowerCase().includes(term)))
+            );
+        }
+
+        const sortBy = premadeSortSelect.value;
+        const sorted = [...filtered].sort((a, b) => {
+            switch (sortBy) {
+                case 'name':
+                    return a.name.localeCompare(b.name);
+                case 'cards':
+                    return (b.cards ? b.cards.length : 0) - (a.cards ? a.cards.length : 0);
+                case 'difficulty':
+                    const difficultyOrder = { 'basic': 1, 'intermediate': 2, 'advanced': 3 };
+                    return (difficultyOrder[a.difficulty] || 2) - (difficultyOrder[b.difficulty] || 2);
+                case 'time':
+                    const timeA = parseInt(a.estimatedTime) || 45;
+                    const timeB = parseInt(b.estimatedTime) || 45;
+                    return timeA - timeB;
+                default:
+                    return 0;
+            }
         });
+
+        // Clear container
+        premadeSetsContainer.innerHTML = '';
+        
+        if (sorted.length === 0) {
+            premadeEmptyState.classList.remove('hidden');
+        } else {
+            premadeEmptyState.classList.add('hidden');
+            sorted.forEach(set => {
+                const card = createPremadeSetCard(set);
+                premadeSetsContainer.appendChild(card);
+            });
+        }
+    }
+
+    function createPremadeSetCard(set) {
+        const card = premadeSetTemplate.content.cloneNode(true).querySelector('.set-card');
+        
+        card.querySelector('.premade-set-name').textContent = set.name;
+        card.querySelector('.premade-card-count').textContent = `${set.cards ? set.cards.length : 0} cards`;
+        card.querySelector('.difficulty-level').textContent = set.difficulty || 'intermediate';
+        card.querySelector('.estimated-time').textContent = set.estimatedTime || '45 minutes';
+        card.querySelector('.premade-set-description').textContent = set.description || '';
+        
+        const tagsContainer = card.querySelector('.premade-set-tags');
+        tagsContainer.innerHTML = '';
+        if (set.tags && set.tags.length > 0) {
+            set.tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'topic-tag';
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+            });
+        }
+
+        card.querySelector('.premade-study-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            playClickSound();
+            const fileName = set.fileName || set.id;
+            const studyUrl = `study.html?premade=true&class=${premadeCurrentClass}&subject=${premadeCurrentSubject}&set=${fileName}`;
+            window.location.href = studyUrl;
+        });
+
+        card.querySelector('.premade-add-to-set-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            playClickSound();
+            premadeSetToAdd = set;
+            showTakeDeckModal();
+        });
+
+        return card;
+    }
+
+    function showTakeDeckModal() {
+        if (!premadeSetToAdd) return;
+        
+        takeDeckNameInput.value = premadeSetToAdd.name;
+        
+        // Populate custom classes
+        takeDeckClassSelect.innerHTML = '<option value="">General</option>';
+        flashcardClasses.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.id;
+            opt.textContent = c.name;
+            takeDeckClassSelect.appendChild(opt);
+        });
+        
+        takeDeckModal.classList.remove('hidden');
+        takeDeckModal.classList.add('visible');
+    }
+
+    function hideTakeDeckModal() {
+        takeDeckModal.classList.remove('visible');
+        setTimeout(() => takeDeckModal.classList.add('hidden'), 300);
+    }
+
+    async function handleTakeDeckConfirm() {
+        if (!premadeSetToAdd) return;
+        
+        const targetName = takeDeckNameInput.value.trim() || premadeSetToAdd.name;
+        const targetClassId = takeDeckClassSelect.value || null;
+        
+        try {
+            const newSet = {
+                id: Date.now(),
+                name: targetName,
+                classId: targetClassId,
+                description: premadeSetToAdd.description || '',
+                cards: premadeSetToAdd.cards ? premadeSetToAdd.cards.map(card => ({
+                    term: card.term,
+                    definition: card.definition,
+                    termImage: card.termImage || '',
+                    definitionImage: card.definitionImage || ''
+                })) : [],
+                created: Date.now(),
+                lastModified: Date.now(),
+                openedCount: 0,
+                isPremadeCopy: true,
+                originalPremadeId: premadeSetToAdd.id
+            };
+            
+            if (window.flashcardStore?.saveSet) {
+                await window.flashcardStore.saveSet(newSet);
+            } else {
+                const existingSets = JSON.parse(localStorage.getItem('flashcardSets') || '[]');
+                existingSets.push(newSet);
+                localStorage.setItem('flashcardSets', JSON.stringify(existingSets));
+            }
+            
+            hideTakeDeckModal();
+            showToast(`Successfully added "${targetName}" to your sets!`, 'success');
+            
+            premadeSetToAdd = null;
+            
+            // Reload user sets data
+            await reloadLibraryData();
+            
+            // Switch back to My Sets view
+            const radioMySets = document.querySelector('input[name="flashcard-type"][value="my-flashcards"]');
+            if (radioMySets) {
+                radioMySets.checked = true;
+                handleFlashcardTypeChange();
+            }
+        } catch (error) {
+            console.error('Error copying deck:', error);
+            showToast('Failed to copy deck', 'error');
+        }
     }
 
     // Event Listeners
@@ -1944,21 +2317,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         radio.addEventListener('change', handleFlashcardTypeChange);
     });
 
-    // Subject modal event listeners
-    closeSubjectBtn.addEventListener('click', hideSubjectModal);
-    subjectModal.addEventListener('click', (e) => {
-        if (e.target === subjectModal) hideSubjectModal();
-    });
 
-    // Topic modal event listeners
-    closeTopicBtn.addEventListener('click', hideTopicModal);
-    backToSubjectBtn.addEventListener('click', () => {
-        hideTopicModal();
-        showSubjectModal();
-    });
-    topicModal.addEventListener('click', (e) => {
-        if (e.target === topicModal) hideTopicModal();
-    });
 
     window.addEventListener('erudite-menu-toast', (event) => {
         const { message, type } = event.detail || {};
@@ -1990,6 +2349,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function initializeFlashcards() {
         await initializeSRS();
         await loadFlashcardSets();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const tabParam = urlParams.get('tab');
+        if (tabParam === 'premade') {
+            const radioPremade = document.querySelector('input[name="flashcard-type"][value="premade-flashcards"]');
+            if (radioPremade) {
+                radioPremade.checked = true;
+                const classParam = urlParams.get('class');
+                const subjectParam = urlParams.get('subject');
+                if (classParam) {
+                    premadeCurrentClass = classParam;
+                    if (subjectParam) {
+                        premadeCurrentSubject = subjectParam;
+                    }
+                }
+                handleFlashcardTypeChange();
+            }
+        } else {
+            handleFlashcardTypeChange(); // Hide premade elements by default
+        }
 
         if (window.location.hash === '#import') {
             showImportModal();
@@ -2263,15 +2642,62 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateDueCardsCount();
     };
 
+    // Premade Selection Event Listeners
+    document.querySelectorAll('#premade-class-selection .class-card').forEach(card => {
+        card.addEventListener('click', () => {
+            playClickSound();
+            const selectedClass = card.dataset.class;
+            showPremadeSubjectSelection(selectedClass);
+        });
+    });
+
+    if (premadeClassStat) {
+        premadeClassStat.addEventListener('click', () => {
+            playClickSound();
+            if (premadeCurrentClass) {
+                showPremadeClassSelection();
+            }
+        });
+    }
+
+    if (premadeSubjectStat) {
+        premadeSubjectStat.addEventListener('click', () => {
+            playClickSound();
+            if (premadeCurrentSubject && premadeCurrentClass) {
+                showPremadeSubjectSelection(premadeCurrentClass);
+            }
+        });
+    }
+
+    if (premadeSearchInput) {
+        premadeSearchInput.addEventListener('input', () => {
+            renderPremadeSets(premadeSearchInput.value);
+        });
+    }
+
+    if (premadeSortSelect) {
+        premadeSortSelect.addEventListener('change', () => {
+            playClickSound();
+            renderPremadeSets(premadeSearchInput.value);
+        });
+    }
+
+    if (closeTakeDeckBtn) closeTakeDeckBtn.addEventListener('click', () => { playClickSound(); hideTakeDeckModal(); });
+    if (cancelTakeDeckBtn) cancelTakeDeckBtn.addEventListener('click', () => { playClickSound(); hideTakeDeckModal(); });
+    if (confirmTakeDeckBtn) confirmTakeDeckBtn.addEventListener('click', () => { playClickSound(); handleTakeDeckConfirm(); });
+    if (takeDeckModal) {
+        takeDeckModal.addEventListener('click', (e) => {
+            if (e.target === takeDeckModal) hideTakeDeckModal();
+        });
+    }
+
     // Add debug function to show SRS details
     window.showSRSDetails = () => {
-
         flashcardSets.forEach((set, setIndex) => {
             if (window.srsManager && window.srsManager.isReady()) {
                 const stats = window.srsManager.getSRSStatistics(set.cards);
                 window.srsManager.logSRSDetails(set.cards);
             }
         });
-
     };
 });

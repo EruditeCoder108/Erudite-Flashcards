@@ -31,7 +31,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function libraryUrl(isPremade = false) {
         if (!isMobileRuntime()) {
-            return isPremade ? 'premade-library.html' : 'flashcards.html';
+            if (isPremade) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const classParam = urlParams.get('class') || '';
+                const subjectParam = urlParams.get('subject') || '';
+                return `flashcards.html?tab=premade&class=${encodeURIComponent(classParam)}&subject=${encodeURIComponent(subjectParam)}`;
+            }
+            return 'flashcards.html';
         }
         return 'index.html#library';
     }
@@ -561,8 +567,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     'Physical Education': 'Physical-education'
                 };
                 
-                const folderName = subjectFolderMap[subjectParam] || subjectParam;
-                const folderPath = `Premade-cards/${classParam}/${folderName}`;
+                let folderName = subjectFolderMap[subjectParam] || subjectParam;
+                if (classParam === 'ssc' && (folderName === 'English' || folderName === 'english')) {
+                    folderName = 'english';
+                }
+                const folderPath = `premade-cards/${classParam}/${folderName}`;
                 
                 // Try to load the specific set file
                 const fullUrl = `${folderPath}/${setId}`;
@@ -572,12 +581,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (!response.ok) {
                     // Try with encoded subject name
                     const encodedSubject = encodeURIComponent(subjectParam);
-                    const altPath1 = `Premade-cards/${classParam}/${encodedSubject}/${setId}`;
+                    const altPath1 = `premade-cards/${classParam}/${encodedSubject}/${setId}`;
                     response = await fetch(altPath1);
                     
                     if (!response.ok) {
                         // Try with the original subject name
-                        const altPath2 = `Premade-cards/${classParam}/${subjectParam}/${setId}`;
+                        const altPath2 = `premade-cards/${classParam}/${subjectParam}/${setId}`;
                         response = await fetch(altPath2);
                     }
                 }

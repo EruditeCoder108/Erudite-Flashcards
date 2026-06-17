@@ -240,7 +240,7 @@ body {
     gap: 0.125rem;
 }
 
-.stat-info span:first-child {
+.stat-info .stat-value {
     font-size: 1.125rem;
     font-weight: 600;
 }
@@ -1517,7 +1517,7 @@ body {
         text-align: center;
     }
 
-    .stat-info span:first-child {
+    .stat-info .stat-value {
         font-size: 1rem;
     }
 
@@ -2057,7 +2057,7 @@ body {
     transform: translateY(-2px);
 }
 
-.stat-info span:first-child {
+.stat-info .stat-value {
     font-size: 1.35rem;
 }
 
@@ -2793,7 +2793,7 @@ body {
     gap: 0.35rem;
 }
 
-.stat-info span:first-child {
+.stat-info .stat-value {
     font-size: 0.95rem;
 }
 
@@ -3323,7 +3323,7 @@ html[data-theme] .srs-dashboard-item small {
 
 html[data-theme] .brand-heading h1,
 html[data-theme] .set-name,
-html[data-theme] .stat-info span:first-child,
+html[data-theme] .stat-info .stat-value,
 html[data-theme] .srs-dashboard-item span,
 html[data-theme] .modal-content h2,
 html[data-theme] .settings-section h3 {
@@ -3790,14 +3790,16 @@ html[data-theme] .search-bar input {
 }
 
 /* Premade library class cards keep their school-selection style. */
-#class-selection .class-grid {
+#class-selection .class-grid,
+#premade-class-selection .class-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 1rem;
 }
 
-#class-selection .class-card {
+#class-selection .class-card,
+#premade-class-selection .class-card {
     min-height: 0;
     padding: 2rem !important;
     text-align: center !important;
@@ -3809,18 +3811,22 @@ html[data-theme] .search-bar input {
 }
 
 #class-selection .class-card::before,
-#class-selection .class-card::after {
+#class-selection .class-card::after,
+#premade-class-selection .class-card::before,
+#premade-class-selection .class-card::after {
     content: none !important;
     display: none !important;
 }
 
-#class-selection .class-card:hover {
+#class-selection .class-card:hover,
+#premade-class-selection .class-card:hover {
     transform: translateY(-5px);
     border-color: var(--primary) !important;
     box-shadow: var(--theme-shadow, 0 8px 30px rgba(0, 0, 0, 0.15)) !important;
 }
 
-#class-selection .class-icon {
+#class-selection .class-icon,
+#premade-class-selection .class-icon {
     width: 80px;
     height: 80px;
     margin: 0 auto 1.5rem;
@@ -3833,27 +3839,31 @@ html[data-theme] .search-bar input {
     font-size: 2rem;
 }
 
-#class-selection .class-card h3 {
+#class-selection .class-card h3,
+#premade-class-selection .class-card h3 {
     margin: 0 0 0.5rem;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--theme-text, var(--text-primary));
 }
 
-#class-selection .class-card p {
+#class-selection .class-card p,
+#premade-class-selection .class-card p {
     margin: 0 0 1.5rem;
     color: var(--theme-muted, var(--text-secondary));
     font-size: 1rem;
 }
 
-#class-selection .class-subjects {
+#class-selection .class-subjects,
+#premade-class-selection .class-subjects {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     justify-content: center;
 }
 
-#class-selection .subject-tag {
+#class-selection .subject-tag,
+#premade-class-selection .subject-tag {
     padding: 0.25rem 0.75rem;
     border-radius: 999px;
     background: var(--theme-action, var(--bg-tertiary));

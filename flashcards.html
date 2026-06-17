@@ -64,25 +64,48 @@
             </div>
             <!-- Library Stats -->
             <div class="library-stats">
-                <div class="stat-item">
+                <div class="stat-item user-stat">
                     <i class="fas fa-layer-group"></i>
                     <div class="stat-info">
-                        <span id="total-sets">0</span>
-                        <span class="stat-label">Total Sets</span>
+                        <span class="stat-label">Total Sets:</span>
+                        <span id="total-sets" class="stat-value">0</span>
                     </div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item user-stat">
                     <i class="fas fa-clock-rotate-left"></i>
                     <div class="stat-info">
-                        <span id="recent-activity">0</span>
-                        <span class="stat-label">Recent Activity</span>
+                        <span class="stat-label">Recent Activity:</span>
+                        <span id="recent-activity" class="stat-value">0</span>
                     </div>
                 </div>
-                <div class="stat-item" id="due-cards-stat">
+                <div class="stat-item user-stat" id="due-cards-stat">
                     <i class="fas fa-brain"></i>
                     <div class="stat-info">
-                        <span id="due-cards">0</span>
-                        <span class="stat-label">Due Cards</span>
+                        <span class="stat-label">Due Cards:</span>
+                        <span id="due-cards" class="stat-value">0</span>
+                    </div>
+                </div>
+                
+                <!-- Premade Stats -->
+                <div class="stat-item premade-stat hidden" id="premade-total-sets-stat">
+                    <i class="fas fa-layer-group"></i>
+                    <div class="stat-info">
+                        <span class="stat-label">Available Decks:</span>
+                        <span id="premade-total-sets" class="stat-value">0</span>
+                    </div>
+                </div>
+                <div class="stat-item clickable-stat premade-stat hidden" id="premade-class-stat">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div class="stat-info">
+                        <span class="stat-label">Class:</span>
+                        <span id="premade-class-name" class="stat-value">Select Class</span>
+                    </div>
+                </div>
+                <div class="stat-item clickable-stat premade-stat hidden" id="premade-subject-stat">
+                    <i class="fas fa-book"></i>
+                    <div class="stat-info">
+                        <span class="stat-label">Subject:</span>
+                        <span id="premade-subject-name" class="stat-value">Select Subject</span>
                     </div>
                 </div>
                 
@@ -103,7 +126,7 @@
                 </div>
 
                 <!-- SRS Mode Toggle -->
-                <div class="srs-toggle-container">
+                <div class="srs-toggle-container user-stat">
                     <div class="srs-toggle">
                         <input type="checkbox" id="srs-mode-toggle" class="srs-toggle-input">
                         <label for="srs-mode-toggle" class="srs-toggle-label">
@@ -150,94 +173,270 @@
 
         <!-- Main Content -->
         <main class="library-content">
-            <!-- Search and Filter -->
-            <div class="library-toolbar">
-                <div class="library-view-tabs" role="tablist" aria-label="Library view">
-                    <button class="library-view-tab active" data-view="all" type="button">
-                        <i class="fas fa-border-all"></i>
-                        All
-                    </button>
-                    <button class="library-view-tab" data-view="classes" type="button">
-                        <i class="fas fa-chalkboard-user"></i>
-                        Classes
-                    </button>
-                    <button class="library-view-tab" data-view="general" type="button">
-                        <i class="fas fa-inbox"></i>
-                        General
-                    </button>
+            <div id="my-sets-view">
+                <!-- Search and Filter -->
+                <div class="library-toolbar">
+                    <div class="library-view-tabs" role="tablist" aria-label="Library view">
+                        <button class="library-view-tab active" data-view="all" type="button">
+                            <i class="fas fa-border-all"></i>
+                            All
+                        </button>
+                        <button class="library-view-tab" data-view="classes" type="button">
+                            <i class="fas fa-chalkboard-user"></i>
+                            Classes
+                        </button>
+                        <button class="library-view-tab" data-view="general" type="button">
+                            <i class="fas fa-inbox"></i>
+                            General
+                        </button>
+                    </div>
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-input" placeholder="Search flashcard sets...">
+                    </div>
+                    <div class="sort-options">
+                        <select id="sort-select">
+                            <option value="recent">Most Recent</option>
+                            <option value="name">Name</option>
+                            <option value="cards">Number of Cards</option>
+                            <option value="studied">Most Studied</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="search-input" placeholder="Search flashcard sets...">
-                </div>
-                <div class="sort-options">
-                    <select id="sort-select">
-                        <option value="recent">Most Recent</option>
-                        <option value="name">Name</option>
-                        <option value="cards">Number of Cards</option>
-                        <option value="studied">Most Studied</option>
-                    </select>
+
+                <!-- Flashcard Sets Grid -->
+                <div class="sets-grid" id="sets-container">
+                    <!-- Empty State -->
+                    <div id="empty-state" class="empty-state hidden">
+                        <div class="empty-state-icon">
+                            <i class="fas fa-folder-plus"></i>
+                        </div>
+                        <h2>No Flashcard Sets Yet</h2>
+                        <p>Create your first set to start studying!</p>
+                        <button class="primary-button" id="empty-state-create-btn">
+                            <i class="fas fa-plus"></i>
+                            Create Set
+                        </button>
+                    </div>
+                    <!-- Template for Flashcard Set -->
+                    <template id="set-template">
+                        <div class="set-card">
+                            <div class="set-content">
+                                <div class="set-header-row">
+                                    <div class="set-icon-box">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="set-title-group">
+                                        <h3 class="set-name"></h3>
+                                        <span class="card-count"></span>
+                                    </div>
+                                    <button class="favorite-btn" title="Pin Set">
+                                        <i class="far fa-star"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="set-details-row">
+                                    <div class="set-class-pill"></div>
+                                    <div class="set-meta-info">
+                                        <span class="study-count"></span> &bull; <span class="created-date"></span>
+                                    </div>
+                                    <div class="set-srs-summary"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="set-actions-row">
+                                <button class="action-btn study-btn-primary study-btn">
+                                    <i class="fas fa-play"></i>
+                                    <span>Study</span>
+                                </button>
+                                <div class="card-menu-container">
+                                    <button class="action-btn menu-trigger-btn" title="More options">
+                                        <i class="fas fa-ellipsis"></i>
+                                    </button>
+                                    <div class="card-dropdown-menu hidden">
+                                        <button class="dropdown-item edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="dropdown-item deck-settings-btn"><i class="fas fa-sliders"></i> SRS Settings</button>
+                                        <button class="dropdown-item delete-btn danger"><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
 
-            <!-- Flashcard Sets Grid -->
-            <div class="sets-grid" id="sets-container">
-                <!-- Empty State -->
-                <div id="empty-state" class="empty-state hidden">
-                    <div class="empty-state-icon">
-                        <i class="fas fa-folder-plus"></i>
+            <!-- Premade Sets View -->
+            <div id="premade-sets-view" class="hidden">
+                <!-- Class Selection -->
+                <div id="premade-class-selection" class="selection-container">
+                    <div class="class-grid">
+                        <div class="class-card" data-class="10th">
+                            <div class="class-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3>Class 10th</h3>
+                            <p>Secondary School</p>
+                            <div class="class-subjects">
+                                <span class="subject-tag">Science</span>
+                                <span class="subject-tag">Maths</span>
+                                <span class="subject-tag">English</span>
+                                <span class="subject-tag">+5 more</span>
+                            </div>
+                        </div>
+                        <div class="class-card" data-class="11th">
+                            <div class="class-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3>Class 11th</h3>
+                            <p>Higher Secondary</p>
+                            <div class="class-subjects">
+                                <span class="subject-tag">Physics</span>
+                                <span class="subject-tag">Chemistry</span>
+                                <span class="subject-tag">Biology</span>
+                                <span class="subject-tag">+6 more</span>
+                            </div>
+                        </div>
+                        <div class="class-card" data-class="12th">
+                            <div class="class-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <h3>Class 12th</h3>
+                            <p>Higher Secondary</p>
+                            <div class="class-subjects">
+                                <span class="subject-tag">Physics</span>
+                                <span class="subject-tag">Chemistry</span>
+                                <span class="subject-tag">Biology</span>
+                                <span class="subject-tag">+6 more</span>
+                            </div>
+                        </div>
+                        <div class="class-card" data-class="neet-ug">
+                            <div class="class-icon">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <h3>NEET UG</h3>
+                            <p>Medical entrance</p>
+                            <div class="class-subjects">
+                                <span class="subject-tag">Physics</span>
+                                <span class="subject-tag">Chemistry</span>
+                                <span class="subject-tag">Biology</span>
+                            </div>
+                        </div>
+                        <div class="class-card" data-class="jee-main">
+                            <div class="class-icon">
+                                <i class="fas fa-compass-drafting"></i>
+                            </div>
+                            <h3>JEE Main</h3>
+                            <p>Engineering entrance</p>
+                            <div class="class-subjects">
+                                <span class="subject-tag">Physics</span>
+                                <span class="subject-tag">Chemistry</span>
+                                <span class="subject-tag">Maths</span>
+                            </div>
+                        </div>
+                        <div class="class-card" data-class="jee-advanced">
+                            <div class="class-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>JEE Advanced</h3>
+                            <p>Advanced engineering</p>
+                            <div class="class-subjects">
+                                <span class="subject-tag">Physics</span>
+                                <span class="subject-tag">Chemistry</span>
+                                <span class="subject-tag">Maths</span>
+                            </div>
+                        </div>
+                        <div class="class-card" data-class="ssc">
+                            <div class="class-icon">
+                                <i class="fas fa-building-columns"></i>
+                            </div>
+                            <h3>SSC</h3>
+                            <p>Government exams</p>
+                            <div class="class-subjects">
+                                <span class="subject-tag">GA</span>
+                                <span class="subject-tag">Quant</span>
+                                <span class="subject-tag">Reasoning</span>
+                                <span class="subject-tag">English</span>
+                            </div>
+                        </div>
                     </div>
-                    <h2>No Flashcard Sets Yet</h2>
-                    <p>Create your first set to start studying!</p>
-                    <button class="primary-button" id="empty-state-create-btn">
-                        <i class="fas fa-plus"></i>
-                        Create Set
-                    </button>
                 </div>
-                <!-- Template for Flashcard Set -->
-                <template id="set-template">
-                    <div class="set-card">
-                        <div class="set-content">
-                            <div class="set-header-row">
-                                <div class="set-icon-box">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div class="set-title-group">
-                                    <h3 class="set-name"></h3>
-                                    <span class="card-count"></span>
-                                </div>
-                                <button class="favorite-btn" title="Pin Set">
-                                    <i class="far fa-star"></i>
-                                </button>
-                            </div>
-                            
-                            <div class="set-details-row">
-                                <div class="set-class-pill"></div>
-                                <div class="set-meta-info">
-                                    <span class="study-count"></span> &bull; <span class="created-date"></span>
-                                </div>
-                                <div class="set-srs-summary"></div>
-                            </div>
+
+                <!-- Subject Selection -->
+                <div id="premade-subject-selection" class="selection-container hidden">
+                    <div class="subject-grid" id="premade-subject-grid">
+                        <!-- Subjects will be populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Flashcard Sets Display -->
+                <div id="premade-sets-display" class="flashcard-sets-container hidden">
+                    <!-- Friendly Development Message -->
+                    <div class="development-message" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1)); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: center;">
+                        <div style="font-size: 2em; margin-bottom: 12px;">📚✨</div>
+                        <h3 style="color: #6366f1; margin: 0 0 8px 0; font-size: 1.1em; font-weight: 600;">Quality Over Quantity!</h3>
+                        <p style="color: rgba(255, 255, 255, 0.85); margin: 0; line-height: 1.6; font-size: 0.95em;">
+                            We're continuously crafting high-quality premade flashcards and study sets for you. 
+                            Since we focus on quality content rather than just quantity, this will take some time. 
+                            But trust us, it'll be awesome! Stay tuned for updates. 🚀
+                        </p>
+                    </div>
+                    
+                    <!-- Search and Filter -->
+                    <div class="library-toolbar">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="premade-search-input" placeholder="Search flashcard sets...">
                         </div>
-                        
-                        <div class="set-actions-row">
-                            <button class="action-btn study-btn-primary study-btn">
-                                <i class="fas fa-play"></i>
-                                <span>Study</span>
-                            </button>
-                            <div class="card-menu-container">
-                                <button class="action-btn menu-trigger-btn" title="More options">
-                                    <i class="fas fa-ellipsis"></i>
-                                </button>
-                                <div class="card-dropdown-menu hidden">
-                                    <button class="dropdown-item edit-btn"><i class="fas fa-edit"></i> Edit</button>
-                                    <button class="dropdown-item deck-settings-btn"><i class="fas fa-sliders"></i> SRS Settings</button>
-                                    <button class="dropdown-item delete-btn danger"><i class="fas fa-trash"></i> Delete</button>
-                                </div>
-                            </div>
+                        <div class="sort-options">
+                            <select id="premade-sort-select">
+                                <option value="name">Name</option>
+                                <option value="cards">Number of Cards</option>
+                                <option value="difficulty">Difficulty</option>
+                                <option value="time">Estimated Time</option>
+                            </select>
                         </div>
                     </div>
-                </template>
+
+                    <!-- Flashcard Sets Grid -->
+                    <div class="sets-grid" id="premade-sets-container">
+                        <!-- Empty State -->
+                        <div id="premade-empty-state" class="empty-state hidden">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-folder-open"></i>
+                            </div>
+                            <h2>No Flashcard Sets Available</h2>
+                            <p>No flashcard sets found for this subject.</p>
+                        </div>
+
+                        <!-- Template for Flashcard Set -->
+                        <template id="premade-set-template">
+                            <div class="set-card premade-set-card">
+                                <div class="set-content">
+                                    <div class="set-header">
+                                        <h3 class="premade-set-name"></h3>
+                                        <span class="premade-card-count"></span>
+                                    </div>
+                                    <div class="set-meta">
+                                        <span class="difficulty-level"></span>
+                                        <span class="estimated-time"></span>
+                                    </div>
+                                    <div class="premade-set-description" style="color: var(--text-secondary); font-size: 0.875rem; margin-top: var(--spacing-sm); line-height: 1.5;"></div>
+                                    <div class="premade-set-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--spacing-md);"></div >
+                                </div>
+                                <div class="set-actions">
+                                    <button class="action-btn premade-study-btn">
+                                        <i class="fas fa-play"></i>
+                                        Study
+                                    </button>
+                                    <button class="action-btn premade-add-to-set-btn">
+                                        <i class="fas fa-plus"></i>
+                                        Take Deck
+                                    </button>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
             </div>
         </main>
 
@@ -603,6 +802,39 @@
                     <button id="cancel-copy-export" class="secondary-button">Close</button>
                     <button id="generate-copy-export" class="secondary-button"><i class="fas fa-gear"></i> Generate</button>
                     <button id="do-copy-export" class="primary-button" style="display:none;"><i class="fas fa-copy"></i> Copy to Clipboard</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Take Deck Modal -->
+        <div id="take-deck-modal" class="modal hidden">
+            <div class="modal-content" style="max-width: 480px;">
+                <button class="close-btn" id="close-take-deck-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2><i class="fas fa-file-import"></i> Take This Deck</h2>
+                <p class="modal-description" style="margin-bottom: var(--spacing-md);">Copy this premade deck to your personal library so you can edit and track its progress.</p>
+                
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label for="take-deck-name" style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-secondary);">Deck Name</label>
+                    <input type="text" id="take-deck-name" placeholder="Enter deck name" style="width: 100%; padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--bg-tertiary); color: var(--text-primary); font-size: 1rem;" required>
+                </div>
+                
+                <div class="form-group" style="margin-top: 1rem; margin-bottom: 1.5rem;">
+                    <label for="take-deck-class" style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-secondary);">Assign to Class</label>
+                    <span class="class-select-shell" style="display: block; width: 100%;">
+                        <select id="take-deck-class" class="class-select" style="width: 100%; padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--bg-tertiary); color: var(--text-primary); font-size: 1rem;">
+                            <option value="">General</option>
+                        </select>
+                    </span>
+                </div>
+
+                <div class="modal-actions" style="margin-top: 1.5rem;">
+                    <button id="cancel-take-deck" class="secondary-button">Cancel</button>
+                    <button id="confirm-take-deck" class="primary-button">
+                        <i class="fas fa-plus"></i>
+                        Take Deck
+                    </button>
                 </div>
             </div>
         </div>

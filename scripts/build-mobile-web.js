@@ -9,7 +9,6 @@ const htmlFiles = [
   'study.html',
   'creator.html',
   'card-browser.html',
-  'premade-library.html',
   'diagnostics.html'
 ];
 

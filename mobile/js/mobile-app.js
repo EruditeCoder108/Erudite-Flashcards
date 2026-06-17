@@ -573,7 +573,15 @@
 
     updateTabIndicator(tab);
     setHeader();
-    if (tab !== 'library') {
+    if (tab === 'library') {
+      const btnPremade = document.querySelector('.source-option[data-action="open-premade"]');
+      if (btnPremade && !btnPremade.classList.contains('active')) {
+        document.getElementById('mobile-user-decks-view')?.classList.remove('hidden');
+        document.getElementById('mobile-premade-decks-view')?.classList.add('hidden');
+        const btnCreate = document.querySelector('[data-action="open-create"]');
+        if (btnCreate) btnCreate.classList.remove('hidden');
+      }
+    } else {
       exitSelectMode();
     }
     render();
@@ -1546,17 +1554,75 @@
       showToast('Could not import deck');
       return;
     }
-    const saved = await window.flashcardStore.saveSet({
-      ...data,
-      id: null,
-      name: data.name || data.title || fileName.replace(/\.json$/i, ''),
-      classId: null
-    });
-    showToast(`Imported ${saved.name || 'deck'}`);
-    state.browserLoaded = false;
-    await refresh();
-    setActiveTab('library');
+
+    const overlay = document.getElementById('take-deck-overlay');
+    const nameInput = document.getElementById('mobile-take-deck-name');
+    const classSelect = document.getElementById('mobile-take-deck-class');
+    const cancelBtn = document.getElementById('mobile-take-deck-cancel');
+    const confirmBtn = document.getElementById('mobile-take-deck-confirm');
+
+    if (nameInput) {
+      nameInput.value = data.name || data.title || fileName.replace(/\.json$/i, '');
+    }
+
+    if (classSelect) {
+      classSelect.innerHTML = '<option value="">General</option>';
+      (state.classes || []).forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = c.name;
+        classSelect.appendChild(opt);
+      });
+    }
+
+    overlay?.classList.remove('hidden');
+
+    const cleanupListeners = () => {
+      cancelBtn?.removeEventListener('click', onCancel);
+      confirmBtn?.removeEventListener('click', onConfirm);
+      overlay?.removeEventListener('click', onOverlayClick);
+    };
+
+    const onCancel = () => {
+      overlay?.classList.add('hidden');
+      cleanupListeners();
+    };
+
+    const onOverlayClick = (e) => {
+      if (e.target === overlay) {
+        overlay?.classList.add('hidden');
+        cleanupListeners();
+      }
+    };
+
+    const onConfirm = async () => {
+      const targetName = nameInput?.value.trim() || data.name || fileName.replace(/\.json$/i, '');
+      const targetClassId = classSelect?.value || null;
+
+      try {
+        const saved = await window.flashcardStore.saveSet({
+          ...data,
+          id: null,
+          name: targetName,
+          classId: targetClassId
+        });
+        showToast(`Imported ${saved.name || 'deck'}`);
+        state.browserLoaded = false;
+        overlay?.classList.add('hidden');
+        cleanupListeners();
+        await refresh();
+        setActiveTab('library');
+      } catch (e) {
+        console.error(e);
+        showToast('Could not import deck');
+      }
+    };
+
+    cancelBtn?.addEventListener('click', onCancel);
+    confirmBtn?.addEventListener('click', onConfirm);
+    overlay?.addEventListener('click', onOverlayClick);
   }
+
 
   async function loadBrowserCards() {
     if (state.browserLoaded) return;
@@ -2576,16 +2642,46 @@
 
   async function handleAction(action, target) {
     switch (action) {
-      case 'tab-library':
+      case 'tab-library': {
         setActiveTab('library');
+        const btnLibrary = document.querySelector('.source-option[data-action="tab-library"]');
+        const btnPremade = document.querySelector('.source-option[data-action="open-premade"]');
+        if (btnLibrary) {
+          btnLibrary.classList.add('active');
+          btnLibrary.setAttribute('aria-checked', 'true');
+        }
+        if (btnPremade) {
+          btnPremade.classList.remove('active');
+          btnPremade.setAttribute('aria-checked', 'false');
+        }
+        document.getElementById('mobile-user-decks-view')?.classList.remove('hidden');
+        document.getElementById('mobile-premade-decks-view')?.classList.add('hidden');
+        const btnCreate = document.querySelector('[data-action="open-create"]');
+        if (btnCreate) btnCreate.classList.remove('hidden');
         break;
+      }
       case 'open-create':
         await openCreator();
         break;
-      case 'open-premade':
-        setActiveTab('premade');
+      case 'open-premade': {
+        setActiveTab('library');
+        const btnLibrary = document.querySelector('.source-option[data-action="tab-library"]');
+        const btnPremade = document.querySelector('.source-option[data-action="open-premade"]');
+        if (btnLibrary) {
+          btnLibrary.classList.remove('active');
+          btnLibrary.setAttribute('aria-checked', 'false');
+        }
+        if (btnPremade) {
+          btnPremade.classList.add('active');
+          btnPremade.setAttribute('aria-checked', 'true');
+        }
+        document.getElementById('mobile-user-decks-view')?.classList.add('hidden');
+        document.getElementById('mobile-premade-decks-view')?.classList.remove('hidden');
+        const btnCreate = document.querySelector('[data-action="open-create"]');
+        if (btnCreate) btnCreate.classList.add('hidden');
         await loadPremade();
         break;
+      }
       case 'open-browser':
         setActiveTab('browser');
         await loadBrowserCards();

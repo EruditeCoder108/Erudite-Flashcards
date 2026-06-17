@@ -133,29 +133,37 @@
           </button>
         </div>
 
-        <div class="search-row">
-          <label class="mobile-search">
-            <i class="fas fa-magnifying-glass"></i>
-            <input id="mobile-search-input" type="search" placeholder="Search decks, cards, classes">
-          </label>
-          <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
-            <i class="fas fa-arrow-down-wide-short"></i>
-          </button>
+        <div id="mobile-user-decks-view">
+          <div class="search-row">
+            <label class="mobile-search">
+              <i class="fas fa-magnifying-glass"></i>
+              <input id="mobile-search-input" type="search" placeholder="Search decks, cards, classes">
+            </label>
+            <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
+              <i class="fas fa-arrow-down-wide-short"></i>
+            </button>
+          </div>
+
+          <div class="filter-strip" id="library-filters" aria-label="Library filters">
+            <button type="button" class="filter-chip active" data-filter="all"><i class="fas fa-table-cells-large"></i>All</button>
+            <button type="button" class="filter-chip" data-filter="classes"><i class="fas fa-chalkboard-user"></i>Classes</button>
+            <button type="button" class="filter-chip" data-filter="general"><i class="fas fa-box-archive"></i>General</button>
+            <button type="button" class="filter-chip" data-filter="starred"><i class="fas fa-star"></i>Starred</button>
+          </div>
+
+          <div class="library-meta-row">
+            <span id="library-count-label">0 decks</span>
+            <span id="library-sort-label">Recent</span>
+          </div>
+
+          <div class="mobile-list" id="library-list"></div>
         </div>
 
-        <div class="filter-strip" id="library-filters" aria-label="Library filters">
-          <button type="button" class="filter-chip active" data-filter="all"><i class="fas fa-table-cells-large"></i>All</button>
-          <button type="button" class="filter-chip" data-filter="classes"><i class="fas fa-chalkboard-user"></i>Classes</button>
-          <button type="button" class="filter-chip" data-filter="general"><i class="fas fa-box-archive"></i>General</button>
-          <button type="button" class="filter-chip" data-filter="starred"><i class="fas fa-star"></i>Starred</button>
+        <div id="mobile-premade-decks-view" class="hidden">
+          <div class="filter-strip" id="premade-class-filters" aria-label="Premade classes"></div>
+          <div class="filter-strip" id="premade-subject-filters" aria-label="Premade subjects"></div>
+          <div class="mobile-list" id="premade-list"></div>
         </div>
-
-        <div class="library-meta-row">
-          <span id="library-count-label">0 decks</span>
-          <span id="library-sort-label">Recent</span>
-        </div>
-
-        <div class="mobile-list" id="library-list"></div>
       </section>
 
 
@@ -194,20 +202,6 @@
         </form>
       </section>
 
-      <section class="mobile-view" id="view-premade" aria-labelledby="premade-heading">
-        <div class="library-screen-head">
-          <div>
-            <p class="mobile-eyebrow">Premade</p>
-            <h2 id="premade-heading">Starter decks</h2>
-          </div>
-          <button type="button" class="icon-button" data-action="tab-library" aria-label="Back to library">
-            <i class="fas fa-arrow-left"></i>
-          </button>
-        </div>
-        <div class="filter-strip" id="premade-class-filters" aria-label="Premade classes"></div>
-        <div class="filter-strip" id="premade-subject-filters" aria-label="Premade subjects"></div>
-        <div class="mobile-list" id="premade-list"></div>
-      </section>
 
       <section class="mobile-view" id="view-browser" aria-labelledby="browser-heading">
         <div class="library-screen-head">
@@ -427,6 +421,32 @@
       </div>
     </div>
   </div>
+
+  <!-- Take Deck Modal for Mobile -->
+  <div class="mobile-modal-overlay hidden" id="take-deck-overlay" role="dialog" aria-modal="true" aria-labelledby="take-deck-title">
+    <div class="mobile-modal-card">
+      <h3 id="take-deck-title"><i class="fas fa-file-import"></i> Take This Deck</h3>
+      <p class="mobile-modal-hint" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.4;">Copy this premade deck to your personal library so you can edit and track its progress.</p>
+      
+      <div class="mobile-modal-field" style="margin-top: 1rem;">
+        <label for="mobile-take-deck-name" style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.85rem; color: var(--text-muted);">Deck Name</label>
+        <input type="text" id="mobile-take-deck-name" class="mobile-modal-input" placeholder="Enter deck name" autocomplete="off" style="width: 100%; box-sizing: border-box; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-hover); color: var(--text); font-size: 0.95rem;">
+      </div>
+      
+      <div class="mobile-modal-field" style="margin-top: 1rem; margin-bottom: 1.5rem;">
+        <label for="mobile-take-deck-class" style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.85rem; color: var(--text-muted);">Assign to Class</label>
+        <select id="mobile-take-deck-class" class="mobile-modal-select" style="width: 100%; box-sizing: border-box; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-hover); color: var(--text); font-size: 0.95rem;">
+          <option value="">General</option>
+        </select>
+      </div>
+      
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="mobile-take-deck-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="mobile-take-deck-confirm">Take Deck</button>
+      </div>
+    </div>
+  </div>
+
 
   <div class="mobile-toast" id="mobile-toast" role="status" aria-live="polite"></div>
 

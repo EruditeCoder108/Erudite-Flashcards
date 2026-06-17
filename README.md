@@ -31,12 +31,11 @@ Erudite Flashcards is a local-first spaced repetition system (SRS) flashcard app
 - `android/`: Native Android project configurations and assets.
 
 ### HTML User Interfaces
-- `flashcards.html`: Main application interface containing the dashboard, deck library, class management, and global settings.
+- `flashcards.html`: Main application interface containing the dashboard, My Sets library, Premade library view, class management, and global settings.
 - `study.html`: Study session and card rating interface.
 - `creator.html`: Flashcard creation and editor interface.
 - `card-browser.html`: Database browser interface for bulk viewing, filtering, and managing cards.
 - `diagnostics.html`: Application health checks, database integrity tools, and backup/restore dashboard.
-- `premade-library.html`: Vault of premade study decks sorted by categories.
 
 ## Development Setup
 
