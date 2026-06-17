@@ -197,6 +197,16 @@
     return false;
   }
 
+  async function saveCardProgressBatch(setId, patches) {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.saveCardProgressBatch) return nativeApi.saveCardProgressBatch(setId, patches);
+    if (nativeApi?.saveCardProgress) {
+      await Promise.all(Object.entries(patches).map(([cardId, patch]) => nativeApi.saveCardProgress(setId, cardId, patch).catch(() => {})));
+      return true;
+    }
+    return false;
+  }
+
   async function getSettings() {
     const nativeApi = getNativeApi();
     if (nativeApi) return nativeApi.getSettings();
@@ -597,6 +607,7 @@
     getAllProgress,
     saveProgress,
     saveCardProgress,
+    saveCardProgressBatch,
     getSettings,
     saveSettings,
     getState,

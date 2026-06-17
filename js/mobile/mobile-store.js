@@ -683,7 +683,13 @@
       }
     }
 
-    if (changed) _clearStudyPatchesAfterPersist = true;
+    if (changed) {
+      if (isNative) {
+        try { localStorage.removeItem(STUDY_PATCHES_KEY); } catch (_) {}
+      } else {
+        _clearStudyPatchesAfterPersist = true;
+      }
+    }
     return changed;
   }
 
@@ -698,10 +704,6 @@
           return src.substring(0, src.lastIndexOf('/js/mobile/'));
         } catch (_e) { return ''; }
       })();
-      const wasmBase = scriptBase ? `${scriptBase}/vendor/sql.js/` : 'vendor/sql.js/';
-      SQL = await initSqlJs({
-        locateFile: file => `${wasmBase}${file}`
-      });
 
       db = null;
       let foundExistingFile = false;
@@ -731,7 +733,12 @@
         await createSchema();
         await migrateFromLegacySqlJs();
       } else {
-        // Fallback to WebAssembly SQL.js
+        // Load SQL.js WebAssembly only as a fallback
+        const wasmBase = scriptBase ? `${scriptBase}/vendor/sql.js/` : 'vendor/sql.js/';
+        SQL = await initSqlJs({
+          locateFile: file => `${wasmBase}${file}`
+        });
+
         for (const path of [DB_PATH, DB_TMP_PATH]) {
           if (db) break;
           try {
@@ -1066,25 +1073,28 @@
       const setId = String(row.set_id);
       const stats = statsBySet.get(setId) || createMetaStats();
       const dayKeys = dayKeysBySet.get(setId) || new Set();
-      const history = jsonParse(row.review_history_json, []);
 
-      (Array.isArray(history) ? history : []).forEach(review => {
-        const reviewedAt = timeValue(review.reviewedAt || review.time || review.date);
-        if (!reviewedAt) return;
-        stats.reviewCount += 1;
-        if (!stats.lastReviewAt || reviewedAt > stats.lastReviewAt) stats.lastReviewAt = reviewedAt;
-        const key = dayKey(reviewedAt);
-        if (key) dayKeys.add(key);
-        if (key === todayKey) stats.reviewedToday += 1;
-        if (reviewedAt >= thirtyDaysAgo) {
-          stats.reviewed30 += 1;
-          if (String(review.rating || '').toLowerCase() !== 'again') stats.remembered30 += 1;
-        }
-      });
+      const historyJson = row.review_history_json;
+      if (historyJson && historyJson !== '[]') {
+        const history = jsonParse(historyJson, []);
+        (Array.isArray(history) ? history : []).forEach(review => {
+          const reviewedAt = timeValue(review.reviewedAt || review.time || review.date);
+          if (!reviewedAt) return;
+          stats.reviewCount += 1;
+          if (!stats.lastReviewAt || reviewedAt > stats.lastReviewAt) stats.lastReviewAt = reviewedAt;
+          const key = dayKey(reviewedAt);
+          if (key) dayKeys.add(key);
+          if (key === todayKey) stats.reviewedToday += 1;
+          if (reviewedAt >= thirtyDaysAgo) {
+            stats.reviewed30 += 1;
+            if (String(review.rating || '').toLowerCase() !== 'again') stats.remembered30 += 1;
+          }
+        });
+      }
 
       if (!Number(row.suspended || 0) && !isBuried(row.buried_until, nowMs)) {
         stats.totalCards += 1;
-        const srs = jsonParse(row.srs_json, null);
+        const srs = row.srs_json && row.srs_json !== 'null' ? jsonParse(row.srs_json, null) : null;
         const state = normalizeSrsState(srs?.state);
 
         if (!srs || state === 'New') {
@@ -1305,7 +1315,100 @@
   async function saveCardProgress(setId, cardId, patch = {}) {
     await ensureReady();
     await updateCardProgressRow(setId, cardId, patch);
-    await persist(12000);
+    if (isNative) {
+      try {
+        const patchesRaw = localStorage.getItem(STUDY_PATCHES_KEY);
+        if (patchesRaw) {
+          const patches = JSON.parse(patchesRaw);
+          if (patches?.sets?.[setId]?.cards?.[cardId]) {
+            delete patches.sets[setId].cards[cardId];
+            if (Object.keys(patches.sets[setId].cards).length === 0) {
+              delete patches.sets[setId];
+            }
+            localStorage.setItem(STUDY_PATCHES_KEY, JSON.stringify(patches));
+          }
+        }
+      } catch (_) {}
+    } else {
+      await persist(12000);
+    }
+    return true;
+  }
+
+  async function saveCardProgressBatch(setId, patches = {}) {
+    await ensureReady();
+    const batch = [];
+    for (const [cardId, patch] of Object.entries(patches)) {
+      const setKey = String(setId);
+      const cardKey = String(cardId);
+      const result = await rows(
+        'SELECT payload_json FROM cards WHERE id = ? AND set_id = ? AND deleted_at IS NULL',
+        [cardKey, setKey]
+      );
+      if (!result.length) continue;
+
+      const existing = jsonParse(result[0].payload_json, {});
+      const updated = {
+        ...existing,
+        lastModified: Number(patch.lastModified || Date.now())
+      };
+
+      if (Object.prototype.hasOwnProperty.call(patch, 'srs')) updated.srs = patch.srs || undefined;
+      if (Object.prototype.hasOwnProperty.call(patch, 'reviewHistory')) {
+        updated.reviewHistory = Array.isArray(patch.reviewHistory) ? patch.reviewHistory : [];
+      }
+      if (Object.prototype.hasOwnProperty.call(patch, 'suspended')) updated.suspended = Boolean(patch.suspended);
+      if (Object.prototype.hasOwnProperty.call(patch, 'buriedUntil')) updated.buriedUntil = patch.buriedUntil || null;
+
+      batch.push({
+        statement: `
+          UPDATE cards SET
+            srs_json = ?,
+            review_history_json = ?,
+            suspended = ?,
+            buried_until = ?,
+            last_modified = ?,
+            payload_json = ?
+          WHERE id = ? AND set_id = ? AND deleted_at IS NULL
+        `,
+        values: [
+          updated.srs ? jsonString(updated.srs) : null,
+          jsonString(Array.isArray(updated.reviewHistory) ? updated.reviewHistory : []),
+          updated.suspended ? 1 : 0,
+          updated.buriedUntil || null,
+          updated.lastModified,
+          jsonString(updated),
+          cardKey,
+          setKey
+        ]
+      });
+    }
+
+    if (batch.length > 0) {
+      await executeSet(batch);
+      const now = Date.now();
+      await run('UPDATE sets SET last_modified = ? WHERE id = ? AND deleted_at IS NULL', [now, String(setId)]);
+    }
+
+    if (isNative) {
+      try {
+        const patchesRaw = localStorage.getItem(STUDY_PATCHES_KEY);
+        if (patchesRaw) {
+          const patchesData = JSON.parse(patchesRaw);
+          if (patchesData?.sets?.[setId]?.cards) {
+            for (const cardId of Object.keys(patches)) {
+              delete patchesData.sets[setId].cards[cardId];
+            }
+            if (Object.keys(patchesData.sets[setId].cards).length === 0) {
+              delete patchesData.sets[setId];
+            }
+            localStorage.setItem(STUDY_PATCHES_KEY, JSON.stringify(patchesData));
+          }
+        }
+      } catch (_) {}
+    } else {
+      await persist(12000);
+    }
     return true;
   }
 
@@ -1427,6 +1530,7 @@
     await ensureReady();
     const cardRows = await rows('SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL', [String(setId)]);
 
+    const batch = [];
     for (const cardRow of cardRows) {
       const card = hydrateCardRow(cardRow);
       card.srs = undefined;
@@ -1434,34 +1538,49 @@
         card.reviewHistory = [];
       }
 
-      await run(
-        'UPDATE cards SET srs_json = NULL, review_history_json = ?, payload_json = ?, last_modified = ? WHERE id = ?',
-        [
+      batch.push({
+        statement: 'UPDATE cards SET srs_json = NULL, review_history_json = ?, payload_json = ?, last_modified = ? WHERE id = ?',
+        values: [
           jsonString(card.reviewHistory),
           jsonString(card),
           Date.now(),
           String(card.id)
         ]
-      );
+      });
+    }
+
+    if (batch.length > 0) {
+      await executeSet(batch);
     }
 
     // Reset SRS progress inside progress table
-    const progressRows = await rows('SELECT value_json FROM progress WHERE set_id = ?', [String(setId)]);
-    if (progressRows.length) {
-      const progress = jsonParse(progressRows[0].value_json, {});
-      progress.srsModeIndex = 0;
-      progress.srsReviewedCardIds = [];
-      progress.timestamp = Date.now();
+    await run('DELETE FROM progress WHERE set_id = ?', [String(setId)]);
 
-      await run(
-        'UPDATE progress SET value_json = ?, updated_at = ? WHERE set_id = ?',
-        [
-          jsonString(progress),
-          Date.now(),
-          String(setId)
-        ]
-      );
-    }
+    // Clear progress mirror from localStorage
+    try {
+      localStorage.removeItem('erudite-mobile-progress:' + setId);
+    } catch (_) {}
+
+    // Clear study patches for this deck from localStorage
+    try {
+      const patchesRaw = localStorage.getItem(STUDY_PATCHES_KEY);
+      if (patchesRaw) {
+        const patches = JSON.parse(patchesRaw);
+        if (patches?.sets && patches.sets[setId]) {
+          delete patches.sets[setId];
+          localStorage.setItem(STUDY_PATCHES_KEY, JSON.stringify(patches));
+        }
+      }
+    } catch (_) {}
+
+    // Update emergency backups in localStorage
+    try {
+      const setRows = await rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL', [String(setId)]);
+      if (setRows.length) {
+        const set = await hydrateSetRow(setRows[0]);
+        rememberSetBackup(set);
+      }
+    } catch (_) {}
 
     await persist();
     return true;
@@ -1627,6 +1746,7 @@
     getAllProgress,
     saveProgress,
     saveCardProgress,
+    saveCardProgressBatch,
     getSettings,
     saveSettings,
     getState,

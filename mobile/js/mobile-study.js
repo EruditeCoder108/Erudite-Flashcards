@@ -664,6 +664,15 @@
   async function flushCardProgress() {
     if (!state.set || !pendingCardPatches.size) return;
     clearTimeout(cardProgressSaveTimer);
+    
+    const saveBatch = window.flashcardStore.saveCardProgressBatch || window.eruditeMobileFlashcards?.saveCardProgressBatch;
+    if (typeof saveBatch === 'function') {
+      const patches = Object.fromEntries(pendingCardPatches.entries());
+      pendingCardPatches.clear();
+      await saveBatch(state.set.id, patches);
+      return;
+    }
+
     const saveCard = window.flashcardStore.saveCardProgress || window.eruditeMobileFlashcards?.saveCardProgress;
     if (typeof saveCard !== 'function') {
       await window.flashcardStore.saveSet(state.set);

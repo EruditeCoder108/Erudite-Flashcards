@@ -12,19 +12,31 @@ Erudite Flashcards is a local-first spaced repetition system (SRS) flashcard app
 
 ## Project Structure
 
+### Desktop & Shared Shell
 - `main.js`: Core Electron main process managing desktop window creation, menu setups, and database IPC handlers.
 - `preload.js`: IPC bridge between the Electron main process and the browser application context.
+- `js/storage-client.js`: IPC client wrapper providing a unified promise-based interface to the storage layer.
 - `storage/sqlite-flashcard-store.js`: Desktop storage provider implementing direct SQLite database calls and schemas.
-- `js/mobile/mobile-store.js`: Mobile storage provider utilizing Capacitor SQLite native plugins on Android/iOS, with a WebAssembly SQL.js fallback for development environments.
+- `js/srs-manager.js`: Spaced repetition state scheduler and queue controller.
 - `js/core/`: Core cross-platform logic library:
   - `schema.js`: Set, class, and card validation and normalization.
   - `srs.js`: FSRS mathematical calculations and default parameters.
   - `backup.js`: Database serialization and export helpers.
   - `stats.js`: Aggregate calculations for workload and retention.
   - `math-render.js`: KaTeX-based mathematical markup rendering.
-- `js/srs-manager.js`: Spaced repetition state scheduler and queue controller.
-- `mobile/`: Web views and asset styling for the Capacitor mobile application.
-- `android/`: Native Android project configurations.
+
+### Mobile Shell
+- `mobile/`: Web views, assets, and styling for the Capacitor mobile application.
+- `js/mobile/mobile-store.js`: Mobile storage provider utilizing Capacitor SQLite native plugins on Android/iOS, with a WebAssembly SQL.js fallback for development environments.
+- `android/`: Native Android project configurations and assets.
+
+### HTML User Interfaces
+- `flashcards.html`: Main application interface containing the dashboard, deck library, class management, and global settings.
+- `study.html`: Study session and card rating interface.
+- `creator.html`: Flashcard creation and editor interface.
+- `card-browser.html`: Database browser interface for bulk viewing, filtering, and managing cards.
+- `diagnostics.html`: Application health checks, database integrity tools, and backup/restore dashboard.
+- `premade-library.html`: Vault of premade study decks sorted by categories.
 
 ## Development Setup
 
@@ -63,22 +75,26 @@ npm run package
    npm run cap:sync
    ```
 
-2. Open the project in Android Studio:
+2. To build the APK directly from the command line:
+   ```bash
+   cd android
+   ./gradlew assembleDebug      # Builds debug APK (for testing)
+   ./gradlew assembleRelease    # Builds release APK (unsigned)
+   ```
+   The built APKs will be located under `android/app/build/outputs/apk/`.
+
+3. To open the project configuration inside Android Studio:
    ```bash
    npm run cap:open
    ```
 
-3. Run the application from Android Studio to a connected device or an emulator using the run button.
-
 ---
 
-## Technical Specifications & Roadmap
-
-The application is undergoing active development to introduce advanced Anki-level spaced repetition features.
+## Technical Specifications
 
 ### Spaced Repetition Schema
 
-Reviews are tracked using an append-only `review_log` database structure:
+Reviews are tracked on desktop using an append-only `review_log` database structure:
 
 ```sql
 CREATE TABLE IF NOT EXISTS review_log (
@@ -86,7 +102,7 @@ CREATE TABLE IF NOT EXISTS review_log (
   card_id TEXT NOT NULL,
   note_id TEXT,
   set_id TEXT NOT NULL,
-  session_id TEXT,
+  session_id TEXT NOT NULL,
   rating TEXT NOT NULL,
   previous_state TEXT,
   next_state TEXT,
@@ -101,37 +117,13 @@ CREATE TABLE IF NOT EXISTS review_log (
   elapsed_ms INTEGER,
   reviewed_at INTEGER NOT NULL,
   is_preview INTEGER NOT NULL DEFAULT 0,
+  undone INTEGER NOT NULL DEFAULT 0,
+  undone_at INTEGER,
   device_id TEXT,
   rev INTEGER NOT NULL DEFAULT 1,
   FOREIGN KEY (card_id) REFERENCES cards(id) ON DELETE CASCADE
 );
 ```
-
-### Phased Roadmap
-
-#### Phase 1: Review Log, Undo, and Manual Actions (Completed)
-- Transaction-level scheduling integrity via raw SQLite backend.
-- Full undo support inside the study session (max stack depth 10) mapped to Ctrl+Z/Z.
-- Card actions: Suspend, Bury, and Manual Due Dates.
-- Danger Zone settings with deck reset capabilities.
-
-#### Phase 2: Browser Power Tools (Planned)
-- Implement bulk operations on the card browser interface.
-- Add features for bulk suspending/unsuspending, bulk resetting, bulk deleting, and bulk moving cards to different sets.
-- Improve advanced filter categories for card state queries.
-
-#### Phase 3: Analytics Dashboard (Planned)
-- Integrate analytical calculations directly from the `review_log` table.
-- Calculate True Retention rates across 7-day, 30-day, and 90-day mature card cohorts.
-- Display workloads forecasts, daily study durations, and rating button ratios.
-
-#### Phase 4: Filtered Decks & Custom Study (Planned)
-- Generate virtual temporary study decks using query strings.
-- Add Preview Study Mode logging reviews without modifying base FSRS metadata.
-
-#### Phase 5: Note/Card Separation (Planned)
-- Relational schema upgrade separating content fields from practice card templates.
-- Support sibling burying to prevent cognitive redundancy within study sessions.
 
 ---
 
