@@ -28,6 +28,17 @@
     } catch (_) {}
   }
 
+  function triggerHaptic() {
+    try {
+      const Haptics = window.Capacitor?.Plugins?.Haptics;
+      if (Haptics && typeof Haptics.impact === 'function') {
+        Haptics.impact({ style: 'light' }).catch(() => {});
+      } else if (navigator.vibrate) {
+        navigator.vibrate(30);
+      }
+    } catch (_e) {}
+  }
+
   const state = {
     set: null,
     allSets: [],
@@ -2073,6 +2084,32 @@
     }
 
     document.addEventListener('click', event => {
+      // Global haptic feedback for click operations in study mode
+      const clickable = event.target.closest('button, [role="button"], .tab-button, .context-option-row, .rating-button, .bottom-sheet-item, .bottom-sheet-cancel, .secondary-action, .primary-action');
+      if (clickable) {
+        triggerHaptic();
+      }
+
+      // Close modal/bottom-sheet if clicking on the backdrop overlay
+      if (event.target.classList.contains('modal')) {
+        event.preventDefault();
+        event.stopPropagation();
+        const cancelBtn = event.target.querySelector('.secondary-action, .cancel');
+        if (cancelBtn) {
+          cancelBtn.click();
+        } else {
+          event.target.classList.add('hidden');
+        }
+        return;
+      }
+
+      if (event.target.id === 'srs-actions-sheet-backdrop') {
+        event.preventDefault();
+        event.stopPropagation();
+        hideActionsSheet();
+        return;
+      }
+
       const mediaZoom = event.target.closest('[data-zoom-src]');
       if (mediaZoom) {
         event.preventDefault();

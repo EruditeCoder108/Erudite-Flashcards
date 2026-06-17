@@ -77,6 +77,10 @@
         </div>
       </div>
       <div class="mobile-top-actions">
+        <button type="button" class="primary-action compact-action hidden" id="header-creator-save-btn" aria-label="Save Deck">
+          <i class="fas fa-check"></i>
+          <span>Save</span>
+        </button>
         <button type="button" class="icon-button" data-action="open-settings" aria-label="Settings">
           <i class="fas fa-gear"></i>
         </button>
@@ -302,6 +306,7 @@
     </main>
 
     <nav class="mobile-tabbar" aria-label="Primary">
+      <div class="mobile-tab-indicator" id="mobile-tab-indicator"></div>
       <button type="button" class="tab-button active" data-tab="today">
         <i class="fas fa-sun"></i>
         <span>Today</span>
@@ -417,6 +422,27 @@
   </div>
 
   <div class="mobile-toast" id="mobile-toast" role="status" aria-live="polite"></div>
+
+  <!-- Micro Loader Overlay for Small Operations -->
+  <div class="micro-loader-overlay hidden" id="micro-loader-overlay" role="status" aria-live="polite">
+    <div class="micro-loader-content">
+      <div class="boxes">
+        <div class="box">
+          <div></div><div></div><div></div><div></div>
+        </div>
+        <div class="box">
+          <div></div><div></div><div></div><div></div>
+        </div>
+        <div class="box">
+          <div></div><div></div><div></div><div></div>
+        </div>
+        <div class="box">
+          <div></div><div></div><div></div><div></div>
+        </div>
+      </div>
+      <p class="micro-loader-text">Saving changes...</p>
+    </div>
+  </div>
 
   <!-- Copy-Paste Export Modal -->
   <div class="mobile-modal-overlay hidden" id="copy-export-overlay" role="dialog" aria-modal="true" aria-labelledby="copy-export-title">

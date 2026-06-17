@@ -1435,6 +1435,24 @@
       );
     }
 
+    // Reset SRS progress inside progress table
+    const progressRows = await rows('SELECT value_json FROM progress WHERE set_id = ?', [String(setId)]);
+    if (progressRows.length) {
+      const progress = jsonParse(progressRows[0].value_json, {});
+      progress.srsModeIndex = 0;
+      progress.srsReviewedCardIds = [];
+      progress.timestamp = Date.now();
+
+      await run(
+        'UPDATE progress SET value_json = ?, updated_at = ? WHERE set_id = ?',
+        [
+          jsonString(progress),
+          Date.now(),
+          String(setId)
+        ]
+      );
+    }
+
     await persist();
     return true;
   }

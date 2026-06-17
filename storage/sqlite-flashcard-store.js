@@ -1110,6 +1110,23 @@ class SqliteFlashcardStore {
         stmt.free();
       }
 
+      // Reset SRS progress inside progress table
+      const progressRows = this.rows('SELECT value_json FROM progress WHERE set_id = ? LIMIT 1', [String(setId)]);
+      if (progressRows.length) {
+        const progress = jsonParse(progressRows[0].value_json, {});
+        progress.srsModeIndex = 0;
+        progress.srsReviewedCardIds = [];
+        progress.timestamp = Date.now();
+
+        let stmtProgress = this.db.prepare('UPDATE progress SET value_json = ?, updated_at = ? WHERE set_id = ?');
+        stmtProgress.run([
+          jsonString(progress),
+          Date.now(),
+          String(setId)
+        ]);
+        stmtProgress.free();
+      }
+
       this.commit();
     } catch (error) {
       this.rollback();

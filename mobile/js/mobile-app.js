@@ -33,7 +33,8 @@
     busy: false,
     creatorSaving: false,
     selectMode: false,
-    selectedDecks: new Set()
+    selectedDecks: new Set(),
+    lastModalClosedAt: 0
   };
 
   let creatorDraftTimer = null;
@@ -416,7 +417,19 @@
     return 0;
   }
 
+  function triggerHaptic() {
+    try {
+      const Haptics = window.Capacitor?.Plugins?.Haptics;
+      if (Haptics && typeof Haptics.impact === 'function') {
+        Haptics.impact({ style: 'light' }).catch(() => {});
+      } else if (navigator.vibrate) {
+        navigator.vibrate(30);
+      }
+    } catch (_e) {}
+  }
+
   function playClick() {
+    triggerHaptic();
     try {
       const audio = new Audio('assets/flashcard-assets/click.mp3');
       audio.volume = 0.85;
@@ -505,6 +518,18 @@
     selectors.title.textContent = titles[state.activeTab] || 'Today';
   }
 
+  function updateTabIndicator(tab) {
+    const activeBtn = document.querySelector(`.tab-button[data-tab="${tab}"]`);
+    const indicator = document.getElementById('mobile-tab-indicator');
+    if (activeBtn && indicator) {
+      // Small timeout to ensure browser has computed coordinates correctly
+      requestAnimationFrame(() => {
+        indicator.style.width = `${activeBtn.offsetWidth}px`;
+        indicator.style.left = `${activeBtn.offsetLeft}px`;
+      });
+    }
+  }
+
   function setActiveTab(tab) {
     state.activeTab = tab;
     try {
@@ -514,6 +539,14 @@
     }
     selectors.views.forEach(view => view.classList.toggle('active', view.id === `view-${tab}`));
     selectors.tabs.forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
+    
+    // Toggle sticky header creator save button
+    const headerSaveBtn = document.getElementById('header-creator-save-btn');
+    if (headerSaveBtn) {
+      headerSaveBtn.classList.toggle('hidden', tab !== 'create');
+    }
+
+    updateTabIndicator(tab);
     setHeader();
     if (tab !== 'library') {
       exitSelectMode();
@@ -597,13 +630,13 @@
 
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
-        <button type="button" class="goal-ring" data-action="${reviewAction}" style="--progress:${progress * 3.6}deg" aria-label="${escapeAttr(reviewLabel)}">
+        <div class="goal-ring" style="--progress:${progress * 3.6}deg">
           <div><strong>${progress}%</strong><span>${progressLabel}</span></div>
-        </button>
+        </div>
         <div class="hero-metrics">
-          <button type="button" class="metric-pill" data-action="tab-library"><strong>${totals.setCount}</strong><span>Decks</span></button>
-          <button type="button" class="metric-pill" data-action="${reviewAction}"><strong>${todayReviews}</strong><span>Reviewed</span></button>
-          <button type="button" class="metric-pill" data-action="${reviewAction}"><strong>${streak}</strong><span>Day streak</span></button>
+          <div class="metric-pill"><strong>${totals.setCount}</strong><span>Decks</span></div>
+          <div class="metric-pill"><strong>${todayReviews}</strong><span>Reviewed</span></div>
+          <div class="metric-pill"><strong>${streak}</strong><span>Day streak</span></div>
         </div>
       </div>
       <div class="hero-actions">
@@ -795,6 +828,9 @@
               </div>
               <div class="class-preview">${preview || '<span>No decks yet</span>'}${extra}</div>
             </div>
+          </button>
+          <button type="button" class="class-edit-btn" data-action="edit-class" data-class-id="${escapeAttr(classItem.id)}" aria-label="Edit Class">
+            <i class="fas fa-edit"></i>
           </button>
           <button type="button" class="class-delete-btn" data-action="delete-class" data-class-id="${escapeAttr(classItem.id)}" aria-label="Delete Class">
             <i class="fas fa-trash-can"></i>
@@ -1059,13 +1095,13 @@
     }
   }
 
-  function openMobileClassEditor() {
+  function openMobileClassEditor(existingClass = null) {
     return new Promise(resolve => {
       const existing = document.getElementById('mobile-class-editor-modal');
       if (existing) existing.remove();
 
-      let selectedColor = classColorChoices[0];
-      let selectedIcon = classIconChoices[0];
+      let selectedColor = existingClass?.color || classColorChoices[0];
+      let selectedIcon = existingClass?.icon || classIconChoices[0];
       const modal = document.createElement('div');
       modal.className = 'deck-context-modal class-editor-sheet';
       modal.id = 'mobile-class-editor-modal';
@@ -1073,12 +1109,12 @@
         <div class="context-modal-backdrop" data-class-editor-cancel></div>
         <div class="context-modal-content">
           <div class="context-modal-header">
-            <h3>New Class</h3>
+            <h3>${existingClass ? 'Edit Class' : 'New Class'}</h3>
           </div>
           <div class="mobile-class-editor-form">
             <label class="mobile-field">
               <span>Name</span>
-              <input id="mobile-class-editor-name" type="text" maxlength="80" autocomplete="off" placeholder="Biology">
+              <input id="mobile-class-editor-name" type="text" maxlength="80" autocomplete="off" placeholder="Biology" value="${escapeAttr(existingClass?.name || '')}">
             </label>
             <div class="mobile-field">
               <span>Color</span>
@@ -1104,7 +1140,7 @@
             </div>
             <div class="class-editor-actions">
               <button type="button" class="secondary-action" data-class-editor-cancel>Cancel</button>
-              <button type="button" class="primary-action" data-class-editor-save><i class="fas fa-check"></i>Create</button>
+              <button type="button" class="primary-action" data-class-editor-save><i class="fas fa-check"></i>${existingClass ? 'Save' : 'Create'}</button>
             </div>
           </div>
         </div>
@@ -1402,27 +1438,33 @@
       selectors.creatorCards?.querySelector('[contenteditable="true"]')?.focus();
       return;
     }
-    const original = state.creator.originalSet || {};
-    const saved = await window.flashcardStore.saveSet({
-      ...original,
-      id: state.creator.editingSetId || original.id,
-      name,
-      classId: state.creator.classId || null,
-      cards,
-      srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings(original.srsSettings || {}) : (original.srsSettings || { enabled: true }),
-      pinned: Boolean(original.pinned)
-    });
-    await clearCreatorDraft();
-    // Flush store in background — no need to block navigation on it
-    flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
-    showToast(`Saved ${plural(cards.length, 'card')}`);
-    state.browserLoaded = false;
-    resetCreator();
-    if (saved?.id) {
-      state.sets = state.sets.map(item => String(item.id) === String(saved.id) ? saved : item);
+
+    showMicroLoader('Saving deck...');
+    try {
+      const original = state.creator.originalSet || {};
+      const saved = await window.flashcardStore.saveSet({
+        ...original,
+        id: state.creator.editingSetId || original.id,
+        name,
+        classId: state.creator.classId || null,
+        cards,
+        srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings(original.srsSettings || {}) : (original.srsSettings || { enabled: true }),
+        pinned: Boolean(original.pinned)
+      });
+      await clearCreatorDraft();
+      // Flush store in background — no need to block navigation on it
+      flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
+      showToast(`Saved ${plural(cards.length, 'card')}`);
+      state.browserLoaded = false;
+      resetCreator();
+      if (saved?.id) {
+        state.sets = state.sets.map(item => String(item.id) === String(saved.id) ? saved : item);
+      }
+      await refresh();
+      setActiveTab('library');
+    } finally {
+      hideMicroLoader();
     }
-    await refresh();
-    setActiveTab('library');
   }
 
   function subjectLabel(subject) {
@@ -1631,6 +1673,22 @@
     document.body.classList.remove('is-route-loading');
   }
 
+  function showMicroLoader(text = 'Saving changes...') {
+    const overlay = document.getElementById('micro-loader-overlay');
+    if (overlay) {
+      const textEl = overlay.querySelector('.micro-loader-text');
+      if (textEl) textEl.textContent = text;
+      overlay.classList.remove('hidden');
+    }
+  }
+
+  function hideMicroLoader() {
+    const overlay = document.getElementById('micro-loader-overlay');
+    if (overlay) {
+      overlay.classList.add('hidden');
+    }
+  }
+
   function navigateTo(url, options = {}) {
     showAppLoader(options.title || 'Opening Study', options.copy || 'Preparing your cards');
     requestAnimationFrame(() => {
@@ -1713,6 +1771,7 @@
         cancelBtn.removeEventListener('click', onCancel);
         okBtn.removeEventListener('click', onOk);
         overlay.classList.add('hidden');
+        state.lastModalClosedAt = Date.now();
       }
 
       function onCancel() {
@@ -1756,8 +1815,10 @@
           saved.normal.forwardIndex = 0;
           saved.normal.backwardIndex = 0;
         }
+        saved.timestamp = Date.now();
         await window.flashcardStore.saveProgress(setId, saved);
       }
+      localStorage.removeItem('erudite-mobile-progress:' + setId);
       showToast('Normal study progress reset');
       await refresh();
     } catch (error) {
@@ -1784,6 +1845,14 @@
 
     try {
       await window.flashcardStore.resetDeckSRS(setId, deleteHistory);
+      localStorage.removeItem('erudite-mobile-progress:' + setId);
+      try {
+        const patches = JSON.parse(localStorage.getItem('erudite-mobile-study-card-patches-v1') || 'null');
+        if (patches && patches.sets && patches.sets[setId]) {
+          delete patches.sets[setId];
+          localStorage.setItem('erudite-mobile-study-card-patches-v1', JSON.stringify(patches));
+        }
+      } catch (_) {}
       showToast('SRS scheduling reset successfully');
       await refresh();
     } catch (error) {
@@ -1802,9 +1871,14 @@
       isDanger: true
     });
     if (!ok) return;
-    await window.flashcardStore.deleteSet(setId);
-    showToast('Deck deleted');
-    await refresh();
+    showMicroLoader('Deleting deck...');
+    try {
+      await window.flashcardStore.deleteSet(setId);
+      showToast('Deck deleted');
+      await refresh();
+    } finally {
+      hideMicroLoader();
+    }
   }
 
   async function deleteClass(classId) {
@@ -1822,6 +1896,7 @@
     });
     if (!ok) return;
 
+    showMicroLoader('Deleting class...');
     try {
       await window.flashcardStore.deleteClass(classId);
       playClick();
@@ -1830,6 +1905,47 @@
     } catch (error) {
       console.error('[mobile] Could not delete class:', error);
       showToast('Could not delete class');
+    } finally {
+      hideMicroLoader();
+    }
+  }
+
+  async function editClass(classId) {
+    const classItem = state.classes.find(item => String(item.id) === String(classId));
+    if (!classItem) return;
+
+    const result = await openMobileClassEditor(classItem);
+    if (!result) return;
+
+    showMicroLoader('Saving class...');
+    try {
+      const updated = schema?.normalizeClass
+        ? schema.normalizeClass({
+            ...classItem,
+            name: result.name,
+            color: validColor(result.color, '#3B82F6'),
+            icon: result.icon || 'fa-graduation-cap',
+            lastModified: Date.now()
+          }, classItem, { preserveLastModified: false })
+        : {
+            ...classItem,
+            name: result.name,
+            color: validColor(result.color, '#3B82F6'),
+            icon: result.icon || 'fa-graduation-cap',
+            lastModified: Date.now()
+          };
+
+      await window.flashcardStore.saveClass(updated);
+      showToast('Class updated successfully');
+
+      // Update local state classes array
+      state.classes = state.classes.map(item => String(item.id) === String(updated.id) ? updated : item);
+      await refresh();
+    } catch (error) {
+      console.error('[mobile] Could not save class updates:', error);
+      showToast('Could not save class updates');
+    } finally {
+      hideMicroLoader();
     }
   }
 
@@ -1939,6 +2055,7 @@
     function close() {
       overlay.classList.add('hidden');
       cleanup();
+      state.lastModalClosedAt = Date.now();
     }
 
     async function handleSelect(event) {
@@ -2045,6 +2162,7 @@
     function doClose() {
       overlay.classList.add('hidden');
       cleanup();
+      state.lastModalClosedAt = Date.now();
     }
 
     function cleanup() {
@@ -2094,6 +2212,7 @@
         const set = { name, cards, classId: null };
         await window.flashcardStore.saveSet(set);
         overlay.classList.add('hidden');
+        state.lastModalClosedAt = Date.now();
         cleanup();
         await refresh();
         showToast(`Imported ${plural(cards.length, 'card')}`);
@@ -2106,6 +2225,7 @@
     function doCancel() {
       overlay.classList.add('hidden');
       cleanup();
+      state.lastModalClosedAt = Date.now();
     }
 
     function cleanup() {
@@ -2128,6 +2248,7 @@
       const openOverlays = Array.from(document.querySelectorAll('.mobile-modal-overlay:not(.hidden)'));
       if (openOverlays.length > 0) {
         openOverlays.forEach(el => el.classList.add('hidden'));
+        state.lastModalClosedAt = Date.now();
         return;
       }
       // 2. Close deck context modal if open
@@ -2140,6 +2261,7 @@
       const classSelect = document.getElementById('class-select-modal');
       if (classSelect && classSelect.style.display !== 'none') {
         classSelect.style.display = 'none';
+        state.lastModalClosedAt = Date.now();
         return;
       }
       // 4. Exit select mode
@@ -2182,8 +2304,13 @@
     try {
       const result = await window.flashcardStore.importBackup();
       if (!result?.canceled) {
-        showToast(`Restored ${result.setCount || 0} decks`);
-        await refresh();
+        showMicroLoader('Restoring library...');
+        try {
+          showToast(`Restored ${result.setCount || 0} decks`);
+          await refresh();
+        } finally {
+          hideMicroLoader();
+        }
       }
     } catch (error) {
       console.error(error);
@@ -2402,6 +2529,9 @@
       case 'delete-class':
         await deleteClass(target.dataset.classId);
         break;
+      case 'edit-class':
+        await editClass(target.dataset.classId);
+        break;
       case 'select-study-order':
         openStudyOrderModal();
         break;
@@ -2475,6 +2605,10 @@
   let activeContextDeckId = null;
 
   function handlePointerDown(e) {
+    if (Date.now() - (state.lastModalClosedAt || 0) < 350) {
+      return;
+    }
+
     const deckRow = e.target.closest('.deck-row');
     if (!deckRow) return;
 
@@ -2566,6 +2700,7 @@
       modal.style.display = 'none';
     }
     activeContextDeckId = null;
+    state.lastModalClosedAt = Date.now();
   }
 
   function enterSelectMode(initialSetId) {
@@ -2672,6 +2807,12 @@
     });
 
     document.addEventListener('click', async event => {
+      // Global haptic feedback for click operations
+      const clickable = event.target.closest('button, [role="button"], .tab-button, .deck-row, .settings-row, .context-option-row, .mobile-modal-option-btn, .rating-btn, .class-card-click-area, .class-delete-btn, .class-edit-btn, .format-button, .compact-action, .primary-action, .secondary-action, .small-icon-button, .creator-bottom-add');
+      if (clickable) {
+        triggerHaptic();
+      }
+
       if (state.selectMode) {
         const deckRow = event.target.closest('.deck-row');
         if (deckRow) {
@@ -2730,7 +2871,10 @@
         event.preventDefault();
         playClick();
         const modal = document.getElementById('class-select-modal');
-        if (modal) modal.style.display = 'none';
+        if (modal) {
+          modal.style.display = 'none';
+          state.lastModalClosedAt = Date.now();
+        }
         return;
       }
 
@@ -2739,7 +2883,10 @@
       if (classAction && event.target.closest('#class-select-options')) {
         event.preventDefault();
         const modal = document.getElementById('class-select-modal');
-        if (modal) modal.style.display = 'none';
+        if (modal) {
+          modal.style.display = 'none';
+          state.lastModalClosedAt = Date.now();
+        }
         if (classAction.dataset.classAction === 'new') {
           await createClassFromCreator();
         }
@@ -2750,11 +2897,24 @@
       if (classOpt && event.target.closest('#class-select-options')) {
         event.preventDefault();
         playClick();
+        
+        // Instant border highlight transfer
+        const siblings = classOpt.parentElement.querySelectorAll('.context-option-row');
+        siblings.forEach(sibling => sibling.classList.remove('selected-class-opt'));
+        classOpt.classList.add('selected-class-opt');
+        
         state.creator.classId = classOpt.dataset.classVal || '';
-        const modal = document.getElementById('class-select-modal');
-        if (modal) modal.style.display = 'none';
-        renderCreate();
-        scheduleCreatorDraftSave();
+        
+        // Delayed modal closure for tactile animation visibility
+        setTimeout(() => {
+          const modal = document.getElementById('class-select-modal');
+          if (modal) {
+            modal.style.display = 'none';
+            state.lastModalClosedAt = Date.now();
+          }
+          renderCreate();
+          scheduleCreatorDraftSave();
+        }, 180);
         return;
       }
 
@@ -2839,6 +2999,37 @@
         playClick();
         closeDeckContextModal();
         return;
+      }
+
+      // 10. Click outside modals / overlays to close them
+      if (event.target.classList.contains('mobile-modal-overlay')) {
+        event.preventDefault();
+        event.stopPropagation();
+        playClick();
+        event.target.classList.add('hidden');
+        state.lastModalClosedAt = Date.now();
+        const cancelBtn = event.target.querySelector('.mobile-modal-btn.cancel, .cancel');
+        if (cancelBtn) cancelBtn.click();
+        return;
+      }
+
+      if (event.target.classList.contains('context-modal-backdrop')) {
+        const parent = event.target.parentElement;
+        if (parent && parent.classList.contains('deck-context-modal')) {
+          event.preventDefault();
+          event.stopPropagation();
+          playClick();
+          if (parent.id === 'mobile-class-editor-modal') {
+            const cancelBtn = parent.querySelector('[data-class-editor-cancel]');
+            if (cancelBtn) cancelBtn.click();
+            else parent.remove();
+          } else if (parent.id === 'deck-context-modal') {
+            closeDeckContextModal();
+          } else if (parent.id === 'class-select-modal') {
+            parent.style.display = 'none';
+          }
+          return;
+        }
       }
     });
 
@@ -2997,6 +3188,24 @@
       }
     });
 
+    const headerSaveBtn = document.getElementById('header-creator-save-btn');
+    if (headerSaveBtn) {
+      headerSaveBtn.addEventListener('click', async event => {
+        event.preventDefault();
+        playClick();
+        if (state.creatorSaving) return;
+        state.creatorSaving = true;
+        try {
+          await saveMobileDeck();
+        } catch (error) {
+          console.error(error);
+          showToast(error?.message || 'Could not save deck');
+        } finally {
+          state.creatorSaving = false;
+        }
+      });
+    }
+
     document.addEventListener('selectionchange', scheduleFormatStateUpdate);
 
     const handleAppPause = async () => {
@@ -3073,6 +3282,11 @@
       }
     });
 
+    window.addEventListener('resize', () => {
+      if (state.activeTab) {
+        updateTabIndicator(state.activeTab);
+      }
+    });
   }
 
   async function init() {
@@ -3086,7 +3300,15 @@
     state.activeTab = tab;
     selectors.views.forEach(view => view.classList.toggle('active', view.id === `view-${tab}`));
     selectors.tabs.forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
+    
+    // Toggle sticky header creator save button
+    const headerSaveBtn = document.getElementById('header-creator-save-btn');
+    if (headerSaveBtn) {
+      headerSaveBtn.classList.toggle('hidden', tab !== 'create');
+    }
+
     setHeader();
+    updateTabIndicator(tab);
     
     // Defer CPU-intensive database load to allow transition/loader animation to initialize smoothly
     setTimeout(async () => {

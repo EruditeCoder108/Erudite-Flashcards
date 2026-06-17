@@ -1887,6 +1887,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             saved.normal.forwardIndex = 0;
                             saved.normal.backwardIndex = 0;
                         }
+                        saved.timestamp = Date.now();
                         await window.flashcardStore.saveProgress(setId, saved);
                     }
                     showToast('Normal study progress reset successfully', 'success');
