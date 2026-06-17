@@ -2688,3 +2688,90 @@ button:active,
 .theme-light .loader-card-inner .card-hint {
   color: var(--subtle) !important;
 }
+
+/* Modal z-index overrides to ensure overlays layer correctly on mobile */
+#class-select-modal {
+  z-index: 600 !important;
+}
+
+.class-editor-sheet {
+  z-index: 700 !important;
+}
+
+/* Compact Floating Preset Selector Modal styling */
+.compact-floating-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 650 !important; /* overlay on top of paste import modal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.compact-floating-modal.hidden {
+  display: none !important;
+}
+
+.compact-floating-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 22rem;
+  background: var(--surface);
+  border: 1px solid var(--line-strong, rgba(255, 255, 255, 0.08));
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  animation: modal-zoom-in 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@keyframes modal-zoom-in {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.preset-option-btn {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.75rem;
+  background: var(--surface-hover, rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.06));
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.preset-option-btn:active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.preset-option-btn.selected {
+  border-color: var(--primary);
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--primary-2, #60a5fa);
+  font-weight: 700;
+}
+
+.preset-option-btn i {
+  font-size: 1rem;
+  color: var(--muted);
+  width: 1.2rem;
+  text-align: center;
+}
+
+.preset-option-btn.selected i {
+  color: var(--primary-2, #60a5fa);
+}
+
+

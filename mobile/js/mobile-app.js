@@ -128,9 +128,14 @@
     copyExportCancel: document.getElementById('copy-export-cancel'),
     pasteImportOverlay: document.getElementById('paste-import-overlay'),
     pasteImportName: document.getElementById('paste-import-name'),
+    pasteImportClassTrigger: document.getElementById('mobile-paste-import-class-trigger'),
+    pasteImportPreset: document.getElementById('paste-import-preset'),
+    pasteImportSeparatorRow: document.getElementById('paste-import-separator-row'),
     pasteImportTermSep: document.getElementById('paste-import-term-sep'),
     pasteImportCardSep: document.getElementById('paste-import-card-sep'),
     pasteImportText: document.getElementById('paste-import-text'),
+    pasteImportPresetTrigger: document.getElementById('mobile-paste-import-preset-trigger'),
+    presetSelectModal: document.getElementById('preset-select-modal'),
     pasteImportConfirm: document.getElementById('paste-import-confirm'),
     pasteImportCancel: document.getElementById('paste-import-cancel')
   };
@@ -566,6 +571,10 @@
     const headerSaveBtn = document.getElementById('header-creator-save-btn');
     if (headerSaveBtn) {
       headerSaveBtn.classList.toggle('hidden', tab !== 'create');
+    }
+    const headerImportBtn = document.getElementById('header-paste-import-btn');
+    if (headerImportBtn) {
+      headerImportBtn.classList.toggle('hidden', tab === 'create');
     }
     if (selectors.headerQuote) {
       selectors.headerQuote.classList.toggle('hidden', tab === 'create');
@@ -1128,6 +1137,57 @@
     }
   }
 
+  function openPresetSelectModal() {
+    const modal = selectors.presetSelectModal;
+    if (!modal) return;
+    const currentVal = selectors.pasteImportPreset?.value || 'standard';
+    const buttons = modal.querySelectorAll('.preset-option-btn');
+    buttons.forEach(btn => {
+      btn.classList.toggle('selected', btn.dataset.presetVal === currentVal);
+    });
+    modal.classList.remove('hidden');
+  }
+
+  function updatePasteImportPresetLabel() {
+    const labelEl = document.getElementById('mobile-paste-import-preset-label');
+    if (!labelEl) return;
+    const val = selectors.pasteImportPreset?.value || 'standard';
+    let text = 'Standard (Word ; Meaning @ Card)';
+    if (val === 'newline-semicolon') text = 'Line-by-Line (Word ; Meaning)';
+    else if (val === 'newline-dash') text = 'Line-by-Line (Word - Meaning)';
+    else if (val === 'newline-colon') text = 'Line-by-Line (Word : Meaning)';
+    else if (val === 'custom') text = 'Custom Separators...';
+    labelEl.textContent = text;
+  }
+
+  function openClassSelectModal(currentId, onSelect, onCreateNew) {
+    const optionsContainer = document.getElementById('class-select-options');
+    if (optionsContainer) {
+      optionsContainer.innerHTML = [
+        `<button type="button" class="context-option-row ${!currentId ? 'selected-class-opt' : ''}" data-class-val="">
+          <i class="fas fa-layer-group"></i>
+          <span>General</span>
+        </button>`,
+        ...state.classes.map(item => {
+          const isSel = String(item.id) === String(currentId);
+          const icon = iconClass(item.icon, 'fa-graduation-cap');
+          return `<button type="button" class="context-option-row ${isSel ? 'selected-class-opt' : ''}" data-class-val="${escapeAttr(item.id)}">
+            <i class="fas ${escapeAttr(icon)}"></i>
+            <span>${escapeHtml(item.name)}</span>
+          </button>`;
+        }),
+        `<button type="button" class="context-option-row create-class-option" data-class-action="new">
+          <i class="fas fa-plus"></i>
+          <span>New class</span>
+        </button>`
+      ].join('');
+    }
+
+    state.classSelectCallbacks = { onSelect, onCreateNew };
+    const modal = document.getElementById('class-select-modal');
+    if (modal) modal.style.display = 'flex';
+  }
+
   function openMobileClassEditor(existingClass = null) {
     return new Promise(resolve => {
       const existing = document.getElementById('mobile-class-editor-modal');
@@ -1252,13 +1312,20 @@
       const saved = await window.flashcardStore.saveClass(classData);
       // Immediately update local state and re-render so the new class appears in the dropdown
       state.classes = await window.flashcardStore.listClasses();
-      state.creator.classId = saved?.id || classData.id;
+      const savedId = saved?.id || classData.id;
       // Flush store in background — do not await to avoid blocking UI
       flushStore(900).catch(err => console.warn('[mobile] flushStore after class create:', err));
       playClick();
       showToast('Class created');
-      renderCreate();
-      scheduleCreatorDraftSave();
+
+      if (state.classSelectCallbacks?.onSelect) {
+        state.classSelectCallbacks.onSelect(savedId);
+      } else {
+        state.creator.classId = savedId;
+        renderCreate();
+        scheduleCreatorDraftSave();
+      }
+      state.classSelectCallbacks = null;
     } catch (error) {
       console.error(error);
       showToast('Could not create class');
@@ -2327,6 +2394,14 @@
     selectors.copyExportCancel?.addEventListener('click', doClose);
   }
 
+  function updatePasteImportClassTrigger() {
+    const triggerLabel = document.getElementById('mobile-paste-import-class-label');
+    if (triggerLabel) {
+      const currentClass = state.classes.find(item => String(item.id) === String(state.pasteImportClassId || ''));
+      triggerLabel.textContent = currentClass ? currentClass.name : 'General';
+    }
+  }
+
   /**
    * Opens the paste-import modal.
    */
@@ -2337,37 +2412,135 @@
     if (selectors.pasteImportName) selectors.pasteImportName.value = '';
     if (selectors.pasteImportTermSep) selectors.pasteImportTermSep.value = state.settings?.importTermSep || ';';
     if (selectors.pasteImportCardSep) selectors.pasteImportCardSep.value = state.settings?.importCardSep || '@';
+    
+    state.pasteImportClassId = ''; // default to General
+    updatePasteImportClassTrigger();
+
+    if (selectors.pasteImportPreset) selectors.pasteImportPreset.value = 'standard';
+    updatePasteImportPresetLabel();
+    if (selectors.pasteImportSeparatorRow) selectors.pasteImportSeparatorRow.style.display = 'none';
+
+    updateTextareaPlaceholder();
+    updateLivePreview();
     overlay.classList.remove('hidden');
 
-    async function doImport() {
-      const name = String(selectors.pasteImportName?.value || '').trim() || 'Imported Deck';
+    function parseInputToCards() {
       const text = String(selectors.pasteImportText?.value || '').trim();
-      if (!text) { showToast('Paste some cards first'); return; }
+      if (!text) return [];
 
-      const termSep = parseSeparator(selectors.pasteImportTermSep?.value || ';');
-      const cardSep = parseSeparator(selectors.pasteImportCardSep?.value || '@');
+      const preset = selectors.pasteImportPreset?.value || 'standard';
+      let termSep = ';';
+      let cardSep = '@';
 
-      const cards = text.split(cardSep)
+      if (preset === 'custom') {
+        termSep = parseSeparator(selectors.pasteImportTermSep?.value || ';');
+        cardSep = parseSeparator(selectors.pasteImportCardSep?.value || '@');
+      } else if (preset === 'standard') {
+        termSep = ';';
+        cardSep = '@';
+      } else if (preset === 'newline-semicolon') {
+        termSep = ';';
+        cardSep = '\n';
+      } else if (preset === 'newline-dash') {
+        termSep = '-';
+        cardSep = '\n';
+      } else if (preset === 'newline-colon') {
+        termSep = ':';
+        cardSep = '\n';
+      }
+
+      return text.split(cardSep)
         .map(chunk => {
+          if (!chunk.trim()) return null;
           const idx = chunk.indexOf(termSep);
           if (idx < 0) return null;
           const term = chunk.slice(0, idx).trim();
           const definition = chunk.slice(idx + termSep.length).trim();
           if (!term && !definition) return null;
-          return { ...emptyCreatorCard(), term: term.trim(), definition: definition.trim() };
+          return { term, definition };
         })
         .filter(Boolean);
+    }
 
-      if (!cards.length) { showToast('No valid term/definition pairs found'); return; }
+    function updateLivePreview() {
+      const previewCardsContainer = document.getElementById('mobile-paste-preview-cards');
+      const previewCountLabel = document.getElementById('mobile-paste-preview-count');
+      if (!previewCardsContainer || !previewCountLabel) return;
+
+      const parsedCards = parseInputToCards();
+      previewCountLabel.textContent = `(${parsedCards.length} ${parsedCards.length === 1 ? 'card' : 'cards'})`;
+
+      if (!parsedCards.length) {
+        previewCardsContainer.innerHTML = `<div style="text-align: center; color: var(--text-muted, #94a3b8); font-size: 0.85rem; padding: 1.25rem 0; border: 1px dashed var(--border, rgba(255, 255, 255, 0.1)); border-radius: 0.5rem; background: rgba(255,255,255,0.01);">Type or paste text above to see preview</div>`;
+        return;
+      }
+
+      const maxToShow = 15;
+      const itemsHtml = parsedCards.slice(0, maxToShow).map(card => `
+        <div class="mobile-preview-card-item" style="padding: 0.5rem 0.75rem; border-radius: 0.5rem; background: var(--surface-hover, rgba(255, 255, 255, 0.03)); border: 1px solid var(--border, rgba(255, 255, 255, 0.08)); font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.15rem;">
+          <div style="font-weight: 700; color: var(--text);"><span style="color: var(--primary, #3b82f6); font-size: 0.75rem; font-weight: 900; margin-right: 0.25rem;">Q:</span> ${escapeHtml(card.term)}</div>
+          <div style="color: var(--text-muted, #94a3b8);"><span style="color: #10b981; font-size: 0.75rem; font-weight: 900; margin-right: 0.25rem;">A:</span> ${escapeHtml(card.definition)}</div>
+        </div>
+      `).join('');
+
+      let suffixHtml = '';
+      if (parsedCards.length > maxToShow) {
+        suffixHtml = `<div style="text-align: center; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; padding: 0.3rem 0;">+ ${parsedCards.length - maxToShow} more cards</div>`;
+      }
+
+      previewCardsContainer.innerHTML = itemsHtml + suffixHtml;
+    }
+
+    function updateTextareaPlaceholder() {
+      const preset = selectors.pasteImportPreset?.value || 'standard';
+      if (!selectors.pasteImportText) return;
+
+      if (preset === 'standard') {
+        selectors.pasteImportText.placeholder = "Paste your cards here…\nExample:\nterm1;definition1@term2;definition2...";
+      } else if (preset === 'newline-semicolon') {
+        selectors.pasteImportText.placeholder = "Paste your cards here…\nExample:\nterm1;definition1\nterm2;definition2...";
+      } else if (preset === 'newline-dash') {
+        selectors.pasteImportText.placeholder = "Paste your cards here…\nExample:\nterm1 - definition1\nterm2 - definition2...";
+      } else if (preset === 'newline-colon') {
+        selectors.pasteImportText.placeholder = "Paste your cards here…\nExample:\nterm1: definition1\nterm2: definition2...";
+      } else {
+        const tSep = selectors.pasteImportTermSep?.value || ';';
+        const cSep = selectors.pasteImportCardSep?.value || '@';
+        selectors.pasteImportText.placeholder = `Paste your cards here…\nExample:\nterm1${tSep}definition1${cSep}term2${tSep}definition2...`;
+      }
+    }
+
+    function handlePresetChange() {
+      const preset = selectors.pasteImportPreset?.value || 'standard';
+      if (selectors.pasteImportSeparatorRow) {
+        selectors.pasteImportSeparatorRow.style.display = preset === 'custom' ? 'flex' : 'none';
+      }
+      updateTextareaPlaceholder();
+      updateLivePreview();
+      updatePasteImportPresetLabel();
+    }
+
+    async function doImport() {
+      const name = String(selectors.pasteImportName?.value || '').trim() || 'Imported Deck';
+      const parsedCards = parseInputToCards();
+      if (!parsedCards.length) { showToast('No valid term/definition pairs found'); return; }
+
+      const creatorCards = parsedCards.map(c => ({
+        ...emptyCreatorCard(),
+        term: c.term,
+        definition: c.definition
+      }));
 
       try {
-        const set = { name, cards, classId: null };
+        const classId = state.pasteImportClassId || null;
+        const set = { name, cards: creatorCards, classId };
         await window.flashcardStore.saveSet(set);
         overlay.classList.add('hidden');
         state.lastModalClosedAt = Date.now();
         cleanup();
+        setActiveTab('library');
         await refresh();
-        showToast(`Imported ${plural(cards.length, 'card')}`);
+        showToast(`Imported ${plural(creatorCards.length, 'card')}`);
       } catch (err) {
         console.error(err);
         showToast('Import failed');
@@ -2383,9 +2556,17 @@
     function cleanup() {
       selectors.pasteImportConfirm?.removeEventListener('click', doImport);
       selectors.pasteImportCancel?.removeEventListener('click', doCancel);
+      selectors.pasteImportPreset?.removeEventListener('change', handlePresetChange);
+      selectors.pasteImportText?.removeEventListener('input', updateLivePreview);
+      selectors.pasteImportTermSep?.removeEventListener('input', updateLivePreview);
+      selectors.pasteImportCardSep?.removeEventListener('input', updateLivePreview);
     }
     selectors.pasteImportConfirm?.addEventListener('click', doImport);
     selectors.pasteImportCancel?.addEventListener('click', doCancel);
+    selectors.pasteImportPreset?.addEventListener('change', handlePresetChange);
+    selectors.pasteImportText?.addEventListener('input', updateLivePreview);
+    selectors.pasteImportTermSep?.addEventListener('input', updateLivePreview);
+    selectors.pasteImportCardSep?.addEventListener('input', updateLivePreview);
   }
 
   // ─── Capacitor Back Button (double-press to exit) ────────────────────────
@@ -2397,7 +2578,7 @@
     const { App } = window.Capacitor.Plugins;
     App.addListener('backButton', () => {
       // 1. Close any open custom modals first
-      const openOverlays = Array.from(document.querySelectorAll('.mobile-modal-overlay:not(.hidden)'));
+      const openOverlays = Array.from(document.querySelectorAll('.mobile-modal-overlay:not(.hidden), .compact-floating-modal:not(.hidden)'));
       if (openOverlays.length > 0) {
         openOverlays.forEach(el => el.classList.add('hidden'));
         state.lastModalClosedAt = Date.now();
@@ -3049,8 +3230,72 @@
       if (classTrigger) {
         event.preventDefault();
         playClick();
-        const modal = document.getElementById('class-select-modal');
-        if (modal) modal.style.display = 'flex';
+        openClassSelectModal(
+          state.creator.classId || '',
+          (classId) => {
+            state.creator.classId = classId;
+            renderCreate();
+            scheduleCreatorDraftSave();
+          },
+          async () => {
+            await createClassFromCreator();
+          }
+        );
+        return;
+      }
+
+      const pasteClassTrigger = event.target.closest('#mobile-paste-import-class-trigger');
+      if (pasteClassTrigger) {
+        event.preventDefault();
+        playClick();
+        openClassSelectModal(
+          state.pasteImportClassId || '',
+          (classId) => {
+            state.pasteImportClassId = classId;
+            updatePasteImportClassTrigger();
+          },
+          async () => {
+            await createClassFromCreator();
+          }
+        );
+        return;
+      }
+
+      const pastePresetTrigger = event.target.closest('#mobile-paste-import-preset-trigger');
+      if (pastePresetTrigger) {
+        event.preventDefault();
+        playClick();
+        openPresetSelectModal();
+        return;
+      }
+
+      const presetBackdrop = event.target.closest('#preset-select-backdrop');
+      if (presetBackdrop) {
+        event.preventDefault();
+        playClick();
+        selectors.presetSelectModal?.classList.add('hidden');
+        state.lastModalClosedAt = Date.now();
+        return;
+      }
+
+      const presetOpt = event.target.closest('[data-preset-val]');
+      if (presetOpt && event.target.closest('#preset-select-options')) {
+        event.preventDefault();
+        playClick();
+        const siblings = presetOpt.parentElement.querySelectorAll('.preset-option-btn');
+        siblings.forEach(sibling => sibling.classList.remove('selected'));
+        presetOpt.classList.add('selected');
+        
+        const selectedVal = presetOpt.dataset.presetVal || 'standard';
+        
+        setTimeout(() => {
+          selectors.presetSelectModal?.classList.add('hidden');
+          state.lastModalClosedAt = Date.now();
+          if (selectors.pasteImportPreset) {
+            selectors.pasteImportPreset.value = selectedVal;
+            selectors.pasteImportPreset.dispatchEvent(new Event('change'));
+          }
+        }, 160);
         return;
       }
 
@@ -3092,7 +3337,7 @@
         siblings.forEach(sibling => sibling.classList.remove('selected-class-opt'));
         classOpt.classList.add('selected-class-opt');
         
-        state.creator.classId = classOpt.dataset.classVal || '';
+        const selectedId = classOpt.dataset.classVal || '';
         
         // Delayed modal closure for tactile animation visibility
         setTimeout(() => {
@@ -3101,8 +3346,14 @@
             modal.style.display = 'none';
             state.lastModalClosedAt = Date.now();
           }
-          renderCreate();
-          scheduleCreatorDraftSave();
+          if (state.classSelectCallbacks?.onSelect) {
+            state.classSelectCallbacks.onSelect(selectedId);
+          } else {
+            state.creator.classId = selectedId;
+            renderCreate();
+            scheduleCreatorDraftSave();
+          }
+          state.classSelectCallbacks = null;
         }, 180);
         return;
       }
@@ -3634,6 +3885,10 @@
     const headerSaveBtn = document.getElementById('header-creator-save-btn');
     if (headerSaveBtn) {
       headerSaveBtn.classList.toggle('hidden', tab !== 'create');
+    }
+    const headerImportBtn = document.getElementById('header-paste-import-btn');
+    if (headerImportBtn) {
+      headerImportBtn.classList.toggle('hidden', tab === 'create');
     }
     if (selectors.headerQuote) {
       selectors.headerQuote.classList.toggle('hidden', tab === 'create');

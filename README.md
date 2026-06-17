@@ -130,4 +130,4 @@ CREATE TABLE IF NOT EXISTS review_log (
 
 - **Author**: Sambhav Jain
 - **Email**: eruditespartan@gmail.com
-- **License**: Private / Proprietary
+- **License**: Business Source License 1.1 (BSL 1.1) - see [LICENSE](file:///d:/productivity-toolkit/Erudite-flashcards/LICENSE) for details.
