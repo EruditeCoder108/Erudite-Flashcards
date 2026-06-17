@@ -109,6 +109,7 @@
     loadingTitle: document.getElementById('app-loading-title'),
     loadingCopy: document.getElementById('app-loading-copy'),
     toast: document.getElementById('mobile-toast'),
+    headerQuote: document.getElementById('mobile-header-quote'),
     // Custom modals
     formulaOverlay: document.getElementById('formula-modal-overlay'),
     formulaInput: document.getElementById('formula-modal-input'),
@@ -565,6 +566,9 @@
     const headerSaveBtn = document.getElementById('header-creator-save-btn');
     if (headerSaveBtn) {
       headerSaveBtn.classList.toggle('hidden', tab !== 'create');
+    }
+    if (selectors.headerQuote) {
+      selectors.headerQuote.classList.toggle('hidden', tab === 'create');
     }
 
     updateTabIndicator(tab);
@@ -3454,12 +3458,75 @@
     }, { passive: true });
   }
 
+  function updateDailyQuote() {
+    const quotes = [
+      "Discipline beats motivation.",
+      "Study now, shine later.",
+      "Consistency creates champions.",
+      "Small steps, every day.",
+      "Focus is a superpower.",
+      "Success is rented daily.",
+      "Results love repetition.",
+      "Future you is watching.",
+      "Don't wish. Work.",
+      "Excuses kill dreams.",
+      "Start before you're ready.",
+      "Done is better than perfect.",
+      "One chapter at a time.",
+      "Stay patient and persistent.",
+      "Progress over perfection.",
+      "Action cures anxiety.",
+      "Comfort is the enemy of growth.",
+      "Discipline equals freedom.",
+      "Keep showing up.",
+      "Make today count.",
+      "Be stronger than your excuses.",
+      "Your habits build your future.",
+      "Consistency compounds.",
+      "Focus on the next step.",
+      "Every page matters.",
+      "Motivation starts, discipline finishes.",
+      "Success leaves clues.",
+      "The grind remembers.",
+      "Outwork your yesterday.",
+      "Difficult today, easier tomorrow.",
+      "Master the basics relentlessly.",
+      "The secret is consistency.",
+      "Dream big, execute daily.",
+      "Winners repeat boring things.",
+      "Effort never betrays you.",
+      "Keep promises to yourself.",
+      "Learn, apply, repeat.",
+      "Greatness grows quietly.",
+      "A focused hour beats a distracted day.",
+      "Discipline is self-respect in action.",
+      "What you repeat, you become.",
+      "The pain of regret lasts longer.",
+      "Train your mind to obey.",
+      "Success is a daily habit.",
+      "The future rewards preparation.",
+      "Show up, even on bad days.",
+      "One more page.",
+      "One more problem.",
+      "One more day.",
+      "Never miss twice."
+    ];
+    const now = new Date();
+    const daySeed = now.getFullYear() * 365 + now.getMonth() * 31 + now.getDate();
+    const index = daySeed % quotes.length;
+    const quote = quotes[index];
+    if (selectors.headerQuote) {
+      selectors.headerQuote.textContent = quote;
+    }
+  }
+
   async function init() {
     document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'mobile-app-shell');
     configureSystemBars().catch(() => {});
     installEvents();
     initSwipeNavigation();
     setupCapacitorBackButton();
+    updateDailyQuote();
     // Set tab first so the correct view is visible during data loading
     const initialTab = String(window.location.hash || '').replace('#', '');
     const tab = ['today', 'library', 'create', 'premade', 'browser', 'more'].includes(initialTab) ? initialTab : 'today';
@@ -3471,6 +3538,9 @@
     const headerSaveBtn = document.getElementById('header-creator-save-btn');
     if (headerSaveBtn) {
       headerSaveBtn.classList.toggle('hidden', tab !== 'create');
+    }
+    if (selectors.headerQuote) {
+      selectors.headerQuote.classList.toggle('hidden', tab === 'create');
     }
 
     setHeader();
