@@ -15,10 +15,18 @@
   const DEFAULT_SETTINGS = {
     theme: 'dark',
     normalStudyOrder: 'forward',
+    soundEffectsEnabled: true,
     fonts: {},
     cursor: {
       enabled: true,
       style: 'fluid'
+    },
+    cardStyle: {
+      align: 'center',
+      weight: '500',
+      font: 'sans-serif',
+      lineHeight: '1.4',
+      letterSpacing: '0'
     }
   };
 
@@ -181,6 +189,9 @@
       pinned: Boolean(set.pinned ?? existingSet?.pinned),
       cards: cards.map(card => normalizeCard(card, { now: timestamp })),
       srsSettings: normalizeSrsSettings(set.srsSettings || existingSet?.srsSettings || {}),
+      normalStudyOrder: ['forward', 'backward', 'random'].includes(set.normalStudyOrder)
+        ? set.normalStudyOrder
+        : (existingSet?.normalStudyOrder || null),
       created: set.created || set.createdAt || existingSet?.created || timestamp,
       openedCount: set.openedCount ?? existingSet?.openedCount ?? 0,
       lastOpened: set.lastOpened ?? existingSet?.lastOpened ?? null,
@@ -197,11 +208,17 @@
     const normalStudyOrder = ['forward', 'backward', 'random'].includes(settings.normalStudyOrder)
       ? settings.normalStudyOrder
       : DEFAULT_SETTINGS.normalStudyOrder;
+    const soundEffectsEnabled = settings.soundEffectsEnabled !== false;
+    const cardStyle = {
+      ...DEFAULT_SETTINGS.cardStyle,
+      ...(settings.cardStyle || {})
+    };
     return {
       ...DEFAULT_SETTINGS,
       ...settings,
       theme,
       normalStudyOrder,
+      soundEffectsEnabled,
       fonts: {
         ...DEFAULT_SETTINGS.fonts,
         ...(settings.fonts || {})
@@ -209,7 +226,8 @@
       cursor: {
         ...DEFAULT_SETTINGS.cursor,
         ...(settings.cursor || {})
-      }
+      },
+      cardStyle
     };
   }
 

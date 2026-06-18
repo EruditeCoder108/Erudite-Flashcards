@@ -45,6 +45,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     clickSound.volume = 0.3;
 
     function playClickSound() {
+        if (window.isSoundEffectsEnabled && !window.isSoundEffectsEnabled()) {
+            return;
+        }
         clickSound.currentTime = 0;
         clickSound.play().catch(() => {});
     }

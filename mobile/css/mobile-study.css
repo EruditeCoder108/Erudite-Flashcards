@@ -461,6 +461,13 @@ textarea,
   pointer-events: none !important;
 }
 
+.study-card-stage.card-is-flipping .study-card:not(.slot-active) .card-scroll,
+.study-card-stage.card-is-flipping .study-card:not(.slot-active) .tap-hint {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 .study-card.slot-next {
   z-index: 2;
   transform: translate3d(0, 10px, 0) scale(0.96);
@@ -628,9 +635,11 @@ textarea,
   overflow-wrap: anywhere;
   word-break: break-word;
   font-size: clamp(1.15rem, 5.3vw, 1.62rem);
-  font-weight: 620;
-  line-height: 1.42;
-  text-align: center;
+  font-weight: var(--card-text-weight, 500) !important;
+  line-height: var(--card-text-line-height, 1.42) !important;
+  text-align: var(--card-text-align, center) !important;
+  font-family: var(--card-text-font-family, inherit) !important;
+  letter-spacing: var(--card-text-letter-spacing, 0) !important;
   white-space: pre-wrap;
 }
 
@@ -1517,6 +1526,33 @@ button:active,
 
 .theme-light .loader-card-inner .card-hint {
   color: var(--subtle) !important;
+}
+
+.card-text-inline {
+  display: block;
+  text-align: var(--card-text-align, center) !important;
+  width: 100%;
+  font-weight: var(--card-text-weight, 500) !important;
+  font-family: var(--card-text-font-family, inherit) !important;
+  line-height: var(--card-text-line-height, 1.42) !important;
+  letter-spacing: var(--card-text-letter-spacing, 0) !important;
+}
+
+.card-text-inline .katex-display {
+  font-size: clamp(0.95rem, 4.3vw, 1.25rem) !important;
+  margin: 0.6rem 0 !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important;  /* IE/Edge */
+}
+
+.card-text-inline .katex-display::-webkit-scrollbar {
+  display: none !important; /* Safari/Chrome */
+}
+
+.card-text-inline .katex {
+  font-size: 0.95em !important;
+  max-width: 100% !important;
 }
 
 

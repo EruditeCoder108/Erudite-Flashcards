@@ -19,6 +19,7 @@
   });
 
   function playSound(type) {
+    if (state.settings?.soundEffectsEnabled === false) return;
     try {
       const audio = sounds[type];
       if (audio) {
@@ -464,8 +465,28 @@
     if (!found) throw new Error('Flashcard set not found');
 
     state.srsMode = resolveSrsMode(srsMode);
-    state.studyOrder = normalizeStudyOrder(settings?.normalStudyOrder);
+    if (found && ['forward', 'backward', 'random'].includes(found.normalStudyOrder)) {
+      state.studyOrder = found.normalStudyOrder;
+    } else {
+      state.studyOrder = normalizeStudyOrder(settings?.normalStudyOrder);
+    }
     state.settings = settings || {};
+    // Apply card styles on launch
+    if (state.settings.cardStyle) {
+      const cs = state.settings.cardStyle;
+      let fontFamily = 'inherit';
+      if (cs.font === 'sans-serif') fontFamily = "Inter, sans-serif";
+      else if (cs.font === 'serif') fontFamily = "Georgia, serif";
+      else if (cs.font === 'monospace') fontFamily = "Courier New, monospace";
+      else if (cs.font === 'system') fontFamily = "system-ui, sans-serif";
+
+      const root = document.documentElement;
+      root.style.setProperty('--card-text-align', cs.align);
+      root.style.setProperty('--card-text-weight', cs.weight);
+      root.style.setProperty('--card-text-font-family', fontFamily);
+      root.style.setProperty('--card-text-line-height', cs.lineHeight);
+      root.style.setProperty('--card-text-letter-spacing', cs.letterSpacing);
+    }
     const theme = state.settings?.theme || 'dark';
     localStorage.setItem('erudite-theme', theme);
     document.body.classList.toggle('theme-light', theme === 'light');
@@ -1012,8 +1033,39 @@
     const elements = getCardElements(cardEl);
     if (!elements) return;
 
-    elements.termText.innerHTML = cardData.sanitizedTerm;
-    elements.definitionText.innerHTML = cardData.sanitizedDefinition;
+    // Contextual card labels
+    const isMath = state.set?.tags?.includes('Mental Maths') || String(state.set?.id || '').includes('math');
+    let frontLabel = 'Term';
+    let backLabel = 'Definition';
+    if (isMath) {
+      const term = String(cardData.term || '');
+      const def = String(cardData.definition || '');
+      const isQuestion = term.includes('?') || 
+                         term.includes('□') || 
+                         term.toLowerCase().includes('calculate') || 
+                         term.toLowerCase().includes('solve') || 
+                         term.toLowerCase().includes('complete') || 
+                         def.toLowerCase().startsWith('answer:') || 
+                         def.toLowerCase().startsWith('result:');
+      if (isQuestion) {
+        frontLabel = 'PRACTICE';
+        backLabel = 'SOLUTION';
+      } else {
+        frontLabel = 'METHOD';
+        backLabel = 'EXPLANATION';
+      }
+    } else {
+      frontLabel = 'CONCEPT';
+      backLabel = 'EXPLANATION';
+    }
+
+    const frontHeader = cardEl.querySelector('.card-face.front .card-label');
+    const backHeader = cardEl.querySelector('.card-face.back .card-label');
+    if (frontHeader) frontHeader.textContent = frontLabel;
+    if (backHeader) backHeader.textContent = backLabel;
+
+    elements.termText.innerHTML = `<div class="card-text-inline">${cardData.sanitizedTerm}</div>`;
+    elements.definitionText.innerHTML = `<div class="card-text-inline">${cardData.sanitizedDefinition}</div>`;
     window.EruditeMath?.renderMath?.(elements.termText);
     window.EruditeMath?.renderMath?.(elements.definitionText);
     renderImage(elements.termImage, elements.termImageWrap, cardData.termImage);

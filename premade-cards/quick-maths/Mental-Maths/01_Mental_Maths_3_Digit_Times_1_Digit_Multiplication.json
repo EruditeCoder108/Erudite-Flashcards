@@ -1,0 +1,738 @@
+{
+  "id": "mental-maths-three-digit-times-one-digit-v1",
+  "name": "Mental Maths: 3-Digit × 1-Digit Multiplication",
+  "description": "KaTeX-enabled practice for three-digit by one-digit multiplication: chunking, full partial products, doubling, ×5, ×9, nearby bases, estimation, error checks, and strategy selection.",
+  "difficulty": "Intermediate",
+  "estimatedTime": "140–175 minutes for a first focused pass; then 10–15 minute review bursts",
+  "tags": [
+    "Mental Maths",
+    "Multiplication",
+    "3-Digit × 1-Digit",
+    "KaTeX",
+    "Arithmetic",
+    "Number Sense",
+    "Speed Maths"
+  ],
+  "cards": [
+    {
+      "term": "3-Digit × 1-Digit: What is the reliable default?",
+      "definition": "Split into hundreds, tens, and ones.\n\n$$\n\\begin{aligned}\n468\\times7 \\\\\n&=2800+420+56 \\\\\n&=3276\n\\end{aligned}\n$$\nKeep full partial products rather than carrying individual digits.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: Why keep full partial products?",
+      "definition": "For 786 × 6, think 4200 + 480 + 36, not a chain of carry digits.\n\n$$\n\\begin{aligned}\n786\\times6 \\\\\n&=4200+480+36 \\\\\n&=4716\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: How do you multiply by 4?",
+      "definition": "Double twice.\n\n$$\n\\begin{aligned}\n368\\times2&=736 \\\\\n736\\times2&=1472\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: How do you multiply by 8?",
+      "definition": "Double three times.\n\n$$\n\\begin{aligned}\n157\\times2&=314 \\\\\n314\\times2&=628 \\\\\n628\\times2&=1256\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: How do you multiply by 5?",
+      "definition": "Multiply by 10, then halve.\n\n$$\n\\begin{aligned}\n346\\times5 \\\\\n&=3460\\div2 \\\\\n&=1730\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: How do you multiply by 9?",
+      "definition": "Use 9 = 10 − 1.\n\n$$\n\\begin{aligned}\n367\\times9 \\\\\n&=3670-367 \\\\\n&=3303\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: How do you estimate?",
+      "definition": "Round the 3-digit number to a nearby hundred.\n\n683 × 7 ≈ 700 × 7 = 4900. The exact answer should be in that region.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: When is a nearby base useful?",
+      "definition": "When the correction is small.\n\n$$\n\\begin{aligned}\n299\\times6 \\\\\n&=(300-1)\\times6 \\\\\n&=1800-6 \\\\\n&=1794\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: Which method is best for 384 × 4?",
+      "definition": "Repeated doubling.\n\n$$\n\\begin{aligned}\n384\\times2&=768 \\\\\n768\\times2&=1536\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: Which method is best for 673 × 9?",
+      "definition": "Use 9 = 10 − 1.\n\n$$\n\\begin{aligned}\n673\\times9 \\\\\n&=6730-673 \\\\\n&=6057\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: When should you use ordinary chunking?",
+      "definition": "When no special multiplier or base gives a clearly shorter route.\n\n$$\n\\begin{aligned}\n462\\times7 \\\\\n&=400\\times7+60\\times7+2\\times7 \\\\\n&=2800+420+14 \\\\\n&=3234\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 1-Digit: What is the fast self-check?",
+      "definition": "Estimate the size and check the last digit. For 468 × 7, the answer should be near 3500 and end in 6. 3276 passes both checks.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 214 × 3",
+      "definition": "Answer: 642\n\nChunked route:\n$$\n\\begin{aligned}\n214\\times3 \\\\\n&=200\\times3+10\\times3+4\\times3 \\\\\n&=600+30+12 \\\\\n&=642\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 321 × 2",
+      "definition": "Answer: 642\n\nChunked route:\n$$\n\\begin{aligned}\n321\\times2 \\\\\n&=300\\times2+20\\times2+1\\times2 \\\\\n&=600+40+2 \\\\\n&=642\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 432 × 2",
+      "definition": "Answer: 864\n\nChunked route:\n$$\n\\begin{aligned}\n432\\times2 \\\\\n&=400\\times2+30\\times2+2\\times2 \\\\\n&=800+60+4 \\\\\n&=864\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 513 × 3",
+      "definition": "Answer: 1539\n\nChunked route:\n$$\n\\begin{aligned}\n513\\times3 \\\\\n&=500\\times3+10\\times3+3\\times3 \\\\\n&=1500+30+9 \\\\\n&=1539\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 624 × 2",
+      "definition": "Answer: 1248\n\nChunked route:\n$$\n\\begin{aligned}\n624\\times2 \\\\\n&=600\\times2+20\\times2+4\\times2 \\\\\n&=1200+40+8 \\\\\n&=1248\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 731 × 3",
+      "definition": "Answer: 2193\n\nChunked route:\n$$\n\\begin{aligned}\n731\\times3 \\\\\n&=700\\times3+30\\times3+1\\times3 \\\\\n&=2100+90+3 \\\\\n&=2193\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 842 × 2",
+      "definition": "Answer: 1684\n\nChunked route:\n$$\n\\begin{aligned}\n842\\times2 \\\\\n&=800\\times2+40\\times2+2\\times2 \\\\\n&=1600+80+4 \\\\\n&=1684\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 953 × 2",
+      "definition": "Answer: 1906\n\nChunked route:\n$$\n\\begin{aligned}\n953\\times2 \\\\\n&=900\\times2+50\\times2+3\\times2 \\\\\n&=1800+100+6 \\\\\n&=1906\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 125 × 4",
+      "definition": "Answer: 500\n\nChunked route:\n$$\n\\begin{aligned}\n125\\times4 \\\\\n&=100\\times4+20\\times4+5\\times4 \\\\\n&=400+80+20 \\\\\n&=500\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 236 × 4",
+      "definition": "Answer: 944\n\nChunked route:\n$$\n\\begin{aligned}\n236\\times4 \\\\\n&=200\\times4+30\\times4+6\\times4 \\\\\n&=800+120+24 \\\\\n&=944\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 347 × 4",
+      "definition": "Answer: 1388\n\nChunked route:\n$$\n\\begin{aligned}\n347\\times4 \\\\\n&=300\\times4+40\\times4+7\\times4 \\\\\n&=1200+160+28 \\\\\n&=1388\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 458 × 4",
+      "definition": "Answer: 1832\n\nChunked route:\n$$\n\\begin{aligned}\n458\\times4 \\\\\n&=400\\times4+50\\times4+8\\times4 \\\\\n&=1600+200+32 \\\\\n&=1832\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 569 × 4",
+      "definition": "Answer: 2276\n\nChunked route:\n$$\n\\begin{aligned}\n569\\times4 \\\\\n&=500\\times4+60\\times4+9\\times4 \\\\\n&=2000+240+36 \\\\\n&=2276\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 671 × 4",
+      "definition": "Answer: 2684\n\nChunked route:\n$$\n\\begin{aligned}\n671\\times4 \\\\\n&=600\\times4+70\\times4+1\\times4 \\\\\n&=2400+280+4 \\\\\n&=2684\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 782 × 4",
+      "definition": "Answer: 3128\n\nChunked route:\n$$\n\\begin{aligned}\n782\\times4 \\\\\n&=700\\times4+80\\times4+2\\times4 \\\\\n&=2800+320+8 \\\\\n&=3128\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 893 × 4",
+      "definition": "Answer: 3572\n\nChunked route:\n$$\n\\begin{aligned}\n893\\times4 \\\\\n&=800\\times4+90\\times4+3\\times4 \\\\\n&=3200+360+12 \\\\\n&=3572\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 124 × 5",
+      "definition": "Answer: 620\n\nChunked route:\n$$\n\\begin{aligned}\n124\\times5 \\\\\n&=100\\times5+20\\times5+4\\times5 \\\\\n&=500+100+20 \\\\\n&=620\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 236 × 5",
+      "definition": "Answer: 1180\n\nChunked route:\n$$\n\\begin{aligned}\n236\\times5 \\\\\n&=200\\times5+30\\times5+6\\times5 \\\\\n&=1000+150+30 \\\\\n&=1180\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 348 × 5",
+      "definition": "Answer: 1740\n\nChunked route:\n$$\n\\begin{aligned}\n348\\times5 \\\\\n&=300\\times5+40\\times5+8\\times5 \\\\\n&=1500+200+40 \\\\\n&=1740\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 462 × 5",
+      "definition": "Answer: 2310\n\nChunked route:\n$$\n\\begin{aligned}\n462\\times5 \\\\\n&=400\\times5+60\\times5+2\\times5 \\\\\n&=2000+300+10 \\\\\n&=2310\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 574 × 5",
+      "definition": "Answer: 2870\n\nChunked route:\n$$\n\\begin{aligned}\n574\\times5 \\\\\n&=500\\times5+70\\times5+4\\times5 \\\\\n&=2500+350+20 \\\\\n&=2870\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 686 × 5",
+      "definition": "Answer: 3430\n\nChunked route:\n$$\n\\begin{aligned}\n686\\times5 \\\\\n&=600\\times5+80\\times5+6\\times5 \\\\\n&=3000+400+30 \\\\\n&=3430\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 798 × 5",
+      "definition": "Answer: 3990\n\nChunked route:\n$$\n\\begin{aligned}\n798\\times5 \\\\\n&=700\\times5+90\\times5+8\\times5 \\\\\n&=3500+450+40 \\\\\n&=3990\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 912 × 5",
+      "definition": "Answer: 4560\n\nChunked route:\n$$\n\\begin{aligned}\n912\\times5 \\\\\n&=900\\times5+10\\times5+2\\times5 \\\\\n&=4500+50+10 \\\\\n&=4560\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 287 × 3",
+      "definition": "Answer: 861\n\nChunked route:\n$$\n\\begin{aligned}\n287\\times3 \\\\\n&=200\\times3+80\\times3+7\\times3 \\\\\n&=600+240+21 \\\\\n&=861\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 396 × 3",
+      "definition": "Answer: 1188\n\nChunked route:\n$$\n\\begin{aligned}\n396\\times3 \\\\\n&=300\\times3+90\\times3+6\\times3 \\\\\n&=900+270+18 \\\\\n&=1188\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 478 × 3",
+      "definition": "Answer: 1434\n\nChunked route:\n$$\n\\begin{aligned}\n478\\times3 \\\\\n&=400\\times3+70\\times3+8\\times3 \\\\\n&=1200+210+24 \\\\\n&=1434\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 569 × 3",
+      "definition": "Answer: 1707\n\nChunked route:\n$$\n\\begin{aligned}\n569\\times3 \\\\\n&=500\\times3+60\\times3+9\\times3 \\\\\n&=1500+180+27 \\\\\n&=1707\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 684 × 3",
+      "definition": "Answer: 2052\n\nChunked route:\n$$\n\\begin{aligned}\n684\\times3 \\\\\n&=600\\times3+80\\times3+4\\times3 \\\\\n&=1800+240+12 \\\\\n&=2052\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 795 × 3",
+      "definition": "Answer: 2385\n\nChunked route:\n$$\n\\begin{aligned}\n795\\times3 \\\\\n&=700\\times3+90\\times3+5\\times3 \\\\\n&=2100+270+15 \\\\\n&=2385\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 178 × 6",
+      "definition": "Answer: 1068\n\nChunked route:\n$$\n\\begin{aligned}\n178\\times6 \\\\\n&=100\\times6+70\\times6+8\\times6 \\\\\n&=600+420+48 \\\\\n&=1068\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 249 × 6",
+      "definition": "Answer: 1494\n\nChunked route:\n$$\n\\begin{aligned}\n249\\times6 \\\\\n&=200\\times6+40\\times6+9\\times6 \\\\\n&=1200+240+54 \\\\\n&=1494\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 367 × 6",
+      "definition": "Answer: 2202\n\nChunked route:\n$$\n\\begin{aligned}\n367\\times6 \\\\\n&=300\\times6+60\\times6+7\\times6 \\\\\n&=1800+360+42 \\\\\n&=2202\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 458 × 6",
+      "definition": "Answer: 2748\n\nChunked route:\n$$\n\\begin{aligned}\n458\\times6 \\\\\n&=400\\times6+50\\times6+8\\times6 \\\\\n&=2400+300+48 \\\\\n&=2748\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 579 × 6",
+      "definition": "Answer: 3474\n\nChunked route:\n$$\n\\begin{aligned}\n579\\times6 \\\\\n&=500\\times6+70\\times6+9\\times6 \\\\\n&=3000+420+54 \\\\\n&=3474\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 683 × 6",
+      "definition": "Answer: 4098\n\nChunked route:\n$$\n\\begin{aligned}\n683\\times6 \\\\\n&=600\\times6+80\\times6+3\\times6 \\\\\n&=3600+480+18 \\\\\n&=4098\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 186 × 7",
+      "definition": "Answer: 1302\n\nChunked route:\n$$\n\\begin{aligned}\n186\\times7 \\\\\n&=100\\times7+80\\times7+6\\times7 \\\\\n&=700+560+42 \\\\\n&=1302\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 275 × 7",
+      "definition": "Answer: 1925\n\nChunked route:\n$$\n\\begin{aligned}\n275\\times7 \\\\\n&=200\\times7+70\\times7+5\\times7 \\\\\n&=1400+490+35 \\\\\n&=1925\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 394 × 7",
+      "definition": "Answer: 2758\n\nChunked route:\n$$\n\\begin{aligned}\n394\\times7 \\\\\n&=300\\times7+90\\times7+4\\times7 \\\\\n&=2100+630+28 \\\\\n&=2758\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 486 × 7",
+      "definition": "Answer: 3402\n\nChunked route:\n$$\n\\begin{aligned}\n486\\times7 \\\\\n&=400\\times7+80\\times7+6\\times7 \\\\\n&=2800+560+42 \\\\\n&=3402\n\\end{aligned}\n$$\n\nKeep each partial product intact; it avoids carry errors.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 347 × 2",
+      "definition": "Answer: 694\n\nMethod: Double once.\n$$\n\\begin{aligned}\n347\\times2=694\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 486 × 2",
+      "definition": "Answer: 972\n\nMethod: Double once.\n$$\n\\begin{aligned}\n486\\times2=972\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 678 × 2",
+      "definition": "Answer: 1356\n\nMethod: Double once.\n$$\n\\begin{aligned}\n678\\times2=1356\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 859 × 2",
+      "definition": "Answer: 1718\n\nMethod: Double once.\n$$\n\\begin{aligned}\n859\\times2=1718\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 247 × 3",
+      "definition": "Answer: 741\n\nMethod: Double, then add once.\n$$\n\\begin{aligned}\n247\\times3 \\\\\n&=494+247 \\\\\n&=741\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 368 × 3",
+      "definition": "Answer: 1104\n\nMethod: Double, then add once.\n$$\n\\begin{aligned}\n368\\times3 \\\\\n&=736+368 \\\\\n&=1104\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 459 × 3",
+      "definition": "Answer: 1377\n\nMethod: Double, then add once.\n$$\n\\begin{aligned}\n459\\times3 \\\\\n&=918+459 \\\\\n&=1377\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 672 × 3",
+      "definition": "Answer: 2016\n\nMethod: Double, then add once.\n$$\n\\begin{aligned}\n672\\times3 \\\\\n&=1344+672 \\\\\n&=2016\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 184 × 4",
+      "definition": "Answer: 736\n\nMethod: Double twice.\n$$\n\\begin{aligned}\n184\\times2&=368 \\\\\n368\\times2&=736\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 256 × 4",
+      "definition": "Answer: 1024\n\nMethod: Double twice.\n$$\n\\begin{aligned}\n256\\times2&=512 \\\\\n512\\times2&=1024\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 478 × 4",
+      "definition": "Answer: 1912\n\nMethod: Double twice.\n$$\n\\begin{aligned}\n478\\times2&=956 \\\\\n956\\times2&=1912\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 629 × 4",
+      "definition": "Answer: 2516\n\nMethod: Double twice.\n$$\n\\begin{aligned}\n629\\times2&=1258 \\\\\n1258\\times2&=2516\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 173 × 5",
+      "definition": "Answer: 865\n\nMethod: Multiply by 10, then halve.\n$$\n\\begin{aligned}\n173\\times5 \\\\\n&=1730\\div2 \\\\\n&=865\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 284 × 5",
+      "definition": "Answer: 1420\n\nMethod: Multiply by 10, then halve.\n$$\n\\begin{aligned}\n284\\times5 \\\\\n&=2840\\div2 \\\\\n&=1420\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 437 × 5",
+      "definition": "Answer: 2185\n\nMethod: Multiply by 10, then halve.\n$$\n\\begin{aligned}\n437\\times5 \\\\\n&=4370\\div2 \\\\\n&=2185\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 692 × 5",
+      "definition": "Answer: 3460\n\nMethod: Multiply by 10, then halve.\n$$\n\\begin{aligned}\n692\\times5 \\\\\n&=6920\\div2 \\\\\n&=3460\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 248 × 6",
+      "definition": "Answer: 1488\n\nMethod: Use 6 = 3 × 2.\n$$\n\\begin{aligned}\n248\\times6 \\\\\n&=744\\times2 \\\\\n&=1488\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 357 × 6",
+      "definition": "Answer: 2142\n\nMethod: Use 6 = 3 × 2.\n$$\n\\begin{aligned}\n357\\times6 \\\\\n&=1071\\times2 \\\\\n&=2142\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 482 × 6",
+      "definition": "Answer: 2892\n\nMethod: Use 6 = 3 × 2.\n$$\n\\begin{aligned}\n482\\times6 \\\\\n&=1446\\times2 \\\\\n&=2892\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 638 × 6",
+      "definition": "Answer: 3828\n\nMethod: Use 6 = 3 × 2.\n$$\n\\begin{aligned}\n638\\times6 \\\\\n&=1914\\times2 \\\\\n&=3828\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 267 × 8",
+      "definition": "Answer: 2136\n\nMethod: Double three times.\n$$\n\\begin{aligned}\n267\\times2&=534 \\\\\n534\\times2&=1068 \\\\\n1068\\times2&=2136\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 384 × 8",
+      "definition": "Answer: 3072\n\nMethod: Double three times.\n$$\n\\begin{aligned}\n384\\times2&=768 \\\\\n768\\times2&=1536 \\\\\n1536\\times2&=3072\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 536 × 8",
+      "definition": "Answer: 4288\n\nMethod: Double three times.\n$$\n\\begin{aligned}\n536\\times2&=1072 \\\\\n1072\\times2&=2144 \\\\\n2144\\times2&=4288\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 729 × 8",
+      "definition": "Answer: 5832\n\nMethod: Double three times.\n$$\n\\begin{aligned}\n729\\times2&=1458 \\\\\n1458\\times2&=2916 \\\\\n2916\\times2&=5832\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 124 × 9",
+      "definition": "Answer: 1116\n\nMethod: Use 9 = 10 − 1.\n$$\n\\begin{aligned}\n124\\times9 \\\\\n&=1240-124 \\\\\n&=1116\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 367 × 9",
+      "definition": "Answer: 3303\n\nMethod: Use 9 = 10 − 1.\n$$\n\\begin{aligned}\n367\\times9 \\\\\n&=3670-367 \\\\\n&=3303\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 548 × 9",
+      "definition": "Answer: 4932\n\nMethod: Use 9 = 10 − 1.\n$$\n\\begin{aligned}\n548\\times9 \\\\\n&=5480-548 \\\\\n&=4932\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Technique drill: 786 × 9",
+      "definition": "Answer: 7074\n\nMethod: Use 9 = 10 − 1.\n$$\n\\begin{aligned}\n786\\times9 \\\\\n&=7860-786 \\\\\n&=7074\n\\end{aligned}\n$$\n\nUse this only when it reduces effort compared with normal chunking.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 99 × 7",
+      "definition": "Answer: 693\n\nUse 99 = 100 − 1.\n$$\n\\begin{aligned}\n99\\times7 \\\\\n&=700-7 \\\\\n&=693\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 99 × 8",
+      "definition": "Answer: 792\n\nUse 99 = 100 − 1.\n$$\n\\begin{aligned}\n99\\times8 \\\\\n&=800-8 \\\\\n&=792\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 101 × 6",
+      "definition": "Answer: 606\n\nUse 101 = 100 + 1.\n$$\n\\begin{aligned}\n101\\times6 \\\\\n&=600+6 \\\\\n&=606\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 199 × 4",
+      "definition": "Answer: 796\n\nUse 199 = 200 − 1.\n$$\n\\begin{aligned}\n199\\times4 \\\\\n&=800-4 \\\\\n&=796\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 201 × 8",
+      "definition": "Answer: 1608\n\nUse 201 = 200 + 1.\n$$\n\\begin{aligned}\n201\\times8 \\\\\n&=1600+8 \\\\\n&=1608\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 299 × 3",
+      "definition": "Answer: 897\n\nUse 299 = 300 − 1.\n$$\n\\begin{aligned}\n299\\times3 \\\\\n&=900-3 \\\\\n&=897\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 399 × 6",
+      "definition": "Answer: 2394\n\nUse 399 = 400 − 1.\n$$\n\\begin{aligned}\n399\\times6 \\\\\n&=2400-6 \\\\\n&=2394\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 498 × 7",
+      "definition": "Answer: 3486\n\nUse 498 = 500 − 2.\n$$\n\\begin{aligned}\n498\\times7 \\\\\n&=3500-14 \\\\\n&=3486\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 501 × 4",
+      "definition": "Answer: 2004\n\nUse 501 = 500 + 1.\n$$\n\\begin{aligned}\n501\\times4 \\\\\n&=2000+4 \\\\\n&=2004\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 599 × 5",
+      "definition": "Answer: 2995\n\nUse 599 = 600 − 1.\n$$\n\\begin{aligned}\n599\\times5 \\\\\n&=3000-5 \\\\\n&=2995\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 697 × 9",
+      "definition": "Answer: 6273\n\nUse 697 = 700 − 3.\n$$\n\\begin{aligned}\n697\\times9 \\\\\n&=6300-27 \\\\\n&=6273\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 998 × 7",
+      "definition": "Answer: 6986\n\nUse 998 = 1000 − 2.\n$$\n\\begin{aligned}\n998\\times7 \\\\\n&=7000-14 \\\\\n&=6986\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 1001 × 3",
+      "definition": "Answer: 3003\n\nUse 1001 = 1000 + 1.\n$$\n\\begin{aligned}\n1001\\times3 \\\\\n&=3000+3 \\\\\n&=3003\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 499 × 8",
+      "definition": "Answer: 3992\n\nUse 499 = 500 − 1.\n$$\n\\begin{aligned}\n499\\times8 \\\\\n&=4000-8 \\\\\n&=3992\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 901 × 6",
+      "definition": "Answer: 5406\n\nUse 901 = 900 + 1.\n$$\n\\begin{aligned}\n901\\times6 \\\\\n&=5400+6 \\\\\n&=5406\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Nearby-base practice: 799 × 9",
+      "definition": "Answer: 7191\n\nUse 799 = 800 − 1.\n$$\n\\begin{aligned}\n799\\times9 \\\\\n&=7200-9 \\\\\n&=7191\n\\end{aligned}\n$$\n\nUse a base only when the correction remains easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Find the mistake:\n367 × 9 = 3670 + 367 = 4037",
+      "definition": "The sign is wrong because 9 = 10 − 1.\n\n$$\n\\begin{aligned}\n367\\times9 \\\\\n&=3670-367 \\\\\n&=3303\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Find the mistake:\n786 × 6 = 4200 + 480 + 30 = 4710",
+      "definition": "The ones product is wrong: 6 × 6 = 36.\n\n$$\n\\begin{aligned}\n786\\times6 \\\\\n&=4200+480+36 \\\\\n&=4716\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Find the mistake:\n498 × 7 = 500 × 7 − 2 = 3498",
+      "definition": "The correction must be multiplied by 7.\n\n$$\n\\begin{aligned}\n498\\times7 \\\\\n&=3500-14 \\\\\n&=3486\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Which estimate is better for 683 × 7: 3400, 4800, or 9000?",
+      "definition": "Best estimate: 4800. 683 ≈ 700, and 700 × 7 = 4900. Exact answer: 4781.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Last-digit check: Can 786 × 6 end in 2?",
+      "definition": "No. 6 × 6 = 36, so the product must end in 6.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "True or false: n × 8 can always be found by doubling n three times.",
+      "definition": "True, because 8 = 2 × 2 × 2.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 346 × 7\nChoose a route before flipping.",
+      "definition": "Answer: 2422\n\nOne efficient method: Chunking\n$$\n\\begin{aligned}\n346\\times7 \\\\\n&=2100+420+42 \\\\\n&=2562\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 384 × 4\nChoose a route before flipping.",
+      "definition": "Answer: 1536\n\nOne efficient method: Repeated doubling\n$$\n\\begin{aligned}\n384\\times2&=768 \\\\\n768\\times2&=1536\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 529 × 5\nChoose a route before flipping.",
+      "definition": "Answer: 2645\n\nOne efficient method: Multiply by 10, then halve\n$$\n\\begin{aligned}\n529\\times5 \\\\\n&=5290\\div2 \\\\\n&=2645\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 674 × 9\nChoose a route before flipping.",
+      "definition": "Answer: 6066\n\nOne efficient method: Use 9 = 10 − 1\n$$\n\\begin{aligned}\n674\\times9 \\\\\n&=6740-674 \\\\\n&=6066\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 258 × 8\nChoose a route before flipping.",
+      "definition": "Answer: 2064\n\nOne efficient method: Double three times\n$$\n\\begin{aligned}\n258\\times2&=516 \\\\\n516\\times2&=1032 \\\\\n1032\\times2&=2064\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 497 × 6\nChoose a route before flipping.",
+      "definition": "Answer: 2982\n\nOne efficient method: Use 500 − 3\n$$\n\\begin{aligned}\n497\\times6 \\\\\n&=3000-18 \\\\\n&=2982\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 731 × 3\nChoose a route before flipping.",
+      "definition": "Answer: 2193\n\nOne efficient method: Double, then add\n$$\n\\begin{aligned}\n731\\times3 \\\\\n&=1462+731 \\\\\n&=2193\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 999 × 7\nChoose a route before flipping.",
+      "definition": "Answer: 6993\n\nOne efficient method: Use 1000 − 1\n$$\n\\begin{aligned}\n999\\times7 \\\\\n&=7000-7 \\\\\n&=6993\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 425 × 6\nChoose a route before flipping.",
+      "definition": "Answer: 2550\n\nOne efficient method: Chunking\n$$\n\\begin{aligned}\n425\\times6 \\\\\n&=2400+120+30 \\\\\n&=2550\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 267 × 4\nChoose a route before flipping.",
+      "definition": "Answer: 1068\n\nOne efficient method: Repeated doubling\n$$\n\\begin{aligned}\n267\\times2&=534 \\\\\n534\\times2&=1068\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 812 × 9\nChoose a route before flipping.",
+      "definition": "Answer: 7308\n\nOne efficient method: Use 9 = 10 − 1\n$$\n\\begin{aligned}\n812\\times9 \\\\\n&=8120-812 \\\\\n&=7308\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 625 × 8\nChoose a route before flipping.",
+      "definition": "Answer: 5000\n\nOne efficient method: Recognize 125 × 8 = 1000\n$$\n\\begin{aligned}\n625\\times8 \\\\\n&=5\\times1000 \\\\\n&=5000\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 407 × 7\nChoose a route before flipping.",
+      "definition": "Answer: 2849\n\nOne efficient method: Chunking\n$$\n\\begin{aligned}\n407\\times7 \\\\\n&=2800+49 \\\\\n&=2849\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 598 × 5\nChoose a route before flipping.",
+      "definition": "Answer: 2990\n\nOne efficient method: Multiply by 10, then halve\n$$\n\\begin{aligned}\n598\\times5 \\\\\n&=5980\\div2 \\\\\n&=2990\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 349 × 8\nChoose a route before flipping.",
+      "definition": "Answer: 2792\n\nOne efficient method: Double three times\n$$\n\\begin{aligned}\n349\\times2&=698 \\\\\n698\\times2&=1396 \\\\\n1396\\times2&=2792\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 299 × 9\nChoose a route before flipping.",
+      "definition": "Answer: 2691\n\nOne efficient method: Use 300 − 1\n$$\n\\begin{aligned}\n299\\times9 \\\\\n&=2700-9 \\\\\n&=2691\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 763 × 6\nChoose a route before flipping.",
+      "definition": "Answer: 4578\n\nOne efficient method: Chunking\n$$\n\\begin{aligned}\n763\\times6 \\\\\n&=4200+360+18 \\\\\n&=4578\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 916 × 3\nChoose a route before flipping.",
+      "definition": "Answer: 2748\n\nOne efficient method: Double, then add\n$$\n\\begin{aligned}\n916\\times3 \\\\\n&=1832+916 \\\\\n&=2748\n\\end{aligned}\n$$\n\nA different accurate route is also valid.",
+      "termImage": "",
+      "definitionImage": ""
+    }
+  ]
+}

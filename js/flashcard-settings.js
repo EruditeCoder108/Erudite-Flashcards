@@ -7,8 +7,16 @@
 const DEFAULT_FLASHCARD_SETTINGS = {
     theme: 'dark',
     normalStudyOrder: 'forward',
+    soundEffectsEnabled: true,
     fonts: {
         content: "'Plus Jakarta Sans', sans-serif"
+    },
+    cardStyle: {
+        align: 'center',
+        weight: '500',
+        font: 'sans-serif',
+        lineHeight: '1.4',
+        letterSpacing: '0'
     }
 };
 
@@ -35,10 +43,15 @@ function normalizeFlashcardSettings(settings = {}) {
         normalStudyOrder: VALID_NORMAL_STUDY_ORDERS.has(settings.normalStudyOrder)
             ? settings.normalStudyOrder
             : DEFAULT_FLASHCARD_SETTINGS.normalStudyOrder,
+        soundEffectsEnabled: settings.soundEffectsEnabled !== false,
         matteTexture: false,
         fonts: {
             ...DEFAULT_FLASHCARD_SETTINGS.fonts,
             ...(settings.fonts || {})
+        },
+        cardStyle: {
+            ...DEFAULT_FLASHCARD_SETTINGS.cardStyle,
+            ...(settings.cardStyle || {})
         }
     };
     delete normalized.studyCard;
@@ -89,6 +102,20 @@ function applySettings(settings = readLocalSettings()) {
     root.style.removeProperty('--study-card-width');
     root.style.removeProperty('--study-card-aspect');
 
+    // Set card style custom properties
+    const cs = normalized.cardStyle || DEFAULT_FLASHCARD_SETTINGS.cardStyle;
+    let fontFamily = 'inherit';
+    if (cs.font === 'sans-serif') fontFamily = "'Plus Jakarta Sans', sans-serif";
+    else if (cs.font === 'serif') fontFamily = "Georgia, serif";
+    else if (cs.font === 'monospace') fontFamily = "Courier New, monospace";
+    else if (cs.font === 'system') fontFamily = "system-ui, sans-serif";
+
+    root.style.setProperty('--card-text-align', cs.align);
+    root.style.setProperty('--card-text-weight', cs.weight);
+    root.style.setProperty('--card-text-font-family', fontFamily);
+    root.style.setProperty('--card-text-line-height', cs.lineHeight);
+    root.style.setProperty('--card-text-letter-spacing', cs.letterSpacing);
+
     window.__eruditeApplyingSettings = true;
     try {
         localStorage.setItem('flashcards-settings', JSON.stringify(normalized));
@@ -137,9 +164,18 @@ function applyFontSettings(fonts = DEFAULT_FLASHCARD_SETTINGS.fonts) {
         .study-container .flashcard .card-face .definition-text,
         .card-face .term-text,
         .card-face .definition-text {
-            font-family: ${contentFontFamily} !important;
+            font-family: var(--card-text-font-family, ${contentFontFamily}) !important;
         }
     `;
+}
+
+function isSoundEffectsEnabled() {
+    try {
+        const settings = JSON.parse(localStorage.getItem('flashcards-settings') || '{}');
+        return settings.soundEffectsEnabled !== false;
+    } catch (_e) {
+        return true;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -156,3 +192,4 @@ window.applySettings = applySettings;
 window.applyTheme = applyTheme;
 window.applyFontSettings = applyFontSettings;
 window.loadAndApplySettings = loadAndApplySettings;
+window.isSoundEffectsEnabled = isSoundEffectsEnabled;

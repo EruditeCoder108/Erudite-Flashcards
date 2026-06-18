@@ -412,9 +412,14 @@
                         <template id="premade-set-template">
                             <div class="set-card premade-set-card">
                                 <div class="set-content">
-                                    <div class="set-header">
-                                        <h3 class="premade-set-name"></h3>
-                                        <span class="premade-card-count"></span>
+                                    <div class="set-header-row">
+                                        <div class="set-icon-box">
+                                            <i class="fas fa-book-open"></i>
+                                        </div>
+                                        <div class="set-title-group">
+                                            <h3 class="premade-set-name"></h3>
+                                            <span class="premade-card-count"></span>
+                                        </div>
                                     </div>
                                     <div class="set-meta">
                                         <span class="difficulty-level"></span>
@@ -481,6 +486,15 @@
                         <label>
                             Reviews/day
                             <input type="number" id="deck-review-limit" min="0" step="1" placeholder="Unlimited">
+                        </label>
+                        <label>
+                            Normal study order
+                            <select id="deck-normal-study-order">
+                                <option value="">Use Global Setting</option>
+                                <option value="forward">Forward (First to Last)</option>
+                                <option value="backward">Backward (Last to First)</option>
+                                <option value="random">Random</option>
+                            </select>
                         </label>
                     </div>
                 </div>
@@ -693,6 +707,10 @@
                             <span id="card-bg-opacity-label" style="font-size:0.85rem;min-width:2.5rem;color:var(--text-primary);">0.32</span>
                         </div>
                     </label>
+                    <label class="checkbox-row" style="margin-top: 0.75rem; margin-bottom: 0;">
+                        <input type="checkbox" id="app-sound-effects">
+                        <span>Enable sound effects</span>
+                    </label>
                 </div>
 
                 <div class="settings-section">
@@ -717,6 +735,58 @@
                             <span class="cursor-option-icon"><i class="fas fa-crosshairs"></i></span>
                             <span class="cursor-option-label">Context-Aware</span>
                             <span class="cursor-option-desc">Dot and ring, adapts context</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Card Typography</h3>
+                    <div class="settings-grid" style="margin-bottom: 0.75rem;">
+                        <label>
+                            Text Alignment
+                            <select id="card-text-align-select" class="font-dropdown">
+                                <option value="left">Left</option>
+                                <option value="center">Center</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </label>
+                        <label>
+                            Font Family
+                            <select id="card-text-font-select" class="font-dropdown">
+                                <option value="sans-serif">Sans-Serif (Default)</option>
+                                <option value="serif">Serif</option>
+                                <option value="monospace">Monospace</option>
+                                <option value="system">System Default</option>
+                            </select>
+                        </label>
+                        <label>
+                            Font Weight / Thickness
+                            <select id="card-text-weight-select" class="font-dropdown">
+                                <option value="300">Light (300)</option>
+                                <option value="400">Regular (400)</option>
+                                <option value="500">Medium (500)</option>
+                                <option value="600">Semibold (600)</option>
+                                <option value="700">Bold (700)</option>
+                            </select>
+                        </label>
+                        <label>
+                            Line Spacing (Line Height)
+                            <select id="card-text-line-height-select" class="font-dropdown">
+                                <option value="1.2">Compact (1.2)</option>
+                                <option value="1.4">Normal (1.4)</option>
+                                <option value="1.6">Relaxed (1.6)</option>
+                                <option value="1.8">Loose (1.8)</option>
+                            </select>
+                        </label>
+                        <label style="grid-column: span 2;">
+                            Letter Spacing
+                            <select id="card-text-letter-spacing-select" class="font-dropdown">
+                                <option value="-0.5px">Tight (-0.5px)</option>
+                                <option value="0">Normal (0px)</option>
+                                <option value="0.5px">Wide (0.5px)</option>
+                                <option value="1px">Extra Wide (1px)</option>
+                                <option value="1.5px">Loose (1.5px)</option>
+                            </select>
                         </label>
                     </div>
                 </div>

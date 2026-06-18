@@ -32,6 +32,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const resetSettingsBtn = document.getElementById('reset-settings');
     const appThemeSelect = document.getElementById('app-theme');
     const normalStudyOrderSelect = document.getElementById('normal-study-order');
+    const appSoundEffectsCheckbox = document.getElementById('app-sound-effects');
+    const cardTextAlignSelect = document.getElementById('card-text-align-select');
+    const cardTextFontSelect = document.getElementById('card-text-font-select');
+    const cardTextWeightSelect = document.getElementById('card-text-weight-select');
+    const cardTextLineHeightSelect = document.getElementById('card-text-line-height-select');
+    const cardTextLetterSpacingSelect = document.getElementById('card-text-letter-spacing-select');
     const exportBackupBtn = document.getElementById('export-backup');
     const restoreBackupBtn = document.getElementById('restore-backup');
     const exportCsvBtn = document.getElementById('export-csv');
@@ -65,6 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const deckMaxInterval = document.getElementById('deck-max-interval');
     const deckNewLimit = document.getElementById('deck-new-limit');
     const deckReviewLimit = document.getElementById('deck-review-limit');
+    const deckNormalStudyOrderSelect = document.getElementById('deck-normal-study-order');
     const cancelDeckSettingsBtn = document.getElementById('cancel-deck-settings');
     const saveDeckSettingsBtn = document.getElementById('save-deck-settings');
     const classModal = document.getElementById('class-modal');
@@ -153,6 +160,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     clickSound.volume = 0.3;
 
     function playClickSound() {
+        if (window.isSoundEffectsEnabled && !window.isSoundEffectsEnabled()) {
+            return;
+        }
         clickSound.currentTime = 0;
         clickSound.play().catch(() => {});
     }
@@ -1172,6 +1182,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             normalStudyOrderSelect.value = userSettings.normalStudyOrder || 'forward';
         }
 
+        if (appSoundEffectsCheckbox) {
+            appSoundEffectsCheckbox.checked = userSettings.soundEffectsEnabled !== false;
+        }
+
         if (userSettings.fonts && contentFontSelect) {
             if (userSettings.fonts.content.startsWith('custom-')) {
                 contentFontSelect.value = 'custom';
@@ -1198,6 +1212,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             const opacityVal = parseFloat(userSettings.cardBgOpacity ?? 0.32);
             cardBgOpacitySlider.value = String(Number.isFinite(opacityVal) ? opacityVal : 0.32);
             if (cardBgOpacityLabel) cardBgOpacityLabel.textContent = (Number.isFinite(opacityVal) ? opacityVal : 0.32).toFixed(2);
+        }
+
+        // Initialize Card Typography values
+        if (userSettings.cardStyle) {
+            if (cardTextAlignSelect) cardTextAlignSelect.value = userSettings.cardStyle.align || 'center';
+            if (cardTextFontSelect) cardTextFontSelect.value = userSettings.cardStyle.font || 'sans-serif';
+            if (cardTextWeightSelect) cardTextWeightSelect.value = userSettings.cardStyle.weight || '500';
+            if (cardTextLineHeightSelect) cardTextLineHeightSelect.value = userSettings.cardStyle.lineHeight || '1.4';
+            if (cardTextLetterSpacingSelect) cardTextLetterSpacingSelect.value = userSettings.cardStyle.letterSpacing || '0';
         }
     }
 
@@ -1242,6 +1265,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         userSettings.normalStudyOrder = ['forward', 'backward', 'random'].includes(normalStudyOrderSelect?.value)
             ? normalStudyOrderSelect.value
             : (userSettings.normalStudyOrder || 'forward');
+        if (appSoundEffectsCheckbox) {
+            userSettings.soundEffectsEnabled = appSoundEffectsCheckbox.checked;
+        }
         delete userSettings.studyCard;
 
         // Save card background opacity
@@ -1257,6 +1283,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 userSettings.fonts.content = contentFontSelect.value;
             }
         }
+
+        // Save card typography styles
+        userSettings.cardStyle = {
+            align: cardTextAlignSelect?.value || 'center',
+            font: cardTextFontSelect?.value || 'sans-serif',
+            weight: cardTextWeightSelect?.value || '500',
+            lineHeight: cardTextLineHeightSelect?.value || '1.4',
+            letterSpacing: cardTextLetterSpacingSelect?.value || '0'
+        };
         
         if (window.saveFlashcardSettings) {
             await window.saveFlashcardSettings(userSettings);
@@ -1277,11 +1312,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (appThemeSelect) appThemeSelect.value = defaultSettings.theme;
         if (normalStudyOrderSelect) normalStudyOrderSelect.value = defaultSettings.normalStudyOrder || 'forward';
+        if (appSoundEffectsCheckbox) appSoundEffectsCheckbox.checked = defaultSettings.soundEffectsEnabled !== false;
         if (contentFontSelect) {
             contentFontSelect.value = defaultSettings.fonts.content;
             if (customContentFontDiv) customContentFontDiv.classList.add('hidden');
             customFonts = { content: null };
         }
+
+        // Reset Card Typography selection inputs
+        if (cardTextAlignSelect) cardTextAlignSelect.value = defaultSettings.cardStyle?.align || 'center';
+        if (cardTextFontSelect) cardTextFontSelect.value = defaultSettings.cardStyle?.font || 'sans-serif';
+        if (cardTextWeightSelect) cardTextWeightSelect.value = defaultSettings.cardStyle?.weight || '500';
+        if (cardTextLineHeightSelect) cardTextLineHeightSelect.value = defaultSettings.cardStyle?.lineHeight || '1.4';
+        if (cardTextLetterSpacingSelect) cardTextLetterSpacingSelect.value = defaultSettings.cardStyle?.letterSpacing || '0';
 
         if (window.saveFlashcardSettings) {
             await window.saveFlashcardSettings(defaultSettings);
@@ -1396,6 +1439,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (deckMaxInterval) deckMaxInterval.value = settings.maxIntervalDays;
         if (deckNewLimit) deckNewLimit.value = settings.newCardsPerDay ?? '';
         if (deckReviewLimit) deckReviewLimit.value = settings.reviewsPerDay ?? '';
+        if (deckNormalStudyOrderSelect) deckNormalStudyOrderSelect.value = set.normalStudyOrder || '';
 
         deckSettingsModal.classList.remove('hidden');
         deckSettingsModal.classList.add('visible');
@@ -1422,6 +1466,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const updatedSet = {
             ...setForDeckSettings,
             srsSettings: settings,
+            normalStudyOrder: deckNormalStudyOrderSelect?.value || null,
             lastModified: Date.now()
         };
 
@@ -1436,7 +1481,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             updateLibraryStats();
             renderSets(searchInput.value);
             hideDeckSettingsModal();
-            showToast('Deck SRS settings saved', 'success');
+            showToast('Deck settings saved', 'success');
         } catch (error) {
             console.error('Error saving deck settings:', error);
             showToast('Could not save deck settings', 'error');
@@ -1584,7 +1629,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         'neet-ug': 'NEET UG',
         'jee-main': 'JEE Main',
         'jee-advanced': 'JEE Advanced',
-        'ssc': 'SSC'
+        'ssc': 'SSC',
+        'quick-maths': 'Quick Maths'
     };
 
     const subjectsByClass = {
@@ -1638,6 +1684,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             { id: 'quantitative-aptitude', name: 'Quantitative Aptitude', icon: 'fas fa-calculator', description: 'Arithmetic, algebra, geometry, and data interpretation' },
             { id: 'reasoning', name: 'Reasoning', icon: 'fas fa-brain', description: 'Verbal and non-verbal reasoning' },
             { id: 'english', name: 'English', icon: 'fas fa-book', description: 'Vocabulary, grammar, and comprehension' }
+        ],
+        'quick-maths': [
+            { id: 'Mental-Maths', name: 'Mental Maths', icon: 'fas fa-calculator', description: 'Speed calculations, additions, subtraction, multiplication, and squaring tricks.' }
         ]
     };
 
@@ -1907,6 +1956,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         card.querySelector('.premade-set-name').textContent = set.name;
         card.querySelector('.premade-card-count').textContent = `${set.cards ? set.cards.length : 0} cards`;
+
+        const iconBox = card.querySelector('.set-icon-box');
+        if (iconBox) {
+            const icon = set.icon || 'fa-book-open';
+            const color = '#3B82F6'; // default primary color
+            iconBox.style.backgroundColor = `${color}20`;
+            iconBox.style.color = color;
+            iconBox.innerHTML = `<i class="fas ${icon}"></i>`;
+        }
+
         card.querySelector('.difficulty-level').textContent = set.difficulty || 'intermediate';
         card.querySelector('.estimated-time').textContent = set.estimatedTime || '45 minutes';
         card.querySelector('.premade-set-description').textContent = set.description || '';

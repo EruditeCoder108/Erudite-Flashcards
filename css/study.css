@@ -1780,3 +1780,27 @@ html[data-theme] .srs-actions-dropdown-menu {
     font-size: 0.85rem;
 }
 
+.card-text-inline {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.card-text-inline .katex-display {
+    font-size: clamp(0.95rem, 4.3vw, 1.25rem) !important;
+    margin: 0.6rem 0 !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important;  /* IE/Edge */
+}
+
+.card-text-inline .katex-display::-webkit-scrollbar {
+    display: none !important; /* Safari/Chrome */
+}
+
+.card-text-inline .katex {
+    font-size: 0.95em !important;
+    max-width: 100% !important;
+}
+
+

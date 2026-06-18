@@ -838,8 +838,25 @@ button.metric-pill {
   white-space: nowrap;
 }
 
+.library-sticky-header {
+  position: sticky;
+  top: calc(3.75rem + var(--safe-top, 0px));
+  z-index: 15;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  padding: 0.5rem max(0.9rem, var(--safe-right)) 0.75rem max(0.9rem, var(--safe-left));
+  margin: 0 calc(-1 * max(0.9rem, var(--safe-right))) 0.8rem calc(-1 * max(0.9rem, var(--safe-left)));
+  border-radius: 0 0 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
 .library-screen-head {
-  margin: 0.1rem 0 0.75rem;
+  margin: 0;
 }
 
 .search-row {
@@ -924,6 +941,10 @@ button.metric-pill {
   display: flex;
   gap: 0.45rem;
   margin-top: 0.55rem;
+  margin-left: calc(-1 * max(0.9rem, var(--safe-left)));
+  margin-right: calc(-1 * max(0.9rem, var(--safe-right)));
+  padding-left: max(0.9rem, var(--safe-left));
+  padding-right: max(0.9rem, var(--safe-right));
   padding-bottom: 0.08rem;
   overflow-x: auto;
   scrollbar-width: none;

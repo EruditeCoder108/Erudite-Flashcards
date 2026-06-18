@@ -156,6 +156,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function playNextCardSound() {
+        if (window.isSoundEffectsEnabled && !window.isSoundEffectsEnabled()) {
+            return;
+        }
         nextCardSound.currentTime = 0;
         nextCardSound.play().catch(error => {
             console.error('Error playing next card sound:', error);
@@ -204,7 +207,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 : (window.flashcardStore?.getSettings
                     ? await window.flashcardStore.getSettings()
                     : JSON.parse(localStorage.getItem('flashcards-settings') || '{}'));
-            normalStudyOrder = normalizeNormalStudyOrder(settings?.normalStudyOrder);
+            
+            if (flashcardSet && ['forward', 'backward', 'random'].includes(flashcardSet.normalStudyOrder)) {
+                normalStudyOrder = flashcardSet.normalStudyOrder;
+            } else {
+                normalStudyOrder = normalizeNormalStudyOrder(settings?.normalStudyOrder);
+            }
             // Store for use in rendering (e.g. cardBgOpacity)
             window._studyAppSettings = settings || {};
         } catch (error) {
@@ -732,13 +740,44 @@ document.addEventListener('DOMContentLoaded', async () => {
             flashcardContainer.classList.remove('new-card');
         }
 
+        // Contextual card labels
+        const isMath = flashcardSet?.tags?.includes('Mental Maths') || String(flashcardSet?.id || '').includes('math');
+        let frontLabel = 'Term';
+        let backLabel = 'Definition';
+        if (isMath) {
+            const term = String(card?.term || '');
+            const def = String(card?.definition || '');
+            const isQuestion = term.includes('?') || 
+                               term.includes('□') || 
+                               term.toLowerCase().includes('calculate') || 
+                               term.toLowerCase().includes('solve') || 
+                               term.toLowerCase().includes('complete') || 
+                               def.toLowerCase().startsWith('answer:') || 
+                               def.toLowerCase().startsWith('result:');
+            if (isQuestion) {
+                frontLabel = 'PRACTICE';
+                backLabel = 'SOLUTION';
+            } else {
+                frontLabel = 'METHOD';
+                backLabel = 'EXPLANATION';
+            }
+        } else {
+            frontLabel = 'CONCEPT';
+            backLabel = 'EXPLANATION';
+        }
+
+        const frontHeader = termFace?.querySelector('.card-header');
+        const backHeader = definitionFace?.querySelector('.card-header');
+        if (frontHeader) frontHeader.textContent = frontLabel;
+        if (backHeader) backHeader.textContent = backLabel;
+
         fadeElement(termText, () => {
-            termText.innerHTML = formatContent(card.term);
+            termText.innerHTML = `<div class="card-text-inline">${formatContent(card.term)}</div>`;
             window.EruditeMath?.renderMath?.(termText);
         });
 
         fadeElement(definitionText, () => {
-            definitionText.innerHTML = formatContent(card.definition);
+            definitionText.innerHTML = `<div class="card-text-inline">${formatContent(card.definition)}</div>`;
             window.EruditeMath?.renderMath?.(definitionText);
         });
 
@@ -974,9 +1013,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 showToast('Congratulations! Set completed!', 'success');
 
                 // Play success sound
-                successSound.play().catch(error => {
-                    console.error('Error playing success sound:', error);
-                });
+                if (!window.isSoundEffectsEnabled || window.isSoundEffectsEnabled()) {
+                    successSound.play().catch(error => {
+                        console.error('Error playing success sound:', error);
+                    });
+                }
             }
             return;
         }
@@ -1004,9 +1045,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         isFlipping = true;
         flipSound.currentTime = 0;
-        flipSound.play().catch(error => {
-            console.error('Error playing flip sound:', error);
-        });
+        if (!window.isSoundEffectsEnabled || window.isSoundEffectsEnabled()) {
+            flipSound.play().catch(error => {
+                console.error('Error playing flip sound:', error);
+            });
+        }
 
         setCardFlipped(options.onlyReveal ? true : !flashcardContainer.classList.contains('flipped'));
 
@@ -2421,9 +2464,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         showToast(nextDueSetId ? 'Set complete. More reviews are waiting.' : 'SRS session completed!', 'success');
 
         // Play success sound
-        successSound.play().catch(error => {
-            console.error('Error playing success sound:', error);
-        });
+        if (!window.isSoundEffectsEnabled || window.isSoundEffectsEnabled()) {
+            successSound.play().catch(error => {
+                console.error('Error playing success sound:', error);
+            });
+        }
     }
 
     // Show message when all cards are mastered

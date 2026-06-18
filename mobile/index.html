@@ -120,33 +120,37 @@
       </section>
 
       <section class="mobile-view" id="view-library" aria-labelledby="library-heading">
-        <div class="library-screen-head">
-          <div class="deck-source-switch" role="radiogroup" aria-label="Deck source">
-            <button type="button" class="source-option active" data-action="tab-library" aria-checked="true" role="radio">
-              <span class="source-dot"></span>
-              Your decks
-            </button>
-            <button type="button" class="source-option" data-action="open-premade" aria-checked="false" role="radio">
-              <span class="source-dot"></span>
-              Premade
+        <div class="library-sticky-header">
+          <div class="library-screen-head">
+            <div class="deck-source-switch" role="radiogroup" aria-label="Deck source">
+              <button type="button" class="source-option active" data-action="tab-library" aria-checked="true" role="radio">
+                <span class="source-dot"></span>
+                Your decks
+              </button>
+              <button type="button" class="source-option" data-action="open-premade" aria-checked="false" role="radio">
+                <span class="source-dot"></span>
+                Premade
+              </button>
+            </div>
+            <button type="button" class="icon-button raised" data-action="open-create" aria-label="Create set">
+              <i class="fas fa-plus"></i>
             </button>
           </div>
-          <button type="button" class="icon-button raised" data-action="open-create" aria-label="Create set">
-            <i class="fas fa-plus"></i>
-          </button>
+
+          <div id="mobile-user-headers">
+            <div class="search-row">
+              <label class="mobile-search">
+                <i class="fas fa-magnifying-glass"></i>
+                <input id="mobile-search-input" type="search" placeholder="Search decks, cards, classes">
+              </label>
+              <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
+                <i class="fas fa-arrow-down-wide-short"></i>
+              </button>
+            </div>
+          </div>
         </div>
 
         <div id="mobile-user-decks-view">
-          <div class="search-row">
-            <label class="mobile-search">
-              <i class="fas fa-magnifying-glass"></i>
-              <input id="mobile-search-input" type="search" placeholder="Search decks, cards, classes">
-            </label>
-            <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
-              <i class="fas fa-arrow-down-wide-short"></i>
-            </button>
-          </div>
-
           <div class="filter-strip" id="library-filters" aria-label="Library filters">
             <button type="button" class="filter-chip active" data-filter="all"><i class="fas fa-table-cells-large"></i>All</button>
             <button type="button" class="filter-chip" data-filter="classes"><i class="fas fa-chalkboard-user"></i>Classes</button>
@@ -163,8 +167,10 @@
         </div>
 
         <div id="mobile-premade-decks-view" class="hidden">
-          <div class="filter-strip" id="premade-class-filters" aria-label="Premade classes"></div>
-          <div class="filter-strip" id="premade-subject-filters" aria-label="Premade subjects"></div>
+          <div id="mobile-premade-headers">
+            <div class="filter-strip" id="premade-class-filters" aria-label="Premade classes"></div>
+            <div class="filter-strip" id="premade-subject-filters" aria-label="Premade subjects"></div>
+          </div>
           <div class="mobile-list" id="premade-list"></div>
         </div>
       </section>
@@ -245,6 +251,14 @@
             </span>
             <i class="fas fa-chevron-right"></i>
           </button>
+          <button type="button" class="settings-row" data-action="toggle-sound">
+            <span class="settings-icon"><i class="fas fa-volume-up"></i></span>
+            <span>
+              <strong>Sound Effects</strong>
+              <small id="more-sound-label">On</small>
+            </span>
+            <span class="switch" id="sound-switch"><span></span></span>
+          </button>
           <button type="button" class="settings-row" data-action="export-backup">
             <span class="settings-icon"><i class="fas fa-file-export"></i></span>
             <span><strong>Export Backup</strong><small>Share a full local JSON backup</small></span>
@@ -275,6 +289,14 @@
               <span id="more-theme-label">Dark Blue</span>
               <i class="fas fa-chevron-down"></i>
             </div>
+          </button>
+          <button type="button" class="settings-row" data-action="select-typography">
+            <span class="settings-icon"><i class="fas fa-font"></i></span>
+            <span>
+              <strong>Card Typography</strong>
+              <small>Alignment, font weight, line and letter spacing</small>
+            </span>
+            <i class="fas fa-chevron-right"></i>
           </button>
           <label class="settings-row settings-select-row" for="mobile-bg-opacity">
             <span class="settings-icon"><i class="fas fa-image"></i></span>
@@ -360,6 +382,10 @@
             <i class="fas fa-square-check"></i>
             <span>Select Deck</span>
           </button>
+          <button type="button" class="context-option-row settings" id="context-opt-settings">
+            <i class="fas fa-cog"></i>
+            <span>Deck Settings</span>
+          </button>
           <button type="button" class="context-option-row reset-progress" id="context-opt-reset-progress">
             <i class="fas fa-undo"></i>
             <span>Reset Progress</span>
@@ -419,6 +445,55 @@
         </div>
       </div>
     </div>
+
+    <!-- Deck Study Order Selector Modal -->
+    <div class="compact-floating-modal hidden" id="deck-study-order-modal">
+      <div class="context-modal-backdrop" id="deck-study-order-backdrop"></div>
+      <div class="compact-floating-card">
+        <div class="context-modal-header" style="margin-bottom: 0.8rem;">
+          <h3>Study Order</h3>
+        </div>
+        <div class="context-modal-body" id="deck-study-order-options" style="display: flex; flex-direction: column; gap: 0.55rem;">
+          <button type="button" class="preset-option-btn" data-order-val="">
+            <i class="fas fa-circle-question"></i>
+            <span>Use Global Setting</span>
+          </button>
+          <button type="button" class="preset-option-btn" data-order-val="forward">
+            <i class="fas fa-arrow-down-1-9"></i>
+            <span>Forward (First to Last)</span>
+          </button>
+          <button type="button" class="preset-option-btn" data-order-val="backward">
+            <i class="fas fa-arrow-up-9-1"></i>
+            <span>Backward (Last to First)</span>
+          </button>
+          <button type="button" class="preset-option-btn" data-order-val="random">
+            <i class="fas fa-shuffle"></i>
+            <span>Random</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deck SRS Enabled Selector Modal -->
+    <div class="compact-floating-modal hidden" id="deck-srs-enabled-modal">
+      <div class="context-modal-backdrop" id="deck-srs-enabled-backdrop"></div>
+      <div class="compact-floating-card">
+        <div class="context-modal-header" style="margin-bottom: 0.8rem;">
+          <h3>SRS Scheduling</h3>
+        </div>
+        <div class="context-modal-body" id="deck-srs-enabled-options" style="display: flex; flex-direction: column; gap: 0.55rem;">
+          <button type="button" class="preset-option-btn" data-srs-val="true">
+            <i class="fas fa-circle-check"></i>
+            <span>Enabled (Apply SRS algorithm)</span>
+          </button>
+          <button type="button" class="preset-option-btn" data-srs-val="false">
+            <i class="fas fa-circle-xmark"></i>
+            <span>Disabled (Normal browsing)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Reusable Mobile Confirmation Modal (replaces window.confirm) -->
     <div class="mobile-modal-overlay hidden" id="mobile-confirm-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-confirm-title">
       <div class="mobile-modal-card">
@@ -469,10 +544,11 @@
       </div>
       
       <div class="mobile-modal-field" style="margin-top: 1rem; margin-bottom: 1.5rem;">
-        <label for="mobile-take-deck-class" style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.85rem; color: var(--text-muted);">Assign to Class</label>
-        <select id="mobile-take-deck-class" class="mobile-modal-select" style="width: 100%; box-sizing: border-box; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-hover); color: var(--text); font-size: 0.95rem;">
-          <option value="">General</option>
-        </select>
+        <label>Assign to Class</label>
+        <button type="button" class="custom-select-trigger" id="mobile-take-deck-class-trigger">
+          <span id="mobile-take-deck-class-label">General</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
       </div>
       
       <div class="mobile-modal-actions">
@@ -624,6 +700,280 @@
       </div>
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="study-order-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Deck Settings Modal -->
+  <div class="mobile-modal-overlay hidden" id="mobile-deck-settings-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-deck-settings-title">
+    <div class="mobile-modal-card">
+      <h3 id="mobile-deck-settings-title" class="modal-title"><i class="fas fa-cog"></i> Deck Settings</h3>
+      <p class="mobile-modal-hint" id="mobile-deck-settings-subtitle">Customize study order and SRS for this deck.</p>
+      
+      <div class="mobile-modal-scroll-content">
+        <!-- Study Order -->
+        <div class="mobile-modal-field">
+          <label>Study Order</label>
+          <button type="button" class="custom-select-trigger" id="mobile-deck-study-order-trigger">
+            <span id="mobile-deck-study-order-label">Use Global Setting</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+        
+        <!-- SRS Scheduling Select Dropdown -->
+        <div class="mobile-modal-field" style="margin-top: 0.75rem;">
+          <label>SRS Scheduling</label>
+          <button type="button" class="custom-select-trigger" id="mobile-deck-srs-enabled-trigger">
+            <span id="mobile-deck-srs-enabled-label">Enabled (Apply SRS algorithm)</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+        
+        <!-- SRS Tuning fields wrapper -->
+        <div id="mobile-deck-srs-fields" class="button-column" style="gap: 0.8rem; margin-top: 0.2rem;">
+          <label class="mobile-field">
+            <span>Desired Retention</span>
+            <input type="number" id="mobile-deck-request-retention" class="mobile-modal-input" min="0.7" max="0.99" step="0.01" placeholder="0.90">
+          </label>
+          <label class="mobile-field">
+            <span>Max Interval Days</span>
+            <input type="number" id="mobile-deck-max-interval" class="mobile-modal-input" min="1" step="1" placeholder="36500">
+          </label>
+          <label class="mobile-field">
+            <span>New Cards/Day Limit</span>
+            <input type="number" id="mobile-deck-new-limit" class="mobile-modal-input" min="0" step="1" placeholder="Unlimited">
+          </label>
+          <label class="mobile-field">
+            <span>Reviews/Day Limit</span>
+            <input type="number" id="mobile-deck-review-limit" class="mobile-modal-input" min="0" step="1" placeholder="Unlimited">
+          </label>
+        </div>
+      </div>
+      
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="mobile-deck-settings-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="mobile-deck-settings-save">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Card Typography Modal -->
+  <!-- Mobile Card Typography Modal -->
+  <div class="mobile-modal-overlay hidden" id="mobile-typography-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-typography-title">
+    <div class="mobile-modal-card">
+      <h3 id="mobile-typography-title" class="modal-title"><i class="fas fa-font"></i> Card Typography</h3>
+      <p class="mobile-modal-hint">Customize font layout, weight, and size for flashcard text.</p>
+      
+      <div class="mobile-modal-scroll-content" style="max-height: 55dvh; overflow-y: auto;">
+        <div class="mobile-modal-field" style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; margin-bottom: 0.35rem; font-size: 0.85rem; color: var(--muted);">Text Alignment</label>
+          <button type="button" class="custom-select-trigger" id="mobile-card-align-trigger">
+            <span id="mobile-card-align-label">Center</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+        
+        <div class="mobile-modal-field" style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; margin-bottom: 0.35rem; font-size: 0.85rem; color: var(--muted);">Font Family</label>
+          <button type="button" class="custom-select-trigger" id="mobile-card-font-trigger">
+            <span id="mobile-card-font-label">Sans-Serif (Default)</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+        
+        <div class="mobile-modal-field" style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; margin-bottom: 0.35rem; font-size: 0.85rem; color: var(--muted);">Font Weight / Thickness</label>
+          <button type="button" class="custom-select-trigger" id="mobile-card-weight-trigger">
+            <span id="mobile-card-weight-label">Medium (500)</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+        
+        <div class="mobile-modal-field" style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; margin-bottom: 0.35rem; font-size: 0.85rem; color: var(--muted);">Line Spacing (Line Height)</label>
+          <button type="button" class="custom-select-trigger" id="mobile-card-line-height-trigger">
+            <span id="mobile-card-line-height-label">Normal (1.4)</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+        
+        <div class="mobile-modal-field" style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; margin-bottom: 0.35rem; font-size: 0.85rem; color: var(--muted);">Letter Spacing</label>
+          <button type="button" class="custom-select-trigger" id="mobile-card-letter-spacing-trigger">
+            <span id="mobile-card-letter-spacing-label">Normal (0px)</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="mobile-typography-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="mobile-typography-save">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alignment Selector Modal -->
+  <div class="mobile-modal-overlay hidden" id="mobile-align-select-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-align-select-title">
+    <div class="mobile-modal-card">
+      <h3 id="mobile-align-select-title" class="modal-title"><i class="fas fa-align-center"></i> Text Alignment</h3>
+      <div class="mobile-modal-list">
+        <button type="button" class="mobile-modal-option-btn" data-value="left">
+          <i class="fas fa-align-left option-icon"></i>
+          <span class="option-details"><strong>Left</strong><small>Align text to the left margin</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="center">
+          <i class="fas fa-align-center option-icon"></i>
+          <span class="option-details"><strong>Center</strong><small>Center align card text (Default)</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="right">
+          <i class="fas fa-align-right option-icon"></i>
+          <span class="option-details"><strong>Right</strong><small>Align text to the right margin</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="mobile-align-select-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Font Family Selector Modal -->
+  <div class="mobile-modal-overlay hidden" id="mobile-font-select-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-font-select-title">
+    <div class="mobile-modal-card">
+      <h3 id="mobile-font-select-title" class="modal-title"><i class="fas fa-font"></i> Font Family</h3>
+      <div class="mobile-modal-list">
+        <button type="button" class="mobile-modal-option-btn" data-value="sans-serif">
+          <i class="fas fa-font option-icon"></i>
+          <span class="option-details"><strong>Sans-Serif</strong><small>Modern clean font (Default)</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="serif">
+          <i class="fas fa-heading option-icon"></i>
+          <span class="option-details"><strong>Serif</strong><small>Classical serif typeface</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="monospace">
+          <i class="fas fa-code option-icon"></i>
+          <span class="option-details"><strong>Monospace</strong><small>Fixed-width coding font</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="system">
+          <i class="fas fa-mobile-screen option-icon"></i>
+          <span class="option-details"><strong>System Default</strong><small>OS native system font</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="mobile-font-select-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Font Weight Selector Modal -->
+  <div class="mobile-modal-overlay hidden" id="mobile-weight-select-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-weight-select-title">
+    <div class="mobile-modal-card">
+      <h3 id="mobile-weight-select-title" class="modal-title"><i class="fas fa-bold"></i> Font Weight</h3>
+      <div class="mobile-modal-list">
+        <button type="button" class="mobile-modal-option-btn" data-value="300">
+          <i class="fas fa-file-text option-icon" style="font-weight: 300;"></i>
+          <span class="option-details"><strong>Light</strong><small>Weight 300 thickness</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="400">
+          <i class="fas fa-file-text option-icon" style="font-weight: 400;"></i>
+          <span class="option-details"><strong>Regular</strong><small>Weight 400 thickness</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="500">
+          <i class="fas fa-file-text option-icon" style="font-weight: 500;"></i>
+          <span class="option-details"><strong>Medium</strong><small>Weight 500 (Default)</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="600">
+          <i class="fas fa-file-text option-icon" style="font-weight: 600;"></i>
+          <span class="option-details"><strong>Semibold</strong><small>Weight 600 thickness</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="700">
+          <i class="fas fa-file-text option-icon" style="font-weight: 700;"></i>
+          <span class="option-details"><strong>Bold</strong><small>Weight 700 thickness</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="mobile-weight-select-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Line Spacing Selector Modal -->
+  <div class="mobile-modal-overlay hidden" id="mobile-line-height-select-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-line-height-select-title">
+    <div class="mobile-modal-card">
+      <h3 id="mobile-line-height-select-title" class="modal-title"><i class="fas fa-text-height"></i> Line Spacing</h3>
+      <div class="mobile-modal-list">
+        <button type="button" class="mobile-modal-option-btn" data-value="1.2">
+          <i class="fas fa-align-justify option-icon" style="font-size: 0.8rem;"></i>
+          <span class="option-details"><strong>Compact (1.2)</strong><small>Tight vertical line spacing</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="1.4">
+          <i class="fas fa-align-justify option-icon" style="font-size: 0.95rem;"></i>
+          <span class="option-details"><strong>Normal (1.4)</strong><small>Standard balanced spacing (Default)</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="1.6">
+          <i class="fas fa-align-justify option-icon" style="font-size: 1.1rem;"></i>
+          <span class="option-details"><strong>Relaxed (1.6)</strong><small>Readable airy line spacing</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="1.8">
+          <i class="fas fa-align-justify option-icon" style="font-size: 1.25rem;"></i>
+          <span class="option-details"><strong>Loose (1.8)</strong><small>Very wide spacing</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="mobile-line-height-select-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Letter Spacing Selector Modal -->
+  <div class="mobile-modal-overlay hidden" id="mobile-letter-spacing-select-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-letter-spacing-select-title">
+    <div class="mobile-modal-card">
+      <h3 id="mobile-letter-spacing-select-title" class="modal-title"><i class="fas fa-arrows-left-right"></i> Letter Spacing</h3>
+      <div class="mobile-modal-list">
+        <button type="button" class="mobile-modal-option-btn" data-value="-0.5px">
+          <i class="fas fa-compress option-icon"></i>
+          <span class="option-details"><strong>Tight (-0.5px)</strong><small>Closer letter margins</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="0">
+          <i class="fas fa-arrow-left-right option-icon"></i>
+          <span class="option-details"><strong>Normal (0px)</strong><small>Standard character spacing (Default)</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="0.5px">
+          <i class="fas fa-expand option-icon" style="font-size: 0.9rem;"></i>
+          <span class="option-details"><strong>Wide (0.5px)</strong><small>Slightly wider character gap</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="1px">
+          <i class="fas fa-expand option-icon" style="font-size: 1.05rem;"></i>
+          <span class="option-details"><strong>Extra Wide (1px)</strong><small>Noticeably wider gap</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="1.5px">
+          <i class="fas fa-expand option-icon" style="font-size: 1.2rem;"></i>
+          <span class="option-details"><strong>Loose (1.5px)</strong><small>Maximally spaced letters</small></span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="mobile-letter-spacing-select-cancel">Cancel</button>
       </div>
     </div>
   </div>

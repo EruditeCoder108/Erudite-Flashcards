@@ -1,0 +1,630 @@
+{
+  "id": "mental-maths-three-digit-times-two-digit-v1",
+  "name": "Mental Maths: 3-Digit × 2-Digit Multiplication — Core & Friendly Factors",
+  "description": "A KaTeX-enabled deck for three-digit by two-digit multiplication. It develops reliable one-factor splitting, nearby-tens adjustments, friendly factors such as 25, 50, 75, 99, 101, 125, and 250, plus estimates, error checks, and method selection.",
+  "difficulty": "Intermediate to Advanced",
+  "estimatedTime": "175–220 minutes for a first focused pass; then 10–20 minute review bursts",
+  "tags": [
+    "Mental Maths",
+    "Multiplication",
+    "3-Digit × 2-Digit",
+    "KaTeX",
+    "Arithmetic",
+    "Number Sense",
+    "Speed Maths"
+  ],
+  "cards": [
+    {
+      "term": "3-Digit × 2-Digit: What is the reliable default method?",
+      "definition": "Split the two-digit multiplier into tens and ones.\n\n$$\n\\begin{aligned}\n347\\times26 \\\\\n&=347\\times20+347\\times6 \\\\\n&=6940+2082 \\\\\n&=9022\n\\end{aligned}\n$$\nThis keeps the number of partial products low and works for every question.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: Why split the 2-digit factor rather than both factors?",
+      "definition": "It usually gives only two main partial products.\n\n$$\n\\begin{aligned}\n428\\times34 \\\\\n&=428\\times30+428\\times4 \\\\\n&=12840+1712 \\\\\n&=14552\n\\end{aligned}\n$$\nSplitting both factors is valid, but often creates unnecessary working-memory load.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: How do you use a nearby tens multiple?",
+      "definition": "Rewrite the two-digit factor as a friendly tens multiple plus or minus a small correction.\n\n$$\n\\begin{aligned}\n248\\times39 \\\\\n&=248\\times40-248 \\\\\n&=9920-248 \\\\\n&=9672\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: When is × 25 useful?",
+      "definition": "When the three-digit factor is divisible by 4 or easily split around a multiple of 4.\n\n$$\n\\begin{aligned}\n384\\times25 \\\\\n&=96\\times100 \\\\\n&=9600\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: When is × 50 useful?",
+      "definition": "When the factor is even: halve it, then multiply by 100.\n\n$$\n\\begin{aligned}\n468\\times50 \\\\\n&=234\\times100 \\\\\n&=23400\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: When is × 125 useful?",
+      "definition": "When a factor of 8 is visible.\n\n$$\n\\begin{aligned}\n384\\times125 \\\\\n&=48\\times1000 \\\\\n&=48000\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: How do you use 99 or 101?",
+      "definition": "Use 99 = 100 − 1 and 101 = 100 + 1.\n\n$$\n\\begin{aligned}\n376\\times99 \\\\\n&=37600-376 \\\\\n&=37224\n\\end{aligned}\n$$\nA product by 99 is just below the product by 100.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: How do you estimate?",
+      "definition": "Round both factors to friendly values.\n\nFor 347 × 26, estimate 350 × 30 = 10500. The exact result 9022 is plausible because 26 is considerably below 30.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: Why keep full partial products?",
+      "definition": "Do not perform long written multiplication in your head. Keep whole chunks.\n\n$$\n\\begin{aligned}\n586\\times37 \\\\\n&=586\\times30+586\\times7 \\\\\n&=17580+4102 \\\\\n&=21682\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: When should you not use a trick?",
+      "definition": "For ordinary factors without a nearby base or friendly factor, use the core split.\n\n$$\n\\begin{aligned}\n463\\times27 \\\\\n&=463\\times20+463\\times7 \\\\\n&=9260+3241 \\\\\n&=12501\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: Which method is best for 384 × 25?",
+      "definition": "Use \\(25=\\frac{100}{4}\\).\n\n$$\n\\begin{aligned}\n384\\times25 \\\\\n&=96\\times100 \\\\\n&=9600\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: Which method is best for 248 × 39?",
+      "definition": "Use 39 = 40 − 1.\n\n$$\n\\begin{aligned}\n248\\times39 \\\\\n&=9920-248 \\\\\n&=9672\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: How can you self-check?",
+      "definition": "Use estimation and a last-digit check. For 428 × 34, estimate 400 × 30 = 12000, and the last digit must come from 8 × 4 = 32, so it ends in 2. Exact answer: 14552.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "3-Digit × 2-Digit: Can a last-digit check prove the whole answer?",
+      "definition": "No. It can eliminate many incorrect answers, but it checks only the final digit. Pair it with estimation.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 126 × 14",
+      "definition": "Answer: 1764\n\nCore one-factor split:\n$$\n\\begin{aligned}\n126\\times14 \\\\\n&=126\\times10+126\\times4 \\\\\n&=1260+504 \\\\\n&=1764\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 138 × 23",
+      "definition": "Answer: 3174\n\nCore one-factor split:\n$$\n\\begin{aligned}\n138\\times23 \\\\\n&=138\\times20+138\\times3 \\\\\n&=2760+414 \\\\\n&=3174\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 147 × 32",
+      "definition": "Answer: 4704\n\nCore one-factor split:\n$$\n\\begin{aligned}\n147\\times32 \\\\\n&=147\\times30+147\\times2 \\\\\n&=4410+294 \\\\\n&=4704\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 156 × 24",
+      "definition": "Answer: 3744\n\nCore one-factor split:\n$$\n\\begin{aligned}\n156\\times24 \\\\\n&=156\\times20+156\\times4 \\\\\n&=3120+624 \\\\\n&=3744\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 168 × 35",
+      "definition": "Answer: 5880\n\nCore one-factor split:\n$$\n\\begin{aligned}\n168\\times35 \\\\\n&=168\\times30+168\\times5 \\\\\n&=5040+840 \\\\\n&=5880\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 172 × 26",
+      "definition": "Answer: 4472\n\nCore one-factor split:\n$$\n\\begin{aligned}\n172\\times26 \\\\\n&=172\\times20+172\\times6 \\\\\n&=3440+1032 \\\\\n&=4472\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 184 × 37",
+      "definition": "Answer: 6808\n\nCore one-factor split:\n$$\n\\begin{aligned}\n184\\times37 \\\\\n&=184\\times30+184\\times7 \\\\\n&=5520+1288 \\\\\n&=6808\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 195 × 28",
+      "definition": "Answer: 5460\n\nCore one-factor split:\n$$\n\\begin{aligned}\n195\\times28 \\\\\n&=195\\times20+195\\times8 \\\\\n&=3900+1560 \\\\\n&=5460\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 213 × 16",
+      "definition": "Answer: 3408\n\nCore one-factor split:\n$$\n\\begin{aligned}\n213\\times16 \\\\\n&=213\\times10+213\\times6 \\\\\n&=2130+1278 \\\\\n&=3408\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 224 × 34",
+      "definition": "Answer: 7616\n\nCore one-factor split:\n$$\n\\begin{aligned}\n224\\times34 \\\\\n&=224\\times30+224\\times4 \\\\\n&=6720+896 \\\\\n&=7616\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 236 × 27",
+      "definition": "Answer: 6372\n\nCore one-factor split:\n$$\n\\begin{aligned}\n236\\times27 \\\\\n&=236\\times20+236\\times7 \\\\\n&=4720+1652 \\\\\n&=6372\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 248 × 36",
+      "definition": "Answer: 8928\n\nCore one-factor split:\n$$\n\\begin{aligned}\n248\\times36 \\\\\n&=248\\times30+248\\times6 \\\\\n&=7440+1488 \\\\\n&=8928\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 257 × 24",
+      "definition": "Answer: 6168\n\nCore one-factor split:\n$$\n\\begin{aligned}\n257\\times24 \\\\\n&=257\\times20+257\\times4 \\\\\n&=5140+1028 \\\\\n&=6168\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 268 × 43",
+      "definition": "Answer: 11524\n\nCore one-factor split:\n$$\n\\begin{aligned}\n268\\times43 \\\\\n&=268\\times40+268\\times3 \\\\\n&=10720+804 \\\\\n&=11524\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 279 × 32",
+      "definition": "Answer: 8928\n\nCore one-factor split:\n$$\n\\begin{aligned}\n279\\times32 \\\\\n&=279\\times30+279\\times2 \\\\\n&=8370+558 \\\\\n&=8928\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 286 × 47",
+      "definition": "Answer: 13442\n\nCore one-factor split:\n$$\n\\begin{aligned}\n286\\times47 \\\\\n&=286\\times40+286\\times7 \\\\\n&=11440+2002 \\\\\n&=13442\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 312 × 18",
+      "definition": "Answer: 5616\n\nCore one-factor split:\n$$\n\\begin{aligned}\n312\\times18 \\\\\n&=312\\times10+312\\times8 \\\\\n&=3120+2496 \\\\\n&=5616\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 324 × 26",
+      "definition": "Answer: 8424\n\nCore one-factor split:\n$$\n\\begin{aligned}\n324\\times26 \\\\\n&=324\\times20+324\\times6 \\\\\n&=6480+1944 \\\\\n&=8424\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 336 × 24",
+      "definition": "Answer: 8064\n\nCore one-factor split:\n$$\n\\begin{aligned}\n336\\times24 \\\\\n&=336\\times20+336\\times4 \\\\\n&=6720+1344 \\\\\n&=8064\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 348 × 37",
+      "definition": "Answer: 12876\n\nCore one-factor split:\n$$\n\\begin{aligned}\n348\\times37 \\\\\n&=348\\times30+348\\times7 \\\\\n&=10440+2436 \\\\\n&=12876\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 357 × 28",
+      "definition": "Answer: 9996\n\nCore one-factor split:\n$$\n\\begin{aligned}\n357\\times28 \\\\\n&=357\\times20+357\\times8 \\\\\n&=7140+2856 \\\\\n&=9996\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 368 × 42",
+      "definition": "Answer: 15456\n\nCore one-factor split:\n$$\n\\begin{aligned}\n368\\times42 \\\\\n&=368\\times40+368\\times2 \\\\\n&=14720+736 \\\\\n&=15456\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 376 × 34",
+      "definition": "Answer: 12784\n\nCore one-factor split:\n$$\n\\begin{aligned}\n376\\times34 \\\\\n&=376\\times30+376\\times4 \\\\\n&=11280+1504 \\\\\n&=12784\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 384 × 27",
+      "definition": "Answer: 10368\n\nCore one-factor split:\n$$\n\\begin{aligned}\n384\\times27 \\\\\n&=384\\times20+384\\times7 \\\\\n&=7680+2688 \\\\\n&=10368\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 412 × 23",
+      "definition": "Answer: 9476\n\nCore one-factor split:\n$$\n\\begin{aligned}\n412\\times23 \\\\\n&=412\\times20+412\\times3 \\\\\n&=8240+1236 \\\\\n&=9476\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 425 × 36",
+      "definition": "Answer: 15300\n\nCore one-factor split:\n$$\n\\begin{aligned}\n425\\times36 \\\\\n&=425\\times30+425\\times6 \\\\\n&=12750+2550 \\\\\n&=15300\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 438 × 24",
+      "definition": "Answer: 10512\n\nCore one-factor split:\n$$\n\\begin{aligned}\n438\\times24 \\\\\n&=438\\times20+438\\times4 \\\\\n&=8760+1752 \\\\\n&=10512\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 452 × 37",
+      "definition": "Answer: 16724\n\nCore one-factor split:\n$$\n\\begin{aligned}\n452\\times37 \\\\\n&=452\\times30+452\\times7 \\\\\n&=13560+3164 \\\\\n&=16724\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 463 × 27",
+      "definition": "Answer: 12501\n\nCore one-factor split:\n$$\n\\begin{aligned}\n463\\times27 \\\\\n&=463\\times20+463\\times7 \\\\\n&=9260+3241 \\\\\n&=12501\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 476 × 32",
+      "definition": "Answer: 15232\n\nCore one-factor split:\n$$\n\\begin{aligned}\n476\\times32 \\\\\n&=476\\times30+476\\times2 \\\\\n&=14280+952 \\\\\n&=15232\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 489 × 26",
+      "definition": "Answer: 12714\n\nCore one-factor split:\n$$\n\\begin{aligned}\n489\\times26 \\\\\n&=489\\times20+489\\times6 \\\\\n&=9780+2934 \\\\\n&=12714\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 512 × 34",
+      "definition": "Answer: 17408\n\nCore one-factor split:\n$$\n\\begin{aligned}\n512\\times34 \\\\\n&=512\\times30+512\\times4 \\\\\n&=15360+2048 \\\\\n&=17408\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 526 × 28",
+      "definition": "Answer: 14728\n\nCore one-factor split:\n$$\n\\begin{aligned}\n526\\times28 \\\\\n&=526\\times20+526\\times8 \\\\\n&=10520+4208 \\\\\n&=14728\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 538 × 42",
+      "definition": "Answer: 22596\n\nCore one-factor split:\n$$\n\\begin{aligned}\n538\\times42 \\\\\n&=538\\times40+538\\times2 \\\\\n&=21520+1076 \\\\\n&=22596\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 547 × 36",
+      "definition": "Answer: 19692\n\nCore one-factor split:\n$$\n\\begin{aligned}\n547\\times36 \\\\\n&=547\\times30+547\\times6 \\\\\n&=16410+3282 \\\\\n&=19692\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Calculate mentally: 568 × 24",
+      "definition": "Answer: 13632\n\nCore one-factor split:\n$$\n\\begin{aligned}\n568\\times24 \\\\\n&=568\\times20+568\\times4 \\\\\n&=11360+2272 \\\\\n&=13632\n\\end{aligned}\n$$\n\nThis is the dependable method when no special structure stands out.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 238 × 19",
+      "definition": "Answer: 4522\n\nUse 19 = 20 − 1.\n$$\n\\begin{aligned}\n238\\times19 \\\\\n&=4760-238 \\\\\n&=4522\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 347 × 21",
+      "definition": "Answer: 7287\n\nUse 21 = 20 + 1.\n$$\n\\begin{aligned}\n347\\times21 \\\\\n&=6940+347 \\\\\n&=7287\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 256 × 29",
+      "definition": "Answer: 7424\n\nUse 29 = 30 − 1.\n$$\n\\begin{aligned}\n256\\times29 \\\\\n&=7680-256 \\\\\n&=7424\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 428 × 31",
+      "definition": "Answer: 13268\n\nUse 31 = 30 + 1.\n$$\n\\begin{aligned}\n428\\times31 \\\\\n&=12840+428 \\\\\n&=13268\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 246 × 39",
+      "definition": "Answer: 9594\n\nUse 39 = 40 − 1.\n$$\n\\begin{aligned}\n246\\times39 \\\\\n&=9840-246 \\\\\n&=9594\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 378 × 41",
+      "definition": "Answer: 15498\n\nUse 41 = 40 + 1.\n$$\n\\begin{aligned}\n378\\times41 \\\\\n&=15120+378 \\\\\n&=15498\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 284 × 49",
+      "definition": "Answer: 13916\n\nUse 49 = 50 − 1.\n$$\n\\begin{aligned}\n284\\times49 \\\\\n&=14200-284 \\\\\n&=13916\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 436 × 51",
+      "definition": "Answer: 22236\n\nUse 51 = 50 + 1.\n$$\n\\begin{aligned}\n436\\times51 \\\\\n&=21800+436 \\\\\n&=22236\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 327 × 59",
+      "definition": "Answer: 19293\n\nUse 59 = 60 − 1.\n$$\n\\begin{aligned}\n327\\times59 \\\\\n&=19620-327 \\\\\n&=19293\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 462 × 61",
+      "definition": "Answer: 28182\n\nUse 61 = 60 + 1.\n$$\n\\begin{aligned}\n462\\times61 \\\\\n&=27720+462 \\\\\n&=28182\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 248 × 75",
+      "definition": "Answer: 18600\n\nUse \\(75=\\frac{3}{4}\\times100\\).\n$$\n\\begin{aligned}\n248\\times75 \\\\\n&=186\\times100 \\\\\n&=18600\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 336 × 75",
+      "definition": "Answer: 25200\n\nUse \\(75=\\frac{3}{4}\\times100\\).\n$$\n\\begin{aligned}\n336\\times75 \\\\\n&=252\\times100 \\\\\n&=25200\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 264 × 99",
+      "definition": "Answer: 26136\n\nUse 99 = 100 − 1.\n$$\n\\begin{aligned}\n264\\times99 \\\\\n&=26400-264 \\\\\n&=26136\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 376 × 99",
+      "definition": "Answer: 37224\n\nUse 99 = 100 − 1.\n$$\n\\begin{aligned}\n376\\times99 \\\\\n&=37600-376 \\\\\n&=37224\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 247 × 101",
+      "definition": "Answer: 24947\n\nUse 101 = 100 + 1.\n$$\n\\begin{aligned}\n247\\times101 \\\\\n&=24700+247 \\\\\n&=24947\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 384 × 101",
+      "definition": "Answer: 38784\n\nUse 101 = 100 + 1.\n$$\n\\begin{aligned}\n384\\times101 \\\\\n&=38400+384 \\\\\n&=38784\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 312 × 125",
+      "definition": "Answer: 39000\n\nPair a factor of 8 with 125.\n$$\n\\begin{aligned}\n312\\times125 \\\\\n&=39\\times1000 \\\\\n&=39000\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 384 × 125",
+      "definition": "Answer: 48000\n\nPair a factor of 8 with 125.\n$$\n\\begin{aligned}\n384\\times125 \\\\\n&=48\\times1000 \\\\\n&=48000\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 468 × 50",
+      "definition": "Answer: 23400\n\nHalve, then multiply by 100.\n$$\n\\begin{aligned}\n468\\times50 \\\\\n&=234\\times100 \\\\\n&=23400\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 576 × 25",
+      "definition": "Answer: 14400\n\nDivide by 4, then multiply by 100.\n$$\n\\begin{aligned}\n576\\times25 \\\\\n&=144\\times100 \\\\\n&=14400\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 496 × 25",
+      "definition": "Answer: 12400\n\nDivide by 4, then multiply by 100.\n$$\n\\begin{aligned}\n496\\times25 \\\\\n&=124\\times100 \\\\\n&=12400\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 624 × 75",
+      "definition": "Answer: 46800\n\nUse \\(75=\\frac{3}{4}\\times100\\).\n$$\n\\begin{aligned}\n624\\times75 \\\\\n&=468\\times100 \\\\\n&=46800\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 288 × 125",
+      "definition": "Answer: 36000\n\nPair the 8 with 125.\n$$\n\\begin{aligned}\n288\\times125 \\\\\n&=36\\times1000 \\\\\n&=36000\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Friendly-factor practice: 456 × 250",
+      "definition": "Answer: 114000\n\nUse 250 × 4 = 1000.\n$$\n\\begin{aligned}\n456\\times250 \\\\\n&=114\\times1000 \\\\\n&=114000\n\\end{aligned}\n$$\n\nUse the shortcut only if it clearly reduces the number of active steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Find the mistake:\n248 × 39 = 248 × 40 − 1 = 9919",
+      "definition": "The correction must be 248 × 1, not just 1.\n\n$$\n\\begin{aligned}\n248\\times39 \\\\\n&=9920-248 \\\\\n&=9672\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Find the mistake:\n384 × 25 = 384 ÷ 4 = 96",
+      "definition": "The × 100 step is missing.\n\n384 × 25 = 96 × 100 = 9600.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Find the mistake:\n376 × 99 = 37600 + 376 = 37976",
+      "definition": "The sign is wrong because 99 = 100 − 1.\n\n$$\n\\begin{aligned}\n376\\times99 \\\\\n&=37600-376 \\\\\n&=37224\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Find the mistake:\n586 × 37 = 17580 + 4072 = 21652",
+      "definition": "The seven-times part is wrong: 586 × 7 = 4102.\n\n$$\n\\begin{aligned}\n586\\times37 \\\\\n&=17580+4102 \\\\\n&=21682\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Which estimate is better for 463 × 27: 1200, 12000, or 120000?",
+      "definition": "Best estimate: 12000. 463 ≈ 500 and 27 ≈ 30, so the product is in the low tens of thousands.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Last-digit check: Can 428 × 34 end in 6?",
+      "definition": "No. 8 × 4 = 32, so the product must end in 2.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "True or false: Splitting the 2-digit multiplier always gives a valid product.",
+      "definition": "True. It follows from a(10b + c) = a · 10b + a · c.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "True or false: A nearby-base method is always faster than core splitting.",
+      "definition": "False. It only helps when the correction is small and easy.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Choose the best method for 576 × 25.",
+      "definition": "Divide 576 by 4, then multiply by 100:\n\n$$\n\\begin{aligned}\n576\\times25 \\\\\n&=144\\times100 \\\\\n&=14400\n\\end{aligned}\n$$",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Choose the best method for 347 × 26.",
+      "definition": "Core split: 347 × 20 + 347 × 6. There is no compelling special factor.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 347 × 26\nChoose a route before flipping.",
+      "definition": "Answer: 9022\n\nOne efficient method: Core split\n$$\n\\begin{aligned}\n347\\times26 \\\\\n&=6940+2082 \\\\\n&=9022\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 248 × 39\nChoose a route before flipping.",
+      "definition": "Answer: 9672\n\nOne efficient method: Use 40 − 1\n$$\n\\begin{aligned}\n248\\times39 \\\\\n&=9920-248 \\\\\n&=9672\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 384 × 25\nChoose a route before flipping.",
+      "definition": "Answer: 9600\n\nOne efficient method: Use \\(25=\\frac{100}{4}\\)\n$$\n\\begin{aligned}\n384\\times25 \\\\\n&=96\\times100 \\\\\n&=9600\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 576 × 25\nChoose a route before flipping.",
+      "definition": "Answer: 14400\n\nOne efficient method: Use \\(25=\\frac{100}{4}\\)\n$$\n\\begin{aligned}\n576\\times25 \\\\\n&=144\\times100 \\\\\n&=14400\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 468 × 50\nChoose a route before flipping.",
+      "definition": "Answer: 23400\n\nOne efficient method: Use \\(50=\\frac{100}{2}\\)\n$$\n\\begin{aligned}\n468\\times50 \\\\\n&=234\\times100 \\\\\n&=23400\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 312 × 125\nChoose a route before flipping.",
+      "definition": "Answer: 39000\n\nOne efficient method: Pair 8 with 125\n$$\n\\begin{aligned}\n312\\times125 \\\\\n&=39\\times1000 \\\\\n&=39000\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 456 × 250\nChoose a route before flipping.",
+      "definition": "Answer: 114000\n\nOne efficient method: Pair 4 with 250\n$$\n\\begin{aligned}\n456\\times250 \\\\\n&=114\\times1000 \\\\\n&=114000\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 426 × 37\nChoose a route before flipping.",
+      "definition": "Answer: 15762\n\nOne efficient method: Core split\n$$\n\\begin{aligned}\n426\\times37 \\\\\n&=12780+2982 \\\\\n&=15762\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 527 × 28\nChoose a route before flipping.",
+      "definition": "Answer: 14756\n\nOne efficient method: Core split\n$$\n\\begin{aligned}\n527\\times28 \\\\\n&=10540+4216 \\\\\n&=14756\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 364 × 49\nChoose a route before flipping.",
+      "definition": "Answer: 17836\n\nOne efficient method: Use 50 − 1\n$$\n\\begin{aligned}\n364\\times49 \\\\\n&=18200-364 \\\\\n&=17836\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 243 × 75\nChoose a route before flipping.",
+      "definition": "Answer: 18225\n\nOne efficient method: Use \\(75=\\frac{3}{4}\\times100\\)\n$$\n\\begin{aligned}\n243\\times75 \\\\\n&=182.25\\times100 \\\\\n&=18225\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 264 × 99\nChoose a route before flipping.",
+      "definition": "Answer: 26136\n\nOne efficient method: Use 100 − 1\n$$\n\\begin{aligned}\n264\\times99 \\\\\n&=26400-264 \\\\\n&=26136\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 384 × 101\nChoose a route before flipping.",
+      "definition": "Answer: 38784\n\nOne efficient method: Use 100 + 1\n$$\n\\begin{aligned}\n384\\times101 \\\\\n&=38400+384 \\\\\n&=38784\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 512 × 24\nChoose a route before flipping.",
+      "definition": "Answer: 12288\n\nOne efficient method: Core split\n$$\n\\begin{aligned}\n512\\times24 \\\\\n&=10240+2048 \\\\\n&=12288\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 625 × 16\nChoose a route before flipping.",
+      "definition": "Answer: 10000\n\nOne efficient method: Use doubling or 625 × 16\n$$\n\\begin{aligned}\n625\\times16 \\\\\n&=10000 \\\\\n&=10000\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 348 × 36\nChoose a route before flipping.",
+      "definition": "Answer: 12528\n\nOne efficient method: Core split\n$$\n\\begin{aligned}\n348\\times36 \\\\\n&=10440+2088 \\\\\n&=12528\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 425 × 48\nChoose a route before flipping.",
+      "definition": "Answer: 20400\n\nOne efficient method: Core split\n$$\n\\begin{aligned}\n425\\times48 \\\\\n&=17000+3400 \\\\\n&=20400\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    },
+    {
+      "term": "Mixed challenge: 286 × 35\nChoose a route before flipping.",
+      "definition": "Answer: 10010\n\nOne efficient method: Use 30 + 5\n$$\n\\begin{aligned}\n286\\times35 \\\\\n&=8580+1430 \\\\\n&=10010\n\\end{aligned}\n$$\n\nA different route is valid if it remains accurate and uses fewer mental steps.",
+      "termImage": "",
+      "definitionImage": ""
+    }
+  ]
+}

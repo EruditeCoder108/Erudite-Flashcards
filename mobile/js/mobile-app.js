@@ -49,17 +49,19 @@
     { id: 'neet-ug', name: 'NEET UG' },
     { id: 'jee-main', name: 'JEE Main' },
     { id: 'jee-advanced', name: 'JEE Advanced' },
-    { id: 'ssc', name: 'SSC' }
+    { id: 'ssc', name: 'SSC' },
+    { id: 'quick-maths', name: 'Quick Maths' }
   ];
 
   const premadeSubjects = {
     '10th': ['Science', 'Maths', 'English', 'Civics', 'Geography', 'History', 'Hindi', 'Politics'],
     '11th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education'],
     '12th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education'],
-    'neet-ug': ['physics', 'chemistry', 'biology'],
-    'jee-main': ['physics', 'chemistry', 'maths'],
-    'jee-advanced': ['physics', 'chemistry', 'maths'],
-    'ssc': ['general-awareness', 'quantitative-aptitude', 'reasoning', 'english']
+    'neet-ug': ['Physics', 'Chemistry', 'Biology'],
+    'jee-main': ['Physics', 'Chemistry', 'Maths'],
+    'jee-advanced': ['Physics', 'Chemistry', 'Maths'],
+    'ssc': ['general-awareness', 'quantitative-aptitude', 'reasoning', 'english'],
+    'quick-maths': ['Mental-Maths']
   };
 
   const sortOrder = ['recent', 'name', 'cards', 'due'];
@@ -100,6 +102,8 @@
     browserList: document.getElementById('browser-list'),
     srsSwitch: document.getElementById('srs-switch'),
     moreSrsLabel: document.getElementById('more-srs-label'),
+    soundSwitch: document.getElementById('sound-switch'),
+    moreSoundLabel: document.getElementById('more-sound-label'),
     normalStudyOrder: null,
     bgOpacitySlider: document.getElementById('mobile-bg-opacity'),
     themeLabel: document.getElementById('more-theme-label'),
@@ -448,6 +452,7 @@
 
   function playClick() {
     triggerHaptic();
+    if (state.settings?.soundEffectsEnabled === false) return;
     try {
       const audio = new Audio('assets/flashcard-assets/click.mp3');
       audio.volume = 0.85;
@@ -456,6 +461,7 @@
   }
 
   function playStar() {
+    if (state.settings?.soundEffectsEnabled === false) return;
     try {
       const audio = new Audio('assets/audio/Star.mp3');
       audio.volume = 0.85;
@@ -510,6 +516,22 @@
     const normalizedSets = (sets || []).map(set => schema?.normalizeSet ? schema.normalizeSet(set, null, { preserveLastModified: true }) : set);
     state.sets = normalizeSetClassReferences(normalizedSets, state.classes);
     state.settings = settings || {};
+    // Apply card styles on startup
+    if (state.settings.cardStyle) {
+      const cs = state.settings.cardStyle;
+      let fontFamily = 'inherit';
+      if (cs.font === 'sans-serif') fontFamily = "Inter, sans-serif";
+      else if (cs.font === 'serif') fontFamily = "Georgia, serif";
+      else if (cs.font === 'monospace') fontFamily = "Courier New, monospace";
+      else if (cs.font === 'system') fontFamily = "system-ui, sans-serif";
+
+      const root = document.documentElement;
+      root.style.setProperty('--card-text-align', cs.align);
+      root.style.setProperty('--card-text-weight', cs.weight);
+      root.style.setProperty('--card-text-font-family', fontFamily);
+      root.style.setProperty('--card-text-line-height', cs.lineHeight);
+      root.style.setProperty('--card-text-letter-spacing', cs.letterSpacing);
+    }
     state.srsMode = readSrsMode(srsMode);
     state.studySessions = studySessions || [];
     const theme = state.settings?.theme || 'dark';
@@ -584,12 +606,12 @@
     setHeader();
     if (tab === 'library') {
       const btnPremade = document.querySelector('.source-option[data-action="open-premade"]');
-      if (btnPremade && !btnPremade.classList.contains('active')) {
-        document.getElementById('mobile-user-decks-view')?.classList.remove('hidden');
-        document.getElementById('mobile-premade-decks-view')?.classList.add('hidden');
-        const btnCreate = document.querySelector('[data-action="open-create"]');
-        if (btnCreate) btnCreate.classList.remove('hidden');
-      }
+      const isPremade = btnPremade && btnPremade.classList.contains('active');
+      document.getElementById('mobile-user-headers')?.classList.toggle('hidden', isPremade);
+      document.getElementById('mobile-user-decks-view')?.classList.toggle('hidden', isPremade);
+      document.getElementById('mobile-premade-decks-view')?.classList.toggle('hidden', !isPremade);
+      const btnCreate = document.querySelector('[data-action="open-create"]');
+      if (btnCreate) btnCreate.classList.toggle('hidden', isPremade);
     } else {
       exitSelectMode();
     }
@@ -1587,7 +1609,7 @@
           const file = item.fileName || item.filename || item.file || item.path || '';
           return `
             <article class="premade-row">
-              <div class="deck-icon"><i class="fas fa-book-open"></i></div>
+              <div class="deck-icon"><i class="fas ${item.icon || 'fa-book-open'}"></i></div>
               <div class="deck-main">
                 <h3 class="deck-title">${escapeHtml(item.name || item.title || file || 'Premade Deck')}</h3>
                 <div class="deck-subline">
@@ -1624,30 +1646,52 @@
 
     const overlay = document.getElementById('take-deck-overlay');
     const nameInput = document.getElementById('mobile-take-deck-name');
-    const classSelect = document.getElementById('mobile-take-deck-class');
+    const triggerBtn = document.getElementById('mobile-take-deck-class-trigger');
     const cancelBtn = document.getElementById('mobile-take-deck-cancel');
     const confirmBtn = document.getElementById('mobile-take-deck-confirm');
+
+    let selectedClassId = '';
+
+    const updateClassLabel = (classId) => {
+      selectedClassId = classId;
+      const label = document.getElementById('mobile-take-deck-class-label');
+      if (label) {
+        if (!classId) {
+          label.textContent = 'General';
+        } else {
+          const cls = state.classes.find(c => String(c.id) === String(classId));
+          label.textContent = cls ? cls.name : 'General';
+        }
+      }
+    };
 
     if (nameInput) {
       nameInput.value = data.name || data.title || fileName.replace(/\.json$/i, '');
     }
 
-    if (classSelect) {
-      classSelect.innerHTML = '<option value="">General</option>';
-      (state.classes || []).forEach(c => {
-        const opt = document.createElement('option');
-        opt.value = c.id;
-        opt.textContent = c.name;
-        classSelect.appendChild(opt);
-      });
-    }
+    updateClassLabel('');
 
     overlay?.classList.remove('hidden');
+
+    const onTriggerClick = (e) => {
+      e.preventDefault();
+      playClick();
+      openClassSelectModal(
+        selectedClassId,
+        (classId) => {
+          updateClassLabel(classId);
+        },
+        async () => {
+          await createClassFromCreator();
+        }
+      );
+    };
 
     const cleanupListeners = () => {
       cancelBtn?.removeEventListener('click', onCancel);
       confirmBtn?.removeEventListener('click', onConfirm);
       overlay?.removeEventListener('click', onOverlayClick);
+      triggerBtn?.removeEventListener('click', onTriggerClick);
     };
 
     const onCancel = () => {
@@ -1664,7 +1708,7 @@
 
     const onConfirm = async () => {
       const targetName = nameInput?.value.trim() || data.name || fileName.replace(/\.json$/i, '');
-      const targetClassId = classSelect?.value || null;
+      const targetClassId = selectedClassId || null;
 
       try {
         const saved = await window.flashcardStore.saveSet({
@@ -1688,6 +1732,7 @@
     cancelBtn?.addEventListener('click', onCancel);
     confirmBtn?.addEventListener('click', onConfirm);
     overlay?.addEventListener('click', onOverlayClick);
+    triggerBtn?.addEventListener('click', onTriggerClick);
   }
 
 
@@ -1748,6 +1793,13 @@
   function renderMore() {
     selectors.srsSwitch?.classList.toggle('on', state.srsMode);
     selectors.moreSrsLabel.textContent = state.srsMode ? 'On - due reviews are scheduled' : 'Off - normal study only';
+    
+    const soundEnabled = state.settings?.soundEffectsEnabled !== false;
+    selectors.soundSwitch?.classList.toggle('on', soundEnabled);
+    if (selectors.moreSoundLabel) {
+      selectors.moreSoundLabel.textContent = soundEnabled ? 'On' : 'Off';
+    }
+
     const order = normalizeNormalStudyOrder(state.settings?.normalStudyOrder);
     const orderLabels = {
       forward: 'Beginning',
@@ -1889,6 +1941,22 @@
     playClick();
     render();
     showToast(state.srsMode ? 'SRS mode on' : 'SRS mode off');
+  }
+
+  async function toggleSound() {
+    const soundEnabled = state.settings?.soundEffectsEnabled !== false;
+    state.settings = {
+      ...(state.settings || {}),
+      soundEffectsEnabled: !soundEnabled
+    };
+    if (window.flashcardStore?.saveSettings) {
+      await window.flashcardStore.saveSettings(state.settings);
+    }
+    if (!soundEnabled) {
+      playClick();
+    }
+    renderMore();
+    showToast(state.settings.soundEffectsEnabled ? 'Sound effects enabled' : 'Sound effects disabled');
   }
 
   async function togglePin(setId) {
@@ -2313,6 +2381,198 @@
 
     optionButtons.forEach(btn => btn.addEventListener('click', handleSelect));
     cancelBtn?.addEventListener('click', close);
+  }
+
+  function openTypographyModal() {
+    const overlay = document.getElementById('mobile-typography-overlay');
+    const cancelBtn = document.getElementById('mobile-typography-cancel');
+    const saveBtn = document.getElementById('mobile-typography-save');
+    if (!overlay) return;
+
+    // Triggers and labels
+    const alignTrigger = document.getElementById('mobile-card-align-trigger');
+    const alignLabel = document.getElementById('mobile-card-align-label');
+    const fontTrigger = document.getElementById('mobile-card-font-trigger');
+    const fontLabel = document.getElementById('mobile-card-font-label');
+    const weightTrigger = document.getElementById('mobile-card-weight-trigger');
+    const weightLabel = document.getElementById('mobile-card-weight-label');
+    const lineHeightTrigger = document.getElementById('mobile-card-line-height-trigger');
+    const lineHeightLabel = document.getElementById('mobile-card-line-height-label');
+    const letterSpacingTrigger = document.getElementById('mobile-card-letter-spacing-trigger');
+    const letterSpacingLabel = document.getElementById('mobile-card-letter-spacing-label');
+
+    const cs = state.settings?.cardStyle || {
+      align: 'center',
+      font: 'sans-serif',
+      weight: '500',
+      lineHeight: '1.4',
+      letterSpacing: '0'
+    };
+
+    const tempStyle = {
+      align: cs.align || 'center',
+      font: cs.font || 'sans-serif',
+      weight: cs.weight || '500',
+      lineHeight: cs.lineHeight || '1.4',
+      letterSpacing: cs.letterSpacing || '0'
+    };
+
+    const maps = {
+      align: { left: 'Left', center: 'Center', right: 'Right' },
+      font: { 'sans-serif': 'Sans-Serif (Default)', serif: 'Serif', monospace: 'Monospace', system: 'System Default' },
+      weight: { '300': 'Light (300)', '400': 'Regular (400)', '500': 'Medium (500)', '600': 'Semibold (600)', '700': 'Bold (700)' },
+      lineHeight: { '1.2': 'Compact (1.2)', '1.4': 'Normal (1.4)', '1.6': 'Relaxed (1.6)', '1.8': 'Loose (1.8)' },
+      letterSpacing: { '-0.5px': 'Tight (-0.5px)', '0': 'Normal (0px)', '0.5px': 'Wide (0.5px)', '1px': 'Extra Wide (1px)', '1.5px': 'Loose (1.5px)' }
+    };
+
+    function updateLabels() {
+      if (alignLabel) alignLabel.textContent = maps.align[tempStyle.align] || tempStyle.align;
+      if (fontLabel) fontLabel.textContent = maps.font[tempStyle.font] || tempStyle.font;
+      if (weightLabel) weightLabel.textContent = maps.weight[tempStyle.weight] || tempStyle.weight;
+      if (lineHeightLabel) lineHeightLabel.textContent = maps.lineHeight[tempStyle.lineHeight] || tempStyle.lineHeight;
+      if (letterSpacingLabel) letterSpacingLabel.textContent = maps.letterSpacing[tempStyle.letterSpacing] || tempStyle.letterSpacing;
+    }
+
+    // Initialize labels
+    updateLabels();
+
+    function openSubModal(overlayId, cancelId, currentValue, onSelect) {
+      const subOverlay = document.getElementById(overlayId);
+      const subCancelBtn = document.getElementById(cancelId);
+      if (!subOverlay) return;
+
+      const optionButtons = Array.from(subOverlay.querySelectorAll('.mobile-modal-option-btn'));
+      optionButtons.forEach(btn => {
+        btn.classList.toggle('selected', btn.dataset.value === currentValue);
+      });
+
+      subOverlay.classList.remove('hidden');
+
+      function closeSub() {
+        subOverlay.classList.add('hidden');
+        cleanupSub();
+      }
+
+      function handleChoice(event) {
+        const btn = event.target.closest('[data-value]');
+        if (!btn) return;
+        playClick();
+        onSelect(btn.dataset.value);
+        closeSub();
+      }
+
+      function onSubBackdropClick(event) {
+        if (event.target === subOverlay) {
+          closeSub();
+        }
+      }
+
+      function cleanupSub() {
+        optionButtons.forEach(btn => btn.removeEventListener('click', handleChoice));
+        subCancelBtn?.removeEventListener('click', closeSub);
+        subOverlay.removeEventListener('click', onSubBackdropClick);
+      }
+
+      optionButtons.forEach(btn => btn.addEventListener('click', handleChoice));
+      subCancelBtn?.addEventListener('click', closeSub);
+      subOverlay.addEventListener('click', onSubBackdropClick);
+    }
+
+    function onAlignClick() {
+      openSubModal('mobile-align-select-overlay', 'mobile-align-select-cancel', tempStyle.align, val => {
+        tempStyle.align = val;
+        updateLabels();
+      });
+    }
+    function onFontClick() {
+      openSubModal('mobile-font-select-overlay', 'mobile-font-select-cancel', tempStyle.font, val => {
+        tempStyle.font = val;
+        updateLabels();
+      });
+    }
+    function onWeightClick() {
+      openSubModal('mobile-weight-select-overlay', 'mobile-weight-select-cancel', tempStyle.weight, val => {
+        tempStyle.weight = val;
+        updateLabels();
+      });
+    }
+    function onLineHeightClick() {
+      openSubModal('mobile-line-height-select-overlay', 'mobile-line-height-select-cancel', tempStyle.lineHeight, val => {
+        tempStyle.lineHeight = val;
+        updateLabels();
+      });
+    }
+    function onLetterSpacingClick() {
+      openSubModal('mobile-letter-spacing-select-overlay', 'mobile-letter-spacing-select-cancel', tempStyle.letterSpacing, val => {
+        tempStyle.letterSpacing = val;
+        updateLabels();
+      });
+    }
+
+    alignTrigger?.addEventListener('click', onAlignClick);
+    fontTrigger?.addEventListener('click', onFontClick);
+    weightTrigger?.addEventListener('click', onWeightClick);
+    lineHeightTrigger?.addEventListener('click', onLineHeightClick);
+    letterSpacingTrigger?.addEventListener('click', onLetterSpacingClick);
+
+    overlay.classList.remove('hidden');
+
+    function close() {
+      overlay.classList.add('hidden');
+      cleanup();
+      state.lastModalClosedAt = Date.now();
+    }
+
+    function onMainBackdropClick(event) {
+      if (event.target === overlay) {
+        close();
+      }
+    }
+
+    async function handleSave() {
+      state.settings = state.settings || {};
+      state.settings.cardStyle = { ...tempStyle };
+
+      // Set styles on the body element dynamically
+      const csNew = state.settings.cardStyle;
+      let fontFamily = 'inherit';
+      if (csNew.font === 'sans-serif') fontFamily = "Inter, sans-serif";
+      else if (csNew.font === 'serif') fontFamily = "Georgia, serif";
+      else if (csNew.font === 'monospace') fontFamily = "Courier New, monospace";
+      else if (csNew.font === 'system') fontFamily = "system-ui, sans-serif";
+
+      const root = document.documentElement;
+      root.style.setProperty('--card-text-align', csNew.align);
+      root.style.setProperty('--card-text-weight', csNew.weight);
+      root.style.setProperty('--card-text-font-family', fontFamily);
+      root.style.setProperty('--card-text-line-height', csNew.lineHeight);
+      root.style.setProperty('--card-text-letter-spacing', csNew.letterSpacing);
+
+      playClick();
+      close();
+      
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+        showToast('Typography settings saved');
+      } catch (err) {
+        console.warn('[mobile] Could not save typography settings:', err);
+      }
+    }
+
+    function cleanup() {
+      cancelBtn?.removeEventListener('click', close);
+      saveBtn?.removeEventListener('click', handleSave);
+      alignTrigger?.removeEventListener('click', onAlignClick);
+      fontTrigger?.removeEventListener('click', onFontClick);
+      weightTrigger?.removeEventListener('click', onWeightClick);
+      lineHeightTrigger?.removeEventListener('click', onLineHeightClick);
+      letterSpacingTrigger?.removeEventListener('click', onLetterSpacingClick);
+      overlay.removeEventListener('click', onMainBackdropClick);
+    }
+
+    cancelBtn?.addEventListener('click', close);
+    saveBtn?.addEventListener('click', handleSave);
+    overlay.addEventListener('click', onMainBackdropClick);
   }
 
   /**
@@ -2835,6 +3095,7 @@
           btnPremade.classList.remove('active');
           btnPremade.setAttribute('aria-checked', 'false');
         }
+        document.getElementById('mobile-user-headers')?.classList.remove('hidden');
         document.getElementById('mobile-user-decks-view')?.classList.remove('hidden');
         document.getElementById('mobile-premade-decks-view')?.classList.add('hidden');
         const btnCreate = document.querySelector('[data-action="open-create"]');
@@ -2856,6 +3117,7 @@
           btnPremade.classList.add('active');
           btnPremade.setAttribute('aria-checked', 'true');
         }
+        document.getElementById('mobile-user-headers')?.classList.add('hidden');
         document.getElementById('mobile-user-decks-view')?.classList.add('hidden');
         document.getElementById('mobile-premade-decks-view')?.classList.remove('hidden');
         const btnCreate = document.querySelector('[data-action="open-create"]');
@@ -2883,6 +3145,9 @@
       case 'toggle-srs':
         await toggleSrs();
         break;
+      case 'toggle-sound':
+        await toggleSound();
+        break;
       case 'toggle-pin':
         await togglePin(target.dataset.setId);
         break;
@@ -2900,6 +3165,9 @@
         break;
       case 'select-theme':
         openThemeSelectModal();
+        break;
+      case 'select-typography':
+        openTypographyModal();
         break;
       case 'study-set':
         showAppLoader('Opening Study', 'Preparing your deck');
@@ -3071,6 +3339,163 @@
     }
     activeContextDeckId = null;
     state.lastModalClosedAt = Date.now();
+  }
+
+  let deckSettingsSetId = null;
+  let deckSettingsStudyOrder = '';
+  let deckSettingsSrsEnabled = true;
+
+  function openDeckSettingsModal(setId) {
+    const set = state.sets.find(item => String(item.id) === String(setId));
+    if (!set) return;
+
+    deckSettingsSetId = setId;
+    const srs = schema?.normalizeSrsSettings ? schema.normalizeSrsSettings(set.srsSettings || {}) : (set.srsSettings || { enabled: true });
+
+    deckSettingsStudyOrder = set.normalStudyOrder || '';
+    deckSettingsSrsEnabled = srs.enabled !== false;
+
+    // Populate fields
+    updateDeckStudyOrderUi();
+    updateDeckSrsEnabledUi();
+
+    const requestRetentionInput = document.getElementById('mobile-deck-request-retention');
+    if (requestRetentionInput) {
+      requestRetentionInput.value = srs.requestRetention;
+    }
+
+    const maxIntervalInput = document.getElementById('mobile-deck-max-interval');
+    if (maxIntervalInput) {
+      maxIntervalInput.value = srs.maxIntervalDays;
+    }
+
+    const newLimitInput = document.getElementById('mobile-deck-new-limit');
+    if (newLimitInput) {
+      newLimitInput.value = srs.newCardsPerDay ?? '';
+    }
+
+    const reviewLimitInput = document.getElementById('mobile-deck-review-limit');
+    if (reviewLimitInput) {
+      reviewLimitInput.value = srs.reviewsPerDay ?? '';
+    }
+
+    const overlay = document.getElementById('mobile-deck-settings-overlay');
+    if (overlay) {
+      overlay.classList.remove('hidden');
+      playClick();
+    }
+  }
+
+  function updateDeckStudyOrderUi() {
+    const label = document.getElementById('mobile-deck-study-order-label');
+    if (label) {
+      const mapping = {
+        '': 'Use Global Setting',
+        'forward': 'Forward (First to Last)',
+        'backward': 'Backward (Last to First)',
+        'random': 'Random'
+      };
+      label.textContent = mapping[deckSettingsStudyOrder] || 'Use Global Setting';
+    }
+  }
+
+  function updateDeckSrsEnabledUi() {
+    const label = document.getElementById('mobile-deck-srs-enabled-label');
+    if (label) {
+      label.textContent = deckSettingsSrsEnabled ? 'Enabled (Apply SRS algorithm)' : 'Disabled (Normal browsing)';
+    }
+    const srsFields = document.getElementById('mobile-deck-srs-fields');
+    if (srsFields) {
+      srsFields.style.display = deckSettingsSrsEnabled ? 'flex' : 'none';
+    }
+  }
+
+  function closeDeckSettingsModal() {
+    const overlay = document.getElementById('mobile-deck-settings-overlay');
+    if (overlay) {
+      overlay.classList.add('hidden');
+    }
+    deckSettingsSetId = null;
+    state.lastModalClosedAt = Date.now();
+  }
+
+  function openDeckStudyOrderModal() {
+    const modal = document.getElementById('deck-study-order-modal');
+    if (!modal) return;
+
+    const optionButtons = Array.from(modal.querySelectorAll('.preset-option-btn'));
+    optionButtons.forEach(btn => {
+      btn.classList.toggle('selected', btn.dataset.orderVal === deckSettingsStudyOrder);
+    });
+
+    modal.classList.remove('hidden');
+    playClick();
+  }
+
+  function closeDeckStudyOrderModal() {
+    const modal = document.getElementById('deck-study-order-modal');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  function openDeckSrsEnabledModal() {
+    const modal = document.getElementById('deck-srs-enabled-modal');
+    if (!modal) return;
+
+    const optionButtons = Array.from(modal.querySelectorAll('.preset-option-btn'));
+    optionButtons.forEach(btn => {
+      const isSel = (btn.dataset.srsVal === 'true') === deckSettingsSrsEnabled;
+      btn.classList.toggle('selected', isSel);
+    });
+
+    modal.classList.remove('hidden');
+    playClick();
+  }
+
+  function closeDeckSrsEnabledModal() {
+    const modal = document.getElementById('deck-srs-enabled-modal');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  async function saveMobileDeckSettings() {
+    if (!deckSettingsSetId) return;
+
+    const requestRetentionInput = document.getElementById('mobile-deck-request-retention');
+    const maxIntervalInput = document.getElementById('mobile-deck-max-interval');
+    const newLimitInput = document.getElementById('mobile-deck-new-limit');
+    const reviewLimitInput = document.getElementById('mobile-deck-review-limit');
+
+    const srsSettings = schema?.normalizeSrsSettings ? schema.normalizeSrsSettings({
+      enabled: deckSettingsSrsEnabled,
+      requestRetention: requestRetentionInput?.value,
+      maxIntervalDays: maxIntervalInput?.value,
+      newCardsPerDay: newLimitInput?.value,
+      reviewsPerDay: reviewLimitInput?.value
+    }) : { enabled: deckSettingsSrsEnabled };
+
+    const set = state.sets.find(item => String(item.id) === String(deckSettingsSetId));
+    if (!set) return;
+
+    const updatedSet = {
+      ...set,
+      srsSettings,
+      normalStudyOrder: deckSettingsStudyOrder || null,
+      lastModified: Date.now()
+    };
+
+    try {
+      if (window.flashcardStore?.saveSet) {
+        await window.flashcardStore.saveSet(updatedSet);
+      }
+      
+      state.sets = state.sets.map(item => String(item.id) === String(deckSettingsSetId) ? updatedSet : item);
+      renderLibrary();
+      
+      closeDeckSettingsModal();
+      showToast('Deck settings saved');
+    } catch (error) {
+      console.error('[mobile] Error saving deck settings:', error);
+      showToast('Could not save deck settings');
+    }
   }
 
   function enterSelectMode(initialSetId) {
@@ -3261,6 +3686,20 @@
         return;
       }
 
+      const deckStudyOrderTrigger = event.target.closest('#mobile-deck-study-order-trigger');
+      if (deckStudyOrderTrigger) {
+        event.preventDefault();
+        openDeckStudyOrderModal();
+        return;
+      }
+
+      const deckSrsEnabledTrigger = event.target.closest('#mobile-deck-srs-enabled-trigger');
+      if (deckSrsEnabledTrigger) {
+        event.preventDefault();
+        openDeckSrsEnabledModal();
+        return;
+      }
+
       const pastePresetTrigger = event.target.closest('#mobile-paste-import-preset-trigger');
       if (pastePresetTrigger) {
         event.preventDefault();
@@ -3295,6 +3734,56 @@
             selectors.pasteImportPreset.value = selectedVal;
             selectors.pasteImportPreset.dispatchEvent(new Event('change'));
           }
+        }, 160);
+        return;
+      }
+
+      const studyOrderBackdrop = event.target.closest('#deck-study-order-backdrop');
+      if (studyOrderBackdrop) {
+        event.preventDefault();
+        playClick();
+        closeDeckStudyOrderModal();
+        return;
+      }
+
+      const orderOpt = event.target.closest('[data-order-val]');
+      if (orderOpt && event.target.closest('#deck-study-order-options')) {
+        event.preventDefault();
+        playClick();
+        const siblings = orderOpt.parentElement.querySelectorAll('.preset-option-btn');
+        siblings.forEach(sibling => sibling.classList.remove('selected'));
+        orderOpt.classList.add('selected');
+        
+        deckSettingsStudyOrder = orderOpt.dataset.orderVal || '';
+        
+        setTimeout(() => {
+          closeDeckStudyOrderModal();
+          updateDeckStudyOrderUi();
+        }, 160);
+        return;
+      }
+
+      const srsEnabledBackdrop = event.target.closest('#deck-srs-enabled-backdrop');
+      if (srsEnabledBackdrop) {
+        event.preventDefault();
+        playClick();
+        closeDeckSrsEnabledModal();
+        return;
+      }
+
+      const srsEnabledOpt = event.target.closest('[data-srs-val]');
+      if (srsEnabledOpt && event.target.closest('#deck-srs-enabled-options')) {
+        event.preventDefault();
+        playClick();
+        const siblings = srsEnabledOpt.parentElement.querySelectorAll('.preset-option-btn');
+        siblings.forEach(sibling => sibling.classList.remove('selected'));
+        srsEnabledOpt.classList.add('selected');
+        
+        deckSettingsSrsEnabled = srsEnabledOpt.dataset.srsVal === 'true';
+        
+        setTimeout(() => {
+          closeDeckSrsEnabledModal();
+          updateDeckSrsEnabledUi();
         }, 160);
         return;
       }
@@ -3432,6 +3921,35 @@
         return;
       }
 
+      // 8d. Context option - Settings
+      const ctxSettings = event.target.closest('#context-opt-settings');
+      if (ctxSettings) {
+        event.preventDefault();
+        if (activeContextDeckId) {
+          const setId = activeContextDeckId;
+          closeDeckContextModal();
+          openDeckSettingsModal(setId);
+        }
+        return;
+      }
+
+      // Deck settings modal - Save
+      const deckSettingsSave = event.target.closest('#mobile-deck-settings-save');
+      if (deckSettingsSave) {
+        event.preventDefault();
+        await saveMobileDeckSettings();
+        return;
+      }
+
+      // Deck settings modal - Cancel
+      const deckSettingsCancel = event.target.closest('#mobile-deck-settings-cancel');
+      if (deckSettingsCancel) {
+        event.preventDefault();
+        playClick();
+        closeDeckSettingsModal();
+        return;
+      }
+
       // 9. Context option - Cancel
       const ctxCancel = event.target.closest('#context-opt-cancel');
       if (ctxCancel) {
@@ -3446,10 +3964,14 @@
         event.preventDefault();
         event.stopPropagation();
         playClick();
-        event.target.classList.add('hidden');
-        state.lastModalClosedAt = Date.now();
-        const cancelBtn = event.target.querySelector('.mobile-modal-btn.cancel, .cancel');
-        if (cancelBtn) cancelBtn.click();
+        if (event.target.id === 'mobile-deck-settings-overlay') {
+          closeDeckSettingsModal();
+        } else {
+          event.target.classList.add('hidden');
+          state.lastModalClosedAt = Date.now();
+          const cancelBtn = event.target.querySelector('.mobile-modal-btn.cancel, .cancel');
+          if (cancelBtn) cancelBtn.click();
+        }
         return;
       }
 
@@ -3723,6 +4245,16 @@
         console.warn('[mobile] Could not save importCardSep:', err);
       }
     });
+
+    const mobileSrsEnabledSelect = document.getElementById('mobile-deck-srs-enabled');
+    if (mobileSrsEnabledSelect) {
+      mobileSrsEnabledSelect.addEventListener('change', (e) => {
+        const srsFields = document.getElementById('mobile-deck-srs-fields');
+        if (srsFields) {
+          srsFields.style.display = (e.target.value === 'false') ? 'none' : 'flex';
+        }
+      });
+    }
 
     window.addEventListener('resize', () => {
       if (state.activeTab) {
