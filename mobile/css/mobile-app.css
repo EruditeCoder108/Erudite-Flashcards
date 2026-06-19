@@ -621,6 +621,294 @@ button.metric-pill {
   margin-top: 0.35rem;
 }
 
+.analytics-dashboard {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.65rem;
+}
+
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.insight-card,
+.insight-panel {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  color: var(--text);
+}
+
+.insight-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: center;
+  min-height: 5.5rem;
+  padding: 0.78rem;
+}
+
+.insight-card small,
+.insight-panel-head span {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.insight-card strong {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 1.25rem;
+  line-height: 1.05;
+}
+
+.insight-card p {
+  margin: 0.22rem 0 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.insight-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.82rem;
+  background: rgba(59, 130, 246, 0.16);
+  color: #93c5fd;
+}
+
+.insight-icon.warn {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+.insight-icon.danger {
+  background: rgba(239, 68, 68, 0.14);
+  color: #f87171;
+}
+
+.insight-icon.calm {
+  background: rgba(20, 184, 166, 0.14);
+  color: #5eead4;
+}
+
+.insight-two-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.insight-panel {
+  padding: 0.85rem;
+}
+
+.insight-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.7rem;
+}
+
+.insight-panel-head strong {
+  font-size: 0.96rem;
+  font-weight: 850;
+}
+
+.retention-breakdown {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.retention-breakdown span {
+  min-width: 0;
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+  background: var(--surface-2);
+}
+
+.retention-breakdown strong,
+.retention-breakdown em {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.retention-breakdown strong {
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-style: normal;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.retention-breakdown em {
+  margin-top: 0.12rem;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.rating-list,
+.forecast-list,
+.deck-health-list {
+  display: grid;
+  gap: 0.52rem;
+}
+
+.rating-row,
+.forecast-row {
+  display: grid;
+  grid-template-columns: minmax(3.9rem, 1fr) auto minmax(4.5rem, 1.1fr);
+  gap: 0.55rem;
+  align-items: center;
+  min-height: 1.4rem;
+}
+
+.rating-row span,
+.forecast-row span,
+.deck-health-row span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.rating-row strong,
+.forecast-row strong {
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.rating-row i,
+.forecast-row i {
+  position: relative;
+  display: block;
+  height: 0.42rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--line);
+}
+
+.rating-row i::before,
+.forecast-row i::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--value);
+  min-width: 0.2rem;
+  border-radius: inherit;
+  background: var(--primary);
+  content: "";
+}
+
+.rating-again i::before {
+  background: #ef4444;
+}
+
+.rating-hard i::before {
+  background: #f59e0b;
+}
+
+.rating-good i::before {
+  background: #22c55e;
+}
+
+.rating-easy i::before {
+  background: #38bdf8;
+}
+
+.study-heatmap {
+  display: grid;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  gap: 0.28rem;
+}
+
+.heatmap-cell {
+  aspect-ratio: 1;
+  border-radius: 0.28rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+.heatmap-cell.level-1 {
+  background: rgba(34, 197, 94, 0.22);
+}
+
+.heatmap-cell.level-2 {
+  background: rgba(34, 197, 94, 0.38);
+}
+
+.heatmap-cell.level-3 {
+  background: rgba(34, 197, 94, 0.58);
+}
+
+.heatmap-cell.level-4 {
+  background: rgba(34, 197, 94, 0.82);
+}
+
+.deck-health-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.62rem 0.68rem;
+  border-radius: 0.85rem;
+  background: var(--surface-2);
+}
+
+.deck-health-row strong,
+.deck-health-row span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deck-health-row strong {
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+.deck-health-row b {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.14);
+  color: var(--primary-2);
+  font-size: 0.82rem;
+}
+
+.insight-muted {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+@media (max-width: 520px) {
+  .insight-two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .study-heatmap {
+    grid-template-columns: repeat(14, minmax(0, 1fr));
+  }
+}
+
 .section-title-row,
 .library-screen-head,
 .library-meta-row {
@@ -1482,10 +1770,59 @@ button.metric-pill {
   margin-top: 0.75rem;
 }
 
+.browser-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.browser-toolbar .compact-action {
+  min-height: 2.35rem;
+  padding: 0 0.75rem;
+  border-radius: 0.8rem;
+  font-size: 0.82rem;
+}
+
 .browser-card {
   display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 0.52rem;
   padding: 0.9rem;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.browser-card.selected {
+  border-color: rgba(96, 165, 250, 0.62);
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.browser-card-check {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface-2);
+  color: var(--muted);
+  flex: 0 0 auto;
+}
+
+.browser-card-check.selected {
+  border-color: rgba(96, 165, 250, 0.7);
+  background: rgba(59, 130, 246, 0.18);
+  color: #bfdbfe;
+}
+
+.browser-card-body {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
 }
 
 .browser-card-head {
@@ -1512,6 +1849,77 @@ button.metric-pill {
   line-height: 1.4;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+.browser-card-meta {
+  flex-wrap: wrap;
+}
+
+.browser-card-meta span.warning {
+  color: #fbbf24;
+}
+
+.browser-card-meta span.danger {
+  color: #f87171;
+}
+
+.browser-selection-bar {
+  position: fixed;
+  z-index: 105;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.65rem max(0.9rem, var(--safe-right)) calc(0.75rem + var(--safe-bottom)) max(0.9rem, var(--safe-left));
+  background: rgba(13, 20, 34, 0.97);
+  border-top: 1px solid rgba(96, 165, 250, 0.28);
+  box-shadow: 0 -0.7rem 2rem rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.browser-selection-bar[hidden] {
+  display: none;
+}
+
+.browser-selection-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.browser-action-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+
+.browser-action-row button {
+  display: grid;
+  place-items: center;
+  gap: 0.25rem;
+  min-height: 3.25rem;
+  padding: 0.45rem 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 0.7rem;
+  font-weight: 850;
+}
+
+.browser-action-row button i {
+  font-size: 0.95rem;
+}
+
+.browser-action-row button.danger {
+  color: #fecaca;
+  border-color: rgba(248, 113, 113, 0.28);
+  background: rgba(248, 113, 113, 0.11);
 }
 
 .settings-list {
@@ -1640,7 +2048,8 @@ button.metric-pill {
 
   .mobile-topbar,
   .mobile-tabbar,
-  .selection-bar {
+  .selection-bar,
+  .browser-selection-bar {
     right: auto;
     left: 50%;
     width: min(42rem, 100%);
@@ -2806,5 +3215,3 @@ button:active,
 .preset-option-btn.selected i {
   color: var(--primary-2, #60a5fa);
 }
-
-

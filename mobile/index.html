@@ -104,6 +104,15 @@
     <main class="mobile-main" id="mobile-main">
       <section class="mobile-view active" id="view-today" aria-labelledby="today-heading">
         <div class="today-hero surface-card" id="today-hero"></div>
+        <div class="section-block insights-section">
+          <div class="section-title-row">
+            <h2>Insights</h2>
+            <button type="button" class="small-icon-button" data-action="refresh-analytics" aria-label="Refresh insights">
+              <i class="fas fa-rotate"></i>
+            </button>
+          </div>
+          <div class="analytics-dashboard" id="analytics-dashboard"></div>
+        </div>
         <div class="section-block">
           <div class="section-title-row">
             <h2 id="today-heading">Continue Studying</h2>
@@ -141,7 +150,7 @@
             <div class="search-row">
               <label class="mobile-search">
                 <i class="fas fa-magnifying-glass"></i>
-                <input id="mobile-search-input" type="search" placeholder="Search decks, cards, classes">
+                <input id="mobile-search-input" type="search" placeholder="Search decks and classes">
               </label>
               <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
                 <i class="fas fa-arrow-down-wide-short"></i>
@@ -218,15 +227,53 @@
             <p class="mobile-eyebrow">Browser</p>
             <h2 id="browser-heading">All cards</h2>
           </div>
-          <button type="button" class="icon-button" data-action="tab-library" aria-label="Back to library">
-            <i class="fas fa-arrow-left"></i>
-          </button>
         </div>
         <label class="mobile-search">
           <i class="fas fa-magnifying-glass"></i>
           <input id="browser-search-input" type="search" placeholder="Search cards and decks">
         </label>
+        <div class="filter-strip browser-filter-strip" id="browser-filter-strip" aria-label="Card browser filters">
+          <button type="button" class="filter-chip active" data-browser-filter="all"><i class="fas fa-table-list"></i>All</button>
+          <button type="button" class="filter-chip" data-browser-filter="new">New</button>
+          <button type="button" class="filter-chip" data-browser-filter="learning">Learning</button>
+          <button type="button" class="filter-chip" data-browser-filter="review">Review</button>
+          <button type="button" class="filter-chip" data-browser-filter="relearning">Relearning</button>
+          <button type="button" class="filter-chip" data-browser-filter="due">Due</button>
+          <button type="button" class="filter-chip" data-browser-filter="overdue">Overdue</button>
+          <button type="button" class="filter-chip" data-browser-filter="suspended">Suspended</button>
+          <button type="button" class="filter-chip" data-browser-filter="buried">Buried</button>
+          <button type="button" class="filter-chip" data-browser-filter="failed">Failed</button>
+          <button type="button" class="filter-chip" data-browser-filter="leeches">Leeches</button>
+          <button type="button" class="filter-chip" data-browser-filter="no-tags">No tags</button>
+          <button type="button" class="filter-chip" data-browser-filter="has-image">Images</button>
+          <button type="button" class="filter-chip" data-browser-filter="has-audio">Audio</button>
+        </div>
+        <div class="browser-toolbar">
+          <span id="browser-count-label">0 cards</span>
+          <button type="button" class="secondary-action compact-action" id="browser-select-visible-btn">
+            <i class="fas fa-check-double"></i>
+            Select shown
+          </button>
+        </div>
         <div class="mobile-list browser-list" id="browser-list"></div>
+        <div class="browser-selection-bar" id="browser-selection-bar" hidden>
+          <div class="browser-selection-head">
+            <span id="browser-selected-count">0 selected</span>
+            <button type="button" class="small-icon-button" id="browser-clear-selection-btn" aria-label="Clear selected cards">
+              <i class="fas fa-xmark"></i>
+            </button>
+          </div>
+          <div class="browser-action-row">
+            <button type="button" data-browser-bulk-action="suspend"><i class="fas fa-pause"></i><span>Suspend</span></button>
+            <button type="button" data-browser-bulk-action="unsuspend"><i class="fas fa-play"></i><span>Unsuspend</span></button>
+            <button type="button" data-browser-bulk-action="reset-srs"><i class="fas fa-rotate-left"></i><span>Reset</span></button>
+            <button type="button" data-browser-bulk-action="set-due"><i class="fas fa-calendar-day"></i><span>Due</span></button>
+            <button type="button" data-browser-bulk-action="move"><i class="fas fa-folder-open"></i><span>Move</span></button>
+            <button type="button" data-browser-bulk-action="add-tag"><i class="fas fa-tag"></i><span>Add tag</span></button>
+            <button type="button" data-browser-bulk-action="remove-tag"><i class="fas fa-tag"></i><span>Remove tag</span></button>
+            <button type="button" class="danger" data-browser-bulk-action="delete"><i class="fas fa-trash-can"></i><span>Delete</span></button>
+          </div>
+        </div>
       </section>
 
       <section class="mobile-view" id="view-more" aria-labelledby="more-heading">

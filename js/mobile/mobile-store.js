@@ -17,6 +17,7 @@
 
   const DB_PATH = 'erudite-flashcards/erudite-flashcards.sqlite';
   const BACKUP_DIR = 'erudite-flashcards/backups';
+  const MEDIA_DIR = 'erudite-flashcards/media';
   const STUDY_PATCHES_KEY = 'erudite-mobile-study-card-patches-v1';
   const SET_BACKUP_PREFIX = 'erudite-mobile-set-backup:';
   const SET_BACKUP_INDEX_KEY = 'erudite-mobile-set-backup-index-v1';
@@ -25,6 +26,8 @@
   const DIRECTORY_DATA = 'DATA';
   const DIRECTORY_DOCUMENTS = 'DOCUMENTS';
   const ENCODING_UTF8 = 'utf8';
+  const MAX_LOCAL_SET_MIRROR_BYTES = 384 * 1024;
+  const MAX_IMPORT_CARD_COUNT = 200000;
 
   const isNative = !!(capacitor && (capacitor.getPlatform() === 'android' || capacitor.getPlatform() === 'ios') && window.CapacitorSqliteHelper);
   const { SQLiteConnection, CapacitorSQLite } = window.CapacitorSqliteHelper || {};
@@ -32,6 +35,7 @@
   let readyPromise = null;
   let SQL = null;
   let db = null;
+  let transactionDepth = 0;
 
   document.documentElement.classList.add('is-capacitor', 'is-mobile-shell');
 
@@ -82,7 +86,12 @@
     if (!set?.id || !Array.isArray(set.cards) || !set.cards.length) return;
     try {
       const normalized = schema.normalizeSet(set, null, { preserveLastModified: true });
-      localStorage.setItem(`${SET_BACKUP_PREFIX}${normalized.id}`, JSON.stringify(normalized));
+      const serialized = JSON.stringify(normalized);
+      if (serialized.length > MAX_LOCAL_SET_MIRROR_BYTES) {
+        forgetSetBackup(normalized.id);
+        return;
+      }
+      localStorage.setItem(`${SET_BACKUP_PREFIX}${normalized.id}`, serialized);
       const ids = readSetBackupIndex();
       if (!ids.includes(String(normalized.id))) {
         ids.push(String(normalized.id));
@@ -93,7 +102,12 @@
         ? legacySets.filter(item => String(item?.id) !== String(normalized.id))
         : [];
       updated.push(normalized);
-      localStorage.setItem('flashcardSets', JSON.stringify(updated));
+      const legacySerialized = JSON.stringify(updated);
+      if (legacySerialized.length <= MAX_LOCAL_SET_MIRROR_BYTES) {
+        localStorage.setItem('flashcardSets', legacySerialized);
+      } else {
+        localStorage.removeItem('flashcardSets');
+      }
     } catch (error) {
       console.warn('[mobile-store] Could not write emergency deck mirror:', error?.message || error);
     }
@@ -268,6 +282,57 @@
     return bytes;
   }
 
+  function parseDataUrl(dataUrl) {
+    const match = /^data:([^;,]+)?(?:;[^,]*)?;base64,(.*)$/i.exec(String(dataUrl || ''));
+    if (!match) throw new Error('Unsupported media payload.');
+    return {
+      mime: String(match[1] || 'application/octet-stream').toLowerCase(),
+      base64: match[2] || ''
+    };
+  }
+
+  function extensionForMime(mime) {
+    const clean = String(mime || '').toLowerCase();
+    if (clean === 'image/jpeg') return 'jpg';
+    if (clean === 'image/png') return 'png';
+    if (clean === 'image/gif') return 'gif';
+    if (clean === 'image/webp') return 'webp';
+    if (clean === 'image/svg+xml') return 'svg';
+    if (clean === 'audio/mpeg') return 'mp3';
+    if (clean === 'audio/wav') return 'wav';
+    if (clean === 'audio/ogg') return 'ogg';
+    if (clean === 'video/mp4') return 'mp4';
+    if (clean === 'video/webm') return 'webm';
+    return 'bin';
+  }
+
+  function safePathPart(value, fallback) {
+    const clean = String(value || '').replace(/[^a-z0-9._-]+/gi, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+    return clean || fallback;
+  }
+
+  async function saveDataUrlFile(dataUrl, meta = {}) {
+    if (!isNative) return dataUrl;
+    const parsed = parseDataUrl(dataUrl);
+    const ext = extensionForMime(parsed.mime);
+    const deckId = safePathPart(meta.deckId || 'global', 'global');
+    const prefix = safePathPart(meta.prefix || 'media', 'media');
+    const random = Math.random().toString(36).slice(2, 9);
+    const path = `${MEDIA_DIR}/${deckId}/${prefix}-${Date.now()}-${random}.${ext}`;
+
+    await Filesystem.writeFile({
+      path,
+      data: parsed.base64,
+      directory: DIRECTORY_DATA,
+      recursive: true
+    });
+
+    const uriResult = await Filesystem.getUri?.({ path, directory: DIRECTORY_DATA }).catch(() => null);
+    const uri = uriResult?.uri;
+    if (!uri) return dataUrl;
+    return capacitor.convertFileSrc ? capacitor.convertFileSrc(uri) : uri;
+  }
+
   async function rows(sql, params = []) {
     if (isNative && db) {
       const res = await db.query(sql, params);
@@ -301,7 +366,21 @@
 
   async function executeSet(set) {
     if (isNative && db) {
+      if (transactionDepth > 0) {
+        for (const item of set) {
+          await db.run(item.statement, item.values);
+        }
+        return;
+      }
       await db.executeSet(set);
+      return;
+    }
+    if (transactionDepth > 0) {
+      for (const item of set) {
+        const statement = db.prepare(item.statement);
+        statement.run(item.values);
+        statement.free();
+      }
       return;
     }
     db.exec('BEGIN TRANSACTION;');
@@ -315,6 +394,32 @@
     } catch (error) {
       db.exec('ROLLBACK;');
       throw error;
+    }
+  }
+
+  async function withTransaction(work) {
+    const nested = transactionDepth > 0;
+    const savepoint = `sp_${transactionDepth + 1}`;
+    transactionDepth += 1;
+    try {
+      await executeRaw(nested ? `SAVEPOINT ${savepoint};` : 'BEGIN IMMEDIATE TRANSACTION;');
+      const result = await work();
+      await executeRaw(nested ? `RELEASE SAVEPOINT ${savepoint};` : 'COMMIT;');
+      return result;
+    } catch (error) {
+      try {
+        if (nested) {
+          await executeRaw(`ROLLBACK TO SAVEPOINT ${savepoint};`);
+          await executeRaw(`RELEASE SAVEPOINT ${savepoint};`);
+        } else {
+          await executeRaw('ROLLBACK;');
+        }
+      } catch (rollbackError) {
+        console.warn('[mobile-store] transaction rollback failed:', rollbackError?.message || rollbackError);
+      }
+      throw error;
+    } finally {
+      transactionDepth = Math.max(0, transactionDepth - 1);
     }
   }
 
@@ -498,6 +603,8 @@
       CREATE INDEX IF NOT EXISTS idx_mobile_sets_visible ON sets(deleted_at, last_modified);
       CREATE INDEX IF NOT EXISTS idx_mobile_sets_class ON sets(class_id);
       CREATE INDEX IF NOT EXISTS idx_mobile_cards_set_position ON cards(set_id, position);
+      CREATE INDEX IF NOT EXISTS idx_mobile_cards_visible ON cards(deleted_at, set_id, last_modified);
+      CREATE INDEX IF NOT EXISTS idx_mobile_cards_flags ON cards(set_id, suspended, buried_until);
     `);
   }
 
@@ -643,27 +750,29 @@
     if (Object.prototype.hasOwnProperty.call(patch, 'suspended')) updated.suspended = Boolean(patch.suspended);
     if (Object.prototype.hasOwnProperty.call(patch, 'buriedUntil')) updated.buriedUntil = patch.buriedUntil || null;
 
-    await run(`
-      UPDATE cards SET
-        srs_json = ?,
-        review_history_json = ?,
-        suspended = ?,
-        buried_until = ?,
-        last_modified = ?,
-        payload_json = ?
-      WHERE id = ? AND set_id = ?
-    `, [
-      jsonString(updated.srs || null),
-      jsonString(Array.isArray(updated.reviewHistory) ? updated.reviewHistory : []),
-      updated.suspended ? 1 : 0,
-      updated.buriedUntil || null,
-      updated.lastModified,
-      jsonString(updated),
-      cardKey,
-      setKey
-    ]);
+    await withTransaction(async () => {
+      await run(`
+        UPDATE cards SET
+          srs_json = ?,
+          review_history_json = ?,
+          suspended = ?,
+          buried_until = ?,
+          last_modified = ?,
+          payload_json = ?
+        WHERE id = ? AND set_id = ? AND deleted_at IS NULL
+      `, [
+        updated.srs ? jsonString(updated.srs) : null,
+        jsonString(Array.isArray(updated.reviewHistory) ? updated.reviewHistory : []),
+        updated.suspended ? 1 : 0,
+        updated.buriedUntil || null,
+        updated.lastModified,
+        jsonString(updated),
+        cardKey,
+        setKey
+      ]);
 
-    await run('UPDATE sets SET last_modified = ? WHERE id = ? AND deleted_at IS NULL', [updated.lastModified, setKey]);
+      await run('UPDATE sets SET last_modified = ? WHERE id = ? AND deleted_at IS NULL', [updated.lastModified, setKey]);
+    });
     return true;
   }
 
@@ -827,7 +936,9 @@
     await ensureReady();
     const existing = (await listClasses()).find(item => String(item.id) === String(classData.id));
     const normalized = schema.normalizeClass(classData, existing);
-    await upsertClass(normalized);
+    await withTransaction(async () => {
+      await upsertClass(normalized);
+    });
     rememberClassBackup(normalized);
     await persist();
     return normalized;
@@ -835,14 +946,16 @@
 
   async function replaceClasses(classes = [], options = {}) {
     await ensureReady();
-    const now = Date.now();
-    await executeRaw(`UPDATE classes SET deleted_at = ${now}, last_modified = ${now} WHERE deleted_at IS NULL;`);
+    const normalizedClasses = (Array.isArray(classes) ? classes : [])
+      .map(classData => schema.normalizeClass(classData, null, { preserveLastModified: true }));
+    await withTransaction(async () => {
+      await run('DELETE FROM classes');
+      for (const normalized of normalizedClasses) {
+        await upsertClass(normalized);
+      }
+    });
     clearClassBackups();
-    for (const classData of Array.isArray(classes) ? classes : []) {
-      const normalized = schema.normalizeClass(classData, null, { preserveLastModified: true });
-      await upsertClass(normalized);
-      rememberClassBackup(normalized);
-    }
+    normalizedClasses.forEach(rememberClassBackup);
     if (options.persist !== false) await persist();
     return listClasses();
   }
@@ -850,8 +963,10 @@
   async function deleteClass(classId) {
     await ensureReady();
     const now = Date.now();
-    await run('UPDATE classes SET deleted_at = ?, last_modified = ? WHERE id = ?', [now, now, String(classId)]);
-    await run('UPDATE sets SET class_id = NULL, last_modified = ? WHERE class_id = ? AND deleted_at IS NULL', [now, String(classId)]);
+    await withTransaction(async () => {
+      await run('DELETE FROM classes WHERE id = ?', [String(classId)]);
+      await run('UPDATE sets SET class_id = NULL, last_modified = ? WHERE class_id = ? AND deleted_at IS NULL', [now, String(classId)]);
+    });
     forgetClassBackup(classId);
     await persist();
     return true;
@@ -1005,6 +1120,7 @@
       totalCards: 0,
       newCards: 0,
       dueCards: 0,
+      learningDueCards: 0,
       reviewDueCards: 0,
       learningCards: 0,
       reviewCards: 0,
@@ -1012,6 +1128,8 @@
       matureCards: 0,
       reviewCount: 0,
       reviewedToday: 0,
+      newCardsIntroducedToday: 0,
+      reviewsDoneToday: 0,
       remembered30: 0,
       reviewed30: 0,
       retention: null,
@@ -1026,6 +1144,131 @@
       return ['New', 'Learning', 'Review', 'Relearning'][value] || 'New';
     }
     return value || 'New';
+  }
+
+  function chunkArray(items, size = 400) {
+    const chunks = [];
+    for (let index = 0; index < items.length; index += size) {
+      chunks.push(items.slice(index, index + size));
+    }
+    return chunks;
+  }
+
+  function uniqueStringIds(values) {
+    return Array.from(new Set((Array.isArray(values) ? values : [])
+      .map(value => String(value || '').trim())
+      .filter(Boolean)));
+  }
+
+  function normalizeTagInput(value) {
+    if (Array.isArray(value)) return schema.normalizeStringArray(value);
+    return schema.normalizeStringArray(String(value || ''));
+  }
+
+  function normalizeBulkDueIso(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return null;
+    const dateOnly = /^\d{4}-\d{2}-\d{2}$/.test(raw)
+      ? new Date(`${raw}T04:00:00`)
+      : new Date(raw);
+    return Number.isFinite(dateOnly.getTime()) ? dateOnly.toISOString() : null;
+  }
+
+  function mediaItemsForPayload(payload = {}) {
+    const media = payload.media || {};
+    return [
+      ...(Array.isArray(media.term) ? media.term : []),
+      ...(Array.isArray(media.definition) ? media.definition : [])
+    ];
+  }
+
+  function rowHasBrowserMedia(row, payload, kind) {
+    if (kind === 'image' && (row.term_image || row.definition_image)) return true;
+    return mediaItemsForPayload(payload).some(item => {
+      const itemKind = String(item?.kind || item?.mediaType || '').toLowerCase();
+      const mime = String(item?.mime || item?.type || '').toLowerCase();
+      if (kind === 'audio') return itemKind === 'audio' || mime.startsWith('audio/');
+      if (kind === 'image') return itemKind === 'image' || mime.startsWith('image/');
+      return false;
+    });
+  }
+
+  function normalizedRatingName(value) {
+    const rating = String(value || '').trim().toLowerCase();
+    if (rating === 'again' || rating === '1') return 'Again';
+    if (rating === 'hard' || rating === '2') return 'Hard';
+    if (rating === 'good' || rating === '3') return 'Good';
+    if (rating === 'easy' || rating === '4') return 'Easy';
+    return '';
+  }
+
+  function reviewStats(history, nowMs = Date.now()) {
+    const sevenDaysAgo = nowMs - (7 * 24 * 60 * 60 * 1000);
+    let lastReviewedAt = null;
+    let againCount = 0;
+    let failedRecently = false;
+    const ratingCounts = { Again: 0, Hard: 0, Good: 0, Easy: 0 };
+    for (const review of Array.isArray(history) ? history : []) {
+      const rating = normalizedRatingName(review?.rating || review?.grade);
+      const reviewedAt = timeValue(review?.reviewedAt || review?.time || review?.date);
+      if (reviewedAt && (!lastReviewedAt || reviewedAt > lastReviewedAt)) lastReviewedAt = reviewedAt;
+      if (rating) ratingCounts[rating] += 1;
+      if (rating === 'Again') {
+        againCount += 1;
+        if (reviewedAt && reviewedAt >= sevenDaysAgo) failedRecently = true;
+      }
+    }
+    return { againCount, failedRecently, lastReviewedAt, ratingCounts };
+  }
+
+  function browserCardFromRow(row, nowMs = Date.now()) {
+    const payload = jsonParse(row.payload_json, {});
+    const srs = row.srs_json && row.srs_json !== 'null' ? jsonParse(row.srs_json, null) : null;
+    const tags = jsonParse(row.tags_json, []);
+    const history = jsonParse(row.review_history_json, []);
+    const state = normalizeSrsState(srs?.state);
+    const dueTime = timeValue(srs?.due);
+    const suspended = Boolean(Number(row.suspended || 0));
+    const buriedUntil = row.buried_until || null;
+    const buried = isBuried(buriedUntil, nowMs);
+    const scheduledDue = Boolean(srs && state !== 'New' && isSrsDue(srs, nowMs));
+    const overdue = Boolean(srs && state !== 'New' && dueTime && srsDayKey(dueTime) < srsDayKey(nowMs));
+    const reviews = reviewStats(history, nowMs);
+    const hasImage = rowHasBrowserMedia(row, payload, 'image');
+    const hasAudio = rowHasBrowserMedia(row, payload, 'audio');
+
+    return {
+      id: row.id,
+      setId: row.set_id,
+      deck: row.deck_name || 'Untitled Set',
+      classId: row.class_id || null,
+      className: row.class_name || 'General',
+      position: Number(row.position || 0),
+      term: row.term || '',
+      definition: row.definition || '',
+      tags,
+      srsState: state,
+      due: srs?.due || null,
+      dueTime,
+      isDue: !suspended && !buried && scheduledDue,
+      isOverdue: !suspended && !buried && overdue,
+      suspended,
+      buriedUntil,
+      buried,
+      failedRecently: reviews.failedRecently,
+      leech: reviews.againCount >= 8 || Number(srs?.lapses || 0) >= 8,
+      noTags: !tags.length,
+      hasImage,
+      hasAudio,
+      reviewCount: Array.isArray(history) ? history.length : 0,
+      againCount: reviews.againCount,
+      ratingCounts: reviews.ratingCounts,
+      reps: Number(srs?.reps || 0),
+      lapses: Number(srs?.lapses || 0),
+      intervalDays: Number(srs?.scheduled_days || srs?.elapsed_days || 0),
+      lastReviewedAt: reviews.lastReviewedAt,
+      lastModified: Number(row.last_modified || 0)
+    };
   }
 
   function timeValue(value) {
@@ -1044,6 +1287,14 @@
     return String(date.getTime());
   }
 
+  function srsDayKey(value, rolloverHour = 4) {
+    const timestamp = timeValue(value);
+    if (!timestamp) return null;
+    const adjusted = new Date(timestamp - rolloverHour * 60 * 60 * 1000);
+    adjusted.setHours(0, 0, 0, 0);
+    return String(adjusted.getTime());
+  }
+
   function isBuried(buriedUntil, nowMs) {
     const until = timeValue(buriedUntil);
     return until > nowMs;
@@ -1052,12 +1303,16 @@
   function isSrsDue(srs, nowMs) {
     if (!srs || !srs.due) return true;
     const due = timeValue(srs.due);
-    return !due || due <= nowMs;
+    if (!due) return true;
+    const state = normalizeSrsState(srs.state);
+    if (state === 'Learning' || state === 'Relearning') return due <= nowMs;
+    return srsDayKey(due) <= srsDayKey(nowMs);
   }
 
   async function buildMetaStatsBySet() {
     const nowMs = Date.now();
-    const todayKey = dayKey(nowMs);
+    const todayCalendarKey = dayKey(nowMs);
+    const todaySrsKey = srsDayKey(nowMs);
     const thirtyDaysAgo = nowMs - 30 * 24 * 60 * 60 * 1000;
     const statsBySet = new Map();
     const dayKeysBySet = new Map();
@@ -1084,7 +1339,14 @@
           if (!stats.lastReviewAt || reviewedAt > stats.lastReviewAt) stats.lastReviewAt = reviewedAt;
           const key = dayKey(reviewedAt);
           if (key) dayKeys.add(key);
-          if (key === todayKey) stats.reviewedToday += 1;
+          if (key === todayCalendarKey) {
+            stats.reviewedToday += 1;
+          }
+          if (srsDayKey(reviewedAt) === todaySrsKey) {
+            const previousState = normalizeSrsState(review.previousState);
+            if (previousState === 'New') stats.newCardsIntroducedToday += 1;
+            if (previousState === 'Review') stats.reviewsDoneToday += 1;
+          }
           if (reviewedAt >= thirtyDaysAgo) {
             stats.reviewed30 += 1;
             if (String(review.rating || '').toLowerCase() !== 'again') stats.remembered30 += 1;
@@ -1107,7 +1369,8 @@
 
           if (isSrsDue(srs, nowMs)) {
             stats.dueCards += 1;
-            stats.reviewDueCards += 1;
+            if (state === 'Review') stats.reviewDueCards += 1;
+            else stats.learningDueCards += 1;
           } else if (state === 'Review') {
             stats.matureCards += 1;
           }
@@ -1140,9 +1403,15 @@
     const newLimit = dailyLimit(settings.newCardsPerDay);
     const reviewLimit = dailyLimit(settings.reviewsPerDay);
     const newDue = Number(stats.newCards || 0);
-    const reviewDue = Number(stats.reviewDueCards ?? Math.max(0, Number(stats.dueCards || 0) - newDue));
-    return (newLimit === null ? newDue : Math.min(newDue, newLimit))
-      + (reviewLimit === null ? reviewDue : Math.min(reviewDue, reviewLimit));
+    const learningDue = Number(stats.learningDueCards || 0);
+    const reviewDue = Number(stats.reviewDueCards || 0);
+    const remainingNew = newLimit === null
+      ? newDue
+      : Math.min(newDue, Math.max(0, newLimit - Number(stats.newCardsIntroducedToday || 0)));
+    const remainingReviews = reviewLimit === null
+      ? reviewDue
+      : Math.min(reviewDue, Math.max(0, reviewLimit - Number(stats.reviewsDoneToday || 0)));
+    return learningDue + remainingNew + remainingReviews;
   }
 
   async function listSetsMeta() {
@@ -1181,6 +1450,251 @@
         cards: [] // empty — use getSet(id) when you need cards
       };
     });
+  }
+
+  async function listCardsForBrowser() {
+    await ensureReady();
+    const nowMs = Date.now();
+    const result = await rows(`
+      SELECT
+        c.id,
+        c.set_id,
+        c.position,
+        c.term,
+        c.definition,
+        c.term_image,
+        c.definition_image,
+        c.tags_json,
+        c.suspended,
+        c.buried_until,
+        c.srs_json,
+        c.review_history_json,
+        c.last_modified,
+        c.payload_json,
+        s.name AS deck_name,
+        s.class_id,
+        cl.name AS class_name
+      FROM cards c
+      INNER JOIN sets s ON s.id = c.set_id
+      LEFT JOIN classes cl ON cl.id = s.class_id AND cl.deleted_at IS NULL
+      WHERE c.deleted_at IS NULL AND s.deleted_at IS NULL
+      ORDER BY s.last_modified DESC, c.position ASC
+    `);
+    return result.map(row => browserCardFromRow(row, nowMs));
+  }
+
+  async function getCardRowsByIds(cardIds) {
+    const ids = uniqueStringIds(cardIds);
+    if (!ids.length) return [];
+    const result = [];
+    for (const idChunk of chunkArray(ids)) {
+      const placeholders = idChunk.map(() => '?').join(',');
+      const chunkRows = await rows(`
+        SELECT c.*
+        FROM cards c
+        INNER JOIN sets s ON s.id = c.set_id
+        WHERE c.deleted_at IS NULL
+          AND s.deleted_at IS NULL
+          AND c.id IN (${placeholders})
+      `, idChunk);
+      result.push(...chunkRows);
+    }
+    return result;
+  }
+
+  function updateCardStatement(card, setId, position = null) {
+    return {
+      statement: `
+        UPDATE cards SET
+          set_id = ?,
+          position = COALESCE(?, position),
+          term = ?,
+          definition = ?,
+          term_image = ?,
+          definition_image = ?,
+          tags_json = ?,
+          suspended = ?,
+          buried_until = ?,
+          srs_json = ?,
+          review_history_json = ?,
+          last_modified = ?,
+          payload_json = ?
+        WHERE id = ? AND deleted_at IS NULL
+      `,
+      values: [
+        String(setId),
+        position === null ? null : Number(position),
+        card.term || '',
+        card.definition || '',
+        card.termImage || '',
+        card.definitionImage || '',
+        jsonString(Array.isArray(card.tags) ? card.tags : []),
+        card.suspended ? 1 : 0,
+        card.buriedUntil || null,
+        card.srs ? jsonString(card.srs) : null,
+        jsonString(Array.isArray(card.reviewHistory) ? card.reviewHistory : []),
+        Number(card.lastModified || Date.now()),
+        jsonString(card),
+        String(card.id)
+      ]
+    };
+  }
+
+  function clearStudyPatchesForCardRows(cardRows) {
+    try {
+      const patchesRaw = localStorage.getItem(STUDY_PATCHES_KEY);
+      if (!patchesRaw) return;
+      const patches = JSON.parse(patchesRaw);
+      if (!patches?.sets) return;
+      for (const row of cardRows) {
+        const setId = String(row.set_id);
+        const cardId = String(row.id);
+        if (!patches.sets[setId]?.cards?.[cardId]) continue;
+        delete patches.sets[setId].cards[cardId];
+        if (Object.keys(patches.sets[setId].cards).length === 0) {
+          delete patches.sets[setId];
+        }
+      }
+      localStorage.setItem(STUDY_PATCHES_KEY, JSON.stringify(patches));
+    } catch (_) {}
+  }
+
+  async function refreshSetBackupsForIds(setIds) {
+    const ids = uniqueStringIds(Array.from(setIds || []));
+    for (const setId of ids.slice(0, 40)) {
+      try {
+        const setRows = await rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL', [setId]);
+        if (setRows.length) rememberSetBackup(await hydrateSetRow(setRows[0]));
+      } catch (_) {}
+    }
+  }
+
+  async function bulkUpdateCards(cardIds = [], action = '', options = {}) {
+    await ensureReady();
+    const ids = uniqueStringIds(cardIds);
+    if (!ids.length) return { updated: 0, deleted: 0, moved: 0, touchedSetIds: [] };
+
+    const normalizedAction = String(action || '').trim().toLowerCase();
+    const allowedActions = new Set([
+      'suspend',
+      'unsuspend',
+      'reset-srs',
+      'delete',
+      'move',
+      'set-due',
+      'add-tag',
+      'remove-tag'
+    ]);
+    if (!allowedActions.has(normalizedAction)) {
+      throw new Error(`Unsupported bulk card action: ${action}`);
+    }
+
+    const cardRows = await getCardRowsByIds(ids);
+    if (!cardRows.length) return { updated: 0, deleted: 0, moved: 0, touchedSetIds: [] };
+
+    const now = Date.now();
+    const batch = [];
+    const touchedSetIds = new Set(cardRows.map(row => String(row.set_id)));
+    let updated = 0;
+    let deleted = 0;
+    let moved = 0;
+    let targetSetId = null;
+    let nextTargetPosition = null;
+    let dueIso = null;
+    let tagList = [];
+
+    if (normalizedAction === 'move') {
+      targetSetId = String(options.targetSetId || '').trim();
+      if (!targetSetId) throw new Error('Choose a destination deck.');
+      const targetRows = await rows('SELECT id FROM sets WHERE id = ? AND deleted_at IS NULL', [targetSetId]);
+      if (!targetRows.length) throw new Error('Destination deck was not found.');
+      const positionRows = await rows('SELECT MAX(position) AS max_position FROM cards WHERE set_id = ? AND deleted_at IS NULL', [targetSetId]);
+      nextTargetPosition = Number(positionRows[0]?.max_position ?? -1) + 1;
+      touchedSetIds.add(targetSetId);
+    } else if (normalizedAction === 'set-due') {
+      dueIso = normalizeBulkDueIso(options.due || options.dueDate);
+      if (!dueIso) throw new Error('Choose a valid due date.');
+    } else if (normalizedAction === 'add-tag' || normalizedAction === 'remove-tag') {
+      tagList = normalizeTagInput(options.tags || options.tag);
+      if (!tagList.length) throw new Error('Enter at least one tag.');
+    }
+
+    for (const row of cardRows) {
+      if (normalizedAction === 'delete') {
+        batch.push({
+          statement: 'DELETE FROM cards WHERE id = ? AND deleted_at IS NULL',
+          values: [String(row.id)]
+        });
+        deleted += 1;
+        continue;
+      }
+
+      const card = hydrateCardRow(row);
+      card.lastModified = now;
+      let nextSetId = String(row.set_id);
+      let nextPosition = null;
+
+      if (normalizedAction === 'suspend') {
+        card.suspended = true;
+      } else if (normalizedAction === 'unsuspend') {
+        card.suspended = false;
+      } else if (normalizedAction === 'reset-srs') {
+        card.srs = undefined;
+        if (options.deleteHistory) card.reviewHistory = [];
+      } else if (normalizedAction === 'set-due') {
+        const baseSrs = card.srs && typeof card.srs === 'object' ? card.srs : {};
+        const nextState = baseSrs.state && normalizeSrsState(baseSrs.state) !== 'New'
+          ? baseSrs.state
+          : 'Review';
+        card.srs = {
+          ...baseSrs,
+          state: nextState,
+          due: dueIso,
+          elapsed_days: Number(baseSrs.elapsed_days || 0),
+          scheduled_days: Number(baseSrs.scheduled_days || 0),
+          reps: Number(baseSrs.reps || 0),
+          lapses: Number(baseSrs.lapses || 0),
+          stability: Number(baseSrs.stability || 0),
+          difficulty: Number(baseSrs.difficulty || 0)
+        };
+      } else if (normalizedAction === 'add-tag') {
+        const currentTags = schema.normalizeStringArray(card.tags || []);
+        const lower = new Set(currentTags.map(tag => tag.toLowerCase()));
+        card.tags = [
+          ...currentTags,
+          ...tagList.filter(tag => !lower.has(tag.toLowerCase()))
+        ];
+      } else if (normalizedAction === 'remove-tag') {
+        const remove = new Set(tagList.map(tag => tag.toLowerCase()));
+        card.tags = schema.normalizeStringArray(card.tags || [])
+          .filter(tag => !remove.has(tag.toLowerCase()));
+      } else if (normalizedAction === 'move') {
+        nextSetId = targetSetId;
+        nextPosition = nextTargetPosition++;
+        moved += 1;
+      }
+
+      batch.push(updateCardStatement(card, nextSetId, nextPosition));
+      updated += 1;
+    }
+
+    await withTransaction(async () => {
+      if (batch.length > 0) await executeSet(batch);
+      for (const setId of touchedSetIds) {
+        await run('UPDATE sets SET last_modified = ? WHERE id = ? AND deleted_at IS NULL', [now, setId]);
+      }
+    });
+
+    clearStudyPatchesForCardRows(cardRows);
+    await refreshSetBackupsForIds(touchedSetIds);
+    await persist();
+
+    return {
+      updated,
+      deleted,
+      moved,
+      touchedSetIds: Array.from(touchedSetIds)
+    };
   }
 
   async function getSet(id) {
@@ -1224,29 +1738,33 @@
       delete payload.mobileStats;
       delete payload.cardCount;
       delete payload.__metaOnly;
-      await run(`
-        UPDATE sets
-        SET name = ?, description = ?, class_id = ?, srs_settings_json = ?,
-            opened_count = ?, last_opened = ?, last_modified = ?, payload_json = ?, deleted_at = NULL
-        WHERE id = ?
-      `, [
-        next.name,
-        next.description || '',
-        next.classId || null,
-        jsonString(next.srsSettings || {}),
-        Number(next.openedCount || 0),
-        next.lastOpened ?? null,
-        Number(next.lastModified || Date.now()),
-        jsonString(payload),
-        String(existing.id)
-      ]);
+      await withTransaction(async () => {
+        await run(`
+          UPDATE sets
+          SET name = ?, description = ?, class_id = ?, srs_settings_json = ?,
+              opened_count = ?, last_opened = ?, last_modified = ?, payload_json = ?, deleted_at = NULL
+          WHERE id = ?
+        `, [
+          next.name,
+          next.description || '',
+          next.classId || null,
+          jsonString(next.srsSettings || {}),
+          Number(next.openedCount || 0),
+          next.lastOpened ?? null,
+          Number(next.lastModified || Date.now()),
+          jsonString(payload),
+          String(existing.id)
+        ]);
+      });
       await persist();
       return { ...next, cards: [], __metaOnly: true };
     }
 
     const normalized = schema.normalizeSet(cleanSet, existing);
-    await upsertSet(normalized);
-    if (!metaOnlyUpdate) await replaceCardsForSet(normalized.id, normalized.cards || []);
+    await withTransaction(async () => {
+      await upsertSet(normalized);
+      if (!metaOnlyUpdate) await replaceCardsForSet(normalized.id, normalized.cards || []);
+    });
     if (!metaOnlyUpdate) rememberSetBackup(normalized);
     await persist(); // fire-and-forget — flush() ensures it completes before navigation
     return normalized;
@@ -1254,25 +1772,34 @@
 
   async function replaceSets(sets = [], options = {}) {
     await ensureReady();
-    const now = Date.now();
-    await executeRaw(`UPDATE sets SET deleted_at = ${now}, last_modified = ${now} WHERE deleted_at IS NULL;`);
+    const normalizedSets = (Array.isArray(sets) ? sets : [])
+      .map(set => schema.normalizeSet(set, null, { preserveLastModified: true }));
+    await withTransaction(async () => {
+      await run('DELETE FROM cards');
+      await run('DELETE FROM sets');
+      await run('DELETE FROM progress');
+      await run('DELETE FROM study_sessions');
+      for (const normalized of normalizedSets) {
+        await upsertSet(normalized);
+        await replaceCardsForSet(normalized.id, normalized.cards || []);
+      }
+    });
     clearSetBackups();
-    for (const set of Array.isArray(sets) ? sets : []) {
-      const normalized = schema.normalizeSet(set, null, { preserveLastModified: true });
-      await upsertSet(normalized);
-      await replaceCardsForSet(normalized.id, normalized.cards || []);
+    for (const normalized of normalizedSets) {
       rememberSetBackup(normalized);
     }
     if (options.persist !== false) await persist();
-    return listSets();
+    return options.metaOnly ? listSetsMeta() : listSets();
   }
 
   async function deleteSet(id) {
     await ensureReady();
-    const now = Date.now();
-    await run('UPDATE sets SET deleted_at = ?, last_modified = ? WHERE id = ?', [now, now, String(id)]);
-    await run('DELETE FROM progress WHERE set_id = ?', [String(id)]);
-    await run('DELETE FROM study_sessions WHERE set_id = ?', [String(id)]);
+    await withTransaction(async () => {
+      await run('DELETE FROM cards WHERE set_id = ?', [String(id)]);
+      await run('DELETE FROM progress WHERE set_id = ?', [String(id)]);
+      await run('DELETE FROM study_sessions WHERE set_id = ?', [String(id)]);
+      await run('DELETE FROM sets WHERE id = ?', [String(id)]);
+    });
     forgetSetBackup(id);
     await persist();
     return true;
@@ -1385,9 +1912,11 @@
     }
 
     if (batch.length > 0) {
-      await executeSet(batch);
-      const now = Date.now();
-      await run('UPDATE sets SET last_modified = ? WHERE id = ? AND deleted_at IS NULL', [now, String(setId)]);
+      await withTransaction(async () => {
+        await executeSet(batch);
+        const now = Date.now();
+        await run('UPDATE sets SET last_modified = ? WHERE id = ? AND deleted_at IS NULL', [now, String(setId)]);
+      });
     }
 
     if (isNative) {
@@ -1413,6 +1942,7 @@
   }
 
   async function getAllProgress() {
+    await ensureReady();
     const progress = {};
     const result = await rows('SELECT set_id, value_json FROM progress');
     result.forEach(row => {
@@ -1549,12 +2079,14 @@
       });
     }
 
-    if (batch.length > 0) {
-      await executeSet(batch);
-    }
+    await withTransaction(async () => {
+      if (batch.length > 0) {
+        await executeSet(batch);
+      }
 
-    // Reset SRS progress inside progress table
-    await run('DELETE FROM progress WHERE set_id = ?', [String(setId)]);
+      // Reset SRS progress inside progress table
+      await run('DELETE FROM progress WHERE set_id = ?', [String(setId)]);
+    });
 
     // Clear progress mirror from localStorage
     try {
@@ -1616,16 +2148,65 @@
   async function importBackup() {
     const file = await pickJsonFile();
     if (!file) return { canceled: true };
+    if (file.size && file.size > 80 * 1024 * 1024) {
+      throw new Error('Backup is too large to import safely on this device.');
+    }
 
     const raw = await file.text();
     const payload = JSON.parse(raw);
     const data = backup.readBackupData(payload);
+    const cardCount = (data.sets || []).reduce((total, set) => total + (Array.isArray(set.cards) ? set.cards.length : 0), 0);
+    if (cardCount > MAX_IMPORT_CARD_COUNT) {
+      throw new Error(`Backup contains ${cardCount} cards, above the ${MAX_IMPORT_CARD_COUNT} card safety limit.`);
+    }
     await createBackupSnapshot('before-mobile-restore');
-    const restoredClasses = await replaceClasses(data.classes || [], { persist: false });
-    const restoredSets = await replaceSets(data.sets || [], { persist: false });
-    await saveSettings(data.settings || {});
-    await replaceProgress(data.progress || {}, { persist: false });
-    await replaceState(data.state || {}, { persist: false });
+
+    const restoredClasses = Array.isArray(data.classes) ? data.classes : [];
+    const restoredSets = Array.isArray(data.sets) ? data.sets : [];
+    await withTransaction(async () => {
+      await run('DELETE FROM classes');
+      await run('DELETE FROM cards');
+      await run('DELETE FROM sets');
+      await run('DELETE FROM progress');
+      await run('DELETE FROM state');
+      await run('DELETE FROM study_sessions');
+
+      for (const classData of restoredClasses) {
+        await upsertClass(schema.normalizeClass(classData, null, { preserveLastModified: true }));
+      }
+      for (const set of restoredSets) {
+        const normalized = schema.normalizeSet(set, null, { preserveLastModified: true });
+        await upsertSet(normalized);
+        await replaceCardsForSet(normalized.id, normalized.cards || []);
+      }
+
+      await run('INSERT OR REPLACE INTO settings (key, value_json, updated_at) VALUES (?, ?, ?)', [
+        'app',
+        jsonString(schema.normalizeSettings(data.settings || {})),
+        Date.now()
+      ]);
+
+      for (const [setId, value] of Object.entries(data.progress || {})) {
+        await run('INSERT OR REPLACE INTO progress (set_id, value_json, updated_at) VALUES (?, ?, ?)', [
+          String(setId),
+          jsonString(value),
+          Date.now()
+        ]);
+      }
+
+      for (const [key, value] of Object.entries(data.state || {})) {
+        await run('INSERT OR REPLACE INTO state (key, value_json, updated_at) VALUES (?, ?, ?)', [
+          String(key),
+          jsonString(value),
+          Date.now()
+        ]);
+      }
+    });
+
+    clearClassBackups();
+    clearSetBackups();
+    restoredClasses.forEach(classData => rememberClassBackup(schema.normalizeClass(classData, null, { preserveLastModified: true })));
+    restoredSets.forEach(set => rememberSetBackup(schema.normalizeSet(set, null, { preserveLastModified: true })));
     await persist();
 
     return {
@@ -1671,16 +2252,16 @@
     }));
   }
 
-  async function saveImage(dataUrl) {
-    return dataUrl;
+  async function saveImage(dataUrl, meta = {}) {
+    return saveDataUrlFile(dataUrl, meta);
   }
 
   async function deleteImage() {
     return true;
   }
 
-  async function saveFont(dataUrl) {
-    return dataUrl;
+  async function saveFont(dataUrl, meta = {}) {
+    return saveDataUrlFile(dataUrl, { ...meta, prefix: meta.prefix || 'font', deckId: meta.deckId || 'fonts' });
   }
 
   async function listPremadeSets(classId, subjectId) {
@@ -1732,6 +2313,8 @@
   window.eruditeMobileFlashcards = {
     listSets,
     listSetsMeta,
+    listCardsForBrowser,
+    bulkUpdateCards,
     getSet,
     saveSet,
     replaceSets,
@@ -1759,6 +2342,7 @@
     getPremadeSet,
     getDiagnostics,
     exportBackup,
+    createBackupSnapshot,
     importBackup,
     exportDelimited: async () => ({ canceled: true, unsupported: true }),
     importDelimited: async () => ({ canceled: true, unsupported: true }),

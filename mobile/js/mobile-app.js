@@ -5,6 +5,7 @@
   const draftCore = core.draft;
 
   const CREATOR_DRAFT_KEY = 'mobileCreatorDraft';
+  const BROWSER_RENDER_LIMIT = 250;
 
   const state = {
     sets: [],
@@ -19,7 +20,15 @@
     sort: 'recent',
     browserCards: [],
     browserLoaded: false,
+    analyticsCards: [],
+    analyticsLoaded: false,
+    analyticsLoading: false,
+    analyticsError: null,
+    analyticsLoadToken: 0,
     browserSearch: '',
+    browserFilters: new Set(),
+    browserSelectedCards: new Set(),
+    browserVisibleIds: [],
     premadeClass: '10th',
     premadeSubject: 'Science',
     premadeSets: [],
@@ -74,6 +83,9 @@
 
   const classColorChoices = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444', '#06B6D4', '#EC4899', '#64748B'];
   const classIconChoices = ['fa-graduation-cap', 'fa-book', 'fa-calculator', 'fa-flask', 'fa-dna', 'fa-landmark', 'fa-globe', 'fa-palette', 'fa-music', 'fa-code', 'fa-quote-left'];
+  const STUDY_SESSION_MIN_MS = 5 * 1000;
+  const DAY_MS = 24 * 60 * 60 * 1000;
+  const STUDY_SESSION_LOOKBACK_MS = 365 * 24 * 60 * 60 * 1000;
 
   const selectors = {
     title: document.getElementById('mobile-title'),
@@ -85,6 +97,7 @@
     sortLabel: document.getElementById('library-sort-label'),
     countLabel: document.getElementById('library-count-label'),
     todayHero: document.getElementById('today-hero'),
+    analyticsDashboard: document.getElementById('analytics-dashboard'),
     continueList: document.getElementById('continue-list'),
     activityList: document.getElementById('activity-list'),
     libraryList: document.getElementById('library-list'),
@@ -99,7 +112,13 @@
     premadeSubjectFilters: document.getElementById('premade-subject-filters'),
     premadeList: document.getElementById('premade-list'),
     browserSearchInput: document.getElementById('browser-search-input'),
+    browserFilterStrip: document.getElementById('browser-filter-strip'),
+    browserCountLabel: document.getElementById('browser-count-label'),
+    browserSelectVisible: document.getElementById('browser-select-visible-btn'),
     browserList: document.getElementById('browser-list'),
+    browserSelectionBar: document.getElementById('browser-selection-bar'),
+    browserSelectedCount: document.getElementById('browser-selected-count'),
+    browserClearSelection: document.getElementById('browser-clear-selection-btn'),
     srsSwitch: document.getElementById('srs-switch'),
     moreSrsLabel: document.getElementById('more-srs-label'),
     soundSwitch: document.getElementById('sound-switch'),
@@ -155,6 +174,24 @@
 
   function escapeAttr(value) {
     return escapeHtml(value).replace(/`/g, '&#096;');
+  }
+
+  function safeMediaSrc(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return '';
+    if (/["'<>`\\]/.test(raw)) return '';
+    if (/^(javascript|vbscript):/i.test(raw)) return '';
+    if (/^data:(image|audio|video)\//i.test(raw)) return raw;
+    if (/^(blob:|file:|capacitor:|cdvfile:)/i.test(raw)) return raw;
+    if (/^https?:\/\//i.test(raw)) {
+      try {
+        const url = new URL(raw);
+        return ['localhost', '127.0.0.1', '::1', '[::1]'].includes(url.hostname) ? raw : '';
+      } catch (_error) {
+        return '';
+      }
+    }
+    return raw.includes('://') ? '' : raw;
   }
 
   function cssEscape(value) {
@@ -214,6 +251,40 @@
     if (diff < day * 2) return 'Yesterday';
     if (diff < day * 30) return `${Math.floor(diff / day)}d ago`;
     return new Date(timestamp).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  }
+
+  function startOfLocalDayMs(value = Date.now()) {
+    const timestamp = normalizeTimestamp(value) || Date.now();
+    const date = new Date(timestamp);
+    date.setHours(0, 0, 0, 0);
+    return date.getTime();
+  }
+
+  function formatShortNumber(value) {
+    const number = Number(value || 0);
+    const abs = Math.abs(number);
+    if (abs >= 1000000) return `${(number / 1000000).toFixed(abs >= 10000000 ? 0 : 1).replace(/\.0$/, '')}m`;
+    if (abs >= 1000) return `${(number / 1000).toFixed(abs >= 10000 ? 0 : 1).replace(/\.0$/, '')}k`;
+    return String(Math.round(number));
+  }
+
+  function formatDuration(ms) {
+    const totalMs = Math.max(0, Number(ms || 0));
+    if (totalMs <= 0) return '0s';
+    if (totalMs < 60000) return `${Math.max(1, Math.round(totalMs / 1000))}s`;
+    const minutes = Math.round(totalMs / 60000);
+    if (minutes < 60) return `${minutes}m`;
+    const hours = Math.floor(minutes / 60);
+    const remainder = minutes % 60;
+    return remainder ? `${hours}h ${remainder}m` : `${hours}h`;
+  }
+
+  function isTrackedStudySession(session) {
+    return Boolean(
+      normalizeTimestamp(session?.startedAt)
+      && Number(session?.durationMs || 0) >= STUDY_SESSION_MIN_MS
+      && Number(session?.cardsViewed || 0) > 0
+    );
   }
 
   function validColor(color, fallback = '#3b82f6') {
@@ -387,10 +458,8 @@
     });
     if (Array.isArray(state.studySessions)) {
       state.studySessions.forEach(session => {
-        if (session.durationMs >= 60000) {
-          const date = new Date(session.startedAt);
-          date.setHours(0, 0, 0, 0);
-          dayKeys.add(String(date.getTime()));
+        if (isTrackedStudySession(session)) {
+          dayKeys.add(String(startOfLocalDayMs(session.startedAt)));
         }
       });
     }
@@ -502,6 +571,51 @@
     }
   }
 
+  function invalidateAnalytics() {
+    state.analyticsLoadToken += 1;
+    state.analyticsCards = [];
+    state.analyticsLoaded = false;
+    state.analyticsLoading = false;
+    state.analyticsError = null;
+  }
+
+  async function loadAnalyticsCards(options = {}) {
+    if (!options.force && state.analyticsLoaded) return state.analyticsCards;
+    if (!options.force && state.analyticsLoading) return state.analyticsCards;
+
+    const token = state.analyticsLoadToken + 1;
+    state.analyticsLoadToken = token;
+    state.analyticsLoading = true;
+    state.analyticsError = null;
+    if (state.activeTab === 'today') renderAnalyticsDashboard();
+
+    try {
+      let cards = [];
+      if (!options.force && state.browserLoaded && Array.isArray(state.browserCards)) {
+        cards = state.browserCards;
+      } else if (window.flashcardStore?.listCardsForBrowser) {
+        cards = await window.flashcardStore.listCardsForBrowser();
+      }
+      if (token !== state.analyticsLoadToken) return state.analyticsCards;
+      state.analyticsCards = Array.isArray(cards) ? cards : [];
+      state.analyticsLoaded = true;
+      state.analyticsError = null;
+      return state.analyticsCards;
+    } catch (error) {
+      if (token !== state.analyticsLoadToken) return state.analyticsCards;
+      console.error('[mobile] Analytics load failed:', error);
+      state.analyticsCards = [];
+      state.analyticsLoaded = false;
+      state.analyticsError = error;
+      return [];
+    } finally {
+      if (token === state.analyticsLoadToken) {
+        state.analyticsLoading = false;
+        if (state.activeTab === 'today') renderAnalyticsDashboard();
+      }
+    }
+  }
+
   async function loadData() {
     await waitForStorage();
     const listSetsFast = window.flashcardStore.listSetsMeta || window.flashcardStore.listSets;
@@ -510,7 +624,7 @@
       window.flashcardStore.listClasses(),
       window.flashcardStore.getSettings(),
       window.flashcardStore.getState('srsModeEnabled'),
-      window.flashcardStore.getStudySessions ? window.flashcardStore.getStudySessions() : []
+      window.flashcardStore.getStudySessions ? window.flashcardStore.getStudySessions(Date.now() - STUDY_SESSION_LOOKBACK_MS) : []
     ]);
     state.classes = (classes || []).map(item => schema?.normalizeClass ? schema.normalizeClass(item, null, { preserveLastModified: true }) : item);
     const normalizedSets = (sets || []).map(set => schema?.normalizeSet ? schema.normalizeSet(set, null, { preserveLastModified: true }) : set);
@@ -534,6 +648,7 @@
     }
     state.srsMode = readSrsMode(srsMode);
     state.studySessions = studySessions || [];
+    invalidateAnalytics();
     const theme = state.settings?.theme || 'dark';
     localStorage.setItem('erudite-theme', theme);
     document.body.classList.toggle('theme-light', theme === 'light');
@@ -615,6 +730,9 @@
     } else {
       exitSelectMode();
     }
+    if (tab !== 'browser') {
+      clearBrowserSelection({ play: false, render: false });
+    }
     render();
   }
 
@@ -678,6 +796,413 @@
     `;
   }
 
+  function emptyRatingCounts() {
+    return { Again: 0, Hard: 0, Good: 0, Easy: 0 };
+  }
+
+  function addRatingCounts(target, source = {}) {
+    ['Again', 'Hard', 'Good', 'Easy'].forEach(label => {
+      target[label] += Number(source?.[label] || 0);
+    });
+    return target;
+  }
+
+  function ratingPassRate(counts) {
+    const total = ['Again', 'Hard', 'Good', 'Easy'].reduce((sum, label) => sum + Number(counts?.[label] || 0), 0);
+    const passed = Number(counts?.Hard || 0) + Number(counts?.Good || 0) + Number(counts?.Easy || 0);
+    return {
+      total,
+      passed,
+      percent: total > 0 ? Math.round((passed / total) * 100) : null
+    };
+  }
+
+  function localDayKeyMs(value) {
+    const timestamp = normalizeTimestamp(value);
+    return timestamp ? startOfLocalDayMs(timestamp) : null;
+  }
+
+  function analyticsCardBucket(card) {
+    const stateName = String(card?.srsState || 'New').toLowerCase();
+    const intervalDays = Number(card?.intervalDays || 0);
+    const reviewed = Number(card?.reviewCount || card?.reps || 0) > 0 || Boolean(card?.lastReviewedAt);
+    if (stateName === 'learning' || stateName === 'relearning') return 'learning';
+    if (intervalDays >= 21) return 'mature';
+    if (reviewed) return 'young';
+    return 'new';
+  }
+
+  function analyticsSummary(cards = []) {
+    const summary = {
+      totalCards: cards.length,
+      activeCards: 0,
+      reviewedCards: 0,
+      dueCards: 0,
+      overdueCards: 0,
+      leechCards: 0,
+      failedRecently: 0,
+      ratingCounts: emptyRatingCounts(),
+      retention: null,
+      reviewEvents: 0,
+      retentionBreakdown: [],
+      buttonDistribution: [],
+      todayStudyMs: 0,
+      weekStudyMs: 0,
+      todayCardsViewed: 0,
+      weekCardsViewed: 0,
+      averageSecondsPerCard: null
+    };
+    const buckets = {
+      mature: { label: 'Mature', counts: emptyRatingCounts() },
+      young: { label: 'Young', counts: emptyRatingCounts() },
+      learning: { label: 'Learning', counts: emptyRatingCounts() }
+    };
+
+    cards.forEach(card => {
+      const suspended = Boolean(card?.suspended);
+      const buried = Boolean(card?.buried || card?.buriedUntil);
+      if (!suspended && !buried) summary.activeCards += 1;
+      if (card?.isDue) summary.dueCards += 1;
+      if (card?.isOverdue) summary.overdueCards += 1;
+      if (card?.leech) summary.leechCards += 1;
+      if (card?.failedRecently) summary.failedRecently += 1;
+      if (Number(card?.reviewCount || card?.reps || 0) > 0 || card?.lastReviewedAt) summary.reviewedCards += 1;
+
+      addRatingCounts(summary.ratingCounts, card?.ratingCounts);
+      const bucket = analyticsCardBucket(card);
+      if (buckets[bucket]) addRatingCounts(buckets[bucket].counts, card?.ratingCounts);
+    });
+
+    const passRate = ratingPassRate(summary.ratingCounts);
+    summary.retention = passRate.percent;
+    summary.reviewEvents = passRate.total;
+    summary.retentionBreakdown = Object.values(buckets)
+      .map(bucket => {
+        const rate = ratingPassRate(bucket.counts);
+        return { label: bucket.label, percent: rate.percent, total: rate.total };
+      })
+      .filter(item => item.total > 0);
+    summary.buttonDistribution = ['Again', 'Hard', 'Good', 'Easy'].map(label => ({
+      label,
+      count: Number(summary.ratingCounts[label] || 0),
+      percent: passRate.total > 0 ? Math.round((Number(summary.ratingCounts[label] || 0) / passRate.total) * 100) : 0
+    }));
+
+    const todayStart = startOfLocalDayMs();
+    const weekStart = todayStart - 6 * DAY_MS;
+    (state.studySessions || []).filter(isTrackedStudySession).forEach(session => {
+      const started = normalizeTimestamp(session.startedAt);
+      const duration = Number(session.durationMs || 0);
+      const cardsViewed = Number(session.cardsViewed || 0);
+      if (started >= todayStart) {
+        summary.todayStudyMs += duration;
+        summary.todayCardsViewed += cardsViewed;
+      }
+      if (started >= weekStart) {
+        summary.weekStudyMs += duration;
+        summary.weekCardsViewed += cardsViewed;
+      }
+    });
+    summary.averageSecondsPerCard = summary.weekCardsViewed > 0
+      ? Math.round(summary.weekStudyMs / summary.weekCardsViewed / 1000)
+      : null;
+    return summary;
+  }
+
+  function buildForecast(cards = [], days = 7) {
+    const todayStart = startOfLocalDayMs();
+    const buckets = Array.from({ length: days }, (_, index) => {
+      const dayMs = todayStart + index * DAY_MS;
+      return {
+        dayMs,
+        count: 0,
+        label: index === 0
+          ? 'Today'
+          : index === 1
+            ? 'Tomorrow'
+            : new Date(dayMs).toLocaleDateString(undefined, { weekday: 'short' })
+      };
+    });
+    cards.forEach(card => {
+      if (card?.suspended || card?.buried || card?.buriedUntil) return;
+      const dueTime = normalizeTimestamp(card?.dueTime || card?.due);
+      if (!dueTime) return;
+      let offset = Math.floor((startOfLocalDayMs(dueTime) - todayStart) / DAY_MS);
+      if (dueTime < todayStart) offset = 0;
+      if (offset >= 0 && offset < days) buckets[offset].count += 1;
+    });
+    const max = Math.max(1, ...buckets.map(item => item.count));
+    return buckets.map(item => ({
+      ...item,
+      percent: Math.round((item.count / max) * 100)
+    }));
+  }
+
+  function buildStudyHeatmap(days = 28) {
+    const todayStart = startOfLocalDayMs();
+    const activity = new Map();
+    const bump = (dayMs, patch = {}) => {
+      if (!dayMs) return;
+      const current = activity.get(dayMs) || { cards: 0, sessions: 0, reviews: 0, durationMs: 0 };
+      activity.set(dayMs, {
+        cards: current.cards + Number(patch.cards || 0),
+        sessions: current.sessions + Number(patch.sessions || 0),
+        reviews: current.reviews + Number(patch.reviews || 0),
+        durationMs: current.durationMs + Number(patch.durationMs || 0)
+      });
+    };
+
+    (state.studySessions || []).filter(isTrackedStudySession).forEach(session => {
+      bump(startOfLocalDayMs(session.startedAt), {
+        cards: Number(session.cardsViewed || 0),
+        sessions: 1,
+        durationMs: Number(session.durationMs || 0)
+      });
+    });
+
+    let metaDayKeyCount = 0;
+    state.sets.forEach(set => {
+      (metaStats(set)?.reviewDayKeys || []).forEach(key => {
+        metaDayKeyCount += 1;
+        bump(localDayKeyMs(key), { reviews: 1 });
+      });
+    });
+    if (!metaDayKeyCount) {
+      reviewedDates().forEach(time => bump(startOfLocalDayMs(time), { reviews: 1 }));
+    }
+
+    const items = Array.from({ length: days }, (_, index) => {
+      const dayMs = todayStart - (days - index - 1) * DAY_MS;
+      const entry = activity.get(dayMs) || { cards: 0, sessions: 0, reviews: 0, durationMs: 0 };
+      const score = entry.cards + entry.reviews + entry.sessions;
+      return {
+        dayMs,
+        ...entry,
+        score,
+        label: new Date(dayMs).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+      };
+    });
+    const max = Math.max(1, ...items.map(item => item.score));
+    return items.map(item => ({
+      ...item,
+      level: item.score <= 0 ? 0 : clamp(Math.ceil((item.score / max) * 4), 1, 4)
+    }));
+  }
+
+  function buildDeckHealth(cards = []) {
+    const rows = new Map();
+    state.sets.forEach(set => {
+      const stats = setStats(set);
+      rows.set(String(set.id), {
+        setId: String(set.id),
+        name: set.name || 'Untitled Set',
+        total: setCardCount(set),
+        cardTotal: 0,
+        due: 0,
+        metaDue: Number(stats?.dueCards || dueCountForSet(set, { force: true }) || 0),
+        overdue: 0,
+        leeches: 0,
+        counts: emptyRatingCounts(),
+        metaRetention: stats?.retention ?? null
+      });
+    });
+
+    cards.forEach(card => {
+      const setId = String(card?.setId || '');
+      if (!setId) return;
+      if (!rows.has(setId)) {
+        rows.set(setId, {
+          setId,
+          name: card?.deck || 'Untitled Set',
+          total: 0,
+          cardTotal: 0,
+          due: 0,
+          metaDue: 0,
+          overdue: 0,
+          leeches: 0,
+          counts: emptyRatingCounts(),
+          metaRetention: null
+        });
+      }
+      const row = rows.get(setId);
+      row.cardTotal += 1;
+      if (card?.isDue) row.due += 1;
+      if (card?.isOverdue) row.overdue += 1;
+      if (card?.leech) row.leeches += 1;
+      addRatingCounts(row.counts, card?.ratingCounts);
+    });
+
+    return Array.from(rows.values())
+      .filter(row => (row.total || row.cardTotal) > 0)
+      .map(row => {
+        const total = row.total || row.cardTotal;
+        const due = row.cardTotal ? row.due : row.metaDue;
+        const rate = ratingPassRate(row.counts);
+        const retention = rate.percent ?? row.metaRetention;
+        const dueRatio = total ? due / total : 0;
+        const overdueRatio = total ? row.overdue / total : 0;
+        const leechRatio = total ? row.leeches / total : 0;
+        const baseline = Number.isFinite(Number(retention)) ? Number(retention) : (rate.total > 0 ? 70 : 64);
+        const score = clamp(Math.round(baseline - dueRatio * 20 - overdueRatio * 35 - leechRatio * 45), 0, 100);
+        const workload = row.overdue > 0
+          ? 'Backlog'
+          : due > Math.max(30, total * 0.25)
+            ? 'Heavy'
+            : due > 0
+              ? 'Ready'
+              : 'Healthy';
+        return {
+          ...row,
+          total,
+          due,
+          retention,
+          score,
+          workload
+        };
+      })
+      .sort((a, b) => a.score - b.score || b.overdue - a.overdue || b.leeches - a.leeches || b.due - a.due)
+      .slice(0, 4);
+  }
+
+  function renderAnalyticsDashboard() {
+    if (!selectors.analyticsDashboard) return;
+    const totals = totalStats({ forceDue: true });
+    if (!totals.cardCount) {
+      selectors.analyticsDashboard.innerHTML = emptyPanel('fa-chart-simple', 'No insights yet', 'Create or import a deck to see study analytics.');
+      return;
+    }
+
+    if (state.analyticsError) {
+      selectors.analyticsDashboard.innerHTML = emptyPanel(
+        'fa-triangle-exclamation',
+        'Insights unavailable',
+        state.analyticsError?.message || 'Card analytics could not be loaded.',
+        '<button type="button" class="secondary-action" data-action="refresh-analytics"><i class="fas fa-rotate"></i>Retry</button>'
+      );
+      return;
+    }
+
+    if (!state.analyticsLoaded) {
+      if (!state.analyticsLoading && state.activeTab === 'today') {
+        loadAnalyticsCards().catch(() => {});
+      }
+      selectors.analyticsDashboard.innerHTML = emptyPanel('fa-chart-line', 'Loading insights', 'Reading card metadata.');
+      return;
+    }
+
+    const cards = state.analyticsCards || [];
+    const summary = analyticsSummary(cards);
+    const forecast = buildForecast(cards);
+    const heatmap = buildStudyHeatmap();
+    const deckHealth = buildDeckHealth(cards);
+    const retentionLabel = summary.retention === null ? '--' : `${summary.retention}%`;
+    const avgTime = summary.averageSecondsPerCard === null ? '--' : `${summary.averageSecondsPerCard}s`;
+    const heatmapHtml = heatmap.map(day => `
+      <span class="heatmap-cell level-${day.level}" title="${escapeAttr(`${day.label}: ${day.score ? `${day.score} activity` : 'No study'}`)}"></span>
+    `).join('');
+    const forecastHtml = forecast.map(day => `
+      <div class="forecast-row">
+        <span>${escapeHtml(day.label)}</span>
+        <strong>${formatShortNumber(day.count)}</strong>
+        <i style="--value:${clamp(day.percent, 0, 100)}%"></i>
+      </div>
+    `).join('');
+    const distributionHtml = summary.buttonDistribution.map(item => `
+      <div class="rating-row rating-${escapeAttr(item.label.toLowerCase())}">
+        <span>${escapeHtml(item.label)}</span>
+        <strong>${item.percent}%</strong>
+        <i style="--value:${clamp(item.percent, 0, 100)}%"></i>
+      </div>
+    `).join('');
+    const retentionBreakdownHtml = summary.retentionBreakdown.length
+      ? summary.retentionBreakdown.map(item => `
+          <span><strong>${escapeHtml(item.label)}</strong><em>${item.percent === null ? '--' : `${item.percent}%`}</em></span>
+        `).join('')
+      : '<span><strong>Reviews</strong><em>--</em></span>';
+    const deckHealthHtml = deckHealth.length
+      ? deckHealth.map(deck => `
+          <article class="deck-health-row">
+            <div>
+              <strong>${escapeHtml(deck.name)}</strong>
+              <span>${escapeHtml(deck.workload)} &middot; ${formatShortNumber(deck.due)} due &middot; ${formatShortNumber(deck.leeches)} weak</span>
+            </div>
+            <b>${deck.score}</b>
+          </article>
+        `).join('')
+      : '<div class="insight-muted">No deck pressure yet.</div>';
+
+    selectors.analyticsDashboard.innerHTML = `
+      <div class="insight-grid">
+        <article class="insight-card insight-score">
+          <span class="insight-icon"><i class="fas fa-bullseye"></i></span>
+          <div>
+            <small>Actual retention</small>
+            <strong>${retentionLabel}</strong>
+            <p>${formatShortNumber(summary.reviewEvents)} graded reviews</p>
+          </div>
+        </article>
+        <article class="insight-card">
+          <span class="insight-icon warn"><i class="fas fa-calendar-day"></i></span>
+          <div>
+            <small>Due load</small>
+            <strong>${formatShortNumber(summary.dueCards)}</strong>
+            <p>${formatShortNumber(summary.overdueCards)} overdue</p>
+          </div>
+        </article>
+        <article class="insight-card">
+          <span class="insight-icon danger"><i class="fas fa-triangle-exclamation"></i></span>
+          <div>
+            <small>Weak cards</small>
+            <strong>${formatShortNumber(summary.leechCards)}</strong>
+            <p>${formatShortNumber(summary.failedRecently)} failed recently</p>
+          </div>
+        </article>
+        <article class="insight-card">
+          <span class="insight-icon calm"><i class="fas fa-stopwatch"></i></span>
+          <div>
+            <small>Today</small>
+            <strong>${formatDuration(summary.todayStudyMs)}</strong>
+            <p>${avgTime}/card this week</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="insight-two-col">
+        <article class="insight-panel">
+          <div class="insight-panel-head">
+            <strong>Retention</strong>
+            <span>${formatShortNumber(summary.reviewedCards)} reviewed</span>
+          </div>
+          <div class="retention-breakdown">${retentionBreakdownHtml}</div>
+          <div class="rating-list">${distributionHtml}</div>
+        </article>
+        <article class="insight-panel">
+          <div class="insight-panel-head">
+            <strong>Forecast</strong>
+            <span>7 days</span>
+          </div>
+          <div class="forecast-list">${forecastHtml}</div>
+        </article>
+      </div>
+
+      <article class="insight-panel">
+        <div class="insight-panel-head">
+          <strong>Study heatmap</strong>
+          <span>${formatDuration(summary.weekStudyMs)} this week</span>
+        </div>
+        <div class="study-heatmap">${heatmapHtml}</div>
+      </article>
+
+      <article class="insight-panel">
+        <div class="insight-panel-head">
+          <strong>Deck health</strong>
+          <span>Lowest scores</span>
+        </div>
+        <div class="deck-health-list">${deckHealthHtml}</div>
+      </article>
+    `;
+  }
+
   function renderToday() {
     const totals = totalStats({ forceDue: true });
     const todayReviews = reviewsToday();
@@ -714,6 +1239,8 @@
         </button>
       </div>
     `;
+
+    renderAnalyticsDashboard();
 
     const continueSets = [...state.sets]
       .sort((a, b) => {
@@ -1030,14 +1557,16 @@
     const items = [...legacy, ...media];
     const background = normalizeCardBackground(card)[side];
     const mediaHtml = items.map(item => {
+      const itemSrc = safeMediaSrc(item.src);
+      if (!itemSrc) return '';
       const icon = item.kind === 'audio' ? 'fa-volume-high' : item.kind === 'video' ? 'fa-film' : 'fa-image';
       let preview = '';
       if (item.kind === 'audio') {
-        preview = `<audio src="${escapeAttr(item.src)}" controls preload="metadata"></audio>`;
+        preview = `<audio src="${escapeAttr(itemSrc)}" controls preload="metadata"></audio>`;
       } else if (item.kind === 'video') {
-        preview = `<video src="${escapeAttr(item.src)}" controls preload="metadata"></video>`;
+        preview = `<video src="${escapeAttr(itemSrc)}" controls preload="metadata"></video>`;
       } else {
-        preview = `<img src="${escapeAttr(item.src)}" alt="">`;
+        preview = `<img src="${escapeAttr(itemSrc)}" alt="">`;
       }
       return `
         <div class="creator-image-preview media-preview-item">
@@ -1049,8 +1578,9 @@
         </div>
       `;
     }).join('');
-    const backgroundHtml = background ? `
-      <div class="creator-background-preview" style="background-image:url('${escapeAttr(background.src)}')">
+    const backgroundSrc = safeMediaSrc(background?.src);
+    const backgroundHtml = backgroundSrc ? `
+      <div class="creator-background-preview" style="background-image:url('${escapeAttr(backgroundSrc)}')">
         <span><i class="fas fa-panorama"></i> Background</span>
         <button type="button" data-creator-action="remove-background" data-card-id="${escapeAttr(card.id)}" data-side="${side}" aria-label="Remove background">
           <i class="fas fa-xmark"></i>
@@ -1063,6 +1593,8 @@
   function cardEditor(card, index) {
     card.media = normalizeCardMedia(card);
     card.background = normalizeCardBackground(card);
+    const safeTerm = sanitizeEditorHtml(card.term || '');
+    const safeDefinition = sanitizeEditorHtml(card.definition || '');
     const termMedia = mediaPreviewHtml(card, 'term');
     const definitionMedia = mediaPreviewHtml(card, 'definition');
 
@@ -1090,7 +1622,7 @@
               </button>
             </div>
           </div>
-          <div class="rich-editor" contenteditable="true" data-editor-id="${escapeAttr(card.id)}" data-side="term" data-placeholder="Enter term">${card.term || ''}</div>
+          <div class="rich-editor" contenteditable="true" data-editor-id="${escapeAttr(card.id)}" data-side="term" data-placeholder="Enter term">${safeTerm}</div>
           ${termMedia}
         </section>
         <section class="editor-side">
@@ -1109,7 +1641,7 @@
               </button>
             </div>
           </div>
-          <div class="rich-editor" contenteditable="true" data-editor-id="${escapeAttr(card.id)}" data-side="definition" data-placeholder="Enter definition">${card.definition || ''}</div>
+          <div class="rich-editor" contenteditable="true" data-editor-id="${escapeAttr(card.id)}" data-side="definition" data-placeholder="Enter definition">${safeDefinition}</div>
           ${definitionMedia}
         </section>
       </article>
@@ -1736,57 +2268,417 @@
   }
 
 
-  async function loadBrowserCards() {
+  async function loadBrowserCards(options = {}) {
+    if (options.force) state.browserLoaded = false;
     if (state.browserLoaded) return;
     selectors.browserList.innerHTML = emptyPanel('fa-spinner', 'Loading cards', 'Building a searchable local card list.');
-    const sets = await window.flashcardStore.listSets();
-    const classLookup = classMap();
-    state.browserCards = [];
-    (sets || []).forEach(set => {
-      const className = set.classId ? classLookup.get(String(set.classId))?.name : 'General';
-      (set.cards || []).forEach(card => {
-        state.browserCards.push({
-          setId: set.id,
-          deck: set.name || 'Untitled Set',
-          className: className || 'General',
-          term: card.term || '',
-          definition: card.definition || '',
-          tags: Array.isArray(card.tags) ? card.tags : [],
-          srsState: card.srs?.state || 'New'
+    if (window.flashcardStore.listCardsForBrowser) {
+      state.browserCards = await window.flashcardStore.listCardsForBrowser();
+    } else {
+      const sets = await window.flashcardStore.listSets();
+      const classLookup = classMap();
+      state.browserCards = [];
+      (sets || []).forEach(set => {
+        const className = set.classId ? classLookup.get(String(set.classId))?.name : 'General';
+        (set.cards || []).forEach(card => {
+          state.browserCards.push({
+            setId: set.id,
+            deck: set.name || 'Untitled Set',
+            className: className || 'General',
+            term: card.term || '',
+            definition: card.definition || '',
+            tags: Array.isArray(card.tags) ? card.tags : [],
+            srsState: card.srs?.state || 'New'
+          });
         });
       });
-    });
+    }
     state.browserLoaded = true;
+    state.analyticsCards = state.browserCards;
+    state.analyticsLoaded = true;
+    state.analyticsLoading = false;
+    state.analyticsError = null;
+    state.analyticsLoadToken += 1;
+    state.browserSelectedCards = new Set(
+      Array.from(state.browserSelectedCards || []).filter(id => state.browserCards.some(card => String(card.id) === String(id)))
+    );
   }
 
-  function renderBrowser() {
-    if (!selectors.browserList) return;
-    selectors.browserSearchInput.value = state.browserSearch;
-    const query = state.browserSearch.trim().toLowerCase();
-    const cards = state.browserCards.filter(card => {
-      if (!query) return true;
-      return [card.deck, card.className, card.term, card.definition, card.srsState, ...(card.tags || [])]
-        .join(' ')
-        .toLowerCase()
-        .includes(query);
-    }).slice(0, 120);
+  function browserStateLabel(card) {
+    if (card.suspended) return 'Suspended';
+    if (card.buried) return 'Buried';
+    return card.srsState || 'New';
+  }
 
-    selectors.browserList.innerHTML = cards.length
-      ? cards.map(card => `
-        <article class="browser-card">
+  function browserDueLabel(card) {
+    if (card.suspended) return 'Suspended';
+    if (card.buried) return 'Buried';
+    if (card.isOverdue) return 'Overdue';
+    if (card.isDue) return 'Due';
+    if (!card.dueTime) return 'No due date';
+    return `Due ${relativeTime(card.dueTime)}`;
+  }
+
+  function browserCardMatchesFilter(card, filter) {
+    const stateName = String(card.srsState || 'New').toLowerCase();
+    switch (filter) {
+      case 'new':
+      case 'learning':
+      case 'review':
+      case 'relearning':
+        return stateName === filter;
+      case 'due':
+        return Boolean(card.isDue);
+      case 'overdue':
+        return Boolean(card.isOverdue);
+      case 'suspended':
+        return Boolean(card.suspended);
+      case 'buried':
+        return Boolean(card.buried || card.buriedUntil);
+      case 'failed':
+        return Boolean(card.failedRecently);
+      case 'leeches':
+        return Boolean(card.leech);
+      case 'no-tags':
+        return Boolean(card.noTags);
+      case 'has-image':
+        return Boolean(card.hasImage);
+      case 'has-audio':
+        return Boolean(card.hasAudio);
+      default:
+        return true;
+    }
+  }
+
+  function filteredBrowserCards() {
+    const query = state.browserSearch.trim().toLowerCase();
+    const filters = Array.from(state.browserFilters || []);
+    return state.browserCards.filter(card => {
+      if (query) {
+        const haystack = [
+          card.deck,
+          card.className,
+          card.term,
+          card.definition,
+          card.srsState,
+          ...(card.tags || [])
+        ].join(' ').toLowerCase();
+        if (!haystack.includes(query)) return false;
+      }
+      return filters.every(filter => browserCardMatchesFilter(card, filter));
+    });
+  }
+
+  function renderBrowserFilters() {
+    if (!selectors.browserFilterStrip) return;
+    const active = state.browserFilters || new Set();
+    selectors.browserFilterStrip.querySelectorAll('[data-browser-filter]').forEach(button => {
+      const filter = button.dataset.browserFilter;
+      button.classList.toggle('active', filter === 'all' ? active.size === 0 : active.has(filter));
+    });
+  }
+
+  function renderBrowserSelection() {
+    const count = state.browserSelectedCards ? state.browserSelectedCards.size : 0;
+    if (selectors.browserSelectionBar) {
+      selectors.browserSelectionBar.hidden = count === 0;
+    }
+    if (selectors.browserSelectedCount) {
+      selectors.browserSelectedCount.textContent = `${count} ${count === 1 ? 'card' : 'cards'} selected`;
+    }
+    if (selectors.browserList) {
+      selectors.browserList.querySelectorAll('[data-browser-card-select]').forEach(button => {
+        const selected = state.browserSelectedCards.has(String(button.dataset.browserCardSelect));
+        button.classList.toggle('selected', selected);
+        button.setAttribute('aria-pressed', String(selected));
+        const icon = button.querySelector('i');
+        if (icon) icon.className = selected ? 'fas fa-check' : 'far fa-square';
+      });
+      selectors.browserList.querySelectorAll('.browser-card').forEach(row => {
+        row.classList.toggle('selected', state.browserSelectedCards.has(String(row.dataset.cardId)));
+      });
+    }
+  }
+
+  function browserCardRow(card) {
+    const id = String(card.id);
+    const selected = state.browserSelectedCards?.has(id);
+    const tags = (card.tags || []).slice(0, 4).map(tag => `<span>#${escapeHtml(tag)}</span>`).join('');
+    const flags = [
+      card.failedRecently ? '<span class="warning">Failed</span>' : '',
+      card.leech ? '<span class="danger">Leech</span>' : '',
+      card.hasImage ? '<span><i class="fas fa-image"></i> Image</span>' : '',
+      card.hasAudio ? '<span><i class="fas fa-volume-high"></i> Audio</span>' : ''
+    ].filter(Boolean).join('');
+
+    return `
+      <article class="browser-card ${selected ? 'selected' : ''}" data-card-id="${escapeAttr(id)}">
+        <button type="button" class="browser-card-check ${selected ? 'selected' : ''}" data-browser-card-select="${escapeAttr(id)}" aria-label="Select card" aria-pressed="${selected ? 'true' : 'false'}">
+          <i class="${selected ? 'fas fa-check' : 'far fa-square'}"></i>
+        </button>
+        <div class="browser-card-body">
           <div class="browser-card-head">
             <span>${escapeHtml(card.deck)}</span>
             <small>${escapeHtml(card.className)}</small>
           </div>
           <strong>${escapeHtml(card.term || 'Empty term')}</strong>
           <p>${escapeHtml(card.definition || 'Empty definition')}</p>
-          <div class="deck-subline">
-            <span>${escapeHtml(card.srsState)}</span>
-            ${(card.tags || []).slice(0, 3).map(tag => `<span>#${escapeHtml(tag)}</span>`).join('')}
+          <div class="deck-subline browser-card-meta">
+            <span>${escapeHtml(browserStateLabel(card))}</span>
+            <span>${escapeHtml(browserDueLabel(card))}</span>
+            ${tags}
+            ${flags}
           </div>
-        </article>
-      `).join('')
-      : emptyPanel('fa-table-list', 'No cards found', query ? 'Try another search.' : 'Create or import a deck first.');
+        </div>
+      </article>
+    `;
+  }
+
+  function renderBrowser() {
+    if (!selectors.browserList) return;
+    selectors.browserSearchInput.value = state.browserSearch;
+    renderBrowserFilters();
+    const allFilteredCards = filteredBrowserCards();
+    const cards = allFilteredCards.slice(0, BROWSER_RENDER_LIMIT);
+    state.browserVisibleIds = cards.map(card => String(card.id));
+
+    if (selectors.browserCountLabel) {
+      const shown = cards.length === allFilteredCards.length
+        ? `${allFilteredCards.length}`
+        : `${cards.length}/${allFilteredCards.length}`;
+      selectors.browserCountLabel.textContent = `${shown} ${allFilteredCards.length === 1 ? 'card' : 'cards'}`;
+    }
+    if (selectors.browserSelectVisible) {
+      selectors.browserSelectVisible.disabled = cards.length === 0;
+    }
+
+    selectors.browserList.innerHTML = cards.length
+      ? cards.map(browserCardRow).join('')
+      : emptyPanel('fa-table-list', 'No cards found', state.browserSearch || state.browserFilters.size ? 'Try another search or filter.' : 'Create or import a deck first.');
+    renderBrowserSelection();
+  }
+
+  function toggleBrowserFilter(filter) {
+    if (!state.browserFilters) state.browserFilters = new Set();
+    if (filter === 'all') {
+      state.browserFilters.clear();
+    } else if (state.browserFilters.has(filter)) {
+      state.browserFilters.delete(filter);
+    } else {
+      state.browserFilters.add(filter);
+    }
+    playClick();
+    renderBrowser();
+  }
+
+  function toggleBrowserCardSelection(cardId) {
+    const id = String(cardId || '');
+    if (!id) return;
+    if (!state.browserSelectedCards) state.browserSelectedCards = new Set();
+    if (state.browserSelectedCards.has(id)) {
+      state.browserSelectedCards.delete(id);
+    } else {
+      state.browserSelectedCards.add(id);
+    }
+    playClick();
+    renderBrowserSelection();
+  }
+
+  function selectVisibleBrowserCards() {
+    const visibleIds = (state.browserVisibleIds || []).map(String);
+    if (!visibleIds.length) return;
+    if (!state.browserSelectedCards) state.browserSelectedCards = new Set();
+    const allSelected = visibleIds.every(id => state.browserSelectedCards.has(id));
+    visibleIds.forEach(id => {
+      if (allSelected) state.browserSelectedCards.delete(id);
+      else state.browserSelectedCards.add(id);
+    });
+    playClick();
+    renderBrowserSelection();
+  }
+
+  function clearBrowserSelection(options = {}) {
+    if (!state.browserSelectedCards) state.browserSelectedCards = new Set();
+    if (!state.browserSelectedCards.size) {
+      if (selectors.browserSelectionBar) selectors.browserSelectionBar.hidden = true;
+      return;
+    }
+    state.browserSelectedCards.clear();
+    if (options.play !== false) playClick();
+    if (options.render === false) {
+      if (selectors.browserSelectionBar) selectors.browserSelectionBar.hidden = true;
+      return;
+    }
+    renderBrowserSelection();
+  }
+
+  function browserSelectedIds() {
+    return Array.from(state.browserSelectedCards || []).map(String);
+  }
+
+  function openBrowserFieldModal({
+    title,
+    icon = 'fa-pen',
+    message = '',
+    inputType = 'text',
+    placeholder = '',
+    value = '',
+    options = [],
+    okText = 'Apply',
+    isDanger = false
+  }) {
+    return new Promise(resolve => {
+      const overlay = document.createElement('div');
+      overlay.className = 'mobile-modal-overlay browser-action-modal';
+      const fieldHtml = options.length
+        ? `<select class="mobile-modal-select" id="browser-action-field">
+            ${options.map(item => `<option value="${escapeAttr(item.value)}">${escapeHtml(item.label)}</option>`).join('')}
+          </select>`
+        : `<input class="mobile-modal-input" id="browser-action-field" type="${escapeAttr(inputType)}" value="${escapeAttr(value)}" placeholder="${escapeAttr(placeholder)}" autocomplete="off">`;
+      overlay.innerHTML = `
+        <div class="mobile-modal-card">
+          <h3 class="modal-title"><i class="fas ${escapeAttr(icon)}"></i> ${escapeHtml(title)}</h3>
+          ${message ? `<p class="mobile-modal-hint">${escapeHtml(message)}</p>` : ''}
+          <div class="mobile-modal-field">${fieldHtml}</div>
+          <div class="mobile-modal-actions">
+            <button type="button" class="mobile-modal-btn cancel" data-browser-action-cancel>Cancel</button>
+            <button type="button" class="mobile-modal-btn confirm ${isDanger ? 'danger' : ''}" data-browser-action-confirm>${escapeHtml(okText)}</button>
+          </div>
+        </div>
+      `;
+
+      const close = result => {
+        overlay.removeEventListener('click', onOverlayClick);
+        overlay.querySelector('[data-browser-action-cancel]')?.removeEventListener('click', onCancel);
+        overlay.querySelector('[data-browser-action-confirm]')?.removeEventListener('click', onConfirm);
+        overlay.remove();
+        state.lastModalClosedAt = Date.now();
+        resolve(result);
+      };
+      const onCancel = () => close(null);
+      const onConfirm = () => {
+        const field = overlay.querySelector('#browser-action-field');
+        close(field?.value || '');
+      };
+      const onOverlayClick = event => {
+        if (event.target === overlay) close(null);
+      };
+
+      overlay.addEventListener('click', onOverlayClick);
+      overlay.querySelector('[data-browser-action-cancel]')?.addEventListener('click', onCancel);
+      overlay.querySelector('[data-browser-action-confirm]')?.addEventListener('click', onConfirm);
+      document.body.appendChild(overlay);
+      requestAnimationFrame(() => overlay.querySelector('#browser-action-field')?.focus());
+    });
+  }
+
+  async function browserBulkOptions(action, count) {
+    if (action === 'delete') {
+      const ok = await showMobileConfirm({
+        title: 'Delete Cards',
+        message: `Delete ${count} selected ${count === 1 ? 'card' : 'cards'}? This cannot be undone.`,
+        okText: 'Delete',
+        isDanger: true
+      });
+      return ok ? {} : null;
+    }
+    if (action === 'reset-srs') {
+      const ok = await showMobileConfirm({
+        title: 'Reset SRS',
+        message: `Reset scheduling for ${count} selected ${count === 1 ? 'card' : 'cards'}? Card text and tags will stay intact.`,
+        okText: 'Reset',
+        isDanger: true
+      });
+      return ok ? { deleteHistory: false } : null;
+    }
+    if (action === 'set-due') {
+      const today = new Date().toISOString().slice(0, 10);
+      const due = await openBrowserFieldModal({
+        title: 'Set Due Date',
+        icon: 'fa-calendar-day',
+        message: `${count} selected ${count === 1 ? 'card' : 'cards'}`,
+        inputType: 'date',
+        value: today,
+        okText: 'Set Due'
+      });
+      return due ? { due } : null;
+    }
+    if (action === 'move') {
+      const options = [...state.sets]
+        .sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')))
+        .map(set => ({ value: String(set.id), label: set.name || 'Untitled Set' }));
+      const targetSetId = await openBrowserFieldModal({
+        title: 'Move Cards',
+        icon: 'fa-folder-open',
+        message: `${count} selected ${count === 1 ? 'card' : 'cards'}`,
+        options,
+        okText: 'Move'
+      });
+      return targetSetId ? { targetSetId } : null;
+    }
+    if (action === 'add-tag' || action === 'remove-tag') {
+      const tags = await openBrowserFieldModal({
+        title: action === 'add-tag' ? 'Add Tags' : 'Remove Tags',
+        icon: 'fa-tag',
+        message: 'Separate multiple tags with commas.',
+        placeholder: 'weak, biology, chapter-2',
+        okText: action === 'add-tag' ? 'Add' : 'Remove'
+      });
+      return tags ? { tags } : null;
+    }
+    return {};
+  }
+
+  function browserBulkToast(action, result, count) {
+    const changed = Number(result?.deleted || result?.moved || result?.updated || count || 0);
+    const cardText = `${changed} ${changed === 1 ? 'card' : 'cards'}`;
+    const labels = {
+      suspend: `${cardText} suspended`,
+      unsuspend: `${cardText} unsuspended`,
+      'reset-srs': `${cardText} reset`,
+      delete: `${cardText} deleted`,
+      move: `${cardText} moved`,
+      'set-due': `${cardText} updated`,
+      'add-tag': `${cardText} tagged`,
+      'remove-tag': `${cardText} updated`
+    };
+    showToast(labels[action] || `${cardText} updated`);
+  }
+
+  async function applyBrowserBulkAction(action) {
+    const ids = browserSelectedIds();
+    if (!ids.length) {
+      showToast('Select cards first');
+      return;
+    }
+    if (!window.flashcardStore?.bulkUpdateCards) {
+      showToast('Bulk tools are not available');
+      return;
+    }
+
+    const options = await browserBulkOptions(action, ids.length);
+    if (options === null) return;
+
+    showMicroLoader('Updating cards...');
+    try {
+      if ((action === 'delete' || action === 'reset-srs') && window.flashcardStore?.createBackupSnapshot) {
+        await window.flashcardStore.createBackupSnapshot(`before-bulk-${action}`).catch(error => {
+          console.warn('[mobile] Could not create bulk action backup snapshot:', error);
+        });
+      }
+      const result = await window.flashcardStore.bulkUpdateCards(ids, action, options);
+      clearBrowserSelection({ play: false, render: false });
+      state.browserLoaded = false;
+      await loadData();
+      await loadBrowserCards({ force: true });
+      render();
+      browserBulkToast(action, result, ids.length);
+    } catch (error) {
+      console.error('[mobile] Bulk card action failed:', error);
+      showToast(error?.message || 'Could not update cards');
+    } finally {
+      hideMicroLoader();
+    }
   }
 
 
@@ -2857,6 +3749,10 @@
         state.lastModalClosedAt = Date.now();
         return;
       }
+      if (state.activeTab === 'browser' && state.browserSelectedCards?.size) {
+        clearBrowserSelection();
+        return;
+      }
       // 4. Exit select mode
       if (state.selectMode) {
         exitSelectMode();
@@ -2867,7 +3763,11 @@
         setActiveTab('library');
         return;
       }
-      // 6. If not on today tab, switch to today
+      // 6. Browser backs out to Settings, then other tabs return to Today
+      if (state.activeTab === 'browser') {
+        setActiveTab('more');
+        return;
+      }
       if (state.activeTab !== 'today') {
         setActiveTab('today');
         return;
@@ -3141,6 +4041,11 @@
         break;
       case 'review-due-smart':
         await reviewDueSmart();
+        break;
+      case 'refresh-analytics':
+        playClick();
+        state.analyticsLoaded = false;
+        await loadAnalyticsCards({ force: true });
         break;
       case 'toggle-srs':
         await toggleSrs();
@@ -4011,6 +4916,44 @@
     selectors.browserSearchInput?.addEventListener('input', event => {
       state.browserSearch = event.target.value || '';
       renderBrowser();
+    });
+
+    selectors.browserFilterStrip?.addEventListener('click', event => {
+      const button = event.target.closest('[data-browser-filter]');
+      if (!button) return;
+      toggleBrowserFilter(button.dataset.browserFilter || 'all');
+    });
+
+    selectors.browserList?.addEventListener('click', event => {
+      const selectButton = event.target.closest('[data-browser-card-select]');
+      if (selectButton) {
+        event.preventDefault();
+        toggleBrowserCardSelection(selectButton.dataset.browserCardSelect);
+        return;
+      }
+      const selectedRow = event.target.closest('.browser-card');
+      if (selectedRow && state.browserSelectedCards?.size) {
+        event.preventDefault();
+        toggleBrowserCardSelection(selectedRow.dataset.cardId);
+      }
+    });
+
+    selectors.browserSelectVisible?.addEventListener('click', event => {
+      event.preventDefault();
+      selectVisibleBrowserCards();
+    });
+
+    selectors.browserClearSelection?.addEventListener('click', event => {
+      event.preventDefault();
+      clearBrowserSelection();
+    });
+
+    selectors.browserSelectionBar?.addEventListener('click', async event => {
+      const actionButton = event.target.closest('[data-browser-bulk-action]');
+      if (!actionButton) return;
+      event.preventDefault();
+      playClick();
+      await applyBrowserBulkAction(actionButton.dataset.browserBulkAction);
     });
 
 

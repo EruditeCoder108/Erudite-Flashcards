@@ -243,6 +243,24 @@
     return escapeHtml(value).replace(/`/g, '&#096;');
   }
 
+  function safeMediaSrc(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return '';
+    if (/["'<>`\\]/.test(raw)) return '';
+    if (/^(javascript|vbscript):/i.test(raw)) return '';
+    if (/^data:(image|audio|video)\//i.test(raw)) return raw;
+    if (/^(blob:|file:|capacitor:|cdvfile:)/i.test(raw)) return raw;
+    if (/^https?:\/\//i.test(raw)) {
+      try {
+        const url = new URL(raw);
+        return ['localhost', '127.0.0.1', '::1', '[::1]'].includes(url.hostname) ? raw : '';
+      } catch (_error) {
+        return '';
+      }
+    }
+    return raw.includes('://') ? '' : raw;
+  }
+
   function sanitizeRichText(value) {
     const raw = String(value || '').trim();
     if (!raw) return '';
@@ -271,6 +289,13 @@
   function cardKey(card) {
     if (!card) return null;
     return card.id ? `id:${card.id}` : `text:${card.term || ''}::${card.definition || ''}`;
+  }
+
+  function srsDayKey(value = Date.now(), rolloverHour = 4) {
+    const timestamp = value instanceof Date ? value.getTime() : Number(value || Date.now());
+    const adjusted = new Date(timestamp - rolloverHour * 60 * 60 * 1000);
+    adjusted.setHours(0, 0, 0, 0);
+    return String(adjusted.getTime());
   }
 
   function getDeckSrsSettings(set = state.set) {
@@ -566,7 +591,7 @@
     const cardCount = state.set.cards?.length || 0;
     state.normalIndex = savedNormalIndex(progress, cardCount || 1);
     state.srsIndex = Math.max(0, Number(progress.srsModeIndex ?? 0) || 0);
-    if (progress.srsReviewedCardIds && Array.isArray(progress.srsReviewedCardIds)) {
+    if (progress.srsSessionDayKey === srsDayKey() && progress.srsReviewedCardIds && Array.isArray(progress.srsReviewedCardIds)) {
       srsReviewedCardIds = new Set(progress.srsReviewedCardIds);
     } else {
       srsReviewedCardIds = new Set();
@@ -598,6 +623,7 @@
       srsModeIndex: state.srsIndex,
       srsModeLength: state.activeCards.length,
       srsCurrentCardKey: state.srsMode ? cardKey(activeCard()) : null,
+      srsSessionDayKey: srsDayKey(),
       srsReviewedCardIds: Array.from(srsReviewedCardIds),
       timestamp: Date.now()
     };
@@ -906,14 +932,15 @@
   }
 
   function renderImage(img, wrap, src) {
-    if (!src) {
+    const safeSrc = safeMediaSrc(src);
+    if (!safeSrc) {
       wrap.classList.add('hidden');
       img.removeAttribute('src');
       return;
     }
-    if (img.getAttribute('src') !== src) {
+    if (img.getAttribute('src') !== safeSrc) {
       img.decoding = 'async';
-      img.src = src;
+      img.src = safeSrc;
     }
     wrap.classList.remove('hidden');
   }
@@ -923,13 +950,14 @@
     const faceEl = element.closest('.card-face');
     const labelEl = faceEl?.querySelector('.card-label');
     if (!element) return;
-    if (!background?.src) {
+    const backgroundSrc = safeMediaSrc(background?.src);
+    if (!backgroundSrc) {
       element.classList.remove('visible', 'no-overlay');
       element.style.backgroundImage = '';
       if (labelEl) labelEl.style.display = '';
       return;
     }
-    element.style.backgroundImage = `url("${background.src}")`;
+    element.style.backgroundImage = `url("${backgroundSrc}")`;
     element.style.backgroundSize = background.fit || 'cover';
     // Use global cardBgOpacity setting if available, otherwise fall back to per-card opacity
     const globalOpacity = window.flashcardStore?.getSettingsSync?.()?.cardBgOpacity
@@ -951,6 +979,7 @@
   function renderMediaList(container, card, side) {
     if (!container) return;
     const items = (window.EruditeMedia?.getSideMedia?.(card, side, { includeLegacy: false }) || [])
+      .map(item => item ? { ...item, src: safeMediaSrc(item.src) } : null)
       .filter(item => item && item.src);
     container.innerHTML = items.map(item => {
       const src = escapeAttr(item.src || '');
@@ -981,7 +1010,7 @@
       const backgrounds = ['term', 'definition']
         .map(side => window.EruditeMedia?.getSideBackground?.(card, side)?.src)
         .filter(Boolean);
-      [card?.termImage, card?.definitionImage, ...mediaImages, ...backgrounds].filter(Boolean).forEach(src => {
+      [card?.termImage, card?.definitionImage, ...mediaImages, ...backgrounds].map(safeMediaSrc).filter(Boolean).forEach(src => {
         if (src.startsWith('data:')) return; // Skip base64 data URLs to save memory
         if (preloadedImages.has(src)) return;
         preloadedImages.add(src);
@@ -1347,11 +1376,21 @@
 
     const previous = current.srs ? { ...current.srs } : null;
     const reviewedAt = new Date().toISOString();
-    
-    // Save undo transaction snapshot
+
+    let reviewed;
+    try {
+      reviewed = window.srsManager.reviewCard(current, rating, getDeckSrsSettings());
+      if (!reviewed?.srs) throw new Error('SRS scheduler did not return updated scheduling data.');
+    } catch (error) {
+      console.error('[mobile-study] SRS review failed:', error);
+      showToast('Could not save review. Try again.');
+      ratingInFlight = false;
+      return;
+    }
+
+    // Save undo transaction snapshot only after scheduling succeeds.
     pushUndoTransaction('review', current, { rating });
 
-    const reviewed = window.srsManager.reviewCard(current, rating, getDeckSrsSettings());
     const updatedCard = {
       ...reviewed,
       reviewHistory: [
@@ -2215,7 +2254,7 @@
       if (mediaZoom) {
         event.preventDefault();
         event.stopPropagation();
-        els.zoomedImage.src = mediaZoom.dataset.zoomSrc || '';
+        els.zoomedImage.src = safeMediaSrc(mediaZoom.dataset.zoomSrc) || '';
         if (els.zoomedImage.src) els.imageModal.classList.remove('hidden');
         return;
       }
@@ -2225,7 +2264,7 @@
       const elements = getCardElements(activeEl);
       if (!elements) return;
       const side = zoom.dataset.imageSide;
-      const src = side === 'term' ? elements.termImage.src : elements.definitionImage.src;
+      const src = safeMediaSrc(side === 'term' ? elements.termImage.src : elements.definitionImage.src);
       if (!src) return;
       els.zoomedImage.src = src;
       els.imageModal.classList.remove('hidden');

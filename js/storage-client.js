@@ -79,6 +79,95 @@
     });
   }
 
+  function normalizeSrsState(value) {
+    if (typeof value === 'number') return ['New', 'Learning', 'Review', 'Relearning'][value] || 'New';
+    return value || 'New';
+  }
+
+  function normalizeTagList(value) {
+    if (Array.isArray(value)) return value.map(item => String(item).trim()).filter(Boolean);
+    return String(value || '').split(',').map(item => item.trim()).filter(Boolean);
+  }
+
+  function timeValue(value) {
+    if (!value) return null;
+    const time = new Date(value).getTime();
+    return Number.isFinite(time) ? time : null;
+  }
+
+  function srsDayKey(value, rolloverHour = 4) {
+    const date = new Date(value || Date.now());
+    date.setHours(date.getHours() - rolloverHour, 0, 0, 0);
+    return date.toISOString().slice(0, 10);
+  }
+
+  function isBuried(buriedUntil, nowMs = Date.now()) {
+    const until = timeValue(buriedUntil);
+    return Boolean(until && until > nowMs);
+  }
+
+  function isSrsDue(srs, nowMs = Date.now()) {
+    if (!srs || !srs.due) return false;
+    const state = normalizeSrsState(srs.state);
+    const due = timeValue(srs.due);
+    if (!due) return true;
+    if (state === 'Learning' || state === 'Relearning') return due <= nowMs;
+    return srsDayKey(due) <= srsDayKey(nowMs);
+  }
+
+  function normalizedRatingName(value) {
+    const rating = String(value || '').trim().toLowerCase();
+    if (rating === 'again' || rating === '1') return 'Again';
+    if (rating === 'hard' || rating === '2') return 'Hard';
+    if (rating === 'good' || rating === '3') return 'Good';
+    if (rating === 'easy' || rating === '4') return 'Easy';
+    return '';
+  }
+
+  function browserReviewStats(history, nowMs = Date.now()) {
+    const sevenDaysAgo = nowMs - (7 * 24 * 60 * 60 * 1000);
+    let lastReviewedAt = null;
+    let againCount = 0;
+    let failedRecently = false;
+    const ratingCounts = { Again: 0, Hard: 0, Good: 0, Easy: 0 };
+    for (const review of Array.isArray(history) ? history : []) {
+      const rating = normalizedRatingName(review?.rating || review?.grade);
+      const reviewedAt = timeValue(review?.reviewedAt || review?.time || review?.date);
+      if (reviewedAt && (!lastReviewedAt || reviewedAt > lastReviewedAt)) lastReviewedAt = reviewedAt;
+      if (rating) ratingCounts[rating] += 1;
+      if (rating === 'Again') {
+        againCount += 1;
+        if (reviewedAt && reviewedAt >= sevenDaysAgo) failedRecently = true;
+      }
+    }
+    return { againCount, failedRecently, lastReviewedAt, ratingCounts };
+  }
+
+  function hasCardMedia(card, kind) {
+    if (kind === 'image' && (card.termImage || card.definitionImage)) return true;
+    const media = card.media || {};
+    const items = [
+      ...(Array.isArray(media.term) ? media.term : []),
+      ...(Array.isArray(media.definition) ? media.definition : [])
+    ];
+    return items.some(item => {
+      const itemKind = String(item?.kind || item?.mediaType || '').toLowerCase();
+      const mime = String(item?.mime || item?.type || '').toLowerCase();
+      if (kind === 'audio') return itemKind === 'audio' || mime.startsWith('audio/');
+      if (kind === 'image') return itemKind === 'image' || mime.startsWith('image/');
+      return false;
+    });
+  }
+
+  function normalizeBulkDueIso(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return null;
+    const date = /^\d{4}-\d{2}-\d{2}$/.test(raw)
+      ? new Date(`${raw}T04:00:00`)
+      : new Date(raw);
+    return Number.isFinite(date.getTime()) ? date.toISOString() : null;
+  }
+
   async function listSets() {
     const nativeApi = getNativeApi();
     if (nativeApi) return nativeApi.listSets();
@@ -96,6 +185,165 @@
     if (nativeApi) return nativeApi.getSet(id);
     const sets = await listSets();
     return sets.find((set) => String(set.id) === String(id)) || null;
+  }
+
+  async function listCardsForBrowser() {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.listCardsForBrowser) return nativeApi.listCardsForBrowser();
+    const sets = await listSets();
+    const classes = await listClasses();
+    const classLookup = new Map((classes || []).map(item => [String(item.id), item]));
+    const nowMs = Date.now();
+    const cards = [];
+    (sets || []).forEach(set => {
+      const className = set.classId ? classLookup.get(String(set.classId))?.name : 'General';
+      (set.cards || []).forEach((card, index) => {
+        const srs = card.srs || null;
+        const state = normalizeSrsState(srs?.state);
+        const dueTime = timeValue(srs?.due);
+        const suspended = Boolean(card.suspended);
+        const buried = isBuried(card.buriedUntil, nowMs);
+        const reviews = browserReviewStats(card.reviewHistory || [], nowMs);
+        const tags = Array.isArray(card.tags) ? card.tags : [];
+        cards.push({
+          id: card.id,
+          setId: set.id,
+          deck: set.name || 'Untitled Set',
+          classId: set.classId || null,
+          className: className || 'General',
+          position: index,
+          term: card.term || '',
+          definition: card.definition || '',
+          tags,
+          srsState: state,
+          due: srs?.due || null,
+          dueTime,
+          isDue: !suspended && !buried && Boolean(srs && state !== 'New' && isSrsDue(srs, nowMs)),
+          isOverdue: !suspended && !buried && Boolean(srs && state !== 'New' && dueTime && srsDayKey(dueTime) < srsDayKey(nowMs)),
+          suspended,
+          buriedUntil: card.buriedUntil || null,
+          buried,
+          failedRecently: reviews.failedRecently,
+          leech: reviews.againCount >= 8 || Number(srs?.lapses || 0) >= 8,
+          noTags: !tags.length,
+          hasImage: hasCardMedia(card, 'image'),
+          hasAudio: hasCardMedia(card, 'audio'),
+          reviewCount: Array.isArray(card.reviewHistory) ? card.reviewHistory.length : 0,
+          againCount: reviews.againCount,
+          ratingCounts: reviews.ratingCounts,
+          reps: Number(srs?.reps || 0),
+          lapses: Number(srs?.lapses || 0),
+          intervalDays: Number(srs?.scheduled_days || srs?.elapsed_days || 0),
+          lastReviewedAt: reviews.lastReviewedAt,
+          lastModified: Number(card.lastModified || set.lastModified || 0)
+        });
+      });
+    });
+    return cards;
+  }
+
+  async function bulkUpdateCards(cardIds = [], action = '', options = {}) {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.bulkUpdateCards) return nativeApi.bulkUpdateCards(cardIds, action, options);
+
+    const ids = new Set((Array.isArray(cardIds) ? cardIds : []).map(value => String(value)));
+    if (!ids.size) return { updated: 0, deleted: 0, moved: 0, touchedSetIds: [] };
+
+    const normalizedAction = String(action || '').trim().toLowerCase();
+    const allowedActions = new Set(['suspend', 'unsuspend', 'reset-srs', 'delete', 'move', 'set-due', 'add-tag', 'remove-tag']);
+    if (!allowedActions.has(normalizedAction)) {
+      throw new Error(`Unsupported bulk card action: ${action}`);
+    }
+    const sets = await listSets();
+    const now = Date.now();
+    const touchedSetIds = new Set();
+    const movedCards = [];
+    let updated = 0;
+    let deleted = 0;
+    let moved = 0;
+    const dueIso = normalizedAction === 'set-due' ? normalizeBulkDueIso(options.due || options.dueDate) : null;
+    const tagList = normalizedAction === 'add-tag' || normalizedAction === 'remove-tag'
+      ? normalizeTagList(options.tags || options.tag)
+      : [];
+    const targetSetId = String(options.targetSetId || '');
+    const targetSet = normalizedAction === 'move'
+      ? sets.find(set => String(set.id) === targetSetId)
+      : null;
+
+    if (normalizedAction === 'set-due' && !dueIso) throw new Error('Choose a valid due date.');
+    if ((normalizedAction === 'add-tag' || normalizedAction === 'remove-tag') && !tagList.length) throw new Error('Enter at least one tag.');
+    if (normalizedAction === 'move' && !targetSet) throw new Error('Destination deck was not found.');
+
+    const nextSets = sets.map(set => {
+      const nextCards = [];
+      let touched = false;
+      for (const card of set.cards || []) {
+        if (!ids.has(String(card.id))) {
+          nextCards.push(card);
+          continue;
+        }
+
+        touched = true;
+        touchedSetIds.add(String(set.id));
+        if (normalizedAction === 'delete') {
+          deleted += 1;
+          continue;
+        }
+
+        const nextCard = { ...card, lastModified: now };
+        if (normalizedAction === 'suspend') {
+          nextCard.suspended = true;
+        } else if (normalizedAction === 'unsuspend') {
+          nextCard.suspended = false;
+        } else if (normalizedAction === 'reset-srs') {
+          delete nextCard.srs;
+          if (options.deleteHistory) nextCard.reviewHistory = [];
+        } else if (normalizedAction === 'set-due') {
+          const baseSrs = nextCard.srs || {};
+          nextCard.srs = {
+            ...baseSrs,
+            state: baseSrs.state && normalizeSrsState(baseSrs.state) !== 'New' ? baseSrs.state : 'Review',
+            due: dueIso,
+            elapsed_days: Number(baseSrs.elapsed_days || 0),
+            scheduled_days: Number(baseSrs.scheduled_days || 0),
+            reps: Number(baseSrs.reps || 0),
+            lapses: Number(baseSrs.lapses || 0),
+            stability: Number(baseSrs.stability || 0),
+            difficulty: Number(baseSrs.difficulty || 0)
+          };
+        } else if (normalizedAction === 'add-tag') {
+          const currentTags = normalizeTagList(nextCard.tags || []);
+          const lower = new Set(currentTags.map(tag => tag.toLowerCase()));
+          nextCard.tags = [...currentTags, ...tagList.filter(tag => !lower.has(tag.toLowerCase()))];
+        } else if (normalizedAction === 'remove-tag') {
+          const remove = new Set(tagList.map(tag => tag.toLowerCase()));
+          nextCard.tags = normalizeTagList(nextCard.tags || []).filter(tag => !remove.has(tag.toLowerCase()));
+        } else if (normalizedAction === 'move') {
+          movedCards.push(nextCard);
+          moved += 1;
+          continue;
+        }
+
+        nextCards.push(nextCard);
+        updated += 1;
+      }
+      return touched
+        ? { ...set, cards: nextCards, lastModified: now }
+        : set;
+    });
+
+    if (normalizedAction === 'move' && movedCards.length) {
+      touchedSetIds.add(targetSetId);
+      const target = nextSets.find(set => String(set.id) === targetSetId);
+      if (target) {
+        target.cards = [...(target.cards || []), ...movedCards];
+        target.lastModified = now;
+        updated += movedCards.length;
+      }
+    }
+
+    writeLocal('flashcardSets', nextSets);
+    return { updated, deleted, moved, touchedSetIds: Array.from(touchedSetIds) };
   }
 
   async function saveSet(set) {
@@ -581,6 +829,12 @@
     return null;
   }
 
+  async function createBackupSnapshot(reason = 'snapshot') {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.createBackupSnapshot) return nativeApi.createBackupSnapshot(reason);
+    return null;
+  }
+
   async function saveStudySession(session) {
     const nativeApi = getNativeApi();
     if (nativeApi?.saveStudySession) return nativeApi.saveStudySession(session);
@@ -596,6 +850,8 @@
   window.flashcardStore = {
     listSets,
     listSetsMeta,
+    listCardsForBrowser,
+    bulkUpdateCards,
     getSet,
     saveSet,
     replaceSets,
@@ -628,6 +884,7 @@
     undoReviewLog,
     resetDeckSRS,
     createDeckBackup,
+    createBackupSnapshot,
     saveStudySession,
     getStudySessions
   };
