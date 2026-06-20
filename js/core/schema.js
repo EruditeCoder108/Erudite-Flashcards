@@ -136,9 +136,21 @@
   function normalizeCard(card = {}, options = {}) {
     const timestamp = options.now || now();
     const noteId = card.noteId || card.note?.id || card.sourceNoteId || createId('note');
-    const noteType = ['basic', 'basic-reverse', 'cloze', 'image-occlusion'].includes(card.noteType || card.cardType)
+    const noteType = ['basic', 'basic-reverse', 'cloze', 'image-occlusion', 'advanced-html'].includes(card.noteType || card.cardType)
       ? (card.noteType || card.cardType)
       : 'basic';
+    const directAdvancedHtml = card.advancedHtml && typeof card.advancedHtml === 'object' ? card.advancedHtml : null;
+    const hasDirectAdvancedHtml = directAdvancedHtml && (
+      directAdvancedHtml.frontHtml
+      || directAdvancedHtml.backHtml
+      || directAdvancedHtml.frontCss
+      || directAdvancedHtml.backCss
+      || directAdvancedHtml.css
+      || directAdvancedHtml.html
+    );
+    const advancedHtmlSource = hasDirectAdvancedHtml
+      ? directAdvancedHtml
+      : (card.noteFields && typeof card.noteFields === 'object' ? card.noteFields : {});
     return {
       ...card,
       id: card.id || createId('card'),
@@ -148,6 +160,14 @@
       noteFields: card.noteFields && typeof card.noteFields === 'object' ? card.noteFields : {},
       clozeIndex: card.clozeIndex || null,
       imageOcclusion: card.imageOcclusion && typeof card.imageOcclusion === 'object' ? card.imageOcclusion : null,
+      advancedHtml: advancedHtmlSource && typeof advancedHtmlSource === 'object'
+        ? {
+            frontHtml: String(advancedHtmlSource.frontHtml || advancedHtmlSource.html || ''),
+            backHtml: String(advancedHtmlSource.backHtml || ''),
+            frontCss: String(advancedHtmlSource.frontCss || advancedHtmlSource.css || ''),
+            backCss: String(advancedHtmlSource.backCss || advancedHtmlSource.css || '')
+          }
+        : { frontHtml: '', backHtml: '', frontCss: '', backCss: '' },
       term: card.term || '',
       definition: card.definition || '',
       termImage: card.termImage || '',

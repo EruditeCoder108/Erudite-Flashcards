@@ -1,5 +1,5 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   --bg: #07111f;
   --bg-2: #0b1626;
   --surface: #111e30;
@@ -279,6 +279,7 @@ select {
 input,
 textarea,
 [contenteditable="true"] {
+  color-scheme: light;
   user-select: text;
   -webkit-user-select: text;
   -webkit-touch-callout: default;
@@ -1574,6 +1575,8 @@ button.metric-pill {
   display: grid;
   gap: 0.8rem;
   min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
   padding: 0.9rem;
   border-radius: 1.25rem;
   background: var(--surface);
@@ -1640,8 +1643,11 @@ button.metric-pill {
 
 .creator-generate-row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.45rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .creator-generate-row button {
@@ -1658,6 +1664,29 @@ button.metric-pill {
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 900;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.creator-generate-row:has(button:nth-child(1).active) {
+  grid-template-columns: minmax(0, 1.52fr) repeat(3, minmax(0, 0.83fr));
+}
+
+.creator-generate-row:has(button:nth-child(2).active) {
+  grid-template-columns: minmax(0, 0.83fr) minmax(0, 1.52fr) repeat(2, minmax(0, 0.83fr));
+}
+
+.creator-generate-row:has(button:nth-child(3).active) {
+  grid-template-columns: repeat(2, minmax(0, 0.83fr)) minmax(0, 1.52fr) minmax(0, 0.83fr);
+}
+
+.creator-generate-row:has(button:nth-child(4).active) {
+  grid-template-columns: repeat(3, minmax(0, 0.83fr)) minmax(0, 1.52fr);
+}
+
+.creator-generate-row:has(button.active) button:not(.active) {
+  gap: 0.28rem;
+  padding-inline: 0.34rem;
+  font-size: 0.74rem;
 }
 
 .creator-generate-row button.active {
@@ -1671,9 +1700,98 @@ button.metric-pill {
 }
 
 .creator-generate-row span {
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.creator-generate-row button.active span {
+  max-width: none;
+}
+
+.advanced-html-editor {
+  display: grid;
+  gap: 0.78rem;
+  min-width: 0;
+}
+
+.advanced-html-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.75fr);
+  gap: 0.52rem;
+}
+
+.advanced-html-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0 0.7rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(96, 165, 250, 0.24);
+  background: rgba(15, 23, 42, 0.5);
+  color: #dbeafe;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.advanced-html-actions button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.advanced-html-field {
+  display: grid;
+  gap: 0.48rem;
+  min-width: 0;
+}
+
+.advanced-html-field span {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.advanced-html-textarea {
+  width: 100%;
+  min-height: 9.5rem;
+  padding: 0.82rem;
+  resize: vertical;
+  border-radius: 0.95rem;
+  border: 1px solid var(--line);
+  outline: 0;
+  background: var(--theme-input);
+  color: var(--text);
+  font: 0.82rem/1.5 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  -webkit-user-select: text;
+  user-select: text;
+  white-space: pre;
+  overflow: auto;
+}
+
+.advanced-html-css {
+  min-height: 8.5rem;
+}
+
+.advanced-html-textarea:focus {
+  border-color: rgba(96, 165, 250, 0.58);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.16);
+}
+
+@media (max-width: 390px) {
+  .creator-generate-row button {
+    flex-direction: column;
+    gap: 0.2rem;
+    min-height: 3.05rem;
+    padding: 0.35rem 0.3rem;
+    font-size: 0.68rem;
+  }
 }
 
 .editor-side {

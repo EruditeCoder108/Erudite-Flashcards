@@ -1809,6 +1809,226 @@
     return template.innerHTML.replace(/\u200B/g, '');
   }
 
+  const ADVANCED_HTML_MAX_LENGTH = 30000;
+  const ADVANCED_CSS_MAX_LENGTH = 18000;
+  const ADVANCED_HTML_CANVAS = {
+    width: 340,
+    height: 470,
+    radius: 20
+  };
+
+  function normalizeAdvancedHtml(value = {}) {
+    const source = value && typeof value === 'object' ? value : {};
+    const sharedCss = String(source.css || '');
+    return {
+      frontHtml: String(source.frontHtml || source.html || '').slice(0, ADVANCED_HTML_MAX_LENGTH),
+      backHtml: String(source.backHtml || '').slice(0, ADVANCED_HTML_MAX_LENGTH),
+      frontCss: String(source.frontCss || sharedCss).slice(0, ADVANCED_CSS_MAX_LENGTH),
+      backCss: String(source.backCss || sharedCss).slice(0, ADVANCED_CSS_MAX_LENGTH)
+    };
+  }
+
+  function isAdvancedHtmlCard(card = {}) {
+    return String(card.noteType || '').toLowerCase() === 'advanced-html'
+      || String(card.cardTemplate || '').toLowerCase() === 'advanced-html';
+  }
+
+  function advancedHtmlPayload(card = {}) {
+    const direct = card.advancedHtml;
+    if (direct && typeof direct === 'object' && (direct.frontHtml || direct.backHtml || direct.frontCss || direct.backCss || direct.css || direct.html)) return direct;
+    return card.noteFields && typeof card.noteFields === 'object' ? card.noteFields : (direct || {});
+  }
+
+  function sanitizeHtmlClassValue(value) {
+    return String(value || '')
+      .split(/\s+/)
+      .map(item => item.replace(/[^\w:-]/g, ''))
+      .filter(Boolean)
+      .slice(0, 12)
+      .join(' ');
+  }
+
+  function sanitizeAdvancedHtml(value) {
+    const template = document.createElement('template');
+    template.innerHTML = String(value || '').slice(0, ADVANCED_HTML_MAX_LENGTH);
+    const allowed = new Set([
+      'DIV', 'SECTION', 'ARTICLE', 'HEADER', 'FOOTER', 'MAIN',
+      'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
+      'P', 'SPAN', 'STRONG', 'B', 'EM', 'I', 'U', 'SMALL',
+      'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'BR', 'HR',
+      'UL', 'OL', 'LI',
+      'TABLE', 'THEAD', 'TBODY', 'TFOOT', 'TR', 'TH', 'TD',
+      'IMG', 'SUP', 'SUB'
+    ]);
+    const removeEntirely = new Set(['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED', 'LINK', 'META', 'BASE', 'FORM', 'INPUT', 'BUTTON', 'SELECT', 'TEXTAREA', 'CANVAS', 'VIDEO', 'AUDIO']);
+    const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
+    const nodes = [];
+    while (walk.nextNode()) nodes.push(walk.currentNode);
+    nodes.forEach(node => {
+      if (removeEntirely.has(node.tagName)) {
+        node.remove();
+        return;
+      }
+      if (!allowed.has(node.tagName)) {
+        node.replaceWith(...Array.from(node.childNodes));
+        return;
+      }
+      Array.from(node.attributes).forEach(attr => {
+        const name = attr.name.toLowerCase();
+        const raw = String(attr.value || '');
+        if (name.startsWith('on') || name === 'style' || name === 'srcdoc' || name === 'href') {
+          node.removeAttribute(attr.name);
+          return;
+        }
+        if (name === 'class') {
+          const safeClass = sanitizeHtmlClassValue(raw);
+          if (safeClass) node.setAttribute('class', safeClass);
+          else node.removeAttribute(attr.name);
+          return;
+        }
+        if (name === 'id') {
+          const safeId = raw.replace(/[^\w:-]/g, '').slice(0, 64);
+          if (safeId) node.setAttribute('id', safeId);
+          else node.removeAttribute(attr.name);
+          return;
+        }
+        if (node.tagName === 'IMG') {
+          if (name === 'src') {
+            const src = safeMediaSrc(raw);
+            if (src && !/^https?:\/\//i.test(src) && !/^data:image\/svg/i.test(src)) node.setAttribute('src', src);
+            else node.removeAttribute(attr.name);
+            return;
+          }
+          if (name === 'alt' || name === 'title') {
+            node.setAttribute(attr.name, raw.slice(0, 160));
+            return;
+          }
+          if ((name === 'width' || name === 'height') && /^(\d{1,4}|[1-9]\d?%)$/.test(raw.trim())) {
+            node.setAttribute(attr.name, raw.trim());
+            return;
+          }
+        }
+        if ((node.tagName === 'TD' || node.tagName === 'TH') && (name === 'colspan' || name === 'rowspan') && /^\d{1,2}$/.test(raw.trim())) {
+          node.setAttribute(attr.name, raw.trim());
+          return;
+        }
+        node.removeAttribute(attr.name);
+      });
+    });
+    return template.innerHTML.trim();
+  }
+
+  function sanitizeAdvancedCss(value) {
+    let css = String(value || '').slice(0, ADVANCED_CSS_MAX_LENGTH);
+    css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+    css = css.replace(/@import\b[^;]*;?/gi, '');
+    css = css.replace(/url\s*\(\s*(['"]?)(?!data:image\/)[^)]+?\1\s*\)/gi, 'none');
+    css = css.replace(/url\s*\(\s*(['"]?)data:image\/svg[^)]*?\1\s*\)/gi, 'none');
+    css = css.replace(/\b(expression|javascript|vbscript)\s*\(/gi, '');
+    css = css.replace(/\bposition\s*:\s*(fixed|sticky)\s*;?/gi, '');
+    css = css.replace(/\bz-index\s*:\s*-?\d+\s*;?/gi, '');
+    css = css.replace(/<\/?style[^>]*>/gi, '');
+    css = css.replace(/<\/?script[^>]*>/gi, '');
+    return css.trim();
+  }
+
+  function sanitizeAdvancedHtmlCard(value = {}) {
+    const normalized = normalizeAdvancedHtml(value);
+    return {
+      frontHtml: sanitizeAdvancedHtml(normalized.frontHtml),
+      backHtml: sanitizeAdvancedHtml(normalized.backHtml),
+      frontCss: sanitizeAdvancedCss(normalized.frontCss),
+      backCss: sanitizeAdvancedCss(normalized.backCss)
+    };
+  }
+
+  function advancedHtmlSide(card = {}, side = 'front') {
+    const html = normalizeAdvancedHtml(advancedHtmlPayload(card));
+    return side === 'back'
+      ? (html.backHtml || html.frontHtml || '')
+      : (html.frontHtml || '');
+  }
+
+  function advancedHtmlSrcdoc(card = {}, side = 'front') {
+    const html = sanitizeAdvancedHtml(advancedHtmlSide(card, side));
+    const normalized = normalizeAdvancedHtml(advancedHtmlPayload(card));
+    const css = sanitizeAdvancedCss(side === 'back' ? normalized.backCss : normalized.frontCss);
+    const content = html || `<div class="empty-card-copy">${side === 'back' ? 'Back HTML preview' : 'Front HTML preview'}</div>`;
+    return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>
+      *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;background:transparent;color:#e5edf8;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:auto;overflow-wrap:anywhere}
+      body{display:block;min-width:100%;min-height:100%}.erudite-html-card{display:block;min-width:100%;min-height:100%;padding:12px;line-height:1.45;overflow:visible}.erudite-html-card img{max-width:100%;height:auto;border-radius:8px}.erudite-html-card table{border-collapse:collapse}.erudite-html-card th,.erudite-html-card td{padding:6px;border:1px solid rgba(148,163,184,.25)}.empty-card-copy{display:grid;min-height:220px;place-items:center;color:#94a3b8;font-weight:800;text-align:center}
+      ${css}
+    </style></head><body><div class="erudite-html-card">${content}</div></body></html>`;
+  }
+
+  function advancedHtmlFallbackText(card = {}, side = 'front') {
+    const text = plainTextFromHtml(advancedHtmlSide(card, side)).replace(/\s+/g, ' ').trim();
+    if (text) return text.slice(0, 500);
+    return '';
+  }
+
+  async function copyPlainText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (_) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const ok = document.execCommand('copy');
+      textarea.remove();
+      return ok;
+    }
+  }
+
+  function buildAdvancedHtmlPrompt(card = {}) {
+    const frontText = plainTextFromHtml(card.term || advancedHtmlSide(card, 'front')).replace(/\s+/g, ' ').trim();
+    const backText = plainTextFromHtml(card.definition || advancedHtmlSide(card, 'back')).replace(/\s+/g, ' ').trim();
+    return [
+      'Create an Erudite mobile flashcard using HTML and CSS only.',
+      '',
+      'Return exactly four fenced code blocks with these labels:',
+      'FRONT_HTML',
+      'FRONT_CSS',
+      'BACK_HTML',
+      'BACK_CSS',
+      '',
+      'Hard rules:',
+      '- No JavaScript, no <script>, no event attributes, no external URLs, no @import.',
+      '- No iframe, form, input, button, audio, video, canvas, fixed/sticky positioning, or z-index tricks.',
+      '- Do not include the app shell, <article>, .card-scroll, or iframe in the returned HTML.',
+      '- Use one root wrapper such as <div class="card-design"> in each HTML block.',
+      '- Use only classes/IDs that belong to the card design.',
+      '- The custom HTML lives inside a smaller sandbox inside the flashcard, not the full card.',
+      `- Exact design canvas: ${ADVANCED_HTML_CANVAS.width}px wide x ${ADVANCED_HTML_CANVAS.height}px tall, ${ADVANCED_HTML_CANVAS.radius}px corner radius.`,
+      '- Treat those as CSS pixels, not physical screenshot pixels.',
+      `- Your root .card-design should be width: ${ADVANCED_HTML_CANVAS.width}px; min-height: ${ADVANCED_HTML_CANVAS.height}px; border-radius: ${ADVANCED_HTML_CANVAS.radius}px; overflow: hidden or auto.`,
+      '- Prefer responsive inner layout using max-width: 100%, flexible rows/columns, and readable spacing.',
+      `- Avoid fixed inner heights taller than ${ADVANCED_HTML_CANVAS.height}px unless the content is intentionally scrollable.`,
+      '- Keep text readable, responsive, and friendly to math/physics formulas and step-by-step solutions.',
+      '',
+      'The app renders your result like this:',
+      '<article class="card-face">',
+      '  <div class="card-scroll">',
+      '    <div class="card-label">TERM or DEFINITION</div>',
+      `    <div class="advanced-html-study-frame" style="width:${ADVANCED_HTML_CANVAS.width}px;height:${ADVANCED_HTML_CANVAS.height}px;border-radius:${ADVANCED_HTML_CANVAS.radius}px;overflow:auto;">`,
+      '      #shadow-root',
+      '      <div class="erudite-html-card">YOUR HTML/CSS DESIGN FILLS THIS CANVAS</div>',
+      '    </div>',
+      '  </div>',
+      '</article>',
+      '',
+      `Front content: ${frontText || '[write the question/front here]'}`,
+      `Back content: ${backText || '[write the answer/back here]'}`,
+      '',
+      'Make the front feel like the question side and the back feel like the revealed answer side.'
+    ].join('\n');
+  }
+
   function richEditorForNode(node) {
     const element = node?.nodeType === Node.ELEMENT_NODE ? node : node?.parentElement;
     return element?.closest?.('.rich-editor') || null;
@@ -2027,9 +2247,12 @@
   function cardHasContent(card = {}) {
     const media = normalizeCardMedia(card);
     const background = normalizeCardBackground(card);
+    const advancedHtml = normalizeAdvancedHtml(advancedHtmlPayload(card));
     return Boolean(
       plainTextFromHtml(card.term || '').trim()
       || plainTextFromHtml(card.definition || '').trim()
+      || sanitizeAdvancedHtml(advancedHtml.frontHtml)
+      || sanitizeAdvancedHtml(advancedHtml.backHtml)
       || card.termImage
       || card.definitionImage
       || media.term.length
@@ -2054,6 +2277,7 @@
       noteFields: {},
       clozeIndex: null,
       imageOcclusion: null,
+      advancedHtml: { frontHtml: '', backHtml: '', frontCss: '', backCss: '' },
       term: '',
       definition: '',
       termImage: '',
@@ -2089,10 +2313,22 @@
     state.creator.cards = state.creator.cards.map(card => {
       const term = selectors.creatorCards.querySelector(`[data-editor-id="${cssEscape(card.id)}"][data-side="term"]`);
       const definition = selectors.creatorCards.querySelector(`[data-editor-id="${cssEscape(card.id)}"][data-side="definition"]`);
+      const frontHtml = selectors.creatorCards.querySelector(`[data-html-editor-id="${cssEscape(card.id)}"][data-html-part="front"]`);
+      const backHtml = selectors.creatorCards.querySelector(`[data-html-editor-id="${cssEscape(card.id)}"][data-html-part="back"]`);
+      const frontCss = selectors.creatorCards.querySelector(`[data-html-editor-id="${cssEscape(card.id)}"][data-html-part="front-css"]`);
+      const backCss = selectors.creatorCards.querySelector(`[data-html-editor-id="${cssEscape(card.id)}"][data-html-part="back-css"]`);
+      const currentAdvanced = normalizeAdvancedHtml(advancedHtmlPayload(card));
+      const nextAdvanced = {
+        frontHtml: frontHtml ? sanitizeAdvancedHtml(frontHtml.value) : sanitizeAdvancedHtml(currentAdvanced.frontHtml),
+        backHtml: backHtml ? sanitizeAdvancedHtml(backHtml.value) : sanitizeAdvancedHtml(currentAdvanced.backHtml),
+        frontCss: frontCss ? sanitizeAdvancedCss(frontCss.value) : sanitizeAdvancedCss(currentAdvanced.frontCss),
+        backCss: backCss ? sanitizeAdvancedCss(backCss.value) : sanitizeAdvancedCss(currentAdvanced.backCss)
+      };
       return {
         ...card,
         term: sanitizeEditorHtml(term?.innerHTML || card.term || ''),
-        definition: sanitizeEditorHtml(definition?.innerHTML || card.definition || '')
+        definition: sanitizeEditorHtml(definition?.innerHTML || card.definition || ''),
+        advancedHtml: nextAdvanced
       };
     });
   }
@@ -2106,12 +2342,14 @@
   }
 
   function cardWithNoteDefaults(card) {
+    const advanced = isAdvancedHtmlCard(card);
     return {
       ...card,
       noteId: card.noteId || createLocalId('note'),
-      noteType: card.noteType || 'basic',
-      cardTemplate: card.cardTemplate || 'front-back',
-      noteFields: card.noteFields && typeof card.noteFields === 'object' ? card.noteFields : {}
+      noteType: advanced ? 'advanced-html' : (card.noteType || 'basic'),
+      cardTemplate: advanced ? 'advanced-html' : (card.cardTemplate || 'front-back'),
+      noteFields: card.noteFields && typeof card.noteFields === 'object' ? card.noteFields : {},
+      advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(card))
     };
   }
 
@@ -2134,6 +2372,7 @@
   }
 
   function creatorCardWantsReverse(card = {}) {
+    if (isAdvancedHtmlCard(card)) return false;
     return Boolean(card.generateReverse || cardHasReverseSibling(card));
   }
 
@@ -2222,6 +2461,22 @@
 
   function expandCreatorCard(card) {
     const base = cardWithNoteDefaults(card);
+    if (isAdvancedHtmlCard(base)) {
+      return [stripCreatorFields({
+        ...base,
+        noteType: 'advanced-html',
+        cardTemplate: 'advanced-html',
+        noteFields: {
+          ...(base.noteFields || {}),
+          frontHtml: base.advancedHtml?.frontHtml || '',
+          backHtml: base.advancedHtml?.backHtml || '',
+          frontCss: base.advancedHtml?.frontCss || '',
+          backCss: base.advancedHtml?.backCss || ''
+        },
+        term: sanitizeEditorHtml(base.term || advancedHtmlFallbackText(base, 'front')),
+        definition: sanitizeEditorHtml(base.definition || advancedHtmlFallbackText(base, 'back'))
+      })];
+    }
     if (hasClozeSyntax(base)) {
       return expandClozeCard(base).map(stripCreatorFields);
     }
@@ -2268,6 +2523,17 @@
       if (used.has(id)) return;
       const group = groups.get(String(card.noteId || '')) || [card];
 
+      if (isAdvancedHtmlCard(card)) {
+        used.add(id);
+        creatorCards.push({
+          ...card,
+          noteType: 'advanced-html',
+          cardTemplate: 'advanced-html',
+          advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(card))
+        });
+        return;
+      }
+
       if (card.noteType === 'cloze' && card.noteFields?.text) {
         const clozeCards = group.filter(item => item.noteType === 'cloze' && item.noteFields?.text);
         clozeCards.forEach(item => used.add(String(item.id || '')));
@@ -2285,7 +2551,7 @@
         return;
       }
 
-      const front = group.find(item => item.cardTemplate === 'front-back' && item.noteType !== 'cloze' && item.noteType !== 'image-occlusion');
+      const front = group.find(item => item.cardTemplate === 'front-back' && item.noteType !== 'cloze' && item.noteType !== 'image-occlusion' && !isAdvancedHtmlCard(item));
       const reverse = group.find(item => isReverseTemplate(item));
       if (reverse && front && isReverseTemplate(card)) return;
       if (reverse && front && String(front.id) === id) {
@@ -2316,7 +2582,8 @@
     });
 
     groups.forEach(group => {
-      const front = group.find(card => card.cardTemplate === 'front-back') || group.find(card => card.noteType !== 'cloze' && card.noteType !== 'image-occlusion');
+      const front = group.find(card => card.cardTemplate === 'front-back' && !isAdvancedHtmlCard(card))
+        || group.find(card => card.noteType !== 'cloze' && card.noteType !== 'image-occlusion' && !isAdvancedHtmlCard(card));
       if (!front) return;
       group.forEach(card => {
         card.noteFields = {
@@ -2435,7 +2702,9 @@
   function creatorCardBadges(card = {}) {
     const badges = [];
     const clozeCount = clozeIndexesFromText(`${card.term || ''} ${card.definition || ''}`).length;
-    if (card.noteType === 'image-occlusion') {
+    if (isAdvancedHtmlCard(card)) {
+      badges.push(['HTML/CSS', 'fa-code']);
+    } else if (card.noteType === 'image-occlusion') {
       badges.push(['Occlusion', 'fa-object-ungroup']);
     } else if (clozeCount || card.noteType === 'cloze') {
       badges.push([clozeCount > 1 ? `Cloze x${clozeCount}` : 'Cloze', 'fa-code']);
@@ -2450,15 +2719,51 @@
     `).join('');
   }
 
+  function advancedHtmlEditor(card = {}) {
+    const advancedHtml = normalizeAdvancedHtml(card.advancedHtml || {});
+    return `
+      <section class="advanced-html-editor" aria-label="Advanced HTML card editor">
+        <div class="advanced-html-actions">
+          <button type="button" data-creator-action="copy-html-prompt" data-card-id="${escapeAttr(card.id)}">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            <span>Copy AI Prompt</span>
+          </button>
+          <button type="button" data-creator-action="basic-card" data-card-id="${escapeAttr(card.id)}">
+            <i class="fas fa-rectangle-list"></i>
+            <span>Basic</span>
+          </button>
+        </div>
+        <label class="advanced-html-field">
+          <span>Front HTML</span>
+          <textarea class="advanced-html-textarea" data-html-editor-id="${escapeAttr(card.id)}" data-html-part="front" rows="8" spellcheck="false" autocomplete="off">${escapeHtml(advancedHtml.frontHtml)}</textarea>
+        </label>
+        <label class="advanced-html-field">
+          <span>Front CSS</span>
+          <textarea class="advanced-html-textarea advanced-html-css" data-html-editor-id="${escapeAttr(card.id)}" data-html-part="front-css" rows="7" spellcheck="false" autocomplete="off">${escapeHtml(advancedHtml.frontCss)}</textarea>
+        </label>
+        <label class="advanced-html-field">
+          <span>Back HTML</span>
+          <textarea class="advanced-html-textarea" data-html-editor-id="${escapeAttr(card.id)}" data-html-part="back" rows="8" spellcheck="false" autocomplete="off">${escapeHtml(advancedHtml.backHtml)}</textarea>
+        </label>
+        <label class="advanced-html-field">
+          <span>Back CSS</span>
+          <textarea class="advanced-html-textarea advanced-html-css" data-html-editor-id="${escapeAttr(card.id)}" data-html-part="back-css" rows="7" spellcheck="false" autocomplete="off">${escapeHtml(advancedHtml.backCss)}</textarea>
+        </label>
+      </section>
+    `;
+  }
+
   function cardEditor(card, index) {
     card.media = normalizeCardMedia(card);
     card.background = normalizeCardBackground(card);
+    card.advancedHtml = sanitizeAdvancedHtmlCard(advancedHtmlPayload(card));
+    const advanced = isAdvancedHtmlCard(card);
     const safeTerm = sanitizeEditorHtml(card.term || '');
     const safeDefinition = sanitizeEditorHtml(card.definition || '');
     const termMedia = mediaPreviewHtml(card, 'term');
     const definitionMedia = mediaPreviewHtml(card, 'definition');
     const hasImage = Boolean(firstCardImageSource(card));
-    const reverseOn = creatorCardWantsReverse(card);
+    const reverseOn = !advanced && creatorCardWantsReverse(card);
 
     return `
       <article class="mobile-card-editor" data-card-id="${escapeAttr(card.id)}">
@@ -2474,19 +2779,24 @@
           </div>
         </header>
         <div class="creator-generate-row" role="toolbar" aria-label="Card generation tools">
-          <button type="button" class="${reverseOn ? 'active' : ''}" data-creator-action="reverse-card" data-card-id="${escapeAttr(card.id)}" aria-pressed="${reverseOn ? 'true' : 'false'}">
+          <button type="button" class="${reverseOn ? 'active' : ''}" ${advanced ? 'disabled' : ''} data-creator-action="reverse-card" data-card-id="${escapeAttr(card.id)}" aria-pressed="${reverseOn ? 'true' : 'false'}">
             <i class="fas fa-right-left"></i>
             <span>Reverse</span>
           </button>
-          <button type="button" data-creator-action="cloze" data-card-id="${escapeAttr(card.id)}" data-side="term">
+          <button type="button" ${advanced ? 'disabled' : ''} data-creator-action="cloze" data-card-id="${escapeAttr(card.id)}" data-side="term">
             <i class="fas fa-eye-slash"></i>
             <span>Cloze</span>
           </button>
-          <button type="button" ${hasImage ? '' : 'disabled'} data-creator-action="image-occlusion" data-card-id="${escapeAttr(card.id)}" title="${hasImage ? 'Create occlusion card' : 'Add image first'}">
+          <button type="button" ${hasImage && !advanced ? '' : 'disabled'} data-creator-action="image-occlusion" data-card-id="${escapeAttr(card.id)}" title="${hasImage && !advanced ? 'Create occlusion card' : 'Add image first'}">
             <i class="fas fa-object-ungroup"></i>
             <span>Occlusion</span>
           </button>
+          <button type="button" class="${advanced ? 'active' : ''}" data-creator-action="advanced-html-card" data-card-id="${escapeAttr(card.id)}" aria-pressed="${advanced ? 'true' : 'false'}">
+            <i class="fas fa-code"></i>
+            <span>HTML</span>
+          </button>
         </div>
+        ${advanced ? advancedHtmlEditor(card) : `
         <section class="editor-side">
           <div class="editor-side-head">
             <strong>Term</strong>
@@ -2537,6 +2847,7 @@
           <div class="rich-editor" contenteditable="true" data-editor-id="${escapeAttr(card.id)}" data-side="definition" data-placeholder="Enter definition">${safeDefinition}</div>
           ${definitionMedia}
         </section>
+        `}
       </article>
     `;
   }
@@ -2967,12 +3278,17 @@
     syncCreatorFromDom();
     const name = String(selectors.createTitle?.value || '').trim();
     const cards = state.creator.cards
-      .map(card => ({
-        ...cardWithNoteDefaults(card),
-        term: sanitizeEditorHtml(card.term),
-        definition: sanitizeEditorHtml(card.definition),
-        lastModified: Date.now()
-      }))
+      .map(card => {
+        const normalized = cardWithNoteDefaults(card);
+        const advanced = isAdvancedHtmlCard(normalized);
+        return {
+          ...normalized,
+          term: sanitizeEditorHtml(advanced ? (normalized.term || advancedHtmlFallbackText(normalized, 'front')) : normalized.term),
+          definition: sanitizeEditorHtml(advanced ? (normalized.definition || advancedHtmlFallbackText(normalized, 'back')) : normalized.definition),
+          advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(normalized)),
+          lastModified: Date.now()
+        };
+      })
       .filter(hasCardContent)
       .flatMap(expandCreatorCard);
     const syncedCards = syncGeneratedCards(cards);
@@ -2983,7 +3299,7 @@
     }
     if (!cards.length) {
       showToast('Add at least one card');
-      selectors.creatorCards?.querySelector('[contenteditable="true"]')?.focus();
+      selectors.creatorCards?.querySelector('[contenteditable="true"], textarea')?.focus();
       return;
     }
 
@@ -3241,6 +3557,8 @@
         return noteType === 'cloze';
       case 'image-occlusion':
         return noteType === 'image-occlusion';
+      case 'advanced-html':
+        return noteType === 'advanced-html' || template === 'advanced-html';
       case 'no-tags':
         return Boolean(card.noTags);
       case 'has-image':
@@ -3255,6 +3573,7 @@
   function browserNoteTypeLabel(card = {}) {
     const noteType = String(card.noteType || '').toLowerCase();
     const template = String(card.cardTemplate || '').toLowerCase();
+    if (noteType === 'advanced-html' || template === 'advanced-html') return 'HTML/CSS';
     if (noteType === 'cloze') return 'Cloze';
     if (noteType === 'image-occlusion') return 'Occlusion';
     if (template === 'back-front') return 'Reverse';
@@ -4831,21 +5150,8 @@
         exitSelectMode();
         return;
       }
-      // 5. If in create tab, go to library
-      if (state.activeTab === 'create') {
-        setActiveTab('library');
-        return;
-      }
-      // 6. Browser backs out to Settings, then other tabs return to Today
-      if (state.activeTab === 'browser') {
-        setActiveTab('more');
-        return;
-      }
-      if (state.activeTab !== 'today') {
-        setActiveTab('today');
-        return;
-      }
-      // 7. On main screen: double-press to exit
+      // 5. Do not use the hardware back button for in-app tab navigation.
+      // On any main tab, double-press exits the app.
       const now = Date.now();
       if (now - lastBackPressTime < 2000) {
         App.exitApp();
@@ -4977,6 +5283,10 @@
         const index = state.creator.cards.findIndex(card => String(card.id) === String(target.dataset.cardId));
         if (index < 0) break;
         const source = cardWithNoteDefaults(state.creator.cards[index]);
+        if (isAdvancedHtmlCard(source)) {
+          showToast('HTML cards use their own front and back');
+          break;
+        }
         if (!plainTextFromHtml(source.term).trim() || !plainTextFromHtml(source.definition).trim()) {
           showToast('Add term and definition first');
           break;
@@ -5002,6 +5312,68 @@
         renderCreate();
         scheduleCreatorDraftSave();
         showToast(nextEnabled ? 'Reverse enabled' : 'Reverse disabled');
+        break;
+      }
+      case 'advanced-html-card': {
+        syncCreatorFromDom();
+        const index = state.creator.cards.findIndex(card => String(card.id) === String(target.dataset.cardId));
+        if (index < 0) break;
+        const source = state.creator.cards[index];
+        if (isAdvancedHtmlCard(source)) {
+          state.creator.cards[index] = {
+            ...source,
+            noteType: 'basic',
+            cardTemplate: 'front-back',
+            generateReverse: false,
+            term: source.term || sanitizeEditorHtml(advancedHtmlFallbackText(source, 'front')),
+            definition: source.definition || sanitizeEditorHtml(advancedHtmlFallbackText(source, 'back'))
+          };
+          renderCreate();
+          scheduleCreatorDraftSave();
+          showToast('HTML card disabled');
+          break;
+        }
+        state.creator.cards[index] = {
+          ...source,
+          noteType: 'advanced-html',
+          cardTemplate: 'advanced-html',
+          generateReverse: false,
+          advancedHtml: sanitizeAdvancedHtmlCard({
+            frontHtml: advancedHtmlPayload(source).frontHtml || advancedHtmlPayload(source).html || source.term || '',
+            backHtml: advancedHtmlPayload(source).backHtml || source.definition || '',
+            frontCss: advancedHtmlPayload(source).frontCss || advancedHtmlPayload(source).css || '',
+            backCss: advancedHtmlPayload(source).backCss || advancedHtmlPayload(source).css || ''
+          })
+        };
+        renderCreate();
+        scheduleCreatorDraftSave();
+        showToast('HTML card enabled');
+        break;
+      }
+      case 'basic-card': {
+        syncCreatorFromDom();
+        const index = state.creator.cards.findIndex(card => String(card.id) === String(target.dataset.cardId));
+        if (index < 0) break;
+        const source = state.creator.cards[index];
+        state.creator.cards[index] = {
+          ...source,
+          noteType: 'basic',
+          cardTemplate: 'front-back',
+          generateReverse: false,
+          term: source.term || sanitizeEditorHtml(advancedHtmlFallbackText(source, 'front')),
+          definition: source.definition || sanitizeEditorHtml(advancedHtmlFallbackText(source, 'back'))
+        };
+        renderCreate();
+        scheduleCreatorDraftSave();
+        showToast('Basic card enabled');
+        break;
+      }
+      case 'copy-html-prompt': {
+        syncCreatorFromDom();
+        const card = state.creator.cards.find(item => String(item.id) === String(target.dataset.cardId));
+        if (!card) break;
+        const copied = await copyPlainText(buildAdvancedHtmlPrompt(card));
+        showToast(copied ? 'Prompt copied' : 'Could not copy prompt');
         break;
       }
       case 'cloze': {

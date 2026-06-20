@@ -302,6 +302,168 @@
     return template.innerHTML.replace(/\u200B/g, '') || escapeHtml(raw).replace(/\n/g, '<br>');
   }
 
+  const ADVANCED_HTML_MAX_LENGTH = 30000;
+  const ADVANCED_CSS_MAX_LENGTH = 18000;
+  const ADVANCED_HTML_CANVAS = {
+    width: 340,
+    height: 470,
+    radius: 20
+  };
+
+  function normalizeAdvancedHtml(value = {}) {
+    const source = value && typeof value === 'object' ? value : {};
+    const sharedCss = String(source.css || '');
+    return {
+      frontHtml: String(source.frontHtml || source.html || '').slice(0, ADVANCED_HTML_MAX_LENGTH),
+      backHtml: String(source.backHtml || '').slice(0, ADVANCED_HTML_MAX_LENGTH),
+      frontCss: String(source.frontCss || sharedCss).slice(0, ADVANCED_CSS_MAX_LENGTH),
+      backCss: String(source.backCss || sharedCss).slice(0, ADVANCED_CSS_MAX_LENGTH)
+    };
+  }
+
+  function isAdvancedHtmlCard(card = {}) {
+    return String(card.noteType || '').toLowerCase() === 'advanced-html'
+      || String(card.cardTemplate || '').toLowerCase() === 'advanced-html';
+  }
+
+  function advancedHtmlPayload(card = {}) {
+    const direct = card.advancedHtml;
+    if (direct && typeof direct === 'object' && (direct.frontHtml || direct.backHtml || direct.frontCss || direct.backCss || direct.css || direct.html)) return direct;
+    return card.noteFields && typeof card.noteFields === 'object' ? card.noteFields : (direct || {});
+  }
+
+  function sanitizeHtmlClassValue(value) {
+    return String(value || '')
+      .split(/\s+/)
+      .map(item => item.replace(/[^\w:-]/g, ''))
+      .filter(Boolean)
+      .slice(0, 12)
+      .join(' ');
+  }
+
+  function sanitizeAdvancedHtml(value) {
+    const template = document.createElement('template');
+    template.innerHTML = String(value || '').slice(0, ADVANCED_HTML_MAX_LENGTH);
+    const allowed = new Set([
+      'DIV', 'SECTION', 'ARTICLE', 'HEADER', 'FOOTER', 'MAIN',
+      'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
+      'P', 'SPAN', 'STRONG', 'B', 'EM', 'I', 'U', 'SMALL',
+      'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'BR', 'HR',
+      'UL', 'OL', 'LI',
+      'TABLE', 'THEAD', 'TBODY', 'TFOOT', 'TR', 'TH', 'TD',
+      'IMG', 'SUP', 'SUB'
+    ]);
+    const removeEntirely = new Set(['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED', 'LINK', 'META', 'BASE', 'FORM', 'INPUT', 'BUTTON', 'SELECT', 'TEXTAREA', 'CANVAS', 'VIDEO', 'AUDIO']);
+    const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
+    const nodes = [];
+    while (walk.nextNode()) nodes.push(walk.currentNode);
+    nodes.forEach(node => {
+      if (removeEntirely.has(node.tagName)) {
+        node.remove();
+        return;
+      }
+      if (!allowed.has(node.tagName)) {
+        node.replaceWith(...Array.from(node.childNodes));
+        return;
+      }
+      Array.from(node.attributes).forEach(attr => {
+        const name = attr.name.toLowerCase();
+        const raw = String(attr.value || '');
+        if (name.startsWith('on') || name === 'style' || name === 'srcdoc' || name === 'href') {
+          node.removeAttribute(attr.name);
+          return;
+        }
+        if (name === 'class') {
+          const safeClass = sanitizeHtmlClassValue(raw);
+          if (safeClass) node.setAttribute('class', safeClass);
+          else node.removeAttribute(attr.name);
+          return;
+        }
+        if (name === 'id') {
+          const safeId = raw.replace(/[^\w:-]/g, '').slice(0, 64);
+          if (safeId) node.setAttribute('id', safeId);
+          else node.removeAttribute(attr.name);
+          return;
+        }
+        if (node.tagName === 'IMG') {
+          if (name === 'src') {
+            const src = safeMediaSrc(raw);
+            if (src && !/^https?:\/\//i.test(src) && !/^data:image\/svg/i.test(src)) node.setAttribute('src', src);
+            else node.removeAttribute(attr.name);
+            return;
+          }
+          if (name === 'alt' || name === 'title') {
+            node.setAttribute(attr.name, raw.slice(0, 160));
+            return;
+          }
+          if ((name === 'width' || name === 'height') && /^(\d{1,4}|[1-9]\d?%)$/.test(raw.trim())) {
+            node.setAttribute(attr.name, raw.trim());
+            return;
+          }
+        }
+        if ((node.tagName === 'TD' || node.tagName === 'TH') && (name === 'colspan' || name === 'rowspan') && /^\d{1,2}$/.test(raw.trim())) {
+          node.setAttribute(attr.name, raw.trim());
+          return;
+        }
+        node.removeAttribute(attr.name);
+      });
+    });
+    return template.innerHTML.trim();
+  }
+
+  function sanitizeAdvancedCss(value) {
+    let css = String(value || '').slice(0, ADVANCED_CSS_MAX_LENGTH);
+    css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+    css = css.replace(/@import\b[^;]*;?/gi, '');
+    css = css.replace(/url\s*\(\s*(['"]?)(?!data:image\/)[^)]+?\1\s*\)/gi, 'none');
+    css = css.replace(/url\s*\(\s*(['"]?)data:image\/svg[^)]*?\1\s*\)/gi, 'none');
+    css = css.replace(/\b(expression|javascript|vbscript)\s*\(/gi, '');
+    css = css.replace(/\bposition\s*:\s*(fixed|sticky)\s*;?/gi, '');
+    css = css.replace(/\bz-index\s*:\s*-?\d+\s*;?/gi, '');
+    css = css.replace(/<\/?style[^>]*>/gi, '');
+    css = css.replace(/<\/?script[^>]*>/gi, '');
+    return css.trim();
+  }
+
+  function sanitizeAdvancedHtmlCard(value = {}) {
+    const normalized = normalizeAdvancedHtml(value);
+    return {
+      frontHtml: sanitizeAdvancedHtml(normalized.frontHtml),
+      backHtml: sanitizeAdvancedHtml(normalized.backHtml),
+      frontCss: sanitizeAdvancedCss(normalized.frontCss),
+      backCss: sanitizeAdvancedCss(normalized.backCss)
+    };
+  }
+
+  function advancedHtmlSide(card = {}, side = 'front') {
+    const source = card.sanitizedAdvancedHtml || sanitizeAdvancedHtmlCard(advancedHtmlPayload(card));
+    return side === 'back'
+      ? (source.backHtml || source.frontHtml || '')
+      : (source.frontHtml || '');
+  }
+
+  function advancedHtmlSrcdoc(card = {}, side = 'front') {
+    const source = card.sanitizedAdvancedHtml || sanitizeAdvancedHtmlCard(advancedHtmlPayload(card));
+    const html = advancedHtmlSide(card, side);
+    const css = side === 'back' ? source.backCss : source.frontCss;
+    const content = html || `<div class="empty-card-copy">${side === 'back' ? 'Back HTML' : 'Front HTML'}</div>`;
+    return `<style>
+      :host{all:initial;display:block;width:100%;height:100%;overflow:auto;background:transparent;color:#e5edf8;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;overflow-wrap:anywhere}
+      *,*::before,*::after{box-sizing:border-box}.erudite-html-card{display:block;min-width:100%;min-height:100%;padding:0;line-height:1.45;overflow:visible;color:inherit;font-family:inherit}.erudite-html-card img{max-width:100%;height:auto;border-radius:8px}.erudite-html-card table{border-collapse:collapse}.erudite-html-card th,.erudite-html-card td{padding:6px;border:1px solid rgba(148,163,184,.25)}.empty-card-copy{display:grid;min-height:100%;place-items:center;color:#94a3b8;font-weight:800;text-align:center}
+      ${css}
+    </style><div class="erudite-html-card">${content}</div>`;
+  }
+
+  function advancedHtmlFrame(card = {}, side = 'front') {
+    return `<div class="advanced-html-study-frame" data-advanced-html-side="${escapeAttr(side)}" role="img" aria-label="${side === 'back' ? 'Back HTML card' : 'Front HTML card'}" style="--advanced-html-canvas-width:${ADVANCED_HTML_CANVAS.width}px;--advanced-html-canvas-height:${ADVANCED_HTML_CANVAS.height}px;--advanced-html-canvas-radius:${ADVANCED_HTML_CANVAS.radius}px"></div>`;
+  }
+
+  function renderAdvancedHtmlHost(host, card = {}, side = 'front') {
+    if (!host) return;
+    const shadow = host.shadowRoot || host.attachShadow({ mode: 'open' });
+    shadow.innerHTML = advancedHtmlSrcdoc(card, side);
+  }
+
   function sameCard(a, b) {
     if (!a || !b) return false;
     if (a.id && b.id) return String(a.id) === String(b.id);
@@ -567,6 +729,13 @@
   }
 
   function isScrollableContent(target) {
+    const advancedCanvas = target.closest?.('.advanced-html-study-frame');
+    if (advancedCanvas && (
+      advancedCanvas.scrollHeight > advancedCanvas.clientHeight + 4
+      || advancedCanvas.scrollWidth > advancedCanvas.clientWidth + 4
+    )) {
+      return advancedCanvas;
+    }
     const scroll = target.closest?.('.card-scroll');
     return scroll && scroll.scrollHeight > scroll.clientHeight + 4 ? scroll : null;
   }
@@ -1058,6 +1227,7 @@
 
   function ensureCardSanitized(card) {
     if (!card || card.__sanitizedReady) return card;
+    const advancedSource = advancedHtmlPayload(card);
     Object.defineProperties(card, {
       sanitizedTerm: {
         value: sanitizeRichText(card.term),
@@ -1066,6 +1236,11 @@
       },
       sanitizedDefinition: {
         value: sanitizeRichText(card.definition),
+        writable: true,
+        configurable: true
+      },
+      sanitizedAdvancedHtml: {
+        value: sanitizeAdvancedHtmlCard(advancedSource),
         writable: true,
         configurable: true
       },
@@ -1121,6 +1296,12 @@
     }
     wrap.classList.remove('hidden');
     renderOcclusionMasks(wrap, card, side);
+  }
+
+  function clearCardBackground(element) {
+    if (!element) return;
+    element.classList.remove('visible', 'no-overlay');
+    element.style.backgroundImage = '';
   }
 
   function renderCardBackground(element, card, side) {
@@ -1268,19 +1449,41 @@
 
     const frontHeader = cardEl.querySelector('.card-face.front .card-label');
     const backHeader = cardEl.querySelector('.card-face.back .card-label');
+    const advanced = isAdvancedHtmlCard(cardData);
+    if (advanced) {
+      frontLabel = 'CUSTOM';
+      backLabel = 'ANSWER';
+    }
+    frontLabel = 'TERM';
+    backLabel = 'DEFINITION';
     if (frontHeader) frontHeader.textContent = frontLabel;
     if (backHeader) backHeader.textContent = backLabel;
 
-    elements.termText.innerHTML = `<div class="card-text-inline">${cardData.sanitizedTerm}</div>`;
-    elements.definitionText.innerHTML = `<div class="card-text-inline">${cardData.sanitizedDefinition}</div>`;
-    window.EruditeMath?.renderMath?.(elements.termText);
-    window.EruditeMath?.renderMath?.(elements.definitionText);
-    renderImage(elements.termImage, elements.termImageWrap, cardData.termImage, cardData, 'term');
-    renderImage(elements.definitionImage, elements.definitionImageWrap, cardData.definitionImage, cardData, 'definition');
-    renderCardBackground(elements.termBg, cardData, 'term');
-    renderCardBackground(elements.definitionBg, cardData, 'definition');
-    renderMediaList(elements.termMediaList, cardData, 'term');
-    renderMediaList(elements.definitionMediaList, cardData, 'definition');
+    elements.termText.classList.toggle('advanced-html-card-text', advanced);
+    elements.definitionText.classList.toggle('advanced-html-card-text', advanced);
+    if (advanced) {
+      elements.termText.innerHTML = advancedHtmlFrame(cardData, 'front');
+      elements.definitionText.innerHTML = advancedHtmlFrame(cardData, 'back');
+      renderAdvancedHtmlHost(elements.termText.querySelector('.advanced-html-study-frame'), cardData, 'front');
+      renderAdvancedHtmlHost(elements.definitionText.querySelector('.advanced-html-study-frame'), cardData, 'back');
+      renderImage(elements.termImage, elements.termImageWrap, '', null, 'term');
+      renderImage(elements.definitionImage, elements.definitionImageWrap, '', null, 'definition');
+      clearCardBackground(elements.termBg);
+      clearCardBackground(elements.definitionBg);
+      if (elements.termMediaList) elements.termMediaList.innerHTML = '';
+      if (elements.definitionMediaList) elements.definitionMediaList.innerHTML = '';
+    } else {
+      elements.termText.innerHTML = `<div class="card-text-inline">${cardData.sanitizedTerm}</div>`;
+      elements.definitionText.innerHTML = `<div class="card-text-inline">${cardData.sanitizedDefinition}</div>`;
+      window.EruditeMath?.renderMath?.(elements.termText);
+      window.EruditeMath?.renderMath?.(elements.definitionText);
+      renderImage(elements.termImage, elements.termImageWrap, cardData.termImage, cardData, 'term');
+      renderImage(elements.definitionImage, elements.definitionImageWrap, cardData.definitionImage, cardData, 'definition');
+      renderCardBackground(elements.termBg, cardData, 'term');
+      renderCardBackground(elements.definitionBg, cardData, 'definition');
+      renderMediaList(elements.termMediaList, cardData, 'term');
+      renderMediaList(elements.definitionMediaList, cardData, 'definition');
+    }
     
     cardEl.querySelectorAll('.card-scroll').forEach(scroll => {
       scroll.scrollTop = 0;
