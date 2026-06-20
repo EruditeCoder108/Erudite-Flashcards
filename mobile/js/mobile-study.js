@@ -175,7 +175,10 @@
     if (els.loadingTitle) els.loadingTitle.textContent = title;
     if (els.loadingCopy) els.loadingCopy.textContent = copy;
     const cover = document.getElementById('study-loading-cover');
-    if (cover) cover.style.display = '';
+    if (cover) {
+      cover.style.display = '';
+      cover.classList.add('no-anim');
+    }
     document.body.classList.remove('study-ready');
     document.body.classList.add('is-route-loading');
   }
@@ -185,7 +188,10 @@
     document.body.classList.remove('is-route-loading');
     setTimeout(() => {
       const cover = document.getElementById('study-loading-cover');
-      if (cover) cover.style.display = 'none';
+      if (cover) {
+        cover.style.display = 'none';
+        cover.classList.remove('no-anim');
+      }
     }, 200);
   }
 

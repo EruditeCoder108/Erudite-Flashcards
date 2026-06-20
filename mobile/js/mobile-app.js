@@ -95,6 +95,7 @@
   let creatorDraftTimer = null;
   let formatStateFrame = 0;
   let highlightHoldTimer = null;
+  let creatorDeleteHoldTimer = null;
   let orphanRepairTimer = null;
 
   const premadeClasses = [
@@ -208,6 +209,10 @@
     pasteImportText: document.getElementById('paste-import-text'),
     pasteImportPresetTrigger: document.getElementById('mobile-paste-import-preset-trigger'),
     presetSelectModal: document.getElementById('preset-select-modal'),
+    bulkCardOverlay: document.getElementById('bulk-card-overlay'),
+    bulkCardCount: document.getElementById('bulk-card-count'),
+    bulkCardConfirm: document.getElementById('bulk-card-confirm'),
+    bulkCardCancel: document.getElementById('bulk-card-cancel'),
     pasteImportConfirm: document.getElementById('paste-import-confirm'),
     pasteImportCancel: document.getElementById('paste-import-cancel')
   };
@@ -763,7 +768,7 @@
     }
     const headerImportBtn = document.getElementById('header-paste-import-btn');
     if (headerImportBtn) {
-      headerImportBtn.classList.toggle('hidden', tab === 'create');
+      headerImportBtn.classList.remove('hidden');
     }
     if (selectors.headerQuote) {
       selectors.headerQuote.classList.toggle('hidden', tab === 'create');
@@ -2297,6 +2302,71 @@
     if (!state.creator.cards.length) state.creator.cards = [emptyCreatorCard()];
   }
 
+  function boundedBulkCardCount(value) {
+    const count = Number.parseInt(String(value || '').trim(), 10);
+    if (!Number.isFinite(count)) return 1;
+    return Math.min(999, Math.max(1, count));
+  }
+
+  function scrollCreatorCardIntoView(cardId, block = 'center') {
+    requestAnimationFrame(() => {
+      const cardEl = selectors.creatorCards?.querySelector(`[data-card-id="${cssEscape(cardId)}"]`);
+      cardEl?.scrollIntoView({ behavior: 'smooth', block });
+    });
+  }
+
+  function focusCreatorCard(cardId) {
+    requestAnimationFrame(() => {
+      const editor = selectors.creatorCards?.querySelector(`[data-editor-id="${cssEscape(cardId)}"][data-side="term"], [data-html-editor-id="${cssEscape(cardId)}"]`);
+      if (editor) {
+        editor.focus();
+        editor.closest('.mobile-card-editor')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
+
+  function openBulkCardModal() {
+    if (!selectors.bulkCardOverlay || !selectors.bulkCardCount) return;
+    selectors.bulkCardCount.value = selectors.bulkCardCount.value || '10';
+    selectors.bulkCardOverlay.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      selectors.bulkCardCount?.focus();
+      selectors.bulkCardCount?.select?.();
+    });
+  }
+
+  function closeBulkCardModal() {
+    selectors.bulkCardOverlay?.classList.add('hidden');
+    state.lastModalClosedAt = Date.now();
+  }
+
+  function addBlankCreatorCards(count, insertAt = state.creator.cards.length) {
+    const safeCount = boundedBulkCardCount(count);
+    const cards = Array.from({ length: safeCount }, () => emptyCreatorCard());
+    const safeIndex = Math.min(Math.max(0, insertAt), state.creator.cards.length);
+    state.creator.cards.splice(safeIndex, 0, ...cards);
+    return cards;
+  }
+
+  async function confirmDeleteCardsFrom(cardId) {
+    syncCreatorFromDom();
+    const index = state.creator.cards.findIndex(card => String(card.id) === String(cardId));
+    if (index < 0) return;
+    const count = state.creator.cards.length - index;
+    const ok = await showMobileConfirm({
+      title: 'Delete Cards',
+      message: `Delete Card ${index + 1} and every card below it? This removes ${count} ${count === 1 ? 'card' : 'cards'} and all content in them from this draft.`,
+      okText: `Delete ${count}`,
+      isDanger: true
+    });
+    if (!ok) return;
+    state.creator.cards.splice(index, count);
+    ensureCreatorCard();
+    renderCreate();
+    scheduleCreatorDraftSave();
+    showToast(`${count} ${count === 1 ? 'card' : 'cards'} deleted`);
+  }
+
   function resetCreator() {
     clearTimeout(creatorDraftTimer);
     state.creator.editingSetId = null;
@@ -2773,7 +2843,16 @@
             <div class="creator-card-badges">${creatorCardBadges(card)}</div>
           </div>
           <div class="creator-card-actions">
-            <button type="button" class="small-icon-button" data-creator-action="delete-card" data-card-id="${escapeAttr(card.id)}" aria-label="Delete card">
+            <button type="button" class="small-icon-button" data-creator-action="move-card-up" data-card-id="${escapeAttr(card.id)}" aria-label="Move card up" ${index === 0 ? 'disabled' : ''}>
+              <i class="fas fa-arrow-up"></i>
+            </button>
+            <button type="button" class="small-icon-button" data-creator-action="move-card-down" data-card-id="${escapeAttr(card.id)}" aria-label="Move card down" ${index === state.creator.cards.length - 1 ? 'disabled' : ''}>
+              <i class="fas fa-arrow-down"></i>
+            </button>
+            <button type="button" class="small-icon-button" data-creator-action="insert-card-after" data-card-id="${escapeAttr(card.id)}" aria-label="Insert card after this card">
+              <i class="fas fa-plus"></i>
+            </button>
+            <button type="button" class="small-icon-button danger" data-creator-action="delete-card" data-card-id="${escapeAttr(card.id)}" aria-label="Delete card. Hold to delete this card and all cards below.">
               <i class="fas fa-trash"></i>
             </button>
           </div>
@@ -4001,7 +4080,10 @@
     if (selectors.loadingTitle) selectors.loadingTitle.textContent = title;
     if (selectors.loadingCopy) selectors.loadingCopy.textContent = copy;
     const cover = document.getElementById('app-loading-cover');
-    if (cover) cover.style.display = '';
+    if (cover) {
+      cover.style.display = '';
+      cover.classList.add('no-anim');
+    }
     document.body.classList.remove('app-ready');
     document.body.classList.add('is-route-loading');
   }
@@ -4011,7 +4093,10 @@
     document.body.classList.remove('is-route-loading');
     setTimeout(() => {
       const cover = document.getElementById('app-loading-cover');
-      if (cover) cover.style.display = 'none';
+      if (cover) {
+        cover.style.display = 'none';
+        cover.classList.remove('no-anim');
+      }
     }, 200);
   }
 
@@ -5270,7 +5355,39 @@
         });
         break;
       }
+      case 'bulk-add-cards':
+        openBulkCardModal();
+        break;
+      case 'insert-card-after': {
+        syncCreatorFromDom();
+        const index = state.creator.cards.findIndex(card => String(card.id) === String(target.dataset.cardId));
+        const insertIndex = index >= 0 ? index + 1 : state.creator.cards.length;
+        const [card] = addBlankCreatorCards(1, insertIndex);
+        renderCreate();
+        scheduleCreatorDraftSave();
+        focusCreatorCard(card.id);
+        showToast('Card inserted');
+        break;
+      }
+      case 'move-card-up':
+      case 'move-card-down': {
+        syncCreatorFromDom();
+        const index = state.creator.cards.findIndex(card => String(card.id) === String(target.dataset.cardId));
+        const delta = action === 'move-card-up' ? -1 : 1;
+        const nextIndex = index + delta;
+        if (index < 0 || nextIndex < 0 || nextIndex >= state.creator.cards.length) break;
+        const [card] = state.creator.cards.splice(index, 1);
+        state.creator.cards.splice(nextIndex, 0, card);
+        renderCreate();
+        scheduleCreatorDraftSave();
+        scrollCreatorCardIntoView(card.id);
+        break;
+      }
       case 'delete-card': {
+        if (target.dataset.longDeleteFired === '1') {
+          target.dataset.longDeleteFired = '';
+          break;
+        }
         syncCreatorFromDom();
         state.creator.cards = state.creator.cards.filter(card => String(card.id) !== String(target.dataset.cardId));
         ensureCreatorCard();
@@ -6035,6 +6152,33 @@
   }
 
   function installEvents() {
+    const isNativeEditableTarget = target => {
+      const element = target?.nodeType === Node.ELEMENT_NODE ? target : target?.parentElement;
+      return Boolean(element?.closest?.([
+        'input',
+        'textarea',
+        'select',
+        '[contenteditable="true"]',
+        '.rich-editor',
+        '.advanced-html-textarea'
+      ].join(',')));
+    };
+
+    document.addEventListener('contextmenu', event => {
+      if (isNativeEditableTarget(event.target)) return;
+      event.preventDefault();
+    }, { capture: true });
+
+    document.addEventListener('dragstart', event => {
+      if (isNativeEditableTarget(event.target)) return;
+      event.preventDefault();
+    }, { capture: true });
+
+    document.addEventListener('selectstart', event => {
+      if (isNativeEditableTarget(event.target)) return;
+      event.preventDefault();
+    }, { capture: true });
+
     document.addEventListener('pointerdown', event => {
       if (event.target.closest('[data-creator-action="format"]')) {
         event.preventDefault();
@@ -6048,12 +6192,26 @@
           openHighlightColorMenu().catch(error => console.warn('[mobile] highlight color menu failed:', error));
         }, 520);
       }
+      const deleteButton = event.target.closest('[data-creator-action="delete-card"]');
+      if (deleteButton) {
+        clearTimeout(creatorDeleteHoldTimer);
+        deleteButton.dataset.longDeleteFired = '';
+        creatorDeleteHoldTimer = window.setTimeout(() => {
+          creatorDeleteHoldTimer = null;
+          deleteButton.dataset.longDeleteFired = '1';
+          triggerHaptic();
+          confirmDeleteCardsFrom(deleteButton.dataset.cardId)
+            .catch(error => console.warn('[mobile] bulk delete confirm failed:', error));
+        }, 620);
+      }
     });
 
     ['pointerup', 'pointercancel', 'pointerleave'].forEach(type => {
       document.addEventListener(type, () => {
         clearTimeout(highlightHoldTimer);
         highlightHoldTimer = null;
+        clearTimeout(creatorDeleteHoldTimer);
+        creatorDeleteHoldTimer = null;
       });
     });
 
@@ -6644,6 +6802,44 @@
       }
     });
 
+    selectors.bulkCardCancel?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      closeBulkCardModal();
+    });
+
+    selectors.bulkCardConfirm?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      syncCreatorFromDom();
+      const count = boundedBulkCardCount(selectors.bulkCardCount?.value);
+      if (selectors.bulkCardCount) selectors.bulkCardCount.value = String(count);
+      const cards = addBlankCreatorCards(count);
+      renderCreate();
+      scheduleCreatorDraftSave();
+      closeBulkCardModal();
+      if (cards.length) scrollCreatorCardIntoView(cards[0].id, 'nearest');
+      showToast(`Added ${plural(count, 'blank card')}`);
+    });
+
+    selectors.bulkCardCount?.addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        selectors.bulkCardConfirm?.click();
+      }
+    });
+
+    document.querySelectorAll('[data-bulk-card-preset]').forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        playClick();
+        if (selectors.bulkCardCount) {
+          selectors.bulkCardCount.value = button.dataset.bulkCardPreset || '10';
+          selectors.bulkCardCount.focus();
+        }
+      });
+    });
+
     const headerSaveBtn = document.getElementById('header-creator-save-btn');
     if (headerSaveBtn) {
       headerSaveBtn.addEventListener('click', async event => {
@@ -6944,7 +7140,7 @@
     }
     const headerImportBtn = document.getElementById('header-paste-import-btn');
     if (headerImportBtn) {
-      headerImportBtn.classList.toggle('hidden', tab === 'create');
+      headerImportBtn.classList.remove('hidden');
     }
     if (selectors.headerQuote) {
       selectors.headerQuote.classList.toggle('hidden', tab === 'create');

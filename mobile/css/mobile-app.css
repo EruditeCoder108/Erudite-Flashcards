@@ -116,142 +116,6 @@ body.app-ready .app-loading-cover {
 }
 
 
-
-.deck-loader {
-  position: relative;
-  width: 14rem;
-  height: 18rem;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  margin-bottom: 1rem;
-}
-
-.loader-card {
-  position: absolute;
-  inset: 0;
-  top: 32%;
-  margin: auto;
-  width: 7.2rem;
-  height: 10.0rem;
-  transform: rotateX(45deg) rotateZ(-45deg);
-  transform-style: preserve-3d;
-}
-
-.loader-card:nth-child(2) { top: 22%; }
-.loader-card:nth-child(3) { top: 12%; }
-.loader-card:nth-child(4) { top: 2%; }
-.loader-card:nth-child(5) { top: -8%; }
-
-.loader-card-inner {
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  border: 0.5px solid rgba(255, 255, 255, 0.08);
-  background: #111d30;
-  animation: cardFlipWaveFixed 3s infinite;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 1.1rem 0.6rem;
-  text-align: center;
-  box-shadow: -0.5em 0.5em 1.5em rgba(0, 0, 0, 0.35);
-  will-change: transform, opacity;
-}
-
-.loader-card:nth-child(2) .loader-card-inner { animation-delay: calc(3s * (-1 + 0.05)); }
-.loader-card:nth-child(3) .loader-card-inner { animation-delay: calc(3s * (-1 + 0.05 * 2)); }
-.loader-card:nth-child(4) .loader-card-inner { animation-delay: calc(3s * (-1 + 0.05 * 3)); }
-.loader-card:nth-child(5) .loader-card-inner { animation-delay: calc(3s * (-1 + 0.05 * 4)); }
-
-.card-accent {
-  width: 100%;
-  height: 3px;
-  border-radius: 2px;
-  margin-bottom: 0.3rem;
-  flex-shrink: 0;
-}
-.loader-card-1 .card-accent { background: #7F77DD; }
-.loader-card-2 .card-accent { background: #1D9E75; }
-.loader-card-3 .card-accent { background: #D85A30; }
-.loader-card-4 .card-accent { background: #378ADD; }
-.loader-card-5 .card-accent { background: #E24B4A; }
-
-.card-label {
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #94a3b8;
-}
-
-.card-icon {
-  font-size: 1.3rem;
-  color: #64748b;
-  margin: 0.2rem 0;
-}
-
-.card-term {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #f8fafc;
-  line-height: 1.35;
-  margin-top: 0.1rem;
-}
-
-.card-divider {
-  width: 24px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  flex-shrink: 0;
-}
-
-.card-hint {
-  font-size: 0.6rem;
-  color: #475569;
-}
-
-@keyframes cardFlipWaveFixed {
-  0%, 100% {
-    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(0);
-    opacity: 1;
-  }
-  11% {
-    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
-    opacity: 1;
-    transform: translateZ(2px);
-  }
-  34% {
-    animation-timing-function: steps(1);
-    opacity: 0;
-    transform: translateZ(-192px);
-  }
-  48% {
-    animation-timing-function: linear;
-    opacity: 0;
-    transform: translateZ(192px);
-  }
-  57% {
-    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
-    opacity: 1;
-    transform: translateZ(0);
-  }
-  61% {
-    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(-29px);
-  }
-  74% {
-    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(10px);
-  }
-  87% {
-    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(-3px);
-  }
-}
-
 .app-loading-cover strong {
   font-size: 1.2rem;
   font-weight: 900;
@@ -334,6 +198,10 @@ button {
   align-items: center;
   gap: 0.6rem;
   min-width: 0;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .mobile-brand-logo {
@@ -342,6 +210,11 @@ button {
   object-fit: contain;
   flex: 0 0 auto;
   filter: drop-shadow(0 0 0.8rem rgba(96, 165, 250, 0.2));
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 .mobile-eyebrow {
@@ -1632,13 +1505,26 @@ button.metric-pill {
 .creator-card-actions {
   display: inline-flex;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 0.32rem;
+  max-width: 10rem;
 }
 
 .creator-card-actions .small-icon-button {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 0.7rem;
+}
+
+.creator-card-actions .small-icon-button.danger {
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.creator-card-actions .small-icon-button:disabled {
+  opacity: 0.34;
+  pointer-events: none;
 }
 
 .creator-generate-row {
@@ -2812,6 +2698,22 @@ select option {
   border-color: var(--primary, #3b82f6);
 }
 
+.bulk-card-presets {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.bulk-card-presets button {
+  min-height: 2.35rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-weight: 900;
+}
+
 .mobile-modal-textarea {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -3391,10 +3293,7 @@ button:active,
 }
 
 .boxes .box > div:nth-child(4) {
-  --background: #DBE3F4;
-  --top: 0;
-  --left: 0;
-  --translateZ: calc(var(--size) * 3 * -1);
+  display: none !important;
 }
 
 @keyframes box1 {
@@ -3437,6 +3336,15 @@ button:active,
   100% {
     transform: translate(100%, 100%);
   }
+}
+
+#app-loading-cover .boxes {
+  margin-top: 0 !important;
+  margin-bottom: 2rem;
+}
+
+.app-loading-cover.no-anim .boxes {
+  display: none !important;
 }
 
 /* Custom select trigger button pill styling */
@@ -3623,27 +3531,7 @@ button:active,
     linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%) !important;
 }
 
-.theme-light .loader-card-inner {
-  background: #ffffff !important;
-  border-color: rgba(15, 23, 42, 0.08) !important;
-  box-shadow: -0.5em 0.5em 1.5em rgba(15, 23, 42, 0.12) !important;
-}
 
-.theme-light .loader-card-inner .card-label {
-  color: var(--muted) !important;
-}
-
-.theme-light .loader-card-inner .card-term {
-  color: var(--text) !important;
-}
-
-.theme-light .loader-card-inner .card-divider {
-  background: rgba(15, 23, 42, 0.08) !important;
-}
-
-.theme-light .loader-card-inner .card-hint {
-  color: var(--subtle) !important;
-}
 
 /* Modal z-index overrides to ensure overlays layer correctly on mobile */
 #class-select-modal {

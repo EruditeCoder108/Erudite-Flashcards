@@ -132,153 +132,6 @@ body.study-ready .study-loading-cover {
 }
 
 
-
-.deck-loader {
-  position: relative;
-  width: 14rem;
-  height: 18rem;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  margin-bottom: 1rem;
-}
-
-.loader-card {
-  position: absolute;
-  inset: 0;
-  top: 32%;
-  margin: auto;
-  width: 7.2rem;
-  height: 10.0rem;
-  transform: rotateX(45deg) rotateZ(-45deg);
-  transform-style: preserve-3d;
-}
-
-.loader-card:nth-child(2) { top: 22%; }
-.loader-card:nth-child(3) { top: 12%; }
-.loader-card:nth-child(4) { top: 2%; }
-.loader-card:nth-child(5) { top: -8%; }
-
-.loader-card-inner {
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  border: 0.5px solid rgba(255, 255, 255, 0.08);
-  background: #111d30;
-  animation: cardFlipWaveFixed 3s infinite;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 1.1rem 0.6rem;
-  text-align: center;
-  box-shadow: -0.5em 0.5em 1.5em rgba(0, 0, 0, 0.35);
-  will-change: transform, opacity;
-}
-
-.loader-card:nth-child(2) .loader-card-inner { animation-delay: calc(3s * (-1 + 0.05)); }
-.loader-card:nth-child(3) .loader-card-inner { animation-delay: calc(3s * (-1 + 0.05 * 2)); }
-.loader-card:nth-child(4) .loader-card-inner { animation-delay: calc(3s * (-1 + 0.05 * 3)); }
-.loader-card:nth-child(5) .loader-card-inner { animation-delay: calc(3s * (-1 + 0.05 * 4)); }
-
-.card-accent {
-  width: 100%;
-  height: 3px;
-  border-radius: 2px;
-  margin-bottom: 0.3rem;
-  flex-shrink: 0;
-}
-.loader-card-1 .card-accent { background: #7F77DD; }
-.loader-card-2 .card-accent { background: #1D9E75; }
-.loader-card-3 .card-accent { background: #D85A30; }
-.loader-card-4 .card-accent { background: #378ADD; }
-.loader-card-5 .card-accent { background: #E24B4A; }
-
-.loader-card-inner .card-label {
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #94a3b8;
-  position: static;
-  z-index: auto;
-  width: auto;
-  margin: 0;
-  padding: 0;
-  flex-shrink: 1;
-}
-
-.loader-card-inner .card-label::after {
-  content: none !important;
-  display: none !important;
-}
-
-.card-icon {
-  font-size: 1.3rem;
-  color: #64748b;
-  margin: 0.2rem 0;
-}
-
-.card-term {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #f8fafc;
-  line-height: 1.35;
-  margin-top: 0.1rem;
-}
-
-.card-divider {
-  width: 24px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  flex-shrink: 0;
-}
-
-.card-hint {
-  font-size: 0.6rem;
-  color: #475569;
-}
-
-@keyframes cardFlipWaveFixed {
-  0%, 100% {
-    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(0);
-    opacity: 1;
-  }
-  11% {
-    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
-    opacity: 1;
-    transform: translateZ(2px);
-  }
-  34% {
-    animation-timing-function: steps(1);
-    opacity: 0;
-    transform: translateZ(-192px);
-  }
-  48% {
-    animation-timing-function: linear;
-    opacity: 0;
-    transform: translateZ(192px);
-  }
-  57% {
-    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
-    opacity: 1;
-    transform: translateZ(0);
-  }
-  61% {
-    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(-29px);
-  }
-  74% {
-    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(10px);
-  }
-  87% {
-    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateZ(-3px);
-  }
-}
-
 .study-loading-cover strong {
   font-size: 1.2rem;
   font-weight: 900;
@@ -290,6 +143,140 @@ body.study-ready .study-loading-cover {
   font-size: 0.88rem;
   font-weight: 750;
 }
+
+/* 3D Box Loader Animation styles */
+.boxes {
+  --size: 32px;
+  --duration: 800ms;
+  height: calc(var(--size) * 2);
+  width: calc(var(--size) * 3);
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  margin-top: calc(var(--size) * 1.5 * -1);
+  transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
+}
+
+.boxes .box {
+  width: var(--size);
+  height: var(--size);
+  top: 0;
+  left: 0;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.boxes .box:nth-child(1) {
+  transform: translate(100%, 0);
+  animation: box1 var(--duration) linear infinite;
+}
+
+.boxes .box:nth-child(2) {
+  transform: translate(0, 100%);
+  animation: box2 var(--duration) linear infinite;
+}
+
+.boxes .box:nth-child(3) {
+  transform: translate(100%, 100%);
+  animation: box3 var(--duration) linear infinite;
+}
+
+.boxes .box:nth-child(4) {
+  transform: translate(200%, 0);
+  animation: box4 var(--duration) linear infinite;
+}
+
+.boxes .box > div {
+  --background: #5C8DF6;
+  --top: auto;
+  --right: auto;
+  --bottom: auto;
+  --left: auto;
+  --translateZ: calc(var(--size) / 2);
+  --rotateY: 0deg;
+  --rotateX: 0deg;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--background);
+  top: var(--top);
+  right: var(--right);
+  bottom: var(--bottom);
+  left: var(--left);
+  transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
+}
+
+.boxes .box > div:nth-child(1) {
+  --top: 0;
+  --left: 0;
+}
+
+.boxes .box > div:nth-child(2) {
+  --background: #145af2;
+  --right: 0;
+  --rotateY: 90deg;
+}
+
+.boxes .box > div:nth-child(3) {
+  --background: #447cf5;
+  --rotateX: -90deg;
+}
+
+.boxes .box > div:nth-child(4) {
+  display: none !important;
+}
+
+@keyframes box1 {
+  0%, 50% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(200%, 0);
+  }
+}
+
+@keyframes box2 {
+  0% {
+    transform: translate(0, 100%);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100%, 0);
+  }
+}
+
+@keyframes box3 {
+  0%, 50% {
+    transform: translate(100%, 100%);
+  }
+  100% {
+    transform: translate(0, 100%);
+  }
+}
+
+@keyframes box4 {
+  0% {
+    transform: translate(200%, 0);
+  }
+  50% {
+    transform: translate(200%, 100%);
+  }
+  100% {
+    transform: translate(100%, 100%);
+  }
+}
+
+#study-loading-cover .boxes {
+  margin-top: 0 !important;
+  margin-bottom: 2rem;
+}
+
+.study-loading-cover.no-anim .boxes {
+  display: none !important;
+}
+
 
 body.is-route-loading .study-loading-cover {
   pointer-events: auto;
@@ -1612,27 +1599,7 @@ button:active,
     var(--bg-gradient) !important;
 }
 
-.theme-light .loader-card-inner {
-  background: #ffffff !important;
-  border-color: rgba(15, 23, 42, 0.08) !important;
-  box-shadow: -0.5em 0.5em 1.5em rgba(15, 23, 42, 0.12) !important;
-}
 
-.theme-light .loader-card-inner .card-label {
-  color: var(--muted) !important;
-}
-
-.theme-light .loader-card-inner .card-term {
-  color: var(--text) !important;
-}
-
-.theme-light .loader-card-inner .card-divider {
-  background: rgba(15, 23, 42, 0.08) !important;
-}
-
-.theme-light .loader-card-inner .card-hint {
-  color: var(--subtle) !important;
-}
 
 .card-text-inline {
   display: block;

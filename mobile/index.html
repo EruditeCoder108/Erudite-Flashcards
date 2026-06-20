@@ -22,56 +22,18 @@
 </head>
 <body>
   <div class="app-loading-cover" id="app-loading-cover" aria-live="polite">
-    <div class="deck-loader">
-      <div class="loader-card loader-card-1">
-        <div class="loader-card-inner">
-          <div class="card-accent"></div>
-          <div class="card-label">Computer Science</div>
-          <i class="fas fa-sitemap card-icon" aria-hidden="true"></i>
-          <div class="card-term">Binary Search Tree</div>
-          <div class="card-divider"></div>
-          <div class="card-hint">tap to reveal</div>
-        </div>
+    <div class="boxes">
+      <div class="box">
+        <div></div><div></div><div></div><div></div>
       </div>
-      <div class="loader-card loader-card-2">
-        <div class="loader-card-inner">
-          <div class="card-accent"></div>
-          <div class="card-label">Mathematics</div>
-          <i class="fas fa-calculator card-icon" aria-hidden="true"></i>
-          <div class="card-term">Pythagorean Theorem</div>
-          <div class="card-divider"></div>
-          <div class="card-hint">tap to reveal</div>
-        </div>
+      <div class="box">
+        <div></div><div></div><div></div><div></div>
       </div>
-      <div class="loader-card loader-card-3">
-        <div class="loader-card-inner">
-          <div class="card-accent"></div>
-          <div class="card-label">History</div>
-          <i class="fas fa-globe card-icon" aria-hidden="true"></i>
-          <div class="card-term">World War II</div>
-          <div class="card-divider"></div>
-          <div class="card-hint">tap to reveal</div>
-        </div>
+      <div class="box">
+        <div></div><div></div><div></div><div></div>
       </div>
-      <div class="loader-card loader-card-4">
-        <div class="loader-card-inner">
-          <div class="card-accent"></div>
-          <div class="card-label">Chemistry</div>
-          <i class="fas fa-atom card-icon" aria-hidden="true"></i>
-          <div class="card-term">Atomic Number</div>
-          <div class="card-divider"></div>
-          <div class="card-hint">tap to reveal</div>
-        </div>
-      </div>
-      <div class="loader-card loader-card-5">
-        <div class="loader-card-inner">
-          <div class="card-accent"></div>
-          <div class="card-label">Programming</div>
-          <i class="fas fa-code card-icon" aria-hidden="true"></i>
-          <div class="card-term">Big O Notation</div>
-          <div class="card-divider"></div>
-          <div class="card-hint">tap to reveal</div>
-        </div>
+      <div class="box">
+        <div></div><div></div><div></div><div></div>
       </div>
     </div>
     <strong id="app-loading-title">Erudite Flashcards</strong>
@@ -81,7 +43,7 @@
   <div class="mobile-shell" id="mobile-shell">
     <header class="mobile-topbar" id="mobile-topbar">
       <div class="mobile-brand" id="mobile-brand">
-        <img src="assets/icons/icon.png" alt="" class="mobile-brand-logo">
+        <img src="assets/icons/icon.png" alt="" class="mobile-brand-logo" draggable="false">
         <div>
           <p class="mobile-eyebrow" id="mobile-eyebrow">Today</p>
           <h1 id="mobile-title">Erudite</h1>
@@ -210,9 +172,9 @@
           </div>
 
           <div class="creator-actions">
-            <button type="button" class="secondary-action compact-action" data-creator-action="add-card">
-              <i class="fas fa-plus"></i>
-              Card
+            <button type="button" class="secondary-action compact-action" data-creator-action="bulk-add-cards">
+              <i class="fas fa-layer-group"></i>
+              Bulk cards
             </button>
             <button type="button" class="secondary-action compact-action" data-creator-action="import-txt">
               <i class="fas fa-file-lines"></i>
@@ -671,6 +633,28 @@
         <button type="button" class="mobile-modal-btn cancel" id="copy-export-cancel">Close</button>
         <button type="button" class="mobile-modal-btn confirm" id="copy-export-generate">Generate</button>
         <button type="button" class="mobile-modal-btn confirm" id="copy-export-copy" style="display:none;"><i class="fas fa-copy"></i> Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bulk Card Add Modal -->
+  <div class="mobile-modal-overlay hidden" id="bulk-card-overlay" role="dialog" aria-modal="true" aria-labelledby="bulk-card-title">
+    <div class="mobile-modal-card">
+      <h3 id="bulk-card-title"><i class="fas fa-layer-group"></i> Add Blank Cards</h3>
+      <p class="mobile-modal-hint">Choose how many empty cards to add to this deck.</p>
+      <div class="mobile-modal-field">
+        <label for="bulk-card-count">Number of cards</label>
+        <input type="number" id="bulk-card-count" class="mobile-modal-input" min="1" max="999" step="1" inputmode="numeric" value="10" autocomplete="off">
+      </div>
+      <div class="bulk-card-presets" aria-label="Quick amounts">
+        <button type="button" data-bulk-card-preset="5">5</button>
+        <button type="button" data-bulk-card-preset="10">10</button>
+        <button type="button" data-bulk-card-preset="25">25</button>
+        <button type="button" data-bulk-card-preset="50">50</button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="bulk-card-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="bulk-card-confirm">Add cards</button>
       </div>
     </div>
   </div>
