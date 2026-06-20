@@ -1,230 +1,177 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Erudite Flashcards Logo" width="180" height="180">
+</p>
+
 # Erudite Flashcards
 
-Erudite Flashcards is a local-first, offline flashcard app for desktop and Android. It combines normal deck study, FSRS spaced repetition, analytics, rich card creation, and mobile-first workflows without requiring an account or cloud service.
+Erudite Flashcards is a local-first, offline flashcard application designed for high-performance active recall and long-term retention. Engineered for both desktop (via Electron) and mobile (via Capacitor/Android), it bridges the gap between Anki-level technical seriousness and modern, fluid user interfaces. 
 
-The goal is not to clone Anki screen-for-screen. The goal is Anki-level seriousness with a simpler, more modern interface for students who want to create, review, inspect, and repair their cards locally.
+Erudite allows students to create, review, inspect, and maintain their cards completely locally without requiring cloud accounts, web services, or third-party servers.
 
-## Current Status
+---
 
-Erudite is now a feature-rich local flashcard system with the major learning workflows in place:
+## Core Product Architecture
 
-- Desktop app through Electron.
-- Android app through Capacitor.
-- Local SQLite storage.
-- FSRS-based SRS reviews.
-- Normal non-SRS study mode.
-- Card browser and bulk management tools.
-- Today dashboard, insights, failed-card previews, review forecast, streaks, and study analytics.
-- Rich creator with formatting, media, math, cloze, image occlusion, reverse cards, and advanced HTML/CSS cards.
-- Backup, import, export, and local migration tools.
+Erudite is built from the ground up on three major technical pillars: a relational-document hybrid storage model, a decoupled note-to-card compilation system, and a platform-aware native wrapper layer.
 
-It is still a local-first independent app, not a mature ecosystem like Anki with years of add-ons, public deck tooling, and battle-tested sync.
+```mermaid
+graph TD
+    A[Electron Desktop / Capacitor Mobile] --> B[Storage layer]
+    B --> C[(SQLite Database)]
+    C --> D[Structured Columns: Metadata & Indices]
+    C --> E[JSON Columns: Payloads & History]
+    
+    F[Note Definition] -->|Compilation| G[Card Instances]
+    G --> H[Spaced Repetition Scheduler FSRS]
+    G --> I[Non-SRS Study Engine]
+```
 
-## Product Philosophy
+### 1. Relational-Document Hybrid Storage
+To combine relational database speed with document-model flexibility, Erudite uses a hybrid SQLite storage schema. Core entities (such as classes, decks, and cards) are indexed using strict primary/foreign key columns, while rich payloads and operational statistics are nested as JSON columns:
+- **Relational Integrity**: Columns like `id`, `set_id` (deck reference), and `position` are strictly enforced at the database level to ensure quick indexing, cascades on deletion, and relational queries.
+- **Document Payloads**: Extended attributes (such as card templates, cloze indices, image occlusion bounds, and full SRS properties) are stored in standard `payload_json`, `srs_json`, and `review_history_json` document fields, making the schema easily extensible without database migrations.
+- **Offline Sync & Tombstones**: Deleted entities leave behind a row in the `tombstones` table containing deletion timestamps and device metadata, ensuring manual backups and offline migrations can resolve synchronization conflicts correctly.
 
-Erudite is built around three study modes:
+### 2. Note-Based Card Architecture
+Instead of storing cards as flat front-and-back string pairs, Erudite decouples content declaration from review execution using a **Note-Based Architecture**:
+- **Notes (Source Content)**: Holds the raw user inputs, media references, note types, and fields.
+- **Cards (Review Instances)**: Dynamically generated from Notes based on the selected card template. A single Note can produce multiple card instances (e.g. forward and reverse directions) while sharing the same underlying content.
+- **Normal vs. Spaced Repetition**: Card reviews can run under two separate contexts:
+  - **Normal Mode**: Standard linear, reversed, or randomized study loops without tracking spacing intervals.
+  - **SRS Mode**: Governed by the FSRS algorithm, which schedules reviews based on historical intervals. Normal study progress is kept isolated from SRS scheduling to prevent user-driven reviews from inflating spaced-repetition analytics.
 
-- **Normal study**: Move through a deck in order, reverse order, or random order without SRS pressure.
-- **SRS study**: Let FSRS decide which cards are due and when they should return.
-- **Custom study**: Focus on failed, weak, overdue, tagged, leech, or filtered groups.
+### 3. Desktop & Mobile Hybrid Runtime
+Erudite compiles down to two distinct application targets:
+- **Desktop (Electron)**: Direct access to local SQLite databases using Node.js filesystem drivers.
+- **Mobile (Capacitor/Android)**: A hybrid database bridge. On physical devices, it communicates with native Android SQLite using `@capacitor-community/sqlite` for persistent performance. In development and web browser mode, it falls back transparently to an in-memory WebAssembly SQLite engine (`sql.js`).
 
-The app intentionally keeps SRS optional. A user can turn SRS off and still use Erudite as a clean local flashcard app. When SRS is on, the app exposes review-focused tools such as due cards, forecast, retention, button distribution, failed cards, and deck health.
+---
 
-## Major Features
+## Supported Note Types
 
-### Local And Offline
+Erudite supports five note templates to accommodate diverse learning styles:
 
-- Stores decks, cards, classes, settings, review history, and study sessions locally.
-- Does not require login, cloud sync, or a server.
-- Uses SQLite on desktop and mobile.
-- Supports backup/export/import for moving data manually.
+| Note Type | Card Template | Primary Use Case | Output Cards |
+| :--- | :--- | :--- | :--- |
+| **Basic** | `front-back` | Standard Q&A, definitions, basic vocabulary | 1 card |
+| **Basic (and reversed card)** | `bidirectional` | Language learning, terminology, associations | 2 cards (Forward & Reverse) |
+| **Cloze** | `cloze-deletion` | Context-based fill-in-the-blanks | 1 card per deletion |
+| **Image Occlusion** | `occlusion` | Anatomy, geography, diagrams, charts | 1 card per occluded shape |
+| **Advanced HTML/CSS** | `custom-visual` | Custom designs, tables, structured visual layouts | 1 card |
 
-### FSRS Spaced Repetition
+### Advanced HTML/CSS Cards & Security
+For complex, highly visual cards, Erudite provides a custom HTML/CSS engine. Users can write tailored layouts and style sheets directly. To maintain device security and performance, Erudite enforces the following constraints:
+- **Shadow DOM Isolation**: The custom front and back HTML cards are rendered inside an isolated `ShadowRoot` host element. This prevents user-defined stylesheets from bleeding into and breaking the main application shells.
+- **Strict CSS Sanitization**: Custom CSS is parsed to strip out `@import` declarations, external background URL resources, expression blocks, and absolute z-indexes, keeping the styling locally bound.
+- **Strict HTML Sanitization**: All HTML payloads pass through a parser that strips out `<script>` tags, inline scripts, event attributes (e.g., `onclick`, `onload`), external resource links, and dangerous elements to prevent cross-site scripting (XSS) and layout exploits.
 
-- Uses FSRS scheduling for SRS reviews.
-- Supports Again, Hard, Good, and Easy ratings.
-- Tracks card state, due time, interval, stability, difficulty, reps, lapses, and review history.
-- Keeps Normal mode progress separate from SRS progress.
-- Includes deck-level SRS settings such as requested retention, max interval, daily new limit, and review limit.
+---
 
-### Today And Insights
+## Spaced Repetition & Study Engines
 
-The Today screen summarizes what matters:
+### FSRS Scheduling Algorithm
+Erudite incorporates the **Free Spaced Repetition Scheduler (FSRS)** algorithm (utilizing the `ts-fsrs` library) as its spacing engine:
+- **Feedback Loop**: When reviewing in SRS mode, users rate card retention across four standard options: *Again*, *Hard*, *Good*, and *Easy*.
+- **Parameter Control**: Supports requested retention ratios (from 0.70 to 0.99) and maximum interval limits (defaulting to 100 years).
+- **Fuzzing & Short-Term Steps**: Includes scheduler fuzzing (adding minor random offsets to long-term intervals to prevent large card clusters from landing on the same day) and short-term learning steps for new or forgotten cards.
 
-- Due review workload.
-- Failed-today preview.
-- Weak card count.
-- Upcoming review forecast.
-- Study streak.
-- Review time and session activity.
-- Retention/pass-rate style stats.
-- Button distribution.
-- Study heatmap.
-- Leech count.
-- Deck health indicators.
+### Study Statistics & Insights
+The Today dashboard provides statistical summaries of study progress:
+- **Study Heatmaps**: Tracks daily study sessions over time.
+- **Retention Analytics**: Tracks button distribution history (Again/Hard/Good/Easy ratios) to measure performance.
+- **Leech Detection & Deck Health**: Automatically highlights "leech" cards (cards that have been failed repeatedly) and displays a composite deck health ratio to gauge subject familiarity.
+- **Review Forecasts**: Generates predictive workload curves mapping out expected daily review loads up to 30 days into the future.
 
-SRS-specific stats are intended to appear only when SRS is enabled. SRS-independent stats, such as real study sessions and streak progress, still make sense when SRS is off.
-
-### Card Browser
-
-The card browser is the power-user repair room:
-
-- Search across cards and decks.
-- Filter by due, overdue, new, learning, review, relearning, suspended, buried, failed, leech, reverse, cloze, image occlusion, HTML/CSS, no tags, images, and audio.
-- Select visible cards.
-- Bulk suspend, unsuspend, reset SRS, set due date, move deck, add tags, remove tags, and delete.
-- Uses metadata-oriented loading so it can stay usable with large libraries.
-
-### Creator
-
-The creator supports practical mobile card authoring:
-
-- Rich text term and definition editors.
-- Bold, italic, underline, highlight, inline code, code block, formula, media, background image, and cloze tools.
-- Math/physics formula entry with symbol palette and KaTeX rendering.
-- Reverse-card generation.
-- Image occlusion card generation from images.
-- Advanced HTML/CSS card type with separate front HTML, front CSS, back HTML, and back CSS.
-- Copyable AI prompt for asking an external tool like ChatGPT to generate card HTML/CSS.
-- Bulk blank-card creation from 1 to 999 cards.
-- Insert a card after any card.
-- Move cards up/down.
-- Delete a single card, or long-press delete to remove that card and every card below it.
-- TXT import into the current draft.
-
-### Advanced HTML/CSS Cards
-
-Advanced cards let users paste sanitized HTML/CSS for custom visual flashcards.
-
-Important constraints:
-
-- JavaScript is not allowed inside cards.
-- External URLs and imports are stripped.
-- Dangerous tags and event attributes are removed.
-- Front and back can have separate HTML and CSS.
-- The study view renders the card inside an isolated card frame.
-- Oversized custom designs can scroll inside the card area.
-
-This gives creative card design power without turning the app into a general-purpose web runtime.
-
-### Study Screen
-
-- Normal mode can study cards without SRS ratings.
-- SRS mode shows rating buttons and schedules cards.
-- Failed/weak/custom sessions help focus on problem cards.
-- Supports media, math, cloze, image occlusion, and HTML/CSS cards.
-- Tracks real study sessions so streaks are based on meaningful activity, not only long SRS sessions.
-
-### Backup And Import
-
-- Desktop and mobile storage layers support backup/import flows.
-- TXT import supports simple separator-based card creation.
-- Copy/export tools help move decks without cloud dependency.
-- Deleted premade deck JSON files are not required for user decks.
+---
 
 ## Project Structure
 
 ```text
 .
-|-- android/                     Native Android project
-|-- assets/                      Shared visual assets
-|-- css/                         Desktop CSS
+|-- android/                     Native Android Gradle wrapper and Capacitor configuration
+|-- assets/                      Visual icons, splash assets, and logos
+|-- css/                         Desktop styles for Electron windows
 |-- js/
-|   |-- core/                    Shared schema, SRS, backup, stats, math helpers
-|   |-- mobile/                  Mobile SQLite/storage bridge
-|   |-- storage-client.js        Desktop storage client
-|   `-- srs-manager.js           SRS queue and scheduling logic
-|-- mobile/                      Capacitor mobile HTML/CSS/JS
-|-- scripts/                     Build scripts
-|-- storage/                     Desktop SQLite storage implementation
-|-- www/                         Built mobile web assets
-|-- main.js                      Electron main process
-|-- preload.js                   Electron preload bridge
-`-- package.json
+|   |-- core/                    Core logic: schema normalization, SRS APIs, backup modules
+|   |-- mobile/                  Mobile database connection wrapper and file handlers
+|   |-- storage-client.js        Electron local IPC storage client
+|   `-- srs-manager.js           FSRS calculation implementation
+|-- mobile/                      Capacitor mobile application HTML, CSS stylesheets, and JS
+|-- scripts/                     Bundling and build scripts
+|-- storage/                     Desktop SQLite relational schema and queries
+|-- www/                         Output directory for compiled mobile web assets
+|-- main.js                      Electron main process lifecycle coordinator
+|-- preload.js                   Electron context bridge definition
+`-- package.json                 Dependencies and developer scripts
 ```
 
-## Development
+---
 
-Use `npm.cmd` on Windows.
+## Development & Build Guide
 
-### Install
+Erudite uses `npm` as its package manager. Ensure Node.js is installed on your local development system.
 
+### 1. Installation
+Install project dependencies:
 ```powershell
 npm.cmd install
 ```
 
-### Run Desktop
-
+### 2. Running the Desktop Application
+Launch Electron in development mode:
 ```powershell
 npm.cmd start
 ```
 
-### Build Mobile Web Assets
-
+### 3. Compiling Mobile Web Assets
+Compile HTML/CSS/JS and assets into the output `www/` build folder:
 ```powershell
 npm.cmd run build:mobile
 ```
 
-### Sync Android
-
-Run this after any mobile code change:
-
+### 4. Syncing to Android Studio
+Copy the compiled web assets and plugin configurations into the native Android Gradle project:
 ```powershell
 npm.cmd run cap:sync
 ```
 
-### Open Android Studio
-
+To open Android Studio with the native Capacitor workspace:
 ```powershell
 npm.cmd run cap:open
 ```
 
-### Build Android Debug APK
-
+### 5. Compiling Android Debug APK
+To assemble the debug build via command line:
 ```powershell
 cd android
 $env:JAVA_HOME='C:\Program Files\Android\Android Studio\jbr'
 .\gradlew.bat :app:assembleDebug
 ```
 
-## Useful Verification Commands
+---
 
-```powershell
-node --check mobile\js\mobile-app.js
-node --check mobile\js\mobile-study.js
-node --check js\core\schema.js
-npm.cmd run build:mobile
-npm.cmd run cap:sync
-```
+## Comparison with Anki
 
-## Anki Comparison
+Erudite is designed as a focused, modern spaced repetition tool:
 
-Erudite is better than Anki in some specific ways:
+### Why Erudite is a compelling alternative:
+- **Modern User Experience**: A clean, single-page flow designed for smooth desktop and mobile interactions, avoiding complex menus.
+- **Flexible Study Options**: Separation between normal review loops and spaced repetition scheduler modes.
+- **Rich Dashboard Insights**: Built-in visual analytics covering heatmaps, review forecast distributions, leech counts, and composite deck health stats without requiring community add-ons.
+- **Simplified Mobile Creator**: Native drawing canvas for visual image occlusion and markdown-supported rich text authoring.
 
-- More modern mobile-first interface.
-- Simpler normal vs SRS study choice.
-- Better built-in dashboard for failed cards, forecast, deck health, and study sessions.
-- Easier local card creation for media, formulas, and custom HTML/CSS visuals.
-- Offline-first with no account requirement.
+### Where Anki remains the standard:
+- **Mature Ecosystem**: Anki has decades of development, extensive community add-ons, and a vast collection of public shared decks.
+- **Centralized Cloud Syncing**: AnkiWeb provides a battle-tested central service for cross-device syncing, whereas Erudite currently relies on manual backups and offline imports.
+- **Advanced Custom Templates**: Anki's template engine is highly flexible, supporting custom scripts and broad visual variations.
 
-Anki is still stronger in other ways:
-
-- Much older and more battle-tested.
-- Huge add-on ecosystem.
-- Mature sync service.
-- Enormous public deck ecosystem.
-- Mature template system with broad community knowledge.
-- Proven reliability across many years and edge cases.
-
-The honest positioning is:
-
-> Erudite can be a better personal study app for a mobile-first local learner, but it is not yet globally "better than Anki" as an ecosystem.
+---
 
 ## License
 
-Business Source License 1.1. See [LICENSE](LICENSE).
+Business Source License 1.1. See [LICENSE](LICENSE) for terms.
 
 ## Author
 
-Sambhav Jain  
+**Sambhav Jain**  
 eruditespartan@gmail.com
