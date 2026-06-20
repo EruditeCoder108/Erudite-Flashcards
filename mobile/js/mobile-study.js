@@ -5,6 +5,10 @@
   const params = new URLSearchParams(window.location.search);
   const reviewDueSession = params.get('reviewDue') === 'true';
   const requestedSrsMode = params.get('srs');
+  const filteredStudyFilter = String(params.get('filter') || '').trim();
+  const filteredStudyTag = String(params.get('tag') || '').trim();
+  const previewStudySession = params.get('preview') === 'true';
+  const rescheduleFilteredSession = params.get('reschedule') === 'true';
   const PROGRESS_MIRROR_PREFIX = 'erudite-mobile-progress:';
   const STUDY_PATCHES_KEY = 'erudite-mobile-study-card-patches-v1';
 
@@ -44,11 +48,15 @@
     set: null,
     allSets: [],
     srsMode: false,
+    filteredMode: Boolean(filteredStudyFilter),
+    previewMode: Boolean(filteredStudyFilter && previewStudySession),
+    filteredLabel: '',
     activeCards: [],
     normalOrder: [],
     studyOrder: 'forward',
     normalIndex: 0,
     srsIndex: 0,
+    srsSessionTotal: 0,
     flipped: false,
     complete: false,
     nextDueSetId: null,
@@ -85,6 +93,8 @@
     continueButton: document.getElementById('continue-button'),
     libraryButton: document.getElementById('library-button'),
     emptyModal: document.getElementById('empty-modal'),
+    emptyTitle: document.getElementById('empty-title'),
+    emptyCopy: document.getElementById('empty-copy'),
     emptyCheckButton: document.getElementById('empty-check-button'),
     emptyLibraryButton: document.getElementById('empty-library-button'),
     imageModal: document.getElementById('image-modal'),
@@ -266,7 +276,8 @@
     if (!raw) return '';
     const template = document.createElement('template');
     template.innerHTML = raw;
-    const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'P', 'DIV', 'UL', 'OL', 'LI', 'SPAN']);
+    const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'P', 'DIV', 'UL', 'OL', 'LI', 'SPAN', 'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'HR']);
+    const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink']);
     const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
     const nodes = [];
     while (walk.nextNode()) nodes.push(walk.currentNode);
@@ -275,9 +286,20 @@
         node.replaceWith(document.createTextNode(node.textContent || ''));
         return;
       }
-      Array.from(node.attributes).forEach(attr => node.removeAttribute(attr.name));
+      Array.from(node.attributes).forEach(attr => {
+        if (node.tagName === 'MARK' && attr.name === 'class') {
+          const safeClasses = String(attr.value || '')
+            .split(/\s+/)
+            .filter(name => allowedHighlightClasses.has(name));
+          if (safeClasses.length) {
+            node.setAttribute('class', safeClasses.join(' '));
+            return;
+          }
+        }
+        node.removeAttribute(attr.name);
+      });
     });
-    return template.innerHTML || escapeHtml(raw).replace(/\n/g, '<br>');
+    return template.innerHTML.replace(/\u200B/g, '') || escapeHtml(raw).replace(/\n/g, '<br>');
   }
 
   function sameCard(a, b) {
@@ -292,10 +314,103 @@
   }
 
   function srsDayKey(value = Date.now(), rolloverHour = 4) {
-    const timestamp = value instanceof Date ? value.getTime() : Number(value || Date.now());
+    const number = Number(value);
+    const parsed = value instanceof Date
+      ? value.getTime()
+      : Number.isFinite(number) && number > 0
+        ? number
+        : new Date(value || Date.now()).getTime();
+    const timestamp = Number.isFinite(parsed) ? parsed : Date.now();
     const adjusted = new Date(timestamp - rolloverHour * 60 * 60 * 1000);
     adjusted.setHours(0, 0, 0, 0);
     return String(adjusted.getTime());
+  }
+
+  function timestampValue(value) {
+    if (!value) return 0;
+    const number = Number(value);
+    if (Number.isFinite(number) && number > 0) return number;
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? 0 : date.getTime();
+  }
+
+  function startOfLocalDayMs(value = Date.now()) {
+    const timestamp = timestampValue(value) || Date.now();
+    const date = new Date(timestamp);
+    date.setHours(0, 0, 0, 0);
+    return date.getTime();
+  }
+
+  function normalizedRatingName(value) {
+    const rating = String(value || '').trim().toLowerCase();
+    if (rating === 'again' || rating === '1') return 'Again';
+    if (rating === 'hard' || rating === '2') return 'Hard';
+    if (rating === 'good' || rating === '3') return 'Good';
+    if (rating === 'easy' || rating === '4') return 'Easy';
+    return '';
+  }
+
+  function cardWasFailedToday(card) {
+    const today = startOfLocalDayMs();
+    return (card?.reviewHistory || []).some(review => {
+      const reviewedAt = timestampValue(review?.reviewedAt || review?.time || review?.date);
+      return reviewedAt && startOfLocalDayMs(reviewedAt) === today && normalizedRatingName(review?.rating || review?.grade) === 'Again';
+    });
+  }
+
+  function cardWasFailedRecently(card) {
+    const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+    return Boolean(card?.failedRecently) || (card?.reviewHistory || []).some(review => {
+      const reviewedAt = timestampValue(review?.reviewedAt || review?.time || review?.date);
+      return reviewedAt && reviewedAt >= sevenDaysAgo && normalizedRatingName(review?.rating || review?.grade) === 'Again';
+    });
+  }
+
+  function cardAgainCount(card) {
+    return (card?.reviewHistory || []).reduce((count, review) => (
+      normalizedRatingName(review?.rating || review?.grade) === 'Again' ? count + 1 : count
+    ), 0);
+  }
+
+  function isFilteredStudyCard(card, filter, tag = '') {
+    const dueTime = timestampValue(card?.srs?.due);
+    const todayStart = startOfLocalDayMs();
+    const tomorrowStart = todayStart + 24 * 60 * 60 * 1000;
+    const weekEnd = todayStart + 8 * 24 * 60 * 60 * 1000;
+    const buried = timestampValue(card?.buriedUntil) > Date.now();
+    const isDue = card?.srs && dueTime && (
+      window.srsManager?.isReady?.()
+        ? window.srsManager.isDue(card.srs, new Date())
+        : dueTime <= Date.now()
+    );
+    switch (filter) {
+      case 'failed-today':
+        return cardWasFailedToday(card);
+      case 'overdue':
+        return Boolean(card?.srs && dueTime && srsDayKey(dueTime) < srsDayKey(Date.now()));
+      case 'review-ahead':
+        return Boolean(card?.srs && dueTime >= tomorrowStart && dueTime < weekEnd && !card?.suspended && !buried);
+      case 'leeches':
+        return cardWasFailedRecently(card) || cardAgainCount(card) >= 8 || Number(card?.srs?.lapses || 0) >= 8;
+      case 'tag':
+        return Boolean(tag && (card?.tags || []).map(item => String(item).toLowerCase()).includes(String(tag).toLowerCase()));
+      case 'due':
+        return Boolean(isDue);
+      default:
+        return false;
+    }
+  }
+
+  function filteredStudyLabel(filter, tag = '') {
+    const labels = {
+      'failed-today': 'Failed Today',
+      overdue: 'Overdue Preview',
+      'review-ahead': 'Review Ahead',
+      leeches: 'Weak Cards',
+      tag: tag ? `#${tag}` : 'Tag Preview',
+      due: 'Due Preview'
+    };
+    return labels[filter] || 'Filtered Study';
   }
 
   function getDeckSrsSettings(set = state.set) {
@@ -363,6 +478,8 @@
   }
 
   function resolveSrsMode(storedValue) {
+    if (filteredStudyFilter && previewStudySession && !rescheduleFilteredSession) return false;
+    if (filteredStudyFilter && rescheduleFilteredSession) return true;
     if (reviewDueSession) return true;
     if (requestedSrsMode === 'true') return true;
     if (requestedSrsMode === 'false') return false;
@@ -490,6 +607,9 @@
     if (!found) throw new Error('Flashcard set not found');
 
     state.srsMode = resolveSrsMode(srsMode);
+    state.filteredMode = Boolean(filteredStudyFilter);
+    state.previewMode = Boolean(filteredStudyFilter && previewStudySession && !rescheduleFilteredSession);
+    state.filteredLabel = filteredStudyLabel(filteredStudyFilter, filteredStudyTag);
     if (found && ['forward', 'backward', 'random'].includes(found.normalStudyOrder)) {
       state.studyOrder = found.normalStudyOrder;
     } else {
@@ -568,7 +688,7 @@
       startedAt: state.sessionStartedAt,
       durationMs: durationMs,
       cardsViewed: state.sessionCardsViewed?.size || 0,
-      mode: state.srsMode ? 'srs' : 'normal'
+      mode: state.filteredMode ? (state.previewMode ? 'filtered-preview' : 'filtered-reschedule') : (state.srsMode ? 'srs' : 'normal')
     };
     try {
       await window.flashcardStore.saveStudySession(sessionPayload);
@@ -578,6 +698,14 @@
   }
 
   async function loadProgress() {
+    if (state.filteredMode) {
+      state.normalIndex = 0;
+      state.srsIndex = 0;
+      state.srsSessionTotal = 0;
+      srsReviewedCardIds = new Set();
+      restoredProgress = null;
+      return;
+    }
     const saved = await window.flashcardStore.getProgress(state.set.id);
     const mirrored = readProgressMirror();
     const progress = mirrored && (!saved || Number(mirrored.timestamp || 0) >= Number(saved.timestamp || 0))
@@ -585,16 +713,20 @@
       : saved;
     if (!progress || String(progress.setId) !== String(state.set.id)) {
       srsReviewedCardIds = new Set();
+      state.srsSessionTotal = 0;
       return;
     }
     restoredProgress = progress;
     const cardCount = state.set.cards?.length || 0;
     state.normalIndex = savedNormalIndex(progress, cardCount || 1);
     state.srsIndex = Math.max(0, Number(progress.srsModeIndex ?? 0) || 0);
-    if (progress.srsSessionDayKey === srsDayKey() && progress.srsReviewedCardIds && Array.isArray(progress.srsReviewedCardIds)) {
+    const sameSrsDay = progress.srsSessionDayKey === srsDayKey();
+    if (sameSrsDay && progress.srsReviewedCardIds && Array.isArray(progress.srsReviewedCardIds)) {
       srsReviewedCardIds = new Set(progress.srsReviewedCardIds);
+      state.srsSessionTotal = Math.max(0, Number(progress.srsSessionTotal || 0) || 0);
     } else {
       srsReviewedCardIds = new Set();
+      state.srsSessionTotal = 0;
     }
   }
 
@@ -622,6 +754,7 @@
       normalOrder: state.normalOrder,
       srsModeIndex: state.srsIndex,
       srsModeLength: state.activeCards.length,
+      srsSessionTotal: state.srsSessionTotal || (state.srsMode ? state.activeCards.length + srsReviewedCardIds.size : 0),
       srsCurrentCardKey: state.srsMode ? cardKey(activeCard()) : null,
       srsSessionDayKey: srsDayKey(),
       srsReviewedCardIds: Array.from(srsReviewedCardIds),
@@ -646,6 +779,7 @@
   }
 
   function saveProgress(options = {}) {
+    if (state.filteredMode) return Promise.resolve(false);
     if (!state.srsMode && state.studyOrder === 'random') return Promise.resolve(false);
     const payload = buildProgressPayload();
     if (!payload) return Promise.resolve(false);
@@ -775,6 +909,17 @@
     return [...dueNow, ...dueFuture];
   }
 
+  function filterSiblingCardsForSession(queue) {
+    const seenNotes = new Set();
+    return (queue || []).filter(card => {
+      const noteId = card?.noteId || null;
+      if (!noteId) return true;
+      if (seenNotes.has(String(noteId))) return false;
+      seenNotes.add(String(noteId));
+      return true;
+    });
+  }
+
   function showLearningCardsDueSoonMessage(dueCount, nextDueTime) {
     const existingMessage = document.getElementById('mastered-message');
     if (existingMessage) {
@@ -866,20 +1011,30 @@
     }
 
     if (!Array.isArray(state.set.cards)) state.set.cards = [];
+    const sourceCards = state.filteredMode
+      ? state.set.cards.filter(card => isFilteredStudyCard(card, filteredStudyFilter, filteredStudyTag))
+      : state.set.cards;
     if (state.srsMode && window.srsManager?.isReady?.()) {
       const settings = getDeckSrsSettings();
-      const allDueCards = window.srsManager.getDueCards(state.set.cards, {
-        maxNewCards: settings.newCardsPerDay,
-        maxDueCards: settings.reviewsPerDay,
-        allowMultipleSessions: true,
-        settings
-      });
+      const allDueCards = state.filteredMode && rescheduleFilteredSession
+        ? sourceCards.map(card => card.srs ? card : window.srsManager.createSRSCard(card))
+        : window.srsManager.getDueCards(sourceCards, {
+            maxNewCards: settings.newCardsPerDay,
+            maxDueCards: settings.reviewsPerDay,
+            allowMultipleSessions: true,
+            settings
+          });
 
       // Filter out already reviewed cards in this session
       state.activeCards = allDueCards.filter(card => !srsReviewedCardIds.has(cardKey(card)));
 
       // Sort the session queue
       state.activeCards = sortSrsSessionQueue(state.activeCards);
+      state.activeCards = filterSiblingCardsForSession(state.activeCards);
+      state.srsSessionTotal = Math.max(
+        Number(state.srsSessionTotal || 0) || 0,
+        state.activeCards.length + srsReviewedCardIds.size
+      );
 
       // Resume the saved SRS card when it is still due and in the active queue.
       // Move it to index 0 (front of queue) so it is shown first.
@@ -894,7 +1049,7 @@
 
       state.srsIndex = 0;
     } else {
-      const cards = state.set.cards || [];
+      const cards = sourceCards || [];
       state.normalOrder = buildNormalOrder(cards.length);
       state.activeCards = state.normalOrder.map(index => cards[index]).filter(Boolean);
       state.normalIndex = Math.min(state.normalIndex, Math.max(0, state.activeCards.length - 1));
@@ -931,11 +1086,33 @@
     });
   }
 
-  function renderImage(img, wrap, src) {
+  function renderOcclusionMasks(wrap, card, side) {
+    if (!wrap) return;
+    wrap.querySelectorAll('.occlusion-mask-layer').forEach(layer => layer.remove());
+    const occlusion = card?.imageOcclusion;
+    const masks = Array.isArray(occlusion?.masks) ? occlusion.masks : [];
+    if (!masks.length || (occlusion.side || 'term') !== side) return;
+    const layer = document.createElement('div');
+    layer.className = 'occlusion-mask-layer';
+    masks.forEach(mask => {
+      const item = document.createElement('span');
+      item.className = 'occlusion-mask';
+      item.style.left = `${Math.min(95, Math.max(0, Number(mask.x || 0)))}%`;
+      item.style.top = `${Math.min(95, Math.max(0, Number(mask.y || 0)))}%`;
+      item.style.width = `${Math.min(100, Math.max(4, Number(mask.w || 20)))}%`;
+      item.style.height = `${Math.min(100, Math.max(4, Number(mask.h || 12)))}%`;
+      item.textContent = '?';
+      layer.appendChild(item);
+    });
+    wrap.appendChild(layer);
+  }
+
+  function renderImage(img, wrap, src, card, side) {
     const safeSrc = safeMediaSrc(src);
     if (!safeSrc) {
       wrap.classList.add('hidden');
       img.removeAttribute('src');
+      renderOcclusionMasks(wrap, null, side);
       return;
     }
     if (img.getAttribute('src') !== safeSrc) {
@@ -943,6 +1120,7 @@
       img.src = safeSrc;
     }
     wrap.classList.remove('hidden');
+    renderOcclusionMasks(wrap, card, side);
   }
 
   function renderCardBackground(element, card, side) {
@@ -1097,8 +1275,8 @@
     elements.definitionText.innerHTML = `<div class="card-text-inline">${cardData.sanitizedDefinition}</div>`;
     window.EruditeMath?.renderMath?.(elements.termText);
     window.EruditeMath?.renderMath?.(elements.definitionText);
-    renderImage(elements.termImage, elements.termImageWrap, cardData.termImage);
-    renderImage(elements.definitionImage, elements.definitionImageWrap, cardData.definitionImage);
+    renderImage(elements.termImage, elements.termImageWrap, cardData.termImage, cardData, 'term');
+    renderImage(elements.definitionImage, elements.definitionImageWrap, cardData.definitionImage, cardData, 'definition');
     renderCardBackground(elements.termBg, cardData, 'term');
     renderCardBackground(elements.definitionBg, cardData, 'definition');
     renderMediaList(elements.termMediaList, cardData, 'term');
@@ -1198,13 +1376,20 @@
   }
 
   function updateProgress() {
-    const total = state.activeCards.length;
-    const index = total ? activeIndex() + 1 : 0;
+    const total = state.srsMode
+      ? Math.max(Number(state.srsSessionTotal || 0) || 0, state.activeCards.length + srsReviewedCardIds.size)
+      : state.activeCards.length;
+    const completed = state.srsMode ? Math.min(total, srsReviewedCardIds.size) : 0;
+    const index = state.srsMode
+      ? (total ? Math.min(total, completed + (state.activeCards.length ? 1 : 0)) : 0)
+      : (total ? activeIndex() + 1 : 0);
     els.current.textContent = String(index);
     els.total.textContent = String(total);
     els.fill.style.width = total ? `${Math.round((index / total) * 100)}%` : '0%';
-    els.modeLabel.textContent = state.srsMode ? 'SRS Review' : 'Study';
-    els.title.textContent = state.set?.name || 'Study';
+    els.modeLabel.textContent = state.filteredMode
+      ? (state.previewMode ? 'Preview Study' : 'Filtered Study')
+      : (state.srsMode ? 'SRS Review' : 'Study');
+    els.title.textContent = state.filteredMode ? state.filteredLabel : (state.set?.name || 'Study');
     if (els.prev) {
       els.prev.disabled = animating || activeIndex() <= 0 || state.srsMode;
     }
@@ -1430,8 +1615,15 @@
       srsReviewedCardIds.add(cardKey(current));
     }
 
+    if (current.noteId) {
+      state.activeCards = state.activeCards.filter(card => (
+        sameCard(card, updatedCard) || String(card.noteId || '') !== String(current.noteId)
+      ));
+    }
+
     // Sort queue
     state.activeCards = sortSrsSessionQueue(state.activeCards);
+    state.activeCards = filterSiblingCardsForSession(state.activeCards);
     state.srsIndex = 0;
 
     state.sessionStats.reviewed = srsReviewedCardIds.size;
@@ -1528,7 +1720,30 @@
     els.shell.classList.remove('srs-back-visible');
     playSound('success');
 
-    if (state.srsMode) {
+    if (state.filteredMode && state.previewMode) {
+      els.completionTitle.textContent = 'Preview Complete';
+      els.completionCopy.textContent = 'Filtered session complete. SRS scheduling was not changed.';
+      els.completionStats.innerHTML = `
+        <span>${state.activeCards.length}<small>Cards</small></span>
+        <span>${state.filteredLabel}<small>Filter</small></span>
+        <span>No<small>Schedule changed</small></span>
+      `;
+      els.completionStats.classList.remove('hidden');
+      els.continueButton.textContent = 'Practice Again';
+    } else if (state.filteredMode && state.srsMode) {
+      els.completionTitle.textContent = 'Filtered Review Complete';
+      els.completionCopy.textContent = 'Filtered session complete. SRS scheduling was updated for reviewed cards.';
+      const nextDue = state.sessionStats.nextDue && window.srsManager?.formatIntervalLabel
+        ? window.srsManager.formatIntervalLabel(state.sessionStats.nextDue)
+        : 'Later';
+      els.completionStats.innerHTML = `
+        <span>${state.sessionStats.reviewed}<small>Reviewed</small></span>
+        <span>${state.sessionStats.Again}/${state.sessionStats.Hard}/${state.sessionStats.Good}/${state.sessionStats.Easy}<small>A/H/G/E</small></span>
+        <span>${nextDue}<small>Next Due</small></span>
+      `;
+      els.completionStats.classList.remove('hidden');
+      els.continueButton.textContent = 'Review Again';
+    } else if (state.srsMode) {
       els.completionTitle.textContent = state.nextDueSetId ? 'Set Complete' : 'SRS Complete';
       els.completionCopy.textContent = state.nextDueSetId
         ? 'More due cards are ready in another set.'
@@ -1554,6 +1769,13 @@
   }
 
   function showEmptyDue() {
+    if (state.filteredMode) {
+      if (els.emptyTitle) els.emptyTitle.textContent = 'No Matching Cards';
+      if (els.emptyCopy) els.emptyCopy.textContent = 'This filtered preview has no cards in this deck right now.';
+    } else {
+      if (els.emptyTitle) els.emptyTitle.textContent = 'No Cards Due';
+      if (els.emptyCopy) els.emptyCopy.textContent = 'You are caught up for this set.';
+    }
     els.emptyModal.classList.remove('hidden');
   }
 

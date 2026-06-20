@@ -14,6 +14,11 @@
         <item name="android:windowLightNavigationBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+        <item name="android:forceDarkAllowed">false</item>
+        <item name="android:actionModeStyle">@style/EruditeActionMode</item>
+        <item name="actionModeStyle">@style/EruditeActionMode</item>
+        <item name="android:actionMenuTextColor">@color/erudite_action_mode_text</item>
+        <item name="actionMenuTextColor">@color/erudite_action_mode_text</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
@@ -25,6 +30,22 @@
         <item name="android:navigationBarColor">@color/erudite_bg</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:forceDarkAllowed">false</item>
+        <item name="android:actionModeStyle">@style/EruditeActionMode</item>
+        <item name="actionModeStyle">@style/EruditeActionMode</item>
+        <item name="android:actionMenuTextColor">@color/erudite_action_mode_text</item>
+        <item name="actionMenuTextColor">@color/erudite_action_mode_text</item>
+    </style>
+
+    <style name="EruditeActionMode" parent="@style/Widget.AppCompat.ActionMode">
+        <item name="background">@color/erudite_action_mode_bg</item>
+        <item name="android:background">@color/erudite_action_mode_bg</item>
+        <item name="titleTextStyle">@style/EruditeActionModeText</item>
+        <item name="subtitleTextStyle">@style/EruditeActionModeText</item>
+    </style>
+
+    <style name="EruditeActionModeText" parent="@style/TextAppearance.AppCompat.Widget.ActionMode.Title">
+        <item name="android:textColor">@color/erudite_action_mode_text</item>
     </style>
 
 

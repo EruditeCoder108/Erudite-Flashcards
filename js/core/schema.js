@@ -135,9 +135,19 @@
 
   function normalizeCard(card = {}, options = {}) {
     const timestamp = options.now || now();
+    const noteId = card.noteId || card.note?.id || card.sourceNoteId || createId('note');
+    const noteType = ['basic', 'basic-reverse', 'cloze', 'image-occlusion'].includes(card.noteType || card.cardType)
+      ? (card.noteType || card.cardType)
+      : 'basic';
     return {
       ...card,
       id: card.id || createId('card'),
+      noteId,
+      noteType,
+      cardTemplate: card.cardTemplate || card.template || 'front-back',
+      noteFields: card.noteFields && typeof card.noteFields === 'object' ? card.noteFields : {},
+      clozeIndex: card.clozeIndex || null,
+      imageOcclusion: card.imageOcclusion && typeof card.imageOcclusion === 'object' ? card.imageOcclusion : null,
       term: card.term || '',
       definition: card.definition || '',
       termImage: card.termImage || '',

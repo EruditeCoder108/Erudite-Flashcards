@@ -348,7 +348,7 @@
 
   async function run(sql, params = []) {
     if (isNative && db) {
-      await db.run(sql, params);
+      await db.run(sql, params, transactionDepth === 0);
       return;
     }
     const statement = db.prepare(sql);
@@ -358,7 +358,7 @@
 
   async function executeRaw(sql) {
     if (isNative && db) {
-      await db.execute(sql);
+      await db.execute(sql, transactionDepth === 0);
       return;
     }
     db.exec(sql);
@@ -366,13 +366,7 @@
 
   async function executeSet(set) {
     if (isNative && db) {
-      if (transactionDepth > 0) {
-        for (const item of set) {
-          await db.run(item.statement, item.values);
-        }
-        return;
-      }
-      await db.executeSet(set);
+      await db.executeSet(set, transactionDepth === 0);
       return;
     }
     if (transactionDepth > 0) {
@@ -398,6 +392,32 @@
   }
 
   async function withTransaction(work) {
+    if (isNative && db) {
+      const nested = transactionDepth > 0;
+      transactionDepth += 1;
+      try {
+        if (!nested) await db.beginTransaction();
+        const result = await work();
+        if (!nested) {
+          const active = await db.isTransactionActive().catch(() => ({ result: false }));
+          if (active?.result) await db.commitTransaction();
+        }
+        return result;
+      } catch (error) {
+        if (!nested) {
+          try {
+            const active = await db.isTransactionActive().catch(() => ({ result: false }));
+            if (active?.result) await db.rollbackTransaction();
+          } catch (rollbackError) {
+            console.warn('[mobile-store] native transaction rollback failed:', rollbackError?.message || rollbackError);
+          }
+        }
+        throw error;
+      } finally {
+        transactionDepth = Math.max(0, transactionDepth - 1);
+      }
+    }
+
     const nested = transactionDepth > 0;
     const savepoint = `sp_${transactionDepth + 1}`;
     transactionDepth += 1;
@@ -1042,6 +1062,77 @@
     await executeSet(set);
   }
 
+  async function repairCardIdsForSet(setId, cards = []) {
+    const setKey = String(setId);
+    const used = new Set();
+    const nextCards = [];
+
+    function nextCardId() {
+      let id = schema.createId('card');
+      while (used.has(String(id))) id = schema.createId('card');
+      used.add(String(id));
+      return id;
+    }
+
+    for (const card of Array.isArray(cards) ? cards : []) {
+      const currentId = String(card?.id || '').trim();
+      const isDuplicate = !currentId || used.has(currentId);
+      const id = isDuplicate ? nextCardId() : currentId;
+      used.add(String(id));
+      nextCards.push({ ...card, id });
+    }
+
+    const ids = nextCards.map(card => String(card.id)).filter(Boolean);
+    const conflicts = new Set();
+    for (const idChunk of chunkArray(ids)) {
+      const placeholders = idChunk.map(() => '?').join(',');
+      const conflictRows = await rows(`
+        SELECT id
+        FROM cards
+        WHERE deleted_at IS NULL
+          AND set_id != ?
+          AND id IN (${placeholders})
+      `, [setKey, ...idChunk]);
+      conflictRows.forEach(row => conflicts.add(String(row.id)));
+    }
+
+    if (!conflicts.size) return nextCards;
+
+    for (const card of nextCards) {
+      if (!conflicts.has(String(card.id))) continue;
+      card.id = nextCardId();
+      card.lastModified = Date.now();
+    }
+    return nextCards;
+  }
+
+  function repairCardIdsAcrossSets(sets = []) {
+    const used = new Set();
+
+    function nextCardId() {
+      let id = schema.createId('card');
+      while (used.has(String(id))) id = schema.createId('card');
+      used.add(String(id));
+      return id;
+    }
+
+    return (Array.isArray(sets) ? sets : []).map(set => ({
+      ...set,
+      cards: (Array.isArray(set.cards) ? set.cards : []).map(card => {
+        const currentId = String(card?.id || '').trim();
+        if (currentId && !used.has(currentId)) {
+          used.add(currentId);
+          return card;
+        }
+        return {
+          ...card,
+          id: nextCardId(),
+          lastModified: Date.now()
+        };
+      })
+    }));
+  }
+
   async function listSets() {
     await ensureReady();
     const setRows = await rows('SELECT * FROM sets WHERE deleted_at IS NULL ORDER BY last_modified DESC, created DESC');
@@ -1202,23 +1293,48 @@
     return '';
   }
 
+  function emptyRatingCounts() {
+    return { Again: 0, Hard: 0, Good: 0, Easy: 0 };
+  }
+
+  function createRatingWindows() {
+    return {
+      '7': emptyRatingCounts(),
+      '30': emptyRatingCounts(),
+      '90': emptyRatingCounts(),
+      all: emptyRatingCounts()
+    };
+  }
+
   function reviewStats(history, nowMs = Date.now()) {
+    const todayKey = dayKey(nowMs);
     const sevenDaysAgo = nowMs - (7 * 24 * 60 * 60 * 1000);
+    const thirtyDaysAgo = nowMs - (30 * 24 * 60 * 60 * 1000);
+    const ninetyDaysAgo = nowMs - (90 * 24 * 60 * 60 * 1000);
     let lastReviewedAt = null;
     let againCount = 0;
     let failedRecently = false;
-    const ratingCounts = { Again: 0, Hard: 0, Good: 0, Easy: 0 };
+    let failedToday = false;
+    const ratingCounts = emptyRatingCounts();
+    const ratingWindows = createRatingWindows();
     for (const review of Array.isArray(history) ? history : []) {
       const rating = normalizedRatingName(review?.rating || review?.grade);
       const reviewedAt = timeValue(review?.reviewedAt || review?.time || review?.date);
       if (reviewedAt && (!lastReviewedAt || reviewedAt > lastReviewedAt)) lastReviewedAt = reviewedAt;
-      if (rating) ratingCounts[rating] += 1;
+      if (rating) {
+        ratingCounts[rating] += 1;
+        ratingWindows.all[rating] += 1;
+        if (reviewedAt >= sevenDaysAgo) ratingWindows['7'][rating] += 1;
+        if (reviewedAt >= thirtyDaysAgo) ratingWindows['30'][rating] += 1;
+        if (reviewedAt >= ninetyDaysAgo) ratingWindows['90'][rating] += 1;
+      }
       if (rating === 'Again') {
         againCount += 1;
         if (reviewedAt && reviewedAt >= sevenDaysAgo) failedRecently = true;
+        if (reviewedAt && dayKey(reviewedAt) === todayKey) failedToday = true;
       }
     }
-    return { againCount, failedRecently, lastReviewedAt, ratingCounts };
+    return { againCount, failedRecently, failedToday, lastReviewedAt, ratingCounts, ratingWindows };
   }
 
   function browserCardFromRow(row, nowMs = Date.now()) {
@@ -1240,6 +1356,10 @@
     return {
       id: row.id,
       setId: row.set_id,
+      noteId: payload.noteId || null,
+      noteType: payload.noteType || 'basic',
+      cardTemplate: payload.cardTemplate || 'front-back',
+      clozeIndex: payload.clozeIndex || null,
       deck: row.deck_name || 'Untitled Set',
       classId: row.class_id || null,
       className: row.class_name || 'General',
@@ -1256,6 +1376,7 @@
       buriedUntil,
       buried,
       failedRecently: reviews.failedRecently,
+      failedToday: reviews.failedToday,
       leech: reviews.againCount >= 8 || Number(srs?.lapses || 0) >= 8,
       noTags: !tags.length,
       hasImage,
@@ -1263,6 +1384,7 @@
       reviewCount: Array.isArray(history) ? history.length : 0,
       againCount: reviews.againCount,
       ratingCounts: reviews.ratingCounts,
+      ratingWindows: reviews.ratingWindows,
       reps: Number(srs?.reps || 0),
       lapses: Number(srs?.lapses || 0),
       intervalDays: Number(srs?.scheduled_days || srs?.elapsed_days || 0),
@@ -1761,6 +1883,7 @@
     }
 
     const normalized = schema.normalizeSet(cleanSet, existing);
+    normalized.cards = await repairCardIdsForSet(normalized.id, normalized.cards || []);
     await withTransaction(async () => {
       await upsertSet(normalized);
       if (!metaOnlyUpdate) await replaceCardsForSet(normalized.id, normalized.cards || []);
@@ -1772,8 +1895,8 @@
 
   async function replaceSets(sets = [], options = {}) {
     await ensureReady();
-    const normalizedSets = (Array.isArray(sets) ? sets : [])
-      .map(set => schema.normalizeSet(set, null, { preserveLastModified: true }));
+    const normalizedSets = repairCardIdsAcrossSets((Array.isArray(sets) ? sets : [])
+      .map(set => schema.normalizeSet(set, null, { preserveLastModified: true })));
     await withTransaction(async () => {
       await run('DELETE FROM cards');
       await run('DELETE FROM sets');
@@ -2042,17 +2165,50 @@
 
   function pickJsonFile() {
     return new Promise((resolve) => {
+      let settled = false;
+      let clickAt = 0;
+      let timeoutId = null;
       const input = document.createElement('input');
+      const cleanup = () => {
+        window.removeEventListener('focus', onWindowFocus);
+        document.removeEventListener('visibilitychange', onVisibilityChange);
+        if (timeoutId) clearTimeout(timeoutId);
+        input.remove();
+      };
+      const finish = (file = null) => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        resolve(file);
+      };
+      const finishIfEmpty = () => {
+        if (!settled && !(input.files && input.files.length)) finish(null);
+      };
+      const onChange = () => finish(input.files?.[0] || null);
+      const onCancel = () => finish(null);
+      const onWindowFocus = () => {
+        const waitMs = Math.max(350, 700 - (Date.now() - clickAt));
+        window.setTimeout(finishIfEmpty, waitMs);
+      };
+      const onVisibilityChange = () => {
+        if (document.visibilityState === 'visible') onWindowFocus();
+      };
+
       input.type = 'file';
       input.accept = 'application/json,.json';
       input.style.display = 'none';
-      input.addEventListener('change', () => {
-        const file = input.files?.[0] || null;
-        input.remove();
-        resolve(file);
-      }, { once: true });
+      input.addEventListener('change', onChange, { once: true });
+      input.addEventListener('cancel', onCancel, { once: true });
+      window.addEventListener('focus', onWindowFocus);
+      document.addEventListener('visibilitychange', onVisibilityChange);
       document.body.appendChild(input);
-      input.click();
+      timeoutId = window.setTimeout(() => finish(null), 2 * 60 * 1000);
+      clickAt = Date.now();
+      try {
+        input.click();
+      } catch (_) {
+        finish(null);
+      }
     });
   }
 

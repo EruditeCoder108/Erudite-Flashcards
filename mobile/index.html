@@ -17,6 +17,7 @@
   <title>Erudite Flashcards</title>
   <link rel="icon" type="image/png" href="assets/icons/icon.png">
   <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
   <link rel="stylesheet" href="mobile/css/mobile-app.css">
 </head>
 <body>
@@ -112,6 +113,12 @@
             </button>
           </div>
           <div class="analytics-dashboard" id="analytics-dashboard"></div>
+        </div>
+        <div class="section-block custom-study-section">
+          <div class="section-title-row">
+            <h2>Custom Study</h2>
+          </div>
+          <div class="custom-study-panel" id="custom-study-panel"></div>
         </div>
         <div class="section-block">
           <div class="section-title-row">
@@ -244,6 +251,9 @@
           <button type="button" class="filter-chip" data-browser-filter="buried">Buried</button>
           <button type="button" class="filter-chip" data-browser-filter="failed">Failed</button>
           <button type="button" class="filter-chip" data-browser-filter="leeches">Leeches</button>
+          <button type="button" class="filter-chip" data-browser-filter="reverse">Reverse</button>
+          <button type="button" class="filter-chip" data-browser-filter="cloze">Cloze</button>
+          <button type="button" class="filter-chip" data-browser-filter="image-occlusion">Occlusion</button>
           <button type="button" class="filter-chip" data-browser-filter="no-tags">No tags</button>
           <button type="button" class="filter-chip" data-browser-filter="has-image">Images</button>
           <button type="button" class="filter-chip" data-browser-filter="has-audio">Audio</button>
@@ -558,8 +568,15 @@
   <div class="mobile-modal-overlay hidden" id="formula-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="formula-modal-title">
     <div class="mobile-modal-card">
       <h3 id="formula-modal-title"><i class="fas fa-square-root-variable"></i> Insert Formula</h3>
-      <p class="mobile-modal-hint">Enter a LaTeX formula. Examples: <code>x^2</code>, <code>\frac{a}{b}</code>, <code>E=mc^2</code></p>
-      <input type="text" id="formula-modal-input" class="mobile-modal-input" placeholder="Enter LaTeX formula..." autocomplete="off" spellcheck="false">
+      <p class="mobile-modal-hint">Use display or steps for equations that should be read line by line.</p>
+      <div class="formula-mode-row" role="group" aria-label="Formula layout">
+        <button type="button" class="formula-mode-btn active" data-formula-mode="inline">Inline</button>
+        <button type="button" class="formula-mode-btn" data-formula-mode="display">Display</button>
+        <button type="button" class="formula-mode-btn" data-formula-mode="steps">Steps</button>
+      </div>
+      <textarea id="formula-modal-input" class="mobile-modal-input mobile-modal-textarea formula-input" rows="5" placeholder="Example steps:&#10;45 \times 34&#10;= 1350 + 180&#10;= 1530" autocomplete="off" spellcheck="false"></textarea>
+      <div class="formula-palette" id="formula-symbol-grid" aria-label="Math and physics symbols"></div>
+      <div class="formula-preview" id="formula-preview" aria-live="polite"></div>
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="formula-modal-cancel">Cancel</button>
         <button type="button" class="mobile-modal-btn confirm" id="formula-modal-confirm">Insert</button>
@@ -1062,6 +1079,8 @@
   <script src="js/core/review-session.js"></script>
   <script src="js/core/draft.js"></script>
   <script src="js/core/card-media.js"></script>
+  <script src="vendor/katex/katex.min.js"></script>
+  <script src="vendor/katex/auto-render.min.js"></script>
   <script src="js/core/math-render.js"></script>
   <script src="vendor/sql.js/sql-wasm.js"></script>
   <script src="js/mobile/mobile-store.js"></script>

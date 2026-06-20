@@ -6,6 +6,48 @@
 
   const CREATOR_DRAFT_KEY = 'mobileCreatorDraft';
   const BROWSER_RENDER_LIMIT = 250;
+  const NORMAL_STUDY_DAILY_GOAL = 20;
+  const FORMULA_SYMBOL_GROUPS = [
+    {
+      label: 'Basic',
+      items: [
+        ['+', '+'], ['-', '-'], ['×', '\\times'], ['÷', '\\div'], ['=', '='], ['≠', '\\ne'],
+        ['≈', '\\approx'], ['±', '\\pm'], ['≤', '\\le'], ['≥', '\\ge'], ['∞', '\\infty']
+      ]
+    },
+    {
+      label: 'Greek',
+      items: [
+        ['α', '\\alpha'], ['β', '\\beta'], ['γ', '\\gamma'], ['Δ', '\\Delta'], ['θ', '\\theta'],
+        ['λ', '\\lambda'], ['μ', '\\mu'], ['π', '\\pi'], ['ρ', '\\rho'], ['σ', '\\sigma'],
+        ['φ', '\\phi'], ['ω', '\\omega'], ['Ω', '\\Omega']
+      ]
+    },
+    {
+      label: 'Templates',
+      items: [
+        ['a⁄b', '\\frac{|}{}'], ['√', '\\sqrt{|}'], ['x²', '^{|}'], ['x₁', '_{|}'],
+        ['Σ', '\\sum_{i=1}^{n} |'], ['∫', '\\int |\\,dx'], ['lim', '\\lim_{x\\to 0} |'],
+        ['d/dx', '\\frac{d}{dx}|'], ['∂', '\\partial |']
+      ]
+    },
+    {
+      label: 'Physics',
+      items: [
+        ['→', '\\rightarrow'], ['←', '\\leftarrow'], ['·', '\\cdot'], ['vec', '\\vec{|}'],
+        ['hat', '\\hat{|}'], ['°', '^\\circ'], ['m/s', '\\mathrm{m/s}'], ['N', '\\mathrm{N}'],
+        ['J', '\\mathrm{J}'], ['kg', '\\mathrm{kg}'], ['C', '\\mathrm{C}']
+      ]
+    },
+    {
+      label: 'Laws',
+      items: [
+        ['F=ma', 'F=ma'], ['E=mc²', 'E=mc^2'], ['V=IR', 'V=IR'],
+        ['p=mv', 'p=mv'], ['KE', 'KE=\\frac{1}{2}mv^2'],
+        ['v=u+at', 'v=u+at'], ['s=ut+½at²', 's=ut+\\frac{1}{2}at^2']
+      ]
+    }
+  ];
 
   const state = {
     sets: [],
@@ -25,6 +67,7 @@
     analyticsLoading: false,
     analyticsError: null,
     analyticsLoadToken: 0,
+    analyticsWindow: '30',
     browserSearch: '',
     browserFilters: new Set(),
     browserSelectedCards: new Set(),
@@ -42,6 +85,8 @@
     pendingImageTarget: null,
     busy: false,
     creatorSaving: false,
+    highlightColor: 'yellow',
+    suppressNextHighlightClick: false,
     selectMode: false,
     selectedDecks: new Set(),
     lastModalClosedAt: 0
@@ -49,6 +94,7 @@
 
   let creatorDraftTimer = null;
   let formatStateFrame = 0;
+  let highlightHoldTimer = null;
   let orphanRepairTimer = null;
 
   const premadeClasses = [
@@ -98,6 +144,7 @@
     countLabel: document.getElementById('library-count-label'),
     todayHero: document.getElementById('today-hero'),
     analyticsDashboard: document.getElementById('analytics-dashboard'),
+    customStudyPanel: document.getElementById('custom-study-panel'),
     continueList: document.getElementById('continue-list'),
     activityList: document.getElementById('activity-list'),
     libraryList: document.getElementById('library-list'),
@@ -136,6 +183,8 @@
     // Custom modals
     formulaOverlay: document.getElementById('formula-modal-overlay'),
     formulaInput: document.getElementById('formula-modal-input'),
+    formulaPreview: document.getElementById('formula-preview'),
+    formulaSymbolGrid: document.getElementById('formula-symbol-grid'),
     formulaConfirm: document.getElementById('formula-modal-confirm'),
     formulaCancel: document.getElementById('formula-modal-cancel'),
     draftRestoreOverlay: document.getElementById('draft-restore-overlay'),
@@ -611,7 +660,10 @@
     } finally {
       if (token === state.analyticsLoadToken) {
         state.analyticsLoading = false;
-        if (state.activeTab === 'today') renderAnalyticsDashboard();
+        if (state.activeTab === 'today') {
+          renderAnalyticsDashboard();
+          renderCustomStudyPanel();
+        }
       }
     }
   }
@@ -807,6 +859,25 @@
     return target;
   }
 
+  function normalizeAnalyticsWindow(value) {
+    return ['7', '30', '90', 'all'].includes(String(value)) ? String(value) : '30';
+  }
+
+  function analyticsWindowLabel(value = state.analyticsWindow) {
+    const labels = {
+      '7': '7 days',
+      '30': '30 days',
+      '90': '90 days',
+      all: 'All time'
+    };
+    return labels[normalizeAnalyticsWindow(value)] || labels['30'];
+  }
+
+  function cardRatingCounts(card, windowKey = state.analyticsWindow) {
+    const key = normalizeAnalyticsWindow(windowKey);
+    return card?.ratingWindows?.[key] || (key === 'all' ? card?.ratingCounts : null) || emptyRatingCounts();
+  }
+
   function ratingPassRate(counts) {
     const total = ['Again', 'Hard', 'Good', 'Easy'].reduce((sum, label) => sum + Number(counts?.[label] || 0), 0);
     const passed = Number(counts?.Hard || 0) + Number(counts?.Good || 0) + Number(counts?.Easy || 0);
@@ -832,7 +903,7 @@
     return 'new';
   }
 
-  function analyticsSummary(cards = []) {
+  function analyticsSummary(cards = [], windowKey = state.analyticsWindow) {
     const summary = {
       totalCards: cards.length,
       activeCards: 0,
@@ -840,6 +911,7 @@
       dueCards: 0,
       overdueCards: 0,
       leechCards: 0,
+      weakCards: 0,
       failedRecently: 0,
       ratingCounts: emptyRatingCounts(),
       retention: null,
@@ -866,11 +938,13 @@
       if (card?.isOverdue) summary.overdueCards += 1;
       if (card?.leech) summary.leechCards += 1;
       if (card?.failedRecently) summary.failedRecently += 1;
+      if (card?.leech || card?.failedRecently) summary.weakCards += 1;
       if (Number(card?.reviewCount || card?.reps || 0) > 0 || card?.lastReviewedAt) summary.reviewedCards += 1;
 
-      addRatingCounts(summary.ratingCounts, card?.ratingCounts);
+      const counts = cardRatingCounts(card, windowKey);
+      addRatingCounts(summary.ratingCounts, counts);
       const bucket = analyticsCardBucket(card);
-      if (buckets[bucket]) addRatingCounts(buckets[bucket].counts, card?.ratingCounts);
+      if (buckets[bucket]) addRatingCounts(buckets[bucket].counts, counts);
     });
 
     const passRate = ratingPassRate(summary.ratingCounts);
@@ -901,6 +975,39 @@
       if (started >= weekStart) {
         summary.weekStudyMs += duration;
         summary.weekCardsViewed += cardsViewed;
+      }
+    });
+    summary.averageSecondsPerCard = summary.weekCardsViewed > 0
+      ? Math.round(summary.weekStudyMs / summary.weekCardsViewed / 1000)
+      : null;
+    return summary;
+  }
+
+  function studyActivitySummary() {
+    const summary = {
+      todayStudyMs: 0,
+      weekStudyMs: 0,
+      todayCardsViewed: 0,
+      weekCardsViewed: 0,
+      todaySessions: 0,
+      weekSessions: 0,
+      averageSecondsPerCard: null
+    };
+    const todayStart = startOfLocalDayMs();
+    const weekStart = todayStart - 6 * DAY_MS;
+    (state.studySessions || []).filter(isTrackedStudySession).forEach(session => {
+      const started = normalizeTimestamp(session.startedAt);
+      const duration = Number(session.durationMs || 0);
+      const cardsViewed = Number(session.cardsViewed || 0);
+      if (started >= todayStart) {
+        summary.todayStudyMs += duration;
+        summary.todayCardsViewed += cardsViewed;
+        summary.todaySessions += 1;
+      }
+      if (started >= weekStart) {
+        summary.weekStudyMs += duration;
+        summary.weekCardsViewed += cardsViewed;
+        summary.weekSessions += 1;
       }
     });
     summary.averageSecondsPerCard = summary.weekCardsViewed > 0
@@ -989,7 +1096,7 @@
     }));
   }
 
-  function buildDeckHealth(cards = []) {
+  function buildDeckHealth(cards = [], windowKey = state.analyticsWindow) {
     const rows = new Map();
     state.sets.forEach(set => {
       const stats = setStats(set);
@@ -1001,6 +1108,7 @@
         due: 0,
         metaDue: Number(stats?.dueCards || dueCountForSet(set, { force: true }) || 0),
         overdue: 0,
+        weak: 0,
         leeches: 0,
         counts: emptyRatingCounts(),
         metaRetention: stats?.retention ?? null
@@ -1019,6 +1127,7 @@
           due: 0,
           metaDue: 0,
           overdue: 0,
+          weak: 0,
           leeches: 0,
           counts: emptyRatingCounts(),
           metaRetention: null
@@ -1029,7 +1138,8 @@
       if (card?.isDue) row.due += 1;
       if (card?.isOverdue) row.overdue += 1;
       if (card?.leech) row.leeches += 1;
-      addRatingCounts(row.counts, card?.ratingCounts);
+      if (card?.leech || card?.failedRecently) row.weak += 1;
+      addRatingCounts(row.counts, cardRatingCounts(card, windowKey));
     });
 
     return Array.from(rows.values())
@@ -1041,9 +1151,10 @@
         const retention = rate.percent ?? row.metaRetention;
         const dueRatio = total ? due / total : 0;
         const overdueRatio = total ? row.overdue / total : 0;
+        const weakRatio = total ? row.weak / total : 0;
         const leechRatio = total ? row.leeches / total : 0;
         const baseline = Number.isFinite(Number(retention)) ? Number(retention) : (rate.total > 0 ? 70 : 64);
-        const score = clamp(Math.round(baseline - dueRatio * 20 - overdueRatio * 35 - leechRatio * 45), 0, 100);
+        const score = clamp(Math.round(baseline - dueRatio * 20 - overdueRatio * 35 - weakRatio * 20 - leechRatio * 25), 0, 100);
         const workload = row.overdue > 0
           ? 'Backlog'
           : due > Math.max(30, total * 0.25)
@@ -1060,15 +1171,70 @@
           workload
         };
       })
-      .sort((a, b) => a.score - b.score || b.overdue - a.overdue || b.leeches - a.leeches || b.due - a.due)
+      .sort((a, b) => a.score - b.score || b.overdue - a.overdue || b.weak - a.weak || b.due - a.due)
       .slice(0, 4);
   }
 
   function renderAnalyticsDashboard() {
     if (!selectors.analyticsDashboard) return;
-    const totals = totalStats({ forceDue: true });
+    const totals = totalStats({ forceDue: state.srsMode });
     if (!totals.cardCount) {
       selectors.analyticsDashboard.innerHTML = emptyPanel('fa-chart-simple', 'No insights yet', 'Create or import a deck to see study analytics.');
+      return;
+    }
+
+    if (!state.srsMode) {
+      const activity = studyActivitySummary();
+      const heatmap = buildStudyHeatmap();
+      const avgTime = activity.averageSecondsPerCard === null ? '--' : `${activity.averageSecondsPerCard}s`;
+      const heatmapHtml = heatmap.map(day => `
+        <span class="heatmap-cell level-${day.level}" title="${escapeAttr(`${day.label}: ${day.score ? `${day.score} activity` : 'No study'}`)}"></span>
+      `).join('');
+
+      selectors.analyticsDashboard.innerHTML = `
+        <div class="insight-grid">
+          <article class="insight-card">
+            <span class="insight-icon"><i class="fas fa-layer-group"></i></span>
+            <div>
+              <small>Library</small>
+              <strong>${formatShortNumber(totals.cardCount)}</strong>
+              <p>${formatShortNumber(totals.setCount)} decks</p>
+            </div>
+          </article>
+          <article class="insight-card">
+            <span class="insight-icon calm"><i class="fas fa-stopwatch"></i></span>
+            <div>
+              <small>Today</small>
+              <strong>${formatDuration(activity.todayStudyMs)}</strong>
+              <p>${formatShortNumber(activity.todayCardsViewed)} cards viewed</p>
+            </div>
+          </article>
+          <article class="insight-card">
+            <span class="insight-icon warn"><i class="fas fa-fire"></i></span>
+            <div>
+              <small>Habit</small>
+              <strong>${streakDays()}</strong>
+              <p>day streak</p>
+            </div>
+          </article>
+          <article class="insight-card">
+            <span class="insight-icon"><i class="fas fa-gauge-high"></i></span>
+            <div>
+              <small>Pace</small>
+              <strong>${avgTime}</strong>
+              <p>${formatShortNumber(activity.weekCardsViewed)} cards this week</p>
+            </div>
+          </article>
+        </div>
+
+        <article class="insight-panel">
+          <div class="insight-panel-head">
+            <strong>Study heatmap</strong>
+            <span>${formatDuration(activity.weekStudyMs)} this week</span>
+          </div>
+          <div class="study-heatmap">${heatmapHtml}</div>
+        </article>
+      `;
       return;
     }
 
@@ -1091,10 +1257,12 @@
     }
 
     const cards = state.analyticsCards || [];
-    const summary = analyticsSummary(cards);
+    const analyticsWindow = normalizeAnalyticsWindow(state.analyticsWindow);
+    const windowLabel = analyticsWindowLabel(analyticsWindow);
+    const summary = analyticsSummary(cards, analyticsWindow);
     const forecast = buildForecast(cards);
     const heatmap = buildStudyHeatmap();
-    const deckHealth = buildDeckHealth(cards);
+    const deckHealth = buildDeckHealth(cards, analyticsWindow);
     const retentionLabel = summary.retention === null ? '--' : `${summary.retention}%`;
     const avgTime = summary.averageSecondsPerCard === null ? '--' : `${summary.averageSecondsPerCard}s`;
     const heatmapHtml = heatmap.map(day => `
@@ -1124,7 +1292,7 @@
           <article class="deck-health-row">
             <div>
               <strong>${escapeHtml(deck.name)}</strong>
-              <span>${escapeHtml(deck.workload)} &middot; ${formatShortNumber(deck.due)} due &middot; ${formatShortNumber(deck.leeches)} weak</span>
+              <span>${escapeHtml(deck.workload)} &middot; ${formatShortNumber(deck.due)} due &middot; ${formatShortNumber(deck.weak)} weak</span>
             </div>
             <b>${deck.score}</b>
           </article>
@@ -1132,13 +1300,25 @@
       : '<div class="insight-muted">No deck pressure yet.</div>';
 
     selectors.analyticsDashboard.innerHTML = `
+      <div class="insight-controls" role="group" aria-label="Analytics time window">
+        ${[
+          ['7', '7d'],
+          ['30', '30d'],
+          ['90', '90d'],
+          ['all', 'All']
+        ].map(([value, label]) => `
+          <button type="button" class="${analyticsWindow === value ? 'active' : ''}" data-action="analytics-window" data-window="${escapeAttr(value)}" aria-pressed="${analyticsWindow === value ? 'true' : 'false'}">
+            ${escapeHtml(label)}
+          </button>
+        `).join('')}
+      </div>
       <div class="insight-grid">
         <article class="insight-card insight-score">
           <span class="insight-icon"><i class="fas fa-bullseye"></i></span>
           <div>
             <small>Actual retention</small>
             <strong>${retentionLabel}</strong>
-            <p>${formatShortNumber(summary.reviewEvents)} graded reviews</p>
+            <p>${formatShortNumber(summary.reviewEvents)} reviews, ${escapeHtml(windowLabel)}</p>
           </div>
         </article>
         <article class="insight-card">
@@ -1153,8 +1333,8 @@
           <span class="insight-icon danger"><i class="fas fa-triangle-exclamation"></i></span>
           <div>
             <small>Weak cards</small>
-            <strong>${formatShortNumber(summary.leechCards)}</strong>
-            <p>${formatShortNumber(summary.failedRecently)} failed recently</p>
+            <strong>${formatShortNumber(summary.weakCards)}</strong>
+            <p>${formatShortNumber(summary.failedRecently)} failed recently, ${formatShortNumber(summary.leechCards)} leeches</p>
           </div>
         </article>
         <article class="insight-card">
@@ -1171,7 +1351,7 @@
         <article class="insight-panel">
           <div class="insight-panel-head">
             <strong>Retention</strong>
-            <span>${formatShortNumber(summary.reviewedCards)} reviewed</span>
+            <span>${escapeHtml(windowLabel)}</span>
           </div>
           <div class="retention-breakdown">${retentionBreakdownHtml}</div>
           <div class="rating-list">${distributionHtml}</div>
@@ -1203,19 +1383,181 @@
     `;
   }
 
+  function customStudyFilterLabel(filter, tag = '') {
+    const labels = {
+      'failed-today': 'Failed Today',
+      overdue: 'Overdue',
+      'review-ahead': 'Review Ahead',
+      leeches: 'Weak Cards',
+      tag: tag ? `#${tag}` : 'Tag'
+    };
+    return labels[filter] || 'Custom Study';
+  }
+
+  function customStudyFilterIcon(filter) {
+    const icons = {
+      'failed-today': 'fa-arrow-rotate-left',
+      overdue: 'fa-calendar-xmark',
+      'review-ahead': 'fa-calendar-plus',
+      leeches: 'fa-triangle-exclamation',
+      tag: 'fa-tag'
+    };
+    return icons[filter] || 'fa-filter';
+  }
+
+  function cardMatchesCustomStudyFilter(card, filter, tag = '') {
+    const dueTime = normalizeTimestamp(card?.dueTime || card?.due);
+    const todayStart = startOfLocalDayMs();
+    const tomorrowStart = todayStart + DAY_MS;
+    const weekEnd = todayStart + 8 * DAY_MS;
+    switch (filter) {
+      case 'failed-today':
+        return Boolean(card?.failedToday);
+      case 'overdue':
+        return Boolean(card?.isOverdue);
+      case 'review-ahead':
+        return Boolean(dueTime && dueTime >= tomorrowStart && dueTime < weekEnd && !card?.suspended && !card?.buried);
+      case 'leeches':
+        return Boolean(card?.leech || card?.failedRecently);
+      case 'tag':
+        return Boolean(tag && (card?.tags || []).map(item => String(item).toLowerCase()).includes(String(tag).toLowerCase()));
+      default:
+        return false;
+    }
+  }
+
+  function customStudyCandidates(filter, tag = '') {
+    return (state.analyticsCards || []).filter(card => cardMatchesCustomStudyFilter(card, filter, tag));
+  }
+
+  function customStudyDeckChoice(filter, tag = '') {
+    const rows = new Map();
+    customStudyCandidates(filter, tag).forEach(card => {
+      const setId = String(card?.setId || '');
+      if (!setId) return;
+      const current = rows.get(setId) || {
+        setId,
+        deck: card?.deck || 'Untitled Set',
+        count: 0,
+        due: 0,
+        overdue: 0
+      };
+      current.count += 1;
+      if (card?.isDue) current.due += 1;
+      if (card?.isOverdue) current.overdue += 1;
+      rows.set(setId, current);
+    });
+    return Array.from(rows.values())
+      .sort((a, b) => b.count - a.count || b.overdue - a.overdue || b.due - a.due)[0] || null;
+  }
+
+  function topCustomStudyTags(cards = [], limit = 3) {
+    const counts = new Map();
+    cards.forEach(card => {
+      (card?.tags || []).forEach(tag => {
+        const clean = String(tag || '').trim();
+        if (!clean) return;
+        counts.set(clean, (counts.get(clean) || 0) + 1);
+      });
+    });
+    return Array.from(counts.entries())
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, limit)
+      .map(([tag, count]) => ({ tag, count }));
+  }
+
+  function buildCustomStudyItems() {
+    const base = [
+      { filter: 'failed-today', label: 'Failed Today', copy: 'Practice cards missed today.' },
+      { filter: 'overdue', label: 'Overdue', copy: 'Clear stale reviews safely.' },
+      { filter: 'review-ahead', label: 'Review Ahead', copy: 'Practice cards due this week.' },
+      { filter: 'leeches', label: 'Weak Cards', copy: 'Focus on leeches.' }
+    ].map(item => ({
+      ...item,
+      choice: customStudyDeckChoice(item.filter)
+    }));
+
+    const tagItems = topCustomStudyTags(state.analyticsCards, 3).map(item => ({
+      filter: 'tag',
+      tag: item.tag,
+      label: `#${item.tag}`,
+      copy: `${formatShortNumber(item.count)} tagged cards.`,
+      choice: customStudyDeckChoice('tag', item.tag)
+    }));
+
+    return [...base, ...tagItems].filter(item => item.choice?.count > 0).slice(0, 6);
+  }
+
+  function renderCustomStudyPanel() {
+    if (!selectors.customStudyPanel) return;
+    const totals = totalStats({ forceDue: state.srsMode });
+    if (!totals.cardCount) {
+      selectors.customStudyPanel.innerHTML = emptyPanel('fa-filter', 'No custom sessions yet', 'Create or import a deck first.');
+      return;
+    }
+    if (!state.srsMode) {
+      selectors.customStudyPanel.innerHTML = emptyPanel('fa-filter', 'SRS filters are hidden', 'Turn on SRS to use failed, overdue, review-ahead, and weak-card sessions.');
+      return;
+    }
+    if (state.analyticsError) {
+      selectors.customStudyPanel.innerHTML = emptyPanel('fa-filter', 'Custom study unavailable', 'Refresh insights to rebuild card filters.');
+      return;
+    }
+    if (!state.analyticsLoaded) {
+      if (!state.analyticsLoading && state.activeTab === 'today') {
+        loadAnalyticsCards().catch(() => {});
+      }
+      selectors.customStudyPanel.innerHTML = emptyPanel('fa-spinner', 'Preparing filters', 'Reading card metadata.');
+      return;
+    }
+
+    const items = buildCustomStudyItems();
+    if (!items.length) {
+      selectors.customStudyPanel.innerHTML = emptyPanel('fa-filter', 'Nothing needs a custom session', 'Weak, overdue, review-ahead, and tag sessions will appear here.');
+      return;
+    }
+
+    selectors.customStudyPanel.innerHTML = `
+      <div class="custom-study-grid">
+        ${items.map(item => `
+          <article class="custom-study-card">
+            <span class="insight-icon"><i class="fas ${escapeAttr(customStudyFilterIcon(item.filter))}"></i></span>
+            <strong>${escapeHtml(item.label)}</strong>
+            <small>${formatShortNumber(item.choice.count)} cards in ${escapeHtml(item.choice.deck)}</small>
+            <em>${escapeHtml(item.copy)}</em>
+            <div class="custom-study-actions">
+              <button type="button" data-action="start-custom-study" data-filter="${escapeAttr(item.filter)}" data-tag="${escapeAttr(item.tag || '')}">
+                Practice
+              </button>
+              <button type="button" class="primary" data-action="start-custom-study-reschedule" data-filter="${escapeAttr(item.filter)}" data-tag="${escapeAttr(item.tag || '')}">
+                SRS Review
+              </button>
+            </div>
+          </article>
+        `).join('')}
+      </div>
+    `;
+  }
+
   function renderToday() {
-    const totals = totalStats({ forceDue: true });
+    const totals = totalStats({ forceDue: state.srsMode });
     const todayReviews = reviewsToday();
+    const activity = studyActivitySummary();
     const streak = streakDays();
-    const remainingReviews = Number(totals.dueCards || 0);
-    const dailyWork = todayReviews + remainingReviews;
     const hasDecks = totals.setCount > 0 || totals.cardCount > 0;
-    const progress = dailyWork > 0
-      ? clamp(Math.round((todayReviews / dailyWork) * 100), 0, 100)
-      : (hasDecks ? 100 : 0);
-    const progressLabel = dailyWork > 0 ? 'Goal' : (hasDecks ? 'Ready' : 'Start');
-    const reviewAction = totals.dueCards > 0 ? 'review-due-smart' : (hasDecks ? 'tab-library' : 'open-create');
-    const reviewLabel = totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : (hasDecks ? 'Open Library' : 'Create Deck');
+    const remainingReviews = state.srsMode ? Number(totals.dueCards || 0) : 0;
+    const dailyWork = state.srsMode ? todayReviews + remainingReviews : activity.todayCardsViewed;
+    const normalStudyGoal = hasDecks ? Math.max(1, Math.min(NORMAL_STUDY_DAILY_GOAL, Number(totals.cardCount || 0) || NORMAL_STUDY_DAILY_GOAL)) : 0;
+    const progress = state.srsMode
+      ? (dailyWork > 0 ? clamp(Math.round((todayReviews / dailyWork) * 100), 0, 100) : (hasDecks ? 100 : 0))
+      : (normalStudyGoal > 0 ? clamp(Math.round((activity.todayCardsViewed / normalStudyGoal) * 100), 0, 100) : 0);
+    const progressLabel = state.srsMode
+      ? (dailyWork > 0 ? 'Goal' : (hasDecks ? 'Ready' : 'Start'))
+      : (hasDecks ? 'Daily goal' : 'Start');
+    const reviewAction = state.srsMode && totals.dueCards > 0 ? 'review-due-smart' : (hasDecks ? 'tab-library' : 'open-create');
+    const reviewLabel = state.srsMode && totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : (hasDecks ? 'Study Decks' : 'Create Deck');
+    const middleMetricValue = state.srsMode ? todayReviews : activity.todayCardsViewed;
+    const middleMetricLabel = state.srsMode ? 'Reviewed' : 'Studied';
 
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
@@ -1224,13 +1566,13 @@
         </div>
         <div class="hero-metrics">
           <div class="metric-pill"><strong>${totals.setCount}</strong><span>Decks</span></div>
-          <div class="metric-pill"><strong>${todayReviews}</strong><span>Reviewed</span></div>
+          <div class="metric-pill"><strong>${middleMetricValue}</strong><span>${middleMetricLabel}</span></div>
           <div class="metric-pill"><strong>${streak}</strong><span>Day streak</span></div>
         </div>
       </div>
       <div class="hero-actions">
         <button type="button" class="primary-action" data-action="${reviewAction}">
-          <i class="fas ${totals.dueCards > 0 ? 'fa-brain' : 'fa-layer-group'}"></i>
+          <i class="fas ${state.srsMode && totals.dueCards > 0 ? 'fa-brain' : 'fa-layer-group'}"></i>
           ${escapeHtml(reviewLabel)}
         </button>
         <button type="button" class="secondary-action" data-action="open-create">
@@ -1241,6 +1583,7 @@
     `;
 
     renderAnalyticsDashboard();
+    renderCustomStudyPanel();
 
     const continueSets = [...state.sets]
       .sort((a, b) => {
@@ -1440,7 +1783,8 @@
   function sanitizeEditorHtml(value) {
     const template = document.createElement('template');
     template.innerHTML = String(value || '').trim();
-    const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'DIV', 'P', 'UL', 'OL', 'LI', 'SPAN']);
+    const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'DIV', 'P', 'UL', 'OL', 'LI', 'SPAN', 'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'HR']);
+    const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink']);
     const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
     const nodes = [];
     while (walk.nextNode()) nodes.push(walk.currentNode);
@@ -1449,9 +1793,217 @@
         node.replaceWith(document.createTextNode(node.textContent || ''));
         return;
       }
-      Array.from(node.attributes).forEach(attr => node.removeAttribute(attr.name));
+      Array.from(node.attributes).forEach(attr => {
+        if (node.tagName === 'MARK' && attr.name === 'class') {
+          const safeClasses = String(attr.value || '')
+            .split(/\s+/)
+            .filter(name => allowedHighlightClasses.has(name));
+          if (safeClasses.length) {
+            node.setAttribute('class', safeClasses.join(' '));
+            return;
+          }
+        }
+        node.removeAttribute(attr.name);
+      });
     });
-    return template.innerHTML;
+    return template.innerHTML.replace(/\u200B/g, '');
+  }
+
+  function richEditorForNode(node) {
+    const element = node?.nodeType === Node.ELEMENT_NODE ? node : node?.parentElement;
+    return element?.closest?.('.rich-editor') || null;
+  }
+
+  function activeRichEditor() {
+    const selection = window.getSelection();
+    if (selection?.rangeCount) {
+      const anchorEditor = richEditorForNode(selection.anchorNode);
+      const focusEditor = richEditorForNode(selection.focusNode);
+      if (anchorEditor && anchorEditor === focusEditor) return anchorEditor;
+    }
+    return document.activeElement?.closest?.('.rich-editor') || null;
+  }
+
+  function selectionRangeInEditor(editor) {
+    if (!editor) return null;
+    const selection = window.getSelection();
+    if (!selection?.rangeCount) return null;
+    const range = selection.getRangeAt(0);
+    if (!editor.contains(range.commonAncestorContainer)) return null;
+    return range;
+  }
+
+  function selectionHtml(range) {
+    const container = document.createElement('div');
+    container.appendChild(range.cloneContents());
+    return sanitizeEditorHtml(container.innerHTML);
+  }
+
+  function replaceSelectionHtml(editor, html) {
+    editor.focus();
+    document.execCommand('insertHTML', false, sanitizeEditorHtml(html));
+    syncCreatorFromDom();
+    updateFormatState();
+    scheduleCreatorDraftSave();
+  }
+
+  function placeCaretInside(node) {
+    const selection = window.getSelection();
+    if (!selection) return;
+    const range = document.createRange();
+    if (node.nodeType === Node.TEXT_NODE) {
+      range.setStart(node, node.textContent.length);
+    } else {
+      range.selectNodeContents(node);
+      range.collapse(false);
+    }
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+
+  function insertElementAtRange(editor, element, range) {
+    const activeRange = range || selectionRangeInEditor(editor);
+    if (!activeRange) return false;
+    activeRange.deleteContents();
+    activeRange.insertNode(element);
+    editor.focus();
+    return true;
+  }
+
+  function wrapOrStartInlineElement(tagName, options = {}) {
+    const editor = activeRichEditor();
+    if (!editor) {
+      showToast('Tap a card field first');
+      return false;
+    }
+    const range = selectionRangeInEditor(editor);
+    if (!range) {
+      showToast('Tap where you want to type');
+      return false;
+    }
+    const element = document.createElement(tagName);
+    if (options.className) element.className = options.className;
+    if (range.collapsed) {
+      const text = document.createTextNode('\u200B');
+      element.appendChild(text);
+      if (!insertElementAtRange(editor, element, range)) return false;
+      placeCaretInside(text);
+    } else {
+      element.appendChild(range.extractContents());
+      range.insertNode(element);
+      placeCaretInside(element);
+    }
+    syncCreatorFromDom();
+    updateFormatState();
+    scheduleCreatorDraftSave();
+    return true;
+  }
+
+  function insertCodeBlockAtCaret() {
+    const editor = activeRichEditor();
+    if (!editor) {
+      showToast('Tap a card field first');
+      return false;
+    }
+    const range = selectionRangeInEditor(editor);
+    if (!range) {
+      showToast('Tap where you want to type');
+      return false;
+    }
+    const pre = document.createElement('pre');
+    const code = document.createElement('code');
+    if (range.collapsed) {
+      code.appendChild(document.createTextNode('\u200B'));
+    } else {
+      code.textContent = range.toString();
+    }
+    pre.appendChild(code);
+    const spacer = document.createElement('div');
+    spacer.appendChild(document.createElement('br'));
+    range.deleteContents();
+    range.insertNode(spacer);
+    range.insertNode(pre);
+    editor.focus();
+    placeCaretInside(code.firstChild || code);
+    syncCreatorFromDom();
+    updateFormatState();
+    scheduleCreatorDraftSave();
+    return true;
+  }
+
+  function insertClozeAtCaret(cardId, side) {
+    const editor = selectors.creatorCards?.querySelector(`[data-editor-id="${cssEscape(cardId)}"][data-side="${side}"]`);
+    if (!editor) return false;
+    editor.focus();
+    const range = selectionRangeInEditor(editor);
+    if (!range) return false;
+    const cardIndex = state.creator.cards.findIndex(card => String(card.id) === String(cardId));
+    const sourceCard = cardIndex >= 0 ? state.creator.cards[cardIndex] : {};
+    const existingIndexes = clozeIndexesFromText(`${sourceCard.term || ''} ${sourceCard.definition || ''}`);
+    const nextIndex = existingIndexes.length ? Math.max(...existingIndexes) + 1 : 1;
+    const selected = range.collapsed ? '' : range.toString().trim();
+    const before = document.createTextNode(`{{c${nextIndex}::`);
+    const hidden = document.createTextNode(selected || '\u200B');
+    const after = document.createTextNode('}}');
+    range.deleteContents();
+    range.insertNode(after);
+    range.insertNode(hidden);
+    range.insertNode(before);
+    placeCaretInside(hidden);
+    syncCreatorFromDom();
+    if (cardIndex >= 0) {
+      state.creator.cards[cardIndex] = {
+        ...state.creator.cards[cardIndex],
+        noteType: 'cloze',
+        cardTemplate: 'cloze-source'
+      };
+    }
+    scheduleCreatorDraftSave();
+    showToast('Cloze ready');
+    return true;
+  }
+
+  function selectionHasAncestor(tagNames = []) {
+    const selection = window.getSelection();
+    if (!selection?.rangeCount) return false;
+    const wanted = new Set(tagNames.map(tag => String(tag).toUpperCase()));
+    let node = selection.anchorNode;
+    while (node && node !== selectors.creatorCards) {
+      if (node.nodeType === Node.ELEMENT_NODE && wanted.has(node.tagName)) return true;
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  function insertHighlightContent() {
+    return wrapOrStartInlineElement('mark', { className: `highlight-${state.highlightColor || 'yellow'}` });
+  }
+
+  function insertInlineCodeContent() {
+    return wrapOrStartInlineElement('code');
+  }
+
+  function insertCodeBlockContent() {
+    return insertCodeBlockAtCaret();
+  }
+
+  async function openHighlightColorMenu() {
+    const next = await openBrowserFieldModal({
+      title: 'Highlight Color',
+      icon: 'fa-highlighter',
+      message: 'Choose the color used by the highlight tool.',
+      options: [
+        { value: 'yellow', label: 'Yellow' },
+        { value: 'green', label: 'Green' },
+        { value: 'blue', label: 'Blue' },
+        { value: 'pink', label: 'Pink' }
+      ],
+      value: state.highlightColor || 'yellow',
+      okText: 'Use Color'
+    });
+    if (!next) return;
+    state.highlightColor = ['yellow', 'green', 'blue', 'pink'].includes(next) ? next : 'yellow';
+    showToast(`${state.highlightColor[0].toUpperCase()}${state.highlightColor.slice(1)} highlight`);
   }
 
   function normalizeCardMedia(card = {}) {
@@ -1487,10 +2039,21 @@
     );
   }
 
+  function createLocalId(prefix) {
+    return schema?.createId ? schema.createId(prefix) : `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  }
+
   function emptyCreatorCard() {
     const now = Date.now();
+    const noteId = createLocalId('note');
     return {
-      id: schema?.createId ? schema.createId('card') : `card-${now}-${Math.random().toString(36).slice(2)}`,
+      id: createLocalId('card'),
+      noteId,
+      noteType: 'basic',
+      cardTemplate: 'front-back',
+      noteFields: {},
+      clozeIndex: null,
+      imageOcclusion: null,
       term: '',
       definition: '',
       termImage: '',
@@ -1532,6 +2095,285 @@
         definition: sanitizeEditorHtml(definition?.innerHTML || card.definition || '')
       };
     });
+  }
+
+  function clonePlain(value) {
+    try {
+      return JSON.parse(JSON.stringify(value));
+    } catch (_) {
+      return value;
+    }
+  }
+
+  function cardWithNoteDefaults(card) {
+    return {
+      ...card,
+      noteId: card.noteId || createLocalId('note'),
+      noteType: card.noteType || 'basic',
+      cardTemplate: card.cardTemplate || 'front-back',
+      noteFields: card.noteFields && typeof card.noteFields === 'object' ? card.noteFields : {}
+    };
+  }
+
+  function isReverseTemplate(card = {}) {
+    return card.cardTemplate === 'back-front';
+  }
+
+  function hasClozeSyntax(card = {}) {
+    return clozeIndexesFromText(`${card.term || ''} ${card.definition || ''}`).length > 0;
+  }
+
+  function cardHasReverseSibling(card = {}) {
+    const noteId = String(card.noteId || '');
+    if (!noteId) return false;
+    return state.creator.cards.some(item => (
+      String(item.id) !== String(card.id)
+      && String(item.noteId || '') === noteId
+      && isReverseTemplate(item)
+    ));
+  }
+
+  function creatorCardWantsReverse(card = {}) {
+    return Boolean(card.generateReverse || cardHasReverseSibling(card));
+  }
+
+  function stripCreatorFields(card = {}) {
+    const { generateReverse, ...rest } = card;
+    return rest;
+  }
+
+  function createReverseCard(card) {
+    const now = Date.now();
+    const noteId = card.noteId || createLocalId('note');
+    const media = normalizeCardMedia(card);
+    const background = normalizeCardBackground(card);
+    return {
+      ...clonePlain(card),
+      id: createLocalId('card'),
+      noteId,
+      noteType: 'basic-reverse',
+      cardTemplate: 'back-front',
+      noteFields: {
+        front: card.term || '',
+        back: card.definition || ''
+      },
+      term: card.definition || '',
+      definition: card.term || '',
+      termImage: card.definitionImage || '',
+      definitionImage: card.termImage || '',
+      media: {
+        term: clonePlain(media.definition || []),
+        definition: clonePlain(media.term || [])
+      },
+      background: {
+        term: clonePlain(background.definition || null),
+        definition: clonePlain(background.term || null)
+      },
+      srs: undefined,
+      reviewHistory: [],
+      suspended: false,
+      buriedUntil: null,
+      created: now,
+      lastModified: now
+    };
+  }
+
+  function clozeIndexesFromText(value) {
+    const indexes = new Set();
+    String(value || '').replace(/\{\{c(\d+)::([\s\S]*?)\}\}/gi, (_match, index) => {
+      indexes.add(Number(index));
+      return '';
+    });
+    return Array.from(indexes).sort((a, b) => a - b);
+  }
+
+  function clozeTextForIndex(value, targetIndex, reveal = false) {
+    return String(value || '').replace(/\{\{c(\d+)::([\s\S]*?)\}\}/gi, (_match, index, answer) => {
+      const isTarget = Number(index) === Number(targetIndex);
+      if (reveal || !isTarget) return answer;
+      return '<strong>[...]</strong>';
+    });
+  }
+
+  function expandClozeCard(card) {
+    const source = card.term || card.definition || '';
+    const indexes = clozeIndexesFromText(source);
+    if (!indexes.length) return [cardWithNoteDefaults(card)];
+    const noteId = card.noteId || createLocalId('note');
+    return indexes.map(index => ({
+      ...clonePlain(card),
+      id: indexes.length === 1 ? card.id : createLocalId('card'),
+      noteId,
+      noteType: 'cloze',
+      cardTemplate: `cloze-${index}`,
+      clozeIndex: index,
+      noteFields: {
+        text: source,
+        extra: card.term ? card.definition || '' : ''
+      },
+      term: clozeTextForIndex(source, index, false),
+      definition: `${clozeTextForIndex(source, index, true)}${card.term && card.definition ? `<hr>${card.definition}` : ''}`,
+      srs: indexes.length === 1 ? card.srs : undefined,
+      reviewHistory: indexes.length === 1 ? (card.reviewHistory || []) : [],
+      created: card.created || Date.now(),
+      lastModified: Date.now()
+    }));
+  }
+
+  function expandCreatorCard(card) {
+    const base = cardWithNoteDefaults(card);
+    if (hasClozeSyntax(base)) {
+      return expandClozeCard(base).map(stripCreatorFields);
+    }
+    if (base.noteType === 'cloze') {
+      base.noteType = 'basic';
+      base.cardTemplate = 'front-back';
+      base.clozeIndex = null;
+      base.noteFields = {};
+    }
+    if (creatorCardWantsReverse(base) && !isReverseTemplate(base)) {
+      const front = {
+        ...base,
+        noteType: 'basic-reverse',
+        cardTemplate: 'front-back',
+        noteFields: {
+          ...(base.noteFields || {}),
+          front: base.term || '',
+          back: base.definition || ''
+        }
+      };
+      return [
+        stripCreatorFields(front),
+        stripCreatorFields(createReverseCard(front))
+      ];
+    }
+    return [stripCreatorFields(base)];
+  }
+
+  function creatorCardsFromStoredCards(cards = []) {
+    const normalized = (Array.isArray(cards) ? cards : [])
+      .map(card => schema?.normalizeCard ? schema.normalizeCard(card) : { ...emptyCreatorCard(), ...card });
+    const groups = new Map();
+    normalized.forEach(card => {
+      const noteId = String(card.noteId || '');
+      if (!noteId) return;
+      if (!groups.has(noteId)) groups.set(noteId, []);
+      groups.get(noteId).push(card);
+    });
+
+    const used = new Set();
+    const creatorCards = [];
+    normalized.forEach(card => {
+      const id = String(card.id || '');
+      if (used.has(id)) return;
+      const group = groups.get(String(card.noteId || '')) || [card];
+
+      if (card.noteType === 'cloze' && card.noteFields?.text) {
+        const clozeCards = group.filter(item => item.noteType === 'cloze' && item.noteFields?.text);
+        clozeCards.forEach(item => used.add(String(item.id || '')));
+        creatorCards.push({
+          ...card,
+          id: card.id || createLocalId('card'),
+          noteType: 'cloze',
+          cardTemplate: 'cloze-source',
+          clozeIndex: null,
+          term: card.noteFields.text || card.term || '',
+          definition: card.noteFields.extra || '',
+          srs: undefined,
+          reviewHistory: []
+        });
+        return;
+      }
+
+      const front = group.find(item => item.cardTemplate === 'front-back' && item.noteType !== 'cloze' && item.noteType !== 'image-occlusion');
+      const reverse = group.find(item => isReverseTemplate(item));
+      if (reverse && front && isReverseTemplate(card)) return;
+      if (reverse && front && String(front.id) === id) {
+        used.add(String(front.id || ''));
+        used.add(String(reverse.id || ''));
+        creatorCards.push({
+          ...front,
+          noteType: 'basic-reverse',
+          cardTemplate: 'front-back',
+          generateReverse: true
+        });
+        return;
+      }
+
+      used.add(id);
+      creatorCards.push({ ...card });
+    });
+    return creatorCards.length ? creatorCards : [emptyCreatorCard()];
+  }
+
+  function syncGeneratedCards(cards = []) {
+    const groups = new Map();
+    cards.forEach(card => {
+      const noteId = card.noteId || createLocalId('note');
+      card.noteId = noteId;
+      if (!groups.has(noteId)) groups.set(noteId, []);
+      groups.get(noteId).push(card);
+    });
+
+    groups.forEach(group => {
+      const front = group.find(card => card.cardTemplate === 'front-back') || group.find(card => card.noteType !== 'cloze' && card.noteType !== 'image-occlusion');
+      if (!front) return;
+      group.forEach(card => {
+        card.noteFields = {
+          ...(card.noteFields || {}),
+          front: front.term || '',
+          back: front.definition || ''
+        };
+        if (card.cardTemplate === 'back-front') {
+          card.noteType = 'basic-reverse';
+          card.term = front.definition || '';
+          card.definition = front.term || '';
+        }
+      });
+    });
+
+    return cards;
+  }
+
+  function firstCardImageSource(card = {}) {
+    const media = normalizeCardMedia(card);
+    const background = normalizeCardBackground(card);
+    const mediaImage = [...(media.term || []), ...(media.definition || [])]
+      .find(item => item.kind === 'image' && safeMediaSrc(item.src));
+    return safeMediaSrc(card.termImage)
+      || safeMediaSrc(card.definitionImage)
+      || safeMediaSrc(mediaImage?.src)
+      || safeMediaSrc(background.term?.src)
+      || safeMediaSrc(background.definition?.src)
+      || '';
+  }
+
+  function createImageOcclusionCard(card, answer) {
+    const now = Date.now();
+    const noteId = card.noteId || createLocalId('note');
+    const imageSrc = firstCardImageSource(card);
+    return {
+      ...emptyCreatorCard(),
+      noteId,
+      noteType: 'image-occlusion',
+      cardTemplate: 'image-occlusion-basic',
+      noteFields: {
+        image: imageSrc,
+        answer
+      },
+      term: 'Identify the hidden area.',
+      definition: answer,
+      termImage: imageSrc,
+      imageOcclusion: {
+        side: 'term',
+        masks: [
+          { x: 34, y: 38, w: 32, h: 18, label: answer }
+        ]
+      },
+      tags: Array.from(new Set([...(card.tags || []), 'image-occlusion'])),
+      created: now,
+      lastModified: now
+    };
   }
 
   function formatButton(command, label, icon) {
@@ -1590,6 +2432,24 @@
     return `${backgroundHtml}${mediaHtml}`;
   }
 
+  function creatorCardBadges(card = {}) {
+    const badges = [];
+    const clozeCount = clozeIndexesFromText(`${card.term || ''} ${card.definition || ''}`).length;
+    if (card.noteType === 'image-occlusion') {
+      badges.push(['Occlusion', 'fa-object-ungroup']);
+    } else if (clozeCount || card.noteType === 'cloze') {
+      badges.push([clozeCount > 1 ? `Cloze x${clozeCount}` : 'Cloze', 'fa-code']);
+    } else if (creatorCardWantsReverse(card)) {
+      badges.push(['Basic + Reverse', 'fa-right-left']);
+    } else {
+      badges.push(['Basic', 'fa-rectangle-list']);
+    }
+    if (card.suspended) badges.push(['Suspended', 'fa-pause']);
+    return badges.map(([label, icon]) => `
+      <span class="creator-card-badge"><i class="fas ${escapeAttr(icon)}"></i>${escapeHtml(label)}</span>
+    `).join('');
+  }
+
   function cardEditor(card, index) {
     card.media = normalizeCardMedia(card);
     card.background = normalizeCardBackground(card);
@@ -1597,15 +2457,36 @@
     const safeDefinition = sanitizeEditorHtml(card.definition || '');
     const termMedia = mediaPreviewHtml(card, 'term');
     const definitionMedia = mediaPreviewHtml(card, 'definition');
+    const hasImage = Boolean(firstCardImageSource(card));
+    const reverseOn = creatorCardWantsReverse(card);
 
     return `
       <article class="mobile-card-editor" data-card-id="${escapeAttr(card.id)}">
         <header>
-          <span>Card ${index + 1}</span>
-          <button type="button" class="small-icon-button" data-creator-action="delete-card" data-card-id="${escapeAttr(card.id)}" aria-label="Delete card">
-            <i class="fas fa-trash"></i>
-          </button>
+          <div class="creator-card-title">
+            <span>Card ${index + 1}</span>
+            <div class="creator-card-badges">${creatorCardBadges(card)}</div>
+          </div>
+          <div class="creator-card-actions">
+            <button type="button" class="small-icon-button" data-creator-action="delete-card" data-card-id="${escapeAttr(card.id)}" aria-label="Delete card">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
         </header>
+        <div class="creator-generate-row" role="toolbar" aria-label="Card generation tools">
+          <button type="button" class="${reverseOn ? 'active' : ''}" data-creator-action="reverse-card" data-card-id="${escapeAttr(card.id)}" aria-pressed="${reverseOn ? 'true' : 'false'}">
+            <i class="fas fa-right-left"></i>
+            <span>Reverse</span>
+          </button>
+          <button type="button" data-creator-action="cloze" data-card-id="${escapeAttr(card.id)}" data-side="term">
+            <i class="fas fa-eye-slash"></i>
+            <span>Cloze</span>
+          </button>
+          <button type="button" ${hasImage ? '' : 'disabled'} data-creator-action="image-occlusion" data-card-id="${escapeAttr(card.id)}" title="${hasImage ? 'Create occlusion card' : 'Add image first'}">
+            <i class="fas fa-object-ungroup"></i>
+            <span>Occlusion</span>
+          </button>
+        </div>
         <section class="editor-side">
           <div class="editor-side-head">
             <strong>Term</strong>
@@ -1613,7 +2494,13 @@
               ${formatButton('bold', 'Bold', 'fa-bold')}
               ${formatButton('italic', 'Italic', 'fa-italic')}
               ${formatButton('underline', 'Underline', 'fa-underline')}
+              ${formatButton('highlight', 'Highlight', 'fa-highlighter')}
+              ${formatButton('inlineCode', 'Inline code', 'fa-terminal')}
+              ${formatButton('codeBlock', 'Code block', 'fa-file-code')}
               ${formatButton('formula', 'Formula', 'fa-square-root-variable')}
+              <button type="button" class="format-button" data-creator-action="cloze" data-card-id="${escapeAttr(card.id)}" data-side="term" aria-label="Cloze selected text">
+                <i class="fas fa-eye-slash"></i>
+              </button>
               <button type="button" class="format-button" data-creator-action="media" data-card-id="${escapeAttr(card.id)}" data-side="term" aria-label="Add term media">
                 <i class="fas fa-paperclip"></i>
               </button>
@@ -1632,7 +2519,13 @@
               ${formatButton('bold', 'Bold', 'fa-bold')}
               ${formatButton('italic', 'Italic', 'fa-italic')}
               ${formatButton('underline', 'Underline', 'fa-underline')}
+              ${formatButton('highlight', 'Highlight', 'fa-highlighter')}
+              ${formatButton('inlineCode', 'Inline code', 'fa-terminal')}
+              ${formatButton('codeBlock', 'Code block', 'fa-file-code')}
               ${formatButton('formula', 'Formula', 'fa-square-root-variable')}
+              <button type="button" class="format-button" data-creator-action="cloze" data-card-id="${escapeAttr(card.id)}" data-side="definition" aria-label="Cloze selected text">
+                <i class="fas fa-eye-slash"></i>
+              </button>
               <button type="button" class="format-button" data-creator-action="media" data-card-id="${escapeAttr(card.id)}" data-side="definition" aria-label="Add definition media">
                 <i class="fas fa-paperclip"></i>
               </button>
@@ -1917,8 +2810,7 @@
     state.creator.editingSetId = normalized.id;
     state.creator.originalSet = normalized;
     state.creator.classId = normalized.classId || '';
-    state.creator.cards = (normalized.cards || []).map(card => ({ ...card }));
-    if (!state.creator.cards.length) state.creator.cards = [emptyCreatorCard()];
+    state.creator.cards = creatorCardsFromStoredCards(normalized.cards || []);
     selectors.createTitle.value = normalized.name || '';
     setActiveTab('create');
   }
@@ -2021,7 +2913,7 @@
     state.creator.originalSet = normalizedOriginal || null;
     state.creator.classId = draft?.classId || '';
     state.creator.cards = Array.isArray(draft?.cards) && draft.cards.length
-      ? draft.cards.map(card => schema?.normalizeCard ? schema.normalizeCard(card) : { ...emptyCreatorCard(), ...card })
+      ? creatorCardsFromStoredCards(draft.cards)
       : [emptyCreatorCard()];
     state.creator.draftLoaded = true;
     if (selectors.createTitle) selectors.createTitle.value = draft?.name || normalizedOriginal?.name || '';
@@ -2076,12 +2968,14 @@
     const name = String(selectors.createTitle?.value || '').trim();
     const cards = state.creator.cards
       .map(card => ({
-        ...card,
+        ...cardWithNoteDefaults(card),
         term: sanitizeEditorHtml(card.term),
         definition: sanitizeEditorHtml(card.definition),
         lastModified: Date.now()
       }))
-      .filter(hasCardContent);
+      .filter(hasCardContent)
+      .flatMap(expandCreatorCard);
+    const syncedCards = syncGeneratedCards(cards);
     if (!name) {
       showToast('Add a deck name');
       selectors.createTitle?.focus();
@@ -2099,14 +2993,14 @@
       id: state.creator.editingSetId || original.id,
       name,
       classId: state.creator.classId || null,
-      cards,
+      cards: syncedCards,
       srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings(original.srsSettings || {}) : (original.srsSettings || { enabled: true }),
       pinned: Boolean(original.pinned)
     });
     await clearCreatorDraft();
     // Flush store in background — no need to block navigation on it
     flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
-    showToast(`Saved ${plural(cards.length, 'card')}`);
+    showToast(`Saved ${plural(syncedCards.length, 'card')}`);
     state.browserLoaded = false;
     resetCreator();
     if (saved?.id) {
@@ -2321,6 +3215,8 @@
 
   function browserCardMatchesFilter(card, filter) {
     const stateName = String(card.srsState || 'New').toLowerCase();
+    const noteType = String(card.noteType || '').toLowerCase();
+    const template = String(card.cardTemplate || '').toLowerCase();
     switch (filter) {
       case 'new':
       case 'learning':
@@ -2339,6 +3235,12 @@
         return Boolean(card.failedRecently);
       case 'leeches':
         return Boolean(card.leech);
+      case 'reverse':
+        return template === 'back-front' || noteType === 'basic-reverse';
+      case 'cloze':
+        return noteType === 'cloze';
+      case 'image-occlusion':
+        return noteType === 'image-occlusion';
       case 'no-tags':
         return Boolean(card.noTags);
       case 'has-image':
@@ -2348,6 +3250,16 @@
       default:
         return true;
     }
+  }
+
+  function browserNoteTypeLabel(card = {}) {
+    const noteType = String(card.noteType || '').toLowerCase();
+    const template = String(card.cardTemplate || '').toLowerCase();
+    if (noteType === 'cloze') return 'Cloze';
+    if (noteType === 'image-occlusion') return 'Occlusion';
+    if (template === 'back-front') return 'Reverse';
+    if (noteType === 'basic-reverse') return 'Basic + Reverse';
+    return '';
   }
 
   function filteredBrowserCards() {
@@ -2404,7 +3316,9 @@
     const id = String(card.id);
     const selected = state.browserSelectedCards?.has(id);
     const tags = (card.tags || []).slice(0, 4).map(tag => `<span>#${escapeHtml(tag)}</span>`).join('');
+    const noteLabel = browserNoteTypeLabel(card);
     const flags = [
+      noteLabel ? `<span>${escapeHtml(noteLabel)}</span>` : '',
       card.failedRecently ? '<span class="warning">Failed</span>' : '',
       card.leech ? '<span class="danger">Leech</span>' : '',
       card.hasImage ? '<span><i class="fas fa-image"></i> Image</span>' : '',
@@ -2534,6 +3448,8 @@
         ? `<select class="mobile-modal-select" id="browser-action-field">
             ${options.map(item => `<option value="${escapeAttr(item.value)}">${escapeHtml(item.label)}</option>`).join('')}
           </select>`
+        : inputType === 'textarea'
+          ? `<textarea class="mobile-modal-input mobile-modal-textarea" id="browser-action-field" rows="7" placeholder="${escapeAttr(placeholder)}" autocomplete="off" spellcheck="false">${escapeHtml(value)}</textarea>`
         : `<input class="mobile-modal-input" id="browser-action-field" type="${escapeAttr(inputType)}" value="${escapeAttr(value)}" placeholder="${escapeAttr(placeholder)}" autocomplete="off">`;
       overlay.innerHTML = `
         <div class="mobile-modal-card">
@@ -2816,7 +3732,32 @@
       from: state.activeTab || 'library'
     });
     if (reviewDue) query.set('reviewDue', 'true');
+    if (options.filter) query.set('filter', String(options.filter));
+    if (options.tag) query.set('tag', String(options.tag));
+    if (options.preview) query.set('preview', 'true');
+    if (options.reschedule) query.set('reschedule', 'true');
     return `mobile/study.html?${query.toString()}`;
+  }
+
+  async function startCustomStudy(filter, tag = '', options = {}) {
+    await loadAnalyticsCards();
+    const choice = customStudyDeckChoice(filter, tag);
+    if (!choice) {
+      showToast('No cards match that custom study');
+      renderCustomStudyPanel();
+      return;
+    }
+    const reschedule = Boolean(options.reschedule);
+    navigateTo(mobileStudyUrl(choice.setId, {
+      srsMode: reschedule,
+      filter,
+      tag,
+      preview: !reschedule,
+      reschedule
+    }), {
+      title: customStudyFilterLabel(filter, tag),
+      copy: reschedule ? 'Opening filtered review' : 'Opening preview session'
+    });
   }
 
   async function flushStore(timeoutMs = 100) {
@@ -3078,6 +4019,98 @@
    * Opens the formula modal. Resolves when user confirms/cancels.
    * savedRange: Selection range to restore before inserting formula.
    */
+  function normalizeFormulaText(raw) {
+    return String(raw || '')
+      .replace(/[−–—]/g, '-')
+      .replace(/[×✕]/g, '\\times ')
+      .replace(/[÷]/g, '\\div ')
+      .replace(/[≈]/g, '\\approx ')
+      .replace(/[≤]/g, '\\le ')
+      .replace(/[≥]/g, '\\ge ')
+      .replace(/[≠]/g, '\\ne ')
+      .replace(/[π]/g, '\\pi ')
+      .replace(/[θ]/g, '\\theta ')
+      .replace(/[α]/g, '\\alpha ')
+      .replace(/[β]/g, '\\beta ')
+      .replace(/[γ]/g, '\\gamma ')
+      .replace(/[μ]/g, '\\mu ')
+      .replace(/[Ω]/g, '\\Omega ')
+      .replace(/(\d)\s+x\s+(\d)/gi, '$1 \\times $2')
+      .trim();
+  }
+
+  function mathStepsFormula(raw) {
+    const lines = String(raw || '')
+      .split(/\r?\n/)
+      .map(line => normalizeFormulaText(line))
+      .filter(Boolean)
+      .map(line => {
+        const operatorMatch = line.match(/^(=|\\approx|≈|\\le|≤|\\ge|≥|<|>|\+|-)\s*(.*)$/);
+        if (operatorMatch) {
+          const op = normalizeFormulaText(operatorMatch[1]);
+          return `&${op} ${operatorMatch[2] || ''}`.trim();
+        }
+        return `&${line}`;
+      });
+    if (!lines.length) return '';
+    return `\\[\\begin{aligned}${lines.join('\\\\')}\\end{aligned}\\]`;
+  }
+
+  function formulaMarkup(raw, mode = 'inline') {
+    const value = normalizeFormulaText(raw);
+    if (!value) return '';
+    if (mode === 'steps') return mathStepsFormula(raw);
+    if (mode === 'display') {
+      return window.EruditeMath?.blockFormula ? window.EruditeMath.blockFormula(value) : `\\[${value}\\]`;
+    }
+    return window.EruditeMath?.inlineFormula ? window.EruditeMath.inlineFormula(value) : `\\(${value}\\)`;
+  }
+
+  function insertFormulaSnippet(input, snippet) {
+    if (!input || !snippet) return;
+    const start = Number(input.selectionStart || 0);
+    const end = Number(input.selectionEnd || start);
+    const selected = input.value.slice(start, end);
+    let text = String(snippet).replace('|', selected || '');
+    let caret = text.indexOf('|');
+    if (caret >= 0) text = text.replace('|', '');
+    else caret = text.indexOf('{}');
+    input.setRangeText(text, start, end, 'end');
+    const nextPos = caret >= 0 ? start + caret + (caret === text.indexOf('{}') ? 1 : 0) : start + text.length;
+    input.focus();
+    input.setSelectionRange(nextPos, nextPos);
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
+  function renderFormulaPalette() {
+    const grid = selectors.formulaSymbolGrid;
+    if (!grid) return;
+    grid.innerHTML = FORMULA_SYMBOL_GROUPS.map(group => `
+      <section class="formula-symbol-group">
+        <strong>${escapeHtml(group.label)}</strong>
+        <div>
+          ${group.items.map(([label, insert]) => `
+            <button type="button" data-formula-insert="${escapeAttr(insert)}">${escapeHtml(label)}</button>
+          `).join('')}
+        </div>
+      </section>
+    `).join('');
+  }
+
+  function updateFormulaPreview(mode = 'inline') {
+    const preview = selectors.formulaPreview;
+    const input = selectors.formulaInput;
+    if (!preview || !input) return;
+    const markup = formulaMarkup(input.value, mode);
+    preview.innerHTML = markup
+      ? `<div class="formula-preview-card">${escapeHtml(markup)}</div>`
+      : '<div class="formula-preview-empty">Preview appears here</div>';
+    if (markup) {
+      const card = preview.querySelector('.formula-preview-card');
+      window.EruditeMath?.renderMath?.(card);
+    }
+  }
+
   function openFormulaModal(onReady) {
     const overlay = selectors.formulaOverlay;
     const input = selectors.formulaInput;
@@ -3096,18 +4129,35 @@
     const sel = window.getSelection();
     if (sel && sel.rangeCount > 0) savedRange = sel.getRangeAt(0).cloneRange();
 
+    let mode = 'inline';
     input.value = '';
+    renderFormulaPalette();
+    overlay.querySelectorAll('[data-formula-mode]').forEach(button => {
+      button.classList.toggle('active', button.dataset.formulaMode === mode);
+    });
+    updateFormulaPreview(mode);
     overlay.classList.remove('hidden');
     requestAnimationFrame(() => input.focus());
+
+    function setMode(nextMode) {
+      mode = ['inline', 'display', 'steps'].includes(nextMode) ? nextMode : 'inline';
+      overlay.querySelectorAll('[data-formula-mode]').forEach(button => {
+        button.classList.toggle('active', button.dataset.formulaMode === mode);
+      });
+      input.placeholder = mode === 'steps'
+        ? '45 \\times 34\n= 1350 + 180\n= 1530'
+        : mode === 'display'
+          ? '\\frac{mv^2}{r} = qvB'
+          : 'E=mc^2';
+      updateFormulaPreview(mode);
+    }
 
     function doInsert() {
       const rawInput = String(input.value || '').trim();
       overlay.classList.add('hidden');
       cleanup();
       if (!rawInput) return;
-      const formula = window.EruditeMath?.inlineFormula
-        ? window.EruditeMath.inlineFormula(rawInput)
-        : `\\(${rawInput}\\)`;
+      const formula = formulaMarkup(rawInput, mode);
       if (onReady) onReady(savedRange);
       if (formula) document.execCommand('insertText', false, formula);
       updateFormatState();
@@ -3120,18 +4170,41 @@
     }
 
     function handleKeydown(e) {
-      if (e.key === 'Enter') { e.preventDefault(); doInsert(); }
+      if (e.key === 'Enter' && mode !== 'steps' && !e.shiftKey) { e.preventDefault(); doInsert(); }
       if (e.key === 'Escape') doCancel();
+    }
+
+    function handleModeClick(event) {
+      const button = event.target.closest('[data-formula-mode]');
+      if (!button) return;
+      setMode(button.dataset.formulaMode);
+    }
+
+    function handlePaletteClick(event) {
+      const button = event.target.closest('[data-formula-insert]');
+      if (!button) return;
+      event.preventDefault();
+      insertFormulaSnippet(input, button.dataset.formulaInsert || '');
+    }
+
+    function handleInput() {
+      updateFormulaPreview(mode);
     }
 
     function cleanup() {
       selectors.formulaConfirm?.removeEventListener('click', doInsert);
       selectors.formulaCancel?.removeEventListener('click', doCancel);
+      overlay.removeEventListener('click', handleModeClick);
+      selectors.formulaSymbolGrid?.removeEventListener('click', handlePaletteClick);
+      input.removeEventListener('input', handleInput);
       input.removeEventListener('keydown', handleKeydown);
     }
 
     selectors.formulaConfirm?.addEventListener('click', doInsert);
     selectors.formulaCancel?.addEventListener('click', doCancel);
+    overlay.addEventListener('click', handleModeClick);
+    selectors.formulaSymbolGrid?.addEventListener('click', handlePaletteClick);
+    input.addEventListener('input', handleInput);
     input.addEventListener('keydown', handleKeydown);
   }
 
@@ -3852,7 +4925,15 @@
     const activeEditor = document.activeElement?.closest?.('.rich-editor');
     selectors.creatorCards.querySelectorAll('[data-creator-action="format"]').forEach(button => {
       const command = button.dataset.command;
-      const active = Boolean(activeEditor && command && command !== 'formula' && document.queryCommandState(command));
+      const active = Boolean(activeEditor && command && (
+        command === 'highlight'
+          ? selectionHasAncestor(['MARK'])
+          : command === 'inlineCode'
+            ? selectionHasAncestor(['CODE'])
+            : command === 'codeBlock'
+              ? selectionHasAncestor(['PRE'])
+              : command !== 'formula' && document.queryCommandState(command)
+      ));
       button.classList.toggle('active', active);
     });
   }
@@ -3878,7 +4959,7 @@
           if (newCardEl) {
             newCardEl.focus();
             // Scroll the new card smoothly into view
-            newCardEl.closest('.creator-card')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            newCardEl.closest('.mobile-card-editor')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }
         });
         break;
@@ -3889,6 +4970,43 @@
         ensureCreatorCard();
         renderCreate();
         scheduleCreatorDraftSave();
+        break;
+      }
+      case 'reverse-card': {
+        syncCreatorFromDom();
+        const index = state.creator.cards.findIndex(card => String(card.id) === String(target.dataset.cardId));
+        if (index < 0) break;
+        const source = cardWithNoteDefaults(state.creator.cards[index]);
+        if (!plainTextFromHtml(source.term).trim() || !plainTextFromHtml(source.definition).trim()) {
+          showToast('Add term and definition first');
+          break;
+        }
+        const nextEnabled = !creatorCardWantsReverse(source);
+        const noteId = String(source.noteId || '');
+        state.creator.cards = state.creator.cards.filter(card => (
+          String(card.id) === String(source.id)
+          || String(card.noteId || '') !== noteId
+          || !isReverseTemplate(card)
+        ));
+        const nextIndex = state.creator.cards.findIndex(card => String(card.id) === String(source.id));
+        state.creator.cards[nextIndex >= 0 ? nextIndex : index] = {
+          ...source,
+          noteType: nextEnabled ? 'basic-reverse' : 'basic',
+          cardTemplate: 'front-back',
+          generateReverse: nextEnabled,
+          noteFields: {
+            front: source.term || '',
+            back: source.definition || ''
+          }
+        };
+        renderCreate();
+        scheduleCreatorDraftSave();
+        showToast(nextEnabled ? 'Reverse enabled' : 'Reverse disabled');
+        break;
+      }
+      case 'cloze': {
+        const side = target.dataset.side === 'definition' ? 'definition' : 'term';
+        insertClozeAtCaret(target.dataset.cardId, side);
         break;
       }
       case 'format': {
@@ -3903,11 +5021,45 @@
               sel.addRange(savedRange);
             }
           });
+        } else if (command === 'highlight') {
+          if (state.suppressNextHighlightClick) {
+            state.suppressNextHighlightClick = false;
+            break;
+          }
+          insertHighlightContent();
+        } else if (command === 'inlineCode') {
+          insertInlineCodeContent();
+        } else if (command === 'codeBlock') {
+          insertCodeBlockContent();
         } else {
           document.execCommand(command, false, null);
         }
         updateFormatState();
         scheduleCreatorDraftSave();
+        break;
+      }
+      case 'image-occlusion': {
+        syncCreatorFromDom();
+        const index = state.creator.cards.findIndex(card => String(card.id) === String(target.dataset.cardId));
+        if (index < 0) break;
+        const source = cardWithNoteDefaults(state.creator.cards[index]);
+        if (!firstCardImageSource(source)) {
+          showToast('Add an image first');
+          break;
+        }
+        const answer = await openBrowserFieldModal({
+          title: 'Image Occlusion',
+          icon: 'fa-object-ungroup',
+          message: 'Name the hidden label or answer.',
+          placeholder: 'Hidden label',
+          okText: 'Create'
+        });
+        if (!answer) break;
+        state.creator.cards[index] = source;
+        state.creator.cards.splice(index + 1, 0, createImageOcclusionCard(source, String(answer).trim()));
+        renderCreate();
+        scheduleCreatorDraftSave();
+        showToast('Occlusion card added');
         break;
       }
       case 'media':
@@ -4042,10 +5194,21 @@
       case 'review-due-smart':
         await reviewDueSmart();
         break;
+      case 'start-custom-study':
+        await startCustomStudy(target.dataset.filter || '', target.dataset.tag || '');
+        break;
+      case 'start-custom-study-reschedule':
+        await startCustomStudy(target.dataset.filter || '', target.dataset.tag || '', { reschedule: true });
+        break;
       case 'refresh-analytics':
         playClick();
         state.analyticsLoaded = false;
         await loadAnalyticsCards({ force: true });
+        break;
+      case 'analytics-window':
+        state.analyticsWindow = normalizeAnalyticsWindow(target.dataset.window);
+        playClick();
+        renderAnalyticsDashboard();
         break;
       case 'toggle-srs':
         await toggleSrs();
@@ -4504,6 +5667,22 @@
       if (event.target.closest('[data-creator-action="format"]')) {
         event.preventDefault();
       }
+      const highlightButton = event.target.closest('[data-creator-action="format"][data-command="highlight"]');
+      if (highlightButton) {
+        clearTimeout(highlightHoldTimer);
+        highlightHoldTimer = window.setTimeout(() => {
+          state.suppressNextHighlightClick = true;
+          triggerHaptic();
+          openHighlightColorMenu().catch(error => console.warn('[mobile] highlight color menu failed:', error));
+        }, 520);
+      }
+    });
+
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(type => {
+      document.addEventListener(type, () => {
+        clearTimeout(highlightHoldTimer);
+        highlightHoldTimer = null;
+      });
     });
 
     document.addEventListener('click', async event => {
@@ -5211,15 +6390,47 @@
     let startY = 0;
     let startTime = 0;
     const tabsOrder = ['today', 'library', 'create', 'more'];
+    const resetSwipeStart = () => {
+      startX = 0;
+      startY = 0;
+      startTime = 0;
+    };
+    const isHorizontalScroller = element => {
+      let node = element?.nodeType === Node.ELEMENT_NODE ? element : element?.parentElement;
+      while (node && node !== document.body) {
+        const style = window.getComputedStyle(node);
+        const overflowX = style.overflowX;
+        if ((overflowX === 'auto' || overflowX === 'scroll') && node.scrollWidth > node.clientWidth + 2) {
+          return true;
+        }
+        node = node.parentElement;
+      }
+      return false;
+    };
 
     document.addEventListener('touchstart', (e) => {
+      resetSwipeStart();
       if (e.touches.length > 1) return;
 
       const target = e.target;
       
-      // Exclude range inputs, horizontal filter strips, text inputs/textareas
-      const ignoreSelector = 'input[type="range"], .mobile-opacity-slider, .filter-strip, .deck-source-switch, input[type="text"], input[type="search"], textarea';
-      if (target.closest(ignoreSelector)) {
+      // Exclude controls and horizontally scrollable UI from tab-swipe navigation.
+      const ignoreSelector = [
+        'button',
+        '[role="button"]',
+        'input',
+        'textarea',
+        'select',
+        '[contenteditable="true"]',
+        '.rich-editor',
+        '.creator-toolbar',
+        '.filter-strip',
+        '.deck-source-switch',
+        '.mobile-opacity-slider',
+        '.formula-palette',
+        '.mobile-modal-card'
+      ].join(',');
+      if (target.closest(ignoreSelector) || isHorizontalScroller(target)) {
         return;
       }
 
@@ -5274,9 +6485,7 @@
     }, { passive: true });
 
     document.addEventListener('touchcancel', () => {
-      startX = 0;
-      startY = 0;
-      startTime = 0;
+      resetSwipeStart();
     }, { passive: true });
   }
 

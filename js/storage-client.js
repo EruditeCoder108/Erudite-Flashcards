@@ -95,6 +95,14 @@
     return Number.isFinite(time) ? time : null;
   }
 
+  function dayKey(value) {
+    const time = timeValue(value);
+    if (!time) return '';
+    const date = new Date(time);
+    date.setHours(0, 0, 0, 0);
+    return String(date.getTime());
+  }
+
   function srsDayKey(value, rolloverHour = 4) {
     const date = new Date(value || Date.now());
     date.setHours(date.getHours() - rolloverHour, 0, 0, 0);
@@ -124,23 +132,48 @@
     return '';
   }
 
+  function emptyRatingCounts() {
+    return { Again: 0, Hard: 0, Good: 0, Easy: 0 };
+  }
+
+  function createRatingWindows() {
+    return {
+      '7': emptyRatingCounts(),
+      '30': emptyRatingCounts(),
+      '90': emptyRatingCounts(),
+      all: emptyRatingCounts()
+    };
+  }
+
   function browserReviewStats(history, nowMs = Date.now()) {
+    const todayKey = dayKey(nowMs);
     const sevenDaysAgo = nowMs - (7 * 24 * 60 * 60 * 1000);
+    const thirtyDaysAgo = nowMs - (30 * 24 * 60 * 60 * 1000);
+    const ninetyDaysAgo = nowMs - (90 * 24 * 60 * 60 * 1000);
     let lastReviewedAt = null;
     let againCount = 0;
     let failedRecently = false;
-    const ratingCounts = { Again: 0, Hard: 0, Good: 0, Easy: 0 };
+    let failedToday = false;
+    const ratingCounts = emptyRatingCounts();
+    const ratingWindows = createRatingWindows();
     for (const review of Array.isArray(history) ? history : []) {
       const rating = normalizedRatingName(review?.rating || review?.grade);
       const reviewedAt = timeValue(review?.reviewedAt || review?.time || review?.date);
       if (reviewedAt && (!lastReviewedAt || reviewedAt > lastReviewedAt)) lastReviewedAt = reviewedAt;
-      if (rating) ratingCounts[rating] += 1;
+      if (rating) {
+        ratingCounts[rating] += 1;
+        ratingWindows.all[rating] += 1;
+        if (reviewedAt >= sevenDaysAgo) ratingWindows['7'][rating] += 1;
+        if (reviewedAt >= thirtyDaysAgo) ratingWindows['30'][rating] += 1;
+        if (reviewedAt >= ninetyDaysAgo) ratingWindows['90'][rating] += 1;
+      }
       if (rating === 'Again') {
         againCount += 1;
         if (reviewedAt && reviewedAt >= sevenDaysAgo) failedRecently = true;
+        if (reviewedAt && dayKey(reviewedAt) === todayKey) failedToday = true;
       }
     }
-    return { againCount, failedRecently, lastReviewedAt, ratingCounts };
+    return { againCount, failedRecently, failedToday, lastReviewedAt, ratingCounts, ratingWindows };
   }
 
   function hasCardMedia(card, kind) {
@@ -208,6 +241,10 @@
         cards.push({
           id: card.id,
           setId: set.id,
+          noteId: card.noteId || null,
+          noteType: card.noteType || 'basic',
+          cardTemplate: card.cardTemplate || 'front-back',
+          clozeIndex: card.clozeIndex || null,
           deck: set.name || 'Untitled Set',
           classId: set.classId || null,
           className: className || 'General',
@@ -224,6 +261,7 @@
           buriedUntil: card.buriedUntil || null,
           buried,
           failedRecently: reviews.failedRecently,
+          failedToday: reviews.failedToday,
           leech: reviews.againCount >= 8 || Number(srs?.lapses || 0) >= 8,
           noTags: !tags.length,
           hasImage: hasCardMedia(card, 'image'),
@@ -231,6 +269,7 @@
           reviewCount: Array.isArray(card.reviewHistory) ? card.reviewHistory.length : 0,
           againCount: reviews.againCount,
           ratingCounts: reviews.ratingCounts,
+          ratingWindows: reviews.ratingWindows,
           reps: Number(srs?.reps || 0),
           lapses: Number(srs?.lapses || 0),
           intervalDays: Number(srs?.scheduled_days || srs?.elapsed_days || 0),
