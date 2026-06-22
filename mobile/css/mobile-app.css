@@ -400,8 +400,17 @@ button.goal-ring {
 }
 
 .goal-ring strong {
+  display: block;
   font-size: 1.15rem;
   line-height: 1;
+  text-align: center;
+}
+
+.goal-ring > div {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  text-align: center;
 }
 
 .goal-ring span {
@@ -411,6 +420,8 @@ button.goal-ring {
   font-size: 0.62rem;
   font-weight: 700;
   text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .hero-metrics {
@@ -1710,7 +1721,7 @@ button.metric-pill {
   max-width: 100%;
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  touch-action: pan-x;
+  touch-action: pan-x pan-y;
   padding: 0.22rem;
   border-radius: 999px;
   background: rgba(7, 17, 31, 0.42);
@@ -2648,6 +2659,248 @@ select option {
 
 .mobile-modal-card--wide {
   max-width: 100%;
+}
+
+.import-help-card {
+  max-height: 92vh;
+}
+
+.import-help-content section {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.import-help-content h4 {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.86rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.import-help-content p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.occlusion-editor-card {
+  max-height: 94dvh;
+  gap: 0.85rem;
+}
+
+.occlusion-editor-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.occlusion-editor-head h3 {
+  margin-bottom: 0.25rem;
+}
+
+.occlusion-editor-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 16rem;
+  max-height: 48dvh;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.45);
+  touch-action: none;
+}
+
+.occlusion-editor-stage img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 48dvh;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.occlusion-editor-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.occlusion-editor-mask {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  min-width: 1.8rem;
+  min-height: 1.4rem;
+  border: 2px solid rgba(219, 234, 254, 0.94);
+  border-radius: 0.45rem;
+  background: rgba(37, 99, 235, 0.56);
+  color: #f8fafc;
+  font-size: 0.76rem;
+  font-weight: 900;
+  box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.26);
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.occlusion-editor-mask.shape-ellipse {
+  border-radius: 999px;
+}
+
+.occlusion-editor-mask.active {
+  border-color: #fbbf24;
+  background: rgba(245, 158, 11, 0.62);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.22), 0 0.8rem 1.5rem rgba(0, 0, 0, 0.28);
+}
+
+.occlusion-move-handle {
+  position: absolute;
+  left: 50%;
+  top: -1.45rem;
+  width: 1.45rem;
+  height: 1.45rem;
+  transform: translateX(-50%);
+  border: 2px solid #f8fafc;
+  border-radius: 999px;
+  background: #3b82f6;
+  box-shadow: 0 0.25rem 0.65rem rgba(0, 0, 0, 0.28);
+}
+
+.occlusion-move-handle::before,
+.occlusion-move-handle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.58rem;
+  height: 2px;
+  border-radius: 999px;
+  background: #f8fafc;
+  transform: translate(-50%, -50%);
+}
+
+.occlusion-move-handle::after {
+  width: 2px;
+  height: 0.58rem;
+}
+
+.occlusion-resize-handle {
+  position: absolute;
+  right: -0.45rem;
+  bottom: -0.45rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 2px solid #f8fafc;
+  border-radius: 999px;
+  background: #3b82f6;
+  box-shadow: 0 0.25rem 0.65rem rgba(0, 0, 0, 0.28);
+}
+
+.occlusion-editor-tools {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.occlusion-editor-tools button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 2.55rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--text);
+  font-weight: 850;
+}
+
+.occlusion-editor-tools button.active {
+  border-color: rgba(96, 165, 250, 0.72);
+  background: rgba(59, 130, 246, 0.2);
+  color: #dbeafe;
+}
+
+.occlusion-editor-tools button.danger {
+  color: #fecaca;
+}
+
+.occlusion-summary-card {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(7, 17, 31, 0.28);
+}
+
+.occlusion-summary-card img {
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: cover;
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.42);
+}
+
+.occlusion-summary-main {
+  min-width: 0;
+}
+
+.occlusion-summary-main strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.occlusion-summary-main small {
+  display: block;
+  margin-top: 0.22rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.occlusion-summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.58rem;
+}
+
+.occlusion-summary-actions button {
+  min-height: 2.25rem;
+  padding: 0 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--text);
+  font-weight: 850;
+}
+
+.help-code {
+  max-height: 16rem;
+  margin: 0;
+  padding: 0.75rem;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.34);
+  color: var(--text);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-modal-card h3 {

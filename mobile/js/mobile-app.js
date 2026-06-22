@@ -83,6 +83,14 @@
       draftLoaded: false
     },
     pendingImageTarget: null,
+    occlusionEditor: {
+      cardId: null,
+      originalCard: null,
+      draft: null,
+      selectedMaskId: null,
+      shape: 'rect',
+      pointer: null
+    },
     busy: false,
     creatorSaving: false,
     highlightColor: 'yellow',
@@ -133,6 +141,9 @@
   const STUDY_SESSION_MIN_MS = 5 * 1000;
   const DAY_MS = 24 * 60 * 60 * 1000;
   const STUDY_SESSION_LOOKBACK_MS = 365 * 24 * 60 * 60 * 1000;
+  const CREATOR_IMPORT_MAX_CARDS = 999;
+  const OCCLUSION_MAX_MASKS = 80;
+  const OCCLUSION_MIN_SIZE = 0.035;
 
   const selectors = {
     title: document.getElementById('mobile-title'),
@@ -154,6 +165,7 @@
     createClassLabel: document.getElementById('mobile-create-class-label'),
     creatorCards: document.getElementById('mobile-creator-cards'),
     imageInput: document.getElementById('mobile-image-input'),
+    occlusionImageInput: document.getElementById('mobile-occlusion-image-input'),
     backgroundInput: document.getElementById('mobile-background-input'),
     txtInput: document.getElementById('mobile-txt-input'),
     premadeClassFilters: document.getElementById('premade-class-filters'),
@@ -171,6 +183,8 @@
     moreSrsLabel: document.getElementById('more-srs-label'),
     soundSwitch: document.getElementById('sound-switch'),
     moreSoundLabel: document.getElementById('more-sound-label'),
+    htmlInteractionSwitch: document.getElementById('html-interaction-switch'),
+    moreHtmlInteractionLabel: document.getElementById('more-html-interaction-label'),
     normalStudyOrder: null,
     bgOpacitySlider: document.getElementById('mobile-bg-opacity'),
     themeLabel: document.getElementById('more-theme-label'),
@@ -213,6 +227,23 @@
     bulkCardCount: document.getElementById('bulk-card-count'),
     bulkCardConfirm: document.getElementById('bulk-card-confirm'),
     bulkCardCancel: document.getElementById('bulk-card-cancel'),
+    occlusionOverlay: document.getElementById('occlusion-editor-overlay'),
+    occlusionStage: document.getElementById('occlusion-editor-stage'),
+    occlusionImage: document.getElementById('occlusion-editor-image'),
+    occlusionLayer: document.getElementById('occlusion-editor-layer'),
+    occlusionStatus: document.getElementById('occlusion-editor-status'),
+    occlusionClose: document.getElementById('occlusion-editor-close'),
+    occlusionCancel: document.getElementById('occlusion-editor-cancel'),
+    occlusionSave: document.getElementById('occlusion-editor-save'),
+    occlusionAddMask: document.getElementById('occlusion-add-mask'),
+    occlusionDeleteMask: document.getElementById('occlusion-delete-mask'),
+    occlusionShapeRect: document.getElementById('occlusion-shape-rect'),
+    occlusionShapeEllipse: document.getElementById('occlusion-shape-ellipse'),
+    occlusionAnswer: document.getElementById('occlusion-answer-input'),
+    occlusionHint: document.getElementById('occlusion-hint-input'),
+    importHelpOverlay: document.getElementById('import-help-overlay'),
+    importHelpCopy: document.getElementById('import-help-copy'),
+    importHelpClose: document.getElementById('import-help-close'),
     pasteImportConfirm: document.getElementById('paste-import-confirm'),
     pasteImportCancel: document.getElementById('paste-import-cancel')
   };
@@ -1558,7 +1589,7 @@
       : (normalStudyGoal > 0 ? clamp(Math.round((activity.todayCardsViewed / normalStudyGoal) * 100), 0, 100) : 0);
     const progressLabel = state.srsMode
       ? (dailyWork > 0 ? 'Goal' : (hasDecks ? 'Ready' : 'Start'))
-      : (hasDecks ? 'Daily goal' : 'Start');
+      : (hasDecks ? 'Goal' : 'Start');
     const reviewAction = state.srsMode && totals.dueCards > 0 ? 'review-due-smart' : (hasDecks ? 'tab-library' : 'open-create');
     const reviewLabel = state.srsMode && totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : (hasDecks ? 'Study Decks' : 'Create Deck');
     const middleMetricValue = state.srsMode ? todayReviews : activity.todayCardsViewed;
@@ -2253,11 +2284,13 @@
     const media = normalizeCardMedia(card);
     const background = normalizeCardBackground(card);
     const advancedHtml = normalizeAdvancedHtml(advancedHtmlPayload(card));
+    const occlusion = normalizeImageOcclusion(card.imageOcclusion, card);
     return Boolean(
       plainTextFromHtml(card.term || '').trim()
       || plainTextFromHtml(card.definition || '').trim()
       || sanitizeAdvancedHtml(advancedHtml.frontHtml)
       || sanitizeAdvancedHtml(advancedHtml.backHtml)
+      || (occlusion.image && occlusion.masks.length)
       || card.termImage
       || card.definitionImage
       || media.term.length
@@ -2367,6 +2400,333 @@
     showToast(`${count} ${count === 1 ? 'card' : 'cards'} deleted`);
   }
 
+  function selectedOcclusionMask() {
+    const draft = state.occlusionEditor.draft;
+    if (!draft) return null;
+    return (draft.masks || []).find(mask => String(mask.id) === String(state.occlusionEditor.selectedMaskId)) || null;
+  }
+
+  function setOcclusionShape(shape) {
+    state.occlusionEditor.shape = shape === 'ellipse' ? 'ellipse' : 'rect';
+    selectors.occlusionShapeRect?.classList.toggle('active', state.occlusionEditor.shape === 'rect');
+    selectors.occlusionShapeEllipse?.classList.toggle('active', state.occlusionEditor.shape === 'ellipse');
+  }
+
+  function renderedImageContentRect(img, container) {
+    if (!img || !container) return null;
+    const containerRect = container.getBoundingClientRect();
+    const imageRect = img.getBoundingClientRect();
+    let boxWidth = imageRect.width;
+    let boxHeight = imageRect.height;
+    let boxLeft = imageRect.left - containerRect.left;
+    let boxTop = imageRect.top - containerRect.top;
+
+    if (!boxWidth || !boxHeight) {
+      boxWidth = container.clientWidth || containerRect.width;
+      boxHeight = container.clientHeight || containerRect.height;
+      boxLeft = 0;
+      boxTop = 0;
+    }
+
+    const naturalWidth = img.naturalWidth || boxWidth;
+    const naturalHeight = img.naturalHeight || boxHeight;
+    if (!naturalWidth || !naturalHeight || !boxWidth || !boxHeight) {
+      return { left: boxLeft, top: boxTop, width: boxWidth, height: boxHeight };
+    }
+
+    const fit = window.getComputedStyle?.(img)?.objectFit || 'fill';
+    let contentWidth = boxWidth;
+    let contentHeight = boxHeight;
+
+    if (fit === 'contain' || fit === 'scale-down') {
+      const scale = Math.min(boxWidth / naturalWidth, boxHeight / naturalHeight);
+      contentWidth = naturalWidth * scale;
+      contentHeight = naturalHeight * scale;
+    } else if (fit === 'cover') {
+      const scale = Math.max(boxWidth / naturalWidth, boxHeight / naturalHeight);
+      contentWidth = naturalWidth * scale;
+      contentHeight = naturalHeight * scale;
+    }
+
+    return {
+      left: boxLeft + (boxWidth - contentWidth) / 2,
+      top: boxTop + (boxHeight - contentHeight) / 2,
+      width: contentWidth,
+      height: contentHeight
+    };
+  }
+
+  function syncOcclusionLayerRect() {
+    const stage = selectors.occlusionStage;
+    const image = selectors.occlusionImage;
+    const layer = selectors.occlusionLayer;
+    if (!stage || !image || !layer) return;
+    const rect = renderedImageContentRect(image, stage);
+    if (!rect || rect.width <= 0 || rect.height <= 0) return;
+    layer.style.left = `${rect.left}px`;
+    layer.style.top = `${rect.top}px`;
+    layer.style.width = `${rect.width}px`;
+    layer.style.height = `${rect.height}px`;
+  }
+
+  function scheduleOcclusionLayerSync() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(syncOcclusionLayerRect);
+    });
+  }
+
+  function bindOcclusionEditorLayout() {
+    state.occlusionEditor.layoutCleanup?.();
+    const stage = selectors.occlusionStage;
+    const image = selectors.occlusionImage;
+    if (!stage || !image) return;
+    const resizeObserver = typeof ResizeObserver !== 'undefined'
+      ? new ResizeObserver(scheduleOcclusionLayerSync)
+      : null;
+    resizeObserver?.observe(stage);
+    resizeObserver?.observe(image);
+    window.addEventListener('resize', scheduleOcclusionLayerSync);
+    window.visualViewport?.addEventListener('resize', scheduleOcclusionLayerSync);
+    image.addEventListener('load', scheduleOcclusionLayerSync);
+    state.occlusionEditor.layoutCleanup = () => {
+      resizeObserver?.disconnect();
+      window.removeEventListener('resize', scheduleOcclusionLayerSync);
+      window.visualViewport?.removeEventListener('resize', scheduleOcclusionLayerSync);
+      image.removeEventListener('load', scheduleOcclusionLayerSync);
+    };
+  }
+
+  function renderOcclusionEditor() {
+    const draft = state.occlusionEditor.draft;
+    if (!draft || !selectors.occlusionLayer) return;
+    syncOcclusionLayerRect();
+    const selected = String(state.occlusionEditor.selectedMaskId || '');
+    selectors.occlusionLayer.innerHTML = draft.masks.map((mask, index) => `
+      <button type="button"
+        class="occlusion-editor-mask shape-${escapeAttr(mask.shape || 'rect')} ${String(mask.id) === selected ? 'active' : ''}"
+        data-occlusion-mask-id="${escapeAttr(mask.id)}"
+        style="left:${mask.x * 100}%;top:${mask.y * 100}%;width:${mask.w * 100}%;height:${mask.h * 100}%"
+        aria-label="Mask ${index + 1}">
+        <i class="occlusion-move-handle" data-occlusion-move="1" aria-hidden="true"></i>
+        <span>${index + 1}</span>
+        <i class="occlusion-resize-handle" data-occlusion-resize="1" aria-hidden="true"></i>
+      </button>
+    `).join('');
+    const selectedMask = selectedOcclusionMask();
+    if (selectors.occlusionAnswer && document.activeElement !== selectors.occlusionAnswer) {
+      selectors.occlusionAnswer.value = plainTextFromHtml(selectedMask?.answer || '');
+    }
+    if (selectors.occlusionHint && document.activeElement !== selectors.occlusionHint) {
+      selectors.occlusionHint.value = plainTextFromHtml(selectedMask?.hint || '');
+    }
+    if (selectors.occlusionStatus) {
+      const count = draft.masks.length;
+      selectors.occlusionStatus.textContent = count
+        ? `${plural(count, 'mask')} ready. Each mask becomes one study card.`
+        : 'Add masks over the parts you want to test.';
+    }
+    selectors.occlusionDeleteMask?.toggleAttribute('disabled', !selectedMask);
+  }
+
+  function openOcclusionEditor(cardId) {
+    syncCreatorFromDom();
+    const index = state.creator.cards.findIndex(card => String(card.id) === String(cardId));
+    if (index < 0) return false;
+    const original = clonePlain(state.creator.cards[index]);
+    const source = createImageOcclusionDraft(state.creator.cards[index], firstCardImageSource(state.creator.cards[index]));
+    const occlusion = normalizeImageOcclusion(source.imageOcclusion, source);
+    if (!occlusion.image) return false;
+    state.creator.cards[index] = source;
+    state.occlusionEditor.cardId = source.id;
+    state.occlusionEditor.originalCard = original;
+    state.occlusionEditor.draft = clonePlain(occlusion);
+    state.occlusionEditor.selectedMaskId = occlusion.masks[0]?.id || null;
+    setOcclusionShape(occlusion.masks[0]?.shape || 'rect');
+    if (selectors.occlusionImage) {
+      selectors.occlusionImage.src = occlusion.image;
+      selectors.occlusionImage.onload = () => {
+        syncOcclusionLayerRect();
+        renderOcclusionEditor();
+      };
+    }
+    selectors.occlusionOverlay?.classList.remove('hidden');
+    bindOcclusionEditorLayout();
+    requestAnimationFrame(renderOcclusionEditor);
+    scheduleOcclusionLayerSync();
+    return true;
+  }
+
+  function closeOcclusionEditor(options = {}) {
+    state.occlusionEditor.layoutCleanup?.();
+    if (options.restoreOriginal && state.occlusionEditor.originalCard && state.occlusionEditor.cardId) {
+      state.creator.cards = state.creator.cards.map(card => (
+        String(card.id) === String(state.occlusionEditor.cardId)
+          ? clonePlain(state.occlusionEditor.originalCard)
+          : card
+      ));
+      renderCreate();
+    }
+    selectors.occlusionOverlay?.classList.add('hidden');
+    state.occlusionEditor = {
+      cardId: null,
+      originalCard: null,
+      draft: null,
+      selectedMaskId: null,
+      shape: 'rect',
+      pointer: null,
+      layoutCleanup: null
+    };
+    state.lastModalClosedAt = Date.now();
+  }
+
+  function addOcclusionMask() {
+    const draft = state.occlusionEditor.draft;
+    if (!draft) return;
+    if (draft.masks.length >= OCCLUSION_MAX_MASKS) {
+      showToast(`Limit is ${OCCLUSION_MAX_MASKS} masks`);
+      return;
+    }
+    const next = normalizeOcclusionMask({
+      shape: state.occlusionEditor.shape,
+      x: 0.34,
+      y: 0.4,
+      w: 0.32,
+      h: 0.13,
+      answer: `Hidden part ${draft.masks.length + 1}`
+    }, draft.masks.length);
+    draft.masks.push(next);
+    state.occlusionEditor.selectedMaskId = next.id;
+    renderOcclusionEditor();
+    selectors.occlusionAnswer?.focus();
+    selectors.occlusionAnswer?.select?.();
+  }
+
+  function deleteSelectedOcclusionMask() {
+    const draft = state.occlusionEditor.draft;
+    const mask = selectedOcclusionMask();
+    if (!draft || !mask) return;
+    const index = draft.masks.findIndex(item => String(item.id) === String(mask.id));
+    draft.masks.splice(index, 1);
+    state.occlusionEditor.selectedMaskId = draft.masks[Math.min(index, draft.masks.length - 1)]?.id || null;
+    renderOcclusionEditor();
+  }
+
+  function updateSelectedOcclusionText() {
+    const mask = selectedOcclusionMask();
+    if (!mask) return;
+    mask.answer = sanitizeEditorHtml(String(selectors.occlusionAnswer?.value || '').slice(0, 220));
+    mask.hint = sanitizeEditorHtml(String(selectors.occlusionHint?.value || '').slice(0, 220));
+  }
+
+  function updateOcclusionMaskElement(mask) {
+    const element = selectors.occlusionLayer?.querySelector(`[data-occlusion-mask-id="${cssEscape(mask.id)}"]`);
+    if (!element) return false;
+    element.style.left = `${mask.x * 100}%`;
+    element.style.top = `${mask.y * 100}%`;
+    element.style.width = `${mask.w * 100}%`;
+    element.style.height = `${mask.h * 100}%`;
+    return true;
+  }
+
+  function updateOcclusionSelectionUi() {
+    const selected = String(state.occlusionEditor.selectedMaskId || '');
+    selectors.occlusionLayer?.querySelectorAll('[data-occlusion-mask-id]').forEach(element => {
+      element.classList.toggle('active', String(element.dataset.occlusionMaskId) === selected);
+    });
+    const mask = selectedOcclusionMask();
+    if (selectors.occlusionAnswer) selectors.occlusionAnswer.value = plainTextFromHtml(mask?.answer || '');
+    if (selectors.occlusionHint) selectors.occlusionHint.value = plainTextFromHtml(mask?.hint || '');
+    selectors.occlusionDeleteMask?.toggleAttribute('disabled', !mask);
+  }
+
+  function saveOcclusionEditor() {
+    updateSelectedOcclusionText();
+    const draft = state.occlusionEditor.draft;
+    const cardId = state.occlusionEditor.cardId;
+    if (!draft || !cardId) return;
+    if (!safeMediaSrc(draft.image)) {
+      showToast('Choose an image first');
+      return;
+    }
+    if (!Array.isArray(draft.masks) || !draft.masks.length) {
+      showToast('Add at least one mask');
+      return;
+    }
+    if (draft.masks.some(mask => !plainTextFromHtml(mask.answer || '').trim())) {
+      showToast('Every mask needs an answer');
+      return;
+    }
+    const normalized = normalizeImageOcclusion(draft, {});
+    state.creator.cards = state.creator.cards.map(card => (
+      String(card.id) === String(cardId)
+        ? createImageOcclusionDraft(card, normalized.image)
+        : card
+    ));
+    state.creator.cards = state.creator.cards.map(card => (
+      String(card.id) === String(cardId)
+        ? {
+            ...card,
+            imageOcclusion: {
+              ...normalized,
+              lastModified: Date.now()
+            },
+            lastModified: Date.now()
+          }
+        : card
+    ));
+    closeOcclusionEditor();
+    renderCreate();
+    scheduleCreatorDraftSave();
+    showToast(`Saved ${plural(normalized.masks.length, 'mask')}`);
+  }
+
+  function startOcclusionPointer(event) {
+    const maskEl = event.target.closest?.('[data-occlusion-mask-id]');
+    if (!maskEl || !selectors.occlusionLayer?.contains(maskEl)) return;
+    event.preventDefault();
+    updateSelectedOcclusionText();
+    const mask = (state.occlusionEditor.draft?.masks || [])
+      .find(item => String(item.id) === String(maskEl.dataset.occlusionMaskId));
+    if (!mask) return;
+    state.occlusionEditor.selectedMaskId = mask.id;
+    const rect = selectors.occlusionLayer.getBoundingClientRect();
+    state.occlusionEditor.pointer = {
+      id: event.pointerId,
+      mode: event.target.closest('[data-occlusion-resize]') ? 'resize' : 'move',
+      startX: event.clientX,
+      startY: event.clientY,
+      layerW: Math.max(1, rect.width),
+      layerH: Math.max(1, rect.height),
+      mask: { ...mask }
+    };
+    maskEl.setPointerCapture?.(event.pointerId);
+    updateOcclusionSelectionUi();
+  }
+
+  function moveOcclusionPointer(event) {
+    const pointer = state.occlusionEditor.pointer;
+    if (!pointer || pointer.id !== event.pointerId) return;
+    event.preventDefault();
+    const mask = selectedOcclusionMask();
+    if (!mask) return;
+    const dx = (event.clientX - pointer.startX) / pointer.layerW;
+    const dy = (event.clientY - pointer.startY) / pointer.layerH;
+    if (pointer.mode === 'resize') {
+      mask.w = clamp(pointer.mask.w + dx, OCCLUSION_MIN_SIZE, 1 - pointer.mask.x);
+      mask.h = clamp(pointer.mask.h + dy, OCCLUSION_MIN_SIZE, 1 - pointer.mask.y);
+    } else {
+      mask.x = clamp(pointer.mask.x + dx, 0, 1 - pointer.mask.w);
+      mask.y = clamp(pointer.mask.y + dy, 0, 1 - pointer.mask.h);
+    }
+    if (!updateOcclusionMaskElement(mask)) renderOcclusionEditor();
+  }
+
+  function endOcclusionPointer(event) {
+    const pointer = state.occlusionEditor.pointer;
+    if (!pointer || pointer.id !== event.pointerId) return;
+    state.occlusionEditor.pointer = null;
+  }
+
   function resetCreator() {
     clearTimeout(creatorDraftTimer);
     state.creator.editingSetId = null;
@@ -2413,12 +2773,14 @@
 
   function cardWithNoteDefaults(card) {
     const advanced = isAdvancedHtmlCard(card);
+    const occlusion = isImageOcclusionCard(card);
     return {
       ...card,
       noteId: card.noteId || createLocalId('note'),
-      noteType: advanced ? 'advanced-html' : (card.noteType || 'basic'),
-      cardTemplate: advanced ? 'advanced-html' : (card.cardTemplate || 'front-back'),
+      noteType: advanced ? 'advanced-html' : (occlusion ? 'image-occlusion' : (card.noteType || 'basic')),
+      cardTemplate: advanced ? 'advanced-html' : (occlusion ? (card.cardTemplate || 'image-occlusion-source') : (card.cardTemplate || 'front-back')),
       noteFields: card.noteFields && typeof card.noteFields === 'object' ? card.noteFields : {},
+      imageOcclusion: occlusion ? normalizeImageOcclusion(card.imageOcclusion, card) : (card.imageOcclusion || null),
       advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(card))
     };
   }
@@ -2442,7 +2804,7 @@
   }
 
   function creatorCardWantsReverse(card = {}) {
-    if (isAdvancedHtmlCard(card)) return false;
+    if (isAdvancedHtmlCard(card) || isImageOcclusionCard(card)) return false;
     return Boolean(card.generateReverse || cardHasReverseSibling(card));
   }
 
@@ -2531,6 +2893,9 @@
 
   function expandCreatorCard(card) {
     const base = cardWithNoteDefaults(card);
+    if (isImageOcclusionCard(base)) {
+      return expandImageOcclusionCard(base);
+    }
     if (isAdvancedHtmlCard(base)) {
       return [stripCreatorFields({
         ...base,
@@ -2592,6 +2957,46 @@
       const id = String(card.id || '');
       if (used.has(id)) return;
       const group = groups.get(String(card.noteId || '')) || [card];
+
+      if (isImageOcclusionCard(card)) {
+        const occlusionCards = group.filter(isImageOcclusionCard);
+        occlusionCards.forEach(item => used.add(String(item.id || '')));
+        const first = occlusionCards[0] || card;
+        const image = firstCardImageSource(first);
+        const masks = occlusionCards
+          .map((item, index) => {
+            const occlusion = normalizeImageOcclusion(item.imageOcclusion, item);
+            const targetId = String(item.imageOcclusion?.targetMaskId || item.noteFields?.maskId || '');
+            const targetIndex = Number(item.imageOcclusion?.targetMaskIndex ?? index);
+            const found = occlusion.masks.find(mask => String(mask.id) === targetId)
+              || occlusion.masks[targetIndex]
+              || normalizeOcclusionMask({}, index);
+            return {
+              ...found,
+              cardId: item.id || found.cardId || createLocalId('card'),
+              answer: sanitizeEditorHtml(item.noteFields?.answer || item.definition || found.answer || `Hidden part ${index + 1}`),
+              hint: sanitizeEditorHtml(item.noteFields?.hint || found.hint || '')
+            };
+          })
+          .slice(0, OCCLUSION_MAX_MASKS);
+        creatorCards.push({
+          ...first,
+          id: first.id || createLocalId('card'),
+          noteId: first.noteId || createLocalId('note'),
+          noteType: 'image-occlusion',
+          cardTemplate: 'image-occlusion-source',
+          term: sanitizeEditorHtml(first.noteFields?.title || first.term || 'Image occlusion'),
+          definition: '',
+          termImage: image,
+          definitionImage: '',
+          media: { term: [], definition: [] },
+          background: { term: null, definition: null },
+          imageOcclusion: normalizeImageOcclusion({ image, masks }, first),
+          srs: undefined,
+          reviewHistory: []
+        });
+        return;
+      }
 
       if (isAdvancedHtmlCard(card)) {
         used.add(id);
@@ -2677,7 +3082,11 @@
     const background = normalizeCardBackground(card);
     const mediaImage = [...(media.term || []), ...(media.definition || [])]
       .find(item => item.kind === 'image' && safeMediaSrc(item.src));
-    return safeMediaSrc(card.termImage)
+    const occlusionImage = card.imageOcclusion && typeof card.imageOcclusion === 'object'
+      ? safeMediaSrc(card.imageOcclusion.image || card.imageOcclusion.src || card.imageOcclusion.dataUrl)
+      : '';
+    return occlusionImage
+      || safeMediaSrc(card.termImage)
       || safeMediaSrc(card.definitionImage)
       || safeMediaSrc(mediaImage?.src)
       || safeMediaSrc(background.term?.src)
@@ -2685,32 +3094,130 @@
       || '';
   }
 
-  function createImageOcclusionCard(card, answer) {
+  function isImageOcclusionCard(card = {}) {
+    return String(card.noteType || '').toLowerCase() === 'image-occlusion'
+      || String(card.cardTemplate || '').toLowerCase().startsWith('image-occlusion');
+  }
+
+  function normalizeUnit(value, fallback = 0) {
+    const number = Number(value);
+    if (!Number.isFinite(number)) return fallback;
+    const unit = number > 1 ? number / 100 : number;
+    return Math.min(1, Math.max(0, unit));
+  }
+
+  function normalizeOcclusionMask(mask = {}, index = 0) {
+    const source = mask && typeof mask === 'object' ? mask : {};
+    const width = Math.min(0.95, Math.max(OCCLUSION_MIN_SIZE, normalizeUnit(source.w ?? source.width, 0.24)));
+    const height = Math.min(0.95, Math.max(OCCLUSION_MIN_SIZE, normalizeUnit(source.h ?? source.height, 0.12)));
+    const x = Math.min(1 - width, normalizeUnit(source.x ?? source.left, 0.38));
+    const y = Math.min(1 - height, normalizeUnit(source.y ?? source.top, 0.4));
+    const shape = String(source.shape || '').toLowerCase() === 'ellipse' ? 'ellipse' : 'rect';
+    return {
+      id: String(source.id || createLocalId('mask')),
+      cardId: String(source.cardId || source.cardID || createLocalId('card')),
+      shape,
+      x,
+      y,
+      w: width,
+      h: height,
+      answer: sanitizeEditorHtml(String(source.answer || source.label || source.text || '').slice(0, 220)),
+      hint: sanitizeEditorHtml(String(source.hint || '').slice(0, 220))
+    };
+  }
+
+  function normalizeImageOcclusion(value = {}, card = {}) {
+    const source = value && typeof value === 'object' ? value : {};
+    const image = safeMediaSrc(source.image || source.src || source.dataUrl || card.termImage || firstCardImageSource({ ...card, imageOcclusion: null }));
+    const masks = (Array.isArray(source.masks) ? source.masks : [])
+      .slice(0, OCCLUSION_MAX_MASKS)
+      .map(normalizeOcclusionMask)
+      .filter(mask => mask.answer && plainTextFromHtml(mask.answer).trim());
+    return {
+      version: 1,
+      coordinateSpace: 'image',
+      mode: source.mode === 'hide-all' ? 'hide-all' : 'hide-one',
+      image,
+      masks,
+      created: source.created || Date.now(),
+      lastModified: source.lastModified || Date.now()
+    };
+  }
+
+  function createImageOcclusionDraft(card = {}, imageSrc = '') {
     const now = Date.now();
     const noteId = card.noteId || createLocalId('note');
-    const imageSrc = firstCardImageSource(card);
     return {
-      ...emptyCreatorCard(),
+      ...card,
+      id: card.id || createLocalId('card'),
       noteId,
       noteType: 'image-occlusion',
-      cardTemplate: 'image-occlusion-basic',
+      cardTemplate: 'image-occlusion-source',
       noteFields: {
-        image: imageSrc,
-        answer
+        ...(card.noteFields || {}),
+        image: imageSrc
       },
-      term: 'Identify the hidden area.',
-      definition: answer,
+      term: sanitizeEditorHtml(card.term || 'Image occlusion'),
+      definition: sanitizeEditorHtml(card.definition || ''),
       termImage: imageSrc,
+      definitionImage: '',
       imageOcclusion: {
-        side: 'term',
-        masks: [
-          { x: 34, y: 38, w: 32, h: 18, label: answer }
-        ]
+        ...normalizeImageOcclusion(card.imageOcclusion, card),
+        image: imageSrc,
+        masks: normalizeImageOcclusion(card.imageOcclusion, card).masks
       },
-      tags: Array.from(new Set([...(card.tags || []), 'image-occlusion'])),
-      created: now,
+      advancedHtml: { frontHtml: '', backHtml: '', frontCss: '', backCss: '' },
+      media: { term: [], definition: [] },
+      background: { term: null, definition: null },
+      generateReverse: false,
+      tags: Array.from(new Set([...(card.tags || []), 'image-occlusion'])).slice(0, 30),
+      created: card.created || now,
       lastModified: now
     };
+  }
+
+  function expandImageOcclusionCard(card) {
+    const base = cardWithNoteDefaults(card);
+    const occlusion = normalizeImageOcclusion(base.imageOcclusion, base);
+    if (!occlusion.image || !occlusion.masks.length) return [];
+    const noteId = base.noteId || createLocalId('note');
+    const title = plainTextFromHtml(base.term || '').trim() || 'Image occlusion';
+    return occlusion.masks.map((mask, index) => {
+      const answerText = sanitizeEditorHtml(mask.answer || `Hidden part ${index + 1}`);
+      const hintText = sanitizeEditorHtml(mask.hint || '');
+      return stripCreatorFields({
+        ...clonePlain(base),
+        id: mask.cardId || createLocalId('card'),
+        noteId,
+        noteType: 'image-occlusion',
+        cardTemplate: 'image-occlusion-mask',
+        noteFields: {
+          ...(base.noteFields || {}),
+          image: occlusion.image,
+          title,
+          answer: answerText,
+          hint: hintText,
+          maskId: mask.id
+        },
+        term: hintText
+          ? `<strong>Guess the hidden part.</strong><br><small>Hint: ${hintText}</small>`
+          : '<strong>Guess the hidden part.</strong>',
+        definition: answerText,
+        termImage: occlusion.image,
+        definitionImage: occlusion.image,
+        media: { term: [], definition: [] },
+        background: { term: null, definition: null },
+        imageOcclusion: {
+          ...occlusion,
+          targetMaskId: mask.id,
+          targetMaskIndex: index
+        },
+        srs: mask.cardId === base.id ? base.srs : undefined,
+        reviewHistory: mask.cardId === base.id ? (base.reviewHistory || []) : [],
+        created: base.created || Date.now(),
+        lastModified: Date.now()
+      });
+    });
   }
 
   function formatButton(command, label, icon) {
@@ -2823,17 +3330,40 @@
     `;
   }
 
+  function imageOcclusionEditor(card = {}) {
+    const occlusion = normalizeImageOcclusion(card.imageOcclusion, card);
+    const image = safeMediaSrc(occlusion.image || firstCardImageSource(card));
+    const answered = occlusion.masks.filter(mask => plainTextFromHtml(mask.answer || '').trim()).length;
+    return `
+      <section class="occlusion-summary-card" aria-label="Image occlusion card editor">
+        ${image ? `<img src="${escapeAttr(image)}" alt="Occlusion source image">` : `<div class="deck-icon"><i class="fas fa-image"></i></div>`}
+        <div class="occlusion-summary-main">
+          <strong>${escapeHtml(occlusion.masks.length ? `${plural(occlusion.masks.length, 'mask')}` : 'No masks yet')}</strong>
+          <small>${escapeHtml(answered ? `${answered} with answers. Saved as one study card per mask.` : 'Add masks and answers before saving.')}</small>
+          <div class="occlusion-summary-actions">
+            <button type="button" data-creator-action="image-occlusion" data-card-id="${escapeAttr(card.id)}">
+              <i class="fas fa-pen"></i> Edit masks
+            </button>
+            <button type="button" data-creator-action="basic-card" data-card-id="${escapeAttr(card.id)}">
+              <i class="fas fa-rectangle-list"></i> Basic
+            </button>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
   function cardEditor(card, index) {
     card.media = normalizeCardMedia(card);
     card.background = normalizeCardBackground(card);
     card.advancedHtml = sanitizeAdvancedHtmlCard(advancedHtmlPayload(card));
     const advanced = isAdvancedHtmlCard(card);
+    const occlusion = isImageOcclusionCard(card);
     const safeTerm = sanitizeEditorHtml(card.term || '');
     const safeDefinition = sanitizeEditorHtml(card.definition || '');
     const termMedia = mediaPreviewHtml(card, 'term');
     const definitionMedia = mediaPreviewHtml(card, 'definition');
-    const hasImage = Boolean(firstCardImageSource(card));
-    const reverseOn = !advanced && creatorCardWantsReverse(card);
+    const reverseOn = !advanced && !occlusion && creatorCardWantsReverse(card);
 
     return `
       <article class="mobile-card-editor" data-card-id="${escapeAttr(card.id)}">
@@ -2858,24 +3388,24 @@
           </div>
         </header>
         <div class="creator-generate-row" role="toolbar" aria-label="Card generation tools">
-          <button type="button" class="${reverseOn ? 'active' : ''}" ${advanced ? 'disabled' : ''} data-creator-action="reverse-card" data-card-id="${escapeAttr(card.id)}" aria-pressed="${reverseOn ? 'true' : 'false'}">
+          <button type="button" class="${reverseOn ? 'active' : ''}" ${advanced || occlusion ? 'disabled' : ''} data-creator-action="reverse-card" data-card-id="${escapeAttr(card.id)}" aria-pressed="${reverseOn ? 'true' : 'false'}">
             <i class="fas fa-right-left"></i>
             <span>Reverse</span>
           </button>
-          <button type="button" ${advanced ? 'disabled' : ''} data-creator-action="cloze" data-card-id="${escapeAttr(card.id)}" data-side="term">
+          <button type="button" ${advanced || occlusion ? 'disabled' : ''} data-creator-action="cloze" data-card-id="${escapeAttr(card.id)}" data-side="term">
             <i class="fas fa-eye-slash"></i>
             <span>Cloze</span>
           </button>
-          <button type="button" ${hasImage && !advanced ? '' : 'disabled'} data-creator-action="image-occlusion" data-card-id="${escapeAttr(card.id)}" title="${hasImage && !advanced ? 'Create occlusion card' : 'Add image first'}">
+          <button type="button" class="${occlusion ? 'active' : ''}" ${advanced ? 'disabled' : ''} data-creator-action="image-occlusion" data-card-id="${escapeAttr(card.id)}" aria-pressed="${occlusion ? 'true' : 'false'}">
             <i class="fas fa-object-ungroup"></i>
             <span>Occlusion</span>
           </button>
-          <button type="button" class="${advanced ? 'active' : ''}" data-creator-action="advanced-html-card" data-card-id="${escapeAttr(card.id)}" aria-pressed="${advanced ? 'true' : 'false'}">
+          <button type="button" class="${advanced ? 'active' : ''}" ${occlusion ? 'disabled' : ''} data-creator-action="advanced-html-card" data-card-id="${escapeAttr(card.id)}" aria-pressed="${advanced ? 'true' : 'false'}">
             <i class="fas fa-code"></i>
             <span>HTML</span>
           </button>
         </div>
-        ${advanced ? advancedHtmlEditor(card) : `
+        ${occlusion ? imageOcclusionEditor(card) : (advanced ? advancedHtmlEditor(card) : `
         <section class="editor-side">
           <div class="editor-side-head">
             <strong>Term</strong>
@@ -2926,7 +3456,7 @@
           <div class="rich-editor" contenteditable="true" data-editor-id="${escapeAttr(card.id)}" data-side="definition" data-placeholder="Enter definition">${safeDefinition}</div>
           ${definitionMedia}
         </section>
-        `}
+        `)}
       </article>
     `;
   }
@@ -3188,6 +3718,331 @@
         };
       })
       .filter(Boolean);
+  }
+
+  function importUserError(message) {
+    const error = new Error(message);
+    error.userMessage = message;
+    return error;
+  }
+
+  function importString(value) {
+    return value == null ? '' : String(value);
+  }
+
+  function normalizeImportTags(value) {
+    const list = Array.isArray(value)
+      ? value
+      : String(value || '').split(/[;,]/);
+    return Array.from(new Set(list
+      .map(item => String(item || '').trim())
+      .filter(Boolean)))
+      .slice(0, 30);
+  }
+
+  function importFlag(value) {
+    if (value === true) return true;
+    if (typeof value === 'number') return value > 0;
+    return ['true', '1', 'yes', 'y', 'on', 'reverse'].includes(String(value || '').trim().toLowerCase());
+  }
+
+  function normalizeImportType(value) {
+    const raw = String(value || '').trim().toLowerCase().replace(/[\s_]+/g, '-');
+    if (['advanced-html', 'advancedhtml', 'custom-html', 'html', 'html-css'].includes(raw)) return 'advanced-html';
+    if (['image-occlusion', 'imageocclusion', 'occlusion', 'io'].includes(raw)) return 'image-occlusion';
+    if (['cloze', 'fill-blank', 'fill-in-blank', 'fill-in-the-blank'].includes(raw)) return 'cloze';
+    if (['reverse', 'basic-reverse', 'back-front'].includes(raw)) return 'reverse';
+    return 'basic';
+  }
+
+  function safeImportDataUrl(value, kinds = ['image', 'audio', 'video']) {
+    const src = safeMediaSrc(value);
+    if (!src || /^data:image\/svg/i.test(src)) return '';
+    const kindPattern = kinds.join('|');
+    return new RegExp(`^data:(${kindPattern})/`, 'i').test(src) ? src : '';
+  }
+
+  function importMediaItem(value) {
+    const source = typeof value === 'string' ? { src: value } : (value && typeof value === 'object' ? value : {});
+    const src = safeImportDataUrl(source.src || source.url || source.dataUrl);
+    if (!src) return null;
+    const mime = String(source.mime || source.type || src.slice(5, src.indexOf(';') > 0 ? src.indexOf(';') : src.indexOf(','))).trim();
+    const kind = mime.startsWith('audio/') ? 'audio' : mime.startsWith('video/') ? 'video' : 'image';
+    return {
+      id: createLocalId('media'),
+      kind,
+      mime,
+      name: String(source.name || source.fileName || kind).trim() || kind,
+      src,
+      created: Date.now()
+    };
+  }
+
+  function importMediaSide(value) {
+    const items = Array.isArray(value) ? value : (value ? [value] : []);
+    return items.map(importMediaItem).filter(Boolean).slice(0, 12);
+  }
+
+  function importBackgroundSide(value) {
+    const source = typeof value === 'string' ? { src: value } : (value && typeof value === 'object' ? value : {});
+    const src = safeImportDataUrl(source.src || source.url || source.dataUrl, ['image']);
+    if (!src) return null;
+    return {
+      id: createLocalId('background'),
+      src,
+      mime: String(source.mime || source.type || 'image').trim(),
+      name: String(source.name || source.fileName || 'Background').trim() || 'Background',
+      fit: ['cover', 'contain'].includes(source.fit) ? source.fit : 'cover',
+      opacity: Math.min(0.7, Math.max(0.08, Number(source.opacity ?? 0.32) || 0.32)),
+      created: Date.now()
+    };
+  }
+
+  function importCardObject(value) {
+    if (Array.isArray(value)) {
+      return {
+        term: value[0],
+        definition: value[1],
+        tags: value[2],
+        reverse: value[3],
+        type: value[4]
+      };
+    }
+    return value && typeof value === 'object' ? value : null;
+  }
+
+  function creatorCardFromImport(value) {
+    const source = importCardObject(value);
+    if (!source) return null;
+    const requestedType = normalizeImportType(source.type || source.noteType || source.cardType || (source.advancedHtml ? 'advanced-html' : (source.occlusion || source.imageOcclusion ? 'image-occlusion' : 'basic')));
+    const media = source.media && typeof source.media === 'object' ? source.media : {};
+    const background = source.background && typeof source.background === 'object' ? source.background : {};
+    const base = {
+      ...emptyCreatorCard(),
+      tags: normalizeImportTags(source.tags),
+      media: {
+        term: importMediaSide(media.term || source.termMedia || source.frontMedia),
+        definition: importMediaSide(media.definition || source.definitionMedia || source.backMedia)
+      },
+      background: {
+        term: importBackgroundSide(background.term || source.termBackground || source.frontBackground),
+        definition: importBackgroundSide(background.definition || source.definitionBackground || source.backBackground)
+      }
+    };
+
+    if (requestedType === 'advanced-html') {
+      const advanced = source.advancedHtml && typeof source.advancedHtml === 'object' ? source.advancedHtml : {};
+      const card = {
+        ...base,
+        noteType: 'advanced-html',
+        cardTemplate: 'advanced-html',
+        term: sanitizeEditorHtml(importString(source.term || source.front || source.question || source.prompt)),
+        definition: sanitizeEditorHtml(importString(source.definition || source.back || source.answer || source.meaning)),
+        advancedHtml: sanitizeAdvancedHtmlCard({
+          frontHtml: advanced.frontHtml || source.frontHtml || advanced.html || source.html || '',
+          backHtml: advanced.backHtml || source.backHtml || '',
+          frontCss: advanced.frontCss || source.frontCss || advanced.css || source.css || '',
+          backCss: advanced.backCss || source.backCss || advanced.css || source.css || ''
+        })
+      };
+      return cardHasContent(card) ? card : null;
+    }
+
+    if (requestedType === 'image-occlusion') {
+      const occlusion = source.occlusion && typeof source.occlusion === 'object'
+        ? source.occlusion
+        : (source.imageOcclusion && typeof source.imageOcclusion === 'object' ? source.imageOcclusion : {});
+      const imageSource = typeof source.image === 'string'
+        ? source.image
+        : (source.image && typeof source.image === 'object' ? (source.image.dataUrl || source.image.src || source.image.url) : '');
+      const image = safeImportDataUrl(occlusion.image || occlusion.dataUrl || imageSource, ['image']);
+      if (!image) return null;
+      const card = createImageOcclusionDraft({
+        ...base,
+        term: sanitizeEditorHtml(importString(source.term || source.title || source.prompt || 'Image occlusion')),
+        definition: sanitizeEditorHtml(importString(source.definition || source.extra || ''))
+      }, image);
+      card.imageOcclusion = normalizeImageOcclusion({
+        image,
+        mode: occlusion.mode,
+        masks: Array.isArray(occlusion.masks) ? occlusion.masks : []
+      }, card);
+      return cardHasContent(card) ? card : null;
+    }
+
+    if (requestedType === 'cloze') {
+      const card = {
+        ...base,
+        term: sanitizeEditorHtml(importString(source.text || source.cloze || source.term || source.front)),
+        definition: sanitizeEditorHtml(importString(source.extra || source.definition || source.back || source.answer))
+      };
+      return cardHasContent(card) ? card : null;
+    }
+
+    const card = {
+      ...base,
+      term: sanitizeEditorHtml(importString(source.term || source.front || source.question || source.prompt)),
+      definition: sanitizeEditorHtml(importString(source.definition || source.back || source.answer || source.meaning)),
+      generateReverse: requestedType === 'reverse' || importFlag(source.reverse)
+    };
+    return cardHasContent(card) ? card : null;
+  }
+
+  function parseDelimitedRows(text, delimiter) {
+    const rows = [];
+    let row = [];
+    let field = '';
+    let quoted = false;
+    const input = String(text || '');
+    const pushField = () => {
+      row.push(field);
+      field = '';
+    };
+    const pushRow = () => {
+      pushField();
+      if (row.some(cell => String(cell || '').trim())) rows.push(row);
+      row = [];
+    };
+
+    for (let index = 0; index < input.length; index += 1) {
+      const char = input[index];
+      if (char === '"') {
+        if (quoted && input[index + 1] === '"') {
+          field += '"';
+          index += 1;
+        } else if (quoted) {
+          quoted = false;
+        } else if (!field) {
+          quoted = true;
+        } else {
+          field += char;
+        }
+      } else if (char === delimiter && !quoted) {
+        pushField();
+      } else if ((char === '\n' || char === '\r') && !quoted) {
+        if (char === '\r' && input[index + 1] === '\n') index += 1;
+        pushRow();
+      } else {
+        field += char;
+      }
+    }
+    if (field || row.length) pushRow();
+    return rows;
+  }
+
+  function importHeaderName(value) {
+    return String(value || '').trim().toLowerCase().replace(/[\s_-]+/g, '');
+  }
+
+  function importHeaderIndex(headers, names) {
+    const targets = new Set(names);
+    return headers.findIndex(header => targets.has(importHeaderName(header)));
+  }
+
+  function delimitedRowsHaveHeader(row = []) {
+    const known = new Set(['term', 'front', 'question', 'prompt', 'text', 'cloze', 'definition', 'back', 'answer', 'meaning', 'tags', 'tag', 'reverse', 'type', 'cardtype', 'notetype']);
+    return row.some(cell => known.has(importHeaderName(cell)));
+  }
+
+  function parseDelimitedImport(text, delimiter) {
+    const rows = parseDelimitedRows(text, delimiter);
+    if (!rows.length) return [];
+    const hasHeader = delimitedRowsHaveHeader(rows[0]);
+    const headers = hasHeader ? rows[0] : [];
+    const indexes = {
+      term: importHeaderIndex(headers, ['term', 'front', 'question', 'prompt', 'text', 'cloze']),
+      definition: importHeaderIndex(headers, ['definition', 'back', 'answer', 'meaning']),
+      tags: importHeaderIndex(headers, ['tags', 'tag']),
+      reverse: importHeaderIndex(headers, ['reverse']),
+      type: importHeaderIndex(headers, ['type', 'cardtype', 'notetype'])
+    };
+    return rows.slice(hasHeader ? 1 : 0)
+      .map(row => {
+        const data = hasHeader
+          ? {
+              term: indexes.term >= 0 ? row[indexes.term] : '',
+              definition: indexes.definition >= 0 ? row[indexes.definition] : '',
+              tags: indexes.tags >= 0 ? row[indexes.tags] : '',
+              reverse: indexes.reverse >= 0 ? row[indexes.reverse] : '',
+              type: indexes.type >= 0 ? row[indexes.type] : ''
+            }
+          : {
+              term: row[0],
+              definition: row[1],
+              tags: row[2],
+              reverse: row[3],
+              type: row[4]
+            };
+        return creatorCardFromImport(data);
+      })
+      .filter(Boolean);
+  }
+
+  function parseJsonCreatorImport(text) {
+    let json;
+    try {
+      json = JSON.parse(String(text || ''));
+    } catch (_) {
+      throw importUserError('Invalid JSON file');
+    }
+    const root = Array.isArray(json) ? { cards: json } : (json && typeof json === 'object' ? json : {});
+    const deck = root.deck && typeof root.deck === 'object' ? root.deck : {};
+    const rawCards = Array.isArray(root.cards)
+      ? root.cards
+      : (Array.isArray(root.flashcards) ? root.flashcards : (Array.isArray(deck.cards) ? deck.cards : []));
+    if (rawCards.length > CREATOR_IMPORT_MAX_CARDS) {
+      throw importUserError(`Import supports up to ${CREATOR_IMPORT_MAX_CARDS} cards`);
+    }
+    return {
+      format: 'JSON',
+      name: String(root.name || root.deckName || root.title || deck.name || deck.deckName || '').trim(),
+      className: String(root.className || root.class || root.subject || deck.className || '').trim(),
+      cards: rawCards.map(creatorCardFromImport).filter(Boolean)
+    };
+  }
+
+  function parseCreatorImportFile(file, text) {
+    const name = String(file?.name || '').toLowerCase();
+    const type = String(file?.type || '').toLowerCase();
+    let result;
+    if (name.endsWith('.json') || type.includes('json')) {
+      result = parseJsonCreatorImport(text);
+    } else if (name.endsWith('.csv') || type.includes('csv')) {
+      result = { format: 'CSV', cards: parseDelimitedImport(text, ',') };
+    } else if (name.endsWith('.tsv') || type.includes('tab-separated')) {
+      result = { format: 'TSV', cards: parseDelimitedImport(text, '\t') };
+    } else {
+      result = { format: 'TXT', cards: parseBulkCards(text) };
+    }
+    if ((result.cards || []).length > CREATOR_IMPORT_MAX_CARDS) {
+      throw importUserError(`Import supports up to ${CREATOR_IMPORT_MAX_CARDS} cards`);
+    }
+    return result;
+  }
+
+  function applyCreatorImport(imported) {
+    const cards = Array.isArray(imported?.cards) ? imported.cards : [];
+    if (!cards.length) {
+      showToast(`No valid ${imported?.format || 'file'} cards found`);
+      return false;
+    }
+
+    syncCreatorFromDom();
+    const currentName = String(selectors.createTitle?.value || '').trim();
+    if (!currentName && imported.name && selectors.createTitle) {
+      selectors.createTitle.value = imported.name;
+    }
+    if (!state.creator.classId && imported.className) {
+      const match = state.classes.find(item => String(item.name || '').trim().toLowerCase() === imported.className.toLowerCase());
+      if (match) state.creator.classId = match.id;
+    }
+
+    const existing = state.creator.cards.filter(hasCardContent);
+    state.creator.cards = [...existing, ...cards];
+    renderCreate();
+    scheduleCreatorDraftSave();
+    showToast(`Imported ${plural(cards.length, 'card')} from ${imported.format || 'file'}`);
+    return true;
   }
 
   async function loadSetIntoCreator(setId) {
@@ -4006,6 +4861,14 @@
       selectors.moreSoundLabel.textContent = soundEnabled ? 'On' : 'Off';
     }
 
+    const htmlInteractionEnabled = state.settings?.htmlInteractionDisabled !== true;
+    selectors.htmlInteractionSwitch?.classList.toggle('on', htmlInteractionEnabled);
+    if (selectors.moreHtmlInteractionLabel) {
+      selectors.moreHtmlInteractionLabel.textContent = htmlInteractionEnabled
+        ? 'On - HTML can scroll and receive taps'
+        : 'Off - swipe and tap the whole HTML card';
+    }
+
     const order = normalizeNormalStudyOrder(state.settings?.normalStudyOrder);
     const orderLabels = {
       forward: 'Beginning',
@@ -4194,6 +5057,22 @@
     }
     renderMore();
     showToast(state.settings.soundEffectsEnabled ? 'Sound effects enabled' : 'Sound effects disabled');
+  }
+
+  async function toggleHtmlInteraction() {
+    const interactionEnabled = state.settings?.htmlInteractionDisabled !== true;
+    state.settings = {
+      ...(state.settings || {}),
+      htmlInteractionDisabled: interactionEnabled
+    };
+    if (window.flashcardStore?.saveSettings) {
+      await window.flashcardStore.saveSettings(state.settings);
+    }
+    playClick();
+    renderMore();
+    showToast(interactionEnabled
+      ? 'HTML card interaction disabled'
+      : 'HTML card interaction enabled');
   }
 
   async function togglePin(setId) {
@@ -5198,6 +6077,54 @@
     selectors.pasteImportCardSep?.addEventListener('input', updateLivePreview);
   }
 
+  function buildImportJsonAiPrompt() {
+    return [
+      'Create an Erudite Flashcards import JSON file.',
+      '',
+      'Return valid JSON only. Do not wrap it in Markdown. Do not add comments.',
+      'Use this content-only shape:',
+      '{',
+      '  "version": 1,',
+      '  "name": "Deck name",',
+      '  "className": "Optional existing class name",',
+      '  "cards": [',
+      '    { "type": "basic", "term": "Question", "definition": "Answer", "tags": ["tag"], "reverse": false },',
+      '    { "type": "cloze", "text": "The SI unit of force is {{c1::newton}}." },',
+      '    { "type": "image-occlusion", "term": "Diagram title", "image": { "dataUrl": "data:image/png;base64,..." }, "occlusion": { "masks": [{ "shape": "rect", "x": 0.12, "y": 0.2, "w": 0.25, "h": 0.1, "answer": "Nucleus" }] } },',
+      '    {',
+      '      "type": "advanced-html",',
+      '      "term": "Short searchable front text",',
+      '      "definition": "Short searchable back text",',
+      '      "advancedHtml": {',
+      '        "frontHtml": "<div class=\\"card-design\\">...</div>",',
+      '        "frontCss": ".card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto}",',
+      '        "backHtml": "<div class=\\"card-design\\">...</div>",',
+      '        "backCss": ".card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto}"',
+      '      }',
+      '    }',
+      '  ]',
+      '}',
+      '',
+      'Rules:',
+      '- Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.',
+      '- Use math as "\\\\(F = ma\\\\)" for inline math or "\\\\[x^2 + y^2\\\\]" for display math.',
+      '- Safe rich text may use b, strong, i, em, u, lists, blockquote, code, pre, hr, and mark highlight-yellow/green/blue/pink.',
+      '- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer. Use data URL images only.',
+      `- Advanced HTML cards live inside a ${ADVANCED_HTML_CANVAS.width}px x ${ADVANCED_HTML_CANVAS.height}px canvas with ${ADVANCED_HTML_CANVAS.radius}px corner radius.`,
+      '- Advanced HTML must use HTML and CSS only: no JavaScript, no scripts, no iframes, no forms, no external URLs, no fixed/sticky overlays.',
+      '- Keep every card readable on a mobile phone.'
+    ].join('\n');
+  }
+
+  function openImportHelpModal() {
+    selectors.importHelpOverlay?.classList.remove('hidden');
+  }
+
+  function closeImportHelpModal() {
+    selectors.importHelpOverlay?.classList.add('hidden');
+    state.lastModalClosedAt = Date.now();
+  }
+
   // ─── Capacitor Back Button (double-press to exit) ────────────────────────
 
   let lastBackPressTime = 0;
@@ -5472,11 +6399,15 @@
         const index = state.creator.cards.findIndex(card => String(card.id) === String(target.dataset.cardId));
         if (index < 0) break;
         const source = state.creator.cards[index];
+        const wasOcclusion = isImageOcclusionCard(source);
+        const occlusionImage = wasOcclusion ? normalizeImageOcclusion(source.imageOcclusion, source).image : '';
         state.creator.cards[index] = {
           ...source,
           noteType: 'basic',
           cardTemplate: 'front-back',
           generateReverse: false,
+          imageOcclusion: null,
+          termImage: source.termImage || occlusionImage || '',
           term: source.term || sanitizeEditorHtml(advancedHtmlFallbackText(source, 'front')),
           definition: source.definition || sanitizeEditorHtml(advancedHtmlFallbackText(source, 'back'))
         };
@@ -5531,24 +6462,22 @@
         syncCreatorFromDom();
         const index = state.creator.cards.findIndex(card => String(card.id) === String(target.dataset.cardId));
         if (index < 0) break;
-        const source = cardWithNoteDefaults(state.creator.cards[index]);
-        if (!firstCardImageSource(source)) {
-          showToast('Add an image first');
+        const source = state.creator.cards[index];
+        if (isAdvancedHtmlCard(source)) {
+          showToast('HTML cards cannot use image occlusion');
           break;
         }
-        const answer = await openBrowserFieldModal({
-          title: 'Image Occlusion',
-          icon: 'fa-object-ungroup',
-          message: 'Name the hidden label or answer.',
-          placeholder: 'Hidden label',
-          okText: 'Create'
-        });
-        if (!answer) break;
-        state.creator.cards[index] = source;
-        state.creator.cards.splice(index + 1, 0, createImageOcclusionCard(source, String(answer).trim()));
-        renderCreate();
-        scheduleCreatorDraftSave();
-        showToast('Occlusion card added');
+        const imageSrc = firstCardImageSource(source);
+        if (!imageSrc) {
+          state.pendingImageTarget = {
+            cardId: source.id,
+            side: 'term',
+            mode: 'occlusion'
+          };
+          selectors.occlusionImageInput?.click();
+          break;
+        }
+        openOcclusionEditor(source.id);
         break;
       }
       case 'media':
@@ -5614,6 +6543,7 @@
         scheduleCreatorDraftSave();
         break;
       }
+      case 'import-file':
       case 'import-txt':
         selectors.txtInput?.click();
         break;
@@ -5705,6 +6635,9 @@
       case 'toggle-sound':
         await toggleSound();
         break;
+      case 'toggle-html-interaction':
+        await toggleHtmlInteraction();
+        break;
       case 'toggle-pin':
         await togglePin(target.dataset.setId);
         break;
@@ -5783,6 +6716,9 @@
         break;
       case 'paste-import':
         openPasteImportModal();
+        break;
+      case 'import-help':
+        openImportHelpModal();
         break;
       default:
         break;
@@ -6180,7 +7116,7 @@
     }, { capture: true });
 
     document.addEventListener('pointerdown', event => {
-      if (event.target.closest('[data-creator-action="format"]')) {
+      if (event.pointerType === 'mouse' && event.target.closest('[data-creator-action="format"]')) {
         event.preventDefault();
       }
       const highlightButton = event.target.closest('[data-creator-action="format"][data-command="highlight"]');
@@ -6739,6 +7675,36 @@
       }
     });
 
+    selectors.occlusionImageInput?.addEventListener('change', async event => {
+      const file = event.target.files?.[0];
+      const target = state.pendingImageTarget;
+      event.target.value = '';
+      state.pendingImageTarget = null;
+      if (!file || !target) return;
+      if (!file.type.startsWith('image/')) {
+        showToast('Use an image for occlusion');
+        return;
+      }
+      syncCreatorFromDom();
+      const index = state.creator.cards.findIndex(card => String(card.id) === String(target.cardId));
+      if (index < 0) return;
+      try {
+        const src = await window.flashcardStore.saveImageFromFile(file, {
+          deckId: state.creator.editingSetId || 'draft',
+          side: 'term',
+          prefix: 'occlusion'
+        });
+        state.creator.cards[index] = {
+          ...state.creator.cards[index],
+          termImage: src
+        };
+        openOcclusionEditor(state.creator.cards[index].id);
+      } catch (error) {
+        console.error(error);
+        showToast('Could not add occlusion image');
+      }
+    });
+
     selectors.backgroundInput?.addEventListener('change', async event => {
       const file = event.target.files?.[0];
       const target = state.pendingImageTarget;
@@ -6785,20 +7751,11 @@
       if (!file) return;
       try {
         const text = await file.text();
-        const imported = parseBulkCards(text);
-        if (!imported.length) {
-          showToast('No Term;Definition pairs found');
-          return;
-        }
-        syncCreatorFromDom();
-        const existing = state.creator.cards.filter(hasCardContent);
-        state.creator.cards = [...existing, ...imported];
-        renderCreate();
-        scheduleCreatorDraftSave();
-        showToast(`Imported ${plural(imported.length, 'card')}`);
+        const imported = parseCreatorImportFile(file, text);
+        applyCreatorImport(imported);
       } catch (error) {
         console.error(error);
-        showToast('Could not import TXT');
+        showToast(error.userMessage || 'Could not import file');
       }
     });
 
@@ -6838,6 +7795,91 @@
           selectors.bulkCardCount.focus();
         }
       });
+    });
+
+    selectors.occlusionClose?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      closeOcclusionEditor({ restoreOriginal: true });
+    });
+
+    selectors.occlusionCancel?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      closeOcclusionEditor({ restoreOriginal: true });
+    });
+
+    selectors.occlusionSave?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      saveOcclusionEditor();
+    });
+
+    selectors.occlusionAddMask?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      updateSelectedOcclusionText();
+      addOcclusionMask();
+    });
+
+    selectors.occlusionDeleteMask?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      deleteSelectedOcclusionMask();
+    });
+
+    selectors.occlusionShapeRect?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      setOcclusionShape('rect');
+      const mask = selectedOcclusionMask();
+      if (mask) {
+        mask.shape = 'rect';
+        renderOcclusionEditor();
+      }
+    });
+
+    selectors.occlusionShapeEllipse?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      setOcclusionShape('ellipse');
+      const mask = selectedOcclusionMask();
+      if (mask) {
+        mask.shape = 'ellipse';
+        renderOcclusionEditor();
+      }
+    });
+
+    selectors.occlusionAnswer?.addEventListener('input', updateSelectedOcclusionText);
+    selectors.occlusionHint?.addEventListener('input', updateSelectedOcclusionText);
+    selectors.occlusionLayer?.addEventListener('pointerdown', startOcclusionPointer);
+    selectors.occlusionLayer?.addEventListener('pointermove', moveOcclusionPointer);
+    selectors.occlusionLayer?.addEventListener('pointerup', endOcclusionPointer);
+    selectors.occlusionLayer?.addEventListener('pointercancel', endOcclusionPointer);
+    window.addEventListener('resize', () => {
+      if (!selectors.occlusionOverlay?.classList.contains('hidden')) {
+        requestAnimationFrame(renderOcclusionEditor);
+      }
+    });
+
+    selectors.importHelpClose?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      closeImportHelpModal();
+    });
+
+    selectors.importHelpCopy?.addEventListener('click', async event => {
+      event.preventDefault();
+      playClick();
+      const ok = await copyPlainText(buildImportJsonAiPrompt());
+      showToast(ok ? 'AI prompt copied' : 'Could not copy prompt');
+    });
+
+    selectors.importHelpOverlay?.addEventListener('click', event => {
+      if (event.target !== selectors.importHelpOverlay) return;
+      event.preventDefault();
+      playClick();
+      closeImportHelpModal();
     });
 
     const headerSaveBtn = document.getElementById('header-creator-save-btn');

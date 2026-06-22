@@ -16,6 +16,7 @@
     theme: 'dark',
     normalStudyOrder: 'forward',
     soundEffectsEnabled: true,
+    htmlInteractionDisabled: false,
     fonts: {},
     cursor: {
       enabled: true,
@@ -239,6 +240,7 @@
       ? settings.normalStudyOrder
       : DEFAULT_SETTINGS.normalStudyOrder;
     const soundEffectsEnabled = settings.soundEffectsEnabled !== false;
+    const htmlInteractionDisabled = settings.htmlInteractionDisabled === true;
     const cardStyle = {
       ...DEFAULT_SETTINGS.cardStyle,
       ...(settings.cardStyle || {})
@@ -249,6 +251,7 @@
       theme,
       normalStudyOrder,
       soundEffectsEnabled,
+      htmlInteractionDisabled,
       fonts: {
         ...DEFAULT_SETTINGS.fonts,
         ...(settings.fonts || {})

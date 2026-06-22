@@ -176,16 +176,17 @@
               <i class="fas fa-layer-group"></i>
               Bulk cards
             </button>
-            <button type="button" class="secondary-action compact-action" data-creator-action="import-txt">
-              <i class="fas fa-file-lines"></i>
-              Import TXT
+            <button type="button" class="secondary-action compact-action" data-creator-action="import-file">
+              <i class="fas fa-file-import"></i>
+              Import file
             </button>
           </div>
 
           <div class="mobile-creator-cards" id="mobile-creator-cards"></div>
           <input id="mobile-image-input" type="file" accept="image/*,audio/*,video/*" multiple hidden>
+          <input id="mobile-occlusion-image-input" type="file" accept="image/*" hidden>
           <input id="mobile-background-input" type="file" accept="image/*" hidden>
-          <input id="mobile-txt-input" type="file" accept=".txt,text/plain" hidden>
+          <input id="mobile-txt-input" type="file" accept=".txt,.json,.csv,.tsv,text/plain,application/json,text/csv,text/tab-separated-values" hidden>
         </form>
       </section>
 
@@ -299,6 +300,11 @@
             <span><strong>Paste Import</strong><small>Import decks from clipboard text</small></span>
             <i class="fas fa-chevron-right"></i>
           </button>
+          <button type="button" class="settings-row" data-action="import-help">
+            <span class="settings-icon"><i class="fas fa-circle-question"></i></span>
+            <span><strong>Help & Import Format</strong><small>TXT, CSV, TSV, JSON, and AI prompt guide</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
           <button type="button" class="settings-row" data-action="select-theme">
             <span class="settings-icon"><i class="fas fa-palette"></i></span>
             <span>
@@ -317,6 +323,14 @@
               <small>Alignment, font weight, line and letter spacing</small>
             </span>
             <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="toggle-html-interaction">
+            <span class="settings-icon"><i class="fas fa-hand-pointer"></i></span>
+            <span>
+              <strong>HTML Card Interaction</strong>
+              <small id="more-html-interaction-label">On - HTML can scroll and receive taps</small>
+            </span>
+            <span class="switch" id="html-interaction-switch"><span></span></span>
           </button>
           <label class="settings-row settings-select-row" for="mobile-bg-opacity">
             <span class="settings-icon"><i class="fas fa-image"></i></span>
@@ -637,6 +651,49 @@
     </div>
   </div>
 
+  <!-- Image Occlusion Editor -->
+  <div class="mobile-modal-overlay hidden" id="occlusion-editor-overlay" role="dialog" aria-modal="true" aria-labelledby="occlusion-editor-title">
+    <div class="mobile-modal-card mobile-modal-card--wide occlusion-editor-card">
+      <div class="occlusion-editor-head">
+        <div>
+          <h3 id="occlusion-editor-title"><i class="fas fa-object-ungroup"></i> Image Occlusion</h3>
+          <p class="mobile-modal-hint" id="occlusion-editor-status">Add masks over the parts you want to test.</p>
+        </div>
+        <button type="button" class="small-icon-button" id="occlusion-editor-close" aria-label="Close occlusion editor">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="occlusion-editor-stage" id="occlusion-editor-stage">
+        <img id="occlusion-editor-image" alt="Occlusion source image">
+        <div class="occlusion-editor-layer" id="occlusion-editor-layer"></div>
+      </div>
+
+      <div class="occlusion-editor-tools" aria-label="Occlusion tools">
+        <button type="button" id="occlusion-add-mask"><i class="fas fa-plus"></i> Mask</button>
+        <button type="button" id="occlusion-shape-rect" data-occlusion-shape="rect" class="active"><i class="fas fa-vector-square"></i> Rect</button>
+        <button type="button" id="occlusion-shape-ellipse" data-occlusion-shape="ellipse"><i class="fas fa-circle"></i> Oval</button>
+        <button type="button" id="occlusion-delete-mask" class="danger"><i class="fas fa-trash"></i> Delete</button>
+      </div>
+
+      <div class="mobile-modal-row occlusion-editor-fields">
+        <div class="mobile-modal-field">
+          <label for="occlusion-answer-input">Answer for selected mask</label>
+          <input type="text" id="occlusion-answer-input" class="mobile-modal-input" placeholder="e.g. Nucleus" autocomplete="off">
+        </div>
+        <div class="mobile-modal-field">
+          <label for="occlusion-hint-input">Hint (optional)</label>
+          <input type="text" id="occlusion-hint-input" class="mobile-modal-input" placeholder="Short clue" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="occlusion-editor-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="occlusion-editor-save">Save masks</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Bulk Card Add Modal -->
   <div class="mobile-modal-overlay hidden" id="bulk-card-overlay" role="dialog" aria-modal="true" aria-labelledby="bulk-card-title">
     <div class="mobile-modal-card">
@@ -713,6 +770,94 @@
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="paste-import-cancel">Cancel</button>
         <button type="button" class="mobile-modal-btn confirm" id="paste-import-confirm">Import</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Help Modal -->
+  <div class="mobile-modal-overlay hidden" id="import-help-overlay" role="dialog" aria-modal="true" aria-labelledby="import-help-title">
+    <div class="mobile-modal-card mobile-modal-card--wide import-help-card">
+      <h3 id="import-help-title"><i class="fas fa-circle-question"></i> Help & Import Format</h3>
+      <div class="mobile-modal-scroll-content import-help-content">
+        <section>
+          <h4>Import file</h4>
+          <p>Use the Creator screen's Import file button for new card content. Full backups still use Import Backup.</p>
+        </section>
+        <section>
+          <h4>TXT</h4>
+          <p>Uses your separator settings. Default format:</p>
+          <pre class="help-code"><code>term1;definition1@term2;definition2</code></pre>
+        </section>
+        <section>
+          <h4>CSV / TSV</h4>
+          <p>Use spreadsheet columns. Headers are optional. Recognized headers: term, definition, tags, reverse, type.</p>
+          <pre class="help-code"><code>term,definition,tags,reverse
+Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
+        </section>
+        <section>
+          <h4>JSON</h4>
+          <p>Use JSON for rich cards, reverse cards, cloze cards, tags, image occlusion, and HTML/CSS cards. JSON imports content only; backups are for SRS history and full app restore.</p>
+          <pre class="help-code"><code>{
+  "version": 1,
+  "name": "Physics formulas",
+  "className": "Class 10 Science",
+  "cards": [
+    {
+      "type": "basic",
+      "term": "Newton's second law",
+      "definition": "\\(F = ma\\)",
+      "tags": ["physics", "forces"]
+    },
+    {
+      "type": "basic",
+      "term": "Derivative of x^2",
+      "definition": "\\(2x\\)",
+      "reverse": true
+    },
+    {
+      "type": "cloze",
+      "text": "The SI unit of force is {{c1::newton}}."
+    },
+    {
+      "type": "image-occlusion",
+      "term": "Cell diagram",
+      "image": { "dataUrl": "data:image/png;base64,..." },
+      "occlusion": {
+        "masks": [
+          { "shape": "rect", "x": 0.12, "y": 0.2, "w": 0.25, "h": 0.1, "answer": "Nucleus" }
+        ]
+      }
+    },
+    {
+      "type": "advanced-html",
+      "term": "Projectile motion",
+      "definition": "Formula card",
+      "advancedHtml": {
+        "frontHtml": "&lt;div class=\"card-design\"&gt;&lt;h2&gt;Projectile Motion&lt;/h2&gt;&lt;/div&gt;",
+        "frontCss": ".card-design{width:340px;min-height:470px;padding:18px;background:white;color:#111}",
+        "backHtml": "&lt;div class=\"card-design\"&gt;&lt;p&gt;Range: \\(R = v^2\\sin(2\\theta)/g\\)&lt;/p&gt;&lt;/div&gt;",
+        "backCss": ".card-design{width:340px;min-height:470px;padding:18px;background:white;color:#111}"
+      }
+    }
+  ]
+}</code></pre>
+        </section>
+        <section>
+          <h4>Safe rich text</h4>
+          <p>Allowed: bold, italic, underline, lists, blockquote, code, highlight marks, horizontal rules, and math with <code>\(...\)</code> or <code>\[...\]</code>.</p>
+        </section>
+        <section>
+          <h4>HTML/CSS cards</h4>
+          <p>The advanced HTML canvas is 340px wide, 470px tall, and 20px rounded. Use HTML and CSS only. No JavaScript, scripts, iframes, forms, external URLs, or fixed overlays.</p>
+        </section>
+        <section>
+          <h4>Image occlusion</h4>
+          <p>Use normalized mask coordinates from 0 to 1. Each mask becomes one study card. JSON v1 accepts data URL images only, not external URLs.</p>
+        </section>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="import-help-close">Close</button>
+        <button type="button" class="mobile-modal-btn confirm" id="import-help-copy"><i class="fas fa-copy"></i> Copy AI Prompt</button>
       </div>
     </div>
   </div>

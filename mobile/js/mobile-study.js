@@ -332,6 +332,11 @@
       || String(card.cardTemplate || '').toLowerCase() === 'advanced-html';
   }
 
+  function isImageOcclusionCard(card = {}) {
+    return String(card?.noteType || '').toLowerCase() === 'image-occlusion'
+      || String(card?.cardTemplate || '').toLowerCase().startsWith('image-occlusion');
+  }
+
   function advancedHtmlPayload(card = {}) {
     const direct = card.advancedHtml;
     if (direct && typeof direct === 'object' && (direct.frontHtml || direct.backHtml || direct.frontCss || direct.backCss || direct.css || direct.html)) return direct;
@@ -448,26 +453,55 @@
       : (source.frontHtml || '');
   }
 
+  function htmlInteractionDisabled() {
+    return state.settings?.htmlInteractionDisabled === true;
+  }
+
   function advancedHtmlSrcdoc(card = {}, side = 'front') {
     const source = card.sanitizedAdvancedHtml || sanitizeAdvancedHtmlCard(advancedHtmlPayload(card));
     const html = advancedHtmlSide(card, side);
     const css = side === 'back' ? source.backCss : source.frontCss;
     const content = html || `<div class="empty-card-copy">${side === 'back' ? 'Back HTML' : 'Front HTML'}</div>`;
+    const interactionCss = htmlInteractionDisabled()
+      ? 'overflow:hidden;pointer-events:none;user-select:none;-webkit-user-select:none;touch-action:none;'
+      : 'overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;';
     return `<style>
-      :host{all:initial;display:block;width:100%;height:100%;overflow:auto;background:transparent;color:#e5edf8;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;overflow-wrap:anywhere}
+      :host{all:initial;display:block;width:100%;height:100%;background:transparent;color:#e5edf8;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-wrap:anywhere;${interactionCss}}
       *,*::before,*::after{box-sizing:border-box}.erudite-html-card{display:block;min-width:100%;min-height:100%;padding:0;line-height:1.45;overflow:visible;color:inherit;font-family:inherit}.erudite-html-card img{max-width:100%;height:auto;border-radius:8px}.erudite-html-card table{border-collapse:collapse}.erudite-html-card th,.erudite-html-card td{padding:6px;border:1px solid rgba(148,163,184,.25)}.empty-card-copy{display:grid;min-height:100%;place-items:center;color:#94a3b8;font-weight:800;text-align:center}
       ${css}
     </style><div class="erudite-html-card">${content}</div>`;
   }
 
   function advancedHtmlFrame(card = {}, side = 'front') {
-    return `<div class="advanced-html-study-frame" data-advanced-html-side="${escapeAttr(side)}" role="img" aria-label="${side === 'back' ? 'Back HTML card' : 'Front HTML card'}" style="--advanced-html-canvas-width:${ADVANCED_HTML_CANVAS.width}px;--advanced-html-canvas-height:${ADVANCED_HTML_CANVAS.height}px;--advanced-html-canvas-radius:${ADVANCED_HTML_CANVAS.radius}px"></div>`;
+    return `
+      <div class="advanced-html-study-shell" data-advanced-html-side="${escapeAttr(side)}" style="--advanced-html-canvas-width:${ADVANCED_HTML_CANVAS.width}px;--advanced-html-canvas-height:${ADVANCED_HTML_CANVAS.height}px;--advanced-html-canvas-radius:${ADVANCED_HTML_CANVAS.radius}px">
+        <div class="advanced-html-study-frame" data-advanced-html-side="${escapeAttr(side)}" role="img" aria-label="${side === 'back' ? 'Back HTML card' : 'Front HTML card'}"></div>
+      </div>`;
   }
 
   function renderAdvancedHtmlHost(host, card = {}, side = 'front') {
     if (!host) return;
     const shadow = host.shadowRoot || host.attachShadow({ mode: 'open' });
     shadow.innerHTML = advancedHtmlSrcdoc(card, side);
+  }
+
+  function setAdvancedHtmlFaceGrip(face, enabled) {
+    if (!face) return;
+    face.classList.toggle('advanced-html-card-face', enabled);
+    const directGrips = Array.from(face.children).filter(child => child.classList?.contains('advanced-html-swipe-grip'));
+    let grip = directGrips[0] || null;
+    if (!enabled) {
+      directGrips.forEach(item => item.remove());
+      return;
+    }
+    directGrips.slice(1).forEach(item => item.remove());
+    if (!grip) {
+      grip = document.createElement('div');
+      grip.className = 'advanced-html-swipe-grip';
+      grip.setAttribute('aria-hidden', 'true');
+      grip.innerHTML = '<span></span>';
+      face.appendChild(grip);
+    }
   }
 
   function sameCard(a, b) {
@@ -735,19 +769,17 @@
   }
 
   function isScrollableContent(target) {
-    const advancedCanvas = target.closest?.('.advanced-html-study-frame');
-    if (advancedCanvas && (
-      advancedCanvas.scrollHeight > advancedCanvas.clientHeight + 4
-      || advancedCanvas.scrollWidth > advancedCanvas.clientWidth + 4
-    )) {
-      return advancedCanvas;
-    }
+    if (target.closest?.('.advanced-html-swipe-grip')) return null;
+    if (htmlInteractionDisabled() && target.closest?.('.html-interaction-disabled')) return null;
+    if (target.closest?.('.image-occlusion-study-card')) return null;
     const scroll = target.closest?.('.card-scroll');
     return scroll && scroll.scrollHeight > scroll.clientHeight + 4 ? scroll : null;
   }
 
   function isInteractive(target) {
-    return Boolean(target.closest?.('button, a, input, textarea, select, audio, video, [contenteditable="true"], .modal:not(.hidden), .image-modal:not(.hidden)'));
+    if (!target?.closest) return false;
+    if (!htmlInteractionDisabled() && target.closest('.advanced-html-study-frame')) return true;
+    return Boolean(target.closest('button, a, input, textarea, select, audio, video, [contenteditable="true"], .modal:not(.hidden), .image-modal:not(.hidden)'));
   }
 
   function configureSystemBars() {
@@ -1087,6 +1119,7 @@
   function filterSiblingCardsForSession(queue) {
     const seenNotes = new Set();
     return (queue || []).filter(card => {
+      if (String(card?.noteType || '').toLowerCase() === 'image-occlusion') return true;
       const noteId = card?.noteId || null;
       if (!noteId) return true;
       if (seenNotes.has(String(noteId))) return false;
@@ -1267,33 +1300,201 @@
     });
   }
 
-  function renderOcclusionMasks(wrap, card, side) {
-    if (!wrap) return;
-    wrap.querySelectorAll('.occlusion-mask-layer').forEach(layer => layer.remove());
+  function normalizedOcclusionUnit(value, fallback = 0) {
+    const number = Number(value);
+    if (!Number.isFinite(number)) return fallback;
+    const normalized = number > 1 ? number / 100 : number;
+    return Math.min(1, Math.max(0, normalized));
+  }
+
+  function renderedImageContentRect(img, container) {
+    if (!img || !container) return null;
+    const containerRect = container.getBoundingClientRect();
+    const imageRect = img.getBoundingClientRect();
+    let boxWidth = imageRect.width;
+    let boxHeight = imageRect.height;
+    let boxLeft = imageRect.left - containerRect.left;
+    let boxTop = imageRect.top - containerRect.top;
+
+    if (!boxWidth || !boxHeight) {
+      boxWidth = container.clientWidth || containerRect.width;
+      boxHeight = container.clientHeight || containerRect.height;
+      boxLeft = 0;
+      boxTop = 0;
+    }
+
+    const naturalWidth = img.naturalWidth || boxWidth;
+    const naturalHeight = img.naturalHeight || boxHeight;
+    if (!naturalWidth || !naturalHeight || !boxWidth || !boxHeight) {
+      return { left: boxLeft, top: boxTop, width: boxWidth, height: boxHeight };
+    }
+
+    const fit = window.getComputedStyle?.(img)?.objectFit || 'fill';
+    let contentWidth = boxWidth;
+    let contentHeight = boxHeight;
+
+    if (fit === 'contain' || fit === 'scale-down') {
+      const scale = Math.min(boxWidth / naturalWidth, boxHeight / naturalHeight);
+      contentWidth = naturalWidth * scale;
+      contentHeight = naturalHeight * scale;
+    } else if (fit === 'cover') {
+      const scale = Math.max(boxWidth / naturalWidth, boxHeight / naturalHeight);
+      contentWidth = naturalWidth * scale;
+      contentHeight = naturalHeight * scale;
+    }
+
+    return {
+      left: boxLeft + (boxWidth - contentWidth) / 2,
+      top: boxTop + (boxHeight - contentHeight) / 2,
+      width: contentWidth,
+      height: contentHeight
+    };
+  }
+
+  function positionOcclusionLayer(layer, img, container) {
+    const rect = renderedImageContentRect(img, container);
+    if (!layer || !rect || rect.width <= 0 || rect.height <= 0) return;
+    layer.style.left = `${rect.left}px`;
+    layer.style.top = `${rect.top}px`;
+    layer.style.width = `${rect.width}px`;
+    layer.style.height = `${rect.height}px`;
+  }
+
+  function cleanupOcclusionLayer(layer) {
+    if (!layer) return;
+    layer.__occlusionCleanup?.();
+    layer.__occlusionCleanup = null;
+    layer.__occlusionSchedule = null;
+  }
+
+  function bindOcclusionLayerToImage(layer, img, container) {
+    if (!layer || !img || !container) return;
+    cleanupOcclusionLayer(layer);
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (!layer.isConnected) return;
+      positionOcclusionLayer(layer, img, container);
+    };
+    const schedule = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(update);
+      });
+    };
+    const resizeObserver = typeof ResizeObserver !== 'undefined'
+      ? new ResizeObserver(schedule)
+      : null;
+    resizeObserver?.observe(container);
+    resizeObserver?.observe(img);
+    window.addEventListener('resize', schedule);
+    window.visualViewport?.addEventListener('resize', schedule);
+    if (!img.complete || !img.naturalWidth) {
+      img.addEventListener('load', schedule);
+    }
+    img.decode?.().then(schedule).catch(() => {});
+    layer.__occlusionCleanup = () => {
+      if (frame) cancelAnimationFrame(frame);
+      resizeObserver?.disconnect();
+      window.removeEventListener('resize', schedule);
+      window.visualViewport?.removeEventListener('resize', schedule);
+      img.removeEventListener('load', schedule);
+    };
+    layer.__occlusionSchedule = schedule;
+    schedule();
+  }
+
+  function refreshOcclusionLayers(root = document) {
+    root.querySelectorAll?.('.occlusion-mask-layer').forEach(layer => {
+      if (typeof layer.__occlusionSchedule === 'function') {
+        layer.__occlusionSchedule();
+      }
+    });
+  }
+
+  function buildOcclusionMaskLayer(card, side) {
     const occlusion = card?.imageOcclusion;
     const masks = Array.isArray(occlusion?.masks) ? occlusion.masks : [];
-    if (!masks.length || (occlusion.side || 'term') !== side) return;
+    if (!masks.length || !isImageOcclusionCard(card)) return null;
+    const targetId = String(occlusion.targetMaskId || '');
+    const targetIndex = Number(occlusion.targetMaskIndex ?? 0);
     const layer = document.createElement('div');
-    layer.className = 'occlusion-mask-layer';
-    masks.forEach(mask => {
+    layer.className = `occlusion-mask-layer ${side === 'definition' ? 'revealed' : 'hidden-side'}`;
+    masks.forEach((mask, index) => {
+      const isTarget = targetId
+        ? String(mask.id || '') === targetId
+        : index === targetIndex;
       const item = document.createElement('span');
-      item.className = 'occlusion-mask';
-      item.style.left = `${Math.min(95, Math.max(0, Number(mask.x || 0)))}%`;
-      item.style.top = `${Math.min(95, Math.max(0, Number(mask.y || 0)))}%`;
-      item.style.width = `${Math.min(100, Math.max(4, Number(mask.w || 20)))}%`;
-      item.style.height = `${Math.min(100, Math.max(4, Number(mask.h || 12)))}%`;
-      item.textContent = '?';
+      item.className = `occlusion-mask ${mask.shape === 'ellipse' ? 'shape-ellipse' : ''} ${isTarget ? 'target' : 'context'}`;
+      const x = normalizedOcclusionUnit(mask.x, 0);
+      const y = normalizedOcclusionUnit(mask.y, 0);
+      const w = Math.min(1 - x, Math.max(0.03, normalizedOcclusionUnit(mask.w, 0.12)));
+      const h = Math.min(1 - y, Math.max(0.03, normalizedOcclusionUnit(mask.h, 0.08)));
+      item.style.left = `${x * 100}%`;
+      item.style.top = `${y * 100}%`;
+      item.style.width = `${w * 100}%`;
+      item.style.height = `${h * 100}%`;
+      item.textContent = isTarget && side !== 'definition' ? '?' : '';
       layer.appendChild(item);
     });
+    return layer;
+  }
+
+  function renderOcclusionMasks(wrap, card, side) {
+    if (!wrap) return;
+    wrap.querySelectorAll('.occlusion-mask-layer').forEach(layer => {
+      cleanupOcclusionLayer(layer);
+      layer.remove();
+    });
+    const layer = buildOcclusionMaskLayer(card, side);
+    if (!layer) return;
     wrap.appendChild(layer);
+    bindOcclusionLayerToImage(layer, wrap.querySelector('img'), wrap);
+  }
+
+  function clearZoomOcclusionMasks() {
+    els.imageModal?.querySelectorAll('.zoom-occlusion-layer').forEach(layer => {
+      cleanupOcclusionLayer(layer);
+      layer.remove();
+    });
+  }
+
+  function renderZoomOcclusionMasks(card, side) {
+    clearZoomOcclusionMasks();
+    const layer = buildOcclusionMaskLayer(card, side);
+    if (!layer || !els.imageModal || !els.zoomedImage) return;
+    layer.classList.add('zoom-occlusion-layer');
+    els.imageModal.appendChild(layer);
+    bindOcclusionLayerToImage(layer, els.zoomedImage, els.imageModal);
+  }
+
+  function openImageModal(src, options = {}) {
+    const safeSrc = safeMediaSrc(src);
+    if (!safeSrc || !els.imageModal || !els.zoomedImage) return;
+    clearZoomOcclusionMasks();
+    els.zoomedImage.src = safeSrc;
+    els.imageModal.classList.remove('hidden');
+    if (options.card && options.side) {
+      renderZoomOcclusionMasks(options.card, options.side);
+    }
+  }
+
+  function closeImageModal() {
+    els.imageModal?.classList.add('hidden');
+    clearZoomOcclusionMasks();
   }
 
   function renderImage(img, wrap, src, card, side) {
     const safeSrc = safeMediaSrc(src);
+    const occlusionCard = isImageOcclusionCard(card);
+    wrap?.classList.toggle('occlusion-study-canvas', occlusionCard);
+    img?.classList.toggle('occlusion-study-image', occlusionCard);
     if (!safeSrc) {
       wrap.classList.add('hidden');
       img.removeAttribute('src');
       renderOcclusionMasks(wrap, null, side);
+      wrap.classList.remove('occlusion-study-canvas');
+      img.classList.remove('occlusion-study-image');
       return;
     }
     if (img.getAttribute('src') !== safeSrc) {
@@ -1411,7 +1612,9 @@
   function updateCardScrollability(cardEl) {
     if (!cardEl) return;
     cardEl.querySelectorAll('.card-scroll').forEach(scroll => {
-      const isScrollable = scroll.scrollHeight > scroll.clientHeight + 4;
+      const isScrollable = !scroll.closest('.study-card.html-interaction-disabled')
+        && !scroll.closest('.study-card.image-occlusion-study-card')
+        && scroll.scrollHeight > scroll.clientHeight + 4;
       scroll.style.touchAction = isScrollable ? 'pan-y' : 'none';
     });
   }
@@ -1419,6 +1622,12 @@
   function populateCardElement(cardEl, cardData) {
     if (!cardEl) return;
     if (!cardData) {
+      cardEl.classList.remove('advanced-html-study-card');
+      cardEl.classList.remove('html-interaction-disabled');
+      cardEl.classList.remove('image-occlusion-study-card');
+      setAdvancedHtmlFaceGrip(cardEl.querySelector('.card-face.front'), false);
+      setAdvancedHtmlFaceGrip(cardEl.querySelector('.card-face.back'), false);
+      cardEl.querySelectorAll('.card-face').forEach(face => face.classList.remove('image-occlusion-card-face'));
       cardEl.classList.add('empty-card');
       return;
     }
@@ -1455,7 +1664,19 @@
 
     const frontHeader = cardEl.querySelector('.card-face.front .card-label');
     const backHeader = cardEl.querySelector('.card-face.back .card-label');
+    const frontFace = cardEl.querySelector('.card-face.front');
+    const backFace = cardEl.querySelector('.card-face.back');
     const advanced = isAdvancedHtmlCard(cardData);
+    const imageOcclusion = isImageOcclusionCard(cardData);
+    const htmlInteractionOff = htmlInteractionDisabled();
+    const showAdvancedGrip = advanced && !htmlInteractionOff;
+    cardEl.classList.toggle('advanced-html-study-card', showAdvancedGrip);
+    cardEl.classList.toggle('html-interaction-disabled', advanced && htmlInteractionOff);
+    cardEl.classList.toggle('image-occlusion-study-card', imageOcclusion);
+    frontFace?.classList.toggle('image-occlusion-card-face', imageOcclusion);
+    backFace?.classList.toggle('image-occlusion-card-face', imageOcclusion);
+    setAdvancedHtmlFaceGrip(frontFace, showAdvancedGrip);
+    setAdvancedHtmlFaceGrip(backFace, showAdvancedGrip);
     if (advanced) {
       frontLabel = 'CUSTOM';
       backLabel = 'ANSWER';
@@ -1530,6 +1751,7 @@
         card.classList.add('slot-prev');
       }
     });
+    requestAnimationFrame(() => refreshOcclusionLayers(els.stage));
 
     state.flipped = cards[activeCardIndex] ? cards[activeCardIndex].classList.contains('is-flipped') : false;
     updateRatingVisibility();
@@ -1551,6 +1773,7 @@
     }
     
     updateRoles();
+    requestAnimationFrame(() => refreshOcclusionLayers(els.stage));
     preloadNeighborImages();
     updateProgress();
   }
@@ -1582,6 +1805,25 @@
       queuedDrag = null;
       applyActiveDrag(next.x, next.y);
     });
+  }
+
+  function cancelPendingDrag() {
+    if (dragFrame) cancelAnimationFrame(dragFrame);
+    dragFrame = 0;
+    queuedDrag = null;
+  }
+
+  function resetDragVisuals(activeEl = cards[activeCardIndex], nextEl = cards[nextCardIndex]) {
+    cancelPendingDrag();
+    if (activeEl) {
+      activeEl.classList.remove('dragging');
+      activeEl.style.transform = '';
+      activeEl.style.opacity = '';
+    }
+    if (nextEl) {
+      nextEl.style.transform = '';
+      nextEl.style.opacity = '';
+    }
   }
 
   function updateProgress() {
@@ -1669,9 +1911,7 @@
     const token = ++transitionToken;
     playSound('next');
     if (els.prev) els.prev.disabled = true;
-    if (dragFrame) cancelAnimationFrame(dragFrame);
-    dragFrame = 0;
-    queuedDrag = null;
+    cancelPendingDrag();
     
     const activeEl = cards[activeCardIndex];
     const prevEl = cards[prevCardIndex];
@@ -1724,9 +1964,7 @@
     const activeEl = cards[activeCardIndex];
     const nextEl = cards[nextCardIndex];
     
-    if (dragFrame) cancelAnimationFrame(dragFrame);
-    dragFrame = 0;
-    queuedDrag = null;
+    cancelPendingDrag();
     
     if (activeEl) {
       activeEl.classList.remove('dragging');
@@ -1763,7 +2001,10 @@
   }
 
   async function handleRating(rating, exitVector = { x: -1, y: 0 }) {
-    if (ratingInFlight || animating || !state.srsMode || !state.flipped || state.complete || !window.srsManager?.isReady?.()) return;
+    if (ratingInFlight || animating || !state.srsMode || !state.flipped || state.complete || !window.srsManager?.isReady?.()) {
+      if (!animating) resetDragVisuals();
+      return;
+    }
     const current = activeCard();
     if (!current) return;
     ratingInFlight = true;
@@ -1778,6 +2019,7 @@
     } catch (error) {
       console.error('[mobile-study] SRS review failed:', error);
       showToast('Could not save review. Try again.');
+      resetDragVisuals();
       ratingInFlight = false;
       return;
     }
@@ -1824,7 +2066,7 @@
       srsReviewedCardIds.add(cardKey(current));
     }
 
-    if (current.noteId) {
+    if (current.noteId && String(current.noteType || '').toLowerCase() !== 'image-occlusion') {
       state.activeCards = state.activeCards.filter(card => (
         sameCard(card, updatedCard) || String(card.noteId || '') !== String(current.noteId)
       ));
@@ -1844,6 +2086,7 @@
 
     // Check if session is complete
     if (state.activeCards.length === 0) {
+      resetDragVisuals();
       await showCompletion();
       ratingInFlight = false;
       return;
@@ -1853,6 +2096,7 @@
     const nextCardDue = state.activeCards[0].srs?.due ? new Date(state.activeCards[0].srs.due).getTime() : 0;
     const nextDiffMs = nextCardDue - Date.now();
     if (nextDiffMs > 0) {
+      resetDragVisuals();
       els.ratingDock.classList.add('hidden');
       showLearningCardsDueSoonMessage(state.activeCards.length, nextCardDue);
       ratingInFlight = false;
@@ -1866,6 +2110,7 @@
     if (isSameCard) {
       // Flip back to the front
       const activeEl = cards[activeCardIndex];
+      resetDragVisuals(activeEl);
       setCardFlipped(activeEl, false);
       window.setTimeout(() => {
         populateCardElement(activeEl, newActiveCard);
@@ -2162,9 +2407,7 @@
       const activeCardEl = cards[activeCardIndex];
       const nextCardEl = cards[nextCardIndex];
       
-      if (activeCardEl) {
-        activeCardEl.classList.remove('dragging');
-      }
+      activeCardEl?.classList.remove('dragging');
       
       const dx = event.clientX - pointer.x;
       const dy = event.clientY - pointer.y;
@@ -2211,15 +2454,7 @@
           }
         }
         
-        // Reset card transform on release
-        if (activeCardEl) {
-          activeCardEl.style.transform = '';
-          activeCardEl.style.opacity = '';
-        }
-        if (nextCardEl) {
-          nextCardEl.style.transform = '';
-          nextCardEl.style.opacity = '';
-        }
+        resetDragVisuals(activeCardEl, nextCardEl);
         return;
       }
 
@@ -2232,14 +2467,7 @@
         return;
       }
 
-      if (activeCardEl) {
-        activeCardEl.style.transform = '';
-        activeCardEl.style.opacity = '';
-      }
-      if (nextCardEl) {
-        nextCardEl.style.transform = '';
-        nextCardEl.style.opacity = '';
-      }
+      resetDragVisuals(activeCardEl, nextCardEl);
 
       if (wasTap) {
         flipCard();
@@ -2253,15 +2481,7 @@
       const activeCardEl = cards[activeCardIndex];
       const nextCardEl = cards[nextCardIndex];
       pointer = null;
-      if (activeCardEl) {
-        activeCardEl.classList.remove('dragging');
-        activeCardEl.style.transform = '';
-        activeCardEl.style.opacity = '';
-      }
-      if (nextCardEl) {
-        nextCardEl.style.transform = '';
-        nextCardEl.style.opacity = '';
-      }
+      resetDragVisuals(activeCardEl, nextCardEl);
     });
   }
 
@@ -2685,8 +2905,7 @@
       if (mediaZoom) {
         event.preventDefault();
         event.stopPropagation();
-        els.zoomedImage.src = safeMediaSrc(mediaZoom.dataset.zoomSrc) || '';
-        if (els.zoomedImage.src) els.imageModal.classList.remove('hidden');
+        openImageModal(mediaZoom.dataset.zoomSrc);
         return;
       }
       const zoom = event.target.closest('[data-image-side]');
@@ -2697,13 +2916,12 @@
       const side = zoom.dataset.imageSide;
       const src = safeMediaSrc(side === 'term' ? elements.termImage.src : elements.definitionImage.src);
       if (!src) return;
-      els.zoomedImage.src = src;
-      els.imageModal.classList.remove('hidden');
+      openImageModal(src, { card: activeCard(), side });
     });
 
-    els.imageClose.addEventListener('click', () => els.imageModal.classList.add('hidden'));
+    els.imageClose.addEventListener('click', closeImageModal);
     els.imageModal.addEventListener('click', event => {
-      if (event.target === els.imageModal) els.imageModal.classList.add('hidden');
+      if (event.target === els.imageModal) closeImageModal();
     });
 
     document.addEventListener('keydown', event => {
@@ -2716,7 +2934,7 @@
         return;
       }
       if (event.key === 'Escape') {
-        els.imageModal.classList.add('hidden');
+        closeImageModal();
         return;
       }
       if (event.key === ' ' || event.key === 'Enter') {
