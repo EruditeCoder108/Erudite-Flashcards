@@ -2507,8 +2507,9 @@
         data-occlusion-mask-id="${escapeAttr(mask.id)}"
         style="left:${mask.x * 100}%;top:${mask.y * 100}%;width:${mask.w * 100}%;height:${mask.h * 100}%"
         aria-label="Mask ${index + 1}">
-        <i class="occlusion-move-handle" data-occlusion-move="1" aria-hidden="true"></i>
         <span>${index + 1}</span>
+        <div class="occlusion-move-connector" aria-hidden="true"></div>
+        <i class="occlusion-move-handle" data-occlusion-move="1" aria-hidden="true"></i>
         <i class="occlusion-resize-handle" data-occlusion-resize="1" aria-hidden="true"></i>
       </button>
     `).join('');
@@ -2597,8 +2598,6 @@
     draft.masks.push(next);
     state.occlusionEditor.selectedMaskId = next.id;
     renderOcclusionEditor();
-    selectors.occlusionAnswer?.focus();
-    selectors.occlusionAnswer?.select?.();
   }
 
   function deleteSelectedOcclusionMask() {
