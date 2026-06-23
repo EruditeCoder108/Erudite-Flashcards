@@ -181,6 +181,10 @@
               <i class="fas fa-file-import"></i>
               Import file
             </button>
+            <button type="button" class="secondary-action compact-action" data-action="open-ai-deck-maker">
+              <i class="fas fa-wand-magic-sparkles"></i>
+              Use AI with PDF
+            </button>
           </div>
 
           <div class="mobile-creator-cards" id="mobile-creator-cards"></div>
@@ -281,6 +285,11 @@
             </span>
             <span class="switch" id="sound-switch"><span></span></span>
           </button>
+          <button type="button" class="settings-row highlighted" data-action="import-help">
+            <span class="settings-icon"><i class="fas fa-circle-question"></i></span>
+            <span><strong>Import format & AI prompt</strong><small>TXT, CSV, TSV, JSON, ZIP packages, and AI prompts</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
           <button type="button" class="settings-row" data-action="export-backup">
             <span class="settings-icon"><i class="fas fa-file-export"></i></span>
             <span><strong>Export Backup</strong><small>Share a full local JSON backup</small></span>
@@ -299,11 +308,6 @@
           <button type="button" class="settings-row" data-action="paste-import">
             <span class="settings-icon"><i class="fas fa-clipboard"></i></span>
             <span><strong>Paste Import</strong><small>Import decks from clipboard text</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
-          <button type="button" class="settings-row" data-action="import-help">
-            <span class="settings-icon"><i class="fas fa-circle-question"></i></span>
-            <span><strong>Help & Import Format</strong><small>TXT, CSV, TSV, JSON, ZIP packages, and AI prompts</small></span>
             <i class="fas fa-chevron-right"></i>
           </button>
           <button type="button" class="settings-row" data-action="select-theme">
@@ -756,6 +760,15 @@
           <i class="fas fa-info-circle"></i> Use the default separator (<code>;</code>) between each word and its meaning, and (<code>@</code>) between different cards. You can customize these separators above if needed.
         </p>
         
+        <div style="text-align: center; margin: 0.4rem 0 0.8rem 0; display: flex; flex-direction: column; gap: 0.4rem; align-items: center;">
+          <button type="button" class="text-button" data-action="open-ai-deck-maker" style="font-size: 0.82rem; text-decoration: underline; color: var(--primary-2); font-weight: 600; background: transparent; border: none; cursor: pointer; padding: 0.25rem;">
+            Need to create a deck? Generate AI instructions
+          </button>
+          <button type="button" class="text-button" id="paste-import-open-converter-btn" style="font-size: 0.82rem; text-decoration: underline; color: var(--amber); font-weight: 600; background: transparent; border: none; cursor: pointer; padding: 0.25rem;">
+            AI gave text instead of ZIP? Convert it here
+          </button>
+        </div>
+        
         <!-- Live Preview Container -->
         <div class="mobile-modal-field" id="mobile-paste-preview-container" style="margin-top: 0.4rem; margin-bottom: 0.4rem;">
           <label style="font-size: 0.78rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em; display: flex; justify-content: space-between; align-items: center;">
@@ -778,7 +791,7 @@
   <!-- Import Help Modal -->
   <div class="mobile-modal-overlay hidden" id="import-help-overlay" role="dialog" aria-modal="true" aria-labelledby="import-help-title">
     <div class="mobile-modal-card mobile-modal-card--wide import-help-card">
-      <h3 id="import-help-title"><i class="fas fa-circle-question"></i> Help & Import Format</h3>
+      <h3 id="import-help-title"><i class="fas fa-circle-question"></i> Import format & AI prompt</h3>
       
       <!-- Tab Header Navigation -->
       <div class="modal-tabs">
@@ -904,37 +917,264 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
 }</code></pre>
             </div>
             <p>Keep media local to the package. Use paths like <code>media/file.webp</code>; avoid external URLs and giant Base64 strings.</p>
+            <p style="margin-top: 0.5rem; text-align: center;">
+              <button type="button" class="text-button" id="help-formats-open-converter-btn" style="font-size: 0.82rem; text-decoration: underline; color: var(--amber); font-weight: 600; background: transparent; border: none; cursor: pointer; padding: 0.25rem;">
+                AI gave text instead of ZIP? Convert to ZIP here
+              </button>
+            </p>
           </section>
         </div>
 
         <!-- Tab 2: AI Generators -->
         <div class="modal-tab-content" id="help-tab-ai">
-          <section>
-            <h4>AI Prompts</h4>
-            <p>Copy these prompts and paste them in ChatGPT, Gemini, or Claude to quickly generate formatted content for Erudite.</p>
-          </section>
-          <div class="ai-prompt-card">
-            <h4><i class="fas fa-file-code"></i> JSON Deck Generator</h4>
-            <p>Generates a complete deck import file (JSON format) with support for basic, cloze, occlusion, HTML cards, tags, and reverses.</p>
-            <button type="button" class="ai-prompt-btn" id="import-help-copy">
-              <i class="fas fa-wand-magic-sparkles"></i> Copy JSON Prompt
-            </button>
+          <div class="prompt-builder-header">
+            <h4><i class="fas fa-wand-magic-sparkles"></i> AI Deck Maker</h4>
+            <p style="font-size: 0.78rem; color: var(--muted); margin: 0 0 0.5rem 0;">Turn any chapter PDF into an importable Erudite flashcard ZIP deck using ChatGPT, Gemini, or Claude.</p>
           </div>
-          
-          <div class="ai-prompt-card package-card">
-            <h4><i class="fas fa-file-zipper"></i> ZIP Package Generator</h4>
-            <p>Generates a structured ZIP package containing media files (images/audio) and a reference mapping <code>deck.json</code> file.</p>
-            <button type="button" class="ai-prompt-btn" id="import-package-help-copy">
-              <i class="fas fa-wand-magic-sparkles"></i> Copy Package Prompt
-            </button>
+
+          <!-- Output format selector -->
+          <div class="prompt-builder-section">
+            <span class="prompt-section-label">Output Format</span>
+            <div class="segmented-control">
+              <button type="button" class="segment-btn active" data-pb-opt="outputFormat" data-value="zip">ZIP Package</button>
+              <button type="button" class="segment-btn" data-pb-opt="outputFormat" data-value="json">JSON Deck</button>
+              <button type="button" class="segment-btn" data-pb-opt="outputFormat" data-value="html">Single HTML Card</button>
+            </div>
           </div>
-          
-          <div class="ai-prompt-card html-card">
-            <h4><i class="fas fa-code"></i> HTML & CSS Card Creator</h4>
-            <p>Generates a single custom card with styled HTML layout, responsive CSS canvas, math formula rendering, and no JavaScript.</p>
-            <button type="button" class="ai-prompt-btn" id="import-html-help-copy">
-              <i class="fas fa-wand-magic-sparkles"></i> Copy HTML Prompt
+
+          <!-- Study Goal Presets -->
+          <div class="prompt-builder-section">
+            <span class="prompt-section-label">Study Goal Preset</span>
+            <div class="presets-grid">
+              <button type="button" class="preset-card active" data-pb-preset="revision">
+                <strong>Quick Revision</strong>
+                <small>Fast, compact cards for a studied chapter</small>
+              </button>
+              <button type="button" class="preset-card" data-pb-preset="beginner">
+                <strong>Beginner</strong>
+                <small>Simple cards that teach the chapter clearly</small>
+              </button>
+              <button type="button" class="preset-card" data-pb-preset="competitive">
+                <strong>Competitive Exam</strong>
+                <small>Dense, high-yield facts & exam recall</small>
+              </button>
+              <button type="button" class="preset-card" data-pb-preset="mastery">
+                <strong>Deep Mastery</strong>
+                <small>Comprehensive conceptual & edge-case cards</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="prompt-builder-row">
+            <!-- Already Studied? -->
+            <div class="prompt-builder-field">
+              <span class="prompt-section-label">Already studied?</span>
+              <div class="segmented-control">
+                <button type="button" class="segment-btn active" data-pb-opt="studiedState" data-value="yes">Yes</button>
+                <button type="button" class="segment-btn" data-pb-opt="studiedState" data-value="somewhat">Somewhat</button>
+                <button type="button" class="segment-btn" data-pb-opt="studiedState" data-value="no">No</button>
+              </div>
+            </div>
+            <!-- Media Mode -->
+            <div class="prompt-builder-field">
+              <span class="prompt-section-label">Images & Diagrams</span>
+              <div class="segmented-control">
+                <button type="button" class="segment-btn active" data-pb-opt="mediaMode" data-value="important">Important</button>
+                <button type="button" class="segment-btn" data-pb-opt="mediaMode" data-value="full">Full Visual</button>
+                <button type="button" class="segment-btn" data-pb-opt="mediaMode" data-value="none">Text Only</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gemini Media warning tip box -->
+          <div id="pb-gemini-media-warning" class="pb-tip-box hidden" style="background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.25); color: #f87171; margin-top: -0.4rem; margin-bottom: 0.5rem; font-size: 0.72rem;">
+            <i class="fas fa-circle-exclamation"></i> Gemini may not create a downloadable ZIP with media files. For full visual decks with extracted images, ChatGPT or Claude is recommended.
+          </div>
+
+          <!-- Card Count Slider -->
+          <div class="prompt-builder-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.15rem;">
+              <span class="prompt-section-label">Card Count / Detail Level</span>
+              <span id="pb-detail-label" style="font-size: 0.72rem; font-weight: 700; color: var(--primary-2);">Standard (~80–160 cards)</span>
+            </div>
+            <input type="range" id="pb-detail-slider" min="1" max="4" step="1" value="2" style="width: 100%; margin: 0.35rem 0;">
+          </div>
+
+          <!-- AI Provider Select -->
+          <div class="prompt-builder-section">
+            <span class="prompt-section-label">Choose AI Provider</span>
+            <div class="provider-cards-grid" style="grid-template-columns: 1fr; gap: 0.5rem;">
+              <button type="button" class="provider-card active" data-pb-provider="chatgpt" style="min-height: auto; flex-direction: row; justify-content: flex-start; text-align: left; padding: 0.75rem 1rem; width: 100%;">
+                <div style="display: flex; flex-direction: column; flex: 1;">
+                  <div style="display: flex; align-items: center; gap: 0.4rem;">
+                    <strong style="font-size: 0.84rem; color: var(--text);">ChatGPT</strong>
+                    <span style="font-size: 0.6rem; font-weight: 800; background: var(--surface-3); border: 1px solid var(--line); color: var(--green); padding: 0.1rem 0.35rem; border-radius: 4px; text-transform: uppercase;">Recommended</span>
+                  </div>
+                  <small style="display: block; font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; font-weight: 500; line-height: 1.3;"><strong>Best for full ZIP decks with images.</strong> Recommended for Erudite ZIP packages. Usually works well for creating deck.json, media files, images, and a downloadable ZIP.</small>
+                </div>
+              </button>
+              <button type="button" class="provider-card" data-pb-provider="claude" style="min-height: auto; flex-direction: row; justify-content: flex-start; text-align: left; padding: 0.75rem 1rem; width: 100%;">
+                <div style="display: flex; flex-direction: column; flex: 1;">
+                  <div style="display: flex; align-items: center; gap: 0.4rem;">
+                    <strong style="font-size: 0.84rem; color: var(--text);">Claude</strong>
+                    <span style="font-size: 0.6rem; font-weight: 800; background: var(--surface-3); border: 1px solid var(--line); color: var(--green); padding: 0.1rem 0.35rem; border-radius: 4px; text-transform: uppercase;">Recommended</span>
+                  </div>
+                  <small style="display: block; font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; font-weight: 500; line-height: 1.3;"><strong>Good for careful PDF reading and ZIP/artifact output.</strong> Good for long chapters and structured extraction. If Claude cannot attach a ZIP, ask it for package-source output.</small>
+                </div>
+              </button>
+              <button type="button" class="provider-card" data-pb-provider="gemini" style="min-height: auto; flex-direction: row; justify-content: flex-start; text-align: left; padding: 0.75rem 1rem; width: 100%;">
+                <div style="display: flex; flex-direction: column; flex: 1;">
+                  <div style="display: flex; align-items: center; gap: 0.4rem;">
+                    <strong style="font-size: 0.84rem; color: var(--text);">Gemini</strong>
+                    <span style="font-size: 0.6rem; font-weight: 800; background: var(--surface-3); border: 1px solid var(--line); color: var(--amber); padding: 0.1rem 0.35rem; border-radius: 4px; text-transform: uppercase;">Needs extra step</span>
+                  </div>
+                  <small style="display: block; font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; font-weight: 500; line-height: 1.3;"><strong>Good for PDF understanding, but ZIP output may need an extra step.</strong> Gemini can help generate deck content, but may not create a downloadable ZIP directly. Use Gemini Package Source mode, then let Erudite build the ZIP locally.</small>
+                </div>
+              </button>
+              <button type="button" class="provider-card" data-pb-provider="other" style="min-height: auto; flex-direction: row; justify-content: flex-start; text-align: left; padding: 0.75rem 1rem; width: 100%;">
+                <div style="display: flex; flex-direction: column; flex: 1;">
+                  <strong style="font-size: 0.84rem; color: var(--text);">Other AI</strong>
+                  <small style="display: block; font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; font-weight: 500; line-height: 1.3;">Compatibility depends on whether this AI supports PDF upload and file generation.</small>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Advanced Options (Collapsible) -->
+          <details class="advanced-details">
+            <summary class="advanced-summary">
+              <span>Advanced options</span>
+              <i class="fas fa-chevron-down"></i>
+            </summary>
+            <div class="advanced-content">
+              <!-- Exam Target -->
+              <div class="advanced-field">
+                <label for="pb-exam-target">Exam Target</label>
+                <select id="pb-exam-target" class="pb-select">
+                  <option value="school">School / Board Exam</option>
+                  <option value="neet">NEET (Medical)</option>
+                  <option value="jee">JEE (Engineering)</option>
+                  <option value="ssc">SSC (General/Govt)</option>
+                  <option value="upsc">UPSC (Conceptual/Civil)</option>
+                  <option value="custom">Custom Goal</option>
+                </select>
+              </div>
+
+              <!-- Custom Exam Target Input (shown when Custom is selected) -->
+              <div class="advanced-field hidden" id="pb-custom-exam-wrapper">
+                <label for="pb-custom-exam">Custom Exam Description</label>
+                <input type="text" id="pb-custom-exam" class="pb-input" placeholder="e.g. TOEFL English test, AP Physics, History Quiz">
+              </div>
+
+              <!-- Answer Style -->
+              <div class="advanced-field">
+                <label for="pb-answer-style">Answer Style</label>
+                <select id="pb-answer-style" class="pb-select">
+                  <option value="compact">Compact (bullets or single sentence)</option>
+                  <option value="keywords">Keywords Only (minimal text)</option>
+                  <option value="explained">Explained (concise logic included)</option>
+                  <option value="memory">Memory Aids (mnemonics & hooks)</option>
+                </select>
+              </div>
+
+              <!-- Card Type Mix -->
+              <div class="advanced-field">
+                <label for="pb-card-mix">Allowed Card Types</label>
+                <select id="pb-card-mix" class="pb-select">
+                  <option value="balanced">Balanced (basic, cloze, HTML, occlusion)</option>
+                  <option value="simple">Simple (basic + cloze mainly)</option>
+                  <option value="visual">Visual-first (heavy HTML & occlusion)</option>
+                  <option value="exam-drill">Exam Drill (traps, Q/A, comparisons)</option>
+                </select>
+              </div>
+
+              <!-- Language -->
+              <div class="advanced-field">
+                <label for="pb-language">Language</label>
+                <select id="pb-language" class="pb-select">
+                  <option value="same">Same as PDF document</option>
+                  <option value="english">English</option>
+                  <option value="hindi">Hindi</option>
+                  <option value="hinglish">Hinglish (Hindi written in English alphabets)</option>
+                  <option value="custom">Custom Language</option>
+                </select>
+              </div>
+
+              <!-- Custom Language Input -->
+              <div class="advanced-field hidden" id="pb-custom-language-wrapper">
+                <label for="pb-custom-language">Specify Language</label>
+                <input type="text" id="pb-custom-language" class="pb-input" placeholder="e.g. Spanish, German, French">
+              </div>
+
+              <!-- Deck/Class Name -->
+              <div class="advanced-field">
+                <label for="pb-deck-name">Deck Name (Default)</label>
+                <input type="text" id="pb-deck-name" class="pb-input" placeholder="Deck name">
+              </div>
+              <div class="advanced-field">
+                <label for="pb-class-name">Class Name (Default)</label>
+                <input type="text" id="pb-class-name" class="pb-input" placeholder="e.g. Class 10 Science">
+              </div>
+
+              <!-- Avoid Lazy Cards checkbox -->
+              <label class="pb-checkbox-label">
+                <input type="checkbox" id="pb-avoid-lazy" checked>
+                <span>Avoid lazy cards (no vague cards, atomic Q/A, compressed)</span>
+              </label>
+            </div>
+          </details>
+
+          <!-- Generated Prompt Box -->
+          <div class="generated-prompt-box">
+            <div class="pb-box-header">
+              <span class="pb-badge" id="pb-summary-badge">Mode: Revision</span>
+              <button type="button" class="pb-toggle-preview-btn" id="pb-toggle-preview">Show Prompt Text</button>
+            </div>
+            
+            <div class="pb-preview-text-container hidden" id="pb-preview-text-container">
+              <textarea id="pb-prompt-textarea" readonly style="width: 100%; min-height: 120px; font-family: monospace; font-size: 0.72rem; background: var(--bg-2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 0.4rem; resize: vertical; outline: none;"></textarea>
+            </div>
+
+            <!-- Provider Tips Box -->
+            <div class="pb-tip-box" id="pb-provider-tip">
+              <strong>ChatGPT:</strong> Recommended for most users. Upload your PDF, paste the instructions, and ask ChatGPT to create the ZIP file.
+            </div>
+
+            <!-- Primary Actions -->
+            <button type="button" class="copy-prompt-action-btn" id="pb-copy-prompt-btn">
+              <i class="fas fa-wand-magic-sparkles"></i> Copy AI Instructions
             </button>
+
+            <!-- Gemini Next Step Box -->
+            <div id="pb-gemini-next-step" class="pb-tip-box hidden" style="background: rgba(247, 184, 75, 0.08); border-color: rgba(247, 184, 75, 0.25); color: var(--amber); margin-top: 0.5rem; font-size: 0.72rem;">
+              <strong>Next step:</strong> After Gemini replies, copy its output and paste it into Erudite’s “Build ZIP from AI Output” tool.
+            </div>
+
+            <!-- Handoff Action Links -->
+            <div class="pb-handoff-row">
+              <button type="button" class="handoff-btn" data-pb-link="chatgpt">
+                ChatGPT
+              </button>
+              <button type="button" class="handoff-btn" data-pb-link="gemini">
+                Gemini
+              </button>
+              <button type="button" class="handoff-btn" data-pb-link="claude">
+                Claude
+              </button>
+            </div>
+
+            <!-- Recovery & Handoff help -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; border-top: 1px solid var(--line); padding-top: 0.5rem;">
+              <button type="button" class="pb-convert-trigger-btn" id="pb-open-converter-btn" style="background: rgba(247, 184, 75, 0.08); border: 1px solid rgba(247, 184, 75, 0.25); color: var(--amber); font-size: 0.72rem; font-weight: 700; padding: 0.45rem; border-radius: 8px; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.35rem; margin-top: 0.25rem;">
+                <i class="fas fa-file-import"></i> AI gave Package Source instead of ZIP? Build ZIP locally
+              </button>
+              <p style="font-size: 0.72rem; color: var(--muted); margin: 0; line-height: 1.35; display: none;">
+                <i class="fas fa-info-circle"></i> Got the ZIP from AI? Go back to the creator and tap <strong>Import file</strong>.
+              </p>
+              <button type="button" class="pb-retry-btn" id="pb-retry-btn">
+                <i class="fas fa-triangle-exclamation"></i> AI gave wrong output?
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1299,6 +1539,96 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
       </div>
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="theme-select-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Error Modal -->
+  <div class="mobile-modal-overlay hidden" id="import-error-overlay" role="dialog" aria-modal="true" aria-labelledby="import-error-title">
+    <div class="mobile-modal-card">
+      <h3 id="import-error-title" style="color: var(--red);"><i class="fas fa-triangle-exclamation"></i> Import Failed</h3>
+      <div class="mobile-modal-scroll-content">
+        <p id="import-error-msg" style="font-size: 0.88rem; line-height: 1.5; color: var(--text); margin-bottom: 0.8rem;"></p>
+        <p style="font-size: 0.78rem; line-height: 1.4; color: var(--muted);">
+          Erudite cannot process this ZIP package. You can copy the recovery instructions below, paste them in your AI chat, and ask it to correct the output.
+        </p>
+      </div>
+      <div class="mobile-modal-actions" style="flex-direction: column; gap: 0.5rem; width: 100%;">
+        <button type="button" class="mobile-modal-btn confirm" id="import-error-open-converter" style="width: 100%; background: var(--amber); border-color: var(--amber); color: #111;">
+          <i class="fas fa-file-import"></i> Convert AI Text to ZIP
+        </button>
+        <button type="button" class="mobile-modal-btn confirm" id="import-error-copy-retry" style="width: 100%;">
+          <i class="fas fa-copy"></i> Copy Retry Message
+        </button>
+        <button type="button" class="mobile-modal-btn cancel" id="import-error-close" style="width: 100%;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Privacy Notice Modal -->
+  <div class="mobile-modal-overlay hidden" id="ai-privacy-overlay" role="dialog" aria-modal="true" aria-labelledby="ai-privacy-title">
+    <div class="mobile-modal-card">
+      <h3 id="ai-privacy-title"><i class="fas fa-shield-halved"></i> Before you continue</h3>
+      <div class="mobile-modal-scroll-content">
+        <p style="font-size: 0.88rem; line-height: 1.5; color: var(--text); margin: 0 0 1rem 0;">
+          You are about to open an external AI provider to process your document.
+        </p>
+        <p style="font-size: 0.82rem; line-height: 1.45; color: var(--muted); margin: 0 0 1rem 0;">
+          Please note that their privacy, storage, and model training settings depend on your account and plan with that provider. Avoid uploading highly private or personal documents, and only upload study materials you have the right to use.
+        </p>
+        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--muted); cursor: pointer; user-select: none; margin-top: 0.5rem;">
+          <input type="checkbox" id="ai-privacy-dont-show-checkbox" style="width: 1rem; height: 1rem; cursor: pointer;">
+          <span>Do not show this notice again</span>
+        </label>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="ai-privacy-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="ai-privacy-continue">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Convert AI Text to ZIP Modal -->
+  <div class="mobile-modal-overlay hidden" id="pb-convert-text-overlay" role="dialog" aria-modal="true" aria-labelledby="pb-convert-text-title">
+    <div class="mobile-modal-card mobile-modal-card--wide">
+      <h3 id="pb-convert-text-title"><i class="fas fa-file-import"></i> Build ZIP from AI Output</h3>
+      <div class="mobile-modal-scroll-content">
+        <p style="font-size: 0.82rem; line-height: 1.45; color: var(--muted); margin: 0 0 0.8rem 0;">
+          Paste the structured output (with the <code>ERUDITE_PACKAGE_SOURCE_V1</code> marker or JSON block) returned by Gemini or Claude. Erudite will convert it into a ZIP deck locally.
+        </p>
+        <div class="mobile-modal-field">
+          <textarea id="pb-convert-textarea" class="mobile-modal-textarea" rows="10" placeholder="Paste ERUDITE_PACKAGE_SOURCE_V1 text here..."></textarea>
+        </div>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="pb-convert-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="pb-convert-confirm">Build &amp; Import</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gemini Media Warning Modal -->
+  <div class="mobile-modal-overlay hidden" id="pb-gemini-media-warning-modal" role="dialog" aria-modal="true" aria-labelledby="pb-gemini-media-warning-title">
+    <div class="mobile-modal-card">
+      <h3 id="pb-gemini-media-warning-title" style="color: var(--amber);"><i class="fas fa-circle-exclamation"></i> Gemini Media Warning</h3>
+      <div class="mobile-modal-scroll-content">
+        <p style="font-size: 0.85rem; line-height: 1.45; color: var(--text); margin-bottom: 0.8rem;">
+          Gemini may not create a downloadable ZIP with media files. For full visual decks with extracted images, ChatGPT or Claude is recommended.
+        </p>
+      </div>
+      <div class="mobile-modal-actions" style="flex-direction: column; gap: 0.5rem; width: 100%;">
+        <button type="button" class="mobile-modal-btn confirm" id="pb-warning-switch-chatgpt" style="width: 100%; background: var(--primary); border-color: var(--primary); color: #fff;">
+          Switch to ChatGPT
+        </button>
+        <button type="button" class="mobile-modal-btn confirm" id="pb-warning-switch-claude" style="width: 100%; background: var(--surface-3); border-color: var(--line); color: var(--text);">
+          Switch to Claude
+        </button>
+        <button type="button" class="mobile-modal-btn confirm" id="pb-warning-continue-gemini" style="width: 100%; background: var(--surface-3); border-color: var(--line); color: var(--text);">
+          Continue with Gemini
+        </button>
+        <button type="button" class="mobile-modal-btn cancel" id="pb-warning-continue-html-only" style="width: 100%;">
+          Continue with text/HTML-only visuals
+        </button>
       </div>
     </div>
   </div>

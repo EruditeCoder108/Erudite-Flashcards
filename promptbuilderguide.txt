@@ -1,0 +1,1211 @@
+# Erudite Feature Spec: AI Deck Prompt Builder
+
+## 1. Feature Goal
+
+Build a new feature in Erudite that helps students generate high-quality flashcard decks from PDFs using external AI tools such as ChatGPT, Gemini, or Claude.
+
+The app itself should not call any AI API. The feature should generate a carefully structured prompt/instruction text. The user copies this prompt, uploads their PDF to an external AI, asks the AI to create an Erudite-compatible ZIP package, downloads the ZIP, and imports it into Erudite.
+
+The goal is to make the workflow feel simple:
+
+Choose study goal → copy AI instructions → open AI → upload PDF → get ZIP → import into Erudite.
+
+The feature should reduce prompt-engineering complexity for students while preserving high-quality deck generation.
+
+## 2. Core Product Principle
+
+Do not call this feature “Prompt Builder” prominently in the user-facing UI. Most students do not think in terms of prompts.
+
+Use user-friendly names such as:
+
+AI Deck Maker
+Create Deck from PDF
+Deck Instructions
+AI Instructions
+Generate with AI
+
+Internally, the module can be called `PromptBuilder`.
+
+## 3. Main User Flow
+
+The user flow should be:
+
+1. User opens Erudite.
+2. User taps “Create Deck from PDF”.
+3. User selects a study goal.
+4. User chooses how detailed the deck should be.
+5. User chooses whether images/diagrams should be used.
+6. App generates AI instructions.
+7. User taps “Copy Instructions”.
+8. Optional button opens ChatGPT/Gemini/Claude.
+9. User uploads PDF to external AI.
+10. User pastes instructions.
+11. AI creates a `.zip` package.
+12. User downloads the ZIP.
+13. User imports ZIP into Erudite.
+14. App validates package and imports deck.
+
+## 4. Entry Points
+
+Add this feature in these places:
+
+Home screen:
+
+* Button: “Create Deck from PDF”
+
+Import screen:
+
+* Secondary action: “Need to create a deck? Generate AI instructions”
+
+Empty deck/library state:
+
+* CTA: “Turn a PDF into flashcards”
+
+Deck creation screen:
+
+* Option card: “Use AI with PDF”
+
+## 5. Main Screens
+
+### Screen 1: Create Deck from PDF
+
+Title:
+Create Deck from PDF
+
+Subtitle:
+Use ChatGPT, Gemini, or Claude to turn your PDF into an Erudite ZIP deck.
+
+Primary UI:
+
+* Study goal preset cards
+* “Already studied this chapter?” toggle
+* Detail level selector
+* Media mode selector
+* AI provider selector
+* Generate Instructions button
+
+Keep this screen simple. Do not show all advanced options by default.
+
+## 6. Study Goal Presets
+
+Show 4 main presets.
+
+### Preset 1: Beginner
+
+Label:
+Beginner
+
+Description:
+Simple cards that teach the chapter clearly.
+
+Use when:
+The student has not fully understood the chapter.
+
+Default settings:
+
+* assumesStudied: false
+* detailLevel: standard
+* answerStyle: explained
+* mediaMode: important
+* cardMix: simple-balanced
+* avoidBasics: false
+* trapFocus: low
+
+### Preset 2: Quick Revision
+
+Label:
+Quick Revision
+
+Description:
+Fast, compact cards for a chapter already studied.
+
+Use when:
+The student has read the chapter and wants revision.
+
+Default settings:
+
+* assumesStudied: true
+* detailLevel: standard
+* answerStyle: compact
+* mediaMode: important
+* cardMix: balanced
+* avoidBasics: true
+* trapFocus: medium
+
+### Preset 3: Competitive Exam
+
+Label:
+Competitive Exam
+
+Description:
+Dense, high-yield cards for exam recall.
+
+Use when:
+The student is preparing for NEET, JEE, SSC, UPSC, etc.
+
+Default settings:
+
+* assumesStudied: true
+* detailLevel: detailed
+* answerStyle: concise
+* mediaMode: important
+* cardMix: exam-balanced
+* avoidBasics: true
+* trapFocus: high
+
+### Preset 4: Deep Mastery
+
+Label:
+Deep Mastery
+
+Description:
+Detailed cards for strong long-term understanding.
+
+Use when:
+The student wants full chapter mastery, not just fast revision.
+
+Default settings:
+
+* assumesStudied: mixed
+* detailLevel: detailed
+* answerStyle: explained
+* mediaMode: full-visual
+* cardMix: rich-balanced
+* avoidBasics: medium
+* trapFocus: medium
+
+## 7. Required Settings
+
+These should be visible by default.
+
+### 7.1 Already Studied?
+
+Label:
+Have you already studied this chapter?
+
+Options:
+
+* Yes, I want revision
+* No, I want to learn it
+* Somewhat
+
+This setting heavily changes the prompt.
+
+If “Yes”:
+
+* Tell AI to avoid obvious basics.
+* Use compressed answers.
+* Focus on high-yield recall.
+* Include traps, comparisons, exceptions.
+
+If “No”:
+
+* Tell AI to explain briefly.
+* Avoid overly dense cards.
+* Build conceptual foundation.
+* Still keep cards atomic.
+
+If “Somewhat”:
+
+* Use balanced revision with short explanations.
+
+### 7.2 Detail Level
+
+Label:
+How detailed should the deck be?
+
+Options:
+
+* Light
+* Standard
+* Detailed
+* Exhaustive
+
+Expected card count guidance:
+
+* Light: 40–80 cards per chapter
+* Standard: 80–160 cards per chapter
+* Detailed: 160–300 cards per chapter
+* Exhaustive: 300–600 cards per chapter, but never above 999 cards
+
+Note:
+The prompt should say these are approximate ranges, not strict limits.
+
+### 7.3 Media Mode
+
+Label:
+Use images and diagrams?
+
+Options:
+
+* Text only
+* Important images only
+* Full visual deck
+
+Text only:
+
+* Use no media unless absolutely necessary.
+* Basic and cloze cards only unless HTML is useful without media.
+
+Important images only:
+
+* Use images for diagrams, maps, tables, charts, apparatus, timelines, labelled figures, and formulas where genuinely useful.
+* Use image occlusion for labelled diagrams.
+
+Full visual deck:
+
+* Use extracted figures, image occlusion, timelines, flowcharts, comparison HTML cards, and visual summaries wherever useful.
+* Do not use visuals for decoration.
+
+## 8. Advanced Settings
+
+Advanced settings should be hidden inside an expandable section named “Advanced options”.
+
+### 8.1 Exam Target
+
+Options:
+
+* School / Board
+* NEET
+* JEE
+* SSC
+* UPSC
+* Custom
+
+Default:
+School / Board unless user selected Competitive Exam, then ask user to select target.
+
+Behaviour:
+
+School / Board:
+
+* Textbook-first.
+* Definitions, diagrams, examples, likely written-answer points.
+
+NEET:
+
+* NCERT line-level precision.
+* Biology diagrams, labels, examples, exceptions, processes.
+
+JEE:
+
+* Concepts, formula conditions, reasoning triggers, applications.
+* Avoid decorative cards.
+
+SSC:
+
+* Dense factual recall.
+* Definitions, lists, dates, chronology, comparisons, traps.
+
+UPSC:
+
+* Conceptual framing.
+* Definitions, examples, interlinkages.
+* Useful for prelims and mains-style recall.
+
+Custom:
+
+* Show a text field: “Describe your exam or goal”.
+
+### 8.2 Answer Style
+
+Options:
+
+* Keywords only
+* Compact
+* Explained
+* Memory aids
+
+Keywords only:
+Very short answers. Useful for revision.
+
+Compact:
+One sentence or short bullets.
+
+Explained:
+Short explanation included.
+
+Memory aids:
+Include mnemonics, hooks, examples only when genuinely useful.
+
+### 8.3 Card Type Mix
+
+Options:
+
+* Simple
+* Balanced
+* Visual
+* Exam Drill
+
+Simple:
+
+* Basic + cloze mainly.
+* Minimal HTML.
+* Minimal image occlusion.
+
+Balanced:
+
+* Basic, cloze, reverse where useful.
+* Some image occlusion and advanced HTML.
+
+Visual:
+
+* More image occlusion.
+* More diagrams.
+* More advanced HTML summary cards.
+
+Exam Drill:
+
+* Short Q/A.
+* Cloze for facts.
+* Reverse for definitions.
+* Trap/comparison cards.
+* Minimal decorative HTML.
+
+### 8.4 Language
+
+Options:
+
+* Same as PDF
+* English
+* Hindi
+* Hinglish
+* Custom
+
+Default:
+Same as PDF
+
+Prompt behaviour:
+If the user selects English but PDF is Hindi, ask AI to create English cards from the source.
+If Hinglish, use simple student-friendly Hinglish but keep technical terms accurate.
+
+### 8.5 Card Count Control
+
+Slider:
+Fewer high-yield cards ↔ More complete coverage
+
+Map internally:
+
+* 1 = Light
+* 2 = Light/Standard
+* 3 = Standard
+* 4 = Detailed
+* 5 = Exhaustive
+
+### 8.6 Avoid Lazy Cards
+
+Default:
+Enabled
+
+When enabled, prompt should include:
+
+* Do not make vague cards.
+* Do not make cards that only ask “What is X?” unless the term is genuinely important.
+* Do not copy full textbook paragraphs.
+* Do not make duplicate cards.
+* Each card should test one clear memory point.
+* Use compact answers.
+* Do not use visuals just to show off.
+
+## 9. AI Provider Selector
+
+Allow the user to choose:
+
+* ChatGPT
+* Gemini
+* Claude
+* Other AI
+
+Default:
+ChatGPT
+
+Show small helper text:
+
+ChatGPT:
+Good general choice. Recommended for most users.
+
+Gemini:
+Good for long PDFs and visual documents.
+
+Claude:
+Good for long explanations and structured reasoning.
+
+Other AI:
+Use if your AI supports file upload and ZIP/file generation.
+
+Important:
+Do not claim guaranteed compatibility. Use soft wording:
+“Recommended”, “Usually works well”, “Try this if...”
+
+## 10. Provider-Specific Handoff Buttons
+
+After generating the prompt, show:
+
+Primary button:
+Copy Instructions
+
+Secondary buttons:
+Open ChatGPT
+Open Gemini
+Open Claude
+
+Open links:
+
+* ChatGPT: https://chatgpt.com
+* Gemini: https://gemini.google.com
+* Claude: https://claude.ai
+
+If on Android, use normal browser intent.
+
+Also show:
+“Upload your PDF in the AI chat, paste these instructions, and ask it to create the ZIP file.”
+
+## 11. Prompt Generation Architecture
+
+The final prompt should be built from separate blocks:
+
+1. User learning brief
+2. Deck quality rules
+3. Card type rules
+4. Media rules
+5. Package format contract
+6. Validation rules
+7. Retry/failure instruction
+
+Use a function like:
+
+`buildPrompt(options: PromptBuilderOptions): string`
+
+Suggested data model:
+
+```ts
+type StudyPreset = "beginner" | "revision" | "competitive" | "mastery";
+
+type DetailLevel = "light" | "standard" | "detailed" | "exhaustive";
+
+type MediaMode = "none" | "important" | "full";
+
+type ExamTarget = "school" | "neet" | "jee" | "ssc" | "upsc" | "custom";
+
+type AnswerStyle = "keywords" | "compact" | "explained" | "memory";
+
+type CardMix = "simple" | "balanced" | "visual" | "exam-drill";
+
+type AIProvider = "chatgpt" | "gemini" | "claude" | "other";
+
+type StudiedState = "yes" | "no" | "somewhat";
+
+interface PromptBuilderOptions {
+  preset: StudyPreset;
+  studiedState: StudiedState;
+  detailLevel: DetailLevel;
+  mediaMode: MediaMode;
+  examTarget: ExamTarget;
+  customExamTarget?: string;
+  answerStyle: AnswerStyle;
+  cardMix: CardMix;
+  language: string;
+  avoidLazyCards: boolean;
+  deckName?: string;
+  className?: string;
+  aiProvider: AIProvider;
+}
+```
+
+## 12. Prompt Preview Screen
+
+After user taps “Generate Instructions”, show a preview screen.
+
+Title:
+Your AI Instructions
+
+Sections:
+
+* Summary of selected settings
+* Full generated prompt in a scrollable text box
+* Copy Instructions button
+* Open AI buttons
+* Help card: “How to use this”
+
+Do not show the prompt as an intimidating wall first. Show the selected settings summary above it.
+
+Example settings summary:
+Mode: Competitive Exam
+Detail: Detailed
+Media: Important images
+Target: NEET
+Answer style: Compact
+Card mix: Balanced
+
+## 13. Prompt Text Blocks
+
+### 13.1 Beginner Learning Brief
+
+Use when preset is beginner:
+
+Create flashcards from the attached textbook chapter for a beginner who has not fully mastered it yet. Teach clearly, but do not turn the deck into long notes. Prefer simple wording, one memory point per card, and short explanations that help understanding. Cover essential ideas, terms, examples, labelled diagrams, formulas, tables, and processes. Avoid vague cards and avoid copying textbook paragraphs. Use images only when they genuinely improve memory.
+
+### 13.2 Revision Learning Brief
+
+Use when preset is revision:
+
+Create flashcards from the attached textbook chapter for a student who has already studied it and now wants efficient revision. Compress the chapter into high-yield cards that are fast to review but still complete. Do not waste cards on obvious basics unless they are exam-relevant. Cover every testable fact, comparison, process, example, formula, labelled diagram, timeline, table, and common confusion point. Keep answers compact and searchable.
+
+### 13.3 Competitive Learning Brief
+
+Use when preset is competitive:
+
+Create flashcards from the attached chapter for a competitive-exam student. Convert the chapter into dense, high-yield, testable memory prompts. Capture definitions, distinctions, exceptions, examples, misleading similarities, tables, lists, dates, formulas, steps, diagrams, and trap points. Prefer factual precision over friendly explanation. Use images, occlusions, and comparison cards only when they improve recall speed or reduce confusion.
+
+### 13.4 Mastery Learning Brief
+
+Use when preset is mastery:
+
+Create flashcards from the attached chapter for a student aiming for deep mastery, not just short-term revision. Include core facts, conceptual links, edge cases, examples, diagram interpretation, formulas, processes, and common misconceptions. The deck should support long-term understanding and flexible recall. Use visual and advanced cards where they genuinely summarise relationships better than plain text.
+
+## 14. Exam Target Modifiers
+
+### School / Board
+
+Align the deck closely to the textbook and school-exam expectations. Give special weight to definitions, explanations in textbook wording where needed, examples given in the chapter, labelled diagrams, tables, formulas, and likely written-answer points. Do not over-optimise for obscure edge cases.
+
+### NEET
+
+Optimise for NEET-style recall. Preserve NCERT line-level facts where they are testable. Prioritise terminology, examples, exceptions, processes, labelled biology diagrams, table comparisons, and frequently confused points. Do not add unsupported outside facts unless clearly marked as enrichment.
+
+### JEE
+
+Optimise for JEE-style preparation. Focus on concepts, formula relations, conditions, reasoning triggers, applications, graphs, and problem-solving patterns. Keep cards crisp. Avoid unnecessary textbook prose. Use visual cards for mechanisms, graphs, trends, and function relationships only when they materially improve recall.
+
+### SSC
+
+Optimise for SSC-style revision. Prioritise direct recall, definitions, classifications, lists, chronology, dates, tables, one-line distinctions, and high-confusion factual pairs. Keep answers extremely compact. Prefer speed and exam utility over explanatory detail.
+
+### UPSC
+
+Optimise for UPSC-style preparation. Preserve core definitions, concepts, examples, institutional terms where relevant, and interconnections that support both prelims-style recall and mains-style conceptual framing. Keep answers compact but analytically meaningful.
+
+### Custom
+
+If the user gives a custom exam target, append:
+
+Optimise the deck for this target: [custom target]. Adjust card style, detail, examples, and emphasis to match that goal.
+
+## 15. Detail Level Modifiers
+
+### Light
+
+Create a light deck. Include only the most important concepts, facts, definitions, examples, diagrams, formulas, and likely exam points. Approximate target: 40–80 cards for a normal chapter.
+
+### Standard
+
+Create a standard deck. Cover the chapter well without becoming exhaustive. Include major testable facts, examples, processes, diagrams, formulas, comparisons, and common confusions. Approximate target: 80–160 cards for a normal chapter.
+
+### Detailed
+
+Create a detailed deck. Cover nearly every testable point in the chapter while keeping each card atomic and reviewable. Include diagrams, tables, examples, exceptions, formulas, timelines, and traps. Approximate target: 160–300 cards for a normal chapter.
+
+### Exhaustive
+
+Create an exhaustive revision deck. Cover every testable detail from the chapter, but do not create duplicates or useless cards. Keep the deck under 999 cards. Prefer splitting complex ideas into multiple atomic cards instead of writing long answers.
+
+## 16. Media Mode Modifiers
+
+### Text Only
+
+Do not include media files unless absolutely required. Prefer basic, cloze, and reverse cards. Advanced HTML may be used for compact tables or flowcharts without external media.
+
+### Important Images Only
+
+Use media only when it genuinely improves learning. Include images for important diagrams, labelled figures, maps, charts, apparatus, formulas, timelines, and tables. Use image occlusion for labelled diagrams where hiding labels creates useful recall practice.
+
+### Full Visual Deck
+
+Use visual features actively but not decoratively. Extract or recreate important diagrams, use image occlusion for labels, use advanced HTML for timelines, comparison tables, flowcharts, formula cards, process summaries, and visual revision cards. Do not add images merely to make the deck look attractive.
+
+## 17. Card Mix Rules
+
+### Simple
+
+Use mostly basic and cloze cards. Use reverse cards for definitions only when useful. Avoid advanced HTML unless a table or flowchart is clearly better than plain text.
+
+### Balanced
+
+Use a balanced mix of basic, cloze, reverse, image occlusion, and advanced HTML. Each advanced feature must serve a study purpose.
+
+### Visual
+
+Use image occlusion for labelled diagrams and maps. Use advanced HTML for visual summaries, timelines, tables, and flowcharts. Still keep most cards atomic and quick to review.
+
+### Exam Drill
+
+Use short direct Q/A, cloze deletion for facts, reverse cards for definitions, and compact comparison cards for confusing pairs. Avoid long explanations. Avoid decorative visuals.
+
+## 18. Deck Quality Rules
+
+Always include these in the prompt:
+
+Quality rules:
+
+* Make flashcards for studying, not for showing off formatting.
+* Each card should test one clear memory point.
+* Avoid vague questions.
+* Avoid duplicate cards.
+* Avoid full textbook paragraph copying.
+* Prefer compact answers over long notes.
+* Preserve exact textbook facts, dates, names, formulas, examples, and terminology.
+* Do not invent unsupported facts.
+* If something is not in the source, do not present it as source content.
+* Use advanced HTML only when it improves revision.
+* Use image occlusion only when hiding labels/parts genuinely helps recall.
+* Use images only when they improve memory or interpretation.
+* Keep the deck under 999 cards.
+* Do not include SRS or review metadata.
+
+## 19. Locked Package Format Contract
+
+This block should be appended to every generated prompt exactly. It should be locked and not user-editable by default.
+
+```text
+Create an Erudite Flashcards package for import.
+
+Return the package files only. Do not include explanations inside deck.json.
+
+The final package must be a normal .zip file with this exact structure:
+
+deck.json
+media/
+  descriptive-image-name.webp
+  another-diagram.png
+
+deck.json must be valid JSON using this content-only shape:
+
+{
+  "version": 1,
+  "name": "Deck name",
+  "className": "Optional existing class name",
+  "cards": [
+    {
+      "type": "basic",
+      "term": "Question text or safe HTML such as <img src=\"media/file.webp\" alt=\"Short description\">",
+      "definition": "Answer text, formula, or explanation",
+      "tags": ["tag"],
+      "reverse": false
+    },
+    {
+      "type": "cloze",
+      "text": "The SI unit of force is {{c1::newton}}."
+    },
+    {
+      "type": "image-occlusion",
+      "term": "Diagram title",
+      "image": "media/descriptive-image-name.webp",
+      "occlusion": {
+        "masks": [
+          {
+            "shape": "rect",
+            "x": 0.12,
+            "y": 0.2,
+            "w": 0.25,
+            "h": 0.1,
+            "answer": "Hidden label",
+            "hint": "Short clue"
+          }
+        ]
+      }
+    },
+    {
+      "type": "advanced-html",
+      "term": "Short searchable front text",
+      "definition": "Short searchable back text",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"card-design\"><img src=\"media/another-diagram.png\" alt=\"Diagram\"></div>",
+        "frontCss": ".card-design{box-sizing:border-box;width:340px;min-height:470px;border-radius:20px;overflow:auto;background:#fff;color:#111;padding:18px}",
+        "backHtml": "<div class=\"card-design\">Answer</div>",
+        "backCss": ".card-design{box-sizing:border-box;width:340px;min-height:470px;border-radius:20px;overflow:auto;background:#fff;color:#111;padding:18px}"
+      }
+    }
+  ]
+}
+
+Package rules:
+- Use media/... relative paths in deck.json.
+- Put every referenced file inside the media folder.
+- Do not put Base64 media in deck.json.
+- Do not use external URLs.
+- Do not reference files outside media/.
+- Use safe file names: lowercase-kebab-case.webp, .png, .jpg, .gif, .mp3, .wav, .ogg, .mp4, or .webm.
+- Keep the deck at 999 cards or fewer.
+- Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.
+- Use math as "\\(F = ma\\)" for inline math or "\\[x^2 + y^2\\]" for display math in normal card fields.
+- In advanced HTML cards, prefer readable HTML/Unicode formulas such as p² + 2pq + q² = 1 unless math rendering is explicitly needed.
+- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer.
+- Advanced HTML cards live inside a 340px x 470px canvas with 20px corner radius.
+- Advanced HTML must use HTML and CSS only.
+- No JavaScript.
+- No scripts.
+- No iframes.
+- No forms.
+- No external URLs.
+- No fixed or sticky overlays.
+- CSS may reference local package media using url("media/file.webp").
+- If you cannot create the ZIP directly, provide deck.json plus the exact media file names and contents to place in media/.
+```
+
+## 20. Output Reliability Instructions
+
+Append this after the locked package format contract:
+
+Before finalizing, verify:
+
+* deck.json is valid JSON.
+* The ZIP contains deck.json at root.
+* The ZIP contains a media folder.
+* Every media/... path referenced in deck.json exists inside media/.
+* No external URLs are used.
+* No Base64 media is stored in deck.json.
+* All image occlusion masks have normalized x, y, w, h values between 0 and 1.
+* Every image occlusion mask has an answer.
+* Advanced HTML contains no JavaScript, scripts, iframes, forms, or external URLs.
+* The deck has 999 cards or fewer.
+
+Return only the final ZIP package if possible.
+
+## 21. Invalid Output Recovery Prompt
+
+Add a button in the app called:
+
+“AI gave wrong output?”
+
+When tapped, copy this retry message:
+
+```text
+The previous output was not a valid Erudite import package.
+
+Please fix it and return a normal .zip file only.
+
+Requirements:
+- deck.json must be at the ZIP root.
+- media/ folder must contain every referenced media file.
+- deck.json must be valid JSON.
+- All media paths must use media/filename.ext.
+- Do not use external URLs.
+- Do not use Base64 media in deck.json.
+- Do not include explanations inside deck.json.
+- Do not include SRS/review metadata.
+- Keep advanced HTML safe: no JavaScript, scripts, iframes, forms, or external URLs.
+- Return only the corrected ZIP package.
+```
+
+## 22. AI Provider Tips
+
+Show provider-specific help below the generated prompt.
+
+### ChatGPT Tips
+
+Text:
+Recommended for most users. Upload your PDF, paste the instructions, and ask ChatGPT to create the ZIP file. If the ZIP is not generated, paste the retry message.
+
+### Gemini Tips
+
+Text:
+Useful for large or visual PDFs. Upload the PDF first, then paste the instructions. If it gives text instead of a ZIP, ask it to create the ZIP package.
+
+### Claude Tips
+
+Text:
+Good for long chapters and careful extraction. Upload the PDF, paste the instructions, and ask for the ZIP. If it cannot attach the file, ask for deck.json and media files separately.
+
+## 23. Privacy and Copyright Notice
+
+Before opening external AI, show a small notice.
+
+Title:
+Before you continue
+
+Text:
+You are about to send your PDF to an external AI provider. Their privacy, storage, and training settings may depend on your account and plan. Avoid uploading private personal documents. Only use PDFs and study material you are allowed to use.
+
+Buttons:
+Continue
+Cancel
+
+Checkbox:
+Do not show again
+
+Store this preference locally.
+
+## 24. Help Page
+
+Create a help page titled:
+
+How to create a deck from PDF
+
+Include these steps:
+
+1. Choose your study mode in Erudite.
+2. Copy the AI instructions.
+3. Open ChatGPT, Gemini, or Claude.
+4. Upload your PDF.
+5. Paste the instructions.
+6. Wait for the AI to create a ZIP file.
+7. Download the ZIP.
+8. Import the ZIP into Erudite.
+9. Start studying.
+
+Add troubleshooting:
+
+Problem:
+AI gave text instead of ZIP.
+
+Solution:
+Paste the retry message.
+
+Problem:
+Import failed.
+
+Solution:
+Check that ZIP contains deck.json and media/ folder.
+
+Problem:
+Images missing.
+
+Solution:
+Regenerate using the retry message and ensure all media files are inside media/.
+
+Problem:
+Deck is too basic.
+
+Solution:
+Use Revision or Competitive mode and enable “Avoid lazy cards”.
+
+Problem:
+Deck is too long.
+
+Solution:
+Use Light or Standard detail level.
+
+## 25. Prompt Builder UI Layout
+
+Suggested mobile layout:
+
+Screen: Create Deck from PDF
+
+Top:
+
+* Title
+* Short description
+
+Section 1:
+Study Goal
+Cards:
+
+* Beginner
+* Quick Revision
+* Competitive Exam
+* Deep Mastery
+
+Section 2:
+Have you already studied this chapter?
+Segmented control:
+
+* Yes
+* Somewhat
+* No
+
+Section 3:
+Detail
+Slider or segmented control:
+
+* Light
+* Standard
+* Detailed
+* Exhaustive
+
+Section 4:
+Images and diagrams
+Segmented control:
+
+* Text only
+* Important
+* Full visual
+
+Section 5:
+AI provider
+Cards:
+
+* ChatGPT
+* Gemini
+* Claude
+* Other
+
+Section 6:
+Advanced options
+Collapsed by default.
+
+Bottom:
+Generate Instructions button
+
+## 26. Generated Prompt Screen Layout
+
+Screen: AI Instructions
+
+Top summary card:
+
+* Mode
+* Detail
+* Media
+* Target
+* Provider
+
+Prompt box:
+
+* Scrollable
+* Copy button always visible
+
+Buttons:
+
+* Copy Instructions
+* Open ChatGPT / Gemini / Claude
+* AI gave wrong output?
+
+Small guide:
+“Upload your PDF in the AI chat, paste these instructions, then download the ZIP and import it here.”
+
+## 27. Import Connection
+
+After the user copies instructions, show a CTA:
+
+“Got the ZIP? Import now”
+
+This opens the existing ZIP import picker.
+
+Also allow:
+
+* Recent copied prompt shown in history
+* Re-copy last instructions
+* Edit last settings
+
+## 28. Prompt Preset Storage
+
+Store prompt presets locally.
+
+Suggested schema:
+
+```ts
+interface PromptPreset {
+  id: string;
+  name: string;
+  description: string;
+  options: PromptBuilderOptions;
+  isBuiltIn: boolean;
+  createdAt: number;
+  updatedAt: number;
+}
+```
+
+Built-in presets:
+
+* Beginner
+* Quick Revision
+* Competitive Exam
+* Deep Mastery
+* NEET Detailed
+* SSC Fast Revision
+* Board Exam Standard
+
+Allow custom presets later, but not necessary for first release.
+
+## 29. Built-in Extra Presets
+
+### NEET Detailed
+
+Settings:
+
+* preset: competitive
+* studiedState: yes
+* detailLevel: detailed
+* mediaMode: important
+* examTarget: neet
+* answerStyle: compact
+* cardMix: balanced
+* avoidLazyCards: true
+
+### SSC Fast Revision
+
+Settings:
+
+* preset: competitive
+* studiedState: yes
+* detailLevel: standard
+* mediaMode: none
+* examTarget: ssc
+* answerStyle: keywords
+* cardMix: exam-drill
+* avoidLazyCards: true
+
+### Board Exam Standard
+
+Settings:
+
+* preset: revision
+* studiedState: somewhat
+* detailLevel: standard
+* mediaMode: important
+* examTarget: school
+* answerStyle: compact
+* cardMix: balanced
+* avoidLazyCards: true
+
+## 30. Local Analytics
+
+If analytics exist, track only non-sensitive events.
+
+Do not track PDF content.
+Do not track generated prompt text.
+Do not track deck contents.
+
+Track events:
+
+* prompt_builder_opened
+* preset_selected
+* detail_level_selected
+* media_mode_selected
+* provider_selected
+* prompt_copied
+* ai_provider_opened
+* zip_import_started
+* zip_import_success
+* zip_import_failed
+* retry_prompt_copied
+* first_review_started
+
+Important metric:
+PDF-to-first-review completion rate.
+
+Definition:
+User copies AI instructions, imports a ZIP, and starts reviewing that imported deck.
+
+## 31. Import Validator Improvements
+
+The ZIP importer should return clear errors:
+
+* Missing deck.json
+* Invalid JSON
+* Missing media folder
+* Referenced media file missing
+* External URL not allowed
+* Base64 media not allowed
+* Invalid card type
+* Invalid image occlusion mask
+* Advanced HTML contains blocked element
+* Deck exceeds 999 cards
+
+Each error should show user-friendly text and an optional “Copy retry message” button.
+
+## 32. UX Copy
+
+Use simple labels.
+
+Avoid:
+Prompt engineering
+Schema
+Structured output
+JSON contract
+Media references
+
+Use:
+AI instructions
+Create deck
+Import ZIP
+Images and diagrams
+Study mode
+Detail level
+
+Examples:
+
+Instead of:
+“Generate prompt”
+
+Use:
+“Create AI instructions”
+
+Instead of:
+“Package contract”
+
+Use:
+“Erudite ZIP format”
+
+Instead of:
+“Malformed output”
+
+Use:
+“The AI gave a file Erudite cannot import”
+
+## 33. Acceptance Criteria
+
+The feature is complete when:
+
+1. User can select study mode, detail level, media mode, and AI provider.
+2. App generates a full copyable prompt.
+3. Prompt includes the locked ZIP package contract.
+4. User can copy prompt with one tap.
+5. User can open ChatGPT/Gemini/Claude from the app.
+6. User sees privacy/copyright warning before external AI handoff.
+7. User can copy a retry prompt if AI output is invalid.
+8. Built-in presets work.
+9. Advanced options are available but hidden by default.
+10. Import screen clearly connects back to this workflow.
+11. ZIP import errors are understandable.
+12. App never sends PDF or prompt to Erudite servers.
+13. The app works offline except for the user’s chosen external AI step.
+14. Generated instructions are suitable for Erudite ZIP packages with deck.json and media/.
+
+## 34. Suggested Implementation Order
+
+Phase 1:
+
+* Build PromptBuilderOptions model.
+* Build prompt text generator.
+* Add built-in presets.
+* Add Create Deck from PDF screen.
+* Add prompt preview and copy button.
+
+Phase 2:
+
+* Add Open ChatGPT/Gemini/Claude buttons.
+* Add privacy/copyright warning.
+* Add retry prompt button.
+* Add help page.
+
+Phase 3:
+
+* Improve ZIP import validator messages.
+* Add “Copy retry message” from failed import screen.
+* Add “Got the ZIP? Import now” shortcut.
+
+Phase 4:
+
+* Add custom preset saving.
+* Add prompt history.
+* Add provider-specific tips.
+* Add lightweight local analytics.
+
+## 35. Final Product Positioning
+
+This feature should be positioned as:
+
+“Use your favourite AI to create Erudite decks from PDFs.”
+
+Not:
+
+“Erudite has built-in AI.”
+
+Core benefit:
+No paid AI backend inside Erudite. The user can use ChatGPT, Gemini, Claude, or any external AI they already have access to.
+
+User-facing tagline:
+Turn any chapter PDF into an importable Erudite flashcard deck.
+
+Longer description:
+Create AI instructions, upload your PDF to ChatGPT/Gemini/Claude, download the ZIP deck, and import it into Erudite with images, cloze cards, image occlusion, and visual cards.

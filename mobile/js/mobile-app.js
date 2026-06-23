@@ -98,7 +98,24 @@
     textColor: '',
     selectMode: false,
     selectedDecks: new Set(),
-    lastModalClosedAt: 0
+    lastModalClosedAt: 0,
+    promptBuilder: {
+      outputFormat: 'zip',
+      preset: 'revision',
+      studiedState: 'yes',
+      detailLevel: 'standard',
+      mediaMode: 'important',
+      examTarget: 'school',
+      customExamTarget: '',
+      answerStyle: 'compact',
+      cardMix: 'balanced',
+      language: 'same',
+      customLanguage: '',
+      deckName: '',
+      className: '',
+      avoidLazyCards: true,
+      aiProvider: 'chatgpt'
+    }
   };
 
   let creatorDraftTimer = null;
@@ -245,12 +262,53 @@
     occlusionAnswer: document.getElementById('occlusion-answer-input'),
     occlusionHint: document.getElementById('occlusion-hint-input'),
     importHelpOverlay: document.getElementById('import-help-overlay'),
-    importHelpCopy: document.getElementById('import-help-copy'),
-    importPackageHelpCopy: document.getElementById('import-package-help-copy'),
-    importHtmlHelpCopy: document.getElementById('import-html-help-copy'),
     importHelpClose: document.getElementById('import-help-close'),
+    pbDetailSlider: document.getElementById('pb-detail-slider'),
+    pbDetailLabel: document.getElementById('pb-detail-label'),
+    pbExamTarget: document.getElementById('pb-exam-target'),
+    pbCustomExamWrapper: document.getElementById('pb-custom-exam-wrapper'),
+    pbCustomExam: document.getElementById('pb-custom-exam'),
+    pbAnswerStyle: document.getElementById('pb-answer-style'),
+    pbCardMix: document.getElementById('pb-card-mix'),
+    pbLanguage: document.getElementById('pb-language'),
+    pbCustomLanguageWrapper: document.getElementById('pb-custom-language-wrapper'),
+    pbCustomLanguage: document.getElementById('pb-custom-language'),
+    pbDeckName: document.getElementById('pb-deck-name'),
+    pbClassName: document.getElementById('pb-class-name'),
+    pbAvoidLazy: document.getElementById('pb-avoid-lazy'),
+    pbSummaryBadge: document.getElementById('pb-summary-badge'),
+    pbTogglePreview: document.getElementById('pb-toggle-preview'),
+    pbPreviewTextContainer: document.getElementById('pb-preview-text-container'),
+    pbPromptTextarea: document.getElementById('pb-prompt-textarea'),
+    pbProviderTip: document.getElementById('pb-provider-tip'),
+    pbCopyPromptBtn: document.getElementById('pb-copy-prompt-btn'),
+    pbRetryBtn: document.getElementById('pb-retry-btn'),
+    aiPrivacyOverlay: document.getElementById('ai-privacy-overlay'),
+    aiPrivacyDontShowCheckbox: document.getElementById('ai-privacy-dont-show-checkbox'),
+    aiPrivacyCancel: document.getElementById('ai-privacy-cancel'),
+    aiPrivacyContinue: document.getElementById('ai-privacy-continue'),
+    importErrorOverlay: document.getElementById('import-error-overlay'),
+    importErrorMsg: document.getElementById('import-error-msg'),
+    importErrorCopyRetry: document.getElementById('import-error-copy-retry'),
+    importErrorClose: document.getElementById('import-error-close'),
     pasteImportConfirm: document.getElementById('paste-import-confirm'),
-    pasteImportCancel: document.getElementById('paste-import-cancel')
+    pasteImportCancel: document.getElementById('paste-import-cancel'),
+
+    // New AI provider & local converter modal selectors
+    pbConvertOverlay: document.getElementById('pb-convert-text-overlay'),
+    pbConvertTextarea: document.getElementById('pb-convert-textarea'),
+    pbConvertCancel: document.getElementById('pb-convert-cancel'),
+    pbConvertConfirm: document.getElementById('pb-convert-confirm'),
+    pbOpenConverterBtn: document.getElementById('pb-open-converter-btn'),
+    importErrorOpenConverter: document.getElementById('import-error-open-converter'),
+    pasteImportOpenConverterBtn: document.getElementById('paste-import-open-converter-btn'),
+    helpFormatsOpenConverterBtn: document.getElementById('help-formats-open-converter-btn'),
+    pbGeminiMediaWarningModal: document.getElementById('pb-gemini-media-warning-modal'),
+    pbWarningSwitchChatgpt: document.getElementById('pb-warning-switch-chatgpt'),
+    pbWarningSwitchClaude: document.getElementById('pb-warning-switch-claude'),
+    pbWarningContinueGemini: document.getElementById('pb-warning-continue-gemini'),
+    pbWarningContinueHtmlOnly: document.getElementById('pb-warning-continue-html-only'),
+    pbGeminiNextStep: document.getElementById('pb-gemini-next-step')
   };
 
   function escapeHtml(value) {
@@ -1621,6 +1679,13 @@
           New
         </button>
       </div>
+      <div style="margin-top: 0.8rem; padding: 0.75rem 1rem; border-radius: 0.85rem; background: rgba(59, 130, 246, 0.06); border: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; cursor: pointer; transition: background-color 0.15s ease;" data-action="open-ai-deck-maker">
+        <div style="display: flex; align-items: center; gap: 0.75rem; text-align: left;">
+          <i class="fas fa-file-pdf" style="color: var(--primary-2); font-size: 1.15rem; width: 1.15rem; text-align: center;"></i>
+          <span style="font-size: 0.8rem; font-weight: 700; color: var(--text);">Create Deck from PDF using AI</span>
+        </div>
+        <i class="fas fa-chevron-right" style="color: var(--primary-2); font-size: 0.75rem;"></i>
+      </div>
     `;
 
     renderAnalyticsDashboard();
@@ -1749,7 +1814,10 @@
     if (!sets.length) {
       const action = state.search
         ? ''
-        : '<button type="button" class="primary-action" data-action="open-create"><i class="fas fa-plus"></i>Create Set</button>';
+        : `<div style="display:flex; flex-direction:column; gap:0.5rem; width:100%; max-width:240px; margin:0.5rem auto 0 auto;">
+             <button type="button" class="primary-action" data-action="open-create" style="width:100%; min-height:2.6rem;"><i class="fas fa-plus"></i>Create Set</button>
+             <button type="button" class="secondary-action" data-action="open-ai-deck-maker" style="width:100%; min-height:2.6rem; font-size:0.78rem;"><i class="fas fa-wand-magic-sparkles"></i>AI Deck Maker</button>
+           </div>`;
       selectors.libraryList.innerHTML = emptyPanel(
         'fa-layer-group',
         state.search ? 'No matching decks' : 'No flashcard sets yet',
@@ -6431,115 +6499,748 @@
     selectors.pasteImportCardSep?.addEventListener('input', updateLivePreview);
   }
 
-  function buildImportJsonAiPrompt() {
-    return [
-      'Create an Erudite Flashcards import JSON file.',
-      '',
-      'Return valid JSON only. Do not wrap it in Markdown. Do not add comments.',
-      'Use this content-only shape:',
-      '{',
-      '  "version": 1,',
-      '  "name": "Deck name",',
-      '  "className": "Optional existing class name",',
-      '  "cards": [',
-      '    { "type": "basic", "term": "Question", "definition": "Answer", "tags": ["tag"], "reverse": false },',
-      '    { "type": "cloze", "text": "The SI unit of force is {{c1::newton}}." },',
-      '    { "type": "image-occlusion", "term": "Diagram title", "image": { "dataUrl": "data:image/png;base64,..." }, "occlusion": { "masks": [{ "shape": "rect", "x": 0.12, "y": 0.2, "w": 0.25, "h": 0.1, "answer": "Nucleus" }] } },',
-      '    {',
-      '      "type": "advanced-html",',
-      '      "term": "Short searchable front text",',
-      '      "definition": "Short searchable back text",',
-      '      "advancedHtml": {',
-      '        "frontHtml": "<div class=\\"card-design\\">...</div>",',
-      '        "frontCss": ".card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto}",',
-      '        "backHtml": "<div class=\\"card-design\\">...</div>",',
-      '        "backCss": ".card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto}"',
-      '      }',
-      '    }',
-      '  ]',
-      '}',
-      '',
-      'Rules:',
-      '- Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.',
-      '- Use math as "\\\\(F = ma\\\\)" for inline math or "\\\\[x^2 + y^2\\\\]" for display math.',
-      '- Safe rich text may use b, strong, i, em, u, lists, blockquote, code, pre, hr, and mark highlight-yellow/green/blue/pink.',
-      '- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer. Use data URL images only.',
-      `- Advanced HTML cards live inside a ${ADVANCED_HTML_CANVAS.width}px x ${ADVANCED_HTML_CANVAS.height}px canvas with ${ADVANCED_HTML_CANVAS.radius}px corner radius.`,
-      '- Advanced HTML must use HTML and CSS only: no JavaScript, no scripts, no iframes, no forms, no external URLs, no fixed/sticky overlays.',
-      '- Keep every card readable on a mobile phone.'
-    ].join('\n');
+  function parseEruditePackageSource(text) {
+    let cleanText = text.trim();
+    
+    // First, check if ERUDITE_PACKAGE_SOURCE_V1 is present anywhere in the text
+    const marker = 'ERUDITE_PACKAGE_SOURCE_V1';
+    const markerIndex = cleanText.indexOf(marker);
+    if (markerIndex !== -1) {
+      // Extract everything after the marker
+      cleanText = cleanText.substring(markerIndex + marker.length).trim();
+    }
+    
+    // Try to find the JSON object
+    // If it's wrapped in ```json ... ``` or similar, extract the content
+    const codeBlockMatch = cleanText.match(/```(?:json)?\s*([\s\S]*?)```/);
+    if (codeBlockMatch) {
+      cleanText = codeBlockMatch[1].trim();
+    }
+    
+    // Clean up trailing commas before parsing
+    cleanText = cleanText.replace(/,\s*([\]}])/g, '$1');
+    
+    // Now parse cleanText as JSON
+    let data;
+    try {
+      data = JSON.parse(cleanText);
+    } catch (err) {
+      // If that fails, let's try to search for the first '{' and last '}'
+      const startIdx = cleanText.indexOf('{');
+      const endIdx = cleanText.lastIndexOf('}');
+      if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+        let jsonSub = cleanText.substring(startIdx, endIdx + 1);
+        jsonSub = jsonSub.replace(/,\s*([\]}])/g, '$1');
+        try {
+          data = JSON.parse(jsonSub);
+        } catch (innerErr) {
+          throw new Error('Invalid JSON structure in AI text output.');
+        }
+      } else {
+        throw new Error('No JSON object found in AI text output.');
+      }
+    }
+    return data;
   }
 
-  function buildImportPackageAiPrompt() {
-    return [
-      'Create an Erudite Flashcards ZIP package for import.',
-      '',
-      'Return the package files only. Do not include explanations inside deck.json.',
-      'The final package should be a .zip file with this structure:',
-      'deck.json',
-      'media/',
-      '  descriptive-image-name.webp',
-      '  another-diagram.png',
-      '',
-      'deck.json must be valid JSON using this content-only shape:',
-      '{',
-      '  "version": 1,',
-      '  "name": "Deck name",',
-      '  "className": "Optional existing class name",',
-      '  "cards": [',
-      '    {',
-      '      "type": "basic",',
-      '      "term": "<img src=\\"media/descriptive-image-name.webp\\" alt=\\"Short description\\">",',
-      '      "definition": "Answer text, formula, or explanation",',
-      '      "tags": ["tag"],',
-      '      "reverse": false',
-      '    },',
-      '    {',
-      '      "type": "image-occlusion",',
-      '      "term": "Diagram title",',
-      '      "image": "media/descriptive-image-name.webp",',
-      '      "occlusion": {',
-      '        "masks": [',
-      '          { "shape": "rect", "x": 0.12, "y": 0.2, "w": 0.25, "h": 0.1, "answer": "Hidden label", "hint": "Short clue" }',
-      '        ]',
-      '      }',
-      '    },',
-      '    {',
-      '      "type": "advanced-html",',
-      '      "term": "Short searchable front text",',
-      '      "definition": "Short searchable back text",',
-      '      "advancedHtml": {',
-      '        "frontHtml": "<div class=\\"card-design\\"><img src=\\"media/another-diagram.png\\" alt=\\"Diagram\\"></div>",',
-      '        "frontCss": ".card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;background:#fff;color:#111;padding:18px}",',
-      '        "backHtml": "<div class=\\"card-design\\">Answer</div>",',
-      '        "backCss": ".card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;background:#fff;color:#111;padding:18px}"',
-      '      }',
-      '    }',
-      '  ]',
-      '}',
-      '',
-      'Rules:',
-      '- Use media/... relative paths in deck.json. Put every referenced file inside the media folder.',
-      '- Do not put Base64 media in deck.json for packages.',
-      '- Do not use external URLs. Do not reference files outside media/.',
-      '- Use safe file names like lowercase-kebab-case.webp, .png, .jpg, .gif, .mp3, .wav, .ogg, .mp4, or .webm.',
-      `- Keep the deck at ${CREATOR_IMPORT_MAX_CARDS} cards or fewer.`,
-      '- Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.',
-      '- Use math as "\\\\(F = ma\\\\)" for inline math or "\\\\[x^2 + y^2\\\\]" for display math.',
-      '- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer.',
-      `- Advanced HTML cards live inside a ${ADVANCED_HTML_CANVAS.width}px x ${ADVANCED_HTML_CANVAS.height}px canvas with ${ADVANCED_HTML_CANVAS.radius}px corner radius.`,
-      '- Advanced HTML must use HTML and CSS only: no JavaScript, no scripts, no iframes, no forms, no external URLs, no fixed/sticky overlays.',
-      '- If you cannot create the ZIP directly, provide deck.json plus the exact media file names and contents to place in media/.'
-    ].join('\n');
+  function validatePackageSource(data) {
+    if (!data || typeof data !== 'object') {
+      throw new Error('Invalid format: root must be a JSON object.');
+    }
+    if (!data.deck || typeof data.deck !== 'object') {
+      throw new Error('Invalid format: missing "deck" object.');
+    }
+    if (data.deck.version !== 1) {
+      throw new Error('Invalid format: deck.version must be 1.');
+    }
+    if (!Array.isArray(data.deck.cards)) {
+      throw new Error('Invalid format: deck.cards must be an array.');
+    }
+
+    const mediaList = Array.isArray(data.media) ? data.media : [];
+    const mediaPaths = new Set();
+
+    for (const m of mediaList) {
+      if (!m.path || typeof m.path !== 'string') {
+        throw new Error('Invalid format: media item path is missing or invalid.');
+      }
+      // media[].path must start with media/
+      if (!m.path.startsWith('media/')) {
+        throw new Error(`Invalid format: media path "${m.path}" must start with "media/".`);
+      }
+      // Reject ../, absolute paths, and unsafe filenames.
+      if (m.path.includes('..') || m.path.includes('\\') || m.path.startsWith('/') || m.path.includes(':')) {
+        throw new Error(`Unsafe media path detected: "${m.path}".`);
+      }
+      // Check safe lowercase filename inside media/
+      const filename = m.path.substring('media/'.length);
+      if (filename !== filename.toLowerCase()) {
+        throw new Error(`Media filename must be lowercase: "${filename}".`);
+      }
+      if (!/^[a-z0-9_\-\.]+$/.test(filename)) {
+        throw new Error(`Media filename contains invalid characters: "${filename}". Safe names use lowercase letters, numbers, dashes, underscores, and dots.`);
+      }
+      // Restrict media extensions
+      const allowedExts = ['.webp', '.png', '.jpg', '.jpeg', '.gif', '.mp3', '.wav', '.ogg', '.mp4', '.webm'];
+      const hasAllowedExt = allowedExts.some(ext => filename.endsWith(ext));
+      if (!hasAllowedExt) {
+        throw new Error(`Media file extension is not allowed: "${filename}".`);
+      }
+
+      // Validate encoding and data
+      if (m.encoding === 'base64') {
+        try {
+          const b64Data = m.data.replace(/\s/g, ''); // strip spaces/newlines
+          atob(b64Data);
+        } catch (e) {
+          throw new Error(`Invalid Base64 data for media path "${m.path}".`);
+        }
+      } else if (m.encoding === 'utf8') {
+        throw new Error(`UTF-8 encoding is not supported for media type "${m.path}".`);
+      } else {
+        throw new Error(`Unsupported media encoding "${m.encoding}" for path "${m.path}".`);
+      }
+
+      mediaPaths.add(m.path);
+    }
+
+    // Every media/... reference in deck must exist in the media array.
+    const refs = extractMediaReferences(data.deck);
+    for (const refPath of refs) {
+      if (!mediaPaths.has(refPath)) {
+        throw new Error(`Referenced media file "${refPath}" is missing from the media array.`);
+      }
+    }
+
+    return true;
+  }
+
+  function extractMediaReferences(obj) {
+    const refs = new Set();
+    const str = JSON.stringify(obj);
+    const regex = /media\/[a-zA-Z0-9_\-\.\/]+/g;
+    let match;
+    while ((match = regex.exec(str)) !== null) {
+      let path = match[0];
+      path = path.replace(/\\/g, '');
+      refs.add(path);
+    }
+    return refs;
+  }
+
+  async function buildZipFromPackageSource(data) {
+    if (!window.JSZip) {
+      throw new Error('JSZip library is not available.');
+    }
+
+    const zip = new window.JSZip();
+    
+    // Add deck.json
+    zip.file('deck.json', JSON.stringify(data.deck, null, 2));
+
+    // Add media files
+    const mediaFolder = zip.folder('media');
+    const mediaList = Array.isArray(data.media) ? data.media : [];
+    
+    for (const m of mediaList) {
+      const filename = m.path.substring('media/'.length);
+      if (m.encoding === 'base64') {
+        const b64Data = m.data.replace(/\s/g, ''); // strip spaces/newlines
+        mediaFolder.file(filename, b64Data, { base64: true });
+      } else {
+        mediaFolder.file(filename, m.data);
+      }
+    }
+
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    return zipBlob;
+  }
+
+  async function convertAiTextToZipAndImport(rawText) {
+    if (!rawText || !rawText.trim()) {
+      showToast('Please paste the AI text output first.');
+      return;
+    }
+    
+    if (selectors.loadingCover) {
+      selectors.loadingTitle.textContent = 'Building ZIP...';
+      selectors.loadingCopy.textContent = 'Parsing cards and compiling media assets locally.';
+      selectors.loadingCover.classList.remove('hidden');
+    }
+
+    try {
+      const data = parseEruditePackageSource(rawText);
+      validatePackageSource(data);
+      const zipBlob = await buildZipFromPackageSource(data);
+      const zipFile = new File([zipBlob], "package.zip", { type: "application/zip" });
+      const imported = await parseEruditePackageImport(zipFile);
+      
+      selectors.pbConvertOverlay?.classList.add('hidden');
+      if (selectors.pbConvertTextarea) selectors.pbConvertTextarea.value = '';
+      applyCreatorImport(imported);
+    } catch (error) {
+      console.error(error);
+      showImportErrorModal(error.message || 'Could not parse and convert AI text output.');
+    } finally {
+      if (selectors.loadingCover) {
+        selectors.loadingCover.classList.add('hidden');
+      }
+    }
+  }
+
+  function buildCustomAiPrompt(options = {}) {
+    const blocks = [];
+
+    // 1. Learning Brief based on preset
+    let brief = '';
+    if (options.preset === 'beginner') {
+      brief = 'Create flashcards from the attached textbook chapter for a beginner who has not fully mastered it yet. Teach clearly, but do not turn the deck into long notes. Prefer simple wording, one memory point per card, and short explanations that help understanding. Cover essential ideas, terms, examples, labelled diagrams, formulas, tables, and processes. Avoid vague cards and avoid copying textbook paragraphs. Use images only when they genuinely improve memory.';
+    } else if (options.preset === 'revision') {
+      brief = 'Create flashcards from the attached textbook chapter for a student who has already studied it and now wants efficient revision. Compress the chapter into high-yield cards that are fast to review but still complete. Do not waste cards on obvious basics unless they are exam-relevant. Cover every testable fact, comparison, process, example, formula, labelled diagram, timeline, table, and common confusion point. Keep answers compact and searchable.';
+    } else if (options.preset === 'competitive') {
+      brief = 'Create flashcards from the attached chapter for a competitive-exam student. Convert the chapter into dense, high-yield, testable memory prompts. Capture definitions, distinctions, exceptions, examples, misleading similarities, tables, lists, dates, formulas, steps, diagrams, and trap points. Prefer factual precision over friendly explanation. Use images, occlusions, and comparison cards only when they improve recall speed or reduce confusion.';
+    } else if (options.preset === 'mastery') {
+      brief = 'Create flashcards from the attached chapter for a student aiming for deep mastery, not just short-term revision. Include core facts, conceptual links, edge cases, examples, diagram interpretation, formulas, processes, and common misconceptions. The deck should support long-term understanding and flexible recall. Use visual and advanced cards where they genuinely summarise relationships better than plain text.';
+    }
+
+    // 2. Exam Target Modifier
+    let targetText = '';
+    if (options.examTarget === 'school') {
+      targetText = 'Align the deck closely to the textbook and school-exam expectations. Give special weight to definitions, explanations in textbook wording where needed, examples given in the chapter, labelled diagrams, tables, formulas, and likely written-answer points. Do not over-optimise for obscure edge cases.';
+    } else if (options.examTarget === 'neet') {
+      targetText = 'Optimise for NEET-style recall. Preserve NCERT line-level facts where they are testable. Prioritise terminology, examples, exceptions, processes, labelled biology diagrams, table comparisons, and frequently confused points. Do not add unsupported outside facts unless clearly marked as enrichment.';
+    } else if (options.examTarget === 'jee') {
+      targetText = 'Optimise for JEE-style preparation. Focus on concepts, formula relations, conditions, reasoning triggers, applications, graphs, and problem-solving patterns. Keep cards crisp. Avoid unnecessary textbook prose. Use visual cards for mechanisms, graphs, trends, and function relationships only when they materially improve recall.';
+    } else if (options.examTarget === 'ssc') {
+      targetText = 'Optimise for SSC-style revision. Prioritise direct recall, definitions, classifications, lists, chronology, dates, tables, one-line distinctions, and high-confusion factual pairs. Keep answers extremely compact. Prefer speed and exam utility over explanatory detail.';
+    } else if (options.examTarget === 'upsc') {
+      targetText = 'Optimise for UPSC-style preparation. Preserve core definitions, concepts, examples, institutional terms where relevant, and interconnections that support both prelims-style recall and mains-style conceptual framing. Keep answers compact but analytically meaningful.';
+    } else if (options.examTarget === 'custom') {
+      const customVal = options.customExamTarget || 'a custom target';
+      targetText = `Optimise the deck for this target: ${customVal}. Adjust card style, detail, examples, and emphasis to match that goal.`;
+    }
+
+    // 3. Already Studied State Instruction
+    let studiedText = '';
+    if (options.studiedState === 'yes') {
+      studiedText = 'Assume the student has already studied this chapter. Do not waste cards on obvious basics. Focus on high-yield recall, exceptions, comparisons, and exam-relevant traps. Use compressed answers.';
+    } else if (options.studiedState === 'no') {
+      studiedText = 'Assume the student has not studied this chapter yet. Present teach-first cards with slightly simpler definitions and more helpful context to build a conceptual foundation, but still keep cards atomic.';
+    } else if (options.studiedState === 'somewhat') {
+      studiedText = 'Assume the student is somewhat familiar with the chapter. Provide balanced revision cards with short, clear explanations.';
+    }
+
+    // 4. Quality slider focus instruction
+    let sliderFocusText = '';
+    if (options.cardCountControl) {
+      const sliderVal = Number(options.cardCountControl);
+      if (sliderVal <= 2) {
+        sliderFocusText = 'Strictly focus on high-yield, frequently-tested concepts only. Prefer fewer cards.';
+      } else if (sliderVal >= 4) {
+        sliderFocusText = 'Ensure comprehensive, detailed coverage of all textbook points. Prefer a larger number of complete cards.';
+      }
+    }
+
+    // 5. Language modifier
+    let langText = '';
+    if (options.language === 'english') {
+      langText = 'Translate all content and generate flashcards in English, even if the source PDF is in Hindi or another language.';
+    } else if (options.language === 'hindi') {
+      langText = 'Translate all content and generate flashcards in Hindi.';
+    } else if (options.language === 'hinglish') {
+      langText = 'Translate all content and generate flashcards in Hinglish (a casual mixture of Hindi and English, using Latin characters for words like "samajh", "kya", etc.), but keep technical terms accurate and in English.';
+    } else if (options.language === 'custom') {
+      const customLang = options.customLanguage || 'English';
+      langText = `Generate flashcards in this language: ${customLang}.`;
+    } else {
+      langText = 'Generate flashcards in the same language as the source PDF.';
+    }
+
+    // 6. Media Mode Modifier
+    let mediaText = '';
+    if (options.aiProvider === 'gemini') {
+      if (options.mediaMode === 'none') {
+        mediaText = 'Do not include media files. Prefer basic, cloze, and reverse cards. Advanced HTML may be used for compact tables or flowcharts without external media.';
+      } else {
+        mediaText = 'Prefer text, cloze, reverse, and advanced HTML cards using pure HTML/CSS for visuals (like comparison tables, timelines, flowcharts). Avoid extracting image media or requiring external image files unless you include them as Base64 data inside the media array. Do not use image occlusion requiring image files unless you provide them. Allowed media paths must use safe lowercase filenames inside media/ and end with .webp, .png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg, .mp4, or .webm. CSS may reference local media using url("media/file.webp").';
+      }
+    } else {
+      if (options.mediaMode === 'none') {
+        mediaText = 'Do not include media files unless absolutely required. Prefer basic, cloze, and reverse cards. Advanced HTML may be used for compact tables or flowcharts without external media.';
+      } else if (options.mediaMode === 'important') {
+        mediaText = 'Use media only when it genuinely improves learning. Include images for important diagrams, labelled figures, maps, charts, apparatus, formulas, timelines, and tables. Use image occlusion for labelled diagrams where hiding labels creates useful recall practice.';
+      } else if (options.mediaMode === 'full') {
+        mediaText = 'Use visual features actively but not decoratively. Extract or recreate important diagrams, use image occlusion for labels, use advanced HTML for timelines, comparison tables, flowcharts, formula cards, process summaries, and visual revision cards. Do not add images merely to make the deck look attractive.';
+      }
+    }
+
+    // 7. Card Mix Rules
+    let mixText = '';
+    if (options.cardMix === 'simple') {
+      mixText = 'Use mostly basic and cloze cards. Use reverse cards for definitions only when useful. Avoid advanced HTML unless a table or flowchart is clearly better than plain text.';
+    } else if (options.cardMix === 'balanced') {
+      mixText = 'Use a balanced mix of basic, cloze, reverse, image occlusion, and advanced HTML. Each advanced feature must serve a study purpose.';
+    } else if (options.cardMix === 'visual') {
+      mixText = 'Use image occlusion for labelled diagrams and maps. Use advanced HTML for visual summaries, timelines, tables, and flowcharts. Still keep most cards atomic and quick to review.';
+    } else if (options.cardMix === 'exam-drill') {
+      mixText = 'Use short direct Q/A, cloze deletion for facts, reverse cards for definitions, and compact comparison cards for confusing pairs. Avoid long explanations. Avoid decorative visuals.';
+    }
+
+    // 8. Avoid Lazy Cards rules
+    let qualityRules = [
+      'Quality rules:',
+      '* Make flashcards for studying, not for showing off formatting.',
+      '* Each card should test one clear memory point.',
+      '* Avoid vague questions.',
+      '* Avoid duplicate cards.',
+      '* Avoid full textbook paragraph copying.',
+      '* Prefer compact answers over long notes.',
+      '* Preserve exact textbook facts, dates, names, formulas, examples, and terminology.',
+      '* Do not invent unsupported facts.',
+      '* If something is not in the source, do not present it as source content.',
+      '* Use advanced HTML only when it improves revision.',
+      '* Use image occlusion only when hiding labels/parts genuinely helps recall.',
+      '* Use images only when they improve memory or interpretation.',
+      '* Keep the deck under 999 cards.',
+      '* Do not include SRS or review metadata.'
+    ];
+
+    if (options.avoidLazyCards) {
+      qualityRules = qualityRules.concat([
+        '* Do not make lazy or vague cards like "What is evolution?" unless it is exceptionally important.',
+        '* Each definition should be compressed, not rewritten as long study notes.'
+      ]);
+    }
+
+    const deckNameStr = String(options.deckName || '').trim() || 'Deck name';
+    const classNameStr = String(options.className || '').trim() || 'Optional existing class name';
+
+    // ─── ORDERING THE PROMPT ───────────────────────────────────────────────────
+
+    // Step 1: Learning Goal (Brief + Targets + Studied + Language + Slider)
+    const learningGoalParts = [brief, targetText, studiedText, sliderFocusText, langText].filter(Boolean);
+    blocks.push(learningGoalParts.join('\n\n'));
+
+    // Step 2: Deck quality rules
+    blocks.push(qualityRules.join('\n'));
+
+    // Step 3: Card type rules
+    if (mixText) {
+      blocks.push(mixText);
+    }
+
+    // Step 4: Media rules
+    if (mediaText) {
+      blocks.push(mediaText);
+    }
+
+    // Step 5: Schema structure specifications
+    let schemaSpec = '';
+    if (options.outputFormat === 'html') {
+      schemaSpec = `Create a single custom Erudite HTML & CSS flashcard using HTML and CSS only.
+
+Return exactly four fenced code blocks with these labels:
+FRONT_HTML
+FRONT_CSS
+BACK_HTML
+BACK_CSS
+
+Hard rules:
+- No JavaScript, no <script>, no event attributes, no external URLs, no @import.
+- No iframe, form, input, button, audio, video, canvas, fixed/sticky positioning, or z-index tricks.
+- Do not include the app shell, <article>, .card-scroll, or iframe in the returned HTML.
+- Use one root wrapper such as <div class="card-design"> in each HTML block.
+- Use only classes/IDs that belong to the card design.
+- The custom HTML lives inside a smaller sandbox inside the flashcard, not the full card.
+- Exact design canvas: 340px wide x 470px tall, 20px corner radius.
+- Treat those as CSS pixels, not physical screenshot pixels.
+- Your root .card-design should be width: 340px; min-height: 470px; border-radius: 20px; overflow: hidden or auto.
+- Prefer responsive inner layout using max-width: 100%, flexible rows/columns, and readable spacing.
+- Avoid fixed inner heights taller than 470px unless the content is intentionally scrollable.
+- Keep text readable, responsive, and friendly to math/physics formulas and step-by-step solutions.`;
+    } else if (options.outputFormat === 'json') {
+      schemaSpec = `Create an Erudite Flashcards import JSON file.
+
+Return valid JSON only. Do not wrap it in Markdown. Do not add comments.
+
+Use this content-only shape:
+{
+  "version": 1,
+  "name": "${deckNameStr}",
+  "className": "${classNameStr}",
+  "cards": [
+    { "type": "basic", "term": "Question", "definition": "Answer", "tags": ["tag"], "reverse": false },
+    { "type": "cloze", "text": "The SI unit of force is {{c1::newton}}." },
+    { "type": "image-occlusion", "term": "Diagram title", "image": { "dataUrl": "data:image/png;base64,..." }, "occlusion": { "masks": [{ "shape": "rect", "x": 0.12, "y": 0.2, "w": 0.25, "h": 0.1, "answer": "Nucleus" }] } },
+    {
+      "type": "advanced-html",
+      "term": "Short searchable front text",
+      "definition": "Short searchable back text",
+      "advancedHtml": {
+        "frontHtml": "<div class=\\"card-design\\">...</div>",
+        "frontCss": ".card-design{box-sizing:border-box;width:340px;min-height:470px;border-radius:20px;overflow:auto}",
+        "backHtml": "<div class=\\"card-design\\">...</div>",
+        "backCss": ".card-design{box-sizing:border-box;width:340px;min-height:470px;border-radius:20px;overflow:auto}"
+      }
+    }
+  ]
+}
+
+JSON Rules:
+- Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.
+- Use math as "\\\\(F = ma\\\\)" for inline math or "\\\\[x^2 + y^2\\\\]" for display math in normal card fields.
+- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer. Use data URL images only.
+- Advanced HTML must use HTML and CSS only: no JavaScript, no scripts, no iframes, no forms, no external URLs, no fixed/sticky overlays.
+- CSS inside advanced HTML may use custom formatting, but no external asset calls.`;
+    } else {
+      schemaSpec = `Here is the deck schema structure you must target:
+{
+  "version": 1,
+  "name": "${deckNameStr}",
+  "className": "${classNameStr}",
+  "cards": [
+    {
+      "type": "basic",
+      "term": "Question text or safe HTML such as <img src=\\"media/file.webp\\" alt=\\"Short description\\">",
+      "definition": "Answer text, formula, or explanation",
+      "tags": ["tag"],
+      "reverse": false
+    },
+    {
+      "type": "cloze",
+      "text": "The SI unit of force is {{c1::newton}}."
+    },
+    {
+      "type": "image-occlusion",
+      "term": "Diagram title",
+      "image": "media/descriptive-image-name.webp",
+      "occlusion": {
+        "masks": [
+          {
+            "shape": "rect",
+            "x": 0.12,
+            "y": 0.2,
+            "w": 0.25,
+            "h": 0.1,
+            "answer": "Hidden label",
+            "hint": "Short clue"
+          }
+        ]
+      }
+    },
+    {
+      "type": "advanced-html",
+      "term": "Short searchable front text",
+      "definition": "Short searchable back text",
+      "advancedHtml": {
+        "frontHtml": "<div class=\\"card-design\\"><img src=\\"media/another-diagram.png\\" alt=\\"Diagram\\"></div>",
+        "frontCss": ".card-design{box-sizing:border-box;width:340px;min-height:470px;border-radius:20px;overflow:auto;background:#fff;color:#111;padding:18px}",
+        "backHtml": "<div class=\\"card-design\\">Answer</div>",
+        "backCss": ".card-design{box-sizing:border-box;width:340px;min-height:470px;border-radius:20px;overflow:auto;background:#fff;color:#111;padding:18px}"
+      }
+    }
+  ]
+}
+
+Package rules:
+- deck.json must be at the root of the ZIP.
+- Use media/... relative paths in deck.json.
+- Put every referenced file inside the media folder.
+- Do not put Base64 media in deck.json (unless importing JSON directly).
+- Do not use external URLs.
+- Do not reference files outside media/.
+- Use safe lowercase filenames inside media/ ending with .webp, .png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg, .mp4, or .webm.
+- Keep the deck at 999 cards or fewer.
+- Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.
+- Use math as "\\(F = ma\\)" for inline math or "\\[x^2 + y^2\\]" for display math in normal card fields.
+- In advanced HTML cards, prefer readable HTML/Unicode formulas such as p² + 2pq + q² = 1 unless math rendering is explicitly needed.
+- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer.
+- Advanced HTML cards live inside a 340px x 470px canvas with 20px corner radius.
+- Advanced HTML must use HTML and CSS only.
+- No JavaScript.
+- No scripts.
+- No iframes.
+- No forms.
+- No external URLs.
+- No fixed or sticky overlays.
+- CSS may reference local package media using url("media/file.webp").`;
+    }
+    blocks.push(schemaSpec);
+
+    // Step 6: Validation checklist
+    if (options.outputFormat !== 'html' && options.outputFormat !== 'json') {
+      blocks.push(`Before finalizing, verify:
+* deck.json is valid JSON.
+* The ZIP contains deck.json at root, not inside another folder (if creating a ZIP).
+* The ZIP contains a media folder (if creating a ZIP).
+* Every media/... path referenced in deck.json exists inside media/.
+* No external URLs are used.
+* No Base64 media is stored in deck.json (unless importing JSON directly).
+* All image occlusion masks have normalized x, y, w, h values between 0 and 1.
+* Every image occlusion mask has an answer.
+* Advanced HTML contains no JavaScript, scripts, iframes, forms, or external URLs.
+* The deck has 999 cards or fewer.`);
+    }
+
+    // Step 7: Provider-specific final output instruction (AT THE END)
+    if (options.outputFormat !== 'html' && options.outputFormat !== 'json') {
+      let outputBlock = '';
+      if (options.aiProvider === 'chatgpt') {
+        outputBlock = `Final output instruction for ChatGPT:
+
+Create the final Erudite package as a normal downloadable .zip file.
+
+The ZIP must contain deck.json at the root, not inside another folder, and a media/ folder.
+
+Use your available file creation or code execution tools if needed.
+
+Do not paste deck.json in the chat unless you are unable to create the ZIP.
+
+If you cannot create a ZIP, say that clearly and return Erudite Package Source format instead.
+
+Return the ZIP file as the final answer.`;
+      } else if (options.aiProvider === 'claude') {
+        outputBlock = `Final output instruction for Claude:
+
+Create the final Erudite package as a downloadable .zip file if your environment supports file creation or artifacts.
+
+The ZIP must contain deck.json at the root, not inside another folder, and a media/ folder.
+
+If your current Claude environment cannot attach a ZIP file, return Erudite Package Source format instead, with deck JSON and any media file contents clearly separated.
+
+Return the ZIP file as the final answer.`;
+      } else if (options.aiProvider === 'gemini') {
+        outputBlock = `Final output instruction for Gemini:
+
+Do not assume you can attach a ZIP file.
+
+Return the result in Erudite Package Source format so the Erudite app can build the ZIP locally.
+
+Rules:
+- deck must follow the Erudite deck.json schema.
+- deck must not contain Base64.
+- deck must use media/... paths only if matching files are included in the media array.
+- Allowed media paths must use safe lowercase filenames inside media/ and end with .webp, .png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg, .mp4, or .webm.
+- CSS may reference local media using url("media/file.webp").
+- If you cannot provide real media files, do not reference media files.
+- Prefer text, cloze, reverse, and advanced HTML cards.
+- For visuals, prefer pure HTML/CSS diagrams inside advanced HTML cards.
+- Do not use external URLs.
+- Do not use JavaScript.
+- Do not include explanations outside the package-source JSON.
+- Do not wrap the JSON in markdown fences. Do not use \`\`\`json. Do not add comments, headings, explanations, or trailing commas.
+
+If media is needed and you can provide it, use this structure inside the media array:
+{
+  "path": "media/descriptive-file-name.png",
+  "mime": "image/png",
+  "encoding": "base64",
+  "data": "BASE64_DATA_HERE"
+}
+
+Start exactly with ERUDITE_PACKAGE_SOURCE_V1 and provide one valid JSON object.`;
+      } else {
+        outputBlock = `Final output instruction:
+
+Create the final Erudite package as a downloadable .zip file if supported, or return the result in Erudite Package Source format.
+
+If returning a ZIP, it must contain deck.json at the root, not inside another folder, and a media/ folder.
+
+If returning Erudite Package Source, start your response exactly with:
+ERUDITE_PACKAGE_SOURCE_V1
+followed by the JSON containing "deck" and "media" array.`;
+      }
+      blocks.push(outputBlock);
+    }
+
+    return blocks.join('\n\n');
+  }
+
+  function applyPresetOptions(presetName) {
+    state.promptBuilder.preset = presetName;
+    const isGemini = state.promptBuilder.aiProvider === 'gemini';
+    if (presetName === 'beginner') {
+      state.promptBuilder.studiedState = 'no';
+      state.promptBuilder.detailLevel = 'standard';
+      state.promptBuilder.answerStyle = 'explained';
+      state.promptBuilder.mediaMode = isGemini ? 'none' : 'important';
+      state.promptBuilder.cardMix = 'simple';
+      state.promptBuilder.avoidLazyCards = false;
+    } else if (presetName === 'revision') {
+      state.promptBuilder.studiedState = 'yes';
+      state.promptBuilder.detailLevel = 'standard';
+      state.promptBuilder.answerStyle = 'compact';
+      state.promptBuilder.mediaMode = isGemini ? 'none' : 'important';
+      state.promptBuilder.cardMix = 'balanced';
+      state.promptBuilder.avoidLazyCards = true;
+    } else if (presetName === 'competitive') {
+      state.promptBuilder.studiedState = 'yes';
+      state.promptBuilder.detailLevel = 'detailed';
+      state.promptBuilder.answerStyle = 'compact';
+      state.promptBuilder.mediaMode = isGemini ? 'none' : 'important';
+      state.promptBuilder.cardMix = 'exam-drill';
+      state.promptBuilder.avoidLazyCards = true;
+    } else if (presetName === 'mastery') {
+      state.promptBuilder.studiedState = 'somewhat';
+      state.promptBuilder.detailLevel = 'detailed';
+      state.promptBuilder.answerStyle = 'explained';
+      state.promptBuilder.mediaMode = 'full';
+      state.promptBuilder.cardMix = 'balanced';
+      state.promptBuilder.avoidLazyCards = true;
+    }
+  }
+
+  function updatePromptBuilderUI() {
+    const pb = state.promptBuilder;
+    if (!pb) return;
+
+    // 1. Output Format Segmented Control
+    document.querySelectorAll('[data-pb-opt="outputFormat"]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.value === pb.outputFormat);
+    });
+
+    // 2. Presets Active State
+    document.querySelectorAll('[data-pb-preset]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.pbPreset === pb.preset);
+    });
+
+    // 3. Studied State Segmented Control
+    document.querySelectorAll('[data-pb-opt="studiedState"]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.value === pb.studiedState);
+    });
+
+    // 4. Media Mode Segmented Control
+    document.querySelectorAll('[data-pb-opt="mediaMode"]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.value === pb.mediaMode);
+    });
+
+    // 5. Slider Mapping & Label update
+    const sliderMap = { 'light': 1, 'standard': 2, 'detailed': 3, 'exhaustive': 4 };
+    if (selectors.pbDetailSlider) {
+      selectors.pbDetailSlider.value = sliderMap[pb.detailLevel] || 2;
+    }
+    if (selectors.pbDetailLabel) {
+      const labels = {
+        1: 'Light (~40–80 cards)',
+        2: 'Standard (~80–160 cards)',
+        3: 'Detailed (~160–300 cards)',
+        4: 'Exhaustive (~300–600 cards)'
+      };
+      selectors.pbDetailLabel.textContent = labels[selectors.pbDetailSlider?.value || 2];
+    }
+
+    // 6. Provider active state
+    document.querySelectorAll('[data-pb-provider]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.pbProvider === pb.aiProvider);
+    });
+
+    // 7. Advanced options dropdown inputs
+    if (selectors.pbExamTarget) selectors.pbExamTarget.value = pb.examTarget;
+    if (selectors.pbAnswerStyle) selectors.pbAnswerStyle.value = pb.answerStyle;
+    if (selectors.pbCardMix) selectors.pbCardMix.value = pb.cardMix;
+    if (selectors.pbLanguage) selectors.pbLanguage.value = pb.language;
+    if (selectors.pbDeckName) selectors.pbDeckName.value = pb.deckName;
+    if (selectors.pbClassName) selectors.pbClassName.value = pb.className;
+    if (selectors.pbAvoidLazy) selectors.pbAvoidLazy.checked = pb.avoidLazyCards;
+
+    // Toggle custom fields
+    if (pb.examTarget === 'custom') {
+      selectors.pbCustomExamWrapper?.classList.remove('hidden');
+    } else {
+      selectors.pbCustomExamWrapper?.classList.add('hidden');
+    }
+    if (pb.language === 'custom') {
+      selectors.pbCustomLanguageWrapper?.classList.remove('hidden');
+    } else {
+      selectors.pbCustomLanguageWrapper?.classList.add('hidden');
+    }
+
+    // 8. Summary Badge
+    if (selectors.pbSummaryBadge) {
+      const presetLabels = {
+        'revision': 'Quick Revision',
+        'beginner': 'Beginner',
+        'competitive': 'Competitive',
+        'mastery': 'Deep Mastery'
+      };
+      selectors.pbSummaryBadge.textContent = 'Mode: ' + (presetLabels[pb.preset] || 'Custom');
+    }
+
+    // 9. Tips box text
+    if (selectors.pbProviderTip) {
+      const tips = {
+        'chatgpt': '<strong>ChatGPT:</strong> Recommended for most users. Upload your PDF, paste the instructions, and ask ChatGPT to create the ZIP file. If the ZIP is not generated, paste the retry message.',
+        'gemini': '<strong>Gemini:</strong> Useful for large or visual PDFs. Upload the PDF first, then paste the instructions. If it gives text instead of a ZIP, ask it to create the ZIP package.',
+        'claude': '<strong>Claude:</strong> Good for long chapters and careful extraction. Upload the PDF, paste the instructions, and ask for the ZIP. If it cannot attach the file, ask for deck.json and media files separately.',
+        'other': '<strong>Other AI:</strong> Use if your AI supports file upload and ZIP/file generation.'
+      };
+      selectors.pbProviderTip.innerHTML = tips[pb.aiProvider] || '';
+    }
+
+    // 10. Compile and set prompt textarea
+    const promptText = buildCustomAiPrompt(pb);
+    if (selectors.pbPromptTextarea) {
+      selectors.pbPromptTextarea.value = promptText;
+    }
+
+    // 11. Dynamic Copy button text & Gemini Next Step Box
+    if (selectors.pbCopyPromptBtn) {
+      if (pb.aiProvider === 'gemini') {
+        selectors.pbCopyPromptBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Copy Gemini Instructions';
+        selectors.pbGeminiNextStep?.classList.remove('hidden');
+      } else {
+        selectors.pbCopyPromptBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Copy AI Instructions';
+        selectors.pbGeminiNextStep?.classList.add('hidden');
+      }
+    }
+
+    // 12. Gemini media mode warning popups
+    checkGeminiMediaWarning();
+  }
+
+  function checkGeminiMediaWarning() {
+    const pb = state.promptBuilder;
+    if (pb.aiProvider === 'gemini' && pb.mediaMode === 'full' && !pb.dismissedGeminiWarning) {
+      selectors.pbGeminiMediaWarningModal?.classList.remove('hidden');
+      return true;
+    }
+    return false;
+  }
+
+  function handleAiHandoff(url) {
+    const hideNotice = localStorage.getItem('erudite-hide-ai-notice') === 'true';
+    if (hideNotice) {
+      window.open(url, '_blank');
+    } else {
+      state.aiHandoffUrl = url;
+      selectors.aiPrivacyOverlay?.classList.remove('hidden');
+    }
   }
 
   function openImportHelpModal() {
     selectors.importHelpOverlay?.classList.remove('hidden');
+    updatePromptBuilderUI();
   }
 
   function closeImportHelpModal() {
     selectors.importHelpOverlay?.classList.add('hidden');
     state.lastModalClosedAt = Date.now();
+  }
+
+  function openAiDeckMaker() {
+    document.getElementById('paste-import-overlay')?.classList.add('hidden');
+    openImportHelpModal();
+    const aiTabBtn = document.querySelector('.modal-tab-btn[data-help-tab="ai"]');
+    if (aiTabBtn) {
+      aiTabBtn.click();
+    }
+  }
+
+  function showImportErrorModal(message) {
+    if (selectors.importErrorMsg) {
+      selectors.importErrorMsg.textContent = message;
+    }
+    selectors.importErrorOverlay?.classList.remove('hidden');
   }
 
   // ─── Capacitor Back Button (double-press to exit) ────────────────────────
@@ -7138,6 +7839,9 @@
         break;
       case 'import-help':
         openImportHelpModal();
+        break;
+      case 'open-ai-deck-maker':
+        openAiDeckMaker();
         break;
       default:
         break;
@@ -8173,7 +8877,7 @@
         applyCreatorImport(imported);
       } catch (error) {
         console.error(error);
-        showToast(error.userMessage || 'Could not import file');
+        showImportErrorModal(error.userMessage || 'Could not import file');
       }
     });
 
@@ -8286,26 +8990,340 @@
       closeImportHelpModal();
     });
 
-    selectors.importHelpCopy?.addEventListener('click', async event => {
-      event.preventDefault();
-      playClick();
-      const ok = await copyPlainText(buildImportJsonAiPrompt());
-      showToast(ok ? 'JSON prompt copied' : 'Could not copy prompt');
+    // Prompt Builder UI Events setup
+    document.querySelectorAll('[data-pb-opt]').forEach(btn => {
+      btn.addEventListener('click', event => {
+        event.preventDefault();
+        playClick();
+        const opt = btn.dataset.pbOpt;
+        const val = btn.dataset.value;
+        if (opt === 'mediaMode') {
+          state.promptBuilder.dismissedGeminiWarning = false;
+        }
+        state.promptBuilder[opt] = val;
+        updatePromptBuilderUI();
+      });
     });
 
-    selectors.importPackageHelpCopy?.addEventListener('click', async event => {
-      event.preventDefault();
-      playClick();
-      const ok = await copyPlainText(buildImportPackageAiPrompt());
-      showToast(ok ? 'Package prompt copied' : 'Could not copy prompt');
+    document.querySelectorAll('[data-pb-preset]').forEach(btn => {
+      btn.addEventListener('click', event => {
+        event.preventDefault();
+        playClick();
+        const preset = btn.dataset.pbPreset;
+        state.promptBuilder.dismissedGeminiWarning = false;
+        applyPresetOptions(preset);
+        updatePromptBuilderUI();
+      });
     });
 
-    selectors.importHtmlHelpCopy?.addEventListener('click', async event => {
+    document.querySelectorAll('[data-pb-provider]').forEach(btn => {
+      btn.addEventListener('click', event => {
+        event.preventDefault();
+        playClick();
+        const oldProvider = state.promptBuilder.aiProvider;
+        const newProvider = btn.dataset.pbProvider;
+        if (oldProvider !== newProvider) {
+          state.promptBuilder.aiProvider = newProvider;
+          state.promptBuilder.dismissedGeminiWarning = false;
+          if (newProvider === 'gemini') {
+            state.promptBuilder.mediaMode = 'none';
+          }
+        }
+        updatePromptBuilderUI();
+      });
+    });
+
+    selectors.pbDetailSlider?.addEventListener('input', () => {
+      const val = Number(selectors.pbDetailSlider.value);
+      const detailMap = { 1: 'light', 2: 'standard', 3: 'detailed', 4: 'exhaustive' };
+      state.promptBuilder.detailLevel = detailMap[val] || 'standard';
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbExamTarget?.addEventListener('change', event => {
+      state.promptBuilder.examTarget = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbCustomExam?.addEventListener('input', event => {
+      state.promptBuilder.customExamTarget = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbAnswerStyle?.addEventListener('change', event => {
+      state.promptBuilder.answerStyle = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbCardMix?.addEventListener('change', event => {
+      state.promptBuilder.cardMix = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbLanguage?.addEventListener('change', event => {
+      state.promptBuilder.language = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbCustomLanguage?.addEventListener('input', event => {
+      state.promptBuilder.customLanguage = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbDeckName?.addEventListener('input', event => {
+      state.promptBuilder.deckName = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbClassName?.addEventListener('input', event => {
+      state.promptBuilder.className = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbAvoidLazy?.addEventListener('change', event => {
+      state.promptBuilder.avoidLazyCards = event.target.checked;
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbTogglePreview?.addEventListener('click', event => {
       event.preventDefault();
       playClick();
-      const ok = await copyPlainText(buildAdvancedHtmlPrompt({}));
-      showToast(ok ? 'HTML prompt copied' : 'Could not copy prompt');
+      const container = selectors.pbPreviewTextContainer;
+      if (container) {
+        const isHidden = container.classList.contains('hidden');
+        container.classList.toggle('hidden', !isHidden);
+        selectors.pbTogglePreview.textContent = isHidden ? 'Hide Prompt Text' : 'Show Prompt Text';
+      }
     });
+
+    selectors.pbCopyPromptBtn?.addEventListener('click', async event => {
+      event.preventDefault();
+      playClick();
+      const promptText = buildCustomAiPrompt(state.promptBuilder);
+      const ok = await copyPlainText(promptText);
+      if (ok) {
+        showToast('AI instructions copied!');
+        const oldText = selectors.pbCopyPromptBtn.innerHTML;
+        selectors.pbCopyPromptBtn.innerHTML = '<i class="fas fa-check"></i> Copied to Clipboard!';
+        selectors.pbCopyPromptBtn.style.background = 'linear-gradient(135deg, var(--green) 0%, #16a34a 100%)';
+        setTimeout(() => {
+          selectors.pbCopyPromptBtn.innerHTML = oldText;
+          selectors.pbCopyPromptBtn.style.background = '';
+        }, 2000);
+      } else {
+        showToast('Could not copy instructions');
+      }
+    });
+
+    document.querySelectorAll('[data-pb-link]').forEach(btn => {
+      btn.addEventListener('click', event => {
+        event.preventDefault();
+        playClick();
+        const provider = btn.dataset.pbLink;
+        let url = 'https://chatgpt.com';
+        if (provider === 'gemini') url = 'https://gemini.google.com';
+        if (provider === 'claude') url = 'https://claude.ai';
+        handleAiHandoff(url);
+      });
+    });
+
+    selectors.pbRetryBtn?.addEventListener('click', async event => {
+      event.preventDefault();
+      playClick();
+      const retryMsg = getAiRetryMessage(state.promptBuilder.aiProvider);
+      const ok = await copyPlainText(retryMsg);
+      if (ok) {
+        showToast('Retry message copied!');
+        const oldText = selectors.pbRetryBtn.innerHTML;
+        selectors.pbRetryBtn.innerHTML = '<i class="fas fa-check"></i> Copied Retry Message!';
+        setTimeout(() => {
+          selectors.pbRetryBtn.innerHTML = oldText;
+        }, 2000);
+      } else {
+        showToast('Could not copy message');
+      }
+    });
+
+    // Privacy Notice overlay events
+    selectors.aiPrivacyCancel?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      selectors.aiPrivacyOverlay?.classList.add('hidden');
+      state.aiHandoffUrl = null;
+    });
+
+    selectors.aiPrivacyContinue?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      selectors.aiPrivacyOverlay?.classList.add('hidden');
+      const checked = selectors.aiPrivacyDontShowCheckbox?.checked;
+      if (checked) {
+        localStorage.setItem('erudite-hide-ai-notice', 'true');
+      }
+      if (state.aiHandoffUrl) {
+        window.open(state.aiHandoffUrl, '_blank');
+        state.aiHandoffUrl = null;
+      }
+    });
+
+    // Import Error overlay events
+    selectors.importErrorClose?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      selectors.importErrorOverlay?.classList.add('hidden');
+      state.lastModalClosedAt = Date.now();
+    });
+
+    selectors.importErrorCopyRetry?.addEventListener('click', async event => {
+      event.preventDefault();
+      playClick();
+      const retryMsg = getAiRetryMessage(state.promptBuilder.aiProvider);
+      const ok = await copyPlainText(retryMsg);
+      if (ok) {
+        showToast('Retry message copied!');
+        selectors.importErrorOverlay?.classList.add('hidden');
+        state.lastModalClosedAt = Date.now();
+      } else {
+        showToast('Could not copy message');
+      }
+    });
+
+    // Local Converter modal events
+    selectors.pbOpenConverterBtn?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      closeImportHelpModal();
+      selectors.pbConvertOverlay?.classList.remove('hidden');
+    });
+
+    selectors.importErrorOpenConverter?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      selectors.importErrorOverlay?.classList.add('hidden');
+      selectors.pbConvertOverlay?.classList.remove('hidden');
+    });
+
+    selectors.pasteImportOpenConverterBtn?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      document.getElementById('paste-import-overlay')?.classList.add('hidden');
+      selectors.pbConvertOverlay?.classList.remove('hidden');
+    });
+
+    selectors.helpFormatsOpenConverterBtn?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      closeImportHelpModal();
+      selectors.pbConvertOverlay?.classList.remove('hidden');
+    });
+
+    selectors.pbConvertCancel?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      selectors.pbConvertOverlay?.classList.add('hidden');
+      if (selectors.pbConvertTextarea) selectors.pbConvertTextarea.value = '';
+      state.lastModalClosedAt = Date.now();
+    });
+
+    selectors.pbConvertConfirm?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      convertAiTextToZipAndImport(selectors.pbConvertTextarea?.value || '');
+    });
+
+    selectors.pbConvertOverlay?.addEventListener('click', event => {
+      if (event.target !== selectors.pbConvertOverlay) return;
+      event.preventDefault();
+      playClick();
+      selectors.pbConvertOverlay.classList.add('hidden');
+      if (selectors.pbConvertTextarea) selectors.pbConvertTextarea.value = '';
+      state.lastModalClosedAt = Date.now();
+    });
+
+    // Gemini media warning modal events
+    selectors.pbWarningSwitchChatgpt?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      state.promptBuilder.aiProvider = 'chatgpt';
+      state.promptBuilder.dismissedGeminiWarning = false;
+      selectors.pbGeminiMediaWarningModal?.classList.add('hidden');
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbWarningSwitchClaude?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      state.promptBuilder.aiProvider = 'claude';
+      state.promptBuilder.dismissedGeminiWarning = false;
+      selectors.pbGeminiMediaWarningModal?.classList.add('hidden');
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbWarningContinueGemini?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      state.promptBuilder.dismissedGeminiWarning = true;
+      selectors.pbGeminiMediaWarningModal?.classList.add('hidden');
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbWarningContinueHtmlOnly?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      state.promptBuilder.mediaMode = 'none';
+      state.promptBuilder.dismissedGeminiWarning = true;
+      selectors.pbGeminiMediaWarningModal?.classList.add('hidden');
+      updatePromptBuilderUI();
+    });
+
+    selectors.pbGeminiMediaWarningModal?.addEventListener('click', event => {
+      if (event.target !== selectors.pbGeminiMediaWarningModal) return;
+      event.preventDefault();
+      playClick();
+      state.promptBuilder.mediaMode = 'none';
+      selectors.pbGeminiMediaWarningModal.classList.add('hidden');
+      updatePromptBuilderUI();
+    });
+
+    // Private helper for dynamic retry messages
+    function getAiRetryMessage(provider) {
+      if (provider === 'gemini') {
+        return `The previous output was not valid Erudite Package Source.
+
+Please return the output again.
+
+Start exactly with:
+ERUDITE_PACKAGE_SOURCE_V1
+
+Then provide one valid JSON object:
+{
+  "deck": {
+    "version": 1,
+    "name": "Deck name",
+    "className": "Class name",
+    "cards": []
+  },
+  "media": []
+}
+
+Do not include markdown explanations.
+Do not include external URLs.
+Do not reference media files unless they are present in the media array.
+Do not put Base64 inside deck fields.`;
+      } else {
+        return `The previous output was not a valid Erudite ZIP package.
+
+Please return a normal downloadable .zip file only.
+
+The ZIP must contain:
+deck.json
+media/
+
+Do not paste explanations.
+Do not put Base64 in deck.json.
+Every media/... reference in deck.json must exist inside media/.`;
+      }
+    }
 
     // Modal Tabs Logic
     document.querySelectorAll('.modal-tab-btn').forEach(btn => {
