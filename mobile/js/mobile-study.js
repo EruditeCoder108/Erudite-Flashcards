@@ -399,7 +399,7 @@
         if (node.tagName === 'IMG') {
           if (name === 'src') {
             const src = safeMediaSrc(raw);
-            if (src && !/^https?:\/\//i.test(src) && !/^data:image\/svg/i.test(src)) node.setAttribute('src', src);
+            if (src && !/^data:image\/svg/i.test(src)) node.setAttribute('src', src);
             else node.removeAttribute(attr.name);
             return;
           }
@@ -426,14 +426,28 @@
     let css = String(value || '').slice(0, ADVANCED_CSS_MAX_LENGTH);
     css = css.replace(/\/\*[\s\S]*?\*\//g, '');
     css = css.replace(/@import\b[^;]*;?/gi, '');
-    css = css.replace(/url\s*\(\s*(['"]?)(?!data:image\/)[^)]+?\1\s*\)/gi, 'none');
-    css = css.replace(/url\s*\(\s*(['"]?)data:image\/svg[^)]*?\1\s*\)/gi, 'none');
+    css = css.replace(/url\s*\(\s*(['"]?)(.*?)\1\s*\)/gi, (_match, _quote, rawUrl) => sanitizeAdvancedCssUrl(rawUrl));
     css = css.replace(/\b(expression|javascript|vbscript)\s*\(/gi, '');
     css = css.replace(/\bposition\s*:\s*(fixed|sticky)\s*;?/gi, '');
     css = css.replace(/\bz-index\s*:\s*-?\d+\s*;?/gi, '');
     css = css.replace(/<\/?style[^>]*>/gi, '');
     css = css.replace(/<\/?script[^>]*>/gi, '');
     return css.trim();
+  }
+
+  function sanitizeAdvancedCssUrl(rawUrl) {
+    const src = safeMediaSrc(String(rawUrl || '').trim());
+    if (!src || /^data:image\/svg/i.test(src)) return 'none';
+    if (/^https?:\/\//i.test(src)) {
+      try {
+        const url = new URL(src);
+        if (!['localhost', '127.0.0.1', '::1', '[::1]'].includes(url.hostname)) return 'none';
+      } catch (_) {
+        return 'none';
+      }
+    }
+    const escaped = src.replace(/[\r\n\f"]/g, char => (char === '"' ? '%22' : ''));
+    return `url("${escaped}")`;
   }
 
   function sanitizeAdvancedHtmlCard(value = {}) {
@@ -754,6 +768,11 @@
 
   function setFlipped(flipped, options = {}) {
     setCardFlipped(cards[activeCardIndex], flipped, options);
+  }
+
+  function clearPointerState() {
+    pointer = null;
+    cancelPendingDrag();
   }
 
   function queueNavigation(vector = { x: -1, y: 0 }) {
@@ -1309,16 +1328,19 @@
 
   function renderedImageContentRect(img, container) {
     if (!img || !container) return null;
-    const containerRect = container.getBoundingClientRect();
-    const imageRect = img.getBoundingClientRect();
-    let boxWidth = imageRect.width;
-    let boxHeight = imageRect.height;
-    let boxLeft = imageRect.left - containerRect.left;
-    let boxTop = imageRect.top - containerRect.top;
+    // Use layout-space properties (offsetLeft/offsetTop/clientWidth/clientHeight)
+    // instead of getBoundingClientRect(). These are NOT affected by CSS transforms
+    // (scale, translate, rotate) on ancestor elements, which is critical because
+    // the mask layer uses position:absolute (also in layout space). This makes
+    // positioning stable regardless of card slot transforms (e.g. scale(0.96)).
+    let boxWidth = img.clientWidth;
+    let boxHeight = img.clientHeight;
+    let boxLeft = img.offsetLeft;
+    let boxTop = img.offsetTop;
 
     if (!boxWidth || !boxHeight) {
-      boxWidth = container.clientWidth || containerRect.width;
-      boxHeight = container.clientHeight || containerRect.height;
+      boxWidth = container.clientWidth;
+      boxHeight = container.clientHeight;
       boxLeft = 0;
       boxTop = 0;
     }
@@ -1352,12 +1374,20 @@
   }
 
   function positionOcclusionLayer(layer, img, container) {
+    if (layer && (!img?.complete || !img?.naturalWidth)) {
+      layer.classList.remove('is-positioned');
+      return;
+    }
     const rect = renderedImageContentRect(img, container);
-    if (!layer || !rect || rect.width <= 0 || rect.height <= 0) return;
+    if (!layer || !rect || rect.width <= 0 || rect.height <= 0) {
+      layer?.classList.remove('is-positioned');
+      return;
+    }
     layer.style.left = `${rect.left}px`;
     layer.style.top = `${rect.top}px`;
     layer.style.width = `${rect.width}px`;
     layer.style.height = `${rect.height}px`;
+    layer.classList.add('is-positioned');
   }
 
   function cleanupOcclusionLayer(layer) {
@@ -1371,6 +1401,7 @@
     if (!layer || !img || !container) return;
     cleanupOcclusionLayer(layer);
     let frame = 0;
+    const imageReady = () => img.complete && img.naturalWidth > 0;
     const update = () => {
       frame = 0;
       if (!layer.isConnected) return;
@@ -1378,9 +1409,7 @@
     };
     const schedule = () => {
       if (frame) cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        frame = requestAnimationFrame(update);
-      });
+      frame = requestAnimationFrame(update);
     };
     const resizeObserver = typeof ResizeObserver !== 'undefined'
       ? new ResizeObserver(schedule)
@@ -1389,7 +1418,7 @@
     resizeObserver?.observe(img);
     window.addEventListener('resize', schedule);
     window.visualViewport?.addEventListener('resize', schedule);
-    if (!img.complete || !img.naturalWidth) {
+    if (!imageReady()) {
       img.addEventListener('load', schedule);
     }
     img.decode?.().then(schedule).catch(() => {});
@@ -1401,7 +1430,16 @@
       img.removeEventListener('load', schedule);
     };
     layer.__occlusionSchedule = schedule;
-    schedule();
+    // Position synchronously when the image is already loaded (cached).
+    // This is safe because renderedImageContentRect uses layout-space
+    // properties (offsetLeft/clientWidth) that are immune to CSS transforms,
+    // so the result is identical whether the card is in slot-next (scale 0.96)
+    // or slot-active (scale 1). No flash, no jump.
+    if (imageReady()) {
+      positionOcclusionLayer(layer, img, container);
+    } else {
+      schedule();
+    }
   }
 
   function refreshOcclusionLayers(root = document) {
@@ -1847,21 +1885,22 @@
 
     const srsUndoBtn = document.getElementById('srs-undo-btn');
     const srsActionsBtn = document.getElementById('srs-actions-btn');
-    if (srsUndoBtn && srsActionsBtn) {
+    if (srsUndoBtn) {
+      // Undo stays SRS-only
       if (state.srsMode) {
         srsUndoBtn.classList.remove('hidden');
-        srsActionsBtn.classList.remove('hidden');
         srsUndoBtn.disabled = srsUndoStack.length === 0;
       } else {
         srsUndoBtn.classList.add('hidden');
-        srsActionsBtn.classList.add('hidden');
       }
     }
+    // The 3-dot button is always visible; SRS options inside are greyed per mode.
+    if (srsActionsBtn) srsActionsBtn.classList.remove('hidden');
   }
 
   async function navigateForward(exitVector) {
     if (animating) {
-      queueNavigation(exitVector || { x: -1, y: 0 });
+      queuedNavigation = null;
       return;
     }
     if (!state.activeCards.length || state.complete) return;
@@ -1886,6 +1925,7 @@
       prevCardIndex = activeCardIndex;
       activeCardIndex = nextCardIndex;
       nextCardIndex = (nextCardIndex + 1) % 3;
+      setCardFlipped(cards[activeCardIndex], false, { noTransition: true });
       
       const currentIdx = activeIndex();
       populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
@@ -1911,10 +1951,11 @@
     const token = ++transitionToken;
     playSound('next');
     if (els.prev) els.prev.disabled = true;
-    cancelPendingDrag();
+    clearPointerState();
     
     const activeEl = cards[activeCardIndex];
     const prevEl = cards[prevCardIndex];
+
     
     if (prevEl) {
       prevEl.classList.add('no-transition');
@@ -1941,6 +1982,7 @@
       nextCardIndex = activeCardIndex;
       activeCardIndex = prevCardIndex;
       prevCardIndex = (prevCardIndex + 2) % 3;
+      setCardFlipped(cards[activeCardIndex], false, { noTransition: true });
       
       const currentIdx = activeIndex();
       populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
@@ -1964,7 +2006,7 @@
     const activeEl = cards[activeCardIndex];
     const nextEl = cards[nextCardIndex];
     
-    cancelPendingDrag();
+    clearPointerState();
     
     if (activeEl) {
       activeEl.classList.remove('dragging');
@@ -2131,6 +2173,7 @@
         prevCardIndex = activeCardIndex;
         activeCardIndex = nextCardIndex;
         nextCardIndex = (nextCardIndex + 1) % 3;
+        setCardFlipped(cards[activeCardIndex], false, { noTransition: true });
         
         const currentIdx = activeIndex(); // which is 0
         populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
@@ -2326,20 +2369,7 @@
 
     els.stage.addEventListener('pointerdown', event => {
       if (animating) {
-        // Do not queue navigation if click is on or near the previous button
-        const prevEl = els.prev;
-        if (prevEl) {
-          const rect = prevEl.getBoundingClientRect();
-          const margin = 15;
-          const inPrev = (
-            event.clientX >= rect.left - margin &&
-            event.clientX <= rect.right + margin &&
-            event.clientY >= rect.top - margin &&
-            event.clientY <= rect.bottom + margin
-          );
-          if (inPrev) return;
-        }
-        if (!isInteractive(event.target)) queueNavigation({ x: -1, y: 0 });
+        clearPointerState();
         return;
       }
       const activeCardEl = cards[activeCardIndex];
@@ -2726,6 +2756,10 @@
   function showActionsSheet() {
     const sheet = document.getElementById('srs-actions-sheet');
     if (sheet) {
+      // Grey out SRS-only actions when not in SRS mode
+      sheet.querySelectorAll('.srs-only').forEach(btn => {
+        btn.disabled = !state.srsMode;
+      });
       sheet.classList.remove('hidden');
     }
   }
@@ -2735,6 +2769,32 @@
     if (sheet) {
       sheet.classList.add('hidden');
     }
+  }
+
+  function resetStudyProgress() {
+    if (!state.set) return;
+    // Remove any completion overlay
+    const masteredMsg = document.getElementById('mastered-message');
+    if (masteredMsg) masteredMsg.remove();
+    // Reset index and completion flag before repopulating
+    state.normalIndex = 0;
+    state.complete = false;
+    // Rebuild the active cards list using the same logic as initial load
+    // (respects shuffle, filtered mode, etc.) but skips SRS scheduling
+    prepareActiveCards();
+    if (!state.activeCards.length) {
+      showToast('No cards to study');
+      return;
+    }
+    const currentIdx = activeIndex();
+    populateCardElement(cards[activeCardIndex], state.activeCards[currentIdx]);
+    populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
+    populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
+    setCardFlipped(cards[activeCardIndex], false, { noTransition: true });
+    updateRoles();
+    updateProgress();
+    saveProgress();
+    showToast('Progress reset — starting from card 1');
   }
 
   function showDateModal() {
@@ -2863,6 +2923,14 @@
       });
     }
 
+    const actionResetProgressBtn = document.getElementById('action-reset-progress');
+    if (actionResetProgressBtn) {
+      actionResetProgressBtn.addEventListener('click', () => {
+        hideActionsSheet();
+        resetStudyProgress();
+      });
+    }
+
     if (srsMobileDateCancelBtn) srsMobileDateCancelBtn.addEventListener('click', () => hideDateModal());
     if (srsMobileDateConfirmBtn) {
       srsMobileDateConfirmBtn.addEventListener('click', () => {
@@ -2926,13 +2994,7 @@
 
     document.addEventListener('keydown', event => {
       if (event.repeat || isInteractive(event.target)) return;
-      if (animating) {
-        if (!state.srsMode && event.key === 'ArrowRight') {
-          event.preventDefault();
-          queueNavigation({ x: -1, y: 0 });
-        }
-        return;
-      }
+      if (animating) return;
       if (event.key === 'Escape') {
         closeImageModal();
         return;

@@ -53,7 +53,7 @@
         <button type="button" class="icon-button hidden" id="srs-undo-btn" aria-label="Undo last review" disabled>
           <i class="fas fa-rotate-left"></i>
         </button>
-        <button type="button" class="icon-button hidden" id="srs-actions-btn" aria-label="More actions">
+        <button type="button" class="icon-button" id="srs-actions-btn" aria-label="More options">
           <i class="fas fa-ellipsis-vertical"></i>
         </button>
         <div class="study-progress-chip" aria-live="polite">
@@ -243,24 +243,34 @@
     <div class="bottom-sheet-content">
       <div class="bottom-sheet-drag-handle"></div>
       <div class="bottom-sheet-header">
-        <h3>Card Actions</h3>
+        <h3>More Options</h3>
       </div>
       <div class="bottom-sheet-list">
-        <button type="button" class="bottom-sheet-item" id="action-bury">
+        <button type="button" class="bottom-sheet-item srs-only" id="action-bury">
           <i class="fas fa-box-archive"></i>
-          <span>Bury Card (Hide until tomorrow)</span>
+          <span>Bury Card</span>
+          <span class="bottom-sheet-item-sub">Hide until tomorrow</span>
         </button>
-        <button type="button" class="bottom-sheet-item" id="action-suspend">
+        <button type="button" class="bottom-sheet-item srs-only" id="action-suspend">
           <i class="fas fa-ban"></i>
-          <span>Suspend Card (Exclude from deck)</span>
+          <span>Suspend Card</span>
+          <span class="bottom-sheet-item-sub">Exclude from reviews</span>
         </button>
-        <button type="button" class="bottom-sheet-item" id="action-reset">
+        <button type="button" class="bottom-sheet-item srs-only" id="action-reset">
           <i class="fas fa-rotate"></i>
-          <span>Reset Card (Wipe SRS scheduling)</span>
+          <span>Reset Card</span>
+          <span class="bottom-sheet-item-sub">Wipe SRS scheduling</span>
         </button>
-        <button type="button" class="bottom-sheet-item" id="action-set-due">
+        <button type="button" class="bottom-sheet-item srs-only" id="action-set-due">
           <i class="fas fa-calendar-days"></i>
-          <span>Set Due Date...</span>
+          <span>Set Due Date</span>
+          <span class="bottom-sheet-item-sub">Schedule next review</span>
+        </button>
+        <div class="bottom-sheet-separator"></div>
+        <button type="button" class="bottom-sheet-item bottom-sheet-item-danger" id="action-reset-progress">
+          <i class="fas fa-arrow-rotate-left"></i>
+          <span>Reset Progress</span>
+          <span class="bottom-sheet-item-sub">Restart deck from card 1</span>
         </button>
       </div>
       <div class="bottom-sheet-footer">
@@ -268,6 +278,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- Mobile SRS Set Due Date Modal -->
   <div class="modal hidden" id="srs-mobile-date-modal" role="dialog" aria-modal="true">

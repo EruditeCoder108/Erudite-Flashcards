@@ -142,6 +142,8 @@
   const DAY_MS = 24 * 60 * 60 * 1000;
   const STUDY_SESSION_LOOKBACK_MS = 365 * 24 * 60 * 60 * 1000;
   const CREATOR_IMPORT_MAX_CARDS = 999;
+  const ERUDITE_PACKAGE_MAX_MEDIA_FILES = 500;
+  const ERUDITE_PACKAGE_MAX_MEDIA_BYTES = 80 * 1024 * 1024;
   const OCCLUSION_MAX_MASKS = 80;
   const OCCLUSION_MIN_SIZE = 0.035;
 
@@ -243,6 +245,7 @@
     occlusionHint: document.getElementById('occlusion-hint-input'),
     importHelpOverlay: document.getElementById('import-help-overlay'),
     importHelpCopy: document.getElementById('import-help-copy'),
+    importPackageHelpCopy: document.getElementById('import-package-help-copy'),
     importHelpClose: document.getElementById('import-help-close'),
     pasteImportConfirm: document.getElementById('paste-import-confirm'),
     pasteImportCancel: document.getElementById('paste-import-cancel')
@@ -1931,7 +1934,7 @@
         if (node.tagName === 'IMG') {
           if (name === 'src') {
             const src = safeMediaSrc(raw);
-            if (src && !/^https?:\/\//i.test(src) && !/^data:image\/svg/i.test(src)) node.setAttribute('src', src);
+            if (src && !/^data:image\/svg/i.test(src)) node.setAttribute('src', src);
             else node.removeAttribute(attr.name);
             return;
           }
@@ -1958,8 +1961,7 @@
     let css = String(value || '').slice(0, ADVANCED_CSS_MAX_LENGTH);
     css = css.replace(/\/\*[\s\S]*?\*\//g, '');
     css = css.replace(/@import\b[^;]*;?/gi, '');
-    css = css.replace(/url\s*\(\s*(['"]?)(?!data:image\/)[^)]+?\1\s*\)/gi, 'none');
-    css = css.replace(/url\s*\(\s*(['"]?)data:image\/svg[^)]*?\1\s*\)/gi, 'none');
+    css = css.replace(/url\s*\(\s*(['"]?)(.*?)\1\s*\)/gi, (_match, _quote, rawUrl) => sanitizeAdvancedCssUrl(rawUrl));
     css = css.replace(/\b(expression|javascript|vbscript)\s*\(/gi, '');
     css = css.replace(/\bposition\s*:\s*(fixed|sticky)\s*;?/gi, '');
     css = css.replace(/\bz-index\s*:\s*-?\d+\s*;?/gi, '');
@@ -1976,6 +1978,21 @@
       frontCss: sanitizeAdvancedCss(normalized.frontCss),
       backCss: sanitizeAdvancedCss(normalized.backCss)
     };
+  }
+
+  function sanitizeAdvancedCssUrl(rawUrl) {
+    const src = safeMediaSrc(String(rawUrl || '').trim());
+    if (!src || /^data:image\/svg/i.test(src)) return 'none';
+    if (/^https?:\/\//i.test(src)) {
+      try {
+        const url = new URL(src);
+        if (!['localhost', '127.0.0.1', '::1', '[::1]'].includes(url.hostname)) return 'none';
+      } catch (_) {
+        return 'none';
+      }
+    }
+    const escaped = src.replace(/[\r\n\f"]/g, char => (char === '"' ? '%22' : ''));
+    return `url("${escaped}")`;
   }
 
   function advancedHtmlSide(card = {}, side = 'front') {
@@ -2636,6 +2653,10 @@
     if (selectors.occlusionAnswer) selectors.occlusionAnswer.value = plainTextFromHtml(mask?.answer || '');
     if (selectors.occlusionHint) selectors.occlusionHint.value = plainTextFromHtml(mask?.hint || '');
     selectors.occlusionDeleteMask?.toggleAttribute('disabled', !mask);
+    // Sync the shape toolbar to the selected mask's actual shape so it's
+    // always accurate — prevents accidentally changing a mask's shape by
+    // clicking what appears to be the wrong active button.
+    setOcclusionShape(mask?.shape || 'rect');
   }
 
   function saveOcclusionEditor() {
@@ -3758,7 +3779,76 @@
     const src = safeMediaSrc(value);
     if (!src || /^data:image\/svg/i.test(src)) return '';
     const kindPattern = kinds.join('|');
-    return new RegExp(`^data:(${kindPattern})/`, 'i').test(src) ? src : '';
+    if (new RegExp(`^data:(${kindPattern})/`, 'i').test(src)) return src;
+    if (/^(blob:|file:|capacitor:|cdvfile:)/i.test(src)) return src;
+    if (/^https?:\/\//i.test(src)) {
+      try {
+        const url = new URL(src);
+        return ['localhost', '127.0.0.1', '::1', '[::1]'].includes(url.hostname) ? src : '';
+      } catch (_) {
+        return '';
+      }
+    }
+    return '';
+  }
+
+  function packageMimeForPath(path = '') {
+    const ext = String(path || '').toLowerCase().split('.').pop();
+    const map = {
+      jpg: 'image/jpeg',
+      jpeg: 'image/jpeg',
+      png: 'image/png',
+      gif: 'image/gif',
+      webp: 'image/webp',
+      mp3: 'audio/mpeg',
+      wav: 'audio/wav',
+      ogg: 'audio/ogg',
+      mp4: 'video/mp4',
+      webm: 'video/webm'
+    };
+    return map[ext] || '';
+  }
+
+  function normalizePackagePath(value) {
+    const raw = String(value || '').replace(/\\/g, '/').replace(/^\/+/, '').replace(/\/+/g, '/');
+    if (!raw || raw.includes('\0')) return '';
+    if (/^[a-z][a-z0-9+.-]*:/i.test(raw)) return '';
+    if (raw === '..' || raw.startsWith('../') || raw.includes('/../') || raw.includes('/..')) return '';
+    return raw;
+  }
+
+  function escapeRegExp(value) {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function packageMediaReferenceKeys(path) {
+    const normalized = normalizePackagePath(path);
+    if (!normalized) return [];
+    const encoded = normalized.split('/').map(part => encodeURIComponent(part)).join('/');
+    return Array.from(new Set([
+      normalized,
+      `./${normalized}`,
+      encoded,
+      `./${encoded}`
+    ]));
+  }
+
+  function rewritePackageMediaRefs(value, mediaMap) {
+    const entries = Object.entries(mediaMap || {}).sort((a, b) => b[0].length - a[0].length);
+    const rewriteString = input => {
+      let next = String(input || '');
+      entries.forEach(([from, to]) => {
+        if (!from || !to || !next.includes(from)) return;
+        next = next.replace(new RegExp(escapeRegExp(from), 'g'), () => to);
+      });
+      return next;
+    };
+    if (typeof value === 'string') return rewriteString(value);
+    if (Array.isArray(value)) return value.map(item => rewritePackageMediaRefs(item, mediaMap));
+    if (value && typeof value === 'object') {
+      return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, rewritePackageMediaRefs(item, mediaMap)]));
+    }
+    return value;
   }
 
   function importMediaItem(value) {
@@ -4000,6 +4090,87 @@
     };
   }
 
+  async function parseEruditePackageImport(file) {
+    if (!window.JSZip) {
+      throw importUserError('Package import is unavailable in this build');
+    }
+    let zip;
+    try {
+      zip = await window.JSZip.loadAsync(await file.arrayBuffer());
+    } catch (_) {
+      throw importUserError('Could not read package ZIP');
+    }
+
+    const entries = Object.values(zip.files || {}).filter(entry => !entry.dir);
+    if (!entries.length) throw importUserError('Package is empty');
+    const safeEntries = entries.map(entry => ({ entry, path: normalizePackagePath(entry.name) }));
+    if (safeEntries.some(item => !item.path)) {
+      throw importUserError('Package contains an unsafe file path');
+    }
+
+    const deckEntry = safeEntries.find(item => item.path === 'deck.json')
+      || safeEntries.find(item => item.path.endsWith('/deck.json'));
+    if (!deckEntry) {
+      const looksLikeAnki = safeEntries.some(item => /(^|\/)collection\.anki2$/i.test(item.path))
+        || safeEntries.some(item => /(^|\/)collection\.anki21$/i.test(item.path));
+      throw importUserError(looksLikeAnki
+        ? 'Anki .apkg import is coming later. Use ZIP packages for now.'
+        : 'ZIP package must include deck.json');
+    }
+
+    const basePrefix = deckEntry.path.endsWith('deck.json')
+      ? deckEntry.path.slice(0, -'deck.json'.length)
+      : '';
+    const mediaPrefix = `${basePrefix}media/`;
+    const mediaEntries = safeEntries.filter(item => item.path.startsWith(mediaPrefix));
+    if (mediaEntries.length > ERUDITE_PACKAGE_MAX_MEDIA_FILES) {
+      throw importUserError(`Package supports up to ${ERUDITE_PACKAGE_MAX_MEDIA_FILES} media files`);
+    }
+
+    let totalBytes = 0;
+    const mediaMap = {};
+    for (const item of mediaEntries) {
+      const relPath = item.path.slice(basePrefix.length);
+      const mime = packageMimeForPath(relPath);
+      if (!mime || mime === 'image/svg+xml') continue;
+      const bytes = Number(item.entry?._data?.uncompressedSize || 0);
+      if (bytes) {
+        totalBytes += bytes;
+      }
+      if (totalBytes > ERUDITE_PACKAGE_MAX_MEDIA_BYTES) {
+        throw importUserError('Package media is too large for Creator import');
+      }
+      const base64 = await item.entry.async('base64');
+      if (!bytes) {
+        totalBytes += Math.floor((base64.length * 3) / 4);
+      }
+      if (totalBytes > ERUDITE_PACKAGE_MAX_MEDIA_BYTES) {
+        throw importUserError('Package media is too large for Creator import');
+      }
+      const dataUrl = `data:${mime};base64,${base64}`;
+      const src = await window.flashcardStore.saveImageDataUrl?.(dataUrl, {
+        deckId: state.creator.editingSetId || 'package-import',
+        prefix: relPath.split('/').pop()?.replace(/\.[^.]+$/, '') || 'package-media'
+      }) || dataUrl;
+      [...packageMediaReferenceKeys(relPath), ...packageMediaReferenceKeys(item.path)].forEach(key => {
+        mediaMap[key] = src;
+      });
+    }
+
+    let deckJson;
+    try {
+      deckJson = JSON.parse(await deckEntry.entry.async('string'));
+    } catch (_) {
+      throw importUserError('Package deck.json is invalid');
+    }
+    const rewritten = rewritePackageMediaRefs(deckJson, mediaMap);
+    const imported = parseJsonCreatorImport(JSON.stringify(rewritten));
+    return {
+      ...imported,
+      format: 'ERUDITE PACKAGE'
+    };
+  }
+
   function parseCreatorImportFile(file, text) {
     const name = String(file?.name || '').toLowerCase();
     const type = String(file?.type || '').toLowerCase();
@@ -4017,6 +4188,21 @@
       throw importUserError(`Import supports up to ${CREATOR_IMPORT_MAX_CARDS} cards`);
     }
     return result;
+  }
+
+  async function readCreatorImportFile(file) {
+    const name = String(file?.name || '').toLowerCase();
+    const type = String(file?.type || '').toLowerCase();
+    if (name.endsWith('.erudite') || name.endsWith('.eru')) {
+      throw importUserError('Use .zip for package imports.');
+    }
+    if (name.endsWith('.apkg')) {
+      throw importUserError('Anki .apkg import is coming later. Use ZIP packages for now.');
+    }
+    if (name.endsWith('.zip') || type.includes('zip')) {
+      return parseEruditePackageImport(file);
+    }
+    return parseCreatorImportFile(file, await file.text());
   }
 
   function applyCreatorImport(imported) {
@@ -6115,6 +6301,69 @@
     ].join('\n');
   }
 
+  function buildImportPackageAiPrompt() {
+    return [
+      'Create an Erudite Flashcards ZIP package for import.',
+      '',
+      'Return the package files only. Do not include explanations inside deck.json.',
+      'The final package should be a .zip file with this structure:',
+      'deck.json',
+      'media/',
+      '  descriptive-image-name.webp',
+      '  another-diagram.png',
+      '',
+      'deck.json must be valid JSON using this content-only shape:',
+      '{',
+      '  "version": 1,',
+      '  "name": "Deck name",',
+      '  "className": "Optional existing class name",',
+      '  "cards": [',
+      '    {',
+      '      "type": "basic",',
+      '      "term": "<img src=\\"media/descriptive-image-name.webp\\" alt=\\"Short description\\">",',
+      '      "definition": "Answer text, formula, or explanation",',
+      '      "tags": ["tag"],',
+      '      "reverse": false',
+      '    },',
+      '    {',
+      '      "type": "image-occlusion",',
+      '      "term": "Diagram title",',
+      '      "image": "media/descriptive-image-name.webp",',
+      '      "occlusion": {',
+      '        "masks": [',
+      '          { "shape": "rect", "x": 0.12, "y": 0.2, "w": 0.25, "h": 0.1, "answer": "Hidden label", "hint": "Short clue" }',
+      '        ]',
+      '      }',
+      '    },',
+      '    {',
+      '      "type": "advanced-html",',
+      '      "term": "Short searchable front text",',
+      '      "definition": "Short searchable back text",',
+      '      "advancedHtml": {',
+      '        "frontHtml": "<div class=\\"card-design\\"><img src=\\"media/another-diagram.png\\" alt=\\"Diagram\\"></div>",',
+      '        "frontCss": ".card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;background:#fff;color:#111;padding:18px}",',
+      '        "backHtml": "<div class=\\"card-design\\">Answer</div>",',
+      '        "backCss": ".card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;background:#fff;color:#111;padding:18px}"',
+      '      }',
+      '    }',
+      '  ]',
+      '}',
+      '',
+      'Rules:',
+      '- Use media/... relative paths in deck.json. Put every referenced file inside the media folder.',
+      '- Do not put Base64 media in deck.json for packages.',
+      '- Do not use external URLs. Do not reference files outside media/.',
+      '- Use safe file names like lowercase-kebab-case.webp, .png, .jpg, .gif, .mp3, .wav, .ogg, .mp4, or .webm.',
+      `- Keep the deck at ${CREATOR_IMPORT_MAX_CARDS} cards or fewer.`,
+      '- Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.',
+      '- Use math as "\\\\(F = ma\\\\)" for inline math or "\\\\[x^2 + y^2\\\\]" for display math.',
+      '- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer.',
+      `- Advanced HTML cards live inside a ${ADVANCED_HTML_CANVAS.width}px x ${ADVANCED_HTML_CANVAS.height}px canvas with ${ADVANCED_HTML_CANVAS.radius}px corner radius.`,
+      '- Advanced HTML must use HTML and CSS only: no JavaScript, no scripts, no iframes, no forms, no external URLs, no fixed/sticky overlays.',
+      '- If you cannot create the ZIP directly, provide deck.json plus the exact media file names and contents to place in media/.'
+    ].join('\n');
+  }
+
   function openImportHelpModal() {
     selectors.importHelpOverlay?.classList.remove('hidden');
   }
@@ -7749,8 +7998,7 @@
       event.target.value = '';
       if (!file) return;
       try {
-        const text = await file.text();
-        const imported = parseCreatorImportFile(file, text);
+        const imported = await readCreatorImportFile(file);
         applyCreatorImport(imported);
       } catch (error) {
         console.error(error);
@@ -7871,7 +8119,14 @@
       event.preventDefault();
       playClick();
       const ok = await copyPlainText(buildImportJsonAiPrompt());
-      showToast(ok ? 'AI prompt copied' : 'Could not copy prompt');
+      showToast(ok ? 'JSON prompt copied' : 'Could not copy prompt');
+    });
+
+    selectors.importPackageHelpCopy?.addEventListener('click', async event => {
+      event.preventDefault();
+      playClick();
+      const ok = await copyPlainText(buildImportPackageAiPrompt());
+      showToast(ok ? 'Package prompt copied' : 'Could not copy prompt');
     });
 
     selectors.importHelpOverlay?.addEventListener('click', event => {

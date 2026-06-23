@@ -127,6 +127,10 @@ async function copyVendor() {
     path.join(outDir, 'vendor', 'sortablejs', 'Sortable.min.js')
   );
   await copyFile(
+    path.join(root, 'node_modules', 'jszip', 'dist', 'jszip.min.js'),
+    path.join(outDir, 'vendor', 'jszip', 'jszip.min.js')
+  );
+  await copyFile(
     path.join(root, 'node_modules', 'katex', 'dist', 'katex.min.css'),
     path.join(outDir, 'vendor', 'katex', 'katex.min.css')
   );
