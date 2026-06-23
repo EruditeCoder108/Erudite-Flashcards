@@ -284,6 +284,8 @@
     template.innerHTML = raw;
     const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'P', 'DIV', 'UL', 'OL', 'LI', 'SPAN', 'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'HR']);
     const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink']);
+    // Only allow color: <hex|rgb|hsl|named> in style attributes — no JS injection
+    const safeColorRe = /^color\s*:\s*(#[0-9a-fA-F]{3,8}|rgb\([^)]*\)|rgba\([^)]*\)|hsl\([^)]*\)|hsla\([^)]*\)|[a-zA-Z]{2,30})\s*;?\s*$/;
     const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
     const nodes = [];
     while (walk.nextNode()) nodes.push(walk.currentNode);
@@ -302,11 +304,16 @@
             return;
           }
         }
+        // Allow style="color:..." on SPAN elements only
+        if (node.tagName === 'SPAN' && attr.name === 'style') {
+          if (safeColorRe.test(attr.value.trim())) return; // keep it
+        }
         node.removeAttribute(attr.name);
       });
     });
     return template.innerHTML.replace(/\u200B/g, '') || escapeHtml(raw).replace(/\n/g, '<br>');
   }
+
 
   const ADVANCED_HTML_MAX_LENGTH = 30000;
   const ADVANCED_CSS_MAX_LENGTH = 18000;

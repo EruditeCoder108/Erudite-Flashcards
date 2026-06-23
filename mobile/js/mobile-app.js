@@ -95,6 +95,7 @@
     creatorSaving: false,
     highlightColor: 'yellow',
     suppressNextHighlightClick: false,
+    textColor: '',
     selectMode: false,
     selectedDecks: new Set(),
     lastModalClosedAt: 0
@@ -246,6 +247,7 @@
     importHelpOverlay: document.getElementById('import-help-overlay'),
     importHelpCopy: document.getElementById('import-help-copy'),
     importPackageHelpCopy: document.getElementById('import-package-help-copy'),
+    importHtmlHelpCopy: document.getElementById('import-html-help-copy'),
     importHelpClose: document.getElementById('import-help-close'),
     pasteImportConfirm: document.getElementById('paste-import-confirm'),
     pasteImportCancel: document.getElementById('paste-import-cancel')
@@ -1785,6 +1787,7 @@
       const preview = sets.slice(0, 4).map(set => `<span>${escapeHtml(set.name || 'Untitled')}</span>`).join('');
       const extra = sets.length > 4 ? `<span>+${sets.length - 4} more</span>` : '';
       const due = state.srsMode ? sets.reduce((total, set) => total + dueCountForSet(set), 0) : 0;
+      const totalCards = sets.reduce((sum, set) => sum + (Array.isArray(set.cards) ? set.cards.length : 0), 0);
       return `
         <div class="class-card" style="--class-color:${color}; position: relative;">
           <button type="button" class="class-card-click-area" data-action="open-class" data-class-id="${escapeAttr(classItem.id)}">
@@ -1795,7 +1798,9 @@
                   <h3 class="class-name">${escapeHtml(classItem.name)}</h3>
                   <div class="deck-subline">
                     <span>${plural(sets.length, 'deck')}</span>
-                    ${state.srsMode ? `<span>${due} due</span>` : ''}
+                    <span>•</span>
+                    <span>${totalCards} ${totalCards === 1 ? 'card' : 'cards'}</span>
+                    ${state.srsMode && due > 0 ? `<span>•</span><span class="class-due-pill">${due} due</span>` : ''}
                   </div>
                 </div>
               </div>
@@ -1824,6 +1829,8 @@
     template.innerHTML = String(value || '').trim();
     const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'DIV', 'P', 'UL', 'OL', 'LI', 'SPAN', 'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'HR']);
     const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink']);
+    // Only allow color: <hex|rgb|hsl|named> in style attributes — no JS injection
+    const safeColorRe = /^color\s*:\s*(#[0-9a-fA-F]{3,8}|rgb\([^)]*\)|rgba\([^)]*\)|hsl\([^)]*\)|hsla\([^)]*\)|[a-zA-Z]{2,30})\s*;?\s*$/;
     const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
     const nodes = [];
     while (walk.nextNode()) nodes.push(walk.currentNode);
@@ -1842,11 +1849,16 @@
             return;
           }
         }
+        // Allow style="color:..." on SPAN elements only
+        if (node.tagName === 'SPAN' && attr.name === 'style') {
+          if (safeColorRe.test(attr.value.trim())) return; // keep it
+        }
         node.removeAttribute(attr.name);
       });
     });
     return template.innerHTML.replace(/\u200B/g, '');
   }
+
 
   const ADVANCED_HTML_MAX_LENGTH = 30000;
   const ADVANCED_CSS_MAX_LENGTH = 18000;
@@ -2248,8 +2260,75 @@
     return false;
   }
 
+  function findAncestorMark(limit) {
+    // Walk from selection anchor up to `limit` element, return first <mark> found
+    const selection = window.getSelection();
+    if (!selection?.rangeCount) return null;
+    let node = selection.anchorNode;
+    while (node && node !== limit) {
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'MARK') return node;
+      node = node.parentNode;
+    }
+    return null;
+  }
+
+  function unwrapElement(el) {
+    // Move all children of el before el, then remove el
+    const parent = el.parentNode;
+    if (!parent) return;
+    while (el.firstChild) parent.insertBefore(el.firstChild, el);
+    parent.removeChild(el);
+  }
+
+  function exitMarkAfter(mark, editor) {
+    // Place the caret just after the mark element so typing continues outside it
+    const sel = window.getSelection();
+    if (!sel) return;
+    const range = document.createRange();
+    // insert a ZWS text node after the mark so caret has somewhere to land
+    const spacer = document.createTextNode('\u200B');
+    if (mark.nextSibling) {
+      mark.parentNode.insertBefore(spacer, mark.nextSibling);
+    } else {
+      mark.parentNode.appendChild(spacer);
+    }
+    range.setStart(spacer, 1);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+
   function insertHighlightContent() {
-    return wrapOrStartInlineElement('mark', { className: `highlight-${state.highlightColor || 'yellow'}` });
+    const editor = activeRichEditor();
+    if (!editor) {
+      showToast('Tap a card field first');
+      return false;
+    }
+    const range = selectionRangeInEditor(editor);
+    if (!range) {
+      showToast('Tap where you want to type');
+      return false;
+    }
+
+    const targetClass = `highlight-${state.highlightColor || 'yellow'}`;
+    const existingMark = findAncestorMark(editor);
+
+    if (existingMark) {
+      if (range.collapsed) {
+        // Cursor is inside a mark — exit it so typing continues outside
+        exitMarkAfter(existingMark, editor);
+      } else {
+        // Selection spans a mark — unwrap it (remove highlight)
+        unwrapElement(existingMark);
+      }
+      syncCreatorFromDom();
+      updateFormatState();
+      scheduleCreatorDraftSave();
+      return true;
+    }
+
+    // No ancestor mark — wrap as usual
+    return wrapOrStartInlineElement('mark', { className: targetClass });
   }
 
   function insertInlineCodeContent() {
@@ -2277,6 +2356,81 @@
     if (!next) return;
     state.highlightColor = ['yellow', 'green', 'blue', 'pink'].includes(next) ? next : 'yellow';
     showToast(`${state.highlightColor[0].toUpperCase()}${state.highlightColor.slice(1)} highlight`);
+  }
+
+  // ─── Text Color ────────────────────────────────────────────────────────
+
+  function insertTextColorContent(hexColor) {
+    const editor = activeRichEditor();
+    if (!editor) {
+      showToast('Tap a card field first');
+      return false;
+    }
+    editor.focus();
+    const range = selectionRangeInEditor(editor);
+    if (!range) {
+      showToast('Tap where you want to type');
+      return false;
+    }
+
+    if (!hexColor) {
+      // Remove color — unwrap any ancestor colored span
+      const sel = window.getSelection();
+      let node = sel?.anchorNode;
+      while (node && node !== editor) {
+        if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'SPAN' && node.style.color) {
+          unwrapElement(node);
+          syncCreatorFromDom();
+          updateFormatState();
+          scheduleCreatorDraftSave();
+          return true;
+        }
+        node = node.parentNode;
+      }
+      return false;
+    }
+
+    if (range.collapsed) {
+      // Place a colored span with ZWS for typing
+      const span = document.createElement('span');
+      span.style.color = hexColor;
+      span.appendChild(document.createTextNode('\u200B'));
+      if (!insertElementAtRange(editor, span, range)) return false;
+      placeCaretInside(span.firstChild);
+    } else {
+      // Wrap selection in colored span
+      const span = document.createElement('span');
+      span.style.color = hexColor;
+      span.appendChild(range.extractContents());
+      range.insertNode(span);
+      placeCaretInside(span);
+    }
+    syncCreatorFromDom();
+    updateFormatState();
+    scheduleCreatorDraftSave();
+    return true;
+  }
+
+  async function openTextColorPicker() {
+    if (window.EruditeColorPicker) {
+      // If no color was ever picked, derive a sensible initial from the current theme text color
+      let initial = state.textColor;
+      if (!initial) {
+        const themeTextColor = getComputedStyle(document.body).getPropertyValue('--text').trim();
+        initial = themeTextColor || '#f8fafc';
+      }
+      const picked = await window.EruditeColorPicker.open({
+        title: 'Text Color',
+        initial
+      });
+      if (!picked) return;
+      state.textColor = picked;
+      // Update indicator on all text-color buttons
+      document.querySelectorAll('.format-button-color').forEach(btn => {
+        btn.style.setProperty('--tc-indicator', picked);
+      });
+      insertTextColorContent(picked);
+    }
   }
 
   function normalizeCardMedia(card = {}) {
@@ -3434,6 +3588,9 @@
               ${formatButton('italic', 'Italic', 'fa-italic')}
               ${formatButton('underline', 'Underline', 'fa-underline')}
               ${formatButton('highlight', 'Highlight', 'fa-highlighter')}
+              <button type="button" class="format-button format-button-color" data-creator-action="format" data-command="textColor" aria-label="Text Color" style="--tc-indicator:${escapeAttr(state.textColor || 'currentColor')}">
+                <i class="fas fa-palette"></i>
+              </button>
               ${formatButton('inlineCode', 'Inline code', 'fa-terminal')}
               ${formatButton('codeBlock', 'Code block', 'fa-file-code')}
               ${formatButton('formula', 'Formula', 'fa-square-root-variable')}
@@ -3459,6 +3616,9 @@
               ${formatButton('italic', 'Italic', 'fa-italic')}
               ${formatButton('underline', 'Underline', 'fa-underline')}
               ${formatButton('highlight', 'Highlight', 'fa-highlighter')}
+              <button type="button" class="format-button format-button-color" data-creator-action="format" data-command="textColor" aria-label="Text Color" style="--tc-indicator:${escapeAttr(state.textColor || 'currentColor')}">
+                <i class="fas fa-palette"></i>
+              </button>
               ${formatButton('inlineCode', 'Inline code', 'fa-terminal')}
               ${formatButton('codeBlock', 'Code block', 'fa-file-code')}
               ${formatButton('formula', 'Formula', 'fa-square-root-variable')}
@@ -3602,10 +3762,9 @@
                 ${classColorChoices.map(color => `
                   <button type="button" class="class-color-choice ${color === selectedColor ? 'active' : ''}" data-color="${color}" style="--swatch:${color}" aria-label="Use ${color}"></button>
                 `).join('')}
-                <label class="class-color-custom" aria-label="Custom color">
+                <button type="button" class="class-color-custom" id="mobile-class-editor-color-btn" aria-label="Custom color">
                   <i class="fas fa-eye-dropper"></i>
-                  <input id="mobile-class-editor-color" type="color" value="${selectedColor}">
-                </label>
+                </button>
               </div>
             </div>
             <div class="mobile-field">
@@ -3631,14 +3790,28 @@
         resolve(value);
       };
 
-      modal.addEventListener('click', event => {
+      modal.addEventListener('click', async event => {
         const colorButton = event.target.closest('[data-color]');
         if (colorButton) {
           selectedColor = validColor(colorButton.dataset.color, selectedColor);
           modal.querySelectorAll('.class-color-choice').forEach(button => button.classList.toggle('active', button === colorButton));
-          const input = modal.querySelector('#mobile-class-editor-color');
-          if (input) input.value = selectedColor;
           playClick();
+          return;
+        }
+
+        // Custom color picker button
+        if (event.target.closest('#mobile-class-editor-color-btn')) {
+          if (window.EruditeColorPicker) {
+            const picked = await window.EruditeColorPicker.open({ title: 'Class Color', initial: selectedColor });
+            if (picked) {
+              selectedColor = picked;
+              // Deselect all preset swatches
+              modal.querySelectorAll('.class-color-choice').forEach(button => button.classList.remove('active'));
+              // Update the dropper button background as a live preview
+              const btn = modal.querySelector('#mobile-class-editor-color-btn');
+              if (btn) btn.style.setProperty('--swatch', picked);
+            }
+          }
           return;
         }
 
@@ -3668,10 +3841,6 @@
         }
       });
 
-      modal.querySelector('#mobile-class-editor-color')?.addEventListener('input', event => {
-        selectedColor = validColor(event.target.value, selectedColor);
-        modal.querySelectorAll('.class-color-choice').forEach(button => button.classList.remove('active'));
-      });
 
       document.body.appendChild(modal);
       requestAnimationFrame(() => modal.querySelector('#mobile-class-editor-name')?.focus());
@@ -6695,6 +6864,8 @@
             break;
           }
           insertHighlightContent();
+        } else if (command === 'textColor') {
+          openTextColorPicker().catch(err => console.warn('[mobile] text color picker failed:', err));
         } else if (command === 'inlineCode') {
           insertInlineCodeContent();
         } else if (command === 'codeBlock') {
@@ -8127,6 +8298,51 @@
       playClick();
       const ok = await copyPlainText(buildImportPackageAiPrompt());
       showToast(ok ? 'Package prompt copied' : 'Could not copy prompt');
+    });
+
+    selectors.importHtmlHelpCopy?.addEventListener('click', async event => {
+      event.preventDefault();
+      playClick();
+      const ok = await copyPlainText(buildAdvancedHtmlPrompt({}));
+      showToast(ok ? 'HTML prompt copied' : 'Could not copy prompt');
+    });
+
+    // Modal Tabs Logic
+    document.querySelectorAll('.modal-tab-btn').forEach(btn => {
+      btn.addEventListener('click', event => {
+        event.preventDefault();
+        playClick();
+        const tabName = btn.dataset.helpTab;
+        if (!tabName) return;
+        
+        // Toggle active button
+        btn.parentElement.querySelectorAll('.modal-tab-btn').forEach(b => {
+          b.classList.toggle('active', b === btn);
+        });
+        
+        // Toggle active pane
+        const modalBody = btn.closest('.import-help-card').querySelector('.import-help-content');
+        if (modalBody) {
+          modalBody.querySelectorAll('.modal-tab-content').forEach(pane => {
+            pane.classList.toggle('active', pane.id === `help-tab-${tabName}`);
+          });
+        }
+      });
+    });
+
+    // Code Snippet Copy Logic
+    document.querySelectorAll('.code-block-copy').forEach(btn => {
+      btn.addEventListener('click', async event => {
+        event.preventDefault();
+        playClick();
+        const targetId = btn.dataset.copyTarget;
+        const codeEl = document.getElementById(targetId);
+        if (codeEl) {
+          const text = codeEl.textContent;
+          const ok = await copyPlainText(text);
+          showToast(ok ? 'Code snippet copied' : 'Could not copy snippet');
+        }
+      });
     });
 
     selectors.importHelpOverlay?.addEventListener('click', event => {

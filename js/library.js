@@ -521,34 +521,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         const dueCount = srsModeEnabled && window.srsManager?.isReady()
             ? classSets.reduce((total, set) => total + getSetSRSInfo(set).dueCards, 0)
             : 0;
+        const totalCards = classSets.reduce((sum, set) => sum + (Array.isArray(set.cards) ? set.cards.length : 0), 0);
+        
         const card = document.createElement('article');
         card.className = 'class-card';
         card.style.setProperty('--class-color', classItem.color || '#3B82F6');
 
         const setPreview = classSets.slice(0, 5).map(set => `<span>${escapeHtml(set.name || 'Untitled Set')}</span>`).join('');
         const extraCount = Math.max(0, classSets.length - 5);
+        const icon = classItem.icon || 'fa-graduation-cap';
+        const iconClass = icon.startsWith('fa-') ? `fas ${icon}` : icon;
+
         card.innerHTML = `
             <button class="class-edit-btn" type="button" title="Edit class">
                 <i class="fas fa-pen"></i>
             </button>
             <div class="class-card-content">
-                <div class="class-card-top" aria-hidden="true"></div>
                 <div class="class-card-main">
                     <div class="class-card-header">
-                        <span class="class-color-dot"></span>
+                        <div class="class-icon-badge">
+                            <i class="${escapeAttr(iconClass)}"></i>
+                        </div>
                         <div class="class-card-title">
                             <h3>${escapeHtml(classItem.name)}</h3>
-                            <p>${classSets.length === 0 ? 'No sets yet' : `${classSets.length} ${classSets.length === 1 ? 'set' : 'sets'}`}</p>
                         </div>
                     </div>
                     <div class="class-card-meta">
                         <span><i class="fas fa-layer-group"></i>${classSets.length} ${classSets.length === 1 ? 'set' : 'sets'}</span>
-                        ${srsModeEnabled ? `<span><i class="fas fa-brain"></i>${dueCount} due</span>` : ''}
+                        <span><i class="fas fa-clone"></i>${totalCards} ${totalCards === 1 ? 'card' : 'cards'}</span>
+                        ${srsModeEnabled && dueCount > 0 ? `<span class="class-due-pill"><i class="fas fa-brain"></i>${dueCount} due</span>` : ''}
                     </div>
                 </div>
                 <div class="class-set-preview">
                     ${setPreview || '<span class="class-card-empty">Add sets from creator</span>'}
-                    ${extraCount ? `<span>+${extraCount} more</span>` : ''}
+                    ${extraCount ? `<span class="class-preview-more">+${extraCount} more</span>` : ''}
                 </div>
             </div>
         `;
@@ -577,6 +583,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         return div.innerHTML;
     }
 
+    function escapeAttr(value) {
+        return String(value ?? '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
     function updateViewTabs() {
         libraryViewTabs.forEach(tab => {
             const isActive = selectedClassId
@@ -592,7 +602,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         classSelectTarget = options.selectElement || null;
         if (classModalTitle) classModalTitle.textContent = classItem ? 'Edit Class' : 'New Class';
         if (classNameInput) classNameInput.value = classItem?.name || '';
-        if (classColorInput) classColorInput.value = classItem?.color || '#3B82F6';
+        const colorVal = classItem?.color || '#3B82F6';
+        if (classColorInput) classColorInput.value = colorVal;
+        const colorBtn = document.getElementById('class-color-input-btn');
+        if (colorBtn) colorBtn.style.background = colorVal;
         if (deleteClassBtn) deleteClassBtn.classList.toggle('hidden', !classItem);
         
         // Highlight active icon
@@ -2173,6 +2186,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             classIconGrid.querySelectorAll('.icon-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             playClickSound();
+        });
+    }
+
+    // Class color swatch button → open EruditeColorPicker
+    const classColorBtn = document.getElementById('class-color-input-btn');
+    if (classColorBtn && window.EruditeColorPicker) {
+        classColorBtn.addEventListener('click', async () => {
+            const current = classColorInput?.value || '#3B82F6';
+            const picked = await window.EruditeColorPicker.open({ title: 'Class Color', initial: current });
+            if (picked && classColorInput) {
+                classColorInput.value = picked;
+                classColorBtn.style.background = picked;
+            }
         });
     }
 

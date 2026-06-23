@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendor/katex/katex.min.css">
   <link rel="stylesheet" href="mobile/css/mobile-app.css">
+  <link rel="stylesheet" href="css/color-picker.css">
 </head>
 <body>
   <div class="app-loading-cover" id="app-loading-cover" aria-live="polite">
@@ -778,26 +779,53 @@
   <div class="mobile-modal-overlay hidden" id="import-help-overlay" role="dialog" aria-modal="true" aria-labelledby="import-help-title">
     <div class="mobile-modal-card mobile-modal-card--wide import-help-card">
       <h3 id="import-help-title"><i class="fas fa-circle-question"></i> Help & Import Format</h3>
+      
+      <!-- Tab Header Navigation -->
+      <div class="modal-tabs">
+        <button type="button" class="modal-tab-btn active" data-help-tab="formats">File Formats</button>
+        <button type="button" class="modal-tab-btn" data-help-tab="ai">AI Generators</button>
+        <button type="button" class="modal-tab-btn" data-help-tab="rules">Guidelines</button>
+      </div>
+
       <div class="mobile-modal-scroll-content import-help-content">
-        <section>
-          <h4>Import file</h4>
-          <p>Use the Creator screen's Import file button for new card content. Full backups still use Import Backup.</p>
-        </section>
-        <section>
-          <h4>TXT</h4>
-          <p>Uses your separator settings. Default format:</p>
-          <pre class="help-code"><code>term1;definition1@term2;definition2</code></pre>
-        </section>
-        <section>
-          <h4>CSV / TSV</h4>
-          <p>Use spreadsheet columns. Headers are optional. Recognized headers: term, definition, tags, reverse, type.</p>
-          <pre class="help-code"><code>term,definition,tags,reverse
+        <!-- Tab 1: File Formats -->
+        <div class="modal-tab-content active" id="help-tab-formats">
+          <section>
+            <h4>Import file</h4>
+            <p>Use the Creator screen's Import file button for new card content. Full backups still use Import Backup.</p>
+          </section>
+          <section>
+            <h4>TXT</h4>
+            <p>Uses your separator settings. Default format:</p>
+            <div class="code-block-wrapper">
+              <div class="code-block-header">
+                <span class="code-block-title">example.txt</span>
+                <button type="button" class="code-block-copy" data-copy-target="code-txt" title="Copy Code"><i class="fas fa-copy"></i></button>
+              </div>
+              <pre class="help-code"><code id="code-txt">term1;definition1@term2;definition2</code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>CSV / TSV</h4>
+            <p>Use spreadsheet columns. Headers are optional. Recognized headers: term, definition, tags, reverse, type.</p>
+            <div class="code-block-wrapper">
+              <div class="code-block-header">
+                <span class="code-block-title">cards.csv</span>
+                <button type="button" class="code-block-copy" data-copy-target="code-csv" title="Copy Code"><i class="fas fa-copy"></i></button>
+              </div>
+              <pre class="help-code"><code id="code-csv">term,definition,tags,reverse
 Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
-        </section>
-        <section>
-          <h4>JSON</h4>
-          <p>Use JSON for rich cards, reverse cards, cloze cards, tags, image occlusion, and HTML/CSS cards. JSON imports content only; backups are for SRS history and full app restore.</p>
-          <pre class="help-code"><code>{
+            </div>
+          </section>
+          <section>
+            <h4>JSON</h4>
+            <p>Use JSON for rich cards, reverse cards, cloze cards, tags, image occlusion, and HTML/CSS cards. JSON imports content only; backups are for SRS history and full app restore.</p>
+            <div class="code-block-wrapper">
+              <div class="code-block-header">
+                <span class="code-block-title">deck.json</span>
+                <button type="button" class="code-block-copy" data-copy-target="code-json" title="Copy Code"><i class="fas fa-copy"></i></button>
+              </div>
+              <pre class="help-code"><code id="code-json">{
   "version": 1,
   "name": "Physics formulas",
   "className": "Class 10 Science",
@@ -841,17 +869,29 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
     }
   ]
 }</code></pre>
-        </section>
-        <section>
-          <h4>ZIP package</h4>
-          <p>Use <code>.zip</code> for image-heavy decks. It must contain one <code>deck.json</code> plus a <code>media/</code> folder.</p>
-          <pre class="help-code"><code>evolution.zip
+            </div>
+          </section>
+          <section>
+            <h4>ZIP package</h4>
+            <p>Use <code>.zip</code> for image-heavy decks. It must contain one <code>deck.json</code> plus a <code>media/</code> folder.</p>
+            <div class="code-block-wrapper">
+              <div class="code-block-header">
+                <span class="code-block-title">structure.txt</span>
+                <button type="button" class="code-block-copy" data-copy-target="code-zip-struct" title="Copy Code"><i class="fas fa-copy"></i></button>
+              </div>
+              <pre class="help-code"><code id="code-zip-struct">evolution.zip
   deck.json
   media/
     fig_miller_experiment.webp
     fig_homologous_organs.webp</code></pre>
-          <p>Inside <code>deck.json</code>, reference files like this:</p>
-          <pre class="help-code"><code>{
+            </div>
+            <p>Inside <code>deck.json</code>, reference files like this:</p>
+            <div class="code-block-wrapper">
+              <div class="code-block-header">
+                <span class="code-block-title">deck.json (ZIP version)</span>
+                <button type="button" class="code-block-copy" data-copy-target="code-zip-json" title="Copy Code"><i class="fas fa-copy"></i></button>
+              </div>
+              <pre class="help-code"><code id="code-zip-json">{
   "version": 1,
   "name": "Evolution",
   "cards": [
@@ -862,29 +902,65 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
     }
   ]
 }</code></pre>
-          <p>Keep media local to the package. Use paths like <code>media/file.webp</code>; avoid external URLs and giant Base64 strings.</p>
-        </section>
-        <section>
-          <h4>Safe rich text</h4>
-          <p>Allowed: bold, italic, underline, lists, blockquote, code, highlight marks, horizontal rules, and math with <code>\(...\)</code> or <code>\[...\]</code>.</p>
-        </section>
-        <section>
-          <h4>HTML/CSS cards</h4>
-          <p>The advanced HTML canvas is 340px wide, 470px tall, and 20px rounded. Use HTML and CSS only. No JavaScript, scripts, iframes, forms, external URLs, or fixed overlays.</p>
-        </section>
-        <section>
-          <h4>Image occlusion</h4>
-          <p>Use normalized mask coordinates from 0 to 1. Each mask becomes one study card. JSON accepts data URL images; ZIP packages can reference images from <code>media/</code>.</p>
-        </section>
-        <section>
-          <h4>Anki packages</h4>
-          <p><code>.apkg</code> support is planned separately. This ZIP format is simpler; Anki uses its own SQLite collection and media map.</p>
-        </section>
+            </div>
+            <p>Keep media local to the package. Use paths like <code>media/file.webp</code>; avoid external URLs and giant Base64 strings.</p>
+          </section>
+        </div>
+
+        <!-- Tab 2: AI Generators -->
+        <div class="modal-tab-content" id="help-tab-ai">
+          <section>
+            <h4>AI Prompts</h4>
+            <p>Copy these prompts and paste them in ChatGPT, Gemini, or Claude to quickly generate formatted content for Erudite.</p>
+          </section>
+          <div class="ai-prompt-card">
+            <h4><i class="fas fa-file-code"></i> JSON Deck Generator</h4>
+            <p>Generates a complete deck import file (JSON format) with support for basic, cloze, occlusion, HTML cards, tags, and reverses.</p>
+            <button type="button" class="ai-prompt-btn" id="import-help-copy">
+              <i class="fas fa-wand-magic-sparkles"></i> Copy JSON Prompt
+            </button>
+          </div>
+          
+          <div class="ai-prompt-card package-card">
+            <h4><i class="fas fa-file-zipper"></i> ZIP Package Generator</h4>
+            <p>Generates a structured ZIP package containing media files (images/audio) and a reference mapping <code>deck.json</code> file.</p>
+            <button type="button" class="ai-prompt-btn" id="import-package-help-copy">
+              <i class="fas fa-wand-magic-sparkles"></i> Copy Package Prompt
+            </button>
+          </div>
+          
+          <div class="ai-prompt-card html-card">
+            <h4><i class="fas fa-code"></i> HTML & CSS Card Creator</h4>
+            <p>Generates a single custom card with styled HTML layout, responsive CSS canvas, math formula rendering, and no JavaScript.</p>
+            <button type="button" class="ai-prompt-btn" id="import-html-help-copy">
+              <i class="fas fa-wand-magic-sparkles"></i> Copy HTML Prompt
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 3: Guidelines -->
+        <div class="modal-tab-content" id="help-tab-rules">
+          <section>
+            <h4>Safe rich text</h4>
+            <p>Allowed rich text tags and styles: bold, italic, underline, lists, blockquote, code, pre, horizontal rules, highlight marks, custom text colors (via SPAN inline styles), and LaTeX math syntax with <code>\(...\)</code> or <code>\[...\]</code>.</p>
+          </section>
+          <section>
+            <h4>HTML/CSS cards</h4>
+            <p>The custom HTML canvas is exactly 340px wide, 470px tall, and 20px rounded. Use HTML and CSS only. No JavaScript, scripts, iframes, forms, external URL dependencies, or fixed overlays.</p>
+          </section>
+          <section>
+            <h4>Image occlusion</h4>
+            <p>Use normalized mask coordinates from 0 to 1 relative to image dimensions. Each mask becomes one study card. JSON accepts data URL images; ZIP packages can reference images from <code>media/</code>.</p>
+          </section>
+          <section>
+            <h4>Anki packages</h4>
+            <p>Direct <code>.apkg</code> import support is planned for future versions. Currently, Anki packages must be imported using their media file paths or by converting to CSV/TXT format.</p>
+          </section>
+        </div>
       </div>
+      
       <div class="mobile-modal-actions">
-        <button type="button" class="mobile-modal-btn cancel" id="import-help-close">Close</button>
-        <button type="button" class="mobile-modal-btn confirm" id="import-help-copy"><i class="fas fa-copy"></i> Copy JSON Prompt</button>
-        <button type="button" class="mobile-modal-btn confirm" id="import-package-help-copy"><i class="fas fa-file-zipper"></i> Copy Package Prompt</button>
+        <button type="button" class="mobile-modal-btn cancel" id="import-help-close" style="width:100%">Close</button>
       </div>
     </div>
   </div>
@@ -1245,6 +1321,7 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
   <script src="js/storage-client.js"></script>
   <script src="vendor/ts-fsrs/index.umd.js"></script>
   <script src="js/srs-manager.js"></script>
+  <script src="js/core/color-picker.js"></script>
   <script src="mobile/js/mobile-app.js"></script>
 </body>
 </html>

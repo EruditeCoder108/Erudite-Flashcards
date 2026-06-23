@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/creator.css">
     <link rel="stylesheet" href="css/cursor.css">
     <link rel="stylesheet" href="css/toast-notifications.css">
+    <link rel="stylesheet" href="css/color-picker.css">
 
     <script src="js/core/schema.js"></script>
     <script src="js/core/backup.js"></script>
@@ -30,6 +31,7 @@
     <script src="js/srs-manager.js"></script>
     <script src="js/flashcard-settings.js"></script>
     <script src="js/app-menu.js"></script>
+    <script src="js/core/color-picker.js"></script>
     <script src="js/creator.js"></script>
 </head>
 <body>
@@ -193,7 +195,8 @@
                     </label>
                     <label>
                         Class color
-                        <input type="color" id="creator-class-color" value="#3B82F6">
+                        <button type="button" id="creator-class-color-btn" class="class-color-swatch-btn" style="background:#3B82F6" title="Pick class color"></button>
+                        <input type="hidden" id="creator-class-color" value="#3B82F6">
                     </label>
                     <div class="icon-selector-section">
                         <span class="selector-label">Class Icon</span>

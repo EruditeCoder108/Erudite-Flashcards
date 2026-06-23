@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/library.css">
     <link rel="stylesheet" href="css/cursor.css">
     <link rel="stylesheet" href="css/toast-notifications.css">
+    <link rel="stylesheet" href="css/color-picker.css">
 
     <script src="js/core/schema.js"></script>
     <script src="js/core/backup.js"></script>
@@ -575,7 +576,8 @@
                         </label>
                         <label>
                             Class color
-                            <input type="color" id="class-color-input" value="#3B82F6">
+                            <button type="button" id="class-color-input-btn" class="class-color-swatch-btn" style="background:#3B82F6" title="Pick class color"></button>
+                            <input type="hidden" id="class-color-input" value="#3B82F6">
                         </label>
                     </div>
                     <div class="icon-selector-section">
@@ -931,6 +933,7 @@
 
     <script src="js/flashcard-settings.js"></script>
     <script src="js/app-menu.js"></script>
+    <script src="js/core/color-picker.js"></script>
     <script src="js/library.js"></script>
     <!-- Custom Cursor Elements -->
     <div id="cursor-dot"></div>

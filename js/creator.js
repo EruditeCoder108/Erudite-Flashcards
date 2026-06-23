@@ -181,7 +181,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         if (setClassSelect) setClassSelect.value = classItem?.id || '';
         if (creatorClassNameInput) creatorClassNameInput.value = classItem?.name || '';
-        if (creatorClassColorInput) creatorClassColorInput.value = classItem?.color || '#3B82F6';
+        const colorVal = classItem?.color || '#3B82F6';
+        if (creatorClassColorInput) creatorClassColorInput.value = colorVal;
+        const colorSwatchBtn = document.getElementById('creator-class-color-btn');
+        if (colorSwatchBtn) colorSwatchBtn.style.background = colorVal;
         
         // Highlight active icon
         const activeIcon = classItem?.icon || 'fa-graduation-cap';
@@ -568,6 +571,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             creatorClassIconGrid.querySelectorAll('.icon-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             playClickSound();
+        });
+    }
+
+    // Creator Class color swatch → open EruditeColorPicker
+    const creatorColorSwatchBtn = document.getElementById('creator-class-color-btn');
+    if (creatorColorSwatchBtn && window.EruditeColorPicker) {
+        creatorColorSwatchBtn.addEventListener('click', async () => {
+            const current = creatorClassColorInput?.value || '#3B82F6';
+            const picked = await window.EruditeColorPicker.open({ title: 'Class Color', initial: current });
+            if (picked) {
+                if (creatorClassColorInput) creatorClassColorInput.value = picked;
+                creatorColorSwatchBtn.style.background = picked;
+            }
         });
     }
     
