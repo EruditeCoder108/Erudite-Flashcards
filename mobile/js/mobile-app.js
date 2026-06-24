@@ -4104,9 +4104,67 @@
     };
   }
 
+  function importImageMediaItem(value, fallbackName = 'Image') {
+    const source = typeof value === 'string' ? { src: value } : (value && typeof value === 'object' ? value : {});
+    const src = safeImportDataUrl(source.src || source.url || source.dataUrl, ['image']);
+    if (!src) return null;
+    return {
+      id: createLocalId('media'),
+      kind: 'image',
+      mime: String(source.mime || source.type || 'image').trim(),
+      name: String(source.name || source.fileName || source.alt || source.title || imageNameFromSrc(src, fallbackName)).trim() || fallbackName,
+      src,
+      created: Date.now()
+    };
+  }
+
   function importMediaSide(value) {
     const items = Array.isArray(value) ? value : (value ? [value] : []);
     return items.map(importMediaItem).filter(Boolean).slice(0, 12);
+  }
+
+  function importMediaList(...lists) {
+    const seen = new Set();
+    return lists.flat().filter(item => {
+      if (!item?.src) return false;
+      const key = `${item.kind || ''}:${item.src}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    }).slice(0, 12);
+  }
+
+  function imageNameFromSrc(src, fallback = 'Image') {
+    try {
+      const clean = decodeURIComponent(String(src || '').split(/[?#]/)[0].split('/').pop() || '');
+      return clean || fallback;
+    } catch (_) {
+      return fallback;
+    }
+  }
+
+  function extractImportInlineImages(html, fallbackName = 'Image') {
+    const template = document.createElement('template');
+    template.innerHTML = String(html || '');
+    const images = [];
+    template.content.querySelectorAll('img').forEach((img, index) => {
+      const src = safeImportDataUrl(img.getAttribute('src') || '', ['image']);
+      if (src) {
+        images.push({
+          id: createLocalId('media'),
+          kind: 'image',
+          mime: 'image',
+          name: String(img.getAttribute('alt') || img.getAttribute('title') || imageNameFromSrc(src, `${fallbackName} ${index + 1}`)).trim() || fallbackName,
+          src,
+          created: Date.now()
+        });
+      }
+      img.remove();
+    });
+    return {
+      html: template.innerHTML.replace(/^(?:\s|<br\s*\/?>)+/gi, '').replace(/(?:\s|<br\s*\/?>)+$/gi, ''),
+      images
+    };
   }
 
   function importBackgroundSide(value) {
@@ -4143,12 +4201,36 @@
     const requestedType = normalizeImportType(source.type || source.noteType || source.cardType || (source.advancedHtml ? 'advanced-html' : (source.occlusion || source.imageOcclusion ? 'image-occlusion' : 'basic')));
     const media = source.media && typeof source.media === 'object' ? source.media : {};
     const background = source.background && typeof source.background === 'object' ? source.background : {};
+    const rawTerm = importString(source.term || source.front || source.question || source.prompt);
+    const rawDefinition = importString(source.definition || source.back || source.answer || source.meaning);
+    const rawCloze = importString(source.text || source.cloze || source.term || source.front);
+    const canExtractRichMedia = requestedType !== 'advanced-html' && requestedType !== 'image-occlusion';
+    const termInline = canExtractRichMedia
+      ? extractImportInlineImages(requestedType === 'cloze' ? rawCloze : rawTerm, requestedType === 'cloze' ? 'Cloze image' : 'Term image')
+      : { html: rawTerm, images: [] };
+    const definitionInline = canExtractRichMedia
+      ? extractImportInlineImages(rawDefinition, 'Definition image')
+      : { html: rawDefinition, images: [] };
+    const explicitTermImage = canExtractRichMedia
+      ? importImageMediaItem(source.termImage || source.frontImage || source.questionImage || source.image, 'Term image')
+      : null;
+    const explicitDefinitionImage = canExtractRichMedia
+      ? importImageMediaItem(source.definitionImage || source.backImage || source.answerImage, 'Definition image')
+      : null;
     const base = {
       ...emptyCreatorCard(),
       tags: normalizeImportTags(source.tags),
       media: {
-        term: importMediaSide(media.term || source.termMedia || source.frontMedia),
-        definition: importMediaSide(media.definition || source.definitionMedia || source.backMedia)
+        term: importMediaList(
+          importMediaSide(media.term || source.termMedia || source.frontMedia),
+          explicitTermImage ? [explicitTermImage] : [],
+          termInline.images
+        ),
+        definition: importMediaList(
+          importMediaSide(media.definition || source.definitionMedia || source.backMedia),
+          explicitDefinitionImage ? [explicitDefinitionImage] : [],
+          definitionInline.images
+        )
       },
       background: {
         term: importBackgroundSide(background.term || source.termBackground || source.frontBackground),
@@ -4162,8 +4244,8 @@
         ...base,
         noteType: 'advanced-html',
         cardTemplate: 'advanced-html',
-        term: sanitizeEditorHtml(importString(source.term || source.front || source.question || source.prompt)),
-        definition: sanitizeEditorHtml(importString(source.definition || source.back || source.answer || source.meaning)),
+        term: sanitizeEditorHtml(rawTerm),
+        definition: sanitizeEditorHtml(rawDefinition),
         advancedHtml: sanitizeAdvancedHtmlCard({
           frontHtml: advanced.frontHtml || source.frontHtml || advanced.html || source.html || '',
           backHtml: advanced.backHtml || source.backHtml || '',
@@ -4199,16 +4281,16 @@
     if (requestedType === 'cloze') {
       const card = {
         ...base,
-        term: sanitizeEditorHtml(importString(source.text || source.cloze || source.term || source.front)),
-        definition: sanitizeEditorHtml(importString(source.extra || source.definition || source.back || source.answer))
+        term: sanitizeEditorHtml(termInline.html),
+        definition: sanitizeEditorHtml(importString(source.extra || definitionInline.html || source.definition || source.back || source.answer))
       };
       return cardHasContent(card) ? card : null;
     }
 
     const card = {
       ...base,
-      term: sanitizeEditorHtml(importString(source.term || source.front || source.question || source.prompt)),
-      definition: sanitizeEditorHtml(importString(source.definition || source.back || source.answer || source.meaning)),
+      term: sanitizeEditorHtml(termInline.html),
+      definition: sanitizeEditorHtml(definitionInline.html),
       generateReverse: requestedType === 'reverse' || importFlag(source.reverse)
     };
     return cardHasContent(card) ? card : null;
@@ -4437,7 +4519,11 @@
       throw importUserError('Anki .apkg import is coming later. Use ZIP packages for now.');
     }
     if (name.endsWith('.zip') || type.includes('zip')) {
-      return parseEruditePackageImport(file);
+      const result = await parseEruditePackageImport(file);
+      if ((result.cards || []).length > CREATOR_IMPORT_MAX_CARDS) {
+        throw importUserError(`Import supports up to ${CREATOR_IMPORT_MAX_CARDS} cards`);
+      }
+      return result;
     }
     return parseCreatorImportFile(file, await file.text());
   }
@@ -4736,9 +4822,45 @@
       showToast('Premade file missing');
       return;
     }
-    const data = await window.flashcardStore.getPremadeSet(state.premadeClass, state.premadeSubject, fileName);
-    if (!data) {
-      showToast('Could not import deck');
+
+    let zipFileName = fileName;
+    if (!zipFileName.toLowerCase().endsWith('.zip')) {
+      zipFileName += '.zip';
+    }
+
+    showMicroLoader('Downloading deck...');
+    let imported;
+    let targetSetId;
+    try {
+      const response = await fetch(`premade-cards/${state.premadeClass}/${state.premadeSubject}/${zipFileName}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch premade ZIP file');
+      }
+      const blob = await response.blob();
+      const file = new File([blob], zipFileName, { type: 'application/zip' });
+
+      // Generate a new set ID and temporarily assign it to editingSetId
+      // so images are saved under the correct new deck folder path
+      targetSetId = createLocalId('set');
+      const originalEditingSetId = state.creator.editingSetId;
+      state.creator.editingSetId = targetSetId;
+
+      try {
+        imported = await parseEruditePackageImport(file);
+      } finally {
+        state.creator.editingSetId = originalEditingSetId;
+      }
+    } catch (error) {
+      console.error(error);
+      hideMicroLoader();
+      showToast(error.userMessage || 'Could not load premade ZIP');
+      return;
+    }
+
+    hideMicroLoader();
+
+    if (!imported || !Array.isArray(imported.cards) || !imported.cards.length) {
+      showToast('No valid cards found in deck package');
       return;
     }
 
@@ -4764,7 +4886,7 @@
     };
 
     if (nameInput) {
-      nameInput.value = data.name || data.title || fileName.replace(/\.json$/i, '');
+      nameInput.value = imported.name || zipFileName.replace(/\.zip$/i, '');
     }
 
     updateClassLabel('');
@@ -4805,17 +4927,40 @@
     };
 
     const onConfirm = async () => {
-      const targetName = nameInput?.value.trim() || data.name || fileName.replace(/\.json$/i, '');
+      const targetName = nameInput?.value.trim() || imported.name || zipFileName.replace(/\.zip$/i, '');
       const targetClassId = selectedClassId || null;
 
+      showMicroLoader('Saving deck...');
       try {
+        // Expand and process creator cards using the exact save mobile deck pipeline
+        const processedCards = imported.cards
+          .map(card => {
+            const normalized = cardWithNoteDefaults(card);
+            const advanced = isAdvancedHtmlCard(normalized);
+            return {
+              ...normalized,
+              term: sanitizeEditorHtml(advanced ? (normalized.term || advancedHtmlFallbackText(normalized, 'front')) : normalized.term),
+              definition: sanitizeEditorHtml(advanced ? (normalized.definition || advancedHtmlFallbackText(normalized, 'back')) : normalized.definition),
+              advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(normalized)),
+              lastModified: Date.now()
+            };
+          })
+          .filter(hasCardContent)
+          .flatMap(expandCreatorCard);
+        const syncedCards = syncGeneratedCards(processedCards);
+
         const saved = await window.flashcardStore.saveSet({
-          ...data,
-          id: null,
+          id: targetSetId,
           name: targetName,
-          classId: targetClassId
+          classId: targetClassId,
+          cards: syncedCards,
+          srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings({}) : { enabled: true },
+          pinned: false
         });
-        showToast(`Imported ${saved.name || 'deck'}`);
+
+        flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
+
+        showToast(`Imported ${plural(syncedCards.length, 'card')}`);
         state.browserLoaded = false;
         overlay?.classList.add('hidden');
         cleanupListeners();
@@ -4824,6 +4969,8 @@
       } catch (e) {
         console.error(e);
         showToast('Could not import deck');
+      } finally {
+        hideMicroLoader();
       }
     };
 

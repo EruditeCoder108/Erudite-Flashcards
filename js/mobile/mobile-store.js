@@ -2428,14 +2428,6 @@
     return [];
   }
 
-  async function getPremadeSet(classId, subjectId, fileName) {
-    try {
-      const response = await fetch(`premade-cards/${classId}/${subjectId}/${fileName}`);
-      return response.ok ? response.json() : null;
-    } catch (_error) {
-      return null;
-    }
-  }
 
   async function getDiagnostics() {
     await ensureReady();
@@ -2495,7 +2487,6 @@
     deleteImage,
     saveFont,
     listPremadeSets,
-    getPremadeSet,
     getDiagnostics,
     exportBackup,
     createBackupSnapshot,

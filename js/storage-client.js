@@ -744,16 +744,6 @@
     return [];
   }
 
-  async function getPremadeSet(classId, subjectId, fileName) {
-    const nativeApi = getNativeApi();
-    if (nativeApi) return nativeApi.getPremadeSet(classId, subjectId, fileName);
-    try {
-      const response = await fetch(`premade-cards/${classId}/${subjectId}/${fileName}`);
-      return response.ok ? response.json() : null;
-    } catch (error) {
-      return null;
-    }
-  }
 
   async function getDiagnostics() {
     const nativeApi = getNativeApi();
@@ -913,7 +903,6 @@
     deleteImage,
     saveFontFromFile,
     listPremadeSets,
-    getPremadeSet,
     getDiagnostics,
     exportBackup,
     importBackup,
