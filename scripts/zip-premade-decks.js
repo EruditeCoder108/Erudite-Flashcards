@@ -1,6 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
-const JSZip = require('d:/productivity-toolkit/Erudite-flashcards/node_modules/jszip');
+const JSZip = require('jszip');
 
 const root = path.resolve(__dirname, '..');
 const premadeDir = path.join(root, 'premade-cards');
@@ -70,16 +70,20 @@ function calculateExpandedCardCount(deckJson) {
 
 async function processSubjectDirectory(subjectPath) {
   const manifestPath = path.join(subjectPath, 'manifest.json');
-  if (!(await exists(manifestPath))) return;
+  let manifest = [];
+  let manifestExists = await exists(manifestPath);
 
-  console.log(`Processing subject directory: ${path.relative(root, subjectPath)}`);
-  const manifestRaw = await fs.readFile(manifestPath, 'utf8');
-  let manifest;
-  try {
-    manifest = JSON.parse(manifestRaw);
-  } catch (error) {
-    console.error(`Error parsing manifest in ${subjectPath}:`, error);
-    return;
+  if (manifestExists) {
+    console.log(`Processing subject directory: ${path.relative(root, subjectPath)}`);
+    const manifestRaw = await fs.readFile(manifestPath, 'utf8');
+    try {
+      manifest = JSON.parse(manifestRaw);
+    } catch (error) {
+      console.error(`Error parsing manifest in ${subjectPath}:`, error);
+      return;
+    }
+  } else {
+    console.log(`Creating new manifest.json and processing subject directory: ${path.relative(root, subjectPath)}`);
   }
 
   if (!Array.isArray(manifest)) {
@@ -87,89 +91,118 @@ async function processSubjectDirectory(subjectPath) {
     return;
   }
 
+  // Find all deck sources in this directory
+  const entries = await fs.readdir(subjectPath, { withFileTypes: true });
   let updated = false;
 
-  for (const item of manifest) {
-    const originalFileName = item.fileName || item.filename || item.file || '';
-    if (!originalFileName) continue;
+  for (const entry of entries) {
+    if (entry.name === 'manifest.json') continue;
 
-    const zip = new JSZip();
-    let zipName = '';
-    let itemPath = path.join(subjectPath, originalFileName);
-    let isDirectory = false;
-    let isJsonFile = false;
+    let isDirectory = entry.isDirectory() && entry.name !== 'media' && !entry.name.startsWith('.');
+    let isJsonFile = entry.isFile() && entry.name.toLowerCase().endsWith('.json');
+    let isZipFile = entry.isFile() && entry.name.toLowerCase().endsWith('.zip');
+
+    if (!isDirectory && !isJsonFile && !isZipFile) continue;
+
+    const baseName = entry.name.replace(/\.(json|zip)$/i, '');
+    const zipName = `${baseName}.zip`;
+    let itemPath = path.join(subjectPath, entry.name);
     let deckJson = null;
     let needsZipping = false;
-
-    if (await exists(itemPath)) {
-      const stats = await fs.stat(itemPath);
-      isDirectory = stats.isDirectory();
-      isJsonFile = stats.isFile() && originalFileName.toLowerCase().endsWith('.json');
-    } else if (!originalFileName.toLowerCase().endsWith('.zip')) {
-      // Try appending .json if not a zip
-      const altPath = `${itemPath}.json`;
-      if (await exists(altPath)) {
-        itemPath = altPath;
-        isJsonFile = true;
-      }
-    }
+    const zip = new JSZip();
 
     if (isDirectory) {
-      zipName = `${originalFileName}.zip`;
-      needsZipping = true;
       const deckJsonPath = path.join(itemPath, 'deck.json');
       if (!(await exists(deckJsonPath))) {
-        console.error(`Missing deck.json in premade folder: ${itemPath}`);
-        continue;
+        continue; // Skip folders that do not have deck.json
       }
-      const deckJsonData = await fs.readFile(deckJsonPath, 'utf8');
-      deckJson = JSON.parse(deckJsonData);
-      zip.file('deck.json', deckJsonData);
+      try {
+        const deckJsonData = await fs.readFile(deckJsonPath, 'utf8');
+        deckJson = JSON.parse(deckJsonData);
+        zip.file('deck.json', deckJsonData);
 
-      const mediaPath = path.join(itemPath, 'media');
-      if (await exists(mediaPath)) {
-        const mediaFolder = zip.folder('media');
-        await addDirectoryToZip(mediaFolder, mediaPath);
+        const mediaPath = path.join(itemPath, 'media');
+        if (await exists(mediaPath)) {
+          const mediaFolder = zip.folder('media');
+          await addDirectoryToZip(mediaFolder, mediaPath);
+        }
+        needsZipping = true;
+      } catch (error) {
+        console.error(`Error reading deck.json in folder ${itemPath}:`, error);
+        continue;
       }
     } else if (isJsonFile) {
-      const cleanName = originalFileName.replace(/\.json$/i, '');
-      zipName = `${cleanName}.zip`;
-      needsZipping = true;
-      const fileData = await fs.readFile(itemPath, 'utf8');
       try {
+        const fileData = await fs.readFile(itemPath, 'utf8');
         deckJson = JSON.parse(fileData);
+        // Verify it looks like a deck
+        if (!deckJson.cards && !deckJson.version) {
+          console.warn(`File ${entry.name} does not look like a valid deck JSON. Skipping.`);
+          continue;
+        }
         zip.file('deck.json', JSON.stringify(deckJson, null, 2));
+        needsZipping = true;
       } catch (error) {
-        console.error(`Invalid JSON file: ${itemPath}`);
+        console.error(`Error processing JSON file ${itemPath}:`, error);
         continue;
       }
-    } else {
-      // Already zipped
-      const cleanName = originalFileName.replace(/\.zip$/i, '');
-      const zipPath = path.join(subjectPath, `${cleanName}.zip`);
-      if (await exists(zipPath)) {
-        zipName = `${cleanName}.zip`;
-        const zipData = await fs.readFile(zipPath);
+    } else if (isZipFile) {
+      try {
+        const zipData = await fs.readFile(itemPath);
         const loadedZip = await JSZip.loadAsync(zipData);
-        const deckEntry = Object.values(loadedZip.files).find(entry => entry.name === 'deck.json' || entry.name.endsWith('/deck.json'));
+        const deckEntry = Object.values(loadedZip.files).find(e => e.name === 'deck.json' || e.name.endsWith('/deck.json'));
         if (deckEntry) {
           deckJson = JSON.parse(await deckEntry.async('string'));
+        } else {
+          console.warn(`ZIP file ${entry.name} has no deck.json. Skipping.`);
+          continue;
         }
-      } else {
-        console.warn(`File/Folder/ZIP not found: ${itemPath}`);
+      } catch (error) {
+        console.error(`Error reading ZIP file ${itemPath}:`, error);
         continue;
       }
     }
 
     if (deckJson) {
       const expandedCount = calculateExpandedCardCount(deckJson);
-      console.log(`Calculated expanded cards for ${originalFileName}: ${expandedCount}`);
-      item.cardCount = expandedCount;
-      item.fileName = zipName;
-      updated = true;
+      console.log(`Calculated expanded cards for ${entry.name}: ${expandedCount}`);
+
+      // Find or create manifest entry
+      let manifestItem = manifest.find(item => {
+        const itemFileName = item.fileName || item.filename || item.file || '';
+        const itemCleanFileName = itemFileName.replace(/\.zip$/i, '');
+        return item.id === baseName || itemCleanFileName === baseName;
+      });
+
+      if (!manifestItem) {
+        const cleanName = deckJson.name || baseName.replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        manifestItem = {
+          id: baseName,
+          name: cleanName,
+          description: deckJson.description || '',
+          difficulty: deckJson.difficulty || 'intermediate',
+          estimatedTime: deckJson.estimatedTime || `${Math.max(5, Math.round(expandedCount * 0.25))} minutes`,
+          fileName: zipName,
+          cardCount: expandedCount,
+          tags: deckJson.tags || []
+        };
+        manifest.push(manifestItem);
+        updated = true;
+        console.log(`Added new manifest entry for ${zipName}`);
+      } else {
+        if (manifestItem.cardCount !== expandedCount || manifestItem.fileName !== zipName) {
+          manifestItem.cardCount = expandedCount;
+          manifestItem.fileName = zipName;
+          updated = true;
+        }
+        // Fill in missing metadata fields if available in deckJson
+        if (!manifestItem.name && deckJson.name) { manifestItem.name = deckJson.name; updated = true; }
+        if (!manifestItem.description && deckJson.description) { manifestItem.description = deckJson.description; updated = true; }
+        if ((!manifestItem.tags || !manifestItem.tags.length) && deckJson.tags) { manifestItem.tags = deckJson.tags; updated = true; }
+      }
 
       if (needsZipping) {
-        console.log(`Zipping ${originalFileName} -> ${zipName}...`);
+        console.log(`Zipping ${entry.name} -> ${zipName}...`);
         const buffer = await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' });
         const zipPath = path.join(subjectPath, zipName);
         await fs.writeFile(zipPath, buffer);
@@ -184,25 +217,43 @@ async function processSubjectDirectory(subjectPath) {
     }
   }
 
-  if (updated) {
+  // Always write manifest if updated or if manifest.json did not exist (since we created it)
+  if (updated || !manifestExists) {
     await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2), 'utf8');
-    console.log(`Updated manifest.json in ${path.relative(root, subjectPath)}`);
+    console.log(`Saved manifest.json in ${path.relative(root, subjectPath)}`);
   }
 }
 
-async function walkDirectories(dir) {
-  const entries = await fs.readdir(dir, { withFileTypes: true });
-  let hasManifest = false;
-
+async function isSubjectDirectory(dirPath) {
+  const entries = await fs.readdir(dirPath, { withFileTypes: true });
   for (const entry of entries) {
     if (entry.name === 'manifest.json') {
-      hasManifest = true;
+      return true;
+    }
+    if (entry.isFile()) {
+      const ext = path.extname(entry.name).toLowerCase();
+      if (ext === '.zip' || (ext === '.json' && entry.name !== 'manifest.json')) {
+        return true;
+      }
+    }
+    if (entry.isDirectory() && entry.name !== 'media' && !entry.name.startsWith('.')) {
+      // Check if this subdirectory has a deck.json
+      const deckJsonPath = path.join(dirPath, entry.name, 'deck.json');
+      if (await exists(deckJsonPath)) {
+        return true;
+      }
     }
   }
+  return false;
+}
 
-  if (hasManifest) {
+async function walkDirectories(dir) {
+  const isSubject = await isSubjectDirectory(dir);
+
+  if (isSubject) {
     await processSubjectDirectory(dir);
   } else {
+    const entries = await fs.readdir(dir, { withFileTypes: true });
     for (const entry of entries) {
       if (entry.isDirectory() && entry.name !== 'node_modules' && !entry.name.startsWith('.')) {
         await walkDirectories(path.join(dir, entry.name));
