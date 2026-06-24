@@ -183,6 +183,7 @@
     createForm: document.getElementById('mobile-create-form'),
     createTitle: document.getElementById('mobile-create-title'),
     createClassLabel: document.getElementById('mobile-create-class-label'),
+    creatorDiscardLabel: document.getElementById('creator-discard-label'),
     creatorCards: document.getElementById('mobile-creator-cards'),
     imageInput: document.getElementById('mobile-image-input'),
     occlusionImageInput: document.getElementById('mobile-occlusion-image-input'),
@@ -2980,6 +2981,49 @@
     if (selectors.createClassLabel) selectors.createClassLabel.textContent = 'General';
   }
 
+  async function discardCreatorWork() {
+    syncCreatorFromDom();
+    const editingSetId = state.creator.originalSet?.id || state.creator.editingSetId || null;
+    const isEditing = Boolean(editingSetId);
+    const ok = await showMobileConfirm({
+      title: isEditing ? 'Discard Changes' : 'Discard Deck',
+      message: isEditing
+        ? 'Discard unsaved changes and reload the saved deck? The saved deck itself will not be deleted.'
+        : 'Discard this unsaved deck and clear all cards from the Creator?',
+      okText: 'Discard',
+      isDanger: true
+    });
+    if (!ok) return;
+
+    await clearCreatorDraft();
+
+    if (isEditing) {
+      try {
+        const saved = await window.flashcardStore.getSet(editingSetId);
+        if (!saved) throw new Error('Saved deck not found');
+        const normalized = schema?.normalizeSet
+          ? schema.normalizeSet(saved, null, { preserveLastModified: true })
+          : saved;
+        state.creator.editingSetId = normalized.id;
+        state.creator.originalSet = normalized;
+        state.creator.classId = normalized.classId || '';
+        state.creator.cards = creatorCardsFromStoredCards(normalized.cards || []);
+        if (selectors.createTitle) selectors.createTitle.value = normalized.name || '';
+        renderCreate();
+        showToast('Changes discarded');
+        return;
+      } catch (error) {
+        console.warn('[mobile] Could not reload deck after discard:', error);
+        showToast('Could not reload saved deck');
+        return;
+      }
+    }
+
+    resetCreator();
+    renderCreate();
+    showToast('Deck discarded');
+  }
+
   function syncCreatorFromDom() {
     if (!selectors.creatorCards) return;
     state.creator.cards = state.creator.cards.map(card => {
@@ -3715,6 +3759,11 @@
     const labelSpan = document.getElementById('mobile-create-class-label');
     if (labelSpan) {
       labelSpan.textContent = currentClass ? currentClass.name : 'General';
+    }
+    if (selectors.creatorDiscardLabel) {
+      selectors.creatorDiscardLabel.textContent = state.creator.editingSetId || state.creator.originalSet?.id
+        ? 'Discard changes'
+        : 'Discard deck';
     }
 
     // Populate custom select options
@@ -7549,6 +7598,9 @@ followed by the JSON containing "deck" and "media" array.`;
       }
       case 'bulk-add-cards':
         openBulkCardModal();
+        break;
+      case 'discard-creator':
+        await discardCreatorWork();
         break;
       case 'insert-card-after': {
         syncCreatorFromDom();
