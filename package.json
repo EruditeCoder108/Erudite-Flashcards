@@ -10,6 +10,7 @@
     "package": "electron-builder --win portable",
     "dist": "electron-builder --win",
     "build:mobile": "node scripts/build-mobile-web.js",
+    "zip:premade": "node scripts/zip-premade-decks.js",
     "cap:sync": "npm run build:mobile && cap sync android",
     "cap:open": "cap open android"
   },

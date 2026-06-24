@@ -651,7 +651,7 @@
           <input type="text" id="copy-export-card-sep" class="mobile-modal-input" value="@" placeholder="e.g. @">
         </div>
       </div>
-      <textarea id="copy-export-text" class="mobile-modal-textarea" rows="6" readonly placeholder="Export text will appear here…"></textarea>
+      <textarea id="copy-export-text" class="mobile-modal-textarea" rows="6" readonly placeholder="Export text will appear here..."></textarea>
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="copy-export-cancel">Close</button>
         <button type="button" class="mobile-modal-btn confirm" id="copy-export-generate">Generate</button>
@@ -759,7 +759,7 @@
             <input type="text" id="paste-import-card-sep" class="mobile-modal-input" value="@" placeholder="e.g. @">
           </div>
         </div>
-        <textarea id="paste-import-text" class="mobile-modal-textarea" rows="6" placeholder="Paste your cards here…&#10;Example:&#10;term1;definition1@term2;definition2..."></textarea>
+        <textarea id="paste-import-text" class="mobile-modal-textarea" rows="6" placeholder="Paste your cards here...&#10;Example:&#10;term1;definition1@term2;definition2..."></textarea>
         <p class="mobile-modal-hint" style="color: var(--text-muted, #94a3b8); font-size: 0.8rem; margin: 0.4rem 0 0.8rem; line-height: 1.4; opacity: 0.85;">
           <i class="fas fa-info-circle"></i> Use the default separator (<code>;</code>) between each word and its meaning, and (<code>@</code>) between different cards. You can customize these separators above if needed.
         </p>
@@ -824,7 +824,14 @@
           </section>
           <section>
             <h4>CSV / TSV</h4>
-            <p>Use spreadsheet columns. Headers are optional. Recognized headers: term, definition, tags, reverse, type.</p>
+            <p>Use spreadsheet columns. Headers are optional. Recognized header aliases (case-insensitive, spaces/underscores ignored):</p>
+            <ul style="margin: 0.25rem 0 0.5rem 1rem; padding-left: 0; font-size: 0.78rem; line-height: 1.45;">
+              <li><strong>Front/Term:</strong> <code>term</code>, <code>front</code>, <code>question</code>, <code>prompt</code>, <code>text</code>, <code>cloze</code></li>
+              <li><strong>Back/Definition:</strong> <code>definition</code>, <code>back</code>, <code>answer</code>, <code>meaning</code></li>
+              <li><strong>Tags:</strong> <code>tags</code>, <code>tag</code></li>
+              <li><strong>Reverse:</strong> <code>reverse</code></li>
+              <li><strong>Card Type:</strong> <code>type</code>, <code>cardtype</code>, <code>notetype</code></li>
+            </ul>
             <div class="code-block-wrapper">
               <div class="code-block-header">
                 <span class="code-block-title">cards.csv</span>
@@ -921,6 +928,9 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
 }</code></pre>
             </div>
             <p>Keep media local to the package. Use paths like <code>media/file.webp</code>; avoid external URLs and giant Base64 strings.</p>
+            <div class="pb-tip-box" style="background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.25); color: #60a5fa; margin-top: 0.5rem; font-size: 0.76rem; border-radius: 6px; padding: 0.4rem 0.6rem; border: 1px solid; text-align: left; width: 100%;">
+              <i class="fas fa-image"></i> <strong>Auto-Attached Images:</strong> If you use an HTML image tag (e.g., <code>&lt;img src="media/file.webp"&gt;</code>) in a normal card, Erudite automatically converts it into a native attached image during import.
+            </div>
             <p style="margin-top: 0.5rem; text-align: center;">
               <button type="button" class="text-button" id="help-formats-open-converter-btn" style="font-size: 0.82rem; text-decoration: underline; color: var(--amber); font-weight: 600; background: transparent; border: none; cursor: pointer; padding: 0.25rem;">
                 AI gave text instead of ZIP? Convert to ZIP here
@@ -999,7 +1009,7 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
           <div class="prompt-builder-section">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.15rem;">
               <span class="prompt-section-label">Card Count / Detail Level</span>
-              <span id="pb-detail-label" style="font-size: 0.72rem; font-weight: 700; color: var(--primary-2);">Standard (~80–160 cards)</span>
+              <span id="pb-detail-label" style="font-size: 0.72rem; font-weight: 700; color: var(--primary-2);">Standard (~80-160 cards)</span>
             </div>
             <input type="range" id="pb-detail-slider" min="1" max="4" step="1" value="2" style="width: 100%; margin: 0.35rem 0;">
           </div>
@@ -1151,7 +1161,7 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
 
             <!-- Gemini Next Step Box -->
             <div id="pb-gemini-next-step" class="pb-tip-box hidden" style="background: rgba(247, 184, 75, 0.08); border-color: rgba(247, 184, 75, 0.25); color: var(--amber); margin-top: 0.5rem; font-size: 0.72rem;">
-              <strong>Next step:</strong> After Gemini replies, copy its output and paste it into Erudite’s “Build ZIP from AI Output” tool.
+              <strong>Next step:</strong> After Gemini replies, copy its output and paste it into Erudite's "Build ZIP from AI Output" tool.
             </div>
 
             <!-- Handoff Action Links -->
@@ -1191,6 +1201,9 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
           <section>
             <h4>HTML/CSS cards</h4>
             <p>The custom HTML canvas is exactly 340px wide, 470px tall, and 20px rounded. Use HTML and CSS only. No JavaScript, scripts, iframes, forms, external URL dependencies, or fixed overlays.</p>
+            <div class="pb-tip-box" style="background: rgba(247, 184, 75, 0.08); border-color: rgba(247, 184, 75, 0.25); color: var(--amber); margin-top: 0.4rem; font-size: 0.76rem; border-radius: 6px; padding: 0.4rem 0.6rem; border: 1px solid; text-align: left; width: 100%;">
+              <i class="fas fa-circle-info"></i> <strong>Overflow Prevention:</strong> Always use <code>* { box-sizing: border-box; }</code> globally in your card's CSS. This keeps padding and borders within the 340x470px bounds and prevents AI designs from overflowing the canvas.
+            </div>
           </section>
           <section>
             <h4>Image occlusion</h4>

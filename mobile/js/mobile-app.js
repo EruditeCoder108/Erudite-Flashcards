@@ -5553,7 +5553,7 @@
       selectors.libraryList.innerHTML = errorHtml;
       selectors.continueList.innerHTML = '';
       selectors.activityList.innerHTML = '';
-      showToast('Storage error — try restarting the app');
+      showToast('Storage error - try restarting the app');
     }
   }
 
@@ -6622,17 +6622,17 @@
       if (!selectors.pasteImportText) return;
 
       if (preset === 'standard') {
-        selectors.pasteImportText.placeholder = "Paste your cards here…\nExample:\nterm1;definition1@term2;definition2...";
+        selectors.pasteImportText.placeholder = "Paste your cards here...\nExample:\nterm1;definition1@term2;definition2...";
       } else if (preset === 'newline-semicolon') {
-        selectors.pasteImportText.placeholder = "Paste your cards here…\nExample:\nterm1;definition1\nterm2;definition2...";
+        selectors.pasteImportText.placeholder = "Paste your cards here...\nExample:\nterm1;definition1\nterm2;definition2...";
       } else if (preset === 'newline-dash') {
-        selectors.pasteImportText.placeholder = "Paste your cards here…\nExample:\nterm1 - definition1\nterm2 - definition2...";
+        selectors.pasteImportText.placeholder = "Paste your cards here...\nExample:\nterm1 - definition1\nterm2 - definition2...";
       } else if (preset === 'newline-colon') {
-        selectors.pasteImportText.placeholder = "Paste your cards here…\nExample:\nterm1: definition1\nterm2: definition2...";
+        selectors.pasteImportText.placeholder = "Paste your cards here...\nExample:\nterm1: definition1\nterm2: definition2...";
       } else {
         const tSep = selectors.pasteImportTermSep?.value || ';';
         const cSep = selectors.pasteImportCardSep?.value || '@';
-        selectors.pasteImportText.placeholder = `Paste your cards here…\nExample:\nterm1${tSep}definition1${cSep}term2${tSep}definition2...`;
+        selectors.pasteImportText.placeholder = `Paste your cards here...\nExample:\nterm1${tSep}definition1${cSep}term2${tSep}definition2...`;
       }
     }
 
@@ -7085,6 +7085,7 @@ Use this content-only shape:
 JSON Rules:
 - Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.
 - Use math as "\\\\(F = ma\\\\)" for inline math or "\\\\[x^2 + y^2\\\\]" for display math in normal card fields.
+- In advanced HTML cards, prefer readable HTML/Unicode formulas such as p^2 + 2pq + q^2 = 1 unless math rendering is explicitly needed.
 - Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer. Use data URL images only.
 - Advanced HTML must use HTML and CSS only: no JavaScript, no scripts, no iframes, no forms, no external URLs, no fixed/sticky overlays.
 - CSS inside advanced HTML may use custom formatting, but no external asset calls.`;
@@ -7149,9 +7150,9 @@ Package rules:
 - Keep the deck at 999 cards or fewer.
 - Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.
 - Use math as "\\(F = ma\\)" for inline math or "\\[x^2 + y^2\\]" for display math in normal card fields.
-- In advanced HTML cards, prefer readable HTML/Unicode formulas such as p² + 2pq + q² = 1 unless math rendering is explicitly needed.
+- In advanced HTML cards, prefer readable HTML/Unicode formulas such as p^2 + 2pq + q^2 = 1 unless math rendering is explicitly needed.
+- Advanced HTML cards live inside a 340px x 470px canvas with 20px corner radius. You MUST use box-sizing: border-box globally to prevent overflows.
 - Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer.
-- Advanced HTML cards live inside a 340px x 470px canvas with 20px corner radius.
 - Advanced HTML must use HTML and CSS only.
 - No JavaScript.
 - No scripts.
@@ -7317,10 +7318,10 @@ followed by the JSON containing "deck" and "media" array.`;
     }
     if (selectors.pbDetailLabel) {
       const labels = {
-        1: 'Light (~40–80 cards)',
-        2: 'Standard (~80–160 cards)',
-        3: 'Detailed (~160–300 cards)',
-        4: 'Exhaustive (~300–600 cards)'
+        1: 'Light (~40-80 cards)',
+        2: 'Standard (~80-160 cards)',
+        3: 'Detailed (~160-300 cards)',
+        4: 'Exhaustive (~300-600 cards)'
       };
       selectors.pbDetailLabel.textContent = labels[selectors.pbDetailSlider?.value || 2];
     }
