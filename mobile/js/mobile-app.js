@@ -5,6 +5,9 @@
   const draftCore = core.draft;
 
   const CREATOR_DRAFT_KEY = 'mobileCreatorDraft';
+  const CREATOR_PROGRESSIVE_RENDER_THRESHOLD = 40;
+  const CREATOR_PROGRESSIVE_BATCH_SIZE = 20;
+  const CREATOR_AUTOSAVE_CARD_LIMIT = 160;
   const BROWSER_RENDER_LIMIT = 250;
   const NORMAL_STUDY_DAILY_GOAL = 20;
   const FORMULA_SYMBOL_GROUPS = [
@@ -119,10 +122,20 @@
   };
 
   let creatorDraftTimer = null;
+  let creatorDraftIdleHandle = null;
+  let creatorDraftIdleUsesCallback = false;
   let formatStateFrame = 0;
+  let activeFormatButtons = [];
   let highlightHoldTimer = null;
   let creatorDeleteHoldTimer = null;
   let orphanRepairTimer = null;
+  let creatorRenderToken = 0;
+  let creatorHasRendered = false;
+  let creatorCardLookup = new Map();
+  let creatorDirtyCardIds = new Set();
+  let creatorGeneratedCardCache = new Map();
+  let creatorRenderedCardCount = 0;
+  let creatorLoadMoreObserver = null;
 
   const premadeClasses = [
     { id: '10th', name: 'Class 10' },
@@ -846,7 +859,7 @@
     }
   }
 
-  function setActiveTab(tab) {
+  function setActiveTab(tab, options = {}) {
     state.activeTab = tab;
     try {
       window.history.replaceState(null, null, '#' + tab);
@@ -855,6 +868,14 @@
     }
     selectors.views.forEach(view => view.classList.toggle('active', view.id === `view-${tab}`));
     selectors.tabs.forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
+    
+    // Toggle body tab class
+    document.body.classList.forEach(cls => {
+      if (cls.startsWith('tab-')) {
+        document.body.classList.remove(cls);
+      }
+    });
+    document.body.classList.add(`tab-${tab}`);
     
     // Toggle sticky header creator save button
     const headerSaveBtn = document.getElementById('header-creator-save-btn');
@@ -866,7 +887,7 @@
       headerImportBtn.classList.remove('hidden');
     }
     if (selectors.headerQuote) {
-      selectors.headerQuote.classList.toggle('hidden', tab === 'create');
+      selectors.headerQuote.classList.toggle('hidden', tab !== 'today');
     }
 
     updateTabIndicator(tab);
@@ -874,7 +895,7 @@
     if (tab === 'library') {
       const btnPremade = document.querySelector('.source-option[data-action="open-premade"]');
       const isPremade = btnPremade && btnPremade.classList.contains('active');
-      document.getElementById('mobile-user-headers')?.classList.toggle('hidden', isPremade);
+      document.querySelector('.library-utility-row-1')?.classList.toggle('hidden', isPremade);
       document.getElementById('mobile-user-decks-view')?.classList.toggle('hidden', isPremade);
       document.getElementById('mobile-premade-decks-view')?.classList.toggle('hidden', !isPremade);
       const btnCreate = document.querySelector('[data-action="open-create"]');
@@ -885,7 +906,7 @@
     if (tab !== 'browser') {
       clearBrowserSelection({ play: false, render: false });
     }
-    render();
+    if (!options.skipRender) render();
   }
 
   function deckRow(set, options = {}) {
@@ -1287,43 +1308,44 @@
       const activity = studyActivitySummary();
       const heatmap = buildStudyHeatmap();
       const avgTime = activity.averageSecondsPerCard === null ? '--' : `${activity.averageSecondsPerCard}s`;
+      const todayStart = startOfLocalDayMs();
       const heatmapHtml = heatmap.map(day => `
-        <span class="heatmap-cell level-${day.level}" title="${escapeAttr(`${day.label}: ${day.score ? `${day.score} activity` : 'No study'}`)}"></span>
+        <span class="heatmap-cell level-${day.level}${day.dayMs === todayStart ? ' is-today' : ''}" title="${escapeAttr(`${day.label}: ${day.score ? `${day.score} activity` : 'No study'}`)}"></span>
       `).join('');
 
       selectors.analyticsDashboard.innerHTML = `
         <div class="insight-grid">
           <article class="insight-card">
-            <span class="insight-icon"><i class="fas fa-layer-group"></i></span>
-            <div>
-              <small>Library</small>
-              <strong>${formatShortNumber(totals.cardCount)}</strong>
-              <p>${formatShortNumber(totals.setCount)} decks</p>
+            <div class="insight-badge-row">
+              <span class="insight-icon"><i class="fas fa-layer-group"></i></span>
+              <small class="insight-card-title">Library</small>
             </div>
+            <strong class="insight-card-number">${formatShortNumber(totals.cardCount)}</strong>
+            <p class="insight-card-helper">${formatShortNumber(totals.setCount)} decks</p>
           </article>
           <article class="insight-card">
-            <span class="insight-icon calm"><i class="fas fa-stopwatch"></i></span>
-            <div>
-              <small>Today</small>
-              <strong>${formatDuration(activity.todayStudyMs)}</strong>
-              <p>${formatShortNumber(activity.todayCardsViewed)} cards viewed</p>
+            <div class="insight-badge-row">
+              <span class="insight-icon calm"><i class="fas fa-stopwatch"></i></span>
+              <small class="insight-card-title">Today</small>
             </div>
+            <strong class="insight-card-number">${formatDuration(activity.todayStudyMs)}</strong>
+            <p class="insight-card-helper">${formatShortNumber(activity.todayCardsViewed)} cards viewed</p>
           </article>
           <article class="insight-card">
-            <span class="insight-icon warn"><i class="fas fa-fire"></i></span>
-            <div>
-              <small>Habit</small>
-              <strong>${streakDays()}</strong>
-              <p>day streak</p>
+            <div class="insight-badge-row">
+              <span class="insight-icon warn"><i class="fas fa-fire"></i></span>
+              <small class="insight-card-title">Habit</small>
             </div>
+            <strong class="insight-card-number">${streakDays()}</strong>
+            <p class="insight-card-helper">day streak</p>
           </article>
           <article class="insight-card">
-            <span class="insight-icon"><i class="fas fa-gauge-high"></i></span>
-            <div>
-              <small>Pace</small>
-              <strong>${avgTime}</strong>
-              <p>${formatShortNumber(activity.weekCardsViewed)} cards this week</p>
+            <div class="insight-badge-row">
+              <span class="insight-icon"><i class="fas fa-gauge-high"></i></span>
+              <small class="insight-card-title">Pace</small>
             </div>
+            <strong class="insight-card-number">${avgTime}</strong>
+            <p class="insight-card-helper">${formatShortNumber(activity.weekCardsViewed)} cards this week</p>
           </article>
         </div>
 
@@ -1365,8 +1387,9 @@
     const deckHealth = buildDeckHealth(cards, analyticsWindow);
     const retentionLabel = summary.retention === null ? '--' : `${summary.retention}%`;
     const avgTime = summary.averageSecondsPerCard === null ? '--' : `${summary.averageSecondsPerCard}s`;
+    const todayStart = startOfLocalDayMs();
     const heatmapHtml = heatmap.map(day => `
-      <span class="heatmap-cell level-${day.level}" title="${escapeAttr(`${day.label}: ${day.score ? `${day.score} activity` : 'No study'}`)}"></span>
+      <span class="heatmap-cell level-${day.level}${day.dayMs === todayStart ? ' is-today' : ''}" title="${escapeAttr(`${day.label}: ${day.score ? `${day.score} activity` : 'No study'}`)}"></span>
     `).join('');
     const forecastHtml = forecast.map(day => `
       <div class="forecast-row">
@@ -1414,36 +1437,36 @@
       </div>
       <div class="insight-grid">
         <article class="insight-card insight-score">
-          <span class="insight-icon"><i class="fas fa-bullseye"></i></span>
-          <div>
-            <small>Actual retention</small>
-            <strong>${retentionLabel}</strong>
-            <p>${formatShortNumber(summary.reviewEvents)} reviews, ${escapeHtml(windowLabel)}</p>
+          <div class="insight-badge-row">
+            <span class="insight-icon"><i class="fas fa-bullseye"></i></span>
+            <small class="insight-card-title">Actual retention</small>
           </div>
+          <strong class="insight-card-number">${retentionLabel}</strong>
+          <p class="insight-card-helper">${formatShortNumber(summary.reviewEvents)} reviews, ${escapeHtml(windowLabel)}</p>
         </article>
         <article class="insight-card">
-          <span class="insight-icon warn"><i class="fas fa-calendar-day"></i></span>
-          <div>
-            <small>Due load</small>
-            <strong>${formatShortNumber(summary.dueCards)}</strong>
-            <p>${formatShortNumber(summary.overdueCards)} overdue</p>
+          <div class="insight-badge-row">
+            <span class="insight-icon warn"><i class="fas fa-calendar-day"></i></span>
+            <small class="insight-card-title">Due load</small>
           </div>
+          <strong class="insight-card-number">${formatShortNumber(summary.dueCards)}</strong>
+          <p class="insight-card-helper">${formatShortNumber(summary.overdueCards)} overdue</p>
         </article>
         <article class="insight-card">
-          <span class="insight-icon danger"><i class="fas fa-triangle-exclamation"></i></span>
-          <div>
-            <small>Weak cards</small>
-            <strong>${formatShortNumber(summary.weakCards)}</strong>
-            <p>${formatShortNumber(summary.failedRecently)} failed recently, ${formatShortNumber(summary.leechCards)} leeches</p>
+          <div class="insight-badge-row">
+            <span class="insight-icon danger"><i class="fas fa-triangle-exclamation"></i></span>
+            <small class="insight-card-title">Weak cards</small>
           </div>
+          <strong class="insight-card-number">${formatShortNumber(summary.weakCards)}</strong>
+          <p class="insight-card-helper">${formatShortNumber(summary.failedRecently)} failed recently, ${formatShortNumber(summary.leechCards)} leeches</p>
         </article>
         <article class="insight-card">
-          <span class="insight-icon calm"><i class="fas fa-stopwatch"></i></span>
-          <div>
-            <small>Today</small>
-            <strong>${formatDuration(summary.todayStudyMs)}</strong>
-            <p>${avgTime}/card this week</p>
+          <div class="insight-badge-row">
+            <span class="insight-icon calm"><i class="fas fa-stopwatch"></i></span>
+            <small class="insight-card-title">Today</small>
           </div>
+          <strong class="insight-card-number">${formatDuration(summary.todayStudyMs)}</strong>
+          <p class="insight-card-helper">${avgTime}/card this week</p>
         </article>
       </div>
 
@@ -1662,12 +1685,21 @@
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
         <div class="goal-ring" style="--progress:${progress * 3.6}deg">
-          <div><strong>${progress}%</strong><span>${progressLabel}</span></div>
+          <div class="goal-ring-center"><strong>${progress}%</strong><span>${progressLabel}</span></div>
         </div>
-        <div class="hero-metrics">
-          <div class="metric-pill"><strong>${totals.setCount}</strong><span>Decks</span></div>
-          <div class="metric-pill"><strong>${middleMetricValue}</strong><span>${middleMetricLabel}</span></div>
-          <div class="metric-pill"><strong>${streak}</strong><span>Day streak</span></div>
+        <div class="hero-stats-list">
+          <div class="hero-stat-row">
+            <i class="fas fa-layer-group"></i>
+            <span><strong>${totals.setCount}</strong> decks in library</span>
+          </div>
+          <div class="hero-stat-row">
+            <i class="fas fa-circle-check"></i>
+            <span><strong>${middleMetricValue}</strong> cards ${middleMetricLabel.toLowerCase()} today</span>
+          </div>
+          <div class="hero-stat-row">
+            <i class="fas fa-fire"></i>
+            <span><strong>${streak}</strong> day streak</span>
+          </div>
         </div>
       </div>
       <div class="hero-actions">
@@ -1675,17 +1707,6 @@
           <i class="fas ${state.srsMode && totals.dueCards > 0 ? 'fa-brain' : 'fa-layer-group'}"></i>
           ${escapeHtml(reviewLabel)}
         </button>
-        <button type="button" class="secondary-action" data-action="open-create">
-          <i class="fas fa-plus"></i>
-          New
-        </button>
-      </div>
-      <div style="margin-top: 0.8rem; padding: 0.75rem 1rem; border-radius: 0.85rem; background: rgba(59, 130, 246, 0.06); border: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; cursor: pointer; transition: background-color 0.15s ease;" data-action="open-ai-deck-maker">
-        <div style="display: flex; align-items: center; gap: 0.75rem; text-align: left;">
-          <i class="fas fa-file-pdf" style="color: var(--primary-2); font-size: 1.15rem; width: 1.15rem; text-align: center;"></i>
-          <span style="font-size: 0.8rem; font-weight: 700; color: var(--text);">Create Deck from PDF using AI</span>
-        </div>
-        <i class="fas fa-chevron-right" style="color: var(--primary-2); font-size: 0.75rem;"></i>
       </div>
     `;
 
@@ -2306,11 +2327,10 @@
     placeCaretInside(hidden);
     syncCreatorFromDom();
     if (cardIndex >= 0) {
-      state.creator.cards[cardIndex] = {
-        ...state.creator.cards[cardIndex],
+      Object.assign(state.creator.cards[cardIndex], {
         noteType: 'cloze',
         cardTemplate: 'cloze-source'
-      };
+      });
     }
     scheduleCreatorDraftSave();
     showToast('Cloze ready');
@@ -2971,12 +2991,20 @@
   }
 
   function resetCreator() {
-    clearTimeout(creatorDraftTimer);
+    cancelScheduledCreatorDraftSave();
     state.creator.editingSetId = null;
     state.creator.originalSet = null;
     state.creator.classId = '';
     state.creator.cards = [emptyCreatorCard()];
     state.creator.draftLoaded = false;
+    creatorCardLookup = new Map();
+    creatorDirtyCardIds = new Set();
+    creatorGeneratedCardCache = new Map();
+    creatorRenderedCardCount = 0;
+    creatorLoadMoreObserver?.disconnect();
+    creatorLoadMoreObserver = null;
+    creatorRenderToken += 1;
+    creatorHasRendered = false;
     if (selectors.createTitle) selectors.createTitle.value = '';
     if (selectors.createClassLabel) selectors.createClassLabel.textContent = 'General';
   }
@@ -3007,7 +3035,9 @@
         state.creator.editingSetId = normalized.id;
         state.creator.originalSet = normalized;
         state.creator.classId = normalized.classId || '';
-        state.creator.cards = creatorCardsFromStoredCards(normalized.cards || []);
+        state.creator.cards = creatorCardsFromStoredCards(normalized.cards || [], { cacheGenerated: true });
+        creatorDirtyCardIds = new Set();
+        creatorRenderedCardCount = CREATOR_PROGRESSIVE_BATCH_SIZE;
         if (selectors.createTitle) selectors.createTitle.value = normalized.name || '';
         renderCreate();
         showToast('Changes discarded');
@@ -3024,29 +3054,60 @@
     showToast('Deck discarded');
   }
 
+  function rebuildCreatorCardLookup() {
+    creatorCardLookup = new Map(
+      state.creator.cards.map(card => [String(card.id), card])
+    );
+  }
+
+  function markCreatorCardDirty(cardId) {
+    const id = String(cardId || '');
+    if (id) creatorDirtyCardIds.add(id);
+  }
+
+  function creatorCardIdFromEditor(editor) {
+    return String(editor?.dataset?.editorId || editor?.dataset?.htmlEditorId || '');
+  }
+
+  function syncCreatorEditorInput(editor, options = {}) {
+    const cardId = creatorCardIdFromEditor(editor);
+    const card = creatorCardLookup.get(cardId);
+    if (!card || !editor) return false;
+
+    if (editor.dataset.editorId) {
+      const side = editor.dataset.side === 'definition' ? 'definition' : 'term';
+      card[side] = options.sanitize === false
+        ? editor.innerHTML
+        : sanitizeEditorHtml(editor.innerHTML);
+    } else {
+      const part = editor.dataset.htmlPart;
+      const current = normalizeAdvancedHtml(card.advancedHtml || advancedHtmlPayload(card));
+      if (part === 'front') current.frontHtml = options.sanitize === false ? editor.value : sanitizeAdvancedHtml(editor.value);
+      else if (part === 'back') current.backHtml = options.sanitize === false ? editor.value : sanitizeAdvancedHtml(editor.value);
+      else if (part === 'front-css') current.frontCss = options.sanitize === false ? editor.value : sanitizeAdvancedCss(editor.value);
+      else if (part === 'back-css') current.backCss = options.sanitize === false ? editor.value : sanitizeAdvancedCss(editor.value);
+      card.advancedHtml = current;
+    }
+
+    markCreatorCardDirty(cardId);
+    return true;
+  }
+
+  function syncCreatorCardFromDom(cardId) {
+    if (!selectors.creatorCards) return;
+    const id = String(cardId || '');
+    if (!id) return;
+    const cardElement = selectors.creatorCards.querySelector(`[data-card-id="${cssEscape(id)}"]`);
+    if (!cardElement) return;
+    cardElement.querySelectorAll('[data-editor-id][data-side], [data-html-editor-id][data-html-part]')
+      .forEach(editor => syncCreatorEditorInput(editor));
+  }
+
   function syncCreatorFromDom() {
     if (!selectors.creatorCards) return;
-    state.creator.cards = state.creator.cards.map(card => {
-      const term = selectors.creatorCards.querySelector(`[data-editor-id="${cssEscape(card.id)}"][data-side="term"]`);
-      const definition = selectors.creatorCards.querySelector(`[data-editor-id="${cssEscape(card.id)}"][data-side="definition"]`);
-      const frontHtml = selectors.creatorCards.querySelector(`[data-html-editor-id="${cssEscape(card.id)}"][data-html-part="front"]`);
-      const backHtml = selectors.creatorCards.querySelector(`[data-html-editor-id="${cssEscape(card.id)}"][data-html-part="back"]`);
-      const frontCss = selectors.creatorCards.querySelector(`[data-html-editor-id="${cssEscape(card.id)}"][data-html-part="front-css"]`);
-      const backCss = selectors.creatorCards.querySelector(`[data-html-editor-id="${cssEscape(card.id)}"][data-html-part="back-css"]`);
-      const currentAdvanced = normalizeAdvancedHtml(advancedHtmlPayload(card));
-      const nextAdvanced = {
-        frontHtml: frontHtml ? sanitizeAdvancedHtml(frontHtml.value) : sanitizeAdvancedHtml(currentAdvanced.frontHtml),
-        backHtml: backHtml ? sanitizeAdvancedHtml(backHtml.value) : sanitizeAdvancedHtml(currentAdvanced.backHtml),
-        frontCss: frontCss ? sanitizeAdvancedCss(frontCss.value) : sanitizeAdvancedCss(currentAdvanced.frontCss),
-        backCss: backCss ? sanitizeAdvancedCss(backCss.value) : sanitizeAdvancedCss(currentAdvanced.backCss)
-      };
-      return {
-        ...card,
-        term: sanitizeEditorHtml(term?.innerHTML || card.term || ''),
-        definition: sanitizeEditorHtml(definition?.innerHTML || card.definition || ''),
-        advancedHtml: nextAdvanced
-      };
-    });
+    const activeEditor = document.activeElement?.closest?.('[data-editor-id][data-side], [data-html-editor-id][data-html-part]');
+    const activeId = creatorCardIdFromEditor(activeEditor);
+    if (activeId) syncCreatorCardFromDom(activeId);
   }
 
   function clonePlain(value) {
@@ -3223,10 +3284,19 @@
         stripCreatorFields(createReverseCard(front))
       ];
     }
-    return [stripCreatorFields(base)];
+    return [stripCreatorFields({
+      ...base,
+      noteFields: {
+        ...(base.noteFields || {}),
+        front: base.term || '',
+        back: base.definition || ''
+      }
+    })];
   }
 
-  function creatorCardsFromStoredCards(cards = []) {
+  function creatorCardsFromStoredCards(cards = [], options = {}) {
+    const cacheGenerated = options.cacheGenerated === true;
+    if (cacheGenerated) creatorGeneratedCardCache = new Map();
     const normalized = (Array.isArray(cards) ? cards : [])
       .map(card => schema?.normalizeCard ? schema.normalizeCard(card) : { ...emptyCreatorCard(), ...card });
     const groups = new Map();
@@ -3239,6 +3309,15 @@
 
     const used = new Set();
     const creatorCards = [];
+    const appendCreatorCard = (creatorCard, generatedCards = []) => {
+      creatorCards.push(creatorCard);
+      if (cacheGenerated) {
+        creatorGeneratedCardCache.set(
+          String(creatorCard.id),
+          generatedCards.map(item => clonePlain(item))
+        );
+      }
+    };
     normalized.forEach(card => {
       const id = String(card.id || '');
       if (used.has(id)) return;
@@ -3265,7 +3344,7 @@
             };
           })
           .slice(0, OCCLUSION_MAX_MASKS);
-        creatorCards.push({
+        appendCreatorCard({
           ...first,
           id: first.id || createLocalId('card'),
           noteId: first.noteId || createLocalId('note'),
@@ -3280,25 +3359,25 @@
           imageOcclusion: normalizeImageOcclusion({ image, masks }, first),
           srs: undefined,
           reviewHistory: []
-        });
+        }, occlusionCards);
         return;
       }
 
       if (isAdvancedHtmlCard(card)) {
         used.add(id);
-        creatorCards.push({
+        appendCreatorCard({
           ...card,
           noteType: 'advanced-html',
           cardTemplate: 'advanced-html',
           advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(card))
-        });
+        }, [card]);
         return;
       }
 
       if (card.noteType === 'cloze' && card.noteFields?.text) {
         const clozeCards = group.filter(item => item.noteType === 'cloze' && item.noteFields?.text);
         clozeCards.forEach(item => used.add(String(item.id || '')));
-        creatorCards.push({
+        appendCreatorCard({
           ...card,
           id: card.id || createLocalId('card'),
           noteType: 'cloze',
@@ -3308,7 +3387,7 @@
           definition: card.noteFields.extra || '',
           srs: undefined,
           reviewHistory: []
-        });
+        }, clozeCards);
         return;
       }
 
@@ -3318,17 +3397,17 @@
       if (reverse && front && String(front.id) === id) {
         used.add(String(front.id || ''));
         used.add(String(reverse.id || ''));
-        creatorCards.push({
+        appendCreatorCard({
           ...front,
           noteType: 'basic-reverse',
           cardTemplate: 'front-back',
           generateReverse: true
-        });
+        }, [front, reverse]);
         return;
       }
 
       used.add(id);
-      creatorCards.push({ ...card });
+      appendCreatorCard({ ...card }, [card]);
     });
     return creatorCards.length ? creatorCards : [emptyCreatorCard()];
   }
@@ -3361,6 +3440,87 @@
     });
 
     return cards;
+  }
+
+  function generatedCardIdentity(card = {}, index = 0) {
+    if (isImageOcclusionCard(card)) {
+      return `occlusion:${card.noteFields?.maskId || card.imageOcclusion?.targetMaskId || index}`;
+    }
+    if (card.noteType === 'cloze' || String(card.cardTemplate || '').startsWith('cloze-')) {
+      return `cloze:${card.clozeIndex || card.cardTemplate || index}`;
+    }
+    if (isAdvancedHtmlCard(card)) return 'advanced-html';
+    return `template:${card.cardTemplate || 'front-back'}`;
+  }
+
+  function reconcileGeneratedCards(sourceCardId, generatedCards = [], now = Date.now()) {
+    const previousCards = creatorGeneratedCardCache.get(String(sourceCardId)) || [];
+    const previousById = new Map(previousCards.map(card => [String(card.id), card]));
+    const previousByIdentity = new Map(
+      previousCards.map((card, index) => [generatedCardIdentity(card, index), card])
+    );
+
+    return generatedCards.map((card, index) => {
+      const previous = previousById.get(String(card.id))
+        || previousByIdentity.get(generatedCardIdentity(card, index));
+      if (!previous) return { ...card, lastModified: now };
+      return {
+        ...card,
+        id: previous.id || card.id,
+        srs: previous.srs ?? card.srs,
+        reviewHistory: Array.isArray(previous.reviewHistory) ? previous.reviewHistory : (card.reviewHistory || []),
+        suspended: Boolean(previous.suspended),
+        buriedUntil: previous.buriedUntil || null,
+        created: previous.created || card.created,
+        lastModified: now
+      };
+    });
+  }
+
+  function sanitizeCreatorCardForSave(card, now = Date.now()) {
+    const advanced = isAdvancedHtmlCard(card);
+    return {
+      ...cardWithNoteDefaults(card),
+      term: sanitizeEditorHtml(advanced ? (card.term || advancedHtmlFallbackText(card, 'front')) : card.term),
+      definition: sanitizeEditorHtml(advanced ? (card.definition || advancedHtmlFallbackText(card, 'back')) : card.definition),
+      advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(card)),
+      lastModified: now
+    };
+  }
+
+  async function buildCreatorCardsForSave() {
+    const cards = [];
+    const changedCardIds = new Set();
+    const now = Date.now();
+    let rebuiltCount = 0;
+
+    for (const sourceCard of state.creator.cards) {
+      const sourceId = String(sourceCard.id);
+      const cached = creatorGeneratedCardCache.get(sourceId);
+      const needsRebuild = creatorDirtyCardIds.has(sourceId) || !cached;
+      if (!needsRebuild) {
+        cards.push(...cached);
+        continue;
+      }
+
+      const sanitized = sanitizeCreatorCardForSave(sourceCard, now);
+      if (hasCardContent(sanitized)) {
+        const generated = reconcileGeneratedCards(sourceId, expandCreatorCard(sanitized), now);
+        creatorGeneratedCardCache.set(sourceId, generated);
+        cards.push(...generated);
+        generated.forEach(card => changedCardIds.add(String(card.id)));
+      }
+
+      rebuiltCount += 1;
+      if (rebuiltCount % 40 === 0) {
+        await new Promise(resolve => window.requestAnimationFrame(resolve));
+      }
+    }
+
+    return {
+      cards,
+      changedCardIds: Array.from(changedCardIds)
+    };
   }
 
   function firstCardImageSource(card = {}) {
@@ -3753,7 +3913,7 @@
     `;
   }
 
-  function renderCreate() {
+  function renderCreate(options = {}) {
     const currentId = state.creator.classId || '';
     const currentClass = state.classes.find(item => String(item.id) === String(currentId));
     const labelSpan = document.getElementById('mobile-create-class-label');
@@ -3790,14 +3950,98 @@
     }
 
     ensureCreatorCard();
+    rebuildCreatorCardLookup();
     if (selectors.creatorCards) {
-      selectors.creatorCards.innerHTML = `
-        ${state.creator.cards.map((card, index) => cardEditor(card, index)).join('')}
+      const renderToken = ++creatorRenderToken;
+      const cards = state.creator.cards;
+      const addButton = `
         <button type="button" class="creator-bottom-add" data-creator-action="add-card" aria-label="Add another card">
           <i class="fas fa-plus"></i>
           <span>Add card</span>
         </button>
       `;
+      const renderCards = (start, end) => cards
+        .slice(start, end)
+        .map((card, offset) => cardEditor(card, start + offset))
+        .join('');
+      const shouldProgressivelyRender = cards.length > CREATOR_PROGRESSIVE_RENDER_THRESHOLD;
+
+      creatorHasRendered = true;
+      creatorLoadMoreObserver?.disconnect();
+      creatorLoadMoreObserver = null;
+      if (!shouldProgressivelyRender) {
+        creatorRenderedCardCount = cards.length;
+        selectors.creatorCards.innerHTML = `${renderCards(0, cards.length)}${addButton}`;
+        return;
+      }
+
+      if (options.resetProgressive === true || creatorRenderedCardCount <= 0) {
+        creatorRenderedCardCount = CREATOR_PROGRESSIVE_BATCH_SIZE;
+      }
+      if (options.ensureCardId) {
+        const targetIndex = cards.findIndex(card => String(card.id) === String(options.ensureCardId));
+        if (targetIndex >= 0) creatorRenderedCardCount = Math.max(creatorRenderedCardCount, targetIndex + 1);
+      }
+      creatorRenderedCardCount = Math.min(cards.length, creatorRenderedCardCount);
+      const remaining = cards.length - creatorRenderedCardCount;
+      const loadMore = remaining > 0
+        ? `<button type="button" class="creator-bottom-add creator-load-more" data-creator-action="load-more-cards">
+            <i class="fas fa-chevron-down"></i>
+            <span>Show ${Math.min(CREATOR_PROGRESSIVE_BATCH_SIZE, remaining)} more - ${remaining} remaining</span>
+          </button>`
+        : addButton;
+      selectors.creatorCards.innerHTML = `${renderCards(0, creatorRenderedCardCount)}${loadMore}`;
+
+      const loadMoreButton = selectors.creatorCards.querySelector('[data-creator-action="load-more-cards"]');
+      if (loadMoreButton && 'IntersectionObserver' in window) {
+        creatorLoadMoreObserver = new IntersectionObserver(entries => {
+          if (
+            renderToken !== creatorRenderToken
+            || state.activeTab !== 'create'
+            || !entries.some(entry => entry.isIntersecting)
+          ) return;
+          appendMoreCreatorCards();
+        }, { rootMargin: '240px 0px' });
+        creatorLoadMoreObserver.observe(loadMoreButton);
+      }
+    }
+  }
+
+  function appendMoreCreatorCards() {
+    if (!selectors.creatorCards) return;
+    const button = selectors.creatorCards.querySelector('[data-creator-action="load-more-cards"]');
+    if (!button) return;
+    creatorLoadMoreObserver?.disconnect();
+    creatorLoadMoreObserver = null;
+
+    const start = creatorRenderedCardCount;
+    const end = Math.min(state.creator.cards.length, start + CREATOR_PROGRESSIVE_BATCH_SIZE);
+    const html = state.creator.cards
+      .slice(start, end)
+      .map((card, offset) => cardEditor(card, start + offset))
+      .join('');
+    creatorRenderedCardCount = end;
+    button.insertAdjacentHTML('beforebegin', html);
+
+    const remaining = state.creator.cards.length - end;
+    if (!remaining) {
+      button.outerHTML = `
+        <button type="button" class="creator-bottom-add" data-creator-action="add-card" aria-label="Add another card">
+          <i class="fas fa-plus"></i>
+          <span>Add card</span>
+        </button>
+      `;
+      return;
+    }
+
+    button.querySelector('span').textContent = `Show ${Math.min(CREATOR_PROGRESSIVE_BATCH_SIZE, remaining)} more - ${remaining} remaining`;
+    if ('IntersectionObserver' in window) {
+      creatorLoadMoreObserver = new IntersectionObserver(entries => {
+        if (state.activeTab === 'create' && entries.some(entry => entry.isIntersecting)) {
+          appendMoreCreatorCards();
+        }
+      }, { rootMargin: '240px 0px' });
+      creatorLoadMoreObserver.observe(button);
     }
   }
 
@@ -4596,7 +4840,9 @@
 
     const existing = state.creator.cards.filter(hasCardContent);
     state.creator.cards = [...existing, ...cards];
-    renderCreate();
+    cards.forEach(card => markCreatorCardDirty(card.id));
+    creatorRenderedCardCount = CREATOR_PROGRESSIVE_BATCH_SIZE;
+    renderCreate({ resetProgressive: true });
     scheduleCreatorDraftSave();
     showToast(`Imported ${plural(cards.length, 'card')} from ${imported.format || 'file'}`);
     return true;
@@ -4612,9 +4858,12 @@
     state.creator.editingSetId = normalized.id;
     state.creator.originalSet = normalized;
     state.creator.classId = normalized.classId || '';
-    state.creator.cards = creatorCardsFromStoredCards(normalized.cards || []);
+    state.creator.cards = creatorCardsFromStoredCards(normalized.cards || [], { cacheGenerated: true });
+    creatorDirtyCardIds = new Set();
+    creatorRenderedCardCount = CREATOR_PROGRESSIVE_BATCH_SIZE;
     selectors.createTitle.value = normalized.name || '';
-    setActiveTab('create');
+    setActiveTab('create', { skipRender: true });
+    renderCreate({ batched: true });
   }
 
   function hasCardContent(card) {
@@ -4633,11 +4882,7 @@
       savedSetId: state.creator.originalSet?.id || state.creator.editingSetId || null,
       name: String(selectors.createTitle?.value || '').trim(),
       classId: state.creator.classId || null,
-      cards: state.creator.cards.map(card => ({
-        ...card,
-        term: sanitizeEditorHtml(card.term),
-        definition: sanitizeEditorHtml(card.definition)
-      })),
+      cards: state.creator.cards,
       updatedAt: Date.now()
     };
   }
@@ -4651,12 +4896,22 @@
   }
 
   function hasVisibleCreatorWork() {
-    const snapshot = creatorSnapshot();
-    return isMeaningfulCreatorDraft(snapshot);
+    if (state.creator.editingSetId || state.creator.originalSet?.id || state.creator.classId) return true;
+    if (String(selectors.createTitle?.value || '').trim()) return true;
+    if (state.creator.cards.some(hasCardContent)) return true;
+    if (!creatorHasRendered || !selectors.creatorCards) return false;
+
+    return Array.from(selectors.creatorCards.querySelectorAll('[data-editor-id], [data-html-editor-id]'))
+      .some(editor => {
+        if (editor.matches('[contenteditable="true"]')) {
+          return Boolean(plainTextFromHtml(editor.innerHTML || '').trim());
+        }
+        return Boolean(String(editor.value || '').trim());
+      });
   }
 
   async function saveCreatorDraft(options = {}) {
-    clearTimeout(creatorDraftTimer);
+    cancelScheduledCreatorDraftSave();
     const snapshot = creatorSnapshot();
     try {
       if (isMeaningfulCreatorDraft(snapshot)) {
@@ -4676,20 +4931,40 @@
     }
   }
 
-  function scheduleCreatorDraftSave() {
+  function cancelScheduledCreatorDraftSave() {
     clearTimeout(creatorDraftTimer);
+    creatorDraftTimer = null;
+    if (creatorDraftIdleHandle === null) return;
+    if (creatorDraftIdleUsesCallback && window.cancelIdleCallback) {
+      window.cancelIdleCallback(creatorDraftIdleHandle);
+    } else {
+      clearTimeout(creatorDraftIdleHandle);
+    }
+    creatorDraftIdleHandle = null;
+    creatorDraftIdleUsesCallback = false;
+  }
+
+  function scheduleCreatorDraftSave() {
+    cancelScheduledCreatorDraftSave();
+    if (state.creator.cards.length > CREATOR_AUTOSAVE_CARD_LIMIT) return;
     creatorDraftTimer = window.setTimeout(() => {
-      const run = () => saveCreatorDraft().catch(error => console.warn('[mobile] draft autosave failed:', error));
+      creatorDraftTimer = null;
+      const run = () => {
+        creatorDraftIdleHandle = null;
+        creatorDraftIdleUsesCallback = false;
+        saveCreatorDraft().catch(error => console.warn('[mobile] draft autosave failed:', error));
+      };
       if (window.requestIdleCallback) {
-        window.requestIdleCallback(run, { timeout: 1800 });
+        creatorDraftIdleUsesCallback = true;
+        creatorDraftIdleHandle = window.requestIdleCallback(run, { timeout: 5000 });
       } else {
-        window.setTimeout(run, 80);
+        creatorDraftIdleHandle = window.setTimeout(run, 250);
       }
     }, 2200);
   }
 
   async function clearCreatorDraft() {
-    clearTimeout(creatorDraftTimer);
+    cancelScheduledCreatorDraftSave();
     localStorage.removeItem(CREATOR_DRAFT_KEY);
     try {
       await window.flashcardStore.removeState(CREATOR_DRAFT_KEY);
@@ -4714,15 +4989,22 @@
     state.creator.editingSetId = normalizedOriginal?.id || null;
     state.creator.originalSet = normalizedOriginal || null;
     state.creator.classId = draft?.classId || '';
+    if (normalizedOriginal?.cards?.length) {
+      creatorCardsFromStoredCards(normalizedOriginal.cards, { cacheGenerated: true });
+    } else {
+      creatorGeneratedCardCache = new Map();
+    }
     state.creator.cards = Array.isArray(draft?.cards) && draft.cards.length
       ? creatorCardsFromStoredCards(draft.cards)
       : [emptyCreatorCard()];
+    creatorDirtyCardIds = new Set(state.creator.cards.map(card => String(card.id)));
+    creatorRenderedCardCount = CREATOR_PROGRESSIVE_BATCH_SIZE;
     state.creator.draftLoaded = true;
     if (selectors.createTitle) selectors.createTitle.value = draft?.name || normalizedOriginal?.name || '';
   }
 
   async function maybeRestoreCreatorDraft() {
-    if (hasVisibleCreatorWork()) return;
+    if (hasVisibleCreatorWork()) return false;
     let draft = null;
     try {
       draft = JSON.parse(localStorage.getItem(CREATOR_DRAFT_KEY) || 'null');
@@ -4734,7 +5016,7 @@
     } catch (_) {
       draft = draft || null;
     }
-    if (!isMeaningfulCreatorDraft(draft)) return;
+    if (!isMeaningfulCreatorDraft(draft)) return false;
 
     const savedId = draft.savedSetId || draft.editingSetId || null;
     if (savedId && draftCore?.isDraftSameAsSavedSet) {
@@ -4742,7 +5024,7 @@
         const saved = await window.flashcardStore.getSet(savedId);
         if (saved && draftCore.isDraftSameAsSavedSet(draft, saved)) {
           await clearCreatorDraft();
-          return;
+          return false;
         }
       } catch (_) {}
     }
@@ -4755,11 +5037,46 @@
       await clearCreatorDraft();
       resetCreator();
     }
+    return true;
   }
 
   async function openCreator() {
-    await maybeRestoreCreatorDraft();
-    setActiveTab('create');
+    if (creatorHasRendered) {
+      setActiveTab('create', { skipRender: true });
+      return;
+    }
+    const creatorChanged = await maybeRestoreCreatorDraft();
+    const canReuseRenderedCreator = creatorHasRendered && !creatorChanged;
+    setActiveTab('create', { skipRender: canReuseRenderedCreator || creatorChanged });
+    if (!canReuseRenderedCreator && creatorChanged) {
+      renderCreate({ batched: true });
+    }
+  }
+
+  function setCreatorSavingUi(saving) {
+    state.creatorSaving = saving;
+    const saveButton = document.getElementById('header-creator-save-btn');
+    if (!saveButton) return;
+    saveButton.disabled = saving;
+    saveButton.setAttribute('aria-busy', String(saving));
+    const label = saveButton.querySelector('span');
+    if (label) label.textContent = saving ? 'Saving...' : 'Save';
+    const icon = saveButton.querySelector('i');
+    if (icon) icon.className = saving ? 'fas fa-spinner fa-spin' : 'fas fa-check';
+  }
+
+  async function requestCreatorSave() {
+    if (state.creatorSaving) return;
+    setCreatorSavingUi(true);
+    await new Promise(resolve => window.requestAnimationFrame(resolve));
+    try {
+      await saveMobileDeck();
+    } catch (error) {
+      console.error('Could not save deck:', error);
+      showToast(error?.message || 'Could not save deck');
+    } finally {
+      setCreatorSavingUi(false);
+    }
   }
 
   async function saveMobileDeck() {
@@ -4768,26 +5085,13 @@
     }
     syncCreatorFromDom();
     const name = String(selectors.createTitle?.value || '').trim();
-    const cards = state.creator.cards
-      .map(card => {
-        const normalized = cardWithNoteDefaults(card);
-        const advanced = isAdvancedHtmlCard(normalized);
-        return {
-          ...normalized,
-          term: sanitizeEditorHtml(advanced ? (normalized.term || advancedHtmlFallbackText(normalized, 'front')) : normalized.term),
-          definition: sanitizeEditorHtml(advanced ? (normalized.definition || advancedHtmlFallbackText(normalized, 'back')) : normalized.definition),
-          advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(normalized)),
-          lastModified: Date.now()
-        };
-      })
-      .filter(hasCardContent)
-      .flatMap(expandCreatorCard);
-    const syncedCards = syncGeneratedCards(cards);
     if (!name) {
       showToast('Add a deck name');
       selectors.createTitle?.focus();
       return;
     }
+    const savePayload = await buildCreatorCardsForSave();
+    const cards = savePayload.cards;
     if (!cards.length) {
       showToast('Add at least one card');
       selectors.creatorCards?.querySelector('[contenteditable="true"], textarea')?.focus();
@@ -4800,21 +5104,41 @@
       id: state.creator.editingSetId || original.id,
       name,
       classId: state.creator.classId || null,
-      cards: syncedCards,
+      cards,
+      __changedCardIds: savePayload.changedCardIds,
       srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings(original.srsSettings || {}) : (original.srsSettings || { enabled: true }),
       pinned: Boolean(original.pinned)
     });
     await clearCreatorDraft();
     // Flush store in background — no need to block navigation on it
     flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
-    showToast(`Saved ${plural(syncedCards.length, 'card')}`);
+    showToast(`Saved ${plural(cards.length, 'card')}`);
     state.browserLoaded = false;
-    resetCreator();
     if (saved?.id) {
-      state.sets = state.sets.map(item => String(item.id) === String(saved.id) ? saved : item);
+      const existingIndex = state.sets.findIndex(item => String(item.id) === String(saved.id));
+      const savedMeta = {
+        ...(existingIndex >= 0 ? state.sets[existingIndex] : {}),
+        ...saved,
+        cards: [],
+        cardCount: cards.length
+      };
+      if (existingIndex >= 0) {
+        state.sets[existingIndex] = savedMeta;
+      } else {
+        state.sets.unshift(savedMeta);
+      }
     }
-    await refresh();
+    resetCreator();
     setActiveTab('library');
+
+    const refreshAfterSave = () => refresh().catch(error => {
+      console.warn('[mobile] post-save refresh failed:', error);
+    });
+    if (window.requestIdleCallback) {
+      window.requestIdleCallback(refreshAfterSave, { timeout: 1800 });
+    } else {
+      window.setTimeout(refreshAfterSave, 250);
+    }
   }
 
   function subjectLabel(subject) {
@@ -7554,11 +7878,17 @@ followed by the JSON containing "deck" and "media" array.`;
   }
 
   function updateFormatState() {
-    if (!selectors.creatorCards) return;
+    if (!selectors.creatorCards || state.activeTab !== 'create') return;
+    activeFormatButtons.forEach(button => button.classList.remove('active'));
+    activeFormatButtons = [];
+
     const activeEditor = document.activeElement?.closest?.('.rich-editor');
-    selectors.creatorCards.querySelectorAll('[data-creator-action="format"]').forEach(button => {
+    const activeSide = activeEditor?.closest?.('.editor-side');
+    if (!activeEditor || !activeSide) return;
+
+    activeSide.querySelectorAll('[data-creator-action="format"]').forEach(button => {
       const command = button.dataset.command;
-      const active = Boolean(activeEditor && command && (
+      const active = Boolean(command && (
         command === 'highlight'
           ? selectionHasAncestor(['MARK'])
           : command === 'inlineCode'
@@ -7568,10 +7898,12 @@ followed by the JSON containing "deck" and "media" array.`;
               : command !== 'formula' && document.queryCommandState(command)
       ));
       button.classList.toggle('active', active);
+      if (active) activeFormatButtons.push(button);
     });
   }
 
   function scheduleFormatStateUpdate() {
+    if (state.activeTab !== 'create') return;
     if (formatStateFrame) return;
     formatStateFrame = requestAnimationFrame(() => {
       formatStateFrame = 0;
@@ -7580,7 +7912,15 @@ followed by the JSON containing "deck" and "media" array.`;
   }
 
   async function handleCreatorAction(action, target) {
+    const targetCardId = target?.dataset?.cardId
+      || target?.closest?.('[data-card-id]')?.dataset?.cardId
+      || '';
+    if (targetCardId) markCreatorCardDirty(targetCardId);
+
     switch (action) {
+      case 'load-more-cards':
+        appendMoreCreatorCards();
+        break;
       case 'add-card': {
         syncCreatorFromDom();
         const card = emptyCreatorCard();
@@ -8928,6 +9268,9 @@ followed by the JSON containing "deck" and "media" array.`;
 
     selectors.createForm?.addEventListener('input', event => {
       if (!event.target.closest('#view-create')) return;
+      if (event.target.matches('[data-editor-id][data-side], [data-html-editor-id][data-html-part]')) {
+        syncCreatorEditorInput(event.target, { sanitize: false });
+      }
       scheduleCreatorDraftSave();
     });
 
@@ -8935,16 +9278,7 @@ followed by the JSON containing "deck" and "media" array.`;
 
     selectors.createForm?.addEventListener('submit', async event => {
       event.preventDefault();
-      if (state.creatorSaving) return;
-      state.creatorSaving = true;
-      try {
-        await saveMobileDeck();
-      } catch (error) {
-        console.error('Could not save deck:', error);
-        showToast(error?.message || 'Could not save deck');
-      } finally {
-        state.creatorSaving = false;
-      }
+      await requestCreatorSave();
     });
 
     selectors.imageInput?.addEventListener('change', async event => {
@@ -9575,16 +9909,7 @@ Every media/... reference in deck.json must exist inside media/.`;
       headerSaveBtn.addEventListener('click', async event => {
         event.preventDefault();
         playClick();
-        if (state.creatorSaving) return;
-        state.creatorSaving = true;
-        try {
-          await saveMobileDeck();
-        } catch (error) {
-          console.error(error);
-          showToast(error?.message || 'Could not save deck');
-        } finally {
-          state.creatorSaving = false;
-        }
+        await requestCreatorSave();
       });
     }
 
@@ -9872,8 +10197,16 @@ Every media/... reference in deck.json must exist inside media/.`;
     if (headerImportBtn) {
       headerImportBtn.classList.remove('hidden');
     }
+    // Toggle body tab class
+    document.body.classList.forEach(cls => {
+      if (cls.startsWith('tab-')) {
+        document.body.classList.remove(cls);
+      }
+    });
+    document.body.classList.add(`tab-${tab}`);
+
     if (selectors.headerQuote) {
-      selectors.headerQuote.classList.toggle('hidden', tab === 'create');
+      selectors.headerQuote.classList.toggle('hidden', tab !== 'today');
     }
 
     setHeader();

@@ -85,6 +85,15 @@
   function rememberSetBackup(set) {
     if (!set?.id || !Array.isArray(set.cards) || !set.cards.length) return;
     try {
+      const sampleSize = Math.min(20, set.cards.length);
+      const sampleBytes = JSON.stringify(set.cards.slice(0, sampleSize)).length;
+      const estimatedBytes = sampleSize
+        ? Math.ceil((sampleBytes / sampleSize) * set.cards.length) + 4096
+        : 0;
+      if (estimatedBytes > MAX_LOCAL_SET_MIRROR_BYTES) {
+        forgetSetBackup(set.id);
+        return;
+      }
       const normalized = schema.normalizeSet(set, null, { preserveLastModified: true });
       const serialized = JSON.stringify(normalized);
       if (serialized.length > MAX_LOCAL_SET_MIRROR_BYTES) {
@@ -1025,12 +1034,42 @@
     ]);
   }
 
-  async function replaceCardsForSet(setId, cards = []) {
-    const set = [
-      { statement: 'DELETE FROM cards WHERE set_id = ?', values: [String(setId)] }
-    ];
+  async function replaceCardsForSet(setId, cards = [], options = {}) {
+    const setKey = String(setId);
+    const existingRows = await rows(
+      'SELECT id, position, last_modified, payload_json FROM cards WHERE set_id = ? AND deleted_at IS NULL',
+      [setKey]
+    );
+    const existingById = new Map(existingRows.map(row => [String(row.id), row]));
+    const changedCardIds = Array.isArray(options.changedCardIds)
+      ? new Set(options.changedCardIds.map(String))
+      : null;
+    const nextIds = new Set();
+    const set = [];
+
     for (let index = 0; index < cards.length; index++) {
       const card = cards[index];
+      const cardId = String(card.id);
+      const existing = existingById.get(cardId);
+      nextIds.add(cardId);
+
+      let serializedCard = null;
+      const knownUnchanged = existing && changedCardIds && !changedCardIds.has(cardId);
+      const contentUnchanged = existing && !changedCardIds && (() => {
+        serializedCard = jsonString(card);
+        return existing.payload_json === serializedCard;
+      })();
+      if (knownUnchanged || contentUnchanged) {
+        if (Number(existing.position) !== index) {
+          set.push({
+            statement: 'UPDATE cards SET position = ? WHERE id = ? AND set_id = ?',
+            values: [index, cardId, setKey]
+          });
+        }
+        continue;
+      }
+      if (serializedCard === null) serializedCard = jsonString(card);
+
       set.push({
         statement: `
           INSERT INTO cards (
@@ -1039,10 +1078,26 @@
             created, last_modified, deleted_at, payload_json
           )
           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?)
+          ON CONFLICT(id) DO UPDATE SET
+            set_id = excluded.set_id,
+            position = excluded.position,
+            term = excluded.term,
+            definition = excluded.definition,
+            term_image = excluded.term_image,
+            definition_image = excluded.definition_image,
+            tags_json = excluded.tags_json,
+            suspended = excluded.suspended,
+            buried_until = excluded.buried_until,
+            srs_json = excluded.srs_json,
+            review_history_json = excluded.review_history_json,
+            created = excluded.created,
+            last_modified = excluded.last_modified,
+            deleted_at = NULL,
+            payload_json = excluded.payload_json
         `,
         values: [
-          String(card.id),
-          String(setId),
+          cardId,
+          setKey,
           index,
           card.term || '',
           card.definition || '',
@@ -1055,11 +1110,23 @@
           jsonString(Array.isArray(card.reviewHistory) ? card.reviewHistory : []),
           card.created || null,
           card.lastModified || null,
-          jsonString(card)
+          serializedCard
         ]
       });
     }
-    await executeSet(set);
+
+    const removedIds = existingRows
+      .map(row => String(row.id))
+      .filter(id => !nextIds.has(id));
+    for (const idChunk of chunkArray(removedIds)) {
+      const placeholders = idChunk.map(() => '?').join(',');
+      set.push({
+        statement: `DELETE FROM cards WHERE set_id = ? AND id IN (${placeholders})`,
+        values: [setKey, ...idChunk]
+      });
+    }
+
+    if (set.length) await executeSet(set);
   }
 
   async function repairCardIdsForSet(setId, cards = []) {
@@ -1832,13 +1899,17 @@
     await ensureReady();
     const hasCardsField = Object.prototype.hasOwnProperty.call(set || {}, 'cards');
     const wantsMetaOnly = Boolean(set?.__metaOnly) || !hasCardsField;
-    const existing = set.id
-      ? (wantsMetaOnly ? await getSetMeta(set.id) : await getSet(set.id))
-      : null;
+    const existing = set.id ? await getSetMeta(set.id) : null;
     const metaOnlyUpdate = Boolean(set?.__metaOnly)
       || (existing && !hasCardsField)
       || (existing && hasCardsField && Array.isArray(set.cards) && set.cards.length === 0 && Number(set.cardCount || 0) > 0);
-    const { mobileStats: _mobileStats, __metaOnly: _metaOnly, cardCount: _cardCount, ...cleanSet } = set || {};
+    const {
+      mobileStats: _mobileStats,
+      __metaOnly: _metaOnly,
+      __changedCardIds: changedCardIds,
+      cardCount: _cardCount,
+      ...cleanSet
+    } = set || {};
 
     if (metaOnlyUpdate && existing) {
       const hasOwn = key => Object.prototype.hasOwnProperty.call(cleanSet, key);
@@ -1886,7 +1957,11 @@
     normalized.cards = await repairCardIdsForSet(normalized.id, normalized.cards || []);
     await withTransaction(async () => {
       await upsertSet(normalized);
-      if (!metaOnlyUpdate) await replaceCardsForSet(normalized.id, normalized.cards || []);
+      if (!metaOnlyUpdate) {
+        await replaceCardsForSet(normalized.id, normalized.cards || [], {
+          changedCardIds
+        });
+      }
     });
     if (!metaOnlyUpdate) rememberSetBackup(normalized);
     await persist(); // fire-and-forget — flush() ensures it completes before navigation

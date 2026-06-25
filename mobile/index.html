@@ -100,7 +100,20 @@
 
       <section class="mobile-view" id="view-library" aria-labelledby="library-heading">
         <div class="library-sticky-header">
-          <div class="library-screen-head">
+          <div class="library-utility-row-1">
+            <label class="mobile-search">
+              <i class="fas fa-magnifying-glass"></i>
+              <input id="mobile-search-input" type="search" placeholder="Search decks and classes">
+            </label>
+            <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
+              <i class="fas fa-arrow-down-wide-short"></i>
+            </button>
+            <button type="button" class="icon-button" id="library-paste-import-btn" data-action="paste-import" aria-label="Paste Import">
+              <i class="fas fa-file-import"></i>
+            </button>
+          </div>
+
+          <div class="library-utility-row-2">
             <div class="deck-source-switch" role="radiogroup" aria-label="Deck source">
               <button type="button" class="source-option active" data-action="tab-library" aria-checked="true" role="radio">
                 <span class="source-dot"></span>
@@ -109,21 +122,6 @@
               <button type="button" class="source-option" data-action="open-premade" aria-checked="false" role="radio">
                 <span class="source-dot"></span>
                 Premade
-              </button>
-            </div>
-            <button type="button" class="icon-button raised" data-action="open-create" aria-label="Create set">
-              <i class="fas fa-plus"></i>
-            </button>
-          </div>
-
-          <div id="mobile-user-headers">
-            <div class="search-row">
-              <label class="mobile-search">
-                <i class="fas fa-magnifying-glass"></i>
-                <input id="mobile-search-input" type="search" placeholder="Search decks and classes">
-              </label>
-              <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
-                <i class="fas fa-arrow-down-wide-short"></i>
               </button>
             </div>
           </div>
