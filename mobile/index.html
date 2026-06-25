@@ -376,6 +376,16 @@
             <span><strong>Card Browser</strong><small>Advanced desktop-style card table</small></span>
             <i class="fas fa-chevron-right"></i>
           </button>
+          <button type="button" class="settings-row" data-action="copy-performance-diagnostics">
+            <span class="settings-icon"><i class="fas fa-gauge-high"></i></span>
+            <span><strong>Copy Performance Report</strong><small>Private timings, counts, freezes, and errors—no card content</small></span>
+            <i class="fas fa-copy"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="clear-performance-diagnostics">
+            <span class="settings-icon"><i class="fas fa-eraser"></i></span>
+            <span><strong>Clear Performance History</strong><small>Start a clean diagnostic recording</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </div>
       </section>
     </main>
@@ -1673,6 +1683,7 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
   <script src="js/core/math-render.js"></script>
   <script src="vendor/sql.js/sql-wasm.js"></script>
   <script src="vendor/jszip/jszip.min.js"></script>
+  <script src="js/mobile/mobile-performance.js"></script>
   <script src="js/mobile/mobile-store.js"></script>
   <script src="js/storage-client.js"></script>
   <script src="vendor/ts-fsrs/index.umd.js"></script>

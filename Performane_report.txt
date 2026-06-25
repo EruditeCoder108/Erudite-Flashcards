@@ -1,0 +1,813 @@
+{
+  "format": "erudite-mobile-performance-report",
+  "version": 1,
+  "privacy": "No card terms, definitions, HTML, media, deck names, or raw deck/card IDs are intentionally recorded.",
+  "runtime": {
+    "generatedAt": "2026-06-25T15:21:53.981Z",
+    "traceId": "mqtnglh4-otmw8n3j",
+    "currentPage": "library",
+    "eventCount": 290,
+    "capacitorPlatform": "android",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; A001 Build/BP2A.250605.031.A3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36",
+    "language": "en-GB",
+    "hardwareConcurrency": 8,
+    "deviceMemoryGb": 8,
+    "viewport": {
+      "width": 411,
+      "height": 911,
+      "devicePixelRatio": 2.625
+    },
+    "navigation": {
+      "type": "navigate",
+      "domInteractiveMs": 144.9,
+      "domContentLoadedMs": 151.9,
+      "loadEventMs": 160.3,
+      "transferSize": 300
+    },
+    "heap": {
+      "usedBytes": 31200000,
+      "totalBytes": 47400000,
+      "limitBytes": 2060000000
+    }
+  },
+  "extra": {
+    "storage": {
+      "appName": "Erudite Flashcards",
+      "appVersion": "mobile",
+      "generatedAt": "2026-06-25T15:21:53.977Z",
+      "storageEngine": "SQLite (Capacitor Native)",
+      "paths": {
+        "database": "erudite-flashcards/erudite-flashcards.sqlite",
+        "backupsDir": "erudite-flashcards/backups"
+      },
+      "counts": {
+        "sets": 28,
+        "classes": 1,
+        "cards": 12421,
+        "progressEntries": 2,
+        "stateEntries": 1,
+        "studySessions": 3
+      },
+      "persistence": {
+        "scheduled": false,
+        "inFlight": false,
+        "queued": false
+      },
+      "health": {
+        "status": "ok",
+        "issues": []
+      },
+      "recentBackups": [],
+      "brokenImageLinks": []
+    }
+  },
+  "events": [
+    {
+      "timestamp": 1782400863822,
+      "traceId": "mqtnftt9-bv614jwr",
+      "pageSessionId": "mqtnftt8-ms9p2u",
+      "page": "library",
+      "kind": "mark",
+      "name": "diagnostics.history_cleared",
+      "atMs": 24718.9,
+      "data": {}
+    },
+    {
+      "timestamp": 1782400875449,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "mark",
+      "name": "runtime.page_session_started",
+      "atMs": 434.9,
+      "data": {
+        "readyState": "loading",
+        "eventCountBeforeStart": 0
+      }
+    },
+    {
+      "timestamp": 1782400875459,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "longtask",
+      "name": "runtime.long_task",
+      "atMs": 444.5,
+      "data": {
+        "startTimeMs": 110.1
+      },
+      "durationMs": 209,
+      "startedAtMs": 110.1
+    },
+    {
+      "timestamp": 1782400875465,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "mark",
+      "name": "app.init.data_load_scheduled",
+      "atMs": 451.2,
+      "data": {
+        "delayMs": 280,
+        "initialTab": "today"
+      }
+    },
+    {
+      "timestamp": 1782400875473,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "mark",
+      "name": "runtime.window_loaded",
+      "atMs": 458.8,
+      "data": {
+        "domInteractiveMs": 444.7,
+        "domContentLoadedMs": 451.7,
+        "loadEventMs": 457.7
+      }
+    },
+    {
+      "timestamp": 1782400875721,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.native.open",
+      "atMs": 707,
+      "data": {
+        "status": "ok",
+        "reusedConnection": false
+      },
+      "durationMs": 269.4,
+      "startedAtMs": 437.6
+    },
+    {
+      "timestamp": 1782400875738,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.schema.ensure",
+      "atMs": 723.6,
+      "data": {
+        "status": "ok"
+      },
+      "durationMs": 16.1,
+      "startedAtMs": 707.5
+    },
+    {
+      "timestamp": 1782400875794,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.legacy_migration.check",
+      "atMs": 779.8,
+      "data": {
+        "status": "ok"
+      },
+      "durationMs": 56.2,
+      "startedAtMs": 723.6
+    },
+    {
+      "timestamp": 1782400875795,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.init",
+      "atMs": 780.9,
+      "data": {
+        "native": true,
+        "status": "ok"
+      },
+      "durationMs": 343.6,
+      "startedAtMs": 437.1
+    },
+    {
+      "timestamp": 1782400876045,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 1030.5,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 229.4,
+      "startedAtMs": 801.1
+    },
+    {
+      "timestamp": 1782400876048,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 1034.3,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 233.6,
+      "startedAtMs": 800.6
+    },
+    {
+      "timestamp": 1782400876443,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 1428.5,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 393.9,
+      "startedAtMs": 1034.6
+    },
+    {
+      "timestamp": 1782400876446,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 1431.9,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 397.5,
+      "startedAtMs": 1034.4
+    },
+    {
+      "timestamp": 1782400876551,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 1537.2,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 103.9,
+      "startedAtMs": 1433.3
+    },
+    {
+      "timestamp": 1782400876554,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 1540.3,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 108.3,
+      "startedAtMs": 1432
+    },
+    {
+      "timestamp": 1782400876657,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 1642.8,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 102,
+      "startedAtMs": 1540.8
+    },
+    {
+      "timestamp": 1782400876660,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 1645.8,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 105.2,
+      "startedAtMs": 1540.6
+    },
+    {
+      "timestamp": 1782400876731,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 1717.3,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 243
+      },
+      "durationMs": 70.7,
+      "startedAtMs": 1646.6
+    },
+    {
+      "timestamp": 1782400876734,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 1719.5,
+      "data": {
+        "cardCount": 243
+      },
+      "durationMs": 73,
+      "startedAtMs": 1646.5
+    },
+    {
+      "timestamp": 1782400876851,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 1836.6,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 116.7,
+      "startedAtMs": 1719.9
+    },
+    {
+      "timestamp": 1782400876853,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 1838.9,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 119.1,
+      "startedAtMs": 1719.8
+    },
+    {
+      "timestamp": 1782400876931,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 1917,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 300
+      },
+      "durationMs": 77.9,
+      "startedAtMs": 1839
+    },
+    {
+      "timestamp": 1782400876933,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 1919.3,
+      "data": {
+        "cardCount": 300
+      },
+      "durationMs": 80.3,
+      "startedAtMs": 1839
+    },
+    {
+      "timestamp": 1782400877047,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2033.4,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 113.8,
+      "startedAtMs": 1919.6
+    },
+    {
+      "timestamp": 1782400877050,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2036.2,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 116.8,
+      "startedAtMs": 1919.4
+    },
+    {
+      "timestamp": 1782400877165,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2150.8,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 114.3,
+      "startedAtMs": 2036.5
+    },
+    {
+      "timestamp": 1782400877168,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2153.8,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 117.3,
+      "startedAtMs": 2036.4
+    },
+    {
+      "timestamp": 1782400877262,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2248,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 94.1,
+      "startedAtMs": 2153.9
+    },
+    {
+      "timestamp": 1782400877264,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2250.3,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 96.4,
+      "startedAtMs": 2153.9
+    },
+    {
+      "timestamp": 1782400877365,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2350.9,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 100.3,
+      "startedAtMs": 2250.6
+    },
+    {
+      "timestamp": 1782400877368,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2353.9,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 103.4,
+      "startedAtMs": 2250.5
+    },
+    {
+      "timestamp": 1782400877476,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2461.9,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 107.7,
+      "startedAtMs": 2354.2
+    },
+    {
+      "timestamp": 1782400877479,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2464.6,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 110.5,
+      "startedAtMs": 2354.1
+    },
+    {
+      "timestamp": 1782400877582,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2568.2,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 103.2,
+      "startedAtMs": 2465
+    },
+    {
+      "timestamp": 1782400877585,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2570.6,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 105.8,
+      "startedAtMs": 2464.8
+    },
+    {
+      "timestamp": 1782400877685,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2671.3,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 100.5,
+      "startedAtMs": 2570.8
+    },
+    {
+      "timestamp": 1782400877688,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2674.1,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 103.3,
+      "startedAtMs": 2570.8
+    },
+    {
+      "timestamp": 1782400877788,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2774,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 99.7,
+      "startedAtMs": 2674.3
+    },
+    {
+      "timestamp": 1782400877791,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2776.8,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 102.5,
+      "startedAtMs": 2674.3
+    },
+    {
+      "timestamp": 1782400877854,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2839.9,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 300
+      },
+      "durationMs": 62.9,
+      "startedAtMs": 2777
+    },
+    {
+      "timestamp": 1782400877856,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2841.9,
+      "data": {
+        "cardCount": 300
+      },
+      "durationMs": 65,
+      "startedAtMs": 2776.9
+    },
+    {
+      "timestamp": 1782400877938,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2924.2,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 407
+      },
+      "durationMs": 82.1,
+      "startedAtMs": 2842.1
+    },
+    {
+      "timestamp": 1782400877941,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2927,
+      "data": {
+        "cardCount": 407
+      },
+      "durationMs": 85,
+      "startedAtMs": 2842
+    },
+    {
+      "timestamp": 1782400877997,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 2983.3,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 143
+      },
+      "durationMs": 56.1,
+      "startedAtMs": 2927.2
+    },
+    {
+      "timestamp": 1782400877999,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 2985.2,
+      "data": {
+        "cardCount": 143
+      },
+      "durationMs": 58,
+      "startedAtMs": 2927.2
+    },
+    {
+      "timestamp": 1782400878088,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 3074.3,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 321
+      },
+      "durationMs": 88.9,
+      "startedAtMs": 2985.4
+    },
+    {
+      "timestamp": 1782400878090,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 3076.2,
+      "data": {
+        "cardCount": 321
+      },
+      "durationMs": 90.8,
+      "startedAtMs": 2985.4
+    },
+    {
+      "timestamp": 1782400878181,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 3166.8,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 407
+      },
+      "durationMs": 90.2,
+      "startedAtMs": 3076.5
+    },
+    {
+      "timestamp": 1782400878183,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 3169.2,
+      "data": {
+        "cardCount": 407
+      },
+      "durationMs": 92.8,
+      "startedAtMs": 3076.4
+    },
+    {
+      "timestamp": 1782400878292,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 3277.8,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 500
+      },
+      "durationMs": 108.4,
+      "startedAtMs": 3169.4
+    },
+    {
+      "timestamp": 1782400878294,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.set.hydrate",
+      "atMs": 3280.2,
+      "data": {
+        "cardCount": 500
+      },
+      "durationMs": 110.7,
+      "startedAtMs": 3169.4
+    },
+    {
+      "timestamp": 1782400878360,
+      "traceId": "mqtnglh4-otmw8n3j",
+      "pageSessionId": "mqtnglh4-srho8b",
+      "page": "library",
+      "kind": "span",
+      "name": "store.sql.read",
+      "atMs": 3345.9,
+      "data": {
+        "operation": "select.cards",
+        "rowCount": 300
+      },
+      "durationMs": 65.5,
+      "startedAtMs": 3280.4
+    },
+    {
+      "timestamp": 1782400878361,
+      "traceId": "mqtnglh4-otmw

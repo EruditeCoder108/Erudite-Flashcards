@@ -207,10 +207,16 @@
     return readLocal('flashcardSets', []);
   }
 
-  async function listSetsMeta() {
+  async function listSetsMeta(options = {}) {
     const nativeApi = getNativeApi();
-    if (nativeApi?.listSetsMeta) return nativeApi.listSetsMeta();
+    if (nativeApi?.listSetsMeta) return nativeApi.listSetsMeta(options);
     return listSets(); // fallback: load full sets
+  }
+
+  async function getSetStatsMeta(setIds = []) {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.getSetStatsMeta) return nativeApi.getSetStatsMeta(setIds);
+    return [];
   }
 
   async function getSet(id) {
@@ -879,6 +885,7 @@
   window.flashcardStore = {
     listSets,
     listSetsMeta,
+    getSetStatsMeta,
     listCardsForBrowser,
     bulkUpdateCards,
     getSet,

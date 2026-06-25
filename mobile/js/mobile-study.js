@@ -1,6 +1,7 @@
 (function () {
   const schema = window.EruditeCore?.schema;
   const statsCore = window.EruditeCore?.stats;
+  const perf = window.EruditeMobilePerf;
 
   const params = new URLSearchParams(window.location.search);
   const reviewDueSession = params.get('reviewDue') === 'true';
@@ -196,6 +197,8 @@
   }
 
   function navigateAway(url, title, copy) {
+    perf?.mark('study.navigation.library_committed', { title });
+    perf?.flush?.();
     showStudyLoader(title, copy);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -207,18 +210,30 @@
   async function flushStore(timeoutMs = 1200) {
     const flush = window.eruditeMobileFlashcards?.flush || window.flashcardStore?.flush;
     if (typeof flush !== 'function') return;
-    await Promise.race([
-      flush().catch(() => {}),
-      new Promise(resolve => window.setTimeout(resolve, timeoutMs))
+    const span = perf?.start('study.store.flush', { timeoutMs });
+    const outcome = await Promise.race([
+      flush().then(() => 'flushed').catch(() => 'error'),
+      new Promise(resolve => window.setTimeout(() => resolve('timeout'), timeoutMs))
     ]);
+    perf?.end(span, { outcome });
   }
 
   async function flushStudyStateBeforeRoute() {
-    try { await saveSessionLog(); } catch (_) {}
-    try { await saveProgress({ immediate: true }); } catch (_) {}
-    try { await saveOpenedMeta({ immediate: true }); } catch (_) {}
-    try { await flushCardProgress(); } catch (_) {}
-    try { await flushStore(1400); } catch (_) {}
+    const span = perf?.start('study.route.flush_all');
+    const run = async (name, work) => {
+      try {
+        if (perf?.measure) await perf.measure(name, work);
+        else await work();
+      } catch (error) {
+        perf?.mark(`${name}.error`, { error: perf?.sanitizeError(error) });
+      }
+    };
+    await run('study.route.save_session', () => saveSessionLog());
+    await run('study.route.save_progress', () => saveProgress({ immediate: true }));
+    await run('study.route.save_opened_meta', () => saveOpenedMeta({ immediate: true }));
+    await run('study.route.flush_card_progress', () => flushCardProgress());
+    await run('study.route.flush_store', () => flushStore(1400));
+    perf?.end(span, { status: 'ok' });
   }
 
   function markRouteTrigger(trigger) {
@@ -230,12 +245,17 @@
   }
 
   async function goLibrary(trigger = null) {
+    const span = perf?.start('study.route.library');
     markRouteTrigger(trigger);
-    if (routeLeaving) return;
+    if (routeLeaving) {
+      perf?.end(span, { status: 'already_leaving' });
+      return;
+    }
     routeLeaving = true;
     showStudyLoader('Opening Library', 'Refreshing your decks');
     await new Promise(resolve => setTimeout(resolve, 50));
     await flushStudyStateBeforeRoute();
+    perf?.end(span, { status: 'navigating' });
     navigateAway(libraryUrl(), 'Opening Library', 'Refreshing your decks');
   }
 
@@ -826,7 +846,11 @@
   }
 
   async function loadData() {
-    await waitForStore();
+    const span = perf?.start('study.data.load');
+    try {
+      const storeSpan = perf?.start('study.store.wait_ready');
+      await waitForStore();
+      perf?.end(storeSpan, { status: 'ok' });
     const setId = getSetId();
     if (setId === null || setId === undefined) {
       throw new Error('No set selected');
@@ -887,6 +911,17 @@
     prepareActiveCards();
     state.sessionStartedAt = Date.now();
     state.sessionCardsViewed = new Set();
+      perf?.end(span, {
+        status: 'ok',
+        deckCardCount: state.set?.cards?.length || 0,
+        activeCardCount: state.activeCards.length,
+        srsMode: state.srsMode,
+        filteredMode: state.filteredMode
+      });
+    } catch (error) {
+      perf?.end(span, { status: 'error', error: perf?.sanitizeError(error) });
+      throw error;
+    }
   }
 
   function scheduleOpenedSave() {
@@ -1076,7 +1111,13 @@
   }
 
   async function flushCardProgress() {
-    if (!state.set || !pendingCardPatches.size) return;
+    const span = perf?.start('study.progress.flush_cards', {
+      pendingCardCount: pendingCardPatches.size
+    });
+    if (!state.set || !pendingCardPatches.size) {
+      perf?.end(span, { status: 'empty' });
+      return;
+    }
     clearTimeout(cardProgressSaveTimer);
     
     const saveBatch = window.flashcardStore.saveCardProgressBatch || window.eruditeMobileFlashcards?.saveCardProgressBatch;
@@ -1084,6 +1125,7 @@
       const patches = Object.fromEntries(pendingCardPatches.entries());
       pendingCardPatches.clear();
       await saveBatch(state.set.id, patches);
+      perf?.end(span, { status: 'batch', savedCardCount: Object.keys(patches).length });
       return;
     }
 
@@ -1091,11 +1133,13 @@
     if (typeof saveCard !== 'function') {
       await window.flashcardStore.saveSet(state.set);
       pendingCardPatches.clear();
+      perf?.end(span, { status: 'full_deck_fallback' });
       return;
     }
     const entries = Array.from(pendingCardPatches.entries());
     pendingCardPatches.clear();
     await Promise.all(entries.map(([cardId, patch]) => saveCard(state.set.id, cardId, patch).catch(() => {})));
+    perf?.end(span, { status: 'individual', savedCardCount: entries.length });
   }
 
   function sortSrsSessionQueue(queue, now = new Date()) {
@@ -1235,6 +1279,11 @@
   }
 
   function prepareActiveCards() {
+    const span = perf?.start('study.cards.prepare', {
+      deckCardCount: state.set?.cards?.length || 0,
+      srsMode: state.srsMode,
+      filteredMode: state.filteredMode
+    });
     const existingMessage = document.getElementById('mastered-message');
     if (existingMessage) {
       existingMessage.remove();
@@ -1288,6 +1337,10 @@
       state.activeCards = state.normalOrder.map(index => cards[index]).filter(Boolean);
       state.normalIndex = Math.min(state.normalIndex, Math.max(0, state.activeCards.length - 1));
     }
+    perf?.end(span, {
+      sourceCardCount: sourceCards.length,
+      activeCardCount: state.activeCards.length
+    });
   }
 
   function ensureCardSanitized(card) {
@@ -1803,6 +1856,10 @@
   }
 
   function renderStack() {
+    const span = perf?.start('study.render.card_stack', {
+      activeCardCount: state.activeCards.length,
+      activeIndex: activeIndex()
+    });
     const currentIdx = activeIndex();
     clearTimeout(flipTimer);
     els.stage?.classList.remove('card-is-flipping');
@@ -1821,6 +1878,7 @@
     requestAnimationFrame(() => refreshOcclusionLayers(els.stage));
     preloadNeighborImages();
     updateProgress();
+    perf?.end(span, { status: 'ok' });
   }
 
   function applyActiveDrag(x = 0, y = 0) {
@@ -3034,6 +3092,7 @@
   }
 
   async function init() {
+    const initSpan = perf?.start('study.init');
     document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'study-session-active');
     configureSystemBars();
     installEvents();
@@ -3053,7 +3112,9 @@
     }
     
     // Defer CPU-intensive database load to allow transition/loader animation to initialize smoothly
+    perf?.mark('study.init.data_load_scheduled', { delayMs: 280 });
     setTimeout(async () => {
+      const loadSpan = perf?.start('study.init.deferred_data_and_first_render');
       try {
         await loadData();
         updateProgress();
@@ -3064,6 +3125,7 @@
         }
         scheduleOpenedSave();
       } catch (error) {
+        perf?.mark('study.init.error', { error: perf?.sanitizeError(error) });
         console.error(error);
         showToast(error.message || 'Could not open study session');
         window.setTimeout(goLibrary, 900);
@@ -3071,6 +3133,14 @@
         requestAnimationFrame(() => {
           els.shell.classList.remove('is-loading');
           hideStudyLoader();
+          perf?.end(loadSpan, {
+            status: state.set ? 'ready' : 'error',
+            deckCardCount: state.set?.cards?.length || 0,
+            activeCardCount: state.activeCards.length
+          });
+          perf?.end(initSpan, {
+            status: state.set ? 'ready' : 'error'
+          });
         });
       }
     }, 280);

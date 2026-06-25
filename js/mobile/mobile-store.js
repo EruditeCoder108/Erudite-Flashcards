@@ -5,8 +5,16 @@
   const Share = plugins.Share;
   const schema = window.EruditeCore?.schema;
   const backup = window.EruditeCore?.backup;
+  const perf = window.EruditeMobilePerf;
 
   if (!capacitor || !Filesystem || !schema || !backup || typeof initSqlJs === 'undefined') {
+    perf?.mark('store.guard_failed', {
+      capacitor: Boolean(capacitor),
+      filesystem: Boolean(Filesystem),
+      schema: Boolean(schema),
+      backup: Boolean(backup),
+      sqlJs: typeof initSqlJs !== 'undefined'
+    });
     console.warn('[mobile-store] Guard failed — missing:', {
       capacitor: !!capacitor, Filesystem: !!Filesystem,
       schema: !!schema, backup: !!backup,
@@ -23,6 +31,7 @@
   const SET_BACKUP_INDEX_KEY = 'erudite-mobile-set-backup-index-v1';
   const CLASS_BACKUP_PREFIX = 'erudite-mobile-class-backup:';
   const CLASS_BACKUP_INDEX_KEY = 'erudite-mobile-class-backup-index-v1';
+  const SET_STATS_CACHE_KEY = 'erudite-mobile-set-stats-cache-v1';
   const DIRECTORY_DATA = 'DATA';
   const DIRECTORY_DOCUMENTS = 'DOCUMENTS';
   const ENCODING_UTF8 = 'utf8';
@@ -50,6 +59,44 @@
 
   function jsonString(value) {
     return JSON.stringify(value ?? null);
+  }
+
+  function readSetStatsCache() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(SET_STATS_CACHE_KEY) || '{}');
+      return parsed && typeof parsed === 'object' ? parsed : {};
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function writeSetStatsCache(cache) {
+    try {
+      localStorage.setItem(SET_STATS_CACHE_KEY, JSON.stringify(cache || {}));
+    } catch (_) {}
+  }
+
+  function statsCacheDayToken(nowMs = Date.now()) {
+    return `${dayKey(nowMs) || ''}:${srsDayKey(nowMs) || ''}`;
+  }
+
+  function cachedStatsForSet(cache, setId, lastModified, dayToken) {
+    const cached = cache?.[String(setId)];
+    if (!cached) return null;
+    if (Number(cached.lastModified || 0) !== Number(lastModified || 0)) return null;
+    if (String(cached.dayToken || '') !== String(dayToken || '')) return null;
+    return cached.stats && typeof cached.stats === 'object' ? cached.stats : null;
+  }
+
+  function removeSetStatsCacheEntry(setId) {
+    const cache = readSetStatsCache();
+    if (!Object.prototype.hasOwnProperty.call(cache, String(setId))) return;
+    delete cache[String(setId)];
+    writeSetStatsCache(cache);
+  }
+
+  function clearSetStatsCache() {
+    try { localStorage.removeItem(SET_STATS_CACHE_KEY); } catch (_) {}
   }
 
   function readSetBackupIndex() {
@@ -342,27 +389,52 @@
     return capacitor.convertFileSrc ? capacitor.convertFileSrc(uri) : uri;
   }
 
+  function sqlSummary(sql) {
+    const text = String(sql || '').replace(/\s+/g, ' ').trim();
+    const verb = (text.match(/^([a-z]+)/i)?.[1] || 'sql').toLowerCase();
+    const table = text.match(/\b(?:FROM|INTO|UPDATE|TABLE)\s+([a-z0-9_]+)/i)?.[1] || 'unknown';
+    return `${verb}.${table}`;
+  }
+
   async function rows(sql, params = []) {
-    if (isNative && db) {
-      const res = await db.query(sql, params);
-      return res.values || [];
+    const span = perf?.start('store.sql.read', { operation: sqlSummary(sql) });
+    try {
+      let result;
+      if (isNative && db) {
+        const res = await db.query(sql, params);
+        result = res.values || [];
+      } else {
+        const statement = db.prepare(sql);
+        statement.bind(params);
+        result = [];
+        while (statement.step()) result.push(statement.getAsObject());
+        statement.free();
+      }
+      if (span && performance.now() - span.startedAt >= 25) {
+        perf.end(span, { rowCount: result.length });
+      }
+      return result;
+    } catch (error) {
+      perf?.end(span, { status: 'error', error: perf?.sanitizeError(error) });
+      throw error;
     }
-    const statement = db.prepare(sql);
-    statement.bind(params);
-    const result = [];
-    while (statement.step()) result.push(statement.getAsObject());
-    statement.free();
-    return result;
   }
 
   async function run(sql, params = []) {
-    if (isNative && db) {
-      await db.run(sql, params, transactionDepth === 0);
-      return;
+    const span = perf?.start('store.sql.write', { operation: sqlSummary(sql) });
+    try {
+      if (isNative && db) {
+        await db.run(sql, params, transactionDepth === 0);
+      } else {
+        const statement = db.prepare(sql);
+        statement.run(params);
+        statement.free();
+      }
+      if (span && performance.now() - span.startedAt >= 25) perf.end(span, { status: 'ok' });
+    } catch (error) {
+      perf?.end(span, { status: 'error', error: perf?.sanitizeError(error) });
+      throw error;
     }
-    const statement = db.prepare(sql);
-    statement.run(params);
-    statement.free();
   }
 
   async function executeRaw(sql) {
@@ -374,28 +446,33 @@
   }
 
   async function executeSet(set) {
-    if (isNative && db) {
-      await db.executeSet(set, transactionDepth === 0);
-      return;
-    }
-    if (transactionDepth > 0) {
-      for (const item of set) {
-        const statement = db.prepare(item.statement);
-        statement.run(item.values);
-        statement.free();
-      }
-      return;
-    }
-    db.exec('BEGIN TRANSACTION;');
+    const span = perf?.start('store.sql.batch', { statementCount: set.length });
     try {
-      for (const item of set) {
-        const statement = db.prepare(item.statement);
-        statement.run(item.values);
-        statement.free();
+      if (isNative && db) {
+        await db.executeSet(set, transactionDepth === 0);
+      } else if (transactionDepth > 0) {
+        for (const item of set) {
+          const statement = db.prepare(item.statement);
+          statement.run(item.values);
+          statement.free();
+        }
+      } else {
+        db.exec('BEGIN TRANSACTION;');
+        try {
+          for (const item of set) {
+            const statement = db.prepare(item.statement);
+            statement.run(item.values);
+            statement.free();
+          }
+          db.exec('COMMIT;');
+        } catch (error) {
+          db.exec('ROLLBACK;');
+          throw error;
+        }
       }
-      db.exec('COMMIT;');
+      if (span && performance.now() - span.startedAt >= 25) perf.end(span, { status: 'ok' });
     } catch (error) {
-      db.exec('ROLLBACK;');
+      perf?.end(span, { status: 'error', error: perf?.sanitizeError(error) });
       throw error;
     }
   }
@@ -741,19 +818,28 @@
 
   /** Await any in-flight or scheduled persist. Call before navigation. */
   async function flush() {
-    if (isNative) return;
-    if (_persistTimer) {
-      clearTimeout(_persistTimer);
-      _persistTimer = null;
-      _persistQueued = false;
-      if (_persistInFlight) {
+    const span = perf?.start('store.flush', {
+      native: isNative,
+      scheduled: Boolean(_persistTimer),
+      inFlight: Boolean(_persistInFlight)
+    });
+    try {
+      if (isNative) return;
+      if (_persistTimer) {
+        clearTimeout(_persistTimer);
+        _persistTimer = null;
+        _persistQueued = false;
+        if (_persistInFlight) {
+          try { await _persistInFlight; } catch (_) {}
+        }
+        _persistInFlight = _doPersist();
+        try { await _persistInFlight; } catch (_) {}
+        _persistInFlight = null;
+      } else if (_persistInFlight) {
         try { await _persistInFlight; } catch (_) {}
       }
-      _persistInFlight = _doPersist();
-      try { await _persistInFlight; } catch (_) {}
-      _persistInFlight = null;
-    } else if (_persistInFlight) {
-      try { await _persistInFlight; } catch (_) {}
+    } finally {
+      perf?.end(span, { status: 'ok' });
     }
   }
 
@@ -833,6 +919,7 @@
 
   async function init() {
     if (readyPromise) return readyPromise;
+    const initSpan = perf?.start('store.init', { native: isNative });
 
     readyPromise = (async () => {
       const scriptBase = (() => {
@@ -849,6 +936,7 @@
       let lastOpenError = null;
 
       if (isNative) {
+        const openSpan = perf?.start('store.native.open');
         try {
           const sqlite = new SQLiteConnection(CapacitorSQLite);
           const dbName = 'erudite_flashcards';
@@ -861,22 +949,27 @@
             db = await sqlite.createConnection(dbName, false, 'no-encryption', 1, false);
           }
           await db.open();
+          perf?.end(openSpan, { status: 'ok', reusedConnection: Boolean(retCC && isConn) });
         } catch (error) {
+          perf?.end(openSpan, { status: 'error', error: perf?.sanitizeError(error) });
           console.error('[mobile-store] Failed to open native SQLite database:', error);
           lastOpenError = error;
         }
       }
 
       if (isNative && db) {
-        await createSchema();
-        await migrateFromLegacySqlJs();
+        if (perf?.measure) await perf.measure('store.schema.ensure', () => createSchema());
+        else await createSchema();
+        if (perf?.measure) await perf.measure('store.legacy_migration.check', () => migrateFromLegacySqlJs());
+        else await migrateFromLegacySqlJs();
       } else {
         // Load SQL.js WebAssembly only as a fallback
         const wasmBase = scriptBase ? `${scriptBase}/vendor/sql.js/` : 'vendor/sql.js/';
-        SQL = await initSqlJs({
-          locateFile: file => `${wasmBase}${file}`
-        });
+        const wasmSpan = perf?.start('store.webassembly.load');
+        SQL = await initSqlJs({ locateFile: file => `${wasmBase}${file}` });
+        perf?.end(wasmSpan, { status: 'ok' });
 
+        const openSpan = perf?.start('store.webassembly.open_database');
         for (const path of [DB_PATH, DB_TMP_PATH]) {
           if (db) break;
           try {
@@ -894,6 +987,10 @@
             console.warn(`[mobile-store] Could not open ${path}:`, error?.message || error);
           }
         }
+        perf?.end(openSpan, {
+          status: db ? 'ok' : (foundExistingFile ? 'error' : 'fresh'),
+          openedFromTemp
+        });
 
         const isFresh = !db;
         if (!db) {
@@ -904,11 +1001,19 @@
           db = new SQL.Database();
         }
 
-        await createSchema();
+        if (perf?.measure) await perf.measure('store.schema.ensure', () => createSchema());
+        else await createSchema();
+        const recoverySpan = perf?.start('store.recovery_checks');
         const recoveredClassBackups = await recoverLocalClassBackupsIfEmptyOrMissing();
         const recoveredLocalBackups = await recoverLocalSetBackupsIfEmpty();
         const repairedOrphans = await repairOrphanedClassIds();
         const appliedStudyPatches = await applyPendingStudyPatches();
+        perf?.end(recoverySpan, {
+          recoveredClassBackups: Boolean(recoveredClassBackups),
+          recoveredLocalBackups: Boolean(recoveredLocalBackups),
+          repairedOrphans: Boolean(repairedOrphans),
+          appliedStudyPatches: Boolean(appliedStudyPatches)
+        });
         // Only persist on first-time setup to avoid a costly full write on every cold start
         if (isFresh) await _doPersist();
         else if (openedFromTemp) await _doPersist();
@@ -917,6 +1022,10 @@
       }
       return true;
     })();
+    readyPromise.then(
+      () => perf?.end(initSpan, { status: 'ok' }),
+      error => perf?.end(initSpan, { status: 'error', error: perf?.sanitizeError(error) })
+    );
 
     return readyPromise;
   }
@@ -926,6 +1035,7 @@
   }
 
   async function listClasses() {
+    const span = perf?.start('store.classes.list');
     await ensureReady();
     const result = await rows('SELECT * FROM classes WHERE deleted_at IS NULL ORDER BY name ASC');
     const classes = result.map(row => ({
@@ -937,6 +1047,7 @@
       lastModified: Number(row.last_modified)
     }));
     classes.forEach(rememberClassBackup);
+    perf?.end(span, { classCount: classes.length });
     return classes;
   }
 
@@ -1212,12 +1323,14 @@
   }
 
   async function hydrateSetRow(row) {
+    const span = perf?.start('store.set.hydrate');
     const payload = jsonParse(row.payload_json, {});
     const cardRows = await rows(
       'SELECT * FROM cards WHERE set_id = ? AND deleted_at IS NULL ORDER BY position ASC',
       [row.id]
     );
     const cards = cardRows.map(cardRow => hydrateCardRow(cardRow));
+    perf?.end(span, { cardCount: cards.length });
 
     return {
       ...payload,
@@ -1498,7 +1611,10 @@
     return srsDayKey(due) <= srsDayKey(nowMs);
   }
 
-  async function buildMetaStatsBySet() {
+  async function buildMetaStatsBySet(setIds = []) {
+    const span = perf?.start('store.stats.recompute', {
+      requestedDeckCount: uniqueStringIds(setIds).length
+    });
     const nowMs = Date.now();
     const todayCalendarKey = dayKey(nowMs);
     const todaySrsKey = srsDayKey(nowMs);
@@ -1506,14 +1622,24 @@
     const statsBySet = new Map();
     const dayKeysBySet = new Map();
 
-    const cardRows = await rows(`
-      SELECT c.set_id, c.srs_json, c.review_history_json, c.suspended, c.buried_until
-      FROM cards c
-      INNER JOIN sets s ON s.id = c.set_id
-      WHERE c.deleted_at IS NULL AND s.deleted_at IS NULL
-    `);
+    const ids = uniqueStringIds(setIds);
+    const idChunks = ids.length ? chunkArray(ids, 350) : [[]];
+    const cardRows = [];
+    for (const idChunk of idChunks) {
+      const idFilter = idChunk.length
+        ? ` AND c.set_id IN (${idChunk.map(() => '?').join(',')})`
+        : '';
+      cardRows.push(...await rows(`
+        SELECT c.set_id, c.srs_json, c.review_history_json, c.suspended, c.buried_until
+        FROM cards c
+        INNER JOIN sets s ON s.id = c.set_id
+        WHERE c.deleted_at IS NULL AND s.deleted_at IS NULL
+        ${idFilter}
+      `, idChunk));
+    }
 
-    cardRows.forEach(row => {
+    for (let rowIndex = 0; rowIndex < cardRows.length; rowIndex += 1) {
+      const row = cardRows[rowIndex];
       const setId = String(row.set_id);
       const stats = statsBySet.get(setId) || createMetaStats();
       const dayKeys = dayKeysBySet.get(setId) || new Set();
@@ -1571,13 +1697,20 @@
 
       statsBySet.set(setId, stats);
       dayKeysBySet.set(setId, dayKeys);
-    });
+      if (rowIndex > 0 && rowIndex % 500 === 0) {
+        await new Promise(resolve => window.setTimeout(resolve, 0));
+      }
+    }
 
     statsBySet.forEach((stats, setId) => {
       stats.reviewDayKeys = Array.from(dayKeysBySet.get(setId) || []);
       stats.retention = stats.reviewed30 > 0 ? Math.round((stats.remembered30 / stats.reviewed30) * 100) : null;
     });
 
+    perf?.end(span, {
+      cardRowsScanned: cardRows.length,
+      deckCount: statsBySet.size
+    });
     return statsBySet;
   }
 
@@ -1603,25 +1736,119 @@
     return learningDue + remainingNew + remainingReviews;
   }
 
-  async function listSetsMeta() {
+  async function getSetStatsMeta(setIds = []) {
+    const span = perf?.start('store.stats.list', {
+      requestedDeckCount: uniqueStringIds(setIds).length
+    });
     await ensureReady();
-    const statsBySet = await buildMetaStatsBySet();
+    const ids = uniqueStringIds(setIds);
+    const idFilter = ids.length
+      ? ` AND s.id IN (${ids.map(() => '?').join(',')})`
+      : '';
     const setRows = await rows(`
-      SELECT s.*,
-        (SELECT COUNT(*) FROM cards c WHERE c.set_id = s.id AND c.deleted_at IS NULL) AS card_count
+      SELECT s.id, s.last_modified, s.srs_settings_json, COUNT(c.id) AS card_count
       FROM sets s
+      LEFT JOIN cards c ON c.set_id = s.id AND c.deleted_at IS NULL
       WHERE s.deleted_at IS NULL
+      ${idFilter}
+      GROUP BY s.id
+      ORDER BY s.last_modified DESC, s.created DESC
+    `, ids);
+
+    const cache = readSetStatsCache();
+    const dayToken = statsCacheDayToken();
+    const staleIds = [];
+    const staleIdSet = new Set();
+    const statsBySet = new Map();
+
+    setRows.forEach(row => {
+      const cached = cachedStatsForSet(cache, row.id, row.last_modified, dayToken);
+      if (cached) statsBySet.set(String(row.id), cached);
+      else {
+        staleIds.push(String(row.id));
+        staleIdSet.add(String(row.id));
+      }
+    });
+
+    if (staleIds.length) {
+      const recomputed = await buildMetaStatsBySet(staleIds);
+      setRows.forEach(row => {
+        const setId = String(row.id);
+        if (!staleIdSet.has(setId)) return;
+        const settings = jsonParse(row.srs_settings_json, {});
+        const stats = {
+          ...createMetaStats(),
+          ...(recomputed.get(setId) || {}),
+          totalCards: Number(row.card_count || 0)
+        };
+        stats.dueCards = limitedDueCount(stats, settings);
+        statsBySet.set(setId, stats);
+        cache[setId] = {
+          lastModified: Number(row.last_modified || 0),
+          dayToken,
+          stats
+        };
+      });
+    }
+
+    if (!ids.length) {
+      const visibleIds = new Set(setRows.map(row => String(row.id)));
+      Object.keys(cache).forEach(setId => {
+        if (!visibleIds.has(setId)) delete cache[setId];
+      });
+    }
+    writeSetStatsCache(cache);
+
+    const result = setRows.map(row => ({
+      setId: String(row.id),
+      lastModified: Number(row.last_modified || 0),
+      stats: statsBySet.get(String(row.id)) || {
+        ...createMetaStats(),
+        totalCards: Number(row.card_count || 0)
+      }
+    }));
+    perf?.end(span, {
+      deckCount: result.length,
+      cacheHitCount: Math.max(0, result.length - staleIds.length),
+      recomputedDeckCount: staleIds.length
+    });
+    return result;
+  }
+
+  async function listSetsMeta(options = {}) {
+    const span = perf?.start('store.sets.list_meta', {
+      includeStats: options.includeStats !== false,
+      useCachedStats: options.useCachedStats !== false
+    });
+    await ensureReady();
+    const includeStats = options.includeStats !== false;
+    const useCachedStats = options.useCachedStats !== false;
+    const setRows = await rows(`
+      SELECT s.*, COUNT(c.id) AS card_count
+      FROM sets s
+      LEFT JOIN cards c ON c.set_id = s.id AND c.deleted_at IS NULL
+      WHERE s.deleted_at IS NULL
+      GROUP BY s.id
       ORDER BY s.last_modified DESC, s.created DESC
     `);
-    return setRows.map(row => {
+    const cache = useCachedStats ? readSetStatsCache() : {};
+    const dayToken = statsCacheDayToken();
+    let statsEntries = [];
+    if (includeStats) {
+      statsEntries = await getSetStatsMeta(setRows.map(row => row.id));
+    }
+    const refreshedStats = new Map(statsEntries.map(item => [String(item.setId), item.stats]));
+
+    const result = setRows.map(row => {
       const payload = jsonParse(row.payload_json, {});
       const settings = jsonParse(row.srs_settings_json, {});
-      const stats = {
-        ...createMetaStats(),
-        ...(statsBySet.get(String(row.id)) || {}),
-        totalCards: Number(row.card_count || 0)
-      };
-      stats.dueCards = limitedDueCount(stats, settings);
+      const cached = cachedStatsForSet(cache, row.id, row.last_modified, dayToken);
+      const stats = refreshedStats.get(String(row.id))
+        || cached
+        || {
+          ...createMetaStats(),
+          totalCards: Number(row.card_count || 0)
+        };
       return {
         ...payload,
         id: row.id,
@@ -1639,6 +1866,11 @@
         cards: [] // empty — use getSet(id) when you need cards
       };
     });
+    perf?.end(span, {
+      deckCount: result.length,
+      cardCount: result.reduce((total, set) => total + Number(set.cardCount || 0), 0)
+    });
+    return result;
   }
 
   async function listCardsForBrowser() {
@@ -1887,15 +2119,26 @@
   }
 
   async function getSet(id) {
+    const span = perf?.start('store.set.get');
     await ensureReady();
     const setRows = await rows('SELECT * FROM sets WHERE id = ? AND deleted_at IS NULL', [String(id)]);
-    if (!setRows.length) return null;
+    if (!setRows.length) {
+      perf?.end(span, { found: false });
+      return null;
+    }
     const set = await hydrateSetRow(setRows[0]);
     rememberSetBackup(set);
+    perf?.end(span, { found: true, cardCount: set.cards?.length || 0 });
     return set;
   }
 
   async function saveSet(set) {
+    const span = perf?.start('store.set.save', {
+      hasCards: Object.prototype.hasOwnProperty.call(set || {}, 'cards'),
+      cardCount: Array.isArray(set?.cards) ? set.cards.length : null,
+      changedCardCount: Array.isArray(set?.__changedCardIds) ? set.__changedCardIds.length : null,
+      requestedMetaOnly: Boolean(set?.__metaOnly)
+    });
     await ensureReady();
     const hasCardsField = Object.prototype.hasOwnProperty.call(set || {}, 'cards');
     const wantsMetaOnly = Boolean(set?.__metaOnly) || !hasCardsField;
@@ -1950,6 +2193,7 @@
         ]);
       });
       await persist();
+      perf?.end(span, { status: 'ok', mode: 'metadata' });
       return { ...next, cards: [], __metaOnly: true };
     }
 
@@ -1965,6 +2209,11 @@
     });
     if (!metaOnlyUpdate) rememberSetBackup(normalized);
     await persist(); // fire-and-forget — flush() ensures it completes before navigation
+    perf?.end(span, {
+      status: 'ok',
+      mode: 'cards',
+      cardCount: normalized.cards?.length || 0
+    });
     return normalized;
   }
 
@@ -1983,6 +2232,7 @@
       }
     });
     clearSetBackups();
+    clearSetStatsCache();
     for (const normalized of normalizedSets) {
       rememberSetBackup(normalized);
     }
@@ -1999,14 +2249,18 @@
       await run('DELETE FROM sets WHERE id = ?', [String(id)]);
     });
     forgetSetBackup(id);
+    removeSetStatsCacheEntry(id);
     await persist();
     return true;
   }
 
   async function getSettings() {
+    const span = perf?.start('store.settings.get');
     await ensureReady();
     const result = await rows('SELECT value_json FROM settings WHERE key = ?', ['app']);
-    return schema.normalizeSettings(jsonParse(result[0]?.value_json, {}));
+    const settings = schema.normalizeSettings(jsonParse(result[0]?.value_json, {}));
+    perf?.end(span, { found: Boolean(result.length) });
+    return settings;
   }
 
   async function saveSettings(settings = {}) {
@@ -2021,9 +2275,12 @@
   }
 
   async function getProgress(setId) {
+    const span = perf?.start('store.progress.get');
     await ensureReady();
     const result = await rows('SELECT value_json FROM progress WHERE set_id = ?', [String(setId)]);
-    return jsonParse(result[0]?.value_json, null);
+    const progress = jsonParse(result[0]?.value_json, null);
+    perf?.end(span, { found: Boolean(progress) });
+    return progress;
   }
 
   async function saveProgress(setId, value) {
@@ -2140,12 +2397,14 @@
   }
 
   async function getAllProgress() {
+    const span = perf?.start('store.progress.list_all');
     await ensureReady();
     const progress = {};
     const result = await rows('SELECT set_id, value_json FROM progress');
     result.forEach(row => {
       progress[row.set_id] = jsonParse(row.value_json, null);
     });
+    perf?.end(span, { progressCount: result.length });
     return progress;
   }
 
@@ -2317,6 +2576,7 @@
 
       // Reset SRS progress inside progress table
       await run('DELETE FROM progress WHERE set_id = ?', [String(setId)]);
+      await run('UPDATE sets SET last_modified = ? WHERE id = ? AND deleted_at IS NULL', [Date.now(), String(setId)]);
     });
 
     // Clear progress mirror from localStorage
@@ -2436,6 +2696,7 @@
 
     clearClassBackups();
     clearSetBackups();
+    clearSetStatsCache();
     restoredClasses.forEach(classData => rememberClassBackup(schema.normalizeClass(classData, null, { preserveLastModified: true })));
     restoredSets.forEach(set => rememberSetBackup(schema.normalizeSet(set, null, { preserveLastModified: true })));
     await persist();
@@ -2464,6 +2725,9 @@
   }
 
   async function getStudySessions(sinceMs) {
+    const span = perf?.start('store.study_sessions.list', {
+      filteredByStart: sinceMs !== undefined && sinceMs !== null
+    });
     await ensureReady();
     let sql = 'SELECT * FROM study_sessions';
     const params = [];
@@ -2473,7 +2737,7 @@
     }
     sql += ' ORDER BY started_at ASC';
     const result = await rows(sql, params);
-    return result.map(row => ({
+    const sessions = result.map(row => ({
       id: row.id,
       setId: row.set_id,
       startedAt: Number(row.started_at),
@@ -2481,6 +2745,8 @@
       cardsViewed: Number(row.cards_viewed),
       mode: row.mode
     }));
+    perf?.end(span, { sessionCount: sessions.length });
+    return sessions;
   }
 
   async function saveImage(dataUrl, meta = {}) {
@@ -2505,10 +2771,19 @@
 
 
   async function getDiagnostics() {
+    const span = perf?.start('store.diagnostics.snapshot');
     await ensureReady();
-    const sets = await listSets();
-    const classes = await listClasses();
-    return {
+    const countRows = await rows(`
+      SELECT
+        (SELECT COUNT(*) FROM sets WHERE deleted_at IS NULL) AS set_count,
+        (SELECT COUNT(*) FROM classes WHERE deleted_at IS NULL) AS class_count,
+        (SELECT COUNT(*) FROM cards WHERE deleted_at IS NULL) AS card_count,
+        (SELECT COUNT(*) FROM progress) AS progress_count,
+        (SELECT COUNT(*) FROM state) AS state_count,
+        (SELECT COUNT(*) FROM study_sessions) AS study_session_count
+    `);
+    const counts = countRows[0] || {};
+    const result = {
       appName: 'Erudite Flashcards',
       appVersion: 'mobile',
       generatedAt: new Date().toISOString(),
@@ -2518,11 +2793,17 @@
         backupsDir: BACKUP_DIR
       },
       counts: {
-        sets: sets.length,
-        classes: classes.length,
-        cards: sets.reduce((total, set) => total + (Array.isArray(set.cards) ? set.cards.length : 0), 0),
-        progressEntries: Object.keys(await getAllProgress()).length,
-        stateEntries: Object.keys(await getAllState()).length
+        sets: Number(counts.set_count || 0),
+        classes: Number(counts.class_count || 0),
+        cards: Number(counts.card_count || 0),
+        progressEntries: Number(counts.progress_count || 0),
+        stateEntries: Number(counts.state_count || 0),
+        studySessions: Number(counts.study_session_count || 0)
+      },
+      persistence: {
+        scheduled: Boolean(_persistTimer),
+        inFlight: Boolean(_persistInFlight),
+        queued: Boolean(_persistQueued)
       },
       health: {
         status: 'ok',
@@ -2531,11 +2812,14 @@
       recentBackups: [],
       brokenImageLinks: []
     };
+    perf?.end(span, { status: 'ok', ...result.counts });
+    return result;
   }
 
   window.eruditeMobileFlashcards = {
     listSets,
     listSetsMeta,
+    getSetStatsMeta,
     listCardsForBrowser,
     bulkUpdateCards,
     getSet,

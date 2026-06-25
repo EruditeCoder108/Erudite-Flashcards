@@ -3,6 +3,7 @@
   const schema = core.schema;
   const statsCore = core.stats;
   const draftCore = core.draft;
+  const perf = window.EruditeMobilePerf;
 
   const CREATOR_DRAFT_KEY = 'mobileCreatorDraft';
   const CREATOR_PROGRESSIVE_RENDER_THRESHOLD = 40;
@@ -70,6 +71,7 @@
     analyticsLoading: false,
     analyticsError: null,
     analyticsLoadToken: 0,
+    setStatsLoadToken: 0,
     analyticsWindow: '30',
     browserSearch: '',
     browserFilters: new Set(),
@@ -136,6 +138,10 @@
   let creatorGeneratedCardCache = new Map();
   let creatorRenderedCardCount = 0;
   let creatorLoadMoreObserver = null;
+  let setStatsRefreshTimer = null;
+  let refreshPromise = null;
+  let resumeRefreshPromise = null;
+  let lastResumeRefreshAt = 0;
 
   const premadeClasses = [
     { id: '10th', name: 'Class 10' },
@@ -782,10 +788,15 @@
   }
 
   async function loadData() {
-    await waitForStorage();
+    const span = perf?.start('app.data.load');
+    try {
+      await waitForStorage();
     const listSetsFast = window.flashcardStore.listSetsMeta || window.flashcardStore.listSets;
     const [sets, classes, settings, srsMode, studySessions] = await Promise.all([
-      listSetsFast.call(window.flashcardStore),
+      listSetsFast.call(window.flashcardStore, {
+        includeStats: false,
+        useCachedStats: true
+      }),
       window.flashcardStore.listClasses(),
       window.flashcardStore.getSettings(),
       window.flashcardStore.getState('srsModeEnabled'),
@@ -832,6 +843,78 @@
     });
     state.progressBySet = new Map(progressEntries.filter(([, progress]) => Boolean(progress)));
     scheduleOrphanClassRepair();
+      perf?.end(span, {
+        status: 'ok',
+        deckCount: state.sets.length,
+        cardCount: state.sets.reduce((total, set) => total + Number(set.cardCount || set.cards?.length || 0), 0),
+        classCount: state.classes.length,
+        progressCount: state.progressBySet.size,
+        studySessionCount: state.studySessions.length
+      });
+    } catch (error) {
+      perf?.end(span, { status: 'error', error: perf?.sanitizeError(error) });
+      throw error;
+    }
+  }
+
+  function applySetStatsEntries(entries = []) {
+    const statsBySet = new Map(
+      (Array.isArray(entries) ? entries : [])
+        .map(item => [String(item.setId), item])
+    );
+    let changed = false;
+    state.sets = state.sets.map(set => {
+      const entry = statsBySet.get(String(set.id));
+      if (!entry || Number(entry.lastModified || 0) !== Number(set.lastModified || 0)) return set;
+      changed = true;
+      return {
+        ...set,
+        mobileStats: {
+          ...(entry.stats || {}),
+          totalCards: Number(entry.stats?.totalCards ?? set.cardCount ?? 0)
+        }
+      };
+    });
+    return changed;
+  }
+
+  async function refreshSetStatsInBackground() {
+    if (!window.flashcardStore?.getSetStatsMeta || !state.sets.length) return;
+    const span = perf?.start('app.stats.background_refresh', { deckCount: state.sets.length });
+    const token = state.setStatsLoadToken + 1;
+    state.setStatsLoadToken = token;
+    try {
+      const entries = await window.flashcardStore.getSetStatsMeta();
+      if (token !== state.setStatsLoadToken) {
+        perf?.end(span, { status: 'stale', entryCount: entries?.length || 0 });
+        return;
+      }
+      if (!applySetStatsEntries(entries)) {
+        perf?.end(span, { status: 'unchanged', entryCount: entries?.length || 0 });
+        return;
+      }
+      if (state.activeTab === 'today') renderToday();
+      if (state.activeTab === 'library') renderLibrary();
+      perf?.end(span, { status: 'ok', entryCount: entries?.length || 0 });
+    } catch (error) {
+      perf?.end(span, { status: 'error', error: perf?.sanitizeError(error) });
+      if (token === state.setStatsLoadToken) {
+        console.warn('[mobile] Could not refresh deck statistics:', error);
+      }
+    }
+  }
+
+  function scheduleSetStatsRefresh(delayMs = 450) {
+    clearTimeout(setStatsRefreshTimer);
+    setStatsRefreshTimer = window.setTimeout(() => {
+      setStatsRefreshTimer = null;
+      const run = () => refreshSetStatsInBackground();
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(run, { timeout: 1800 });
+      } else {
+        window.setTimeout(run, 80);
+      }
+    }, Math.max(0, Number(delayMs) || 0));
   }
 
   function setHeader() {
@@ -860,6 +943,12 @@
   }
 
   function setActiveTab(tab, options = {}) {
+    const previousTab = state.activeTab;
+    const span = perf?.start('app.tab.activate', {
+      from: previousTab,
+      to: tab,
+      skipRender: Boolean(options.skipRender)
+    });
     state.activeTab = tab;
     document.body.setAttribute('data-active-tab', tab);
     try {
@@ -912,6 +1001,7 @@
       clearBrowserSelection({ play: false, render: false });
     }
     if (!options.skipRender) render();
+    perf?.end(span, { status: 'ok' });
   }
 
   function deckRow(set, options = {}) {
@@ -1681,6 +1771,7 @@
   }
 
   function renderToday() {
+    const span = perf?.start('app.render.today', { deckCount: state.sets.length });
     const totals = totalStats({ forceDue: state.srsMode });
     const todayReviews = reviewsToday();
     const activity = studyActivitySummary();
@@ -1756,6 +1847,10 @@
       : emptyPanel('fa-layer-group', 'No decks yet', 'Create your first flashcard set or import a backup from desktop.');
 
     selectors.activityList.innerHTML = renderActivity();
+    perf?.end(span, {
+      cardCount: totals.cardCount,
+      dueCount: totals.dueCards
+    });
   }
 
   function renderActivity() {
@@ -1844,6 +1939,11 @@
   }
 
   function renderLibrary() {
+    const span = perf?.start('app.render.library', {
+      deckCount: state.sets.length,
+      filter: state.libraryFilter,
+      hasSearch: Boolean(state.search.trim())
+    });
     selectors.searchInput.value = state.search;
     selectors.sortLabel.textContent = sortLabels[state.sort] || 'Recent';
     Array.from(selectors.filters.querySelectorAll('.filter-chip')).forEach(button => {
@@ -1852,6 +1952,7 @@
 
     if (state.libraryFilter === 'classes') {
       renderClasses();
+      perf?.end(span, { mode: 'classes', visibleCount: state.classes.length });
       return;
     }
 
@@ -1876,6 +1977,7 @@
         state.search ? 'Try another search or switch filters.' : 'Create a deck, import a backup, or browse premade cards.',
         action
       );
+      perf?.end(span, { mode: 'decks', visibleCount: 0 });
       return;
     }
 
@@ -1883,6 +1985,7 @@
       ? '<button type="button" class="secondary-action" data-action="filter-classes"><i class="fas fa-arrow-left"></i>Classes</button>'
       : '';
     selectors.libraryList.innerHTML = `${back}${sets.map(set => deckRow(set)).join('')}`;
+    perf?.end(span, { mode: 'decks', visibleCount: sets.length });
   }
 
   function renderClasses() {
@@ -4879,8 +4982,10 @@
   }
 
   async function loadSetIntoCreator(setId) {
+    const span = perf?.start('app.creator.load_deck');
     const found = await window.flashcardStore.getSet(setId);
     if (!found) {
+      perf?.end(span, { status: 'not_found' });
       showToast('Could not open deck');
       return;
     }
@@ -4894,6 +4999,7 @@
     selectors.createTitle.value = normalized.name || '';
     setActiveTab('create', { skipRender: true });
     renderCreate({ batched: true });
+    perf?.end(span, { status: 'ok', cardCount: normalized.cards?.length || 0 });
   }
 
   function hasCardContent(card) {
@@ -5071,8 +5177,13 @@
   }
 
   async function openCreator() {
+    const span = perf?.start('app.creator.open', {
+      alreadyRendered: creatorHasRendered,
+      cardCount: state.creator.cards.length
+    });
     if (creatorHasRendered) {
       setActiveTab('create', { skipRender: true });
+      perf?.end(span, { status: 'reused' });
       return;
     }
     const creatorChanged = await maybeRestoreCreatorDraft();
@@ -5081,6 +5192,11 @@
     if (!canReuseRenderedCreator && creatorChanged) {
       renderCreate({ batched: true });
     }
+    perf?.end(span, {
+      status: 'ok',
+      restoredDraft: creatorChanged,
+      cardCount: state.creator.cards.length
+    });
   }
 
   function setCreatorSavingUi(saving) {
@@ -5897,17 +6013,35 @@
   }
 
   async function refresh() {
+    if (refreshPromise) {
+      perf?.mark('app.refresh.coalesced');
+      return refreshPromise;
+    }
+    const span = perf?.start('app.refresh', { activeTab: state.activeTab });
+    refreshPromise = (async () => {
+      try {
+        await loadData();
+        render();
+        scheduleSetStatsRefresh();
+      } catch (error) {
+        perf?.mark('app.refresh.error', { error: perf?.sanitizeError(error) });
+        console.error('Refresh error:', error);
+        const errorHtml = emptyPanel('fa-triangle-exclamation', 'Could not load library', error.message || 'Storage failed to open.');
+        selectors.todayHero.innerHTML = errorHtml;
+        selectors.libraryList.innerHTML = errorHtml;
+        selectors.continueList.innerHTML = '';
+        selectors.activityList.innerHTML = '';
+        showToast('Storage error - try restarting the app');
+      }
+    })();
     try {
-      await loadData();
-      render();
-    } catch (error) {
-      console.error('Refresh error:', error);
-      const errorHtml = emptyPanel('fa-triangle-exclamation', 'Could not load library', error.message || 'Storage failed to open.');
-      selectors.todayHero.innerHTML = errorHtml;
-      selectors.libraryList.innerHTML = errorHtml;
-      selectors.continueList.innerHTML = '';
-      selectors.activityList.innerHTML = '';
-      showToast('Storage error - try restarting the app');
+      await refreshPromise;
+    } finally {
+      refreshPromise = null;
+      perf?.end(span, {
+        deckCount: state.sets.length,
+        activeTab: state.activeTab
+      });
     }
   }
 
@@ -5952,6 +6086,11 @@
   }
 
   function navigateTo(url, options = {}) {
+    perf?.mark('app.navigation.study_requested', {
+      title: options.title || 'Opening Study',
+      sourceTab: state.activeTab
+    });
+    perf?.flush?.();
     showAppLoader(options.title || 'Opening Study', options.copy || 'Preparing your cards');
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -6002,10 +6141,12 @@
   async function flushStore(timeoutMs = 100) {
     const flush = window.eruditeMobileFlashcards?.flush || window.flashcardStore?.flush;
     if (typeof flush !== 'function') return;
-    await Promise.race([
-      flush().catch(() => {}),
-      new Promise(resolve => window.setTimeout(resolve, timeoutMs))
+    const span = perf?.start('app.store.flush_before_action', { timeoutMs });
+    const outcome = await Promise.race([
+      flush().then(() => 'flushed').catch(() => 'error'),
+      new Promise(resolve => window.setTimeout(() => resolve('timeout'), timeoutMs))
     ]);
+    perf?.end(span, { outcome });
   }
 
   async function toggleSrs() {
@@ -7853,6 +7994,38 @@ followed by the JSON containing "deck" and "media" array.`;
     }
   }
 
+  async function copyPerformanceDiagnostics() {
+    if (!perf?.report) {
+      showToast('Performance diagnostics are unavailable');
+      return;
+    }
+    const span = perf.start('diagnostics.report.copy');
+    try {
+      const storage = await window.flashcardStore?.getDiagnostics?.().catch(error => ({
+        error: perf.sanitizeError(error)
+      }));
+      perf.mark('diagnostics.report_generated', {
+        storageCounts: storage?.counts || null
+      });
+      const report = perf.report({ storage });
+      const copied = await copyPlainText(report);
+      perf.end(span, { status: copied ? 'copied' : 'copy_failed', reportBytes: report.length });
+      showToast(copied ? 'Performance report copied' : 'Could not copy performance report');
+    } catch (error) {
+      perf.end(span, { status: 'error', error: perf.sanitizeError(error) });
+      showToast('Could not build performance report');
+    }
+  }
+
+  function clearPerformanceDiagnostics() {
+    if (!perf?.clear) {
+      showToast('Performance diagnostics are unavailable');
+      return;
+    }
+    perf.clear();
+    showToast('Performance history cleared');
+  }
+
   async function importBackup() {
     try {
       const result = await window.flashcardStore.importBackup();
@@ -8350,14 +8523,18 @@ followed by the JSON containing "deck" and "media" array.`;
         openTypographyModal();
         break;
       case 'study-set':
+        {
+        const span = perf?.start('app.study.launch', { activeTab: state.activeTab });
         showAppLoader('Opening Study', 'Preparing your deck');
         await new Promise(resolve => setTimeout(resolve, 50));
         await flushStore(1200);
+        perf?.end(span, { status: 'navigating' });
         navigateTo(mobileStudyUrl(target.dataset.setId || '', { srsMode: state.srsMode }), {
           title: 'Opening Study',
           copy: 'Preparing your deck'
         });
         break;
+        }
       case 'edit-set':
         await loadSetIntoCreator(target.dataset.setId);
         break;
@@ -8406,6 +8583,12 @@ followed by the JSON containing "deck" and "media" array.`;
         break;
       case 'paste-import':
         openPasteImportModal();
+        break;
+      case 'copy-performance-diagnostics':
+        await copyPerformanceDiagnostics();
+        break;
+      case 'clear-performance-diagnostics':
+        clearPerformanceDiagnostics();
         break;
       case 'import-help':
         openImportHelpModal();
@@ -9946,16 +10129,38 @@ Every media/... reference in deck.json must exist inside media/.`;
     document.addEventListener('selectionchange', scheduleFormatStateUpdate);
 
     const handleAppPause = async () => {
+      const span = perf?.start('app.lifecycle.pause', { activeTab: state.activeTab });
       if (state.activeTab === 'create') {
         await saveCreatorDraft({ persistStore: true, flush: true, flushTimeout: 900 }).catch(() => {});
       } else {
         await flushStore(900).catch(() => {});
       }
+      perf?.end(span, { status: 'ok' });
+      perf?.flush?.();
     };
 
     const handleAppResume = async () => {
-      if (state.activeTab !== 'create') {
-        await refresh();
+      if (state.activeTab === 'create') {
+        perf?.mark('app.lifecycle.resume_skipped', { reason: 'creator_active' });
+        return;
+      }
+      if (resumeRefreshPromise) {
+        perf?.mark('app.lifecycle.resume_coalesced');
+        return resumeRefreshPromise;
+      }
+      const now = Date.now();
+      if (now - lastResumeRefreshAt < 800) {
+        perf?.mark('app.lifecycle.resume_skipped', { reason: 'debounced' });
+        return;
+      }
+      const span = perf?.start('app.lifecycle.resume', { activeTab: state.activeTab });
+      lastResumeRefreshAt = now;
+      resumeRefreshPromise = refresh();
+      try {
+        await resumeRefreshPromise;
+      } finally {
+        resumeRefreshPromise = null;
+        perf?.end(span, { status: 'ok' });
       }
     };
 
@@ -10205,6 +10410,7 @@ Every media/... reference in deck.json must exist inside media/.`;
   }
 
   async function init() {
+    const initSpan = perf?.start('app.init');
     document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'mobile-app-shell');
     configureSystemBars().catch(() => {});
     installEvents();
@@ -10248,7 +10454,9 @@ Every media/... reference in deck.json must exist inside media/.`;
     updateTabIndicator(tab);
     
     // Defer CPU-intensive database load to allow transition/loader animation to initialize smoothly
+    perf?.mark('app.init.data_load_scheduled', { delayMs: 280, initialTab: tab });
     setTimeout(async () => {
+      const loadSpan = perf?.start('app.init.deferred_data_and_render', { initialTab: tab });
       await refresh();
       // Initialize opacity slider from loaded settings
       if (selectors.bgOpacitySlider) {
@@ -10265,6 +10473,15 @@ Every media/... reference in deck.json must exist inside media/.`;
         selectors.importCardSepInput.value = state.settings?.importCardSep ?? '@';
       }
       hideAppLoader();
+      perf?.end(loadSpan, {
+        status: 'ok',
+        deckCount: state.sets.length
+      });
+      perf?.end(initSpan, {
+        status: 'ready',
+        initialTab: tab,
+        deckCount: state.sets.length
+      });
     }, 280);
   }
 
