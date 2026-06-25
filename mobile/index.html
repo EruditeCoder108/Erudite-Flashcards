@@ -52,7 +52,19 @@
       </div>
       <div class="mobile-header-quote" id="mobile-header-quote"></div>
       <div class="mobile-top-actions">
-        <button type="button" class="primary-action compact-action hidden" id="header-creator-save-btn" aria-label="Save Deck">
+        <button type="button" class="creator-header-btn danger hidden" id="header-creator-discard-btn" data-creator-action="discard-creator" aria-label="Discard Deck">
+          <i class="fas fa-trash-can"></i>
+          <span>Discard</span>
+        </button>
+        <button type="button" class="creator-header-btn secondary hidden" id="header-creator-ai-btn" data-action="open-ai-deck-maker" aria-label="Use AI with PDF">
+          <i class="fas fa-wand-magic-sparkles"></i>
+          <span>AI / PDF</span>
+        </button>
+        <button type="button" class="creator-header-btn secondary hidden" id="header-creator-import-btn" data-action="paste-import" aria-label="Paste Import">
+          <i class="fas fa-file-import"></i>
+          <span>Import</span>
+        </button>
+        <button type="button" class="creator-header-btn primary hidden" id="header-creator-save-btn" aria-label="Save Deck">
           <i class="fas fa-check"></i>
           <span>Save</span>
         </button>
@@ -100,28 +112,32 @@
 
       <section class="mobile-view" id="view-library" aria-labelledby="library-heading">
         <div class="library-sticky-header">
-          <div class="library-utility-row-1">
-            <label class="mobile-search">
-              <i class="fas fa-magnifying-glass"></i>
-              <input id="mobile-search-input" type="search" placeholder="Search decks and classes">
-            </label>
-            <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
-              <i class="fas fa-arrow-down-wide-short"></i>
-            </button>
-            <button type="button" class="icon-button" id="library-paste-import-btn" data-action="paste-import" aria-label="Paste Import">
-              <i class="fas fa-file-import"></i>
-            </button>
-          </div>
-
-          <div class="library-utility-row-2">
+          <div class="library-header-top-row">
+            <div class="mobile-brand">
+              <img src="assets/icons/icon.png" alt="" class="mobile-brand-logo" draggable="false">
+            </div>
+            
             <div class="deck-source-switch" role="radiogroup" aria-label="Deck source">
               <button type="button" class="source-option active" data-action="tab-library" aria-checked="true" role="radio">
-                <span class="source-dot"></span>
                 Your decks
               </button>
               <button type="button" class="source-option" data-action="open-premade" aria-checked="false" role="radio">
-                <span class="source-dot"></span>
                 Premade
+              </button>
+            </div>
+          </div>
+
+          <div id="mobile-user-headers">
+            <div class="search-row">
+              <label class="mobile-search">
+                <i class="fas fa-magnifying-glass"></i>
+                <input id="mobile-search-input" type="search" placeholder="Search decks and classes">
+              </label>
+              <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
+                <i class="fas fa-arrow-down-wide-short"></i>
+              </button>
+              <button type="button" class="icon-button" id="library-paste-import-btn" data-action="paste-import" aria-label="Paste Import">
+                <i class="fas fa-file-import"></i>
               </button>
             </div>
           </div>
@@ -178,14 +194,6 @@
             <button type="button" class="secondary-action compact-action" data-creator-action="import-file">
               <i class="fas fa-file-import"></i>
               Import file
-            </button>
-            <button type="button" class="secondary-action compact-action" data-action="open-ai-deck-maker">
-              <i class="fas fa-wand-magic-sparkles"></i>
-              Use AI with PDF
-            </button>
-            <button type="button" class="secondary-action compact-action danger-action" id="creator-discard-btn" data-creator-action="discard-creator">
-              <i class="fas fa-trash-can"></i>
-              <span id="creator-discard-label">Discard deck</span>
             </button>
           </div>
 
@@ -372,6 +380,7 @@
       </section>
     </main>
 
+    <div class="mobile-tabbar-gradient-shim"></div>
     <nav class="mobile-tabbar" aria-label="Primary">
       <div class="mobile-tab-indicator" id="mobile-tab-indicator"></div>
       <button type="button" class="tab-button active" data-tab="today">
@@ -762,12 +771,14 @@
           <i class="fas fa-info-circle"></i> Use the default separator (<code>;</code>) between each word and its meaning, and (<code>@</code>) between different cards. You can customize these separators above if needed.
         </p>
         
-        <div style="text-align: center; margin: 0.4rem 0 0.8rem 0; display: flex; flex-direction: column; gap: 0.4rem; align-items: center;">
-          <button type="button" class="text-button" data-action="open-ai-deck-maker" style="font-size: 0.82rem; text-decoration: underline; color: var(--primary-2); font-weight: 600; background: transparent; border: none; cursor: pointer; padding: 0.25rem;">
-            Need to create a deck? Generate AI instructions
+        <div style="margin: 0.4rem 0 0.8rem 0; display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+          <button type="button" class="modal-secondary-link-btn ai-btn" data-action="open-ai-deck-maker">
+            <i class="fas fa-magic"></i>
+            <span>Need to create a deck? Generate AI instructions</span>
           </button>
-          <button type="button" class="text-button" id="paste-import-open-converter-btn" style="font-size: 0.82rem; text-decoration: underline; color: var(--amber); font-weight: 600; background: transparent; border: none; cursor: pointer; padding: 0.25rem;">
-            AI gave text instead of ZIP? Convert it here
+          <button type="button" class="modal-secondary-link-btn converter-btn" id="paste-import-open-converter-btn">
+            <i class="fas fa-exchange-alt"></i>
+            <span>AI gave text instead of ZIP? Convert it here</span>
           </button>
         </div>
         

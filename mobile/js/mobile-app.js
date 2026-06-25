@@ -861,6 +861,7 @@
 
   function setActiveTab(tab, options = {}) {
     state.activeTab = tab;
+    document.body.setAttribute('data-active-tab', tab);
     try {
       window.history.replaceState(null, null, '#' + tab);
     } catch (e) {
@@ -869,25 +870,29 @@
     selectors.views.forEach(view => view.classList.toggle('active', view.id === `view-${tab}`));
     selectors.tabs.forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
     
-    // Toggle body tab class
-    document.body.classList.forEach(cls => {
-      if (cls.startsWith('tab-')) {
-        document.body.classList.remove(cls);
-      }
-    });
-    document.body.classList.add(`tab-${tab}`);
-    
-    // Toggle sticky header creator save button
+    // Toggle sticky header creator action buttons
     const headerSaveBtn = document.getElementById('header-creator-save-btn');
     if (headerSaveBtn) {
       headerSaveBtn.classList.toggle('hidden', tab !== 'create');
+    }
+    const headerAiBtn = document.getElementById('header-creator-ai-btn');
+    if (headerAiBtn) {
+      headerAiBtn.classList.toggle('hidden', tab !== 'create');
+    }
+    const headerDiscardBtn = document.getElementById('header-creator-discard-btn');
+    if (headerDiscardBtn) {
+      headerDiscardBtn.classList.toggle('hidden', tab !== 'create');
+    }
+    const headerCreatorImportBtn = document.getElementById('header-creator-import-btn');
+    if (headerCreatorImportBtn) {
+      headerCreatorImportBtn.classList.toggle('hidden', tab !== 'create');
     }
     const headerImportBtn = document.getElementById('header-paste-import-btn');
     if (headerImportBtn) {
       headerImportBtn.classList.remove('hidden');
     }
     if (selectors.headerQuote) {
-      selectors.headerQuote.classList.toggle('hidden', tab !== 'today');
+      selectors.headerQuote.classList.toggle('hidden', tab === 'create');
     }
 
     updateTabIndicator(tab);
@@ -895,7 +900,7 @@
     if (tab === 'library') {
       const btnPremade = document.querySelector('.source-option[data-action="open-premade"]');
       const isPremade = btnPremade && btnPremade.classList.contains('active');
-      document.querySelector('.library-utility-row-1')?.classList.toggle('hidden', isPremade);
+      document.getElementById('mobile-user-headers')?.classList.toggle('hidden', isPremade);
       document.getElementById('mobile-user-decks-view')?.classList.toggle('hidden', isPremade);
       document.getElementById('mobile-premade-decks-view')?.classList.toggle('hidden', !isPremade);
       const btnCreate = document.querySelector('[data-action="open-create"]');
@@ -932,7 +937,6 @@
         <div class="deck-main">
           <div class="deck-title-line">
             <h3 class="deck-title">${title}</h3>
-            ${set.pinned ? '<span class="status-pill"><i class="fas fa-star"></i>Pinned</span>' : ''}
           </div>
           <div class="deck-subline">
             <span>${plural(stats.totalCards || 0, 'card')}</span>
@@ -1308,44 +1312,51 @@
       const activity = studyActivitySummary();
       const heatmap = buildStudyHeatmap();
       const avgTime = activity.averageSecondsPerCard === null ? '--' : `${activity.averageSecondsPerCard}s`;
-      const todayStart = startOfLocalDayMs();
       const heatmapHtml = heatmap.map(day => `
-        <span class="heatmap-cell level-${day.level}${day.dayMs === todayStart ? ' is-today' : ''}" title="${escapeAttr(`${day.label}: ${day.score ? `${day.score} activity` : 'No study'}`)}"></span>
+        <span class="heatmap-cell level-${day.level}" title="${escapeAttr(`${day.label}: ${day.score ? `${day.score} activity` : 'No study'}`)}"></span>
       `).join('');
 
       selectors.analyticsDashboard.innerHTML = `
         <div class="insight-grid">
           <article class="insight-card">
-            <div class="insight-badge-row">
+            <div class="insight-widget-header">
               <span class="insight-icon"><i class="fas fa-layer-group"></i></span>
-              <small class="insight-card-title">Library</small>
+              <span class="insight-label">Library</span>
             </div>
-            <strong class="insight-card-number">${formatShortNumber(totals.cardCount)}</strong>
-            <p class="insight-card-helper">${formatShortNumber(totals.setCount)} decks</p>
+            <div class="insight-widget-value">${formatShortNumber(totals.cardCount)}</div>
+            <div class="insight-widget-footer">
+              <span class="stat-desc">${formatShortNumber(totals.setCount)} decks</span>
+            </div>
           </article>
           <article class="insight-card">
-            <div class="insight-badge-row">
+            <div class="insight-widget-header">
               <span class="insight-icon calm"><i class="fas fa-stopwatch"></i></span>
-              <small class="insight-card-title">Today</small>
+              <span class="insight-label">Today</span>
             </div>
-            <strong class="insight-card-number">${formatDuration(activity.todayStudyMs)}</strong>
-            <p class="insight-card-helper">${formatShortNumber(activity.todayCardsViewed)} cards viewed</p>
+            <div class="insight-widget-value">${formatDuration(activity.todayStudyMs)}</div>
+            <div class="insight-widget-footer">
+              <span class="stat-desc">${formatShortNumber(activity.todayCardsViewed)} cards viewed</span>
+            </div>
           </article>
           <article class="insight-card">
-            <div class="insight-badge-row">
+            <div class="insight-widget-header">
               <span class="insight-icon warn"><i class="fas fa-fire"></i></span>
-              <small class="insight-card-title">Habit</small>
+              <span class="insight-label">Habit</span>
             </div>
-            <strong class="insight-card-number">${streakDays()}</strong>
-            <p class="insight-card-helper">day streak</p>
+            <div class="insight-widget-value">${streakDays()}</div>
+            <div class="insight-widget-footer">
+              <span class="stat-desc green">Active streak</span>
+            </div>
           </article>
           <article class="insight-card">
-            <div class="insight-badge-row">
+            <div class="insight-widget-header">
               <span class="insight-icon"><i class="fas fa-gauge-high"></i></span>
-              <small class="insight-card-title">Pace</small>
+              <span class="insight-label">Pace</span>
             </div>
-            <strong class="insight-card-number">${avgTime}</strong>
-            <p class="insight-card-helper">${formatShortNumber(activity.weekCardsViewed)} cards this week</p>
+            <div class="insight-widget-value">${avgTime}</div>
+            <div class="insight-widget-footer">
+              <span class="stat-desc">${formatShortNumber(activity.weekCardsViewed)} this week</span>
+            </div>
           </article>
         </div>
 
@@ -1387,9 +1398,8 @@
     const deckHealth = buildDeckHealth(cards, analyticsWindow);
     const retentionLabel = summary.retention === null ? '--' : `${summary.retention}%`;
     const avgTime = summary.averageSecondsPerCard === null ? '--' : `${summary.averageSecondsPerCard}s`;
-    const todayStart = startOfLocalDayMs();
     const heatmapHtml = heatmap.map(day => `
-      <span class="heatmap-cell level-${day.level}${day.dayMs === todayStart ? ' is-today' : ''}" title="${escapeAttr(`${day.label}: ${day.score ? `${day.score} activity` : 'No study'}`)}"></span>
+      <span class="heatmap-cell level-${day.level}" title="${escapeAttr(`${day.label}: ${day.score ? `${day.score} activity` : 'No study'}`)}"></span>
     `).join('');
     const forecastHtml = forecast.map(day => `
       <div class="forecast-row">
@@ -1437,36 +1447,44 @@
       </div>
       <div class="insight-grid">
         <article class="insight-card insight-score">
-          <div class="insight-badge-row">
+          <div class="insight-widget-header">
             <span class="insight-icon"><i class="fas fa-bullseye"></i></span>
-            <small class="insight-card-title">Actual retention</small>
+            <span class="insight-label">Retention</span>
           </div>
-          <strong class="insight-card-number">${retentionLabel}</strong>
-          <p class="insight-card-helper">${formatShortNumber(summary.reviewEvents)} reviews, ${escapeHtml(windowLabel)}</p>
+          <div class="insight-widget-value">${retentionLabel}</div>
+          <div class="insight-widget-footer">
+            <span class="stat-desc">${formatShortNumber(summary.reviewEvents)} reviews, ${escapeHtml(windowLabel)}</span>
+          </div>
         </article>
         <article class="insight-card">
-          <div class="insight-badge-row">
+          <div class="insight-widget-header">
             <span class="insight-icon warn"><i class="fas fa-calendar-day"></i></span>
-            <small class="insight-card-title">Due load</small>
+            <span class="insight-label">Due Load</span>
           </div>
-          <strong class="insight-card-number">${formatShortNumber(summary.dueCards)}</strong>
-          <p class="insight-card-helper">${formatShortNumber(summary.overdueCards)} overdue</p>
+          <div class="insight-widget-value">${formatShortNumber(summary.dueCards)}</div>
+          <div class="insight-widget-footer">
+            <span class="stat-desc ${summary.overdueCards > 0 ? 'red' : 'green'}">${formatShortNumber(summary.overdueCards)} overdue</span>
+          </div>
         </article>
         <article class="insight-card">
-          <div class="insight-badge-row">
+          <div class="insight-widget-header">
             <span class="insight-icon danger"><i class="fas fa-triangle-exclamation"></i></span>
-            <small class="insight-card-title">Weak cards</small>
+            <span class="insight-label">Weak Cards</span>
           </div>
-          <strong class="insight-card-number">${formatShortNumber(summary.weakCards)}</strong>
-          <p class="insight-card-helper">${formatShortNumber(summary.failedRecently)} failed recently, ${formatShortNumber(summary.leechCards)} leeches</p>
+          <div class="insight-widget-value">${formatShortNumber(summary.weakCards)}</div>
+          <div class="insight-widget-footer">
+            <span class="stat-desc red">${formatShortNumber(summary.leechCards)} leeches</span>
+          </div>
         </article>
         <article class="insight-card">
-          <div class="insight-badge-row">
+          <div class="insight-widget-header">
             <span class="insight-icon calm"><i class="fas fa-stopwatch"></i></span>
-            <small class="insight-card-title">Today</small>
+            <span class="insight-label">Today</span>
           </div>
-          <strong class="insight-card-number">${formatDuration(summary.todayStudyMs)}</strong>
-          <p class="insight-card-helper">${avgTime}/card this week</p>
+          <div class="insight-widget-value">${formatDuration(summary.todayStudyMs)}</div>
+          <div class="insight-widget-footer">
+            <span class="stat-desc">${avgTime}/card this week</span>
+          </div>
         </article>
       </div>
 
@@ -1685,20 +1703,32 @@
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
         <div class="goal-ring" style="--progress:${progress * 3.6}deg">
-          <div class="goal-ring-center"><strong>${progress}%</strong><span>${progressLabel}</span></div>
+          <div class="goal-ring-center">
+            <strong>${progress}%</strong>
+            <span>${progressLabel}</span>
+          </div>
         </div>
         <div class="hero-stats-list">
-          <div class="hero-stat-row">
+          <div class="stat-row">
             <i class="fas fa-layer-group"></i>
-            <span><strong>${totals.setCount}</strong> decks in library</span>
+            <div class="stat-details">
+              <span class="stat-value">${totals.setCount}</span>
+              <span class="stat-label">Decks</span>
+            </div>
           </div>
-          <div class="hero-stat-row">
+          <div class="stat-row">
             <i class="fas fa-circle-check"></i>
-            <span><strong>${middleMetricValue}</strong> cards ${middleMetricLabel.toLowerCase()} today</span>
+            <div class="stat-details">
+              <span class="stat-value">${middleMetricValue}</span>
+              <span class="stat-label">${middleMetricLabel}</span>
+            </div>
           </div>
-          <div class="hero-stat-row">
+          <div class="stat-row">
             <i class="fas fa-fire"></i>
-            <span><strong>${streak}</strong> day streak</span>
+            <div class="stat-details">
+              <span class="stat-value">${streak}</span>
+              <span class="stat-label">Streak</span>
+            </div>
           </div>
         </div>
       </div>
@@ -6921,21 +6951,21 @@
       previewCountLabel.textContent = `(${parsedCards.length} ${parsedCards.length === 1 ? 'card' : 'cards'})`;
 
       if (!parsedCards.length) {
-        previewCardsContainer.innerHTML = `<div style="text-align: center; color: var(--text-muted, #94a3b8); font-size: 0.85rem; padding: 1.25rem 0; border: 1px dashed var(--border, rgba(255, 255, 255, 0.1)); border-radius: 0.5rem; background: rgba(255,255,255,0.01);">Type or paste text above to see preview</div>`;
+        previewCardsContainer.innerHTML = `<div style="text-align: center; color: var(--muted); font-size: 0.85rem; padding: 1.25rem 0;">Type or paste text above to see preview</div>`;
         return;
       }
 
       const maxToShow = 15;
       const itemsHtml = parsedCards.slice(0, maxToShow).map(card => `
-        <div class="mobile-preview-card-item" style="padding: 0.5rem 0.75rem; border-radius: 0.5rem; background: var(--surface-hover, rgba(255, 255, 255, 0.03)); border: 1px solid var(--border, rgba(255, 255, 255, 0.08)); font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.15rem;">
-          <div style="font-weight: 700; color: var(--text);"><span style="color: var(--primary, #3b82f6); font-size: 0.75rem; font-weight: 900; margin-right: 0.25rem;">Q:</span> ${escapeHtml(card.term)}</div>
-          <div style="color: var(--text-muted, #94a3b8);"><span style="color: #10b981; font-size: 0.75rem; font-weight: 900; margin-right: 0.25rem;">A:</span> ${escapeHtml(card.definition)}</div>
+        <div class="mobile-preview-card-item">
+          <div class="preview-q"><span class="preview-q-prefix">Q:</span>${escapeHtml(card.term)}</div>
+          <div class="preview-a"><span class="preview-a-prefix">A:</span>${escapeHtml(card.definition)}</div>
         </div>
       `).join('');
 
       let suffixHtml = '';
       if (parsedCards.length > maxToShow) {
-        suffixHtml = `<div style="text-align: center; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; padding: 0.3rem 0;">+ ${parsedCards.length - maxToShow} more cards</div>`;
+        suffixHtml = `<div style="text-align: center; font-size: 0.8rem; color: var(--muted); font-weight: 600; padding: 0.3rem 0;">+ ${parsedCards.length - maxToShow} more cards</div>`;
       }
 
       previewCardsContainer.innerHTML = itemsHtml + suffixHtml;
@@ -10185,28 +10215,33 @@ Every media/... reference in deck.json must exist inside media/.`;
     const initialTab = String(window.location.hash || '').replace('#', '');
     const tab = ['today', 'library', 'create', 'premade', 'browser', 'more'].includes(initialTab) ? initialTab : 'today';
     state.activeTab = tab;
+    document.body.setAttribute('data-active-tab', tab);
     selectors.views.forEach(view => view.classList.toggle('active', view.id === `view-${tab}`));
     selectors.tabs.forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
     
-    // Toggle sticky header creator save button
+    // Toggle sticky header creator action buttons
     const headerSaveBtn = document.getElementById('header-creator-save-btn');
     if (headerSaveBtn) {
       headerSaveBtn.classList.toggle('hidden', tab !== 'create');
+    }
+    const headerAiBtn = document.getElementById('header-creator-ai-btn');
+    if (headerAiBtn) {
+      headerAiBtn.classList.toggle('hidden', tab !== 'create');
+    }
+    const headerDiscardBtn = document.getElementById('header-creator-discard-btn');
+    if (headerDiscardBtn) {
+      headerDiscardBtn.classList.toggle('hidden', tab !== 'create');
+    }
+    const headerCreatorImportBtn = document.getElementById('header-creator-import-btn');
+    if (headerCreatorImportBtn) {
+      headerCreatorImportBtn.classList.toggle('hidden', tab !== 'create');
     }
     const headerImportBtn = document.getElementById('header-paste-import-btn');
     if (headerImportBtn) {
       headerImportBtn.classList.remove('hidden');
     }
-    // Toggle body tab class
-    document.body.classList.forEach(cls => {
-      if (cls.startsWith('tab-')) {
-        document.body.classList.remove(cls);
-      }
-    });
-    document.body.classList.add(`tab-${tab}`);
-
     if (selectors.headerQuote) {
-      selectors.headerQuote.classList.toggle('hidden', tab !== 'today');
+      selectors.headerQuote.classList.toggle('hidden', tab === 'create');
     }
 
     setHeader();
