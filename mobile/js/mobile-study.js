@@ -2883,7 +2883,14 @@
   }
 
   function installEvents() {
-    els.back.addEventListener('click', () => goLibrary(els.back));
+    const handleBackRoute = event => {
+      if (event.type === 'pointerdown' && event.button !== undefined && event.button !== 0) return;
+      event.preventDefault();
+      event.stopPropagation();
+      goLibrary(els.back);
+    };
+    els.back.addEventListener('pointerdown', handleBackRoute, { passive: false });
+    els.back.addEventListener('click', handleBackRoute);
     els.prev?.addEventListener('click', () => navigateBack());
     const handleModalLibraryRoute = event => {
       if (event.type === 'pointerdown' && event.button !== undefined && event.button !== 0) return;

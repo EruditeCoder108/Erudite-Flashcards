@@ -1793,7 +1793,19 @@
 
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
-        <div class="goal-ring" style="--progress:${progress * 3.6}deg">
+        <div class="goal-ring-wrapper">
+          <svg class="goal-ring-svg" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="goalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3b82f6" />
+                <stop offset="100%" stop-color="#8b5cf6" />
+              </linearGradient>
+            </defs>
+            <circle class="goal-ring-track" cx="50" cy="50" r="42" stroke-width="7.5" />
+            <circle class="goal-ring-progress" cx="50" cy="50" r="42" stroke-width="7.5" 
+                    stroke="url(#goalGradient)"
+                    style="stroke-dasharray: 263.89; stroke-dashoffset: ${263.89 - (progress / 100) * 263.89};" />
+          </svg>
           <div class="goal-ring-center">
             <strong>${progress}%</strong>
             <span>${progressLabel}</span>
@@ -1969,7 +1981,6 @@
         ? ''
         : `<div style="display:flex; flex-direction:column; gap:0.5rem; width:100%; max-width:240px; margin:0.5rem auto 0 auto;">
              <button type="button" class="primary-action" data-action="open-create" style="width:100%; min-height:2.6rem;"><i class="fas fa-plus"></i>Create Set</button>
-             <button type="button" class="secondary-action" data-action="open-ai-deck-maker" style="width:100%; min-height:2.6rem; font-size:0.78rem;"><i class="fas fa-wand-magic-sparkles"></i>AI Deck Maker</button>
            </div>`;
       selectors.libraryList.innerHTML = emptyPanel(
         'fa-layer-group',

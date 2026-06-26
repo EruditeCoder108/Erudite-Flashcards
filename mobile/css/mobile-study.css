@@ -360,6 +360,19 @@ textarea,
   background: var(--surface-3);
   border: 1px solid var(--line);
   color: var(--text);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+.study-topbar .icon-button:active {
+  transform: scale(0.9) !important;
+  background-color: rgba(148, 163, 184, 0.18) !important;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+  transition: transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.theme-light .study-topbar .icon-button:active {
+  background-color: var(--bg-2) !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
 }
 
 .study-title-block {
