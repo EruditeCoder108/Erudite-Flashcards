@@ -205,6 +205,72 @@
     });
   }
 
+  function summarizeEvents() {
+    const totals = new Map();
+    const slowestEvents = [];
+    let spanCount = 0;
+    let longTaskCount = 0;
+    let errorCount = 0;
+    let firstTimestamp = null;
+    let lastTimestamp = null;
+
+    events.forEach(event => {
+      const timestamp = Number(event.timestamp || 0);
+      if (timestamp) {
+        firstTimestamp = firstTimestamp === null ? timestamp : Math.min(firstTimestamp, timestamp);
+        lastTimestamp = lastTimestamp === null ? timestamp : Math.max(lastTimestamp, timestamp);
+      }
+      if (event.kind === 'span') spanCount += 1;
+      if (event.kind === 'longtask') longTaskCount += 1;
+      if (event.kind === 'error') errorCount += 1;
+
+      const durationMs = Number(event.durationMs || 0);
+      if (!durationMs) return;
+
+      const key = String(event.name || 'unnamed');
+      const bucket = totals.get(key) || {
+        name: key,
+        count: 0,
+        totalMs: 0,
+        maxMs: 0,
+        page: event.page || null,
+        kind: event.kind || null
+      };
+      bucket.count += 1;
+      bucket.totalMs += durationMs;
+      bucket.maxMs = Math.max(bucket.maxMs, durationMs);
+      totals.set(key, bucket);
+
+      slowestEvents.push({
+        name: event.name,
+        kind: event.kind,
+        page: event.page,
+        durationMs: event.durationMs,
+        data: event.data || {}
+      });
+    });
+
+    return sanitize({
+      eventCount: events.length,
+      spanCount,
+      longTaskCount,
+      errorCount,
+      windowMs: firstTimestamp && lastTimestamp ? Math.max(0, lastTimestamp - firstTimestamp) : 0,
+      slowestEvents: slowestEvents
+        .sort((a, b) => Number(b.durationMs || 0) - Number(a.durationMs || 0))
+        .slice(0, 25),
+      totalsByName: Array.from(totals.values())
+        .map(item => ({
+          ...item,
+          totalMs: round(item.totalMs),
+          maxMs: round(item.maxMs),
+          avgMs: round(item.totalMs / Math.max(1, item.count))
+        }))
+        .sort((a, b) => Number(b.totalMs || 0) - Number(a.totalMs || 0))
+        .slice(0, 25)
+    });
+  }
+
   function report(extra = {}) {
     persistNow();
     return JSON.stringify({
@@ -212,6 +278,7 @@
       version: 1,
       privacy: 'No card terms, definitions, HTML, media, deck names, or raw deck/card IDs are intentionally recorded.',
       runtime: runtimeInfo(),
+      summary: summarizeEvents(),
       extra: sanitize(extra),
       events: events.slice()
     }, null, 2);

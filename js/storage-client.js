@@ -32,6 +32,21 @@
     }
   }
 
+  function hasLegacyArrayItems(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return false;
+      let index = 0;
+      while (index < raw.length && /\s/.test(raw[index])) index += 1;
+      if (raw[index] !== '[') return false;
+      index += 1;
+      while (index < raw.length && /\s/.test(raw[index])) index += 1;
+      return raw[index] !== ']';
+    } catch (_error) {
+      return false;
+    }
+  }
+
   function writeLocal(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
     return value;
@@ -410,9 +425,9 @@
     return next;
   }
 
-  async function replaceSets(sets) {
+  async function replaceSets(sets, options = {}) {
     const nativeApi = getNativeApi();
-    if (nativeApi) return nativeApi.replaceSets(sets);
+    if (nativeApi) return nativeApi.replaceSets(sets, options);
     writeLocal('flashcardSets', Array.isArray(sets) ? sets : []);
     return Array.isArray(sets) ? sets : [];
   }
@@ -568,41 +583,103 @@
   async function migrateLegacyBrowserStorage() {
     const nativeApi = getNativeApi();
     if (!nativeApi) return;
+    const perf = window.EruditeMobilePerf || null;
+    const span = perf?.start('storage.legacy_migration.check');
+    let legacySetMirrorPresent = false;
+    let legacyClassMirrorPresent = false;
+    let migratedSets = false;
+    let migratedClasses = false;
+    let migratedSettings = false;
+    let migratedStateKeys = 0;
 
     try {
-      const localSets = readLocal('flashcardSets', null);
-      const storedSets = await listSets();
-      if (Array.isArray(localSets) && localSets.length > 0 && (!Array.isArray(storedSets) || storedSets.length === 0)) {
-        await replaceSets(localSets);
+      let nativeCountsLoaded = false;
+      let nativeCounts = null;
+      async function getNativeCounts() {
+        if (nativeCountsLoaded) return nativeCounts;
+        nativeCountsLoaded = true;
+        if (!nativeApi?.getDiagnostics) return null;
+        try {
+          const diagnostics = await nativeApi.getDiagnostics();
+          nativeCounts = diagnostics?.counts || null;
+        } catch (_error) {
+          nativeCounts = null;
+        }
+        return nativeCounts;
       }
 
-      const localClasses = readLocal('flashcardClasses', null);
-      const storedClasses = await listClasses();
-      if (Array.isArray(localClasses) && localClasses.length > 0 && (!Array.isArray(storedClasses) || storedClasses.length === 0)) {
-        for (const classData of localClasses) {
-          await saveClass(classData);
+      async function nativeHasSets() {
+        const counts = await getNativeCounts();
+        if (counts && Number.isFinite(Number(counts.sets))) return Number(counts.sets) > 0;
+        if (nativeApi?.listSetsMeta) {
+          const storedSets = await nativeApi.listSetsMeta({ includeStats: false, useCachedStats: true });
+          return Array.isArray(storedSets) && storedSets.length > 0;
+        }
+        const storedSets = await listSets();
+        return Array.isArray(storedSets) && storedSets.length > 0;
+      }
+
+      async function nativeHasClasses() {
+        const counts = await getNativeCounts();
+        if (counts && Number.isFinite(Number(counts.classes))) return Number(counts.classes) > 0;
+        const storedClasses = await listClasses();
+        return Array.isArray(storedClasses) && storedClasses.length > 0;
+      }
+
+      legacySetMirrorPresent = hasLegacyArrayItems('flashcardSets');
+      if (legacySetMirrorPresent && !(await nativeHasSets())) {
+        const localSets = readLocal('flashcardSets', null);
+        if (Array.isArray(localSets) && localSets.length > 0) {
+          await replaceSets(localSets, { metaOnly: true });
+          migratedSets = true;
+        }
+      }
+
+      legacyClassMirrorPresent = hasLegacyArrayItems('flashcardClasses');
+      if (legacyClassMirrorPresent && !(await nativeHasClasses())) {
+        const localClasses = readLocal('flashcardClasses', null);
+        if (Array.isArray(localClasses) && localClasses.length > 0) {
+          for (const classData of localClasses) {
+            await saveClass(classData);
+          }
+          migratedClasses = true;
         }
       }
 
       const localSettings = readLocal('flashcards-settings', null);
-      const storedSettings = await getSettings();
-      if (localSettings && typeof localSettings === 'object' && (!storedSettings || Object.keys(storedSettings).length === 0)) {
-        await saveSettings(localSettings);
+      if (localSettings && typeof localSettings === 'object') {
+        const storedSettings = await getSettings();
+        if (!storedSettings || Object.keys(storedSettings).length === 0) {
+          await saveSettings(localSettings);
+          migratedSettings = true;
+        }
       }
 
       for (const key of mirroredStateKeys) {
-        const currentValue = nativeApi ? await nativeApi.getState(key) : await getState(key);
         const localRaw = localStorage.getItem(key);
+        if (localRaw === null) continue;
+        const currentValue = nativeApi ? await nativeApi.getState(key) : await getState(key);
         if ((currentValue === null || currentValue === undefined) && localRaw !== null) {
           const parsedValue = parseMirroredStateValue(key, localRaw);
           await setState(key, parsedValue);
+          migratedStateKeys += 1;
 
           if (key === 'currentStudyProgress' && parsedValue && parsedValue.setId !== undefined) {
             await saveProgress(parsedValue.setId, parsedValue);
           }
         }
       }
+      perf?.end(span, {
+        status: 'ok',
+        legacySetMirrorPresent,
+        legacyClassMirrorPresent,
+        migratedSets,
+        migratedClasses,
+        migratedSettings,
+        migratedStateKeys
+      });
     } catch (error) {
+      perf?.end(span, { status: 'error', error: perf?.sanitizeError(error) });
       console.warn('Could not migrate legacy browser flashcard storage:', error);
     }
   }
