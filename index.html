@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1f33" />
+  <meta
+    name="description"
+    content="Erudite Flashcards is a local-first, offline flashcard app with FSRS spaced repetition, cloze cards, image occlusion, imports, and learning analytics."
+  />
+  <meta property="og:title" content="Erudite Flashcards" />
+  <meta property="og:description" content="Powerful flashcards without Anki-level complexity." />
+  <meta property="og:type" content="website" />
+  <title>Erudite Flashcards | Study smarter offline</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --md-sys-color-primary: #9dcbff;
+      --md-sys-color-on-primary: #003258;
+      --md-sys-color-primary-container: #174974;
+      --md-sys-color-on-primary-container: #d0e4ff;
+      --md-sys-color-secondary: #b8c8da;
+      --md-sys-color-tertiary: #98f0c1;
+      --md-sys-color-tertiary-container: #005236;
+      --md-sys-color-background: #07111f;
+      --md-sys-color-surface: #0d1b2c;
+      --md-sys-color-surface-container: rgba(255, 255, 255, 0.075);
+      --md-sys-color-surface-container-high: rgba(255, 255, 255, 0.12);
+      --md-sys-color-outline: rgba(212, 227, 255, 0.22);
+      --md-sys-color-on-surface: #e8f1ff;
+      --md-sys-color-on-surface-variant: #b9c8da;
+      --md-sys-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.26), 0 2px 8px rgba(0, 0, 0, 0.18);
+      --md-sys-elevation-2: 0 6px 18px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.18);
+      --md-sys-elevation-3: 0 16px 54px rgba(0, 0, 0, 0.38);
+      --radius-xs: 12px;
+      --radius-sm: 18px;
+      --radius-md: 28px;
+      --radius-lg: 36px;
+      --radius-xl: 48px;
+      --page-max: 1180px;
+      --gradient-brand: linear-gradient(135deg, #3aa6ff 0%, #31e59f 48%, #d7ff6a 100%);
+      --gradient-brand-soft: linear-gradient(135deg, rgba(58, 166, 255, 0.18), rgba(49, 229, 159, 0.16));
+      --gradient-surface: linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+      --shadow-glow: 0 0 100px rgba(49, 229, 159, 0.22), 0 0 90px rgba(58, 166, 255, 0.22);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(58, 166, 255, 0.24), transparent 28rem),
+        radial-gradient(circle at 88% 8%, rgba(49, 229, 159, 0.18), transparent 32rem),
+        radial-gradient(circle at 65% 66%, rgba(145, 97, 255, 0.18), transparent 30rem),
+        var(--md-sys-color-background);
+      color: var(--md-sys-color-on-surface);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(circle at 50% 20%, black, transparent 74%);
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .top-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 0;
+      height: 3px;
+      z-index: 20;
+      background: var(--gradient-brand);
+      box-shadow: 0 0 24px rgba(49, 229, 159, 0.65);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(22px);
+      background: rgba(7, 17, 31, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      width: min(var(--page-max), calc(100% - 32px));
+      margin: 0 auto;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 780;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--gradient-brand);
+      box-shadow: 0 10px 34px rgba(49, 229, 159, 0.22);
+      color: #05202f;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--md-sys-color-on-surface);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .container {
+      width: min(var(--page-max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: clamp(30px, 5vw, 74px);
+      align-items: center;
+      padding: clamp(60px, 7vw, 104px) 0 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      padding: 8px 13px 8px 9px;
+      border: 1px solid var(--md-sys-color-outline);
+      border-radius: 999px;
+      color: #d9efff;
+      background: rgba(255,255,255,0.065);
+      box-shadow: var(--md-sys-elevation-1);
+      font-size: 0.92rem;
+    }
+
+    .spark {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--gradient-brand);
+      color: #072335;
+      font-weight: 900;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      font-size: clamp(3.2rem, 8vw, 7.1rem);
+      line-height: 0.92;
+      letter-spacing: -0.085em;
+      text-wrap: balance;
+    }
+
+    .gradient-text {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 670px;
+      margin: 24px 0 0;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: clamp(1.08rem, 2.4vw, 1.3rem);
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 760;
+      letter-spacing: -0.02em;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button.primary {
+      color: #05202f;
+      background: var(--gradient-brand);
+      box-shadow: 0 14px 44px rgba(49, 229, 159, 0.28);
+    }
+
+    .button.tonal {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--md-sys-color-outline);
+      color: var(--md-sys-color-on-surface);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 38px;
+      max-width: 630px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid var(--md-sys-color-outline);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.15rem;
+      letter-spacing: -0.035em;
+    }
+
+    .stat span {
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 0.9rem;
+    }
+
+    .showcase {
+      position: relative;
+      min-height: 720px;
+      display: grid;
+      place-items: center;
+    }
+
+    .showcase::before {
+      content: "";
+      position: absolute;
+      width: min(520px, 90vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(49,229,159,0.24), rgba(58,166,255,0.2) 36%, transparent 68%);
+      filter: blur(18px);
+    }
+
+    .phone {
+      position: relative;
+      z-index: 2;
+      width: min(342px, 78vw);
+      padding: 14px;
+      border-radius: 48px;
+      border: 1px solid rgba(255,255,255,0.28);
+      background: linear-gradient(145deg, #23344c, #050b15 42%, #172338);
+      box-shadow: var(--md-sys-elevation-3), var(--shadow-glow);
+      transform: rotate(-5deg);
+    }
+
+    .phone-screen {
+      overflow: hidden;
+      min-height: 646px;
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 20% 12%, rgba(61, 198, 255, 0.32), transparent 24%),
+        linear-gradient(180deg, #081624, #0b1324 54%, #07111f);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .phone-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 18px 10px;
+      color: rgba(255,255,255,0.76);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .pill-camera {
+      width: 78px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.38);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    .app-ui {
+      padding: 14px;
+    }
+
+    .screen-hero-card {
+      padding: 18px;
+      border-radius: 30px;
+      background: var(--gradient-surface);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .screen-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mini-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: var(--gradient-brand);
+      color: #062234;
+      font-weight: 900;
+    }
+
+    .screen-title {
+      margin: 18px 0 8px;
+      font-size: 2.1rem;
+      line-height: 1;
+      letter-spacing: -0.065em;
+    }
+
+    .screen-subtitle {
+      margin: 0;
+      color: rgba(232, 241, 255, 0.72);
+      line-height: 1.45;
+      font-size: 0.95rem;
+    }
+
+    .due-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .due-chip {
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+
+    .due-chip strong { display: block; font-size: 1.25rem; }
+    .due-chip span { color: rgba(232, 241, 255, 0.64); font-size: 0.72rem; }
+
+    .card-stack {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .study-card {
+      padding: 15px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.072);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .study-card .meta {
+      display: flex;
+      justify-content: space-between;
+      color: rgba(232, 241, 255, 0.62);
+      font-size: 0.74rem;
+      margin-bottom: 8px;
+    }
+
+    .study-card strong {
+      display: block;
+      font-size: 1.02rem;
+      letter-spacing: -0.025em;
+    }
+
+    .rating-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .rating-row span {
+      padding: 9px 0;
+      border-radius: 999px;
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: rgba(255,255,255,0.09);
+    }
+
+    .floating-panel {
+      position: absolute;
+      z-index: 3;
+      width: 198px;
+      padding: 15px;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(13, 27, 44, 0.74);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--md-sys-elevation-2);
+    }
+
+    .floating-panel.one { top: 95px; left: 0; transform: rotate(6deg); }
+    .floating-panel.two { right: 0; bottom: 112px; transform: rotate(4deg); }
+
+    .floating-panel small {
+      color: var(--md-sys-color-on-surface-variant);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .bars {
+      display: flex;
+      align-items: end;
+      gap: 7px;
+      height: 78px;
+    }
+
+    .bars i {
+      flex: 1;
+      min-width: 10px;
+      border-radius: 999px 999px 6px 6px;
+      background: var(--gradient-brand);
+      opacity: 0.86;
+    }
+
+    .bars i:nth-child(1) { height: 32%; }
+    .bars i:nth-child(2) { height: 58%; }
+    .bars i:nth-child(3) { height: 44%; }
+    .bars i:nth-child(4) { height: 82%; }
+    .bars i:nth-child(5) { height: 68%; }
+
+    .section {
+      padding: clamp(68px, 8vw, 112px) 0;
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      margin: 0 0 12px;
+      color: var(--md-sys-color-tertiary);
+      font-weight: 760;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2.05rem, 4.6vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -0.065em;
+      text-wrap: balance;
+    }
+
+    .section-copy {
+      margin: 16px 0 0;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 1.06rem;
+      line-height: 1.7;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card,
+    .panel {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--md-sys-color-outline);
+      background: var(--gradient-surface);
+      box-shadow: var(--md-sys-elevation-1);
+    }
+
+    .feature-card {
+      min-height: 250px;
+      padding: 24px;
+      border-radius: var(--radius-md);
+    }
+
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -50px -70px auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(49, 229, 159, 0.16);
+      filter: blur(6px);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      background: var(--gradient-brand-soft);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 1.32rem;
+      margin-bottom: 22px;
+    }
+
+    .feature-card h3,
+    .panel h3 {
+      margin: 0;
+      font-size: 1.38rem;
+      letter-spacing: -0.045em;
+    }
+
+    .feature-card p,
+    .panel p {
+      color: var(--md-sys-color-on-surface-variant);
+      line-height: 1.62;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 4vw, 38px);
+    }
+
+    .step-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.052);
+    }
+
+    .step-num {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--gradient-brand);
+      color: #05202f;
+      font-weight: 900;
+    }
+
+    .step strong { display: block; margin-bottom: 4px; }
+    .step span { color: var(--md-sys-color-on-surface-variant); line-height: 1.45; }
+
+    .analytics-board {
+      min-height: 100%;
+      display: grid;
+      gap: 14px;
+      align-content: center;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .metric {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.11);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.85rem;
+      letter-spacing: -0.06em;
+    }
+
+    .metric span {
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 0.9rem;
+    }
+
+    .heatmap {
+      display: grid;
+      grid-template-columns: repeat(14, 1fr);
+      gap: 6px;
+      padding: 18px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.11);
+    }
+
+    .heatmap i {
+      aspect-ratio: 1;
+      border-radius: 7px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .heatmap i:nth-child(3n) { background: rgba(58, 166, 255, 0.38); }
+    .heatmap i:nth-child(4n) { background: rgba(49, 229, 159, 0.48); }
+    .heatmap i:nth-child(7n) { background: rgba(215, 255, 106, 0.56); }
+
+    .audience-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .audience-strip span {
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: var(--md-sys-color-on-surface-variant);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--md-sys-color-outline);
+    }
+
+    .cta {
+      padding: clamp(34px, 7vw, 70px);
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(58,166,255,0.3), transparent 38%),
+        radial-gradient(circle at 84% 18%, rgba(49,229,159,0.24), transparent 42%),
+        linear-gradient(140deg, rgba(255,255,255,0.16), rgba(255,255,255,0.045));
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: var(--md-sys-elevation-3);
+      text-align: center;
+    }
+
+    .cta h2 { max-width: 880px; margin: 0 auto; }
+    .cta p { max-width: 650px; margin: 18px auto 0; }
+    .cta .actions { justify-content: center; }
+
+    .footer {
+      padding: 32px 0 50px;
+      color: var(--md-sys-color-on-surface-variant);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase { min-height: 640px; }
+      .floating-panel.one { left: 2%; }
+      .floating-panel.two { right: 1%; }
+      .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner { height: auto; padding: 14px 0; }
+      .nav-links { display: none; }
+      .hero { padding-top: 44px; }
+      .hero-stats,
+      .feature-grid,
+      .metric-row { grid-template-columns: 1fr; }
+      .showcase { min-height: 610px; }
+      .phone { transform: rotate(0deg); }
+      .floating-panel { display: none; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .actions .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-progress" id="topProgress"></div>
+
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Erudite Flashcards home">
+        <span class="brand-mark">E</span>
+        <span>Erudite Flashcards</span>
+      </a>
+      <div class="nav-links" aria-label="Page sections">
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#download">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="container hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow"><span class="spark">✦</span> Local-first flashcards for serious learners</p>
+        <h1 id="hero-title">Powerful recall. <span class="gradient-text">Zero clutter.</span></h1>
+        <p class="hero-copy">
+          Erudite Flashcards brings Anki-level learning mechanics into a cleaner mobile-first experience: offline decks, FSRS scheduling, cloze cards, image occlusion, imports, and actionable study insights.
+        </p>
+        <div class="actions" aria-label="Primary actions">
+          <a class="button primary" href="#download">Get the app</a>
+          <a class="button tonal" href="https://github.com/EruditeCoder108/Erudite-Flashcards" rel="noreferrer">View GitHub</a>
+        </div>
+        <div class="hero-stats" aria-label="Product highlights">
+          <div class="stat"><strong>Offline</strong><span>No account required</span></div>
+          <div class="stat"><strong>FSRS</strong><span>Spaced repetition</span></div>
+          <div class="stat"><strong>5 modes</strong><span>Basic to occlusion</span></div>
+        </div>
+      </div>
+
+      <div class="showcase" aria-label="Mobile app preview">
+        <div class="floating-panel one">
+          <small>Retention</small>
+          <strong>86% this week</strong>
+          <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="phone" role="img" aria-label="Mockup of Erudite Flashcards on a smartphone">
+          <div class="phone-screen">
+            <div class="phone-top"><span>9:41</span><span class="pill-camera"></span><span>100%</span></div>
+            <div class="app-ui">
+              <div class="screen-hero-card">
+                <div class="screen-row">
+                  <div class="mini-logo">E</div>
+                  <span>Today</span>
+                </div>
+                <h2 class="screen-title">Review due cards</h2>
+                <p class="screen-subtitle">Keep your memory strong with daily FSRS-powered sessions.</p>
+                <div class="due-strip">
+                  <div class="due-chip"><strong>42</strong><span>Due</span></div>
+                  <div class="due-chip"><strong>18</strong><span>New</span></div>
+                  <div class="due-chip"><strong>7</strong><span>Leeches</span></div>
+                </div>
+              </div>
+              <div class="card-stack">
+                <div class="study-card">
+                  <div class="meta"><span>Physics</span><span>Cloze</span></div>
+                  <strong>Newton's second law: F = __</strong>
+                </div>
+                <div class="study-card">
+                  <div class="meta"><span>Biology</span><span>Occlusion</span></div>
+                  <strong>Hide labels on diagrams and test recall visually.</strong>
+                </div>
+                <div class="study-card">
+                  <div class="meta"><span>SRS review</span><span>Tap one</span></div>
+                  <strong>How well did you remember?</strong>
+                  <div class="rating-row"><span>Again</span><span>Hard</span><span>Good</span><span>Easy</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-panel two">
+          <small>Next 30 days</small>
+          <strong>Forecast ready</strong>
+          <p>See upcoming workload before it becomes pressure.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="features" aria-labelledby="features-title">
+      <div class="section-head">
+        <p class="section-kicker">Built for retention</p>
+        <h2 id="features-title">Everything a serious flashcard app needs, without intimidating beginners.</h2>
+        <p class="section-copy">The landing page focuses on the mobile app’s actual strengths: local storage, flexible card templates, rich imports, FSRS reviews, and analytics.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="icon">◎</div>
+          <h3>Local-first study</h3>
+          <p>Create and review decks offline. Your learning data stays on-device, with backup/export flows when you need portability.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon">⟳</div>
+          <h3>FSRS scheduling</h3>
+          <p>Use Again, Hard, Good, and Easy ratings with modern spaced repetition tuned for long-term retention.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon">▣</div>
+          <h3>Image occlusion</h3>
+          <p>Turn diagrams, maps, charts, and anatomy images into visual recall cards with editable masks.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon">{ }</div>
+          <h3>Advanced cards</h3>
+          <p>Use basic, reversed, cloze, occlusion, and custom HTML/CSS cards for different learning styles.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon">⇣</div>
+          <h3>Fast imports</h3>
+          <p>Paste text, import files, bulk-add cards, and use AI/PDF prompt helpers to speed up deck creation.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon">◈</div>
+          <h3>Premade paths</h3>
+          <p>Organize study around Class 10–12, NEET, JEE, SSC, and quick maths style categories.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container section" id="workflow" aria-labelledby="workflow-title">
+      <div class="workflow">
+        <div class="panel">
+          <p class="section-kicker">Workflow</p>
+          <h2 id="workflow-title">Create. Review. Fix weak spots.</h2>
+          <p class="section-copy">The page sells the app as a simple study loop, not just a pile of features.</p>
+          <div class="audience-strip" aria-label="Target audiences">
+            <span>Competitive exams</span>
+            <span>School revision</span>
+            <span>Medical diagrams</span>
+            <span>Vocabulary</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="step-list">
+            <div class="step"><span class="step-num">1</span><span><strong>Build decks faster</strong><span>Use bulk cards, paste import, file import, media attachments, and AI/PDF prompt support.</span></span></div>
+            <div class="step"><span class="step-num">2</span><span><strong>Study in normal or SRS mode</strong><span>Keep normal practice separate from spaced-repetition scheduling so analytics stay meaningful.</span></span></div>
+            <div class="step"><span class="step-num">3</span><span><strong>Act on your analytics</strong><span>Use heatmaps, retention, leech detection, deck health, and review forecasts to decide what to fix next.</span></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="analytics" aria-labelledby="analytics-title">
+      <div class="section-head">
+        <p class="section-kicker">Insights</p>
+        <h2 id="analytics-title">A dashboard that tells you what to study next.</h2>
+        <p class="section-copy">Instead of just counting cards, Erudite surfaces progress, due load, weak cards, and upcoming review pressure.</p>
+      </div>
+      <div class="panel analytics-board">
+        <div class="metric-row">
+          <div class="metric"><strong>30d</strong><span>Review forecast</span></div>
+          <div class="metric"><strong>Heat</strong><span>Study streak map</span></div>
+          <div class="metric"><strong>Leech</strong><span>Weak-card detection</span></div>
+        </div>
+        <div class="heatmap" aria-label="Decorative study heatmap">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="download" aria-labelledby="download-title">
+      <div class="cta">
+        <p class="section-kicker">Coming soon</p>
+        <h2 id="download-title">Make your flashcard app look as premium as the system behind it.</h2>
+        <p class="section-copy">Use this landing page for GitHub Pages, a product waitlist, or the first marketing site before Play Store launch.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/EruditeCoder108/Erudite-Flashcards/releases" rel="noreferrer">Check releases</a>
+          <a class="button tonal" href="mailto:eruditespartan@gmail.com?subject=Erudite%20Flashcards%20early%20access">Request early access</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="brand"><span class="brand-mark">E</span><span>Erudite Flashcards</span></div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="https://github.com/EruditeCoder108/Erudite-Flashcards" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const progress = document.getElementById('topProgress');
+    function updateProgress() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const percentage = height <= 0 ? 0 : (scrollTop / height) * 100;
+      progress.style.width = `${percentage}%`;
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  </script>
+</body>
+</html>
