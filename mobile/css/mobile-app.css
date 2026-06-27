@@ -2895,6 +2895,51 @@ select option {
   line-height: 1.45;
 }
 
+.help-list {
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.help-list li + li {
+  margin-top: 0.32rem;
+}
+
+.help-list strong {
+  color: var(--text);
+}
+
+.mini-example-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.mini-example-card {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.22);
+}
+
+.mini-example-card strong {
+  color: var(--text);
+  font-size: 0.82rem;
+}
+
+.mini-example-card small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.help-code.help-code-large {
+  max-height: 24rem;
+}
+
 .occlusion-editor-card {
   max-height: 94dvh;
   gap: 0.85rem;
@@ -5135,4 +5180,3 @@ body[data-active-tab="library"] .mobile-topbar {
   font-weight: 900;
   margin-right: 0.25rem;
 }
-

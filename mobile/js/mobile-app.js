@@ -7434,13 +7434,14 @@
 
     // 4. Quality slider focus instruction
     let sliderFocusText = '';
-    if (options.cardCountControl) {
-      const sliderVal = Number(options.cardCountControl);
-      if (sliderVal <= 2) {
-        sliderFocusText = 'Strictly focus on high-yield, frequently-tested concepts only. Prefer fewer cards.';
-      } else if (sliderVal >= 4) {
-        sliderFocusText = 'Ensure comprehensive, detailed coverage of all textbook points. Prefer a larger number of complete cards.';
-      }
+    const detailOrder = { light: 1, standard: 2, detailed: 3, exhaustive: 4 };
+    const sliderVal = detailOrder[options.detailLevel] || 2;
+    if (sliderVal <= 1) {
+      sliderFocusText = 'Strictly focus on high-yield, frequently-tested concepts only. Prefer fewer cards.';
+    } else if (sliderVal >= 4) {
+      sliderFocusText = 'Ensure comprehensive, detailed coverage of all textbook points. Prefer a larger number of complete cards.';
+    } else if (sliderVal >= 3) {
+      sliderFocusText = 'Use detailed coverage. Include important examples, exceptions, comparisons, diagrams, and common confusion points without making long note cards.';
     }
 
     // 5. Language modifier
@@ -7458,7 +7459,19 @@
       langText = 'Generate flashcards in the same language as the source PDF.';
     }
 
-    // 6. Media Mode Modifier
+    // 6. Answer style modifier
+    let answerStyleText = '';
+    if (options.answerStyle === 'keywords') {
+      answerStyleText = 'Answer style: use keywords and compact phrases only. Avoid explanatory paragraphs. Use this for fast recall cards where the student already understands the topic.';
+    } else if (options.answerStyle === 'explained') {
+      answerStyleText = 'Answer style: include the shortest useful explanation or reasoning step when it helps understanding. Still keep every card atomic and avoid long notes.';
+    } else if (options.answerStyle === 'memory') {
+      answerStyleText = 'Answer style: include memory hooks, tiny mnemonics, contrast cues, and common-confusion warnings when they genuinely improve recall. Do not make the back decorative or long.';
+    } else {
+      answerStyleText = 'Answer style: compact. Prefer one sentence, a tiny bullet list, or a short table. Avoid paragraphs unless absolutely necessary.';
+    }
+
+    // 7. Media Mode Modifier
     let mediaText = '';
     if (options.aiProvider === 'gemini') {
       if (options.mediaMode === 'none') {
@@ -7476,7 +7489,7 @@
       }
     }
 
-    // 7. Card Mix Rules
+    // 8. Card Mix Rules
     let mixText = '';
     if (options.cardMix === 'simple') {
       mixText = 'Use mostly basic and cloze cards. Use reverse cards for definitions only when useful. Avoid advanced HTML unless a table or flowchart is clearly better than plain text.';
@@ -7487,8 +7500,12 @@
     } else if (options.cardMix === 'exam-drill') {
       mixText = 'Use short direct Q/A, cloze deletion for facts, reverse cards for definitions, and compact comparison cards for confusing pairs. Avoid long explanations. Avoid decorative visuals.';
     }
+    if (options.outputFormat === 'txt') {
+      mixText = 'Use only simple front/back cards because TXT import does not carry card type metadata, tags, media, image occlusion, or advanced HTML.';
+      mediaText = 'Do not include images, audio, video, image occlusion, advanced HTML, or file references because TXT import is plain front/back text only.';
+    }
 
-    // 8. Avoid Lazy Cards rules
+    // 9. Avoid Lazy Cards rules
     let qualityRules = [
       'Quality rules:',
       '* Make flashcards for studying, not for showing off formatting.',
@@ -7523,8 +7540,22 @@
     const learningGoalParts = [brief, targetText, studiedText, sliderFocusText, langText].filter(Boolean);
     blocks.push(learningGoalParts.join('\n\n'));
 
-    // Step 2: Deck quality rules
+    // Step 2: Answer style and deck quality rules
+    if (answerStyleText) {
+      blocks.push(answerStyleText);
+    }
     blocks.push(qualityRules.join('\n'));
+
+    if (options.outputFormat !== 'txt') {
+      blocks.push(`Erudite card capabilities to use correctly:
+* Normal rich text cards support safe HTML: b, strong, i, em, u, br, div, p, ul, ol, li, span, mark, code, pre, blockquote, hr.
+* Normal cards support LaTeX math using \\(...\\) and \\[...\\].
+* Use reverse cards only when back-to-front recall is useful. In JSON, use "reverse": true on a basic card.
+* Use cloze cards for sentence facts with {{c1::answer}} syntax. Multiple cloze indexes create separate cards.
+* Use image occlusion for labelled diagrams, maps, anatomy, apparatus, graphs, and visual parts. Masks use normalized x/y/w/h values from 0 to 1.
+* Use advanced HTML/CSS only for visual study structures such as comparison tables, timelines, flowcharts, process maps, formula summaries, and compact visual revision cards.
+* Do not include internal app metadata such as id, noteId, srs, reviewHistory, due dates, reps, lapses, created, or lastModified.`);
+    }
 
     // Step 3: Card type rules
     if (mixText) {
@@ -7538,7 +7569,25 @@
 
     // Step 5: Schema structure specifications
     let schemaSpec = '';
-    if (options.outputFormat === 'html') {
+    if (options.outputFormat === 'txt') {
+      schemaSpec = `Create Erudite Flashcards TXT import text.
+
+Return plain text only. Do not wrap it in Markdown. Do not add headings or explanations.
+
+Use this exact separator format:
+front;back@front;back@front;back
+
+TXT rules:
+- Use semicolon ; between the front and back of each card.
+- Use @ between cards.
+- Do not use @ inside card text.
+- Do not use semicolons inside card text unless unavoidable.
+- TXT supports simple front/back cards only.
+- Do not include JSON, media files, image occlusion, advanced HTML, SRS metadata, or deck metadata.
+- Keep each card atomic and compact.
+- Example:
+Photosynthesis;Process by which green plants make glucose using sunlight, carbon dioxide, and water.@Mitochondria;Site of aerobic respiration in the cell.`;
+    } else if (options.outputFormat === 'html') {
       schemaSpec = `Create a single custom Erudite HTML & CSS flashcard using HTML and CSS only.
 
 Return exactly four fenced code blocks with these labels:
@@ -7549,7 +7598,8 @@ BACK_CSS
 
 Hard rules:
 - No JavaScript, no <script>, no event attributes, no external URLs, no @import.
-- No iframe, form, input, button, audio, video, canvas, fixed/sticky positioning, or z-index tricks.
+- No iframe, form, input, button, select, textarea, audio, video, canvas, fixed/sticky positioning, or z-index tricks.
+- Do not use style attributes in HTML. Put styling in FRONT_CSS or BACK_CSS.
 - Do not include the app shell, <article>, .card-scroll, or iframe in the returned HTML.
 - Use one root wrapper such as <div class="card-design"> in each HTML block.
 - Use only classes/IDs that belong to the card design.
@@ -7559,31 +7609,83 @@ Hard rules:
 - Your root .card-design should be width: 340px; min-height: 470px; border-radius: 20px; overflow: hidden or auto.
 - Prefer responsive inner layout using max-width: 100%, flexible rows/columns, and readable spacing.
 - Avoid fixed inner heights taller than 470px unless the content is intentionally scrollable.
-- Keep text readable, responsive, and friendly to math/physics formulas and step-by-step solutions.`;
+- Keep text readable, responsive, and friendly to math/physics formulas and step-by-step solutions.
+- Good use cases: comparison table, timeline, flowchart, process map, formula summary, labelled mini diagram.
+- Bad use cases: decorative poster, long notes page, tiny unreadable infographic, interactive quiz widget.`;
     } else if (options.outputFormat === 'json') {
       schemaSpec = `Create an Erudite Flashcards import JSON file.
 
 Return valid JSON only. Do not wrap it in Markdown. Do not add comments.
 
-Use this content-only shape:
+Use this content-only shape and include only fields that are useful:
 {
   "version": 1,
   "name": "${deckNameStr}",
   "className": "${classNameStr}",
   "cards": [
-    { "type": "basic", "term": "Question", "definition": "Answer", "tags": ["tag"], "reverse": false },
-    { "type": "cloze", "text": "The SI unit of force is {{c1::newton}}." },
-    { "type": "image-occlusion", "term": "Diagram title", "image": { "dataUrl": "data:image/png;base64,..." }, "occlusion": { "masks": [{ "shape": "rect", "x": 0.12, "y": 0.2, "w": 0.25, "h": 0.1, "answer": "Nucleus" }] } },
+    {
+      "type": "basic",
+      "term": "What is osmosis?",
+      "definition": "Movement of water through a selectively permeable membrane from higher water potential to lower water potential.",
+      "tags": ["biology", "transport"],
+      "reverse": false
+    },
+    {
+      "type": "basic",
+      "term": "Mitochondria",
+      "definition": "Site of aerobic respiration",
+      "tags": ["cell"],
+      "reverse": true
+    },
+    {
+      "type": "cloze",
+      "text": "The SI unit of force is {{c1::newton}} and its symbol is {{c2::N}}.",
+      "definition": "Extra note: named after Isaac Newton.",
+      "tags": ["physics", "units"]
+    },
+    {
+      "type": "basic",
+      "term": "Identify this apparatus.",
+      "definition": "Vernier caliper.",
+      "media": {
+        "term": [
+          { "src": "data:image/png;base64,BASE64_IMAGE_DATA", "mime": "image/png", "name": "vernier-caliper.png" }
+        ]
+      },
+      "tags": ["physics", "measurement"]
+    },
+    {
+      "type": "basic",
+      "term": "What does this map highlight?",
+      "definition": "Major soil regions.",
+      "background": {
+        "term": { "src": "data:image/png;base64,BASE64_IMAGE_DATA", "mime": "image/png", "name": "soil-map.png", "fit": "cover", "opacity": 0.32 }
+      }
+    },
+    {
+      "type": "image-occlusion",
+      "term": "Flower diagram",
+      "image": { "dataUrl": "data:image/png;base64,BASE64_IMAGE_DATA" },
+      "occlusion": {
+        "mode": "hide-one",
+        "masks": [
+          { "shape": "rect", "x": 0.40, "y": 0.20, "w": 0.18, "h": 0.09, "answer": "Stigma", "hint": "Top receptive part" },
+          { "shape": "ellipse", "x": 0.46, "y": 0.36, "w": 0.14, "h": 0.10, "answer": "Ovary" }
+        ]
+      },
+      "tags": ["diagram", "flower"]
+    },
     {
       "type": "advanced-html",
       "term": "Short searchable front text",
       "definition": "Short searchable back text",
       "advancedHtml": {
-        "frontHtml": "<div class=\\"card-design\\">...</div>",
-        "frontCss": ".card-design{box-sizing:border-box;width:340px;min-height:470px;border-radius:20px;overflow:auto}",
-        "backHtml": "<div class=\\"card-design\\">...</div>",
-        "backCss": ".card-design{box-sizing:border-box;width:340px;min-height:470px;border-radius:20px;overflow:auto}"
-      }
+        "frontHtml": "<div class=\\"card-design\\"><h2>Hardy-Weinberg</h2><p>Recall the equation and variables.</p></div>",
+        "frontCss": "*{box-sizing:border-box}.card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;padding:18px;background:#fff;color:#111;font-family:Inter,Arial,sans-serif}",
+        "backHtml": "<div class=\\"card-design\\"><h2>p² + 2pq + q² = 1</h2><table><tr><td>p²</td><td>AA</td></tr><tr><td>2pq</td><td>Aa</td></tr><tr><td>q²</td><td>aa</td></tr></table></div>",
+        "backCss": "*{box-sizing:border-box}.card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;padding:18px;background:#fff;color:#111;font-family:Inter,Arial,sans-serif}.card-design table{width:100%;border-collapse:collapse}.card-design td{border:1px solid #ddd;padding:8px}"
+      },
+      "tags": ["genetics", "formula"]
     }
   ]
 }
@@ -7591,10 +7693,12 @@ Use this content-only shape:
 JSON Rules:
 - Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.
 - Use math as "\\\\(F = ma\\\\)" for inline math or "\\\\[x^2 + y^2\\\\]" for display math in normal card fields.
-- In advanced HTML cards, prefer readable HTML/Unicode formulas such as p^2 + 2pq + q^2 = 1 unless math rendering is explicitly needed.
-- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer. Use data URL images only.
-- Advanced HTML must use HTML and CSS only: no JavaScript, no scripts, no iframes, no forms, no external URLs, no fixed/sticky overlays.
-- CSS inside advanced HTML may use custom formatting, but no external asset calls.`;
+- Normal rich text may use safe HTML such as b, strong, i, em, u, br, div, p, ul, ol, li, span, mark, code, pre, blockquote, hr.
+- Direct JSON media must use data URLs, not external URLs.
+- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer.
+- Advanced HTML must use HTML and CSS only: no JavaScript, no scripts, no event attributes, no iframes, no forms, no external URLs, no @import, no fixed/sticky overlays, and no z-index tricks.
+- Advanced HTML cards live in a 340px x 470px canvas with 20px corner radius and must include *{box-sizing:border-box}.
+- Prefer readable HTML/Unicode formulas inside advanced HTML unless math rendering is truly needed.`;
     } else {
       schemaSpec = `Here is the deck schema structure you must target:
 {
@@ -7671,7 +7775,7 @@ Package rules:
     blocks.push(schemaSpec);
 
     // Step 6: Validation checklist
-    if (options.outputFormat !== 'html' && options.outputFormat !== 'json') {
+    if (!['html', 'json', 'txt'].includes(options.outputFormat)) {
       blocks.push(`Before finalizing, verify:
 * deck.json is valid JSON.
 * The ZIP contains deck.json at root, not inside another folder (if creating a ZIP).
@@ -7686,7 +7790,7 @@ Package rules:
     }
 
     // Step 7: Provider-specific final output instruction (AT THE END)
-    if (options.outputFormat !== 'html' && options.outputFormat !== 'json') {
+    if (!['html', 'json', 'txt'].includes(options.outputFormat)) {
       let outputBlock = '';
       if (options.aiProvider === 'chatgpt') {
         outputBlock = `Final output instruction for ChatGPT:

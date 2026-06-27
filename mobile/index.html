@@ -297,7 +297,7 @@
           </button>
           <button type="button" class="settings-row highlighted" data-action="import-help">
             <span class="settings-icon"><i class="fas fa-circle-question"></i></span>
-            <span><strong>Import format & AI prompt</strong><small>TXT, CSV, TSV, JSON, ZIP packages, and AI prompts</small></span>
+            <span><strong>Create & import flashcards</strong><small>Creator guide, AI format guide, and custom AI prompt</small></span>
             <i class="fas fa-chevron-right"></i>
           </button>
           <button type="button" class="settings-row" data-action="export-backup">
@@ -814,21 +814,128 @@
   <!-- Import Help Modal -->
   <div class="mobile-modal-overlay hidden" id="import-help-overlay" role="dialog" aria-modal="true" aria-labelledby="import-help-title">
     <div class="mobile-modal-card mobile-modal-card--wide import-help-card">
-      <h3 id="import-help-title"><i class="fas fa-circle-question"></i> Import format & AI prompt</h3>
+      <h3 id="import-help-title"><i class="fas fa-circle-question"></i> Create & import flashcards</h3>
       
       <!-- Tab Header Navigation -->
       <div class="modal-tabs">
-        <button type="button" class="modal-tab-btn active" data-help-tab="formats">File Formats</button>
-        <button type="button" class="modal-tab-btn" data-help-tab="ai">AI Generators</button>
-        <button type="button" class="modal-tab-btn" data-help-tab="rules">Guidelines</button>
+        <button type="button" class="modal-tab-btn active" data-help-tab="formats">Learn</button>
+        <button type="button" class="modal-tab-btn" data-help-tab="rules">AI Format Guide</button>
+        <button type="button" class="modal-tab-btn" data-help-tab="ai">Custom AI Prompt</button>
       </div>
 
       <div class="mobile-modal-scroll-content import-help-content">
-        <!-- Tab 1: File Formats -->
+        <!-- Tab 1: Human Creator Guide -->
         <div class="modal-tab-content active" id="help-tab-formats">
           <section>
+            <h4>How Creator works</h4>
+            <p>Start with a deck name and class. Each card has a front and a back: the front is what you want to recall, and the back is the answer, formula, explanation, example, or diagram.</p>
+            <div class="mini-example-list">
+              <div class="mini-example-card">
+                <strong>Simple card</strong>
+                <small>Front: What is force?<br>Back: A push or pull that can change motion.</small>
+              </div>
+              <div class="mini-example-card">
+                <strong>Formula card</strong>
+                <small>Front: Newton's second law<br>Back: \(F = ma\), where m is mass and a is acceleration.</small>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h4>Formatting tools</h4>
+            <p>Use bold, italic, underline, highlights, colors, lists, quotes, code blocks, horizontal rules, and LaTeX math. Keep formatting useful: highlight the idea, not the whole answer.</p>
+            <div class="code-block-wrapper">
+              <div class="code-block-header">
+                <span class="code-block-title">formatted answer</span>
+                <button type="button" class="code-block-copy" data-copy-target="code-human-rich" title="Copy Code"><i class="fas fa-copy"></i></button>
+              </div>
+              <pre class="help-code"><code id="code-human-rich">Front: Compare arteries and veins
+Back:
+&lt;ul&gt;
+  &lt;li&gt;&lt;b&gt;Arteries:&lt;/b&gt; carry blood away from the heart&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;Veins:&lt;/b&gt; carry blood toward the heart&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>Special card types</h4>
+            <ul class="help-list">
+              <li><strong>Basic:</strong> one front and one back. Best for definitions, formulas, and direct questions.</li>
+              <li><strong>Reverse:</strong> makes a second card from answer to question. Best for vocabulary and terms.</li>
+              <li><strong>Cloze:</strong> hide part of a sentence with <code>{{c1::answer}}</code>. Best for facts in context.</li>
+              <li><strong>Media:</strong> attach images, audio, or video to either side.</li>
+              <li><strong>Image occlusion:</strong> place masks over image labels or parts. Each mask becomes a study card.</li>
+              <li><strong>Advanced HTML/CSS:</strong> make a designed 340 x 470 card for tables, flowcharts, timelines, process summaries, and formula cards.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Make cards that are easy to review</h4>
+            <ul class="help-list">
+              <li><strong>One memory point per card:</strong> split lists, exceptions, dates, steps, and formulas into separate prompts when they feel heavy.</li>
+              <li><strong>Ask a real question:</strong> write prompts like "Which hormone lowers blood glucose?" instead of vague prompts like "Insulin".</li>
+              <li><strong>Keep answers compact:</strong> use one line, a tiny table, or short bullets. Put only the recall-critical explanation on the back.</li>
+              <li><strong>Use tags:</strong> tags such as <code>chapter-2</code>, <code>diagram</code>, <code>formula</code>, or <code>weak</code> make cards easier to find later.</li>
+              <li><strong>Prefer recognition plus recall:</strong> diagrams, cloze deletions, and reverse cards are powerful only when they test something specific.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Rich text and math</h4>
+            <p>Normal cards allow safe study formatting: bold, italic, underline, lists, blockquotes, code, preformatted code, horizontal lines, highlights, colored spans, and LaTeX math. Use <code>\(...\)</code> for inline math and <code>\[...\]</code> for display math.</p>
+            <div class="code-block-wrapper">
+              <div class="code-block-header">
+                <span class="code-block-title">math-and-list.html</span>
+                <button type="button" class="code-block-copy" data-copy-target="code-human-math" title="Copy Code"><i class="fas fa-copy"></i></button>
+              </div>
+              <pre class="help-code"><code id="code-human-math">&lt;b&gt;Ohm's law:&lt;/b&gt; \(V = IR\)
+&lt;ul&gt;
+  &lt;li&gt;V = potential difference&lt;/li&gt;
+  &lt;li&gt;I = current&lt;/li&gt;
+  &lt;li&gt;R = resistance&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+          </section>
+          <section>
+            <h4>Cloze and reverse examples</h4>
+            <p>Cloze cards hide answers inside a sentence. If one card has <code>{{c1::...}}</code> and <code>{{c2::...}}</code>, Erudite creates separate recall cards for those blanks. Reverse cards are better for terms that should be remembered both ways.</p>
+            <div class="mini-example-list">
+              <div class="mini-example-card">
+                <strong>Cloze</strong>
+                <small>The SI unit of force is <code>{{c1::newton}}</code> and its symbol is <code>{{c2::N}}</code>.</small>
+              </div>
+              <div class="mini-example-card">
+                <strong>Reverse</strong>
+                <small>Front: Mitochondria<br>Back: Site of aerobic respiration<br>Reverse also asks: Site of aerobic respiration -> Mitochondria.</small>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h4>Media, backgrounds, and occlusion</h4>
+            <p>Attach images/audio/video when the media is part of the memory. Background images are visual context for a side of a normal card. Image occlusion is different: add a diagram, place masks over labels or parts, and each mask becomes its own study card with an answer and optional hint.</p>
+            <div class="mini-example-list">
+              <div class="mini-example-card">
+                <strong>Use media</strong>
+                <small>Pronunciation audio, a map, an apparatus photo, a graph, a labelled diagram, or an original source image.</small>
+              </div>
+              <div class="mini-example-card">
+                <strong>Use occlusion</strong>
+                <small>Hide "stigma", "style", and "ovary" on a flower diagram so each hidden label is tested separately.</small>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h4>Advanced HTML/CSS cards</h4>
+            <p>Use this only when a normal card is too flat: comparison tables, timelines, flowcharts, formula summaries, process diagrams, and dense visual revision cards. The design lives in a 340px x 470px card canvas. Put structure in HTML and styling in CSS. Avoid JavaScript, external links, form controls, iframes, fixed/sticky layers, and decorative designs that slow review.</p>
+            <div class="code-block-wrapper">
+              <div class="code-block-header">
+                <span class="code-block-title">advanced-html-shape</span>
+                <button type="button" class="code-block-copy" data-copy-target="code-human-html" title="Copy Code"><i class="fas fa-copy"></i></button>
+              </div>
+              <pre class="help-code"><code id="code-human-html">frontHtml: &lt;div class="card-design"&gt;&lt;h2&gt;Mitosis&lt;/h2&gt;&lt;p&gt;Order the stages.&lt;/p&gt;&lt;/div&gt;
+frontCss: *{box-sizing:border-box}.card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;padding:18px;background:#fff;color:#111}</code></pre>
+            </div>
+          </section>
+          <section>
             <h4>Import file</h4>
-            <p>Use the Creator screen's Import file button for new card content. Full backups still use Import Backup.</p>
+            <p>Use the Creator screen's Import file button for new card content. Use TXT for quick cards, JSON for structured cards, and ZIP for media-heavy decks. Full backups still use Import Backup.</p>
           </section>
           <section>
             <h4>TXT</h4>
@@ -958,20 +1065,21 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
           </section>
         </div>
 
-        <!-- Tab 2: AI Generators -->
+        <!-- Tab 3: Preference prompt builder -->
         <div class="modal-tab-content" id="help-tab-ai">
           <div class="prompt-builder-header">
-            <h4><i class="fas fa-wand-magic-sparkles"></i> AI Deck Maker</h4>
-            <p style="font-size: 0.78rem; color: var(--muted); margin: 0 0 0.5rem 0;">Turn any chapter PDF into an importable Erudite flashcard ZIP deck using ChatGPT, Gemini, or Claude.</p>
+            <h4><i class="fas fa-wand-magic-sparkles"></i> Custom AI Prompt</h4>
+            <p style="font-size: 0.78rem; color: var(--muted); margin: 0 0 0.5rem 0;">Choose preferences, copy the prompt, upload your source material to an AI, and ask it to create an Erudite-ready deck.</p>
           </div>
 
           <!-- Output format selector -->
           <div class="prompt-builder-section">
             <span class="prompt-section-label">Output Format</span>
             <div class="segmented-control">
-              <button type="button" class="segment-btn active" data-pb-opt="outputFormat" data-value="zip">ZIP Package</button>
-              <button type="button" class="segment-btn" data-pb-opt="outputFormat" data-value="json">JSON Deck</button>
-              <button type="button" class="segment-btn" data-pb-opt="outputFormat" data-value="html">Single HTML Card</button>
+              <button type="button" class="segment-btn active" data-pb-opt="outputFormat" data-value="zip">ZIP</button>
+              <button type="button" class="segment-btn" data-pb-opt="outputFormat" data-value="json">JSON</button>
+              <button type="button" class="segment-btn" data-pb-opt="outputFormat" data-value="txt">TXT</button>
+              <button type="button" class="segment-btn" data-pb-opt="outputFormat" data-value="html">HTML Card</button>
             </div>
           </div>
 
@@ -1211,26 +1319,275 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
           </div>
         </div>
 
-        <!-- Tab 3: Guidelines -->
+        <!-- Tab 2: AI-only static format guide -->
         <div class="modal-tab-content" id="help-tab-rules">
           <section>
-            <h4>Safe rich text</h4>
-            <p>Allowed rich text tags and styles: bold, italic, underline, lists, blockquote, code, pre, horizontal rules, highlight marks, custom text colors (via SPAN inline styles), and LaTeX math syntax with <code>\(...\)</code> or <code>\[...\]</code>.</p>
-          </section>
-          <section>
-            <h4>HTML/CSS cards</h4>
-            <p>The custom HTML canvas is exactly 340px wide, 470px tall, and 20px rounded. Use HTML and CSS only. No JavaScript, scripts, iframes, forms, external URL dependencies, or fixed overlays.</p>
-            <div class="pb-tip-box" style="background: rgba(247, 184, 75, 0.08); border-color: rgba(247, 184, 75, 0.25); color: var(--amber); margin-top: 0.4rem; font-size: 0.76rem; border-radius: 6px; padding: 0.4rem 0.6rem; border: 1px solid; text-align: left; width: 100%;">
-              <i class="fas fa-circle-info"></i> <strong>Overflow Prevention:</strong> Always use <code>* { box-sizing: border-box; }</code> globally in your card's CSS. This keeps padding and borders within the 340x470px bounds and prevents AI designs from overflowing the canvas.
+            <h4>Copy this for an AI</h4>
+            <p>This section is not a user questionnaire. It is a raw technical guide for any AI model that needs to create Erudite TXT, JSON, or ZIP flashcards.</p>
+            <div class="code-block-wrapper">
+              <div class="code-block-header">
+                <span class="code-block-title">erudite-ai-format-guide.txt</span>
+                <button type="button" class="code-block-copy" data-copy-target="code-ai-format-guide" title="Copy AI Guide"><i class="fas fa-copy"></i></button>
+              </div>
+              <pre class="help-code help-code-large"><code id="code-ai-format-guide">You are creating importable study decks for Erudite Flashcards.
+
+Your job:
+- Convert source material into flashcards, not notes.
+- Each card should test one clear memory point.
+- Keep answers compact and reviewable.
+- Preserve exact source facts, names, dates, formulas, examples, diagrams, labels, and terminology.
+- Do not invent unsupported facts.
+- Do not include SRS/review metadata: no id, noteId, srs, reviewHistory, due, reps, lapses, streaks, analytics, created, or lastModified.
+- Keep the final deck under 999 cards.
+
+Choose one output style:
+1. TXT: fastest, plain front/back cards only.
+2. JSON: structured cards, cloze, reverse, tags, image occlusion with Base64 images, advanced HTML/CSS.
+3. ZIP: best for media-heavy decks; deck.json plus media files.
+
+Core card quality rules:
+- Good: "Which hormone lowers blood glucose?;Insulin."
+- Bad: "Insulin;Important hormone." The prompt is too vague.
+- Prefer "What changes?" "Which part?" "Why?" "Formula?" "Exception?" "Compare A vs B?".
+- Split overloaded answers into multiple cards.
+- Use cloze for facts inside sentences.
+- Use reverse cards only when back-to-front recall is useful.
+- Use media/occlusion only when it improves memory.
+- Use advanced HTML only for tables, timelines, flowcharts, process maps, formula summaries, and compact visual revision.
+
+Normal rich text allowed in term/definition:
+- Safe simple HTML: b, strong, i, em, u, br, div, p, ul, ol, li, span, mark, code, pre, blockquote, hr.
+- Colored text can use span style="color:#2563eb".
+- Highlight classes can use mark class="highlight-yellow", "highlight-green", "highlight-blue", or "highlight-pink".
+- Math can use \(F = ma\) for inline math or \[x^2 + y^2\] for display math.
+- Do not use scripts, iframes, forms, external links, or interactive controls.
+
+TXT guide:
+- Return plain text only.
+- Use ; between front and back.
+- Use @ between cards.
+- Do not use @ inside card text.
+- Avoid semicolons inside card text.
+- TXT cannot carry tags, card types, media, cloze metadata, image occlusion, or advanced HTML.
+- Format:
+Front 1;Back 1@Front 2;Back 2@Front 3;Back 3
+- Example:
+Photosynthesis;Process by which green plants make glucose using sunlight, carbon dioxide, and water.@Mitochondria;Site of aerobic respiration in the cell.@Newton's second law;\(F = ma\).
+
+JSON guide:
+- Return valid JSON only.
+- Do not wrap in Markdown.
+- Do not add comments, prose, headings, or trailing commas.
+- Root shape:
+{
+  "version": 1,
+  "name": "Deck name",
+  "className": "Optional class name",
+  "cards": []
+}
+
+Accepted aliases:
+- Front fields: term, front, question, prompt, text, cloze.
+- Back fields: definition, back, answer, meaning.
+- Type fields: type, cardType, noteType.
+- Tags: tags array or comma-separated string.
+- Reverse: true, yes, 1, on, or reverse.
+
+Card type values:
+- basic
+- reverse
+- cloze
+- image-occlusion
+- advanced-html
+
+Basic card:
+{
+  "type": "basic",
+  "term": "What is osmosis?",
+  "definition": "Movement of water through a selectively permeable membrane from higher water potential to lower water potential.",
+  "tags": ["biology", "transport"],
+  "reverse": false
+}
+
+Reverse card:
+{
+  "type": "basic",
+  "term": "Mitochondria",
+  "definition": "Site of aerobic respiration",
+  "tags": ["cell"],
+  "reverse": true
+}
+
+Cloze card:
+{
+  "type": "cloze",
+  "text": "The SI unit of force is {{c1::newton}} and its symbol is {{c2::N}}.",
+  "definition": "Extra note: named after Isaac Newton.",
+  "tags": ["physics", "units"]
+}
+
+Normal card with attached media in direct JSON:
+{
+  "type": "basic",
+  "term": "Identify this apparatus.",
+  "definition": "Vernier caliper.",
+  "media": {
+    "term": [
+      {
+        "src": "data:image/png;base64,BASE64_IMAGE_DATA",
+        "mime": "image/png",
+        "name": "vernier-caliper.png"
+      }
+    ]
+  },
+  "tags": ["physics", "measurement"]
+}
+
+Normal card with background image:
+{
+  "type": "basic",
+  "term": "What does this map highlight?",
+  "definition": "Major soil regions.",
+  "background": {
+    "term": {
+      "src": "data:image/png;base64,BASE64_IMAGE_DATA",
+      "mime": "image/png",
+      "name": "soil-map.png",
+      "fit": "cover",
+      "opacity": 0.32
+    }
+  }
+}
+
+Image occlusion card:
+{
+  "type": "image-occlusion",
+  "term": "Flower diagram",
+  "image": { "dataUrl": "data:image/png;base64,BASE64_IMAGE_DATA" },
+  "occlusion": {
+    "mode": "hide-one",
+    "masks": [
+      { "shape": "rect", "x": 0.40, "y": 0.20, "w": 0.18, "h": 0.09, "answer": "Stigma", "hint": "Top receptive part" },
+      { "shape": "ellipse", "x": 0.46, "y": 0.36, "w": 0.14, "h": 0.10, "answer": "Ovary" }
+    ]
+  },
+  "tags": ["diagram", "flower"]
+}
+
+Image occlusion rules:
+- Direct JSON must use an image data URL.
+- ZIP deck.json may use "image": "media/file.webp".
+- Mask coordinates are normalized 0 to 1 relative to the image.
+- x and y are top-left position.
+- w and h are width and height.
+- shape is rect or ellipse.
+- Every mask needs answer. hint is optional.
+- Each mask becomes a separate study card.
+- Use image occlusion for labels, anatomy, maps, apparatus, graphs, and diagrams where hiding a part tests recall.
+
+Advanced HTML/CSS card:
+{
+  "type": "advanced-html",
+  "term": "Short searchable front text",
+  "definition": "Short searchable back text",
+  "advancedHtml": {
+    "frontHtml": "&lt;div class=\"card-design\"&gt;&lt;h2&gt;Hardy-Weinberg&lt;/h2&gt;&lt;p&gt;Recall the equation and variables.&lt;/p&gt;&lt;/div&gt;",
+    "frontCss": "*{box-sizing:border-box}.card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;padding:18px;background:#fff;color:#111;font-family:Inter,Arial,sans-serif}",
+    "backHtml": "&lt;div class=\"card-design\"&gt;&lt;h2&gt;p² + 2pq + q² = 1&lt;/h2&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;p²&lt;/td&gt;&lt;td&gt;AA&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;2pq&lt;/td&gt;&lt;td&gt;Aa&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;q²&lt;/td&gt;&lt;td&gt;aa&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;",
+    "backCss": "*{box-sizing:border-box}.card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;padding:18px;background:#fff;color:#111;font-family:Inter,Arial,sans-serif}.card-design table{width:100%;border-collapse:collapse}.card-design td{border:1px solid #ddd;padding:8px}"
+  },
+  "tags": ["genetics", "formula"]
+}
+
+Advanced HTML rules:
+- Use HTML and CSS only.
+- HTML and CSS are stored separately: frontHtml, frontCss, backHtml, backCss.
+- HTML should use one root wrapper such as &lt;div class="card-design"&gt;.
+- Canvas target: 340px wide, 470px tall, 20px radius.
+- CSS must include *{box-sizing:border-box}.
+- Root wrapper should use width:340px; min-height:470px; border-radius:20px; overflow:auto or overflow:hidden.
+- Allowed useful HTML includes div, section, article, headings, p, span, strong, em, mark, code, pre, blockquote, lists, tables, img, sup, sub.
+- Do not use JavaScript, scripts, event attributes, style attributes in HTML, iframes, forms, inputs, buttons, select, textarea, canvas, audio, video, external URLs, @import, fixed/sticky positioning, or z-index tricks.
+- CSS may reference package media only with url("media/file.webp") in ZIP mode.
+- Advanced HTML is for useful visual structure, not decoration.
+
+ZIP guide:
+- Create a normal downloadable .zip file.
+- The ZIP must contain deck.json at the root.
+- The ZIP should contain media/ when media files are referenced.
+- deck.json uses the same JSON schema as above.
+- In ZIP mode, use media paths instead of Base64:
+{
+  "version": 1,
+  "name": "Evolution",
+  "className": "Biology",
+  "cards": [
+    {
+      "type": "basic",
+      "term": "&lt;img src=\"media/miller_experiment.webp\" alt=\"Miller-Urey experiment\"&gt;",
+      "definition": "What did the Miller-Urey experiment demonstrate?",
+      "tags": ["evolution", "experiment"]
+    },
+    {
+      "type": "image-occlusion",
+      "term": "Flower diagram",
+      "image": "media/flower_diagram.webp",
+      "occlusion": {
+        "masks": [
+          { "shape": "rect", "x": 0.40, "y": 0.20, "w": 0.18, "h": 0.09, "answer": "Stigma" }
+        ]
+      }
+    },
+    {
+      "type": "advanced-html",
+      "term": "Timeline of events",
+      "definition": "Visual timeline",
+      "advancedHtml": {
+        "frontHtml": "&lt;div class=\"card-design\"&gt;&lt;h2&gt;Timeline&lt;/h2&gt;&lt;img src=\"media/timeline.webp\" alt=\"Timeline\"&gt;&lt;/div&gt;",
+        "frontCss": "*{box-sizing:border-box}.card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;padding:18px;background:#fff;color:#111}.card-design img{max-width:100%;height:auto}",
+        "backHtml": "&lt;div class=\"card-design\"&gt;&lt;p&gt;Key order and reasons.&lt;/p&gt;&lt;/div&gt;",
+        "backCss": "*{box-sizing:border-box}.card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;padding:18px;background:#fff;color:#111}"
+      }
+    }
+  ]
+}
+
+ZIP media rules:
+- Every media/... reference in deck.json must exist inside media/.
+- Do not use external URLs.
+- Do not reference files outside media/.
+- Do not put Base64 media inside deck.json for ZIP output.
+- Safe media extensions: .webp, .png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg, .mp4, .webm.
+- Prefer lowercase filenames with letters, numbers, hyphens, and underscores.
+- Example ZIP structure:
+deck.json
+media/
+  flower_diagram.webp
+  miller_experiment.webp
+  timeline.webp
+
+If you cannot attach a ZIP file:
+- Return Erudite Package Source instead.
+- Start exactly with ERUDITE_PACKAGE_SOURCE_V1.
+- Then provide one valid JSON object:
+{
+  "deck": {
+    "version": 1,
+    "name": "Deck name",
+    "className": "Class name",
+    "cards": []
+  },
+  "media": [
+    {
+      "path": "media/file.webp",
+      "mime": "image/webp",
+      "encoding": "base64",
+      "data": "BASE64_DATA"
+    }
+  ]
+}
+- In Package Source, deck must not contain Base64; deck should reference media/file.webp paths and media array should contain the matching files.</code></pre>
             </div>
-          </section>
-          <section>
-            <h4>Image occlusion</h4>
-            <p>Use normalized mask coordinates from 0 to 1 relative to image dimensions. Each mask becomes one study card. JSON accepts data URL images; ZIP packages can reference images from <code>media/</code>.</p>
-          </section>
-          <section>
-            <h4>Anki packages</h4>
-            <p>Direct <code>.apkg</code> import support is planned for future versions. Currently, Anki packages must be imported using their media file paths or by converting to CSV/TXT format.</p>
           </section>
         </div>
       </div>
