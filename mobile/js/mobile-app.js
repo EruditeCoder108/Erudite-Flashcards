@@ -143,7 +143,7 @@
   let resumeRefreshPromise = null;
   let lastResumeRefreshAt = 0;
 
-  const premadeClasses = [
+  let premadeClasses = [
     { id: '10th', name: 'Class 10' },
     { id: '11th', name: 'Class 11' },
     { id: '12th', name: 'Class 12' },
@@ -154,16 +154,18 @@
     { id: 'quick-maths', name: 'Quick Maths' }
   ];
 
-  const premadeSubjects = {
+  let premadeSubjects = {
     '10th': ['Science', 'Maths', 'English', 'Civics', 'Geography', 'History', 'Hindi', 'Politics'],
     '11th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education'],
     '12th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education'],
-    'neet-ug': ['Physics', 'Chemistry', 'Biology'],
-    'jee-main': ['Physics', 'Chemistry', 'Maths'],
-    'jee-advanced': ['Physics', 'Chemistry', 'Maths'],
+    'neet-ug': ['physics', 'chemistry', 'biology'],
+    'jee-main': ['physics', 'chemistry', 'maths'],
+    'jee-advanced': ['physics', 'chemistry', 'maths'],
     'ssc': ['general-awareness', 'quantitative-aptitude', 'reasoning', 'english'],
     'quick-maths': ['Mental-Maths']
   };
+  let premadeSubjectLabels = {};
+  let premadeCatalogLoaded = false;
 
   const sortOrder = ['recent', 'name', 'cards', 'due'];
   const sortLabels = {
@@ -3689,19 +3691,151 @@
       || String(card.cardTemplate || '').toLowerCase().startsWith('image-occlusion');
   }
 
-  function normalizeUnit(value, fallback = 0) {
-    const number = Number(value);
-    if (!Number.isFinite(number)) return fallback;
-    const unit = number > 1 ? number / 100 : number;
-    return Math.min(1, Math.max(0, unit));
+  function firstPresent(...values) {
+    for (const value of values) {
+      if (value !== undefined && value !== null && value !== '') return value;
+    }
+    return undefined;
   }
 
-  function normalizeOcclusionMask(mask = {}, index = 0) {
+  function parseCoordinateNumber(value) {
+    if (typeof value === 'number') return { value, unit: '' };
+    const raw = String(value ?? '').trim().toLowerCase();
+    if (!raw) return { value: NaN, unit: '' };
+    const match = raw.replace(/,/g, '').match(/^([-+]?\d*\.?\d+)\s*(%|px)?$/);
+    if (!match) return { value: Number(raw), unit: '' };
+    return { value: Number(match[1]), unit: match[2] || '' };
+  }
+
+  function normalizeCoordinateUnits(value) {
+    const raw = String(value || '').trim().toLowerCase().replace(/[_\s]+/g, '-');
+    if (['px', 'pixel', 'pixels', 'image-pixel', 'image-pixels'].includes(raw)) return 'px';
+    if (['%', 'percent', 'percentage'].includes(raw)) return 'percent';
+    if (['normalized', 'normalised', 'unit', 'unitless', 'relative', '0-1', '0-to-1'].includes(raw)) return 'normalized';
+    return '';
+  }
+
+  function readPixelDimension(...values) {
+    for (const value of values) {
+      const parsed = parseCoordinateNumber(value);
+      if (Number.isFinite(parsed.value) && parsed.value > 1) return parsed.value;
+    }
+    return 0;
+  }
+
+  function normalizeAxisUnit(value, fallback = 0, axisSize = 0, unitHint = '') {
+    const parsed = parseCoordinateNumber(value);
+    if (!Number.isFinite(parsed.value)) return fallback;
+    const units = normalizeCoordinateUnits(parsed.unit || unitHint);
+    if (units === 'percent') return clamp(parsed.value / 100, 0, 1);
+    if (units === 'normalized') return clamp(parsed.value, 0, 1);
+    if (units === 'px') {
+      return axisSize > 1 ? clamp(parsed.value / axisSize, 0, 1) : clamp(parsed.value / 100, 0, 1);
+    }
+    if (parsed.value > 1) {
+      return clamp(parsed.value / 100, 0, 1);
+    }
+    return clamp(parsed.value, 0, 1);
+  }
+
+  function readOcclusionBox(mask = {}) {
+    const boxEntries = [
+      ['bboxPx', 'px'], ['boxPx', 'px'], ['boundsPx', 'px'], ['rectPx', 'px'],
+      ['bboxNorm', 'normalized'], ['bboxNormalized', 'normalized'], ['boxNorm', 'normalized'], ['boxNormalized', 'normalized'],
+      ['bboxPercent', 'percent'], ['boxPercent', 'percent'],
+      ['bbox', ''], ['box', ''], ['bounds', ''], ['rect', ''], ['coordinates', '']
+    ];
+    for (const [key, unitHint] of boxEntries) {
+      const value = mask[key];
+      if (value === undefined || value === null || value === '') continue;
+      const format = String(mask.bboxFormat || mask.boxFormat || mask.coordinateFormat || mask.format || '').toLowerCase();
+      if (Array.isArray(value) && value.length >= 4) {
+        if (format.includes('xyxy') || format.includes('x1y1x2y2')) {
+          return { x: value[0], y: value[1], right: value[2], bottom: value[3], units: unitHint };
+        }
+        if (format.includes('cxcy') || format.includes('center')) {
+          return { centerX: value[0], centerY: value[1], w: value[2], h: value[3], units: unitHint };
+        }
+        return { x: value[0], y: value[1], w: value[2], h: value[3], units: unitHint };
+      }
+      if (value && typeof value === 'object') {
+        return {
+          x: firstPresent(value.x, value.left, value.x1),
+          y: firstPresent(value.y, value.top, value.y1),
+          w: firstPresent(value.w, value.width, value.widthPx),
+          h: firstPresent(value.h, value.height, value.heightPx),
+          right: firstPresent(value.right, value.x2),
+          bottom: firstPresent(value.bottom, value.y2),
+          centerX: firstPresent(value.cx, value.centerX, value.center_x),
+          centerY: firstPresent(value.cy, value.centerY, value.center_y),
+          units: unitHint || value.units || value.coordinateUnits || value.coordinateSpace
+        };
+      }
+    }
+    return {};
+  }
+
+  function occlusionOverlapRatio(a, b) {
+    const left = Math.max(a.x, b.x);
+    const top = Math.max(a.y, b.y);
+    const right = Math.min(a.x + a.w, b.x + b.w);
+    const bottom = Math.min(a.y + a.h, b.y + b.h);
+    const intersection = Math.max(0, right - left) * Math.max(0, bottom - top);
+    const smallerArea = Math.min(a.w * a.h, b.w * b.h);
+    return smallerArea > 0 ? intersection / smallerArea : 0;
+  }
+
+  function dedupeOcclusionMasks(masks = []) {
+    const kept = [];
+    masks.forEach(mask => {
+      const answerKey = plainTextFromHtml(mask.answer || '').trim().toLowerCase().replace(/\s+/g, ' ');
+      const duplicate = answerKey && kept.some(existing => {
+        const existingKey = plainTextFromHtml(existing.answer || '').trim().toLowerCase().replace(/\s+/g, ' ');
+        return answerKey === existingKey && occlusionOverlapRatio(mask, existing) >= 0.55;
+      });
+      if (!duplicate) kept.push(mask);
+    });
+    return kept;
+  }
+
+  function normalizeOcclusionMask(mask = {}, index = 0, meta = {}) {
     const source = mask && typeof mask === 'object' ? mask : {};
-    const width = Math.min(0.95, Math.max(OCCLUSION_MIN_SIZE, normalizeUnit(source.w ?? source.width, 0.24)));
-    const height = Math.min(0.95, Math.max(OCCLUSION_MIN_SIZE, normalizeUnit(source.h ?? source.height, 0.12)));
-    const x = Math.min(1 - width, normalizeUnit(source.x ?? source.left, 0.38));
-    const y = Math.min(1 - height, normalizeUnit(source.y ?? source.top, 0.4));
+    const box = readOcclusionBox(source);
+    const unitHint = normalizeCoordinateUnits(
+      box.units
+      || source.units
+      || source.coordinateUnits
+      || source.coordinateSpace
+      || meta.units
+      || meta.coordinateUnits
+      || meta.coordinateSpace
+    );
+    const axisW = readPixelDimension(source.imageWidth, source.naturalWidth, meta.imageWidth, meta.width);
+    const axisH = readPixelDimension(source.imageHeight, source.naturalHeight, meta.imageHeight, meta.height);
+    let width = Math.min(0.95, Math.max(OCCLUSION_MIN_SIZE, normalizeAxisUnit(firstPresent(box.w, source.w, source.width, source.widthPx), 0.24, axisW, unitHint)));
+    let height = Math.min(0.95, Math.max(OCCLUSION_MIN_SIZE, normalizeAxisUnit(firstPresent(box.h, source.h, source.height, source.heightPx), 0.12, axisH, unitHint)));
+    let x = normalizeAxisUnit(firstPresent(box.x, source.x, source.left, source.x1), 0.38, axisW, unitHint);
+    let y = normalizeAxisUnit(firstPresent(box.y, source.y, source.top, source.y1), 0.4, axisH, unitHint);
+    const rightValue = firstPresent(box.right, source.right, source.x2);
+    const bottomValue = firstPresent(box.bottom, source.bottom, source.y2);
+    if (rightValue !== undefined) {
+      const right = normalizeAxisUnit(rightValue, x + width, axisW, unitHint);
+      width = Math.min(0.95, Math.max(OCCLUSION_MIN_SIZE, right - x));
+    }
+    if (bottomValue !== undefined) {
+      const bottom = normalizeAxisUnit(bottomValue, y + height, axisH, unitHint);
+      height = Math.min(0.95, Math.max(OCCLUSION_MIN_SIZE, bottom - y));
+    }
+    const centerXValue = firstPresent(box.centerX, source.cx, source.centerX, source.center_x);
+    const centerYValue = firstPresent(box.centerY, source.cy, source.centerY, source.center_y);
+    if (centerXValue !== undefined) {
+      x = normalizeAxisUnit(centerXValue, x + width / 2, axisW, unitHint) - width / 2;
+    }
+    if (centerYValue !== undefined) {
+      y = normalizeAxisUnit(centerYValue, y + height / 2, axisH, unitHint) - height / 2;
+    }
+    x = clamp(x, 0, 1 - width);
+    y = clamp(y, 0, 1 - height);
     const shape = String(source.shape || '').toLowerCase() === 'ellipse' ? 'ellipse' : 'rect';
     return {
       id: String(source.id || createLocalId('mask')),
@@ -3719,10 +3853,17 @@
   function normalizeImageOcclusion(value = {}, card = {}) {
     const source = value && typeof value === 'object' ? value : {};
     const image = safeMediaSrc(source.image || source.src || source.dataUrl || card.termImage || firstCardImageSource({ ...card, imageOcclusion: null }));
-    const masks = (Array.isArray(source.masks) ? source.masks : [])
+    const imageObject = source.image && typeof source.image === 'object' ? source.image : {};
+    const cardImageObject = card.image && typeof card.image === 'object' ? card.image : {};
+    const coordinateMeta = {
+      imageWidth: readPixelDimension(source.imageWidth, source.widthPx, source.width, source.naturalWidth, imageObject.width, imageObject.imageWidth, card.imageWidth, card.widthPx, cardImageObject.width, card.noteFields?.imageWidth),
+      imageHeight: readPixelDimension(source.imageHeight, source.heightPx, source.height, source.naturalHeight, imageObject.height, imageObject.imageHeight, card.imageHeight, card.heightPx, cardImageObject.height, card.noteFields?.imageHeight),
+      units: source.units || source.coordinateUnits || source.coordinateSpace
+    };
+    const masks = dedupeOcclusionMasks((Array.isArray(source.masks) ? source.masks : [])
       .slice(0, OCCLUSION_MAX_MASKS)
-      .map(normalizeOcclusionMask)
-      .filter(mask => mask.answer && plainTextFromHtml(mask.answer).trim());
+      .map((mask, index) => normalizeOcclusionMask(mask, index, coordinateMeta))
+      .filter(mask => mask.answer && plainTextFromHtml(mask.answer).trim()));
     return {
       version: 1,
       coordinateSpace: 'image',
@@ -4697,11 +4838,14 @@
       const occlusion = source.occlusion && typeof source.occlusion === 'object'
         ? source.occlusion
         : (source.imageOcclusion && typeof source.imageOcclusion === 'object' ? source.imageOcclusion : {});
+      const imageObject = source.image && typeof source.image === 'object' ? source.image : {};
       const imageSource = typeof source.image === 'string'
         ? source.image
-        : (source.image && typeof source.image === 'object' ? (source.image.dataUrl || source.image.src || source.image.url) : '');
+        : (imageObject.dataUrl || imageObject.src || imageObject.url || '');
       const image = safeImportDataUrl(occlusion.image || occlusion.dataUrl || imageSource, ['image']);
       if (!image) return null;
+      const imageWidth = occlusion.imageWidth || occlusion.width || source.imageWidth || imageObject.width || imageObject.imageWidth;
+      const imageHeight = occlusion.imageHeight || occlusion.height || source.imageHeight || imageObject.height || imageObject.imageHeight;
       const card = createImageOcclusionDraft({
         ...base,
         term: sanitizeEditorHtml(importString(source.term || source.title || source.prompt || 'Image occlusion')),
@@ -4710,6 +4854,10 @@
       card.imageOcclusion = normalizeImageOcclusion({
         image,
         mode: occlusion.mode,
+        coordinateSpace: occlusion.coordinateSpace || occlusion.units || occlusion.coordinateUnits,
+        units: occlusion.units || occlusion.coordinateUnits,
+        imageWidth,
+        imageHeight,
         masks: Array.isArray(occlusion.masks) ? occlusion.masks : []
       }, card);
       return cardHasContent(card) ? card : null;
@@ -5302,8 +5450,107 @@
     return String(subject || '').replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
   }
 
+  function premadeSubjectLabel(classId, subject) {
+    return premadeSubjectLabels[`${classId}/${subject}`] || subjectLabel(subject);
+  }
+
+  function normalizePremadeCatalog(catalog) {
+    const classes = Array.isArray(catalog?.classes) ? catalog.classes : [];
+    const nextClasses = [];
+    const nextSubjects = {};
+    const nextLabels = {};
+
+    classes.forEach(classItem => {
+      const classId = String(classItem?.id || '').trim();
+      if (!classId) return;
+      const subjects = Array.isArray(classItem.subjects) ? classItem.subjects : [];
+      const subjectIds = subjects
+        .map(subject => {
+          const subjectId = String(subject?.id || subject || '').trim();
+          if (!subjectId) return '';
+          const label = String(subject?.name || '').trim();
+          if (label) nextLabels[`${classId}/${subjectId}`] = label;
+          return subjectId;
+        })
+        .filter(Boolean);
+      if (!subjectIds.length) return;
+      nextClasses.push({
+        id: classId,
+        name: String(classItem.name || '').trim() || subjectLabel(classId)
+      });
+      nextSubjects[classId] = subjectIds;
+    });
+
+    return nextClasses.length ? { classes: nextClasses, subjects: nextSubjects, labels: nextLabels } : null;
+  }
+
+  function premadeClassSortValue(item, index = 0) {
+    const id = String(item?.id || '');
+    const classMatch = id.match(/^(\d+)(st|nd|rd|th)$/i);
+    if (classMatch) return Number(classMatch[1]);
+    const known = {
+      'neet-ug': 100,
+      'jee-main': 110,
+      'jee-advanced': 120,
+      ssc: 130,
+      'quick-maths': 140
+    };
+    return known[id] || 500 + index;
+  }
+
+  function mergePremadeCatalog(normalized) {
+    const mergedClasses = new Map();
+    const sourceClasses = [...premadeClasses, ...(normalized?.classes || [])];
+    sourceClasses.forEach((item, index) => {
+      const id = String(item?.id || '').trim();
+      if (!id) return;
+      const existing = mergedClasses.get(id);
+      mergedClasses.set(id, {
+        id,
+        name: existing?.name || String(item.name || '').trim() || subjectLabel(id),
+        _order: Math.min(existing?._order ?? 9999, premadeClassSortValue(item, index))
+      });
+    });
+
+    const nextSubjects = { ...premadeSubjects };
+    Object.entries(normalized?.subjects || {}).forEach(([classId, subjects]) => {
+      const existing = nextSubjects[classId] || [];
+      nextSubjects[classId] = Array.from(new Set([...(Array.isArray(subjects) ? subjects : []), ...existing]));
+    });
+
+    premadeClasses = Array.from(mergedClasses.values())
+      .sort((a, b) => a._order - b._order || a.name.localeCompare(b.name))
+      .map(({ _order, ...item }) => item);
+    premadeSubjects = nextSubjects;
+    premadeSubjectLabels = { ...premadeSubjectLabels, ...(normalized?.labels || {}) };
+  }
+
+  async function loadPremadeCatalog() {
+    if (premadeCatalogLoaded) return;
+    premadeCatalogLoaded = true;
+    const catalog = await window.flashcardStore?.listPremadeCatalog?.().catch(() => null);
+    const normalized = normalizePremadeCatalog(catalog);
+    if (!normalized) return;
+    mergePremadeCatalog(normalized);
+    const catalogSubjects = normalized.subjects[state.premadeClass] || [];
+    if (catalogSubjects.length && !catalogSubjects.includes(state.premadeSubject)) {
+      state.premadeSubject = catalogSubjects[0];
+    }
+  }
+
+  function ensurePremadeSelection() {
+    if (!premadeClasses.some(item => item.id === state.premadeClass)) {
+      state.premadeClass = premadeClasses[0]?.id || '';
+    }
+    const subjects = premadeSubjects[state.premadeClass] || [];
+    if (!subjects.includes(state.premadeSubject)) {
+      state.premadeSubject = subjects[0] || '';
+    }
+  }
+
   function renderPremade() {
     if (!selectors.premadeList) return;
+    ensurePremadeSelection();
     selectors.premadeClassFilters.innerHTML = premadeClasses.map(item => `
       <button type="button" class="filter-chip ${state.premadeClass === item.id ? 'active' : ''}" data-action="premade-class" data-class-id="${escapeAttr(item.id)}">
         ${escapeHtml(item.name)}
@@ -5311,10 +5558,9 @@
     `).join('');
 
     const subjects = premadeSubjects[state.premadeClass] || [];
-    if (!subjects.includes(state.premadeSubject)) state.premadeSubject = subjects[0] || '';
     selectors.premadeSubjectFilters.innerHTML = subjects.map(subject => `
       <button type="button" class="filter-chip ${state.premadeSubject === subject ? 'active' : ''}" data-action="premade-subject" data-subject-id="${escapeAttr(subject)}">
-        ${escapeHtml(subjectLabel(subject))}
+        ${escapeHtml(premadeSubjectLabel(state.premadeClass, subject))}
       </button>
     `).join('');
 
@@ -5327,7 +5573,7 @@
               <div class="deck-main">
                 <h3 class="deck-title">${escapeHtml(item.name || item.title || file || 'Premade Deck')}</h3>
                 <div class="deck-subline">
-                  <span>${escapeHtml(subjectLabel(state.premadeSubject))}</span>
+                  <span>${escapeHtml(premadeSubjectLabel(state.premadeClass, state.premadeSubject))}</span>
                   ${item.cardCount ? `<span>${plural(Number(item.cardCount) || 0, 'card')}</span>` : ''}
                 </div>
               </div>
@@ -5341,6 +5587,8 @@
   }
 
   async function loadPremade() {
+    await loadPremadeCatalog();
+    ensurePremadeSelection();
     selectors.premadeList.innerHTML = emptyPanel('fa-spinner', 'Loading premade decks', 'Checking bundled starter decks.');
     const sets = await window.flashcardStore.listPremadeSets(state.premadeClass, state.premadeSubject);
     state.premadeSets = Array.isArray(sets) ? sets : [];
@@ -7477,15 +7725,15 @@
       if (options.mediaMode === 'none') {
         mediaText = 'Do not include media files. Prefer basic, cloze, and reverse cards. Advanced HTML may be used for compact tables or flowcharts without external media.';
       } else {
-        mediaText = 'Prefer text, cloze, reverse, and advanced HTML cards using pure HTML/CSS for visuals (like comparison tables, timelines, flowcharts). Avoid extracting image media or requiring external image files unless you include them as Base64 data inside the media array. Do not use image occlusion requiring image files unless you provide them. Allowed media paths must use safe lowercase filenames inside media/ and end with .webp, .png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg, .mp4, or .webm. CSS may reference local media using url("media/file.webp").';
+        mediaText = 'Prefer text, cloze, reverse, and advanced HTML cards using pure HTML/CSS for visuals (like comparison tables, timelines, flowcharts). Avoid extracting image media or requiring external image files unless you include them as Base64 data inside the media array. Do not use image occlusion requiring image files unless you provide the image and exact mask coordinates. Allowed media paths must use safe lowercase filenames inside media/ and end with .webp, .png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg, .mp4, or .webm. CSS may reference local media using url("media/file.webp").';
       }
     } else {
       if (options.mediaMode === 'none') {
         mediaText = 'Do not include media files unless absolutely required. Prefer basic, cloze, and reverse cards. Advanced HTML may be used for compact tables or flowcharts without external media.';
       } else if (options.mediaMode === 'important') {
-        mediaText = 'Use media only when it genuinely improves learning. Include images for important diagrams, labelled figures, maps, charts, apparatus, formulas, timelines, and tables. Use image occlusion for labelled diagrams where hiding labels creates useful recall practice.';
+        mediaText = 'Use media only when it genuinely improves learning. Include images for important diagrams, labelled figures, maps, charts, apparatus, formulas, timelines, and tables. Use image occlusion for labelled diagrams where hiding labels creates useful recall practice. For occlusion, crop the final study image first, record its pixel width/height, and use bboxPx masks based on that exact cropped image.';
       } else if (options.mediaMode === 'full') {
-        mediaText = 'Use visual features actively but not decoratively. Extract or recreate important diagrams, use image occlusion for labels, use advanced HTML for timelines, comparison tables, flowcharts, formula cards, process summaries, and visual revision cards. Do not add images merely to make the deck look attractive.';
+        mediaText = 'Use visual features actively but not decoratively. Extract or recreate important diagrams, use image occlusion for labels, use advanced HTML for timelines, comparison tables, flowcharts, formula cards, process summaries, and visual revision cards. For occlusion, crop the final study image first, record its pixel width/height, and use bboxPx masks based on that exact cropped image. Do not add images merely to make the deck look attractive.';
       }
     }
 
@@ -7552,7 +7800,9 @@
 * Normal cards support LaTeX math using \\(...\\) and \\[...\\].
 * Use reverse cards only when back-to-front recall is useful. In JSON, use "reverse": true on a basic card.
 * Use cloze cards for sentence facts with {{c1::answer}} syntax. Multiple cloze indexes create separate cards.
-* Use image occlusion for labelled diagrams, maps, anatomy, apparatus, graphs, and visual parts. Masks use normalized x/y/w/h values from 0 to 1.
+* Use image occlusion for labelled diagrams, maps, anatomy, apparatus, graphs, and visual parts. Best AI-safe format: include occlusion.imageWidth, occlusion.imageHeight, occlusion.units = "px", and each mask as bboxPx: [left, top, width, height] measured on the final cropped image. Normalized x/y/w/h from 0 to 1 also works, but pixel bboxes are preferred.
+* If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Erudite automatically turns each mask into its own study card.
+* For image occlusion, never use PDF page coordinates, screenshot coordinates, or coordinates from a different crop/scale. Make masks only for labels/parts you can identify with confidence. Skip uncertain labels, captions, arrows, repeated labels, and decorative text instead of adding extra masks. For crowded diagrams, use about 3-12 high-value masks per image. Split into multiple cropped images only when one full image is too crowded or unreadable.
 * Use advanced HTML/CSS only for visual study structures such as comparison tables, timelines, flowcharts, process maps, formula summaries, and compact visual revision cards.
 * Do not include internal app metadata such as id, noteId, srs, reviewHistory, due dates, reps, lapses, created, or lastModified.`);
     }
@@ -7665,12 +7915,15 @@ Use this content-only shape and include only fields that are useful:
     {
       "type": "image-occlusion",
       "term": "Flower diagram",
-      "image": { "dataUrl": "data:image/png;base64,BASE64_IMAGE_DATA" },
+      "image": { "dataUrl": "data:image/png;base64,BASE64_IMAGE_DATA", "width": 1200, "height": 800 },
       "occlusion": {
         "mode": "hide-one",
+        "units": "px",
+        "imageWidth": 1200,
+        "imageHeight": 800,
         "masks": [
-          { "shape": "rect", "x": 0.40, "y": 0.20, "w": 0.18, "h": 0.09, "answer": "Stigma", "hint": "Top receptive part" },
-          { "shape": "ellipse", "x": 0.46, "y": 0.36, "w": 0.14, "h": 0.10, "answer": "Ovary" }
+          { "shape": "rect", "bboxPx": [480, 160, 216, 72], "answer": "Stigma", "hint": "Top receptive part" },
+          { "shape": "ellipse", "bboxPx": [552, 288, 168, 80], "answer": "Ovary" }
         ]
       },
       "tags": ["diagram", "flower"]
@@ -7695,7 +7948,12 @@ JSON Rules:
 - Use math as "\\\\(F = ma\\\\)" for inline math or "\\\\[x^2 + y^2\\\\]" for display math in normal card fields.
 - Normal rich text may use safe HTML such as b, strong, i, em, u, br, div, p, ul, ol, li, span, mark, code, pre, blockquote, hr.
 - Direct JSON media must use data URLs, not external URLs.
-- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer.
+- Image occlusion masks require an answer.
+- Preferred occlusion format for AI-generated images: set occlusion.units to "px", include occlusion.imageWidth and occlusion.imageHeight, and use bboxPx: [left, top, width, height] measured on the final cropped image.
+- Alternative occlusion format: normalized x, y, w, h values from 0 to 1 relative to the final image.
+- Do not use PDF page coordinates, screenshot coordinates, or coordinates from a differently scaled crop for occlusion.
+- If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Erudite automatically turns each mask into its own study card.
+- Do not add uncertain masks. One mask should hide one real label or one clearly named visual part. Skip captions, arrows, repeated labels, and decorative text. For crowded diagrams, use about 3-12 high-value masks per image. Split into multiple cropped images only when one full image is too crowded or unreadable.
 - Advanced HTML must use HTML and CSS only: no JavaScript, no scripts, no event attributes, no iframes, no forms, no external URLs, no @import, no fixed/sticky overlays, and no z-index tricks.
 - Advanced HTML cards live in a 340px x 470px canvas with 20px corner radius and must include *{box-sizing:border-box}.
 - Prefer readable HTML/Unicode formulas inside advanced HTML unless math rendering is truly needed.`;
@@ -7722,13 +7980,13 @@ JSON Rules:
       "term": "Diagram title",
       "image": "media/descriptive-image-name.webp",
       "occlusion": {
+        "units": "px",
+        "imageWidth": 1200,
+        "imageHeight": 800,
         "masks": [
           {
             "shape": "rect",
-            "x": 0.12,
-            "y": 0.2,
-            "w": 0.25,
-            "h": 0.1,
+            "bboxPx": [144, 160, 300, 80],
             "answer": "Hidden label",
             "hint": "Short clue"
           }
@@ -7762,7 +8020,12 @@ Package rules:
 - Use math as "\\(F = ma\\)" for inline math or "\\[x^2 + y^2\\]" for display math in normal card fields.
 - In advanced HTML cards, prefer readable HTML/Unicode formulas such as p^2 + 2pq + q^2 = 1 unless math rendering is explicitly needed.
 - Advanced HTML cards live inside a 340px x 470px canvas with 20px corner radius. You MUST use box-sizing: border-box globally to prevent overflows.
-- Image occlusion masks use normalized x/y/w/h values from 0 to 1 and require an answer.
+- Image occlusion masks require an answer.
+- Preferred occlusion format for AI-generated images: set occlusion.units to "px", include occlusion.imageWidth and occlusion.imageHeight, and use bboxPx: [left, top, width, height] measured on the final cropped image.
+- Alternative occlusion format: normalized x, y, w, h values from 0 to 1 relative to the final image.
+- Do not use PDF page coordinates, screenshot coordinates, or coordinates from a differently scaled crop for occlusion.
+- If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Erudite automatically turns each mask into its own study card.
+- Do not add uncertain masks. One mask should hide one real label or one clearly named visual part. Skip captions, arrows, repeated labels, and decorative text. For crowded diagrams, use about 3-12 high-value masks per image. Split into multiple cropped images only when one full image is too crowded or unreadable.
 - Advanced HTML must use HTML and CSS only.
 - No JavaScript.
 - No scripts.
@@ -7783,7 +8046,7 @@ Package rules:
 * Every media/... path referenced in deck.json exists inside media/.
 * No external URLs are used.
 * No Base64 media is stored in deck.json (unless importing JSON directly).
-* All image occlusion masks have normalized x, y, w, h values between 0 and 1.
+* All image occlusion masks use either bboxPx with imageWidth/imageHeight or normalized x, y, w, h values between 0 and 1.
 * Every image occlusion mask has an answer.
 * Advanced HTML contains no JavaScript, scripts, iframes, forms, or external URLs.
 * The deck has 999 cards or fewer.`);

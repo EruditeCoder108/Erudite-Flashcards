@@ -4,6 +4,21 @@ const JSZip = require('jszip');
 
 const root = path.resolve(__dirname, '..');
 const premadeDir = path.join(root, 'premade-cards');
+const catalogFileName = 'premade-catalog.json';
+
+const knownClassNames = {
+  '9th': 'Class 9',
+  '10th': 'Class 10',
+  '11th': 'Class 11',
+  '12th': 'Class 12',
+  'neet-ug': 'NEET UG',
+  'jee-main': 'JEE Main',
+  'jee-advanced': 'JEE Advanced',
+  ssc: 'SSC',
+  'quick-maths': 'Quick Maths'
+};
+
+const knownClassOrder = ['9th', '10th', '11th', '12th', 'neet-ug', 'jee-main', 'jee-advanced', 'ssc', 'quick-maths'];
 
 async function exists(filePath) {
   try {
@@ -96,7 +111,7 @@ async function processSubjectDirectory(subjectPath) {
   let updated = false;
 
   for (const entry of entries) {
-    if (entry.name === 'manifest.json') continue;
+    if (entry.name === 'manifest.json' || entry.name === catalogFileName) continue;
 
     let isDirectory = entry.isDirectory() && entry.name !== 'media' && !entry.name.startsWith('.');
     let isJsonFile = entry.isFile() && entry.name.toLowerCase().endsWith('.json');
@@ -232,6 +247,7 @@ async function isSubjectDirectory(dirPath) {
     }
     if (entry.isFile()) {
       const ext = path.extname(entry.name).toLowerCase();
+      if (entry.name === catalogFileName) continue;
       if (ext === '.zip' || (ext === '.json' && entry.name !== 'manifest.json')) {
         return true;
       }
@@ -245,6 +261,89 @@ async function isSubjectDirectory(dirPath) {
     }
   }
   return false;
+}
+
+function labelFromId(id) {
+  const raw = String(id || '').trim();
+  if (knownClassNames[raw]) return knownClassNames[raw];
+  const classMatch = raw.match(/^(\d+)(st|nd|rd|th)$/i);
+  if (classMatch) return `Class ${classMatch[1]}`;
+  return raw
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, char => char.toUpperCase());
+}
+
+function sortByKnownOrder(a, b) {
+  const aIndex = knownClassOrder.indexOf(a.id);
+  const bIndex = knownClassOrder.indexOf(b.id);
+  if (aIndex !== -1 || bIndex !== -1) {
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+    return aIndex - bIndex;
+  }
+  return a.name.localeCompare(b.name);
+}
+
+async function buildPremadeCatalog() {
+  const classMap = new Map();
+
+  async function visit(dir) {
+    const manifestPath = path.join(dir, 'manifest.json');
+    if (await exists(manifestPath)) {
+      const relative = path.relative(premadeDir, dir).split(path.sep).filter(Boolean);
+      if (relative.length >= 2) {
+        const [classId, ...subjectParts] = relative;
+        const subjectId = subjectParts.join('/');
+        let decks = [];
+        try {
+          decks = JSON.parse(await fs.readFile(manifestPath, 'utf8'));
+        } catch (error) {
+          console.warn(`Skipping catalog entry for invalid manifest: ${path.relative(root, manifestPath)}`, error.message);
+        }
+        if (Array.isArray(decks)) {
+          const classEntry = classMap.get(classId) || {
+            id: classId,
+            name: labelFromId(classId),
+            subjects: []
+          };
+          classEntry.subjects.push({
+            id: subjectId,
+            name: labelFromId(subjectParts[subjectParts.length - 1] || subjectId),
+            deckCount: decks.length
+          });
+          classMap.set(classId, classEntry);
+        }
+      }
+    }
+
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.isDirectory() && !entry.name.startsWith('.') && entry.name !== 'media') {
+        await visit(path.join(dir, entry.name));
+      }
+    }
+  }
+
+  await visit(premadeDir);
+
+  const classes = Array.from(classMap.values())
+    .map(item => ({
+      ...item,
+      subjects: item.subjects
+        .filter(subject => subject.deckCount > 0)
+        .sort((a, b) => a.name.localeCompare(b.name))
+    }))
+    .filter(item => item.subjects.length)
+    .sort(sortByKnownOrder);
+
+  const catalog = {
+    version: 1,
+    generatedAt: new Date().toISOString(),
+    classes
+  };
+
+  await fs.writeFile(path.join(premadeDir, catalogFileName), JSON.stringify(catalog, null, 2), 'utf8');
+  console.log(`Saved ${catalogFileName} with ${classes.length} class groups.`);
 }
 
 async function walkDirectories(dir) {
@@ -270,6 +369,7 @@ async function main() {
   }
   console.log('Starting premade decks packaging to ZIP and manifest card counts update...');
   await walkDirectories(premadeDir);
+  await buildPremadeCatalog();
   console.log('ZIP packaging and manifests update complete.');
 }
 

@@ -2769,6 +2769,14 @@
     return [];
   }
 
+  async function listPremadeCatalog() {
+    try {
+      const response = await fetch('premade-cards/premade-catalog.json');
+      if (response.ok) return response.json();
+    } catch (_error) {}
+    return null;
+  }
+
 
   async function getDiagnostics() {
     const span = perf?.start('store.diagnostics.snapshot');
@@ -2846,6 +2854,7 @@
     deleteImage,
     saveFont,
     listPremadeSets,
+    listPremadeCatalog,
     getDiagnostics,
     exportBackup,
     createBackupSnapshot,

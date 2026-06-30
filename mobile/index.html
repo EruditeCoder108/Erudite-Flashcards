@@ -909,7 +909,7 @@ Back:
           </section>
           <section>
             <h4>Media, backgrounds, and occlusion</h4>
-            <p>Attach images/audio/video when the media is part of the memory. Background images are visual context for a side of a normal card. Image occlusion is different: add a diagram, place masks over labels or parts, and each mask becomes its own study card with an answer and optional hint.</p>
+            <p>Attach images/audio/video when the media is part of the memory. Background images are visual context for a side of a normal card. Image occlusion is different: add a diagram, place masks over labels or parts, and each mask becomes its own study card with an answer and optional hint. For AI-made occlusion decks, pixel boxes are safest: use the final cropped image size and one box per real label or part.</p>
             <div class="mini-example-list">
               <div class="mini-example-card">
                 <strong>Use media</strong>
@@ -999,10 +999,13 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
     {
       "type": "image-occlusion",
       "term": "Cell diagram",
-      "image": { "dataUrl": "data:image/png;base64,..." },
+      "image": { "dataUrl": "data:image/png;base64,...", "width": 1000, "height": 700 },
       "occlusion": {
+        "units": "px",
+        "imageWidth": 1000,
+        "imageHeight": 700,
         "masks": [
-          { "shape": "rect", "x": 0.12, "y": 0.2, "w": 0.25, "h": 0.1, "answer": "Nucleus" }
+          { "shape": "rect", "bboxPx": [120, 140, 250, 70], "answer": "Nucleus" }
         ]
       }
     },
@@ -1463,12 +1466,15 @@ Image occlusion card:
 {
   "type": "image-occlusion",
   "term": "Flower diagram",
-  "image": { "dataUrl": "data:image/png;base64,BASE64_IMAGE_DATA" },
+  "image": { "dataUrl": "data:image/png;base64,BASE64_IMAGE_DATA", "width": 1200, "height": 800 },
   "occlusion": {
     "mode": "hide-one",
+    "units": "px",
+    "imageWidth": 1200,
+    "imageHeight": 800,
     "masks": [
-      { "shape": "rect", "x": 0.40, "y": 0.20, "w": 0.18, "h": 0.09, "answer": "Stigma", "hint": "Top receptive part" },
-      { "shape": "ellipse", "x": 0.46, "y": 0.36, "w": 0.14, "h": 0.10, "answer": "Ovary" }
+      { "shape": "rect", "bboxPx": [480, 160, 216, 72], "answer": "Stigma", "hint": "Top receptive part" },
+      { "shape": "ellipse", "bboxPx": [552, 288, 168, 80], "answer": "Ovary" }
     ]
   },
   "tags": ["diagram", "flower"]
@@ -1477,13 +1483,17 @@ Image occlusion card:
 Image occlusion rules:
 - Direct JSON must use an image data URL.
 - ZIP deck.json may use "image": "media/file.webp".
-- Mask coordinates are normalized 0 to 1 relative to the image.
-- x and y are top-left position.
-- w and h are width and height.
+- Best AI-safe mask format: set occlusion.units to "px", include occlusion.imageWidth and occlusion.imageHeight, and use bboxPx: [left, top, width, height].
+- Pixel boxes must be measured on the final cropped image that Erudite will display, not the PDF page and not a screenshot with a different scale.
+- Normalized x/y/w/h values from 0 to 1 also work when you are certain they are relative to the final image.
+- If using normalized boxes, x and y are top-left position; w and h are width and height.
 - shape is rect or ellipse.
 - Every mask needs answer. hint is optional.
 - Each mask becomes a separate study card.
+- If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Erudite automatically turns each mask into its own study card.
 - Use image occlusion for labels, anatomy, maps, apparatus, graphs, and diagrams where hiding a part tests recall.
+- Do not add extra masks for arrows, decorative text, repeated labels, uncertain labels, captions, or parts you cannot name confidently.
+- For crowded diagrams, use about 3-12 high-value masks per image. Split into multiple cropped images only when one full image is too crowded or unreadable.
 
 Advanced HTML/CSS card:
 {
@@ -1533,8 +1543,11 @@ ZIP guide:
       "term": "Flower diagram",
       "image": "media/flower_diagram.webp",
       "occlusion": {
+        "units": "px",
+        "imageWidth": 1200,
+        "imageHeight": 800,
         "masks": [
-          { "shape": "rect", "x": 0.40, "y": 0.20, "w": 0.18, "h": 0.09, "answer": "Stigma" }
+          { "shape": "rect", "bboxPx": [480, 160, 216, 72], "answer": "Stigma" }
         ]
       }
     },
@@ -1557,6 +1570,7 @@ ZIP media rules:
 - Do not use external URLs.
 - Do not reference files outside media/.
 - Do not put Base64 media inside deck.json for ZIP output.
+- For image occlusion in ZIP mode, mask boxes should be measured on the exact media image referenced by deck.json.
 - Safe media extensions: .webp, .png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg, .mp4, .webm.
 - Prefer lowercase filenames with letters, numbers, hyphens, and underscores.
 - Example ZIP structure:
