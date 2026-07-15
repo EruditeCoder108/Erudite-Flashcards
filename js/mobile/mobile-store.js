@@ -37,6 +37,10 @@
   const ENCODING_UTF8 = 'utf8';
   const MAX_LOCAL_SET_MIRROR_BYTES = 384 * 1024;
   const MAX_IMPORT_CARD_COUNT = 200000;
+  const DEFAULT_PREMADE_CONTENT = Object.freeze({
+    baseUrl: '',
+    catalogPath: 'premade-catalog.json'
+  });
 
   const isNative = !!(capacitor && (capacitor.getPlatform() === 'android' || capacitor.getPlatform() === 'ios') && window.CapacitorSqliteHelper);
   const { SQLiteConnection, CapacitorSQLite } = window.CapacitorSqliteHelper || {};
@@ -59,6 +63,47 @@
 
   function jsonString(value) {
     return JSON.stringify(value ?? null);
+  }
+
+  function getPremadeContentConfig() {
+    const configured = window.ERUDITE_PREMADE_CONTENT || DEFAULT_PREMADE_CONTENT;
+    const baseUrl = String(configured.baseUrl || '').trim().replace(/\/+$/, '');
+    const catalogPath = String(configured.catalogPath || DEFAULT_PREMADE_CONTENT.catalogPath)
+      .trim()
+      .replace(/^\/+/, '');
+    const isConfigured = /^https:\/\/[^\s/]+/i.test(baseUrl);
+    return { baseUrl, catalogPath, isConfigured };
+  }
+
+  function contentPath(...segments) {
+    return segments
+      .map(segment => encodeURIComponent(String(segment || '').trim()))
+      .filter(Boolean)
+      .join('/');
+  }
+
+  function premadeContentUrl(relativePath) {
+    const { baseUrl, isConfigured } = getPremadeContentConfig();
+    if (!isConfigured || !relativePath) return '';
+    return `${baseUrl}/${relativePath}`;
+  }
+
+  function getPremadeCatalogUrl() {
+    const { catalogPath } = getPremadeContentConfig();
+    const safePath = catalogPath
+      .split('/')
+      .map(segment => encodeURIComponent(segment.trim()))
+      .filter(Boolean)
+      .join('/');
+    return premadeContentUrl(safePath);
+  }
+
+  function getPremadeManifestUrl(classId, subjectId) {
+    return premadeContentUrl(contentPath(classId, subjectId, 'manifest.json'));
+  }
+
+  function getPremadeDeckUrl(classId, subjectId, fileName) {
+    return premadeContentUrl(contentPath(classId, subjectId, fileName));
   }
 
   function readSetStatsCache() {
@@ -2762,16 +2807,20 @@
   }
 
   async function listPremadeSets(classId, subjectId) {
+    const manifestUrl = getPremadeManifestUrl(classId, subjectId);
+    if (!manifestUrl) return [];
     try {
-      const manifest = await fetch(`premade-cards/${classId}/${subjectId}/manifest.json`);
+      const manifest = await fetch(manifestUrl);
       if (manifest.ok) return manifest.json();
     } catch (_error) {}
     return [];
   }
 
   async function listPremadeCatalog() {
+    const catalogUrl = getPremadeCatalogUrl();
+    if (!catalogUrl) return null;
     try {
-      const response = await fetch('premade-cards/premade-catalog.json');
+      const response = await fetch(catalogUrl);
       if (response.ok) return response.json();
     } catch (_error) {}
     return null;
@@ -2855,6 +2904,8 @@
     saveFont,
     listPremadeSets,
     listPremadeCatalog,
+    getPremadeContentConfig,
+    getPremadeDeckUrl,
     getDiagnostics,
     exportBackup,
     createBackupSnapshot,

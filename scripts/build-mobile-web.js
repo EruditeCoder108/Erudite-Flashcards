@@ -26,6 +26,7 @@ const sharedCoreScripts = [
 const mobileBootstrapScripts = [
   '<script src="capacitor.js"></script>',
   '<script src="vendor/sql.js/sql-wasm.js"></script>',
+  '<script src="js/mobile/premade-content-config.js"></script>',
   '<script src="js/mobile/mobile-store.js"></script>'
 ].join('\n    ');
 
@@ -165,7 +166,6 @@ async function main() {
   await copyDir(path.join(root, 'js'), path.join(outDir, 'js'));
   await copyDir(path.join(root, 'mobile'), path.join(outDir, 'mobile'));
   await copyDir(path.join(root, 'assets'), path.join(outDir, 'assets'));
-  await copyDir(path.join(root, 'premade-cards'), path.join(outDir, 'premade-cards'));
   await copyVendor();
   
   // Bundle Capacitor SQLite plugin

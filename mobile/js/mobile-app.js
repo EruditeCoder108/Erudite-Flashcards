@@ -104,6 +104,8 @@
     selectMode: false,
     selectedDecks: new Set(),
     lastModalClosedAt: 0,
+    aiWizardStep: 1,
+    aiCopied: false,
     promptBuilder: {
       outputFormat: 'zip',
       preset: 'revision',
@@ -330,7 +332,35 @@
     pbWarningSwitchClaude: document.getElementById('pb-warning-switch-claude'),
     pbWarningContinueGemini: document.getElementById('pb-warning-continue-gemini'),
     pbWarningContinueHtmlOnly: document.getElementById('pb-warning-continue-html-only'),
-    pbGeminiNextStep: document.getElementById('pb-gemini-next-step')
+    pbGeminiNextStep: document.getElementById('pb-gemini-next-step'),
+
+    // Wizard wizard flow selectors
+    aiFlowOverlay: document.getElementById('ai-flow-overlay'),
+    aiFlowClose: document.getElementById('ai-flow-close'),
+    aiFlowPrev: document.getElementById('ai-flow-prev'),
+    aiFlowNext: document.getElementById('ai-flow-next'),
+    aiDetailLabel: document.getElementById('ai-detail-label'),
+    aiDetailSlider: document.getElementById('ai-detail-slider'),
+    aiExamTarget: document.getElementById('ai-exam-target'),
+    aiCustomExamWrapper: document.getElementById('ai-custom-exam-wrapper'),
+    aiCustomExam: document.getElementById('ai-custom-exam'),
+    aiAnswerStyle: document.getElementById('ai-answer-style'),
+    aiCardMix: document.getElementById('ai-card-mix'),
+    aiLanguage: document.getElementById('ai-language'),
+    aiCustomLanguageWrapper: document.getElementById('ai-custom-language-wrapper'),
+    aiCustomLanguage: document.getElementById('ai-custom-language'),
+    aiDeckName: document.getElementById('ai-deck-name'),
+    aiClassName: document.getElementById('ai-class-name'),
+    aiAvoidLazy: document.getElementById('ai-avoid-lazy'),
+    aiSummaryBadge: document.getElementById('ai-summary-badge'),
+    aiTogglePreview: document.getElementById('ai-toggle-preview'),
+    aiPreviewTextContainer: document.getElementById('ai-preview-text-container'),
+    aiPromptTextarea: document.getElementById('ai-prompt-textarea'),
+    aiProviderTip: document.getElementById('ai-provider-tip'),
+    aiCopyPromptBtn: document.getElementById('ai-copy-prompt-btn'),
+    aiCheckpointZipBtn: document.getElementById('ai-checkpoint-zip-btn'),
+    aiCheckpointTextBtn: document.getElementById('ai-checkpoint-text-btn'),
+    aiWizardSummaryList: document.getElementById('ai-wizard-summary-list')
   };
 
   function escapeHtml(value) {
@@ -5589,7 +5619,13 @@
   async function loadPremade() {
     await loadPremadeCatalog();
     ensurePremadeSelection();
-    selectors.premadeList.innerHTML = emptyPanel('fa-spinner', 'Loading premade decks', 'Checking bundled starter decks.');
+    const contentConfig = window.flashcardStore?.getPremadeContentConfig?.();
+    if (!contentConfig?.isConfigured) {
+      state.premadeSets = [];
+      selectors.premadeList.innerHTML = emptyPanel('fa-cloud-arrow-down', 'Online deck library is not configured', 'Connect the app to its premade-deck service before publishing this build.');
+      return;
+    }
+    selectors.premadeList.innerHTML = emptyPanel('fa-spinner', 'Loading premade decks', 'Checking the online deck library.');
     const sets = await window.flashcardStore.listPremadeSets(state.premadeClass, state.premadeSubject);
     state.premadeSets = Array.isArray(sets) ? sets : [];
     renderPremade();
@@ -5610,7 +5646,17 @@
     let imported;
     let targetSetId;
     try {
-      const response = await fetch(`premade-cards/${state.premadeClass}/${state.premadeSubject}/${zipFileName}`);
+      const deckUrl = window.flashcardStore?.getPremadeDeckUrl?.(
+        state.premadeClass,
+        state.premadeSubject,
+        zipFileName
+      );
+      if (!deckUrl) {
+        const error = new Error('Premade deck service is not configured');
+        error.userMessage = 'Premade downloads are not available in this build yet.';
+        throw error;
+      }
+      const response = await fetch(deckUrl);
       if (!response.ok) {
         throw new Error('Failed to fetch premade ZIP file');
       }
@@ -8288,6 +8334,167 @@ followed by the JSON containing "deck" and "media" array.`;
 
     // 12. Gemini media mode warning popups
     checkGeminiMediaWarning();
+
+    // 13. Update wizard rendering
+    renderAiFlowWizard();
+  }
+
+  function renderAiFlowWizard() {
+    const pb = state.promptBuilder;
+    if (!pb) return;
+
+    const step = state.aiWizardStep || 1;
+
+    // 1. Show correct step pane
+    for (let i = 1; i <= 4; i++) {
+      const pane = document.getElementById(`ai-step-pane-${i}`);
+      if (pane) {
+        pane.classList.toggle('active', i === step);
+      }
+      
+      const dot = document.querySelector(`.step-dot[data-step-dot="${i}"]`);
+      if (dot) {
+        dot.classList.toggle('active', i === step);
+        dot.classList.toggle('completed', i < step);
+      }
+    }
+
+    const lines = document.querySelectorAll('.ai-flow-steps-indicator .step-line');
+    lines.forEach((line, index) => {
+      line.classList.toggle('active', step > (index + 1));
+    });
+
+    // 2. Step 1 Preset selection
+    document.querySelectorAll('[data-ai-preset]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.aiPreset === pb.preset);
+    });
+
+    // 3. Step 2 Preferences
+    document.querySelectorAll('[data-ai-opt="mediaMode"]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.value === pb.mediaMode);
+    });
+
+    const sliderMap = { 'light': 1, 'standard': 2, 'detailed': 3, 'exhaustive': 4 };
+    if (selectors.aiDetailSlider) {
+      selectors.aiDetailSlider.value = sliderMap[pb.detailLevel] || 2;
+    }
+    if (selectors.aiDetailLabel) {
+      const labels = {
+        1: 'Light (~40-80 cards)',
+        2: 'Standard (~80-160 cards)',
+        3: 'Detailed (~160-300 cards)',
+        4: 'Exhaustive (~300-600 cards)'
+      };
+      selectors.aiDetailLabel.textContent = labels[selectors.aiDetailSlider?.value || 2];
+    }
+
+    document.querySelectorAll('[data-ai-provider]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.aiProvider === pb.aiProvider);
+    });
+
+    if (selectors.aiExamTarget) selectors.aiExamTarget.value = pb.examTarget;
+    if (selectors.aiAnswerStyle) selectors.aiAnswerStyle.value = pb.answerStyle;
+    if (selectors.aiCardMix) selectors.aiCardMix.value = pb.cardMix;
+    if (selectors.aiLanguage) selectors.aiLanguage.value = pb.language;
+    if (selectors.aiDeckName) selectors.aiDeckName.value = pb.deckName || '';
+    if (selectors.aiClassName) selectors.aiClassName.value = pb.className || '';
+    if (selectors.aiAvoidLazy) selectors.aiAvoidLazy.checked = pb.avoidLazyCards;
+
+    if (pb.examTarget === 'custom') {
+      selectors.aiCustomExamWrapper?.classList.remove('hidden');
+    } else {
+      selectors.aiCustomExamWrapper?.classList.add('hidden');
+    }
+    if (pb.language === 'custom') {
+      selectors.aiCustomLanguageWrapper?.classList.remove('hidden');
+    } else {
+      selectors.aiCustomLanguageWrapper?.classList.add('hidden');
+    }
+
+    // 4. Step 3 Create details & prompt
+    if (selectors.aiWizardSummaryList) {
+      const presetLabels = {
+        'revision': 'Quick Revision',
+        'beginner': 'Beginner Mode',
+        'competitive': 'Competitive Exam',
+        'mastery': 'Deep Mastery'
+      };
+      const providerLabels = {
+        'chatgpt': 'ChatGPT',
+        'claude': 'Claude',
+        'gemini': 'Gemini',
+        'other': 'Other AI'
+      };
+      const detailLabels = {
+        'light': 'Light (~40-80 cards)',
+        'standard': 'Standard (~80-160 cards)',
+        'detailed': 'Detailed (~160-300 cards)',
+        'exhaustive': 'Exhaustive (~300-600 cards)'
+      };
+      const mediaLabels = {
+        'none': 'Text Only',
+        'important': 'Important Images',
+        'full': 'Full Visuals (diagrams & images)'
+      };
+      selectors.aiWizardSummaryList.innerHTML = `
+        <li><strong>Study Preset:</strong> ${presetLabels[pb.preset] || 'Custom'}</li>
+        <li><strong>Provider:</strong> ${providerLabels[pb.aiProvider] || 'Other'}</li>
+        <li><strong>Preferences:</strong> ${detailLabels[pb.detailLevel]}, ${mediaLabels[pb.mediaMode]}</li>
+        ${pb.deckName ? `<li><strong>Deck Name:</strong> ${escapeHtml(pb.deckName)}</li>` : ''}
+        ${pb.className ? `<li><strong>Class Name:</strong> ${escapeHtml(pb.className)}</li>` : ''}
+        ${pb.examTarget !== 'school' ? `<li><strong>Exam Target:</strong> ${escapeHtml(pb.examTarget === 'custom' ? pb.customExamTarget : pb.examTarget)}</li>` : ''}
+        ${pb.language !== 'same' ? `<li><strong>Language:</strong> ${escapeHtml(pb.language === 'custom' ? pb.customLanguage : pb.language)}</li>` : ''}
+      `;
+    }
+
+    if (selectors.aiSummaryBadge) {
+      const presetLabels = {
+        'revision': 'Revision',
+        'beginner': 'Beginner',
+        'competitive': 'Competitive',
+        'mastery': 'Mastery'
+      };
+      selectors.aiSummaryBadge.textContent = 'Mode: ' + (presetLabels[pb.preset] || 'Custom');
+    }
+
+    const promptText = buildCustomAiPrompt(pb);
+    if (selectors.aiPromptTextarea) {
+      selectors.aiPromptTextarea.value = promptText;
+    }
+
+    if (selectors.aiProviderTip) {
+      const tips = {
+        'chatgpt': '<strong>ChatGPT:</strong> Recommended. Upload your PDF, paste the instructions, and ask ChatGPT to return the ZIP package.',
+        'claude': '<strong>Claude:</strong> Recommended. Paste instructions and upload your PDF. Claude is great at PDF reading. Ask it to output a ZIP or Package Source.',
+        'gemini': '<strong>Gemini:</strong> Good for PDF analysis, but ZIP output may fail. Gemini will output Erudite Package Source text; paste it into Step 4 to build the ZIP locally.',
+        'other': '<strong>Other AI:</strong> Paste instructions and upload source material. Confirm it outputs ZIP or package source structure.'
+      };
+      selectors.aiProviderTip.innerHTML = tips[pb.aiProvider] || '';
+    }
+
+    if (selectors.aiCopyPromptBtn) {
+      const providerNames = { 'chatgpt': 'ChatGPT', 'claude': 'Claude', 'gemini': 'Gemini', 'other': 'AI' };
+      const providerName = providerNames[pb.aiProvider] || 'AI';
+      if (state.aiCopied) {
+        selectors.aiCopyPromptBtn.innerHTML = `<i class="fas fa-check"></i> Copied! Open ${providerName}`;
+      } else {
+        selectors.aiCopyPromptBtn.innerHTML = `<i class="fas fa-wand-magic-sparkles"></i> Copy Instructions &amp; Open ${providerName}`;
+      }
+    }
+
+    // Footer buttons styling & visibility
+    if (selectors.aiFlowPrev) {
+      selectors.aiFlowPrev.style.visibility = step === 1 ? 'hidden' : 'visible';
+    }
+    if (selectors.aiFlowNext) {
+      if (step === 4) {
+        selectors.aiFlowNext.textContent = 'Done';
+      } else if (step === 3) {
+        selectors.aiFlowNext.textContent = 'Next (Checkpoint)';
+      } else {
+        selectors.aiFlowNext.textContent = 'Next';
+      }
+    }
   }
 
   function checkGeminiMediaWarning() {
@@ -8321,11 +8528,10 @@ followed by the JSON containing "deck" and "media" array.`;
 
   function openAiDeckMaker() {
     document.getElementById('paste-import-overlay')?.classList.add('hidden');
-    openImportHelpModal();
-    const aiTabBtn = document.querySelector('.modal-tab-btn[data-help-tab="ai"]');
-    if (aiTabBtn) {
-      aiTabBtn.click();
-    }
+    state.aiWizardStep = 1;
+    state.aiCopied = false;
+    selectors.aiFlowOverlay?.classList.remove('hidden');
+    updatePromptBuilderUI();
   }
 
   function showImportErrorModal(message) {
@@ -10309,16 +10515,173 @@ followed by the JSON containing "deck" and "media" array.`;
       }
     });
 
-    document.querySelectorAll('[data-pb-link]').forEach(btn => {
+    // Wizard Events Setup
+    document.querySelectorAll('[data-ai-preset]').forEach(btn => {
       btn.addEventListener('click', event => {
         event.preventDefault();
         playClick();
-        const provider = btn.dataset.pbLink;
-        let url = 'https://chatgpt.com';
-        if (provider === 'gemini') url = 'https://gemini.google.com';
-        if (provider === 'claude') url = 'https://claude.ai';
-        handleAiHandoff(url);
+        const preset = btn.dataset.aiPreset;
+        state.promptBuilder.dismissedGeminiWarning = false;
+        applyPresetOptions(preset);
+        updatePromptBuilderUI();
       });
+    });
+
+    document.querySelectorAll('[data-ai-opt]').forEach(btn => {
+      btn.addEventListener('click', event => {
+        event.preventDefault();
+        playClick();
+        const opt = btn.dataset.aiOpt;
+        const val = btn.dataset.value;
+        if (opt === 'mediaMode') {
+          state.promptBuilder.dismissedGeminiWarning = false;
+        }
+        state.promptBuilder[opt] = val;
+        updatePromptBuilderUI();
+      });
+    });
+
+    document.querySelectorAll('[data-ai-provider]').forEach(btn => {
+      btn.addEventListener('click', event => {
+        event.preventDefault();
+        playClick();
+        const oldProvider = state.promptBuilder.aiProvider;
+        const newProvider = btn.dataset.aiProvider;
+        if (oldProvider !== newProvider) {
+          state.promptBuilder.aiProvider = newProvider;
+          state.promptBuilder.dismissedGeminiWarning = false;
+          if (newProvider === 'gemini') {
+            state.promptBuilder.mediaMode = 'none';
+          }
+        }
+        updatePromptBuilderUI();
+      });
+    });
+
+    selectors.aiDetailSlider?.addEventListener('input', () => {
+      const val = Number(selectors.aiDetailSlider.value);
+      const detailMap = { 1: 'light', 2: 'standard', 3: 'detailed', 4: 'exhaustive' };
+      state.promptBuilder.detailLevel = detailMap[val] || 'standard';
+      updatePromptBuilderUI();
+    });
+
+    selectors.aiExamTarget?.addEventListener('change', event => {
+      state.promptBuilder.examTarget = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.aiCustomExam?.addEventListener('input', event => {
+      state.promptBuilder.customExamTarget = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.aiAnswerStyle?.addEventListener('change', event => {
+      state.promptBuilder.answerStyle = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.aiCardMix?.addEventListener('change', event => {
+      state.promptBuilder.cardMix = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.aiLanguage?.addEventListener('change', event => {
+      state.promptBuilder.language = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.aiCustomLanguage?.addEventListener('input', event => {
+      state.promptBuilder.customLanguage = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.aiDeckName?.addEventListener('input', event => {
+      state.promptBuilder.deckName = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.aiClassName?.addEventListener('input', event => {
+      state.promptBuilder.className = event.target.value;
+      updatePromptBuilderUI();
+    });
+
+    selectors.aiAvoidLazy?.addEventListener('change', event => {
+      state.promptBuilder.avoidLazyCards = event.target.checked;
+      updatePromptBuilderUI();
+    });
+
+    selectors.aiTogglePreview?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      const container = selectors.aiPreviewTextContainer;
+      if (container) {
+        const isHidden = container.classList.contains('hidden');
+        container.classList.toggle('hidden', !isHidden);
+        selectors.aiTogglePreview.textContent = isHidden ? 'Hide Prompt Text' : 'Show Prompt Text';
+      }
+    });
+
+    selectors.aiCopyPromptBtn?.addEventListener('click', async event => {
+      event.preventDefault();
+      playClick();
+      const promptText = buildCustomAiPrompt(state.promptBuilder);
+      const ok = await copyPlainText(promptText);
+      if (ok) {
+        showToast('AI instructions copied!');
+        state.aiCopied = true;
+        updatePromptBuilderUI();
+        
+        let url = 'https://chatgpt.com';
+        if (state.promptBuilder.aiProvider === 'gemini') url = 'https://gemini.google.com';
+        if (state.promptBuilder.aiProvider === 'claude') url = 'https://claude.ai';
+        handleAiHandoff(url);
+      } else {
+        showToast('Could not copy instructions');
+      }
+    });
+
+    selectors.aiFlowPrev?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      if (state.aiWizardStep > 1) {
+        state.aiWizardStep--;
+        updatePromptBuilderUI();
+      }
+    });
+
+    selectors.aiFlowNext?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      if (state.aiWizardStep < 4) {
+        state.aiWizardStep++;
+        updatePromptBuilderUI();
+      } else {
+        selectors.aiFlowOverlay?.classList.add('hidden');
+        state.lastModalClosedAt = Date.now();
+      }
+    });
+
+    selectors.aiFlowClose?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      selectors.aiFlowOverlay?.classList.add('hidden');
+      state.lastModalClosedAt = Date.now();
+    });
+
+    selectors.aiCheckpointZipBtn?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      selectors.aiFlowOverlay?.classList.add('hidden');
+      state.lastModalClosedAt = Date.now();
+      selectors.txtInput?.click();
+    });
+
+    selectors.aiCheckpointTextBtn?.addEventListener('click', event => {
+      event.preventDefault();
+      playClick();
+      selectors.aiFlowOverlay?.classList.add('hidden');
+      state.lastModalClosedAt = Date.now();
+      selectors.pbConvertOverlay?.classList.remove('hidden');
     });
 
     selectors.pbRetryBtn?.addEventListener('click', async event => {
@@ -10587,6 +10950,12 @@ Every media/... reference in deck.json must exist inside media/.`;
     };
 
     const handleAppResume = async () => {
+      if (state.aiCopied && state.aiWizardStep === 3 && selectors.aiFlowOverlay && !selectors.aiFlowOverlay.classList.contains('hidden')) {
+        state.aiWizardStep = 4;
+        state.aiCopied = false;
+        updatePromptBuilderUI();
+      }
+
       if (state.activeTab === 'create') {
         perf?.mark('app.lifecycle.resume_skipped', { reason: 'creator_active' });
         return;
@@ -10687,6 +11056,10 @@ Every media/... reference in deck.json must exist inside media/.`;
       if (state.activeTab) {
         updateTabIndicator(state.activeTab);
       }
+    });
+
+    window.addEventListener('focus', () => {
+      handleAppResume().catch(() => {});
     });
   }
 

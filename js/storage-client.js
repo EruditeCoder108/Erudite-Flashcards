@@ -827,6 +827,22 @@
     return [];
   }
 
+  async function listPremadeCatalog() {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.listPremadeCatalog) return nativeApi.listPremadeCatalog();
+    return null;
+  }
+
+  function getPremadeContentConfig() {
+    const nativeApi = getNativeApi();
+    return nativeApi?.getPremadeContentConfig?.() || { isConfigured: false };
+  }
+
+  function getPremadeDeckUrl(classId, subjectId, fileName) {
+    const nativeApi = getNativeApi();
+    return nativeApi?.getPremadeDeckUrl?.(classId, subjectId, fileName) || '';
+  }
+
 
   async function getDiagnostics() {
     const nativeApi = getNativeApi();
@@ -987,6 +1003,9 @@
     deleteImage,
     saveFontFromFile,
     listPremadeSets,
+    listPremadeCatalog,
+    getPremadeContentConfig,
+    getPremadeDeckUrl,
     getDiagnostics,
     exportBackup,
     importBackup,

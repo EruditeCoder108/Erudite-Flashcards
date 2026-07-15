@@ -135,6 +135,9 @@ Copy the compiled web assets and plugin configurations into the native Android G
 npm.cmd run cap:sync
 ```
 
+### Premade decks for mobile
+Premade ZIP decks are served on demand from Netlify instead of being packaged inside the Android app. Follow the [Netlify premade-deck guide](docs/netlify-premade-decks.md) before building a release.
+
 To open Android Studio with the native Capacitor workspace:
 ```powershell
 npm.cmd run cap:open
