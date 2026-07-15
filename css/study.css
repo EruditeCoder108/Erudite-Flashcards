@@ -608,8 +608,11 @@ html::-webkit-scrollbar {
     width: 100%;
     display: block;
     padding: 0 1rem;
-    font-family: var(--font-family);
-    line-height: 1.6;
+    font-family: var(--card-text-font-family, var(--font-family));
+    font-weight: var(--card-text-weight, 500);
+    line-height: var(--card-text-line-height, 1.4);
+    letter-spacing: var(--card-text-letter-spacing, 0);
+    text-align: var(--card-text-align, center);
     flex: 1;
     height: auto;
     min-height: 0;
@@ -622,11 +625,19 @@ html::-webkit-scrollbar {
 
 
 /* Content sizing tiers — set by JS based on text length */
+.term-text.micro-content,
+.definition-text.micro-content {
+    font-size: clamp(2.25rem, 5.8vw, 3.6rem);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .term-text.small-content,
 .definition-text.small-content {
-    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
     padding: 0 1.5rem;
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -634,7 +645,7 @@ html::-webkit-scrollbar {
 
 .term-text.medium-content,
 .definition-text.medium-content {
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 2.3vw, 1.5rem);
     padding: 0.5rem 1.5rem;
     display: flex;
     align-items: center;
@@ -643,9 +654,8 @@ html::-webkit-scrollbar {
 
 .term-text.large-content,
 .definition-text.large-content {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 1.9vw, 1.25rem);
     padding: 0.5rem 1.5rem;
-    text-align: left;
     overflow: visible;
     align-items: flex-start;
     justify-content: flex-start;
@@ -1292,13 +1302,14 @@ html::-webkit-scrollbar {
 .card-content.no-image.content-small .term-text,
 .card-content.no-image.content-small .definition-text,
 .card-content.no-image.content-medium .term-text,
-.card-content.no-image.content-medium .definition-text {
-    flex: 1 1 auto;
+.card-content.no-image.content-medium .definition-text,
+.card-content.no-image.content-micro .term-text,
+.card-content.no-image.content-micro .definition-text {
+    flex: 1 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    text-align: center;
+    overflow: visible;
 }
 
 .card-content.no-image.content-large .term-text,
@@ -1325,18 +1336,7 @@ html::-webkit-scrollbar {
     padding: 0.25rem clamp(0.75rem, 2vw, 1.45rem);
 }
 
-.card-content.with-image .term-text.small-content,
-.card-content.with-image .definition-text.small-content,
-.card-content.with-image .term-text.medium-content,
-.card-content.with-image .definition-text.medium-content {
-    text-align: center;
-}
-
-.card-content.with-image .term-text.large-content,
-.card-content.with-image .definition-text.large-content {
-    text-align: left;
-}
-
+.card-content.with-image.content-micro .image-container,
 .card-content.with-image.content-small .image-container,
 .card-content.with-image.content-medium .image-container {
     margin-top: auto;
@@ -1410,6 +1410,10 @@ html::-webkit-scrollbar {
 
     .card-face {
         padding: 0.75rem 1rem 1.25rem;
+    }
+
+    .term-text.micro-content, .definition-text.micro-content {
+        font-size: 1.85rem;
     }
 
     .term-text.small-content, .definition-text.small-content {

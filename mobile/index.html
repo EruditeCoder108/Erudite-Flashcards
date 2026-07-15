@@ -1692,6 +1692,63 @@ If you cannot attach a ZIP file:
             <input type="number" id="mobile-deck-review-limit" class="mobile-modal-input" min="0" step="1" placeholder="Unlimited">
           </label>
         </div>
+
+        <section class="mobile-deck-typography-section" aria-labelledby="mobile-deck-typography-title">
+          <h4 id="mobile-deck-typography-title">Card Typography</h4>
+          <label class="mobile-deck-typography-toggle">
+            <input type="checkbox" id="mobile-deck-typography-enabled">
+            <span>Use custom typography for this deck</span>
+          </label>
+          <p>When disabled, this deck uses the global Card Typography settings. Text size stays automatic.</p>
+          <div class="mobile-deck-typography-fields" id="mobile-deck-typography-fields" hidden>
+            <label class="mobile-field">
+              <span>Text Alignment</span>
+              <select id="mobile-deck-text-align" class="mobile-modal-input">
+                <option value="left">Left</option>
+                <option value="center">Center</option>
+                <option value="right">Right</option>
+              </select>
+            </label>
+            <label class="mobile-field">
+              <span>Font Family</span>
+              <select id="mobile-deck-text-font" class="mobile-modal-input">
+                <option value="sans-serif">Sans-Serif (Default)</option>
+                <option value="serif">Serif</option>
+                <option value="monospace">Monospace</option>
+                <option value="system">System Default</option>
+              </select>
+            </label>
+            <label class="mobile-field">
+              <span>Font Weight</span>
+              <select id="mobile-deck-text-weight" class="mobile-modal-input">
+                <option value="300">Light (300)</option>
+                <option value="400">Regular (400)</option>
+                <option value="500">Medium (500)</option>
+                <option value="600">Semibold (600)</option>
+                <option value="700">Bold (700)</option>
+              </select>
+            </label>
+            <label class="mobile-field">
+              <span>Line Height</span>
+              <select id="mobile-deck-text-line-height" class="mobile-modal-input">
+                <option value="1.2">Compact (1.2)</option>
+                <option value="1.4">Normal (1.4)</option>
+                <option value="1.6">Relaxed (1.6)</option>
+                <option value="1.8">Loose (1.8)</option>
+              </select>
+            </label>
+            <label class="mobile-field">
+              <span>Letter Spacing</span>
+              <select id="mobile-deck-text-letter-spacing" class="mobile-modal-input">
+                <option value="-0.5px">Tight (-0.5px)</option>
+                <option value="0">Normal (0px)</option>
+                <option value="0.5px">Wide (0.5px)</option>
+                <option value="1px">Extra Wide (1px)</option>
+                <option value="1.5px">Loose (1.5px)</option>
+              </select>
+            </label>
+          </div>
+        </section>
       </div>
       
       <div class="mobile-modal-actions">
@@ -1706,7 +1763,7 @@ If you cannot attach a ZIP file:
   <div class="mobile-modal-overlay hidden" id="mobile-typography-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-typography-title">
     <div class="mobile-modal-card">
       <h3 id="mobile-typography-title" class="modal-title"><i class="fas fa-font"></i> Card Typography</h3>
-      <p class="mobile-modal-hint">Customize font layout, weight, and size for flashcard text.</p>
+      <p class="mobile-modal-hint">Customize alignment, font family, weight, line height, and letter spacing for flashcard text.</p>
       
       <div class="mobile-modal-scroll-content" style="max-height: 55dvh; overflow-y: auto;">
         <div class="mobile-modal-field" style="margin-bottom: 0.75rem;">

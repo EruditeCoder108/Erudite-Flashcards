@@ -7640,6 +7640,16 @@
 
   function buildCustomAiPrompt(options = {}) {
     const blocks = [];
+    const sourceAuthorityText = `Source authority:
+* Treat the supplied material as the primary factual authority. Do not supplement it with memory, web searches, coaching material, another edition, or general knowledge unless the student explicitly asks for external supplementation.
+* Preserve source-specific terminology, spellings, names, dates, values, units, formulae, examples, classifications, reactions, conditions, and diagram labels.
+* If information is unreadable, ambiguous, or unsupported, skip it rather than guessing. Include an exercise answer only when it is explicitly provided or follows unambiguously from the supplied source.`;
+
+    const sourceProcessingText = `Coverage and source processing:
+* Inspect main text, definitions, examples, exceptions, captions, tables, diagrams, graphs, summaries, in-text questions, exercises, side boxes, activities, experiments, and worked examples when present. Do not assume these sections merely repeat the main text.
+* Extract supported testable facts only. Do not make generic chapter-title, unit-number, learning-objective, or broad chapter-overview cards.
+* For tables, graphs, and processes, test important rows, values, axes, trends, conditions, stages, sequences, causes, and consequences. Do not rely on a screenshot or a summary card alone when atomic recall is needed.
+* Use visual cards only for examinable labels, relationships, values, processes, classifications, or spatial information. Exclude decorative or repeated artwork and crop useful visuals tightly.`;
 
     // 1. Learning Brief based on preset
     let brief = '';
@@ -7656,15 +7666,15 @@
     // 2. Exam Target Modifier
     let targetText = '';
     if (options.examTarget === 'school') {
-      targetText = 'Align the deck closely to the textbook and school-exam expectations. Give special weight to definitions, explanations in textbook wording where needed, examples given in the chapter, labelled diagrams, tables, formulas, and likely written-answer points. Do not over-optimise for obscure edge cases.';
+      targetText = 'Align the deck closely to textbook and school-exam expectations. Give special weight to definitions, core concepts, examples, comparisons, cause-and-effect, processes, labelled diagrams, tables, formulae, units, activities, and likely written-answer points. Do not over-optimise for obscure edge cases.';
     } else if (options.examTarget === 'neet') {
-      targetText = 'Optimise for NEET-style recall. Preserve NCERT line-level facts where they are testable. Prioritise terminology, examples, exceptions, processes, labelled biology diagrams, table comparisons, and frequently confused points. Do not add unsupported outside facts unless clearly marked as enrichment.';
+      targetText = 'Optimise for NEET-style recall. Preserve testable NCERT line-level facts. Prioritise terminology, examples, exceptions, processes, labelled diagrams, table comparisons, values, classifications, organism-feature links, and frequently confused statement-based traps. Do not add outside facts.';
     } else if (options.examTarget === 'jee') {
-      targetText = 'Optimise for JEE-style preparation. Focus on concepts, formula relations, conditions, reasoning triggers, applications, graphs, and problem-solving patterns. Keep cards crisp. Avoid unnecessary textbook prose. Use visual cards for mechanisms, graphs, trends, and function relationships only when they materially improve recall.';
+      targetText = 'Optimise for JEE-style preparation. Focus on concepts, formula selection and relations, variables, units, dimensions, assumptions, conditions, sign conventions, limiting cases, graphs, trends, reactions, mechanisms, standard results, and traps. Keep cards crisp and avoid unnecessary textbook prose.';
     } else if (options.examTarget === 'ssc') {
       targetText = 'Optimise for SSC-style revision. Prioritise direct recall, definitions, classifications, lists, chronology, dates, tables, one-line distinctions, and high-confusion factual pairs. Keep answers extremely compact. Prefer speed and exam utility over explanatory detail.';
     } else if (options.examTarget === 'upsc') {
-      targetText = 'Optimise for UPSC-style preparation. Preserve core definitions, concepts, examples, institutional terms where relevant, and interconnections that support both prelims-style recall and mains-style conceptual framing. Keep answers compact but analytically meaningful.';
+      targetText = 'Optimise for UPSC-style preparation. Preserve dates, chronology, people, places, institutions, terminology, classifications, causes, consequences, maps, examples, and statement-based traps. Keep answers compact but retain the conceptual framing needed for prelims-style recall and mains-oriented understanding.';
     } else if (options.examTarget === 'custom') {
       const customVal = options.customExamTarget || 'a custom target';
       targetText = `Optimise the deck for this target: ${customVal}. Adjust card style, detail, examples, and emphasis to match that goal.`;
@@ -7685,11 +7695,13 @@
     const detailOrder = { light: 1, standard: 2, detailed: 3, exhaustive: 4 };
     const sliderVal = detailOrder[options.detailLevel] || 2;
     if (sliderVal <= 1) {
-      sliderFocusText = 'Strictly focus on high-yield, frequently-tested concepts only. Prefer fewer cards.';
+      sliderFocusText = 'Coverage: Essential. Include only high-yield, frequently tested concepts and facts. Make a compact revision deck, but do not add filler merely to reach a count.';
     } else if (sliderVal >= 4) {
-      sliderFocusText = 'Ensure comprehensive, detailed coverage of all textbook points. Prefer a larger number of complete cards.';
+      sliderFocusText = 'Coverage: Exhaustive source-locked. Retain every supported testable source detail, including examples, exceptions, captions, tables, diagrams, summaries, in-text questions, and exercises. Exhaustive does not mean turning every sentence into a card or repeating facts.';
     } else if (sliderVal >= 3) {
-      sliderFocusText = 'Use detailed coverage. Include important examples, exceptions, comparisons, diagrams, and common confusion points without making long note cards.';
+      sliderFocusText = 'Coverage: Detailed. Include core facts plus important examples, exceptions, comparisons, diagrams, tables, processes, and common confusion points without turning cards into long notes.';
+    } else {
+      sliderFocusText = 'Coverage: Balanced. Include complete examinable coverage while removing narrative filler, repetition, generic introductions, and low-value wording variations.';
     }
 
     // 5. Language modifier
@@ -7759,9 +7771,13 @@
       '* Make flashcards for studying, not for showing off formatting.',
       '* Each card should test one clear memory point.',
       '* Avoid vague questions.',
-      '* Avoid duplicate cards.',
+      '* Deck economy: create the smallest deck that gives complete, reliable recall for the selected coverage level.',
+      '* Do not inflate card count. Add a card only when it tests a distinct, useful memory point, a necessary comparison, a meaningful recall direction, or an important visual relationship.',
+      '* Do not create a card merely because a sentence exists in the source. Exclude vague, generic, trivial, low-value, or overly obvious cards unless they are genuinely exam-relevant.',
+      '* Do not repeat the same fact through superficial wording changes. Merge closely related details that are recalled together; split them only when combining them would make recall ambiguous or overload the answer.',
       '* Avoid full textbook paragraph copying.',
-      '* Prefer compact answers over long notes.',
+      '* Compact wording: use the fewest clear words. Prefer short phrases, labels, values, formulas, arrows, and compact lists over full grammatical sentences.',
+      '* Keep enough context for every prompt and answer to remain understandable and unambiguous. Never compress wording until it becomes cryptic or hard to recognise during review.',
       '* Preserve exact textbook facts, dates, names, formulas, examples, and terminology.',
       '* Do not invent unsupported facts.',
       '* If something is not in the source, do not present it as source content.',
@@ -7787,6 +7803,8 @@
     // Step 1: Learning Goal (Brief + Targets + Studied + Language + Slider)
     const learningGoalParts = [brief, targetText, studiedText, sliderFocusText, langText].filter(Boolean);
     blocks.push(learningGoalParts.join('\n\n'));
+    blocks.push(sourceAuthorityText);
+    blocks.push(sourceProcessingText);
 
     // Step 2: Answer style and deck quality rules
     if (answerStyleText) {
@@ -8049,7 +8067,11 @@ Package rules:
 * All image occlusion masks use either bboxPx with imageWidth/imageHeight or normalized x, y, w, h values between 0 and 1.
 * Every image occlusion mask has an answer.
 * Advanced HTML contains no JavaScript, scripts, iframes, forms, or external URLs.
-* The deck has 999 cards or fewer.`);
+* Summaries, exercises, in-text material, and important visuals were inspected when present.
+* No unsupported facts, generic overview cards, vague prompts, or unnecessary duplicates remain.
+* Prompts and answers are compact but still clear and recognisable.
+* The deck matches the selected examination target and coverage level.
+* The generated study-card count, including reverse directions and image-occlusion masks, is 999 or fewer.`);
     }
 
     // Step 7: Provider-specific final output instruction (AT THE END)
@@ -9101,6 +9123,17 @@ followed by the JSON containing "deck" and "media" array.`;
 
     deckSettingsStudyOrder = set.normalStudyOrder || '';
     deckSettingsSrsEnabled = srs.enabled !== false;
+    const globalTypography = state.settings?.cardStyle || {
+      align: 'center',
+      font: 'sans-serif',
+      weight: '500',
+      lineHeight: '1.4',
+      letterSpacing: '0'
+    };
+    const deckTypography = {
+      ...globalTypography,
+      ...(set.deckTypography || {})
+    };
 
     // Populate fields
     updateDeckStudyOrderUi();
@@ -9125,6 +9158,20 @@ followed by the JSON containing "deck" and "media" array.`;
     if (reviewLimitInput) {
       reviewLimitInput.value = srs.reviewsPerDay ?? '';
     }
+
+    const typographyEnabled = document.getElementById('mobile-deck-typography-enabled');
+    const textAlign = document.getElementById('mobile-deck-text-align');
+    const textFont = document.getElementById('mobile-deck-text-font');
+    const textWeight = document.getElementById('mobile-deck-text-weight');
+    const textLineHeight = document.getElementById('mobile-deck-text-line-height');
+    const textLetterSpacing = document.getElementById('mobile-deck-text-letter-spacing');
+    if (typographyEnabled) typographyEnabled.checked = deckTypography.enabled === true;
+    if (textAlign) textAlign.value = deckTypography.align || 'center';
+    if (textFont) textFont.value = deckTypography.font || 'sans-serif';
+    if (textWeight) textWeight.value = deckTypography.weight || '500';
+    if (textLineHeight) textLineHeight.value = deckTypography.lineHeight || '1.4';
+    if (textLetterSpacing) textLetterSpacing.value = deckTypography.letterSpacing || '0';
+    updateDeckTypographyUi();
 
     const overlay = document.getElementById('mobile-deck-settings-overlay');
     if (overlay) {
@@ -9155,6 +9202,12 @@ followed by the JSON containing "deck" and "media" array.`;
     if (srsFields) {
       srsFields.style.display = deckSettingsSrsEnabled ? 'flex' : 'none';
     }
+  }
+
+  function updateDeckTypographyUi() {
+    const enabled = document.getElementById('mobile-deck-typography-enabled')?.checked === true;
+    const fields = document.getElementById('mobile-deck-typography-fields');
+    if (fields) fields.hidden = !enabled;
   }
 
   function closeDeckSettingsModal() {
@@ -9210,6 +9263,12 @@ followed by the JSON containing "deck" and "media" array.`;
     const maxIntervalInput = document.getElementById('mobile-deck-max-interval');
     const newLimitInput = document.getElementById('mobile-deck-new-limit');
     const reviewLimitInput = document.getElementById('mobile-deck-review-limit');
+    const typographyEnabled = document.getElementById('mobile-deck-typography-enabled');
+    const textAlign = document.getElementById('mobile-deck-text-align');
+    const textFont = document.getElementById('mobile-deck-text-font');
+    const textWeight = document.getElementById('mobile-deck-text-weight');
+    const textLineHeight = document.getElementById('mobile-deck-text-line-height');
+    const textLetterSpacing = document.getElementById('mobile-deck-text-letter-spacing');
 
     const srsSettings = schema?.normalizeSrsSettings ? schema.normalizeSrsSettings({
       enabled: deckSettingsSrsEnabled,
@@ -9226,6 +9285,14 @@ followed by the JSON containing "deck" and "media" array.`;
       ...set,
       srsSettings,
       normalStudyOrder: deckSettingsStudyOrder || null,
+      deckTypography: {
+        enabled: typographyEnabled?.checked === true,
+        align: textAlign?.value || 'center',
+        font: textFont?.value || 'sans-serif',
+        weight: textWeight?.value || '500',
+        lineHeight: textLineHeight?.value || '1.4',
+        letterSpacing: textLetterSpacing?.value || '0'
+      },
       lastModified: Date.now()
     };
 
@@ -9353,6 +9420,8 @@ followed by the JSON containing "deck" and "media" array.`;
         '.advanced-html-textarea'
       ].join(',')));
     };
+
+    document.getElementById('mobile-deck-typography-enabled')?.addEventListener('change', updateDeckTypographyUi);
 
     document.addEventListener('contextmenu', event => {
       if (isNativeEditableTarget(event.target)) return;

@@ -72,6 +72,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const deckNewLimit = document.getElementById('deck-new-limit');
     const deckReviewLimit = document.getElementById('deck-review-limit');
     const deckNormalStudyOrderSelect = document.getElementById('deck-normal-study-order');
+    const deckTypographyEnabled = document.getElementById('deck-typography-enabled');
+    const deckTypographyFields = document.getElementById('deck-typography-fields');
+    const deckTextAlignSelect = document.getElementById('deck-text-align-select');
+    const deckTextFontSelect = document.getElementById('deck-text-font-select');
+    const deckTextWeightSelect = document.getElementById('deck-text-weight-select');
+    const deckTextLineHeightSelect = document.getElementById('deck-text-line-height-select');
+    const deckTextLetterSpacingSelect = document.getElementById('deck-text-letter-spacing-select');
     const cancelDeckSettingsBtn = document.getElementById('cancel-deck-settings');
     const saveDeckSettingsBtn = document.getElementById('save-deck-settings');
     const classModal = document.getElementById('class-modal');
@@ -1444,8 +1451,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         setForDeckSettings = set;
         const settings = normalizeSrsSettings(set.srsSettings);
+        const savedSettings = (() => {
+            try {
+                return JSON.parse(localStorage.getItem('flashcards-settings') || '{}');
+            } catch (_error) {
+                return {};
+            }
+        })();
+        const globalTypography = normalizeAppSettings(savedSettings).cardStyle || {};
+        const deckTypography = {
+            ...globalTypography,
+            ...(set.deckTypography || {})
+        };
         if (deckSettingsName) {
-            deckSettingsName.textContent = `${set.name}: deck-specific SRS tuning and daily limits.`;
+            deckSettingsName.textContent = `${set.name}: deck-specific SRS, study order, and typography.`;
         }
         if (deckSrsEnabled) deckSrsEnabled.checked = settings.enabled;
         if (deckRequestRetention) deckRequestRetention.value = settings.requestRetention;
@@ -1453,10 +1472,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (deckNewLimit) deckNewLimit.value = settings.newCardsPerDay ?? '';
         if (deckReviewLimit) deckReviewLimit.value = settings.reviewsPerDay ?? '';
         if (deckNormalStudyOrderSelect) deckNormalStudyOrderSelect.value = set.normalStudyOrder || '';
+        if (deckTypographyEnabled) deckTypographyEnabled.checked = deckTypography.enabled === true;
+        if (deckTextAlignSelect) deckTextAlignSelect.value = deckTypography.align || 'center';
+        if (deckTextFontSelect) deckTextFontSelect.value = deckTypography.font || 'sans-serif';
+        if (deckTextWeightSelect) deckTextWeightSelect.value = deckTypography.weight || '500';
+        if (deckTextLineHeightSelect) deckTextLineHeightSelect.value = deckTypography.lineHeight || '1.4';
+        if (deckTextLetterSpacingSelect) deckTextLetterSpacingSelect.value = deckTypography.letterSpacing || '0';
+        updateDeckTypographyFields();
 
         deckSettingsModal.classList.remove('hidden');
         deckSettingsModal.classList.add('visible');
     }
+
+    function updateDeckTypographyFields() {
+        if (deckTypographyFields) {
+            deckTypographyFields.hidden = deckTypographyEnabled?.checked !== true;
+        }
+    }
+
+    deckTypographyEnabled?.addEventListener('change', updateDeckTypographyFields);
 
     function hideDeckSettingsModal() {
         if (!deckSettingsModal) return;
@@ -1480,6 +1514,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             ...setForDeckSettings,
             srsSettings: settings,
             normalStudyOrder: deckNormalStudyOrderSelect?.value || null,
+            deckTypography: {
+                enabled: deckTypographyEnabled?.checked === true,
+                align: deckTextAlignSelect?.value || 'center',
+                font: deckTextFontSelect?.value || 'sans-serif',
+                weight: deckTextWeightSelect?.value || '500',
+                lineHeight: deckTextLineHeightSelect?.value || '1.4',
+                letterSpacing: deckTextLetterSpacingSelect?.value || '0'
+            },
             lastModified: Date.now()
         };
 

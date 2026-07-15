@@ -836,6 +836,34 @@
     SystemBars.show?.().catch(() => {});
   }
 
+  function applyStudyTypography(settings = {}, set = null) {
+    const defaultStyle = {
+      align: 'center',
+      weight: '500',
+      font: 'sans-serif',
+      lineHeight: '1.4',
+      letterSpacing: '0'
+    };
+    const globalStyle = { ...defaultStyle, ...(settings.cardStyle || {}) };
+    const deckTypography = set?.deckTypography;
+    const effectiveStyle = deckTypography?.enabled === true
+      ? { ...globalStyle, ...deckTypography }
+      : globalStyle;
+    const fontFamilyByValue = {
+      'sans-serif': 'Inter, sans-serif',
+      serif: 'Georgia, serif',
+      monospace: 'Courier New, monospace',
+      system: 'system-ui, sans-serif'
+    };
+    const root = document.documentElement;
+
+    root.style.setProperty('--card-text-align', effectiveStyle.align);
+    root.style.setProperty('--card-text-weight', effectiveStyle.weight);
+    root.style.setProperty('--card-text-font-family', fontFamilyByValue[effectiveStyle.font] || fontFamilyByValue['sans-serif']);
+    root.style.setProperty('--card-text-line-height', effectiveStyle.lineHeight);
+    root.style.setProperty('--card-text-letter-spacing', effectiveStyle.letterSpacing);
+  }
+
   async function waitForStore() {
     const promises = [
       window.eruditeMobileReady,
@@ -873,22 +901,6 @@
       state.studyOrder = normalizeStudyOrder(settings?.normalStudyOrder);
     }
     state.settings = settings || {};
-    // Apply card styles on launch
-    if (state.settings.cardStyle) {
-      const cs = state.settings.cardStyle;
-      let fontFamily = 'inherit';
-      if (cs.font === 'sans-serif') fontFamily = "Inter, sans-serif";
-      else if (cs.font === 'serif') fontFamily = "Georgia, serif";
-      else if (cs.font === 'monospace') fontFamily = "Courier New, monospace";
-      else if (cs.font === 'system') fontFamily = "system-ui, sans-serif";
-
-      const root = document.documentElement;
-      root.style.setProperty('--card-text-align', cs.align);
-      root.style.setProperty('--card-text-weight', cs.weight);
-      root.style.setProperty('--card-text-font-family', fontFamily);
-      root.style.setProperty('--card-text-line-height', cs.lineHeight);
-      root.style.setProperty('--card-text-letter-spacing', cs.letterSpacing);
-    }
     const theme = state.settings?.theme || 'dark';
     localStorage.setItem('erudite-theme', theme);
     document.body.classList.toggle('theme-light', theme === 'light');
@@ -906,6 +918,7 @@
       openedCount: (found.openedCount || 0) + 1,
       lastOpened: Date.now()
     };
+    applyStudyTypography(state.settings, state.set);
 
     await loadProgress();
     prepareActiveCards();
@@ -1717,6 +1730,36 @@
     });
   }
 
+  function applyAdaptiveTextSizing(element, options = {}) {
+    if (!element) return;
+    element.classList.remove('micro-content', 'small-content', 'medium-content', 'large-content');
+    if (options.preserveAdvancedHtml) return;
+
+    const plainText = element.textContent.replace(/\s+/g, ' ').trim();
+    const contentLength = plainText.length;
+    const wordCount = plainText ? plainText.split(' ').length : 0;
+    const face = element.closest('.card-face');
+    const hasLists = element.querySelector('ul, ol') !== null;
+    const hasParagraphs = element.querySelector('p') !== null;
+    const hasLineBreaks = element.querySelector('br') !== null;
+    const hasStructuredContent = element.querySelector('table, pre, code, .katex, .katex-display, math') !== null;
+    const hasInlineMedia = element.querySelector('img, video, audio, iframe') !== null;
+    const hasCardMedia = Boolean(
+      face?.querySelector('.card-image-wrap:not(.hidden) img[src], .card-media-list > *')
+      || hasInlineMedia
+    );
+
+    if (hasLists || hasParagraphs || hasLineBreaks || hasStructuredContent || hasCardMedia || contentLength > 150) {
+      element.classList.add('large-content');
+    } else if (wordCount === 1 && contentLength <= 18) {
+      element.classList.add('micro-content');
+    } else if (wordCount <= 6 && contentLength <= 50) {
+      element.classList.add('small-content');
+    } else {
+      element.classList.add('medium-content');
+    }
+  }
+
   function populateCardElement(cardEl, cardData) {
     if (!cardEl) return;
     if (!cardData) {
@@ -1787,6 +1830,8 @@
     elements.termText.classList.toggle('advanced-html-card-text', advanced);
     elements.definitionText.classList.toggle('advanced-html-card-text', advanced);
     if (advanced) {
+      applyAdaptiveTextSizing(elements.termText, { preserveAdvancedHtml: true });
+      applyAdaptiveTextSizing(elements.definitionText, { preserveAdvancedHtml: true });
       elements.termText.innerHTML = advancedHtmlFrame(cardData, 'front');
       elements.definitionText.innerHTML = advancedHtmlFrame(cardData, 'back');
       renderAdvancedHtmlHost(elements.termText.querySelector('.advanced-html-study-frame'), cardData, 'front');
@@ -1808,6 +1853,8 @@
       renderCardBackground(elements.definitionBg, cardData, 'definition');
       renderMediaList(elements.termMediaList, cardData, 'term');
       renderMediaList(elements.definitionMediaList, cardData, 'definition');
+      applyAdaptiveTextSizing(elements.termText);
+      applyAdaptiveTextSizing(elements.definitionText);
     }
     
     cardEl.querySelectorAll('.card-scroll').forEach(scroll => {

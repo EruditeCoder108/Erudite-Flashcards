@@ -200,6 +200,34 @@ document.addEventListener('DOMContentLoaded', async () => {
         return ['forward', 'backward', 'random'].includes(value) ? value : 'forward';
     }
 
+    function applyStudyTypography(settings = {}) {
+        const defaultStyle = {
+            align: 'center',
+            weight: '500',
+            font: 'sans-serif',
+            lineHeight: '1.4',
+            letterSpacing: '0'
+        };
+        const globalStyle = { ...defaultStyle, ...(settings.cardStyle || {}) };
+        const deckTypography = flashcardSet?.deckTypography;
+        const effectiveStyle = deckTypography?.enabled === true
+            ? { ...globalStyle, ...deckTypography }
+            : globalStyle;
+        const fontFamilyByValue = {
+            'sans-serif': "'Plus Jakarta Sans', sans-serif",
+            serif: 'Georgia, serif',
+            monospace: 'Courier New, monospace',
+            system: 'system-ui, sans-serif'
+        };
+        const root = document.documentElement;
+
+        root.style.setProperty('--card-text-align', effectiveStyle.align);
+        root.style.setProperty('--card-text-weight', effectiveStyle.weight);
+        root.style.setProperty('--card-text-font-family', fontFamilyByValue[effectiveStyle.font] || fontFamilyByValue['sans-serif']);
+        root.style.setProperty('--card-text-line-height', effectiveStyle.lineHeight);
+        root.style.setProperty('--card-text-letter-spacing', effectiveStyle.letterSpacing);
+    }
+
     async function loadStudyPreferences() {
         try {
             const settings = window.getFlashcardSettings
@@ -215,9 +243,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             // Store for use in rendering (e.g. cardBgOpacity)
             window._studyAppSettings = settings || {};
+            applyStudyTypography(settings || {});
         } catch (error) {
             console.warn('Could not load study order setting:', error);
             normalStudyOrder = 'forward';
+            applyStudyTypography();
         }
     }
 
@@ -789,8 +819,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderMediaList(termMediaList, card, 'term');
         renderMediaList(definitionMediaList, card, 'definition');
 
-        adjustContentCentering(termText);
-        adjustContentCentering(definitionText);
+        const isAdvancedHtml = card?.noteType === 'advanced-html'
+            || card?.cardType === 'advanced-html'
+            || Boolean(card?.advancedHtml);
+        adjustContentCentering(termText, { preserveAdvancedHtml: isAdvancedHtml });
+        adjustContentCentering(definitionText, { preserveAdvancedHtml: isAdvancedHtml });
         
         // Update progress indicators
         updateProgress();
@@ -823,19 +856,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Adjust content centering based on length and type
-    function adjustContentCentering(element) {
+    function adjustContentCentering(element, options = {}) {
         // Remove existing classes
-        element.classList.remove('large-content', 'medium-content', 'small-content');
+        element.classList.remove('large-content', 'medium-content', 'small-content', 'micro-content');
         
         // Check content length and structure
-        const contentLength = element.textContent.length;
+        const plainText = element.textContent.replace(/\s+/g, ' ').trim();
+        const contentLength = plainText.length;
+        const wordCount = plainText ? plainText.split(' ').length : 0;
         const hasLists = element.querySelector('ul, ol') !== null;
         const hasParagraphs = element.querySelector('p') !== null;
-        const hasLineBreaks = element.innerHTML.includes('<br');
+        const hasLineBreaks = element.querySelector('br') !== null;
+        const hasStructuredContent = element.querySelector('table, pre, code, .katex, .katex-display, math') !== null;
+        const hasInlineMedia = element.querySelector('img, video, audio, iframe') !== null;
         const cardFace = element.closest('.card-face');
         const imageContainer = cardFace?.querySelector('.image-container');
         const mediaList = cardFace?.querySelector('.card-media-list');
-        const hasImages = Boolean(imageContainer?.classList.contains('has-image') || mediaList?.children?.length);
+        const hasImages = Boolean(
+            imageContainer?.classList.contains('has-image')
+            || mediaList?.children?.length
+            || hasInlineMedia
+        );
         
         // Get the card content container parent
         const cardContent = element.closest('.card-content');
@@ -844,30 +885,36 @@ document.addEventListener('DOMContentLoaded', async () => {
                 'content-small',
                 'content-medium',
                 'content-large',
+                'content-micro',
                 'with-image',
                 'no-image'
             );
-            cardContent.classList.add(hasImages ? 'with-image' : 'no-image');
             cardContent.style.alignItems = '';
             cardContent.style.justifyContent = '';
             cardContent.scrollTop = 0;
         }
+
+        // Advanced HTML cards manage their own layout and typography.
+        if (options.preserveAdvancedHtml) {
+            element.style.removeProperty('text-align');
+            return;
+        }
+
+        cardContent?.classList.add(hasImages ? 'with-image' : 'no-image');
         
-        // Apply the appropriate class based on content
-        if (hasLists || hasParagraphs || contentLength > 150 || hasLineBreaks) {
+        // Structured or media-rich content stays at the conservative readable size.
+        if (hasLists || hasParagraphs || hasLineBreaks || hasStructuredContent || hasImages || contentLength > 150) {
             element.classList.add('large-content');
             cardContent?.classList.add('content-large');
-        } else if (contentLength > 50 || hasImages) {
-            element.classList.add('medium-content');
-            cardContent?.classList.add('content-medium');
-        } else {
+        } else if (wordCount === 1 && contentLength <= 18) {
+            element.classList.add('micro-content');
+            cardContent?.classList.add('content-micro');
+        } else if (wordCount <= 6 && contentLength <= 50) {
             element.classList.add('small-content');
             cardContent?.classList.add('content-small');
-        }
-        
-        // If content starts with list items, ensure they're properly aligned
-        if (hasLists) {
-            element.style.textAlign = 'left';
+        } else {
+            element.classList.add('medium-content');
+            cardContent?.classList.add('content-medium');
         }
     }
 

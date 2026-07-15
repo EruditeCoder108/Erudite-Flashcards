@@ -718,6 +718,23 @@ textarea,
   display: none;
 }
 
+/* Content-aware sizing tiers are assigned by mobile-study.js. */
+.card-text.micro-content {
+  font-size: clamp(2rem, 10.5vw, 3.25rem);
+}
+
+.card-text.small-content {
+  font-size: clamp(1.55rem, 7.4vw, 2.25rem);
+}
+
+.card-text.medium-content {
+  font-size: clamp(1.15rem, 5.3vw, 1.62rem);
+}
+
+.card-text.large-content {
+  font-size: clamp(1rem, 4.5vw, 1.3rem);
+}
+
 .card-text p {
   margin: 0 0 0.8rem;
 }

@@ -256,7 +256,7 @@
                                     </button>
                                     <div class="card-dropdown-menu hidden">
                                         <button class="dropdown-item edit-btn"><i class="fas fa-edit"></i> Edit</button>
-                                        <button class="dropdown-item deck-settings-btn"><i class="fas fa-sliders"></i> SRS Settings</button>
+                                        <button class="dropdown-item deck-settings-btn"><i class="fas fa-sliders"></i> Deck Settings</button>
                                         <button class="dropdown-item delete-btn danger"><i class="fas fa-trash"></i> Delete</button>
                                     </div>
                                 </div>
@@ -458,14 +458,14 @@
             </div>
         </div>
 
-        <!-- Deck SRS Settings Modal -->
+        <!-- Deck Settings Modal -->
         <div id="deck-settings-modal" class="modal hidden">
             <div class="modal-content">
                 <button class="close-btn" id="close-deck-settings">
                     <i class="fas fa-times"></i>
                 </button>
-                <h2>Deck SRS Settings</h2>
-                <p class="settings-note" id="deck-settings-name">Set-specific review limits and FSRS tuning.</p>
+                <h2>Deck Settings</h2>
+                <p class="settings-note" id="deck-settings-name">Set-specific review limits, FSRS tuning, and typography.</p>
                 <div class="settings-section">
                     <label class="checkbox-row">
                         <input type="checkbox" id="deck-srs-enabled">
@@ -495,6 +495,62 @@
                                 <option value="forward">Forward (First to Last)</option>
                                 <option value="backward">Backward (Last to First)</option>
                                 <option value="random">Random</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3>Card Typography</h3>
+                    <label class="checkbox-row">
+                        <input type="checkbox" id="deck-typography-enabled">
+                        <span>Use custom typography for this deck</span>
+                    </label>
+                    <p class="settings-note">When disabled, cards use the global Card Typography settings. Text size remains automatic.</p>
+                    <div class="settings-grid" id="deck-typography-fields" hidden>
+                        <label>
+                            Text Alignment
+                            <select id="deck-text-align-select" class="font-dropdown">
+                                <option value="left">Left</option>
+                                <option value="center">Center</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </label>
+                        <label>
+                            Font Family
+                            <select id="deck-text-font-select" class="font-dropdown">
+                                <option value="sans-serif">Sans-Serif (Default)</option>
+                                <option value="serif">Serif</option>
+                                <option value="monospace">Monospace</option>
+                                <option value="system">System Default</option>
+                            </select>
+                        </label>
+                        <label>
+                            Font Weight / Thickness
+                            <select id="deck-text-weight-select" class="font-dropdown">
+                                <option value="300">Light (300)</option>
+                                <option value="400">Regular (400)</option>
+                                <option value="500">Medium (500)</option>
+                                <option value="600">Semibold (600)</option>
+                                <option value="700">Bold (700)</option>
+                            </select>
+                        </label>
+                        <label>
+                            Line Spacing (Line Height)
+                            <select id="deck-text-line-height-select" class="font-dropdown">
+                                <option value="1.2">Compact (1.2)</option>
+                                <option value="1.4">Normal (1.4)</option>
+                                <option value="1.6">Relaxed (1.6)</option>
+                                <option value="1.8">Loose (1.8)</option>
+                            </select>
+                        </label>
+                        <label style="grid-column: span 2;">
+                            Letter Spacing
+                            <select id="deck-text-letter-spacing-select" class="font-dropdown">
+                                <option value="-0.5px">Tight (-0.5px)</option>
+                                <option value="0">Normal (0px)</option>
+                                <option value="0.5px">Wide (0.5px)</option>
+                                <option value="1px">Extra Wide (1px)</option>
+                                <option value="1.5px">Loose (1.5px)</option>
                             </select>
                         </label>
                     </div>

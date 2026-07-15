@@ -12,6 +12,8 @@
     reviewsPerDay: null
   };
 
+  const DECK_TYPOGRAPHY_FIELDS = ['align', 'weight', 'font', 'lineHeight', 'letterSpacing'];
+
   const DEFAULT_SETTINGS = {
     theme: 'dark',
     normalStudyOrder: 'forward',
@@ -220,6 +222,7 @@
       pinned: Boolean(set.pinned ?? existingSet?.pinned),
       cards: cards.map(card => normalizeCard(card, { now: timestamp })),
       srsSettings: normalizeSrsSettings(set.srsSettings || existingSet?.srsSettings || {}),
+      deckTypography: normalizeDeckTypography(set.deckTypography, existingSet?.deckTypography),
       normalStudyOrder: ['forward', 'backward', 'random'].includes(set.normalStudyOrder)
         ? set.normalStudyOrder
         : (existingSet?.normalStudyOrder || null),
@@ -230,6 +233,22 @@
         ? (set.lastModified || existingSet?.lastModified || timestamp)
         : timestamp
     };
+  }
+
+  function normalizeDeckTypography(typography = {}, existingTypography = {}) {
+    const source = {
+      ...(existingTypography && typeof existingTypography === 'object' ? existingTypography : {}),
+      ...(typography && typeof typography === 'object' ? typography : {})
+    };
+    const normalized = { enabled: source.enabled === true };
+
+    DECK_TYPOGRAPHY_FIELDS.forEach(field => {
+      if (typeof source[field] === 'string' && source[field]) {
+        normalized[field] = source[field];
+      }
+    });
+
+    return normalized;
   }
 
   function normalizeSettings(settings = {}) {
@@ -294,6 +313,7 @@
     normalizeCardMedia,
     normalizeCardBackground,
     normalizeSrsSettings,
+    normalizeDeckTypography,
     normalizeCard,
     normalizeClass,
     normalizeSet,

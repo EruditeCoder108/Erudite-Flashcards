@@ -3265,6 +3265,51 @@ select option {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.16) !important;
 }
 
+.mobile-deck-typography-section {
+  margin-top: 1.15rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.mobile-deck-typography-section h4 {
+  margin: 0 0 0.7rem;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.mobile-deck-typography-section p {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.mobile-deck-typography-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mobile-deck-typography-toggle input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--primary);
+}
+
+.mobile-deck-typography-fields {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 0.9rem;
+}
+
+.mobile-deck-typography-fields[hidden] {
+  display: none;
+}
+
 .bulk-card-presets {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
