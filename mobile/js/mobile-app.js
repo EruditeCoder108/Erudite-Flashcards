@@ -5656,12 +5656,7 @@
         error.userMessage = 'Premade downloads are not available in this build yet.';
         throw error;
       }
-      const response = await fetch(deckUrl);
-      if (!response.ok) {
-        throw new Error('Failed to fetch premade ZIP file');
-      }
-      const blob = await response.blob();
-      const file = new File([blob], zipFileName, { type: 'application/zip' });
+      const file = await downloadPremadeDeck(deckUrl, zipFileName);
 
       // Generate a new set ID and temporarily assign it to editingSetId
       // so images are saved under the correct new deck folder path
@@ -6379,14 +6374,88 @@
     if (overlay) {
       const textEl = overlay.querySelector('.micro-loader-text');
       if (textEl) textEl.textContent = text;
+      resetMicroLoaderProgress(overlay);
       overlay.classList.remove('hidden');
     }
+  }
+
+  function resetMicroLoaderProgress(overlay = document.getElementById('micro-loader-overlay')) {
+    if (!overlay) return;
+    const progress = overlay.querySelector('.micro-loader-progress');
+    const track = overlay.querySelector('.micro-loader-progress-track');
+    const fill = overlay.querySelector('.micro-loader-progress-fill');
+    const value = overlay.querySelector('.micro-loader-progress-value');
+    progress?.classList.add('hidden');
+    track?.setAttribute('aria-valuenow', '0');
+    fill?.style.setProperty('--download-progress', '0');
+    if (value) value.textContent = '0%';
+  }
+
+  function setMicroLoaderProgress(percent, text) {
+    const overlay = document.getElementById('micro-loader-overlay');
+    if (!overlay) return;
+
+    const safePercent = Math.min(100, Math.max(0, Math.round(Number(percent) || 0)));
+    const textEl = overlay.querySelector('.micro-loader-text');
+    const progress = overlay.querySelector('.micro-loader-progress');
+    const track = overlay.querySelector('.micro-loader-progress-track');
+    const fill = overlay.querySelector('.micro-loader-progress-fill');
+    const value = overlay.querySelector('.micro-loader-progress-value');
+
+    if (textEl && text) textEl.textContent = text;
+    progress?.classList.remove('hidden');
+    track?.setAttribute('aria-valuenow', String(safePercent));
+    fill?.style.setProperty('--download-progress', String(safePercent / 100));
+    if (value) value.textContent = `${safePercent}%`;
+  }
+
+  async function downloadPremadeDeck(deckUrl, zipFileName) {
+    const response = await fetch(deckUrl);
+    if (!response.ok) {
+      throw new Error('Failed to fetch premade ZIP file');
+    }
+
+    const totalBytes = Number(response.headers.get('content-length'));
+    const reader = response.body?.getReader?.();
+
+    // The progress percentage needs a response size and stream support. Older
+    // WebViews still download the deck correctly, but fall back to the loader.
+    if (!reader || !Number.isFinite(totalBytes) || totalBytes <= 0) {
+      const blob = await response.blob();
+      return new File([blob], zipFileName, { type: 'application/zip' });
+    }
+
+    const chunks = [];
+    let downloadedBytes = 0;
+    let lastReportedPercent = -1;
+    setMicroLoaderProgress(0, 'Downloading deck...');
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (!value) continue;
+
+      chunks.push(value);
+      downloadedBytes += value.byteLength;
+      const percent = Math.min(100, Math.floor((downloadedBytes / totalBytes) * 100));
+      if (percent !== lastReportedPercent) {
+        setMicroLoaderProgress(percent, 'Downloading deck...');
+        lastReportedPercent = percent;
+      }
+    }
+
+    setMicroLoaderProgress(100, 'Preparing deck...');
+    const blob = new Blob(chunks, {
+      type: response.headers.get('content-type') || 'application/zip'
+    });
+    return new File([blob], zipFileName, { type: 'application/zip' });
   }
 
   function hideMicroLoader() {
     const overlay = document.getElementById('micro-loader-overlay');
     if (overlay) {
       overlay.classList.add('hidden');
+      resetMicroLoaderProgress(overlay);
     }
   }
 

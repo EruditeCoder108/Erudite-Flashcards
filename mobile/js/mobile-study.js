@@ -200,10 +200,50 @@
     perf?.mark('study.navigation.library_committed', { title });
     perf?.flush?.();
     showStudyLoader(title, copy);
+    let routeCommitted = false;
+    const commitRoute = () => {
+      if (routeCommitted) return;
+      routeCommitted = true;
+      try {
+        window.location.href = url;
+      } catch (error) {
+        // A navigation failure must not leave a blocking loader on screen.
+        routeLeaving = false;
+        hideStudyLoader();
+        console.error('[mobile-study] Could not leave study session:', error);
+        showToast('Could not return to your library. Please try again.');
+      }
+    };
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        window.location.href = url;
+        commitRoute();
       });
+    });
+    // Android can occasionally defer animation frames during a hardware-back
+    // transition. This keeps the route moving even if that occurs.
+    window.setTimeout(commitRoute, 450);
+  }
+
+  function settleRouteSave(name, work, timeoutMs = 800) {
+    const span = perf?.start('study.route.save', { name, timeoutMs });
+    let timeoutId = null;
+    const operation = Promise.resolve()
+      .then(work)
+      .then(
+        () => ({ status: 'saved' }),
+        error => ({ status: 'error', error })
+      );
+    const timeout = new Promise(resolve => {
+      timeoutId = window.setTimeout(() => resolve({ status: 'timeout' }), timeoutMs);
+    });
+
+    return Promise.race([operation, timeout]).then(outcome => {
+      if (timeoutId !== null) window.clearTimeout(timeoutId);
+      if (outcome.status === 'error') {
+        perf?.mark(`study.route.${name}.error`, { error: perf?.sanitizeError(outcome.error) });
+      }
+      perf?.end(span, { name, status: outcome.status });
+      return outcome.status;
     });
   }
 
@@ -212,28 +252,30 @@
     if (typeof flush !== 'function') return;
     const span = perf?.start('study.store.flush', { timeoutMs });
     const outcome = await Promise.race([
-      flush().then(() => 'flushed').catch(() => 'error'),
+      Promise.resolve().then(() => flush()).then(() => 'flushed').catch(() => 'error'),
       new Promise(resolve => window.setTimeout(() => resolve('timeout'), timeoutMs))
     ]);
     perf?.end(span, { outcome });
+    return outcome;
   }
 
   async function flushStudyStateBeforeRoute() {
     const span = perf?.start('study.route.flush_all');
-    const run = async (name, work) => {
-      try {
-        if (perf?.measure) await perf.measure(name, work);
-        else await work();
-      } catch (error) {
-        perf?.mark(`${name}.error`, { error: perf?.sanitizeError(error) });
-      }
-    };
-    await run('study.route.save_session', () => saveSessionLog());
-    await run('study.route.save_progress', () => saveProgress({ immediate: true }));
-    await run('study.route.save_opened_meta', () => saveOpenedMeta({ immediate: true }));
-    await run('study.route.flush_card_progress', () => flushCardProgress());
-    await run('study.route.flush_store', () => flushStore(1400));
-    perf?.end(span, { status: 'ok' });
+    // Progress and card patches are mirrored in localStorage before these
+    // writes begin. Run the database saves together, with a bounded wait, so
+    // a stalled SQLite transaction can never trap the user behind the loader.
+    const saveResults = await Promise.all([
+      settleRouteSave('save_session', () => saveSessionLog()),
+      settleRouteSave('save_progress', () => saveProgress({ immediate: true })),
+      settleRouteSave('save_opened_meta', () => saveOpenedMeta()),
+      settleRouteSave('flush_card_progress', () => flushCardProgress())
+    ]);
+    const flushResult = await flushStore(800);
+    perf?.end(span, {
+      status: saveResults.includes('timeout') || flushResult === 'timeout' ? 'timed_out' : 'ok',
+      saveResults,
+      flushResult
+    });
   }
 
   function markRouteTrigger(trigger) {
@@ -254,9 +296,16 @@
     routeLeaving = true;
     showStudyLoader('Opening Library', 'Refreshing your decks');
     await new Promise(resolve => setTimeout(resolve, 50));
-    await flushStudyStateBeforeRoute();
-    perf?.end(span, { status: 'navigating' });
-    navigateAway(libraryUrl(), 'Opening Library', 'Refreshing your decks');
+    try {
+      await flushStudyStateBeforeRoute();
+    } catch (error) {
+      // The route is more important than a best-effort background save.
+      perf?.mark('study.route.flush_unexpected_error', { error: perf?.sanitizeError(error) });
+      console.error('[mobile-study] Could not finish study saves before routing:', error);
+    } finally {
+      perf?.end(span, { status: 'navigating' });
+      navigateAway(libraryUrl(), 'Opening Library', 'Refreshing your decks');
+    }
   }
 
   function getSetId() {

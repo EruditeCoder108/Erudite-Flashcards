@@ -3829,6 +3829,51 @@ button:active,
   animation: pulse 1.5s ease-in-out infinite;
 }
 
+.micro-loader-progress {
+  display: flex;
+  align-items: center;
+  width: min(16rem, 72vw);
+  gap: 0.65rem;
+  margin-top: -1rem;
+  color: #dbeafe;
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+}
+
+.micro-loader-progress-track {
+  height: 0.5rem;
+  flex: 1;
+  overflow: hidden;
+  border: 1px solid rgba(191, 219, 254, 0.45);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.72);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.micro-loader-progress-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(var(--download-progress, 0));
+  transform-origin: left center;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #60a5fa, #93c5fd);
+  box-shadow: 0 0 0.6rem rgba(96, 165, 250, 0.8);
+  transition: transform 180ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .micro-loader-text,
+  .boxes .box {
+    animation: none;
+  }
+
+  .micro-loader-progress-fill {
+    transition: none;
+  }
+}
+
 @keyframes pulse {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
