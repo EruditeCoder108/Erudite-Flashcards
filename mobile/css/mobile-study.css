@@ -706,7 +706,7 @@ textarea,
   overflow-wrap: anywhere;
   word-break: break-word;
   font-size: clamp(1.15rem, 5.3vw, 1.62rem);
-  font-weight: var(--card-text-weight, 500) !important;
+  font-weight: var(--card-text-weight, 400) !important;
   line-height: var(--card-text-line-height, 1.42) !important;
   text-align: var(--card-text-align, center) !important;
   font-family: var(--card-text-font-family, inherit) !important;
@@ -1833,10 +1833,19 @@ button:active,
   display: block;
   text-align: var(--card-text-align, center) !important;
   width: 100%;
-  font-weight: var(--card-text-weight, 500) !important;
+  font-weight: var(--card-text-weight, 400) !important;
   font-family: var(--card-text-font-family, inherit) !important;
   line-height: var(--card-text-line-height, 1.42) !important;
   letter-spacing: var(--card-text-letter-spacing, 0) !important;
+}
+
+/* Keep semantic rich-text emphasis visibly distinct from regular card copy. */
+.card-text .card-text-inline :is(b, strong) {
+  font-weight: 700 !important;
+}
+
+.card-text .card-text-inline :is(i, em) {
+  font-style: italic !important;
 }
 
 .card-text.advanced-html-card-text {

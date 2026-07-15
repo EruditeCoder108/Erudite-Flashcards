@@ -837,14 +837,25 @@
   }
 
   function applyStudyTypography(settings = {}, set = null) {
-    const defaultStyle = {
+    const legacyDefaultStyle = {
       align: 'center',
       weight: '500',
       font: 'sans-serif',
       lineHeight: '1.4',
       letterSpacing: '0'
     };
-    const globalStyle = { ...defaultStyle, ...(settings.cardStyle || {}) };
+    const mobileDefaultStyle = { ...legacyDefaultStyle, weight: '400' };
+    const savedGlobalStyle = settings.cardStyle || {};
+    const usesUntouchedLegacyDefault = Object.entries(legacyDefaultStyle).every(([key, value]) => (
+      String(savedGlobalStyle[key] ?? value) === value
+    ));
+    const globalStyle = { ...mobileDefaultStyle, ...savedGlobalStyle };
+
+    // Existing settings are normalized with the former 500 default. Treat that
+    // exact untouched configuration as the new mobile reading default without
+    // modifying saved settings or changing non-default custom weights.
+    if (usesUntouchedLegacyDefault) globalStyle.weight = mobileDefaultStyle.weight;
+
     const deckTypography = set?.deckTypography;
     const effectiveStyle = deckTypography?.enabled === true
       ? { ...globalStyle, ...deckTypography }
