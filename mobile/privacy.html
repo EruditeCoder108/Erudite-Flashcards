@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="mobile-app-shell">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; media-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; font-src 'self' data:; connect-src 'self' https://erudite-flashcards.netlify.app http://localhost https://localhost; frame-src 'none'; form-action 'none'">
+  <script src="js/theme-bootstrap.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <title>Privacy &amp; Data - Erudite Flashcards</title>
+  <link rel="icon" type="image/png" href="../assets/icons/icon.png">
+  <link rel="stylesheet" href="../vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/mobile-app.css">
+  <link rel="stylesheet" href="css/privacy.css">
+</head>
+<body>
+  <div class="privacy-shell">
+    <header class="privacy-topbar">
+      <button type="button" class="privacy-back-button" id="privacy-back" aria-label="Back to Erudite Flashcards">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i><span>Back</span>
+      </button>
+      <div class="privacy-brand" aria-label="Erudite Flashcards">
+        <img src="../assets/icons/icon.png" alt="" class="privacy-brand-logo">
+        <span>Erudite</span>
+      </div>
+    </header>
+
+    <main class="privacy-main" id="privacy-main" tabindex="-1">
+      <section class="privacy-hero" aria-labelledby="privacy-title">
+        <div class="privacy-hero-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
+        <p class="privacy-eyebrow">LOCAL-FIRST BY DESIGN</p>
+        <h1 id="privacy-title">Privacy &amp; your data</h1>
+        <p>Erudite keeps your study library on this device. You stay in control of exports, external services, and deleting your data.</p>
+      </section>
+
+      <section class="privacy-summary" aria-label="Privacy highlights">
+        <article><i class="fas fa-mobile-screen-button" aria-hidden="true"></i><span><strong>Stored locally</strong><small>Decks, cards, media, progress, and settings</small></span></article>
+        <article><i class="fas fa-wifi-slash" aria-hidden="true"></i><span><strong>No account required</strong><small>No Erudite cloud sync or developer account database</small></span></article>
+        <article><i class="fas fa-hand-pointer" aria-hidden="true"></i><span><strong>External sharing is your choice</strong><small>AI providers and exports open only when you ask</small></span></article>
+      </section>
+
+      <section class="privacy-section" aria-labelledby="stored-title">
+        <h2 id="stored-title"><i class="fas fa-database" aria-hidden="true"></i> What is stored on your phone</h2>
+        <p>Erudite stores the flashcards you create or import, attached images and audio, classes, review history, study progress, app preferences, and local recovery snapshots. The app uses private app storage for its database and media.</p>
+        <p>When you export a backup, it is saved in the <strong>Erudite Flashcards</strong> backup folder in your device Documents storage so you can share or keep it. You control where that export goes after sharing it.</p>
+      </section>
+
+      <section class="privacy-section" aria-labelledby="network-title">
+        <h2 id="network-title"><i class="fas fa-globe" aria-hidden="true"></i> When the app connects to the internet</h2>
+        <p>Erudite can download the optional premade decks you select from Erudite's deck host. It does not upload your personal decks, cards, images, or study history to that host.</p>
+        <p>If you choose an AI provider in the AI Deck Maker, Erudite opens that provider. Any document or study material you then submit is handled under that provider's own privacy terms and account settings. Avoid sharing highly sensitive material.</p>
+      </section>
+
+      <section class="privacy-section" aria-labelledby="not-collected-title">
+        <h2 id="not-collected-title"><i class="fas fa-user-shield" aria-hidden="true"></i> What Erudite does not collect</h2>
+        <p>Erudite does not require sign-in, does not run advertising or tracking SDKs, and does not collect your card content, names, or study activity for the developer. Performance diagnostics remain on your device and intentionally omit card content.</p>
+      </section>
+
+      <section class="privacy-section privacy-section--actions" aria-labelledby="controls-title">
+        <h2 id="controls-title"><i class="fas fa-sliders" aria-hidden="true"></i> Your controls</h2>
+        <ul>
+          <li>Use <strong>Export Backup</strong> before changing devices or removing the app.</li>
+          <li>Use <strong>Delete All Local Data</strong> in the More tab to erase Erudite data, media, app-data backups, and settings from this device.</li>
+          <li>Delete any backup files you exported from the Files app or Documents folder when you no longer need them.</li>
+        </ul>
+      </section>
+
+      <section class="privacy-contact" aria-labelledby="contact-title">
+        <div>
+          <p class="privacy-eyebrow">QUESTIONS OR REQUESTS</p>
+          <h2 id="contact-title">Talk to the developer</h2>
+          <p>For privacy questions, email <a href="mailto:eruditespartan@gmail.com">eruditespartan@gmail.com</a>.</p>
+        </div>
+        <a class="privacy-public-link" href="https://erudite-flashcards.netlify.app/privacy.html" target="_blank" rel="noopener noreferrer">
+          Public policy <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+      </section>
+
+      <p class="privacy-updated">Last updated: 17 July 2026</p>
+    </main>
+  </div>
+  <script src="js/privacy-page.js"></script>
+</body>
+</html>

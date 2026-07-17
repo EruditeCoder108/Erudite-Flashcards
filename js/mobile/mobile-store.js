@@ -37,6 +37,9 @@
   const ENCODING_UTF8 = 'utf8';
   const MAX_LOCAL_SET_MIRROR_BYTES = 384 * 1024;
   const MAX_IMPORT_CARD_COUNT = 200000;
+  const MAX_PORTABLE_BACKUP_MEDIA_FILES = 500;
+  // Base64 adds roughly one third overhead; keep a JSON backup safely below the 80 MiB import cap.
+  const MAX_PORTABLE_BACKUP_MEDIA_BYTES = 56 * 1024 * 1024;
   const DEFAULT_PREMADE_CONTENT = Object.freeze({
     baseUrl: '',
     catalogPath: 'premade-catalog.json'
@@ -392,6 +395,21 @@
     };
   }
 
+  function isPortableBackupMediaMime(mime) {
+    return [
+      'image/jpeg', 'image/png', 'image/gif', 'image/webp',
+      'audio/mpeg', 'audio/wav', 'audio/ogg',
+      'video/mp4', 'video/webm'
+    ].includes(String(mime || '').toLowerCase());
+  }
+
+  function base64ByteLength(base64) {
+    const clean = String(base64 || '').replace(/\s/g, '');
+    if (!clean) return 0;
+    const padding = clean.endsWith('==') ? 2 : clean.endsWith('=') ? 1 : 0;
+    return Math.max(0, Math.floor((clean.length * 3) / 4) - padding);
+  }
+
   function extensionForMime(mime) {
     const clean = String(mime || '').toLowerCase();
     if (clean === 'image/jpeg') return 'jpg';
@@ -414,6 +432,7 @@
 
   async function saveDataUrlFile(dataUrl, meta = {}) {
     if (!isNative) return dataUrl;
+    await ensureReady();
     const parsed = parseDataUrl(dataUrl);
     const ext = extensionForMime(parsed.mime);
     const deckId = safePathPart(meta.deckId || 'global', 'global');
@@ -421,7 +440,7 @@
     const random = Math.random().toString(36).slice(2, 9);
     const path = `${MEDIA_DIR}/${deckId}/${prefix}-${Date.now()}-${random}.${ext}`;
 
-    await Filesystem.writeFile({
+    const writeResult = await Filesystem.writeFile({
       path,
       data: parsed.base64,
       directory: DIRECTORY_DATA,
@@ -429,9 +448,203 @@
     });
 
     const uriResult = await Filesystem.getUri?.({ path, directory: DIRECTORY_DATA }).catch(() => null);
-    const uri = uriResult?.uri;
-    if (!uri) return dataUrl;
-    return capacitor.convertFileSrc ? capacitor.convertFileSrc(uri) : uri;
+    const uri = uriResult?.uri || writeResult?.uri || '';
+    const renderedUrl = uri && capacitor.convertFileSrc ? capacitor.convertFileSrc(uri) : uri;
+
+    await run(`
+      INSERT OR REPLACE INTO media_files (path, deck_id, source_uri, rendered_url, mime, created_at)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `, [path, deckId, uri || null, renderedUrl || null, parsed.mime, Date.now()]);
+
+    return renderedUrl || dataUrl;
+  }
+
+  function isManagedMediaPath(path) {
+    const normalized = String(path || '').replace(/\\/g, '/');
+    return normalized.startsWith(`${MEDIA_DIR}/`) && !normalized.includes('..');
+  }
+
+  async function deleteManagedMediaPath(path) {
+    if (!isManagedMediaPath(path)) return false;
+    try {
+      await Filesystem.deleteFile({ path, directory: DIRECTORY_DATA });
+    } catch (error) {
+      if (!isMissingFileError(error)) throw error;
+    }
+    await run('DELETE FROM media_files WHERE path = ?', [path]);
+    return true;
+  }
+
+  async function deleteMediaForDeck(deckId) {
+    if (!isNative) return false;
+    await ensureReady();
+    const safeDeckId = safePathPart(deckId || 'global', 'global');
+    const records = await rows('SELECT path FROM media_files WHERE deck_id = ?', [safeDeckId]);
+    for (const record of records) {
+      await deleteManagedMediaPath(record.path);
+    }
+    const directoryPath = `${MEDIA_DIR}/${safeDeckId}`;
+    try {
+      await Filesystem.rmdir?.({
+        path: directoryPath,
+        directory: DIRECTORY_DATA,
+        recursive: true
+      });
+    } catch (error) {
+      if (!isMissingFileError(error)) {
+        console.warn('[mobile-store] Could not remove deck media:', error?.message || error);
+      }
+    }
+    await run('DELETE FROM media_files WHERE deck_id = ?', [safeDeckId]);
+    return true;
+  }
+
+  async function assignManagedMediaToDeck(fromDeckId, toDeckId) {
+    if (!isNative) return;
+    const from = safePathPart(fromDeckId || 'global', 'global');
+    const to = safePathPart(toDeckId || 'global', 'global');
+    if (from === to) return;
+    await run('UPDATE media_files SET deck_id = ? WHERE deck_id = ?', [to, from]);
+  }
+
+  async function removeUnreferencedMediaForDeck(deckId, cards = []) {
+    if (!isNative) return;
+    const safeDeckId = safePathPart(deckId || 'global', 'global');
+    const cardPayload = JSON.stringify(Array.isArray(cards) ? cards : []);
+    const records = await rows(`
+      SELECT path, source_uri, rendered_url
+      FROM media_files
+      WHERE deck_id = ?
+    `, [safeDeckId]);
+
+    for (const record of records) {
+      const referenced = [record.source_uri, record.rendered_url]
+        .filter(Boolean)
+        .some(value => cardPayload.includes(String(value)));
+      if (!referenced) {
+        await deleteManagedMediaPath(record.path);
+      }
+    }
+  }
+
+  async function deleteManagedMedia(fileUrl) {
+    if (!isNative || !fileUrl) return false;
+    await ensureReady();
+    const source = String(fileUrl);
+    const rowsForMedia = await rows(`
+      SELECT path
+      FROM media_files
+      WHERE source_uri = ? OR rendered_url = ?
+      LIMIT 1
+    `, [source, source]);
+    const path = rowsForMedia[0]?.path;
+    return deleteManagedMediaPath(path);
+  }
+
+  function replaceValues(value, replaceString) {
+    if (typeof value === 'string') return replaceString(value);
+    if (Array.isArray(value)) return value.map(item => replaceValues(item, replaceString));
+    if (value && typeof value === 'object') {
+      return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, replaceValues(item, replaceString)]));
+    }
+    return value;
+  }
+
+  async function fileDataAsBase64(path) {
+    const result = await Filesystem.readFile({ path, directory: DIRECTORY_DATA });
+    if (typeof result?.data === 'string') {
+      const raw = result.data;
+      return raw.startsWith('data:') ? parseDataUrl(raw).base64 : raw;
+    }
+    if (result?.data instanceof Blob) {
+      const bytes = new Uint8Array(await result.data.arrayBuffer());
+      return bytesToBase64(bytes);
+    }
+    throw new Error('Could not read managed media for backup.');
+  }
+
+  async function makeBackupDataPortable(data) {
+    if (!isNative) return data;
+    const records = await rows(`
+      SELECT path, source_uri, rendered_url, mime
+      FROM media_files
+      ORDER BY created_at ASC
+    `);
+    if (!records.length) return data;
+
+    const serializedData = JSON.stringify(data);
+    const referencedRecords = records.filter(record => [record.source_uri, record.rendered_url]
+      .filter(Boolean)
+      .some(url => serializedData.includes(String(url))));
+    if (referencedRecords.length > MAX_PORTABLE_BACKUP_MEDIA_FILES) {
+      throw new Error(`Backup contains more than ${MAX_PORTABLE_BACKUP_MEDIA_FILES} attached media files. Remove unused attachments before exporting.`);
+    }
+
+    const replacements = new Map();
+    let totalBytes = 0;
+    for (const record of referencedRecords) {
+      if (!isManagedMediaPath(record.path) || !isPortableBackupMediaMime(record.mime)) continue;
+      const base64 = await fileDataAsBase64(record.path);
+      const bytes = base64ByteLength(base64);
+      totalBytes += bytes;
+      if (totalBytes > MAX_PORTABLE_BACKUP_MEDIA_BYTES) {
+        throw new Error('Attached media is too large for a portable JSON backup. Remove unused media or export a smaller library first.');
+      }
+      const portableUrl = `data:${record.mime};base64,${base64}`;
+      [record.source_uri, record.rendered_url]
+        .filter(Boolean)
+        .forEach(url => replacements.set(String(url), portableUrl));
+    }
+
+    if (!replacements.size) return data;
+    return replaceValues(data, value => replacements.get(value) || value);
+  }
+
+  function collectPortableMediaUrls(value, collection = new Set()) {
+    if (typeof value === 'string') {
+      if (value.startsWith('data:')) collection.add(value);
+      return collection;
+    }
+    if (Array.isArray(value)) {
+      value.forEach(item => collectPortableMediaUrls(item, collection));
+      return collection;
+    }
+    if (value && typeof value === 'object') {
+      Object.values(value).forEach(item => collectPortableMediaUrls(item, collection));
+    }
+    return collection;
+  }
+
+  function validatePortableMediaUrls(values) {
+    if (values.size > MAX_PORTABLE_BACKUP_MEDIA_FILES) {
+      throw new Error(`Backup contains more than ${MAX_PORTABLE_BACKUP_MEDIA_FILES} attached media files.`);
+    }
+    let totalBytes = 0;
+    values.forEach(value => {
+      const parsed = parseDataUrl(value);
+      if (!isPortableBackupMediaMime(parsed.mime)) {
+        throw new Error(`Backup contains unsupported media type: ${parsed.mime}.`);
+      }
+      totalBytes += base64ByteLength(parsed.base64);
+    });
+    if (totalBytes > MAX_PORTABLE_BACKUP_MEDIA_BYTES) {
+      throw new Error('Backup media is too large to import safely on this device.');
+    }
+  }
+
+  async function restorePortableMediaForSet(set) {
+    if (!isNative) return set;
+    const replacements = new Map();
+    const sources = collectPortableMediaUrls(set);
+    validatePortableMediaUrls(sources);
+    for (const source of sources) {
+      const restoredUrl = await saveDataUrlFile(source, {
+        deckId: set.id,
+        prefix: 'restored-media'
+      });
+      replacements.set(source, restoredUrl);
+    }
+    return replaceValues(set, value => replacements.get(value) || value);
   }
 
   function sqlSummary(sql) {
@@ -751,11 +964,21 @@
         mode TEXT NOT NULL
       );
 
+      CREATE TABLE IF NOT EXISTS media_files (
+        path TEXT PRIMARY KEY,
+        deck_id TEXT NOT NULL,
+        source_uri TEXT,
+        rendered_url TEXT,
+        mime TEXT NOT NULL,
+        created_at INTEGER NOT NULL
+      );
+
       CREATE INDEX IF NOT EXISTS idx_mobile_sets_visible ON sets(deleted_at, last_modified);
       CREATE INDEX IF NOT EXISTS idx_mobile_sets_class ON sets(class_id);
       CREATE INDEX IF NOT EXISTS idx_mobile_cards_set_position ON cards(set_id, position);
       CREATE INDEX IF NOT EXISTS idx_mobile_cards_visible ON cards(deleted_at, set_id, last_modified);
       CREATE INDEX IF NOT EXISTS idx_mobile_cards_flags ON cards(set_id, suspended, buried_until);
+      CREATE INDEX IF NOT EXISTS idx_mobile_media_deck ON media_files(deck_id);
     `);
   }
 
@@ -962,6 +1185,19 @@
     return changed;
   }
 
+  async function runRecoveryChecks() {
+    const recoveredClassBackups = await recoverLocalClassBackupsIfEmptyOrMissing();
+    const recoveredLocalBackups = await recoverLocalSetBackupsIfEmpty();
+    const repairedOrphans = await repairOrphanedClassIds();
+    const appliedStudyPatches = await applyPendingStudyPatches();
+    return {
+      recoveredClassBackups: Boolean(recoveredClassBackups),
+      recoveredLocalBackups: Boolean(recoveredLocalBackups),
+      repairedOrphans: Boolean(repairedOrphans),
+      appliedStudyPatches: Boolean(appliedStudyPatches)
+    };
+  }
+
   async function init() {
     if (readyPromise) return readyPromise;
     const initSpan = perf?.start('store.init', { native: isNative });
@@ -1007,6 +1243,9 @@
         else await createSchema();
         if (perf?.measure) await perf.measure('store.legacy_migration.check', () => migrateFromLegacySqlJs());
         else await migrateFromLegacySqlJs();
+        const recoverySpan = perf?.start('store.recovery_checks');
+        const recovery = await runRecoveryChecks();
+        perf?.end(recoverySpan, recovery);
       } else {
         // Load SQL.js WebAssembly only as a fallback
         const wasmBase = scriptBase ? `${scriptBase}/vendor/sql.js/` : 'vendor/sql.js/';
@@ -1049,21 +1288,13 @@
         if (perf?.measure) await perf.measure('store.schema.ensure', () => createSchema());
         else await createSchema();
         const recoverySpan = perf?.start('store.recovery_checks');
-        const recoveredClassBackups = await recoverLocalClassBackupsIfEmptyOrMissing();
-        const recoveredLocalBackups = await recoverLocalSetBackupsIfEmpty();
-        const repairedOrphans = await repairOrphanedClassIds();
-        const appliedStudyPatches = await applyPendingStudyPatches();
-        perf?.end(recoverySpan, {
-          recoveredClassBackups: Boolean(recoveredClassBackups),
-          recoveredLocalBackups: Boolean(recoveredLocalBackups),
-          repairedOrphans: Boolean(repairedOrphans),
-          appliedStudyPatches: Boolean(appliedStudyPatches)
-        });
+        const recovery = await runRecoveryChecks();
+        perf?.end(recoverySpan, recovery);
         // Only persist on first-time setup to avoid a costly full write on every cold start
         if (isFresh) await _doPersist();
         else if (openedFromTemp) await _doPersist();
-        else if (recoveredClassBackups || recoveredLocalBackups || repairedOrphans) await _doPersist();
-        else if (appliedStudyPatches) persist(2500).catch(() => {});
+        else if (recovery.recoveredClassBackups || recovery.recoveredLocalBackups || recovery.repairedOrphans) await _doPersist();
+        else if (recovery.appliedStudyPatches) persist(2500).catch(() => {});
       }
       return true;
     })();
@@ -2252,6 +2483,17 @@
         });
       }
     });
+    if (!existing) {
+      await assignManagedMediaToDeck('draft', normalized.id);
+      await assignManagedMediaToDeck('package-import', normalized.id);
+    }
+    if (!metaOnlyUpdate) {
+      try {
+        await removeUnreferencedMediaForDeck(normalized.id, normalized.cards || []);
+      } catch (error) {
+        console.warn('[mobile-store] Could not remove unreferenced deck media:', error?.message || error);
+      }
+    }
     if (!metaOnlyUpdate) rememberSetBackup(normalized);
     await persist(); // fire-and-forget — flush() ensures it completes before navigation
     perf?.end(span, {
@@ -2293,6 +2535,7 @@
       await run('DELETE FROM study_sessions WHERE set_id = ?', [String(id)]);
       await run('DELETE FROM sets WHERE id = ?', [String(id)]);
     });
+    await deleteMediaForDeck(id);
     forgetSetBackup(id);
     removeSetStatsCacheEntry(id);
     await persist();
@@ -2520,7 +2763,7 @@
 
   async function createBackupSnapshot(reason = 'snapshot') {
     await ensureReady();
-    const payload = await createBackupPayload();
+    const payload = await createBackupPayload({ portable: false });
     const fileName = `${reason}-${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
     await Filesystem.writeFile({
       path: `${BACKUP_DIR}/${fileName}`,
@@ -2531,15 +2774,17 @@
     });
   }
 
-  async function createBackupPayload() {
+  async function createBackupPayload(options = {}) {
     await ensureReady();
-    return backup.createBackupPayload({
+    const localData = {
       sets: await listSets(),
       classes: await listClasses(),
       settings: await getSettings(),
       progress: await getAllProgress(),
       state: await getAllState()
-    });
+    };
+    const backupData = options.portable === false ? localData : await makeBackupDataPortable(localData);
+    return backup.createBackupPayload(backupData);
   }
 
   function pickJsonFile() {
@@ -2654,6 +2899,77 @@
     return true;
   }
 
+  function clearManagedLocalStorage() {
+    const exactKeys = new Set([
+      'flashcardSets',
+      'flashcardClasses',
+      'flashcards-settings',
+      'flashcards-theme',
+      'flashcardSetDraft',
+      'currentStudyProgress',
+      'srsModeEnabled',
+      'studyProgress',
+      'customCursorEnabled',
+      'cursorStyle',
+      STUDY_PATCHES_KEY,
+      SET_BACKUP_INDEX_KEY,
+      CLASS_BACKUP_INDEX_KEY,
+      SET_STATS_CACHE_KEY
+    ]);
+    const prefixes = [SET_BACKUP_PREFIX, CLASS_BACKUP_PREFIX, 'erudite-mobile-progress:', 'erudite-state-'];
+    const keys = [];
+    try {
+      for (let index = 0; index < localStorage.length; index += 1) {
+        const key = localStorage.key(index);
+        if (key && (exactKeys.has(key) || prefixes.some(prefix => key.startsWith(prefix)))) keys.push(key);
+      }
+      keys.forEach(key => localStorage.removeItem(key));
+    } catch (_) {}
+  }
+
+  async function removeDirectory(path, directory) {
+    try {
+      if (typeof Filesystem.rmdir === 'function') {
+        await Filesystem.rmdir({ path, directory, recursive: true });
+      }
+    } catch (error) {
+      if (!isMissingFileError(error)) {
+        console.warn(`[mobile-store] Could not remove ${path}:`, error?.message || error);
+      }
+    }
+  }
+
+  async function clearAllLocalData() {
+    await ensureReady();
+    await withTransaction(async () => {
+      await run('DELETE FROM media_files');
+      await run('DELETE FROM study_sessions');
+      await run('DELETE FROM progress');
+      await run('DELETE FROM state');
+      await run('DELETE FROM settings');
+      await run('DELETE FROM cards');
+      await run('DELETE FROM sets');
+      await run('DELETE FROM classes');
+    });
+
+    if (isNative) {
+      await removeDirectory(MEDIA_DIR, DIRECTORY_DATA);
+      await removeDirectory(BACKUP_DIR, DIRECTORY_DATA);
+      // Remove only Erudite-owned public exports, never the wider Documents directory.
+      await removeDirectory(BACKUP_DIR, DIRECTORY_DOCUMENTS);
+    } else {
+      try { await Filesystem.deleteFile({ path: DB_PATH, directory: DIRECTORY_DATA }); } catch (_) {}
+      try { await Filesystem.deleteFile({ path: DB_TMP_PATH, directory: DIRECTORY_DATA }); } catch (_) {}
+      await _doPersist();
+    }
+
+    clearClassBackups();
+    clearSetBackups();
+    clearSetStatsCache();
+    clearManagedLocalStorage();
+    return true;
+  }
+
   async function exportBackup() {
     const payload = await createBackupPayload();
     const fileName = `erudite-flashcards-backup-${new Date().toISOString().slice(0, 10)}.json`;
@@ -2695,10 +3011,16 @@
     if (cardCount > MAX_IMPORT_CARD_COUNT) {
       throw new Error(`Backup contains ${cardCount} cards, above the ${MAX_IMPORT_CARD_COUNT} card safety limit.`);
     }
+    const portableMedia = collectPortableMediaUrls(data.sets);
+    validatePortableMediaUrls(portableMedia);
     await createBackupSnapshot('before-mobile-restore');
 
     const restoredClasses = Array.isArray(data.classes) ? data.classes : [];
-    const restoredSets = Array.isArray(data.sets) ? data.sets : [];
+    const restoredSets = [];
+    const previousSetIds = (await rows('SELECT id FROM sets WHERE deleted_at IS NULL')).map(row => String(row.id));
+    for (const set of (Array.isArray(data.sets) ? data.sets : [])) {
+      restoredSets.push(await restorePortableMediaForSet(set));
+    }
     await withTransaction(async () => {
       await run('DELETE FROM classes');
       await run('DELETE FROM cards');
@@ -2744,6 +3066,15 @@
     clearSetStatsCache();
     restoredClasses.forEach(classData => rememberClassBackup(schema.normalizeClass(classData, null, { preserveLastModified: true })));
     restoredSets.forEach(set => rememberSetBackup(schema.normalizeSet(set, null, { preserveLastModified: true })));
+    const restoredSetIds = new Set(restoredSets.map(set => String(set.id)));
+    for (const setId of previousSetIds) {
+      if (!restoredSetIds.has(setId)) {
+        await deleteMediaForDeck(setId).catch(error => console.warn('[mobile-store] Could not remove replaced deck media:', error?.message || error));
+      }
+    }
+    for (const set of restoredSets) {
+      await removeUnreferencedMediaForDeck(set.id, set.cards || []).catch(error => console.warn('[mobile-store] Could not tidy restored media:', error?.message || error));
+    }
     await persist();
 
     return {
@@ -2798,8 +3129,8 @@
     return saveDataUrlFile(dataUrl, meta);
   }
 
-  async function deleteImage() {
-    return true;
+  async function deleteImage(fileUrl) {
+    return deleteManagedMedia(fileUrl);
   }
 
   async function saveFont(dataUrl, meta = {}) {
@@ -2910,6 +3241,7 @@
     exportBackup,
     createBackupSnapshot,
     importBackup,
+    clearAllLocalData,
     exportDelimited: async () => ({ canceled: true, unsupported: true }),
     importDelimited: async () => ({ canceled: true, unsupported: true }),
     flush

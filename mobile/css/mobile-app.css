@@ -1209,6 +1209,22 @@ button {
   color: var(--subtle) !important;
 }
 
+.settings-row.danger {
+  margin-top: 0.45rem;
+  border-color: color-mix(in srgb, var(--red) 38%, var(--line));
+  background: color-mix(in srgb, var(--red) 7%, var(--surface));
+}
+
+.settings-row.danger .settings-icon {
+  background: color-mix(in srgb, var(--red) 17%, transparent);
+  color: var(--red);
+}
+
+.settings-row.danger strong,
+.settings-row.danger .fa-chevron-right {
+  color: var(--red);
+}
+
 .settings-select-row {
   cursor: default;
 }

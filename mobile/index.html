@@ -2,16 +2,8 @@
 <html lang="en" class="mobile-app-shell">
 <head>
   <meta charset="UTF-8">
-  <script>
-    (function() {
-      try {
-        var theme = localStorage.getItem('erudite-theme');
-        if (theme === 'light') {
-          document.documentElement.classList.add('theme-light');
-        }
-      } catch (e) {}
-    })();
-  </script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; media-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; font-src 'self' data:; connect-src 'self' https://erudite-flashcards.netlify.app http://localhost https://localhost; frame-src 'none'; form-action 'none'">
+  <script src="mobile/js/theme-bootstrap.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#07111f">
   <title>Erudite Flashcards</title>
@@ -308,6 +300,16 @@
           <button type="button" class="settings-row" data-action="import-backup">
             <span class="settings-icon"><i class="fas fa-file-import"></i></span>
             <span><strong>Import Backup</strong><small>Restore from desktop or another phone</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="open-privacy">
+            <span class="settings-icon"><i class="fas fa-shield-halved"></i></span>
+            <span><strong>Privacy &amp; Data</strong><small>See what stays on your device and your controls</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row danger" data-action="clear-all-data">
+            <span class="settings-icon"><i class="fas fa-trash-can"></i></span>
+            <span><strong>Delete All Local Data</strong><small>Remove decks, media, study history, backups, and settings</small></span>
             <i class="fas fa-chevron-right"></i>
           </button>
           <button type="button" class="settings-row" data-action="copy-export">

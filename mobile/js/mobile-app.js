@@ -183,8 +183,15 @@
   const DAY_MS = 24 * 60 * 60 * 1000;
   const STUDY_SESSION_LOOKBACK_MS = 365 * 24 * 60 * 60 * 1000;
   const CREATOR_IMPORT_MAX_CARDS = 999;
+  const CREATOR_IMPORT_MAX_TEXT_BYTES = 4 * 1024 * 1024;
+  const ERUDITE_PACKAGE_MAX_ARCHIVE_BYTES = 80 * 1024 * 1024;
+  const ERUDITE_PACKAGE_MAX_ENTRIES = 550;
+  const ERUDITE_PACKAGE_MAX_DECK_BYTES = 2 * 1024 * 1024;
+  const ERUDITE_PACKAGE_MAX_UNCOMPRESSED_BYTES = 84 * 1024 * 1024;
   const ERUDITE_PACKAGE_MAX_MEDIA_FILES = 500;
   const ERUDITE_PACKAGE_MAX_MEDIA_BYTES = 80 * 1024 * 1024;
+  const PREMADE_DOWNLOAD_TIMEOUT_MS = 30 * 1000;
+  const PREMADE_DOWNLOAD_MAX_BYTES = ERUDITE_PACKAGE_MAX_ARCHIVE_BYTES;
   const OCCLUSION_MAX_MASKS = 80;
   const OCCLUSION_MIN_SIZE = 0.035;
 
@@ -5024,10 +5031,24 @@
     };
   }
 
+  function assertImportFileSize(file, maxBytes, label) {
+    const size = Number(file?.size || 0);
+    if (Number.isFinite(size) && size > maxBytes) {
+      const maxMb = Math.round(maxBytes / (1024 * 1024));
+      throw importUserError(`${label} must be ${maxMb} MB or smaller`);
+    }
+  }
+
+  function declaredZipEntryBytes(entry) {
+    const size = Number(entry?._data?.uncompressedSize || 0);
+    return Number.isFinite(size) && size >= 0 ? size : 0;
+  }
+
   async function parseEruditePackageImport(file) {
     if (!window.JSZip) {
       throw importUserError('Package import is unavailable in this build');
     }
+    assertImportFileSize(file, ERUDITE_PACKAGE_MAX_ARCHIVE_BYTES, 'ZIP package');
     let zip;
     try {
       zip = await window.JSZip.loadAsync(await file.arrayBuffer());
@@ -5037,6 +5058,13 @@
 
     const entries = Object.values(zip.files || {}).filter(entry => !entry.dir);
     if (!entries.length) throw importUserError('Package is empty');
+    if (entries.length > ERUDITE_PACKAGE_MAX_ENTRIES) {
+      throw importUserError(`Package supports up to ${ERUDITE_PACKAGE_MAX_ENTRIES} files`);
+    }
+    const declaredBytes = entries.reduce((total, entry) => total + declaredZipEntryBytes(entry), 0);
+    if (declaredBytes > ERUDITE_PACKAGE_MAX_UNCOMPRESSED_BYTES) {
+      throw importUserError('Package expands to more data than this device can safely import');
+    }
     const safeEntries = entries.map(entry => ({ entry, path: normalizePackagePath(entry.name) }));
     if (safeEntries.some(item => !item.path)) {
       throw importUserError('Package contains an unsafe file path');
@@ -5050,6 +5078,9 @@
       throw importUserError(looksLikeAnki
         ? 'Anki .apkg import is coming later. Use ZIP packages for now.'
         : 'ZIP package must include deck.json');
+    }
+    if (declaredZipEntryBytes(deckEntry.entry) > ERUDITE_PACKAGE_MAX_DECK_BYTES) {
+      throw importUserError('Package deck.json is too large to import safely');
     }
 
     const basePrefix = deckEntry.path.endsWith('deck.json')
@@ -5093,7 +5124,11 @@
 
     let deckJson;
     try {
-      deckJson = JSON.parse(await deckEntry.entry.async('string'));
+      const deckText = await deckEntry.entry.async('string');
+      if (deckText.length > ERUDITE_PACKAGE_MAX_DECK_BYTES) {
+        throw importUserError('Package deck.json is too large to import safely');
+      }
+      deckJson = JSON.parse(deckText);
     } catch (_) {
       throw importUserError('Package deck.json is invalid');
     }
@@ -5140,6 +5175,7 @@
       }
       return result;
     }
+    assertImportFileSize(file, CREATOR_IMPORT_MAX_TEXT_BYTES, 'Text or JSON import');
     return parseCreatorImportFile(file, await file.text());
   }
 
@@ -5578,6 +5614,24 @@
     }
   }
 
+  const PREMADE_ICON_NAMES = new Set([
+    'fa-book-open',
+    'fa-book',
+    'fa-graduation-cap',
+    'fa-flask',
+    'fa-dna',
+    'fa-calculator',
+    'fa-language',
+    'fa-landmark',
+    'fa-atom',
+    'fa-brain'
+  ]);
+
+  function safePremadeIcon(value) {
+    const icon = String(value || '').trim();
+    return PREMADE_ICON_NAMES.has(icon) ? icon : 'fa-book-open';
+  }
+
   function renderPremade() {
     if (!selectors.premadeList) return;
     ensurePremadeSelection();
@@ -5597,9 +5651,10 @@
     selectors.premadeList.innerHTML = state.premadeSets.length
       ? state.premadeSets.map(item => {
           const file = item.fileName || item.filename || item.file || item.path || '';
+          const icon = safePremadeIcon(item.icon);
           return `
             <article class="premade-row">
-              <div class="deck-icon"><i class="fas ${item.icon || 'fa-book-open'}"></i></div>
+              <div class="deck-icon"><i class="fas ${icon}" aria-hidden="true"></i></div>
               <div class="deck-main">
                 <h3 class="deck-title">${escapeHtml(item.name || item.title || file || 'Premade Deck')}</h3>
                 <div class="deck-subline">
@@ -6410,45 +6465,69 @@
   }
 
   async function downloadPremadeDeck(deckUrl, zipFileName) {
-    const response = await fetch(deckUrl);
-    if (!response.ok) {
-      throw new Error('Failed to fetch premade ZIP file');
-    }
+    const controller = typeof AbortController === 'function' ? new AbortController() : null;
+    const timeoutId = controller
+      ? window.setTimeout(() => controller.abort(), PREMADE_DOWNLOAD_TIMEOUT_MS)
+      : null;
 
-    const totalBytes = Number(response.headers.get('content-length'));
-    const reader = response.body?.getReader?.();
-
-    // The progress percentage needs a response size and stream support. Older
-    // WebViews still download the deck correctly, but fall back to the loader.
-    if (!reader || !Number.isFinite(totalBytes) || totalBytes <= 0) {
-      const blob = await response.blob();
-      return new File([blob], zipFileName, { type: 'application/zip' });
-    }
-
-    const chunks = [];
-    let downloadedBytes = 0;
-    let lastReportedPercent = -1;
-    setMicroLoaderProgress(0, 'Downloading deck...');
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      if (!value) continue;
-
-      chunks.push(value);
-      downloadedBytes += value.byteLength;
-      const percent = Math.min(100, Math.floor((downloadedBytes / totalBytes) * 100));
-      if (percent !== lastReportedPercent) {
-        setMicroLoaderProgress(percent, 'Downloading deck...');
-        lastReportedPercent = percent;
+    try {
+      const response = await fetch(deckUrl, controller ? { signal: controller.signal } : undefined);
+      if (!response.ok) {
+        throw importUserError('Could not download the premade deck');
       }
-    }
 
-    setMicroLoaderProgress(100, 'Preparing deck...');
-    const blob = new Blob(chunks, {
-      type: response.headers.get('content-type') || 'application/zip'
-    });
-    return new File([blob], zipFileName, { type: 'application/zip' });
+      const totalBytes = Number(response.headers.get('content-length'));
+      if (Number.isFinite(totalBytes) && totalBytes > PREMADE_DOWNLOAD_MAX_BYTES) {
+        throw importUserError('Premade deck is too large to download safely');
+      }
+      const reader = response.body?.getReader?.();
+      if (!reader) {
+        // Avoid an unbounded Blob allocation on older WebViews that cannot stream.
+        if (!Number.isFinite(totalBytes) || totalBytes <= 0) {
+          throw importUserError('This device cannot safely download a deck without a file size');
+        }
+        const blob = await response.blob();
+        return new File([blob], zipFileName, { type: 'application/zip' });
+      }
+
+      const chunks = [];
+      let downloadedBytes = 0;
+      let lastReportedPercent = -1;
+      setMicroLoaderProgress(0, 'Downloading deck...');
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (!value) continue;
+
+        downloadedBytes += value.byteLength;
+        if (downloadedBytes > PREMADE_DOWNLOAD_MAX_BYTES) {
+          controller?.abort();
+          throw importUserError('Premade deck is too large to download safely');
+        }
+        chunks.push(value);
+        const percent = Number.isFinite(totalBytes) && totalBytes > 0
+          ? Math.min(100, Math.floor((downloadedBytes / totalBytes) * 100))
+          : 0;
+        if (percent !== lastReportedPercent) {
+          setMicroLoaderProgress(percent, 'Downloading deck...');
+          lastReportedPercent = percent;
+        }
+      }
+
+      setMicroLoaderProgress(100, 'Preparing deck...');
+      const blob = new Blob(chunks, {
+        type: response.headers.get('content-type') || 'application/zip'
+      });
+      return new File([blob], zipFileName, { type: 'application/zip' });
+    } catch (error) {
+      if (error?.name === 'AbortError') {
+        throw importUserError('Premade download timed out. Please try again.');
+      }
+      throw error;
+    } finally {
+      if (timeoutId !== null) window.clearTimeout(timeoutId);
+    }
   }
 
   function hideMicroLoader() {
@@ -8719,6 +8798,36 @@ followed by the JSON containing "deck" and "media" array.`;
     }
   }
 
+  async function clearAllLocalData() {
+    const firstConfirmation = await showMobileConfirm({
+      title: 'Delete All Local Data',
+      message: 'This permanently removes every deck, card, image, study history, local backup, and app setting from this phone. Export a backup first if you may need any of it later.',
+      okText: 'Continue',
+      isDanger: true
+    });
+    if (!firstConfirmation) return;
+
+    const finalConfirmation = await showMobileConfirm({
+      title: 'Final Confirmation',
+      message: 'This cannot be undone. Delete all Erudite data stored on this device now?',
+      okText: 'Delete Everything',
+      isDanger: true
+    });
+    if (!finalConfirmation) return;
+
+    showMicroLoader('Deleting local data...');
+    try {
+      await window.flashcardStore.clearAllLocalData();
+      showToast('Local data deleted');
+      window.setTimeout(() => window.location.reload(), 350);
+    } catch (error) {
+      console.error('[mobile] Could not clear local data:', error);
+      showToast('Could not delete local data');
+    } finally {
+      hideMicroLoader();
+    }
+  }
+
   async function reviewDue(options = {}) {
     const force = Boolean(options.force || !state.srsMode);
     const first = dueSets({ force })[0]?.set;
@@ -9252,6 +9361,12 @@ followed by the JSON containing "deck" and "media" array.`;
         break;
       case 'import-backup':
         await importBackup();
+        break;
+      case 'open-privacy':
+        window.location.assign('mobile/privacy.html');
+        break;
+      case 'clear-all-data':
+        await clearAllLocalData();
         break;
       case 'copy-export':
         await openCopyExportModal();

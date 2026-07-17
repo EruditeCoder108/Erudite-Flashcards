@@ -915,6 +915,27 @@
     };
   }
 
+  async function clearAllLocalData() {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.clearAllLocalData) return nativeApi.clearAllLocalData();
+
+    const exactKeys = new Set([
+      'flashcardSets', 'flashcardClasses', 'flashcards-settings', 'flashcards-theme',
+      'flashcardSetDraft', 'currentStudyProgress', 'srsModeEnabled', 'studyProgress',
+      'customCursorEnabled', 'cursorStyle', 'erudite-mobile-study-card-patches-v1',
+      'erudite-mobile-set-backup-index-v1', 'erudite-mobile-class-backup-index-v1',
+      'erudite-mobile-set-stats-cache-v1'
+    ]);
+    const prefixes = ['erudite-mobile-', 'erudite-state-'];
+    const keys = [];
+    for (let index = 0; index < localStorage.length; index += 1) {
+      const key = localStorage.key(index);
+      if (key && (exactKeys.has(key) || prefixes.some(prefix => key.startsWith(prefix)))) keys.push(key);
+    }
+    keys.forEach(key => localStorage.removeItem(key));
+    return { cleared: true, storageEngine: 'browser-localStorage' };
+  }
+
   async function exportDelimited(format) {
     const nativeApi = getNativeApi();
     if (nativeApi?.exportDelimited) return nativeApi.exportDelimited(format);
@@ -1009,6 +1030,7 @@
     getDiagnostics,
     exportBackup,
     importBackup,
+    clearAllLocalData,
     exportDelimited,
     importDelimited,
     recordReview,

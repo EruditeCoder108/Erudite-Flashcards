@@ -1,5 +1,34 @@
 apply plugin: 'com.android.application'
 
+import java.util.Properties
+
+def releaseSigningProperties = new Properties()
+def releaseSigningPropertiesFile = rootProject.file('keystore.properties')
+if (releaseSigningPropertiesFile.exists()) {
+    releaseSigningPropertiesFile.withInputStream { releaseSigningProperties.load(it) }
+}
+
+def releaseSigningValue = { String propertyName, String environmentName ->
+    return releaseSigningProperties.getProperty(propertyName) ?: System.getenv(environmentName)
+}
+
+def releaseStoreFilePath = releaseSigningValue('storeFile', 'ERUDITE_UPLOAD_STORE_FILE')
+def releaseStorePassword = releaseSigningValue('storePassword', 'ERUDITE_UPLOAD_STORE_PASSWORD')
+def releaseKeyAlias = releaseSigningValue('keyAlias', 'ERUDITE_UPLOAD_KEY_ALIAS')
+def releaseKeyPassword = releaseSigningValue('keyPassword', 'ERUDITE_UPLOAD_KEY_PASSWORD')
+def missingReleaseSigningValues = {
+    def missing = []
+    if (!releaseStoreFilePath) {
+        missing << 'storeFile / ERUDITE_UPLOAD_STORE_FILE'
+    } else if (!rootProject.file(releaseStoreFilePath).isFile()) {
+        missing << "upload keystore file (${releaseStoreFilePath})"
+    }
+    if (!releaseStorePassword) missing << 'storePassword / ERUDITE_UPLOAD_STORE_PASSWORD'
+    if (!releaseKeyAlias) missing << 'keyAlias / ERUDITE_UPLOAD_KEY_ALIAS'
+    if (!releaseKeyPassword) missing << 'keyPassword / ERUDITE_UPLOAD_KEY_PASSWORD'
+    return missing
+}
+
 android {
     namespace = "com.erudite.flashcards"
     compileSdk = rootProject.ext.compileSdkVersion
@@ -16,8 +45,17 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    signingConfigs {
+        release {
+            if (releaseStoreFilePath) storeFile rootProject.file(releaseStoreFilePath)
+            if (releaseStorePassword) storePassword releaseStorePassword
+            if (releaseKeyAlias) keyAlias releaseKeyAlias
+            if (releaseKeyPassword) keyPassword releaseKeyPassword
+        }
+    }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -41,6 +79,20 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
     implementation project(':capacitor-cordova-android-plugins')
+}
+
+tasks.configureEach {
+    if (name == 'preReleaseBuild') {
+        doFirst {
+            def missing = missingReleaseSigningValues()
+            if (!missing.isEmpty()) {
+                throw new GradleException(
+                    "Release signing is not configured. Missing: ${missing.join(', ')}. " +
+                    "Copy android/keystore.properties.example to android/keystore.properties, or supply the ERUDITE_UPLOAD_* environment variables."
+                )
+            }
+        }
+    }
 }
 
 apply from: 'capacitor.build.gradle'
