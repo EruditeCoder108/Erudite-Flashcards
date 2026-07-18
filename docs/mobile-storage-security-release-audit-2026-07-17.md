@@ -1,7 +1,7 @@
 # Mobile Storage & Security Release Audit
 
 **Scope:** Android/Capacitor mobile build only  
-**Status:** Core storage/security remediation is implemented. Do not submit this build to Google Play yet: a protected upload key, deployment of the public privacy page, and physical-device validation still remain.
+**Status:** Core storage/security remediation is implemented. The user has confirmed that the public privacy page is live on Netlify. Do not submit this build to Google Play yet: a protected upload key and physical-device validation still remain.
 
 ## Verification completed
 
@@ -18,7 +18,7 @@
 | Priority | Require this action | Evidence and release risk |
 |---|---|---|
 | P0 | Supply a dedicated upload key outside version control, build a signed AAB/APK, and verify its certificate before upload. | Implemented a release signing configuration in `android/app/build.gradle` that accepts an ignored `android/keystore.properties` or `ERUDITE_UPLOAD_*` environment variables. `android/keystore.properties.example` documents the required values. A release build now fails early without them, so an unsigned AAB cannot be produced by mistake. The existing prior AAB is unsigned and must not be uploaded. |
-| P0 | Deploy the public privacy page, link that live URL in Play Console, and verify it from a physical device. | Implemented an in-app page at `mobile/privacy.html`, a More-tab entry, user-visible data erasure, and a deployable static policy at `premade-cards/privacy.html`. The public Netlify URL is referenced in the app but has not been deployed/verified during this audit. |
+| P0 | Enter the exact live Netlify privacy-policy URL in Play Console and verify it from a physical device. | Implemented an in-app page at `mobile/privacy.html`, a More-tab entry, user-visible data erasure, and a deployable static policy at `premade-cards/privacy.html`. The user confirmed Netlify deployment is live on 2026-07-17; device and Play Console checks remain. |
 
 ## Storage and recovery findings
 
@@ -39,7 +39,6 @@
 | P1 | Verify CSP behavior and external AI hand-off on a physical device. | Added a production CSP to each mobile document, moved the early theme bootstrap out of inline script, and persisted a Netlify-only Cordova access allow-list through `capacitor.config.json`. |
 | P1 | Verify Android Share works with narrowed FileProvider paths. | Restricted the external FileProvider root to `Documents/erudite-flashcards/backups/`; app cache remains shareable for plugin compatibility. |
 | P2 | Centralize rich-text/advanced-HTML sanitization in one tested core module and fuzz it with hostile HTML, CSS, URL, and malformed-import fixtures. | Similar sanitizers appear independently in `mobile/js/mobile-app.js` and `mobile/js/mobile-study.js`. The current allowlists are a strong start, but duplicated security code will drift. |
-| P2 | Enable R8/resource shrinking after a compatibility pass and remove production console logging that can reveal file names or error details. | The release build explicitly sets `minifyEnabled false`. Treat obfuscation as defense in depth, not a substitute for input validation. |
 | P2 | Enable R8/resource shrinking after a compatibility pass and remove production console logging that can reveal file names or error details. | The release build still explicitly sets `minifyEnabled false`. Treat obfuscation as defense in depth, not a substitute for input validation. |
 | P2 | Keep the release bundle mobile-only. | Implemented a targeted mobile asset build: only the root mobile shell, study/privacy pages, mobile runtime, required core scripts, media sounds, icon, and vendor libraries are copied. The generated web payload reduced from about 17.8 MB to 6.2 MB. Verify final signed AAB size after the upload key is configured. |
 
@@ -61,7 +60,7 @@
 ## Required remediation order
 
 1. Create the protected upload key, add its ignored configuration, build a signed AAB/APK, and verify the certificate fingerprint.
-2. Deploy `premade-cards/privacy.html` to the public Netlify host and enter that exact URL in Play Console.
+2. Enter the already-live Netlify privacy-policy URL in Play Console and verify it from a physical device.
 3. Run physical-device recovery, portable-backup, delete-all, import-abuse, Android Share, offline, and CSP/external-AI tests.
 4. Enable/test R8 and resource shrinking, then measure the final signed AAB.
 5. Complete the polished onboarding, identity, reminder, and accessibility work before store listing screenshots and submission.

@@ -91,6 +91,28 @@ body {
   -webkit-user-select: none;
 }
 
+/* Match the native splash while Android settles its first WebView insets. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+  background: linear-gradient(180deg, #0a1424 0%, #07111f 100%);
+  opacity: 0;
+  transition: opacity 120ms ease-out;
+}
+
+html.theme-light body::before {
+  background: #f8fafc;
+}
+
+html.startup-stabilizing body::before {
+  pointer-events: auto;
+  opacity: 1;
+  transition: none;
+}
+
 body.app-ready .app-loading-cover {
   pointer-events: none;
   opacity: 0 !important;
@@ -112,7 +134,7 @@ body.app-ready .app-loading-cover {
     linear-gradient(180deg, #0a1424 0%, #07111f 100%);
   color: var(--text);
   opacity: 1;
-  transition: none;
+  transition: opacity 180ms ease-out;
 }
 
 
@@ -346,6 +368,141 @@ button {
 
 .today-hero::before {
   content: none;
+}
+
+.today-hero.has-starter-card {
+  display: grid;
+  gap: 1rem;
+  min-height: 0;
+  padding: 0.75rem;
+}
+
+.today-starter-card {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding: 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 42%, var(--line));
+  border-radius: 1.15rem;
+  background:
+    radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--accent, #35d07f) 18%, transparent), transparent 38%),
+    linear-gradient(145deg, color-mix(in srgb, var(--primary) 12%, var(--surface-2)), var(--surface-2));
+  box-shadow: 0 16px 36px rgba(4, 12, 28, 0.18);
+}
+
+.today-starter-card::after {
+  position: absolute;
+  right: -3.6rem;
+  top: -4.4rem;
+  width: 9rem;
+  height: 9rem;
+  border: 1px solid color-mix(in srgb, var(--primary-2) 25%, transparent);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.today-starter-eyebrow {
+  margin: 0;
+  color: var(--primary-2);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+
+.today-starter-card h2 {
+  max-width: 19rem;
+  margin: 0.45rem 0 0;
+  color: var(--text);
+  font-size: clamp(1.3rem, 6.4vw, 1.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.today-starter-card > p:not(.today-starter-eyebrow) {
+  max-width: 22rem;
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  font-size: 0.77rem;
+  line-height: 1.45;
+}
+
+.today-starter-dismiss {
+  position: absolute;
+  z-index: 3;
+  right: 0.65rem;
+  top: 0.65rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  color: var(--muted);
+}
+
+.today-starter-actions {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.today-starter-actions > button {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.68rem;
+  width: 100%;
+  min-height: 4.2rem;
+  padding: 0.62rem;
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+}
+
+.today-starter-actions > button > span {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.75rem;
+  background: rgba(59, 130, 246, 0.14);
+  color: var(--primary-2);
+}
+
+.today-starter-actions strong,
+.today-starter-actions small {
+  grid-column: 2;
+  display: block;
+}
+
+.today-starter-actions strong {
+  align-self: end;
+  font-size: 0.82rem;
+  line-height: 1.15;
+}
+
+.today-starter-actions small {
+  align-self: start;
+  margin-top: -0.4rem;
+  color: var(--muted);
+  font-size: 0.65rem;
+  line-height: 1.25;
+}
+
+.today-starter-actions > button > i {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  color: var(--muted);
+}
+
+.today-hero.has-starter-card .hero-dashboard,
+.today-hero.has-starter-card .hero-actions {
+  margin-inline: 0.25rem;
 }
 
 .hero-grid {
@@ -1197,6 +1354,62 @@ button {
   color: var(--muted) !important;
 }
 
+.settings-diagnostics {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+
+.settings-diagnostics summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 4.1rem;
+  padding: 0.75rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.settings-diagnostics summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-diagnostics strong,
+.settings-diagnostics small {
+  display: block;
+}
+
+.settings-diagnostics strong {
+  color: var(--text);
+  font-size: 0.94rem;
+}
+
+.settings-diagnostics small {
+  margin-top: 0.15rem;
+  color: var(--muted);
+}
+
+.settings-diagnostics-chevron {
+  color: var(--muted);
+  transition: transform 160ms ease;
+}
+
+.settings-diagnostics[open] .settings-diagnostics-chevron {
+  transform: rotate(90deg);
+}
+
+.settings-diagnostics-actions {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0 0.65rem 0.65rem;
+}
+
+.settings-diagnostics-actions .settings-row {
+  min-height: 3.8rem;
+}
+
 .theme-light .settings-row.highlighted {
   background: rgba(139, 92, 246, 0.05) !important;
   border-color: var(--line) !important;
@@ -1264,7 +1477,9 @@ button {
   border-bottom: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
   padding: max(0.5rem, var(--safe-top)) max(0.9rem, var(--safe-right)) 0.6rem max(0.9rem, var(--safe-left));
-  margin: calc(-1 * max(0.5rem, var(--safe-top))) calc(-1 * max(0.9rem, var(--safe-right))) 0.8rem calc(-1 * max(0.9rem, var(--safe-left)));
+  /* Offset the view's 1rem top padding as well as the safe area. This gives the
+     Library logo the same vertical baseline as the shared top bar on other tabs. */
+  margin: calc(-1 * (1rem + max(0.5rem, var(--safe-top)))) calc(-1 * max(0.9rem, var(--safe-right))) 0.8rem calc(-1 * max(0.9rem, var(--safe-left)));
   border-radius: 0 0 1.25rem 1.25rem;
   display: flex;
   flex-direction: column;
@@ -2584,8 +2799,8 @@ body[data-active-tab="more"] .mobile-tab-indicator {
 }
 
 .deck-row.long-pressing {
-  transform: scale(0.96) translateY(1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transform: scale(0.98) translateY(1px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.25);
   border-color: var(--primary-2);
   background: rgba(59, 130, 246, 0.08);
 }
@@ -2839,8 +3054,18 @@ select option {
   padding: 0.75rem max(0.75rem, var(--safe-right)) calc(0.75rem + var(--safe-bottom)) max(0.75rem, var(--safe-left));
 }
 
+.mobile-modal-overlay {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 160ms ease-out, visibility 0s linear;
+}
+
 .mobile-modal-overlay.hidden {
-  display: none;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 130ms ease-in, visibility 0s linear 130ms;
 }
 
 .mobile-modal-card {
@@ -2851,11 +3076,19 @@ select option {
   border: 1px solid var(--line-strong);
   border-radius: 1.5rem;
   padding: 1.5rem 1.25rem;
-  animation: modal-slide-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), opacity 160ms ease-out;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.mobile-modal-overlay.hidden .mobile-modal-card {
+  transform: translateY(1.25rem);
+  opacity: 0;
+  transition: transform 150ms ease-in, opacity 100ms ease-in;
 }
 
 .mobile-modal-card::before {
@@ -3506,7 +3739,7 @@ select option {
 }
 
 .mobile-modal-btn:active {
-  transform: scale(0.93);
+  transform: scale(0.97);
 }
 
 .mobile-modal-btn.cancel {
@@ -3544,6 +3777,68 @@ select option {
 
 .mobile-modal-btn.confirm:hover {
   background: #2563eb;
+}
+
+.creator-import-choice-options {
+  display: grid;
+  gap: 0.62rem;
+}
+
+.creator-import-choice-option {
+  display: grid;
+  grid-template-columns: 2.3rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.72rem;
+  width: 100%;
+  min-height: 4.5rem;
+  padding: 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+}
+
+.creator-import-choice-option > i {
+  display: grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 0.78rem;
+  color: var(--primary-2);
+  background: rgba(59, 130, 246, 0.14);
+}
+
+.creator-import-choice-option strong,
+.creator-import-choice-option small {
+  display: block;
+}
+
+.creator-import-choice-option strong {
+  font-size: 0.92rem;
+  font-weight: 850;
+}
+
+.creator-import-choice-option small {
+  margin-top: 0.12rem;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+.creator-import-choice-option.primary {
+  border-color: color-mix(in srgb, var(--primary) 55%, var(--line));
+  background: color-mix(in srgb, var(--primary) 11%, var(--surface-2));
+}
+
+.creator-import-choice-option.replace > i {
+  color: var(--amber);
+  background: rgba(245, 184, 75, 0.13);
+}
+
+.creator-import-choice-option:active {
+  transform: scale(0.98);
 }
 
 .mobile-modal-row {
@@ -3748,11 +4043,10 @@ button,
   transition: transform 0.22s cubic-bezier(0.34, 1.6, 0.64, 1), background 0.15s ease, opacity 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
 }
 
-/* Deeper scaling on active press for premium tactile feedback */
+/* Small, quick press feedback that does not make the interface feel jumpy. */
 button:active,
 .tab-button:active,
 .settings-row:active,
-.deck-row:active,
 .class-card:active,
 .mobile-modal-option-btn:active,
 .context-option-row:active,
@@ -3766,8 +4060,8 @@ button:active,
 .secondary-action:active,
 .small-icon-button:active,
 .creator-bottom-add:active {
-  transform: scale(0.93) !important;
-  transition: transform 0.06s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transform: scale(0.97) !important;
+  transition: transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
 /* Class Edit Button */
@@ -5509,4 +5803,15 @@ body[data-active-tab="library"] .mobile-topbar {
 
 .theme-light .wizard-advanced-details .advanced-summary {
   background: var(--bg-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

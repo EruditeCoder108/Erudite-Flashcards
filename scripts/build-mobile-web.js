@@ -55,6 +55,7 @@ async function copyMobileAssets() {
   await copyFile(path.join(root, 'assets', 'audio', 'Star.mp3'), path.join(outDir, 'assets', 'audio', 'Star.mp3'));
   await copyFile(path.join(root, 'assets', 'audio', 'success.mp3'), path.join(outDir, 'assets', 'audio', 'success.mp3'));
   await copyFile(path.join(root, 'assets', 'flashcard-assets', 'click.mp3'), path.join(outDir, 'assets', 'flashcard-assets', 'click.mp3'));
+  await copyFile(path.join(root, 'assets', 'flashcard-assets', 'import.mp3'), path.join(outDir, 'assets', 'flashcard-assets', 'import.mp3'));
   await copyFile(path.join(root, 'assets', 'flashcard-assets', 'flip-sound.mp3'), path.join(outDir, 'assets', 'flashcard-assets', 'flip-sound.mp3'));
   await copyFile(path.join(root, 'assets', 'flashcard-assets', 'Next-card.mp3'), path.join(outDir, 'assets', 'flashcard-assets', 'Next-card.mp3'));
 }

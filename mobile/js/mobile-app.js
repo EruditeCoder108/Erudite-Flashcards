@@ -6,6 +6,10 @@
   const perf = window.EruditeMobilePerf;
 
   const CREATOR_DRAFT_KEY = 'mobileCreatorDraft';
+  const ONBOARDING_COMPLETE_KEY = 'erudite-mobile-onboarding-complete-v2';
+  const PREFERRED_NAME_KEY = 'erudite-preferred-name-v1';
+  const STARTER_DISMISSED_KEY = 'erudite-today-starter-dismissed-v1';
+  const ONBOARDING_MEMORY_CODES = ['KAVRIN', 'MELVOR', 'TASRIN', 'NOLVEC', 'RAVDIN', 'SELMOR', 'VEKRAN', 'PELNAR', 'DORVIK', 'KELRUM', 'ZANVIC', 'FELRAN'];
   const CREATOR_PROGRESSIVE_RENDER_THRESHOLD = 40;
   const CREATOR_PROGRESSIVE_BATCH_SIZE = 20;
   const CREATOR_AUTOSAVE_CARD_LIMIT = 160;
@@ -77,8 +81,8 @@
     browserFilters: new Set(),
     browserSelectedCards: new Set(),
     browserVisibleIds: [],
-    premadeClass: '10th',
-    premadeSubject: 'Science',
+    premadeClass: 'ssc',
+    premadeSubject: 'english',
     premadeSets: [],
     creator: {
       editingSetId: null,
@@ -144,6 +148,16 @@
   let refreshPromise = null;
   let resumeRefreshPromise = null;
   let lastResumeRefreshAt = 0;
+  let routeLoaderShownAt = 0;
+  let onboardingStep = 0;
+  let onboardingReturnFocus = null;
+  let onboardingBusy = false;
+  let onboardingGreetingBusy = false;
+  let onboardingGreetingRevealTimer = null;
+  let onboardingGreetingTransitionTimer = null;
+  let onboardingMemoryCode = '';
+  let onboardingRetrievalExplained = false;
+  const ROUTE_LOADER_MIN_VISIBLE_MS = 150;
 
   let premadeClasses = [
     { id: '10th', name: 'Class 10' },
@@ -715,34 +729,61 @@
     return 0;
   }
 
+  const APP_SOUNDS = Object.freeze({
+    click: { src: 'assets/flashcard-assets/click.mp3', poolSize: 2 },
+    flip: { src: 'assets/flashcard-assets/flip-sound.mp3', poolSize: 1 },
+    star: { src: 'assets/audio/Star.mp3', poolSize: 1 },
+    import: { src: 'assets/flashcard-assets/import.mp3', poolSize: 1 }
+  });
+  const appSoundPools = new Map();
+  let lastHapticAt = 0;
+
   function triggerHaptic() {
+    const now = performance.now();
+    // Do not queue dozens of vibrations while the user is rapidly selecting items.
+    if (now - lastHapticAt < 80) return;
+    lastHapticAt = now;
     try {
       const Haptics = window.Capacitor?.Plugins?.Haptics;
       if (Haptics && typeof Haptics.impact === 'function') {
         Haptics.impact({ style: 'light' }).catch(() => {});
       } else if (navigator.vibrate) {
-        navigator.vibrate(30);
+        navigator.vibrate(15);
       }
     } catch (_e) {}
   }
 
-  function playClick() {
-    triggerHaptic();
+  function playAppSound(name) {
     if (state.settings?.soundEffectsEnabled === false) return;
     try {
-      const audio = new Audio('assets/flashcard-assets/click.mp3');
-      audio.volume = 0.85;
+      const definition = APP_SOUNDS[name];
+      if (!definition) return;
+      let pool = appSoundPools.get(name);
+      if (!pool) {
+        pool = Array.from({ length: definition.poolSize }, () => {
+          const audio = new Audio(definition.src);
+          audio.volume = 0.85;
+          return audio;
+        });
+        appSoundPools.set(name, pool);
+      }
+      const audio = pool.find(candidate => candidate.paused || candidate.ended) || pool[0];
+      audio.currentTime = 0;
       audio.play().catch(() => {});
     } catch (_error) {}
   }
 
+  function playClick() {
+    triggerHaptic();
+    playAppSound('click');
+  }
+
   function playStar() {
-    if (state.settings?.soundEffectsEnabled === false) return;
-    try {
-      const audio = new Audio('assets/audio/Star.mp3');
-      audio.volume = 0.85;
-      audio.play().catch(() => {});
-    } catch (_error) {}
+    playAppSound('star');
+  }
+
+  function playImport() {
+    playAppSound('import');
   }
 
   let toastTimer = null;
@@ -764,7 +805,9 @@
     const isLight = state.settings?.theme === 'light';
     await SystemBars.setStyle?.({ style: isLight ? 'LIGHT' : 'DARK' }).catch(() => {});
     await SystemBars.setAnimation?.({ animation: 'NONE' }).catch(() => {});
-    await SystemBars.show?.().catch(() => {});
+    // The launch theme and Capacitor config already keep both system bars visible.
+    // Calling show() after the first web frame makes Android recalculate WebView
+    // insets, which visibly shifts startup surfaces such as onboarding and loader.
   }
 
   async function waitForStorage() {
@@ -1829,8 +1872,25 @@
     const reviewLabel = state.srsMode && totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : (hasDecks ? 'Study Decks' : 'Create Deck');
     const middleMetricValue = state.srsMode ? todayReviews : activity.todayCardsViewed;
     const middleMetricLabel = state.srsMode ? 'Reviewed' : 'Studied';
+    const preferredName = readPreferredName();
+    const showStarterCard = !hasDecks && !hasDismissedStarterCard();
+    const starterGreeting = preferredName ? `Ready, ${preferredName}?` : 'Ready to begin?';
+    selectors.todayHero?.classList.toggle('has-starter-card', showStarterCard);
 
     selectors.todayHero.innerHTML = `
+      ${showStarterCard ? `
+        <section class="today-starter-card" aria-labelledby="today-starter-title">
+          <button type="button" class="today-starter-dismiss" data-action="dismiss-starter-card" aria-label="Dismiss getting started card"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+          <p class="today-starter-eyebrow">YOUR FIRST USEFUL STEP</p>
+          <h2 id="today-starter-title">${escapeHtml(starterGreeting)} Build your first useful deck.</h2>
+          <p>Choose the quickest way to begin. Everything stays available later.</p>
+          <div class="today-starter-actions">
+            <button type="button" data-action="open-create"><span><i class="fas fa-file-import" aria-hidden="true"></i></span><strong>Create or import</strong><small>Build cards or bring in a deck.</small><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+            <button type="button" data-action="open-starter-chatgpt"><span><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i></span><strong>Create with ChatGPT</strong><small>Turn notes or a PDF into cards.</small><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+            <button type="button" data-action="open-starter-premade"><span><i class="fas fa-book-open" aria-hidden="true"></i></span><strong>Explore premade decks</strong><small>Open SSC English resources.</small><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+          </div>
+        </section>
+      ` : ''}
       <div class="hero-dashboard">
         <div class="goal-ring-wrapper">
           <svg class="goal-ring-svg" viewBox="0 0 100 100">
@@ -5179,7 +5239,51 @@
     return parseCreatorImportFile(file, await file.text());
   }
 
-  function applyCreatorImport(imported) {
+  function chooseCreatorImportPlacement(existingCount, importedCount) {
+    return new Promise(resolve => {
+      const overlay = document.getElementById('creator-import-choice-overlay');
+      const copy = document.getElementById('creator-import-choice-copy');
+      const cancel = document.getElementById('creator-import-choice-cancel');
+      const choices = overlay?.querySelectorAll('[data-import-placement]');
+      const returnFocus = document.activeElement;
+      if (!overlay || !copy || !cancel || !choices?.length) {
+        resolve(null);
+        return;
+      }
+
+      copy.textContent = `This draft already has ${plural(existingCount, 'card')}. The file contains ${plural(importedCount, 'card')}. Choose where the imported cards should go.`;
+      overlay.classList.remove('hidden');
+
+      const finish = (placement = null) => {
+        choices.forEach(button => button.removeEventListener('click', onChoice));
+        cancel.removeEventListener('click', onCancel);
+        overlay.removeEventListener('click', onOverlayClick);
+        overlay.classList.add('hidden');
+        state.lastModalClosedAt = Date.now();
+        returnFocus?.focus?.();
+        resolve(placement);
+      };
+
+      const onChoice = event => {
+        playClick();
+        finish(event.currentTarget.dataset.importPlacement || null);
+      };
+      const onCancel = () => {
+        playClick();
+        finish();
+      };
+      const onOverlayClick = event => {
+        if (event.target === overlay) onCancel();
+      };
+
+      choices.forEach(button => button.addEventListener('click', onChoice));
+      cancel.addEventListener('click', onCancel);
+      overlay.addEventListener('click', onOverlayClick);
+      requestAnimationFrame(() => choices[1]?.focus?.());
+    });
+  }
+
+  async function applyCreatorImport(imported) {
     const cards = Array.isArray(imported?.cards) ? imported.cards : [];
     if (!cards.length) {
       showToast(`No valid ${imported?.format || 'file'} cards found`);
@@ -5187,22 +5291,41 @@
     }
 
     syncCreatorFromDom();
+    const existing = state.creator.cards.filter(hasCardContent);
+    const placement = existing.length
+      ? await chooseCreatorImportPlacement(existing.length, cards.length)
+      : 'replace';
+    if (!placement) return false;
+
     const currentName = String(selectors.createTitle?.value || '').trim();
-    if (!currentName && imported.name && selectors.createTitle) {
+    const replacingDraft = placement === 'replace';
+    if ((replacingDraft || !currentName) && imported.name && selectors.createTitle) {
       selectors.createTitle.value = imported.name;
     }
-    if (!state.creator.classId && imported.className) {
+    if ((replacingDraft || !state.creator.classId) && imported.className) {
       const match = state.classes.find(item => String(item.name || '').trim().toLowerCase() === imported.className.toLowerCase());
       if (match) state.creator.classId = match.id;
     }
 
-    const existing = state.creator.cards.filter(hasCardContent);
-    state.creator.cards = [...existing, ...cards];
+    if (replacingDraft) {
+      state.creator.cards = cards;
+      creatorCardLookup = new Map();
+      creatorDirtyCardIds = new Set();
+      creatorGeneratedCardCache = new Map();
+    } else if (placement === 'append-top') {
+      state.creator.cards = [...cards, ...existing];
+    } else {
+      state.creator.cards = [...existing, ...cards];
+    }
     cards.forEach(card => markCreatorCardDirty(card.id));
     creatorRenderedCardCount = CREATOR_PROGRESSIVE_BATCH_SIZE;
     renderCreate({ resetProgressive: true });
     scheduleCreatorDraftSave();
-    showToast(`Imported ${plural(cards.length, 'card')} from ${imported.format || 'file'}`);
+    playImport();
+    const placementLabel = replacingDraft
+      ? 'replaced the current draft'
+      : placement === 'append-top' ? 'added to the top' : 'added to the bottom';
+    showToast(`Imported ${plural(cards.length, 'card')} — ${placementLabel}`);
     return true;
   }
 
@@ -5668,7 +5791,11 @@
             </article>
           `;
         }).join('')
-      : emptyPanel('fa-book-open', 'No premade decks here yet', 'This subject has no bundled decks in the current build.');
+      : emptyPanel(
+          'fa-book-open',
+          'Quality decks are on the way',
+          'We carefully create every premade deck for this subject. Check back soon—you may find something new next time. Thanks for your patience!'
+        );
   }
 
   async function loadPremade() {
@@ -5834,6 +5961,7 @@
 
         flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
 
+        playImport();
         showToast(`Imported ${plural(syncedCards.length, 'card')}`);
         state.browserLoaded = false;
         overlay?.classList.add('hidden');
@@ -6326,6 +6454,7 @@
       const theme = state.settings?.theme || 'dark';
       selectors.themeLabel.textContent = theme === 'light' ? 'Aura Light' : 'Dark Blue';
     }
+    updateDiagnosticsCaptureUi();
   }
 
   function renderActive() {
@@ -6408,6 +6537,7 @@
       cover.style.display = '';
       cover.classList.add('no-anim');
     }
+    routeLoaderShownAt = performance.now();
     document.body.classList.remove('app-ready');
     document.body.classList.add('is-route-loading');
   }
@@ -6415,6 +6545,7 @@
   function hideAppLoader() {
     document.body.classList.add('app-ready');
     document.body.classList.remove('is-route-loading');
+    document.documentElement.classList.remove('onboarding-pending');
     setTimeout(() => {
       const cover = document.getElementById('app-loading-cover');
       if (cover) {
@@ -6422,6 +6553,519 @@
         cover.classList.remove('no-anim');
       }
     }, 200);
+  }
+
+  function hasCompletedOnboarding() {
+    try {
+      return localStorage.getItem(ONBOARDING_COMPLETE_KEY) === 'true';
+    } catch (_error) {
+      return false;
+    }
+  }
+
+  function markOnboardingComplete() {
+    try {
+      localStorage.setItem(ONBOARDING_COMPLETE_KEY, 'true');
+    } catch (_error) {}
+  }
+
+  function normalizePreferredName(value) {
+    return String(value || '').replace(/\s+/g, ' ').trim().slice(0, 32);
+  }
+
+  function readPreferredName() {
+    const settingsName = normalizePreferredName(state.settings?.preferredName);
+    if (settingsName) return settingsName;
+    try {
+      return normalizePreferredName(localStorage.getItem(PREFERRED_NAME_KEY));
+    } catch (_error) {
+      return '';
+    }
+  }
+
+  async function persistPreferredName(value) {
+    const preferredName = normalizePreferredName(value);
+    if (!preferredName) return;
+
+    // Keep an immediately available local copy, including during first-launch storage setup.
+    try {
+      localStorage.setItem(PREFERRED_NAME_KEY, preferredName);
+    } catch (_error) {}
+    state.settings = { ...(state.settings || {}), preferredName };
+
+    try {
+      await waitForStorage();
+      const storedSettings = await window.flashcardStore.getSettings();
+      state.settings = { ...(storedSettings || {}), ...(state.settings || {}), preferredName };
+      await window.flashcardStore.saveSettings(state.settings);
+    } catch (error) {
+      // The local copy remains available even if persistent storage is temporarily unavailable.
+      console.warn('[mobile] Could not save preferred name to app settings:', error);
+    }
+  }
+
+  function prefersReducedMotion() {
+    return window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches === true;
+  }
+
+  function generateOnboardingMemoryCode() {
+    const choices = ONBOARDING_MEMORY_CODES.filter(code => code !== onboardingMemoryCode);
+    onboardingMemoryCode = choices[Math.floor(Math.random() * choices.length)] || 'KAVRIN';
+    renderOnboardingMemoryCode();
+    return onboardingMemoryCode;
+  }
+
+  function renderLetterTiles(container, value, options = {}) {
+    if (!container) return;
+    const letters = String(value || '').toUpperCase().slice(0, 6).split('');
+    const fragment = document.createDocumentFragment();
+    for (let index = 0; index < 6; index += 1) {
+      const tile = document.createElement('span');
+      const letter = letters[index] || '';
+      tile.textContent = letter;
+      tile.classList.toggle('is-filled', Boolean(letter));
+      if (options.maskEmpty && !letter) tile.innerHTML = '&nbsp;';
+      fragment.appendChild(tile);
+    }
+    container.replaceChildren(fragment);
+  }
+
+  function normalizeMemoryCodeInput(value) {
+    return String(value || '').toUpperCase().replace(/[^A-Z]/g, '').slice(0, 6);
+  }
+
+  function renderOnboardingMemoryCode() {
+    renderLetterTiles(document.getElementById('onboarding-memory-code'), onboardingMemoryCode);
+    const answer = document.getElementById('onboarding-retrieval-answer');
+    if (answer) answer.textContent = onboardingMemoryCode || 'KAVRIN';
+    const codePanel = document.getElementById('onboarding-memory-code');
+    codePanel?.setAttribute('aria-label', `Your code is ${String(onboardingMemoryCode || '').split('').join(' ')}`);
+  }
+
+  function updateOnboardingCodeEntry(value, options = {}) {
+    const normalized = normalizeMemoryCodeInput(value);
+    const input = document.getElementById('onboarding-code-input');
+    if (input && input.value !== normalized) input.value = normalized;
+    renderLetterTiles(document.getElementById('onboarding-code-slots'), normalized, { maskEmpty: true });
+    const matches = normalized.length === 6 && normalized === onboardingMemoryCode;
+    const error = document.getElementById('onboarding-code-error');
+    if (error && options.validate) {
+      error.textContent = normalized.length === 6 && !matches ? 'Check the letters above and try once more.' : '';
+    } else if (error) {
+      error.textContent = '';
+    }
+    updateOnboardingPrimaryButton({ codeMatches: matches });
+    return matches;
+  }
+
+  function resetOnboardingExperiment() {
+    generateOnboardingMemoryCode();
+    onboardingRetrievalExplained = false;
+    const codeInput = document.getElementById('onboarding-code-input');
+    if (codeInput) codeInput.value = '';
+    renderLetterTiles(document.getElementById('onboarding-code-slots'), '', { maskEmpty: true });
+    document.getElementById('onboarding-code-error')?.replaceChildren();
+    document.querySelector('.memory-screen')?.classList.remove('is-hiding');
+    document.querySelector('.retrieval-screen')?.classList.remove('is-explaining');
+    const explanation = document.getElementById('onboarding-retrieval-explanation');
+    explanation?.setAttribute('aria-hidden', 'true');
+    const demo = document.getElementById('onboarding-flip-demo');
+    demo?.classList.remove('is-flipped');
+    const demoCard = demo?.querySelector('[data-onboarding-action="flip-card"]');
+    demoCard?.setAttribute('aria-pressed', 'false');
+    demoCard?.setAttribute('aria-label', 'Flip the flashcard to reveal your code');
+    closeOnboardingSources();
+  }
+
+  function updateOnboardingPrimaryButton(options = {}) {
+    const button = document.getElementById('onboarding-primary-button');
+    if (!button || onboardingStep === 0) return;
+    const icon = label => `${label} <i class="fas fa-arrow-right" aria-hidden="true"></i>`;
+
+    if (onboardingStep === 1) {
+      const matches = options.codeMatches ?? (normalizeMemoryCodeInput(document.getElementById('onboarding-code-input')?.value) === onboardingMemoryCode);
+      button.dataset.onboardingAction = 'hide-code';
+      button.innerHTML = 'Hide my code <i class="fas fa-eye-slash" aria-hidden="true"></i>';
+      button.disabled = !matches;
+      return;
+    }
+    if (onboardingStep === 2) {
+      button.dataset.onboardingAction = 'next';
+      button.innerHTML = icon('Test my memory');
+      button.disabled = false;
+      return;
+    }
+    if (onboardingStep === 3) {
+      const flipped = document.getElementById('onboarding-flip-demo')?.classList.contains('is-flipped') === true;
+      button.dataset.onboardingAction = onboardingRetrievalExplained ? 'next' : 'explain-retrieval';
+      button.innerHTML = onboardingRetrievalExplained ? icon('See what Erudite adds') : icon('What just happened?');
+      button.disabled = !onboardingRetrievalExplained && !flipped;
+      return;
+    }
+    button.dataset.onboardingAction = 'finish';
+    button.innerHTML = 'Let&rsquo;s go! <i class="fas fa-arrow-right" aria-hidden="true"></i>';
+    button.disabled = false;
+  }
+
+  function openOnboardingSources() {
+    const backdrop = document.getElementById('onboarding-sources-backdrop');
+    const sheet = document.getElementById('onboarding-sources-sheet');
+    backdrop?.classList.remove('hidden');
+    backdrop?.setAttribute('aria-hidden', 'false');
+    sheet?.classList.remove('hidden');
+    requestAnimationFrame(() => sheet?.querySelector('button')?.focus?.({ preventScroll: true }));
+  }
+
+  function closeOnboardingSources() {
+    const backdrop = document.getElementById('onboarding-sources-backdrop');
+    const sheet = document.getElementById('onboarding-sources-sheet');
+    backdrop?.classList.add('hidden');
+    backdrop?.setAttribute('aria-hidden', 'true');
+    sheet?.classList.add('hidden');
+  }
+
+  function explainOnboardingRetrieval() {
+    if (!document.getElementById('onboarding-flip-demo')?.classList.contains('is-flipped')) return;
+    onboardingRetrievalExplained = true;
+    document.querySelector('.retrieval-screen')?.classList.add('is-explaining');
+    const explanation = document.getElementById('onboarding-retrieval-explanation');
+    explanation?.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => explanation?.querySelector('h2')?.focus?.({ preventScroll: true }));
+    updateOnboardingPrimaryButton();
+  }
+
+  function hasDismissedStarterCard() {
+    try {
+      return localStorage.getItem(STARTER_DISMISSED_KEY) === 'true';
+    } catch (_error) {
+      return false;
+    }
+  }
+
+  function dismissStarterCard() {
+    try {
+      localStorage.setItem(STARTER_DISMISSED_KEY, 'true');
+    } catch (_error) {}
+    renderToday();
+  }
+
+  function clearOnboardingGreetingTimers() {
+    window.clearTimeout(onboardingGreetingRevealTimer);
+    window.clearTimeout(onboardingGreetingTransitionTimer);
+    onboardingGreetingRevealTimer = null;
+    onboardingGreetingTransitionTimer = null;
+  }
+
+  function launchOnboardingConfetti() {
+    const layer = document.getElementById('onboarding-confetti-layer');
+    if (!layer) return;
+    layer.replaceChildren();
+    if (prefersReducedMotion()) return;
+
+    const colors = ['#60a5fa', '#22d3ee', '#34d399', '#a78bfa', '#fbbf24', '#fb7185'];
+    const fragment = document.createDocumentFragment();
+    for (let index = 0; index < 44; index += 1) {
+      const piece = document.createElement('span');
+      const launchesFromLeft = index % 2 === 0;
+      piece.className = 'onboarding-confetti-piece';
+      piece.style.setProperty('--confetti-origin-x', `${launchesFromLeft ? 8 + Math.random() * 10 : 82 + Math.random() * 10}%`);
+      piece.style.setProperty('--confetti-origin-y', `${44 + Math.random() * 22}%`);
+      piece.style.setProperty('--confetti-x', `${Math.round((launchesFromLeft ? 1 : -1) * (105 + Math.random() * 215))}px`);
+      piece.style.setProperty('--confetti-y', `${Math.round(-190 + Math.random() * 400)}px`);
+      piece.style.setProperty('--confetti-rotation', `${Math.round((Math.random() - 0.5) * 1080)}deg`);
+      piece.style.setProperty('--confetti-color', colors[index % colors.length]);
+      piece.style.setProperty('--confetti-duration', `${950 + Math.round(Math.random() * 480)}ms`);
+      piece.style.setProperty('--confetti-delay', `${Math.round(Math.random() * 90)}ms`);
+      piece.style.setProperty('--confetti-w', `${0.28 + Math.random() * 0.34}rem`);
+      piece.style.setProperty('--confetti-h', `${0.16 + Math.random() * 0.18}rem`);
+      fragment.appendChild(piece);
+    }
+    layer.appendChild(fragment);
+    window.setTimeout(() => layer.replaceChildren(), 1700);
+  }
+
+  function resetOnboardingGreeting() {
+    clearOnboardingGreetingTimers();
+    onboardingGreetingBusy = false;
+
+    const scene = document.getElementById('onboarding-hello-scene');
+    const form = document.getElementById('onboarding-name-form');
+    const input = document.getElementById('onboarding-name-input');
+    const error = document.getElementById('onboarding-name-error');
+    const personalizedName = document.getElementById('onboarding-personalized-name');
+    scene?.classList.remove('is-asking-name', 'is-celebrating');
+    form?.classList.remove('is-invalid');
+    if (input) {
+      input.disabled = false;
+      input.value = readPreferredName();
+    }
+    if (error) error.textContent = '';
+    if (personalizedName) personalizedName.textContent = '';
+    document.getElementById('onboarding-confetti-layer')?.replaceChildren();
+
+    onboardingGreetingRevealTimer = window.setTimeout(() => {
+      scene?.classList.add('is-asking-name');
+      onboardingGreetingRevealTimer = null;
+    }, prefersReducedMotion() ? 80 : 1120);
+  }
+
+  function revealOnboardingGuide() {
+    if (onboardingGreetingBusy && onboardingStep !== 0) return;
+    clearOnboardingGreetingTimers();
+    onboardingGreetingBusy = false;
+    const shell = document.getElementById('onboarding-shell');
+    shell?.classList.add('is-guide-reveal');
+    updateOnboardingStep(1);
+    onboardingGreetingTransitionTimer = window.setTimeout(() => {
+      shell?.classList.remove('is-guide-reveal');
+      onboardingGreetingTransitionTimer = null;
+    }, prefersReducedMotion() ? 0 : 520);
+  }
+
+  function handleOnboardingNameSubmit(event) {
+    event.preventDefault();
+    if (onboardingGreetingBusy) return;
+
+    const form = document.getElementById('onboarding-name-form');
+    const input = document.getElementById('onboarding-name-input');
+    const error = document.getElementById('onboarding-name-error');
+    const preferredName = normalizePreferredName(input?.value);
+    if (!preferredName) {
+      form?.classList.add('is-invalid');
+      if (error) error.textContent = 'Enter a name, nickname, or initials to continue.';
+      triggerHaptic();
+      input?.focus?.({ preventScroll: true });
+      return;
+    }
+
+    onboardingGreetingBusy = true;
+    form?.classList.remove('is-invalid');
+    if (error) error.textContent = '';
+    if (input) {
+      input.value = preferredName;
+      input.disabled = true;
+    }
+    const nameTarget = document.getElementById('onboarding-personalized-name');
+    if (nameTarget) nameTarget.textContent = preferredName;
+    document.getElementById('onboarding-hello-scene')?.classList.add('is-celebrating');
+    playStar();
+    triggerHaptic();
+    launchOnboardingConfetti();
+    persistPreferredName(preferredName).catch(() => {});
+
+    onboardingGreetingTransitionTimer = window.setTimeout(() => {
+      revealOnboardingGuide();
+    }, prefersReducedMotion() ? 480 : 1380);
+  }
+
+  function updateOnboardingStep(nextStep, options = {}) {
+    const shell = document.getElementById('onboarding-shell');
+    if (!shell) return;
+    const screens = Array.from(shell.querySelectorAll('[data-onboarding-step]'));
+    const stepValues = screens.map(screen => Number(screen.dataset.onboardingStep)).filter(Number.isFinite);
+    const featureSteps = stepValues.filter(step => step > 0);
+    const total = Math.max(4, ...featureSteps);
+    const minimum = stepValues.includes(0) ? 0 : 1;
+    const requestedStep = Number(nextStep);
+    onboardingStep = Math.min(total, Math.max(minimum, Number.isFinite(requestedStep) ? requestedStep : minimum));
+    shell.dataset.step = String(onboardingStep);
+    shell.classList.toggle('is-final', onboardingStep === total);
+    shell.setAttribute('aria-labelledby', `onboarding-title-${onboardingStep}`);
+    shell.setAttribute('aria-describedby', `onboarding-description-${onboardingStep}`);
+
+    screens.forEach(screen => {
+      const step = Number(screen.dataset.onboardingStep);
+      screen.classList.toggle('is-active', step === onboardingStep);
+      screen.classList.toggle('is-before', step < onboardingStep);
+      screen.classList.toggle('is-after', step > onboardingStep);
+      screen.setAttribute('aria-hidden', step === onboardingStep ? 'false' : 'true');
+    });
+
+    const progress = document.getElementById('onboarding-progress');
+    progress?.setAttribute('aria-valuenow', String(Math.max(1, onboardingStep)));
+    progress?.querySelectorAll('span').forEach((segment, index) => {
+      const step = index + 1;
+      segment.classList.toggle('is-active', step === onboardingStep);
+      segment.classList.toggle('is-complete', step < onboardingStep);
+    });
+
+    document.getElementById('onboarding-back')?.classList.toggle('is-hidden', onboardingStep <= 1);
+    const stepLabel = document.getElementById('onboarding-step-label');
+    if (stepLabel) stepLabel.textContent = onboardingStep === 0 ? '' : `${onboardingStep} of ${total}`;
+    if (onboardingStep === 1) document.querySelector('.memory-screen')?.classList.remove('is-hiding');
+    updateOnboardingPrimaryButton();
+
+    if (options.focus !== false) {
+      requestAnimationFrame(() => {
+        const focusTarget = onboardingStep === 3 && onboardingRetrievalExplained
+          ? document.querySelector('#onboarding-retrieval-explanation h2')
+          : document.getElementById(`onboarding-title-${onboardingStep}`);
+        focusTarget?.focus?.({ preventScroll: true });
+      });
+    }
+  }
+
+  function showOnboarding(options = {}) {
+    const shell = document.getElementById('onboarding-shell');
+    if (!shell) return;
+    const immediate = options.immediate === true || document.documentElement.classList.contains('onboarding-pending');
+    onboardingBusy = false;
+    shell.querySelectorAll('button').forEach(button => { button.disabled = false; });
+    onboardingReturnFocus = options.returnFocus || document.activeElement;
+    const mobileShell = document.getElementById('mobile-shell');
+    document.body.classList.add('onboarding-open');
+    if (mobileShell) {
+      mobileShell.inert = true;
+      mobileShell.setAttribute('aria-hidden', 'true');
+    }
+    resetOnboardingExperiment();
+    shell.classList.remove('hidden', 'is-closing', 'is-guide-reveal');
+    shell.classList.toggle('is-opening', !immediate);
+    resetOnboardingGreeting();
+    const hasGreeting = Boolean(shell.querySelector('[data-onboarding-step="0"]'));
+    updateOnboardingStep(hasGreeting ? 0 : 1, { focus: false });
+    requestAnimationFrame(() => {
+      shell.classList.remove('is-opening');
+      document.getElementById(hasGreeting ? 'onboarding-title-0' : 'onboarding-title-1')?.focus?.({ preventScroll: true });
+    });
+  }
+
+  async function hideOnboarding() {
+    const shell = document.getElementById('onboarding-shell');
+    if (!shell || shell.classList.contains('hidden')) return;
+    clearOnboardingGreetingTimers();
+    onboardingGreetingBusy = false;
+    closeOnboardingSources();
+    document.getElementById('onboarding-confetti-layer')?.replaceChildren();
+    shell.classList.add('is-closing');
+    await new Promise(resolve => window.setTimeout(resolve, 180));
+    shell.classList.add('hidden');
+    shell.classList.remove('is-closing', 'is-opening', 'is-final');
+    document.body.classList.remove('onboarding-open');
+    const mobileShell = document.getElementById('mobile-shell');
+    if (mobileShell) {
+      mobileShell.inert = false;
+      mobileShell.removeAttribute('aria-hidden');
+    }
+  }
+
+  async function completeOnboarding(destination = 'today') {
+    if (onboardingBusy) return;
+    onboardingBusy = true;
+    const shell = document.getElementById('onboarding-shell');
+    shell?.querySelectorAll('button').forEach(button => { button.disabled = true; });
+
+    try {
+      markOnboardingComplete();
+      await hideOnboarding();
+
+      if (destination === 'today') {
+        setActiveTab('today');
+      } else if (destination === 'create') {
+        await openCreator();
+      } else if (destination === 'chatgpt') {
+        await openCreator();
+        openAiDeckMaker();
+      } else if (destination === 'premade') {
+        state.premadeClass = 'ssc';
+        state.premadeSubject = 'english';
+        await handleAction('open-premade', document.querySelector('[data-action="open-premade"]'));
+      } else {
+        await handleAction('tab-library', document.querySelector('[data-action="tab-library"]'));
+      }
+
+      const fallbackFocus = document.querySelector('.tab-button.active, .source-option.active, button:not(.hidden)');
+      (fallbackFocus || onboardingReturnFocus)?.focus?.({ preventScroll: true });
+      onboardingReturnFocus = null;
+      onboardingMemoryCode = '';
+    } finally {
+      onboardingBusy = false;
+      shell?.querySelectorAll('button').forEach(button => { button.disabled = false; });
+    }
+  }
+
+  async function handleOnboardingAction(action, target) {
+    switch (action) {
+      case 'next': {
+        playAppSound('click');
+        updateOnboardingStep(onboardingStep + 1);
+        break;
+      }
+      case 'hide-code': {
+        const input = document.getElementById('onboarding-code-input');
+        if (!updateOnboardingCodeEntry(input?.value, { validate: true })) {
+          triggerHaptic();
+          input?.focus?.({ preventScroll: true });
+          break;
+        }
+        playAppSound('click');
+        triggerHaptic();
+        input.disabled = true;
+        document.querySelector('.memory-screen')?.classList.add('is-hiding');
+        await new Promise(resolve => window.setTimeout(resolve, prefersReducedMotion() ? 120 : 720));
+        input.disabled = false;
+        updateOnboardingStep(2);
+        break;
+      }
+      case 'regenerate-code':
+        playAppSound('click');
+        generateOnboardingMemoryCode();
+        updateOnboardingCodeEntry('');
+        document.getElementById('onboarding-code-input')?.focus?.({ preventScroll: true });
+        break;
+      case 'back':
+        playAppSound('click');
+        closeOnboardingSources();
+        updateOnboardingStep(onboardingStep - 1);
+        break;
+      case 'skip':
+        playAppSound('click');
+        await completeOnboarding('today');
+        break;
+      case 'skip-name':
+        playAppSound('click');
+        revealOnboardingGuide();
+        break;
+      case 'flip-card': {
+        playAppSound('flip');
+        const demo = document.getElementById('onboarding-flip-demo');
+        const flipped = !demo?.classList.contains('is-flipped');
+        demo?.classList.toggle('is-flipped', flipped);
+        target?.setAttribute('aria-pressed', String(flipped));
+        target?.setAttribute('aria-label', flipped ? `Answer: ${onboardingMemoryCode}. Flip back to the question` : 'Flip the flashcard to reveal your code');
+        if (flipped) triggerHaptic();
+        updateOnboardingPrimaryButton();
+        break;
+      }
+      case 'explain-retrieval':
+        playAppSound('click');
+        explainOnboardingRetrieval();
+        break;
+      case 'open-sources':
+        playAppSound('click');
+        openOnboardingSources();
+        break;
+      case 'close-sources':
+        closeOnboardingSources();
+        document.querySelector('[data-onboarding-action="open-sources"]')?.focus?.({ preventScroll: true });
+        break;
+      case 'finish':
+        playAppSound('click');
+        await completeOnboarding('today');
+        break;
+      default:
+        break;
+    }
+  }
+
+  function maybeShowOnboarding(options = {}) {
+    const force = new URLSearchParams(window.location.search || '').get('onboarding') === '1';
+    if (!force && hasCompletedOnboarding()) {
+      document.documentElement.classList.remove('onboarding-pending');
+      return false;
+    }
+    showOnboarding({ immediate: options.immediate === true });
+    return true;
   }
 
   function showMicroLoader(text = 'Saving changes...') {
@@ -6545,11 +7189,17 @@
     });
     perf?.flush?.();
     showAppLoader(options.title || 'Opening Study', options.copy || 'Preparing your cards');
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        window.location.href = url;
-      });
-    });
+    let committed = false;
+    const commitRoute = () => {
+      if (committed) return;
+      committed = true;
+      window.location.href = url;
+    };
+    const delay = Math.max(0, ROUTE_LOADER_MIN_VISIBLE_MS - (performance.now() - routeLoaderShownAt));
+    window.setTimeout(() => {
+      requestAnimationFrame(() => requestAnimationFrame(commitRoute));
+    }, delay);
+    window.setTimeout(commitRoute, delay + 500);
   }
 
   function mobileStudyUrl(setId, options = {}) {
@@ -7614,6 +8264,7 @@
         cleanup();
         setActiveTab('library');
         await refresh();
+        playImport();
         showToast(`Imported ${plural(creatorCards.length, 'card')}`);
       } catch (err) {
         console.error(err);
@@ -7821,7 +8472,7 @@
       
       selectors.pbConvertOverlay?.classList.add('hidden');
       if (selectors.pbConvertTextarea) selectors.pbConvertTextarea.value = '';
-      applyCreatorImport(imported);
+      await applyCreatorImport(imported);
     } catch (error) {
       console.error(error);
       showImportErrorModal(error.message || 'Could not parse and convert AI text output.');
@@ -8697,6 +9348,20 @@ followed by the JSON containing "deck" and "media" array.`;
     if (typeof window.Capacitor === 'undefined' || !window.Capacitor?.Plugins?.App) return;
     const { App } = window.Capacitor.Plugins;
     App.addListener('backButton', () => {
+      const onboarding = document.getElementById('onboarding-shell');
+      if (onboarding && !onboarding.classList.contains('hidden')) {
+        const sourceSheet = document.getElementById('onboarding-sources-sheet');
+        if (sourceSheet && !sourceSheet.classList.contains('hidden')) {
+          closeOnboardingSources();
+          return;
+        }
+        if (onboardingStep > 1) {
+          updateOnboardingStep(onboardingStep - 1);
+        } else {
+          completeOnboarding('today').catch(error => console.warn('[mobile] Could not close onboarding:', error));
+        }
+        return;
+      }
       // 1. Close any open custom modals first
       const openOverlays = Array.from(document.querySelectorAll('.mobile-modal-overlay:not(.hidden), .compact-floating-modal:not(.hidden)'));
       if (openOverlays.length > 0) {
@@ -8753,6 +9418,10 @@ followed by the JSON containing "deck" and "media" array.`;
       showToast('Performance diagnostics are unavailable');
       return;
     }
+    if (!perf.isCaptureEnabled?.()) {
+      showToast('Start diagnostic recording, reproduce the issue, then copy the report');
+      return;
+    }
     const span = perf.start('diagnostics.report.copy');
     try {
       const storage = await window.flashcardStore?.getDiagnostics?.().catch(error => ({
@@ -8764,10 +9433,10 @@ followed by the JSON containing "deck" and "media" array.`;
       const report = perf.report({ storage });
       const copied = await copyPlainText(report);
       perf.end(span, { status: copied ? 'copied' : 'copy_failed', reportBytes: report.length });
-      showToast(copied ? 'Performance report copied' : 'Could not copy performance report');
+      showToast(copied ? 'Diagnostic report copied' : 'Could not copy diagnostic report');
     } catch (error) {
       perf.end(span, { status: 'error', error: perf.sanitizeError(error) });
-      showToast('Could not build performance report');
+      showToast('Could not build diagnostic report');
     }
   }
 
@@ -8778,6 +9447,35 @@ followed by the JSON containing "deck" and "media" array.`;
     }
     perf.clear();
     showToast('Performance history cleared');
+  }
+
+  function updateDiagnosticsCaptureUi() {
+    const enabled = Boolean(perf?.isCaptureEnabled?.());
+    const label = document.getElementById('diagnostics-capture-label');
+    const copy = document.getElementById('diagnostics-capture-copy');
+    const icon = document.querySelector('[data-action="toggle-performance-diagnostics"] > .fa');
+    if (label) label.textContent = enabled ? 'Stop diagnostic recording' : 'Start diagnostic recording';
+    if (copy) {
+      copy.textContent = enabled
+        ? 'Recording private timings and errors while you reproduce an issue'
+        : 'Off by default to save battery. Use only while reproducing an issue.';
+    }
+    if (icon) {
+      icon.classList.toggle('fa-stop', enabled);
+      icon.classList.toggle('fa-play', !enabled);
+    }
+  }
+
+  function togglePerformanceDiagnosticsCapture() {
+    if (!perf?.setCaptureEnabled) {
+      showToast('Performance diagnostics are unavailable');
+      return;
+    }
+    const nextEnabled = !perf.isCaptureEnabled?.();
+    if (nextEnabled) perf.clear?.();
+    perf.setCaptureEnabled(nextEnabled);
+    updateDiagnosticsCaptureUi();
+    showToast(nextEnabled ? 'Diagnostic recording started' : 'Diagnostic recording stopped');
   }
 
   async function importBackup() {
@@ -9223,6 +9921,18 @@ followed by the JSON containing "deck" and "media" array.`;
       case 'open-create':
         await openCreator();
         break;
+      case 'open-starter-chatgpt':
+        await openCreator();
+        openAiDeckMaker();
+        break;
+      case 'open-starter-premade':
+        state.premadeClass = 'ssc';
+        state.premadeSubject = 'english';
+        await handleAction('open-premade', target);
+        break;
+      case 'dismiss-starter-card':
+        dismissStarterCard();
+        break;
       case 'open-premade': {
         setActiveTab('library');
         const btnLibrary = document.querySelector('.source-option[data-action="tab-library"]');
@@ -9253,6 +9963,9 @@ followed by the JSON containing "deck" and "media" array.`;
         break;
       case 'open-settings':
         setActiveTab('more');
+        break;
+      case 'replay-onboarding':
+        showOnboarding({ returnFocus: target });
         break;
       case 'review-due':
         await reviewDue();
@@ -9374,6 +10087,9 @@ followed by the JSON containing "deck" and "media" array.`;
       case 'paste-import':
         openPasteImportModal();
         break;
+      case 'toggle-performance-diagnostics':
+        togglePerformanceDiagnosticsCapture();
+        break;
       case 'copy-performance-diagnostics':
         await copyPerformanceDiagnostics();
         break;
@@ -9399,6 +10115,10 @@ followed by the JSON containing "deck" and "media" array.`;
   let startY = 0;
   let activeContextDeckId = null;
 
+  function isDeckControlTarget(target) {
+    return Boolean(target?.closest('button, a, input, select, textarea, label, [data-action], .deck-actions'));
+  }
+
   function handlePointerDown(e) {
     if (Date.now() - (state.lastModalClosedAt || 0) < 350) {
       return;
@@ -9411,7 +10131,10 @@ followed by the JSON containing "deck" and "media" array.`;
       return; // Handled by click event
     }
 
-    if (e.target.closest('button') || e.target.closest('a')) {
+    // Controls inside a deck (Edit, Study, pin) must never start the card's
+    // long-press/press animation or open the deck when released.
+    if (isDeckControlTarget(e.target)) {
+      handlePointerCancel();
       return;
     }
 
@@ -9436,10 +10159,14 @@ followed by the JSON containing "deck" and "media" array.`;
       longPressTimer = null;
     }
     if (longPressTarget) {
-      longPressTarget.classList.remove('long-pressing');
+      const selectedDeck = longPressTarget;
+      selectedDeck.classList.remove('long-pressing');
+      longPressTarget = null;
+
+      if (isDeckControlTarget(e.target)) return;
       
       if (!isLongPress && !state.selectMode) {
-        const setId = longPressTarget.dataset.setCard;
+        const setId = selectedDeck.dataset.setCard;
         showAppLoader('Opening Study', 'Preparing your deck');
         await new Promise(resolve => setTimeout(resolve, 50));
         await flushStore(1200);
@@ -9448,7 +10175,6 @@ followed by the JSON containing "deck" and "media" array.`;
           copy: 'Preparing your deck'
         });
       }
-      longPressTarget = null;
     }
   }
 
@@ -9812,6 +10538,21 @@ followed by the JSON containing "deck" and "media" array.`;
     };
 
     document.getElementById('mobile-deck-typography-enabled')?.addEventListener('change', updateDeckTypographyUi);
+    document.getElementById('onboarding-name-form')?.addEventListener('submit', handleOnboardingNameSubmit);
+    document.getElementById('onboarding-name-input')?.addEventListener('input', event => {
+      document.getElementById('onboarding-name-form')?.classList.remove('is-invalid');
+      const error = document.getElementById('onboarding-name-error');
+      if (error) error.textContent = '';
+      event.target.value = event.target.value.slice(0, 32);
+    });
+    document.getElementById('onboarding-code-input')?.addEventListener('input', event => {
+      updateOnboardingCodeEntry(event.target.value);
+    });
+    document.getElementById('onboarding-code-input')?.addEventListener('blur', event => {
+      if (normalizeMemoryCodeInput(event.target.value).length === 6) {
+        updateOnboardingCodeEntry(event.target.value, { validate: true });
+      }
+    });
 
     document.addEventListener('contextmenu', event => {
       if (isNativeEditableTarget(event.target)) return;
@@ -9869,6 +10610,21 @@ followed by the JSON containing "deck" and "media" array.`;
       const clickable = event.target.closest('button, [role="button"], .tab-button, .deck-row, .settings-row, .context-option-row, .mobile-modal-option-btn, .rating-btn, .class-card-click-area, .class-delete-btn, .class-edit-btn, .format-button, .compact-action, .primary-action, .secondary-action, .small-icon-button, .creator-bottom-add');
       if (clickable) {
         triggerHaptic();
+      }
+
+      const onboardingAction = event.target.closest('[data-onboarding-action]');
+      if (onboardingAction) {
+        event.preventDefault();
+        await handleOnboardingAction(onboardingAction.dataset.onboardingAction, onboardingAction);
+        return;
+      }
+
+      const onboardingDestination = event.target.closest('[data-onboarding-destination]');
+      if (onboardingDestination) {
+        event.preventDefault();
+        playAppSound('click');
+        await completeOnboarding(onboardingDestination.dataset.onboardingDestination || 'today');
+        return;
       }
 
       if (state.selectMode) {
@@ -10458,7 +11214,7 @@ followed by the JSON containing "deck" and "media" array.`;
       if (!file) return;
       try {
         const imported = await readCreatorImportFile(file);
-        applyCreatorImport(imported);
+        await applyCreatorImport(imported);
       } catch (error) {
         console.error(error);
         showImportErrorModal(error.userMessage || 'Could not import file');
@@ -11273,6 +12029,7 @@ Every media/... reference in deck.json must exist inside media/.`;
     document.addEventListener('touchstart', (e) => {
       resetSwipeStart();
       if (e.touches.length > 1) return;
+      if (document.body.classList.contains('onboarding-open')) return;
 
       const target = e.target;
       
@@ -11418,6 +12175,8 @@ Every media/... reference in deck.json must exist inside media/.`;
     document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'mobile-app-shell');
     configureSystemBars().catch(() => {});
     installEvents();
+    const onboardingPrepared = document.documentElement.classList.contains('onboarding-pending');
+    if (onboardingPrepared) maybeShowOnboarding({ immediate: true });
     initSwipeNavigation();
     setupCapacitorBackButton();
     updateDailyQuote();
@@ -11477,6 +12236,7 @@ Every media/... reference in deck.json must exist inside media/.`;
         selectors.importCardSepInput.value = state.settings?.importCardSep ?? '@';
       }
       hideAppLoader();
+      if (!onboardingPrepared) maybeShowOnboarding();
       perf?.end(loadSpan, {
         status: 'ok',
         deckCount: state.sets.length

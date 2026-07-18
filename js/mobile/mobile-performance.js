@@ -1,6 +1,7 @@
 (function () {
   const STORAGE_KEY = 'erudite-mobile-performance-v1';
   const TRACE_KEY = 'erudite-mobile-performance-trace-v1';
+  const CAPTURE_ENABLED_KEY = 'erudite-mobile-performance-capture-enabled-v1';
   const MAX_EVENTS = 800;
   const MAX_EVENT_AGE_MS = 48 * 60 * 60 * 1000;
   const PERSIST_DELAY_MS = 250;
@@ -10,6 +11,7 @@
   let events = [];
   let persistTimer = null;
   let nextSpanId = 1;
+  let captureEnabled = false;
 
   function round(value) {
     return Math.round(Number(value || 0) * 10) / 10;
@@ -88,6 +90,32 @@
     }
   }
 
+  function loadCapturePreference() {
+    try {
+      captureEnabled = localStorage.getItem(CAPTURE_ENABLED_KEY) === 'true';
+    } catch (_) {
+      captureEnabled = false;
+    }
+  }
+
+  function isCaptureEnabled() {
+    return captureEnabled;
+  }
+
+  function setCaptureEnabled(enabled) {
+    captureEnabled = Boolean(enabled);
+    try {
+      localStorage.setItem(CAPTURE_ENABLED_KEY, String(captureEnabled));
+    } catch (_) {}
+    if (captureEnabled) {
+      mark('diagnostics.capture_started');
+      startEventLoopMonitor();
+    } else {
+      stopEventLoopMonitor();
+    }
+    return captureEnabled;
+  }
+
   function persistNow() {
     clearTimeout(persistTimer);
     persistTimer = null;
@@ -113,6 +141,7 @@
   }
 
   function record(kind, name, data = {}, durationMs = null, startedAt = null) {
+    if (!captureEnabled) return null;
     const event = {
       timestamp: Date.now(),
       traceId,
@@ -137,6 +166,7 @@
   }
 
   function start(name, data = {}) {
+    if (!captureEnabled) return null;
     return {
       id: nextSpanId++,
       name: String(name || 'unnamed'),
@@ -278,6 +308,7 @@
       version: 1,
       privacy: 'No card terms, definitions, HTML, media, deck names, or raw deck/card IDs are intentionally recorded.',
       runtime: runtimeInfo(),
+      diagnosticCaptureEnabled: captureEnabled,
       summary: summarizeEvents(),
       extra: sanitize(extra),
       events: events.slice()
@@ -286,6 +317,7 @@
 
   initializeTraceId();
   loadEvents();
+  loadCapturePreference();
 
   window.EruditeMobilePerf = {
     mark,
@@ -295,6 +327,8 @@
     clear,
     report,
     snapshot: () => events.slice(),
+    isCaptureEnabled,
+    setCaptureEnabled,
     sanitizeError,
     flush: persistNow
   };
@@ -317,11 +351,40 @@
     record('error', 'runtime.unhandled_rejection', { error: sanitizeError(reason) });
   });
 
+  let eventLoopTimer = null;
+
+  function stopEventLoopMonitor() {
+    if (!eventLoopTimer) return;
+    window.clearInterval(eventLoopTimer);
+    eventLoopTimer = null;
+  }
+
+  function startEventLoopMonitor() {
+    if (!captureEnabled || eventLoopTimer || document.hidden) return;
+    let expectedTick = performance.now() + 1000;
+    eventLoopTimer = window.setInterval(() => {
+      const now = performance.now();
+      const lag = now - expectedTick;
+      expectedTick = now + 1000;
+      if (lag >= 120) {
+        record('longtask', 'runtime.event_loop_stall', {}, lag, now - lag);
+      }
+    }, 1000);
+  }
+
   document.addEventListener('visibilitychange', () => {
     mark('runtime.visibility_changed', { hidden: document.hidden });
-    if (document.hidden) persistNow();
+    if (document.hidden) {
+      stopEventLoopMonitor();
+      persistNow();
+    } else {
+      startEventLoopMonitor();
+    }
   });
-  window.addEventListener('pagehide', persistNow);
+  window.addEventListener('pagehide', () => {
+    stopEventLoopMonitor();
+    persistNow();
+  });
 
   window.addEventListener('load', () => {
     window.setTimeout(() => {
@@ -347,13 +410,5 @@
     } catch (_) {}
   }
 
-  let expectedTick = performance.now() + 1000;
-  window.setInterval(() => {
-    const now = performance.now();
-    const lag = now - expectedTick;
-    expectedTick = now + 1000;
-    if (!document.hidden && lag >= 120) {
-      record('longtask', 'runtime.event_loop_stall', {}, lag, now - lag);
-    }
-  }, 1000);
+  startEventLoopMonitor();
 })();

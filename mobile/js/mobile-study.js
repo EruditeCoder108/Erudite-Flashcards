@@ -34,13 +34,17 @@
     } catch (_) {}
   }
 
+  let lastHapticAt = 0;
   function triggerHaptic() {
+    const now = performance.now();
+    if (now - lastHapticAt < 80) return;
+    lastHapticAt = now;
     try {
       const Haptics = window.Capacitor?.Plugins?.Haptics;
       if (Haptics && typeof Haptics.impact === 'function') {
         Haptics.impact({ style: 'light' }).catch(() => {});
       } else if (navigator.vibrate) {
-        navigator.vibrate(30);
+        navigator.vibrate(15);
       }
     } catch (_e) {}
   }
@@ -130,6 +134,7 @@
 
   let toastTimer = null;
   let dueSoonTimer = null;
+  let dueSoonTick = null;
   let pointer = null;
   let animating = false;
   let ratingInFlight = false;
@@ -140,14 +145,29 @@
   let cardProgressSaveTimer = null;
   let dragFrame = 0;
   let queuedDrag = null;
+
+  function stopDueSoonTimer({ clearTick = false } = {}) {
+    if (dueSoonTimer) {
+      clearInterval(dueSoonTimer);
+      dueSoonTimer = null;
+    }
+    if (clearTick) dueSoonTick = null;
+  }
+
+  function resumeDueSoonTimer() {
+    if (!dueSoonTick || dueSoonTimer || document.hidden) return;
+    dueSoonTimer = window.setInterval(dueSoonTick, 1000);
+  }
   let transitionToken = 0;
   let flipTimer = null;
   let routeLeaving = false;
+  let routeLoaderShownAt = 0;
+  const ROUTE_LOADER_MIN_VISIBLE_MS = 150;
   let restoredProgress = null;
   const preloadedImages = new Set();
   const pendingCardPatches = new Map();
   const SWIPE_DURATION = 175;
-  const FLIP_DURATION = 420;
+  const FLIP_DURATION = 340;
 
   function showToast(message) {
     clearTimeout(toastTimer);
@@ -180,6 +200,7 @@
       cover.style.display = '';
       cover.classList.add('no-anim');
     }
+    routeLoaderShownAt = performance.now();
     document.body.classList.remove('study-ready');
     document.body.classList.add('is-route-loading');
   }
@@ -214,14 +235,13 @@
         showToast('Could not return to your library. Please try again.');
       }
     };
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        commitRoute();
-      });
-    });
+    const delay = Math.max(0, ROUTE_LOADER_MIN_VISIBLE_MS - (performance.now() - routeLoaderShownAt));
+    window.setTimeout(() => {
+      requestAnimationFrame(() => requestAnimationFrame(commitRoute));
+    }, delay);
     // Android can occasionally defer animation frames during a hardware-back
     // transition. This keeps the route moving even if that occurs.
-    window.setTimeout(commitRoute, 450);
+    window.setTimeout(commitRoute, delay + 500);
   }
 
   function settleRouteSave(name, work, timeoutMs = 800) {
@@ -877,12 +897,14 @@
     return Boolean(target.closest('button, a, input, textarea, select, audio, video, [contenteditable="true"], .modal:not(.hidden), .image-modal:not(.hidden)'));
   }
 
-  function configureSystemBars() {
+  async function configureSystemBars() {
     const SystemBars = window.Capacitor?.Plugins?.SystemBars;
     if (!SystemBars) return;
     const isLight = state.settings?.theme === 'light';
-    SystemBars.setStyle?.({ style: isLight ? 'LIGHT' : 'DARK' }).catch(() => {});
-    SystemBars.show?.().catch(() => {});
+    await SystemBars.setStyle?.({ style: isLight ? 'LIGHT' : 'DARK' }).catch(() => {});
+    await SystemBars.setAnimation?.({ animation: 'NONE' }).catch(() => {});
+    // Visibility is fixed by the native launch theme and Capacitor config.
+    // Avoid re-showing visible bars: it can recalculate insets and jump the UI.
   }
 
   function applyStudyTypography(settings = {}, set = null) {
@@ -965,6 +987,9 @@
     localStorage.setItem('erudite-theme', theme);
     document.body.classList.toggle('theme-light', theme === 'light');
     document.documentElement.classList.toggle('theme-light', theme === 'light');
+    // The study screen initially starts before saved settings are available. Apply the
+    // resolved theme again so Android uses dark icons on its light status bar.
+    configureSystemBars().catch(() => {});
     if (reviewDueSession) {
       localStorage.setItem('srsModeEnabled', 'true');
       window.flashcardStore.setState('srsModeEnabled', true).catch(() => {});
@@ -1276,10 +1301,7 @@
     if (existingMessage) {
       existingMessage.remove();
     }
-    if (dueSoonTimer) {
-      clearInterval(dueSoonTimer);
-      dueSoonTimer = null;
-    }
+    stopDueSoonTimer({ clearTick: true });
 
     const messageContainer = document.createElement('div');
     messageContainer.id = 'mastered-message';
@@ -1315,7 +1337,7 @@
         const contBtn = document.getElementById('due-soon-continue');
         if (contBtn) {
           contBtn.addEventListener('click', () => {
-            if (dueSoonTimer) clearInterval(dueSoonTimer);
+            stopDueSoonTimer({ clearTick: true });
             messageContainer.remove();
             renderStack();
             updateProgress();
@@ -1325,7 +1347,7 @@
         const finBtn = document.getElementById('due-soon-finish');
         if (finBtn) {
           finBtn.addEventListener('click', () => {
-            if (dueSoonTimer) clearInterval(dueSoonTimer);
+            stopDueSoonTimer({ clearTick: true });
             messageContainer.remove();
             showCompletion();
           });
@@ -1336,19 +1358,19 @@
     messageContainer.innerHTML = `<div class="mastered-message-content"></div>`;
     document.body.appendChild(messageContainer);
     
-    updateText();
-    dueSoonTimer = setInterval(() => {
+    dueSoonTick = () => {
       const diffMs = nextDueTime - Date.now();
       if (diffMs <= 0) {
-        clearInterval(dueSoonTimer);
-        dueSoonTimer = null;
+        stopDueSoonTimer({ clearTick: true });
         messageContainer.remove();
         renderStack();
         updateProgress();
       } else {
         updateText();
       }
-    }, 1000);
+    };
+    dueSoonTick();
+    resumeDueSoonTimer();
   }
 
   function prepareActiveCards() {
@@ -1361,10 +1383,7 @@
     if (existingMessage) {
       existingMessage.remove();
     }
-    if (dueSoonTimer) {
-      clearInterval(dueSoonTimer);
-      dueSoonTimer = null;
-    }
+    stopDueSoonTimer({ clearTick: true });
 
     if (!Array.isArray(state.set.cards)) state.set.cards = [];
     const sourceCards = state.filteredMode
@@ -2098,6 +2117,9 @@
       activeCardIndex = nextCardIndex;
       nextCardIndex = (nextCardIndex + 1) % 3;
       setCardFlipped(cards[activeCardIndex], false, { noTransition: true });
+      // The card that just left may have been showing its definition. Reset it
+      // while it is still off-screen, before it becomes the previous-card slot.
+      setCardFlipped(cards[prevCardIndex], false, { noTransition: true });
       
       const currentIdx = activeIndex();
       populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
@@ -2155,6 +2177,9 @@
       activeCardIndex = prevCardIndex;
       prevCardIndex = (prevCardIndex + 2) % 3;
       setCardFlipped(cards[activeCardIndex], false, { noTransition: true });
+      // Reset the departing card before it becomes the next-card slot. This
+      // prevents its answer face from flashing when the learner goes forward.
+      setCardFlipped(cards[nextCardIndex], false, { noTransition: true });
       
       const currentIdx = activeIndex();
       populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
@@ -2346,6 +2371,7 @@
         activeCardIndex = nextCardIndex;
         nextCardIndex = (nextCardIndex + 1) % 3;
         setCardFlipped(cards[activeCardIndex], false, { noTransition: true });
+        setCardFlipped(cards[prevCardIndex], false, { noTransition: true });
         
         const currentIdx = activeIndex(); // which is 0
         populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
@@ -2744,10 +2770,7 @@
     if (existingMessage) {
       existingMessage.remove();
     }
-    if (dueSoonTimer) {
-      clearInterval(dueSoonTimer);
-      dueSoonTimer = null;
-    }
+    stopDueSoonTimer({ clearTick: true });
 
     // Re-render carousel cards
     populateCardElement(cards[activeCardIndex], state.activeCards[currentIdx]);
@@ -3196,11 +3219,15 @@
 
     document.addEventListener('visibilitychange', async () => {
       if (document.hidden) {
+        stopDueSoonTimer();
         try { await saveSessionLog(); } catch (_) {}
         try { await saveProgress({ immediate: true }); } catch (_) {}
         try { await saveOpenedMeta({ immediate: true }); } catch (_) {}
         try { await flushCardProgress(); } catch (_) {}
         try { await flushStore(1400); } catch (_) {}
+      } else {
+        dueSoonTick?.();
+        resumeDueSoonTimer();
       }
     });
   }
@@ -3208,7 +3235,7 @@
   async function init() {
     const initSpan = perf?.start('study.init');
     document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'study-session-active');
-    configureSystemBars();
+    configureSystemBars().catch(() => {});
     installEvents();
     installPointerGestures();
 
@@ -3222,6 +3249,14 @@
           return;
         }
         goLibrary();
+      });
+      window.Capacitor.Plugins.App.addListener('appStateChange', ({ isActive }) => {
+        if (isActive) {
+          dueSoonTick?.();
+          resumeDueSoonTimer();
+        } else {
+          stopDueSoonTimer();
+        }
       });
     }
     

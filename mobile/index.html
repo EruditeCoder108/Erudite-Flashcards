@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendor/katex/katex.min.css">
   <link rel="stylesheet" href="mobile/css/mobile-app.css">
+  <link rel="stylesheet" href="mobile/css/mobile-onboarding.css">
   <link rel="stylesheet" href="css/color-picker.css">
 </head>
 <body>
@@ -32,6 +33,213 @@
     <strong id="app-loading-title">Erudite Flashcards</strong>
     <p id="app-loading-copy">Preparing your library</p>
   </div>
+
+  <section class="onboarding-shell hidden" id="onboarding-shell" data-step="0" role="dialog" aria-modal="true" aria-labelledby="onboarding-title-0" aria-describedby="onboarding-description-0">
+    <div class="onboarding-atmosphere" aria-hidden="true">
+      <span class="onboarding-glow glow-blue"></span>
+      <span class="onboarding-glow glow-green"></span>
+      <span class="onboarding-grid"></span>
+    </div>
+
+    <header class="onboarding-header">
+      <button type="button" class="onboarding-icon-button is-hidden" id="onboarding-back" data-onboarding-action="back" aria-label="Go to the previous onboarding screen">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+      </button>
+      <div class="onboarding-brand" aria-label="Erudite Flashcards">
+        <img src="assets/icons/icon.png" alt="" draggable="false">
+        <span id="onboarding-step-label"></span>
+      </div>
+      <button type="button" class="onboarding-skip" data-onboarding-action="skip">Skip</button>
+    </header>
+
+    <div class="onboarding-progress" id="onboarding-progress" role="progressbar" aria-label="Onboarding progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1">
+      <span class="is-active"></span><span></span><span></span><span></span>
+    </div>
+
+    <main class="onboarding-stage">
+      <article class="onboarding-screen onboarding-greeting-screen is-active" data-onboarding-step="0" aria-hidden="false">
+        <button type="button" class="onboarding-name-skip" data-onboarding-action="skip-name">Skip for now</button>
+        <p class="hello-accessible-description" id="onboarding-description-0">Enter the name you would like Erudite to use.</p>
+        <div class="onboarding-hello-scene" id="onboarding-hello-scene">
+          <div class="hello-wave-cluster">
+            <div class="hello-hand-visual" aria-hidden="true">
+              <svg class="hello-hand" viewBox="0 0 36 36" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#F7DECE" d="M32.375 16.219c-1.381-.611-3.354.208-4.75 2.188c-.917 1.3-1.187 3.151-2.391 3.344c-.46.074-.71-.206-.84-.609c-.137-.68-.107-1.731.147-3.201l2.74-12.315c.218-.941-.293-1.852-1.523-2.149s-2.155.306-2.374 1.247L20.938 15.89c-.493 2.466-1.407 2.018-1.186-.775l.701-13.092C20.51 1.01 19.732.183 18.582.139c-1.15-.044-1.979.646-2.038 1.657l-.668 13.409c-.143 2.707-1.112 1.687-1.322-.274L13 4.083c-.159-1.023-1.118-1.73-2.268-1.546c-1.15.185-1.845 1.136-1.686 2.159l1.495 9.914c.593 3.785-.182 4.833-1.458.723L7.489 9.308c-.26-.967-1.213-1.567-2.41-1.231c-1.197.336-1.713 1.299-1.454 2.266l1.558 5.663c.651 4.077.651 5.686.651 8.493S7.125 36 17 36s11.906-10.031 12-10.666c0 0 .123-1.48 1.156-2.865a57.846 57.846 0 0 1 3.125-3.866c.317-.359.625-1.707-.906-2.384z"></path>
+                <path fill="#E0AA94" d="M24.911 21.741c-.3-.122-.554-.436-.584-1.119c-1.892.259-4.451.789-6.42 2.715c-2.556 2.499-2.992 5.2-2.971 7.007c.017 1.457.812 2.147 1.045-.012c.293-2.727 2.282-8.143 8.93-8.591z"></path>
+              </svg>
+              <span class="hello-wave-mark mark-one"></span>
+              <span class="hello-wave-mark mark-two"></span>
+            </div>
+            <h2 class="hello-hi" id="onboarding-title-0" tabindex="-1">Hello</h2>
+          </div>
+          <form class="onboarding-name-form" id="onboarding-name-form" novalidate>
+            <label class="hello-name-line" for="onboarding-name-input">
+              <span class="sr-only">What should Erudite call you?</span>
+              <input id="onboarding-name-input" name="preferredName" type="text" maxlength="32" autocomplete="name" autocapitalize="words" enterkeyhint="done" placeholder="what should we call you?">
+            </label>
+            <p class="hello-storage-note"><i class="fas fa-mobile-screen-button" aria-hidden="true"></i> Saved privately on this device.</p>
+            <p class="hello-name-error" id="onboarding-name-error" aria-live="polite"></p>
+            <button type="submit" class="hello-name-continue">Continue <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+          </form>
+          <div class="hello-personalized" id="onboarding-personalized-greeting" aria-live="polite">
+            <h1 class="celebrate-text">Hello, <span id="onboarding-personalized-name"></span>!</h1>
+          </div>
+        </div>
+        <div class="onboarding-confetti-layer" id="onboarding-confetti-layer" aria-hidden="true"></div>
+      </article>
+
+      <article class="onboarding-screen is-after memory-screen" data-onboarding-step="1" aria-hidden="true">
+        <div class="onboarding-copy">
+          <p class="onboarding-eyebrow">Plant a tiny memory</p>
+          <h2 id="onboarding-title-1" tabindex="-1">Let&rsquo;s make one small memory.</h2>
+          <p id="onboarding-description-1">Here is a new six-letter code. Type it once so your attention catches it.</p>
+        </div>
+        <section class="memory-lab-card" aria-labelledby="memory-code-heading">
+          <div class="memory-lab-topline"><span>MEMORY SAMPLE</span><span>NEW</span></div>
+          <h3 id="memory-code-heading" class="sr-only">Your six-letter memory code</h3>
+          <div class="memory-code-tiles" id="onboarding-memory-code" aria-live="polite" aria-label="Generated six-letter code"></div>
+          <button type="button" class="memory-regenerate" data-onboarding-action="regenerate-code"><i class="fas fa-rotate" aria-hidden="true"></i> Give me another code</button>
+          <label class="memory-entry" for="onboarding-code-input">
+            <span>Type the code once</span>
+            <span class="memory-entry-slots" id="onboarding-code-slots" aria-hidden="true"></span>
+            <input id="onboarding-code-input" type="text" maxlength="6" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="onboarding-code-error">
+          </label>
+          <p class="memory-code-error" id="onboarding-code-error" aria-live="polite"></p>
+          <p class="memory-privacy"><i class="fas fa-hourglass-half" aria-hidden="true"></i> Used only for this short experiment.</p>
+        </section>
+        <p class="memory-hide-message" id="onboarding-hide-message" aria-live="polite">Keep it somewhere in your mind.</p>
+      </article>
+
+      <article class="onboarding-screen is-after evidence-screen" data-onboarding-step="2" aria-hidden="true">
+        <div class="onboarding-copy evidence-copy">
+          <p class="onboarding-eyebrow">While your memory rests&hellip;</p>
+          <h2 id="onboarding-title-2" tabindex="-1">Memory gets stronger when you make it work.</h2>
+          <p id="onboarding-description-2">Pull information out, then return to it after a useful gap.</p>
+        </div>
+        <div class="evidence-board">
+          <article class="evidence-tile evidence-main">
+            <span class="evidence-kicker">REPEATED RETRIEVAL</span>
+            <strong class="evidence-big-number">&asymp;80%</strong>
+            <h3>remembered after one week</h3>
+            <div class="evidence-bars" role="img" aria-label="Repeated retrieval approximately 80 percent. Testing stopped after first correct recall 36 percent.">
+              <div><span>Repeated retrieval <b>&asymp;80%</b></span><i style="--bar:80%"></i></div>
+              <div><span>Testing stopped after first correct recall <b>36%</b></span><i style="--bar:36%"></i></div>
+            </div>
+            <small>40 university students learning foreign-language word pairs.</small>
+          </article>
+          <article class="evidence-tile evidence-scale">
+            <span class="evidence-kicker">EVIDENCE SCALE</span>
+            <strong>184</strong><h3>articles</h3>
+            <p>317 experiments &middot; 839 assessments</p>
+            <small>More than a century of research supports distributing learning over time.</small>
+          </article>
+          <article class="evidence-tile evidence-effort">
+            <span class="evidence-kicker">EFFORT</span>
+            <h3>Recall, don&rsquo;t just recognise</h3>
+            <div class="effort-lines" aria-hidden="true"><i></i><i></i></div>
+            <p>Producing an answer creates a stronger learning event than simply recognising it.</p>
+          </article>
+          <article class="evidence-tile evidence-spacing">
+            <span class="evidence-kicker">USEFUL SPACING</span>
+            <div class="spacing-timeline" role="img" aria-label="Learn, short gap, recall, longer gap, recall">
+              <span>Learn</span><i></i><span>Recall</span><i></i><span>Recall</span>
+            </div>
+            <p>Useful gaps let some forgetting begin&mdash;then retrieval rebuilds access.</p>
+          </article>
+        </div>
+        <button type="button" class="view-sources-button" data-onboarding-action="open-sources"><i class="fas fa-book-open" aria-hidden="true"></i> View research sources</button>
+      </article>
+
+      <article class="onboarding-screen is-after retrieval-screen" data-onboarding-step="3" aria-hidden="true">
+        <div class="retrieval-card-state" id="onboarding-retrieval-card-state">
+          <div class="onboarding-copy">
+            <p class="onboarding-eyebrow">Experience retrieval</p>
+            <h2 id="onboarding-title-3" tabindex="-1">Think first. Then reveal.</h2>
+            <p id="onboarding-description-3">Try to reach the code before you see it again.</p>
+          </div>
+          <div class="onboarding-flip-demo" id="onboarding-flip-demo">
+            <button type="button" class="onboarding-demo-card" data-onboarding-action="flip-card" aria-pressed="false" aria-label="Flip the flashcard to reveal your code">
+              <span class="onboarding-demo-card-inner">
+                <span class="onboarding-demo-face onboarding-demo-front">
+                  <span class="demo-card-label">TERM</span>
+                  <strong>What six-letter code did you see?</strong>
+                  <small><i class="fas fa-hand-pointer" aria-hidden="true"></i> Think first. Then tap to reveal.</small>
+                </span>
+                <span class="onboarding-demo-face onboarding-demo-back">
+                  <span class="demo-card-label">ANSWER</span>
+                  <strong id="onboarding-retrieval-answer">KAVRIN</strong>
+                  <small>That was your first retrieval attempt.</small>
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="retrieval-explanation" id="onboarding-retrieval-explanation" aria-hidden="true">
+          <div class="onboarding-copy">
+            <p class="onboarding-eyebrow">What just happened?</p>
+            <h2 tabindex="-1">The attempt was the study.</h2>
+            <p>If you remembered it, you strengthened access. If you missed it, seeing the answer prepared your next attempt.</p>
+          </div>
+          <div class="groove-metaphor">
+            <svg class="groove-svg" viewBox="0 0 420 210" role="img" aria-label="A small stone passes over a slate three times, leaving a progressively deeper groove">
+              <defs>
+                <linearGradient id="slateGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#31445c"/><stop offset="1" stop-color="#15243a"/></linearGradient>
+                <linearGradient id="polishGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9e6f6"/><stop offset="1" stop-color="#71839a"/></linearGradient>
+              </defs>
+              <path class="slate-stone" d="M34 74 Q45 39 85 34 L342 31 Q385 37 393 73 L378 170 Q369 190 336 194 L72 190 Q35 183 29 151Z"/>
+              <path class="groove-line groove-one" d="M74 119 Q208 101 348 120"/>
+              <path class="groove-line groove-two" d="M74 122 Q208 104 348 123"/>
+              <path class="groove-line groove-three" d="M74 125 Q208 107 348 126"/>
+              <g class="polishing-stone"><ellipse cx="105" cy="104" rx="42" ry="24"/><path d="M67 104 Q104 68 145 101 Q134 127 93 129 Q72 123 67 104Z"/></g>
+              <path class="groove-pulse" d="M74 123 Q208 105 348 124"/>
+            </svg>
+            <span>A metaphor for a strengthening retrieval path.</span>
+          </div>
+          <p class="retrieval-summary">Repeat that effort after a useful gap, and the memory becomes easier to reach.</p>
+          <p class="retrieval-reassurance">It was not a test you passed or failed. The attempt was part of the learning.</p>
+        </div>
+      </article>
+
+      <article class="onboarding-screen is-after advantages-screen" data-onboarding-step="4" aria-hidden="true">
+        <div class="onboarding-copy">
+          <p class="onboarding-eyebrow">Why Erudite?</p>
+          <h2 id="onboarding-title-4" tabindex="-1">Serious learning. No compromises.</h2>
+          <p id="onboarding-description-4">Simple to begin. Powerful enough to grow with you.</p>
+        </div>
+        <div class="feature-bento">
+          <article class="feature-tile feature-fsrs">
+            <span class="feature-icon"><i class="fas fa-brain" aria-hidden="true"></i></span>
+            <span class="feature-kicker">SCIENCE-BACKED REVIEW</span>
+            <h3>FSRS: a real memory engine</h3>
+            <p>It learns from every review and brings each card back when it matters most.</p>
+            <div class="feature-ratings" aria-label="Example live review intervals"><span>Again <b>1m</b></span><span>Hard <b>6m</b></span><span>Good <b>10m</b></span><span>Easy <b>10d</b></span></div>
+            <small>Set retention, limits and maximum intervals per deck. Prefer simple flips? Normal Study is always there.</small>
+          </article>
+          <article class="feature-tile feature-cards"><span class="feature-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span><h3>Cards without limits</h3><p>Create or import reversed, cloze, image-occlusion, maths, code, media and custom HTML/CSS cards.</p><div class="feature-card-stack" aria-hidden="true"><i>&lt;/&gt;</i><i>[...]</i><i><span></span></i></div></article>
+          <article class="feature-tile feature-ai"><span class="feature-icon"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i></span><h3>Your ChatGPT. Better flashcards.</h3><p>Use the ChatGPT app you already have with an Erudite-built prompt, then import locally&mdash;no extra AI subscription.</p><div class="feature-flow" aria-hidden="true"><span>PDF</span><i class="fas fa-arrow-right"></i><span>ChatGPT</span><i class="fas fa-arrow-right"></i><span>Deck</span></div></article>
+          <article class="feature-tile feature-focus"><span class="feature-icon"><i class="fas fa-bullseye" aria-hidden="true"></i></span><h3>Study what matters next</h3><p>Target overdue, failed, weak, upcoming or tagged cards&mdash;then see retention, forecasts and deck health clearly.</p><div class="feature-mini-bars" aria-hidden="true"><i></i><i></i><i></i></div></article>
+          <article class="feature-tile feature-private"><span class="feature-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></span><h3>Private by design</h3><p>Keep decks, media and study history on your device. No account required, with complete portable backups.</p><div class="privacy-device" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i><span class="fas fa-lock"></span></div></article>
+          <article class="feature-tile feature-premade"><span class="feature-icon"><i class="fas fa-book-open" aria-hidden="true"></i></span><div><h3>Meticulous decks, ready to study</h3><p>Start with free NCERT Biology decks built carefully, chapter by chapter. More subjects are being created with quality ahead of quantity.</p><small>QUALITY FIRST &middot; MORE COMING</small></div></article>
+        </div>
+      </article>
+    </main>
+
+    <footer class="onboarding-footer" id="onboarding-footer">
+      <button type="button" class="onboarding-primary-button" id="onboarding-primary-button" data-onboarding-action="hide-code" disabled>Hide my code <i class="fas fa-eye-slash" aria-hidden="true"></i></button>
+    </footer>
+
+    <div class="onboarding-sources-backdrop hidden" id="onboarding-sources-backdrop" data-onboarding-action="close-sources" aria-hidden="true"></div>
+    <section class="onboarding-sources-sheet hidden" id="onboarding-sources-sheet" role="dialog" aria-modal="true" aria-labelledby="onboarding-sources-title">
+      <div class="sources-sheet-handle" aria-hidden="true"></div>
+      <div class="sources-sheet-header"><div><p>LOCAL REFERENCE SHEET</p><h2 id="onboarding-sources-title">Research sources</h2></div><button type="button" data-onboarding-action="close-sources" aria-label="Close research sources"><i class="fas fa-xmark" aria-hidden="true"></i></button></div>
+      <div class="sources-list">
+        <article><span>Retrieval practice</span><h3>The Critical Importance of Retrieval for Learning</h3><p>Jeffrey D. Karpicke &amp; Henry L. Roediger III &middot; Science &middot; 2008</p><a href="https://doi.org/10.1126/science.1152408" target="_blank" rel="noopener noreferrer">DOI 10.1126/science.1152408 <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></article>
+        <article><span>Distributed practice</span><h3>Distributed Practice in Verbal Recall Tasks</h3><p>Nicholas J. Cepeda et al. &middot; Psychological Bulletin &middot; 2006</p><a href="https://doi.org/10.1037/0033-2909.132.3.354" target="_blank" rel="noopener noreferrer">DOI 10.1037/0033-2909.132.3.354 <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></article>
+        <article><span>Testing effect</span><h3>The Effect of Testing Versus Restudy on Retention</h3><p>Christopher A. Rowland &middot; Psychological Bulletin &middot; 2014</p><a href="https://doi.org/10.1037/a0037559" target="_blank" rel="noopener noreferrer">DOI 10.1037/a0037559 <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></article>
+        <article><span>Learning after an error</span><h3>Unsuccessful Retrieval Attempts Enhance Subsequent Learning</h3><p>Nate Kornell, Matthew J. Hays &amp; Robert A. Bjork &middot; JEP:LMC &middot; 2009</p><a href="https://doi.org/10.1037/a0015729" target="_blank" rel="noopener noreferrer">DOI 10.1037/a0015729 <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></article>
+      </div>
+    </section>
+  </section>
 
   <div class="mobile-shell" id="mobile-shell">
     <header class="mobile-topbar" id="mobile-topbar">
@@ -302,6 +510,11 @@
             <span><strong>Import Backup</strong><small>Restore from desktop or another phone</small></span>
             <i class="fas fa-chevron-right"></i>
           </button>
+          <button type="button" class="settings-row" data-action="replay-onboarding">
+            <span class="settings-icon"><i class="fas fa-compass"></i></span>
+            <span><strong>Replay introduction</strong><small>See how active recall, Smart Review, and AI deck creation work</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
           <button type="button" class="settings-row" data-action="open-privacy">
             <span class="settings-icon"><i class="fas fa-shield-halved"></i></span>
             <span><strong>Privacy &amp; Data</strong><small>See what stays on your device and your controls</small></span>
@@ -378,16 +591,30 @@
             <span><strong>Card Browser</strong><small>Advanced desktop-style card table</small></span>
             <i class="fas fa-chevron-right"></i>
           </button>
-          <button type="button" class="settings-row" data-action="copy-performance-diagnostics">
-            <span class="settings-icon"><i class="fas fa-gauge-high"></i></span>
-            <span><strong>Copy Performance Report</strong><small>Private timings, counts, freezes, and errors—no card content</small></span>
-            <i class="fas fa-copy"></i>
-          </button>
-          <button type="button" class="settings-row" data-action="clear-performance-diagnostics">
-            <span class="settings-icon"><i class="fas fa-eraser"></i></span>
-            <span><strong>Clear Performance History</strong><small>Start a clean diagnostic recording</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
+          <details class="settings-diagnostics">
+            <summary>
+              <span class="settings-icon"><i class="fas fa-screwdriver-wrench"></i></span>
+              <span><strong>Troubleshooting &amp; diagnostics</strong><small>Only use when support asks you to send a private technical report</small></span>
+              <i class="fas fa-chevron-right settings-diagnostics-chevron"></i>
+            </summary>
+            <div class="settings-diagnostics-actions">
+              <button type="button" class="settings-row" data-action="toggle-performance-diagnostics">
+                <span class="settings-icon"><i class="fas fa-circle-dot"></i></span>
+                <span><strong id="diagnostics-capture-label">Start diagnostic recording</strong><small id="diagnostics-capture-copy">Off by default to save battery. Use only while reproducing an issue.</small></span>
+                <i class="fas fa-play"></i>
+              </button>
+              <button type="button" class="settings-row" data-action="copy-performance-diagnostics">
+                <span class="settings-icon"><i class="fas fa-copy"></i></span>
+                <span><strong>Copy diagnostic report</strong><small>Timings, counts, freezes, and errors — no card content</small></span>
+                <i class="fas fa-copy"></i>
+              </button>
+              <button type="button" class="settings-row" data-action="clear-performance-diagnostics">
+                <span class="settings-icon"><i class="fas fa-eraser"></i></span>
+                <span><strong>Clear diagnostic history</strong><small>Start a clean report for a new issue</small></span>
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </details>
         </div>
       </section>
     </main>
@@ -653,6 +880,30 @@
           <span class="micro-loader-progress-fill"></span>
         </div>
         <span class="micro-loader-progress-value">0%</span>
+      </div>
+    </div>
+
+    <div class="mobile-modal-overlay hidden" id="creator-import-choice-overlay" role="dialog" aria-modal="true" aria-labelledby="creator-import-choice-title" aria-describedby="creator-import-choice-copy">
+      <div class="mobile-modal-card creator-import-choice-card">
+        <h3 id="creator-import-choice-title"><i class="fas fa-file-import"></i> Add imported cards</h3>
+        <p class="mobile-modal-hint" id="creator-import-choice-copy"></p>
+        <div class="creator-import-choice-options">
+          <button type="button" class="creator-import-choice-option" data-import-placement="append-top">
+            <i class="fas fa-arrow-up"></i>
+            <span><strong>Add to top</strong><small>Place imported cards before this draft</small></span>
+          </button>
+          <button type="button" class="creator-import-choice-option primary" data-import-placement="append-bottom">
+            <i class="fas fa-arrow-down"></i>
+            <span><strong>Add to bottom</strong><small>Keep this draft first and add imported cards after it</small></span>
+          </button>
+          <button type="button" class="creator-import-choice-option replace" data-import-placement="replace">
+            <i class="fas fa-arrows-rotate"></i>
+            <span><strong>Replace current draft</strong><small>Remove this draft's cards and use the imported deck instead</small></span>
+          </button>
+        </div>
+        <div class="mobile-modal-actions">
+          <button type="button" class="mobile-modal-btn cancel" id="creator-import-choice-cancel">Cancel import</button>
+        </div>
       </div>
     </div>
   </div>

@@ -12,6 +12,8 @@
   --primary: #3b82f6;
   --primary-2: #60a5fa;
   --green: #35d07f;
+  --card-term-accent: #93c5fd;
+  --card-definition-accent: #6ee7b7;
   --amber: #f5b84b;
   --red: #fb7185;
   --safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
@@ -55,6 +57,8 @@
   --primary: #2563eb;
   --primary-2: #3b82f6;
   --green: #16a34a;
+  --card-term-accent: #2563eb;
+  --card-definition-accent: #15803d;
   --amber: #d97706;
   --red: #dc2626;
 
@@ -128,7 +132,7 @@ body.study-ready .study-loading-cover {
     var(--bg-gradient);
   color: var(--text);
   opacity: 1;
-  transition: none;
+  transition: opacity 180ms ease-out;
 }
 
 
@@ -532,7 +536,7 @@ textarea,
   height: 100%;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: transform 340ms cubic-bezier(0.22, 0.61, 0.36, 1);
   transform-origin: center center;
   will-change: transform;
 }
@@ -553,6 +557,9 @@ textarea,
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform;
   transform: rotateY(0deg) translateZ(0.1px);
   -webkit-transform: rotateY(0deg) translateZ(0.1px);
 }
@@ -677,9 +684,9 @@ textarea,
   flex-shrink: 0;
   color: var(--muted);
   background: transparent;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 900;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-align: center;
   text-transform: uppercase;
 }
@@ -691,6 +698,24 @@ textarea,
   height: 1px;
   margin: 0.36rem auto 0;
   background: rgba(174, 187, 208, 0.34);
+}
+
+.card-face.front .card-label {
+  color: var(--card-term-accent);
+}
+
+.card-face.back .card-label {
+  color: var(--card-definition-accent);
+}
+
+.card-face.front .card-label::after {
+  background: var(--card-term-accent);
+  box-shadow: 0 0 0.5rem color-mix(in srgb, var(--card-term-accent) 38%, transparent);
+}
+
+.card-face.back .card-label::after {
+  background: var(--card-definition-accent);
+  box-shadow: 0 0 0.5rem color-mix(in srgb, var(--card-definition-accent) 34%, transparent);
 }
 
 .card-text {
@@ -1922,4 +1947,15 @@ button:active,
 
 .theme-light .card-text-inline .katex-display {
   background: rgba(59, 130, 246, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
