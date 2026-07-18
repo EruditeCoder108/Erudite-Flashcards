@@ -90,85 +90,104 @@
 
       <article class="onboarding-screen is-after memory-screen" data-onboarding-step="1" aria-hidden="true">
         <div class="onboarding-copy">
-          <p class="onboarding-eyebrow">Plant a tiny memory</p>
-          <h2 id="onboarding-title-1" tabindex="-1">Let&rsquo;s make one small memory.</h2>
-          <p id="onboarding-description-1">Here is a new six-letter code. Type it once so your attention catches it.</p>
+          <h2 id="onboarding-title-1" tabindex="-1">Copy these six letters.</h2>
+          <p id="onboarding-description-1">Type them below. That&rsquo;s it.</p>
         </div>
         <section class="memory-lab-card" aria-labelledby="memory-code-heading">
-          <div class="memory-lab-topline"><span>MEMORY SAMPLE</span><span>NEW</span></div>
-          <h3 id="memory-code-heading" class="sr-only">Your six-letter memory code</h3>
+          <h3 id="memory-code-heading" class="sr-only">Six letters to copy</h3>
           <div class="memory-code-tiles" id="onboarding-memory-code" aria-live="polite" aria-label="Generated six-letter code"></div>
-          <button type="button" class="memory-regenerate" data-onboarding-action="regenerate-code"><i class="fas fa-rotate" aria-hidden="true"></i> Give me another code</button>
+          <button type="button" class="memory-regenerate" data-onboarding-action="regenerate-code"><i class="fas fa-rotate" aria-hidden="true"></i> Show me another</button>
           <label class="memory-entry" for="onboarding-code-input">
-            <span>Type the code once</span>
+            <span>Tap here and type</span>
             <span class="memory-entry-slots" id="onboarding-code-slots" aria-hidden="true"></span>
             <input id="onboarding-code-input" type="text" maxlength="6" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="onboarding-code-error">
           </label>
           <p class="memory-code-error" id="onboarding-code-error" aria-live="polite"></p>
-          <p class="memory-privacy"><i class="fas fa-hourglass-half" aria-hidden="true"></i> Used only for this short experiment.</p>
         </section>
-        <p class="memory-hide-message" id="onboarding-hide-message" aria-live="polite">Keep it somewhere in your mind.</p>
+        <p class="memory-hide-message" id="onboarding-hide-message" aria-live="polite">Nice.</p>
       </article>
 
       <article class="onboarding-screen is-after evidence-screen" data-onboarding-step="2" aria-hidden="true">
         <div class="onboarding-copy evidence-copy">
-          <p class="onboarding-eyebrow">While your memory rests&hellip;</p>
-          <h2 id="onboarding-title-2" tabindex="-1">Memory gets stronger when you make it work.</h2>
-          <p id="onboarding-description-2">Pull information out, then return to it after a useful gap.</p>
+          <p class="onboarding-eyebrow">A little science</p>
+          <h2 id="onboarding-title-2" tabindex="-1">Some study methods stick better.</h2>
+          <p id="onboarding-description-2">Here&rsquo;s what researchers keep finding.</p>
         </div>
         <div class="evidence-board">
           <article class="evidence-tile evidence-main">
-            <span class="evidence-kicker">REPEATED RETRIEVAL</span>
-            <strong class="evidence-big-number">&asymp;80%</strong>
-            <h3>remembered after one week</h3>
-            <div class="evidence-bars" role="img" aria-label="Repeated retrieval approximately 80 percent. Testing stopped after first correct recall 36 percent.">
-              <div><span>Repeated retrieval <b>&asymp;80%</b></span><i style="--bar:80%"></i></div>
-              <div><span>Testing stopped after first correct recall <b>36%</b></span><i style="--bar:36%"></i></div>
+            <span class="evidence-kicker">A WEEK LATER</span>
+            <h3>Trying to remember made a big difference.</h3>
+            <p class="evidence-plain">Students learned the same unfamiliar word pairs.</p>
+            <div class="evidence-compare" aria-label="Repeated recall approximately 80 percent remembered. Practice stopped after one correct answer 36 percent remembered.">
+              <span><strong><b data-count-to="80">0</b>%</strong><small>kept recalling</small></span>
+              <em>vs</em>
+              <span><strong><b data-count-to="36">0</b>%</strong><small>stopped after one right answer</small></span>
             </div>
-            <small>40 university students learning foreign-language word pairs.</small>
+            <div class="evidence-bars" role="img" aria-label="Kept recalling approximately 80 percent. Stopped after one correct answer 36 percent.">
+              <div><span>Kept recalling <b>&asymp;80%</b></span><i style="--bar:80%"></i></div>
+              <div><span>Stopped after one right answer <b>36%</b></span><i style="--bar:36%"></i></div>
+            </div>
+            <small>One week later &middot; 40 university students</small>
+          </article>
+          <article class="evidence-tile evidence-donut-tile">
+            <span class="evidence-kicker">WHAT STAYED</span>
+            <div class="evidence-donut" role="img" aria-label="Approximately 80 percent remembered after one week">
+              <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="donut-track" cx="50" cy="50" r="40"></circle><circle class="donut-value" cx="50" cy="50" r="40"></circle></svg>
+              <strong><b data-count-to="80">0</b>%</strong>
+            </div>
+            <h3>About 8 in 10 answers were still there.</h3>
+            <p>Students had kept practising recall.</p>
           </article>
           <article class="evidence-tile evidence-scale">
-            <span class="evidence-kicker">EVIDENCE SCALE</span>
-            <strong>184</strong><h3>articles</h3>
-            <p>317 experiments &middot; 839 assessments</p>
-            <small>More than a century of research supports distributing learning over time.</small>
+            <span class="evidence-kicker">THE RESEARCH</span>
+            <h3>This finding is not alone.</h3>
+            <strong><b data-count-to="184">0</b></strong><span class="scale-unit"> articles</span>
+            <div class="research-counters"><span><b data-count-to="317">0</b> experiments</span><span><b data-count-to="839">0</b> assessments</span></div>
+            <div class="research-spark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <small>Researchers have studied spacing for more than a century.</small>
           </article>
           <article class="evidence-tile evidence-effort">
-            <span class="evidence-kicker">EFFORT</span>
-            <h3>Recall, don&rsquo;t just recognise</h3>
-            <div class="effort-lines" aria-hidden="true"><i></i><i></i></div>
-            <p>Producing an answer creates a stronger learning event than simply recognising it.</p>
+            <span class="evidence-kicker">ACTIVE RECALL</span>
+            <h3>Pulling out an answer makes your brain work for it.</h3>
+            <div class="recall-chart" role="img" aria-label="Illustration showing recall as a stronger learning event than rereading"><span><i></i><b>Reread</b></span><span><i></i><b>Recall</b></span></div>
+            <p>That effort helps more than only seeing the answer again.</p>
           </article>
           <article class="evidence-tile evidence-spacing">
-            <span class="evidence-kicker">USEFUL SPACING</span>
-            <div class="spacing-timeline" role="img" aria-label="Learn, short gap, recall, longer gap, recall">
-              <span>Learn</span><i></i><span>Recall</span><i></i><span>Recall</span>
+            <span class="evidence-kicker">SPACE IT OUT</span>
+            <h3>Strong memories can wait longer.</h3>
+            <div class="spacing-timeline" role="img" aria-label="Now, later, and later again with expanding gaps">
+              <span>Now</span><i></i><span>Later</span><i></i><span>Later again</span>
             </div>
-            <p>Useful gaps let some forgetting begin&mdash;then retrieval rebuilds access.</p>
+            <p>Recall now. Return later. Let the next gap grow.</p>
           </article>
         </div>
-        <button type="button" class="view-sources-button" data-onboarding-action="open-sources"><i class="fas fa-book-open" aria-hidden="true"></i> View research sources</button>
+        <button type="button" class="view-sources-button" data-onboarding-action="open-sources"><i class="fas fa-book-open" aria-hidden="true"></i> See the studies</button>
       </article>
 
       <article class="onboarding-screen is-after retrieval-screen" data-onboarding-step="3" aria-hidden="true">
         <div class="retrieval-card-state" id="onboarding-retrieval-card-state">
           <div class="onboarding-copy">
-            <p class="onboarding-eyebrow">Experience retrieval</p>
-            <h2 id="onboarding-title-3" tabindex="-1">Think first. Then reveal.</h2>
-            <p id="onboarding-description-3">Try to reach the code before you see it again.</p>
+            <h2 id="onboarding-title-3" tabindex="-1">Remember those letters?</h2>
+            <p id="onboarding-description-3" class="sr-only">Think of the letters, then flip the card.</p>
           </div>
           <div class="onboarding-flip-demo" id="onboarding-flip-demo">
             <button type="button" class="onboarding-demo-card" data-onboarding-action="flip-card" aria-pressed="false" aria-label="Flip the flashcard to reveal your code">
               <span class="onboarding-demo-card-inner">
                 <span class="onboarding-demo-face onboarding-demo-front">
                   <span class="demo-card-label">TERM</span>
-                  <strong>What six-letter code did you see?</strong>
-                  <small><i class="fas fa-hand-pointer" aria-hidden="true"></i> Think first. Then tap to reveal.</small>
+                  <strong>What were those six letters?</strong>
+                  <small><i class="fas fa-hand-pointer" aria-hidden="true"></i> Think, then flip.</small>
                 </span>
                 <span class="onboarding-demo-face onboarding-demo-back">
                   <span class="demo-card-label">ANSWER</span>
-                  <strong id="onboarding-retrieval-answer">KAVRIN</strong>
-                  <small>That was your first retrieval attempt.</small>
+                  <strong id="onboarding-retrieval-answer">KAVRAN</strong>
+                  <span class="retrieval-card-message" aria-live="polite">
+                    <span style="--word:0">Remembered</span><span style="--word:1">it?</span>
+                    <span style="--word:2">You</span><span style="--word:3">strengthened</span><span style="--word:4">the</span><span style="--word:5">path.</span>
+                    <span style="--word:6">Missed</span><span style="--word:7">it?</span>
+                    <span style="--word:8">Seeing</span><span style="--word:9">the</span><span style="--word:10">answer</span><span style="--word:11">prepares</span><span style="--word:12">the</span><span style="--word:13">next</span><span style="--word:14">recall.</span>
+                    <span style="--word:15">Both</span><span style="--word:16">move</span><span style="--word:17">learning</span><span style="--word:18">forward.</span>
+                  </span>
                 </span>
               </span>
             </button>
@@ -176,56 +195,71 @@
         </div>
         <div class="retrieval-explanation" id="onboarding-retrieval-explanation" aria-hidden="true">
           <div class="onboarding-copy">
-            <p class="onboarding-eyebrow">What just happened?</p>
-            <h2 tabindex="-1">The attempt was the study.</h2>
-            <p>If you remembered it, you strengthened access. If you missed it, seeing the answer prepared your next attempt.</p>
+            <h2 tabindex="-1">Why trying works better than rereading.</h2>
+            <p>Think of the path to a memory like a groove.</p>
           </div>
-          <div class="groove-metaphor">
-            <svg class="groove-svg" viewBox="0 0 420 210" role="img" aria-label="A small stone passes over a slate three times, leaving a progressively deeper groove">
+          <div class="groove-metaphor" role="img" aria-label="A textured sandstone moves across a granite stone and gradually forms a deeper groove">
+            <svg class="stone-texture-defs" aria-hidden="true" focusable="false">
               <defs>
-                <linearGradient id="slateGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#31445c"/><stop offset="1" stop-color="#15243a"/></linearGradient>
-                <linearGradient id="polishGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9e6f6"/><stop offset="1" stop-color="#71839a"/></linearGradient>
+                <filter id="onboarding-granite-texture" x="-20%" y="-20%" width="140%" height="140%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="4" result="graniteEdge"/>
+                  <feDisplacementMap in="SourceGraphic" in2="graniteEdge" scale="12" xChannelSelector="R" yChannelSelector="G" result="graniteRugged"/>
+                  <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="4" result="graniteSurface"/>
+                  <feDiffuseLighting in="graniteSurface" lighting-color="#ffffff" surfaceScale="2" result="graniteLight"><feDistantLight azimuth="125" elevation="55"/></feDiffuseLighting>
+                  <feComposite operator="in" in="graniteLight" in2="graniteRugged" result="graniteMasked"/>
+                  <feBlend mode="multiply" in="graniteRugged" in2="graniteMasked"/>
+                </filter>
+                <filter id="onboarding-sandstone-texture" x="-20%" y="-20%" width="140%" height="140%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" result="sandEdge"/>
+                  <feDisplacementMap in="SourceGraphic" in2="sandEdge" scale="9" xChannelSelector="R" yChannelSelector="G" result="sandRugged"/>
+                  <feTurbulence type="fractalNoise" baseFrequency="0.15" numOctaves="3" result="sandSurface"/>
+                  <feDiffuseLighting in="sandSurface" lighting-color="#d9be9b" surfaceScale="1" result="sandLight"><feDistantLight azimuth="145" elevation="65"/></feDiffuseLighting>
+                  <feComposite operator="in" in="sandLight" in2="sandRugged" result="sandMasked"/>
+                  <feBlend mode="multiply" in="sandRugged" in2="sandMasked"/>
+                </filter>
               </defs>
-              <path class="slate-stone" d="M34 74 Q45 39 85 34 L342 31 Q385 37 393 73 L378 170 Q369 190 336 194 L72 190 Q35 183 29 151Z"/>
-              <path class="groove-line groove-one" d="M74 119 Q208 101 348 120"/>
-              <path class="groove-line groove-two" d="M74 122 Q208 104 348 123"/>
-              <path class="groove-line groove-three" d="M74 125 Q208 107 348 126"/>
-              <g class="polishing-stone"><ellipse cx="105" cy="104" rx="42" ry="24"/><path d="M67 104 Q104 68 145 101 Q134 127 93 129 Q72 123 67 104Z"/></g>
-              <path class="groove-pulse" d="M74 123 Q208 105 348 124"/>
             </svg>
-            <span>A metaphor for a strengthening retrieval path.</span>
+            <div class="real-stone-stage" aria-hidden="true">
+              <div class="stone-dust"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="stone-slider"></div>
+              <div class="stone-base"><div class="stone-groove-real"></div></div>
+            </div>
+            <span>A metaphor: effort makes the path easier to follow.</span>
           </div>
-          <p class="retrieval-summary">Repeat that effort after a useful gap, and the memory becomes easier to reach.</p>
-          <p class="retrieval-reassurance">It was not a test you passed or failed. The attempt was part of the learning.</p>
+          <div class="groove-explanation-lines">
+            <p><strong>Rereading</strong> is a light rub. It feels familiar, but asks little of your brain.</p>
+            <p><strong>Active recall</strong> makes your brain reach for the answer. That effort leaves a stronger path.</p>
+            <p>Flashcards create that useful effort, one question at a time.</p>
+          </div>
         </div>
       </article>
 
       <article class="onboarding-screen is-after advantages-screen" data-onboarding-step="4" aria-hidden="true">
         <div class="onboarding-copy">
           <p class="onboarding-eyebrow">Why Erudite?</p>
-          <h2 id="onboarding-title-4" tabindex="-1">Serious learning. No compromises.</h2>
-          <p id="onboarding-description-4">Simple to begin. Powerful enough to grow with you.</p>
+          <h2 id="onboarding-title-4" tabindex="-1">Simple up front. Serious underneath.</h2>
+          <p id="onboarding-description-4">Start easy. Go deeper whenever you want.</p>
         </div>
         <div class="feature-bento">
           <article class="feature-tile feature-fsrs">
             <span class="feature-icon"><i class="fas fa-brain" aria-hidden="true"></i></span>
             <span class="feature-kicker">SCIENCE-BACKED REVIEW</span>
-            <h3>FSRS: a real memory engine</h3>
-            <p>It learns from every review and brings each card back when it matters most.</p>
+            <h3>FSRS, timed for your memory</h3>
+            <p>Reviews return when they&rsquo;re useful&mdash;not just &ldquo;later.&rdquo;</p>
             <div class="feature-ratings" aria-label="Example live review intervals"><span>Again <b>1m</b></span><span>Hard <b>6m</b></span><span>Good <b>10m</b></span><span>Easy <b>10d</b></span></div>
-            <small>Set retention, limits and maximum intervals per deck. Prefer simple flips? Normal Study is always there.</small>
+            <small>Set retention and limits per deck. Prefer normal flashcards? Just flip and go.</small>
           </article>
-          <article class="feature-tile feature-cards"><span class="feature-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span><h3>Cards without limits</h3><p>Create or import reversed, cloze, image-occlusion, maths, code, media and custom HTML/CSS cards.</p><div class="feature-card-stack" aria-hidden="true"><i>&lt;/&gt;</i><i>[...]</i><i><span></span></i></div></article>
-          <article class="feature-tile feature-ai"><span class="feature-icon"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i></span><h3>Your ChatGPT. Better flashcards.</h3><p>Use the ChatGPT app you already have with an Erudite-built prompt, then import locally&mdash;no extra AI subscription.</p><div class="feature-flow" aria-hidden="true"><span>PDF</span><i class="fas fa-arrow-right"></i><span>ChatGPT</span><i class="fas fa-arrow-right"></i><span>Deck</span></div></article>
-          <article class="feature-tile feature-focus"><span class="feature-icon"><i class="fas fa-bullseye" aria-hidden="true"></i></span><h3>Study what matters next</h3><p>Target overdue, failed, weak, upcoming or tagged cards&mdash;then see retention, forecasts and deck health clearly.</p><div class="feature-mini-bars" aria-hidden="true"><i></i><i></i><i></i></div></article>
-          <article class="feature-tile feature-private"><span class="feature-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></span><h3>Private by design</h3><p>Keep decks, media and study history on your device. No account required, with complete portable backups.</p><div class="privacy-device" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i><span class="fas fa-lock"></span></div></article>
-          <article class="feature-tile feature-premade"><span class="feature-icon"><i class="fas fa-book-open" aria-hidden="true"></i></span><div><h3>Meticulous decks, ready to study</h3><p>Start with free NCERT Biology decks built carefully, chapter by chapter. More subjects are being created with quality ahead of quantity.</p><small>QUALITY FIRST &middot; MORE COMING</small></div></article>
+          <article class="feature-tile feature-cards"><span class="feature-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span><h3>Cards without limits</h3><p>Use cloze, image occlusion, maths, code, media and HTML/CSS.</p><div class="feature-card-stack" aria-hidden="true"><i>&lt;/&gt;</i><i>[...]</i><i><span></span></i></div></article>
+          <article class="feature-tile feature-ai"><span class="feature-icon"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i></span><h3>Your ChatGPT. Better cards.</h3><p>Use the ChatGPT app you already have. Import the deck. No extra AI subscription.</p><div class="feature-flow" aria-hidden="true"><span>PDF</span><i class="fas fa-arrow-right"></i><span>ChatGPT</span><i class="fas fa-arrow-right"></i><span>Deck</span></div></article>
+          <article class="feature-tile feature-focus"><span class="feature-icon"><i class="fas fa-bullseye" aria-hidden="true"></i></span><h3>Know what to study next</h3><p>Jump to weak, overdue or tagged cards. See what&rsquo;s improving.</p><div class="feature-mini-bars" aria-hidden="true"><i></i><i></i><i></i></div></article>
+          <article class="feature-tile feature-private"><span class="feature-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></span><h3>Private by design</h3><p>No account needed. Your decks and progress stay on your phone.</p><div class="privacy-device" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i><span class="fas fa-lock"></span></div></article>
+          <article class="feature-tile feature-premade"><span class="feature-icon"><i class="fas fa-book-open" aria-hidden="true"></i></span><div><h3>Great decks, ready now</h3><p>Start with carefully built NCERT Biology decks. More are on the way.</p><small>QUALITY FIRST &middot; MORE COMING</small></div></article>
         </div>
       </article>
     </main>
 
     <footer class="onboarding-footer" id="onboarding-footer">
-      <button type="button" class="onboarding-primary-button" id="onboarding-primary-button" data-onboarding-action="hide-code" disabled>Hide my code <i class="fas fa-eye-slash" aria-hidden="true"></i></button>
+      <button type="button" class="onboarding-primary-button is-hidden" id="onboarding-primary-button" data-onboarding-action="next" disabled>Continue <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
     </footer>
 
     <div class="onboarding-sources-backdrop hidden" id="onboarding-sources-backdrop" data-onboarding-action="close-sources" aria-hidden="true"></div>

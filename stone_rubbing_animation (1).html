@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Realistic Stone Rubbing Animation</title>
+  <!-- Tailwind CSS for layout structure -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter for typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0c0d0e;
+      overflow: hidden;
+    }
+
+    /* Center Stage Container */
+    .animation-stage {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+    }
+
+    /* Base Granite Stone (Stationary Rock) */
+    .base-stone {
+      position: relative;
+      width: 420px;
+      height: 220px;
+      background: radial-gradient(circle at 50% 40%, #4a525d 0%, #262a30 75%, #15171a 100%);
+      border-radius: 54% 46% 52% 48% / 38% 44% 56% 62%;
+      filter: url(#granite-texture);
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.8),
+        inset 0 -15px 30px rgba(0, 0, 0, 0.6),
+        inset 0 10px 20px rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    /* Physically modeled smooth groove cleft positioned under the slider */
+    .stone-groove {
+      position: absolute;
+      top: 31%; /* Positioned perfectly under the rubbing path */
+      left: 21%;
+      width: 58%;
+      height: 14px; /* Narrower size for a smooth worn groove */
+      border-radius: 50%;
+      
+      /* Soft, blending gray gradient (No harsh black crack colors) */
+      background: linear-gradient(180deg, rgba(12, 13, 15, 0.8) 0%, rgba(24, 26, 30, 0.55) 50%, rgba(55, 60, 68, 0.1) 100%);
+      
+      /* Smooth 3D recess: Gentle inset shadow + light catching bottom edge */
+      box-shadow: 
+        inset 0 5px 8px rgba(0, 0, 0, 0.6),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+        0 1px 1px rgba(255, 255, 255, 0.08);
+      
+      /* Subtle blend boundaries (No stark black borders) */
+      border-top: 1px solid rgba(0, 0, 0, 0.45);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      
+      opacity: 0;
+      transform: scaleY(0.0) scaleX(0.85);
+      /* Continuous 4-second loop reset */
+      animation: groove-deepen 4s infinite cubic-bezier(0.4, 0.0, 0.2, 1);
+      z-index: 11;
+    }
+
+    /* Active Sandstone Slider Rock (Small Rubbing Stone - No Glow) */
+    .slider-stone {
+      position: absolute;
+      width: 170px;
+      height: 105px;
+      background: radial-gradient(circle at 45% 35%, #c9a072 0%, #9c7348 60%, #5c4024 100%);
+      border-radius: 46% 54% 48% 52% / 42% 46% 54% 58%;
+      filter: url(#sandstone-texture);
+      box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.5),
+        inset -3px -5px 12px rgba(0, 0, 0, 0.35); /* Shaded inner depth instead of a bright glow highlight */
+      z-index: 20;
+      transform-origin: center bottom;
+      /* Continuous 2-second rhythmic loop seamlessly translating back and forth */
+      animation: rub-smooth 2s infinite ease-in-out;
+    }
+
+    /* Groove Deepening Timeline over exactly 4 seconds (Loops endlessly) */
+    @keyframes groove-deepen {
+      0% {
+        opacity: 0;
+        transform: scaleY(0.0) scaleX(0.8);
+        filter: blur(0.5px);
+      }
+      20% {
+        opacity: 0.25;
+        transform: scaleY(0.3) scaleX(0.85);
+        filter: blur(0px);
+      }
+      50% {
+        opacity: 0.65;
+        transform: scaleY(0.65) scaleX(0.92);
+      }
+      85% {
+        opacity: 0.9;
+        transform: scaleY(0.9) scaleX(0.98);
+      }
+      95%, 100% {
+        opacity: 1;
+        transform: scaleY(1.0) scaleX(1.0);
+      }
+    }
+
+    /* Calm, continuous left-to-right-to-left sweep at a completely constant height (No sudden stops) */
+    @keyframes rub-smooth {
+      0%, 100% {
+        transform: translate(-45px, -92px) rotate(-3deg);
+      }
+      50% {
+        transform: translate(45px, -92px) rotate(3deg);
+      }
+    }
+
+    /* Particle Canvas overlay */
+    #particle-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 15;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center">
+
+  <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+    <defs>
+      <!-- Granite texture filter for the stationary base rock -->
+      <filter id="granite-texture" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="4" result="edgeNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="edgeNoise" scale="18" xChannelSelector="R" yChannelSelector="G" result="ruggedEdge" />
+        
+        <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="5" result="surfaceNoise" />
+        <feDiffuseLighting in="surfaceNoise" lighting-color="#ffffff" surfaceScale="2.5" result="lightEffect">
+          <feDistantLight azimuth="125" elevation="55" />
+        </feDiffuseLighting>
+        
+        <feComposite operator="in" in="lightEffect" in2="ruggedEdge" result="maskedLight" />
+        <feBlend mode="multiply" in="ruggedEdge" in2="maskedLight" result="texturedRock" />
+        <feComposite operator="in" in="texturedRock" in2="ruggedEdge" result="finalRock" />
+      </filter>
+
+      <!-- Sandstone texture filter for the moving slider rock (Muted lighting to remove glow) -->
+      <filter id="sandstone-texture" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" result="edgeNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="edgeNoise" scale="12" xChannelSelector="R" yChannelSelector="G" result="ruggedEdge" />
+        
+        <feTurbulence type="fractalNoise" baseFrequency="0.15" numOctaves="4" result="surfaceNoise" />
+        <!-- Lower lighting-color intensity to remove artificial glow -->
+        <feDiffuseLighting in="surfaceNoise" lighting-color="#d9be9b" surfaceScale="1.1" result="lightEffect">
+          <feDistantLight azimuth="145" elevation="65" />
+        </feDiffuseLighting>
+        
+        <feComposite operator="in" in="lightEffect" in2="ruggedEdge" result="maskedLight" />
+        <feBlend mode="multiply" in="ruggedEdge" in2="maskedLight" result="texturedRock" />
+        <!-- Complete masking to fix transparent alpha rendering bugs shown in image_fc1bc3.jpg -->
+        <feComposite operator="in" in="texturedRock" in2="ruggedEdge" result="finalRock" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Main Animation Canvas Stage (No UI overlays or background options) -->
+  <div class="animation-stage">
+    <!-- Canvas for generating calm, smooth rock dust -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Moving Sandstone Rock (Top) -->
+    <div class="slider-stone" id="active-stone"></div>
+
+    <!-- Granite Base Rock (Bottom) -->
+    <div class="base-stone" id="base-stone">
+      <!-- Dark physical 3D groove that deepens inside the base rock -->
+      <div class="stone-groove"></div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    const activeStone = document.getElementById('active-stone');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // Soft, calm Dust Particle Class (No sparks)
+    class DustParticle {
+      constructor(x, y) {
+        this.x = x + (Math.random() - 0.5) * 40;
+        this.y = y + (Math.random() - 0.5) * 4;
+        // Low velocity for slow, peaceful drifting
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = -Math.random() * 0.3 - 0.1;
+        // Highly transparent, soft visual profile
+        this.alpha = Math.random() * 0.18 + 0.06;
+        this.size = Math.random() * 3 + 1.5;
+        this.decay = Math.random() * 0.006 + 0.003;
+        // Warm sandstone powder color
+        this.color = Math.random() > 0.4 ? '215, 185, 150' : '190, 160, 130';
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.alpha -= this.decay;
+        this.size += 0.04; // Gentle expansion as it floats up
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    const particles = [];
+    let lastX = 0;
+    const startTime = Date.now();
+
+    function updatePhysics() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Track relative loop time (0 to 4000ms repeating endlessly)
+      const elapsed = (Date.now() - startTime) % 4000;
+
+      // Extract coordinates for the particle emitter at the bottom center of the active slider stone
+      const stoneRect = activeStone.getBoundingClientRect();
+      const contactX = stoneRect.left + (stoneRect.width / 2);
+      const contactY = stoneRect.bottom - 12;
+
+      const currentSpeed = Math.abs(contactX - lastX);
+      lastX = contactX;
+
+      // Emit soft dust during the active rubbing cycle (0s to 3.8s)
+      if (elapsed < 3800) {
+        let dustDensity = currentSpeed > 0.5 ? 1.0 : 0;
+
+        if (dustDensity > 0) {
+          if (Math.random() < 0.45) {
+            particles.push(new DustParticle(contactX, contactY));
+          }
+        }
+      }
+
+      // Update and render active soft particles
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.update();
+        if (p.alpha <= 0) {
+          particles.splice(i, 1);
+        } else {
+          p.draw();
+        }
+      }
+
+      requestAnimationFrame(updatePhysics);
+    }
+
+    // Start everything on window load
+    window.onload = function() {
+      const initialRect = activeStone.getBoundingClientRect();
+      lastX = initialRect.left + (initialRect.width / 2);
+      
+      updatePhysics();
+    };
+  </script>
+</body>
+</html>

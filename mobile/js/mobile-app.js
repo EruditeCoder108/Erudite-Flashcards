@@ -8,8 +8,7 @@
   const CREATOR_DRAFT_KEY = 'mobileCreatorDraft';
   const ONBOARDING_COMPLETE_KEY = 'erudite-mobile-onboarding-complete-v2';
   const PREFERRED_NAME_KEY = 'erudite-preferred-name-v1';
-  const STARTER_DISMISSED_KEY = 'erudite-today-starter-dismissed-v1';
-  const ONBOARDING_MEMORY_CODES = ['KAVRIN', 'MELVOR', 'TASRIN', 'NOLVEC', 'RAVDIN', 'SELMOR', 'VEKRAN', 'PELNAR', 'DORVIK', 'KELRUM', 'ZANVIC', 'FELRAN'];
+  const ONBOARDING_MEMORY_CODES = ['KAVRAN', 'MEVRAN', 'TASREN', 'NAVREK', 'RAVDEN', 'SEMRAN', 'VEKRAN', 'PEVNAR', 'DURVAK', 'KERUMA', 'ZANVEC', 'FEVRAN'];
   const CREATOR_PROGRESSIVE_RENDER_THRESHOLD = 40;
   const CREATOR_PROGRESSIVE_BATCH_SIZE = 20;
   const CREATOR_AUTOSAVE_CARD_LIMIT = 160;
@@ -156,6 +155,12 @@
   let onboardingGreetingRevealTimer = null;
   let onboardingGreetingTransitionTimer = null;
   let onboardingMemoryCode = '';
+  let onboardingCodeAdvanceTimer = null;
+  let onboardingEvidenceTimers = [];
+  let onboardingEvidenceRunId = 0;
+  let onboardingEvidenceStoryComplete = false;
+  let onboardingRetrievalMessageTimers = [];
+  let onboardingRetrievalMessageReady = false;
   let onboardingRetrievalExplained = false;
   const ROUTE_LOADER_MIN_VISIBLE_MS = 150;
 
@@ -1872,25 +1877,7 @@
     const reviewLabel = state.srsMode && totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : (hasDecks ? 'Study Decks' : 'Create Deck');
     const middleMetricValue = state.srsMode ? todayReviews : activity.todayCardsViewed;
     const middleMetricLabel = state.srsMode ? 'Reviewed' : 'Studied';
-    const preferredName = readPreferredName();
-    const showStarterCard = !hasDecks && !hasDismissedStarterCard();
-    const starterGreeting = preferredName ? `Ready, ${preferredName}?` : 'Ready to begin?';
-    selectors.todayHero?.classList.toggle('has-starter-card', showStarterCard);
-
     selectors.todayHero.innerHTML = `
-      ${showStarterCard ? `
-        <section class="today-starter-card" aria-labelledby="today-starter-title">
-          <button type="button" class="today-starter-dismiss" data-action="dismiss-starter-card" aria-label="Dismiss getting started card"><i class="fas fa-xmark" aria-hidden="true"></i></button>
-          <p class="today-starter-eyebrow">YOUR FIRST USEFUL STEP</p>
-          <h2 id="today-starter-title">${escapeHtml(starterGreeting)} Build your first useful deck.</h2>
-          <p>Choose the quickest way to begin. Everything stays available later.</p>
-          <div class="today-starter-actions">
-            <button type="button" data-action="open-create"><span><i class="fas fa-file-import" aria-hidden="true"></i></span><strong>Create or import</strong><small>Build cards or bring in a deck.</small><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-            <button type="button" data-action="open-starter-chatgpt"><span><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i></span><strong>Create with ChatGPT</strong><small>Turn notes or a PDF into cards.</small><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-            <button type="button" data-action="open-starter-premade"><span><i class="fas fa-book-open" aria-hidden="true"></i></span><strong>Explore premade decks</strong><small>Open SSC English resources.</small><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-          </div>
-        </section>
-      ` : ''}
       <div class="hero-dashboard">
         <div class="goal-ring-wrapper">
           <svg class="goal-ring-svg" viewBox="0 0 100 100">
@@ -6610,7 +6597,7 @@
 
   function generateOnboardingMemoryCode() {
     const choices = ONBOARDING_MEMORY_CODES.filter(code => code !== onboardingMemoryCode);
-    onboardingMemoryCode = choices[Math.floor(Math.random() * choices.length)] || 'KAVRIN';
+    onboardingMemoryCode = choices[Math.floor(Math.random() * choices.length)] || 'KAVRAN';
     renderOnboardingMemoryCode();
     return onboardingMemoryCode;
   }
@@ -6637,7 +6624,7 @@
   function renderOnboardingMemoryCode() {
     renderLetterTiles(document.getElementById('onboarding-memory-code'), onboardingMemoryCode);
     const answer = document.getElementById('onboarding-retrieval-answer');
-    if (answer) answer.textContent = onboardingMemoryCode || 'KAVRIN';
+    if (answer) answer.textContent = onboardingMemoryCode || 'KAVRAN';
     const codePanel = document.getElementById('onboarding-memory-code');
     codePanel?.setAttribute('aria-label', `Your code is ${String(onboardingMemoryCode || '').split('').join(' ')}`);
   }
@@ -6649,57 +6636,192 @@
     renderLetterTiles(document.getElementById('onboarding-code-slots'), normalized, { maskEmpty: true });
     const matches = normalized.length === 6 && normalized === onboardingMemoryCode;
     const error = document.getElementById('onboarding-code-error');
-    if (error && options.validate) {
-      error.textContent = normalized.length === 6 && !matches ? 'Check the letters above and try once more.' : '';
+    if (error && (options.validate || normalized.length === 6)) {
+      error.textContent = normalized.length === 6 && !matches ? 'Almost — check the letters above.' : '';
     } else if (error) {
       error.textContent = '';
     }
-    updateOnboardingPrimaryButton({ codeMatches: matches });
+    if (matches && onboardingStep === 1) queueOnboardingCodeAdvance();
     return matches;
   }
 
+  function queueOnboardingCodeAdvance() {
+    if (onboardingCodeAdvanceTimer) return;
+    const input = document.getElementById('onboarding-code-input');
+    const screen = document.querySelector('.memory-screen');
+    if (input) input.readOnly = true;
+    screen?.classList.add('is-complete');
+    triggerHaptic();
+    onboardingCodeAdvanceTimer = window.setTimeout(() => {
+      input?.blur?.();
+      screen?.classList.remove('is-complete');
+      screen?.classList.add('is-hiding');
+      onboardingCodeAdvanceTimer = window.setTimeout(() => {
+        onboardingCodeAdvanceTimer = null;
+        if (input) input.readOnly = false;
+        updateOnboardingStep(2);
+      }, prefersReducedMotion() ? 40 : 420);
+    }, prefersReducedMotion() ? 80 : 360);
+  }
+
+  function stopOnboardingEvidenceTimers() {
+    onboardingEvidenceTimers.forEach(timer => window.clearTimeout(timer));
+    onboardingEvidenceTimers = [];
+    onboardingEvidenceRunId += 1;
+  }
+
+  function resetOnboardingEvidenceStory() {
+    stopOnboardingEvidenceTimers();
+    onboardingEvidenceStoryComplete = false;
+    const screen = document.querySelector('.evidence-screen');
+    screen?.classList.remove('is-story-complete');
+    screen?.querySelectorAll('.evidence-tile').forEach(tile => {
+      tile.classList.remove('is-revealed');
+      tile.setAttribute('aria-hidden', 'true');
+    });
+    screen?.querySelectorAll('[data-count-to]').forEach(number => {
+      number.textContent = '0';
+    });
+  }
+
+  function animateOnboardingNumber(number, runId) {
+    const target = Number(number?.dataset.countTo);
+    if (!number || !Number.isFinite(target)) return;
+    if (prefersReducedMotion()) {
+      number.textContent = String(target);
+      return;
+    }
+    const startedAt = performance.now();
+    const duration = target > 500 ? 1900 : 1550;
+    const tick = now => {
+      if (runId !== onboardingEvidenceRunId) return;
+      const progress = Math.min(1, (now - startedAt) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      number.textContent = String(Math.round(target * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  function startOnboardingEvidenceStory() {
+    resetOnboardingEvidenceStory();
+    const screen = document.querySelector('.evidence-screen');
+    const tiles = Array.from(screen?.querySelectorAll('.evidence-tile') || []);
+    if (!screen || !tiles.length) return;
+    screen.scrollTop = 0;
+    const runId = onboardingEvidenceRunId;
+
+    if (prefersReducedMotion()) {
+      tiles.forEach(tile => {
+        tile.classList.add('is-revealed');
+        tile.setAttribute('aria-hidden', 'false');
+        tile.querySelectorAll('[data-count-to]').forEach(number => animateOnboardingNumber(number, runId));
+      });
+      onboardingEvidenceStoryComplete = true;
+      screen.classList.add('is-story-complete');
+      updateOnboardingPrimaryButton();
+      return;
+    }
+
+    const revealDelays = [250, 4000, 7000, 10000, 13000];
+    tiles.forEach((tile, index) => {
+      const revealTimer = window.setTimeout(() => {
+        if (runId !== onboardingEvidenceRunId || onboardingStep !== 2) return;
+        tile.classList.add('is-revealed');
+        tile.setAttribute('aria-hidden', 'false');
+        const countTimer = window.setTimeout(() => {
+          if (runId !== onboardingEvidenceRunId) return;
+          tile.querySelectorAll('[data-count-to]').forEach(number => animateOnboardingNumber(number, runId));
+        }, 920);
+        onboardingEvidenceTimers.push(countTimer);
+      }, revealDelays[index] ?? (13000 + index * 2800));
+      onboardingEvidenceTimers.push(revealTimer);
+    });
+
+    const completeTimer = window.setTimeout(() => {
+      if (runId !== onboardingEvidenceRunId || onboardingStep !== 2) return;
+      onboardingEvidenceStoryComplete = true;
+      screen.classList.add('is-story-complete');
+      updateOnboardingPrimaryButton();
+    }, 16300);
+    onboardingEvidenceTimers.push(completeTimer);
+  }
+
+  function resetOnboardingRetrievalMessage() {
+    onboardingRetrievalMessageTimers.forEach(timer => window.clearTimeout(timer));
+    onboardingRetrievalMessageTimers = [];
+    onboardingRetrievalMessageReady = false;
+    document.getElementById('onboarding-flip-demo')?.classList.remove('is-reflecting');
+  }
+
+  function startOnboardingRetrievalMessage() {
+    resetOnboardingRetrievalMessage();
+    const demo = document.getElementById('onboarding-flip-demo');
+    if (!demo) return;
+    const revealDelay = prefersReducedMotion() ? 100 : 2000;
+    const readyDelay = prefersReducedMotion() ? 180 : 5000;
+    onboardingRetrievalMessageTimers.push(window.setTimeout(() => {
+      if (!demo.classList.contains('is-flipped')) return;
+      demo.classList.add('is-reflecting');
+    }, revealDelay));
+    onboardingRetrievalMessageTimers.push(window.setTimeout(() => {
+      if (!demo.classList.contains('is-flipped')) return;
+      onboardingRetrievalMessageReady = true;
+      updateOnboardingPrimaryButton();
+    }, readyDelay));
+  }
+
   function resetOnboardingExperiment() {
+    window.clearTimeout(onboardingCodeAdvanceTimer);
+    onboardingCodeAdvanceTimer = null;
+    resetOnboardingEvidenceStory();
+    resetOnboardingRetrievalMessage();
     generateOnboardingMemoryCode();
     onboardingRetrievalExplained = false;
     const codeInput = document.getElementById('onboarding-code-input');
-    if (codeInput) codeInput.value = '';
+    if (codeInput) {
+      codeInput.value = '';
+      codeInput.readOnly = false;
+    }
     renderLetterTiles(document.getElementById('onboarding-code-slots'), '', { maskEmpty: true });
     document.getElementById('onboarding-code-error')?.replaceChildren();
-    document.querySelector('.memory-screen')?.classList.remove('is-hiding');
+    document.querySelector('.memory-screen')?.classList.remove('is-hiding', 'is-complete');
     document.querySelector('.retrieval-screen')?.classList.remove('is-explaining');
     const explanation = document.getElementById('onboarding-retrieval-explanation');
     explanation?.setAttribute('aria-hidden', 'true');
     const demo = document.getElementById('onboarding-flip-demo');
-    demo?.classList.remove('is-flipped');
+    demo?.classList.remove('is-flipped', 'is-reflecting');
     const demoCard = demo?.querySelector('[data-onboarding-action="flip-card"]');
     demoCard?.setAttribute('aria-pressed', 'false');
     demoCard?.setAttribute('aria-label', 'Flip the flashcard to reveal your code');
     closeOnboardingSources();
   }
 
-  function updateOnboardingPrimaryButton(options = {}) {
+  function updateOnboardingPrimaryButton() {
     const button = document.getElementById('onboarding-primary-button');
-    if (!button || onboardingStep === 0) return;
+    if (!button) return;
+    const waitingForEvidence = onboardingStep === 2 && !onboardingEvidenceStoryComplete;
+    const waitingForRetrievalMessage = onboardingStep === 3 && !onboardingRetrievalExplained && !onboardingRetrievalMessageReady;
+    button.classList.toggle('is-hidden', onboardingStep <= 1 || waitingForEvidence || waitingForRetrievalMessage);
+    if (onboardingStep === 0) return;
     const icon = label => `${label} <i class="fas fa-arrow-right" aria-hidden="true"></i>`;
 
     if (onboardingStep === 1) {
-      const matches = options.codeMatches ?? (normalizeMemoryCodeInput(document.getElementById('onboarding-code-input')?.value) === onboardingMemoryCode);
-      button.dataset.onboardingAction = 'hide-code';
-      button.innerHTML = 'Hide my code <i class="fas fa-eye-slash" aria-hidden="true"></i>';
-      button.disabled = !matches;
+      button.dataset.onboardingAction = 'next';
+      button.disabled = true;
       return;
     }
     if (onboardingStep === 2) {
       button.dataset.onboardingAction = 'next';
-      button.innerHTML = icon('Test my memory');
-      button.disabled = false;
+      button.innerHTML = icon('See it in action');
+      button.disabled = !onboardingEvidenceStoryComplete;
       return;
     }
     if (onboardingStep === 3) {
       const flipped = document.getElementById('onboarding-flip-demo')?.classList.contains('is-flipped') === true;
       button.dataset.onboardingAction = onboardingRetrievalExplained ? 'next' : 'explain-retrieval';
-      button.innerHTML = onboardingRetrievalExplained ? icon('See what Erudite adds') : icon('What just happened?');
-      button.disabled = !onboardingRetrievalExplained && !flipped;
+      button.innerHTML = onboardingRetrievalExplained ? icon('Meet Erudite') : icon('How did that help?');
+      button.disabled = !onboardingRetrievalExplained && (!flipped || !onboardingRetrievalMessageReady);
       return;
     }
     button.dataset.onboardingAction = 'finish';
@@ -6725,28 +6847,13 @@
   }
 
   function explainOnboardingRetrieval() {
-    if (!document.getElementById('onboarding-flip-demo')?.classList.contains('is-flipped')) return;
+    if (!document.getElementById('onboarding-flip-demo')?.classList.contains('is-flipped') || !onboardingRetrievalMessageReady) return;
     onboardingRetrievalExplained = true;
     document.querySelector('.retrieval-screen')?.classList.add('is-explaining');
     const explanation = document.getElementById('onboarding-retrieval-explanation');
     explanation?.setAttribute('aria-hidden', 'false');
     requestAnimationFrame(() => explanation?.querySelector('h2')?.focus?.({ preventScroll: true }));
     updateOnboardingPrimaryButton();
-  }
-
-  function hasDismissedStarterCard() {
-    try {
-      return localStorage.getItem(STARTER_DISMISSED_KEY) === 'true';
-    } catch (_error) {
-      return false;
-    }
-  }
-
-  function dismissStarterCard() {
-    try {
-      localStorage.setItem(STARTER_DISMISSED_KEY, 'true');
-    } catch (_error) {}
-    renderToday();
   }
 
   function clearOnboardingGreetingTimers() {
@@ -6861,6 +6968,7 @@
   function updateOnboardingStep(nextStep, options = {}) {
     const shell = document.getElementById('onboarding-shell');
     if (!shell) return;
+    const previousStep = onboardingStep;
     const screens = Array.from(shell.querySelectorAll('[data-onboarding-step]'));
     const stepValues = screens.map(screen => Number(screen.dataset.onboardingStep)).filter(Number.isFinite);
     const featureSteps = stepValues.filter(step => step > 0);
@@ -6892,14 +7000,22 @@
     document.getElementById('onboarding-back')?.classList.toggle('is-hidden', onboardingStep <= 1);
     const stepLabel = document.getElementById('onboarding-step-label');
     if (stepLabel) stepLabel.textContent = onboardingStep === 0 ? '' : `${onboardingStep} of ${total}`;
-    if (onboardingStep === 1) document.querySelector('.memory-screen')?.classList.remove('is-hiding');
+    if (onboardingStep === 1) {
+      document.querySelector('.memory-screen')?.classList.remove('is-hiding', 'is-complete');
+      if (previousStep > 1) updateOnboardingCodeEntry('');
+    }
+    if (previousStep === 2 && onboardingStep !== 2) stopOnboardingEvidenceTimers();
+    if (onboardingStep === 2 && previousStep !== 2) startOnboardingEvidenceStory();
+    if (previousStep === 3 && onboardingStep !== 3 && !onboardingRetrievalExplained) resetOnboardingRetrievalMessage();
     updateOnboardingPrimaryButton();
 
     if (options.focus !== false) {
       requestAnimationFrame(() => {
-        const focusTarget = onboardingStep === 3 && onboardingRetrievalExplained
-          ? document.querySelector('#onboarding-retrieval-explanation h2')
-          : document.getElementById(`onboarding-title-${onboardingStep}`);
+        const focusTarget = onboardingStep === 1
+          ? document.getElementById('onboarding-code-input')
+          : onboardingStep === 3 && onboardingRetrievalExplained
+            ? document.querySelector('#onboarding-retrieval-explanation h2')
+            : document.getElementById(`onboarding-title-${onboardingStep}`);
         focusTarget?.focus?.({ preventScroll: true });
       });
     }
@@ -6934,6 +7050,10 @@
     const shell = document.getElementById('onboarding-shell');
     if (!shell || shell.classList.contains('hidden')) return;
     clearOnboardingGreetingTimers();
+    window.clearTimeout(onboardingCodeAdvanceTimer);
+    onboardingCodeAdvanceTimer = null;
+    stopOnboardingEvidenceTimers();
+    resetOnboardingRetrievalMessage();
     onboardingGreetingBusy = false;
     closeOnboardingSources();
     document.getElementById('onboarding-confetti-layer')?.replaceChildren();
@@ -6991,23 +7111,10 @@
         updateOnboardingStep(onboardingStep + 1);
         break;
       }
-      case 'hide-code': {
-        const input = document.getElementById('onboarding-code-input');
-        if (!updateOnboardingCodeEntry(input?.value, { validate: true })) {
-          triggerHaptic();
-          input?.focus?.({ preventScroll: true });
-          break;
-        }
-        playAppSound('click');
-        triggerHaptic();
-        input.disabled = true;
-        document.querySelector('.memory-screen')?.classList.add('is-hiding');
-        await new Promise(resolve => window.setTimeout(resolve, prefersReducedMotion() ? 120 : 720));
-        input.disabled = false;
-        updateOnboardingStep(2);
-        break;
-      }
       case 'regenerate-code':
+        window.clearTimeout(onboardingCodeAdvanceTimer);
+        onboardingCodeAdvanceTimer = null;
+        document.querySelector('.memory-screen')?.classList.remove('is-complete', 'is-hiding');
         playAppSound('click');
         generateOnboardingMemoryCode();
         updateOnboardingCodeEntry('');
@@ -7033,7 +7140,12 @@
         demo?.classList.toggle('is-flipped', flipped);
         target?.setAttribute('aria-pressed', String(flipped));
         target?.setAttribute('aria-label', flipped ? `Answer: ${onboardingMemoryCode}. Flip back to the question` : 'Flip the flashcard to reveal your code');
-        if (flipped) triggerHaptic();
+        if (flipped) {
+          triggerHaptic();
+          startOnboardingRetrievalMessage();
+        } else {
+          resetOnboardingRetrievalMessage();
+        }
         updateOnboardingPrimaryButton();
         break;
       }
@@ -9920,18 +10032,6 @@ followed by the JSON containing "deck" and "media" array.`;
       }
       case 'open-create':
         await openCreator();
-        break;
-      case 'open-starter-chatgpt':
-        await openCreator();
-        openAiDeckMaker();
-        break;
-      case 'open-starter-premade':
-        state.premadeClass = 'ssc';
-        state.premadeSubject = 'english';
-        await handleAction('open-premade', target);
-        break;
-      case 'dismiss-starter-card':
-        dismissStarterCard();
         break;
       case 'open-premade': {
         setActiveTab('library');
