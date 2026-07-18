@@ -152,6 +152,7 @@
   let onboardingReturnFocus = null;
   let onboardingBusy = false;
   let onboardingGreetingBusy = false;
+  let onboardingActionBusy = false;
   let onboardingGreetingRevealTimer = null;
   let onboardingGreetingTransitionTimer = null;
   let onboardingMemoryCode = '';
@@ -162,6 +163,7 @@
   let onboardingRetrievalMessageTimers = [];
   let onboardingRetrievalMessageReady = false;
   let onboardingRetrievalExplained = false;
+  let tourCurrentStep = 0;
   const ROUTE_LOADER_MIN_VISIBLE_MS = 150;
 
   let premadeClasses = [
@@ -1030,6 +1032,15 @@
   }
 
   function setActiveTab(tab, options = {}) {
+    if (tourCurrentStep === 1 && tab === 'create') {
+      tourCurrentStep = 2;
+      window.setTimeout(() => showTourStep(2), 250);
+    } else if (tourCurrentStep === 6 && tab === 'library') {
+      tourCurrentStep = 7;
+      window.setTimeout(() => showTourStep(7), 400);
+    } else if (tourCurrentStep >= 2 && tourCurrentStep <= 6 && tab !== 'create') {
+      endTour('cancelled');
+    }
     const previousTab = state.activeTab;
     const span = perf?.start('app.tab.activate', {
       from: previousTab,
@@ -6605,13 +6616,20 @@
   function renderLetterTiles(container, value, options = {}) {
     if (!container) return;
     const letters = String(value || '').toUpperCase().slice(0, 6).split('');
+    const placeholderLetters = String(options.placeholder || '').toUpperCase().slice(0, 6).split('');
     const fragment = document.createDocumentFragment();
     for (let index = 0; index < 6; index += 1) {
       const tile = document.createElement('span');
       const letter = letters[index] || '';
-      tile.textContent = letter;
-      tile.classList.toggle('is-filled', Boolean(letter));
-      if (options.maskEmpty && !letter) tile.innerHTML = '&nbsp;';
+      if (letter) {
+        tile.textContent = letter;
+        tile.classList.add('is-filled');
+      } else if (placeholderLetters[index]) {
+        tile.textContent = placeholderLetters[index];
+        tile.classList.add('is-placeholder');
+      } else {
+        tile.innerHTML = '&nbsp;';
+      }
       fragment.appendChild(tile);
     }
     container.replaceChildren(fragment);
@@ -6633,7 +6651,7 @@
     const normalized = normalizeMemoryCodeInput(value);
     const input = document.getElementById('onboarding-code-input');
     if (input && input.value !== normalized) input.value = normalized;
-    renderLetterTiles(document.getElementById('onboarding-code-slots'), normalized, { maskEmpty: true });
+    renderLetterTiles(document.getElementById('onboarding-code-slots'), normalized, { placeholder: onboardingMemoryCode });
     const matches = normalized.length === 6 && normalized === onboardingMemoryCode;
     const error = document.getElementById('onboarding-code-error');
     if (error && (options.validate || normalized.length === 6)) {
@@ -6743,7 +6761,7 @@
       onboardingEvidenceStoryComplete = true;
       screen.classList.add('is-story-complete');
       updateOnboardingPrimaryButton();
-    }, 16300);
+    }, prefersReducedMotion() ? 50 : 2800);
     onboardingEvidenceTimers.push(completeTimer);
   }
 
@@ -6758,8 +6776,8 @@
     resetOnboardingRetrievalMessage();
     const demo = document.getElementById('onboarding-flip-demo');
     if (!demo) return;
-    const revealDelay = prefersReducedMotion() ? 100 : 2000;
-    const readyDelay = prefersReducedMotion() ? 180 : 5000;
+    const revealDelay = prefersReducedMotion() ? 100 : 1000;
+    const readyDelay = prefersReducedMotion() ? 180 : 2500;
     onboardingRetrievalMessageTimers.push(window.setTimeout(() => {
       if (!demo.classList.contains('is-flipped')) return;
       demo.classList.add('is-reflecting');
@@ -6783,7 +6801,7 @@
       codeInput.value = '';
       codeInput.readOnly = false;
     }
-    renderLetterTiles(document.getElementById('onboarding-code-slots'), '', { maskEmpty: true });
+    renderLetterTiles(document.getElementById('onboarding-code-slots'), '', { placeholder: onboardingMemoryCode });
     document.getElementById('onboarding-code-error')?.replaceChildren();
     document.querySelector('.memory-screen')?.classList.remove('is-hiding', 'is-complete');
     document.querySelector('.retrieval-screen')?.classList.remove('is-explaining');
@@ -6952,6 +6970,12 @@
       input.value = preferredName;
       input.disabled = true;
     }
+    const arrow = form?.querySelector('.fa-arrow-right');
+    if (arrow && !prefersReducedMotion()) {
+      arrow.classList.remove('arrow-animate');
+      void arrow.offsetWidth; // trigger reflow
+      arrow.classList.add('arrow-animate');
+    }
     const nameTarget = document.getElementById('onboarding-personalized-name');
     if (nameTarget) nameTarget.textContent = preferredName;
     document.getElementById('onboarding-hello-scene')?.classList.add('is-celebrating');
@@ -6998,8 +7022,7 @@
     });
 
     document.getElementById('onboarding-back')?.classList.toggle('is-hidden', onboardingStep <= 1);
-    const stepLabel = document.getElementById('onboarding-step-label');
-    if (stepLabel) stepLabel.textContent = onboardingStep === 0 ? '' : `${onboardingStep} of ${total}`;
+
     if (onboardingStep === 1) {
       document.querySelector('.memory-screen')?.classList.remove('is-hiding', 'is-complete');
       if (previousStep > 1) updateOnboardingCodeEntry('');
@@ -7010,14 +7033,20 @@
     updateOnboardingPrimaryButton();
 
     if (options.focus !== false) {
-      requestAnimationFrame(() => {
-        const focusTarget = onboardingStep === 1
-          ? document.getElementById('onboarding-code-input')
-          : onboardingStep === 3 && onboardingRetrievalExplained
+      if (onboardingStep === 1) {
+        window.setTimeout(() => {
+          if (onboardingStep === 1) {
+            document.getElementById('onboarding-code-input')?.focus?.({ preventScroll: true });
+          }
+        }, 550);
+      } else {
+        requestAnimationFrame(() => {
+          const focusTarget = onboardingStep === 3 && onboardingRetrievalExplained
             ? document.querySelector('#onboarding-retrieval-explanation h2')
             : document.getElementById(`onboarding-title-${onboardingStep}`);
-        focusTarget?.focus?.({ preventScroll: true });
-      });
+          focusTarget?.focus?.({ preventScroll: true });
+        });
+      }
     }
   }
 
@@ -7067,6 +7096,7 @@
       mobileShell.inert = false;
       mobileShell.removeAttribute('aria-hidden');
     }
+    window.setTimeout(startCreatorTour, 800);
   }
 
   async function completeOnboarding(destination = 'today') {
@@ -7108,6 +7138,15 @@
     switch (action) {
       case 'next': {
         playAppSound('click');
+        const arrow = target?.querySelector('.fa-arrow-right');
+        if (arrow && !prefersReducedMotion()) {
+          onboardingActionBusy = true;
+          arrow.classList.remove('arrow-animate');
+          void arrow.offsetWidth; // trigger reflow
+          arrow.classList.add('arrow-animate');
+          await new Promise(resolve => window.setTimeout(resolve, 350));
+          onboardingActionBusy = false;
+        }
         updateOnboardingStep(onboardingStep + 1);
         break;
       }
@@ -7149,10 +7188,20 @@
         updateOnboardingPrimaryButton();
         break;
       }
-      case 'explain-retrieval':
+      case 'explain-retrieval': {
         playAppSound('click');
+        const arrow = target?.querySelector('.fa-arrow-right');
+        if (arrow && !prefersReducedMotion()) {
+          onboardingActionBusy = true;
+          arrow.classList.remove('arrow-animate');
+          void arrow.offsetWidth; // trigger reflow
+          arrow.classList.add('arrow-animate');
+          await new Promise(resolve => window.setTimeout(resolve, 350));
+          onboardingActionBusy = false;
+        }
         explainOnboardingRetrieval();
         break;
+      }
       case 'open-sources':
         playAppSound('click');
         openOnboardingSources();
@@ -7161,10 +7210,20 @@
         closeOnboardingSources();
         document.querySelector('[data-onboarding-action="open-sources"]')?.focus?.({ preventScroll: true });
         break;
-      case 'finish':
+      case 'finish': {
         playAppSound('click');
+        const arrow = target?.querySelector('.fa-arrow-right');
+        if (arrow && !prefersReducedMotion()) {
+          onboardingActionBusy = true;
+          arrow.classList.remove('arrow-animate');
+          void arrow.offsetWidth; // trigger reflow
+          arrow.classList.add('arrow-animate');
+          await new Promise(resolve => window.setTimeout(resolve, 350));
+          onboardingActionBusy = false;
+        }
         await completeOnboarding('today');
         break;
+      }
       default:
         break;
     }
@@ -10121,6 +10180,9 @@ followed by the JSON containing "deck" and "media" array.`;
         break;
       case 'study-set':
         {
+        if (tourCurrentStep === 7) {
+          endTour('completed');
+        }
         const span = perf?.start('app.study.launch', { activeTab: state.activeTab });
         showAppLoader('Opening Study', 'Preparing your deck');
         await new Promise(resolve => setTimeout(resolve, 50));
@@ -12336,7 +12398,10 @@ Every media/... reference in deck.json must exist inside media/.`;
         selectors.importCardSepInput.value = state.settings?.importCardSep ?? '@';
       }
       hideAppLoader();
-      if (!onboardingPrepared) maybeShowOnboarding();
+      const onboardingShowed = !onboardingPrepared && maybeShowOnboarding();
+      if (!onboardingShowed) {
+        window.setTimeout(startCreatorTour, 800);
+      }
       perf?.end(loadSpan, {
         status: 'ok',
         deckCount: state.sets.length
@@ -12347,6 +12412,238 @@ Every media/... reference in deck.json must exist inside media/.`;
         deckCount: state.sets.length
       });
     }, 280);
+  }
+
+  // Creator Walkthrough / Guided Tour
+  const TOUR_COMPLETED_KEY = 'erudite_creator_tour_completed';
+
+  function getTourSteps() {
+    return [
+      {
+        step: 1,
+        target: () => document.querySelector('.tab-button[data-tab="create"]'),
+        text: "Let's learn how to make flashcards! Click the <strong>Create</strong> button to open the card creator.",
+        arrow: 'arrow-bottom',
+        onEnter: () => {
+          const btn = document.querySelector('.tab-button[data-tab="create"]');
+          if (btn) btn.classList.add('dock-button-highlight');
+        },
+        onLeave: () => {
+          const btn = document.querySelector('.tab-button[data-tab="create"]');
+          if (btn) btn.classList.remove('dock-button-highlight');
+        }
+      },
+      {
+        step: 2,
+        target: () => document.getElementById('mobile-create-title'),
+        text: "First, give your deck a name and class. You can also import existing files or build decks in bulk using these buttons!",
+        arrow: 'arrow-top',
+        onEnter: () => {
+          const titleInput = document.getElementById('mobile-create-title');
+          if (titleInput && !titleInput.value) {
+            titleInput.value = "Biology basics";
+            titleInput.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        }
+      },
+      {
+        step: 3,
+        target: () => document.querySelector('.rich-editor[data-side="term"]'),
+        text: "Type your question or term here. Use the formatting toolbar to add <strong>bold</strong>, <em>italics</em>, text colors, math formulas, or code blocks!",
+        arrow: 'arrow-top',
+        onEnter: () => {
+          const term = document.querySelector('.rich-editor[data-side="term"]');
+          if (term && !term.textContent.trim()) {
+            term.innerHTML = "Mitochondria";
+            term.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        }
+      },
+      {
+        step: 4,
+        target: () => document.querySelector('.rich-editor[data-side="definition"]'),
+        text: "Type the explanation or answer here. You can also attach <strong>images</strong>, <strong>audio clips</strong>, or <strong>video files</strong>!",
+        arrow: 'arrow-top',
+        onEnter: () => {
+          const def = document.querySelector('.rich-editor[data-side="definition"]');
+          if (def && !def.textContent.trim()) {
+            def.innerHTML = "The <strong>powerhouse</strong> of the cell.";
+            def.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        }
+      },
+      {
+        step: 5,
+        target: () => document.querySelector('.creator-generate-row'),
+        text: "Switch to advanced card styles here: <strong>Reverse</strong> cards, <strong>Cloze</strong> deletions (fill-in-the-blank), <strong>Image Occlusion</strong>, or custom <strong>HTML/CSS</strong> templates!",
+        arrow: 'arrow-top'
+      },
+      {
+        step: 6,
+        target: () => document.getElementById('header-creator-save-btn') || document.querySelector('[data-action="creator-save"]'),
+        text: "Ready to save? Tap the <strong>Save</strong> button in the top right corner to add this deck to your library!",
+        arrow: 'arrow-top'
+      },
+      {
+        step: 7,
+        target: () => document.querySelector('.small-icon-button[data-action="study-set"]'),
+        text: "Congratulations! Click the blue <strong>Study</strong> button on your new deck to start practicing with active recall!",
+        arrow: 'arrow-top'
+      }
+    ];
+  }
+
+  function startCreatorTour() {
+    if (localStorage.getItem(TOUR_COMPLETED_KEY)) return;
+    tourCurrentStep = 1;
+    createTourElements();
+    showTourStep(1);
+  }
+
+  window.startCreatorTour = startCreatorTour; // Expose for testing/debugging
+
+  function createTourElements() {
+    let backdrop = document.getElementById('walkthrough-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.id = 'walkthrough-backdrop';
+      backdrop.style.cssText = "position: fixed; inset: 0; z-index: 10000; background: transparent; pointer-events: none;";
+      document.body.appendChild(backdrop);
+    }
+    let tooltip = document.getElementById('walkthrough-tooltip');
+    if (!tooltip) {
+      tooltip = document.createElement('div');
+      tooltip.id = 'walkthrough-tooltip';
+      tooltip.className = 'walkthrough-tooltip';
+      document.body.appendChild(tooltip);
+    }
+  }
+
+  function cleanupTour() {
+    const backdrop = document.getElementById('walkthrough-backdrop');
+    if (backdrop) backdrop.remove();
+    const tooltip = document.getElementById('walkthrough-tooltip');
+    if (tooltip) tooltip.remove();
+    
+    document.querySelectorAll('.walkthrough-highlight').forEach(el => {
+      el.classList.remove('walkthrough-highlight', 'dock-button-highlight');
+    });
+    
+    const steps = getTourSteps();
+    steps.forEach(s => s.onLeave?.());
+  }
+
+  function endTour(status = 'completed') {
+    localStorage.setItem(TOUR_COMPLETED_KEY, status);
+    cleanupTour();
+    tourCurrentStep = 0;
+  }
+
+  window.endTour = endTour; // Expose for manual control
+
+  function showTourStep(stepNum) {
+    const steps = getTourSteps();
+    const currentStepConfig = steps.find(s => s.step === stepNum);
+    if (!currentStepConfig) {
+      endTour();
+      return;
+    }
+    
+    cleanupTourHighlights();
+    
+    const target = currentStepConfig.target();
+    if (!target) {
+      console.warn(`[Tour] Target element not found for step ${stepNum}, waiting/skipping`);
+      if (stepNum === 7) {
+        window.setTimeout(() => {
+          const retryTarget = currentStepConfig.target();
+          if (retryTarget) {
+            highlightAndPosition(retryTarget, currentStepConfig);
+          } else {
+            endTour();
+          }
+        }, 500);
+      } else {
+        showTourStep(stepNum + 1);
+      }
+      return;
+    }
+    
+    highlightAndPosition(target, currentStepConfig);
+  }
+
+  function cleanupTourHighlights() {
+    document.querySelectorAll('.walkthrough-highlight').forEach(el => {
+      el.classList.remove('walkthrough-highlight', 'dock-button-highlight');
+    });
+    const steps = getTourSteps();
+    steps.forEach(s => s.onLeave?.());
+  }
+
+  function highlightAndPosition(target, config) {
+    createTourElements();
+    target.classList.add('walkthrough-highlight');
+    config.onEnter?.();
+    
+    const tooltip = document.getElementById('walkthrough-tooltip');
+    const isFinalStep = config.step === 7;
+    const isStep1 = config.step === 1;
+    
+    let buttonHtml = '';
+    if (isStep1) {
+      buttonHtml = `<span>(Tap Create)</span>`;
+    } else if (config.step === 6) {
+      buttonHtml = `<span>(Tap Save)</span>`;
+    } else if (isFinalStep) {
+      buttonHtml = `<button type="button" class="walkthrough-btn-next" id="tour-next-btn">Finish</button>`;
+    } else {
+      buttonHtml = `<button type="button" class="walkthrough-btn-next" id="tour-next-btn">Next</button>`;
+    }
+
+    tooltip.innerHTML = `
+      <p>${config.text}</p>
+      <div class="walkthrough-tooltip-buttons">
+        <button type="button" class="walkthrough-btn-skip" id="tour-skip-btn">Skip Guide</button>
+        ${buttonHtml}
+      </div>
+    `;
+    
+    requestAnimationFrame(() => {
+      positionWalkthroughTooltip(target, tooltip, config.arrow);
+      
+      document.getElementById('tour-skip-btn')?.addEventListener('click', () => {
+        endTour('skipped');
+      });
+      
+      document.getElementById('tour-next-btn')?.addEventListener('click', () => {
+        tourCurrentStep++;
+        showTourStep(tourCurrentStep);
+      });
+    });
+  }
+
+  function positionWalkthroughTooltip(target, tooltip, preferredArrow) {
+    const rect = target.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    
+    let top = rect.bottom + 12;
+    let left = rect.left + (rect.width - tooltipRect.width) / 2;
+    let arrowClass = 'arrow-top';
+    
+    if (preferredArrow === 'arrow-bottom' || top + tooltipRect.height > window.innerHeight) {
+      top = rect.top - tooltipRect.height - 12;
+      arrowClass = 'arrow-bottom';
+    }
+    
+    const padding = 12;
+    if (left < padding) left = padding;
+    if (left + tooltipRect.width > window.innerWidth - padding) {
+      left = window.innerWidth - tooltipRect.width - padding;
+    }
+    
+    tooltip.style.top = `${top}px`;
+    tooltip.style.left = `${left}px`;
+    tooltip.className = `walkthrough-tooltip is-visible ${arrowClass}`;
   }
 
   if (document.readyState === 'loading') {
