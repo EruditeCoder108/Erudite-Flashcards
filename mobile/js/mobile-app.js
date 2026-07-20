@@ -166,27 +166,10 @@
   let tourCurrentStep = 0;
   const ROUTE_LOADER_MIN_VISIBLE_MS = 150;
 
-  let premadeClasses = [
-    { id: '10th', name: 'Class 10' },
-    { id: '11th', name: 'Class 11' },
-    { id: '12th', name: 'Class 12' },
-    { id: 'neet-ug', name: 'NEET UG' },
-    { id: 'jee-main', name: 'JEE Main' },
-    { id: 'jee-advanced', name: 'JEE Advanced' },
-    { id: 'ssc', name: 'SSC' },
-    { id: 'quick-maths', name: 'Quick Maths' }
-  ];
-
-  let premadeSubjects = {
-    '10th': ['Science', 'Maths', 'English', 'Civics', 'Geography', 'History', 'Hindi', 'Politics'],
-    '11th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education'],
-    '12th': ['Physics', 'inorganic-chemistry', 'organic-chemistry', 'physical-chemistry', 'English', 'Maths', 'Biology', 'Physical-education'],
-    'neet-ug': ['physics', 'chemistry', 'biology'],
-    'jee-main': ['physics', 'chemistry', 'maths'],
-    'jee-advanced': ['physics', 'chemistry', 'maths'],
-    'ssc': ['general-awareness', 'quantitative-aptitude', 'reasoning', 'english'],
-    'quick-maths': ['Mental-Maths']
-  };
+  // The generated premade catalog is the single source of truth. It mirrors
+  // the class/subject directories under premade-cards/ after `zip:premade`.
+  let premadeClasses = [];
+  let premadeSubjects = {};
   let premadeSubjectLabels = {};
   let premadeCatalogLoaded = false;
 
@@ -5685,31 +5668,22 @@
     return known[id] || 500 + index;
   }
 
-  function mergePremadeCatalog(normalized) {
-    const mergedClasses = new Map();
-    const sourceClasses = [...premadeClasses, ...(normalized?.classes || [])];
-    sourceClasses.forEach((item, index) => {
-      const id = String(item?.id || '').trim();
-      if (!id) return;
-      const existing = mergedClasses.get(id);
-      mergedClasses.set(id, {
-        id,
-        name: existing?.name || String(item.name || '').trim() || subjectLabel(id),
-        _order: Math.min(existing?._order ?? 9999, premadeClassSortValue(item, index))
-      });
-    });
-
-    const nextSubjects = { ...premadeSubjects };
-    Object.entries(normalized?.subjects || {}).forEach(([classId, subjects]) => {
-      const existing = nextSubjects[classId] || [];
-      nextSubjects[classId] = Array.from(new Set([...(Array.isArray(subjects) ? subjects : []), ...existing]));
-    });
-
-    premadeClasses = Array.from(mergedClasses.values())
+  function applyPremadeCatalog(normalized) {
+    premadeClasses = (normalized?.classes || [])
+      .map((item, index) => {
+        const id = String(item?.id || '').trim();
+        if (!id) return null;
+        return {
+          id,
+          name: String(item.name || '').trim() || subjectLabel(id),
+          _order: premadeClassSortValue(item, index)
+        };
+      })
+      .filter(Boolean)
       .sort((a, b) => a._order - b._order || a.name.localeCompare(b.name))
       .map(({ _order, ...item }) => item);
-    premadeSubjects = nextSubjects;
-    premadeSubjectLabels = { ...premadeSubjectLabels, ...(normalized?.labels || {}) };
+    premadeSubjects = { ...(normalized?.subjects || {}) };
+    premadeSubjectLabels = { ...(normalized?.labels || {}) };
   }
 
   async function loadPremadeCatalog() {
@@ -5718,11 +5692,8 @@
     const catalog = await window.flashcardStore?.listPremadeCatalog?.().catch(() => null);
     const normalized = normalizePremadeCatalog(catalog);
     if (!normalized) return;
-    mergePremadeCatalog(normalized);
-    const catalogSubjects = normalized.subjects[state.premadeClass] || [];
-    if (catalogSubjects.length && !catalogSubjects.includes(state.premadeSubject)) {
-      state.premadeSubject = catalogSubjects[0];
-    }
+    applyPremadeCatalog(normalized);
+    ensurePremadeSelection();
   }
 
   function ensurePremadeSelection() {

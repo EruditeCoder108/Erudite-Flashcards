@@ -887,6 +887,9 @@
     if (target.closest?.('.advanced-html-swipe-grip')) return null;
     if (htmlInteractionDisabled() && target.closest?.('.html-interaction-disabled')) return null;
     if (target.closest?.('.image-occlusion-study-card')) return null;
+    // Advanced HTML cards have their own scrollable frame. The surrounding
+    // card shell must stay available for swipe navigation.
+    if (target.closest?.('.advanced-html-card-text')) return null;
     const scroll = target.closest?.('.card-scroll');
     return scroll && scroll.scrollHeight > scroll.clientHeight + 4 ? scroll : null;
   }
@@ -1802,7 +1805,9 @@
   function updateCardScrollability(cardEl) {
     if (!cardEl) return;
     cardEl.querySelectorAll('.card-scroll').forEach(scroll => {
-      const isScrollable = !scroll.closest('.study-card.html-interaction-disabled')
+      const hasAdvancedHtml = Boolean(scroll.querySelector('.advanced-html-card-text'));
+      const isScrollable = !hasAdvancedHtml
+        && !scroll.closest('.study-card.html-interaction-disabled')
         && !scroll.closest('.study-card.image-occlusion-study-card')
         && scroll.scrollHeight > scroll.clientHeight + 4;
       scroll.style.touchAction = isScrollable ? 'pan-y' : 'none';

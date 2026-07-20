@@ -5,11 +5,16 @@
   --surface: #111e30;
   --surface-2: #17263c;
   --surface-3: #20334e;
+  --surface-soft: var(--surface-2);
+  --surface-hover: var(--surface-3);
   --line: rgba(148, 163, 184, 0.18);
   --line-strong: rgba(148, 163, 184, 0.28);
+  --border: var(--line);
   --text: #f8fafc;
   --muted: #9aa8ba;
   --subtle: #708094;
+  --text-primary: var(--text);
+  --text-muted: var(--muted);
   --primary: #3b82f6;
   --primary-2: #60a5fa;
   --green: #35d07f;
@@ -1878,8 +1883,8 @@ button {
   padding: 0 0.7rem;
   border-radius: 0.85rem;
   border: 1px solid rgba(96, 165, 250, 0.24);
-  background: rgba(15, 23, 42, 0.5);
-  color: #dbeafe;
+  background: var(--surface-2);
+  color: var(--primary-2);
   font-size: 0.78rem;
   font-weight: 900;
 }
@@ -2722,7 +2727,7 @@ body[data-active-tab="more"] .mobile-tab-indicator {
   width: 100%;
   max-width: 28rem;
   background: var(--surface);
-  border-top: 1px solid rgba(148, 163, 184, 0.16);
+  border-top: 1px solid var(--line-strong);
   border-radius: 1.5rem 1.5rem 0 0;
   padding: 1.2rem;
   padding-bottom: calc(1.2rem + var(--safe-bottom));
@@ -2947,7 +2952,7 @@ select option {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow);
 }
 
 .mobile-modal-overlay.hidden .mobile-modal-card {
@@ -3036,7 +3041,7 @@ select option {
   padding: 0.7rem;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(15, 23, 42, 0.22);
+  background: var(--surface-2);
 }
 
 .mini-example-card strong {
@@ -3246,7 +3251,7 @@ select option {
   min-height: 2.55rem;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--surface-soft);
+  background: var(--surface-2);
   color: var(--text);
   font-weight: 850;
 }
@@ -3254,11 +3259,11 @@ select option {
 .occlusion-editor-tools button.active {
   border-color: rgba(96, 165, 250, 0.72);
   background: rgba(59, 130, 246, 0.2);
-  color: #dbeafe;
+  color: var(--primary);
 }
 
 .occlusion-editor-tools button.danger {
-  color: #fecaca;
+  color: var(--red);
 }
 
 .occlusion-summary-card {
@@ -3269,7 +3274,7 @@ select option {
   padding: 0.72rem;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(7, 17, 31, 0.28);
+  background: var(--surface-2);
 }
 
 .occlusion-summary-card img {
@@ -3277,7 +3282,7 @@ select option {
   height: 5.5rem;
   object-fit: cover;
   border-radius: 8px;
-  background: rgba(2, 6, 23, 0.42);
+  background: var(--bg-2);
 }
 
 .occlusion-summary-main {
@@ -3309,7 +3314,7 @@ select option {
   padding: 0 0.72rem;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--surface-soft);
+  background: var(--surface-2);
   color: var(--text);
   font-weight: 850;
 }
@@ -3321,7 +3326,7 @@ select option {
   overflow: auto;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(2, 6, 23, 0.34);
+  background: var(--bg-2);
   color: var(--text);
   font-size: 0.78rem;
   line-height: 1.45;
@@ -3363,7 +3368,7 @@ select option {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
-  background: rgba(4, 9, 17, 0.48);
+  background: var(--theme-input);
   border: 1px solid var(--line);
   color: var(--text);
   font-size: 1rem;
@@ -3374,7 +3379,7 @@ select option {
 }
 
 .mobile-modal-input:focus {
-  background: rgba(4, 9, 17, 0.65);
+  background: var(--surface-2);
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.16) !important;
 }
@@ -3444,7 +3449,7 @@ select option {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
-  background: rgba(4, 9, 17, 0.48);
+  background: var(--theme-input);
   border: 1px solid var(--line);
   color: var(--text);
   font-size: 0.9rem;
@@ -3457,7 +3462,7 @@ select option {
 }
 
 .mobile-modal-textarea:focus {
-  background: rgba(4, 9, 17, 0.65);
+  background: var(--surface-2);
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.16) !important;
 }
@@ -3523,7 +3528,7 @@ select option {
   padding: 0 0.52rem;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(15, 23, 42, 0.45);
+  background: var(--surface-2);
   color: var(--text);
   font: inherit;
   font-weight: 800;
@@ -3538,7 +3543,7 @@ select option {
   min-height: 3.1rem;
   border: 1px dashed var(--line);
   border-radius: 8px;
-  background: rgba(2, 6, 23, 0.24);
+  background: var(--bg-2);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -3807,7 +3812,7 @@ select option,
   align-items: center;
   gap: 0.95rem;
   padding: 0.95rem;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--surface-2);
   border: 1px solid var(--line);
   border-radius: 0.9rem;
   color: var(--text);
@@ -3817,7 +3822,7 @@ select option,
 }
 
 .mobile-modal-option-btn:active {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--surface-3);
   transform: scale(0.98);
 }
 
@@ -4450,10 +4455,10 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
   width: 100%;
   max-width: 22rem;
   background: var(--surface);
-  border: 1px solid var(--line-strong, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--line-strong);
   border-radius: 1.25rem;
   padding: 1.25rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow);
   animation: modal-zoom-in 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
   flex-direction: column;
@@ -4470,8 +4475,8 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
   min-height: 2.9rem;
   padding: 0.6rem 0.9rem;
   border-radius: 0.75rem;
-  background: var(--surface-hover, rgba(255, 255, 255, 0.02));
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.06));
+  background: var(--surface-2);
+  border: 1px solid var(--line);
   color: var(--text);
   display: flex;
   align-items: center;
@@ -4484,7 +4489,7 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
 }
 
 .preset-option-btn:active {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--surface-3);
 }
 
 .preset-option-btn.selected {
@@ -4508,7 +4513,7 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
 /* Redesigned Help & Import Format Modal */
 .modal-tabs {
   display: flex;
-  background: rgba(2, 6, 23, 0.4);
+  background: var(--surface-2);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 0.25rem;
@@ -4533,7 +4538,7 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
 .modal-tab-btn.active {
   background: var(--surface-3);
   color: var(--text);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+  box-shadow: var(--shadow);
 }
 
 .modal-tab-content {
@@ -5345,6 +5350,10 @@ body[data-active-tab="library"] .mobile-topbar {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
 }
 .theme-light .mobile-modal-field label {
+  color: var(--muted) !important;
+}
+
+.theme-light #mobile-paste-preview-container > label {
   color: var(--muted) !important;
 }
 

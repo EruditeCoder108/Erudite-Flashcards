@@ -664,6 +664,10 @@ textarea,
 .card-face:has(.advanced-html-card-text) .card-scroll {
   padding: 0.55rem 0.65rem 0.65rem;
   gap: 0.42rem;
+  /* The HTML frame owns scrolling. Prevent the card shell from growing a
+     second scrollbar around it. */
+  overflow: hidden;
+  touch-action: none;
 }
 
 .card-scroll::-webkit-scrollbar {
@@ -1877,10 +1881,11 @@ button:active,
   align-items: center;
   justify-content: center;
   flex: 1 1 auto;
-  min-height: var(--advanced-html-canvas-height, 470px);
+  min-height: 0;
+  height: 100%;
   font-size: 1rem;
   line-height: 1.4;
-  overflow: visible;
+  overflow: hidden;
   text-align: initial !important;
   white-space: normal;
 }
@@ -1889,14 +1894,16 @@ button:active,
   display: grid;
   justify-items: center;
   width: min(100%, var(--advanced-html-canvas-width, 340px));
+  height: 100%;
+  min-height: 0;
   margin-inline: auto;
 }
 
 .advanced-html-study-frame {
   display: block;
   width: 100%;
-  height: var(--advanced-html-canvas-height, 470px);
-  min-height: var(--advanced-html-canvas-height, 470px);
+  height: 100%;
+  min-height: 0;
   overflow: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
