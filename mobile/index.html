@@ -110,27 +110,22 @@
       <article class="onboarding-screen is-after evidence-screen" data-onboarding-step="2" aria-hidden="true">
         <div class="onboarding-copy evidence-copy">
           <p class="onboarding-eyebrow">A little science</p>
-          <h2 id="onboarding-title-2" tabindex="-1">Some study methods stick better.</h2>
-          <p id="onboarding-description-2">Here&rsquo;s what researchers keep finding.</p>
+          <h2 id="onboarding-title-2" tabindex="-1">Some study methods are simply better for memorization.</h2>
+          <p id="onboarding-description-2">Research says</p>
         </div>
         <div class="evidence-board">
           <article class="evidence-tile evidence-main">
-            <span class="evidence-kicker">A WEEK LATER</span>
+            <span class="evidence-kicker">1-WEEK RETENTION TEST</span>
             <h3>Trying to remember made a big difference.</h3>
-            <p class="evidence-plain">Students learned the same unfamiliar word pairs.</p>
-            <div class="evidence-compare" aria-label="Repeated recall approximately 80 percent remembered. Practice stopped after one correct answer 36 percent remembered.">
-              <span><strong><b data-count-to="80">0</b>%</strong><small>kept recalling</small></span>
-              <em>vs</em>
-              <span><strong><b data-count-to="36">0</b>%</strong><small>stopped after one right answer</small></span>
+            <p class="evidence-story-p">In a classic experiment, college students learned 40 Swahili&ndash;English word pairs. After a correct answer, researchers varied whether a pair was studied again, tested again, both, or neither. One week later, the groups that kept testing remembered:</p>
+            <div class="evidence-compare" aria-label="Repeated testing about 80 percent remembered. Continued study but no further testing 36 percent remembered.">
+              <span class="compare-val"><strong><b data-count-to="80">0</b>%</strong><small>Kept testing</small></span>
+              <em class="compare-vs-divider">vs</em>
+              <span class="compare-val"><strong><b data-count-to="36">0</b>%</strong><small>Studied, but no more tests</small></span>
             </div>
-            <div class="evidence-bars" role="img" aria-label="Kept recalling approximately 80 percent. Stopped after one correct answer 36 percent.">
-              <div><span>Kept recalling <b>&asymp;80%</b></span><i style="--bar:80%"></i></div>
-              <div><span>Stopped after one right answer <b>36%</b></span><i style="--bar:36%"></i></div>
-            </div>
-            <small>One week later &middot; 40 university students</small>
           </article>
           <article class="evidence-tile evidence-donut-tile">
-            <span class="evidence-kicker">WHAT STAYED</span>
+            <span class="evidence-kicker">THE RESULT</span>
             <div class="evidence-donut" role="img" aria-label="Approximately 80 percent remembered after one week">
               <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="donut-track" cx="50" cy="50" r="40"></circle><circle class="donut-value" cx="50" cy="50" r="40"></circle></svg>
               <strong><b data-count-to="80">0</b>%</strong>
@@ -139,7 +134,7 @@
             <p>Students had kept practising recall.</p>
           </article>
           <article class="evidence-tile evidence-scale">
-            <span class="evidence-kicker">THE RESEARCH</span>
+            <span class="evidence-kicker">THE SCIENCE</span>
             <h3>This finding is not alone.</h3>
             <strong><b data-count-to="184">0</b></strong><span class="scale-unit"> articles</span>
             <div class="research-counters"><span><b data-count-to="317">0</b> experiments</span><span><b data-count-to="839">0</b> assessments</span></div>
@@ -147,13 +142,13 @@
             <small>Researchers have studied spacing for more than a century.</small>
           </article>
           <article class="evidence-tile evidence-effort">
-            <span class="evidence-kicker">ACTIVE RECALL</span>
+            <span class="evidence-kicker">THE METHOD</span>
             <h3>Pulling out an answer makes your brain work for it.</h3>
             <div class="recall-chart" role="img" aria-label="Illustration showing recall as a stronger learning event than rereading"><span><i></i><b>Reread</b></span><span><i></i><b>Recall</b></span></div>
             <p>That effort helps more than only seeing the answer again.</p>
           </article>
           <article class="evidence-tile evidence-spacing">
-            <span class="evidence-kicker">SPACE IT OUT</span>
+            <span class="evidence-kicker">THE TIMING</span>
             <h3>Strong memories can wait longer.</h3>
             <div class="spacing-timeline" role="img" aria-label="Now, later, and later again with expanding gaps">
               <span>Now</span><i></i><span>Later</span><i></i><span>Later again</span>
@@ -168,7 +163,7 @@
         <div class="retrieval-card-state" id="onboarding-retrieval-card-state">
           <div class="onboarding-copy">
             <h2 id="onboarding-title-3" tabindex="-1">Remember those letters?</h2>
-            <p id="onboarding-description-3" class="sr-only">Think of the letters, then flip the card.</p>
+            <p id="onboarding-description-3" class="onboarding-phase">Part 1 of 2 &middot; Think of the letters, then flip the card.</p>
           </div>
           <div class="onboarding-flip-demo" id="onboarding-flip-demo">
             <button type="button" class="onboarding-demo-card" data-onboarding-action="flip-card" aria-pressed="false" aria-label="Flip the flashcard to reveal your code">
@@ -195,6 +190,7 @@
         </div>
         <div class="retrieval-explanation" id="onboarding-retrieval-explanation" aria-hidden="true">
           <div class="onboarding-copy">
+            <p class="onboarding-phase">Part 2 of 2 &middot; See why the effort helps.</p>
             <h2 tabindex="-1">Why trying works better than rereading.</h2>
             <p>Think of the path to a memory like a groove.</p>
           </div>
@@ -207,7 +203,8 @@
                   <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="4" result="graniteSurface"/>
                   <feDiffuseLighting in="graniteSurface" lighting-color="#ffffff" surfaceScale="2" result="graniteLight"><feDistantLight azimuth="125" elevation="55"/></feDiffuseLighting>
                   <feComposite operator="in" in="graniteLight" in2="graniteRugged" result="graniteMasked"/>
-                  <feBlend mode="multiply" in="graniteRugged" in2="graniteMasked"/>
+                  <feBlend mode="multiply" in="graniteRugged" in2="graniteMasked" result="graniteBlended"/>
+                  <feComposite operator="in" in="graniteBlended" in2="SourceGraphic"/>
                 </filter>
                 <filter id="onboarding-sandstone-texture" x="-20%" y="-20%" width="140%" height="140%">
                   <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" result="sandEdge"/>
@@ -215,7 +212,8 @@
                   <feTurbulence type="fractalNoise" baseFrequency="0.15" numOctaves="3" result="sandSurface"/>
                   <feDiffuseLighting in="sandSurface" lighting-color="#d9be9b" surfaceScale="1" result="sandLight"><feDistantLight azimuth="145" elevation="65"/></feDiffuseLighting>
                   <feComposite operator="in" in="sandLight" in2="sandRugged" result="sandMasked"/>
-                  <feBlend mode="multiply" in="sandRugged" in2="sandMasked"/>
+                  <feBlend mode="multiply" in="sandRugged" in2="sandMasked" result="sandBlended"/>
+                  <feComposite operator="in" in="sandBlended" in2="SourceGraphic"/>
                 </filter>
               </defs>
             </svg>

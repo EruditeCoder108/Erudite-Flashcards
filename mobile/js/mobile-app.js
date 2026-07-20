@@ -7027,6 +7027,12 @@
       document.querySelector('.memory-screen')?.classList.remove('is-hiding', 'is-complete');
       if (previousStep > 1) updateOnboardingCodeEntry('');
     }
+    if (previousStep === 1 && onboardingStep !== 1 && onboardingCodeAdvanceTimer) {
+      window.clearTimeout(onboardingCodeAdvanceTimer);
+      onboardingCodeAdvanceTimer = null;
+      document.getElementById('onboarding-code-input')?.removeAttribute('readonly');
+      document.querySelector('.memory-screen')?.classList.remove('is-hiding', 'is-complete');
+    }
     if (previousStep === 2 && onboardingStep !== 2) stopOnboardingEvidenceTimers();
     if (onboardingStep === 2 && previousStep !== 2) startOnboardingEvidenceStory();
     if (previousStep === 3 && onboardingStep !== 3 && !onboardingRetrievalExplained) resetOnboardingRetrievalMessage();
@@ -7055,6 +7061,7 @@
     if (!shell) return;
     const immediate = options.immediate === true || document.documentElement.classList.contains('onboarding-pending');
     onboardingBusy = false;
+    onboardingActionBusy = false;
     shell.querySelectorAll('button').forEach(button => { button.disabled = false; });
     onboardingReturnFocus = options.returnFocus || document.activeElement;
     const mobileShell = document.getElementById('mobile-shell');
@@ -7135,17 +7142,20 @@
   }
 
   async function handleOnboardingAction(action, target) {
-    switch (action) {
+    const isTransitionAction = action === 'next' || action === 'explain-retrieval' || action === 'finish';
+    if (onboardingActionBusy) return;
+    if (isTransitionAction) onboardingActionBusy = true;
+
+    try {
+      switch (action) {
       case 'next': {
         playAppSound('click');
         const arrow = target?.querySelector('.fa-arrow-right');
         if (arrow && !prefersReducedMotion()) {
-          onboardingActionBusy = true;
           arrow.classList.remove('arrow-animate');
           void arrow.offsetWidth; // trigger reflow
           arrow.classList.add('arrow-animate');
           await new Promise(resolve => window.setTimeout(resolve, 350));
-          onboardingActionBusy = false;
         }
         updateOnboardingStep(onboardingStep + 1);
         break;
@@ -7192,12 +7202,10 @@
         playAppSound('click');
         const arrow = target?.querySelector('.fa-arrow-right');
         if (arrow && !prefersReducedMotion()) {
-          onboardingActionBusy = true;
           arrow.classList.remove('arrow-animate');
           void arrow.offsetWidth; // trigger reflow
           arrow.classList.add('arrow-animate');
           await new Promise(resolve => window.setTimeout(resolve, 350));
-          onboardingActionBusy = false;
         }
         explainOnboardingRetrieval();
         break;
@@ -7214,18 +7222,19 @@
         playAppSound('click');
         const arrow = target?.querySelector('.fa-arrow-right');
         if (arrow && !prefersReducedMotion()) {
-          onboardingActionBusy = true;
           arrow.classList.remove('arrow-animate');
           void arrow.offsetWidth; // trigger reflow
           arrow.classList.add('arrow-animate');
           await new Promise(resolve => window.setTimeout(resolve, 350));
-          onboardingActionBusy = false;
         }
         await completeOnboarding('today');
         break;
       }
       default:
         break;
+      }
+    } finally {
+      if (isTransitionAction) onboardingActionBusy = false;
     }
   }
 
@@ -9521,15 +9530,14 @@ followed by the JSON containing "deck" and "media" array.`;
     App.addListener('backButton', () => {
       const onboarding = document.getElementById('onboarding-shell');
       if (onboarding && !onboarding.classList.contains('hidden')) {
+        if (onboardingActionBusy) return;
         const sourceSheet = document.getElementById('onboarding-sources-sheet');
         if (sourceSheet && !sourceSheet.classList.contains('hidden')) {
           closeOnboardingSources();
           return;
         }
-        if (onboardingStep > 1) {
+        if (onboardingStep > 0) {
           updateOnboardingStep(onboardingStep - 1);
-        } else {
-          completeOnboarding('today').catch(error => console.warn('[mobile] Could not close onboarding:', error));
         }
         return;
       }
@@ -12398,8 +12406,12 @@ Every media/... reference in deck.json must exist inside media/.`;
         selectors.importCardSepInput.value = state.settings?.importCardSep ?? '@';
       }
       hideAppLoader();
-      const onboardingShowed = !onboardingPrepared && maybeShowOnboarding();
-      if (!onboardingShowed) {
+      if (!onboardingPrepared) maybeShowOnboarding();
+      // Only start tour from init if onboarding is NOT visible right now.
+      // If onboarding IS showing, the tour will be triggered from hideOnboarding instead.
+      const onboardingVisible = !document.getElementById('onboarding-shell')?.classList.contains('hidden');
+      if (!onboardingVisible && hasCompletedOnboarding()) {
+        // Returning user who finished onboarding but has not yet dismissed the tour.
         window.setTimeout(startCreatorTour, 800);
       }
       perf?.end(loadSpan, {
