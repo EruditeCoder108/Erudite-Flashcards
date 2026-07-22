@@ -12,6 +12,7 @@
     main { width: min(100% - 2rem, 46rem); margin: 0 auto; padding: 3rem 0 4rem; }
     .brand { display: flex; align-items: center; gap: .55rem; color: var(--brand); font-weight: 800; }
     .brand-mark { display: grid; width: 2rem; height: 2rem; place-items: center; border-radius: .65rem; background: var(--brand); color: #fff; }
+    .brand small { color: var(--muted); font-weight: 600; }
     header { margin: 2.5rem 0 1.5rem; padding: 2rem; border: 1px solid #cdd9ff; border-radius: 1.5rem; background: linear-gradient(145deg, #fff, #edf2ff); }
     h1 { margin: 0; font-size: clamp(2rem, 8vw, 3.2rem); line-height: 1.05; letter-spacing: -.045em; }
     h2 { margin: 2rem 0 .65rem; font-size: 1.2rem; }
@@ -23,13 +24,14 @@
 </head>
 <body>
   <main>
-    <div class="brand"><span class="brand-mark">E</span> Erudite Flashcards</div>
-    <header><h1>Privacy Policy</h1><p class="updated">Last updated: 17 July 2026</p><p>Erudite Flashcards is a local-first study app. Your study library stays on your device unless you intentionally export it or submit material to an external service.</p></header>
+    <a class="brand" href="/"><span class="brand-mark">E</span> Erudite Flashcards <small>by Erudite Systems</small></a>
+    <header><h1>Privacy Policy</h1><p class="updated">Last updated: 21 July 2026</p><p>Erudite Flashcards is a local-first study app published by Erudite Systems. Your study library stays on your device unless you intentionally export it or submit material to an external service.</p></header>
     <section class="card"><h2>Information stored locally</h2><p>The app stores decks, cards, attached media, review history, study progress, preferences, and local recovery snapshots on your device. It does not require an account or provide developer-operated cloud sync.</p></section>
     <section class="card"><h2>Internet connections</h2><p>The app downloads only the optional premade decks you choose from this site. It does not upload your personal decks, cards, media, or study history to this host. If you choose an AI provider through the AI Deck Maker, any material you submit is handled by that provider under its own privacy terms and your account settings.</p></section>
     <section class="card"><h2>No tracking or advertising</h2><p>Erudite Flashcards does not include advertising or tracking SDKs and does not collect your card content, deck names, or study activity for the developer. Local performance diagnostics intentionally omit card content.</p></section>
+    <section class="card"><h2>Security and retention</h2><p>App data stays in Android's private app storage and network requests use HTTPS. Local data remains until you delete it, clear the app's storage, or uninstall the app. Exported backups remain wherever you save or share them until you delete them and should be protected like any other study document.</p><p>The premade-deck host may receive standard request information such as an IP address, browser or app user agent, and request time for delivery, security, and abuse prevention. Erudite does not send card content or study history with those requests and does not maintain a separate user-profile database from them. External AI providers retain data according to their own terms and your account settings.</p></section>
     <section class="card"><h2>Your choices</h2><p>You can export a backup from the app. Exports are written to the Erudite Flashcards backup folder in your device Documents storage and remain under your control. You can delete all local Erudite data from the More tab in the app; delete exported files separately from your Files app when no longer needed.</p></section>
-    <section class="card"><h2>Contact</h2><p>For privacy questions, contact <a href="mailto:eruditespartan@gmail.com">eruditespartan@gmail.com</a>.</p></section>
+    <section class="card"><h2>Contact</h2><p>Erudite Systems is the developer responsible for this policy. For privacy or support questions, contact <a href="mailto:eruditespartan@gmail.com">eruditespartan@gmail.com</a> or return to the <a href="/">Erudite Flashcards website</a>.</p></section>
   </main>
 </body>
 </html>

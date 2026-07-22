@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  
+  <!-- Primary Meta Tags -->
+  <title>Erudite Flashcards | Private FSRS Flashcards for Android</title>
+  <meta name="title" content="Erudite Flashcards | Private FSRS Flashcards for Android" />
+  <meta name="description" content="A local-first Android flashcard app powered by FSRS 5.0. Features image occlusion, cloze recall, analytics, free NCERT Biology decks, and total data privacy." />
+  <meta name="keywords" content="Erudite Flashcards, FSRS Android app, Anki alternative Android, local first flashcards, image occlusion Android, NCERT Biology flashcards, NEET study app, spaced repetition algorithm" />
+  <meta name="author" content="Erudite Systems" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#071425" />
+  <meta name="application-name" content="Erudite Flashcards" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <!-- Canonical & PWA Manifest -->
+  <link rel="canonical" href="https://erudite-flashcards.netlify.app/" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/erudite-icon.png" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Erudite Flashcards" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Erudite Flashcards | Study simply. Remember intelligently." />
+  <meta property="og:description" content="A private, local-first flashcard app with real FSRS scheduling, advanced card types, useful analytics, and free NCERT study decks for Android." />
+  <meta property="og:image" content="https://erudite-flashcards.netlify.app/assets/social-preview.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Erudite Flashcards Android App Preview" />
+  <meta property="og:url" content="https://erudite-flashcards.netlify.app/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Erudite Flashcards | Private FSRS Memory System for Android" />
+  <meta name="twitter:description" content="Local-first flashcards with FSRS 5.0 algorithm, image occlusion, analytics, and zero subscription." />
+  <meta name="twitter:image" content="https://erudite-flashcards.netlify.app/assets/social-preview.webp" />
+  <meta name="twitter:image:alt" content="Erudite Flashcards Interface Preview" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MobileApplication",
+        "@id": "https://erudite-flashcards.netlify.app/#application",
+        "name": "Erudite Flashcards",
+        "operatingSystem": "Android 8.0 and up",
+        "applicationCategory": "EducationalApplication",
+        "price": "0.00",
+        "priceCurrency": "USD",
+        "description": "A private, local-first flashcard system for Android featuring normal study, FSRS scheduling, image occlusion, cloze recall, memory analytics, and free NCERT Biology decks.",
+        "image": "https://erudite-flashcards.netlify.app/assets/erudite-icon.png",
+        "screenshot": [
+          "https://erudite-flashcards.netlify.app/assets/screenshots/today-dashboard.webp",
+          "https://erudite-flashcards.netlify.app/assets/screenshots/smart-review.webp",
+          "https://erudite-flashcards.netlify.app/assets/screenshots/premade-decks.webp",
+          "https://erudite-flashcards.netlify.app/assets/screenshots/image-occlusion.webp"
+        ],
+        "author": {
+          "@type": "Organization",
+          "name": "Erudite Systems",
+          "url": "https://erudite-flashcards.netlify.app/"
+        },
+        "featureList": [
+          "FSRS 5.0 Spaced Repetition Engine",
+          "Image Occlusion Mask Editor",
+          "Cloze Deletion & Formula Cards",
+          "Local SQLite Storage (No Account Needed)",
+          "Free NCERT Class 11 & 12 Biology Decks",
+          "AI Deck Brief Generator Integration"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://erudite-flashcards.netlify.app/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Erudite Flashcards completely free for Android?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Erudite Flashcards is free to download and use with full offline capabilities, complete card creation features, and zero subscription paywalls."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does FSRS scheduling work in Erudite?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Erudite uses the modern Free Spaced Repetition Scheduler (FSRS 5.0) algorithm, which calculates optimal review intervals based on your individual memory retention target (80%-95%) and historical recall rate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Erudite require an internet connection or account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No account or login is required. All flashcards, media files, and study analytics stay stored locally on your Android device inside a private SQLite database."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are the NCERT Biology decks fully included?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Erudite provides 31 complete NCERT Class 11 and Class 12 Biology chapter decks (8,874 cards total) ready to download, edit, and study for exams like NEET."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I build flashcards from diagrams using Image Occlusion?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Erudite includes a native image occlusion editor allowing you to draw rectangular or oval study masks over any diagram or textbook image."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://erudite-flashcards.netlify.app/#website",
+        "url": "https://erudite-flashcards.netlify.app/",
+        "name": "Erudite Flashcards",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Erudite Systems"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="Erudite home">
+        <img src="assets/erudite-icon.png" alt="Erudite Flashcards app icon" width="42" height="42" />
+        <span class="brand-copy">
+          <strong>Erudite</strong>
+          <span>Flashcards</span>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#screens">Inside the app</a>
+        <a href="#engine">Study engine</a>
+        <a href="#cards">Card system</a>
+        <a href="#comparison">Comparison</a>
+        <a href="#decks">Free decks</a>
+        <a href="#faq">FAQ</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+
+      <div class="header-actions">
+        <span class="button button-small button-primary button-disabled" aria-label="Google Play release coming soon">Google Play · Soon</span>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-button>
+          <span></span><span></span>
+          <span class="sr-only">Open navigation menu</span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" data-mobile-menu>
+      <a href="#screens">Inside the app</a>
+      <a href="#engine">Study engine</a>
+      <a href="#cards">Card system</a>
+      <a href="#comparison">Comparison</a>
+      <a href="#decks">Free decks</a>
+      <a href="#faq">FAQ</a>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="mailto:eruditespartan@gmail.com">Contact support</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-grid shell">
+        <div class="hero-copy" data-reveal>
+          <div class="eyebrow"><span></span> A private memory system for Android</div>
+          <h1>Study simply.<br /><em>Remember intelligently.</em></h1>
+          <p class="hero-lede">A local-first Android flashcard app that begins as a straightforward study tool and transforms into a precise FSRS 5.0-powered review system when you need it.</p>
+
+          <div class="hero-actions">
+            <span class="button button-primary button-disabled" aria-label="Erudite Flashcards is preparing for Google Play release">
+              <span>Preparing for Google Play</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M12 3v18M3 12h18" /></svg>
+            </span>
+            <button class="button button-quiet" type="button" data-scroll-smart>
+              Try Smart Review Demo
+              <span class="play-mark" aria-hidden="true">▶</span>
+            </button>
+          </div>
+
+          <div class="trust-line" aria-label="Product guarantees">
+            <span>No account</span>
+            <span>Works offline</span>
+            <span>Export anytime</span>
+            <span>Android 1.0</span>
+          </div>
+        </div>
+
+        <div class="hero-console-wrap" data-reveal>
+          <div class="console-label console-label-a">LOCAL PROGRESS</div>
+          <div class="console-label console-label-b">REAL FSRS 5.0</div>
+          <div class="console-label console-label-c">UNDO READY</div>
+
+          <div class="study-console" data-study-console>
+            <div class="console-topline">
+              <div>
+                <span class="micro-label">ACTIVE DECK</span>
+                <strong>Cell — The Unit of Life</strong>
+              </div>
+              <div class="console-counter"><span data-counter-current>18</span><i>/</i>367</div>
+            </div>
+
+            <div class="mode-switch" role="tablist" aria-label="Study mode">
+              <button class="is-active" type="button" role="tab" aria-selected="true" data-mode="normal">Normal Study</button>
+              <button type="button" role="tab" aria-selected="false" data-mode="smart">Smart Review (FSRS)</button>
+            </div>
+
+            <button class="flashcard" type="button" aria-label="Flip flashcard" data-flashcard>
+              <span class="flashcard-face flashcard-front">
+                <span class="card-kicker">QUESTION · BIOLOGY</span>
+                <strong>Which organelle is called the “powerhouse of the cell”?</strong>
+                <span class="flip-hint">Tap card to reveal answer</span>
+              </span>
+              <span class="flashcard-face flashcard-back">
+                <span class="card-kicker">ANSWER · FSRS ACTIVE</span>
+                <strong>Mitochondrion</strong>
+                <p>It produces cellular ATP through oxidative phosphorylation.</p>
+                <span class="flip-hint">Tap card to return</span>
+              </span>
+            </button>
+
+            <div class="normal-controls" data-normal-controls>
+              <button type="button">← Previous</button>
+              <div class="progress-track" aria-label="Deck completion progress"><span style="width: 18%;"></span></div>
+              <button type="button" data-next-card>Next →</button>
+            </div>
+
+            <div class="rating-controls" data-rating-controls hidden>
+              <button type="button" data-rating="again"><span>Again</span><strong>1m</strong></button>
+              <button type="button" data-rating="hard"><span>Hard</span><strong>6m</strong></button>
+              <button type="button" data-rating="good"><span>Good</span><strong>10m</strong></button>
+              <button type="button" data-rating="easy"><span>Easy</span><strong>10d</strong></button>
+            </div>
+
+            <div class="console-footnote">
+              <span data-console-copy>Flip. Recall. Continue.</span>
+              <span class="console-status"><i></i><b data-console-state>NORMAL MODE</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-index shell" aria-hidden="true">
+        <span>01 / STUDY</span>
+        <span>02 / CREATE</span>
+        <span>03 / REVIEW</span>
+        <span>04 / OWN</span>
+      </div>
+    </section>
+
+    <!-- Section 00: Inside the Android App (Interactive Showcase) -->
+    <section class="section section-screens" id="screens">
+      <div class="shell">
+        <div class="screens-heading" data-reveal>
+          <div>
+            <div class="section-number">00</div>
+            <p class="eyebrow"><span></span> Inside the Android app</p>
+          </div>
+          <h2>See the real study experience, <em>built for Android.</em></h2>
+          <p>Captured directly from our Android build: daily progress dashboard, retention scheduling, premade NCERT decks, and diagram occlusion.</p>
+        </div>
+
+        <div class="showcase-tabs" role="tablist" aria-label="Android feature screenshots" data-reveal>
+          <button class="showcase-tab is-active" type="button" role="tab" aria-selected="true" data-tab="0">
+            <span>01</span> Today Dashboard
+          </button>
+          <button class="showcase-tab" type="button" role="tab" aria-selected="false" data-tab="1">
+            <span>02</span> FSRS Review
+          </button>
+          <button class="showcase-tab" type="button" role="tab" aria-selected="false" data-tab="2">
+            <span>03</span> Premade Decks
+          </button>
+          <button class="showcase-tab" type="button" role="tab" aria-selected="false" data-tab="3">
+            <span>04</span> Image Occlusion
+          </button>
+        </div>
+
+        <div class="android-showcase-wrap" data-reveal>
+          <div class="android-frame-glow"></div>
+          <div class="screen-gallery" data-showcase-gallery aria-label="Erudite Flashcards Android screenshots">
+            <figure class="screen-shot is-active" data-index="0">
+              <div class="phone-frame">
+                <div class="phone-statusbar">
+                  <span>9:41</span>
+                  <div class="phone-notch"></div>
+                  <div class="phone-icons"><i></i><i></i><i></i></div>
+                </div>
+                <img src="assets/screenshots/today-dashboard.webp" width="540" height="1080" alt="Erudite Today dashboard showing daily study goal, streak, study heat map, and review pace" loading="lazy" decoding="async" />
+              </div>
+              <figcaption>
+                <span>01 / DASHBOARD</span>
+                <strong>Know what to study today</strong>
+                <small>Track goals, streak counts, daily review time, and memory heatmaps at a single glance.</small>
+              </figcaption>
+            </figure>
+
+            <figure class="screen-shot" data-index="1">
+              <div class="phone-frame">
+                <div class="phone-statusbar">
+                  <span>9:41</span>
+                  <div class="phone-notch"></div>
+                  <div class="phone-icons"><i></i><i></i><i></i></div>
+                </div>
+                <img src="assets/screenshots/smart-review.webp" width="540" height="1080" alt="Erudite Smart Review screen with FSRS rating choices: Again, Hard, Good, and Easy" loading="lazy" decoding="async" />
+              </div>
+              <figcaption>
+                <span>02 / FSRS SCHEDULING</span>
+                <strong>Review with real FSRS 5.0</strong>
+                <small>Rate recall effort and let Erudite algorithmically schedule your next review interval.</small>
+              </figcaption>
+            </figure>
+
+            <figure class="screen-shot" data-index="2">
+              <div class="phone-frame">
+                <div class="phone-statusbar">
+                  <span>9:41</span>
+                  <div class="phone-notch"></div>
+                  <div class="phone-icons"><i></i><i></i><i></i></div>
+                </div>
+                <img src="assets/screenshots/premade-decks.webp" width="540" height="1080" alt="Erudite premade deck library filtered to Class 11 and 12 NCERT Biology" loading="lazy" decoding="async" />
+              </div>
+              <figcaption>
+                <span>03 / PREMADE DECKS</span>
+                <strong>Start from complete chapter decks</strong>
+                <small>Download free NCERT study material into your editable personal library instantly.</small>
+              </figcaption>
+            </figure>
+
+            <figure class="screen-shot" data-index="3">
+              <div class="phone-frame">
+                <div class="phone-statusbar">
+                  <span>9:41</span>
+                  <div class="phone-notch"></div>
+                  <div class="phone-icons"><i></i><i></i><i></i></div>
+                </div>
+                <img src="assets/screenshots/image-occlusion.webp" width="540" height="1080" alt="Erudite image occlusion editor creating study masks over a biology diagram" loading="lazy" decoding="async" />
+              </div>
+              <figcaption>
+                <span>04 / IMAGE OCCLUSION</span>
+                <strong>Turn complex diagrams into recall</strong>
+                <small>Draw rectangular or oval masks over textbook diagrams to test visual memory.</small>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="swipe-dots" aria-hidden="true" data-showcase-dots>
+            <span class="is-active"></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <p class="screen-proof" data-reveal><span aria-hidden="true"></span> Captured from Android 1.0 release build · Optimized for Android 8.0+</p>
+      </div>
+    </section>
+
+    <!-- Section 01: Study Engine -->
+    <section class="section section-engine" id="engine">
+      <div class="shell section-grid">
+        <div class="section-intro" data-reveal>
+          <div class="section-number">01</div>
+          <p class="eyebrow"><span></span> The study engine</p>
+          <h2>Normal study when you want it. <em>FSRS when you need it.</em></h2>
+          <p>Start with simple front-and-back revision. Turn on Smart Review per deck when you are ready for retention-aware scheduling, live interval previews, and state control.</p>
+          <a class="arrow-link" href="#cards">Examine the card system <span>→</span></a>
+        </div>
+
+        <div class="engine-instrument" data-reveal data-retention-instrument>
+          <div class="instrument-header">
+            <div>
+              <span class="micro-label">TARGET RETENTION RATE</span>
+              <strong><span data-retention-value>90</span>%</strong>
+            </div>
+            <div class="instrument-status">FSRS 5.0 / ACTIVE</div>
+          </div>
+
+          <div class="retention-scale">
+            <input aria-label="Target memory retention percentage" type="range" min="80" max="95" value="90" step="1" data-retention-slider />
+            <div class="scale-labels"><span>80%</span><span>85%</span><span>90%</span><span>95%</span></div>
+          </div>
+
+          <div class="state-rail" aria-label="Card learning states">
+            <div class="state-node is-active"><i>01</i><strong>NEW</strong><span>Unseen card</span></div>
+            <div class="state-line"></div>
+            <div class="state-node"><i>02</i><strong>LEARNING</strong><span>10m step</span></div>
+            <div class="state-line"></div>
+            <div class="state-node"><i>03</i><strong>REVIEW</strong><span data-review-interval>12d</span></div>
+            <div class="state-line"></div>
+            <div class="state-node"><i>04</i><strong>RELEARN</strong><span>After lapse</span></div>
+          </div>
+
+          <div class="engine-readouts">
+            <article>
+              <span>Expected interval</span>
+              <strong data-expected-interval>12 days</strong>
+              <small>for a stable card</small>
+            </article>
+            <article>
+              <span>Daily workload</span>
+              <strong data-daily-load>38 cards</strong>
+              <small>estimated review load</small>
+            </article>
+            <article>
+              <span>Learning priority</span>
+              <strong>First</strong>
+              <small>before mature reviews</small>
+            </article>
+          </div>
+
+          <div class="instrument-note">
+            <span>Again / Hard / Good / Easy ratings</span>
+            <span>Per-deck settings</span>
+            <span>4 AM custom day rollover</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 02: Card Workshop -->
+    <section class="section section-cards" id="cards">
+      <div class="shell">
+        <div class="wide-heading" data-reveal>
+          <div>
+            <div class="section-number">02</div>
+            <p class="eyebrow"><span></span> The card workshop</p>
+          </div>
+          <h2>A flashcard can be more than <em>front and back.</em></h2>
+          <p>Build from simple text recall to rich, visual, structured study material without changing tools.</p>
+        </div>
+
+        <div class="specimen-board" data-reveal>
+          <article class="specimen specimen-basic">
+            <header><span>01 / BASIC + REVERSE</span><i>↔</i></header>
+            <div class="mini-card-stack">
+              <div class="mini-card rear">Mitochondrion</div>
+              <div class="mini-card front">Powerhouse of the cell?</div>
+            </div>
+            <footer>Two study directions created from one linked note.</footer>
+          </article>
+
+          <article class="specimen specimen-cloze">
+            <header><span>02 / CLOZE DELETION</span><i>{…}</i></header>
+            <p>The <mark>mitochondrion</mark> generates ATP through <mark>oxidative phosphorylation</mark>.</p>
+            <footer>Multiple blanks automatically become focused recall cards.</footer>
+          </article>
+
+          <article class="specimen specimen-occlusion">
+            <header><span>03 / IMAGE OCCLUSION</span><i>▦</i></header>
+            <div class="occlusion-diagram" data-occlusion-demo>
+              <svg viewBox="0 0 360 210" role="img" aria-label="Biology diagram specimen with tap masks">
+                <path d="M49 157c35-32 52-102 115-107 45-4 62 37 89 51 32 16 56-5 72 18 14 20-2 53-22 66-28 19-54-2-87 3-40 6-63 24-102 13-28-8-48-21-65-44Z" fill="none" stroke="currentColor" stroke-width="3"/>
+                <circle cx="153" cy="105" r="34" fill="none" stroke="currentColor" stroke-width="3"/>
+                <path d="M77 153c42-1 58-30 81-48M187 108c42 3 53 33 91 34M154 71c10-21 26-34 53-40" fill="none" stroke="currentColor" stroke-width="3"/>
+              </svg>
+              <button class="mask mask-one" type="button" data-mask data-label="Nucleus">1</button>
+              <button class="mask mask-two" type="button" data-mask data-label="Cell membrane">2</button>
+              <button class="mask mask-three" type="button" data-mask data-label="Cytoplasm">3</button>
+              <div class="mask-answer" data-mask-answer>Tap a mask to reveal</div>
+            </div>
+            <footer>Rectangles or ovals. Every drawn mask becomes one review card.</footer>
+          </article>
+
+          <article class="specimen specimen-math">
+            <header><span>04 / FORMULAS & MATH</span><i>√x</i></header>
+            <div class="formula-card">
+              <span>Quadratic formula</span>
+              <strong>x = <span>−b ± √(b² − 4ac)</span> / 2a</strong>
+              <small>Inline · display · step-by-step format</small>
+            </div>
+            <footer>KaTeX-ready mathematics and chemical equations.</footer>
+          </article>
+
+          <article class="specimen specimen-media">
+            <header><span>05 / AUDIO & MEDIA</span><i>▶</i></header>
+            <div class="media-wave" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="media-control"><i aria-hidden="true">▶</i><span>Pronunciation sample</span><b>00:08</b></div>
+            <footer>Attach images, pronunciation audio, and video clips.</footer>
+          </article>
+
+          <article class="specimen specimen-html">
+            <header><span>06 / RICH HTML & TABLES</span><i>&lt;/&gt;</i></header>
+            <div class="comparison-table-mini">
+              <div><span>Feature</span><b>DNA</b><b>RNA</b></div>
+              <div><span>Sugar</span><b>Deoxyribose</b><b>Ribose</b></div>
+              <div><span>Strands</span><b>Double</b><b>Single</b></div>
+            </div>
+            <footer>Tables, timelines, process maps, and formatted summaries.</footer>
+          </article>
+        </div>
+
+        <div class="feature-rail" aria-label="Additional card features" data-reveal>
+          <span>Rich Text Editor</span><span>Custom Tags</span><span>Code Syntax</span><span>Image Occlusion</span><span>Audio Samples</span><span>Formula Editor</span><span>Backups</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Comparison Matrix (Erudite vs Anki vs Quizlet) -->
+    <section class="section section-comparison" id="comparison">
+      <div class="shell">
+        <div class="wide-heading" data-reveal>
+          <div>
+            <div class="section-number">03</div>
+            <p class="eyebrow"><span></span> Why choose Erudite</p>
+          </div>
+          <h2>Designed for deliberate study. <em>Built without compromise.</em></h2>
+          <p>See how Erudite Flashcards compares to traditional flashcard platforms across privacy, scheduling, card types, and total ownership.</p>
+        </div>
+
+        <div class="comparison-board" data-reveal>
+          <div class="comparison-table-full">
+            <div class="table-header">
+              <div class="col-feature">Feature</div>
+              <div class="col-erudite highlight-head">
+                <img src="assets/favicon.png" alt="" width="20" height="20" />
+                <strong>Erudite</strong>
+              </div>
+              <div class="col-other">Anki</div>
+              <div class="col-other">Quizlet</div>
+            </div>
+
+            <div class="table-row">
+              <div class="col-feature">Spaced Repetition Algorithm</div>
+              <div class="col-erudite highlight-cell"><span class="badge badge-success">FSRS 5.0 Modern</span></div>
+              <div class="col-other">SM-2 / FSRS (Config)</div>
+              <div class="col-other">Basic / Subscription</div>
+            </div>
+
+            <div class="table-row">
+              <div class="col-feature">Local-First Storage (No Account Needed)</div>
+              <div class="col-erudite highlight-cell"><span class="check-icon">✓ Yes (SQLite)</span></div>
+              <div class="col-other">Requires Account for Sync</div>
+              <div class="col-other">Cloud Only</div>
+            </div>
+
+            <div class="table-row">
+              <div class="col-feature">Native Image Occlusion Editor</div>
+              <div class="col-erudite highlight-cell"><span class="check-icon">✓ Built-in</span></div>
+              <div class="col-other">Requires Add-on</div>
+              <div class="col-other">Paywalled</div>
+            </div>
+
+            <div class="table-row">
+              <div class="col-feature">Free Premade NCERT Biology Decks</div>
+              <div class="col-erudite highlight-cell"><span class="check-icon">✓ 8,874 Cards</span></div>
+              <div class="col-other">User Shared</div>
+              <div class="col-other">Paywalled</div>
+            </div>
+
+            <div class="table-row">
+              <div class="col-feature">Pricing & Subscriptions</div>
+              <div class="col-erudite highlight-cell"><span class="badge badge-free">100% Free / No Sub</span></div>
+              <div class="col-other">Free / Paid iOS</div>
+              <div class="col-other">$35.99+/year</div>
+            </div>
+
+            <div class="table-row">
+              <div class="col-feature">AI Prompt Deck Builder</div>
+              <div class="col-erudite highlight-cell"><span class="check-icon">✓ Included</span></div>
+              <div class="col-other">Community Scripts</div>
+              <div class="col-other">Proprietary AI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 04: Bring Your Own AI & Prompt Builder -->
+    <section class="section section-ai" id="ai">
+      <div class="shell ai-layout">
+        <div class="ai-copy" data-reveal>
+          <div class="section-number">04</div>
+          <p class="eyebrow eyebrow-light"><span></span> Bring your own AI</p>
+          <h2>Use your preferred AI. <em>Keep Erudite focused.</em></h2>
+          <p>Erudite compiles a precise deck-generation prompt tailored to your study topic. Use that brief with ChatGPT, Claude, or Gemini, then import the finished JSON deck directly onto your device.</p>
+
+          <div class="ai-generator-widget">
+            <span class="widget-title">TRY THE AI PROMPT BUILDER</span>
+            <div class="widget-options">
+              <button class="prompt-chip is-selected" type="button" data-preset="biology">NEET Biology</button>
+              <button class="prompt-chip" type="button" data-preset="chemistry">Chemistry</button>
+              <button class="prompt-chip" type="button" data-preset="language">Spanish Vocab</button>
+            </div>
+            <div class="prompt-output-box">
+              <pre><code data-prompt-text>Generate a JSON flashcard deck for NEET Biology on "Cell Structure & Function" with 15 Cloze and Basic cards following Erudite JSON schema...</code></pre>
+              <button class="button button-small button-quiet" type="button" data-copy-prompt>Copy Prompt</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-workbench" data-reveal>
+          <div class="workbench-grid" aria-hidden="true"></div>
+          <div class="workflow-stage stage-configure">
+            <div class="stage-top"><span>01</span><strong>CONFIGURE</strong></div>
+            <div class="option is-selected"><i></i><span>Quick revision</span></div>
+            <div class="option"><i></i><span>Competitive exam</span></div>
+            <div class="option"><i></i><span>Deep mastery</span></div>
+            <div class="option"><i></i><span>Custom language</span></div>
+          </div>
+
+          <div class="workflow-connector connector-one"><span>GENERATE BRIEF</span></div>
+
+          <div class="workflow-stage stage-external">
+            <div class="stage-top"><span>02</span><strong>YOUR AI</strong></div>
+            <div class="external-boundary">OUTSIDE ERUDITE</div>
+            <div class="prompt-lines"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="provider-row"><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>DeepSeek</span></div>
+          </div>
+
+          <div class="workflow-connector connector-two"><span>ZIP / JSON</span></div>
+
+          <div class="workflow-stage stage-import">
+            <div class="stage-top"><span>03</span><strong>IMPORT</strong></div>
+            <div class="import-file">
+              <i>ZIP</i>
+              <div><strong>cell-biology.zip</strong><span>deck.json + media/</span></div>
+              <b>✓</b>
+            </div>
+            <div class="library-target"><span>LOCAL LIBRARY</span><strong>367 cards ready</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 05: Analytics -->
+    <section class="section section-analytics" id="analytics">
+      <div class="shell analytics-layout">
+        <div class="analytics-panel" data-reveal>
+          <div class="analytics-topbar">
+            <div>
+              <span class="micro-label">MEMORY REPORT / 30 DAYS</span>
+              <strong>NCERT Biology</strong>
+            </div>
+            <div class="range-switch"><span>7D</span><span class="is-active">30D</span><span>90D</span><span>ALL</span></div>
+          </div>
+
+          <div class="metric-row">
+            <article><span>Retention</span><strong>93%</strong><small>428 reviews</small></article>
+            <article><span>Due load</span><strong>18</strong><small class="warning">2 overdue</small></article>
+            <article><span>Weak cards</span><strong>4</strong><small class="warning">1 leech</small></article>
+            <article><span>Today</span><strong>1h 12m</strong><small>38s / card</small></article>
+          </div>
+
+          <div class="chart-grid">
+            <article class="retention-chart">
+              <header><strong>Response distribution</strong><span>428 reviews</span></header>
+              <div class="bar-row"><span>Again</span><b>3%</b><i><u style="--bar: 3%"></u></i></div>
+              <div class="bar-row"><span>Hard</span><b>11%</b><i><u style="--bar: 11%"></u></i></div>
+              <div class="bar-row"><span>Good</span><b>74%</b><i><u style="--bar: 74%"></u></i></div>
+              <div class="bar-row"><span>Easy</span><b>12%</b><i><u style="--bar: 12%"></u></i></div>
+            </article>
+
+            <article class="forecast-chart">
+              <header><strong>Review forecast</strong><span>7 days</span></header>
+              <div class="forecast-bars" aria-hidden="true">
+                <span style="--h: 62%"><i>42</i></span>
+                <span style="--h: 48%"><i>36</i></span>
+                <span style="--h: 78%"><i>48</i></span>
+                <span style="--h: 88%"><i>51</i></span>
+                <span style="--h: 54%"><i>39</i></span>
+                <span style="--h: 68%"><i>44</i></span>
+                <span style="--h: 42%"><i>33</i></span>
+              </div>
+              <div class="forecast-labels"><span>Today</span><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span></div>
+            </article>
+          </div>
+
+          <div class="heatmap-row">
+            <div><strong>Study heatmap</strong><span>7h 18m this week</span></div>
+            <div class="heatmap" aria-hidden="true">
+              <i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l1"></i><i class="l4"></i><i class="l2"></i><i class="l3"></i><i class="l1"></i><i class="l2"></i><i class="l4"></i><i class="l3"></i><i class="l2"></i><i class="l1"></i><i class="l3"></i>
+              <i class="l2"></i><i class="l3"></i><i class="l1"></i><i class="l4"></i><i class="l2"></i><i class="l3"></i><i class="l1"></i><i class="l2"></i><i class="l4"></i><i class="l1"></i><i class="l3"></i><i class="l2"></i><i class="l4"></i><i class="l3"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="analytics-copy" data-reveal>
+          <div class="section-number">05</div>
+          <p class="eyebrow"><span></span> Memory analytics</p>
+          <h2>See what your <em>memory is doing.</em></h2>
+          <p>Retention rate, due workload forecasts, weak cards, deck health, and review pace are presented as actionable decisions—not vanity metrics.</p>
+          <div class="focused-review-list">
+            <article><span><i>01</i> Failed today</span><strong>6 cards</strong><div><span class="preview-action">Practice</span><span class="preview-action preview-action-primary">SRS Review</span></div></article>
+            <article><span><i>02</i> Overdue</span><strong>18 cards</strong><div><span class="preview-action">Practice</span><span class="preview-action preview-action-primary">SRS Review</span></div></article>
+            <article><span><i>03</i> Review ahead</span><strong>44 cards</strong><div><span class="preview-action">Practice</span><span class="preview-action preview-action-primary">SRS Review</span></div></article>
+            <article><span><i>04</i> Weak cards</span><strong>7 cards</strong><div><span class="preview-action">Practice</span><span class="preview-action preview-action-primary">SRS Review</span></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 06: Free Starting Material (NCERT Decks) -->
+    <section class="section section-decks" id="decks">
+      <div class="shell">
+        <div class="wide-heading deck-heading" data-reveal>
+          <div>
+            <div class="section-number">06</div>
+            <p class="eyebrow"><span></span> Free starting material</p>
+          </div>
+          <h2>Start with complete <em>NCERT Biology decks.</em></h2>
+          <p>Comprehensive chapter decks, not sample teasers. Download them directly into your editable library and study normally or with FSRS Smart Review.</p>
+        </div>
+
+        <div class="volume-grid" data-reveal>
+          <article class="deck-volume volume-eleven" data-volume>
+            <div class="volume-spine"><span>NCERT</span><strong>11</strong><i>BIOLOGY</i></div>
+            <div class="volume-cover">
+              <div class="volume-code">ERU / BIO / 11</div>
+              <div class="volume-title"><span>NCERT CLASS 11</span><strong>Biology</strong></div>
+              <div class="volume-facts"><span>18 chapter decks</span><span>4,989 cards</span><span>Editable</span></div>
+              <button type="button" class="volume-toggle" aria-expanded="false">Inspect volume <span>+</span></button>
+            </div>
+            <div class="chapter-drawer" aria-hidden="true">
+              <span>The Living World</span><span>Biological Classification</span><span>Plant Kingdom</span><span>Animal Kingdom</span><span>Morphology of Flowering Plants</span><span>+ 13 more chapters</span>
+            </div>
+          </article>
+
+          <article class="deck-volume volume-twelve" data-volume>
+            <div class="volume-spine"><span>NCERT</span><strong>12</strong><i>BIOLOGY</i></div>
+            <div class="volume-cover">
+              <div class="volume-code">ERU / BIO / 12</div>
+              <div class="volume-title"><span>NCERT CLASS 12</span><strong>Biology</strong></div>
+              <div class="volume-facts"><span>13 chapter decks</span><span>3,885 cards</span><span>Editable</span></div>
+              <button type="button" class="volume-toggle" aria-expanded="false">Inspect volume <span>+</span></button>
+            </div>
+            <div class="chapter-drawer" aria-hidden="true">
+              <span>Sexual Reproduction in Flowering Plants</span><span>Human Reproduction</span><span>Principles of Inheritance</span><span>Molecular Basis of Inheritance</span><span>Biotechnology</span><span>+ 8 more chapters</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="deck-total" data-reveal>
+          <span>31 chapter decks</span>
+          <strong>8,874 cards</strong>
+          <span>Ready to add, rename, edit, and own.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 07: Frequently Asked Questions (FAQ) -->
+    <section class="section section-faq" id="faq">
+      <div class="shell">
+        <div class="wide-heading" data-reveal>
+          <div>
+            <div class="section-number">07</div>
+            <p class="eyebrow"><span></span> Got questions?</p>
+          </div>
+          <h2>Frequently Asked <em>Questions.</em></h2>
+          <p>Everything you need to know about Erudite Flashcards, FSRS scheduling, local data privacy, and Android installation.</p>
+        </div>
+
+        <div class="faq-accordion" data-reveal>
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>Is Erudite Flashcards completely free for Android?</span>
+              <i class="faq-icon">+</i>
+            </button>
+            <div class="faq-panel" hidden>
+              <p>Yes. Erudite Flashcards is completely free to use with full card creation, image occlusion tools, analytics, and all 31 NCERT Biology chapter decks without subscription fees or paywalls.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>How does FSRS scheduling work in Erudite?</span>
+              <i class="faq-icon">+</i>
+            </button>
+            <div class="faq-panel" hidden>
+              <p>Erudite incorporates the Free Spaced Repetition Scheduler (FSRS 5.0). Unlike legacy SM-2 algorithms, FSRS dynamically calculates review intervals based on your custom target retention rate (between 80% and 95%) and memory stability curve.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>Does Erudite work without an internet connection?</span>
+              <i class="faq-icon">+</i>
+            </button>
+            <div class="faq-panel" hidden>
+              <p>Yes. Erudite is a local-first application. Your flashcards, media files, and study logs remain stored in a local SQLite database on your device. Internet connection is used only for downloading optional premade decks or external AI prompts.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>Can I import or export my flashcards anytime?</span>
+              <i class="faq-icon">+</i>
+            </button>
+            <div class="faq-panel" hidden>
+              <p>Yes. You can export complete portable JSON backups of your decks and media files whenever you want to back up or move your study library to another Android device.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>What card types does Erudite support?</span>
+              <i class="faq-icon">+</i>
+            </button>
+            <div class="faq-panel" hidden>
+              <p>Erudite supports Basic (with linked reverse cards), Cloze Deletion, Image Occlusion (rectangular & oval masks), KaTeX math formulas, audio samples, and rich HTML tables.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 08: Privacy -->
+    <section class="section section-privacy" id="privacy">
+      <div class="shell privacy-layout" data-reveal>
+        <div class="privacy-copy">
+          <div class="section-number">08</div>
+          <p class="eyebrow eyebrow-light"><span></span> Local-first by design</p>
+          <h2>Your library <em>belongs to you.</em></h2>
+          <p>Cards, media, review history, settings, and progress stay strictly in local storage. Portable backups move with you anytime.</p>
+        </div>
+
+        <div class="ownership-diagram" aria-label="Local data architecture diagram">
+          <div class="ownership-source">
+            <span>DECKS</span><span>MEDIA</span><span>REVIEWS</span><span>SETTINGS</span>
+          </div>
+          <div class="ownership-flow"><i></i><b>LOCAL WRITE</b><i></i></div>
+          <div class="ownership-core"><span>DEVICE</span><strong>SQLite</strong><small>Local database</small></div>
+          <div class="ownership-flow"><i></i><b>EXPORT</b><i></i></div>
+          <div class="ownership-output"><span>PORTABLE BACKUP</span><strong>JSON + MEDIA</strong></div>
+        </div>
+
+        <div class="privacy-guarantees">
+          <article><i>01</i><strong>No account required</strong><span>Open the app and start studying immediately.</span></article>
+          <article><i>02</i><strong>Study data stays local</strong><span>Zero mandatory cloud library or tracking.</span></article>
+          <article><i>03</i><strong>Full export control</strong><span>Back up or transfer your flashcards anytime.</span></article>
+        </div>
+
+        <p class="privacy-note">Internet access is used only for optional premade deck downloads and AI prompt generation. <a href="privacy.html">Read full Privacy Policy</a>.</p>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <div class="shell final-cta-inner" data-reveal>
+        <img src="assets/erudite-icon.png" alt="Erudite icon" width="96" height="96" />
+        <p class="eyebrow"><span></span> Your Android study system</p>
+        <h2>Build a memory system<br /><em>that stays yours.</em></h2>
+        <p>Begin with simple flashcards. Enable FSRS Smart Review, image occlusion, and deep analytics when you are ready.</p>
+        <div class="hero-actions final-actions">
+          <span class="button button-primary button-disabled" aria-label="Google Play release coming soon">Google Play · Coming soon</span>
+          <a class="button button-quiet" href="mailto:eruditespartan@gmail.com">Contact support</a>
+        </div>
+        <div class="trust-line"><span>No account</span><span>Local-first</span><span>Free NCERT decks</span></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile Floating Quick-Dock (<620px Android screens) -->
+  <div class="mobile-quick-dock" data-quick-dock>
+    <div class="dock-content">
+      <div class="dock-info">
+        <img src="assets/favicon.png" alt="" width="24" height="24" />
+        <span><strong>Erudite</strong> Flashcards 1.0</span>
+      </div>
+      <button class="button button-small button-primary button-disabled" type="button">Play Store · Soon</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <img src="assets/erudite-icon.png" alt="Erudite Flashcards logo" width="42" height="42" />
+          <span class="brand-copy"><strong>Erudite</strong><span>Flashcards</span></span>
+        </a>
+        <p>Simple study on the surface. Serious memory tools underneath.</p>
+        <span class="publisher-line">Published by Erudite Systems</span>
+      </div>
+      <div><strong>Product</strong><a href="#screens">Inside the app</a><a href="#engine">Smart Review</a><a href="#cards">Card types</a><a href="#comparison">Comparison</a><a href="#decks">Premade decks</a></div>
+      <div><strong>Support</strong><a href="privacy.html">Privacy Policy</a><a href="#faq">FAQ</a><a href="mailto:eruditespartan@gmail.com">Email support</a></div>
+      <div class="build-status"><span><i></i> Android release</span><strong>Preparing for Google Play</strong><small>Version 1.0</small></div>
+    </div>
+    <div class="shell footer-bottom"><span>© 2026 Erudite Systems</span><span>Designed for deliberate study.</span></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

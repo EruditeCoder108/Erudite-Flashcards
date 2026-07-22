@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>Erudite Flashcards | Private FSRS Memory & Study System for Android</title>
+  <meta name="title" content="Erudite Flashcards | Private FSRS Memory & Study System for Android" />
+  <meta name="description" content="Master any subject with Erudite Flashcards. Features FSRS 5.0 spaced repetition, image occlusion, cloze recall, memory analytics, 100% offline SQLite storage, and 8,800+ NCERT Biology cards." />
+  <meta name="keywords" content="Erudite Flashcards, FSRS 5.0 algorithm, spaced repetition app, Anki alternative Android, active recall flashcards, image occlusion, NCERT Biology flashcards, NEET study app, local first database" />
+  <meta name="author" content="Erudite Systems" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#fdfbf7" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- Canonical & Favicon -->
+  <link rel="canonical" href="https://erudite-flashcards.netlify.app/" />
+  <link rel="icon" type="image/png" href="assets/images/app-icon-512.png" />
+  <link rel="apple-touch-icon" href="assets/images/app-icon-512.png" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Erudite Flashcards" />
+  <meta property="og:title" content="Erudite Flashcards | Master Anything. Retain Forever." />
+  <meta property="og:description" content="A private, local-first flashcard app with real FSRS scheduling, advanced card types, memory analytics, and zero subscriptions." />
+  <meta property="og:image" content="assets/images/feature-graphic-1024x500.png" />
+  <meta property="og:url" content="https://erudite-flashcards.netlify.app/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Erudite Flashcards | Private FSRS Memory System" />
+  <meta name="twitter:description" content="Local-first flashcards with FSRS 5.0, image occlusion, memory analytics, and total data privacy." />
+  <meta name="twitter:image" content="assets/images/feature-graphic-1024x500.png" />
+
+  <!-- Google Fonts: Plus Jakarta Sans, Lora, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MobileApplication",
+        "@id": "https://erudite-flashcards.netlify.app/#application",
+        "name": "Erudite Flashcards",
+        "operatingSystem": "Android 8.0 and higher",
+        "applicationCategory": "EducationalApplication",
+        "price": "0.00",
+        "priceCurrency": "USD",
+        "description": "A high-performance local-first flashcard app for Android featuring FSRS 5.0 spaced repetition, image occlusion, cloze recall, memory analytics, and free NCERT study decks.",
+        "image": "assets/images/app-icon-512.png",
+        "screenshot": [
+          "assets/images/phone-screenshot-01-today-dashboard.png",
+          "assets/images/phone-screenshot-02-srs-review.png",
+          "assets/images/phone-screenshot-04-retention-insights.png",
+          "assets/images/phone-screenshot-07-image-occlusion.png"
+        ],
+        "featureList": [
+          "FSRS 5.0 Spaced Repetition Engine",
+          "Native Image Occlusion Diagram Masking",
+          "Cloze Deletion & Formula Cards",
+          "Local SQLite Storage (100% Offline & Private)",
+          "8,874 NCERT Biology Premade Flashcards",
+          "Retention Heatmaps & Deck Health Analytics"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://erudite-flashcards.netlify.app/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Erudite Flashcards completely free for Android?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Erudite Flashcards is 100% free to download and use with complete offline capabilities, full card creation features, and zero subscription paywalls."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does FSRS 5.0 differ from legacy algorithms like SM-2?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "FSRS 5.0 mathematically calculates your personal memory stability (S), difficulty (D), and retrievability (R). It predicts memory decay with higher precision, reducing annual review workload by approximately 40% while maintaining your target retention goal (e.g. 90%)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use Erudite Flashcards offline without an account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Erudite operates on a 100% local-first SQLite relational-document hybrid database. No account creation, cloud login, or internet connection is required to create or review cards."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Image Occlusion work on mobile devices?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Erudite includes a native drawing canvas that allows you to draw rectangular or oval study masks directly over diagrams, maps, or textbook images. Each mask automatically compiles into an individual active recall flashcard."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Accessibility Skip Link -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Header Navigation -->
+  <header class="header" id="main-header">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo">
+        <img src="assets/images/app-icon-512.png" alt="Erudite Flashcards Icon" />
+        <span class="brand-name">Erudite</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#demo" class="nav-link">Live Demo</a></li>
+          <li><a href="#science" class="nav-link">The Science</a></li>
+          <li><a href="#occlusion" class="nav-link">Diagram Occlusion</a></li>
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#comparison" class="nav-link">Comparison</a></li>
+          <li><a href="#decks" class="nav-link">Premade Decks</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="sound-toggle-btn active" id="sound-toggle" title="Toggle sound (M)" aria-label="Mute audio">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          </svg>
+        </button>
+        
+        <a href="#download" class="btn-primary">
+          <span>Get App</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open mobile navigation menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span class="sparkle"></span>
+            <span>FSRS 5.0 • 100% Offline SQLite</span>
+          </div>
+
+          <h1 class="hero-title">
+            Master Any Subject.<br />
+            <span class="text-gradient">Remember What Matters, Forever.</span>
+          </h1>
+
+          <p class="hero-description">
+            Erudite is a local-first spaced repetition memory system built for serious students, medical candidates, and lifelong learners. Create diagram masks, formula cloze cards, and track long-term retention—with complete data privacy and zero cloud fees.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#download" class="btn-primary">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.38.214-.725.609-.92zm11.604 11.605l2.766-2.766a.996.996 0 011.408 0l2.766 2.766c.39.39.39 1.023 0 1.413l-2.766 2.767a.996.996 0 01-1.408 0l-2.766-2.767a1.002 1.002 0 010-1.413z" />
+              </svg>
+              <span>Download for Android</span>
+            </a>
+
+            <a href="#demo" class="btn-secondary">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Try Live Demo</span>
+            </a>
+          </div>
+
+          <div class="hero-badges">
+            <div class="hero-badge-item">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Zero Cloud Tracking</span>
+            </div>
+            <div class="hero-badge-item">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Zero Subscriptions</span>
+            </div>
+            <div class="hero-badge-item">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>8,800+ Biology Cards</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Mockup Showcase (Clean 941x1603 Aspect Ratio, Zero Notch) -->
+        <div class="hero-visual">
+          <div class="phone-mockup">
+            <div class="phone-screen-hero">
+              <img src="assets/images/1.png" alt="Erudite Flashcards App Today Dashboard Screen" loading="eager" />
+            </div>
+          </div>
+
+          <div class="floating-badge floating-badge-1">
+            <div class="badge-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <div>FSRS 5.0 Engine</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">90% Target Retention</div>
+            </div>
+          </div>
+
+          <div class="floating-badge floating-badge-2">
+            <div class="badge-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <div>
+              <div>Local SQLite</div>
+              <div style="font-size:0.75rem; color:var(--sage);">100% Offline Secured</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive 3D Flashcard Flip Experience -->
+    <section class="demo-section" id="demo">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Tactile Flashcard Engine</span>
+          <h2 class="section-title">Feel the Speed of Active Recall</h2>
+          <p class="section-desc">
+            Click or press <kbd>Space</kbd> to flip the card. Rate your retention with <kbd>1</kbd> (Again), <kbd>2</kbd> (Hard), <kbd>3</kbd> (Good), or <kbd>4</kbd> (Easy) with real-time Web Audio feedback.
+          </p>
+        </div>
+
+        <div class="demo-wrapper">
+          <div class="flashcard-3d" id="demo-card" role="button" tabindex="0" aria-label="Interactive 3D Flashcard. Click or press Space to flip.">
+            <div class="card-inner">
+              
+              <!-- Front Face -->
+              <div class="card-face card-face-front">
+                <div class="card-header-meta">
+                  <span class="deck-tag" id="deck-tag">Loading Deck...</span>
+                  <span class="card-flip-prompt">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Tap or <kbd>Space</kbd>
+                  </span>
+                </div>
+
+                <div class="card-content-body">
+                  <h3 class="card-question" id="card-question">Loading Question...</h3>
+                </div>
+
+                <div class="card-footer-tip">
+                  <span id="card-counter">Card 1 of 4</span>
+                </div>
+              </div>
+
+              <!-- Back Face -->
+              <div class="card-face card-face-back">
+                <div class="card-header-meta">
+                  <span class="deck-tag" style="background: var(--primary-light); color: var(--primary);">Recall Answer</span>
+                  <span class="card-flip-prompt">Rate below</span>
+                </div>
+
+                <div class="card-content-body">
+                  <div class="card-answer" id="card-answer">Loading Answer...</div>
+                  <p class="card-explanation" id="card-explanation">Loading explanation details...</p>
+                </div>
+
+                <div class="card-footer-tip">
+                  <span>Rate your recall to trigger FSRS interval calculation</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Rating Controls -->
+          <div class="srs-controls-wrapper" id="srs-controls">
+            <div class="srs-buttons-grid">
+              <button class="srs-btn btn-again" title="Shortcut key: 1">
+                <span class="srs-btn-label">Again <kbd>1</kbd></span>
+                <span class="srs-btn-interval">&lt; 10m</span>
+              </button>
+              <button class="srs-btn btn-hard" title="Shortcut key: 2">
+                <span class="srs-btn-label">Hard <kbd>2</kbd></span>
+                <span class="srs-btn-interval">1.2 Days</span>
+              </button>
+              <button class="srs-btn btn-good" title="Shortcut key: 3">
+                <span class="srs-btn-label">Good <kbd>3</kbd></span>
+                <span class="srs-btn-interval">3.5 Days</span>
+              </button>
+              <button class="srs-btn btn-easy" title="Shortcut key: 4">
+                <span class="srs-btn-label">Easy <kbd>4</kbd></span>
+                <span class="srs-btn-interval">8.0 Days</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Science Section -->
+    <section class="science-section" id="science">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Cognitive Memory Science</span>
+          <h2 class="section-title">Why FSRS 5.0 Beats Legacy SM-2 Algorithms</h2>
+          <p class="section-desc">
+            Erudite uses the Free Spaced Repetition Scheduler (FSRS 5.0), mathematically tracking your memory stability ($S$), difficulty ($D$), and retrievability ($R$) to cut unnecessary reviews by up to 40%.
+          </p>
+        </div>
+
+        <div class="science-grid">
+          <div class="science-card-box">
+            <h3 style="font-family: var(--font-heading); font-size: 1.45rem; color:var(--text-ink); margin-bottom:12px;">
+              Scientific Retention Principles
+            </h3>
+            <p style="color:var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+              Unlike legacy Leitner or SM-2 algorithms that rely on static multipliers, FSRS continuously calibrates review intervals to match your personal memory retention target (e.g. 90%).
+            </p>
+
+            <div class="science-feature-list">
+              <div class="science-item">
+                <div class="science-icon-wrap">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-0a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="science-item-title">Active Recall Memory Triggers</h4>
+                  <p class="science-item-desc">Forcing the brain to retrieve answers creates deeper neural pathways than passive textbook re-reading.</p>
+                </div>
+              </div>
+
+              <div class="science-item">
+                <div class="science-icon-wrap">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="science-item-title">Anti-Burnout Fuzzing</h4>
+                  <p class="science-item-desc">Applies minor mathematical offsets to scheduled review dates, preventing card review spikes and study fatigue.</p>
+                </div>
+              </div>
+
+              <div class="science-item">
+                <div class="science-icon-wrap">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="science-item-title">Leech Detection & Deck Health</h4>
+                  <p class="science-item-desc">Automatically identifies problem cards failed repeatedly, allowing you to refine prompts or split complex concepts.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphic curve visualization -->
+          <div class="graph-container">
+            <div class="graph-title-bar">
+              <span style="font-family:var(--font-heading); font-weight:700; color:var(--text-ink); font-size:1.1rem;">Ebbinghaus Forgetting Curve</span>
+              <div class="graph-legend">
+                <div class="legend-item">
+                  <span class="legend-dot dot-ebbinghaus"></span> Without SRS
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot dot-fsrs"></span> With Erudite FSRS
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Graph -->
+            <svg class="curve-svg" viewBox="0 0 400 200" fill="none">
+              <line x1="40" y1="20" x2="380" y2="20" stroke="#e2e8f0" stroke-dasharray="4 4" />
+              <line x1="40" y1="70" x2="380" y2="70" stroke="#e2e8f0" stroke-dasharray="4 4" />
+              <line x1="40" y1="120" x2="380" y2="120" stroke="#e2e8f0" stroke-dasharray="4 4" />
+              <line x1="40" y1="170" x2="380" y2="170" stroke="#cbd5e1" />
+
+              <line x1="40" y1="20" x2="40" y2="170" stroke="#cbd5e1" />
+              <text x="10" y="25" fill="#64748b" font-size="10">100%</text>
+              <text x="15" y="95" fill="#64748b" font-size="10">50%</text>
+              <text x="25" y="174" fill="#64748b" font-size="10">0%</text>
+
+              <text x="40" y="190" fill="#64748b" font-size="10">Day 1</text>
+              <text x="150" y="190" fill="#64748b" font-size="10">Day 7</text>
+              <text x="260" y="190" fill="#64748b" font-size="10">Day 14</text>
+              <text x="350" y="190" fill="#64748b" font-size="10">Day 30</text>
+
+              <path d="M40,25 C80,140 180,165 380,168" stroke="#e11d48" stroke-width="3" fill="none" />
+              <path d="M40,25 C70,75 100,75 100,25 C140,55 180,55 180,25 C240,45 280,45 280,25 C330,35 380,35 380,25" stroke="#059669" stroke-width="3" fill="none" />
+
+              <circle cx="100" cy="25" r="4" fill="#059669" />
+              <circle cx="180" cy="25" r="4" fill="#059669" />
+              <circle cx="280" cy="25" r="4" fill="#059669" />
+            </svg>
+
+            <div style="margin-top:16px; font-size:0.85rem; color:var(--text-muted); text-align:center;">
+              Reviewing right before memory decay flattens your retention curve, locking knowledge into long-term storage.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clean Image Occlusion Showcase -->
+    <section class="occlusion-section" id="occlusion">
+      <div class="container">
+        <div class="occlusion-box">
+          <div>
+            <span class="section-tag">Diagram Masking</span>
+            <h2 class="section-title">Master Complex Diagrams with Image Occlusion</h2>
+            <p class="section-desc" style="margin: 0 0 24px 0;">
+              Anatomy charts, plant biology, geography maps, and circuit diagrams can be masked directly on your mobile device. Draw rectangular or oval shapes over target terms.
+            </p>
+
+            <div class="science-feature-list">
+              <div class="science-item">
+                <div class="science-icon-wrap">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                </div>
+                <div>
+                  <h4 class="science-item-title">Rectangular & Oval Canvas Tools</h4>
+                  <p class="science-item-desc">Draw custom shape masks over any diagram image directly inside Erudite's native canvas editor.</p>
+                </div>
+              </div>
+
+              <div class="science-item">
+                <div class="science-icon-wrap">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                </div>
+                <div>
+                  <h4 class="science-item-title">One-Click Card Generation</h4>
+                  <p class="science-item-desc">Each drawn mask automatically compiles into an individual card instance under the same parent Note.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:center;">
+            <div class="phone-mockup" style="max-width:280px;">
+              <div class="phone-screen-1080">
+                <img src="assets/images/phone-screenshot-07-image-occlusion.png" alt="Native Image Occlusion Diagram Masking Tool" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Features Showcase Grid: Calibrated 1080x1920 Phone Frames -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Core Capabilities</span>
+          <h2 class="section-title">Built for Serious Knowledge Crafters</h2>
+          <p class="section-desc">
+            Explore Erudite's four core card authoring systems engineered for intensive exam preparation, anatomical diagrams, custom HTML layouts, and multi-modal study notes.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Pillar 1: Native Image Occlusion -->
+          <div class="feature-card">
+            <div class="feature-phone-frame">
+              <div class="feature-phone-screen">
+                <img src="assets/images/phone-screenshot-07-image-occlusion.png" alt="Native Image Occlusion Diagram Masking Tool" loading="lazy" />
+              </div>
+            </div>
+            <h3 class="feature-title">Native Image Occlusion</h3>
+            <p class="feature-desc">
+              Draw precise rectangular or oval study masks directly over anatomical charts, maps, and textbook diagrams using a mobile canvas editor.
+            </p>
+          </div>
+
+          <!-- Pillar 2: Advanced HTML/CSS & Card Backgrounds -->
+          <div class="feature-card">
+            <div class="feature-phone-frame">
+              <div class="feature-phone-screen">
+                <img src="assets/images/phone-screenshot-03-study-card.png" alt="Advanced HTML/CSS Cards with Custom Card Background Images" loading="lazy" />
+              </div>
+            </div>
+            <h3 class="feature-title">Advanced HTML/CSS & Backgrounds</h3>
+            <p class="feature-desc">
+              Design tailored layout templates with custom CSS, dark/light themes, and custom term/definition background images (with opacity & cover/contain fit controls) rendered safely in isolated Shadow DOM hosts.
+            </p>
+          </div>
+
+          <!-- Pillar 3: Cloze & Note Compilation -->
+          <div class="feature-card">
+            <div class="feature-phone-frame">
+              <div class="feature-phone-screen">
+                <img src="assets/images/phone-screenshot-06-card-creator.png" alt="Card Creator with Cloze Deletion and Formatting" loading="lazy" />
+              </div>
+            </div>
+            <h3 class="feature-title">Cloze & Note-Based Architecture</h3>
+            <p class="feature-desc">
+              Decouple Note sources from Card review instances. Support basic Q&A, bidirectional cards, mathematical equations, and formula cloze deletions (<kbd>{{c1::key term}}</kbd>).
+            </p>
+          </div>
+
+          <!-- Pillar 4: Audio & Video Media Attachments -->
+          <div class="feature-card">
+            <div class="feature-phone-frame">
+              <div class="feature-phone-screen">
+                <img src="assets/images/phone-screenshot-02-srs-review.png" alt="Audio and Video Media Attachments in Flashcards" loading="lazy" />
+              </div>
+            </div>
+            <h3 class="feature-title">Audio & Video Media Attachments</h3>
+            <p class="feature-desc">
+              Attach voice recordings, audio pronunciations, and video demonstrations directly to the term or definition sides of any flashcard for language learning and clinical skills.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fact-Checked Comparison Matrix Table -->
+    <section class="comparison-section" id="comparison">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Fact-Checked Comparison</span>
+          <h2 class="section-title">How Erudite Compares to Alternatives</h2>
+          <p class="section-desc">
+            A transparent feature-by-feature breakdown comparing Erudite Flashcards, Anki, and Quizlet based on technical architecture and user experience.
+          </p>
+        </div>
+
+        <div class="comparison-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature / Capability</th>
+                <th class="highlight-col" style="color:var(--primary);">Erudite Flashcards</th>
+                <th>Anki</th>
+                <th>Quizlet</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Spaced Repetition Engine</strong></td>
+                <td class="highlight-col"><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> FSRS 5.0 + Normal Mode</span></td>
+                <td><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> FSRS (23.10+) & SM-2</span></td>
+                <td><span class="badge-no"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg> Basic Practice Loops</span></td>
+              </tr>
+              <tr>
+                <td><strong>Mobile Image Occlusion Editor</strong></td>
+                <td class="highlight-col"><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Native Drawing Canvas</span></td>
+                <td><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Built-in (23.10+) / Add-ons</span></td>
+                <td><span class="badge-no"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg> Paywalled ($35.99/yr)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Offline & Data Privacy</strong></td>
+                <td class="highlight-col"><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> 100% Local SQLite</span></td>
+                <td><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Local Files + AnkiWeb</span></td>
+                <td><span class="badge-no"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg> Mandatory Cloud Account</span></td>
+              </tr>
+              <tr>
+                <td><strong>Built-in Retention Analytics</strong></td>
+                <td class="highlight-col"><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Heatmaps & Forecasts</span></td>
+                <td><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Built-in Stats & Add-ons</span></td>
+                <td><span class="badge-partial"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> Basic Progress Bar</span></td>
+              </tr>
+              <tr>
+                <td><strong>Mobile Authoring Flow</strong></td>
+                <td class="highlight-col"><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Fluid Single-Page UI</span></td>
+                <td><span class="badge-partial"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> Multi-step Forms</span></td>
+                <td><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Modern UI (Ad-supported)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Pricing & Subscriptions</strong></td>
+                <td class="highlight-col"><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> 100% Free & Open Source</span></td>
+                <td><span class="badge-yes"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Free (Paid iOS $24.99)</span></td>
+                <td><span class="badge-no"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg> Free Basic / $35.99/yr</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premade Decks Showcase with Teaser Notice Banner -->
+    <section class="decks-section" id="decks">
+      <div class="container">
+        <div class="decks-box">
+          <div>
+            <span class="section-tag">Included Free Decks</span>
+            <h2 class="section-title" style="margin-bottom:12px;">NCERT Biology Complete Deck Suite</h2>
+            
+            <!-- Teaser Announcement Notice Banner -->
+            <div class="teaser-banner">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              <span>Preview Deck Release — These current premade cards are just a teaser trailer! The complete full-syllabus mega picture is coming soon.</span>
+            </div>
+
+            <p class="section-desc" style="margin:0 0 20px 0;">
+              Over 8,800 chapter-by-chapter flashcards covering Class 11 and Class 12 NCERT Biology syllabus. Designed specifically for NEET exam success and medical preparation.
+            </p>
+
+            <!-- Filter Buttons -->
+            <div class="deck-filter-bar">
+              <button class="filter-btn active" data-filter="all">All Chapters</button>
+              <button class="filter-btn" data-filter="class11">Class 11 Biology</button>
+              <button class="filter-btn" data-filter="class12">Class 12 Biology</button>
+            </div>
+
+            <!-- Chapter Cards Container -->
+            <div class="chapters-list-grid" id="chapters-grid">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:center;">
+            <div class="phone-mockup" style="max-width:270px;">
+              <div class="phone-screen-1080">
+                <img src="assets/images/phone-screenshot-05-premade-decks.png" alt="Premade NCERT Biology Decks Store" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive FAQ Accordion Section -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Frequently Asked Questions</span>
+          <h2 class="section-title">Everything You Need to Know</h2>
+          <p class="section-desc">
+            Answers to common questions about FSRS algorithms, offline data privacy, image occlusion, and premade NCERT decks.
+          </p>
+        </div>
+
+        <div class="faq-wrapper">
+          <div class="faq-item open">
+            <button class="faq-header">
+              <span>Is Erudite Flashcards completely free for Android?</span>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content">
+              Yes! Erudite Flashcards is 100% free to download and use with complete offline capabilities, full card creation features, and zero subscription paywalls.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header">
+              <span>How does FSRS 5.0 differ from legacy algorithms like SM-2?</span>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content">
+              FSRS 5.0 mathematically calculates your personal memory stability (S), difficulty (D), and retrievability (R). It predicts memory decay with higher precision, reducing annual review workload by approximately 40% while maintaining your target retention goal (e.g. 90%).
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header">
+              <span>Can I use Erudite Flashcards offline without an account?</span>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content">
+              Yes. Erudite operates on a 100% local-first SQLite relational-document hybrid database. No account creation, cloud login, or internet connection is required to create or review cards.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header">
+              <span>How does Image Occlusion work on mobile devices?</span>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content">
+              Erudite includes a native drawing canvas that allows you to draw rectangular or oval study masks directly over diagrams, maps, or textbook images. Each mask automatically compiles into an individual active recall flashcard.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header">
+              <span>Are the 31 NCERT Biology decks included for NEET prep?</span>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content">
+              Yes, Erudite provides 31 complete NCERT Class 11 and Class 12 Biology chapter decks (8,874 cards total) ready to download, edit, and study for exams like NEET. Note: current premade decks are a teaser trailer, with the complete full-syllabus suite coming soon!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download CTA Banner Section -->
+    <section class="footer-cta-section" id="download">
+      <div class="container">
+        <h2 class="footer-cta-title">Start Learning Intelligently Today</h2>
+        <p class="footer-cta-desc">
+          Download Erudite Flashcards for Android. Free forever, 100% offline local database, zero subscription paywalls.
+        </p>
+
+        <a href="#download" class="btn-primary" style="background:#ffffff; color:var(--primary); box-shadow:0 8px 30px rgba(0,0,0,0.2);">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.38.214-.725.609-.92zm11.604 11.605l2.766-2.766a.996.996 0 011.408 0l2.766 2.766c.39.39.39 1.023 0 1.413l-2.766 2.767a.996.996 0 01-1.408 0l-2.766-2.767a1.002 1.002 0 010-1.413z" />
+          </svg>
+          <span>Download Android APK</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>&copy; 2026 Erudite Systems. All rights reserved. Local-first FSRS Spaced Repetition.</div>
+      <ul class="footer-links">
+        <li><a href="#demo">Live Demo</a></li>
+        <li><a href="#science">Memory Science</a></li>
+        <li><a href="#occlusion">Occlusion</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#comparison">Comparison</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

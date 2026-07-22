@@ -2,7 +2,6 @@ package com.erudite.flashcards;
 
 import android.os.Bundle;
 import android.webkit.WebView;
-import android.webkit.WebSettings;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.webkit.WebSettingsCompat;
 import androidx.webkit.WebViewFeature;
@@ -33,8 +32,6 @@ public class MainActivity extends BridgeActivity {
         try {
             WebView webView = getBridge().getWebView();
             if (webView != null) {
-                webView.setForceDarkAllowed(false);
-
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING)) {
                     WebSettingsCompat.setAlgorithmicDarkeningAllowed(webView.getSettings(), false);
                 }

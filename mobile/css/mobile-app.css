@@ -307,9 +307,9 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.2rem;
-  min-width: 2.2rem;
-  height: 2.2rem;
+  width: 3rem;
+  min-width: 3rem;
+  height: 3rem;
   border-radius: 0.65rem;
   background: var(--surface-3);
   border: 1px solid var(--line);
@@ -1171,8 +1171,9 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  min-width: 3rem;
+  height: 3rem;
   border-radius: 0.85rem;
   background: rgba(30, 48, 75, 0.58);
   color: var(--muted);
@@ -1991,8 +1992,8 @@ button {
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  width: 2.12rem;
-  height: 2.12rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 999px;
   background: transparent;
   color: #9fb0c6;
@@ -3774,8 +3775,8 @@ select option,
   top: 0.85rem;
   right: 0.85rem;
   z-index: 10;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3872,8 +3873,8 @@ select option,
 
 /* Compact Blue Header Save Button */
 #header-creator-save-btn {
-  height: 2.2rem !important;
-  min-height: 2.2rem !important;
+  height: 3rem !important;
+  min-height: 3rem !important;
   padding: 0 0.82rem !important;
   border-radius: 0.65rem !important;
   background: var(--primary, #3b82f6) !important;
@@ -3938,10 +3939,10 @@ button:active,
 .class-edit-btn {
   position: absolute;
   top: 0.85rem;
-  right: 3.4rem;
+  right: 4.2rem;
   z-index: 10;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4692,6 +4693,8 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
   font-size: 0.75rem;
   cursor: pointer;
   padding: 0.2rem;
+  min-width: 3rem;
+  min-height: 3rem;
   transition: color 0.15s, transform 0.1s;
 }
 
@@ -5227,7 +5230,7 @@ body[data-active-tab="library"] .mobile-topbar {
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
-  height: 2.2rem;
+  min-height: 3rem;
   padding: 0 0.6rem;
   border-radius: 0.7rem;
   font-size: 0.76rem;
@@ -5294,7 +5297,7 @@ body[data-active-tab="library"] .mobile-topbar {
   }
   .creator-header-btn:not(.primary) {
     padding: 0;
-    width: 2.2rem;
+    width: 3rem;
   }
   .creator-header-btn.primary {
     padding: 0 0.65rem;
@@ -5488,7 +5491,21 @@ body[data-active-tab="library"] .mobile-topbar {
   color: var(--muted);
   font-size: 1.2rem;
   cursor: pointer;
+  display: grid;
+  place-items: center;
+  min-width: 3rem;
+  min-height: 3rem;
   padding: 0.2rem;
+}
+
+/* Keep every compact editing control comfortably tappable on Android. */
+.creator-image-preview button,
+.occlusion-editor-tools button,
+.occlusion-summary-actions button,
+.bulk-card-presets button,
+.formula-symbol-group button {
+  min-width: 3rem;
+  min-height: 3rem;
 }
 
 /* Step Indicator Bar */

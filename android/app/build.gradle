@@ -32,6 +32,9 @@ def missingReleaseSigningValues = {
 android {
     namespace = "com.erudite.flashcards"
     compileSdk = rootProject.ext.compileSdkVersion
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         applicationId "com.erudite.flashcards"
         minSdkVersion rootProject.ext.minSdkVersion
