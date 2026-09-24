@@ -2,38 +2,42 @@
 // desktop browser for smoke tests. Files persist in localStorage so data survives
 // the navigation between index.html and mobile/study.html, just like on a device.
 (function () {
+  // A harness may provide a larger store (the Play Store generator does); the
+  // default is localStorage, limited to about 5 MB.
+  const store = window.__eruditeShimStorage || localStorage;
+  const storeKeys = () => (typeof store.keys === 'function' ? store.keys() : Object.keys(store));
   const PREFIX = 'erudite-e2e-fs:';
   const key = (directory, path) => `${PREFIX}${directory || 'DATA'}:${String(path).replace(/^\/+/, '')}`;
   const notFound = () => Object.assign(new Error('File does not exist'), { code: 'OS-PLUG-FILE-0008' });
 
   const Filesystem = {
     async readFile({ path, directory }) {
-      const value = localStorage.getItem(key(directory, path));
+      const value = store.getItem(key(directory, path));
       if (value === null) throw notFound();
       return { data: value };
     },
     async writeFile({ path, directory, data }) {
-      localStorage.setItem(key(directory, path), data);
+      store.setItem(key(directory, path), data);
       return { uri: `file:///${directory}/${path}` };
     },
     async appendFile({ path, directory, data }) {
-      const existing = localStorage.getItem(key(directory, path)) || '';
-      localStorage.setItem(key(directory, path), existing + data);
+      const existing = store.getItem(key(directory, path)) || '';
+      store.setItem(key(directory, path), existing + data);
     },
     async deleteFile({ path, directory }) {
-      if (localStorage.getItem(key(directory, path)) === null) throw notFound();
-      localStorage.removeItem(key(directory, path));
+      if (store.getItem(key(directory, path)) === null) throw notFound();
+      store.removeItem(key(directory, path));
     },
     async stat({ path, directory }) {
-      const value = localStorage.getItem(key(directory, path));
+      const value = store.getItem(key(directory, path));
       if (value === null) throw notFound();
       return { type: 'file', size: value.length, uri: `file:///${directory}/${path}` };
     },
     async rename({ from, to, directory, toDirectory }) {
-      const value = localStorage.getItem(key(directory, from));
+      const value = store.getItem(key(directory, from));
       if (value === null) throw notFound();
-      localStorage.setItem(key(toDirectory || directory, to), value);
-      localStorage.removeItem(key(directory, from));
+      store.setItem(key(toDirectory || directory, to), value);
+      store.removeItem(key(directory, from));
     },
     async getUri({ path, directory }) {
       return { uri: `file:///${directory}/${path}` };
@@ -41,11 +45,11 @@
     async mkdir() {},
     async rmdir({ path, directory }) {
       const prefix = key(directory, path);
-      Object.keys(localStorage).filter(item => item.startsWith(prefix)).forEach(item => localStorage.removeItem(item));
+      storeKeys().filter(item => item.startsWith(prefix)).forEach(item => store.removeItem(item));
     },
     async readdir({ path, directory }) {
       const prefix = `${key(directory, path)}/`;
-      const files = Object.keys(localStorage)
+      const files = storeKeys()
         .filter(item => item.startsWith(prefix))
         .map(item => ({ name: item.slice(prefix.length).split('/')[0], type: 'file' }));
       return { files };

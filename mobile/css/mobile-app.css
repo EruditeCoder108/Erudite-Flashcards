@@ -142,8 +142,6 @@ button {
   background: var(--glass-bg);
   border-bottom: 1px solid var(--glass-border);
   border-radius: 0 0 1rem 1rem;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
   box-shadow: var(--glass-shadow);
 }
 
@@ -481,8 +479,6 @@ button {
 .insight-panel {
   min-width: 0;
   background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
   border-radius: 1.1rem;
@@ -1175,8 +1171,6 @@ button {
   top: 0;
   z-index: 15;
   background: var(--glass-bg);
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
   border-bottom: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
   padding: max(0.5rem, var(--safe-top)) max(0.9rem, var(--safe-right)) 0.6rem max(0.9rem, var(--safe-left));
@@ -2267,8 +2261,6 @@ button {
   background: rgba(13, 20, 34, 0.97);
   border-top: 1px solid color-mix(in srgb, var(--primary) 28%, transparent);
   box-shadow: 0 -0.7rem 2rem color-mix(in srgb, var(--ink) 38%, transparent);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
 }
 
 .browser-selection-bar[hidden] {
@@ -2454,8 +2446,6 @@ button {
   width: 100%;
   height: 100%;
   background: color-mix(in srgb, var(--ink) 65%, transparent);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 }
 
 .context-modal-content {
@@ -2550,8 +2540,6 @@ button {
   padding: 0.45rem max(1.2rem, var(--safe-right)) calc(0.45rem + var(--safe-bottom)) max(1.2rem, var(--safe-left));
   background: rgba(13, 20, 34, 0.96);
   border-top: 1px solid color-mix(in srgb, var(--red) 35%, transparent);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 -6px 24px color-mix(in srgb, var(--ink) 45%, transparent);
   height: calc(3.25rem + 0.9rem + var(--safe-bottom));
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2656,8 +2644,6 @@ select option {
   align-items: flex-end;
   justify-content: center;
   background: var(--modal-overlay-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   padding: 0.75rem max(0.75rem, var(--safe-right)) calc(0.75rem + var(--safe-bottom)) max(0.75rem, var(--safe-left));
 }
 
@@ -3393,10 +3379,6 @@ select option {
   color: var(--muted);
 }
 
-.theme-light .mobile-modal-btn.cancel {
-  background: color-mix(in srgb, var(--muted) 6%, transparent) !important;
-}
-
 .mobile-modal-btn.confirm {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
   color: #fff;
@@ -3772,8 +3754,6 @@ button:active,
   align-items: center;
   justify-content: center;
   background: color-mix(in srgb, var(--ink) 42%, transparent);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;

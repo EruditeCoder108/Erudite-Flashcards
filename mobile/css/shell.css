@@ -835,3 +835,128 @@ body[data-active-tab="library"] .mobile-topbar {
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
 }
+
+/* ------------------------------------------------------------------ */
+/* Sheets and dialogs                                                  */
+/* ------------------------------------------------------------------ */
+
+.mobile-modal-card {
+  border: 0;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line), var(--shadow-3);
+  transition: transform var(--dur-sheet) var(--spring-sheet), opacity var(--dur-2) ease-out;
+}
+
+.mobile-modal-overlay.hidden .mobile-modal-card {
+  transform: translateY(2rem);
+}
+
+.modal-title,
+.mobile-modal-card h3 {
+  color: var(--text);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.mobile-modal-hint {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.mobile-modal-btn {
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: var(--text-base);
+  font-weight: 600;
+  transition: transform var(--dur-spring) var(--spring-snappy), background-color var(--dur-1) ease;
+}
+
+.mobile-modal-btn:active {
+  transform: scale(var(--press-scale));
+}
+
+.mobile-modal-btn.cancel,
+.mobile-modal-btn.cancel:hover {
+  border: 0;
+  background: var(--surface-2);
+  box-shadow: 0 0 0 1px var(--line);
+  color: var(--text);
+}
+
+.mobile-modal-btn.confirm,
+.mobile-modal-btn.confirm:hover {
+  background: var(--primary);
+  box-shadow: none;
+  color: var(--on-primary);
+}
+
+.mobile-modal-btn.confirm.danger {
+  background: var(--red);
+}
+
+.mobile-modal-option-btn {
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.mobile-modal-option-btn.selected,
+.theme-light .mobile-modal-option-btn.selected {
+  background: color-mix(in srgb, var(--primary) 10%, var(--surface-2));
+  box-shadow: 0 0 0 1.5px var(--primary);
+}
+
+.context-option-row {
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+/* Native checkboxes in dialogs look like the settings switches. */
+.reminder-toggle-row {
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.reminder-toggle-row input[type="checkbox"] {
+  position: relative;
+  flex: none;
+  width: 2.75rem;
+  height: 1.625rem;
+  margin: 0;
+  border-radius: var(--radius-full);
+  background: var(--surface-3);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: background-color var(--dur-2) ease;
+}
+
+.reminder-toggle-row input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform var(--dur-spring) var(--spring-snappy);
+}
+
+.reminder-toggle-row input[type="checkbox"]:checked {
+  background: var(--green);
+}
+
+.reminder-toggle-row input[type="checkbox"]:checked::before {
+  transform: translateX(1.125rem);
+}
