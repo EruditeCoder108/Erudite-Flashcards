@@ -1035,7 +1035,7 @@
       browser: 'Cards',
       more: 'Settings'
     };
-    selectors.eyebrow.textContent = 'Erudite Flashcards';
+    selectors.eyebrow.textContent = 'Smriti';
     selectors.title.textContent = titles[state.activeTab] || 'Today';
   }
 
@@ -2429,7 +2429,7 @@
     const frontText = plainTextFromHtml(card.term || advancedHtmlSide(card, 'front')).replace(/\s+/g, ' ').trim();
     const backText = plainTextFromHtml(card.definition || advancedHtmlSide(card, 'back')).replace(/\s+/g, ' ').trim();
     return [
-      'Create an Erudite mobile flashcard using HTML and CSS only.',
+      'Create a Smriti mobile flashcard using HTML and CSS only.',
       '',
       'Return exactly four fenced code blocks with these labels:',
       'FRONT_HTML',
@@ -6946,7 +6946,7 @@
     }
   }
 
-  function showAppLoader(title = 'Erudite Flashcards', copy = 'Loading') {
+  function showAppLoader(title = 'Smriti', copy = 'Loading') {
     if (selectors.loadingTitle) selectors.loadingTitle.textContent = title;
     if (selectors.loadingCopy) selectors.loadingCopy.textContent = copy;
     const cover = document.getElementById('app-loading-cover');
@@ -7257,7 +7257,7 @@
     if (onboardingStep === 3) {
       const flipped = document.getElementById('onboarding-flip-demo')?.classList.contains('is-flipped') === true;
       button.dataset.onboardingAction = onboardingRetrievalExplained ? 'next' : 'explain-retrieval';
-      button.innerHTML = onboardingRetrievalExplained ? icon('Meet Erudite') : icon('How did that help?');
+      button.innerHTML = onboardingRetrievalExplained ? icon('Meet Smriti') : icon('How did that help?');
       button.disabled = !onboardingRetrievalExplained && (!flipped || !onboardingRetrievalMessageReady);
       return;
     }
@@ -8520,7 +8520,7 @@
             const current = await plugin.checkPermissions();
             const result = current?.display === 'granted' ? current : await plugin.requestPermissions();
             if (result?.display !== 'granted') {
-              showToast('Allow notifications for Erudite in Android settings to get reminders');
+              showToast('Allow notifications for Smriti in Android settings to get reminders');
               enabled = false;
             }
           } catch (_) {
@@ -9633,7 +9633,7 @@
       const tips = {
         'chatgpt': '<strong>ChatGPT:</strong> Recommended. Upload your PDF, paste the instructions, and ask ChatGPT to return the ZIP package.',
         'claude': '<strong>Claude:</strong> Recommended. Paste instructions and upload your PDF. Claude is great at PDF reading. Ask it to output a ZIP or Package Source.',
-        'gemini': '<strong>Gemini:</strong> Good for PDF analysis, but ZIP output may fail. Gemini will output Erudite Package Source text; paste it into Step 4 to build the ZIP locally.',
+        'gemini': '<strong>Gemini:</strong> Good for PDF analysis, but ZIP output may fail. Gemini will output Smriti Package Source text; paste it into Step 4 to build the ZIP locally.',
         'other': '<strong>Other AI:</strong> Paste instructions and upload source material. Confirm it outputs ZIP or package source structure.'
       };
       selectors.aiProviderTip.innerHTML = tips[pb.aiProvider] || '';
@@ -9874,7 +9874,7 @@
 
     const finalConfirmation = await showMobileConfirm({
       title: 'Final Confirmation',
-      message: 'This cannot be undone. Delete all Erudite data stored on this device now?',
+      message: 'This cannot be undone. Delete all Smriti data stored on this device now?',
       okText: 'Delete Everything',
       isDanger: true
     });
@@ -12177,7 +12177,7 @@
     // Private helper for dynamic retry messages
     function getAiRetryMessage(provider) {
       if (provider === 'gemini') {
-        return `The previous output was not valid Erudite Package Source.
+        return `The previous output was not valid Smriti Package Source.
 
 Please return the output again.
 
@@ -12200,7 +12200,7 @@ Do not include external URLs.
 Do not reference media files unless they are present in the media array.
 Do not put Base64 inside deck fields.`;
       } else {
-        return `The previous output was not a valid Erudite ZIP package.
+        return `The previous output was not a valid Smriti ZIP package.
 
 Please return a normal downloadable .zip file only.
 

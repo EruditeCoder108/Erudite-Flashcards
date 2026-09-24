@@ -72,6 +72,7 @@ async function run(context, base, check, errors) {
   page.on('pageerror', error => errors.push(`pageerror: ${error.message}`));
   page.on('console', message => {
     if (message.type() === 'error') errors.push(`console: ${message.text()}`);
+    if (process.env.DEBUG_WARN && message.type() === 'warning') console.log('WARN', message.text().slice(0, 300));
   });
 
   await page.addInitScript(() => {
@@ -408,16 +409,17 @@ async function checkPremadeSample(page, base, check) {
   });
   await page.reload();
   await page.waitForFunction(() => document.body.classList.contains('app-ready'), null, { timeout: 20000 });
-  await page.waitForFunction(async () => {
-    const sets = await window.flashcardStore.listSets();
-    const set = sets.find(item => item.premadeSource?.fileName === 'ch1.zip');
-    return set && set.premadeSource.sample === false;
-  }, null, { timeout: 15000, polling: 500 }).catch(() => {});
-  const unlocked = await page.evaluate(async () => {
-    const sets = await window.flashcardStore.listSets();
-    const set = sets.find(item => item.premadeSource?.fileName === 'ch1.zip');
-    return { cards: set?.cards.length || 0, sample: set?.premadeSource?.sample, first: set?.cards?.[0]?.term || '' };
-  });
+  // The upgrade runs in the background after launch; poll until it lands.
+  let unlocked = null;
+  for (let attempt = 0; attempt < 30; attempt += 1) {
+    unlocked = await page.evaluate(async () => {
+      const sets = await window.flashcardStore.listSets();
+      const set = sets.find(item => item.premadeSource?.fileName === 'ch1.zip');
+      return { cards: set?.cards.length || 0, sample: set?.premadeSource?.sample, first: set?.cards?.[0]?.term || '' };
+    });
+    if (unlocked.sample === false) break;
+    await page.waitForTimeout(500);
+  }
   check('Pro fills in the rest of a sample deck', unlocked.cards === 30 && unlocked.sample === false && /Premade Q1\b/.test(unlocked.first), JSON.stringify(unlocked));
   await page.evaluate(() => localStorage.removeItem('erudite-pro-debug'));
   await page.unroute('https://erudite-flashcards.netlify.app/**');

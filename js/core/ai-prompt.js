@@ -5,7 +5,7 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof globalThis !== 'undefined' ? globalThis : window, function () {
   // Builds the instructions a learner pastes into ChatGPT, Claude, or Gemini
-  // together with a chapter PDF. The AI returns an Erudite package that the app
+  // together with a chapter PDF. The AI returns a Smriti package that the app
   // imports. Every section here exists because a real import failed or a real
   // deck came back weak without it; keep additions just as specific.
 
@@ -71,7 +71,7 @@
 
   function learningBrief(options) {
     const parts = [
-      'You are writing spaced-repetition flashcards for the Erudite Flashcards app from the source material attached to this message.',
+      'You are writing spaced-repetition flashcards for the Smriti flashcards app from the source material attached to this message.',
       PRESET_BRIEFS[options.preset] || PRESET_BRIEFS.revision,
       options.examTarget === 'custom'
         ? `Target: ${clean(options.customExamTarget) || 'the learner\'s own exam'}. Adjust emphasis and detail to match it.`
@@ -180,7 +180,7 @@ ${intensity}
   function occlusionProtocol(options) {
     if (!occlusionAllowed(options)) return '';
     return `IMAGE OCCLUSION (labelled diagrams)
-Erudite turns every mask into its own study card, so one diagram with eight labels becomes eight cards. Mask coordinates must be measured, never estimated by eye; boxes that miss their label make the card useless.
+Smriti turns every mask into its own study card, so one diagram with eight labels becomes eight cards. Mask coordinates must be measured, never estimated by eye; boxes that miss their label make the card useless.
 
 Follow these steps with your code tool (for example Python with PyMuPDF, Pillow, and pytesseract or easyocr):
 1. Pick diagrams whose labels are examinable. Skip decorative art and diagrams with fewer than two useful labels.
@@ -315,7 +315,7 @@ Photosynthesis;Process by which green plants make glucose from carbon dioxide an
 ${json}
 - Embedded images must be data URLs ("data:image/webp;base64,..."), never external URLs.`;
     }
-    return `OUTPUT: an Erudite package, a .zip file containing:
+    return `OUTPUT: a Smriti package, a .zip file containing:
 - deck.json at the root of the ZIP (not inside a folder), shaped like this:
 ${json}
 - media/ holding every file that deck.json references by a media/... path, and nothing else.
@@ -342,7 +342,7 @@ ${packageSourceSpec(options)}`;
   function providerInstruction(options) {
     if (options.outputFormat === 'txt' || options.outputFormat === 'html' || options.outputFormat === 'json') return '';
     if (options.aiProvider === 'gemini') {
-      return 'FINAL ANSWER: reply with ERUDITE PACKAGE SOURCE text (not a ZIP). The Erudite app builds the ZIP from it.';
+      return 'FINAL ANSWER: reply with ERUDITE PACKAGE SOURCE text (not a ZIP). The Smriti app builds the ZIP from it.';
     }
     if (options.aiProvider === 'chatgpt' || options.aiProvider === 'claude') {
       return 'FINAL ANSWER: use your file tools to build the .zip and attach it as a downloadable file. Do not paste deck.json into the chat. If you cannot create files in this conversation, say so in one line and reply with ERUDITE PACKAGE SOURCE text instead.';

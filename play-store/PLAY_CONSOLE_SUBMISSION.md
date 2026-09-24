@@ -5,10 +5,11 @@ Use this document as the source of truth when creating the first production list
 ## Store settings
 
 - Set the default language to **English (United States) — en-US**.
-- Set the app name to **Erudite Flashcards**.
+- Set the app name to **Smriti: Flashcards for NEET & JEE** (30 characters maximum; this is 34, so if Play rejects it use **Smriti: NEET & JEE Flashcards**, 29 characters).
 - Select **Education** as the app category.
 - Declare that the app is an app, not a game.
-- Declare that the app contains no ads.
+- Declare that the app contains no ads (true for release 2.0; ads arrive in a later release).
+- Declare in-app purchases: Smriti Pro (subscription and lifetime) through Google Play billing.
 - Set the support email to **eruditespartan@gmail.com**.
 - Set the privacy policy URL to **https://erudite-flashcards.netlify.app/privacy.html**.
 
@@ -22,7 +23,7 @@ Create, study, and review powerful flashcards—privately, even offline.
 
 Learn deeply. Remember for longer.
 
-Erudite Flashcards is a private, local-first study app built for active recall and long-term retention. Create flexible flashcards, review them with spaced repetition, and understand your progress without creating an account.
+Smriti is a private, local-first study app built for active recall and long-term retention. Create flexible flashcards, review them with spaced repetition, and understand your progress without creating an account.
 
 STUDY YOUR WAY
 
@@ -37,6 +38,11 @@ BUILD BETTER MATERIAL
 • Import or export backups so you stay in control of your study library.
 • Browse optional premade decks and import only the ones you choose.
 
+GO FURTHER WITH SMRITI PRO
+
+• Every premade chapter comes with free sample cards.
+• Smriti Pro unlocks complete NEET, JEE, and board chapters, and fills in the decks you already study without losing progress.
+
 SEE YOUR PROGRESS
 
 • Review daily activity and retention insights.
@@ -45,9 +51,9 @@ SEE YOUR PROGRESS
 
 PRIVATE BY DESIGN
 
-Your flashcards, review history, and settings stay on your device. Erudite Flashcards requires no account, includes no advertising, and contains no tracking SDKs. Network access is used only for optional features you initiate, such as browsing premade decks or opening an external AI service.
+Your flashcards, review history, and settings stay on your device. Smriti requires no account, includes no advertising, and contains no tracking SDKs. Network access is used only for optional features you initiate, such as browsing premade decks or opening an external AI service.
 
-Whether you are learning vocabulary, preparing for exams, mastering technical subjects, or building lifelong knowledge, Erudite Flashcards gives you serious study tools in a focused mobile experience.
+Whether you are learning vocabulary, preparing for exams, mastering technical subjects, or building lifelong knowledge, Smriti gives you serious study tools in a focused mobile experience.
 
 ## Graphic assets
 
@@ -107,8 +113,10 @@ Confirm the production hosting configuration before submitting this form.
 - State that flashcards, study history, media, and settings are processed and stored locally on the device.
 - State that the developer does not receive this local study data.
 - State that the app has no account system, advertising SDK, analytics SDK, crash-reporting SDK, or tracking SDK.
+- Purchases (Smriti Pro): declare **Purchase history** as collected, for app functionality, not shared for advertising. Google Play processes the payment; RevenueCat (a service provider acting for the developer) receives the purchase receipt and an anonymous app user ID to confirm Pro.
+- Android backup: flashcards and settings are included in the user's own Google device backup (declared in the privacy policy).
 - State that user-initiated backup exports are handled as files selected by the user and are not sent to the developer.
-- State that opening an external AI provider is user initiated and happens outside Erudite; the external provider's own terms apply.
+- State that opening an external AI provider is user initiated and happens outside Smriti; the external provider's own terms apply.
 
 ### Premade-deck host
 
@@ -126,13 +134,18 @@ Do not guess on the final Data safety form; compare it with the active Netlify c
 
 - Declare that the app does not contain ads.
 - Declare that the app is not a news app, government app, health app, financial app, VPN, dating app, or real-money gambling app.
-- Declare that the app does not sell digital goods and has no in-app purchases.
+- Declare that the app sells digital goods through Google Play billing: Smriti Pro (subscriptions and a one-time lifetime unlock).
 - Declare that the app does not request location, camera, microphone, contacts, phone, SMS, storage, biometric, or fingerprint permissions.
 - Use the standard Android App Bundle upload flow and enroll in Play App Signing.
 
-## Initial release notes
+## Release notes for 2.0
 
-Initial release of Erudite Flashcards. Create and study local flashcards, use spaced repetition and custom review sessions, track progress, import or export backups, and browse optional premade decks.
+Erudite Flashcards is now Smriti, redesigned from the ground up.
+• A new study screen: swipe to rate, cards that follow your finger, and a Show answer button right under your thumb.
+• Smarter scheduling: FSRS fixes, daily new-card limits, and daily reminders.
+• Sharper image occlusion and faster, smaller images.
+• Paper texture mode for long sessions, plus refreshed dark and light themes.
+• Premade chapters now include free sample cards, and Smriti Pro unlocks the complete library.
 
 ## Closed testing for a new personal account
 
