@@ -2164,7 +2164,23 @@
     requestAnimationFrame(() => refreshOcclusionLayers(els.stage));
 
     state.flipped = cards[activeCardIndex] ? cards[activeCardIndex].classList.contains('is-flipped') : false;
+    markActiveCardShown();
     updateRatingVisibility();
+  }
+
+  // Time from a card appearing to its rating is stored with each review. It
+  // powers per-card timing stats and is the input FSRS optimisation will need.
+  let activeCardShown = { key: null, at: 0 };
+
+  function markActiveCardShown() {
+    const key = cardKey(activeCard());
+    if (key && key !== activeCardShown.key) activeCardShown = { key, at: performance.now() };
+  }
+
+  function reviewDurationMs(card) {
+    if (!activeCardShown.at || cardKey(card) !== activeCardShown.key) return null;
+    // Cap long pauses so a phone left on the table does not skew averages.
+    return Math.min(120000, Math.max(0, Math.round(performance.now() - activeCardShown.at)));
   }
 
   function renderStack() {
@@ -2462,10 +2478,14 @@
           previousState: previous?.state || 'New',
           nextState: reviewed.srs?.state || null,
           previousDue: previous?.due || null,
-          nextDue: reviewed.srs?.due || null
+          nextDue: reviewed.srs?.due || null,
+          durationMs: reviewDurationMs(current)
         }
       ]
     };
+
+    // Restart the timer even when the same card is shown again straight away.
+    activeCardShown = { key: null, at: 0 };
 
     const originalIndex = state.set.cards.findIndex(card => sameCard(card, current));
     if (originalIndex >= 0) state.set.cards[originalIndex] = updatedCard;

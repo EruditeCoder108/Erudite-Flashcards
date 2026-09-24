@@ -112,6 +112,14 @@ async function run(context, base, check, errors) {
   await page.locator('.rating-button.easy').click();
   await page.waitForTimeout(700);
 
+  const lastDuration = await page.evaluate(async () => {
+    await new Promise(resolve => setTimeout(resolve, 600));
+    const set = await window.flashcardStore.getSet('alpha');
+    const reviewed = set.cards.find(card => (card.reviewHistory || []).length);
+    return reviewed?.reviewHistory?.[0]?.durationMs ?? null;
+  });
+  check('review records time taken', Number.isFinite(lastDuration) && lastDuration > 0, `durationMs=${lastDuration}`);
+
   const undo = page.locator('#srs-undo-btn');
   if (await undo.count()) {
     const beforeUndo = await page.locator('#card-stage .study-card.slot-active .card-face.front').innerText();
