@@ -150,6 +150,7 @@ async function run(context, base, check, errors) {
   await checkOcclusion(page, base, check);
   await checkPackageImport(page, base, check);
   await checkReminder(page, base, check);
+  await checkPremadeSample(page, base, check);
 
   check('no page errors', errors.length === 0, errors.slice(0, 5).join(' | '));
 }
@@ -355,6 +356,71 @@ async function checkReminder(page, base, check) {
   check('daily reminder schedules a week of inexact notifications', scheduled.length === 7 && allAtTime, `${scheduled.length} ${scheduled[0]?.title || ''}`);
   const label = await page.locator('#more-reminder-label').innerText();
   check('reminder label shows the time', /9:30/.test(label), label);
+}
+
+// Free users import the first 20 cards of a premade chapter; Pro fills in the
+// rest of the same deck. The premade server is served from memory.
+async function checkPremadeSample(page, base, check) {
+  const JSZip = require('jszip');
+  const zip = new JSZip();
+  zip.file('deck.json', JSON.stringify({
+    version: 1,
+    name: 'Chapter 1: Life Processes',
+    cards: Array.from({ length: 30 }, (_, index) => ({ type: 'basic', term: `Premade Q${index + 1}`, definition: `A${index + 1}` }))
+  }));
+  const zipBuffer = await zip.generateAsync({ type: 'nodebuffer' });
+  await page.route('https://erudite-flashcards.netlify.app/**', route => {
+    const url = route.request().url();
+    if (url.endsWith('premade-catalog.json')) {
+      return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ classes: [{ id: '10th', name: 'Class 10', subjects: [{ id: 'Biology', name: 'Biology' }] }] }) });
+    }
+    if (url.endsWith('/10th/Biology/manifest.json')) {
+      return route.fulfill({ contentType: 'application/json', body: JSON.stringify([{ id: 'ch1', name: 'Chapter 1: Life Processes', fileName: 'ch1.zip', cardCount: 30 }]) });
+    }
+    if (url.endsWith('/10th/Biology/ch1.zip')) {
+      return route.fulfill({ contentType: 'application/zip', headers: { 'content-length': String(zipBuffer.length) }, body: zipBuffer });
+    }
+    return route.fulfill({ status: 404, body: '' });
+  });
+
+  await page.goto(`${base}/index.html`);
+  await page.waitForFunction(() => document.body.classList.contains('app-ready'), null, { timeout: 20000 });
+  await page.locator('.tab-button[data-tab="library"]').click();
+  await page.locator('.source-option[data-action="open-premade"]').click();
+  await page.waitForSelector('.premade-row .sample-pill', { timeout: 10000 });
+  const pill = await page.locator('.premade-row .sample-pill').innerText();
+  check('premade chapter shows its free sample size', /20 free/.test(pill), pill.trim());
+  await page.locator('[data-action="import-premade"]').first().click();
+  await page.waitForSelector('#take-deck-overlay:not(.hidden) #take-deck-sample:not(.hidden)', { timeout: 10000 });
+  await page.locator('#mobile-take-deck-confirm').click();
+  await page.waitForTimeout(1500);
+  const sampled = await page.evaluate(async () => {
+    const sets = await window.flashcardStore.listSets();
+    const set = sets.find(item => item.premadeSource?.fileName === 'ch1.zip');
+    return { cards: set?.cards.length || 0, source: set?.premadeSource || null };
+  });
+  check('free import keeps the first 20 cards', sampled.cards === 20 && sampled.source?.sample === true, JSON.stringify(sampled));
+
+  // Pro preview in a browser build, then the sample fills in on next launch.
+  await page.evaluate(async () => {
+    await window.flashcardStore.flush?.();
+    localStorage.setItem('erudite-pro-debug', 'on');
+  });
+  await page.reload();
+  await page.waitForFunction(() => document.body.classList.contains('app-ready'), null, { timeout: 20000 });
+  await page.waitForFunction(async () => {
+    const sets = await window.flashcardStore.listSets();
+    const set = sets.find(item => item.premadeSource?.fileName === 'ch1.zip');
+    return set && set.premadeSource.sample === false;
+  }, null, { timeout: 15000, polling: 500 }).catch(() => {});
+  const unlocked = await page.evaluate(async () => {
+    const sets = await window.flashcardStore.listSets();
+    const set = sets.find(item => item.premadeSource?.fileName === 'ch1.zip');
+    return { cards: set?.cards.length || 0, sample: set?.premadeSource?.sample, first: set?.cards?.[0]?.term || '' };
+  });
+  check('Pro fills in the rest of a sample deck', unlocked.cards === 30 && unlocked.sample === false && /Premade Q1\b/.test(unlocked.first), JSON.stringify(unlocked));
+  await page.evaluate(() => localStorage.removeItem('erudite-pro-debug'));
+  await page.unroute('https://erudite-flashcards.netlify.app/**');
 }
 
 main().catch(error => {

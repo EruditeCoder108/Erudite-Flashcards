@@ -506,6 +506,14 @@
           <p class="mobile-eyebrow">Settings</p>
           <h2 id="more-heading">App tools</h2>
         </div>
+        <button type="button" class="pro-row" data-action="open-pro">
+          <span class="pro-row-mark" aria-hidden="true"><i class="fas fa-star"></i></span>
+          <span>
+            <strong>Smriti Pro</strong>
+            <small id="more-pro-label">Unlock full premade chapters</small>
+          </span>
+          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
         <div class="settings-list">
           <button type="button" class="settings-row" data-action="toggle-srs">
             <span class="settings-icon brain"><i class="fas fa-brain"></i></span>
@@ -907,6 +915,8 @@
         </button>
       </div>
       
+      <p class="take-deck-sample hidden" id="take-deck-sample"></p>
+
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="mobile-take-deck-cancel">Cancel</button>
         <button type="button" class="mobile-modal-btn confirm" id="mobile-take-deck-confirm">Take Deck</button>
@@ -1776,6 +1786,28 @@ If you cannot attach a ZIP file:
     </div>
   </div>
 
+  <div class="mobile-modal-overlay hidden" id="pro-overlay" role="dialog" aria-modal="true" aria-labelledby="pro-title">
+    <div class="mobile-modal-card pro-card">
+      <button type="button" class="pro-close" data-action="close-pro" aria-label="Close"><i class="fas fa-xmark"></i></button>
+      <div class="pro-hero" aria-hidden="true">
+        <span class="pro-hero-card back"></span>
+        <span class="pro-hero-card middle"></span>
+        <span class="pro-hero-card front"><i class="fas fa-star"></i></span>
+      </div>
+      <h3 id="pro-title" class="pro-title">Smriti Pro</h3>
+      <p class="pro-lede">The full premade library for NEET, JEE, and boards, built chapter by chapter.</p>
+      <ul class="pro-benefits">
+        <li><i class="fas fa-book-open" aria-hidden="true"></i><span><b>Every premade chapter, complete.</b> Free decks stop after the first 20 cards.</span></li>
+        <li><i class="fas fa-rotate" aria-hidden="true"></i><span><b>Keeps your progress.</b> Sample decks you already study are filled in, reviews intact.</span></li>
+        <li><i class="fas fa-shield-halved" aria-hidden="true"></i><span><b>Your own cards stay free.</b> Creating, studying, SRS, and backups are never behind Pro.</span></li>
+      </ul>
+      <div class="pro-plans" id="pro-plans"></div>
+      <p class="pro-status" id="pro-status"></p>
+      <button type="button" class="pro-buy" id="pro-buy" data-action="buy-pro">Continue</button>
+      <button type="button" class="text-button pro-restore" data-action="restore-pro">Restore purchase</button>
+    </div>
+  </div>
+
   <div class="mobile-modal-overlay hidden" id="reminder-overlay" role="dialog" aria-modal="true" aria-labelledby="reminder-title">
     <div class="mobile-modal-card">
       <h3 id="reminder-title" class="modal-title"><i class="fas fa-bell"></i> Daily Reminder</h3>
@@ -2502,6 +2534,8 @@ If you cannot attach a ZIP file:
   <script src="vendor/ts-fsrs/index.umd.js"></script>
   <script src="js/srs-manager.js"></script>
   <script src="js/core/color-picker.js"></script>
+  <script src="js/mobile/billing-config.js"></script>
+  <script src="js/core/entitlements.js"></script>
   <script src="mobile/js/signature.js"></script>
   <script src="mobile/js/mobile-app.js"></script>
 </body>

@@ -1150,6 +1150,7 @@
             <span>${plural(stats.totalCards || 0, 'card')}</span>
             <span class="class-pill" style="background:${color}1f;color:${color}">${escapeHtml(classLabel)}</span>
             ${showDue ? `<span>${due} due</span>` : `<span>${escapeHtml(relativeTime(lastActivity))}</span>`}
+            ${set.premadeSource?.sample ? `<button type="button" class="sample-pill" data-action="open-pro" aria-label="Sample deck. Unlock the full chapter with Smriti Pro"><i class="fas fa-lock" aria-hidden="true"></i>Sample · ${Number(set.premadeSource.sampleNotes) || 0} of ${Number(set.premadeSource.totalNotes) || 0}</button>` : ''}
           </div>
           <div class="progress-track" style="--progress:${percent}%"><span></span></div>
         </div>
@@ -5973,6 +5974,13 @@
                 <div class="deck-subline">
                   <span>${escapeHtml(premadeSubjectLabel(state.premadeClass, state.premadeSubject))}</span>
                   ${item.cardCount ? `<span>${plural(Number(item.cardCount) || 0, 'card')}</span>` : ''}
+                  ${(() => {
+                    const limit = premadeSampleLimit(file);
+                    const total = Number(item.cardCount) || 0;
+                    return limit !== null && (!total || total > limit)
+                      ? `<span class="sample-pill"><i class="fas fa-lock" aria-hidden="true"></i>${limit} free</span>`
+                      : '';
+                  })()}
                 </div>
               </div>
               <button type="button" class="small-icon-button primary" data-action="import-premade" data-file="${escapeAttr(file)}" aria-label="Import premade deck">
@@ -6001,6 +6009,203 @@
     const sets = await window.flashcardStore.listPremadeSets(state.premadeClass, state.premadeSubject);
     state.premadeSets = Array.isArray(sets) ? sets : [];
     renderPremade();
+  }
+
+  // ------------------------------------------------------------------
+  // Smriti Pro and premade samples
+  // ------------------------------------------------------------------
+
+  function billingConfig() {
+    return window.ERUDITE_BILLING || {};
+  }
+
+  function isPro() {
+    return Boolean(window.EruditeEntitlements?.isPro?.());
+  }
+
+  function premadeManifestItem(fileName) {
+    const clean = String(fileName || '').replace(/\.zip$/i, '');
+    return state.premadeSets.find(item => {
+      const file = String(item.fileName || item.filename || item.file || item.path || '').replace(/\.zip$/i, '');
+      return file === clean;
+    }) || null;
+  }
+
+  /** Notes a free user may import from a premade chapter, or null for all. */
+  function premadeSampleLimit(fileName) {
+    if (isPro()) return null;
+    const item = premadeManifestItem(fileName);
+    if (String(item?.tier || '').toLowerCase() === 'free') return null;
+    const deckLimit = Number(item?.freeCards);
+    if (Number.isFinite(deckLimit) && deckLimit >= 0) return Math.round(deckLimit);
+    const limit = Number(billingConfig().freeSampleCards);
+    return Number.isFinite(limit) && limit >= 0 ? Math.round(limit) : 20;
+  }
+
+  // Runs imported notes through the same pipeline as saving from the creator.
+  function processImportedNotes(notes) {
+    const processedCards = notes
+      .map(card => {
+        const normalized = cardWithNoteDefaults(card);
+        const advanced = isAdvancedHtmlCard(normalized);
+        return {
+          ...normalized,
+          term: sanitizeEditorHtml(advanced ? (normalized.term || advancedHtmlFallbackText(normalized, 'front')) : normalized.term),
+          definition: sanitizeEditorHtml(advanced ? (normalized.definition || advancedHtmlFallbackText(normalized, 'back')) : normalized.definition),
+          advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(normalized)),
+          lastModified: Date.now()
+        };
+      })
+      .filter(hasCardContent)
+      .flatMap(expandCreatorCard);
+    return syncGeneratedCards(processedCards);
+  }
+
+  let sampleUpgradeRunning = false;
+
+  /**
+   * After Pro unlocks, download each sample premade deck again and append the
+   * cards the sample left out. Existing cards and their review history stay.
+   */
+  async function upgradeSampleDecks() {
+    if (sampleUpgradeRunning || !isPro()) return;
+    const samples = state.sets.filter(set => set.premadeSource?.sample);
+    if (!samples.length) return;
+    sampleUpgradeRunning = true;
+    let unlocked = 0;
+    try {
+      for (const meta of samples) {
+        const source = meta.premadeSource;
+        try {
+          const deckUrl = window.flashcardStore?.getPremadeDeckUrl?.(source.classId, source.subjectId, source.fileName);
+          if (!deckUrl) continue;
+          const file = await downloadPremadeDeck(deckUrl, source.fileName);
+          const originalEditingSetId = state.creator.editingSetId;
+          state.creator.editingSetId = meta.id;
+          let imported;
+          try {
+            imported = await parseEruditePackageImport(file);
+          } finally {
+            state.creator.editingSetId = originalEditingSetId;
+          }
+          const remaining = (imported?.cards || []).slice(Number(source.sampleNotes) || 0);
+          const set = await window.flashcardStore.getSet(meta.id);
+          if (!set) continue;
+          await window.flashcardStore.saveSet({
+            ...set,
+            cards: [...(set.cards || []), ...processImportedNotes(remaining)],
+            premadeSource: {
+              ...source,
+              sampleNotes: imported?.cards?.length || source.totalNotes,
+              sample: false
+            }
+          });
+          unlocked += 1;
+        } catch (error) {
+          console.warn('[mobile] could not unlock premade deck', meta.id, error);
+        }
+      }
+    } finally {
+      sampleUpgradeRunning = false;
+    }
+    if (unlocked) {
+      await flushStore(1800).catch(() => {});
+      showToast(`Unlocked ${plural(unlocked, 'full chapter')}`);
+      state.browserLoaded = false;
+      await refresh();
+    }
+  }
+
+  function renderProRow() {
+    const label = document.getElementById('more-pro-label');
+    if (!label) return;
+    if (isPro()) label.textContent = 'Active. Every premade chapter is unlocked.';
+    else label.textContent = 'Unlock full premade chapters';
+  }
+
+  let proPackages = [];
+  let selectedProPackage = null;
+
+  async function openProSheet() {
+    const overlay = document.getElementById('pro-overlay');
+    if (!overlay) return;
+    const plans = document.getElementById('pro-plans');
+    const buy = document.getElementById('pro-buy');
+    const status = document.getElementById('pro-status');
+    overlay.classList.remove('hidden');
+    playClick();
+
+    if (isPro()) {
+      plans.innerHTML = '';
+      status.textContent = 'Smriti Pro is active on this Google account. Thank you for supporting the app.';
+      buy.classList.add('hidden');
+      return;
+    }
+    buy.classList.remove('hidden');
+    const entitlements = window.EruditeEntitlements;
+    if (!entitlements?.isAvailable?.()) {
+      plans.innerHTML = '';
+      status.textContent = 'Every premade chapter already includes free sample cards.';
+      buy.textContent = 'Coming soon';
+      buy.disabled = true;
+      return;
+    }
+    status.textContent = 'Loading prices from Google Play...';
+    buy.textContent = 'Continue';
+    buy.disabled = true;
+    proPackages = await entitlements.getPackages();
+    if (!proPackages.length) {
+      plans.innerHTML = '';
+      status.textContent = 'Prices could not be loaded. Check your connection and try again.';
+      return;
+    }
+    selectedProPackage = proPackages[0];
+    status.textContent = 'Billed through Google Play. Cancel any time from Play Store subscriptions.';
+    renderProPlans();
+    buy.disabled = false;
+  }
+
+  function renderProPlans() {
+    const plans = document.getElementById('pro-plans');
+    if (!plans) return;
+    const labels = { year: 'Yearly', month: 'Monthly', lifetime: 'Lifetime' };
+    const perLabel = { year: '/ year', month: '/ month', lifetime: 'once' };
+    plans.innerHTML = proPackages.map(item => `
+      <button type="button" class="pro-plan ${item === selectedProPackage ? 'selected' : ''}" data-action="select-pro-plan" data-plan-id="${escapeAttr(item.id)}" aria-pressed="${item === selectedProPackage}">
+        <span class="pro-plan-name">${escapeHtml(labels[item.period] || item.title || 'Pro')}</span>
+        <span class="pro-plan-price">${escapeHtml(item.price)} <small>${escapeHtml(perLabel[item.period] || '')}</small></span>
+        ${item.period === 'year' ? '<span class="pro-plan-badge">Best value</span>' : ''}
+      </button>
+    `).join('');
+  }
+
+  function closeProSheet() {
+    document.getElementById('pro-overlay')?.classList.add('hidden');
+    state.lastModalClosedAt = Date.now();
+  }
+
+  async function buyPro() {
+    const buy = document.getElementById('pro-buy');
+    if (!selectedProPackage || !buy) return;
+    buy.disabled = true;
+    const result = await window.EruditeEntitlements.purchase(selectedProPackage);
+    buy.disabled = false;
+    if (result.ok) {
+      closeProSheet();
+      showToast('Welcome to Smriti Pro');
+    } else if (!result.cancelled) {
+      showToast(result.error || 'Purchase failed');
+    }
+  }
+
+  async function restorePro() {
+    const result = await window.EruditeEntitlements?.restore?.();
+    if (!result || result.error) {
+      showToast(result?.error || 'Restore is available in the Android app');
+      return;
+    }
+    showToast(result.pro ? 'Smriti Pro restored' : 'No Pro purchase found for this Google account');
+    if (result.pro) closeProSheet();
   }
 
   async function importPremade(fileName) {
@@ -6053,6 +6258,20 @@
     if (!imported || !Array.isArray(imported.cards) || !imported.cards.length) {
       showToast('No valid cards found in deck package');
       return;
+    }
+
+    // Free users take the first cards of each chapter; Pro takes all of it.
+    const premadeClassId = state.premadeClass;
+    const premadeSubjectId = state.premadeSubject;
+    const sampleLimit = premadeSampleLimit(fileName);
+    const sampleNotes = sampleLimit === null ? imported.cards : imported.cards.slice(0, sampleLimit);
+    const sampleHint = document.getElementById('take-deck-sample');
+    if (sampleHint) {
+      const isSample = sampleNotes.length < imported.cards.length;
+      sampleHint.classList.toggle('hidden', !isSample);
+      sampleHint.innerHTML = isSample
+        ? `<i class="fas fa-lock" aria-hidden="true"></i><span>You get the first <b>${sampleNotes.length}</b> of ${imported.cards.length} cards. <button type="button" class="text-button" data-action="open-pro">Smriti Pro</button> unlocks the whole chapter and keeps your progress.</span>`
+        : '';
     }
 
     const overlay = document.getElementById('take-deck-overlay');
@@ -6123,22 +6342,7 @@
 
       showMicroLoader('Saving deck...');
       try {
-        // Expand and process creator cards using the exact save mobile deck pipeline
-        const processedCards = imported.cards
-          .map(card => {
-            const normalized = cardWithNoteDefaults(card);
-            const advanced = isAdvancedHtmlCard(normalized);
-            return {
-              ...normalized,
-              term: sanitizeEditorHtml(advanced ? (normalized.term || advancedHtmlFallbackText(normalized, 'front')) : normalized.term),
-              definition: sanitizeEditorHtml(advanced ? (normalized.definition || advancedHtmlFallbackText(normalized, 'back')) : normalized.definition),
-              advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(normalized)),
-              lastModified: Date.now()
-            };
-          })
-          .filter(hasCardContent)
-          .flatMap(expandCreatorCard);
-        const syncedCards = syncGeneratedCards(processedCards);
+        const syncedCards = processImportedNotes(sampleNotes);
 
         const saved = await window.flashcardStore.saveSet({
           id: targetSetId,
@@ -6146,7 +6350,15 @@
           classId: targetClassId,
           cards: syncedCards,
           srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings({}) : { enabled: true },
-          pinned: false
+          pinned: false,
+          premadeSource: {
+            classId: premadeClassId,
+            subjectId: premadeSubjectId,
+            fileName: zipFileName,
+            totalNotes: imported.cards.length,
+            sampleNotes: sampleNotes.length,
+            sample: sampleNotes.length < imported.cards.length
+          }
         });
 
         flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
@@ -6621,6 +6833,8 @@
     if (selectors.moreSoundLabel) {
       selectors.moreSoundLabel.textContent = soundEnabled ? 'On' : 'Off';
     }
+
+    renderProRow();
 
     const paperEnabled = state.settings?.paperTexture === true;
     selectors.paperSwitch?.classList.toggle('on', paperEnabled);
@@ -10139,6 +10353,22 @@
       case 'toggle-paper':
         await togglePaper();
         break;
+      case 'open-pro':
+        await openProSheet();
+        break;
+      case 'close-pro':
+        closeProSheet();
+        break;
+      case 'buy-pro':
+        await buyPro();
+        break;
+      case 'restore-pro':
+        await restorePro();
+        break;
+      case 'select-pro-plan':
+        selectedProPackage = proPackages.find(item => item.id === target.dataset.planId) || selectedProPackage;
+        renderProPlans();
+        break;
       case 'toggle-html-interaction':
         await toggleHtmlInteraction();
         break;
@@ -12383,6 +12613,16 @@ Every media/... reference in deck.json must exist inside media/.`;
     setTimeout(async () => {
       const loadSpan = perf?.start('app.init.deferred_data_and_render', { initialTab: tab });
       await refresh();
+      // Pro: read the cached entitlement now, confirm with Google Play in the
+      // background, and finish any sample decks once Pro is active.
+      window.EruditeEntitlements?.onChange?.(() => {
+        renderMore();
+        if (state.activeTab === 'library' || state.activeTab === 'premade') renderActive();
+        upgradeSampleDecks().catch(error => console.warn('[mobile] sample upgrade failed:', error));
+      });
+      window.EruditeEntitlements?.init?.()
+        .then(() => upgradeSampleDecks())
+        .catch(error => console.warn('[mobile] billing init failed:', error));
       // Initialize opacity slider from loaded settings
       if (selectors.bgOpacitySlider) {
         const opacity = parseFloat(state.settings?.cardBgOpacity ?? 0.32);
