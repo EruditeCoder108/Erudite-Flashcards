@@ -1523,7 +1523,7 @@ Image occlusion card:
   "term": "Flower diagram",
   "image": { "dataUrl": "data:image/png;base64,BASE64_IMAGE_DATA", "width": 1200, "height": 800 },
   "occlusion": {
-    "mode": "hide-one",
+    "guessMode": "hide-all",
     "units": "px",
     "imageWidth": 1200,
     "imageHeight": 800,
@@ -1540,6 +1540,7 @@ Image occlusion rules:
 - ZIP deck.json may use "image": "media/file.webp".
 - Best AI-safe mask format: set occlusion.units to "px", include occlusion.imageWidth and occlusion.imageHeight, and use bboxPx: [left, top, width, height].
 - Pixel boxes must be measured on the final cropped image that Erudite will display, not the PDF page and not a screenshot with a different scale.
+- guessMode "hide-all" (default) covers every label and asks one; "hide-one" leaves the other labels visible as context.
 - Normalized x/y/w/h values from 0 to 1 also work when you are certain they are relative to the final image.
 - If using normalized boxes, x and y are top-left position; w and h are width and height.
 - shape is rect or ellipse.
@@ -2449,6 +2450,7 @@ If you cannot attach a ZIP file:
   <script src="js/core/draft.js"></script>
   <script src="js/core/card-media.js"></script>
   <script src="js/core/image-optimize.js"></script>
+  <script src="js/core/ai-prompt.js"></script>
   <script src="vendor/katex/katex.min.js"></script>
   <script src="vendor/katex/auto-render.min.js"></script>
   <script src="js/core/math-render.js"></script>

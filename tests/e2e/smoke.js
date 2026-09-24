@@ -139,6 +139,7 @@ async function run(context, base, check, errors) {
   check('completion offers next due deck', /Continue Review/.test(continueLabel), continueLabel.trim());
 
   await checkOcclusion(page, base, check);
+  await checkPackageImport(page, base, check);
 
   check('no page errors', errors.length === 0, errors.slice(0, 5).join(' | '));
 }
@@ -211,6 +212,69 @@ async function checkOcclusion(page, base, check) {
   const zoomMasks = await page.locator('#zoom-stage .zoom-occlusion-layer .occlusion-mask').count();
   check('double-tap zooms image with masks', zoomed && zoomMasks === 1, `zoomed=${zoomed} masks=${zoomMasks}`);
   if (process.env.SCREENSHOTS) await page.screenshot({ path: path.join(process.env.SCREENSHOTS, 'zoom.png') });
+}
+
+// Imports an AI-style ZIP whose declared image size is wrong (the AI measured
+// boxes on the real 1400x900 file but declared 1000x1000). Masks must land on the
+// labels, and the stored image must be downscaled to the 2048 px limit or less.
+async function checkPackageImport(page, base, check) {
+  await page.goto(`${base}/index.html`);
+  await page.waitForFunction(() => document.body.classList.contains('app-ready'), null, { timeout: 20000 });
+  const zipBase64 = await page.evaluate(async () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1400;
+    canvas.height = 900;
+    const context = canvas.getContext('2d');
+    context.fillStyle = '#ffffff';
+    context.fillRect(0, 0, 1400, 900);
+    const png = canvas.toDataURL('image/png').split(',')[1];
+    const zip = new window.JSZip();
+    zip.file('deck.json', JSON.stringify({
+      version: 1,
+      name: 'Imported diagram',
+      cards: [
+        { type: 'basic', term: 'Q1', definition: 'A1' },
+        {
+          type: 'image-occlusion',
+          term: 'Label the cell',
+          image: 'media/cell.png',
+          occlusion: {
+            units: 'px',
+            imageWidth: 1000,
+            imageHeight: 1000,
+            masks: [
+              { shape: 'rect', bboxPx: [1200, 700, 140, 70], answer: 'Wall' },
+              { shape: 'rect', bboxPx: [140, 90, 280, 90], answer: 'Nucleus' }
+            ]
+          }
+        }
+      ]
+    }));
+    zip.folder('media').file('cell.png', png, { base64: true });
+    return zip.generateAsync({ type: 'base64' });
+  });
+  await page.locator('.tab-button[data-tab="create"]').click();
+  await page.waitForTimeout(500);
+  const skip = page.locator('text=Skip Guide');
+  if (await skip.count()) await skip.first().click();
+  await page.setInputFiles('#mobile-txt-input', { name: 'deck.zip', mimeType: 'application/zip', buffer: Buffer.from(zipBase64, 'base64') });
+  await page.waitForFunction(() => document.getElementById('mobile-create-title')?.value === 'Imported diagram', null, { timeout: 10000 });
+  await page.locator('#header-creator-save-btn').click();
+  await page.waitForTimeout(1500);
+  const result = await page.evaluate(async () => {
+    const sets = await window.flashcardStore.listSets();
+    const set = sets.find(item => item.name === 'Imported diagram');
+    const card = set?.cards.find(item => item.noteType === 'image-occlusion' && item.definition.includes('Wall'));
+    const mask = card?.imageOcclusion?.masks?.find(item => String(item.answer).includes('Wall'));
+    const image = new Image();
+    image.src = card?.termImage || '';
+    await image.decode().catch(() => {});
+    return { cards: set?.cards.length || 0, mask, width: image.naturalWidth, src: String(card?.termImage || '').slice(0, 16) };
+  });
+  const mask = result.mask || {};
+  const onLabel = Math.abs(mask.x - 1200 / 1400) < 0.01 && Math.abs(mask.y - 700 / 900) < 0.01;
+  check('package import places masks on real image size', result.cards === 3 && onLabel, JSON.stringify({ cards: result.cards, x: mask.x, y: mask.y }));
+  check('imported image stored within size limit', result.width > 0 && result.width <= 2048, `${result.width}px ${result.src}`);
 }
 
 main().catch(error => {

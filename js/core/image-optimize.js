@@ -38,9 +38,20 @@
     });
   }
 
-  async function dataUrlToBlob(dataUrl) {
-    const response = await fetch(dataUrl);
-    return response.blob();
+  // Decoded by hand: the app's CSP (connect-src) blocks fetch() of data: URLs.
+  function dataUrlToBlob(dataUrl) {
+    const text = String(dataUrl || '');
+    const comma = text.indexOf(',');
+    const header = text.slice(0, comma);
+    const body = text.slice(comma + 1);
+    const mime = dataUrlMime(text) || 'application/octet-stream';
+    if (!/;base64/i.test(header)) {
+      return new Blob([decodeURIComponent(body)], { type: mime });
+    }
+    const binary = atob(body);
+    const bytes = new Uint8Array(binary.length);
+    for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
+    return new Blob([bytes], { type: mime });
   }
 
   async function decode(blob) {
@@ -110,7 +121,7 @@
 
     let source;
     try {
-      source = await decode(isBlob ? input : await dataUrlToBlob(originalDataUrl));
+      source = await decode(isBlob ? input : dataUrlToBlob(originalDataUrl));
     } catch (_) {
       return passthrough;
     }
