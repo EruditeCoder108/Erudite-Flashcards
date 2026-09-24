@@ -1,0 +1,82 @@
+name: Android build
+
+# Builds the Android app on GitHub's runners, which include the Android SDK.
+# Every push produces a debug APK. When the upload-key secrets below exist,
+# it also produces a signed release bundle (.aab) for the Play Console.
+#
+# Secrets (Settings > Secrets and variables > Actions):
+#   ERUDITE_UPLOAD_KEYSTORE_BASE64  base64 of the upload keystore (.jks)
+#   ERUDITE_UPLOAD_STORE_PASSWORD
+#   ERUDITE_UPLOAD_KEY_ALIAS
+#   ERUDITE_UPLOAD_KEY_PASSWORD
+
+on:
+  push:
+    branches: [main, master, 'claude/**']
+  workflow_dispatch:
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      HAS_UPLOAD_KEY: ${{ secrets.ERUDITE_UPLOAD_KEYSTORE_BASE64 != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: JavaScript unit tests
+        run: npm test
+
+      - name: Build web assets and sync Capacitor
+        run: |
+          npm run build:mobile
+          npx cap sync android
+
+      - name: Android unit tests and debug APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon testDebugUnitTest assembleDebug
+
+      - name: Signed release bundle
+        if: env.HAS_UPLOAD_KEY == 'true'
+        working-directory: android
+        env:
+          ERUDITE_UPLOAD_STORE_FILE: upload-keystore.jks
+          ERUDITE_UPLOAD_STORE_PASSWORD: ${{ secrets.ERUDITE_UPLOAD_STORE_PASSWORD }}
+          ERUDITE_UPLOAD_KEY_ALIAS: ${{ secrets.ERUDITE_UPLOAD_KEY_ALIAS }}
+          ERUDITE_UPLOAD_KEY_PASSWORD: ${{ secrets.ERUDITE_UPLOAD_KEY_PASSWORD }}
+        run: |
+          echo "${{ secrets.ERUDITE_UPLOAD_KEYSTORE_BASE64 }}" | base64 --decode > upload-keystore.jks
+          ./gradlew --no-daemon bundleRelease assembleRelease
+          rm -f upload-keystore.jks
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: smriti-debug-apk
+          path: android/app/build/outputs/apk/debug/*.apk
+
+      - name: Upload release bundle
+        if: env.HAS_UPLOAD_KEY == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: smriti-release
+          path: |
+            android/app/build/outputs/bundle/release/*.aab
+            android/app/build/outputs/apk/release/*.apk
