@@ -21,6 +21,7 @@
     normalStudyOrder: 'forward',
     soundEffectsEnabled: true,
     htmlInteractionDisabled: false,
+    paperTexture: false,
     srsDefaults: {
       newCardsPerDay: DEFAULT_NEW_CARDS_PER_DAY
     },
@@ -284,6 +285,7 @@
       normalStudyOrder,
       soundEffectsEnabled,
       htmlInteractionDisabled,
+      paperTexture: settings.paperTexture === true,
       srsDefaults: {
         newCardsPerDay: Math.max(0, Math.round(defaultNewCards))
       },

@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../mobile/css/icons.css">
   <link rel="stylesheet" href="../vendor/katex/katex.min.css">
   <link rel="stylesheet" href="../mobile/css/mobile-study.css">
+  <link rel="stylesheet" href="../mobile/css/signature.css">
 </head>
 <body>
   <div class="study-loading-cover" id="study-loading-cover" aria-live="polite">
@@ -209,10 +210,11 @@
 
   <div class="modal hidden" id="completion-modal" role="dialog" aria-modal="true">
     <div class="modal-panel">
-      <div class="modal-icon"><i class="fas fa-trophy"></i></div>
+      <div class="done-check-host" id="completion-check"></div>
       <h2 id="completion-title">Session Complete</h2>
       <p id="completion-copy">You finished this set.</p>
       <div class="completion-stats hidden" id="completion-stats"></div>
+      <div class="completion-ratings hidden" id="completion-ratings"></div>
       <div class="modal-actions">
         <button type="button" class="primary-action" id="continue-button">Practice Again</button>
         <button type="button" class="secondary-action" id="library-button">Back to Library</button>
@@ -323,6 +325,7 @@
   <script src="../vendor/katex/auto-render.min.js"></script>
   <script src="../vendor/ts-fsrs/index.umd.js"></script>
   <script src="../js/srs-manager.js"></script>
+  <script src="../mobile/js/signature.js"></script>
   <script src="../mobile/js/mobile-study.js"></script>
 </body>
 </html>

@@ -334,66 +334,6 @@ button {
   line-height: 1.42;
 }
 
-.goal-ring-wrapper {
-  position: relative;
-  width: 6.2rem;
-  height: 6.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.goal-ring-svg {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-
-.goal-ring-track {
-  fill: none;
-  stroke: var(--line-strong);
-}
-
-.goal-ring-progress {
-  fill: none;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 0.9s cubic-bezier(0.34, 1.61, 0.7, 1);
-}
-
-.goal-ring-center {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 4.8rem;
-  height: 4.8rem;
-  border-radius: 50%;
-  background: var(--surface-2);
-  box-shadow: inset 0 2px 6px color-mix(in srgb, var(--ink) 16%, transparent);
-  z-index: 2;
-}
-
-.goal-ring-center strong {
-  display: block;
-  font-size: 1.2rem;
-  font-weight: 640;
-  color: var(--text);
-  line-height: 1.1;
-  text-align: center;
-}
-
-.goal-ring-center span {
-  display: block;
-  margin-top: 0.12rem;
-  color: var(--muted);
-  font-size: 0.62rem;
-  font-weight: 620;
-  text-transform: uppercase;
-  text-align: center;
-  white-space: nowrap;
-}
-
 .hero-stats-list {
   display: flex;
   flex-direction: column;

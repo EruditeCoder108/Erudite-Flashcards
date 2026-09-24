@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="vendor/katex/katex.min.css">
   <link rel="stylesheet" href="mobile/css/mobile-app.css">
   <link rel="stylesheet" href="mobile/css/shell.css">
+  <link rel="stylesheet" href="mobile/css/signature.css">
   <link rel="stylesheet" href="mobile/css/mobile-onboarding.css">
   <link rel="stylesheet" href="css/color-picker.css">
 </head>
@@ -590,12 +591,20 @@
             <span class="settings-icon"><i class="fas fa-palette"></i></span>
             <span>
               <strong>Theme Mode</strong>
-              <small>Toggle between Dark Blue and Aura Light theme</small>
+              <small>Dark or light</small>
             </span>
             <div class="custom-select-trigger-pill">
-              <span id="more-theme-label">Dark Blue</span>
+              <span id="more-theme-label">Dark</span>
               <i class="fas fa-chevron-down"></i>
             </div>
+          </button>
+          <button type="button" class="settings-row" data-action="toggle-paper">
+            <span class="settings-icon"><i class="fas fa-file-text"></i></span>
+            <span>
+              <strong>Paper Texture</strong>
+              <small id="more-paper-label">Off</small>
+            </span>
+            <span class="switch" id="paper-switch"><span></span></span>
           </button>
           <button type="button" class="settings-row" data-action="select-typography">
             <span class="settings-icon"><i class="fas fa-font"></i></span>
@@ -2125,7 +2134,7 @@ If you cannot attach a ZIP file:
         <button type="button" class="mobile-modal-option-btn" data-value="dark">
           <i class="fas fa-moon option-icon"></i>
           <span class="option-details">
-            <strong>Dark Blue</strong>
+            <strong>Dark</strong>
             <small>Deep dark blue background with vibrant accents</small>
           </span>
           <i class="fas fa-circle-check check-icon"></i>
@@ -2133,7 +2142,7 @@ If you cannot attach a ZIP file:
         <button type="button" class="mobile-modal-option-btn" data-value="light">
           <i class="fas fa-sun option-icon"></i>
           <span class="option-details">
-            <strong>Aura Light</strong>
+            <strong>Light</strong>
             <small>Clean, pristine light background with soft shadows</small>
           </span>
           <i class="fas fa-circle-check check-icon"></i>
@@ -2493,6 +2502,7 @@ If you cannot attach a ZIP file:
   <script src="vendor/ts-fsrs/index.umd.js"></script>
   <script src="js/srs-manager.js"></script>
   <script src="js/core/color-picker.js"></script>
+  <script src="mobile/js/signature.js"></script>
   <script src="mobile/js/mobile-app.js"></script>
 </body>
 </html>

@@ -89,7 +89,7 @@ async function run(context, base, check, errors) {
   await page.waitForFunction(() => document.body.classList.contains('app-ready'), null, { timeout: 20000 });
   await page.waitForTimeout(1500);
 
-  const heroLabel = await page.locator('#today-hero .primary-action').innerText();
+  const heroLabel = await page.locator('#today-hero .stack-button').getAttribute('aria-label');
   // alpha is capped at the default 20 new cards, beta has 8.
   check('new-card default caps due count', /Review 28 Left/.test(heroLabel), heroLabel.trim());
 
@@ -340,7 +340,8 @@ async function checkReminder(page, base, check) {
   await page.locator('#reminder-enabled').check();
   await page.locator('#reminder-time').fill('21:30');
   await page.locator('#reminder-save').click();
-  await page.waitForTimeout(800);
+  // Scheduling re-runs after the stats refresh that saving triggers; wait for it to settle.
+  await page.waitForFunction(() => window.Capacitor.Plugins.LocalNotifications.scheduled.length === 7, null, { timeout: 5000 }).catch(() => {});
   const scheduled = await page.evaluate(() => window.Capacitor.Plugins.LocalNotifications.scheduled.map(item => ({
     title: item.title,
     hour: new Date(item.schedule.at).getHours(),

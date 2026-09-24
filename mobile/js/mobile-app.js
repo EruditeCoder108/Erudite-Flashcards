@@ -75,6 +75,7 @@
     analyticsError: null,
     analyticsLoadToken: 0,
     setStatsLoadToken: 0,
+    setStatsReady: false,
     analyticsWindow: '30',
     browserSearch: '',
     browserFilters: new Set(),
@@ -240,6 +241,8 @@
     moreSrsLabel: document.getElementById('more-srs-label'),
     soundSwitch: document.getElementById('sound-switch'),
     moreSoundLabel: document.getElementById('more-sound-label'),
+    paperSwitch: document.getElementById('paper-switch'),
+    morePaperLabel: document.getElementById('more-paper-label'),
     htmlInteractionSwitch: document.getElementById('html-interaction-switch'),
     moreHtmlInteractionLabel: document.getElementById('more-html-interaction-label'),
     normalStudyOrder: null,
@@ -907,6 +910,7 @@
     localStorage.setItem('erudite-theme', theme);
     document.body.classList.toggle('theme-light', theme === 'light');
     document.documentElement.classList.toggle('theme-light', theme === 'light');
+    window.EruditePaper?.apply(state.settings?.paperTexture === true);
     configureSystemBars().catch(() => {});
     
     let allProgress = {};
@@ -957,7 +961,10 @@
   }
 
   async function refreshSetStatsInBackground() {
-    if (!window.flashcardStore?.getSetStatsMeta || !state.sets.length) return;
+    if (!window.flashcardStore?.getSetStatsMeta || !state.sets.length) {
+      state.setStatsReady = true;
+      return;
+    }
     const span = perf?.start('app.stats.background_refresh', { deckCount: state.sets.length });
     const token = state.setStatsLoadToken + 1;
     state.setStatsLoadToken = token;
@@ -969,9 +976,11 @@
       }
       scheduleLearningDueRefresh(entries);
       const changed = applySetStatsEntries(entries);
+      const firstLoad = !state.setStatsReady;
+      state.setStatsReady = true;
       // Reminder text uses the fresh due count, so reschedule after every refresh.
       scheduleStudyRemindersSoon();
-      if (!changed) {
+      if (!changed && !firstLoad) {
         perf?.end(span, { status: 'unchanged', entryCount: entries?.length || 0 });
         return;
       }
@@ -1906,19 +1915,25 @@
     const reviewLabel = state.srsMode && totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : (hasDecks ? 'Study Decks' : 'Create Deck');
     const middleMetricValue = state.srsMode ? todayReviews : activity.todayCardsViewed;
     const middleMetricLabel = state.srsMode ? 'Reviewed' : 'Studied';
+    const hasDue = state.srsMode && totals.dueCards > 0;
+    const ctaTitle = hasDue ? 'Review' : (hasDecks ? 'Study Decks' : 'Create Deck');
+    const ctaCopy = hasDue
+      ? `${totals.dueCards === 1 ? 'card' : 'cards'} left today`
+      : (hasDecks ? 'You are caught up. Keep going?' : 'Start with your first deck');
+    // Card layers behind the button show roughly how much is waiting.
+    const stackDepth = hasDue ? (totals.dueCards >= 10 ? 2 : 1) : 0;
+    const signature = window.EruditeSignature;
+    // Until deck statistics load, due counts can be stale, so the ring holds the
+    // value it last showed today and sweeps to the real one once they arrive.
+    const statsReady = state.setStatsReady || !state.sets.length;
+    const ringProgress = statsReady || !signature ? progress : signature.lastShownProgress();
+    const ringMarkup = signature
+      ? signature.goalRingMarkup({ progress: ringProgress, label: ringProgress >= 100 ? 'Done' : progressLabel })
+      : `<div class="goal-ring" data-progress="${progress}"><div class="goal-ring-copy"><strong>${progress}%</strong><span>${progressLabel}</span></div></div>`;
+    const previousRing = selectors.todayHero.querySelector('.goal-ring');
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
-        <div class="goal-ring-wrapper">
-          <svg class="goal-ring-svg" viewBox="0 0 100 100" aria-hidden="true">
-            <circle class="goal-ring-track" cx="50" cy="50" r="42" stroke-width="7" />
-            <circle class="goal-ring-progress" cx="50" cy="50" r="42" stroke-width="7" stroke="currentColor"
-                    style="stroke-dasharray: 263.89; stroke-dashoffset: ${263.89 - (progress / 100) * 263.89};" />
-          </svg>
-          <div class="goal-ring-center">
-            <strong>${progress}%</strong>
-            <span>${progressLabel}</span>
-          </div>
-        </div>
+        ${ringMarkup}
         <div class="hero-stats-list">
           <div class="stat-row">
             <i class="fas fa-layer-group"></i>
@@ -1944,12 +1959,29 @@
         </div>
       </div>
       <div class="hero-actions">
-        <button type="button" class="primary-action" data-action="${reviewAction}">
-          <i class="fas ${state.srsMode && totals.dueCards > 0 ? 'fa-brain' : 'fa-layer-group'}"></i>
-          ${escapeHtml(reviewLabel)}
+        <button type="button" class="stack-button" data-depth="${stackDepth}" data-action="${reviewAction}" aria-label="${escapeAttr(reviewLabel)}">
+          <span class="stack-layer back" aria-hidden="true"></span>
+          <span class="stack-layer middle" aria-hidden="true"></span>
+          <span class="stack-face">
+            <span class="stack-copy">
+              <strong>${escapeHtml(ctaTitle)}</strong>
+              <small>${escapeHtml(ctaCopy)}</small>
+            </span>
+            ${hasDue ? `<span class="stack-count">${totals.dueCards}</span>` : ''}
+            <i class="fas fa-arrow-right stack-arrow" aria-hidden="true"></i>
+          </span>
         </button>
       </div>
     `;
+    const nextRing = selectors.todayHero.querySelector('.goal-ring');
+    if (previousRing && nextRing && previousRing.dataset.progress === nextRing.dataset.progress) {
+      // Same value: keep the existing ring so an animation in flight is not cut off.
+      nextRing.replaceWith(previousRing);
+    } else if (nextRing && statsReady) {
+      signature?.animateGoalRing(nextRing, progress);
+    } else if (nextRing) {
+      signature?.animateGoalRing(nextRing, ringProgress, { remember: false });
+    }
 
     renderAnalyticsDashboard();
     renderCustomStudyPanel();
@@ -6590,6 +6622,12 @@
       selectors.moreSoundLabel.textContent = soundEnabled ? 'On' : 'Off';
     }
 
+    const paperEnabled = state.settings?.paperTexture === true;
+    selectors.paperSwitch?.classList.toggle('on', paperEnabled);
+    if (selectors.morePaperLabel) {
+      selectors.morePaperLabel.textContent = paperEnabled ? 'On - soft grain, warmer tones' : 'Off';
+    }
+
     const htmlInteractionEnabled = state.settings?.htmlInteractionDisabled !== true;
     selectors.htmlInteractionSwitch?.classList.toggle('on', htmlInteractionEnabled);
     if (selectors.moreHtmlInteractionLabel) {
@@ -6617,7 +6655,7 @@
     }
     if (selectors.themeLabel) {
       const theme = state.settings?.theme || 'dark';
-      selectors.themeLabel.textContent = theme === 'light' ? 'Aura Light' : 'Dark Blue';
+      selectors.themeLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
     }
     updateDiagnosticsCaptureUi();
   }
@@ -7622,6 +7660,16 @@
     showToast(state.settings.soundEffectsEnabled ? 'Sound effects enabled' : 'Sound effects disabled');
   }
 
+  async function togglePaper() {
+    const enabled = state.settings?.paperTexture !== true;
+    state.settings = { ...(state.settings || {}), paperTexture: enabled };
+    window.EruditePaper?.apply(enabled);
+    if (window.flashcardStore?.saveSettings) {
+      await window.flashcardStore.saveSettings(state.settings);
+    }
+    renderMore();
+  }
+
   async function toggleHtmlInteraction() {
     const interactionEnabled = state.settings?.htmlInteractionDisabled !== true;
     state.settings = {
@@ -8157,7 +8205,15 @@
     } catch (_) {}
   }
 
-  async function scheduleStudyReminders() {
+  // Runs are queued: a stats refresh can ask again while a save is still
+  // scheduling, and interleaved cancel/schedule calls could drop reminders.
+  let reminderQueue = Promise.resolve();
+  function scheduleStudyReminders() {
+    reminderQueue = reminderQueue.then(runReminderSchedule, runReminderSchedule);
+    return reminderQueue;
+  }
+
+  async function runReminderSchedule() {
     const plugin = localNotifications();
     if (!plugin) return;
     const reminder = reminderSettings();
@@ -10079,6 +10135,9 @@
         break;
       case 'toggle-sound':
         await toggleSound();
+        break;
+      case 'toggle-paper':
+        await togglePaper();
         break;
       case 'toggle-html-interaction':
         await toggleHtmlInteraction();

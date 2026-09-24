@@ -166,3 +166,52 @@
   --shadow-2: 0 1px 2px rgba(24, 22, 16, 0.05), 0 8px 24px rgba(24, 22, 16, 0.07);
   --shadow-3: 0 2px 6px rgba(24, 22, 16, 0.06), 0 24px 60px rgba(24, 22, 16, 0.14);
 }
+
+/*
+ * Paper texture (Settings > Paper Texture). Warmer, lower-contrast neutrals and
+ * a fixed grain layer. Text stays off pure white or black, which is easier on
+ * the eyes in long sessions.
+ */
+html.paper-texture {
+  --bg: #141311;
+  --bg-2: #181715;
+  --surface: #1c1b18;
+  --surface-2: #23221e;
+  --surface-3: #2d2b27;
+  --surface-raised: #262521;
+  --line: rgba(255, 244, 225, 0.07);
+  --line-strong: rgba(255, 244, 225, 0.12);
+  --text: #ebe6dc;
+  --muted: #a8a194;
+  --subtle: #767064;
+  --ink: #141311;
+}
+
+html.paper-texture.theme-light {
+  --bg: #f1ece1;
+  --bg-2: #e9e3d6;
+  --surface: #faf6ee;
+  --surface-2: #f4efe4;
+  --surface-3: #e5ded0;
+  --surface-raised: #fdfaf4;
+  --line: rgba(60, 45, 20, 0.1);
+  --line-strong: rgba(60, 45, 20, 0.16);
+  --text: #26231e;
+  --muted: #625b4f;
+  --subtle: #8b8374;
+}
+
+html.paper-texture body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  pointer-events: none;
+  background-image: var(--grain-image, none);
+  background-size: 160px 160px;
+  opacity: 0.55;
+}
+
+html.paper-texture.theme-light body::after {
+  opacity: 0.6;
+}

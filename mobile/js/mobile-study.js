@@ -96,6 +96,8 @@
     completionTitle: document.getElementById('completion-title'),
     completionCopy: document.getElementById('completion-copy'),
     completionStats: document.getElementById('completion-stats'),
+    completionRatings: document.getElementById('completion-ratings'),
+    completionCheck: document.getElementById('completion-check'),
     continueButton: document.getElementById('continue-button'),
     libraryButton: document.getElementById('library-button'),
     emptyModal: document.getElementById('empty-modal'),
@@ -980,6 +982,7 @@
     localStorage.setItem('erudite-theme', theme);
     document.body.classList.toggle('theme-light', theme === 'light');
     document.documentElement.classList.toggle('theme-light', theme === 'light');
+    window.EruditePaper?.apply(state.settings?.paperTexture === true);
     // The study screen initially starts before saved settings are available. Apply the
     // resolved theme again so Android uses dark icons on its light status bar.
     configureSystemBars().catch(() => {});
@@ -2696,11 +2699,7 @@
       const nextDue = state.sessionStats.nextDue && window.srsManager?.formatIntervalLabel
         ? window.srsManager.formatIntervalLabel(state.sessionStats.nextDue)
         : 'Later';
-      els.completionStats.innerHTML = `
-        <span>${state.sessionStats.reviewed}<small>Reviewed</small></span>
-        <span>${state.sessionStats.Again}/${state.sessionStats.Hard}/${state.sessionStats.Good}/${state.sessionStats.Easy}<small>A/H/G/E</small></span>
-        <span>${nextDue}<small>Next Due</small></span>
-      `;
+      els.completionStats.innerHTML = srsCompletionStats(nextDue);
       els.completionStats.classList.remove('hidden');
       els.continueButton.textContent = 'Review Again';
     } else if (state.srsMode) {
@@ -2711,11 +2710,7 @@
       const nextDue = state.sessionStats.nextDue && window.srsManager?.formatIntervalLabel
         ? window.srsManager.formatIntervalLabel(state.sessionStats.nextDue)
         : 'Later';
-      els.completionStats.innerHTML = `
-        <span>${state.sessionStats.reviewed}<small>Reviewed</small></span>
-        <span>${state.sessionStats.Again}/${state.sessionStats.Hard}/${state.sessionStats.Good}/${state.sessionStats.Easy}<small>A/H/G/E</small></span>
-        <span>${nextDue}<small>Next Due</small></span>
-      `;
+      els.completionStats.innerHTML = srsCompletionStats(nextDue);
       els.completionStats.classList.remove('hidden');
       els.continueButton.textContent = state.nextDueSetId ? 'Continue Review' : 'Check Again';
     } else {
@@ -2725,7 +2720,68 @@
       els.continueButton.textContent = 'Practice Again';
     }
 
+    renderRatingSpectrum();
     els.completionModal.classList.remove('hidden');
+    playCompletionMoment();
+  }
+
+  function sessionRatingTotals() {
+    const stats = state.sessionStats || {};
+    const counts = ['Again', 'Hard', 'Good', 'Easy'].map(name => Number(stats[name]) || 0);
+    return { counts, total: counts.reduce((sum, value) => sum + value, 0) };
+  }
+
+  function srsCompletionStats(nextDue) {
+    const { counts, total } = sessionRatingTotals();
+    const remembered = total ? Math.round(((total - counts[0]) / total) * 100) : 0;
+    return `
+      <span><b data-count-up="${state.sessionStats.reviewed}">${state.sessionStats.reviewed}</b><small>Reviewed</small></span>
+      <span>${total ? `<b data-count-up="${remembered}">${remembered}</b>%` : '--'}<small>Remembered</small></span>
+      <span>${escapeHtml(nextDue)}<small>Next due</small></span>
+    `;
+  }
+
+  // One bar split by rating, so the session reads at a glance.
+  function renderRatingSpectrum() {
+    const host = els.completionRatings;
+    if (!host) return;
+    const { counts, total } = sessionRatingTotals();
+    if (!state.srsMode || !total) {
+      host.classList.add('hidden');
+      host.innerHTML = '';
+      return;
+    }
+    const names = ['Again', 'Hard', 'Good', 'Easy'];
+    const colors = ['var(--again)', 'var(--hard)', 'var(--good)', 'var(--easy)'];
+    const segments = counts.map((count, index) => (count
+      ? `<span style="--share:${count};--seg:${colors[index]};--i:${index}"></span>`
+      : '')).join('');
+    const legend = counts.map((count, index) => `
+      <span><i style="--seg:${colors[index]}"></i>${names[index]} <b>${count}</b></span>
+    `).join('');
+    host.innerHTML = `<div class="rating-spectrum" role="img" aria-label="Again ${counts[0]}, Hard ${counts[1]}, Good ${counts[2]}, Easy ${counts[3]}">${segments}</div><div class="rating-legend">${legend}</div>`;
+    host.classList.remove('hidden');
+  }
+
+  function playCompletionMoment() {
+    const signature = window.EruditeSignature;
+    if (!signature) return;
+    signature.drawCheck(els.completionCheck);
+    const panel = els.completionModal.querySelector('.modal-panel');
+    if (panel && window.EruditeMotion) {
+      window.EruditeMotion.animate(panel, [
+        { transform: 'translateY(24px) scale(0.96)', opacity: 0 },
+        { transform: 'translateY(0) scale(1)', opacity: 1 }
+      ], { preset: 'sheet', commit: false });
+    }
+    els.completionStats.querySelectorAll('[data-count-up]').forEach(element => {
+      signature.countUpNumber(element, Number(element.dataset.countUp), 800);
+    });
+    // Celebrate real work only, not an empty or preview session.
+    const worked = state.srsMode ? sessionRatingTotals().total > 0 : state.activeCards.length > 0;
+    if (worked && !state.previewMode) {
+      window.setTimeout(() => signature.cardBurst(els.completionCheck), 420);
+    }
   }
 
   function showEmptyDue() {

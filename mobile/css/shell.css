@@ -303,40 +303,6 @@ body[data-active-tab="library"] .mobile-topbar {
   gap: var(--space-5);
 }
 
-.goal-ring-wrapper {
-  width: 6.5rem;
-  height: 6.5rem;
-}
-
-.goal-ring-svg {
-  color: var(--primary);
-}
-
-.goal-ring-track {
-  stroke: var(--surface-3);
-}
-
-.goal-ring-progress {
-  stroke: currentColor;
-  filter: none;
-  transition: stroke-dashoffset 900ms var(--ease-out);
-}
-
-.goal-ring-center strong {
-  color: var(--text);
-  font-size: var(--text-xl);
-  font-variant-numeric: tabular-nums;
-  font-weight: 600;
-  letter-spacing: var(--tracking-display);
-}
-
-.goal-ring-center span {
-  color: var(--subtle);
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-}
-
 .hero-stats-list {
   gap: 0;
 }
@@ -791,11 +757,6 @@ body[data-active-tab="library"] .mobile-topbar {
   background: var(--surface-2);
   box-shadow: 0 0 0 1px var(--line);
   color: var(--text);
-}
-
-.goal-ring-center {
-  background: transparent;
-  box-shadow: none;
 }
 
 /* ------------------------------------------------------------------ */

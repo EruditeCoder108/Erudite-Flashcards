@@ -20,7 +20,9 @@
     // Sheets and modals.
     sheet: { stiffness: 340, damping: 34, mass: 1 },
     // Returning a dragged card to rest: soft and bouncy.
-    settle: { stiffness: 380, damping: 22, mass: 1 }
+    settle: { stiffness: 380, damping: 22, mass: 1 },
+    // Large, slow reveals such as the daily goal ring.
+    gentle: { stiffness: 70, damping: 12, mass: 1 }
   };
 
   const cache = new Map();
@@ -108,9 +110,9 @@
    */
   function animate(element, keyframes, options = {}) {
     if (!element || typeof element.animate !== 'function') return Promise.resolve();
-    const { preset = 'snappy', velocity = 0, delay = 0, commit = true, duration: fixedDuration } = options;
+    const { preset = 'snappy', velocity = 0, delay = 0, commit = true, duration: fixedDuration, spring: custom } = options;
     const reduced = prefersReducedMotion();
-    const curve = spring({ ...(PRESETS[preset] || PRESETS.snappy), velocity });
+    const curve = spring({ ...(custom || PRESETS[preset] || PRESETS.snappy), velocity });
     const animation = element.animate(keyframes, {
       duration: reduced ? Math.min(160, curve.duration) : (fixedDuration || curve.duration),
       easing: reduced ? 'ease-out' : curve.easing,
