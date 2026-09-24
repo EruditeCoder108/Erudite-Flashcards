@@ -795,17 +795,30 @@
     return true;
   }
 
+  // Images are downscaled and re-encoded before storage (see js/core/image-optimize.js).
+  async function optimizedImageDataUrl(input, meta = {}) {
+    const images = window.EruditeImages;
+    if (meta.optimized || !images?.prepareImage) {
+      return typeof input === 'string' ? input : readFileAsDataUrl(input);
+    }
+    const prepared = await images.prepareImage(input);
+    return prepared.dataUrl;
+  }
+
   async function saveImageFromFile(file, meta = {}) {
-    const dataUrl = await readFileAsDataUrl(file);
+    const isImage = String(file?.type || '').startsWith('image/');
+    const dataUrl = isImage ? await optimizedImageDataUrl(file, meta) : await readFileAsDataUrl(file);
     const nativeApi = getNativeApi();
     if (nativeApi) return nativeApi.saveImage(dataUrl, { ...meta, fileName: file.name });
     return dataUrl;
   }
 
   async function saveImageDataUrl(dataUrl, meta = {}) {
+    const isImage = /^data:image\//i.test(String(dataUrl || ''));
+    const stored = isImage ? await optimizedImageDataUrl(dataUrl, meta) : dataUrl;
     const nativeApi = getNativeApi();
-    if (nativeApi) return nativeApi.saveImage(dataUrl, meta);
-    return dataUrl;
+    if (nativeApi) return nativeApi.saveImage(stored, meta);
+    return stored;
   }
 
   async function deleteImage(fileUrl) {

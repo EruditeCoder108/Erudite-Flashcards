@@ -226,7 +226,12 @@
     <button type="button" class="image-modal-close" id="image-close-button" aria-label="Close image">
       <i class="fas fa-xmark"></i>
     </button>
-    <img id="zoomed-image" alt="Enlarged flashcard image">
+    <div class="zoom-viewport" id="zoom-viewport">
+      <div class="zoom-stage" id="zoom-stage">
+        <img id="zoomed-image" alt="Enlarged flashcard image" draggable="false">
+      </div>
+    </div>
+    <p class="zoom-hint" aria-hidden="true">Pinch or double-tap to zoom</p>
   </div>
 
   <!-- Mobile SRS Actions Bottom Sheet -->

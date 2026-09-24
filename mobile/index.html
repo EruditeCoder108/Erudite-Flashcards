@@ -982,7 +982,7 @@
       <div class="occlusion-editor-head">
         <div>
           <h3 id="occlusion-editor-title"><i class="fas fa-object-ungroup"></i> Image Occlusion</h3>
-          <p class="mobile-modal-hint" id="occlusion-editor-status">Add masks over the parts you want to test.</p>
+          <p class="mobile-modal-hint" id="occlusion-editor-status">Drag over a label to hide it, or tap to drop a mask.</p>
         </div>
         <button type="button" class="small-icon-button" id="occlusion-editor-close" aria-label="Close occlusion editor">
           <i class="fas fa-xmark"></i>
@@ -999,6 +999,17 @@
         <button type="button" id="occlusion-shape-rect" data-occlusion-shape="rect" class="active"><i class="fas fa-vector-square"></i> Rect</button>
         <button type="button" id="occlusion-shape-ellipse" data-occlusion-shape="ellipse"><i class="fas fa-circle"></i> Oval</button>
         <button type="button" id="occlusion-delete-mask" class="danger"><i class="fas fa-trash"></i> Delete</button>
+      </div>
+
+      <div class="occlusion-guess-mode" role="group" aria-label="What the learner sees">
+        <button type="button" data-occlusion-guess="hide-all" class="active" aria-pressed="true">
+          <strong>Hide all labels</strong>
+          <small>Harder. Every mask stays covered; one is asked.</small>
+        </button>
+        <button type="button" data-occlusion-guess="hide-one" aria-pressed="false">
+          <strong>Hide one label</strong>
+          <small>Easier. Other labels stay visible as context.</small>
+        </button>
       </div>
 
       <div class="mobile-modal-row occlusion-editor-fields">
@@ -2437,6 +2448,7 @@ If you cannot attach a ZIP file:
   <script src="js/core/review-session.js"></script>
   <script src="js/core/draft.js"></script>
   <script src="js/core/card-media.js"></script>
+  <script src="js/core/image-optimize.js"></script>
   <script src="vendor/katex/katex.min.js"></script>
   <script src="vendor/katex/auto-render.min.js"></script>
   <script src="js/core/math-render.js"></script>

@@ -140,6 +140,7 @@
   let creatorHasRendered = false;
   let creatorCardLookup = new Map();
   let creatorDirtyCardIds = new Set();
+  const importedImageDimensions = new Map();
   let creatorGeneratedCardCache = new Map();
   let creatorRenderedCardCount = 0;
   let creatorLoadMoreObserver = null;
@@ -197,7 +198,8 @@
   const PREMADE_DOWNLOAD_TIMEOUT_MS = 30 * 1000;
   const PREMADE_DOWNLOAD_MAX_BYTES = ERUDITE_PACKAGE_MAX_ARCHIVE_BYTES;
   const OCCLUSION_MAX_MASKS = 80;
-  const OCCLUSION_MIN_SIZE = 0.035;
+  // Small enough for single-word labels on a full-page diagram.
+  const OCCLUSION_MIN_SIZE = 0.015;
 
   const selectors = {
     title: document.getElementById('mobile-title'),
@@ -3035,8 +3037,8 @@
     if (selectors.occlusionStatus) {
       const count = draft.masks.length;
       selectors.occlusionStatus.textContent = count
-        ? `${plural(count, 'mask')} ready. Each mask becomes one study card.`
-        : 'Add masks over the parts you want to test.';
+        ? `${plural(count, 'mask')} ready. Each mask becomes one study card. Drag on the image to add more.`
+        : 'Drag over a label to hide it, or tap to drop a mask.';
     }
     selectors.occlusionDeleteMask?.toggleAttribute('disabled', !selectedMask);
   }
@@ -3063,6 +3065,7 @@
       };
     }
     selectors.occlusionOverlay?.classList.remove('hidden');
+    updateOcclusionGuessModeUi();
     bindOcclusionEditorLayout();
     requestAnimationFrame(renderOcclusionEditor);
     scheduleOcclusionLayerSync();
@@ -3195,9 +3198,62 @@
     showToast(`Saved ${plural(normalized.masks.length, 'mask')}`);
   }
 
+  function occlusionPointFromEvent(event) {
+    const rect = selectors.occlusionLayer.getBoundingClientRect();
+    return {
+      x: clamp((event.clientX - rect.left) / Math.max(1, rect.width), 0, 1),
+      y: clamp((event.clientY - rect.top) / Math.max(1, rect.height), 0, 1),
+      layerW: Math.max(1, rect.width),
+      layerH: Math.max(1, rect.height)
+    };
+  }
+
+  // Dragging on empty image space draws a new mask exactly over the label;
+  // a plain tap drops a default-size mask centred on the tap.
+  function startOcclusionDraw(event) {
+    const draft = state.occlusionEditor.draft;
+    if (!draft) return;
+    if (draft.masks.length >= OCCLUSION_MAX_MASKS) {
+      showToast(`Limit is ${OCCLUSION_MAX_MASKS} masks`);
+      return;
+    }
+    event.preventDefault();
+    updateSelectedOcclusionText();
+    const point = occlusionPointFromEvent(event);
+    const mask = normalizeOcclusionMask({
+      shape: state.occlusionEditor.shape,
+      x: point.x,
+      y: point.y,
+      w: OCCLUSION_MIN_SIZE,
+      h: OCCLUSION_MIN_SIZE,
+      answer: `Hidden part ${draft.masks.length + 1}`
+    }, draft.masks.length);
+    mask.x = point.x;
+    mask.y = point.y;
+    draft.masks.push(mask);
+    state.occlusionEditor.selectedMaskId = mask.id;
+    state.occlusionEditor.pointer = {
+      id: event.pointerId,
+      mode: 'draw',
+      originX: point.x,
+      originY: point.y,
+      startX: event.clientX,
+      startY: event.clientY,
+      layerW: point.layerW,
+      layerH: point.layerH,
+      mask: { ...mask }
+    };
+    selectors.occlusionLayer.setPointerCapture?.(event.pointerId);
+    renderOcclusionEditor();
+    updateOcclusionSelectionUi();
+  }
+
   function startOcclusionPointer(event) {
     const maskEl = event.target.closest?.('[data-occlusion-mask-id]');
-    if (!maskEl || !selectors.occlusionLayer?.contains(maskEl)) return;
+    if (!maskEl || !selectors.occlusionLayer?.contains(maskEl)) {
+      if (selectors.occlusionLayer?.contains(event.target)) startOcclusionDraw(event);
+      return;
+    }
     event.preventDefault();
     updateSelectedOcclusionText();
     const mask = (state.occlusionEditor.draft?.masks || [])
@@ -3226,7 +3282,16 @@
     if (!mask) return;
     const dx = (event.clientX - pointer.startX) / pointer.layerW;
     const dy = (event.clientY - pointer.startY) / pointer.layerH;
-    if (pointer.mode === 'resize') {
+    if (pointer.mode === 'draw') {
+      const currentX = clamp(pointer.originX + dx, 0, 1);
+      const currentY = clamp(pointer.originY + dy, 0, 1);
+      mask.x = Math.min(pointer.originX, currentX);
+      mask.y = Math.min(pointer.originY, currentY);
+      mask.w = Math.max(OCCLUSION_MIN_SIZE, Math.abs(currentX - pointer.originX));
+      mask.h = Math.max(OCCLUSION_MIN_SIZE, Math.abs(currentY - pointer.originY));
+      mask.x = clamp(mask.x, 0, 1 - mask.w);
+      mask.y = clamp(mask.y, 0, 1 - mask.h);
+    } else if (pointer.mode === 'resize') {
       mask.w = clamp(pointer.mask.w + dx, OCCLUSION_MIN_SIZE, 1 - pointer.mask.x);
       mask.h = clamp(pointer.mask.h + dy, OCCLUSION_MIN_SIZE, 1 - pointer.mask.y);
     } else {
@@ -3240,6 +3305,35 @@
     const pointer = state.occlusionEditor.pointer;
     if (!pointer || pointer.id !== event.pointerId) return;
     state.occlusionEditor.pointer = null;
+    if (pointer.mode !== 'draw') return;
+    const mask = selectedOcclusionMask();
+    if (!mask) return;
+    const dragged = Math.hypot(event.clientX - pointer.startX, event.clientY - pointer.startY) > 8;
+    if (!dragged) {
+      // A tap: drop a label-sized mask centred on the tap point.
+      mask.w = 0.2;
+      mask.h = 0.07;
+      mask.x = clamp(pointer.originX - mask.w / 2, 0, 1 - mask.w);
+      mask.y = clamp(pointer.originY - mask.h / 2, 0, 1 - mask.h);
+    }
+    renderOcclusionEditor();
+    updateOcclusionSelectionUi();
+  }
+
+  function setOcclusionGuessMode(mode) {
+    const draft = state.occlusionEditor.draft;
+    if (!draft) return;
+    draft.guessMode = mode === 'hide-one' ? 'hide-one' : 'hide-all';
+    updateOcclusionGuessModeUi();
+  }
+
+  function updateOcclusionGuessModeUi() {
+    const mode = state.occlusionEditor.draft?.guessMode === 'hide-one' ? 'hide-one' : 'hide-all';
+    document.querySelectorAll('[data-occlusion-guess]').forEach(button => {
+      const active = button.dataset.occlusionGuess === mode;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
   }
 
   function resetCreator() {
@@ -3615,7 +3709,7 @@
           definitionImage: '',
           media: { term: [], definition: [] },
           background: { term: null, definition: null },
-          imageOcclusion: normalizeImageOcclusion({ image, masks }, first),
+          imageOcclusion: normalizeImageOcclusion({ image, masks, guessMode: first.imageOcclusion?.guessMode }, first),
           srs: undefined,
           reviewHistory: []
         }, occlusionCards);
@@ -3911,6 +4005,41 @@
     return kept;
   }
 
+  // Pixel masks are only as good as the image size they were measured against.
+  // AI tools sometimes declare the size of a different crop or preview; when the
+  // declared size disagrees with the packaged file, trust whichever size actually
+  // contains the boxes, preferring the real file.
+  function resolveOcclusionDimensions({ declaredWidth, declaredHeight, actual, masks = [], units }) {
+    const declared = {
+      width: readPixelDimension(declaredWidth),
+      height: readPixelDimension(declaredHeight)
+    };
+    const real = actual?.width && actual?.height ? actual : null;
+    const pick = size => ({ imageWidth: size?.width || undefined, imageHeight: size?.height || undefined });
+    if (!real) return pick(declared);
+    if (!declared.width || !declared.height) return pick(real);
+    const declaredAspect = declared.width / declared.height;
+    const realAspect = real.width / real.height;
+    if (Math.abs(declaredAspect - realAspect) / realAspect <= 0.03) return pick(declared);
+    const unitHint = normalizeCoordinateUnits(units);
+    if (unitHint && unitHint !== 'px') return pick(real);
+    const num = value => {
+      const parsed = parseCoordinateNumber(value);
+      return Number.isFinite(parsed.value) ? parsed.value : 0;
+    };
+    const extents = masks.map(mask => {
+      const box = readOcclusionBox(mask || {});
+      const x = num(firstPresent(box.x, mask?.x, mask?.left));
+      const y = num(firstPresent(box.y, mask?.y, mask?.top));
+      const right = num(firstPresent(box.right, mask?.right)) || x + num(firstPresent(box.w, mask?.w, mask?.width));
+      const bottom = num(firstPresent(box.bottom, mask?.bottom)) || y + num(firstPresent(box.h, mask?.h, mask?.height));
+      return { right, bottom };
+    });
+    const fits = size => extents.every(item => item.right <= size.width * 1.02 && item.bottom <= size.height * 1.02);
+    if (fits(real)) return pick(real);
+    return pick(declared);
+  }
+
   function normalizeOcclusionMask(mask = {}, index = 0, meta = {}) {
     const source = mask && typeof mask === 'object' ? mask : {};
     const box = readOcclusionBox(source);
@@ -3981,6 +4110,9 @@
       version: 1,
       coordinateSpace: 'image',
       mode: source.mode === 'hide-all' ? 'hide-all' : 'hide-one',
+      // guessMode drives study rendering. The older `mode` field was never read
+      // and every stored card says hide-one, so it cannot signal intent.
+      guessMode: source.guessMode === 'hide-one' ? 'hide-one' : 'hide-all',
       image,
       masks,
       created: source.created || Date.now(),
@@ -4957,8 +5089,15 @@
         : (imageObject.dataUrl || imageObject.src || imageObject.url || '');
       const image = safeImportDataUrl(occlusion.image || occlusion.dataUrl || imageSource, ['image']);
       if (!image) return null;
-      const imageWidth = occlusion.imageWidth || occlusion.width || source.imageWidth || imageObject.width || imageObject.imageWidth;
-      const imageHeight = occlusion.imageHeight || occlusion.height || source.imageHeight || imageObject.height || imageObject.imageHeight;
+      const masks = Array.isArray(occlusion.masks) ? occlusion.masks : [];
+      const units = occlusion.units || occlusion.coordinateUnits;
+      const { imageWidth, imageHeight } = resolveOcclusionDimensions({
+        declaredWidth: occlusion.imageWidth || occlusion.width || source.imageWidth || imageObject.width || imageObject.imageWidth,
+        declaredHeight: occlusion.imageHeight || occlusion.height || source.imageHeight || imageObject.height || imageObject.imageHeight,
+        actual: importedImageDimensions.get(image),
+        masks,
+        units
+      });
       const card = createImageOcclusionDraft({
         ...base,
         term: sanitizeEditorHtml(importString(source.term || source.title || source.prompt || 'Image occlusion')),
@@ -4966,12 +5105,12 @@
       }, image);
       card.imageOcclusion = normalizeImageOcclusion({
         image,
-        mode: occlusion.mode,
-        coordinateSpace: occlusion.coordinateSpace || occlusion.units || occlusion.coordinateUnits,
-        units: occlusion.units || occlusion.coordinateUnits,
+        guessMode: occlusion.guessMode,
+        coordinateSpace: occlusion.coordinateSpace || units,
+        units,
         imageWidth,
         imageHeight,
-        masks: Array.isArray(occlusion.masks) ? occlusion.masks : []
+        masks
       }, card);
       return cardHasContent(card) ? card : null;
     }
@@ -5188,11 +5327,23 @@
       if (totalBytes > ERUDITE_PACKAGE_MAX_MEDIA_BYTES) {
         throw importUserError('Package media is too large for Creator import');
       }
-      const dataUrl = `data:${mime};base64,${base64}`;
+      let dataUrl = `data:${mime};base64,${base64}`;
+      let dimensions = null;
+      if (mime.startsWith('image/') && window.EruditeImages?.prepareImage) {
+        const prepared = await window.EruditeImages.prepareImage(dataUrl);
+        dataUrl = prepared.dataUrl;
+        if (prepared.originalWidth && prepared.originalHeight) {
+          dimensions = { width: prepared.originalWidth, height: prepared.originalHeight };
+        }
+      }
       const src = await window.flashcardStore.saveImageDataUrl?.(dataUrl, {
         deckId: state.creator.editingSetId || 'package-import',
-        prefix: relPath.split('/').pop()?.replace(/\.[^.]+$/, '') || 'package-media'
+        prefix: relPath.split('/').pop()?.replace(/\.[^.]+$/, '') || 'package-media',
+        optimized: true
       }) || dataUrl;
+      // Remember the packaged pixel size so occlusion boxes measured on this file
+      // can be checked against the real image, not only the size the AI declared.
+      if (dimensions) importedImageDimensions.set(src, dimensions);
       [...packageMediaReferenceKeys(relPath), ...packageMediaReferenceKeys(item.path)].forEach(key => {
         mediaMap[key] = src;
       });
@@ -11552,6 +11703,14 @@ followed by the JSON containing "deck" and "media" array.`;
         mask.shape = 'ellipse';
         renderOcclusionEditor();
       }
+    });
+
+    document.querySelectorAll('[data-occlusion-guess]').forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        playClick();
+        setOcclusionGuessMode(button.dataset.occlusionGuess);
+      });
     });
 
     selectors.occlusionAnswer?.addEventListener('input', updateSelectedOcclusionText);

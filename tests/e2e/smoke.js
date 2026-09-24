@@ -138,7 +138,79 @@ async function run(context, base, check, errors) {
   const continueLabel = await page.locator('#continue-button').innerText();
   check('completion offers next due deck', /Continue Review/.test(continueLabel), continueLabel.trim());
 
+  await checkOcclusion(page, base, check);
+
   check('no page errors', errors.length === 0, errors.slice(0, 5).join(' | '));
+}
+
+function occlusionDeck(id, guessMode, image) {
+  const masks = [
+    { id: 'm1', shape: 'rect', x: 0.1, y: 0.1, w: 0.2, h: 0.1, answer: 'Nucleus', hint: 'Control centre' },
+    { id: 'm2', shape: 'rect', x: 0.5, y: 0.4, w: 0.2, h: 0.1, answer: 'Vacuole' },
+    { id: 'm3', shape: 'ellipse', x: 0.3, y: 0.7, w: 0.2, h: 0.1, answer: 'Wall' }
+  ];
+  return {
+    id,
+    name: `Occlusion ${guessMode}`,
+    cards: masks.map((mask, index) => ({
+      id: `${id}-${mask.id}`,
+      noteId: `${id}-note`,
+      noteType: 'image-occlusion',
+      cardTemplate: 'image-occlusion-mask',
+      term: '<strong>Guess the hidden part.</strong>',
+      definition: mask.answer,
+      termImage: image,
+      definitionImage: image,
+      noteFields: { answer: mask.answer, hint: mask.hint || '', maskId: mask.id },
+      imageOcclusion: { version: 1, image, guessMode, masks, targetMaskId: mask.id, targetMaskIndex: index }
+    }))
+  };
+}
+
+async function checkOcclusion(page, base, check) {
+  const image = await page.evaluate(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 600;
+    canvas.height = 400;
+    const context = canvas.getContext('2d');
+    context.fillStyle = '#e2e8f0';
+    context.fillRect(0, 0, 600, 400);
+    context.fillStyle = '#1e293b';
+    context.fillRect(60, 40, 120, 40);
+    return canvas.toDataURL('image/png');
+  });
+  await page.evaluate(async decks => {
+    for (const item of decks) await window.flashcardStore.saveSet(item);
+    await window.flashcardStore.flush?.();
+  }, [occlusionDeck('occ-all', 'hide-all', image), occlusionDeck('occ-one', 'hide-one', image)]);
+
+  for (const [deckId, expectedMasks] of [['occ-all', 3], ['occ-one', 1]]) {
+    // Normal (non-SRS) mode shows cards in order, so the first card asks mask m1.
+    await page.goto(`${base}/mobile/study.html?setId=${deckId}&srs=false&from=library`);
+    await page.waitForSelector('#card-stage .study-card.slot-active .occlusion-mask-layer.is-positioned', { timeout: 20000 });
+    const front = page.locator('#card-stage .study-card.slot-active .card-face.front');
+    const maskCount = await front.locator('.occlusion-mask').count();
+    const label = await front.locator('.occlusion-mask.target .occlusion-mask-label').innerText();
+    check(`${deckId} front masks`, maskCount === expectedMasks && label === 'Control centre', `masks=${maskCount} label=${label}`);
+    await page.locator('#card-stage .study-card.slot-active').click({ position: { x: 20, y: 20 } });
+    await page.waitForTimeout(500);
+    const tag = await page.locator('#card-stage .study-card.slot-active .card-face.back .occlusion-answer-tag').innerText();
+    check(`${deckId} back answer tag`, tag === 'Nucleus', tag);
+  }
+
+  if (process.env.SCREENSHOTS) await page.screenshot({ path: path.join(process.env.SCREENSHOTS, 'occlusion-back.png') });
+
+  await page.locator('#card-stage .study-card.slot-active .card-face.back [data-image-side]').first().click();
+  await page.waitForSelector('#image-modal:not(.hidden)', { timeout: 5000 });
+  const viewport = page.locator('#zoom-viewport');
+  const box = await viewport.boundingBox();
+  await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2, { clickCount: 1 });
+  await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2, { clickCount: 1 });
+  await page.waitForTimeout(350);
+  const zoomed = await viewport.evaluate(element => element.classList.contains('is-zoomed'));
+  const zoomMasks = await page.locator('#zoom-stage .zoom-occlusion-layer .occlusion-mask').count();
+  check('double-tap zooms image with masks', zoomed && zoomMasks === 1, `zoomed=${zoomed} masks=${zoomMasks}`);
+  if (process.env.SCREENSHOTS) await page.screenshot({ path: path.join(process.env.SCREENSHOTS, 'zoom.png') });
 }
 
 main().catch(error => {

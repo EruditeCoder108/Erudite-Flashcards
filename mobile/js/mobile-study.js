@@ -105,6 +105,8 @@
     imageModal: document.getElementById('image-modal'),
     zoomedImage: document.getElementById('zoomed-image'),
     imageClose: document.getElementById('image-close-button'),
+    zoomViewport: document.getElementById('zoom-viewport'),
+    zoomStage: document.getElementById('zoom-stage'),
     loadingCover: document.getElementById('study-loading-cover'),
     loadingTitle: document.getElementById('study-loading-title'),
     loadingCopy: document.getElementById('study-loading-copy'),
@@ -132,6 +134,7 @@
     Easy: document.getElementById('interval-easy')
   };
 
+  let imageZoom = null;
   let toastTimer = null;
   let dueSoonTimer = null;
   let dueSoonTick = null;
@@ -1592,29 +1595,51 @@
     });
   }
 
+  function plainText(value) {
+    const template = document.createElement('template');
+    template.innerHTML = String(value || '');
+    return (template.content.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+
   function buildOcclusionMaskLayer(card, side) {
     const occlusion = card?.imageOcclusion;
     const masks = Array.isArray(occlusion?.masks) ? occlusion.masks : [];
     if (!masks.length || !isImageOcclusionCard(card)) return null;
     const targetId = String(occlusion.targetMaskId || '');
     const targetIndex = Number(occlusion.targetMaskIndex ?? 0);
+    const revealed = side === 'definition';
+    // Hide one: only the asked label is covered, the rest stay readable as context.
+    const hideOne = occlusion.guessMode === 'hide-one';
     const layer = document.createElement('div');
-    layer.className = `occlusion-mask-layer ${side === 'definition' ? 'revealed' : 'hidden-side'}`;
+    layer.className = `occlusion-mask-layer ${revealed ? 'revealed' : 'hidden-side'}`;
     masks.forEach((mask, index) => {
       const isTarget = targetId
         ? String(mask.id || '') === targetId
         : index === targetIndex;
+      if (!isTarget && hideOne) return;
       const item = document.createElement('span');
       item.className = `occlusion-mask ${mask.shape === 'ellipse' ? 'shape-ellipse' : ''} ${isTarget ? 'target' : 'context'}`;
       const x = normalizedOcclusionUnit(mask.x, 0);
       const y = normalizedOcclusionUnit(mask.y, 0);
-      const w = Math.min(1 - x, Math.max(0.03, normalizedOcclusionUnit(mask.w, 0.12)));
-      const h = Math.min(1 - y, Math.max(0.03, normalizedOcclusionUnit(mask.h, 0.08)));
+      const w = Math.min(1 - x, Math.max(0.012, normalizedOcclusionUnit(mask.w, 0.12)));
+      const h = Math.min(1 - y, Math.max(0.012, normalizedOcclusionUnit(mask.h, 0.08)));
       item.style.left = `${x * 100}%`;
       item.style.top = `${y * 100}%`;
       item.style.width = `${w * 100}%`;
       item.style.height = `${h * 100}%`;
-      item.textContent = isTarget && side !== 'definition' ? '?' : '';
+      if (isTarget) {
+        const label = document.createElement('span');
+        if (revealed) {
+          // The revealed mask stays translucent so the diagram's own label shows
+          // through; the answer sits in a tag just outside the box.
+          label.className = `occlusion-answer-tag ${y + h > 0.82 ? 'above' : 'below'}`;
+          label.textContent = plainText(mask.answer || card.noteFields?.answer || card.definition);
+        } else {
+          label.className = 'occlusion-mask-label';
+          label.textContent = plainText(mask.hint || card.noteFields?.hint) || '?';
+        }
+        if (label.textContent) item.appendChild(label);
+      }
       layer.appendChild(item);
     });
     return layer;
@@ -1642,16 +1667,19 @@
   function renderZoomOcclusionMasks(card, side) {
     clearZoomOcclusionMasks();
     const layer = buildOcclusionMaskLayer(card, side);
-    if (!layer || !els.imageModal || !els.zoomedImage) return;
+    const container = els.zoomStage || els.imageModal;
+    if (!layer || !container || !els.zoomedImage) return;
     layer.classList.add('zoom-occlusion-layer');
-    els.imageModal.appendChild(layer);
-    bindOcclusionLayerToImage(layer, els.zoomedImage, els.imageModal);
+    // Masks live inside the zoom stage so they scale and pan with the image.
+    container.appendChild(layer);
+    bindOcclusionLayerToImage(layer, els.zoomedImage, container);
   }
 
   function openImageModal(src, options = {}) {
     const safeSrc = safeMediaSrc(src);
     if (!safeSrc || !els.imageModal || !els.zoomedImage) return;
     clearZoomOcclusionMasks();
+    imageZoom?.reset();
     els.zoomedImage.src = safeSrc;
     els.imageModal.classList.remove('hidden');
     if (options.card && options.side) {
@@ -1662,6 +1690,192 @@
   function closeImageModal() {
     els.imageModal?.classList.add('hidden');
     clearZoomOcclusionMasks();
+    imageZoom?.reset();
+  }
+
+  // Pinch, pan, and double-tap zoom for the enlarged image. Anatomy diagrams and
+  // maps are unreadable at phone width without it.
+  function createImageZoom(viewport, stage, onDismiss) {
+    if (!viewport || !stage) return null;
+    const MIN_SCALE = 1;
+    const MAX_SCALE = 6;
+    const DOUBLE_TAP_SCALE = 2.5;
+    const pointers = new Map();
+    const view = { scale: 1, x: 0, y: 0 };
+    let gesture = null;
+    let lastTap = null;
+    let frame = 0;
+
+    const clampScale = value => Math.min(MAX_SCALE, Math.max(MIN_SCALE, value));
+
+    function bounds() {
+      const rect = viewport.getBoundingClientRect();
+      return {
+        left: rect.left,
+        top: rect.top,
+        width: rect.width,
+        height: rect.height,
+        stageLeft: stage.offsetLeft,
+        stageTop: stage.offsetTop,
+        stageWidth: stage.offsetWidth,
+        stageHeight: stage.offsetHeight
+      };
+    }
+
+    // Keep the scaled image covering the viewport when it is larger than it,
+    // and centred when it is smaller.
+    function clampAxis(offset, stageStart, stageSize, viewportSize, scale) {
+      const scaled = stageSize * scale;
+      if (scaled <= viewportSize) return (viewportSize - scaled) / 2 - stageStart;
+      return Math.min(-stageStart, Math.max(viewportSize - stageStart - scaled, offset));
+    }
+
+    function apply() {
+      frame = 0;
+      const box = bounds();
+      if (view.scale <= MIN_SCALE + 0.001) {
+        view.scale = 1;
+        view.x = 0;
+        view.y = 0;
+      } else {
+        view.x = clampAxis(view.x, box.stageLeft, box.stageWidth, box.width, view.scale);
+        view.y = clampAxis(view.y, box.stageTop, box.stageHeight, box.height, view.scale);
+      }
+      stage.style.transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
+      viewport.classList.toggle('is-zoomed', view.scale > 1);
+    }
+
+    function schedule() {
+      if (!frame) frame = requestAnimationFrame(apply);
+    }
+
+    // Scale around a viewport point so the content under the fingers stays put.
+    function zoomAt(clientX, clientY, nextScale, from = view) {
+      const box = bounds();
+      const px = clientX - box.left - box.stageLeft;
+      const py = clientY - box.top - box.stageTop;
+      const localX = (px - from.x) / from.scale;
+      const localY = (py - from.y) / from.scale;
+      view.scale = clampScale(nextScale);
+      view.x = px - localX * view.scale;
+      view.y = py - localY * view.scale;
+      schedule();
+    }
+
+    function distance(a, b) {
+      return Math.hypot(a.x - b.x, a.y - b.y);
+    }
+
+    function midpoint(a, b) {
+      return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+    }
+
+    function startGesture() {
+      const points = Array.from(pointers.values());
+      if (points.length >= 2) {
+        const mid = midpoint(points[0], points[1]);
+        gesture = {
+          type: 'pinch',
+          startDistance: Math.max(1, distance(points[0], points[1])),
+          startView: { ...view },
+          startMid: mid
+        };
+      } else if (points.length === 1) {
+        gesture = {
+          type: 'pan',
+          startX: points[0].x,
+          startY: points[0].y,
+          startView: { ...view },
+          moved: false
+        };
+      } else {
+        gesture = null;
+      }
+    }
+
+    viewport.addEventListener('pointerdown', event => {
+      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      viewport.setPointerCapture?.(event.pointerId);
+      viewport.classList.add('is-gesturing');
+      startGesture();
+    });
+
+    viewport.addEventListener('pointermove', event => {
+      if (!pointers.has(event.pointerId)) return;
+      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      if (!gesture) return;
+      event.preventDefault();
+      const points = Array.from(pointers.values());
+      if (gesture.type === 'pinch' && points.length >= 2) {
+        const mid = midpoint(points[0], points[1]);
+        const ratio = distance(points[0], points[1]) / gesture.startDistance;
+        const start = gesture.startView;
+        zoomAt(gesture.startMid.x, gesture.startMid.y, start.scale * ratio, start);
+        view.x += mid.x - gesture.startMid.x;
+        view.y += mid.y - gesture.startMid.y;
+      } else if (gesture.type === 'pan') {
+        const dx = event.clientX - gesture.startX;
+        const dy = event.clientY - gesture.startY;
+        if (Math.abs(dx) > 6 || Math.abs(dy) > 6) gesture.moved = true;
+        if (view.scale > 1) {
+          view.x = gesture.startView.x + dx;
+          view.y = gesture.startView.y + dy;
+          schedule();
+        }
+      }
+    }, { passive: false });
+
+    function endPointer(event) {
+      if (!pointers.has(event.pointerId)) return;
+      const wasPan = gesture?.type === 'pan' && pointers.size === 1;
+      const tap = wasPan && !gesture.moved;
+      pointers.delete(event.pointerId);
+      if (!pointers.size) viewport.classList.remove('is-gesturing');
+      if (event.type === 'pointercancel') {
+        startGesture();
+        return;
+      }
+      if (tap) {
+        const now = performance.now();
+        if (lastTap && now - lastTap.time < 320 && Math.hypot(event.clientX - lastTap.x, event.clientY - lastTap.y) < 30) {
+          lastTap = null;
+          if (view.scale > 1) {
+            view.scale = 1;
+            schedule();
+          } else {
+            zoomAt(event.clientX, event.clientY, DOUBLE_TAP_SCALE);
+          }
+        } else {
+          lastTap = { time: now, x: event.clientX, y: event.clientY };
+          const tappedImage = event.target === els.zoomedImage || event.target.closest?.('.zoom-occlusion-layer');
+          // A single tap on the dark backdrop closes the viewer, once we know it
+          // was not the first half of a double tap.
+          if (!tappedImage && view.scale === 1) {
+            window.setTimeout(() => {
+              if (lastTap && lastTap.time === now) onDismiss?.();
+            }, 330);
+          }
+        }
+      }
+      startGesture();
+    }
+
+    viewport.addEventListener('pointerup', endPointer);
+    viewport.addEventListener('pointercancel', endPointer);
+    window.addEventListener('resize', schedule);
+
+    return {
+      reset() {
+        pointers.clear();
+        gesture = null;
+        lastTap = null;
+        view.scale = 1;
+        view.x = 0;
+        view.y = 0;
+        stage.style.transform = '';
+        viewport.classList.remove('is-zoomed');
+      }
+    };
   }
 
   function renderImage(img, wrap, src, card, side) {
@@ -3183,6 +3397,7 @@
       openImageModal(src, { card: activeCard(), side });
     });
 
+    imageZoom = createImageZoom(els.zoomViewport, els.zoomStage, closeImageModal);
     els.imageClose.addEventListener('click', closeImageModal);
     els.imageModal.addEventListener('click', event => {
       if (event.target === els.imageModal) closeImageModal();

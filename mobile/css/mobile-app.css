@@ -3107,15 +3107,18 @@ select option {
   top: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
+  /* Empty image space accepts drags to draw new masks. */
+  pointer-events: auto;
+  touch-action: none;
+  cursor: crosshair;
 }
 
 .occlusion-editor-mask {
   position: absolute;
   display: grid;
   place-items: center;
-  min-width: 1.8rem;
-  min-height: 1.4rem;
+  min-width: 0.9rem;
+  min-height: 0.9rem;
   border: 2px solid rgba(219, 234, 254, 0.94);
   border-radius: 0.45rem;
   background: rgba(37, 99, 235, 0.56);
@@ -3236,6 +3239,41 @@ select option {
 .occlusion-editor-mask:active {
   transform: none !important;
   transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.occlusion-guess-mode {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+
+.occlusion-guess-mode button {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.65rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface-2);
+  color: var(--text);
+  text-align: left;
+  font: inherit;
+}
+
+.occlusion-guess-mode button strong {
+  font-size: 0.84rem;
+}
+
+.occlusion-guess-mode button small {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.occlusion-guess-mode button.active {
+  border-color: var(--primary-2);
+  background: rgba(59, 130, 246, 0.14);
+  box-shadow: inset 0 0 0 1px var(--primary-2);
 }
 
 .occlusion-editor-tools {
