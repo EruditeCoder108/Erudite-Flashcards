@@ -792,12 +792,34 @@
     }
   }
 
+  function vendorScriptBase() {
+    try {
+      const scripts = document.querySelectorAll('script[src*="mobile-store"]');
+      const src = scripts[scripts.length - 1]?.src || '';
+      return src.substring(0, src.lastIndexOf('/js/mobile/'));
+    } catch (_e) {
+      return '';
+    }
+  }
+
+  async function loadSqlJs() {
+    if (SQL) return SQL;
+    const scriptBase = vendorScriptBase();
+    const wasmBase = scriptBase ? `${scriptBase}/vendor/sql.js/` : 'vendor/sql.js/';
+    SQL = await initSqlJs({ locateFile: file => `${wasmBase}${file}` });
+    return SQL;
+  }
+
   async function migrateFromLegacySqlJs() {
     try {
       const exists = await Filesystem.stat({ path: DB_PATH, directory: DIRECTORY_DATA })
         .then(() => true)
         .catch(() => false);
       if (!exists) return;
+
+      // The native path never loads sql.js on its own, so load it only when a
+      // legacy database file actually needs to be read.
+      await loadSqlJs();
 
       console.log('[mobile-store] Legacy SQLite file found. Starting migration...');
 
@@ -1208,14 +1230,6 @@
     const initSpan = perf?.start('store.init', { native: isNative });
 
     readyPromise = (async () => {
-      const scriptBase = (() => {
-        try {
-          const scripts = document.querySelectorAll('script[src*="mobile-store"]');
-          const src = scripts[scripts.length - 1]?.src || '';
-          return src.substring(0, src.lastIndexOf('/js/mobile/'));
-        } catch (_e) { return ''; }
-      })();
-
       db = null;
       let foundExistingFile = false;
       let openedFromTemp = false;
@@ -1253,9 +1267,8 @@
         perf?.end(recoverySpan, recovery);
       } else {
         // Load SQL.js WebAssembly only as a fallback
-        const wasmBase = scriptBase ? `${scriptBase}/vendor/sql.js/` : 'vendor/sql.js/';
         const wasmSpan = perf?.start('store.webassembly.load');
-        SQL = await initSqlJs({ locateFile: file => `${wasmBase}${file}` });
+        await loadSqlJs();
         perf?.end(wasmSpan, { status: 'ok' });
 
         const openSpan = perf?.start('store.webassembly.open_database');

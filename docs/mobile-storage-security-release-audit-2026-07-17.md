@@ -52,7 +52,7 @@
 
 ## Strengths to retain
 
-- Keep `android:allowBackup="false"`, `android:fullBackupContent="false"`, and `android:usesCleartextTraffic="false"`.
+- Keep `android:usesCleartextTraffic="false"`. Android backup is now enabled for the SQLite study database only (`backup_rules.xml`, `data_extraction_rules.xml`); media, WebView storage, and exported backups remain excluded. Reason: without it, a reinstall or a new phone silently discarded every deck and all review history. Review the Play Data safety answers whenever this scope changes.
 - Keep parameterized SQLite queries and transactional multi-row writes.
 - Keep the existing rich-card allowlists, local-first storage architecture, 80 MB backup import cap, card-count caps, and user-triggered backup sharing.
 - Keep the current small manifest permission surface; do not add permissions merely for future features.
