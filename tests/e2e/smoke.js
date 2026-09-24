@@ -140,6 +140,7 @@ async function run(context, base, check, errors) {
 
   await checkOcclusion(page, base, check);
   await checkPackageImport(page, base, check);
+  await checkReminder(page, base, check);
 
   check('no page errors', errors.length === 0, errors.slice(0, 5).join(' | '));
 }
@@ -275,6 +276,27 @@ async function checkPackageImport(page, base, check) {
   const onLabel = Math.abs(mask.x - 1200 / 1400) < 0.01 && Math.abs(mask.y - 700 / 900) < 0.01;
   check('package import places masks on real image size', result.cards === 3 && onLabel, JSON.stringify({ cards: result.cards, x: mask.x, y: mask.y }));
   check('imported image stored within size limit', result.width > 0 && result.width <= 2048, `${result.width}px ${result.src}`);
+}
+
+async function checkReminder(page, base, check) {
+  await page.goto(`${base}/index.html`);
+  await page.waitForFunction(() => document.body.classList.contains('app-ready'), null, { timeout: 20000 });
+  await page.locator('.tab-button[data-tab="more"]').click();
+  await page.locator('[data-action="open-reminder-settings"]').click();
+  await page.locator('#reminder-enabled').check();
+  await page.locator('#reminder-time').fill('21:30');
+  await page.locator('#reminder-save').click();
+  await page.waitForTimeout(800);
+  const scheduled = await page.evaluate(() => window.Capacitor.Plugins.LocalNotifications.scheduled.map(item => ({
+    title: item.title,
+    hour: new Date(item.schedule.at).getHours(),
+    minute: new Date(item.schedule.at).getMinutes(),
+    exact: item.isExactNotification
+  })));
+  const allAtTime = scheduled.every(item => item.hour === 21 && item.minute === 30 && item.exact === false);
+  check('daily reminder schedules a week of inexact notifications', scheduled.length === 7 && allAtTime, `${scheduled.length} ${scheduled[0]?.title || ''}`);
+  const label = await page.locator('#more-reminder-label').innerText();
+  check('reminder label shows the time', /9:30/.test(label), label);
 }
 
 main().catch(error => {

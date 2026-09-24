@@ -3881,6 +3881,24 @@ select option,
   color: var(--primary-2);
 }
 
+.reminder-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.4rem 0 0.9rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  background: var(--surface-2);
+  font-weight: 700;
+}
+
+.reminder-toggle-row input {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--primary);
+}
+
 .mobile-modal-option-btn .option-number {
   width: 2.25rem;
   font-size: 1.05rem;

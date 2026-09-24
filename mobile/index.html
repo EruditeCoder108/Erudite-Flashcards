@@ -511,6 +511,14 @@
             </span>
             <span class="switch" id="srs-switch"><span></span></span>
           </button>
+          <button type="button" class="settings-row" data-action="open-reminder-settings">
+            <span class="settings-icon"><i class="fas fa-bell"></i></span>
+            <span>
+              <strong>Daily Reminder</strong>
+              <small id="more-reminder-label">Off</small>
+            </span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
           <button type="button" class="settings-row" data-action="select-new-card-limit">
             <span class="settings-icon"><i class="fas fa-seedling"></i></span>
             <span>
@@ -1752,6 +1760,25 @@ If you cannot attach a ZIP file:
       </div>
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="new-card-limit-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-modal-overlay hidden" id="reminder-overlay" role="dialog" aria-modal="true" aria-labelledby="reminder-title">
+    <div class="mobile-modal-card">
+      <h3 id="reminder-title" class="modal-title"><i class="fas fa-bell"></i> Daily Reminder</h3>
+      <p class="mobile-modal-hint">One notification a day at a time you choose. It says how many cards are due and stays quiet on days you have already finished.</p>
+      <label class="reminder-toggle-row">
+        <input type="checkbox" id="reminder-enabled">
+        <span>Remind me to study</span>
+      </label>
+      <label class="mobile-field">
+        <span>Time</span>
+        <input type="time" id="reminder-time" class="mobile-modal-input" value="19:00">
+      </label>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="reminder-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="reminder-save">Save</button>
       </div>
     </div>
   </div>

@@ -7,6 +7,8 @@
     <!-- Remove permissions contributed by the SQLite dependency; this app does not use biometric APIs. -->
     <uses-permission android:name="android.permission.USE_BIOMETRIC" tools:node="remove" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" tools:node="remove" />
+    <!-- Study reminders use inexact alarms; exact alarms are reserved for alarm and calendar apps under Play policy. -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" tools:node="remove" />
 
     <application
         android:allowBackup="true"

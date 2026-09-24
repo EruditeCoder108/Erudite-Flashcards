@@ -68,6 +68,21 @@
         exitApp() {}
       },
       SystemBars: { async setStyle() {}, async show() {}, async hide() {} },
+      // Records scheduled notifications so tests can inspect them.
+      LocalNotifications: {
+        scheduled: [],
+        async checkPermissions() { return { display: 'granted' }; },
+        async requestPermissions() { return { display: 'granted' }; },
+        async createChannel() {},
+        async cancel({ notifications }) {
+          const ids = new Set(notifications.map(item => item.id));
+          this.scheduled = this.scheduled.filter(item => !ids.has(item.id));
+        },
+        async schedule({ notifications }) {
+          this.scheduled.push(...notifications);
+          return { notifications: notifications.map(item => ({ id: item.id })) };
+        }
+      },
       StatusBar: { async setStyle() {}, async setBackgroundColor() {} }
     }
   };

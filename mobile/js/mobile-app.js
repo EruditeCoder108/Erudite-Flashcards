@@ -968,7 +968,10 @@
         return;
       }
       scheduleLearningDueRefresh(entries);
-      if (!applySetStatsEntries(entries)) {
+      const changed = applySetStatsEntries(entries);
+      // Reminder text uses the fresh due count, so reschedule after every refresh.
+      scheduleStudyRemindersSoon();
+      if (!changed) {
         perf?.end(span, { status: 'unchanged', entryCount: entries?.length || 0 });
         return;
       }
@@ -6602,6 +6605,8 @@
         : 'Off - swipe and tap the whole HTML card';
     }
 
+    updateReminderLabel();
+
     const newCardLimitLabel = document.getElementById('more-new-card-limit-label');
     if (newCardLimitLabel) {
       newCardLimitLabel.textContent = `${defaultNewCardsPerDay()} per deck, unless a deck overrides it`;
@@ -8084,6 +8089,205 @@
   function defaultNewCardsPerDay() {
     const value = Number(state.settings?.srsDefaults?.newCardsPerDay);
     return Number.isFinite(value) && value >= 0 ? Math.round(value) : (schema?.DEFAULT_NEW_CARDS_PER_DAY ?? 20);
+  }
+
+  // ─── Daily study reminder ────────────────────────────────────────────────
+  // Notifications are scheduled locally for the next week and rebuilt whenever
+  // the app refreshes its statistics, so the text reflects the current due count
+  // and today's reminder is dropped once the learner has finished.
+  const REMINDER_BASE_ID = 7100;
+  const REMINDER_DAYS = 7;
+  const REMINDER_CHANNEL_ID = 'study-reminders';
+  let reminderChannelReady = false;
+  let reminderScheduleTimer = null;
+
+  function localNotifications() {
+    return window.Capacitor?.Plugins?.LocalNotifications || null;
+  }
+
+  function reminderSettings() {
+    const reminder = state.settings?.reminder || {};
+    return {
+      enabled: reminder.enabled === true,
+      hour: Number.isFinite(Number(reminder.hour)) ? Number(reminder.hour) : 19,
+      minute: Number.isFinite(Number(reminder.minute)) ? Number(reminder.minute) : 0
+    };
+  }
+
+  function formatReminderTime(hour, minute) {
+    const date = new Date();
+    date.setHours(hour, minute, 0, 0);
+    return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+  }
+
+  function reminderMessages(dueCount, studiedToday) {
+    const name = readPreferredName();
+    const greeting = name ? `${name}, ` : '';
+    const today = dueCount > 0
+      ? {
+          title: `${plural(dueCount, 'card')} ready for review`,
+          body: `${greeting}a few minutes now keeps them from piling up tomorrow.`
+        }
+      : {
+          title: 'Keep your streak going',
+          body: `${greeting}learn a few new cards today.`
+        };
+    const later = [
+      { title: 'Time for today\'s review', body: 'Short daily sessions beat long cramming ones.' },
+      { title: 'Your cards are waiting', body: 'Reviewing on time is what makes them stick.' },
+      { title: 'A quick session?', body: 'Five minutes today saves twenty next week.' }
+    ];
+    return { today: studiedToday && dueCount === 0 ? null : today, later };
+  }
+
+  async function ensureReminderChannel(plugin) {
+    if (reminderChannelReady || typeof plugin.createChannel !== 'function') return;
+    try {
+      await plugin.createChannel({
+        id: REMINDER_CHANNEL_ID,
+        name: 'Study reminders',
+        description: 'Daily reminder to review due cards',
+        importance: 3,
+        visibility: 1
+      });
+      reminderChannelReady = true;
+    } catch (error) {
+      console.warn('[mobile] Could not create reminder channel:', error);
+    }
+  }
+
+  async function cancelStudyReminders(plugin = localNotifications()) {
+    if (!plugin) return;
+    const notifications = Array.from({ length: REMINDER_DAYS }, (_, index) => ({ id: REMINDER_BASE_ID + index }));
+    try {
+      await plugin.cancel({ notifications });
+    } catch (_) {}
+  }
+
+  async function scheduleStudyReminders() {
+    const plugin = localNotifications();
+    if (!plugin) return;
+    const reminder = reminderSettings();
+    await cancelStudyReminders(plugin);
+    if (!reminder.enabled) return;
+    try {
+      const permission = await plugin.checkPermissions();
+      if (permission?.display !== 'granted') return;
+    } catch (_) {
+      return;
+    }
+    await ensureReminderChannel(plugin);
+
+    const dueCount = state.srsMode ? Number(totalStats({ forceDue: true }).dueCards || 0) : 0;
+    const studiedToday = reviewsToday() > 0 || studyActivitySummary().todayCardsViewed > 0;
+    const messages = reminderMessages(dueCount, studiedToday);
+    const now = Date.now();
+    const notifications = [];
+    for (let offset = 0; offset < REMINDER_DAYS + 1 && notifications.length < REMINDER_DAYS; offset += 1) {
+      const at = new Date();
+      at.setDate(at.getDate() + offset);
+      at.setHours(reminder.hour, reminder.minute, 0, 0);
+      if (at.getTime() <= now + 60 * 1000) continue;
+      const isToday = offset === 0;
+      const message = isToday ? messages.today : messages.later[offset % messages.later.length];
+      if (!message) continue;
+      notifications.push({
+        id: REMINDER_BASE_ID + notifications.length,
+        title: message.title,
+        body: message.body,
+        channelId: REMINDER_CHANNEL_ID,
+        smallIcon: 'ic_stat_erudite',
+        schedule: { at, allowWhileIdle: true },
+        isExactNotification: false
+      });
+    }
+    if (!notifications.length) return;
+    try {
+      await plugin.schedule({ notifications });
+    } catch (error) {
+      console.warn('[mobile] Could not schedule study reminders:', error);
+    }
+  }
+
+  function scheduleStudyRemindersSoon() {
+    clearTimeout(reminderScheduleTimer);
+    reminderScheduleTimer = window.setTimeout(() => {
+      reminderScheduleTimer = null;
+      scheduleStudyReminders().catch(() => {});
+    }, 1200);
+  }
+
+  function updateReminderLabel() {
+    const label = document.getElementById('more-reminder-label');
+    if (!label) return;
+    const reminder = reminderSettings();
+    label.textContent = reminder.enabled ? `Every day at ${formatReminderTime(reminder.hour, reminder.minute)}` : 'Off';
+  }
+
+  function openReminderModal() {
+    const overlay = document.getElementById('reminder-overlay');
+    const enabledInput = document.getElementById('reminder-enabled');
+    const timeInput = document.getElementById('reminder-time');
+    const saveBtn = document.getElementById('reminder-save');
+    const cancelBtn = document.getElementById('reminder-cancel');
+    if (!overlay || !enabledInput || !timeInput) return;
+    const reminder = reminderSettings();
+    enabledInput.checked = reminder.enabled;
+    timeInput.value = `${String(reminder.hour).padStart(2, '0')}:${String(reminder.minute).padStart(2, '0')}`;
+    overlay.classList.remove('hidden');
+    playClick();
+
+    function close() {
+      overlay.classList.add('hidden');
+      saveBtn?.removeEventListener('click', save);
+      cancelBtn?.removeEventListener('click', close);
+      state.lastModalClosedAt = Date.now();
+    }
+
+    async function save() {
+      const [hour, minute] = String(timeInput.value || '19:00').split(':').map(Number);
+      let enabled = enabledInput.checked;
+      const plugin = localNotifications();
+      if (enabled) {
+        if (!plugin) {
+          showToast('Reminders are available in the Android app');
+          enabled = false;
+        } else {
+          try {
+            const current = await plugin.checkPermissions();
+            const result = current?.display === 'granted' ? current : await plugin.requestPermissions();
+            if (result?.display !== 'granted') {
+              showToast('Allow notifications for Erudite in Android settings to get reminders');
+              enabled = false;
+            }
+          } catch (_) {
+            enabled = false;
+          }
+        }
+      }
+      state.settings = {
+        ...(state.settings || {}),
+        reminder: {
+          enabled,
+          hour: Number.isFinite(hour) ? hour : 19,
+          minute: Number.isFinite(minute) ? minute : 0
+        }
+      };
+      close();
+      updateReminderLabel();
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+        await scheduleStudyReminders();
+        if (enabled) showToast(`Reminder set for ${formatReminderTime(state.settings.reminder.hour, state.settings.reminder.minute)}`);
+        else if (enabledInput.checked === false) showToast('Daily reminder turned off');
+      } catch (error) {
+        console.error('Could not save reminder:', error);
+        showToast('Could not save reminder');
+      }
+    }
+
+    saveBtn?.addEventListener('click', save);
+    cancelBtn?.addEventListener('click', close);
   }
 
   function openNewCardLimitModal() {
@@ -9903,6 +10107,9 @@
         break;
       case 'select-new-card-limit':
         openNewCardLimitModal();
+        break;
+      case 'open-reminder-settings':
+        openReminderModal();
         break;
       case 'select-theme':
         openThemeSelectModal();
