@@ -1,6 +1,6 @@
 # Monetization and ads plan
 
-Status: proposal. Nothing here is implemented yet; the decisions at the end need the owner.
+Status: agreed direction, not implemented yet. The owner confirmed ads and the free-sample model on 2026-09-24.
 
 ## Principles
 
@@ -15,7 +15,7 @@ Status: proposal. Nothing here is implemented yet; the decisions at the end need
 | --- | --- |
 | Unlimited decks and cards, all card types, image occlusion | Everything in Free |
 | FSRS scheduling, daily limits, custom study, basic insights | Full premium premade libraries (complete NEET, JEE, and board chapter sets with occlusion diagrams) |
-| Class 10 premade decks and a sample chapter from every premium library | Automatic backup to Google Drive, and sync once it exists |
+| The first cards of every premade library (a free sample) | Automatic backup to Google Drive, and sync once it exists |
 | AI prompt builder (copy and paste hand-off) | In-app AI generation from a PDF or photo, when it ships (covers the API cost) |
 | Manual JSON backup | Advanced insights: per-deck retention trends, FSRS parameter optimisation, forecast by deck |
 | Small banner ads outside study | No ads, extra themes, and custom fonts |
@@ -46,7 +46,7 @@ The premade library is the strongest paid asset: it is hard to copy, directly ti
   - Lifetime: ₹999 (one purchase for students wary of subscriptions)
   - 7-day free trial on the annual plan
 - **Entitlement layer:** one small module, `js/core/entitlements.js`, exposes `isPro()` and `onChange()`. The app gates features only through it, so ads, the premade locks, and Pro insights all read one source of truth. The last known entitlement is cached in SQLite so Pro keeps working offline.
-- **Premade locks:** add `"tier": "free" | "pro"` per deck in `premade-catalog.json` and the subject manifests. Locked decks show a lock icon and a preview of 10 cards; the download stays gated in the app. The hosted files are public, so this is a convenience gate, not DRM. Stronger protection would need signed, expiring download URLs from a small server.
+- **Premade locks (decided):** every premade library keeps its first few cards free and puts the rest behind Pro. Add `"freeCards": <n>` per library in `premade-catalog.json` (default 20 when missing), or `"tier": "free"` for a library that stays fully free. Free users download and study the sample normally; the remaining cards show as locked in the deck view with an upgrade button. Cards are ordered by chapter, so the sample is the start of the first chapter. The hosted files are public, so this is a convenience gate, not DRM. Stronger protection would need signed, expiring download URLs from a small server.
 
 ## Where the upgrade prompt appears (and where it never does)
 
@@ -57,14 +57,20 @@ The premade library is the strongest paid asset: it is hard to copy, directly ti
 
 ## Build order
 
-1. Entitlement module, a Pro screen, and RevenueCat purchase and restore (no ads yet).
-2. Premade `tier` field, preview and lock UI, and the rewarded-ad unlock.
-3. Banner ads for free users, UMP consent, privacy policy and Data safety updates.
+1. Entitlement module, a Pro screen, and RevenueCat purchase and restore.
+2. Premade `freeCards` field and the lock UI. **Release 1 ships here, without ads.**
+3. Release 2: banner ads for free users, the rewarded-ad unlock, UMP consent, and the privacy policy and Data safety updates.
 4. Pro-only features as they land: Drive backup, advanced insights, in-app AI.
 
-## Decisions needed from the owner
+## Why ads wait for the second release
 
-1. Ads at all, or Pro-only monetisation? Recommendation: ads, but only as described above.
-2. Which premade libraries become Pro? Recommendation: keep Class 10 free; make 11th and 12th, NEET, and SSC Pro, each with a free sample chapter.
-3. Price points and whether to offer lifetime.
-4. Create the accounts only the owner can create: AdMob app and ad unit IDs, Play Console subscription products, and a RevenueCat project.
+- Ratings from the first users set the store rating for months. A redesigned app with no ads earns better first reviews.
+- Ads need a new privacy policy, a new Data safety form, a consent form, and the AD_ID permission. Shipping them later keeps the first release review simple.
+- Without ads, the first release measures one thing cleanly: how many free-sample users buy Pro. That number decides how aggressive ads need to be.
+- Banner ads earn little at the start (a few rupees per 1,000 views in India), so waiting one release costs almost nothing.
+
+## Decisions still needed from the owner
+
+1. The number of free cards per library (recommendation: 20, or the whole first chapter when it is shorter than 40 cards).
+2. Price points and whether to offer lifetime.
+3. Create the accounts only the owner can create: AdMob app and ad unit IDs, Play Console subscription products, and a RevenueCat project.
