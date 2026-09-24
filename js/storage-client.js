@@ -1010,11 +1010,21 @@
   }
 
   // Waits for pending local writes. The mobile store debounces saves, so call
-  // this before a reload or navigation that must see the latest data.
-  async function flush() {
+  // this before a reload or navigation that must see the latest data. During a
+  // study session the store defers heavy writes, so the wait is capped like the
+  // app's own route flush.
+  async function flush(timeoutMs = 3000) {
     const nativeApi = getNativeApi();
-    if (nativeApi?.flush) return nativeApi.flush();
-    return undefined;
+    if (!nativeApi?.flush) return 'skipped';
+    let timer;
+    const timeout = new Promise(resolve => {
+      timer = setTimeout(() => resolve('timeout'), timeoutMs);
+    });
+    try {
+      return await Promise.race([nativeApi.flush().then(() => 'flushed'), timeout]);
+    } finally {
+      clearTimeout(timer);
+    }
   }
 
   window.flashcardStore = {

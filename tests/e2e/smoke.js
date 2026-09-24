@@ -224,6 +224,9 @@ function occlusionDeck(id, guessMode, image) {
 }
 
 async function checkOcclusion(page, base, check) {
+  // Seed from the main page: the study page holds heavy writes until it closes.
+  await page.goto(`${base}/index.html`);
+  await page.waitForFunction(() => document.body.classList.contains('app-ready'), null, { timeout: 20000 });
   const image = await page.evaluate(() => {
     const canvas = document.createElement('canvas');
     canvas.width = 600;

@@ -1069,6 +1069,50 @@
     }
   }
 
+  // Callers waiting on the currently scheduled write. Whichever path performs
+  // that write (the timer, a deferral, or flush) settles them, so an awaited
+  // save can never be left pending after flush() cancels the timer.
+  let _persistWaiters = [];
+
+  function settlePersistWaiters(error) {
+    const waiters = _persistWaiters;
+    _persistWaiters = [];
+    waiters.forEach(waiter => (error ? waiter.reject(error) : waiter.resolve()));
+  }
+
+  function schedulePersist(delayMs) {
+    _persistTimer = setTimeout(async () => {
+      _persistTimer = null;
+      _persistQueued = false;
+
+      if (shouldDeferHeavyPersist()) {
+        schedulePersist(Math.max(1800, Math.min(Number(delayMs) || 2000, 2600)));
+        return;
+      }
+
+      // Wait for any in-flight write to finish first
+      if (_persistInFlight) {
+        try { await _persistInFlight; } catch (_) {}
+      }
+
+      _persistInFlight = _doPersist();
+      try {
+        await _persistInFlight;
+        settlePersistWaiters();
+      } catch (error) {
+        console.error('[mobile-store] persist failed:', error);
+        settlePersistWaiters(error);
+      } finally {
+        _persistInFlight = null;
+        // If more writes were queued while this one was running, flush again
+        if (_persistQueued) {
+          _persistQueued = false;
+          persist(delayMs).catch(() => {});
+        }
+      }
+    }, Math.max(0, Number(delayMs) || 2000));
+  }
+
   async function persist(delayMs = 2000) {
     if (isNative) return Promise.resolve();
     // If a write is already scheduled, just mark queued and return the existing promise
@@ -1078,36 +1122,8 @@
     }
 
     return new Promise((resolve, reject) => {
-      _persistTimer = setTimeout(async () => {
-        _persistTimer = null;
-        _persistQueued = false;
-
-        if (shouldDeferHeavyPersist()) {
-          persist(Math.max(1800, Math.min(Number(delayMs) || 2000, 2600))).then(resolve, reject);
-          return;
-        }
-
-        // Wait for any in-flight write to finish first
-        if (_persistInFlight) {
-          try { await _persistInFlight; } catch (_) {}
-        }
-
-        _persistInFlight = _doPersist();
-        try {
-          await _persistInFlight;
-          resolve();
-        } catch (error) {
-          console.error('[mobile-store] persist failed:', error);
-          reject(error);
-        } finally {
-          _persistInFlight = null;
-          // If more writes were queued while this one was running, flush again
-          if (_persistQueued) {
-            _persistQueued = false;
-            persist(delayMs).catch(() => {});
-          }
-        }
-      }, Math.max(0, Number(delayMs) || 2000));
+      _persistWaiters.push({ resolve, reject });
+      schedulePersist(delayMs);
     });
   }
 
@@ -1128,7 +1144,12 @@
           try { await _persistInFlight; } catch (_) {}
         }
         _persistInFlight = _doPersist();
-        try { await _persistInFlight; } catch (_) {}
+        try {
+          await _persistInFlight;
+          settlePersistWaiters();
+        } catch (error) {
+          settlePersistWaiters(error);
+        }
         _persistInFlight = null;
       } else if (_persistInFlight) {
         try { await _persistInFlight; } catch (_) {}
