@@ -1037,7 +1037,7 @@
       // Small timeout to ensure browser has computed coordinates correctly
       requestAnimationFrame(() => {
         indicator.style.width = `${activeBtn.offsetWidth}px`;
-        indicator.style.left = `${activeBtn.offsetLeft}px`;
+        indicator.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
       });
     }
   }
@@ -1909,16 +1909,9 @@
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
         <div class="goal-ring-wrapper">
-          <svg class="goal-ring-svg" viewBox="0 0 100 100">
-            <defs>
-              <linearGradient id="goalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#3b82f6" />
-                <stop offset="100%" stop-color="#8b5cf6" />
-              </linearGradient>
-            </defs>
-            <circle class="goal-ring-track" cx="50" cy="50" r="42" stroke-width="7.5" />
-            <circle class="goal-ring-progress" cx="50" cy="50" r="42" stroke-width="7.5" 
-                    stroke="url(#goalGradient)"
+          <svg class="goal-ring-svg" viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="goal-ring-track" cx="50" cy="50" r="42" stroke-width="7" />
+            <circle class="goal-ring-progress" cx="50" cy="50" r="42" stroke-width="7" stroke="currentColor"
                     style="stroke-dasharray: 263.89; stroke-dashoffset: ${263.89 - (progress / 100) * 263.89};" />
           </svg>
           <div class="goal-ring-center">

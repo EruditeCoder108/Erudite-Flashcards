@@ -1915,3 +1915,11 @@ html.reduce-motion .study-card-inner {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Tablets: a taller, wider card instead of empty space above and below. */
+@media (min-width: 600px) and (min-height: 900px) {
+  .study-card {
+    width: min(100%, 36rem);
+    height: min(100%, 46rem);
+  }
+}

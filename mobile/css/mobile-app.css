@@ -70,7 +70,6 @@ body.app-ready .app-loading-cover {
   transition: opacity 180ms ease-out;
 }
 
-
 .app-loading-cover strong {
   font-size: 1.2rem;
   font-weight: 620;
@@ -456,11 +455,6 @@ button {
   box-shadow: 0 0.6rem 1.6rem color-mix(in srgb, var(--primary) 22%, transparent);
 }
 
-.hero-actions .primary-action:active {
-  transform: scale(0.98) !important;
-  box-shadow: 0 0.3rem 0.8rem color-mix(in srgb, var(--primary) 15%, transparent) !important;
-}
-
 .primary-action,
 .secondary-action,
 .text-button {
@@ -535,11 +529,6 @@ button {
 .insight-controls button.active {
   background: color-mix(in srgb, var(--primary) 18%, transparent);
   color: var(--primary-text);
-}
-
-.theme-light .insight-controls button.active {
-  background: color-mix(in srgb, var(--primary) 12%, transparent) !important;
-  color: var(--primary) !important;
 }
 
 .insight-grid {
@@ -1140,19 +1129,6 @@ button {
   color: var(--muted);
 }
 
-.settings-row.highlighted {
-  border-color: var(--line) !important;
-  background: color-mix(in srgb, var(--primary) 8%, transparent) !important;
-  margin: 0.25rem 0;
-}
-.settings-row.highlighted .settings-icon {
-  background: color-mix(in srgb, var(--primary) 16%, transparent) !important;
-  color: #c084fc !important;
-}
-.settings-row.highlighted .fa-chevron-right {
-  color: var(--muted) !important;
-}
-
 .settings-diagnostics {
   overflow: hidden;
   border: 1px solid var(--line);
@@ -1207,18 +1183,6 @@ button {
 
 .settings-diagnostics-actions .settings-row {
   min-height: 3.8rem;
-}
-
-.theme-light .settings-row.highlighted {
-  background: color-mix(in srgb, var(--primary) 5%, transparent) !important;
-  border-color: var(--line) !important;
-}
-.theme-light .settings-row.highlighted .settings-icon {
-  background: color-mix(in srgb, var(--primary) 10%, transparent) !important;
-  color: var(--primary) !important;
-}
-.theme-light .settings-row.highlighted .fa-chevron-right {
-  color: var(--subtle) !important;
 }
 
 .settings-row.danger {
@@ -1630,7 +1594,6 @@ button {
   border-color: color-mix(in srgb, var(--primary) 50%, transparent) !important;
   box-shadow: none !important;
 }
-
 
 .mobile-card-editor {
   display: grid;
@@ -2450,101 +2413,6 @@ button {
 .switch.on span {
   transform: translateX(1.36rem);
   background: #86efac;
-}
-
-.mobile-tabbar {
-  position: fixed;
-  z-index: 30;
-  bottom: calc(0.8rem + var(--safe-bottom));
-  left: max(1.2rem, var(--safe-left));
-  right: max(1.2rem, var(--safe-right));
-  max-width: 480px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.2rem;
-  padding: 0.45rem;
-  background: transparent;
-  border: 1px solid var(--tabbar-border);
-  border-radius: 2rem;
-  box-shadow: 0 8px 32px color-mix(in srgb, var(--ink) 22%, transparent);
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
-}
-
-.mobile-tabbar-gradient-shim {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 25;
-  height: calc(5.5rem + var(--safe-bottom));
-  background: linear-gradient(180deg, transparent 0%, var(--bg) 80%);
-  pointer-events: none;
-}
-
-.mobile-tab-indicator {
-  position: absolute;
-  top: 0.45rem;
-  left: 0;
-  height: 3.25rem;
-  background: color-mix(in srgb, var(--primary) 14%, transparent);
-  border-radius: 1.5rem;
-  transition: left 0.28s cubic-bezier(0.25, 0.8, 0.25, 1), width 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.tab-button {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  gap: 0.2rem;
-  min-height: 3.25rem;
-  border-radius: 1.5rem;
-  background: transparent;
-  color: var(--subtle);
-  font-size: 0.68rem;
-  font-weight: 640;
-  transition: color 0.15s ease, transform 0.1s ease;
-}
-
-.tab-button i {
-  font-size: 1.05rem;
-}
-
-.tab-button.active {
-  background: transparent;
-}
-
-/* Tab Bar Active State Overrides (Dark Mode) */
-body[data-active-tab="today"] .tab-button[data-tab="today"] {
-  color: #facc15 !important;
-}
-body[data-active-tab="today"] .mobile-tab-indicator {
-  background: rgba(250, 204, 21, 0.16) !important;
-}
-
-body[data-active-tab="library"] .tab-button[data-tab="library"] {
-  color: var(--primary-2) !important;
-}
-body[data-active-tab="library"] .mobile-tab-indicator {
-  background: color-mix(in srgb, var(--primary) 16%, transparent) !important;
-}
-
-body[data-active-tab="create"] .tab-button[data-tab="create"] {
-  color: #34d399 !important;
-}
-body[data-active-tab="create"] .mobile-tab-indicator {
-  background: color-mix(in srgb, var(--green) 16%, transparent) !important;
-}
-
-body[data-active-tab="more"] .tab-button[data-tab="more"] {
-  color: #ffffff !important;
-}
-body[data-active-tab="more"] .mobile-tab-indicator {
-  background: rgba(255, 255, 255, 0.14) !important;
 }
 
 .mobile-toast {
@@ -3864,21 +3732,20 @@ select option,
 
 /* Compact Blue Header Save Button */
 #header-creator-save-btn {
-  height: 3rem !important;
-  min-height: 3rem !important;
-  padding: 0 0.82rem !important;
-  border-radius: 0.65rem !important;
-  background: var(--primary, var(--primary)) !important;
-  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent) !important;
-  color: #ffffff !important;
-  font-size: 0.82rem !important;
-  font-weight: 640 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.35rem !important;
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 24%, transparent) !important;
-  transition: transform 0.22s cubic-bezier(0.34, 1.6, 0.64, 1), background 0.15s ease, opacity 0.15s ease !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  height: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  box-shadow: none;
 }
 
 #header-creator-save-btn.hidden {
@@ -3902,7 +3769,7 @@ button,
 .class-delete-btn,
 .creator-bottom-add,
 .class-card-click-area {
-  transition: transform 0.22s cubic-bezier(0.34, 1.6, 0.64, 1), background 0.15s ease, opacity 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
+  transition: transform var(--dur-spring) var(--spring-snappy), background-color var(--dur-1) ease, opacity var(--dur-1) ease, border-color var(--dur-1) ease, box-shadow var(--dur-1) ease, color var(--dur-1) ease;
 }
 
 /* Small, quick press feedback that does not make the interface feel jumpy. */
@@ -3922,8 +3789,8 @@ button:active,
 .secondary-action:active,
 .small-icon-button:active,
 .creator-bottom-add:active {
-  transform: scale(0.97) !important;
-  transition: transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transform: scale(var(--press-scale));
+  transition-duration: 60ms;
 }
 
 /* Class Edit Button */
@@ -4202,62 +4069,6 @@ button:active,
   gap: 0.5rem;
 }
 
-.theme-light .mobile-tabbar {
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 6%, transparent) !important;
-}
-
-/* Tab Bar Active State Overrides (Light Mode) */
-body.theme-light[data-active-tab="today"] .tab-button[data-tab="today"] {
-  color: #ca8a04 !important;
-}
-body.theme-light[data-active-tab="today"] .mobile-tab-indicator {
-  background: rgba(202, 138, 4, 0.12) !important;
-}
-
-body.theme-light[data-active-tab="library"] .tab-button[data-tab="library"] {
-  color: var(--primary) !important;
-}
-body.theme-light[data-active-tab="library"] .mobile-tab-indicator {
-  background: color-mix(in srgb, var(--primary) 10%, transparent) !important;
-}
-
-body.theme-light[data-active-tab="create"] .tab-button[data-tab="create"] {
-  color: var(--green) !important;
-}
-body.theme-light[data-active-tab="create"] .mobile-tab-indicator {
-  background: color-mix(in srgb, var(--green) 10%, transparent) !important;
-}
-
-body.theme-light[data-active-tab="more"] .tab-button[data-tab="more"] {
-  color: var(--ink) !important;
-}
-body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
-  background: color-mix(in srgb, var(--ink) 8%, transparent) !important;
-}
-
-.theme-light .mobile-toast {
-  background: var(--surface) !important;
-  border: 1px solid color-mix(in srgb, var(--primary) 28%, transparent) !important;
-  color: var(--text) !important;
-}
-
-.theme-light .source-option.active {
-  background: #ffffff !important;
-  color: var(--text) !important;
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--ink) 8%, transparent) !important;
-}
-
-.theme-light .mobile-search {
-  color: var(--primary) !important;
-}
-
-.theme-light .filter-chip.active {
-  background: color-mix(in srgb, var(--primary) 12%, transparent) !important;
-  border-color: color-mix(in srgb, var(--primary) 35%, transparent) !important;
-  color: var(--primary) !important;
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 18%, transparent) !important;
-}
-
 .theme-light .mobile-card-editor > header {
   color: var(--muted) !important;
 }
@@ -4276,22 +4087,6 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
 .theme-light .mobile-modal-option-btn.selected .option-icon,
 .theme-light .mobile-modal-option-btn.selected .check-icon {
   color: var(--primary) !important;
-}
-
-.theme-light .settings-icon,
-.theme-light .create-icon {
-  background: color-mix(in srgb, var(--primary) 8%, transparent) !important;
-  color: var(--primary) !important;
-}
-
-.theme-light .class-icon {
-  background: color-mix(in srgb, var(--class-color, var(--primary)), transparent 88%) !important;
-  color: color-mix(in srgb, var(--class-color, var(--primary)), black 10%) !important;
-}
-
-.theme-light .settings-icon.brain {
-  background: color-mix(in srgb, var(--green) 8%, transparent) !important;
-  color: var(--green) !important;
 }
 
 .theme-light .creator-bottom-add {
@@ -4313,27 +4108,6 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
   box-shadow: none !important;
 }
 
-/* Today Tab Stats Dashboard Override */
-.theme-light .today-hero {
-  background: #ffffff !important;
-  border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent) !important;
-  box-shadow: 0 4px 20px color-mix(in srgb, var(--ink) 4%, transparent) !important;
-}
-
-.theme-light .stat-row {
-  background: #efeee9 !important;
-  border: 1px solid color-mix(in srgb, var(--ink) 6%, transparent) !important;
-}
-
-.theme-light .goal-ring-track {
-  stroke: color-mix(in srgb, var(--ink) 8%, transparent) !important;
-}
-
-.theme-light .goal-ring-center {
-  background: #ffffff !important;
-  box-shadow: inset 0 2px 5px color-mix(in srgb, var(--ink) 5%, transparent) !important;
-}
-
 /* Light mode retention breakdown category capsules */
 .theme-light .retention-breakdown span {
   background: var(--surface-2) !important;
@@ -4351,46 +4125,11 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
   background: color-mix(in srgb, var(--primary) 16%, transparent) !important;
 }
 
-/* Class Editor Icon Choice Overrides */
-.theme-light .class-icon-choice {
-  background: var(--surface-2) !important;
-  border-color: var(--line) !important;
-  color: var(--text) !important;
-}
-
 .theme-light .class-color-choice.active,
 .theme-light .class-icon-choice.active {
   border-color: var(--primary) !important;
   background: color-mix(in srgb, var(--primary) 8%, transparent) !important;
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 15%, transparent) !important;
-}
-
-.theme-light .small-icon-button {
-  background: var(--surface-2) !important;
-  border: 1px solid var(--line) !important;
-  color: var(--muted) !important;
-}
-
-.theme-light .small-icon-button.primary {
-  background: color-mix(in srgb, var(--primary) 8%, transparent) !important;
-  color: var(--primary) !important;
-  border-color: color-mix(in srgb, var(--primary) 15%, transparent) !important;
-}
-
-.theme-light .small-icon-button.starred {
-  color: var(--amber) !important;
-}
-
-.theme-light .secondary-action {
-  background: color-mix(in srgb, var(--primary) 6%, transparent) !important;
-  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent) !important;
-  color: var(--primary) !important;
-}
-
-.theme-light .custom-select-trigger {
-  background: var(--theme-input) !important;
-  border: 1px solid var(--theme-border) !important;
-  color: var(--text) !important;
 }
 
 .theme-light .creator-toolbar {
@@ -4407,15 +4146,6 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
   background: color-mix(in srgb, var(--primary) 12%, transparent) !important;
   color: var(--primary) !important;
 }
-
-/* Light Loader Overrides */
-.theme-light .app-loading-cover {
-  background:
-    radial-gradient(circle at 50% 36%, color-mix(in srgb, var(--primary) 6%, transparent), transparent 34%),
-    linear-gradient(180deg, #efeee9 0%, var(--paper) 100%) !important;
-}
-
-
 
 /* Modal z-index overrides to ensure overlays layer correctly on mobile */
 #class-select-modal {
@@ -5171,15 +4901,7 @@ body.theme-light[data-active-tab="more"] .mobile-tab-indicator {
   display: none !important;
 }
 
-body[data-active-tab="today"] .mobile-header-quote {
-  display: block !important;
-}
-
 [data-action="open-settings"] {
-  display: none !important;
-}
-
-body[data-active-tab="library"] .mobile-topbar {
   display: none !important;
 }
 
@@ -5248,19 +4970,11 @@ body[data-active-tab="library"] .mobile-topbar {
   color: #ffffff;
   box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 12%, transparent);
 }
-.creator-header-btn.primary:active {
-  background: var(--primary-2) !important;
-  box-shadow: 0 2px 6px color-mix(in srgb, var(--primary) 15%, transparent) !important;
-}
 
 /* Secondary Buttons (AI / PDF, Import) */
 .creator-header-btn.secondary {
   background: var(--surface-3);
   color: var(--text);
-}
-.theme-light .creator-header-btn.secondary {
-  background: var(--surface-2) !important;
-  color: var(--text) !important;
 }
 
 /* Danger Button (Discard) */
@@ -5269,16 +4983,8 @@ body[data-active-tab="library"] .mobile-topbar {
   border-color: color-mix(in srgb, var(--red) 25%, transparent);
   color: var(--red);
 }
-.theme-light .creator-header-btn.danger {
-  background: color-mix(in srgb, var(--red) 8%, transparent) !important;
-  border-color: color-mix(in srgb, var(--red) 22%, transparent) !important;
-  color: var(--red) !important;
-}
 .creator-header-btn.danger:active {
   background: color-mix(in srgb, var(--red) 25%, transparent);
-}
-.theme-light .creator-header-btn.danger:active {
-  background: color-mix(in srgb, var(--red) 15%, transparent) !important;
 }
 
 /* Dynamic screen size collapses to icon-only on narrow screens (except Save button) */
