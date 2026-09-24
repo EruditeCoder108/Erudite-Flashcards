@@ -648,8 +648,10 @@
 
   function startOfLocalDayMs(value = Date.now()) {
     const timestamp = timestampValue(value) || Date.now();
-    const date = new Date(timestamp);
-    date.setHours(0, 0, 0, 0);
+    // A study day runs from 4 AM to 4 AM, matching the scheduler, so a late-night
+    // session still counts toward the day the learner thinks of as "today".
+    const date = new Date(timestamp - 4 * 60 * 60 * 1000);
+    date.setHours(4, 0, 0, 0);
     return date.getTime();
   }
 
@@ -726,23 +728,8 @@
   }
 
   function getDeckSrsSettings(set = state.set) {
-    const raw = set?.srsSettings || {};
-    const numberOrNull = value => {
-      if (value === null || value === undefined || value === '') return null;
-      const number = Number(value);
-      return Number.isFinite(number) ? number : null;
-    };
-    const requestRetention = numberOrNull(raw.requestRetention) ?? 0.9;
-    const maxIntervalDays = numberOrNull(raw.maxIntervalDays) ?? 36500;
-    const newCardsPerDay = numberOrNull(raw.newCardsPerDay);
-    const reviewsPerDay = numberOrNull(raw.reviewsPerDay);
-    return {
-      enabled: raw.enabled !== false,
-      requestRetention: Math.min(0.99, Math.max(0.7, requestRetention)),
-      maxIntervalDays: Math.max(1, Math.round(maxIntervalDays)),
-      newCardsPerDay: newCardsPerDay === null ? null : Math.max(0, Math.round(newCardsPerDay)),
-      reviewsPerDay: reviewsPerDay === null ? null : Math.max(0, Math.round(reviewsPerDay))
-    };
+    // The scheduler resolves a blank deck limit to the app-wide default.
+    return window.srsManager.normalizeSettings(set?.srsSettings || {});
   }
 
   function activeIndex() {

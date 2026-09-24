@@ -12,6 +12,8 @@
     reviewsPerDay: null
   };
 
+  const DEFAULT_NEW_CARDS_PER_DAY = 20;
+
   const DECK_TYPOGRAPHY_FIELDS = ['align', 'weight', 'font', 'lineHeight', 'letterSpacing'];
 
   const DEFAULT_SETTINGS = {
@@ -19,6 +21,9 @@
     normalStudyOrder: 'forward',
     soundEffectsEnabled: true,
     htmlInteractionDisabled: false,
+    srsDefaults: {
+      newCardsPerDay: DEFAULT_NEW_CARDS_PER_DAY
+    },
     fonts: {},
     cursor: {
       enabled: true,
@@ -264,6 +269,7 @@
       ...DEFAULT_SETTINGS.cardStyle,
       ...(settings.cardStyle || {})
     };
+    const defaultNewCards = numberOrNull(settings.srsDefaults?.newCardsPerDay, DEFAULT_NEW_CARDS_PER_DAY);
     return {
       ...DEFAULT_SETTINGS,
       ...settings,
@@ -271,6 +277,9 @@
       normalStudyOrder,
       soundEffectsEnabled,
       htmlInteractionDisabled,
+      srsDefaults: {
+        newCardsPerDay: Math.max(0, Math.round(defaultNewCards))
+      },
       fonts: {
         ...DEFAULT_SETTINGS.fonts,
         ...(settings.fonts || {})
@@ -303,6 +312,7 @@
   }
 
   return {
+    DEFAULT_NEW_CARDS_PER_DAY,
     DEFAULT_SRS_SETTINGS,
     DEFAULT_SETTINGS,
     createId,

@@ -2,7 +2,7 @@
 <html lang="en" class="mobile-app-shell">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; media-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; font-src 'self' data:; connect-src 'self' https://erudite-flashcards.netlify.app http://localhost https://localhost; frame-src 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; media-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; font-src 'self' data:; connect-src 'self' https://erudite-flashcards.netlify.app http://localhost https://localhost; frame-src 'none'; form-action 'none'">
   <script src="mobile/js/theme-bootstrap.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#07111f">
@@ -510,6 +510,14 @@
               <small id="more-srs-label">Off</small>
             </span>
             <span class="switch" id="srs-switch"><span></span></span>
+          </button>
+          <button type="button" class="settings-row" data-action="select-new-card-limit">
+            <span class="settings-icon"><i class="fas fa-seedling"></i></span>
+            <span>
+              <strong>New Cards per Day</strong>
+              <small id="more-new-card-limit-label">20 per deck</small>
+            </span>
+            <i class="fas fa-chevron-right"></i>
           </button>
           <button type="button" class="settings-row" data-action="select-study-order">
             <span class="settings-icon"><i class="fas fa-route"></i></span>
@@ -1684,6 +1692,58 @@ If you cannot attach a ZIP file:
     </div>
   </div>
 
+  <div class="mobile-modal-overlay hidden" id="new-card-limit-overlay" role="dialog" aria-modal="true" aria-labelledby="new-card-limit-title">
+    <div class="mobile-modal-card">
+      <h3 id="new-card-limit-title" class="modal-title"><i class="fas fa-seedling"></i> New Cards per Day</h3>
+      <p class="mobile-modal-hint">How many unseen cards each deck introduces per day. Every new card creates future reviews, so a smaller number keeps review days manageable. A deck can override this in its own settings.</p>
+      <div class="mobile-modal-list">
+        <button type="button" class="mobile-modal-option-btn" data-value="10">
+          <span class="option-icon option-number" aria-hidden="true">10</span>
+          <span class="option-details">
+            <strong>Gentle</strong>
+            <small>About 10 minutes a day once reviews build up</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="20">
+          <span class="option-icon option-number" aria-hidden="true">20</span>
+          <span class="option-details">
+            <strong>Recommended</strong>
+            <small>A steady pace most learners can keep (Default)</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="30">
+          <span class="option-icon option-number" aria-hidden="true">30</span>
+          <span class="option-details">
+            <strong>Focused</strong>
+            <small>More new material, more daily reviews later</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="50">
+          <span class="option-icon option-number" aria-hidden="true">50</span>
+          <span class="option-details">
+            <strong>Intensive</strong>
+            <small>For exam crunch periods; reviews grow fast</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="100">
+          <span class="option-icon option-number" aria-hidden="true">100</span>
+          <span class="option-details">
+            <strong>Maximum</strong>
+            <small>Only for short bursts; expect heavy review days</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="new-card-limit-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Mobile Deck Settings Modal -->
   <div class="mobile-modal-overlay hidden" id="mobile-deck-settings-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-deck-settings-title">
     <div class="mobile-modal-card">
@@ -1721,7 +1781,7 @@ If you cannot attach a ZIP file:
           </label>
           <label class="mobile-field">
             <span>New Cards/Day Limit</span>
-            <input type="number" id="mobile-deck-new-limit" class="mobile-modal-input" min="0" step="1" placeholder="Unlimited">
+            <input type="number" id="mobile-deck-new-limit" class="mobile-modal-input" min="0" step="1" inputmode="numeric" placeholder="App default (20)">
           </label>
           <label class="mobile-field">
             <span>Reviews/Day Limit</span>

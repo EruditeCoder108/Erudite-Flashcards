@@ -466,8 +466,10 @@
 
   function startOfLocalDayMs(value = Date.now()) {
     const timestamp = normalizeTimestamp(value) || Date.now();
-    const date = new Date(timestamp);
-    date.setHours(0, 0, 0, 0);
+    // A study day runs from 4 AM to 4 AM, matching the scheduler, so a late-night
+    // session still counts toward the day the learner thinks of as "today".
+    const date = new Date(timestamp - 4 * 60 * 60 * 1000);
+    date.setHours(4, 0, 0, 0);
     return date.getTime();
   }
 
@@ -608,7 +610,8 @@
       matureCards: 0,
       retention: null
     };
-    const retentions = [];
+    let matureReviewed = 0;
+    let matureRemembered = 0;
     state.sets.forEach(set => {
       const stats = setStats(set);
       totals.cardCount += setCardCount(set);
@@ -617,10 +620,13 @@
       totals.learningCards += Number(stats.learningCards || 0);
       totals.reviewCards += Number(stats.reviewCards || 0);
       totals.matureCards += Number(stats.matureCards || 0);
-      if (stats.retention !== null && stats.retention !== undefined) retentions.push(Number(stats.retention));
+      const meta = metaStats(set);
+      matureReviewed += Number(meta?.matureReviewed30 || 0);
+      matureRemembered += Number(meta?.matureRemembered30 || 0);
     });
-    if (retentions.length) {
-      totals.retention = Math.round(retentions.reduce((sum, value) => sum + value, 0) / retentions.length);
+    // Weight by review volume so a deck with 3 reviews cannot swing the total.
+    if (matureReviewed > 0) {
+      totals.retention = Math.round((matureRemembered / matureReviewed) * 100);
     }
     return totals;
   }
@@ -652,9 +658,8 @@
   function reviewsToday() {
     const metaTotal = state.sets.reduce((total, set) => total + Number(metaStats(set)?.reviewedToday || 0), 0);
     if (metaTotal > 0 || state.sets.some(set => metaStats(set))) return metaTotal;
-    const start = new Date();
-    start.setHours(0, 0, 0, 0);
-    return reviewedDates().filter(time => time >= start.getTime()).length;
+    const start = startOfLocalDayMs();
+    return reviewedDates().filter(time => time >= start).length;
   }
 
   function streakDays() {
@@ -663,9 +668,7 @@
       (metaStats(set)?.reviewDayKeys || []).forEach(key => dayKeys.add(String(key)));
     });
     reviewedDates().forEach(time => {
-      const date = new Date(time);
-      date.setHours(0, 0, 0, 0);
-      dayKeys.add(String(date.getTime()));
+      dayKeys.add(String(startOfLocalDayMs(time)));
     });
     if (Array.isArray(state.studySessions)) {
       state.studySessions.forEach(session => {
@@ -678,8 +681,7 @@
       return 0;
     }
     let streak = 0;
-    const cursor = new Date();
-    cursor.setHours(0, 0, 0, 0);
+    const cursor = new Date(startOfLocalDayMs());
     if (!dayKeys.has(String(cursor.getTime()))) {
       cursor.setDate(cursor.getDate() - 1);
     }
@@ -961,6 +963,7 @@
         perf?.end(span, { status: 'stale', entryCount: entries?.length || 0 });
         return;
       }
+      scheduleLearningDueRefresh(entries);
       if (!applySetStatsEntries(entries)) {
         perf?.end(span, { status: 'unchanged', entryCount: entries?.length || 0 });
         return;
@@ -974,6 +977,24 @@
         console.warn('[mobile] Could not refresh deck statistics:', error);
       }
     }
+  }
+
+  let learningDueRefreshTimer = null;
+
+  // Learning steps come due minutes apart; refresh counts when the next one does
+  // so the Today screen never shows "caught up" while cards are waiting.
+  function scheduleLearningDueRefresh(entries = []) {
+    clearTimeout(learningDueRefreshTimer);
+    const nextDue = (Array.isArray(entries) ? entries : [])
+      .map(entry => Number(entry?.stats?.nextLearningDue || 0))
+      .filter(value => value > Date.now())
+      .sort((a, b) => a - b)[0];
+    if (!nextDue) return;
+    const delay = Math.min(nextDue - Date.now() + 1000, 60 * 60 * 1000);
+    learningDueRefreshTimer = window.setTimeout(() => {
+      learningDueRefreshTimer = null;
+      if (!document.hidden) scheduleSetStatsRefresh(0);
+    }, delay);
   }
 
   function scheduleSetStatsRefresh(delayMs = 450) {
@@ -1210,7 +1231,9 @@
       weakCards: 0,
       failedRecently: 0,
       ratingCounts: emptyRatingCounts(),
+      retentionCounts: emptyRatingCounts(),
       retention: null,
+      retentionEvents: 0,
       reviewEvents: 0,
       retentionBreakdown: [],
       buttonDistribution: [],
@@ -1239,12 +1262,16 @@
 
       const counts = cardRatingCounts(card, windowKey);
       addRatingCounts(summary.ratingCounts, counts);
+      addRatingCounts(summary.retentionCounts, card?.retentionWindows?.[normalizeAnalyticsWindow(windowKey)]);
       const bucket = analyticsCardBucket(card);
       if (buckets[bucket]) addRatingCounts(buckets[bucket].counts, counts);
     });
 
     const passRate = ratingPassRate(summary.ratingCounts);
-    summary.retention = passRate.percent;
+    // True retention: recall rate on graduated cards only, as Anki reports it.
+    const retentionRate = ratingPassRate(summary.retentionCounts);
+    summary.retention = retentionRate.percent;
+    summary.retentionEvents = retentionRate.total;
     summary.reviewEvents = passRate.total;
     summary.retentionBreakdown = Object.values(buckets)
       .map(bucket => {
@@ -1330,7 +1357,7 @@
       if (card?.suspended || card?.buried || card?.buriedUntil) return;
       const dueTime = normalizeTimestamp(card?.dueTime || card?.due);
       if (!dueTime) return;
-      let offset = Math.floor((startOfLocalDayMs(dueTime) - todayStart) / DAY_MS);
+      let offset = Math.round((startOfLocalDayMs(dueTime) - todayStart) / DAY_MS);
       if (dueTime < todayStart) offset = 0;
       if (offset >= 0 && offset < days) buckets[offset].count += 1;
     });
@@ -1375,7 +1402,8 @@
     }
 
     const items = Array.from({ length: days }, (_, index) => {
-      const dayMs = todayStart - (days - index - 1) * DAY_MS;
+      // Re-anchor each cell so daylight-saving shifts cannot misalign it with the keys.
+      const dayMs = startOfLocalDayMs(todayStart - (days - index - 1) * DAY_MS + DAY_MS / 2);
       const entry = activity.get(dayMs) || { cards: 0, sessions: 0, reviews: 0, durationMs: 0 };
       const score = entry.cards + entry.reviews + entry.sessions;
       return {
@@ -1624,7 +1652,7 @@
           </div>
           <div class="insight-widget-value">${retentionLabel}</div>
           <div class="insight-widget-footer">
-            <span class="stat-desc">${formatShortNumber(summary.reviewEvents)} reviews, ${escapeHtml(windowLabel)}</span>
+            <span class="stat-desc">${summary.retentionEvents ? `${formatShortNumber(summary.retentionEvents)} mature reviews, ${escapeHtml(windowLabel)}` : 'Shows once cards graduate'}</span>
           </div>
         </article>
         <article class="insight-card">
@@ -6409,6 +6437,11 @@
         : 'Off - swipe and tap the whole HTML card';
     }
 
+    const newCardLimitLabel = document.getElementById('more-new-card-limit-label');
+    if (newCardLimitLabel) {
+      newCardLimitLabel.textContent = `${defaultNewCardsPerDay()} per deck, unless a deck overrides it`;
+    }
+
     const order = normalizeNormalStudyOrder(state.settings?.normalStudyOrder);
     const orderLabels = {
       forward: 'Beginning',
@@ -7881,6 +7914,63 @@
       selectors.draftRestoreContinue?.addEventListener('click', onContinue);
       selectors.draftRestoreDiscard?.addEventListener('click', onDiscard);
     });
+  }
+
+  function defaultNewCardsPerDay() {
+    const value = Number(state.settings?.srsDefaults?.newCardsPerDay);
+    return Number.isFinite(value) && value >= 0 ? Math.round(value) : (schema?.DEFAULT_NEW_CARDS_PER_DAY ?? 20);
+  }
+
+  function openNewCardLimitModal() {
+    const overlay = document.getElementById('new-card-limit-overlay');
+    const cancelBtn = document.getElementById('new-card-limit-cancel');
+    if (!overlay) return;
+    const current = String(defaultNewCardsPerDay());
+    const optionButtons = Array.from(overlay.querySelectorAll('.mobile-modal-option-btn'));
+    optionButtons.forEach(btn => {
+      const selected = btn.dataset.value === current;
+      btn.classList.toggle('selected', selected);
+      btn.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+    overlay.classList.remove('hidden');
+
+    function close() {
+      overlay.classList.add('hidden');
+      cleanup();
+      state.lastModalClosedAt = Date.now();
+    }
+
+    async function handleSelect(event) {
+      const btn = event.target.closest('[data-value]');
+      if (!btn) return;
+      const limit = Number(btn.dataset.value);
+      state.settings = {
+        ...(state.settings || {}),
+        srsDefaults: {
+          ...(state.settings?.srsDefaults || {}),
+          newCardsPerDay: limit
+        }
+      };
+      playClick();
+      close();
+      renderMore();
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+        await refresh();
+        showToast(`Decks now introduce up to ${plural(limit, 'new card')} a day`);
+      } catch (error) {
+        console.error('Could not save new card limit:', error);
+        showToast('Could not save new card limit');
+      }
+    }
+
+    function cleanup() {
+      optionButtons.forEach(btn => btn.removeEventListener('click', handleSelect));
+      cancelBtn?.removeEventListener('click', close);
+    }
+
+    optionButtons.forEach(btn => btn.addEventListener('click', handleSelect));
+    cancelBtn?.addEventListener('click', close);
   }
 
   function openStudyOrderModal() {
@@ -10151,6 +10241,9 @@ followed by the JSON containing "deck" and "media" array.`;
       case 'select-study-order':
         openStudyOrderModal();
         break;
+      case 'select-new-card-limit':
+        openNewCardLimitModal();
+        break;
       case 'select-theme':
         openThemeSelectModal();
         break;
@@ -10409,6 +10502,7 @@ followed by the JSON containing "deck" and "media" array.`;
     const newLimitInput = document.getElementById('mobile-deck-new-limit');
     if (newLimitInput) {
       newLimitInput.value = srs.newCardsPerDay ?? '';
+      newLimitInput.placeholder = `App default (${defaultNewCardsPerDay()})`;
     }
 
     const reviewLimitInput = document.getElementById('mobile-deck-review-limit');

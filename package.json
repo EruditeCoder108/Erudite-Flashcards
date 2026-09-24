@@ -13,7 +13,9 @@
     "build:site": "node scripts/build-site.js",
     "zip:premade": "node scripts/zip-premade-decks.js",
     "cap:sync": "npm run build:mobile && cap sync android",
-    "cap:open": "cap open android"
+    "cap:open": "cap open android",
+    "test": "node --test tests/*.test.js",
+    "test:e2e": "npm run build:mobile && node tests/e2e/smoke.js"
   },
   "dependencies": {
     "@capacitor-community/sqlite": "^8.1.0",
@@ -34,7 +36,8 @@
     "@capacitor/share": "^8.0.1",
     "electron": "^30.5.1",
     "electron-builder": "^24.13.3",
-    "esbuild": "^0.20.2"
+    "esbuild": "^0.20.2",
+    "playwright-core": "1.56"
   },
   "build": {
     "appId": "com.erudite.flashcards",

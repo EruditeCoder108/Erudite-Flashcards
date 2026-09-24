@@ -125,7 +125,8 @@
   }
 
   function statsCacheDayToken(nowMs = Date.now()) {
-    return `${dayKey(nowMs) || ''}:${srsDayKey(nowMs) || ''}`;
+    // The new-card default is part of the token so changing it recomputes every deck's due count.
+    return `${dayKey(nowMs) || ''}:${srsDayKey(nowMs) || ''}:new-${defaultNewCardsPerDay()}`;
   }
 
   function cachedStatsForSet(cache, setId, lastModified, dayToken) {
@@ -133,6 +134,10 @@
     if (!cached) return null;
     if (Number(cached.lastModified || 0) !== Number(lastModified || 0)) return null;
     if (String(cached.dayToken || '') !== String(dayToken || '')) return null;
+    // Learning steps are measured in minutes, so a cached count goes stale as soon
+    // as the next learning card becomes due, even though nothing was edited.
+    const nextLearningDue = Number(cached.stats?.nextLearningDue || 0);
+    if (nextLearningDue && nextLearningDue <= Date.now()) return null;
     return cached.stats && typeof cached.stats === 'object' ? cached.stats : null;
   }
 
@@ -1679,8 +1684,11 @@
       reviewsDoneToday: 0,
       remembered30: 0,
       reviewed30: 0,
+      matureRemembered30: 0,
+      matureReviewed30: 0,
       retention: null,
       nextDue: null,
+      nextLearningDue: null,
       lastReviewAt: null,
       reviewDayKeys: []
     };
@@ -1773,16 +1781,23 @@
     let failedToday = false;
     const ratingCounts = emptyRatingCounts();
     const ratingWindows = createRatingWindows();
+    // Ratings given to graduated (Review-state) cards: the basis of true retention.
+    const retentionWindows = createRatingWindows();
     for (const review of Array.isArray(history) ? history : []) {
       const rating = normalizedRatingName(review?.rating || review?.grade);
       const reviewedAt = timeValue(review?.reviewedAt || review?.time || review?.date);
       if (reviewedAt && (!lastReviewedAt || reviewedAt > lastReviewedAt)) lastReviewedAt = reviewedAt;
       if (rating) {
+        const windows = normalizeSrsState(review?.previousState) === 'Review'
+          ? [ratingWindows, retentionWindows]
+          : [ratingWindows];
         ratingCounts[rating] += 1;
-        ratingWindows.all[rating] += 1;
-        if (reviewedAt >= sevenDaysAgo) ratingWindows['7'][rating] += 1;
-        if (reviewedAt >= thirtyDaysAgo) ratingWindows['30'][rating] += 1;
-        if (reviewedAt >= ninetyDaysAgo) ratingWindows['90'][rating] += 1;
+        windows.forEach(target => {
+          target.all[rating] += 1;
+          if (reviewedAt >= sevenDaysAgo) target['7'][rating] += 1;
+          if (reviewedAt >= thirtyDaysAgo) target['30'][rating] += 1;
+          if (reviewedAt >= ninetyDaysAgo) target['90'][rating] += 1;
+        });
       }
       if (rating === 'Again') {
         againCount += 1;
@@ -1790,7 +1805,7 @@
         if (reviewedAt && dayKey(reviewedAt) === todayKey) failedToday = true;
       }
     }
-    return { againCount, failedRecently, failedToday, lastReviewedAt, ratingCounts, ratingWindows };
+    return { againCount, failedRecently, failedToday, lastReviewedAt, ratingCounts, ratingWindows, retentionWindows };
   }
 
   function browserCardFromRow(row, nowMs = Date.now()) {
@@ -1833,7 +1848,9 @@
       buried,
       failedRecently: reviews.failedRecently,
       failedToday: reviews.failedToday,
-      leech: reviews.againCount >= 8 || Number(srs?.lapses || 0) >= 8,
+      // Anki's leech rule: forgetting a graduated card 8 times. Misses during
+      // learning steps are normal and should not flag a card as a leech.
+      leech: Number(srs?.lapses || 0) >= 8,
       noTags: !tags.length,
       hasImage,
       hasAudio,
@@ -1841,9 +1858,10 @@
       againCount: reviews.againCount,
       ratingCounts: reviews.ratingCounts,
       ratingWindows: reviews.ratingWindows,
+      retentionWindows: reviews.retentionWindows,
       reps: Number(srs?.reps || 0),
       lapses: Number(srs?.lapses || 0),
-      intervalDays: Number(srs?.scheduled_days || srs?.elapsed_days || 0),
+      intervalDays: Number(srs?.scheduledDays ?? srs?.interval ?? srs?.scheduled_days ?? 0) || 0,
       lastReviewedAt: reviews.lastReviewedAt,
       lastModified: Number(row.last_modified || 0)
     };
@@ -1857,11 +1875,13 @@
     return Number.isNaN(date.getTime()) ? 0 : date.getTime();
   }
 
+  // Start of the 4 AM-to-4 AM study day, identical to startOfLocalDayMs in the app
+  // so streak and heatmap keys produced here match the ones the dashboard builds.
   function dayKey(value) {
     const timestamp = timeValue(value);
     if (!timestamp) return null;
-    const date = new Date(timestamp);
-    date.setHours(0, 0, 0, 0);
+    const date = new Date(timestamp - 4 * 60 * 60 * 1000);
+    date.setHours(4, 0, 0, 0);
     return String(date.getTime());
   }
 
@@ -1939,8 +1959,15 @@
             if (previousState === 'Review') stats.reviewsDoneToday += 1;
           }
           if (reviewedAt >= thirtyDaysAgo) {
+            const passed = String(review.rating || '').toLowerCase() !== 'again';
             stats.reviewed30 += 1;
-            if (String(review.rating || '').toLowerCase() !== 'again') stats.remembered30 += 1;
+            if (passed) stats.remembered30 += 1;
+            // True retention only counts recall of graduated cards; learning-step
+            // passes are easy and would make the figure look better than it is.
+            if (normalizeSrsState(review.previousState) === 'Review') {
+              stats.matureReviewed30 += 1;
+              if (passed) stats.matureRemembered30 += 1;
+            }
           }
         });
       }
@@ -1964,6 +1991,11 @@
             else stats.learningDueCards += 1;
           } else if (state === 'Review') {
             stats.matureCards += 1;
+          } else {
+            const learningDue = timeValue(srs.due);
+            if (learningDue && (!stats.nextLearningDue || learningDue < stats.nextLearningDue)) {
+              stats.nextLearningDue = learningDue;
+            }
           }
         }
 
@@ -1980,7 +2012,9 @@
 
     statsBySet.forEach((stats, setId) => {
       stats.reviewDayKeys = Array.from(dayKeysBySet.get(setId) || []);
-      stats.retention = stats.reviewed30 > 0 ? Math.round((stats.remembered30 / stats.reviewed30) * 100) : null;
+      stats.retention = stats.matureReviewed30 > 0
+        ? Math.round((stats.matureRemembered30 / stats.matureReviewed30) * 100)
+        : null;
     });
 
     perf?.end(span, {
@@ -1998,7 +2032,7 @@
 
   function limitedDueCount(stats, settings = {}) {
     if (settings.enabled === false) return 0;
-    const newLimit = dailyLimit(settings.newCardsPerDay);
+    const newLimit = dailyLimit(settings.newCardsPerDay) ?? defaultNewCardsPerDay();
     const reviewLimit = dailyLimit(settings.reviewsPerDay);
     const newDue = Number(stats.newCards || 0);
     const learningDue = Number(stats.learningDueCards || 0);
@@ -2017,6 +2051,7 @@
       requestedDeckCount: uniqueStringIds(setIds).length
     });
     await ensureReady();
+    await ensureSrsDefaultsLoaded();
     const ids = uniqueStringIds(setIds);
     const idFilter = ids.length
       ? ` AND s.id IN (${ids.map(() => '?').join(',')})`
@@ -2547,19 +2582,40 @@
     await ensureReady();
     const result = await rows('SELECT value_json FROM settings WHERE key = ?', ['app']);
     const settings = schema.normalizeSettings(jsonParse(result[0]?.value_json, {}));
+    applySrsDefaults(settings);
     perf?.end(span, { found: Boolean(result.length) });
     return settings;
   }
 
   async function saveSettings(settings = {}) {
     await ensureReady();
+    const normalized = schema.normalizeSettings(settings);
     await run('INSERT OR REPLACE INTO settings (key, value_json, updated_at) VALUES (?, ?, ?)', [
       'app',
-      jsonString(schema.normalizeSettings(settings)),
+      jsonString(normalized),
       Date.now()
     ]);
+    applySrsDefaults(normalized);
     await persist();
     return true;
+  }
+
+  let srsDefaultsLoaded = false;
+
+  function applySrsDefaults(settings) {
+    srsDefaultsLoaded = true;
+    window.srsManager?.setDefaults?.(settings?.srsDefaults || {});
+  }
+
+  function defaultNewCardsPerDay() {
+    const value = Number(window.srsManager?.defaults?.newCardsPerDay);
+    return Number.isFinite(value) ? value : schema.DEFAULT_NEW_CARDS_PER_DAY;
+  }
+
+  async function ensureSrsDefaultsLoaded() {
+    if (srsDefaultsLoaded) return;
+    const result = await rows('SELECT value_json FROM settings WHERE key = ?', ['app']);
+    applySrsDefaults(schema.normalizeSettings(jsonParse(result[0]?.value_json, {})));
   }
 
   async function getProgress(setId) {
