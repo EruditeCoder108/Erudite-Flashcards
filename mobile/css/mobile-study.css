@@ -806,6 +806,30 @@ textarea,
   background: rgba(236, 72, 153, 0.34);
 }
 
+.card-text mark.cloze-blank,
+.card-text-inline mark.cloze-blank {
+  padding: 0.05rem 0.45rem;
+  color: #bfdbfe;
+  font-weight: 700;
+  background: rgba(59, 130, 246, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.45);
+}
+
+.card-text mark.cloze-answer,
+.card-text-inline mark.cloze-answer {
+  color: #dbeafe;
+  font-weight: 700;
+  background: rgba(59, 130, 246, 0.34);
+}
+
+.theme-light .card-text mark.cloze-blank,
+.theme-light .card-text-inline mark.cloze-blank,
+.theme-light .card-text mark.cloze-answer,
+.theme-light .card-text-inline mark.cloze-answer {
+  color: #1e3a8a;
+  background: rgba(37, 99, 235, 0.14);
+}
+
 .card-text code,
 .card-text-inline code {
   padding: 0.08rem 0.28rem;

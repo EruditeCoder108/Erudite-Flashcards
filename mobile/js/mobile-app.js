@@ -2170,7 +2170,7 @@
     const template = document.createElement('template');
     template.innerHTML = String(value || '').trim();
     const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'DIV', 'P', 'UL', 'OL', 'LI', 'SPAN', 'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'HR']);
-    const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink']);
+    const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink', 'cloze-answer', 'cloze-blank']);
     // Only allow color: <hex|rgb|hsl|named> in style attributes — no JS injection
     const safeColorRe = /^color\s*:\s*(#[0-9a-fA-F]{3,8}|rgb\([^)]*\)|rgba\([^)]*\)|hsl\([^)]*\)|hsla\([^)]*\)|[a-zA-Z]{2,30})\s*;?\s*$/;
     const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
@@ -3457,11 +3457,18 @@
     return Array.from(indexes).sort((a, b) => a - b);
   }
 
+  // Supports Anki's {{c1::answer::hint}} syntax. The target deletion is blanked
+  // (showing its hint when present) on the front and highlighted on the back so
+  // the learner can find what they were asked for.
   function clozeTextForIndex(value, targetIndex, reveal = false) {
-    return String(value || '').replace(/\{\{c(\d+)::([\s\S]*?)\}\}/gi, (_match, index, answer) => {
+    return String(value || '').replace(/\{\{c(\d+)::([\s\S]*?)\}\}/gi, (_match, index, body) => {
+      const separator = body.indexOf('::');
+      const answer = separator >= 0 ? body.slice(0, separator) : body;
+      const hint = separator >= 0 ? body.slice(separator + 2).trim() : '';
       const isTarget = Number(index) === Number(targetIndex);
-      if (reveal || !isTarget) return answer;
-      return '<strong>[...]</strong>';
+      if (!isTarget) return answer;
+      if (reveal) return `<mark class="cloze-answer">${answer}</mark>`;
+      return `<mark class="cloze-blank">[${hint || '...'}]</mark>`;
     });
   }
 

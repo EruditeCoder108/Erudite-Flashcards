@@ -1,6 +1,6 @@
 'use strict';
 // Browser smoke test for the mobile web build (www/). Run `npm run build:mobile`
-// first; this script copies the Capacitor shim in and drives the app in Chromium.
+// first; this script serves www/ with a Capacitor shim and drives it in Chromium.
 //   node tests/e2e/smoke.js
 const fs = require('fs');
 const http = require('http');
@@ -16,11 +16,14 @@ const MIME = {
 };
 
 function serve() {
-  fs.copyFileSync(path.join(__dirname, 'capacitor-shim.js'), path.join(root, 'capacitor.js'));
   const server = http.createServer((req, res) => {
     const url = new URL(req.url, 'http://localhost');
-    const file = path.join(root, decodeURIComponent(url.pathname === '/' ? '/index.html' : url.pathname));
-    if (!file.startsWith(root) || !fs.existsSync(file)) {
+    // Serve the shim in place of the native bridge without writing it into www/,
+    // which `cap sync` would otherwise copy into the Android app.
+    const file = url.pathname === '/capacitor.js'
+      ? path.join(__dirname, 'capacitor-shim.js')
+      : path.join(root, decodeURIComponent(url.pathname === '/' ? '/index.html' : url.pathname));
+    if ((!file.startsWith(root) && !file.endsWith('capacitor-shim.js')) || !fs.existsSync(file)) {
       res.writeHead(404);
       res.end();
       return;
@@ -119,6 +122,21 @@ async function run(context, base, check, errors) {
   }
 
   if (process.env.SCREENSHOTS) await page.screenshot({ path: path.join(process.env.SCREENSHOTS, 'study.png') });
+
+  // Finish a whole deck in review-due mode: the completion screen should offer the
+  // other deck that still has due cards.
+  await page.goto(`${base}/mobile/study.html?setId=beta&srs=true&reviewDue=true&from=today`);
+  await page.waitForSelector('#card-stage .study-card.slot-active', { timeout: 20000 });
+  await page.waitForTimeout(600);
+  for (let index = 0; index < 8; index += 1) {
+    await page.locator('#card-stage .study-card.slot-active').click();
+    await page.waitForSelector('#rating-dock:not(.hidden)', { timeout: 5000 });
+    await page.locator('.rating-button.easy').click();
+    await page.waitForTimeout(450);
+  }
+  await page.waitForSelector('#completion-modal:not(.hidden)', { timeout: 5000 });
+  const continueLabel = await page.locator('#continue-button').innerText();
+  check('completion offers next due deck', /Continue Review/.test(continueLabel), continueLabel.trim());
 
   check('no page errors', errors.length === 0, errors.slice(0, 5).join(' | '));
 }

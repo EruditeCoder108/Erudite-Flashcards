@@ -372,7 +372,7 @@
     const template = document.createElement('template');
     template.innerHTML = raw;
     const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'P', 'DIV', 'UL', 'OL', 'LI', 'SPAN', 'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'HR']);
-    const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink']);
+    const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink', 'cloze-answer', 'cloze-blank']);
     // Only allow color: <hex|rgb|hsl|named> in style attributes — no JS injection
     const safeColorRe = /^color\s*:\s*(#[0-9a-fA-F]{3,8}|rgb\([^)]*\)|rgba\([^)]*\)|hsl\([^)]*\)|hsla\([^)]*\)|[a-zA-Z]{2,30})\s*;?\s*$/;
     const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
@@ -1831,6 +1831,17 @@
     }
   }
 
+  function cardFaceLabels(cardData, { advanced, imageOcclusion }) {
+    if (imageOcclusion) return ['DIAGRAM', 'ANSWER'];
+    if (advanced) return ['CARD', 'ANSWER'];
+    const noteType = String(cardData.noteType || '').toLowerCase();
+    if (noteType === 'cloze' || String(cardData.cardTemplate || '').startsWith('cloze')) return ['FILL THE GAP', 'ANSWER'];
+    if (String(cardData.cardTemplate || '') === 'back-front') return ['DEFINITION', 'TERM'];
+    const front = String(cardData.term || '').replace(/<[^>]*>/g, ' ').trim();
+    if (/\?\s*$/.test(front)) return ['QUESTION', 'ANSWER'];
+    return ['TERM', 'DEFINITION'];
+  }
+
   function populateCardElement(cardEl, cardData) {
     if (!cardEl) return;
     if (!cardData) {
@@ -1848,32 +1859,6 @@
     const elements = getCardElements(cardEl);
     if (!elements) return;
 
-    // Contextual card labels
-    const isMath = state.set?.tags?.includes('Mental Maths') || String(state.set?.id || '').includes('math');
-    let frontLabel = 'Term';
-    let backLabel = 'Definition';
-    if (isMath) {
-      const term = String(cardData.term || '');
-      const def = String(cardData.definition || '');
-      const isQuestion = term.includes('?') || 
-                         term.includes('□') || 
-                         term.toLowerCase().includes('calculate') || 
-                         term.toLowerCase().includes('solve') || 
-                         term.toLowerCase().includes('complete') || 
-                         def.toLowerCase().startsWith('answer:') || 
-                         def.toLowerCase().startsWith('result:');
-      if (isQuestion) {
-        frontLabel = 'PRACTICE';
-        backLabel = 'SOLUTION';
-      } else {
-        frontLabel = 'METHOD';
-        backLabel = 'EXPLANATION';
-      }
-    } else {
-      frontLabel = 'CONCEPT';
-      backLabel = 'EXPLANATION';
-    }
-
     const frontHeader = cardEl.querySelector('.card-face.front .card-label');
     const backHeader = cardEl.querySelector('.card-face.back .card-label');
     const frontFace = cardEl.querySelector('.card-face.front');
@@ -1889,12 +1874,7 @@
     backFace?.classList.toggle('image-occlusion-card-face', imageOcclusion);
     setAdvancedHtmlFaceGrip(frontFace, showAdvancedGrip);
     setAdvancedHtmlFaceGrip(backFace, showAdvancedGrip);
-    if (advanced) {
-      frontLabel = 'CUSTOM';
-      backLabel = 'ANSWER';
-    }
-    frontLabel = 'TERM';
-    backLabel = 'DEFINITION';
+    const [frontLabel, backLabel] = cardFaceLabels(cardData, { advanced, imageOcclusion });
     if (frontHeader) frontHeader.textContent = frontLabel;
     if (backHeader) backHeader.textContent = backLabel;
 
@@ -2380,7 +2360,21 @@
 
   async function findNextDueSetId() {
     if (!reviewDueSession || !state.srsMode || !window.srsManager?.isReady?.()) return null;
-    // Lazy-load other sets only at completion — use lightweight meta + individual getSet as needed
+    // Deck-level due counts come from cached per-deck statistics, so finishing a
+    // session no longer loads every card of every deck.
+    if (typeof window.flashcardStore.getSetStatsMeta === 'function') {
+      try {
+        await flushCardProgress();
+        const entries = await window.flashcardStore.getSetStatsMeta();
+        const next = (entries || [])
+          .filter(entry => String(entry.setId) !== String(state.set.id) && Number(entry.stats?.dueCards || 0) > 0)
+          .sort((a, b) => Number(b.stats.dueCards) - Number(a.stats.dueCards))[0];
+        return next ? next.setId : null;
+      } catch (error) {
+        console.warn('[mobile-study] Could not check other decks for due cards:', error);
+        return null;
+      }
+    }
     let allSets;
     try {
       allSets = await window.flashcardStore.listSets();
@@ -2507,6 +2501,10 @@
 
       let activeDir = '';
       let activeRating = '';
+      // A single tick when the drag crosses the commit distance, like a detent.
+      const armed = dist >= SWIPE_THRESHOLD;
+      if (armed && pointer && !pointer.armed) triggerHaptic();
+      if (pointer) pointer.armed = armed;
 
       if (absDx >= absDy) {
         if (dx < 0) {
@@ -2706,14 +2704,18 @@
   }
 
   // Undo & Manual Card Actions for Mobile SRS Mode
+  // Card actions always replace card objects rather than mutating them, so an undo
+  // entry only needs the pre-action card and a shallow copy of the queue. Deep
+  // cloning the whole deck here made every rating stutter on large decks.
   function pushUndoTransaction(actionType, card, extra = {}) {
     srsUndoStack.push({
       type: actionType,
       cardId: card.id,
+      cardSnapshot: card,
+      setCardIndex: state.set.cards.findIndex(item => sameCard(item, card)),
       srsIndexSnapshot: state.srsIndex,
       sessionStatsSnapshot: { ...state.sessionStats },
-      activeCardsSnapshot: JSON.parse(JSON.stringify(state.activeCards)),
-      setCardsSnapshot: JSON.parse(JSON.stringify(state.set.cards)),
+      activeCardsSnapshot: state.activeCards.slice(),
       reviewedCardIdsSnapshot: Array.from(srsReviewedCardIds),
       extra
     });
@@ -2735,7 +2737,7 @@
     const transaction = srsUndoStack.pop();
 
     state.activeCards = transaction.activeCardsSnapshot;
-    state.set.cards = transaction.setCardsSnapshot;
+    if (transaction.setCardIndex >= 0) state.set.cards[transaction.setCardIndex] = transaction.cardSnapshot;
     state.srsIndex = transaction.srsIndexSnapshot;
     state.sessionStats = transaction.sessionStatsSnapshot;
     srsReviewedCardIds = new Set(transaction.reviewedCardIdsSnapshot || []);
@@ -2743,10 +2745,7 @@
 
     // Persist reverted card progress
     const currentIdx = activeIndex();
-    const revertedCard = state.activeCards[currentIdx];
-    if (revertedCard) {
-      scheduleCardProgressSave(revertedCard);
-    }
+    scheduleCardProgressSave(transaction.cardSnapshot);
     await saveProgress();
     updateUndoButtonState();
 
@@ -2785,8 +2784,11 @@
     const current = activeCard();
     if (!current) return;
 
+    // Bury until the next 4 AM study-day boundary. At 2 AM that is later today,
+    // not tomorrow, otherwise the card would skip a whole study day.
     const now = new Date();
-    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 4, 0, 0, 0);
+    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 4, 0, 0, 0);
+    if (tomorrow <= now) tomorrow.setDate(tomorrow.getDate() + 1);
 
     pushUndoTransaction('bury', current);
 
