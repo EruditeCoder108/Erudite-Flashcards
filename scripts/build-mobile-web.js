@@ -61,14 +61,12 @@ async function copyMobileAssets() {
 }
 
 async function copyVendor() {
-  await copyFile(
-    path.join(root, 'node_modules', '@fortawesome', 'fontawesome-free', 'css', 'all.min.css'),
-    path.join(outDir, 'vendor', 'fontawesome', 'css', 'all.min.css')
-  );
-  await copyDir(
-    path.join(root, 'node_modules', '@fortawesome', 'fontawesome-free', 'webfonts'),
-    path.join(outDir, 'vendor', 'fontawesome', 'webfonts')
-  );
+  for (const file of ['geist-latin-wght-normal.woff2', 'geist-latin-ext-wght-normal.woff2']) {
+    await copyFile(
+      path.join(root, 'node_modules', '@fontsource-variable', 'geist', 'files', file),
+      path.join(outDir, 'vendor', 'geist', file)
+    );
+  }
   await copyFile(
     path.join(root, 'node_modules', 'ts-fsrs', 'dist', 'index.umd.js'),
     path.join(outDir, 'vendor', 'ts-fsrs', 'index.umd.js')
@@ -106,6 +104,7 @@ async function copyVendor() {
 async function main() {
   await fs.rm(outDir, { recursive: true, force: true });
   await fs.mkdir(outDir, { recursive: true });
+  require('./build-icons').build();
   await writeIndex();
   await copyMobileRuntime();
   await copyMobileAssets();

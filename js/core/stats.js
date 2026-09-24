@@ -49,7 +49,8 @@
       suspendedCards: 0,
       buriedCards: 0,
       nextDue: null,
-      retention: null
+      retention: null,
+      retentionSampleSize: 0
     };
 
     const history = [];
@@ -94,14 +95,18 @@
     }
 
     const thirtyDaysAgo = now.getTime() - 30 * 24 * 60 * 60 * 1000;
+    // True retention: only recall of graduated (Review-state) cards counts.
     const recentReviews = history.filter(review => {
       const reviewedAt = new Date(review.reviewedAt || review.time || review.date || 0);
-      return !isNaN(reviewedAt.getTime()) && reviewedAt.getTime() >= thirtyDaysAgo;
+      return !isNaN(reviewedAt.getTime())
+        && reviewedAt.getTime() >= thirtyDaysAgo
+        && review.previousState === 'Review';
     });
     if (recentReviews.length > 0) {
       const remembered = recentReviews.filter(review => review.rating !== 'Again').length;
       stats.retention = Math.round((remembered / recentReviews.length) * 100);
     }
+    stats.retentionSampleSize = recentReviews.length;
 
     return stats;
   }
@@ -120,7 +125,8 @@
       nextDue: null
     };
 
-    const retentionValues = [];
+    let reviewedTotal = 0;
+    let rememberedTotal = 0;
     for (const set of sets || []) {
       const setStats = getSetSrsStats(set, now);
       totals.cardCount += setStats.totalCards;
@@ -129,14 +135,17 @@
       totals.learningCards += setStats.learningCards;
       totals.reviewCards += setStats.reviewCards;
       totals.matureCards += setStats.matureCards;
-      if (setStats.retention !== null) retentionValues.push(setStats.retention);
+      if (setStats.retention !== null) {
+        reviewedTotal += setStats.retentionSampleSize;
+        rememberedTotal += setStats.retentionSampleSize * setStats.retention / 100;
+      }
       if (setStats.nextDue && (!totals.nextDue || setStats.nextDue < totals.nextDue)) {
         totals.nextDue = setStats.nextDue;
       }
     }
 
-    if (retentionValues.length > 0) {
-      totals.retention = Math.round(retentionValues.reduce((sum, value) => sum + value, 0) / retentionValues.length);
+    if (reviewedTotal > 0) {
+      totals.retention = Math.round((rememberedTotal / reviewedTotal) * 100);
     }
 
     return totals;

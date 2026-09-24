@@ -1,0 +1,392 @@
+/*
+ * Signature elements: the daily goal ring, the card-stack review button, and
+ * the session-complete check with its card burst. Kept to these few places on
+ * purpose.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Goal ring                                                           */
+/* ------------------------------------------------------------------ */
+
+.goal-ring {
+  --ring-color: var(--primary);
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 8.25rem;
+  height: 8.25rem;
+}
+
+.goal-ring.is-complete {
+  --ring-color: var(--green);
+}
+
+.goal-ring-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.goal-tick {
+  stroke: var(--surface-3);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  transition: stroke 260ms var(--ease-out);
+}
+
+.goal-tick.major {
+  stroke-width: 1.8;
+}
+
+.goal-tick.lit {
+  stroke: color-mix(in srgb, var(--ring-color) 72%, transparent);
+}
+
+.goal-tick.major.lit {
+  stroke: var(--ring-color);
+}
+
+.goal-track {
+  fill: none;
+  stroke: var(--surface-2);
+  stroke-width: 7;
+}
+
+.goal-arc {
+  fill: none;
+  stroke: var(--ring-color);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  transition: stroke 400ms ease;
+}
+
+.goal-tip {
+  transform-box: view-box;
+  transform-origin: 60px 60px;
+  opacity: 0;
+}
+
+.goal-ring.has-tip .goal-tip {
+  opacity: 1;
+}
+
+.goal-tip-dot {
+  fill: #fff;
+}
+
+.goal-tip-halo {
+  fill: var(--ring-color);
+  opacity: 0.35;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: goal-tip-breathe 2.6s var(--ease-in-out) infinite;
+}
+
+@keyframes goal-tip-breathe {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.12;
+    transform: scale(1.7);
+  }
+}
+
+.goal-ripple {
+  fill: none;
+  stroke: var(--green);
+  transform-box: view-box;
+  transform-origin: 60px 60px;
+}
+
+.goal-ring-copy {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.1rem;
+}
+
+.goal-ring-copy strong {
+  display: flex;
+  align-items: baseline;
+  color: var(--text);
+  font-size: 1.875rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+}
+
+.goal-unit {
+  margin-left: 0.05em;
+  color: var(--muted);
+  font-size: 0.55em;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.goal-label {
+  color: var(--subtle);
+  font-size: var(--text-xs);
+  font-weight: 550;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.goal-ring.is-complete .goal-label {
+  color: var(--green);
+}
+
+@media (max-width: 370px) {
+  .goal-ring {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Card-stack review button                                            */
+/* ------------------------------------------------------------------ */
+
+.stack-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0.7rem 0 0;
+  border: 0;
+  background: transparent;
+  color: var(--on-primary);
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stack-layer {
+  position: absolute;
+  top: 0.7rem;
+  right: 0;
+  left: 0;
+  height: 3.9rem;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--primary) 68%, var(--surface));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  opacity: 0;
+  transform-origin: 50% 100%;
+  transition: transform var(--dur-spring) var(--spring-snappy), opacity var(--dur-2) ease;
+}
+
+.stack-button[data-depth="1"] .stack-layer.middle,
+.stack-button[data-depth="2"] .stack-layer {
+  opacity: 1;
+}
+
+.stack-layer.middle {
+  transform: translateY(-0.45rem) scaleX(0.95) rotate(0.8deg);
+}
+
+.stack-layer.back {
+  background: color-mix(in srgb, var(--primary) 40%, var(--surface));
+  transform: translateY(-0.85rem) scaleX(0.9) rotate(-1.2deg);
+}
+
+.stack-face {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 3.9rem;
+  padding: 0 0.55rem 0 1.15rem;
+  border-radius: var(--radius-lg);
+  background: var(--primary);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 8px 18px -12px color-mix(in srgb, var(--primary) 70%, transparent);
+  transition: transform var(--dur-spring) var(--spring-snappy);
+}
+
+.stack-copy {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  gap: 0.05rem;
+}
+
+.stack-copy strong {
+  font-size: var(--text-md);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.stack-copy small {
+  overflow: hidden;
+  color: color-mix(in srgb, var(--on-primary) 72%, transparent);
+  font-size: var(--text-sm);
+  font-weight: 450;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stack-count {
+  display: grid;
+  place-items: center;
+  min-width: 2.9rem;
+  height: 2.9rem;
+  padding: 0 0.6rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.16);
+  font-size: var(--text-lg);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.stack-arrow {
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  font-size: 1.15rem;
+  transition: transform var(--dur-spring) var(--spring-snappy);
+}
+
+/* Pressing squeezes the deck: the top card sinks and the cards behind slide
+   down under it, then everything springs back on release. */
+.stack-button:active .stack-face {
+  transform: translateY(3px) scale(0.985);
+  transition-duration: 90ms;
+}
+
+.stack-button:active .stack-layer.middle {
+  transform: translateY(0.05rem) scaleX(0.97) rotate(0deg);
+  transition-duration: 90ms;
+}
+
+.stack-button:active .stack-layer.back {
+  transform: translateY(0.1rem) scaleX(0.94) rotate(0deg);
+  transition-duration: 90ms;
+}
+
+.stack-button:active .stack-arrow {
+  transform: translateX(3px);
+}
+
+/* ------------------------------------------------------------------ */
+/* Session complete                                                    */
+/* ------------------------------------------------------------------ */
+
+.done-check-host {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: 0 auto 1rem;
+}
+
+.done-check {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.done-check-ring {
+  fill: color-mix(in srgb, var(--green) 12%, transparent);
+  stroke: var(--green);
+  stroke-width: 3;
+  stroke-dasharray: 100;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 32px 32px;
+}
+
+.done-check-mark {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 4.5;
+  stroke-dasharray: 100;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rating-spectrum {
+  display: flex;
+  gap: 3px;
+  height: 0.6rem;
+  margin: 1.1rem 0 0.5rem;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+}
+
+.rating-spectrum span {
+  flex: var(--share) 1 0;
+  min-width: 0;
+  border-radius: 2px;
+  background: var(--seg);
+  transform-origin: left center;
+  animation: spectrum-grow 700ms var(--ease-out) both;
+  animation-delay: calc(700ms + var(--i) * 90ms);
+}
+
+@keyframes spectrum-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.rating-legend {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.rating-legend b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.rating-legend i {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.3rem;
+  border-radius: 2px;
+  background: var(--seg);
+}
+
+.card-burst {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  overflow: hidden;
+  pointer-events: none;
+  perspective: 600px;
+}
+
+.burst-card {
+  position: absolute;
+  width: 0.85rem;
+  height: 1.15rem;
+  margin: -0.575rem 0 0 -0.425rem;
+  border-radius: 0.2rem;
+  background: var(--surface-raised);
+  box-shadow: inset 0 0 0 1.5px var(--burst-color), inset 0 0.35rem 0 -0.12rem var(--burst-color);
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .goal-tip-halo {
+    animation: none;
+  }
+
+  .rating-spectrum span {
+    animation: none;
+  }
+}

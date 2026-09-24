@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Feature graphic</title>
+<style>
+  @font-face {
+    font-family: "Geist";
+    font-weight: 100 900;
+    src: url("/vendor/geist/geist-latin-wght-normal.woff2") format("woff2-variations");
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1024px; height: 500px; overflow: hidden; }
+  body {
+    position: relative;
+    background: #0d0e10;
+    color: #f2f1ee;
+    font-family: "Geist", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .pool {
+    position: absolute;
+    right: -120px;
+    top: 40px;
+    width: 760px;
+    height: 620px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(91, 124, 255, 0.24), transparent);
+  }
+  .grain { position: absolute; inset: 0; opacity: 0.5; background-size: 200px 200px; }
+  .copy { position: absolute; left: 64px; top: 0; bottom: 0; width: 470px; display: flex; flex-direction: column; justify-content: center; }
+  .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 34px; }
+  .brand img { width: 52px; height: 52px; border-radius: 13px; }
+  .brand span { font-size: 22px; font-weight: 580; letter-spacing: -0.01em; }
+  h1 { margin: 0; font-size: 54px; font-weight: 620; letter-spacing: -0.04em; line-height: 1.02; }
+  p { margin: 18px 0 0; color: #a3a19b; font-size: 20px; line-height: 1.4; max-width: 400px; }
+  .phone {
+    position: absolute;
+    width: 250px;
+    padding: 8px;
+    border-radius: 40px;
+    background: #050506;
+    box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.08) inset, 0 40px 80px -30px rgba(0, 0, 0, 0.7);
+  }
+  .phone div { overflow: hidden; border-radius: 33px; background: #0d0e10; padding-top: 22px; }
+  .phone img { display: block; width: 100%; }
+  .back { left: 560px; top: 70px; transform: rotate(-7deg); opacity: 0.9; }
+  .front { left: 740px; top: 40px; transform: rotate(5deg); }
+</style>
+</head>
+<body>
+  <div class="pool"></div>
+  <div class="copy">
+    <div class="brand"><img src="/assets/icons/icon.png" alt=""><span id="name"></span></div>
+    <h1>Remember what you study.</h1>
+    <p>Spaced repetition, image occlusion, and decks built from your notes.</p>
+  </div>
+  <div class="phone back"><div><img id="today" alt=""></div></div>
+  <div class="phone front"><div><img id="swipe" alt=""></div></div>
+  <div class="grain" id="grain"></div>
+<script>
+  (function () {
+    const size = 200;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const context = canvas.getContext('2d');
+    const image = context.createImageData(size, size);
+    for (let index = 0; index < image.data.length; index += 4) {
+      const value = Math.random();
+      const shade = value > 0.5 ? 255 : 0;
+      image.data[index] = image.data[index + 1] = image.data[index + 2] = shade;
+      image.data[index + 3] = Math.round(Math.pow(Math.abs(value - 0.5) * 2, 1.6) * 28);
+    }
+    context.putImageData(image, 0, 0);
+    document.getElementById('grain').style.backgroundImage = `url(${canvas.toDataURL()})`;
+  }());
+  window.renderFeature = function ({ name, today, swipe }) {
+    document.getElementById('name').textContent = name;
+    document.getElementById('today').src = today;
+    document.getElementById('swipe').src = swipe;
+  };
+</script>
+</body>
+</html>

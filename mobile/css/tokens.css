@@ -1,0 +1,217 @@
+/*
+ * Erudite design tokens. Loaded first by index.html and study.html.
+ * Every color, type size, radius, and motion curve in the mobile app comes from
+ * here. Components mix these with color-mix() instead of hard-coding shades.
+ */
+
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../../vendor/geist/geist-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../../vendor/geist/geist-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Neutrals: warm graphite, not blue slate. */
+  --bg: #0d0e10;
+  --bg-2: #111214;
+  --surface: #17181b;
+  --surface-2: #1e2023;
+  --surface-3: #282a2e;
+  --surface-raised: #212327;
+  --line: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(255, 255, 255, 0.12);
+  --text: #f2f1ee;
+  --muted: #a3a19b;
+  --subtle: #6f6d68;
+  --ink: #0d0e10;
+  --paper: #f4f3ef;
+
+  /* One accent. Tints come from color-mix, never a second hue. */
+  --primary: #5b7cff;
+  --primary-2: #8ea4ff;
+  --on-primary: #ffffff;
+  --primary-soft: color-mix(in srgb, var(--primary) 16%, transparent);
+  --primary-text: #b7c4ff;
+
+  /* Feedback and rating colors. */
+  --green: #4fd69c;
+  --amber: #f2b544;
+  --red: #ff6b61;
+  --again: var(--red);
+  --hard: var(--amber);
+  --good: var(--green);
+  --easy: var(--primary-2);
+
+  /* Legacy aliases used across the older stylesheets. */
+  --border: var(--line);
+  --surface-soft: var(--surface-2);
+  --surface-hover: var(--surface-3);
+  --text-primary: var(--text);
+  --text-muted: var(--muted);
+  --bg-gradient: var(--bg);
+  --glass-bg: color-mix(in srgb, var(--bg) 82%, transparent);
+  --glass-border: var(--line);
+  --glass-shadow: none;
+  --tabbar-bg: color-mix(in srgb, var(--surface) 92%, transparent);
+  --tabbar-border: var(--line);
+  --theme-input: var(--surface-2);
+  --theme-border: var(--line-strong);
+  --modal-overlay-bg: rgba(5, 5, 6, 0.64);
+  --card-bg-overlay: color-mix(in srgb, var(--bg) 70%, transparent);
+  --card-term-accent: var(--primary-text);
+  --card-definition-accent: var(--green);
+
+  /* Elevation: hairline plus one soft shadow. No glows. */
+  --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 8px 24px rgba(0, 0, 0, 0.32);
+  --shadow-3: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 60px rgba(0, 0, 0, 0.45);
+  --shadow: var(--shadow-2);
+
+  /* Type. Geist for Latin; Devanagari and other scripts fall back to the system. */
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Roboto Mono", monospace;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.625rem;
+  --text-2xl: 2.125rem;
+  --tracking-tight: -0.02em;
+  --tracking-display: -0.035em;
+
+  /* Space, radius, touch. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --radius-sm: 0.625rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-full: 999px;
+  --touch: 2.75rem;
+
+  /* Motion. Springs are CSS linear() curves; see js/core/motion.js. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --spring-snappy: cubic-bezier(0.34, 1.36, 0.64, 1);
+  --spring-sheet: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-spring: 483ms;
+  --spring-flip: cubic-bezier(0.3, 1.15, 0.5, 1);
+  --dur-flip: 467ms;
+  --dur-sheet: 367ms;
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 320ms;
+  --press-scale: 0.97;
+
+  /* Safe areas. */
+  --safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --safe-right: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
+  --safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+  --safe-left: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
+  --content-x: max(1rem, var(--safe-left), var(--safe-right));
+}
+
+@supports (animation-timing-function: linear(0, 1)) {
+  :root {
+    /* Generated with EruditeMotion.spring(). snappy: 420/30, ~483 ms. sheet: 340/34, ~367 ms. */
+    --spring-snappy: linear(0, 0.0492, 0.1656, 0.312, 0.4634, 0.604, 0.7252, 0.8238, 0.8996, 0.9547, 0.9922, 1.0157, 1.0285, 1.0337, 1.0338, 1.0307, 1.0261, 1.0209, 1.0159, 1.0114, 1.0076, 1.0046, 1.0024, 1.0008, 0.9998, 0.9992, 0.9989, 0.9988, 0.9989, 1);
+    --spring-sheet: linear(0, 0.0391, 0.1301, 0.2439, 0.3626, 0.4755, 0.5771, 0.665, 0.7389, 0.7994, 0.8482, 0.8867, 0.9166, 0.9396, 0.9569, 0.9699, 0.9794, 0.9862, 0.9911, 0.9945, 0.9968, 0.9984, 1);
+    --spring-flip: linear(0, 0.036, 0.1241, 0.24, 0.3662, 0.4906, 0.6055, 0.7064, 0.7916, 0.8608, 0.915, 0.9559, 0.9854, 1.0054, 1.0181, 1.0251, 1.0279, 1.0279, 1.026, 1.023, 1.0196, 1.016, 1.0126, 1.0096, 1.0069, 1.0048, 1.0031, 1.0017, 1);
+  }
+}
+
+.theme-light {
+  color-scheme: light;
+  --bg: #f4f3ef;
+  --bg-2: #ecebe6;
+  --surface: #ffffff;
+  --surface-2: #f7f6f3;
+  --surface-3: #e8e6e0;
+  --surface-raised: #ffffff;
+  --line: rgba(24, 22, 16, 0.08);
+  --line-strong: rgba(24, 22, 16, 0.14);
+  --text: #161618;
+  --muted: #5e5c57;
+  --subtle: #8a8781;
+  --primary: #3457f0;
+  --primary-2: #4b6cf5;
+  --primary-text: #2744c9;
+  --green: #17945e;
+  --amber: #a86a12;
+  --red: #d6453b;
+  --easy: var(--primary);
+  --modal-overlay-bg: rgba(22, 22, 24, 0.36);
+  --tabbar-bg: color-mix(in srgb, var(--surface) 94%, transparent);
+  --shadow-1: 0 1px 2px rgba(24, 22, 16, 0.06);
+  --shadow-2: 0 1px 2px rgba(24, 22, 16, 0.05), 0 8px 24px rgba(24, 22, 16, 0.07);
+  --shadow-3: 0 2px 6px rgba(24, 22, 16, 0.06), 0 24px 60px rgba(24, 22, 16, 0.14);
+}
+
+/*
+ * Paper texture (Settings > Paper Texture). Warmer, lower-contrast neutrals and
+ * a fixed grain layer. Text stays off pure white or black, which is easier on
+ * the eyes in long sessions.
+ */
+html.paper-texture {
+  --bg: #141311;
+  --bg-2: #181715;
+  --surface: #1c1b18;
+  --surface-2: #23221e;
+  --surface-3: #2d2b27;
+  --surface-raised: #262521;
+  --line: rgba(255, 244, 225, 0.07);
+  --line-strong: rgba(255, 244, 225, 0.12);
+  --text: #ebe6dc;
+  --muted: #a8a194;
+  --subtle: #767064;
+  --ink: #141311;
+}
+
+html.paper-texture.theme-light {
+  --bg: #f1ece1;
+  --bg-2: #e9e3d6;
+  --surface: #faf6ee;
+  --surface-2: #f4efe4;
+  --surface-3: #e5ded0;
+  --surface-raised: #fdfaf4;
+  --line: rgba(60, 45, 20, 0.1);
+  --line-strong: rgba(60, 45, 20, 0.16);
+  --text: #26231e;
+  --muted: #625b4f;
+  --subtle: #8b8374;
+}
+
+html.paper-texture body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  pointer-events: none;
+  background-image: var(--grain-image, none);
+  background-size: 160px 160px;
+  opacity: 0.55;
+}
+
+html.paper-texture.theme-light body::after {
+  opacity: 0.6;
+}

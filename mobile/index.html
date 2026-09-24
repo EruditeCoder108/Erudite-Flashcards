@@ -2,15 +2,19 @@
 <html lang="en" class="mobile-app-shell">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; media-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; font-src 'self' data:; connect-src 'self' https://erudite-flashcards.netlify.app http://localhost https://localhost; frame-src 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; media-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; font-src 'self' data:; connect-src 'self' https://erudite-flashcards.netlify.app http://localhost https://localhost; frame-src 'none'; form-action 'none'">
   <script src="mobile/js/theme-bootstrap.js"></script>
+  <script src="js/core/motion.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#07111f">
-  <title>Erudite Flashcards</title>
+  <title>Smriti</title>
   <link rel="icon" type="image/png" href="assets/icons/icon.png">
-  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="mobile/css/tokens.css">
+  <link rel="stylesheet" href="mobile/css/icons.css">
   <link rel="stylesheet" href="vendor/katex/katex.min.css">
   <link rel="stylesheet" href="mobile/css/mobile-app.css">
+  <link rel="stylesheet" href="mobile/css/shell.css">
+  <link rel="stylesheet" href="mobile/css/signature.css">
   <link rel="stylesheet" href="mobile/css/mobile-onboarding.css">
   <link rel="stylesheet" href="css/color-picker.css">
 </head>
@@ -30,7 +34,7 @@
         <div></div><div></div><div></div><div></div>
       </div>
     </div>
-    <strong id="app-loading-title">Erudite Flashcards</strong>
+    <strong id="app-loading-title">Smriti</strong>
     <p id="app-loading-copy">Preparing your library</p>
   </div>
 
@@ -45,7 +49,7 @@
       <button type="button" class="onboarding-icon-button is-hidden" id="onboarding-back" data-onboarding-action="back" aria-label="Go to the previous onboarding screen">
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
       </button>
-      <div class="onboarding-brand" aria-label="Erudite Flashcards">
+      <div class="onboarding-brand" aria-label="Smriti">
         <img src="assets/icons/icon.png" alt="" draggable="false">
 
       </div>
@@ -59,7 +63,7 @@
     <main class="onboarding-stage">
       <article class="onboarding-screen onboarding-greeting-screen is-active" data-onboarding-step="0" aria-hidden="false">
         <button type="button" class="onboarding-name-skip" data-onboarding-action="skip-name">Skip for now</button>
-        <p class="hello-accessible-description" id="onboarding-description-0">Enter the name you would like Erudite to use.</p>
+        <p class="hello-accessible-description" id="onboarding-description-0">Enter the name you would like Smriti to use.</p>
         <div class="onboarding-hello-scene" id="onboarding-hello-scene">
           <div class="hello-wave-cluster">
             <div class="hello-hand-visual" aria-hidden="true">
@@ -74,7 +78,7 @@
           </div>
           <form class="onboarding-name-form" id="onboarding-name-form" novalidate>
             <label class="hello-name-line" for="onboarding-name-input">
-              <span class="sr-only">What should Erudite call you?</span>
+              <span class="sr-only">What should Smriti call you?</span>
               <input id="onboarding-name-input" name="preferredName" type="text" maxlength="32" autocomplete="name" autocapitalize="words" enterkeyhint="done" placeholder="what should we call you?">
             </label>
             <p class="hello-storage-note"><i class="fas fa-mobile-screen-button" aria-hidden="true"></i> Saved privately on this device.</p>
@@ -234,7 +238,7 @@
 
       <article class="onboarding-screen is-after advantages-screen" data-onboarding-step="4" aria-hidden="true">
         <div class="onboarding-copy">
-          <p class="onboarding-eyebrow">Why Erudite?</p>
+          <p class="onboarding-eyebrow">Why Smriti?</p>
           <h2 id="onboarding-title-4" tabindex="-1">Simple up front. Serious underneath.</h2>
           <p id="onboarding-description-4">Start easy. Go deeper whenever you want.</p>
         </div>
@@ -279,7 +283,7 @@
         <img src="assets/icons/icon.png" alt="" class="mobile-brand-logo" draggable="false">
         <div>
           <p class="mobile-eyebrow" id="mobile-eyebrow">Today</p>
-          <h1 id="mobile-title">Erudite</h1>
+          <h1 id="mobile-title">Smriti</h1>
         </div>
       </div>
       <div class="mobile-header-quote" id="mobile-header-quote"></div>
@@ -502,6 +506,14 @@
           <p class="mobile-eyebrow">Settings</p>
           <h2 id="more-heading">App tools</h2>
         </div>
+        <button type="button" class="pro-row" data-action="open-pro">
+          <span class="pro-row-mark" aria-hidden="true"><i class="fas fa-star"></i></span>
+          <span>
+            <strong>Smriti Pro</strong>
+            <small id="more-pro-label">Unlock full premade chapters</small>
+          </span>
+          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
         <div class="settings-list">
           <button type="button" class="settings-row" data-action="toggle-srs">
             <span class="settings-icon brain"><i class="fas fa-brain"></i></span>
@@ -510,6 +522,22 @@
               <small id="more-srs-label">Off</small>
             </span>
             <span class="switch" id="srs-switch"><span></span></span>
+          </button>
+          <button type="button" class="settings-row" data-action="open-reminder-settings">
+            <span class="settings-icon"><i class="fas fa-bell"></i></span>
+            <span>
+              <strong>Daily Reminder</strong>
+              <small id="more-reminder-label">Off</small>
+            </span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="select-new-card-limit">
+            <span class="settings-icon"><i class="fas fa-seedling"></i></span>
+            <span>
+              <strong>New Cards per Day</strong>
+              <small id="more-new-card-limit-label">20 per deck</small>
+            </span>
+            <i class="fas fa-chevron-right"></i>
           </button>
           <button type="button" class="settings-row" data-action="select-study-order">
             <span class="settings-icon"><i class="fas fa-route"></i></span>
@@ -571,12 +599,20 @@
             <span class="settings-icon"><i class="fas fa-palette"></i></span>
             <span>
               <strong>Theme Mode</strong>
-              <small>Toggle between Dark Blue and Aura Light theme</small>
+              <small>Dark or light</small>
             </span>
             <div class="custom-select-trigger-pill">
-              <span id="more-theme-label">Dark Blue</span>
+              <span id="more-theme-label">Dark</span>
               <i class="fas fa-chevron-down"></i>
             </div>
+          </button>
+          <button type="button" class="settings-row" data-action="toggle-paper">
+            <span class="settings-icon"><i class="fas fa-file-text"></i></span>
+            <span>
+              <strong>Paper Texture</strong>
+              <small id="more-paper-label">Off</small>
+            </span>
+            <span class="switch" id="paper-switch"><span></span></span>
           </button>
           <button type="button" class="settings-row" data-action="select-typography">
             <span class="settings-icon"><i class="fas fa-font"></i></span>
@@ -879,6 +915,8 @@
         </button>
       </div>
       
+      <p class="take-deck-sample hidden" id="take-deck-sample"></p>
+
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="mobile-take-deck-cancel">Cancel</button>
         <button type="button" class="mobile-modal-btn confirm" id="mobile-take-deck-confirm">Take Deck</button>
@@ -974,7 +1012,7 @@
       <div class="occlusion-editor-head">
         <div>
           <h3 id="occlusion-editor-title"><i class="fas fa-object-ungroup"></i> Image Occlusion</h3>
-          <p class="mobile-modal-hint" id="occlusion-editor-status">Add masks over the parts you want to test.</p>
+          <p class="mobile-modal-hint" id="occlusion-editor-status">Drag over a label to hide it, or tap to drop a mask.</p>
         </div>
         <button type="button" class="small-icon-button" id="occlusion-editor-close" aria-label="Close occlusion editor">
           <i class="fas fa-xmark"></i>
@@ -991,6 +1029,17 @@
         <button type="button" id="occlusion-shape-rect" data-occlusion-shape="rect" class="active"><i class="fas fa-vector-square"></i> Rect</button>
         <button type="button" id="occlusion-shape-ellipse" data-occlusion-shape="ellipse"><i class="fas fa-circle"></i> Oval</button>
         <button type="button" id="occlusion-delete-mask" class="danger"><i class="fas fa-trash"></i> Delete</button>
+      </div>
+
+      <div class="occlusion-guess-mode" role="group" aria-label="What the learner sees">
+        <button type="button" data-occlusion-guess="hide-all" class="active" aria-pressed="true">
+          <strong>Hide all labels</strong>
+          <small>Harder. Every mask stays covered; one is asked.</small>
+        </button>
+        <button type="button" data-occlusion-guess="hide-one" aria-pressed="false">
+          <strong>Hide one label</strong>
+          <small>Easier. Other labels stay visible as context.</small>
+        </button>
       </div>
 
       <div class="mobile-modal-row occlusion-editor-fields">
@@ -1185,7 +1234,7 @@ Back:
           </section>
           <section>
             <h4>Cloze and reverse examples</h4>
-            <p>Cloze cards hide answers inside a sentence. If one card has <code>{{c1::...}}</code> and <code>{{c2::...}}</code>, Erudite creates separate recall cards for those blanks. Reverse cards are better for terms that should be remembered both ways.</p>
+            <p>Cloze cards hide answers inside a sentence. If one card has <code>{{c1::...}}</code> and <code>{{c2::...}}</code>, Smriti creates separate recall cards for those blanks. Reverse cards are better for terms that should be remembered both ways.</p>
             <div class="mini-example-list">
               <div class="mini-example-card">
                 <strong>Cloze</strong>
@@ -1348,7 +1397,7 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
             </div>
             <p>Keep media local to the package. Use paths like <code>media/file.webp</code>; avoid external URLs and giant Base64 strings.</p>
             <div class="pb-tip-box" style="background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.25); color: #60a5fa; margin-top: 0.5rem; font-size: 0.76rem; border-radius: 6px; padding: 0.4rem 0.6rem; border: 1px solid; text-align: left; width: 100%;">
-              <i class="fas fa-image"></i> <strong>Auto-Attached Images:</strong> If you use an HTML image tag (e.g., <code>&lt;img src="media/file.webp"&gt;</code>) in a normal card, Erudite automatically converts it into a native attached image during import.
+              <i class="fas fa-image"></i> <strong>Auto-Attached Images:</strong> If you use an HTML image tag (e.g., <code>&lt;img src="media/file.webp"&gt;</code>) in a normal card, Smriti automatically converts it into a native attached image during import.
             </div>
             <p style="margin-top: 0.5rem; text-align: center;">
               <button type="button" class="text-button" id="help-formats-open-converter-btn" style="font-size: 0.82rem; text-decoration: underline; color: var(--amber); font-weight: 600; background: transparent; border: none; cursor: pointer; padding: 0.25rem;">
@@ -1362,13 +1411,13 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
         <div class="modal-tab-content" id="help-tab-rules">
           <section>
             <h4>Copy this for an AI</h4>
-            <p>This section is not a user questionnaire. It is a raw technical guide for any AI model that needs to create Erudite TXT, JSON, or ZIP flashcards.</p>
+            <p>This section is not a user questionnaire. It is a raw technical guide for any AI model that needs to create Smriti TXT, JSON, or ZIP flashcards.</p>
             <div class="code-block-wrapper">
               <div class="code-block-header">
                 <span class="code-block-title">erudite-ai-format-guide.txt</span>
                 <button type="button" class="code-block-copy" data-copy-target="code-ai-format-guide" title="Copy AI Guide" aria-label="Copy AI formatting guide"><i class="fas fa-copy" aria-hidden="true"></i></button>
               </div>
-              <pre class="help-code help-code-large"><code id="code-ai-format-guide">You are creating importable study decks for Erudite Flashcards.
+              <pre class="help-code help-code-large"><code id="code-ai-format-guide">You are creating importable study decks for Smriti.
 
 Your job:
 - Convert source material into flashcards, not notes.
@@ -1504,7 +1553,7 @@ Image occlusion card:
   "term": "Flower diagram",
   "image": { "dataUrl": "data:image/png;base64,BASE64_IMAGE_DATA", "width": 1200, "height": 800 },
   "occlusion": {
-    "mode": "hide-one",
+    "guessMode": "hide-all",
     "units": "px",
     "imageWidth": 1200,
     "imageHeight": 800,
@@ -1520,13 +1569,14 @@ Image occlusion rules:
 - Direct JSON must use an image data URL.
 - ZIP deck.json may use "image": "media/file.webp".
 - Best AI-safe mask format: set occlusion.units to "px", include occlusion.imageWidth and occlusion.imageHeight, and use bboxPx: [left, top, width, height].
-- Pixel boxes must be measured on the final cropped image that Erudite will display, not the PDF page and not a screenshot with a different scale.
+- Pixel boxes must be measured on the final cropped image that Smriti will display, not the PDF page and not a screenshot with a different scale.
+- guessMode "hide-all" (default) covers every label and asks one; "hide-one" leaves the other labels visible as context.
 - Normalized x/y/w/h values from 0 to 1 also work when you are certain they are relative to the final image.
 - If using normalized boxes, x and y are top-left position; w and h are width and height.
 - shape is rect or ellipse.
 - Every mask needs answer. hint is optional.
 - Each mask becomes a separate study card.
-- If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Erudite automatically turns each mask into its own study card.
+- If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Smriti automatically turns each mask into its own study card.
 - Use image occlusion for labels, anatomy, maps, apparatus, graphs, and diagrams where hiding a part tests recall.
 - Do not add extra masks for arrows, decorative text, repeated labels, uncertain labels, captions, or parts you cannot name confidently.
 - For crowded diagrams, use about 3-12 high-value masks per image. Split into multiple cropped images only when one full image is too crowded or unreadable.
@@ -1617,7 +1667,7 @@ media/
   timeline.webp
 
 If you cannot attach a ZIP file:
-- Return Erudite Package Source instead.
+- Return Smriti Package Source instead.
 - Start exactly with ERUDITE_PACKAGE_SOURCE_V1.
 - Then provide one valid JSON object:
 {
@@ -1684,6 +1734,99 @@ If you cannot attach a ZIP file:
     </div>
   </div>
 
+  <div class="mobile-modal-overlay hidden" id="new-card-limit-overlay" role="dialog" aria-modal="true" aria-labelledby="new-card-limit-title">
+    <div class="mobile-modal-card">
+      <h3 id="new-card-limit-title" class="modal-title"><i class="fas fa-seedling"></i> New Cards per Day</h3>
+      <p class="mobile-modal-hint">How many unseen cards each deck introduces per day. Every new card creates future reviews, so a smaller number keeps review days manageable. A deck can override this in its own settings.</p>
+      <div class="mobile-modal-list">
+        <button type="button" class="mobile-modal-option-btn" data-value="10">
+          <span class="option-icon option-number" aria-hidden="true">10</span>
+          <span class="option-details">
+            <strong>Gentle</strong>
+            <small>About 10 minutes a day once reviews build up</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="20">
+          <span class="option-icon option-number" aria-hidden="true">20</span>
+          <span class="option-details">
+            <strong>Recommended</strong>
+            <small>A steady pace most learners can keep (Default)</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="30">
+          <span class="option-icon option-number" aria-hidden="true">30</span>
+          <span class="option-details">
+            <strong>Focused</strong>
+            <small>More new material, more daily reviews later</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="50">
+          <span class="option-icon option-number" aria-hidden="true">50</span>
+          <span class="option-details">
+            <strong>Intensive</strong>
+            <small>For exam crunch periods; reviews grow fast</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="100">
+          <span class="option-icon option-number" aria-hidden="true">100</span>
+          <span class="option-details">
+            <strong>Maximum</strong>
+            <small>Only for short bursts; expect heavy review days</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="new-card-limit-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-modal-overlay hidden" id="pro-overlay" role="dialog" aria-modal="true" aria-labelledby="pro-title">
+    <div class="mobile-modal-card pro-card">
+      <button type="button" class="pro-close" data-action="close-pro" aria-label="Close"><i class="fas fa-xmark"></i></button>
+      <div class="pro-hero" aria-hidden="true">
+        <span class="pro-hero-card back"></span>
+        <span class="pro-hero-card middle"></span>
+        <span class="pro-hero-card front"><i class="fas fa-star"></i></span>
+      </div>
+      <h3 id="pro-title" class="pro-title">Smriti Pro</h3>
+      <p class="pro-lede">The full premade library for NEET, JEE, and boards, built chapter by chapter.</p>
+      <ul class="pro-benefits">
+        <li><i class="fas fa-book-open" aria-hidden="true"></i><span><b>Every premade chapter, complete.</b> Free decks stop after the first 20 cards.</span></li>
+        <li><i class="fas fa-rotate" aria-hidden="true"></i><span><b>Keeps your progress.</b> Sample decks you already study are filled in, reviews intact.</span></li>
+        <li><i class="fas fa-shield-halved" aria-hidden="true"></i><span><b>Your own cards stay free.</b> Creating, studying, SRS, and backups are never behind Pro.</span></li>
+      </ul>
+      <div class="pro-plans" id="pro-plans"></div>
+      <p class="pro-status" id="pro-status"></p>
+      <button type="button" class="pro-buy" id="pro-buy" data-action="buy-pro">Continue</button>
+      <button type="button" class="text-button pro-restore" data-action="restore-pro">Restore purchase</button>
+    </div>
+  </div>
+
+  <div class="mobile-modal-overlay hidden" id="reminder-overlay" role="dialog" aria-modal="true" aria-labelledby="reminder-title">
+    <div class="mobile-modal-card">
+      <h3 id="reminder-title" class="modal-title"><i class="fas fa-bell"></i> Daily Reminder</h3>
+      <p class="mobile-modal-hint">One notification a day at a time you choose. It says how many cards are due and stays quiet on days you have already finished.</p>
+      <label class="reminder-toggle-row">
+        <input type="checkbox" id="reminder-enabled">
+        <span>Remind me to study</span>
+      </label>
+      <label class="mobile-field">
+        <span>Time</span>
+        <input type="time" id="reminder-time" class="mobile-modal-input" value="19:00">
+      </label>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="reminder-cancel">Cancel</button>
+        <button type="button" class="mobile-modal-btn confirm" id="reminder-save">Save</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Mobile Deck Settings Modal -->
   <div class="mobile-modal-overlay hidden" id="mobile-deck-settings-overlay" role="dialog" aria-modal="true" aria-labelledby="mobile-deck-settings-title">
     <div class="mobile-modal-card">
@@ -1721,7 +1864,7 @@ If you cannot attach a ZIP file:
           </label>
           <label class="mobile-field">
             <span>New Cards/Day Limit</span>
-            <input type="number" id="mobile-deck-new-limit" class="mobile-modal-input" min="0" step="1" placeholder="Unlimited">
+            <input type="number" id="mobile-deck-new-limit" class="mobile-modal-input" min="0" step="1" inputmode="numeric" placeholder="App default (20)">
           </label>
           <label class="mobile-field">
             <span>Reviews/Day Limit</span>
@@ -2023,16 +2166,16 @@ If you cannot attach a ZIP file:
         <button type="button" class="mobile-modal-option-btn" data-value="dark">
           <i class="fas fa-moon option-icon"></i>
           <span class="option-details">
-            <strong>Dark Blue</strong>
-            <small>Deep dark blue background with vibrant accents</small>
+            <strong>Dark</strong>
+            <small>Warm graphite, easy on the eyes at night</small>
           </span>
           <i class="fas fa-circle-check check-icon"></i>
         </button>
         <button type="button" class="mobile-modal-option-btn" data-value="light">
           <i class="fas fa-sun option-icon"></i>
           <span class="option-details">
-            <strong>Aura Light</strong>
-            <small>Clean, pristine light background with soft shadows</small>
+            <strong>Light</strong>
+            <small>Soft off-white for bright rooms</small>
           </span>
           <i class="fas fa-circle-check check-icon"></i>
         </button>
@@ -2050,7 +2193,7 @@ If you cannot attach a ZIP file:
       <div class="mobile-modal-scroll-content">
         <p id="import-error-msg" style="font-size: 0.88rem; line-height: 1.5; color: var(--text); margin-bottom: 0.8rem;"></p>
         <p style="font-size: 0.78rem; line-height: 1.4; color: var(--muted);">
-          Erudite cannot process this ZIP package. You can copy the recovery instructions below, paste them in your AI chat, and ask it to correct the output.
+          Smriti cannot process this ZIP package. You can copy the recovery instructions below, paste them in your AI chat, and ask it to correct the output.
         </p>
       </div>
       <div class="mobile-modal-actions" style="flex-direction: column; gap: 0.5rem; width: 100%;">
@@ -2094,7 +2237,7 @@ If you cannot attach a ZIP file:
       <h3 id="pb-convert-text-title"><i class="fas fa-file-import"></i> Build ZIP from AI Output</h3>
       <div class="mobile-modal-scroll-content">
         <p style="font-size: 0.82rem; line-height: 1.45; color: var(--muted); margin: 0 0 0.8rem 0;">
-          Paste the structured output (with the <code>ERUDITE_PACKAGE_SOURCE_V1</code> marker or JSON block) returned by Gemini or Claude. Erudite will convert it into a ZIP deck locally.
+          Paste the structured output (with the <code>ERUDITE_PACKAGE_SOURCE_V1</code> marker or JSON block) returned by Gemini or Claude. Smriti will convert it into a ZIP deck locally.
         </p>
         <div class="mobile-modal-field">
           <textarea id="pb-convert-textarea" class="mobile-modal-textarea" rows="10" placeholder="Paste ERUDITE_PACKAGE_SOURCE_V1 text here..."></textarea>
@@ -2209,7 +2352,7 @@ If you cannot attach a ZIP file:
                     <strong style="font-size: 0.84rem; color: var(--text);">ChatGPT</strong>
                     <span style="font-size: 0.6rem; font-weight: 800; background: var(--surface-3); border: 1px solid var(--line); color: var(--green); padding: 0.1rem 0.35rem; border-radius: 4px; text-transform: uppercase;">Recommended</span>
                   </div>
-                  <small style="display: block; font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; font-weight: 500; line-height: 1.3;"><strong>Best for full ZIP decks with images.</strong> Recommended for Erudite ZIP packages.</small>
+                  <small style="display: block; font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; font-weight: 500; line-height: 1.3;"><strong>Best for full ZIP decks with images.</strong> Recommended for Smriti ZIP packages.</small>
                 </div>
               </button>
               <button type="button" class="provider-card" data-ai-provider="claude" style="min-height: auto; flex-direction: row; justify-content: flex-start; text-align: left; padding: 0.75rem 1rem; width: 100%;">
@@ -2377,6 +2520,8 @@ If you cannot attach a ZIP file:
   <script src="js/core/review-session.js"></script>
   <script src="js/core/draft.js"></script>
   <script src="js/core/card-media.js"></script>
+  <script src="js/core/image-optimize.js"></script>
+  <script src="js/core/ai-prompt.js"></script>
   <script src="vendor/katex/katex.min.js"></script>
   <script src="vendor/katex/auto-render.min.js"></script>
   <script src="js/core/math-render.js"></script>
@@ -2389,6 +2534,9 @@ If you cannot attach a ZIP file:
   <script src="vendor/ts-fsrs/index.umd.js"></script>
   <script src="js/srs-manager.js"></script>
   <script src="js/core/color-picker.js"></script>
+  <script src="js/mobile/billing-config.js"></script>
+  <script src="js/core/entitlements.js"></script>
+  <script src="mobile/js/signature.js"></script>
   <script src="mobile/js/mobile-app.js"></script>
 </body>
 </html>

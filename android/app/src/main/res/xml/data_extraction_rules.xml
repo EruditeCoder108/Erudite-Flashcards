@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Android 12+ backup rules. Only the SQLite study database is backed up so decks,
+  review history, and settings survive a reinstall or a new phone. Media files,
+  exported backups, and WebView storage stay on the device: media can exceed the
+  25 MB Auto Backup quota, and a failed quota check would skip the whole backup.
+-->
 <data-extraction-rules>
     <cloud-backup>
-        <exclude domain="root" path="." />
-        <exclude domain="file" path="." />
-        <exclude domain="database" path="." />
-        <exclude domain="sharedpref" path="." />
-        <exclude domain="external" path="." />
+        <include domain="database" path="." />
     </cloud-backup>
     <device-transfer>
-        <exclude domain="root" path="." />
-        <exclude domain="file" path="." />
-        <exclude domain="database" path="." />
-        <exclude domain="sharedpref" path="." />
-        <exclude domain="external" path="." />
+        <include domain="database" path="." />
     </device-transfer>
 </data-extraction-rules>

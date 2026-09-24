@@ -1,6 +1,6 @@
 {
   "name": "erudite-flashcards",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "A local-first Electron flashcard app extracted from the Productivity Toolkit.",
   "main": "main.js",
   "author": "Sambhav Jain <eruditespartan@gmail.com>",
@@ -13,12 +13,16 @@
     "build:site": "node scripts/build-site.js",
     "zip:premade": "node scripts/zip-premade-decks.js",
     "cap:sync": "npm run build:mobile && cap sync android",
-    "cap:open": "cap open android"
+    "cap:open": "cap open android",
+    "test": "node --test tests/*.test.js",
+    "test:e2e": "npm run build:mobile && node tests/e2e/smoke.js",
+    "store:images": "npm run build:mobile && node play-store/generator/generate.js"
   },
   "dependencies": {
     "@capacitor-community/sqlite": "^8.1.0",
     "@capacitor/app": "^8.1.0",
     "@fortawesome/fontawesome-free": "^6.5.1",
+    "@revenuecat/purchases-capacitor": "^13.6.1",
     "jszip": "^3.10.1",
     "katex": "^0.17.0",
     "sortablejs": "^1.15.2",
@@ -30,11 +34,16 @@
     "@capacitor/cli": "^8.4.0",
     "@capacitor/core": "^8.4.0",
     "@capacitor/filesystem": "^8.1.2",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/local-notifications": "^8.3.1",
     "@capacitor/preferences": "^8.0.1",
     "@capacitor/share": "^8.0.1",
+    "@fontsource-variable/geist": "^5.3.0",
     "electron": "^30.5.1",
     "electron-builder": "^24.13.3",
-    "esbuild": "^0.20.2"
+    "esbuild": "^0.20.2",
+    "lucide-static": "^1.48.0",
+    "playwright-core": "1.56"
   },
   "build": {
     "appId": "com.erudite.flashcards",

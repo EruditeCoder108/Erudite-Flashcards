@@ -75,6 +75,7 @@
     analyticsError: null,
     analyticsLoadToken: 0,
     setStatsLoadToken: 0,
+    setStatsReady: false,
     analyticsWindow: '30',
     browserSearch: '',
     browserFilters: new Set(),
@@ -140,6 +141,7 @@
   let creatorHasRendered = false;
   let creatorCardLookup = new Map();
   let creatorDirtyCardIds = new Set();
+  const importedImageDimensions = new Map();
   let creatorGeneratedCardCache = new Map();
   let creatorRenderedCardCount = 0;
   let creatorLoadMoreObserver = null;
@@ -197,7 +199,8 @@
   const PREMADE_DOWNLOAD_TIMEOUT_MS = 30 * 1000;
   const PREMADE_DOWNLOAD_MAX_BYTES = ERUDITE_PACKAGE_MAX_ARCHIVE_BYTES;
   const OCCLUSION_MAX_MASKS = 80;
-  const OCCLUSION_MIN_SIZE = 0.035;
+  // Small enough for single-word labels on a full-page diagram.
+  const OCCLUSION_MIN_SIZE = 0.015;
 
   const selectors = {
     title: document.getElementById('mobile-title'),
@@ -238,6 +241,8 @@
     moreSrsLabel: document.getElementById('more-srs-label'),
     soundSwitch: document.getElementById('sound-switch'),
     moreSoundLabel: document.getElementById('more-sound-label'),
+    paperSwitch: document.getElementById('paper-switch'),
+    morePaperLabel: document.getElementById('more-paper-label'),
     htmlInteractionSwitch: document.getElementById('html-interaction-switch'),
     moreHtmlInteractionLabel: document.getElementById('more-html-interaction-label'),
     normalStudyOrder: null,
@@ -466,8 +471,10 @@
 
   function startOfLocalDayMs(value = Date.now()) {
     const timestamp = normalizeTimestamp(value) || Date.now();
-    const date = new Date(timestamp);
-    date.setHours(0, 0, 0, 0);
+    // A study day runs from 4 AM to 4 AM, matching the scheduler, so a late-night
+    // session still counts toward the day the learner thinks of as "today".
+    const date = new Date(timestamp - 4 * 60 * 60 * 1000);
+    date.setHours(4, 0, 0, 0);
     return date.getTime();
   }
 
@@ -608,7 +615,8 @@
       matureCards: 0,
       retention: null
     };
-    const retentions = [];
+    let matureReviewed = 0;
+    let matureRemembered = 0;
     state.sets.forEach(set => {
       const stats = setStats(set);
       totals.cardCount += setCardCount(set);
@@ -617,10 +625,13 @@
       totals.learningCards += Number(stats.learningCards || 0);
       totals.reviewCards += Number(stats.reviewCards || 0);
       totals.matureCards += Number(stats.matureCards || 0);
-      if (stats.retention !== null && stats.retention !== undefined) retentions.push(Number(stats.retention));
+      const meta = metaStats(set);
+      matureReviewed += Number(meta?.matureReviewed30 || 0);
+      matureRemembered += Number(meta?.matureRemembered30 || 0);
     });
-    if (retentions.length) {
-      totals.retention = Math.round(retentions.reduce((sum, value) => sum + value, 0) / retentions.length);
+    // Weight by review volume so a deck with 3 reviews cannot swing the total.
+    if (matureReviewed > 0) {
+      totals.retention = Math.round((matureRemembered / matureReviewed) * 100);
     }
     return totals;
   }
@@ -652,9 +663,8 @@
   function reviewsToday() {
     const metaTotal = state.sets.reduce((total, set) => total + Number(metaStats(set)?.reviewedToday || 0), 0);
     if (metaTotal > 0 || state.sets.some(set => metaStats(set))) return metaTotal;
-    const start = new Date();
-    start.setHours(0, 0, 0, 0);
-    return reviewedDates().filter(time => time >= start.getTime()).length;
+    const start = startOfLocalDayMs();
+    return reviewedDates().filter(time => time >= start).length;
   }
 
   function streakDays() {
@@ -663,9 +673,7 @@
       (metaStats(set)?.reviewDayKeys || []).forEach(key => dayKeys.add(String(key)));
     });
     reviewedDates().forEach(time => {
-      const date = new Date(time);
-      date.setHours(0, 0, 0, 0);
-      dayKeys.add(String(date.getTime()));
+      dayKeys.add(String(startOfLocalDayMs(time)));
     });
     if (Array.isArray(state.studySessions)) {
       state.studySessions.forEach(session => {
@@ -678,8 +686,7 @@
       return 0;
     }
     let streak = 0;
-    const cursor = new Date();
-    cursor.setHours(0, 0, 0, 0);
+    const cursor = new Date(startOfLocalDayMs());
     if (!dayKeys.has(String(cursor.getTime()))) {
       cursor.setDate(cursor.getDate() - 1);
     }
@@ -782,7 +789,9 @@
     clearTimeout(toastTimer);
     selectors.toast.textContent = message;
     selectors.toast.classList.add('show');
-    toastTimer = setTimeout(() => selectors.toast.classList.remove('show'), 2200);
+    // Longer messages stay up long enough to read.
+    const duration = Math.min(6000, Math.max(2200, String(message || '').length * 55));
+    toastTimer = setTimeout(() => selectors.toast.classList.remove('show'), duration);
   }
 
   function normalizeNormalStudyOrder(value) {
@@ -901,6 +910,7 @@
     localStorage.setItem('erudite-theme', theme);
     document.body.classList.toggle('theme-light', theme === 'light');
     document.documentElement.classList.toggle('theme-light', theme === 'light');
+    window.EruditePaper?.apply(state.settings?.paperTexture === true);
     configureSystemBars().catch(() => {});
     
     let allProgress = {};
@@ -951,7 +961,10 @@
   }
 
   async function refreshSetStatsInBackground() {
-    if (!window.flashcardStore?.getSetStatsMeta || !state.sets.length) return;
+    if (!window.flashcardStore?.getSetStatsMeta || !state.sets.length) {
+      state.setStatsReady = true;
+      return;
+    }
     const span = perf?.start('app.stats.background_refresh', { deckCount: state.sets.length });
     const token = state.setStatsLoadToken + 1;
     state.setStatsLoadToken = token;
@@ -961,7 +974,13 @@
         perf?.end(span, { status: 'stale', entryCount: entries?.length || 0 });
         return;
       }
-      if (!applySetStatsEntries(entries)) {
+      scheduleLearningDueRefresh(entries);
+      const changed = applySetStatsEntries(entries);
+      const firstLoad = !state.setStatsReady;
+      state.setStatsReady = true;
+      // Reminder text uses the fresh due count, so reschedule after every refresh.
+      scheduleStudyRemindersSoon();
+      if (!changed && !firstLoad) {
         perf?.end(span, { status: 'unchanged', entryCount: entries?.length || 0 });
         return;
       }
@@ -974,6 +993,24 @@
         console.warn('[mobile] Could not refresh deck statistics:', error);
       }
     }
+  }
+
+  let learningDueRefreshTimer = null;
+
+  // Learning steps come due minutes apart; refresh counts when the next one does
+  // so the Today screen never shows "caught up" while cards are waiting.
+  function scheduleLearningDueRefresh(entries = []) {
+    clearTimeout(learningDueRefreshTimer);
+    const nextDue = (Array.isArray(entries) ? entries : [])
+      .map(entry => Number(entry?.stats?.nextLearningDue || 0))
+      .filter(value => value > Date.now())
+      .sort((a, b) => a - b)[0];
+    if (!nextDue) return;
+    const delay = Math.min(nextDue - Date.now() + 1000, 60 * 60 * 1000);
+    learningDueRefreshTimer = window.setTimeout(() => {
+      learningDueRefreshTimer = null;
+      if (!document.hidden) scheduleSetStatsRefresh(0);
+    }, delay);
   }
 
   function scheduleSetStatsRefresh(delayMs = 450) {
@@ -998,7 +1035,7 @@
       browser: 'Cards',
       more: 'Settings'
     };
-    selectors.eyebrow.textContent = 'Erudite Flashcards';
+    selectors.eyebrow.textContent = 'Smriti';
     selectors.title.textContent = titles[state.activeTab] || 'Today';
   }
 
@@ -1009,7 +1046,7 @@
       // Small timeout to ensure browser has computed coordinates correctly
       requestAnimationFrame(() => {
         indicator.style.width = `${activeBtn.offsetWidth}px`;
-        indicator.style.left = `${activeBtn.offsetLeft}px`;
+        indicator.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
       });
     }
   }
@@ -1113,6 +1150,7 @@
             <span>${plural(stats.totalCards || 0, 'card')}</span>
             <span class="class-pill" style="background:${color}1f;color:${color}">${escapeHtml(classLabel)}</span>
             ${showDue ? `<span>${due} due</span>` : `<span>${escapeHtml(relativeTime(lastActivity))}</span>`}
+            ${set.premadeSource?.sample ? `<button type="button" class="sample-pill" data-action="open-pro" aria-label="Sample deck. Unlock the full chapter with Smriti Pro"><i class="fas fa-lock" aria-hidden="true"></i>Sample · ${Number(set.premadeSource.sampleNotes) || 0} of ${Number(set.premadeSource.totalNotes) || 0}</button>` : ''}
           </div>
           <div class="progress-track" style="--progress:${percent}%"><span></span></div>
         </div>
@@ -1210,7 +1248,9 @@
       weakCards: 0,
       failedRecently: 0,
       ratingCounts: emptyRatingCounts(),
+      retentionCounts: emptyRatingCounts(),
       retention: null,
+      retentionEvents: 0,
       reviewEvents: 0,
       retentionBreakdown: [],
       buttonDistribution: [],
@@ -1239,12 +1279,16 @@
 
       const counts = cardRatingCounts(card, windowKey);
       addRatingCounts(summary.ratingCounts, counts);
+      addRatingCounts(summary.retentionCounts, card?.retentionWindows?.[normalizeAnalyticsWindow(windowKey)]);
       const bucket = analyticsCardBucket(card);
       if (buckets[bucket]) addRatingCounts(buckets[bucket].counts, counts);
     });
 
     const passRate = ratingPassRate(summary.ratingCounts);
-    summary.retention = passRate.percent;
+    // True retention: recall rate on graduated cards only, as Anki reports it.
+    const retentionRate = ratingPassRate(summary.retentionCounts);
+    summary.retention = retentionRate.percent;
+    summary.retentionEvents = retentionRate.total;
     summary.reviewEvents = passRate.total;
     summary.retentionBreakdown = Object.values(buckets)
       .map(bucket => {
@@ -1330,7 +1374,7 @@
       if (card?.suspended || card?.buried || card?.buriedUntil) return;
       const dueTime = normalizeTimestamp(card?.dueTime || card?.due);
       if (!dueTime) return;
-      let offset = Math.floor((startOfLocalDayMs(dueTime) - todayStart) / DAY_MS);
+      let offset = Math.round((startOfLocalDayMs(dueTime) - todayStart) / DAY_MS);
       if (dueTime < todayStart) offset = 0;
       if (offset >= 0 && offset < days) buckets[offset].count += 1;
     });
@@ -1375,7 +1419,8 @@
     }
 
     const items = Array.from({ length: days }, (_, index) => {
-      const dayMs = todayStart - (days - index - 1) * DAY_MS;
+      // Re-anchor each cell so daylight-saving shifts cannot misalign it with the keys.
+      const dayMs = startOfLocalDayMs(todayStart - (days - index - 1) * DAY_MS + DAY_MS / 2);
       const entry = activity.get(dayMs) || { cards: 0, sessions: 0, reviews: 0, durationMs: 0 };
       const score = entry.cards + entry.reviews + entry.sessions;
       return {
@@ -1624,7 +1669,7 @@
           </div>
           <div class="insight-widget-value">${retentionLabel}</div>
           <div class="insight-widget-footer">
-            <span class="stat-desc">${formatShortNumber(summary.reviewEvents)} reviews, ${escapeHtml(windowLabel)}</span>
+            <span class="stat-desc">${summary.retentionEvents ? `${formatShortNumber(summary.retentionEvents)} mature reviews, ${escapeHtml(windowLabel)}` : 'Shows once cards graduate'}</span>
           </div>
         </article>
         <article class="insight-card">
@@ -1871,26 +1916,25 @@
     const reviewLabel = state.srsMode && totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : (hasDecks ? 'Study Decks' : 'Create Deck');
     const middleMetricValue = state.srsMode ? todayReviews : activity.todayCardsViewed;
     const middleMetricLabel = state.srsMode ? 'Reviewed' : 'Studied';
+    const hasDue = state.srsMode && totals.dueCards > 0;
+    const ctaTitle = hasDue ? 'Review' : (hasDecks ? 'Study Decks' : 'Create Deck');
+    const ctaCopy = hasDue
+      ? `${totals.dueCards === 1 ? 'card' : 'cards'} left today`
+      : (hasDecks ? 'You are caught up. Keep going?' : 'Start with your first deck');
+    // Card layers behind the button show roughly how much is waiting.
+    const stackDepth = hasDue ? (totals.dueCards >= 10 ? 2 : 1) : 0;
+    const signature = window.EruditeSignature;
+    // Until deck statistics load, due counts can be stale, so the ring holds the
+    // value it last showed today and sweeps to the real one once they arrive.
+    const statsReady = state.setStatsReady || !state.sets.length;
+    const ringProgress = statsReady || !signature ? progress : signature.lastShownProgress();
+    const ringMarkup = signature
+      ? signature.goalRingMarkup({ progress: ringProgress, label: ringProgress >= 100 ? 'Done' : progressLabel })
+      : `<div class="goal-ring" data-progress="${progress}"><div class="goal-ring-copy"><strong>${progress}%</strong><span>${progressLabel}</span></div></div>`;
+    const previousRing = selectors.todayHero.querySelector('.goal-ring');
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
-        <div class="goal-ring-wrapper">
-          <svg class="goal-ring-svg" viewBox="0 0 100 100">
-            <defs>
-              <linearGradient id="goalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#3b82f6" />
-                <stop offset="100%" stop-color="#8b5cf6" />
-              </linearGradient>
-            </defs>
-            <circle class="goal-ring-track" cx="50" cy="50" r="42" stroke-width="7.5" />
-            <circle class="goal-ring-progress" cx="50" cy="50" r="42" stroke-width="7.5" 
-                    stroke="url(#goalGradient)"
-                    style="stroke-dasharray: 263.89; stroke-dashoffset: ${263.89 - (progress / 100) * 263.89};" />
-          </svg>
-          <div class="goal-ring-center">
-            <strong>${progress}%</strong>
-            <span>${progressLabel}</span>
-          </div>
-        </div>
+        ${ringMarkup}
         <div class="hero-stats-list">
           <div class="stat-row">
             <i class="fas fa-layer-group"></i>
@@ -1916,12 +1960,29 @@
         </div>
       </div>
       <div class="hero-actions">
-        <button type="button" class="primary-action" data-action="${reviewAction}">
-          <i class="fas ${state.srsMode && totals.dueCards > 0 ? 'fa-brain' : 'fa-layer-group'}"></i>
-          ${escapeHtml(reviewLabel)}
+        <button type="button" class="stack-button" data-depth="${stackDepth}" data-action="${reviewAction}" aria-label="${escapeAttr(reviewLabel)}">
+          <span class="stack-layer back" aria-hidden="true"></span>
+          <span class="stack-layer middle" aria-hidden="true"></span>
+          <span class="stack-face">
+            <span class="stack-copy">
+              <strong>${escapeHtml(ctaTitle)}</strong>
+              <small>${escapeHtml(ctaCopy)}</small>
+            </span>
+            ${hasDue ? `<span class="stack-count">${totals.dueCards}</span>` : ''}
+            <i class="fas fa-arrow-right stack-arrow" aria-hidden="true"></i>
+          </span>
         </button>
       </div>
     `;
+    const nextRing = selectors.todayHero.querySelector('.goal-ring');
+    if (previousRing && nextRing && previousRing.dataset.progress === nextRing.dataset.progress) {
+      // Same value: keep the existing ring so an animation in flight is not cut off.
+      nextRing.replaceWith(previousRing);
+    } else if (nextRing && statsReady) {
+      signature?.animateGoalRing(nextRing, progress);
+    } else if (nextRing) {
+      signature?.animateGoalRing(nextRing, ringProgress, { remember: false });
+    }
 
     renderAnalyticsDashboard();
     renderCustomStudyPanel();
@@ -2142,7 +2203,7 @@
     const template = document.createElement('template');
     template.innerHTML = String(value || '').trim();
     const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'DIV', 'P', 'UL', 'OL', 'LI', 'SPAN', 'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'HR']);
-    const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink']);
+    const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink', 'cloze-answer', 'cloze-blank']);
     // Only allow color: <hex|rgb|hsl|named> in style attributes — no JS injection
     const safeColorRe = /^color\s*:\s*(#[0-9a-fA-F]{3,8}|rgb\([^)]*\)|rgba\([^)]*\)|hsl\([^)]*\)|hsla\([^)]*\)|[a-zA-Z]{2,30})\s*;?\s*$/;
     const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
@@ -2368,7 +2429,7 @@
     const frontText = plainTextFromHtml(card.term || advancedHtmlSide(card, 'front')).replace(/\s+/g, ' ').trim();
     const backText = plainTextFromHtml(card.definition || advancedHtmlSide(card, 'back')).replace(/\s+/g, ' ').trim();
     return [
-      'Create an Erudite mobile flashcard using HTML and CSS only.',
+      'Create a Smriti mobile flashcard using HTML and CSS only.',
       '',
       'Return exactly four fenced code blocks with these labels:',
       'FRONT_HTML',
@@ -3007,8 +3068,8 @@
     if (selectors.occlusionStatus) {
       const count = draft.masks.length;
       selectors.occlusionStatus.textContent = count
-        ? `${plural(count, 'mask')} ready. Each mask becomes one study card.`
-        : 'Add masks over the parts you want to test.';
+        ? `${plural(count, 'mask')} ready. Each mask becomes one study card. Drag on the image to add more.`
+        : 'Drag over a label to hide it, or tap to drop a mask.';
     }
     selectors.occlusionDeleteMask?.toggleAttribute('disabled', !selectedMask);
   }
@@ -3035,6 +3096,7 @@
       };
     }
     selectors.occlusionOverlay?.classList.remove('hidden');
+    updateOcclusionGuessModeUi();
     bindOcclusionEditorLayout();
     requestAnimationFrame(renderOcclusionEditor);
     scheduleOcclusionLayerSync();
@@ -3167,9 +3229,62 @@
     showToast(`Saved ${plural(normalized.masks.length, 'mask')}`);
   }
 
+  function occlusionPointFromEvent(event) {
+    const rect = selectors.occlusionLayer.getBoundingClientRect();
+    return {
+      x: clamp((event.clientX - rect.left) / Math.max(1, rect.width), 0, 1),
+      y: clamp((event.clientY - rect.top) / Math.max(1, rect.height), 0, 1),
+      layerW: Math.max(1, rect.width),
+      layerH: Math.max(1, rect.height)
+    };
+  }
+
+  // Dragging on empty image space draws a new mask exactly over the label;
+  // a plain tap drops a default-size mask centred on the tap.
+  function startOcclusionDraw(event) {
+    const draft = state.occlusionEditor.draft;
+    if (!draft) return;
+    if (draft.masks.length >= OCCLUSION_MAX_MASKS) {
+      showToast(`Limit is ${OCCLUSION_MAX_MASKS} masks`);
+      return;
+    }
+    event.preventDefault();
+    updateSelectedOcclusionText();
+    const point = occlusionPointFromEvent(event);
+    const mask = normalizeOcclusionMask({
+      shape: state.occlusionEditor.shape,
+      x: point.x,
+      y: point.y,
+      w: OCCLUSION_MIN_SIZE,
+      h: OCCLUSION_MIN_SIZE,
+      answer: `Hidden part ${draft.masks.length + 1}`
+    }, draft.masks.length);
+    mask.x = point.x;
+    mask.y = point.y;
+    draft.masks.push(mask);
+    state.occlusionEditor.selectedMaskId = mask.id;
+    state.occlusionEditor.pointer = {
+      id: event.pointerId,
+      mode: 'draw',
+      originX: point.x,
+      originY: point.y,
+      startX: event.clientX,
+      startY: event.clientY,
+      layerW: point.layerW,
+      layerH: point.layerH,
+      mask: { ...mask }
+    };
+    selectors.occlusionLayer.setPointerCapture?.(event.pointerId);
+    renderOcclusionEditor();
+    updateOcclusionSelectionUi();
+  }
+
   function startOcclusionPointer(event) {
     const maskEl = event.target.closest?.('[data-occlusion-mask-id]');
-    if (!maskEl || !selectors.occlusionLayer?.contains(maskEl)) return;
+    if (!maskEl || !selectors.occlusionLayer?.contains(maskEl)) {
+      if (selectors.occlusionLayer?.contains(event.target)) startOcclusionDraw(event);
+      return;
+    }
     event.preventDefault();
     updateSelectedOcclusionText();
     const mask = (state.occlusionEditor.draft?.masks || [])
@@ -3198,7 +3313,16 @@
     if (!mask) return;
     const dx = (event.clientX - pointer.startX) / pointer.layerW;
     const dy = (event.clientY - pointer.startY) / pointer.layerH;
-    if (pointer.mode === 'resize') {
+    if (pointer.mode === 'draw') {
+      const currentX = clamp(pointer.originX + dx, 0, 1);
+      const currentY = clamp(pointer.originY + dy, 0, 1);
+      mask.x = Math.min(pointer.originX, currentX);
+      mask.y = Math.min(pointer.originY, currentY);
+      mask.w = Math.max(OCCLUSION_MIN_SIZE, Math.abs(currentX - pointer.originX));
+      mask.h = Math.max(OCCLUSION_MIN_SIZE, Math.abs(currentY - pointer.originY));
+      mask.x = clamp(mask.x, 0, 1 - mask.w);
+      mask.y = clamp(mask.y, 0, 1 - mask.h);
+    } else if (pointer.mode === 'resize') {
       mask.w = clamp(pointer.mask.w + dx, OCCLUSION_MIN_SIZE, 1 - pointer.mask.x);
       mask.h = clamp(pointer.mask.h + dy, OCCLUSION_MIN_SIZE, 1 - pointer.mask.y);
     } else {
@@ -3212,6 +3336,35 @@
     const pointer = state.occlusionEditor.pointer;
     if (!pointer || pointer.id !== event.pointerId) return;
     state.occlusionEditor.pointer = null;
+    if (pointer.mode !== 'draw') return;
+    const mask = selectedOcclusionMask();
+    if (!mask) return;
+    const dragged = Math.hypot(event.clientX - pointer.startX, event.clientY - pointer.startY) > 8;
+    if (!dragged) {
+      // A tap: drop a label-sized mask centred on the tap point.
+      mask.w = 0.2;
+      mask.h = 0.07;
+      mask.x = clamp(pointer.originX - mask.w / 2, 0, 1 - mask.w);
+      mask.y = clamp(pointer.originY - mask.h / 2, 0, 1 - mask.h);
+    }
+    renderOcclusionEditor();
+    updateOcclusionSelectionUi();
+  }
+
+  function setOcclusionGuessMode(mode) {
+    const draft = state.occlusionEditor.draft;
+    if (!draft) return;
+    draft.guessMode = mode === 'hide-one' ? 'hide-one' : 'hide-all';
+    updateOcclusionGuessModeUi();
+  }
+
+  function updateOcclusionGuessModeUi() {
+    const mode = state.occlusionEditor.draft?.guessMode === 'hide-one' ? 'hide-one' : 'hide-all';
+    document.querySelectorAll('[data-occlusion-guess]').forEach(button => {
+      const active = button.dataset.occlusionGuess === mode;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
   }
 
   function resetCreator() {
@@ -3429,11 +3582,18 @@
     return Array.from(indexes).sort((a, b) => a - b);
   }
 
+  // Supports Anki's {{c1::answer::hint}} syntax. The target deletion is blanked
+  // (showing its hint when present) on the front and highlighted on the back so
+  // the learner can find what they were asked for.
   function clozeTextForIndex(value, targetIndex, reveal = false) {
-    return String(value || '').replace(/\{\{c(\d+)::([\s\S]*?)\}\}/gi, (_match, index, answer) => {
+    return String(value || '').replace(/\{\{c(\d+)::([\s\S]*?)\}\}/gi, (_match, index, body) => {
+      const separator = body.indexOf('::');
+      const answer = separator >= 0 ? body.slice(0, separator) : body;
+      const hint = separator >= 0 ? body.slice(separator + 2).trim() : '';
       const isTarget = Number(index) === Number(targetIndex);
-      if (reveal || !isTarget) return answer;
-      return '<strong>[...]</strong>';
+      if (!isTarget) return answer;
+      if (reveal) return `<mark class="cloze-answer">${answer}</mark>`;
+      return `<mark class="cloze-blank">[${hint || '...'}]</mark>`;
     });
   }
 
@@ -3580,7 +3740,7 @@
           definitionImage: '',
           media: { term: [], definition: [] },
           background: { term: null, definition: null },
-          imageOcclusion: normalizeImageOcclusion({ image, masks }, first),
+          imageOcclusion: normalizeImageOcclusion({ image, masks, guessMode: first.imageOcclusion?.guessMode }, first),
           srs: undefined,
           reviewHistory: []
         }, occlusionCards);
@@ -3876,6 +4036,41 @@
     return kept;
   }
 
+  // Pixel masks are only as good as the image size they were measured against.
+  // AI tools sometimes declare the size of a different crop or preview; when the
+  // declared size disagrees with the packaged file, trust whichever size actually
+  // contains the boxes, preferring the real file.
+  function resolveOcclusionDimensions({ declaredWidth, declaredHeight, actual, masks = [], units }) {
+    const declared = {
+      width: readPixelDimension(declaredWidth),
+      height: readPixelDimension(declaredHeight)
+    };
+    const real = actual?.width && actual?.height ? actual : null;
+    const pick = size => ({ imageWidth: size?.width || undefined, imageHeight: size?.height || undefined });
+    if (!real) return pick(declared);
+    if (!declared.width || !declared.height) return pick(real);
+    const declaredAspect = declared.width / declared.height;
+    const realAspect = real.width / real.height;
+    if (Math.abs(declaredAspect - realAspect) / realAspect <= 0.03) return pick(declared);
+    const unitHint = normalizeCoordinateUnits(units);
+    if (unitHint && unitHint !== 'px') return pick(real);
+    const num = value => {
+      const parsed = parseCoordinateNumber(value);
+      return Number.isFinite(parsed.value) ? parsed.value : 0;
+    };
+    const extents = masks.map(mask => {
+      const box = readOcclusionBox(mask || {});
+      const x = num(firstPresent(box.x, mask?.x, mask?.left));
+      const y = num(firstPresent(box.y, mask?.y, mask?.top));
+      const right = num(firstPresent(box.right, mask?.right)) || x + num(firstPresent(box.w, mask?.w, mask?.width));
+      const bottom = num(firstPresent(box.bottom, mask?.bottom)) || y + num(firstPresent(box.h, mask?.h, mask?.height));
+      return { right, bottom };
+    });
+    const fits = size => extents.every(item => item.right <= size.width * 1.02 && item.bottom <= size.height * 1.02);
+    if (fits(real)) return pick(real);
+    return pick(declared);
+  }
+
   function normalizeOcclusionMask(mask = {}, index = 0, meta = {}) {
     const source = mask && typeof mask === 'object' ? mask : {};
     const box = readOcclusionBox(source);
@@ -3946,6 +4141,9 @@
       version: 1,
       coordinateSpace: 'image',
       mode: source.mode === 'hide-all' ? 'hide-all' : 'hide-one',
+      // guessMode drives study rendering. The older `mode` field was never read
+      // and every stored card says hide-one, so it cannot signal intent.
+      guessMode: source.guessMode === 'hide-one' ? 'hide-one' : 'hide-all',
       image,
       masks,
       created: source.created || Date.now(),
@@ -4922,8 +5120,15 @@
         : (imageObject.dataUrl || imageObject.src || imageObject.url || '');
       const image = safeImportDataUrl(occlusion.image || occlusion.dataUrl || imageSource, ['image']);
       if (!image) return null;
-      const imageWidth = occlusion.imageWidth || occlusion.width || source.imageWidth || imageObject.width || imageObject.imageWidth;
-      const imageHeight = occlusion.imageHeight || occlusion.height || source.imageHeight || imageObject.height || imageObject.imageHeight;
+      const masks = Array.isArray(occlusion.masks) ? occlusion.masks : [];
+      const units = occlusion.units || occlusion.coordinateUnits;
+      const { imageWidth, imageHeight } = resolveOcclusionDimensions({
+        declaredWidth: occlusion.imageWidth || occlusion.width || source.imageWidth || imageObject.width || imageObject.imageWidth,
+        declaredHeight: occlusion.imageHeight || occlusion.height || source.imageHeight || imageObject.height || imageObject.imageHeight,
+        actual: importedImageDimensions.get(image),
+        masks,
+        units
+      });
       const card = createImageOcclusionDraft({
         ...base,
         term: sanitizeEditorHtml(importString(source.term || source.title || source.prompt || 'Image occlusion')),
@@ -4931,12 +5136,12 @@
       }, image);
       card.imageOcclusion = normalizeImageOcclusion({
         image,
-        mode: occlusion.mode,
-        coordinateSpace: occlusion.coordinateSpace || occlusion.units || occlusion.coordinateUnits,
-        units: occlusion.units || occlusion.coordinateUnits,
+        guessMode: occlusion.guessMode,
+        coordinateSpace: occlusion.coordinateSpace || units,
+        units,
         imageWidth,
         imageHeight,
-        masks: Array.isArray(occlusion.masks) ? occlusion.masks : []
+        masks
       }, card);
       return cardHasContent(card) ? card : null;
     }
@@ -5153,11 +5358,23 @@
       if (totalBytes > ERUDITE_PACKAGE_MAX_MEDIA_BYTES) {
         throw importUserError('Package media is too large for Creator import');
       }
-      const dataUrl = `data:${mime};base64,${base64}`;
+      let dataUrl = `data:${mime};base64,${base64}`;
+      let dimensions = null;
+      if (mime.startsWith('image/') && window.EruditeImages?.prepareImage) {
+        const prepared = await window.EruditeImages.prepareImage(dataUrl);
+        dataUrl = prepared.dataUrl;
+        if (prepared.originalWidth && prepared.originalHeight) {
+          dimensions = { width: prepared.originalWidth, height: prepared.originalHeight };
+        }
+      }
       const src = await window.flashcardStore.saveImageDataUrl?.(dataUrl, {
         deckId: state.creator.editingSetId || 'package-import',
-        prefix: relPath.split('/').pop()?.replace(/\.[^.]+$/, '') || 'package-media'
+        prefix: relPath.split('/').pop()?.replace(/\.[^.]+$/, '') || 'package-media',
+        optimized: true
       }) || dataUrl;
+      // Remember the packaged pixel size so occlusion boxes measured on this file
+      // can be checked against the real image, not only the size the AI declared.
+      if (dimensions) importedImageDimensions.set(src, dimensions);
       [...packageMediaReferenceKeys(relPath), ...packageMediaReferenceKeys(item.path)].forEach(key => {
         mediaMap[key] = src;
       });
@@ -5306,7 +5523,12 @@
     const placementLabel = replacingDraft
       ? 'replaced the current draft'
       : placement === 'append-top' ? 'added to the top' : 'added to the bottom';
-    showToast(`Imported ${plural(cards.length, 'card')} — ${placementLabel}`);
+    const diagramCount = cards.filter(card => isImageOcclusionCard(card)).length;
+    // AI-measured masks are good but not guaranteed; point the learner at them
+    // before the deck is saved and studied.
+    showToast(diagramCount
+      ? `Imported ${plural(cards.length, 'card')} — ${placementLabel}. Check the masks on ${plural(diagramCount, 'diagram')} before saving.`
+      : `Imported ${plural(cards.length, 'card')} — ${placementLabel}`);
     return true;
   }
 
@@ -5752,6 +5974,13 @@
                 <div class="deck-subline">
                   <span>${escapeHtml(premadeSubjectLabel(state.premadeClass, state.premadeSubject))}</span>
                   ${item.cardCount ? `<span>${plural(Number(item.cardCount) || 0, 'card')}</span>` : ''}
+                  ${(() => {
+                    const limit = premadeSampleLimit(file);
+                    const total = Number(item.cardCount) || 0;
+                    return limit !== null && (!total || total > limit)
+                      ? `<span class="sample-pill"><i class="fas fa-lock" aria-hidden="true"></i>${limit} free</span>`
+                      : '';
+                  })()}
                 </div>
               </div>
               <button type="button" class="small-icon-button primary" data-action="import-premade" data-file="${escapeAttr(file)}" aria-label="Import premade deck">
@@ -5780,6 +6009,203 @@
     const sets = await window.flashcardStore.listPremadeSets(state.premadeClass, state.premadeSubject);
     state.premadeSets = Array.isArray(sets) ? sets : [];
     renderPremade();
+  }
+
+  // ------------------------------------------------------------------
+  // Smriti Pro and premade samples
+  // ------------------------------------------------------------------
+
+  function billingConfig() {
+    return window.ERUDITE_BILLING || {};
+  }
+
+  function isPro() {
+    return Boolean(window.EruditeEntitlements?.isPro?.());
+  }
+
+  function premadeManifestItem(fileName) {
+    const clean = String(fileName || '').replace(/\.zip$/i, '');
+    return state.premadeSets.find(item => {
+      const file = String(item.fileName || item.filename || item.file || item.path || '').replace(/\.zip$/i, '');
+      return file === clean;
+    }) || null;
+  }
+
+  /** Notes a free user may import from a premade chapter, or null for all. */
+  function premadeSampleLimit(fileName) {
+    if (isPro()) return null;
+    const item = premadeManifestItem(fileName);
+    if (String(item?.tier || '').toLowerCase() === 'free') return null;
+    const deckLimit = Number(item?.freeCards);
+    if (Number.isFinite(deckLimit) && deckLimit >= 0) return Math.round(deckLimit);
+    const limit = Number(billingConfig().freeSampleCards);
+    return Number.isFinite(limit) && limit >= 0 ? Math.round(limit) : 20;
+  }
+
+  // Runs imported notes through the same pipeline as saving from the creator.
+  function processImportedNotes(notes) {
+    const processedCards = notes
+      .map(card => {
+        const normalized = cardWithNoteDefaults(card);
+        const advanced = isAdvancedHtmlCard(normalized);
+        return {
+          ...normalized,
+          term: sanitizeEditorHtml(advanced ? (normalized.term || advancedHtmlFallbackText(normalized, 'front')) : normalized.term),
+          definition: sanitizeEditorHtml(advanced ? (normalized.definition || advancedHtmlFallbackText(normalized, 'back')) : normalized.definition),
+          advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(normalized)),
+          lastModified: Date.now()
+        };
+      })
+      .filter(hasCardContent)
+      .flatMap(expandCreatorCard);
+    return syncGeneratedCards(processedCards);
+  }
+
+  let sampleUpgradeRunning = false;
+
+  /**
+   * After Pro unlocks, download each sample premade deck again and append the
+   * cards the sample left out. Existing cards and their review history stay.
+   */
+  async function upgradeSampleDecks() {
+    if (sampleUpgradeRunning || !isPro()) return;
+    const samples = state.sets.filter(set => set.premadeSource?.sample);
+    if (!samples.length) return;
+    sampleUpgradeRunning = true;
+    let unlocked = 0;
+    try {
+      for (const meta of samples) {
+        const source = meta.premadeSource;
+        try {
+          const deckUrl = window.flashcardStore?.getPremadeDeckUrl?.(source.classId, source.subjectId, source.fileName);
+          if (!deckUrl) continue;
+          const file = await downloadPremadeDeck(deckUrl, source.fileName);
+          const originalEditingSetId = state.creator.editingSetId;
+          state.creator.editingSetId = meta.id;
+          let imported;
+          try {
+            imported = await parseEruditePackageImport(file);
+          } finally {
+            state.creator.editingSetId = originalEditingSetId;
+          }
+          const remaining = (imported?.cards || []).slice(Number(source.sampleNotes) || 0);
+          const set = await window.flashcardStore.getSet(meta.id);
+          if (!set) continue;
+          await window.flashcardStore.saveSet({
+            ...set,
+            cards: [...(set.cards || []), ...processImportedNotes(remaining)],
+            premadeSource: {
+              ...source,
+              sampleNotes: imported?.cards?.length || source.totalNotes,
+              sample: false
+            }
+          });
+          unlocked += 1;
+        } catch (error) {
+          console.warn('[mobile] could not unlock premade deck', meta.id, error);
+        }
+      }
+    } finally {
+      sampleUpgradeRunning = false;
+    }
+    if (unlocked) {
+      await flushStore(1800).catch(() => {});
+      showToast(`Unlocked ${plural(unlocked, 'full chapter')}`);
+      state.browserLoaded = false;
+      await refresh();
+    }
+  }
+
+  function renderProRow() {
+    const label = document.getElementById('more-pro-label');
+    if (!label) return;
+    if (isPro()) label.textContent = 'Active. Every premade chapter is unlocked.';
+    else label.textContent = 'Unlock full premade chapters';
+  }
+
+  let proPackages = [];
+  let selectedProPackage = null;
+
+  async function openProSheet() {
+    const overlay = document.getElementById('pro-overlay');
+    if (!overlay) return;
+    const plans = document.getElementById('pro-plans');
+    const buy = document.getElementById('pro-buy');
+    const status = document.getElementById('pro-status');
+    overlay.classList.remove('hidden');
+    playClick();
+
+    if (isPro()) {
+      plans.innerHTML = '';
+      status.textContent = 'Smriti Pro is active on this Google account. Thank you for supporting the app.';
+      buy.classList.add('hidden');
+      return;
+    }
+    buy.classList.remove('hidden');
+    const entitlements = window.EruditeEntitlements;
+    if (!entitlements?.isAvailable?.()) {
+      plans.innerHTML = '';
+      status.textContent = 'Every premade chapter already includes free sample cards.';
+      buy.textContent = 'Coming soon';
+      buy.disabled = true;
+      return;
+    }
+    status.textContent = 'Loading prices from Google Play...';
+    buy.textContent = 'Continue';
+    buy.disabled = true;
+    proPackages = await entitlements.getPackages();
+    if (!proPackages.length) {
+      plans.innerHTML = '';
+      status.textContent = 'Prices could not be loaded. Check your connection and try again.';
+      return;
+    }
+    selectedProPackage = proPackages[0];
+    status.textContent = 'Billed through Google Play. Cancel any time from Play Store subscriptions.';
+    renderProPlans();
+    buy.disabled = false;
+  }
+
+  function renderProPlans() {
+    const plans = document.getElementById('pro-plans');
+    if (!plans) return;
+    const labels = { year: 'Yearly', month: 'Monthly', lifetime: 'Lifetime' };
+    const perLabel = { year: '/ year', month: '/ month', lifetime: 'once' };
+    plans.innerHTML = proPackages.map(item => `
+      <button type="button" class="pro-plan ${item === selectedProPackage ? 'selected' : ''}" data-action="select-pro-plan" data-plan-id="${escapeAttr(item.id)}" aria-pressed="${item === selectedProPackage}">
+        <span class="pro-plan-name">${escapeHtml(labels[item.period] || item.title || 'Pro')}</span>
+        <span class="pro-plan-price">${escapeHtml(item.price)} <small>${escapeHtml(perLabel[item.period] || '')}</small></span>
+        ${item.period === 'year' ? '<span class="pro-plan-badge">Best value</span>' : ''}
+      </button>
+    `).join('');
+  }
+
+  function closeProSheet() {
+    document.getElementById('pro-overlay')?.classList.add('hidden');
+    state.lastModalClosedAt = Date.now();
+  }
+
+  async function buyPro() {
+    const buy = document.getElementById('pro-buy');
+    if (!selectedProPackage || !buy) return;
+    buy.disabled = true;
+    const result = await window.EruditeEntitlements.purchase(selectedProPackage);
+    buy.disabled = false;
+    if (result.ok) {
+      closeProSheet();
+      showToast('Welcome to Smriti Pro');
+    } else if (!result.cancelled) {
+      showToast(result.error || 'Purchase failed');
+    }
+  }
+
+  async function restorePro() {
+    const result = await window.EruditeEntitlements?.restore?.();
+    if (!result || result.error) {
+      showToast(result?.error || 'Restore is available in the Android app');
+      return;
+    }
+    showToast(result.pro ? 'Smriti Pro restored' : 'No Pro purchase found for this Google account');
+    if (result.pro) closeProSheet();
   }
 
   async function importPremade(fileName) {
@@ -5832,6 +6258,20 @@
     if (!imported || !Array.isArray(imported.cards) || !imported.cards.length) {
       showToast('No valid cards found in deck package');
       return;
+    }
+
+    // Free users take the first cards of each chapter; Pro takes all of it.
+    const premadeClassId = state.premadeClass;
+    const premadeSubjectId = state.premadeSubject;
+    const sampleLimit = premadeSampleLimit(fileName);
+    const sampleNotes = sampleLimit === null ? imported.cards : imported.cards.slice(0, sampleLimit);
+    const sampleHint = document.getElementById('take-deck-sample');
+    if (sampleHint) {
+      const isSample = sampleNotes.length < imported.cards.length;
+      sampleHint.classList.toggle('hidden', !isSample);
+      sampleHint.innerHTML = isSample
+        ? `<i class="fas fa-lock" aria-hidden="true"></i><span>You get the first <b>${sampleNotes.length}</b> of ${imported.cards.length} cards. <button type="button" class="text-button" data-action="open-pro">Smriti Pro</button> unlocks the whole chapter and keeps your progress.</span>`
+        : '';
     }
 
     const overlay = document.getElementById('take-deck-overlay');
@@ -5902,22 +6342,7 @@
 
       showMicroLoader('Saving deck...');
       try {
-        // Expand and process creator cards using the exact save mobile deck pipeline
-        const processedCards = imported.cards
-          .map(card => {
-            const normalized = cardWithNoteDefaults(card);
-            const advanced = isAdvancedHtmlCard(normalized);
-            return {
-              ...normalized,
-              term: sanitizeEditorHtml(advanced ? (normalized.term || advancedHtmlFallbackText(normalized, 'front')) : normalized.term),
-              definition: sanitizeEditorHtml(advanced ? (normalized.definition || advancedHtmlFallbackText(normalized, 'back')) : normalized.definition),
-              advancedHtml: sanitizeAdvancedHtmlCard(advancedHtmlPayload(normalized)),
-              lastModified: Date.now()
-            };
-          })
-          .filter(hasCardContent)
-          .flatMap(expandCreatorCard);
-        const syncedCards = syncGeneratedCards(processedCards);
+        const syncedCards = processImportedNotes(sampleNotes);
 
         const saved = await window.flashcardStore.saveSet({
           id: targetSetId,
@@ -5925,7 +6350,15 @@
           classId: targetClassId,
           cards: syncedCards,
           srsSettings: schema?.normalizeSrsSettings ? schema.normalizeSrsSettings({}) : { enabled: true },
-          pinned: false
+          pinned: false,
+          premadeSource: {
+            classId: premadeClassId,
+            subjectId: premadeSubjectId,
+            fileName: zipFileName,
+            totalNotes: imported.cards.length,
+            sampleNotes: sampleNotes.length,
+            sample: sampleNotes.length < imported.cards.length
+          }
         });
 
         flushStore(1800).catch(err => console.warn('[mobile] flushStore after save:', err));
@@ -6401,12 +6834,27 @@
       selectors.moreSoundLabel.textContent = soundEnabled ? 'On' : 'Off';
     }
 
+    renderProRow();
+
+    const paperEnabled = state.settings?.paperTexture === true;
+    selectors.paperSwitch?.classList.toggle('on', paperEnabled);
+    if (selectors.morePaperLabel) {
+      selectors.morePaperLabel.textContent = paperEnabled ? 'On - soft grain, warmer tones' : 'Off';
+    }
+
     const htmlInteractionEnabled = state.settings?.htmlInteractionDisabled !== true;
     selectors.htmlInteractionSwitch?.classList.toggle('on', htmlInteractionEnabled);
     if (selectors.moreHtmlInteractionLabel) {
       selectors.moreHtmlInteractionLabel.textContent = htmlInteractionEnabled
         ? 'On - HTML can scroll and receive taps'
         : 'Off - swipe and tap the whole HTML card';
+    }
+
+    updateReminderLabel();
+
+    const newCardLimitLabel = document.getElementById('more-new-card-limit-label');
+    if (newCardLimitLabel) {
+      newCardLimitLabel.textContent = `${defaultNewCardsPerDay()} per deck, unless a deck overrides it`;
     }
 
     const order = normalizeNormalStudyOrder(state.settings?.normalStudyOrder);
@@ -6421,7 +6869,7 @@
     }
     if (selectors.themeLabel) {
       const theme = state.settings?.theme || 'dark';
-      selectors.themeLabel.textContent = theme === 'light' ? 'Aura Light' : 'Dark Blue';
+      selectors.themeLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
     }
     updateDiagnosticsCaptureUi();
   }
@@ -6498,7 +6946,7 @@
     }
   }
 
-  function showAppLoader(title = 'Erudite Flashcards', copy = 'Loading') {
+  function showAppLoader(title = 'Smriti', copy = 'Loading') {
     if (selectors.loadingTitle) selectors.loadingTitle.textContent = title;
     if (selectors.loadingCopy) selectors.loadingCopy.textContent = copy;
     const cover = document.getElementById('app-loading-cover');
@@ -6809,7 +7257,7 @@
     if (onboardingStep === 3) {
       const flipped = document.getElementById('onboarding-flip-demo')?.classList.contains('is-flipped') === true;
       button.dataset.onboardingAction = onboardingRetrievalExplained ? 'next' : 'explain-retrieval';
-      button.innerHTML = onboardingRetrievalExplained ? icon('Meet Erudite') : icon('How did that help?');
+      button.innerHTML = onboardingRetrievalExplained ? icon('Meet Smriti') : icon('How did that help?');
       button.disabled = !onboardingRetrievalExplained && (!flipped || !onboardingRetrievalMessageReady);
       return;
     }
@@ -7426,6 +7874,16 @@
     showToast(state.settings.soundEffectsEnabled ? 'Sound effects enabled' : 'Sound effects disabled');
   }
 
+  async function togglePaper() {
+    const enabled = state.settings?.paperTexture !== true;
+    state.settings = { ...(state.settings || {}), paperTexture: enabled };
+    window.EruditePaper?.apply(enabled);
+    if (window.flashcardStore?.saveSettings) {
+      await window.flashcardStore.saveSettings(state.settings);
+    }
+    renderMore();
+  }
+
   async function toggleHtmlInteraction() {
     const interactionEnabled = state.settings?.htmlInteractionDisabled !== true;
     state.settings = {
@@ -7881,6 +8339,270 @@
       selectors.draftRestoreContinue?.addEventListener('click', onContinue);
       selectors.draftRestoreDiscard?.addEventListener('click', onDiscard);
     });
+  }
+
+  function defaultNewCardsPerDay() {
+    const value = Number(state.settings?.srsDefaults?.newCardsPerDay);
+    return Number.isFinite(value) && value >= 0 ? Math.round(value) : (schema?.DEFAULT_NEW_CARDS_PER_DAY ?? 20);
+  }
+
+  // ─── Daily study reminder ────────────────────────────────────────────────
+  // Notifications are scheduled locally for the next week and rebuilt whenever
+  // the app refreshes its statistics, so the text reflects the current due count
+  // and today's reminder is dropped once the learner has finished.
+  const REMINDER_BASE_ID = 7100;
+  const REMINDER_DAYS = 7;
+  const REMINDER_CHANNEL_ID = 'study-reminders';
+  let reminderChannelReady = false;
+  let reminderScheduleTimer = null;
+
+  function localNotifications() {
+    return window.Capacitor?.Plugins?.LocalNotifications || null;
+  }
+
+  function reminderSettings() {
+    const reminder = state.settings?.reminder || {};
+    return {
+      enabled: reminder.enabled === true,
+      hour: Number.isFinite(Number(reminder.hour)) ? Number(reminder.hour) : 19,
+      minute: Number.isFinite(Number(reminder.minute)) ? Number(reminder.minute) : 0
+    };
+  }
+
+  function formatReminderTime(hour, minute) {
+    const date = new Date();
+    date.setHours(hour, minute, 0, 0);
+    return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+  }
+
+  function reminderMessages(dueCount, studiedToday) {
+    const name = readPreferredName();
+    const greeting = name ? `${name}, ` : '';
+    const today = dueCount > 0
+      ? {
+          title: `${plural(dueCount, 'card')} ready for review`,
+          body: `${greeting}a few minutes now keeps them from piling up tomorrow.`
+        }
+      : {
+          title: 'Keep your streak going',
+          body: `${greeting}learn a few new cards today.`
+        };
+    const later = [
+      { title: 'Time for today\'s review', body: 'Short daily sessions beat long cramming ones.' },
+      { title: 'Your cards are waiting', body: 'Reviewing on time is what makes them stick.' },
+      { title: 'A quick session?', body: 'Five minutes today saves twenty next week.' }
+    ];
+    return { today: studiedToday && dueCount === 0 ? null : today, later };
+  }
+
+  async function ensureReminderChannel(plugin) {
+    if (reminderChannelReady || typeof plugin.createChannel !== 'function') return;
+    try {
+      await plugin.createChannel({
+        id: REMINDER_CHANNEL_ID,
+        name: 'Study reminders',
+        description: 'Daily reminder to review due cards',
+        importance: 3,
+        visibility: 1
+      });
+      reminderChannelReady = true;
+    } catch (error) {
+      console.warn('[mobile] Could not create reminder channel:', error);
+    }
+  }
+
+  async function cancelStudyReminders(plugin = localNotifications()) {
+    if (!plugin) return;
+    const notifications = Array.from({ length: REMINDER_DAYS }, (_, index) => ({ id: REMINDER_BASE_ID + index }));
+    try {
+      await plugin.cancel({ notifications });
+    } catch (_) {}
+  }
+
+  // Runs are queued: a stats refresh can ask again while a save is still
+  // scheduling, and interleaved cancel/schedule calls could drop reminders.
+  let reminderQueue = Promise.resolve();
+  function scheduleStudyReminders() {
+    reminderQueue = reminderQueue.then(runReminderSchedule, runReminderSchedule);
+    return reminderQueue;
+  }
+
+  async function runReminderSchedule() {
+    const plugin = localNotifications();
+    if (!plugin) return;
+    const reminder = reminderSettings();
+    await cancelStudyReminders(plugin);
+    if (!reminder.enabled) return;
+    try {
+      const permission = await plugin.checkPermissions();
+      if (permission?.display !== 'granted') return;
+    } catch (_) {
+      return;
+    }
+    await ensureReminderChannel(plugin);
+
+    const dueCount = state.srsMode ? Number(totalStats({ forceDue: true }).dueCards || 0) : 0;
+    const studiedToday = reviewsToday() > 0 || studyActivitySummary().todayCardsViewed > 0;
+    const messages = reminderMessages(dueCount, studiedToday);
+    const now = Date.now();
+    const notifications = [];
+    for (let offset = 0; offset < REMINDER_DAYS + 1 && notifications.length < REMINDER_DAYS; offset += 1) {
+      const at = new Date();
+      at.setDate(at.getDate() + offset);
+      at.setHours(reminder.hour, reminder.minute, 0, 0);
+      if (at.getTime() <= now + 60 * 1000) continue;
+      const isToday = offset === 0;
+      const message = isToday ? messages.today : messages.later[offset % messages.later.length];
+      if (!message) continue;
+      notifications.push({
+        id: REMINDER_BASE_ID + notifications.length,
+        title: message.title,
+        body: message.body,
+        channelId: REMINDER_CHANNEL_ID,
+        smallIcon: 'ic_stat_erudite',
+        schedule: { at, allowWhileIdle: true },
+        isExactNotification: false
+      });
+    }
+    if (!notifications.length) return;
+    try {
+      await plugin.schedule({ notifications });
+    } catch (error) {
+      console.warn('[mobile] Could not schedule study reminders:', error);
+    }
+  }
+
+  function scheduleStudyRemindersSoon() {
+    clearTimeout(reminderScheduleTimer);
+    reminderScheduleTimer = window.setTimeout(() => {
+      reminderScheduleTimer = null;
+      scheduleStudyReminders().catch(() => {});
+    }, 1200);
+  }
+
+  function updateReminderLabel() {
+    const label = document.getElementById('more-reminder-label');
+    if (!label) return;
+    const reminder = reminderSettings();
+    label.textContent = reminder.enabled ? `Every day at ${formatReminderTime(reminder.hour, reminder.minute)}` : 'Off';
+  }
+
+  function openReminderModal() {
+    const overlay = document.getElementById('reminder-overlay');
+    const enabledInput = document.getElementById('reminder-enabled');
+    const timeInput = document.getElementById('reminder-time');
+    const saveBtn = document.getElementById('reminder-save');
+    const cancelBtn = document.getElementById('reminder-cancel');
+    if (!overlay || !enabledInput || !timeInput) return;
+    const reminder = reminderSettings();
+    enabledInput.checked = reminder.enabled;
+    timeInput.value = `${String(reminder.hour).padStart(2, '0')}:${String(reminder.minute).padStart(2, '0')}`;
+    overlay.classList.remove('hidden');
+    playClick();
+
+    function close() {
+      overlay.classList.add('hidden');
+      saveBtn?.removeEventListener('click', save);
+      cancelBtn?.removeEventListener('click', close);
+      state.lastModalClosedAt = Date.now();
+    }
+
+    async function save() {
+      const [hour, minute] = String(timeInput.value || '19:00').split(':').map(Number);
+      let enabled = enabledInput.checked;
+      const plugin = localNotifications();
+      if (enabled) {
+        if (!plugin) {
+          showToast('Reminders are available in the Android app');
+          enabled = false;
+        } else {
+          try {
+            const current = await plugin.checkPermissions();
+            const result = current?.display === 'granted' ? current : await plugin.requestPermissions();
+            if (result?.display !== 'granted') {
+              showToast('Allow notifications for Smriti in Android settings to get reminders');
+              enabled = false;
+            }
+          } catch (_) {
+            enabled = false;
+          }
+        }
+      }
+      state.settings = {
+        ...(state.settings || {}),
+        reminder: {
+          enabled,
+          hour: Number.isFinite(hour) ? hour : 19,
+          minute: Number.isFinite(minute) ? minute : 0
+        }
+      };
+      close();
+      updateReminderLabel();
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+        await scheduleStudyReminders();
+        if (enabled) showToast(`Reminder set for ${formatReminderTime(state.settings.reminder.hour, state.settings.reminder.minute)}`);
+        else if (enabledInput.checked === false) showToast('Daily reminder turned off');
+      } catch (error) {
+        console.error('Could not save reminder:', error);
+        showToast('Could not save reminder');
+      }
+    }
+
+    saveBtn?.addEventListener('click', save);
+    cancelBtn?.addEventListener('click', close);
+  }
+
+  function openNewCardLimitModal() {
+    const overlay = document.getElementById('new-card-limit-overlay');
+    const cancelBtn = document.getElementById('new-card-limit-cancel');
+    if (!overlay) return;
+    const current = String(defaultNewCardsPerDay());
+    const optionButtons = Array.from(overlay.querySelectorAll('.mobile-modal-option-btn'));
+    optionButtons.forEach(btn => {
+      const selected = btn.dataset.value === current;
+      btn.classList.toggle('selected', selected);
+      btn.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+    overlay.classList.remove('hidden');
+
+    function close() {
+      overlay.classList.add('hidden');
+      cleanup();
+      state.lastModalClosedAt = Date.now();
+    }
+
+    async function handleSelect(event) {
+      const btn = event.target.closest('[data-value]');
+      if (!btn) return;
+      const limit = Number(btn.dataset.value);
+      state.settings = {
+        ...(state.settings || {}),
+        srsDefaults: {
+          ...(state.settings?.srsDefaults || {}),
+          newCardsPerDay: limit
+        }
+      };
+      playClick();
+      close();
+      renderMore();
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+        await refresh();
+        showToast(`Decks now introduce up to ${plural(limit, 'new card')} a day`);
+      } catch (error) {
+        console.error('Could not save new card limit:', error);
+        showToast('Could not save new card limit');
+      }
+    }
+
+    function cleanup() {
+      optionButtons.forEach(btn => btn.removeEventListener('click', handleSelect));
+      cancelBtn?.removeEventListener('click', close);
+    }
+
+    optionButtons.forEach(btn => btn.addEventListener('click', handleSelect));
+    cancelBtn?.addEventListener('click', close);
   }
 
   function openStudyOrderModal() {
@@ -8634,514 +9356,9 @@
     }
   }
 
+  // The prompt text lives in js/core/ai-prompt.js so it can be unit tested.
   function buildCustomAiPrompt(options = {}) {
-    const blocks = [];
-    const sourceAuthorityText = `Source authority:
-* Treat the supplied material as the primary factual authority. Do not supplement it with memory, web searches, coaching material, another edition, or general knowledge unless the student explicitly asks for external supplementation.
-* Preserve source-specific terminology, spellings, names, dates, values, units, formulae, examples, classifications, reactions, conditions, and diagram labels.
-* If information is unreadable, ambiguous, or unsupported, skip it rather than guessing. Include an exercise answer only when it is explicitly provided or follows unambiguously from the supplied source.`;
-
-    const sourceProcessingText = `Coverage and source processing:
-* Inspect main text, definitions, examples, exceptions, captions, tables, diagrams, graphs, summaries, in-text questions, exercises, side boxes, activities, experiments, and worked examples when present. Do not assume these sections merely repeat the main text.
-* Extract supported testable facts only. Do not make generic chapter-title, unit-number, learning-objective, or broad chapter-overview cards.
-* For tables, graphs, and processes, test important rows, values, axes, trends, conditions, stages, sequences, causes, and consequences. Do not rely on a screenshot or a summary card alone when atomic recall is needed.
-* Use visual cards only for examinable labels, relationships, values, processes, classifications, or spatial information. Exclude decorative or repeated artwork and crop useful visuals tightly.`;
-
-    // 1. Learning Brief based on preset
-    let brief = '';
-    if (options.preset === 'beginner') {
-      brief = 'Create flashcards from the attached textbook chapter for a beginner who has not fully mastered it yet. Teach clearly, but do not turn the deck into long notes. Prefer simple wording, one memory point per card, and short explanations that help understanding. Cover essential ideas, terms, examples, labelled diagrams, formulas, tables, and processes. Avoid vague cards and avoid copying textbook paragraphs. Use images only when they genuinely improve memory.';
-    } else if (options.preset === 'revision') {
-      brief = 'Create flashcards from the attached textbook chapter for a student who has already studied it and now wants efficient revision. Compress the chapter into high-yield cards that are fast to review but still complete. Do not waste cards on obvious basics unless they are exam-relevant. Cover every testable fact, comparison, process, example, formula, labelled diagram, timeline, table, and common confusion point. Keep answers compact and searchable.';
-    } else if (options.preset === 'competitive') {
-      brief = 'Create flashcards from the attached chapter for a competitive-exam student. Convert the chapter into dense, high-yield, testable memory prompts. Capture definitions, distinctions, exceptions, examples, misleading similarities, tables, lists, dates, formulas, steps, diagrams, and trap points. Prefer factual precision over friendly explanation. Use images, occlusions, and comparison cards only when they improve recall speed or reduce confusion.';
-    } else if (options.preset === 'mastery') {
-      brief = 'Create flashcards from the attached chapter for a student aiming for deep mastery, not just short-term revision. Include core facts, conceptual links, edge cases, examples, diagram interpretation, formulas, processes, and common misconceptions. The deck should support long-term understanding and flexible recall. Use visual and advanced cards where they genuinely summarise relationships better than plain text.';
-    }
-
-    // 2. Exam Target Modifier
-    let targetText = '';
-    if (options.examTarget === 'school') {
-      targetText = 'Align the deck closely to textbook and school-exam expectations. Give special weight to definitions, core concepts, examples, comparisons, cause-and-effect, processes, labelled diagrams, tables, formulae, units, activities, and likely written-answer points. Do not over-optimise for obscure edge cases.';
-    } else if (options.examTarget === 'neet') {
-      targetText = 'Optimise for NEET-style recall. Preserve testable NCERT line-level facts. Prioritise terminology, examples, exceptions, processes, labelled diagrams, table comparisons, values, classifications, organism-feature links, and frequently confused statement-based traps. Do not add outside facts.';
-    } else if (options.examTarget === 'jee') {
-      targetText = 'Optimise for JEE-style preparation. Focus on concepts, formula selection and relations, variables, units, dimensions, assumptions, conditions, sign conventions, limiting cases, graphs, trends, reactions, mechanisms, standard results, and traps. Keep cards crisp and avoid unnecessary textbook prose.';
-    } else if (options.examTarget === 'ssc') {
-      targetText = 'Optimise for SSC-style revision. Prioritise direct recall, definitions, classifications, lists, chronology, dates, tables, one-line distinctions, and high-confusion factual pairs. Keep answers extremely compact. Prefer speed and exam utility over explanatory detail.';
-    } else if (options.examTarget === 'upsc') {
-      targetText = 'Optimise for UPSC-style preparation. Preserve dates, chronology, people, places, institutions, terminology, classifications, causes, consequences, maps, examples, and statement-based traps. Keep answers compact but retain the conceptual framing needed for prelims-style recall and mains-oriented understanding.';
-    } else if (options.examTarget === 'custom') {
-      const customVal = options.customExamTarget || 'a custom target';
-      targetText = `Optimise the deck for this target: ${customVal}. Adjust card style, detail, examples, and emphasis to match that goal.`;
-    }
-
-    // 3. Already Studied State Instruction
-    let studiedText = '';
-    if (options.studiedState === 'yes') {
-      studiedText = 'Assume the student has already studied this chapter. Do not waste cards on obvious basics. Focus on high-yield recall, exceptions, comparisons, and exam-relevant traps. Use compressed answers.';
-    } else if (options.studiedState === 'no') {
-      studiedText = 'Assume the student has not studied this chapter yet. Present teach-first cards with slightly simpler definitions and more helpful context to build a conceptual foundation, but still keep cards atomic.';
-    } else if (options.studiedState === 'somewhat') {
-      studiedText = 'Assume the student is somewhat familiar with the chapter. Provide balanced revision cards with short, clear explanations.';
-    }
-
-    // 4. Quality slider focus instruction
-    let sliderFocusText = '';
-    const detailOrder = { light: 1, standard: 2, detailed: 3, exhaustive: 4 };
-    const sliderVal = detailOrder[options.detailLevel] || 2;
-    if (sliderVal <= 1) {
-      sliderFocusText = 'Coverage: Essential. Include only high-yield, frequently tested concepts and facts. Make a compact revision deck, but do not add filler merely to reach a count.';
-    } else if (sliderVal >= 4) {
-      sliderFocusText = 'Coverage: Exhaustive source-locked. Retain every supported testable source detail, including examples, exceptions, captions, tables, diagrams, summaries, in-text questions, and exercises. Exhaustive does not mean turning every sentence into a card or repeating facts.';
-    } else if (sliderVal >= 3) {
-      sliderFocusText = 'Coverage: Detailed. Include core facts plus important examples, exceptions, comparisons, diagrams, tables, processes, and common confusion points without turning cards into long notes.';
-    } else {
-      sliderFocusText = 'Coverage: Balanced. Include complete examinable coverage while removing narrative filler, repetition, generic introductions, and low-value wording variations.';
-    }
-
-    // 5. Language modifier
-    let langText = '';
-    if (options.language === 'english') {
-      langText = 'Translate all content and generate flashcards in English, even if the source PDF is in Hindi or another language.';
-    } else if (options.language === 'hindi') {
-      langText = 'Translate all content and generate flashcards in Hindi.';
-    } else if (options.language === 'hinglish') {
-      langText = 'Translate all content and generate flashcards in Hinglish (a casual mixture of Hindi and English, using Latin characters for words like "samajh", "kya", etc.), but keep technical terms accurate and in English.';
-    } else if (options.language === 'custom') {
-      const customLang = options.customLanguage || 'English';
-      langText = `Generate flashcards in this language: ${customLang}.`;
-    } else {
-      langText = 'Generate flashcards in the same language as the source PDF.';
-    }
-
-    // 6. Answer style modifier
-    let answerStyleText = '';
-    if (options.answerStyle === 'keywords') {
-      answerStyleText = 'Answer style: use keywords and compact phrases only. Avoid explanatory paragraphs. Use this for fast recall cards where the student already understands the topic.';
-    } else if (options.answerStyle === 'explained') {
-      answerStyleText = 'Answer style: include the shortest useful explanation or reasoning step when it helps understanding. Still keep every card atomic and avoid long notes.';
-    } else if (options.answerStyle === 'memory') {
-      answerStyleText = 'Answer style: include memory hooks, tiny mnemonics, contrast cues, and common-confusion warnings when they genuinely improve recall. Do not make the back decorative or long.';
-    } else {
-      answerStyleText = 'Answer style: compact. Prefer one sentence, a tiny bullet list, or a short table. Avoid paragraphs unless absolutely necessary.';
-    }
-
-    // 7. Media Mode Modifier
-    let mediaText = '';
-    if (options.aiProvider === 'gemini') {
-      if (options.mediaMode === 'none') {
-        mediaText = 'Do not include media files. Prefer basic, cloze, and reverse cards. Advanced HTML may be used for compact tables or flowcharts without external media.';
-      } else {
-        mediaText = 'Prefer text, cloze, reverse, and advanced HTML cards using pure HTML/CSS for visuals (like comparison tables, timelines, flowcharts). Avoid extracting image media or requiring external image files unless you include them as Base64 data inside the media array. Do not use image occlusion requiring image files unless you provide the image and exact mask coordinates. Allowed media paths must use safe lowercase filenames inside media/ and end with .webp, .png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg, .mp4, or .webm. CSS may reference local media using url("media/file.webp").';
-      }
-    } else {
-      if (options.mediaMode === 'none') {
-        mediaText = 'Do not include media files unless absolutely required. Prefer basic, cloze, and reverse cards. Advanced HTML may be used for compact tables or flowcharts without external media.';
-      } else if (options.mediaMode === 'important') {
-        mediaText = 'Use media only when it genuinely improves learning. Include images for important diagrams, labelled figures, maps, charts, apparatus, formulas, timelines, and tables. Use image occlusion for labelled diagrams where hiding labels creates useful recall practice. For occlusion, crop the final study image first, record its pixel width/height, and use bboxPx masks based on that exact cropped image.';
-      } else if (options.mediaMode === 'full') {
-        mediaText = 'Use visual features actively but not decoratively. Extract or recreate important diagrams, use image occlusion for labels, use advanced HTML for timelines, comparison tables, flowcharts, formula cards, process summaries, and visual revision cards. For occlusion, crop the final study image first, record its pixel width/height, and use bboxPx masks based on that exact cropped image. Do not add images merely to make the deck look attractive.';
-      }
-    }
-
-    // 8. Card Mix Rules
-    let mixText = '';
-    if (options.cardMix === 'simple') {
-      mixText = 'Use mostly basic and cloze cards. Use reverse cards for definitions only when useful. Avoid advanced HTML unless a table or flowchart is clearly better than plain text.';
-    } else if (options.cardMix === 'balanced') {
-      mixText = 'Use a balanced mix of basic, cloze, reverse, image occlusion, and advanced HTML. Each advanced feature must serve a study purpose.';
-    } else if (options.cardMix === 'visual') {
-      mixText = 'Use image occlusion for labelled diagrams and maps. Use advanced HTML for visual summaries, timelines, tables, and flowcharts. Still keep most cards atomic and quick to review.';
-    } else if (options.cardMix === 'exam-drill') {
-      mixText = 'Use short direct Q/A, cloze deletion for facts, reverse cards for definitions, and compact comparison cards for confusing pairs. Avoid long explanations. Avoid decorative visuals.';
-    }
-    if (options.outputFormat === 'txt') {
-      mixText = 'Use only simple front/back cards because TXT import does not carry card type metadata, tags, media, image occlusion, or advanced HTML.';
-      mediaText = 'Do not include images, audio, video, image occlusion, advanced HTML, or file references because TXT import is plain front/back text only.';
-    }
-
-    // 9. Avoid Lazy Cards rules
-    let qualityRules = [
-      'Quality rules:',
-      '* Make flashcards for studying, not for showing off formatting.',
-      '* Each card should test one clear memory point.',
-      '* Avoid vague questions.',
-      '* Deck economy: create the smallest deck that gives complete, reliable recall for the selected coverage level.',
-      '* Do not inflate card count. Add a card only when it tests a distinct, useful memory point, a necessary comparison, a meaningful recall direction, or an important visual relationship.',
-      '* Do not create a card merely because a sentence exists in the source. Exclude vague, generic, trivial, low-value, or overly obvious cards unless they are genuinely exam-relevant.',
-      '* Do not repeat the same fact through superficial wording changes. Merge closely related details that are recalled together; split them only when combining them would make recall ambiguous or overload the answer.',
-      '* Avoid full textbook paragraph copying.',
-      '* Compact wording: use the fewest clear words. Prefer short phrases, labels, values, formulas, arrows, and compact lists over full grammatical sentences.',
-      '* Keep enough context for every prompt and answer to remain understandable and unambiguous. Never compress wording until it becomes cryptic or hard to recognise during review.',
-      '* Preserve exact textbook facts, dates, names, formulas, examples, and terminology.',
-      '* Do not invent unsupported facts.',
-      '* If something is not in the source, do not present it as source content.',
-      '* Use advanced HTML only when it improves revision.',
-      '* Use image occlusion only when hiding labels/parts genuinely helps recall.',
-      '* Use images only when they improve memory or interpretation.',
-      '* Keep the deck under 999 cards.',
-      '* Do not include SRS or review metadata.'
-    ];
-
-    if (options.avoidLazyCards) {
-      qualityRules = qualityRules.concat([
-        '* Do not make lazy or vague cards like "What is evolution?" unless it is exceptionally important.',
-        '* Each definition should be compressed, not rewritten as long study notes.'
-      ]);
-    }
-
-    const deckNameStr = String(options.deckName || '').trim() || 'Deck name';
-    const classNameStr = String(options.className || '').trim() || 'Optional existing class name';
-
-    // ─── ORDERING THE PROMPT ───────────────────────────────────────────────────
-
-    // Step 1: Learning Goal (Brief + Targets + Studied + Language + Slider)
-    const learningGoalParts = [brief, targetText, studiedText, sliderFocusText, langText].filter(Boolean);
-    blocks.push(learningGoalParts.join('\n\n'));
-    blocks.push(sourceAuthorityText);
-    blocks.push(sourceProcessingText);
-
-    // Step 2: Answer style and deck quality rules
-    if (answerStyleText) {
-      blocks.push(answerStyleText);
-    }
-    blocks.push(qualityRules.join('\n'));
-
-    if (options.outputFormat !== 'txt') {
-      blocks.push(`Erudite card capabilities to use correctly:
-* Normal rich text cards support safe HTML: b, strong, i, em, u, br, div, p, ul, ol, li, span, mark, code, pre, blockquote, hr.
-* Normal cards support LaTeX math using \\(...\\) and \\[...\\].
-* Use reverse cards only when back-to-front recall is useful. In JSON, use "reverse": true on a basic card.
-* Use cloze cards for sentence facts with {{c1::answer}} syntax. Multiple cloze indexes create separate cards.
-* Use image occlusion for labelled diagrams, maps, anatomy, apparatus, graphs, and visual parts. Best AI-safe format: include occlusion.imageWidth, occlusion.imageHeight, occlusion.units = "px", and each mask as bboxPx: [left, top, width, height] measured on the final cropped image. Normalized x/y/w/h from 0 to 1 also works, but pixel bboxes are preferred.
-* If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Erudite automatically turns each mask into its own study card.
-* For image occlusion, never use PDF page coordinates, screenshot coordinates, or coordinates from a different crop/scale. Make masks only for labels/parts you can identify with confidence. Skip uncertain labels, captions, arrows, repeated labels, and decorative text instead of adding extra masks. For crowded diagrams, use about 3-12 high-value masks per image. Split into multiple cropped images only when one full image is too crowded or unreadable.
-* Use advanced HTML/CSS only for visual study structures such as comparison tables, timelines, flowcharts, process maps, formula summaries, and compact visual revision cards.
-* Do not include internal app metadata such as id, noteId, srs, reviewHistory, due dates, reps, lapses, created, or lastModified.`);
-    }
-
-    // Step 3: Card type rules
-    if (mixText) {
-      blocks.push(mixText);
-    }
-
-    // Step 4: Media rules
-    if (mediaText) {
-      blocks.push(mediaText);
-    }
-
-    // Step 5: Schema structure specifications
-    let schemaSpec = '';
-    if (options.outputFormat === 'txt') {
-      schemaSpec = `Create Erudite Flashcards TXT import text.
-
-Return plain text only. Do not wrap it in Markdown. Do not add headings or explanations.
-
-Use this exact separator format:
-front;back@front;back@front;back
-
-TXT rules:
-- Use semicolon ; between the front and back of each card.
-- Use @ between cards.
-- Do not use @ inside card text.
-- Do not use semicolons inside card text unless unavoidable.
-- TXT supports simple front/back cards only.
-- Do not include JSON, media files, image occlusion, advanced HTML, SRS metadata, or deck metadata.
-- Keep each card atomic and compact.
-- Example:
-Photosynthesis;Process by which green plants make glucose using sunlight, carbon dioxide, and water.@Mitochondria;Site of aerobic respiration in the cell.`;
-    } else if (options.outputFormat === 'html') {
-      schemaSpec = `Create a single custom Erudite HTML & CSS flashcard using HTML and CSS only.
-
-Return exactly four fenced code blocks with these labels:
-FRONT_HTML
-FRONT_CSS
-BACK_HTML
-BACK_CSS
-
-Hard rules:
-- No JavaScript, no <script>, no event attributes, no external URLs, no @import.
-- No iframe, form, input, button, select, textarea, audio, video, canvas, fixed/sticky positioning, or z-index tricks.
-- Do not use style attributes in HTML. Put styling in FRONT_CSS or BACK_CSS.
-- Do not include the app shell, <article>, .card-scroll, or iframe in the returned HTML.
-- Use one root wrapper such as <div class="card-design"> in each HTML block.
-- Use only classes/IDs that belong to the card design.
-- The custom HTML lives inside a smaller sandbox inside the flashcard, not the full card.
-- Exact design canvas: 340px wide x 470px tall, 20px corner radius.
-- Treat those as CSS pixels, not physical screenshot pixels.
-- Your root .card-design should be width: 340px; min-height: 470px; border-radius: 20px; overflow: hidden or auto.
-- Prefer responsive inner layout using max-width: 100%, flexible rows/columns, and readable spacing.
-- Avoid fixed inner heights taller than 470px unless the content is intentionally scrollable.
-- Keep text readable, responsive, and friendly to math/physics formulas and step-by-step solutions.
-- Good use cases: comparison table, timeline, flowchart, process map, formula summary, labelled mini diagram.
-- Bad use cases: decorative poster, long notes page, tiny unreadable infographic, interactive quiz widget.`;
-    } else if (options.outputFormat === 'json') {
-      schemaSpec = `Create an Erudite Flashcards import JSON file.
-
-Return valid JSON only. Do not wrap it in Markdown. Do not add comments.
-
-Use this content-only shape and include only fields that are useful:
-{
-  "version": 1,
-  "name": "${deckNameStr}",
-  "className": "${classNameStr}",
-  "cards": [
-    {
-      "type": "basic",
-      "term": "What is osmosis?",
-      "definition": "Movement of water through a selectively permeable membrane from higher water potential to lower water potential.",
-      "tags": ["biology", "transport"],
-      "reverse": false
-    },
-    {
-      "type": "basic",
-      "term": "Mitochondria",
-      "definition": "Site of aerobic respiration",
-      "tags": ["cell"],
-      "reverse": true
-    },
-    {
-      "type": "cloze",
-      "text": "The SI unit of force is {{c1::newton}} and its symbol is {{c2::N}}.",
-      "definition": "Extra note: named after Isaac Newton.",
-      "tags": ["physics", "units"]
-    },
-    {
-      "type": "basic",
-      "term": "Identify this apparatus.",
-      "definition": "Vernier caliper.",
-      "media": {
-        "term": [
-          { "src": "data:image/png;base64,BASE64_IMAGE_DATA", "mime": "image/png", "name": "vernier-caliper.png" }
-        ]
-      },
-      "tags": ["physics", "measurement"]
-    },
-    {
-      "type": "basic",
-      "term": "What does this map highlight?",
-      "definition": "Major soil regions.",
-      "background": {
-        "term": { "src": "data:image/png;base64,BASE64_IMAGE_DATA", "mime": "image/png", "name": "soil-map.png", "fit": "cover", "opacity": 0.32 }
-      }
-    },
-    {
-      "type": "image-occlusion",
-      "term": "Flower diagram",
-      "image": { "dataUrl": "data:image/png;base64,BASE64_IMAGE_DATA", "width": 1200, "height": 800 },
-      "occlusion": {
-        "mode": "hide-one",
-        "units": "px",
-        "imageWidth": 1200,
-        "imageHeight": 800,
-        "masks": [
-          { "shape": "rect", "bboxPx": [480, 160, 216, 72], "answer": "Stigma", "hint": "Top receptive part" },
-          { "shape": "ellipse", "bboxPx": [552, 288, 168, 80], "answer": "Ovary" }
-        ]
-      },
-      "tags": ["diagram", "flower"]
-    },
-    {
-      "type": "advanced-html",
-      "term": "Short searchable front text",
-      "definition": "Short searchable back text",
-      "advancedHtml": {
-        "frontHtml": "<div class=\\"card-design\\"><h2>Hardy-Weinberg</h2><p>Recall the equation and variables.</p></div>",
-        "frontCss": "*{box-sizing:border-box}.card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;padding:18px;background:#fff;color:#111;font-family:Inter,Arial,sans-serif}",
-        "backHtml": "<div class=\\"card-design\\"><h2>p² + 2pq + q² = 1</h2><table><tr><td>p²</td><td>AA</td></tr><tr><td>2pq</td><td>Aa</td></tr><tr><td>q²</td><td>aa</td></tr></table></div>",
-        "backCss": "*{box-sizing:border-box}.card-design{width:340px;min-height:470px;border-radius:20px;overflow:auto;padding:18px;background:#fff;color:#111;font-family:Inter,Arial,sans-serif}.card-design table{width:100%;border-collapse:collapse}.card-design td{border:1px solid #ddd;padding:8px}"
-      },
-      "tags": ["genetics", "formula"]
-    }
-  ]
-}
-
-JSON Rules:
-- Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.
-- Use math as "\\\\(F = ma\\\\)" for inline math or "\\\\[x^2 + y^2\\\\]" for display math in normal card fields.
-- Normal rich text may use safe HTML such as b, strong, i, em, u, br, div, p, ul, ol, li, span, mark, code, pre, blockquote, hr.
-- Direct JSON media must use data URLs, not external URLs.
-- Image occlusion masks require an answer.
-- Preferred occlusion format for AI-generated images: set occlusion.units to "px", include occlusion.imageWidth and occlusion.imageHeight, and use bboxPx: [left, top, width, height] measured on the final cropped image.
-- Alternative occlusion format: normalized x, y, w, h values from 0 to 1 relative to the final image.
-- Do not use PDF page coordinates, screenshot coordinates, or coordinates from a differently scaled crop for occlusion.
-- If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Erudite automatically turns each mask into its own study card.
-- Do not add uncertain masks. One mask should hide one real label or one clearly named visual part. Skip captions, arrows, repeated labels, and decorative text. For crowded diagrams, use about 3-12 high-value masks per image. Split into multiple cropped images only when one full image is too crowded or unreadable.
-- Advanced HTML must use HTML and CSS only: no JavaScript, no scripts, no event attributes, no iframes, no forms, no external URLs, no @import, no fixed/sticky overlays, and no z-index tricks.
-- Advanced HTML cards live in a 340px x 470px canvas with 20px corner radius and must include *{box-sizing:border-box}.
-- Prefer readable HTML/Unicode formulas inside advanced HTML unless math rendering is truly needed.`;
-    } else {
-      schemaSpec = `Here is the deck schema structure you must target:
-{
-  "version": 1,
-  "name": "${deckNameStr}",
-  "className": "${classNameStr}",
-  "cards": [
-    {
-      "type": "basic",
-      "term": "Question text or safe HTML such as <img src=\\"media/file.webp\\" alt=\\"Short description\\">",
-      "definition": "Answer text, formula, or explanation",
-      "tags": ["tag"],
-      "reverse": false
-    },
-    {
-      "type": "cloze",
-      "text": "The SI unit of force is {{c1::newton}}."
-    },
-    {
-      "type": "image-occlusion",
-      "term": "Diagram title",
-      "image": "media/descriptive-image-name.webp",
-      "occlusion": {
-        "units": "px",
-        "imageWidth": 1200,
-        "imageHeight": 800,
-        "masks": [
-          {
-            "shape": "rect",
-            "bboxPx": [144, 160, 300, 80],
-            "answer": "Hidden label",
-            "hint": "Short clue"
-          }
-        ]
-      }
-    },
-    {
-      "type": "advanced-html",
-      "term": "Short searchable front text",
-      "definition": "Short searchable back text",
-      "advancedHtml": {
-        "frontHtml": "<div class=\\"card-design\\"><img src=\\"media/another-diagram.png\\" alt=\\"Diagram\\"></div>",
-        "frontCss": ".card-design{box-sizing:border-box;width:340px;min-height:470px;border-radius:20px;overflow:auto;background:#fff;color:#111;padding:18px}",
-        "backHtml": "<div class=\\"card-design\\">Answer</div>",
-        "backCss": ".card-design{box-sizing:border-box;width:340px;min-height:470px;border-radius:20px;overflow:auto;background:#fff;color:#111;padding:18px}"
-      }
-    }
-  ]
-}
-
-Package rules:
-- deck.json must be at the root of the ZIP.
-- Use media/... relative paths in deck.json.
-- Put every referenced file inside the media folder.
-- Do not put Base64 media in deck.json (unless importing JSON directly).
-- Do not use external URLs.
-- Do not reference files outside media/.
-- Use safe lowercase filenames inside media/ ending with .webp, .png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg, .mp4, or .webm.
-- Keep the deck at 999 cards or fewer.
-- Never include id, noteId, srs, reviewHistory, due dates, reps, lapses, streaks, or analytics fields.
-- Use math as "\\(F = ma\\)" for inline math or "\\[x^2 + y^2\\]" for display math in normal card fields.
-- In advanced HTML cards, prefer readable HTML/Unicode formulas such as p^2 + 2pq + q^2 = 1 unless math rendering is explicitly needed.
-- Advanced HTML cards live inside a 340px x 470px canvas with 20px corner radius. You MUST use box-sizing: border-box globally to prevent overflows.
-- Image occlusion masks require an answer.
-- Preferred occlusion format for AI-generated images: set occlusion.units to "px", include occlusion.imageWidth and occlusion.imageHeight, and use bboxPx: [left, top, width, height] measured on the final cropped image.
-- Alternative occlusion format: normalized x, y, w, h values from 0 to 1 relative to the final image.
-- Do not use PDF page coordinates, screenshot coordinates, or coordinates from a differently scaled crop for occlusion.
-- If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Erudite automatically turns each mask into its own study card.
-- Do not add uncertain masks. One mask should hide one real label or one clearly named visual part. Skip captions, arrows, repeated labels, and decorative text. For crowded diagrams, use about 3-12 high-value masks per image. Split into multiple cropped images only when one full image is too crowded or unreadable.
-- Advanced HTML must use HTML and CSS only.
-- No JavaScript.
-- No scripts.
-- No iframes.
-- No forms.
-- No external URLs.
-- No fixed or sticky overlays.
-- CSS may reference local package media using url("media/file.webp").`;
-    }
-    blocks.push(schemaSpec);
-
-    // Step 6: Validation checklist
-    if (!['html', 'json', 'txt'].includes(options.outputFormat)) {
-      blocks.push(`Before finalizing, verify:
-* deck.json is valid JSON.
-* The ZIP contains deck.json at root, not inside another folder (if creating a ZIP).
-* The ZIP contains a media folder (if creating a ZIP).
-* Every media/... path referenced in deck.json exists inside media/.
-* No external URLs are used.
-* No Base64 media is stored in deck.json (unless importing JSON directly).
-* All image occlusion masks use either bboxPx with imageWidth/imageHeight or normalized x, y, w, h values between 0 and 1.
-* Every image occlusion mask has an answer.
-* Advanced HTML contains no JavaScript, scripts, iframes, forms, or external URLs.
-* Summaries, exercises, in-text material, and important visuals were inspected when present.
-* No unsupported facts, generic overview cards, vague prompts, or unnecessary duplicates remain.
-* Prompts and answers are compact but still clear and recognisable.
-* The deck matches the selected examination target and coverage level.
-* The generated study-card count, including reverse directions and image-occlusion masks, is 999 or fewer.`);
-    }
-
-    // Step 7: Provider-specific final output instruction (AT THE END)
-    if (!['html', 'json', 'txt'].includes(options.outputFormat)) {
-      let outputBlock = '';
-      if (options.aiProvider === 'chatgpt') {
-        outputBlock = `Final output instruction for ChatGPT:
-
-Create the final Erudite package as a normal downloadable .zip file.
-
-The ZIP must contain deck.json at the root, not inside another folder, and a media/ folder.
-
-Use your available file creation or code execution tools if needed.
-
-Do not paste deck.json in the chat unless you are unable to create the ZIP.
-
-If you cannot create a ZIP, say that clearly and return Erudite Package Source format instead.
-
-Return the ZIP file as the final answer.`;
-      } else if (options.aiProvider === 'claude') {
-        outputBlock = `Final output instruction for Claude:
-
-Create the final Erudite package as a downloadable .zip file if your environment supports file creation or artifacts.
-
-The ZIP must contain deck.json at the root, not inside another folder, and a media/ folder.
-
-If your current Claude environment cannot attach a ZIP file, return Erudite Package Source format instead, with deck JSON and any media file contents clearly separated.
-
-Return the ZIP file as the final answer.`;
-      } else if (options.aiProvider === 'gemini') {
-        outputBlock = `Final output instruction for Gemini:
-
-Do not assume you can attach a ZIP file.
-
-Return the result in Erudite Package Source format so the Erudite app can build the ZIP locally.
-
-Rules:
-- deck must follow the Erudite deck.json schema.
-- deck must not contain Base64.
-- deck must use media/... paths only if matching files are included in the media array.
-- Allowed media paths must use safe lowercase filenames inside media/ and end with .webp, .png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg, .mp4, or .webm.
-- CSS may reference local media using url("media/file.webp").
-- If you cannot provide real media files, do not reference media files.
-- Prefer text, cloze, reverse, and advanced HTML cards.
-- For visuals, prefer pure HTML/CSS diagrams inside advanced HTML cards.
-- Do not use external URLs.
-- Do not use JavaScript.
-- Do not include explanations outside the package-source JSON.
-- Do not wrap the JSON in markdown fences. Do not use \`\`\`json. Do not add comments, headings, explanations, or trailing commas.
-
-If media is needed and you can provide it, use this structure inside the media array:
-{
-  "path": "media/descriptive-file-name.png",
-  "mime": "image/png",
-  "encoding": "base64",
-  "data": "BASE64_DATA_HERE"
-}
-
-Start exactly with ERUDITE_PACKAGE_SOURCE_V1 and provide one valid JSON object.`;
-      } else {
-        outputBlock = `Final output instruction:
-
-Create the final Erudite package as a downloadable .zip file if supported, or return the result in Erudite Package Source format.
-
-If returning a ZIP, it must contain deck.json at the root, not inside another folder, and a media/ folder.
-
-If returning Erudite Package Source, start your response exactly with:
-ERUDITE_PACKAGE_SOURCE_V1
-followed by the JSON containing "deck" and "media" array.`;
-      }
-      blocks.push(outputBlock);
-    }
-
-    return blocks.join('\n\n');
+    return window.EruditeCore?.aiPrompt?.buildDeckPrompt?.(options) || '';
   }
 
   function applyPresetOptions(presetName) {
@@ -9416,7 +9633,7 @@ followed by the JSON containing "deck" and "media" array.`;
       const tips = {
         'chatgpt': '<strong>ChatGPT:</strong> Recommended. Upload your PDF, paste the instructions, and ask ChatGPT to return the ZIP package.',
         'claude': '<strong>Claude:</strong> Recommended. Paste instructions and upload your PDF. Claude is great at PDF reading. Ask it to output a ZIP or Package Source.',
-        'gemini': '<strong>Gemini:</strong> Good for PDF analysis, but ZIP output may fail. Gemini will output Erudite Package Source text; paste it into Step 4 to build the ZIP locally.',
+        'gemini': '<strong>Gemini:</strong> Good for PDF analysis, but ZIP output may fail. Gemini will output Smriti Package Source text; paste it into Step 4 to build the ZIP locally.',
         'other': '<strong>Other AI:</strong> Paste instructions and upload source material. Confirm it outputs ZIP or package source structure.'
       };
       selectors.aiProviderTip.innerHTML = tips[pb.aiProvider] || '';
@@ -9657,7 +9874,7 @@ followed by the JSON containing "deck" and "media" array.`;
 
     const finalConfirmation = await showMobileConfirm({
       title: 'Final Confirmation',
-      message: 'This cannot be undone. Delete all Erudite data stored on this device now?',
+      message: 'This cannot be undone. Delete all Smriti data stored on this device now?',
       okText: 'Delete Everything',
       isDanger: true
     });
@@ -10133,6 +10350,25 @@ followed by the JSON containing "deck" and "media" array.`;
       case 'toggle-sound':
         await toggleSound();
         break;
+      case 'toggle-paper':
+        await togglePaper();
+        break;
+      case 'open-pro':
+        await openProSheet();
+        break;
+      case 'close-pro':
+        closeProSheet();
+        break;
+      case 'buy-pro':
+        await buyPro();
+        break;
+      case 'restore-pro':
+        await restorePro();
+        break;
+      case 'select-pro-plan':
+        selectedProPackage = proPackages.find(item => item.id === target.dataset.planId) || selectedProPackage;
+        renderProPlans();
+        break;
       case 'toggle-html-interaction':
         await toggleHtmlInteraction();
         break;
@@ -10150,6 +10386,12 @@ followed by the JSON containing "deck" and "media" array.`;
         break;
       case 'select-study-order':
         openStudyOrderModal();
+        break;
+      case 'select-new-card-limit':
+        openNewCardLimitModal();
+        break;
+      case 'open-reminder-settings':
+        openReminderModal();
         break;
       case 'select-theme':
         openThemeSelectModal();
@@ -10409,6 +10651,7 @@ followed by the JSON containing "deck" and "media" array.`;
     const newLimitInput = document.getElementById('mobile-deck-new-limit');
     if (newLimitInput) {
       newLimitInput.value = srs.newCardsPerDay ?? '';
+      newLimitInput.placeholder = `App default (${defaultNewCardsPerDay()})`;
     }
 
     const reviewLimitInput = document.getElementById('mobile-deck-review-limit');
@@ -11453,6 +11696,14 @@ followed by the JSON containing "deck" and "media" array.`;
       }
     });
 
+    document.querySelectorAll('[data-occlusion-guess]').forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        playClick();
+        setOcclusionGuessMode(button.dataset.occlusionGuess);
+      });
+    });
+
     selectors.occlusionAnswer?.addEventListener('input', updateSelectedOcclusionText);
     selectors.occlusionHint?.addEventListener('input', updateSelectedOcclusionText);
     selectors.occlusionLayer?.addEventListener('pointerdown', startOcclusionPointer);
@@ -11926,7 +12177,7 @@ followed by the JSON containing "deck" and "media" array.`;
     // Private helper for dynamic retry messages
     function getAiRetryMessage(provider) {
       if (provider === 'gemini') {
-        return `The previous output was not valid Erudite Package Source.
+        return `The previous output was not valid Smriti Package Source.
 
 Please return the output again.
 
@@ -11949,7 +12200,7 @@ Do not include external URLs.
 Do not reference media files unless they are present in the media array.
 Do not put Base64 inside deck fields.`;
       } else {
-        return `The previous output was not a valid Erudite ZIP package.
+        return `The previous output was not a valid Smriti ZIP package.
 
 Please return a normal downloadable .zip file only.
 
@@ -12362,6 +12613,16 @@ Every media/... reference in deck.json must exist inside media/.`;
     setTimeout(async () => {
       const loadSpan = perf?.start('app.init.deferred_data_and_render', { initialTab: tab });
       await refresh();
+      // Pro: read the cached entitlement now, confirm with Google Play in the
+      // background, and finish any sample decks once Pro is active.
+      window.EruditeEntitlements?.onChange?.(() => {
+        renderMore();
+        if (state.activeTab === 'library' || state.activeTab === 'premade') renderActive();
+        upgradeSampleDecks().catch(error => console.warn('[mobile] sample upgrade failed:', error));
+      });
+      window.EruditeEntitlements?.init?.()
+        .then(() => upgradeSampleDecks())
+        .catch(error => console.warn('[mobile] billing init failed:', error));
       // Initialize opacity slider from loaded settings
       if (selectors.bgOpacitySlider) {
         const opacity = parseFloat(state.settings?.cardBgOpacity ?? 0.32);

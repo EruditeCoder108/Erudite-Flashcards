@@ -12,6 +12,8 @@
     reviewsPerDay: null
   };
 
+  const DEFAULT_NEW_CARDS_PER_DAY = 20;
+
   const DECK_TYPOGRAPHY_FIELDS = ['align', 'weight', 'font', 'lineHeight', 'letterSpacing'];
 
   const DEFAULT_SETTINGS = {
@@ -19,6 +21,15 @@
     normalStudyOrder: 'forward',
     soundEffectsEnabled: true,
     htmlInteractionDisabled: false,
+    paperTexture: false,
+    srsDefaults: {
+      newCardsPerDay: DEFAULT_NEW_CARDS_PER_DAY
+    },
+    reminder: {
+      enabled: false,
+      hour: 19,
+      minute: 0
+    },
     fonts: {},
     cursor: {
       enabled: true,
@@ -264,6 +275,9 @@
       ...DEFAULT_SETTINGS.cardStyle,
       ...(settings.cardStyle || {})
     };
+    const defaultNewCards = numberOrNull(settings.srsDefaults?.newCardsPerDay, DEFAULT_NEW_CARDS_PER_DAY);
+    const reminderHour = numberOrNull(settings.reminder?.hour, DEFAULT_SETTINGS.reminder.hour);
+    const reminderMinute = numberOrNull(settings.reminder?.minute, DEFAULT_SETTINGS.reminder.minute);
     return {
       ...DEFAULT_SETTINGS,
       ...settings,
@@ -271,6 +285,15 @@
       normalStudyOrder,
       soundEffectsEnabled,
       htmlInteractionDisabled,
+      paperTexture: settings.paperTexture === true,
+      srsDefaults: {
+        newCardsPerDay: Math.max(0, Math.round(defaultNewCards))
+      },
+      reminder: {
+        enabled: settings.reminder?.enabled === true,
+        hour: Math.min(23, Math.max(0, Math.round(reminderHour))),
+        minute: Math.min(59, Math.max(0, Math.round(reminderMinute)))
+      },
       fonts: {
         ...DEFAULT_SETTINGS.fonts,
         ...(settings.fonts || {})
@@ -303,6 +326,7 @@
   }
 
   return {
+    DEFAULT_NEW_CARDS_PER_DAY,
     DEFAULT_SRS_SETTINGS,
     DEFAULT_SETTINGS,
     createId,

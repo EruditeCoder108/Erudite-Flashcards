@@ -2,15 +2,18 @@
 <html lang="en" class="mobile-study-shell">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; media-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; font-src 'self' data:; connect-src 'self' https://erudite-flashcards.netlify.app http://localhost https://localhost; frame-src 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; media-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; font-src 'self' data:; connect-src 'self' https://erudite-flashcards.netlify.app http://localhost https://localhost; frame-src 'none'; form-action 'none'">
   <script src="../mobile/js/theme-bootstrap.js"></script>
+  <script src="../js/core/motion.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#07111f">
-  <title>Study - Erudite Flashcards</title>
+  <title>Study - Smriti</title>
   <link rel="icon" type="image/png" href="../assets/icons/icon.png">
-  <link rel="stylesheet" href="../vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="../mobile/css/tokens.css">
+  <link rel="stylesheet" href="../mobile/css/icons.css">
   <link rel="stylesheet" href="../vendor/katex/katex.min.css">
   <link rel="stylesheet" href="../mobile/css/mobile-study.css">
+  <link rel="stylesheet" href="../mobile/css/signature.css">
 </head>
 <body>
   <div class="study-loading-cover" id="study-loading-cover" aria-live="polite">
@@ -48,13 +51,13 @@
         <button type="button" class="icon-button" id="srs-actions-btn" aria-label="More options">
           <i class="fas fa-ellipsis-vertical"></i>
         </button>
-        <div class="study-progress-chip" aria-live="polite">
-          <strong id="progress-current">0</strong>
-          <span>/</span>
-          <span id="progress-total">0</span>
-        </div>
       </div>
     </header>
+
+    <div class="study-progress" aria-live="polite">
+      <div class="progress-bar" role="progressbar" aria-label="Session progress"><span id="progress-fill"></span></div>
+      <span class="progress-count"><strong id="progress-current">0</strong><span class="progress-divider">/</span><span id="progress-total">0</span></span>
+    </div>
 
     <main class="study-main" id="study-main">
       <section class="study-card-stage" id="card-stage" aria-live="polite">
@@ -63,6 +66,7 @@
           <span>Prev</span>
         </button>
         <div class="study-card slot-prev" id="card-0">
+          <div class="swipe-stamp" aria-hidden="true"></div>
           <div class="study-card-inner">
             <article class="card-face front" aria-label="Term side">
               <div class="card-bg term-bg"></div>
@@ -99,6 +103,7 @@
         </div>
 
         <div class="study-card slot-active" id="card-1">
+          <div class="swipe-stamp" aria-hidden="true"></div>
           <div class="study-card-inner">
             <article class="card-face front" aria-label="Term side">
               <div class="card-bg term-bg"></div>
@@ -135,6 +140,7 @@
         </div>
 
         <div class="study-card slot-next" id="card-2">
+          <div class="swipe-stamp" aria-hidden="true"></div>
           <div class="study-card-inner">
             <article class="card-face front" aria-label="Term side">
               <div class="card-bg term-bg"></div>
@@ -171,38 +177,44 @@
         </div>
       </section>
 
-      <section class="rating-dock hidden" id="rating-dock" aria-label="SRS rating buttons">
+      <section class="study-actions" id="study-actions">
+      <button type="button" class="reveal-button hidden" id="reveal-button">
+        <span>Show answer</span>
+        <kbd aria-hidden="true">Space</kbd>
+      </button>
+      <section class="rating-dock hidden" id="rating-dock" aria-label="How well did you remember it?">
         <button type="button" class="rating-button again" data-rating="Again">
-          <span>Again</span>
           <small id="interval-again">soon</small>
+          <span>Again</span>
         </button>
         <button type="button" class="rating-button hard" data-rating="Hard">
-          <span>Hard</span>
           <small id="interval-hard">soon</small>
+          <span>Hard</span>
         </button>
         <button type="button" class="rating-button good" data-rating="Good">
-          <span>Good</span>
           <small id="interval-good">soon</small>
+          <span>Good</span>
         </button>
         <button type="button" class="rating-button easy" data-rating="Easy">
-          <span>Easy</span>
           <small id="interval-easy">soon</small>
+          <span>Easy</span>
         </button>
+      </section>
       </section>
     </main>
 
     <div class="study-footer">
-      <div class="progress-bar"><span id="progress-fill"></span></div>
       <p id="gesture-hint">Tap to flip. Swipe left or right to move cards.</p>
     </div>
   </div>
 
   <div class="modal hidden" id="completion-modal" role="dialog" aria-modal="true">
     <div class="modal-panel">
-      <div class="modal-icon"><i class="fas fa-trophy"></i></div>
+      <div class="done-check-host" id="completion-check"></div>
       <h2 id="completion-title">Session Complete</h2>
       <p id="completion-copy">You finished this set.</p>
       <div class="completion-stats hidden" id="completion-stats"></div>
+      <div class="completion-ratings hidden" id="completion-ratings"></div>
       <div class="modal-actions">
         <button type="button" class="primary-action" id="continue-button">Practice Again</button>
         <button type="button" class="secondary-action" id="library-button">Back to Library</button>
@@ -226,7 +238,12 @@
     <button type="button" class="image-modal-close" id="image-close-button" aria-label="Close image">
       <i class="fas fa-xmark"></i>
     </button>
-    <img id="zoomed-image" alt="Enlarged flashcard image">
+    <div class="zoom-viewport" id="zoom-viewport">
+      <div class="zoom-stage" id="zoom-stage">
+        <img id="zoomed-image" alt="Enlarged flashcard image" draggable="false">
+      </div>
+    </div>
+    <p class="zoom-hint" aria-hidden="true">Pinch or double-tap to zoom</p>
   </div>
 
   <!-- Mobile SRS Actions Bottom Sheet -->
@@ -308,6 +325,7 @@
   <script src="../vendor/katex/auto-render.min.js"></script>
   <script src="../vendor/ts-fsrs/index.umd.js"></script>
   <script src="../js/srs-manager.js"></script>
+  <script src="../mobile/js/signature.js"></script>
   <script src="../mobile/js/mobile-study.js"></script>
 </body>
 </html>

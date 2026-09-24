@@ -91,10 +91,13 @@
     card: null,
     stage: document.getElementById('card-stage'),
     ratingDock: document.getElementById('rating-dock'),
+    reveal: document.getElementById('reveal-button'),
     completionModal: document.getElementById('completion-modal'),
     completionTitle: document.getElementById('completion-title'),
     completionCopy: document.getElementById('completion-copy'),
     completionStats: document.getElementById('completion-stats'),
+    completionRatings: document.getElementById('completion-ratings'),
+    completionCheck: document.getElementById('completion-check'),
     continueButton: document.getElementById('continue-button'),
     libraryButton: document.getElementById('library-button'),
     emptyModal: document.getElementById('empty-modal'),
@@ -105,6 +108,8 @@
     imageModal: document.getElementById('image-modal'),
     zoomedImage: document.getElementById('zoomed-image'),
     imageClose: document.getElementById('image-close-button'),
+    zoomViewport: document.getElementById('zoom-viewport'),
+    zoomStage: document.getElementById('zoom-stage'),
     loadingCover: document.getElementById('study-loading-cover'),
     loadingTitle: document.getElementById('study-loading-title'),
     loadingCopy: document.getElementById('study-loading-copy'),
@@ -132,6 +137,7 @@
     Easy: document.getElementById('interval-easy')
   };
 
+  let imageZoom = null;
   let toastTimer = null;
   let dueSoonTimer = null;
   let dueSoonTick = null;
@@ -166,7 +172,9 @@
   let restoredProgress = null;
   const preloadedImages = new Set();
   const pendingCardPatches = new Map();
-  const SWIPE_DURATION = 175;
+  // Time before the next card takes input. The departing card keeps flying on
+  // its own spring, so this only needs to cover the first part of its exit.
+  const SWIPE_DURATION = 190;
   const FLIP_DURATION = 340;
 
   function showToast(message) {
@@ -372,7 +380,7 @@
     const template = document.createElement('template');
     template.innerHTML = raw;
     const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'P', 'DIV', 'UL', 'OL', 'LI', 'SPAN', 'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'HR']);
-    const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink']);
+    const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink', 'cloze-answer', 'cloze-blank']);
     // Only allow color: <hex|rgb|hsl|named> in style attributes — no JS injection
     const safeColorRe = /^color\s*:\s*(#[0-9a-fA-F]{3,8}|rgb\([^)]*\)|rgba\([^)]*\)|hsl\([^)]*\)|hsla\([^)]*\)|[a-zA-Z]{2,30})\s*;?\s*$/;
     const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
@@ -648,8 +656,10 @@
 
   function startOfLocalDayMs(value = Date.now()) {
     const timestamp = timestampValue(value) || Date.now();
-    const date = new Date(timestamp);
-    date.setHours(0, 0, 0, 0);
+    // A study day runs from 4 AM to 4 AM, matching the scheduler, so a late-night
+    // session still counts toward the day the learner thinks of as "today".
+    const date = new Date(timestamp - 4 * 60 * 60 * 1000);
+    date.setHours(4, 0, 0, 0);
     return date.getTime();
   }
 
@@ -726,23 +736,8 @@
   }
 
   function getDeckSrsSettings(set = state.set) {
-    const raw = set?.srsSettings || {};
-    const numberOrNull = value => {
-      if (value === null || value === undefined || value === '') return null;
-      const number = Number(value);
-      return Number.isFinite(number) ? number : null;
-    };
-    const requestRetention = numberOrNull(raw.requestRetention) ?? 0.9;
-    const maxIntervalDays = numberOrNull(raw.maxIntervalDays) ?? 36500;
-    const newCardsPerDay = numberOrNull(raw.newCardsPerDay);
-    const reviewsPerDay = numberOrNull(raw.reviewsPerDay);
-    return {
-      enabled: raw.enabled !== false,
-      requestRetention: Math.min(0.99, Math.max(0.7, requestRetention)),
-      maxIntervalDays: Math.max(1, Math.round(maxIntervalDays)),
-      newCardsPerDay: newCardsPerDay === null ? null : Math.max(0, Math.round(newCardsPerDay)),
-      reviewsPerDay: reviewsPerDay === null ? null : Math.max(0, Math.round(reviewsPerDay))
-    };
+    // The scheduler resolves a blank deck limit to the app-wide default.
+    return window.srsManager.normalizeSettings(set?.srsSettings || {});
   }
 
   function activeIndex() {
@@ -846,12 +841,9 @@
     if (cardEl === cards[activeCardIndex]) {
       state.flipped = Boolean(flipped);
       clearTimeout(ratingTimer);
-      if (!options.noTransition && state.srsMode && flipped) {
-        els.hint.textContent = 'Revealing answer...';
-        ratingTimer = window.setTimeout(updateRatingVisibility, FLIP_DURATION);
-      } else {
-        updateRatingVisibility();
-      }
+      // The rating dock rises while the card turns, so the learner can rate as
+      // soon as they have read the answer.
+      updateRatingVisibility();
     }
     if (options.noTransition) {
       requestAnimationFrame(() => {
@@ -935,7 +927,7 @@
       ? { ...globalStyle, ...deckTypography }
       : globalStyle;
     const fontFamilyByValue = {
-      'sans-serif': 'Inter, sans-serif',
+      'sans-serif': 'var(--font-sans)',
       serif: 'Georgia, serif',
       monospace: 'Courier New, monospace',
       system: 'system-ui, sans-serif'
@@ -990,6 +982,7 @@
     localStorage.setItem('erudite-theme', theme);
     document.body.classList.toggle('theme-light', theme === 'light');
     document.documentElement.classList.toggle('theme-light', theme === 'light');
+    window.EruditePaper?.apply(state.settings?.paperTexture === true);
     // The study screen initially starts before saved settings are available. Apply the
     // resolved theme again so Android uses dark icons on its light status bar.
     configureSystemBars().catch(() => {});
@@ -1605,29 +1598,51 @@
     });
   }
 
+  function plainText(value) {
+    const template = document.createElement('template');
+    template.innerHTML = String(value || '');
+    return (template.content.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+
   function buildOcclusionMaskLayer(card, side) {
     const occlusion = card?.imageOcclusion;
     const masks = Array.isArray(occlusion?.masks) ? occlusion.masks : [];
     if (!masks.length || !isImageOcclusionCard(card)) return null;
     const targetId = String(occlusion.targetMaskId || '');
     const targetIndex = Number(occlusion.targetMaskIndex ?? 0);
+    const revealed = side === 'definition';
+    // Hide one: only the asked label is covered, the rest stay readable as context.
+    const hideOne = occlusion.guessMode === 'hide-one';
     const layer = document.createElement('div');
-    layer.className = `occlusion-mask-layer ${side === 'definition' ? 'revealed' : 'hidden-side'}`;
+    layer.className = `occlusion-mask-layer ${revealed ? 'revealed' : 'hidden-side'}`;
     masks.forEach((mask, index) => {
       const isTarget = targetId
         ? String(mask.id || '') === targetId
         : index === targetIndex;
+      if (!isTarget && hideOne) return;
       const item = document.createElement('span');
       item.className = `occlusion-mask ${mask.shape === 'ellipse' ? 'shape-ellipse' : ''} ${isTarget ? 'target' : 'context'}`;
       const x = normalizedOcclusionUnit(mask.x, 0);
       const y = normalizedOcclusionUnit(mask.y, 0);
-      const w = Math.min(1 - x, Math.max(0.03, normalizedOcclusionUnit(mask.w, 0.12)));
-      const h = Math.min(1 - y, Math.max(0.03, normalizedOcclusionUnit(mask.h, 0.08)));
+      const w = Math.min(1 - x, Math.max(0.012, normalizedOcclusionUnit(mask.w, 0.12)));
+      const h = Math.min(1 - y, Math.max(0.012, normalizedOcclusionUnit(mask.h, 0.08)));
       item.style.left = `${x * 100}%`;
       item.style.top = `${y * 100}%`;
       item.style.width = `${w * 100}%`;
       item.style.height = `${h * 100}%`;
-      item.textContent = isTarget && side !== 'definition' ? '?' : '';
+      if (isTarget) {
+        const label = document.createElement('span');
+        if (revealed) {
+          // The revealed mask stays translucent so the diagram's own label shows
+          // through; the answer sits in a tag just outside the box.
+          label.className = `occlusion-answer-tag ${y + h > 0.82 ? 'above' : 'below'}`;
+          label.textContent = plainText(mask.answer || card.noteFields?.answer || card.definition);
+        } else {
+          label.className = 'occlusion-mask-label';
+          label.textContent = plainText(mask.hint || card.noteFields?.hint) || '?';
+        }
+        if (label.textContent) item.appendChild(label);
+      }
       layer.appendChild(item);
     });
     return layer;
@@ -1655,16 +1670,19 @@
   function renderZoomOcclusionMasks(card, side) {
     clearZoomOcclusionMasks();
     const layer = buildOcclusionMaskLayer(card, side);
-    if (!layer || !els.imageModal || !els.zoomedImage) return;
+    const container = els.zoomStage || els.imageModal;
+    if (!layer || !container || !els.zoomedImage) return;
     layer.classList.add('zoom-occlusion-layer');
-    els.imageModal.appendChild(layer);
-    bindOcclusionLayerToImage(layer, els.zoomedImage, els.imageModal);
+    // Masks live inside the zoom stage so they scale and pan with the image.
+    container.appendChild(layer);
+    bindOcclusionLayerToImage(layer, els.zoomedImage, container);
   }
 
   function openImageModal(src, options = {}) {
     const safeSrc = safeMediaSrc(src);
     if (!safeSrc || !els.imageModal || !els.zoomedImage) return;
     clearZoomOcclusionMasks();
+    imageZoom?.reset();
     els.zoomedImage.src = safeSrc;
     els.imageModal.classList.remove('hidden');
     if (options.card && options.side) {
@@ -1675,6 +1693,192 @@
   function closeImageModal() {
     els.imageModal?.classList.add('hidden');
     clearZoomOcclusionMasks();
+    imageZoom?.reset();
+  }
+
+  // Pinch, pan, and double-tap zoom for the enlarged image. Anatomy diagrams and
+  // maps are unreadable at phone width without it.
+  function createImageZoom(viewport, stage, onDismiss) {
+    if (!viewport || !stage) return null;
+    const MIN_SCALE = 1;
+    const MAX_SCALE = 6;
+    const DOUBLE_TAP_SCALE = 2.5;
+    const pointers = new Map();
+    const view = { scale: 1, x: 0, y: 0 };
+    let gesture = null;
+    let lastTap = null;
+    let frame = 0;
+
+    const clampScale = value => Math.min(MAX_SCALE, Math.max(MIN_SCALE, value));
+
+    function bounds() {
+      const rect = viewport.getBoundingClientRect();
+      return {
+        left: rect.left,
+        top: rect.top,
+        width: rect.width,
+        height: rect.height,
+        stageLeft: stage.offsetLeft,
+        stageTop: stage.offsetTop,
+        stageWidth: stage.offsetWidth,
+        stageHeight: stage.offsetHeight
+      };
+    }
+
+    // Keep the scaled image covering the viewport when it is larger than it,
+    // and centred when it is smaller.
+    function clampAxis(offset, stageStart, stageSize, viewportSize, scale) {
+      const scaled = stageSize * scale;
+      if (scaled <= viewportSize) return (viewportSize - scaled) / 2 - stageStart;
+      return Math.min(-stageStart, Math.max(viewportSize - stageStart - scaled, offset));
+    }
+
+    function apply() {
+      frame = 0;
+      const box = bounds();
+      if (view.scale <= MIN_SCALE + 0.001) {
+        view.scale = 1;
+        view.x = 0;
+        view.y = 0;
+      } else {
+        view.x = clampAxis(view.x, box.stageLeft, box.stageWidth, box.width, view.scale);
+        view.y = clampAxis(view.y, box.stageTop, box.stageHeight, box.height, view.scale);
+      }
+      stage.style.transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
+      viewport.classList.toggle('is-zoomed', view.scale > 1);
+    }
+
+    function schedule() {
+      if (!frame) frame = requestAnimationFrame(apply);
+    }
+
+    // Scale around a viewport point so the content under the fingers stays put.
+    function zoomAt(clientX, clientY, nextScale, from = view) {
+      const box = bounds();
+      const px = clientX - box.left - box.stageLeft;
+      const py = clientY - box.top - box.stageTop;
+      const localX = (px - from.x) / from.scale;
+      const localY = (py - from.y) / from.scale;
+      view.scale = clampScale(nextScale);
+      view.x = px - localX * view.scale;
+      view.y = py - localY * view.scale;
+      schedule();
+    }
+
+    function distance(a, b) {
+      return Math.hypot(a.x - b.x, a.y - b.y);
+    }
+
+    function midpoint(a, b) {
+      return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+    }
+
+    function startGesture() {
+      const points = Array.from(pointers.values());
+      if (points.length >= 2) {
+        const mid = midpoint(points[0], points[1]);
+        gesture = {
+          type: 'pinch',
+          startDistance: Math.max(1, distance(points[0], points[1])),
+          startView: { ...view },
+          startMid: mid
+        };
+      } else if (points.length === 1) {
+        gesture = {
+          type: 'pan',
+          startX: points[0].x,
+          startY: points[0].y,
+          startView: { ...view },
+          moved: false
+        };
+      } else {
+        gesture = null;
+      }
+    }
+
+    viewport.addEventListener('pointerdown', event => {
+      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      viewport.setPointerCapture?.(event.pointerId);
+      viewport.classList.add('is-gesturing');
+      startGesture();
+    });
+
+    viewport.addEventListener('pointermove', event => {
+      if (!pointers.has(event.pointerId)) return;
+      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      if (!gesture) return;
+      event.preventDefault();
+      const points = Array.from(pointers.values());
+      if (gesture.type === 'pinch' && points.length >= 2) {
+        const mid = midpoint(points[0], points[1]);
+        const ratio = distance(points[0], points[1]) / gesture.startDistance;
+        const start = gesture.startView;
+        zoomAt(gesture.startMid.x, gesture.startMid.y, start.scale * ratio, start);
+        view.x += mid.x - gesture.startMid.x;
+        view.y += mid.y - gesture.startMid.y;
+      } else if (gesture.type === 'pan') {
+        const dx = event.clientX - gesture.startX;
+        const dy = event.clientY - gesture.startY;
+        if (Math.abs(dx) > 6 || Math.abs(dy) > 6) gesture.moved = true;
+        if (view.scale > 1) {
+          view.x = gesture.startView.x + dx;
+          view.y = gesture.startView.y + dy;
+          schedule();
+        }
+      }
+    }, { passive: false });
+
+    function endPointer(event) {
+      if (!pointers.has(event.pointerId)) return;
+      const wasPan = gesture?.type === 'pan' && pointers.size === 1;
+      const tap = wasPan && !gesture.moved;
+      pointers.delete(event.pointerId);
+      if (!pointers.size) viewport.classList.remove('is-gesturing');
+      if (event.type === 'pointercancel') {
+        startGesture();
+        return;
+      }
+      if (tap) {
+        const now = performance.now();
+        if (lastTap && now - lastTap.time < 320 && Math.hypot(event.clientX - lastTap.x, event.clientY - lastTap.y) < 30) {
+          lastTap = null;
+          if (view.scale > 1) {
+            view.scale = 1;
+            schedule();
+          } else {
+            zoomAt(event.clientX, event.clientY, DOUBLE_TAP_SCALE);
+          }
+        } else {
+          lastTap = { time: now, x: event.clientX, y: event.clientY };
+          const tappedImage = event.target === els.zoomedImage || event.target.closest?.('.zoom-occlusion-layer');
+          // A single tap on the dark backdrop closes the viewer, once we know it
+          // was not the first half of a double tap.
+          if (!tappedImage && view.scale === 1) {
+            window.setTimeout(() => {
+              if (lastTap && lastTap.time === now) onDismiss?.();
+            }, 330);
+          }
+        }
+      }
+      startGesture();
+    }
+
+    viewport.addEventListener('pointerup', endPointer);
+    viewport.addEventListener('pointercancel', endPointer);
+    window.addEventListener('resize', schedule);
+
+    return {
+      reset() {
+        pointers.clear();
+        gesture = null;
+        lastTap = null;
+        view.scale = 1;
+        view.x = 0;
+        view.y = 0;
+        stage.style.transform = '';
+        viewport.classList.remove('is-zoomed');
+      }
+    };
   }
 
   function renderImage(img, wrap, src, card, side) {
@@ -1791,9 +1995,16 @@
     });
   }
 
+  function hideStudyActions() {
+    els.ratingDock.classList.add('hidden');
+    els.reveal?.classList.add('hidden');
+  }
+
   function updateRatingVisibility() {
-    const visible = state.srsMode && state.flipped && !state.complete && Boolean(activeCard());
+    const inSession = state.srsMode && !state.complete && Boolean(activeCard());
+    const visible = inSession && state.flipped;
     els.ratingDock.classList.toggle('hidden', !visible);
+    els.reveal?.classList.toggle('hidden', !inSession || state.flipped);
     els.shell.classList.toggle('srs-back-visible', visible);
     els.shell.classList.toggle('srs-mode-active', state.srsMode && !state.complete);
     if (visible) updateRatingIntervals();
@@ -1844,6 +2055,17 @@
     }
   }
 
+  function cardFaceLabels(cardData, { advanced, imageOcclusion }) {
+    if (imageOcclusion) return ['DIAGRAM', 'ANSWER'];
+    if (advanced) return ['CARD', 'ANSWER'];
+    const noteType = String(cardData.noteType || '').toLowerCase();
+    if (noteType === 'cloze' || String(cardData.cardTemplate || '').startsWith('cloze')) return ['FILL THE GAP', 'ANSWER'];
+    if (String(cardData.cardTemplate || '') === 'back-front') return ['DEFINITION', 'TERM'];
+    const front = String(cardData.term || '').replace(/<[^>]*>/g, ' ').trim();
+    if (/\?\s*$/.test(front)) return ['QUESTION', 'ANSWER'];
+    return ['TERM', 'DEFINITION'];
+  }
+
   function populateCardElement(cardEl, cardData) {
     if (!cardEl) return;
     if (!cardData) {
@@ -1861,32 +2083,6 @@
     const elements = getCardElements(cardEl);
     if (!elements) return;
 
-    // Contextual card labels
-    const isMath = state.set?.tags?.includes('Mental Maths') || String(state.set?.id || '').includes('math');
-    let frontLabel = 'Term';
-    let backLabel = 'Definition';
-    if (isMath) {
-      const term = String(cardData.term || '');
-      const def = String(cardData.definition || '');
-      const isQuestion = term.includes('?') || 
-                         term.includes('□') || 
-                         term.toLowerCase().includes('calculate') || 
-                         term.toLowerCase().includes('solve') || 
-                         term.toLowerCase().includes('complete') || 
-                         def.toLowerCase().startsWith('answer:') || 
-                         def.toLowerCase().startsWith('result:');
-      if (isQuestion) {
-        frontLabel = 'PRACTICE';
-        backLabel = 'SOLUTION';
-      } else {
-        frontLabel = 'METHOD';
-        backLabel = 'EXPLANATION';
-      }
-    } else {
-      frontLabel = 'CONCEPT';
-      backLabel = 'EXPLANATION';
-    }
-
     const frontHeader = cardEl.querySelector('.card-face.front .card-label');
     const backHeader = cardEl.querySelector('.card-face.back .card-label');
     const frontFace = cardEl.querySelector('.card-face.front');
@@ -1902,12 +2098,7 @@
     backFace?.classList.toggle('image-occlusion-card-face', imageOcclusion);
     setAdvancedHtmlFaceGrip(frontFace, showAdvancedGrip);
     setAdvancedHtmlFaceGrip(backFace, showAdvancedGrip);
-    if (advanced) {
-      frontLabel = 'CUSTOM';
-      backLabel = 'ANSWER';
-    }
-    frontLabel = 'TERM';
-    backLabel = 'DEFINITION';
+    const [frontLabel, backLabel] = cardFaceLabels(cardData, { advanced, imageOcclusion });
     if (frontHeader) frontHeader.textContent = frontLabel;
     if (backHeader) backHeader.textContent = backLabel;
 
@@ -1983,7 +2174,23 @@
     requestAnimationFrame(() => refreshOcclusionLayers(els.stage));
 
     state.flipped = cards[activeCardIndex] ? cards[activeCardIndex].classList.contains('is-flipped') : false;
+    markActiveCardShown();
     updateRatingVisibility();
+  }
+
+  // Time from a card appearing to its rating is stored with each review. It
+  // powers per-card timing stats and is the input FSRS optimisation will need.
+  let activeCardShown = { key: null, at: 0 };
+
+  function markActiveCardShown() {
+    const key = cardKey(activeCard());
+    if (key && key !== activeCardShown.key) activeCardShown = { key, at: performance.now() };
+  }
+
+  function reviewDurationMs(card) {
+    if (!activeCardShown.at || cardKey(card) !== activeCardShown.key) return null;
+    // Cap long pauses so a phone left on the table does not skew averages.
+    return Math.min(120000, Math.max(0, Math.round(performance.now() - activeCardShown.at)));
   }
 
   function renderStack() {
@@ -2017,16 +2224,18 @@
     const nextEl = cards[nextCardIndex];
     if (!activeEl) return;
     
-    const rotate = Math.max(-7, Math.min(7, x * 0.032));
+    // Tilt follows the grab point: pulling a card held near its bottom edge
+    // rotates it the other way, like a real card pivoting under a finger.
+    const rotate = Math.max(-14, Math.min(14, x * 0.05 * (pointer?.grabSign || 1)));
     activeEl.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg)`;
-    
+
     if (nextEl && !nextEl.classList.contains('empty-card')) {
       const dist = Math.sqrt(x * x + y * y);
-      const progress = Math.min(1, dist / 50);
-      const nextScale = 0.96 + (0.04 * progress);
-      const nextOffset = 10 - (10 * progress);
+      const progress = Math.min(1, dist / 160);
+      const nextScale = 0.93 + (0.07 * progress);
+      const nextOffset = 30 - (30 * progress);
       nextEl.style.transform = `translate3d(0, ${nextOffset}px, 0) scale(${nextScale})`;
-      nextEl.style.opacity = 0.9 + (0.1 * progress);
+      nextEl.style.opacity = 0.6 + (0.4 * progress);
     }
   }
 
@@ -2070,7 +2279,7 @@
       : (total ? activeIndex() + 1 : 0);
     els.current.textContent = String(index);
     els.total.textContent = String(total);
-    els.fill.style.width = total ? `${Math.round((index / total) * 100)}%` : '0%';
+    els.fill.style.setProperty('--progress', total ? String(Math.min(1, index / total)) : '0');
     els.modeLabel.textContent = state.filteredMode
       ? (state.previewMode ? 'Preview Study' : 'Filtered Study')
       : (state.srsMode ? 'SRS Review' : 'Study');
@@ -2154,8 +2363,8 @@
     
     const activeEl = cards[activeCardIndex];
     const prevEl = cards[prevCardIndex];
+    stopLeavingAnimation(prevEl);
 
-    
     if (prevEl) {
       prevEl.classList.add('no-transition');
       prevEl.style.transform = 'translate3d(-100vw, 0, 0) rotate(-8deg)';
@@ -2198,28 +2407,64 @@
     }, SWIPE_DURATION);
   }
 
+  // Rating buttons send the card the same way the matching swipe would, which
+  // quietly teaches the gestures.
+  const RATING_EXIT = {
+    Again: { x: -1, y: 0 },
+    Hard: { x: 0, y: 1 },
+    Good: { x: 1, y: 0 },
+    Easy: { x: 0, y: -1 }
+  };
+
+  function currentTransformOf(element) {
+    const inline = element?.style.transform;
+    return inline && inline !== 'none' ? inline : 'translate3d(0, 0, 0) rotate(0deg)';
+  }
+
+  function stopLeavingAnimation(element) {
+    if (!element) return;
+    element.getAnimations?.().forEach(animation => animation.cancel());
+    element.classList.remove('is-leaving');
+  }
+
   function animateOut(vector, done) {
-    const vx = (vector?.x || 0) < 0 ? -1 : 1;
+    const horizontal = !vector?.y;
+    const dirX = horizontal ? ((vector?.x || 0) < 0 ? -1 : 1) : 0;
+    const dirY = horizontal ? 0 : (vector.y < 0 ? -1 : 1);
     animating = true;
     const token = ++transitionToken;
     updateProgress();
     playSound('next');
-    
+
     const activeEl = cards[activeCardIndex];
     const nextEl = cards[nextCardIndex];
-    
+    stopLeavingAnimation(cards[prevCardIndex]);
     clearPointerState();
-    
+
     if (activeEl) {
+      const fromX = Number(vector?.fromX) || 0;
+      const fromY = Number(vector?.fromY) || 0;
+      const releaseSpeed = horizontal ? Math.abs(Number(vector?.vx) || 0) : Math.abs(Number(vector?.vy) || 0);
+      const travelX = horizontal ? dirX * (window.innerWidth * 1.15 + 60) : fromX * 0.4;
+      const travelY = horizontal ? fromY + (Number(vector?.vy) || 0) * 0.08 : dirY * (window.innerHeight * 0.95);
+      const remaining = Math.max(120, horizontal ? Math.abs(travelX - fromX) : Math.abs(travelY - fromY));
+      const rotateTo = horizontal ? dirX * 16 : 0;
       activeEl.classList.remove('dragging');
-      // If it's a vertical swipe, translate vertically, otherwise translate horizontally
-      const tx = vector?.y ? 0 : (vx * 118);
-      const ty = vector?.y ? (vector.y * 118) : 0;
-      const rotate = vector?.y ? 0 : (vx * 8);
-      activeEl.style.transform = `translate3d(${tx}vw, ${ty}vh, 0) rotate(${rotate}deg)`;
-      activeEl.style.opacity = 0;
+      activeEl.classList.add('is-leaving');
+      const from = currentTransformOf(activeEl);
+      activeEl.style.transform = '';
+      const motion = window.EruditeMotion;
+      const finish = () => activeEl.classList.remove('is-leaving');
+      if (motion) {
+        motion.animate(activeEl, [
+          { transform: from },
+          { transform: `translate3d(${travelX}px, ${travelY}px, 0) rotate(${rotateTo}deg)` }
+        ], { preset: 'swipe', velocity: releaseSpeed / remaining, commit: false }).then(finish);
+      } else {
+        finish();
+      }
     }
-    
+
     if (nextEl) {
       nextEl.classList.remove('no-transition');
       if (!nextEl.classList.contains('empty-card')) {
@@ -2227,7 +2472,7 @@
         nextEl.style.opacity = 1;
       }
     }
-    
+
     window.setTimeout(() => {
       if (token !== transitionToken) return;
       animating = false;
@@ -2281,10 +2526,14 @@
           previousState: previous?.state || 'New',
           nextState: reviewed.srs?.state || null,
           previousDue: previous?.due || null,
-          nextDue: reviewed.srs?.due || null
+          nextDue: reviewed.srs?.due || null,
+          durationMs: reviewDurationMs(current)
         }
       ]
     };
+
+    // Restart the timer even when the same card is shown again straight away.
+    activeCardShown = { key: null, at: 0 };
 
     const originalIndex = state.set.cards.findIndex(card => sameCard(card, current));
     if (originalIndex >= 0) state.set.cards[originalIndex] = updatedCard;
@@ -2341,7 +2590,7 @@
     const nextDiffMs = nextCardDue - Date.now();
     if (nextDiffMs > 0) {
       resetDragVisuals();
-      els.ratingDock.classList.add('hidden');
+      hideStudyActions();
       showLearningCardsDueSoonMessage(state.activeCards.length, nextCardDue);
       ratingInFlight = false;
       return;
@@ -2393,7 +2642,21 @@
 
   async function findNextDueSetId() {
     if (!reviewDueSession || !state.srsMode || !window.srsManager?.isReady?.()) return null;
-    // Lazy-load other sets only at completion — use lightweight meta + individual getSet as needed
+    // Deck-level due counts come from cached per-deck statistics, so finishing a
+    // session no longer loads every card of every deck.
+    if (typeof window.flashcardStore.getSetStatsMeta === 'function') {
+      try {
+        await flushCardProgress();
+        const entries = await window.flashcardStore.getSetStatsMeta();
+        const next = (entries || [])
+          .filter(entry => String(entry.setId) !== String(state.set.id) && Number(entry.stats?.dueCards || 0) > 0)
+          .sort((a, b) => Number(b.stats.dueCards) - Number(a.stats.dueCards))[0];
+        return next ? next.setId : null;
+      } catch (error) {
+        console.warn('[mobile-study] Could not check other decks for due cards:', error);
+        return null;
+      }
+    }
     let allSets;
     try {
       allSets = await window.flashcardStore.listSets();
@@ -2416,7 +2679,7 @@
   async function showCompletion() {
     state.complete = true;
     state.nextDueSetId = await findNextDueSetId();
-    els.ratingDock.classList.add('hidden');
+    hideStudyActions();
     els.shell.classList.remove('srs-back-visible');
     playSound('success');
 
@@ -2436,11 +2699,7 @@
       const nextDue = state.sessionStats.nextDue && window.srsManager?.formatIntervalLabel
         ? window.srsManager.formatIntervalLabel(state.sessionStats.nextDue)
         : 'Later';
-      els.completionStats.innerHTML = `
-        <span>${state.sessionStats.reviewed}<small>Reviewed</small></span>
-        <span>${state.sessionStats.Again}/${state.sessionStats.Hard}/${state.sessionStats.Good}/${state.sessionStats.Easy}<small>A/H/G/E</small></span>
-        <span>${nextDue}<small>Next Due</small></span>
-      `;
+      els.completionStats.innerHTML = srsCompletionStats(nextDue);
       els.completionStats.classList.remove('hidden');
       els.continueButton.textContent = 'Review Again';
     } else if (state.srsMode) {
@@ -2451,11 +2710,7 @@
       const nextDue = state.sessionStats.nextDue && window.srsManager?.formatIntervalLabel
         ? window.srsManager.formatIntervalLabel(state.sessionStats.nextDue)
         : 'Later';
-      els.completionStats.innerHTML = `
-        <span>${state.sessionStats.reviewed}<small>Reviewed</small></span>
-        <span>${state.sessionStats.Again}/${state.sessionStats.Hard}/${state.sessionStats.Good}/${state.sessionStats.Easy}<small>A/H/G/E</small></span>
-        <span>${nextDue}<small>Next Due</small></span>
-      `;
+      els.completionStats.innerHTML = srsCompletionStats(nextDue);
       els.completionStats.classList.remove('hidden');
       els.continueButton.textContent = state.nextDueSetId ? 'Continue Review' : 'Check Again';
     } else {
@@ -2465,7 +2720,68 @@
       els.continueButton.textContent = 'Practice Again';
     }
 
+    renderRatingSpectrum();
     els.completionModal.classList.remove('hidden');
+    playCompletionMoment();
+  }
+
+  function sessionRatingTotals() {
+    const stats = state.sessionStats || {};
+    const counts = ['Again', 'Hard', 'Good', 'Easy'].map(name => Number(stats[name]) || 0);
+    return { counts, total: counts.reduce((sum, value) => sum + value, 0) };
+  }
+
+  function srsCompletionStats(nextDue) {
+    const { counts, total } = sessionRatingTotals();
+    const remembered = total ? Math.round(((total - counts[0]) / total) * 100) : 0;
+    return `
+      <span><b data-count-up="${state.sessionStats.reviewed}">${state.sessionStats.reviewed}</b><small>Reviewed</small></span>
+      <span>${total ? `<b data-count-up="${remembered}">${remembered}</b>%` : '--'}<small>Remembered</small></span>
+      <span>${escapeHtml(nextDue)}<small>Next due</small></span>
+    `;
+  }
+
+  // One bar split by rating, so the session reads at a glance.
+  function renderRatingSpectrum() {
+    const host = els.completionRatings;
+    if (!host) return;
+    const { counts, total } = sessionRatingTotals();
+    if (!state.srsMode || !total) {
+      host.classList.add('hidden');
+      host.innerHTML = '';
+      return;
+    }
+    const names = ['Again', 'Hard', 'Good', 'Easy'];
+    const colors = ['var(--again)', 'var(--hard)', 'var(--good)', 'var(--easy)'];
+    const segments = counts.map((count, index) => (count
+      ? `<span style="--share:${count};--seg:${colors[index]};--i:${index}"></span>`
+      : '')).join('');
+    const legend = counts.map((count, index) => `
+      <span><i style="--seg:${colors[index]}"></i>${names[index]} <b>${count}</b></span>
+    `).join('');
+    host.innerHTML = `<div class="rating-spectrum" role="img" aria-label="Again ${counts[0]}, Hard ${counts[1]}, Good ${counts[2]}, Easy ${counts[3]}">${segments}</div><div class="rating-legend">${legend}</div>`;
+    host.classList.remove('hidden');
+  }
+
+  function playCompletionMoment() {
+    const signature = window.EruditeSignature;
+    if (!signature) return;
+    signature.drawCheck(els.completionCheck);
+    const panel = els.completionModal.querySelector('.modal-panel');
+    if (panel && window.EruditeMotion) {
+      window.EruditeMotion.animate(panel, [
+        { transform: 'translateY(24px) scale(0.96)', opacity: 0 },
+        { transform: 'translateY(0) scale(1)', opacity: 1 }
+      ], { preset: 'sheet', commit: false });
+    }
+    els.completionStats.querySelectorAll('[data-count-up]').forEach(element => {
+      signature.countUpNumber(element, Number(element.dataset.countUp), 800);
+    });
+    // Celebrate real work only, not an empty or preview session.
+    const worked = state.srsMode ? sessionRatingTotals().total > 0 : state.activeCards.length > 0;
+    if (worked && !state.previewMode) {
+      window.setTimeout(() => signature.cardBurst(els.completionCheck), 420);
+    }
   }
 
   function showEmptyDue() {
@@ -2484,20 +2800,10 @@
     const VELOCITY_THRESHOLD = 0.42;
     const DEAD_ZONE = 10;
 
-    // Create swipe glow overlay dynamically and append to body for full-screen edge glow
-    let overlay = document.querySelector('.swipe-glow-overlay');
-    if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.className = 'swipe-glow-overlay';
-      const directions = ['top', 'bottom', 'left', 'right'];
-      directions.forEach(dir => {
-        const d = document.createElement('div');
-        d.className = `swipe-glow-${dir}`;
-        d.style.display = 'none';
-        overlay.appendChild(d);
-      });
-      document.body.appendChild(overlay);
-    }
+    // A drag past this distance, or a flick faster than FLICK_SPEED, commits.
+    const FLICK_SPEED = 600;
+    const FLICK_MIN_DISTANCE = 20;
+    const tracker = window.EruditeMotion?.createVelocityTracker?.() || null;
 
     const ratingButtons = {
       Again: document.querySelector('.rating-button.again'),
@@ -2506,68 +2812,45 @@
       Easy: document.querySelector('.rating-button.easy')
     };
 
+    function swipeRating(dx, dy) {
+      if (Math.abs(dx) >= Math.abs(dy)) return dx < 0 ? 'Again' : 'Good';
+      return dy < 0 ? 'Easy' : 'Hard';
+    }
+
+    function activeStamp() {
+      return cards[activeCardIndex]?.querySelector('.swipe-stamp') || null;
+    }
+
     function updateSwipeFeedback(dx, dy) {
-      if (!overlay) return;
-      const absDx = Math.abs(dx);
-      const absDy = Math.abs(dy);
       const dist = Math.sqrt(dx * dx + dy * dy);
+      const stamp = activeStamp();
+      const rating = dist >= 16 ? swipeRating(dx, dy) : '';
+      // A single tick when the drag crosses the commit distance, like a detent.
+      const armed = dist >= SWIPE_THRESHOLD;
+      if (armed && pointer && !pointer.armed) triggerHaptic();
+      if (pointer) pointer.armed = armed;
 
-      if (dist < 15) {
-        overlay.style.opacity = '0';
-        Object.values(ratingButtons).forEach(btn => btn?.classList.remove('active-drag'));
-        return;
+      if (stamp) {
+        if (stamp.dataset.rating !== rating) {
+          stamp.dataset.rating = rating;
+          stamp.textContent = rating;
+        }
+        stamp.style.opacity = rating ? String(Math.min(1, (dist - 16) / (SWIPE_THRESHOLD * 1.4))) : '0';
+        stamp.classList.toggle('is-armed', armed);
       }
-
-      let activeDir = '';
-      let activeRating = '';
-
-      if (absDx >= absDy) {
-        if (dx < 0) {
-          activeDir = 'left';
-          activeRating = 'Again';
-        } else {
-          activeDir = 'right';
-          activeRating = 'Good';
-        }
-      } else {
-        if (dy < 0) {
-          activeDir = 'top';
-          activeRating = 'Easy';
-        } else {
-          activeDir = 'bottom';
-          activeRating = 'Hard';
-        }
-      }
-
-      const glows = {
-        top: overlay.querySelector('.swipe-glow-top'),
-        bottom: overlay.querySelector('.swipe-glow-bottom'),
-        left: overlay.querySelector('.swipe-glow-left'),
-        right: overlay.querySelector('.swipe-glow-right')
-      };
-
-      Object.entries(glows).forEach(([dir, el]) => {
-        if (el) el.style.display = dir === activeDir ? 'block' : 'none';
+      Object.entries(ratingButtons).forEach(([name, button]) => {
+        button?.classList.toggle('active-drag', armed && name === rating);
       });
-
-      // Highlight the correct rating button
-      Object.entries(ratingButtons).forEach(([rating, btn]) => {
-        if (btn) {
-          if (rating === activeRating) {
-            btn.classList.add('active-drag');
-          } else {
-            btn.classList.remove('active-drag');
-          }
-        }
-      });
-
-      const opacity = Math.min(1, dist / 120);
-      overlay.style.opacity = String(opacity);
     }
 
     function clearSwipeFeedback() {
-      if (overlay) overlay.style.opacity = '0';
-      Object.values(ratingButtons).forEach(btn => btn?.classList.remove('active-drag'));
+      cards.forEach(card => {
+        const stamp = card?.querySelector('.swipe-stamp');
+        if (!stamp) return;
+        stamp.style.opacity = '0';
+        stamp.classList.remove('is-armed');
+      });
+      Object.values(ratingButtons).forEach(button => button?.classList.remove('active-drag'));
     }
 
     els.stage.addEventListener('pointerdown', event => {
@@ -2582,10 +2865,14 @@
       // Dynamically sync scrollability/touch-action at touch start
       updateCardScrollability(activeCardEl);
       
+      const cardRect = activeCardEl.getBoundingClientRect();
+      tracker?.reset();
+      tracker?.add(event.clientX, event.clientY, event.timeStamp || performance.now());
       pointer = {
         id: event.pointerId,
         x: event.clientX,
         y: event.clientY,
+        grabSign: event.clientY > cardRect.top + cardRect.height * 0.62 ? -1 : 1,
         time: performance.now(),
         dragging: false,
         scrolling: false,
@@ -2627,6 +2914,7 @@
 
       if (pointer.dragging) {
         event.preventDefault();
+        tracker?.add(event.clientX, event.clientY, event.timeStamp || performance.now());
         setDrag(dx, dy);
         if (pointer.srsLocked && state.flipped) {
           updateSwipeFeedback(dx, dy);
@@ -2649,13 +2937,22 @@
       const absDy = Math.abs(dy);
       
       const wasTap = absDx < 9 && absDy < 9 && !pointer.scrolling;
-      
-      const isSwipe = !pointer.scrolling && !wasTap && (
+      tracker?.add(event.clientX, event.clientY, event.timeStamp || performance.now());
+      const velocity = tracker ? tracker.velocity() : { x: dx / dt * 1000, y: dy / dt * 1000 };
+      const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+      // A flick commits even when short, as long as it moves the way it was dragged.
+      const flicked = speed >= FLICK_SPEED
+        && Math.sqrt(dx * dx + dy * dy) >= FLICK_MIN_DISTANCE
+        && (velocity.x * dx + velocity.y * dy) > 0;
+
+      const isSwipe = !pointer.scrolling && !wasTap && pointer.dragging && (
         absDx >= SWIPE_THRESHOLD ||
         absDy >= SWIPE_THRESHOLD ||
+        flicked ||
         (absDx / dt) >= VELOCITY_THRESHOLD ||
         (absDy / dt) >= VELOCITY_THRESHOLD
       );
+      const release = { fromX: dx, fromY: dy, vx: velocity.x, vy: velocity.y };
 
       const wasSrsLocked = pointer.srsLocked;
       pointer = null;
@@ -2665,19 +2962,8 @@
           if (wasTap) {
             flipCard();
           } else if (isSwipe) {
-            if (absDx >= absDy) {
-              if (dx < 0) {
-                handleRating('Again', { x: -1, y: 0 });
-              } else {
-                handleRating('Good', { x: 1, y: 0 });
-              }
-            } else {
-              if (dy < 0) {
-                handleRating('Easy', { x: 0, y: -1 });
-              } else {
-                handleRating('Hard', { x: 0, y: 1 });
-              }
-            }
+            const rating = swipeRating(dx, dy);
+            handleRating(rating, { ...RATING_EXIT[rating], ...release });
             return;
           }
         } else {
@@ -2693,9 +2979,9 @@
 
       if (isSwipe) {
         if (absDx >= absDy) {
-          navigateForward({ x: dx < 0 ? -1 : 1, y: 0 });
+          navigateForward({ x: dx < 0 ? -1 : 1, y: 0, ...release });
         } else {
-          navigateForward({ x: 0, y: dy < 0 ? -1 : 1 });
+          navigateForward({ x: 0, y: dy < 0 ? -1 : 1, ...release });
         }
         return;
       }
@@ -2719,14 +3005,18 @@
   }
 
   // Undo & Manual Card Actions for Mobile SRS Mode
+  // Card actions always replace card objects rather than mutating them, so an undo
+  // entry only needs the pre-action card and a shallow copy of the queue. Deep
+  // cloning the whole deck here made every rating stutter on large decks.
   function pushUndoTransaction(actionType, card, extra = {}) {
     srsUndoStack.push({
       type: actionType,
       cardId: card.id,
+      cardSnapshot: card,
+      setCardIndex: state.set.cards.findIndex(item => sameCard(item, card)),
       srsIndexSnapshot: state.srsIndex,
       sessionStatsSnapshot: { ...state.sessionStats },
-      activeCardsSnapshot: JSON.parse(JSON.stringify(state.activeCards)),
-      setCardsSnapshot: JSON.parse(JSON.stringify(state.set.cards)),
+      activeCardsSnapshot: state.activeCards.slice(),
       reviewedCardIdsSnapshot: Array.from(srsReviewedCardIds),
       extra
     });
@@ -2748,7 +3038,7 @@
     const transaction = srsUndoStack.pop();
 
     state.activeCards = transaction.activeCardsSnapshot;
-    state.set.cards = transaction.setCardsSnapshot;
+    if (transaction.setCardIndex >= 0) state.set.cards[transaction.setCardIndex] = transaction.cardSnapshot;
     state.srsIndex = transaction.srsIndexSnapshot;
     state.sessionStats = transaction.sessionStatsSnapshot;
     srsReviewedCardIds = new Set(transaction.reviewedCardIdsSnapshot || []);
@@ -2756,16 +3046,13 @@
 
     // Persist reverted card progress
     const currentIdx = activeIndex();
-    const revertedCard = state.activeCards[currentIdx];
-    if (revertedCard) {
-      scheduleCardProgressSave(revertedCard);
-    }
+    scheduleCardProgressSave(transaction.cardSnapshot);
     await saveProgress();
     updateUndoButtonState();
 
     // Re-hide rating dock initially on card revert (until card is flipped again)
     state.flipped = false;
-    els.ratingDock.classList.add('hidden');
+    hideStudyActions();
     
     // Hide completion modal if it was shown
     els.completionModal.classList.add('hidden');
@@ -2798,8 +3085,11 @@
     const current = activeCard();
     if (!current) return;
 
+    // Bury until the next 4 AM study-day boundary. At 2 AM that is later today,
+    // not tomorrow, otherwise the card would skip a whole study day.
     const now = new Date();
-    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 4, 0, 0, 0);
+    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 4, 0, 0, 0);
+    if (tomorrow <= now) tomorrow.setDate(tomorrow.getDate() + 1);
 
     pushUndoTransaction('bury', current);
 
@@ -2926,14 +3216,14 @@
     const nextDiffMs = nextCardDue - Date.now();
     if (state.srsMode && nextDiffMs > 0) {
       state.flipped = false;
-      els.ratingDock.classList.add('hidden');
+      hideStudyActions();
       showLearningCardsDueSoonMessage(state.activeCards.length, nextCardDue);
       return;
     }
 
     // Otherwise, reveal the next card
     state.flipped = false;
-    els.ratingDock.classList.add('hidden');
+    hideStudyActions();
 
     // Populate current and neighbor cards in the carousel
     const currentIdx = activeIndex();
@@ -3084,7 +3374,11 @@
     els.ratingDock.addEventListener('click', event => {
       const button = event.target.closest('[data-rating]');
       if (!button) return;
-      handleRating(button.dataset.rating);
+      handleRating(button.dataset.rating, RATING_EXIT[button.dataset.rating]);
+    });
+
+    els.reveal?.addEventListener('click', () => {
+      if (!state.flipped) flipCard();
     });
 
     // SRS Undo & Actions listeners
@@ -3194,6 +3488,7 @@
       openImageModal(src, { card: activeCard(), side });
     });
 
+    imageZoom = createImageZoom(els.zoomViewport, els.zoomStage, closeImageModal);
     els.imageClose.addEventListener('click', closeImageModal);
     els.imageModal.addEventListener('click', event => {
       if (event.target === els.imageModal) closeImageModal();
@@ -3218,7 +3513,8 @@
         navigateForward({ x: -1, y: 0 });
       } else if (state.srsMode && state.flipped && ['1', '2', '3', '4'].includes(event.key)) {
         event.preventDefault();
-        handleRating(['Again', 'Hard', 'Good', 'Easy'][Number(event.key) - 1]);
+        const rating = ['Again', 'Hard', 'Good', 'Easy'][Number(event.key) - 1];
+        handleRating(rating, RATING_EXIT[rating]);
       }
     });
 

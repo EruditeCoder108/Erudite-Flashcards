@@ -3,30 +3,52 @@
  * Integrates with ts-fsrs library for advanced spaced repetition algorithms
  */
 
+// A deck whose new-card limit is left blank inherits this app-wide default.
+// Introducing an entire premade deck in one day is the fastest way to bury a
+// learner in reviews a week later, so the default is deliberately modest.
+const DEFAULT_NEW_CARDS_PER_DAY = 20;
+
 class SRSManager {
     constructor() {
         this.fsrs = null;
         this.fsrsCache = new Map();
         this.isInitialized = false;
+        this.defaults = { newCardsPerDay: DEFAULT_NEW_CARDS_PER_DAY };
         this.init();
     }
 
-    hashCode(str) {
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            hash = (hash << 5) - hash + str.charCodeAt(i);
-            hash |= 0;
-        }
-        return Math.abs(hash);
+    /**
+     * Set app-wide scheduling defaults that decks inherit when their own value is blank.
+     * @param {{newCardsPerDay?: number|null}} defaults
+     */
+    setDefaults(defaults = {}) {
+        const value = Number(defaults?.newCardsPerDay);
+        this.defaults = {
+            newCardsPerDay: Number.isFinite(value) && value >= 0 ? Math.round(value) : DEFAULT_NEW_CARDS_PER_DAY
+        };
+        return this.defaults;
     }
 
-    mulberry32(a) {
-        return function() {
-            let t = a += 0x6D2B79F5;
-            t = Math.imul(t ^ (t >>> 15), t | 1);
-            t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    /**
+     * ts-fsrs seeds interval fuzz from the review timestamp by default, so the
+     * interval shown on a rating button could differ from the one saved a few
+     * seconds later. Seeding from the card identity and review count instead
+     * makes the preview and the committed review produce identical intervals.
+     */
+    createScheduler(requestRetention, maximumInterval) {
+        const scheduler = FSRS.fsrs({
+            request_retention: requestRetention,
+            maximum_interval: maximumInterval,
+            enable_fuzz: true,
+            enable_short_term: true
+        });
+        if (typeof scheduler.useStrategy === 'function' && FSRS.StrategyMode?.SEED) {
+            scheduler.useStrategy(FSRS.StrategyMode.SEED, function () {
+                const current = this.current || {};
+                return `${current.card_id ?? ''}_${current.reps ?? 0}_${(current.difficulty || 0) * (current.stability || 0)}`;
+            });
         }
+        return scheduler;
     }
 
     /**
@@ -37,12 +59,7 @@ class SRSManager {
             // Check if FSRS is available globally
             if (typeof FSRS !== 'undefined' && FSRS.fsrs) {
                 // Create FSRS instance with default parameters
-                this.fsrs = FSRS.fsrs({
-                    request_retention: 0.9,
-                    maximum_interval: 36500,
-                    enable_fuzz: true,
-                    enable_short_term: true
-                });
+                this.fsrs = this.createScheduler(0.9, 36500);
                 this.fsrsCache.set('0.9|36500', this.fsrs);
                 this.isInitialized = true;
             } else {
@@ -68,11 +85,13 @@ class SRSManager {
         const requestRetention = finiteNumber(settings.requestRetention, 0.9);
         const maxIntervalDays = finiteNumber(settings.maxIntervalDays, 36500);
 
+        const deckNewLimit = limitOrNull(settings.newCardsPerDay);
+
         return {
             enabled: settings.enabled !== false,
             requestRetention: Math.min(0.99, Math.max(0.7, requestRetention)),
             maxIntervalDays: Math.max(1, Math.round(maxIntervalDays)),
-            newCardsPerDay: limitOrNull(settings.newCardsPerDay),
+            newCardsPerDay: deckNewLimit ?? this.defaults.newCardsPerDay,
             reviewsPerDay: limitOrNull(settings.reviewsPerDay)
         };
     }
@@ -83,12 +102,7 @@ class SRSManager {
         const normalized = this.normalizeSettings(settings);
         const key = `${normalized.requestRetention}|${normalized.maxIntervalDays}`;
         if (!this.fsrsCache.has(key)) {
-            this.fsrsCache.set(key, FSRS.fsrs({
-                request_retention: normalized.requestRetention,
-                maximum_interval: normalized.maxIntervalDays,
-                enable_fuzz: true,
-                enable_short_term: true
-            }));
+            this.fsrsCache.set(key, this.createScheduler(normalized.requestRetention, normalized.maxIntervalDays));
         }
 
         return this.fsrsCache.get(key);
@@ -138,6 +152,7 @@ class SRSManager {
         const lastReviewDate = card.srs?.lastReview ? new Date(card.srs.lastReview) : undefined;
 
         return {
+            card_id: String(card.id ?? ''),
             due: isNaN(dueDate.getTime()) ? now : dueDate,
             stability: card.srs?.stability ?? 0,
             difficulty: card.srs?.difficulty ?? 0,
@@ -176,15 +191,10 @@ class SRSManager {
     getRatingPreviews(card, settings = {}) {
         if (!this.isInitialized) return {};
 
-        const seedSource = (card.id || '') + '-' + (card.srs?.reps || 0);
-        const seed = this.hashCode(seedSource);
-        const originalRandom = Math.random;
-        Math.random = this.mulberry32(seed);
-
         try {
             const scheduler = this.getScheduler(settings);
-            const srsCard = card.srs ? this.toFSRSCard(card) : FSRS.createEmptyCard();
             const now = new Date();
+            const srsCard = card.srs ? this.toFSRSCard(card) : { ...FSRS.createEmptyCard(now), card_id: String(card.id ?? '') };
             const preview = scheduler.repeat(srsCard, now);
             const ratings = ['Again', 'Hard', 'Good', 'Easy'];
 
@@ -204,8 +214,6 @@ class SRSManager {
         } catch (error) {
             console.error('Error previewing SRS ratings:', error);
             return {};
-        } finally {
-            Math.random = originalRandom;
         }
     }
 
@@ -266,11 +274,6 @@ class SRSManager {
             card = this.createSRSCard(card);
         }
 
-        const seedSource = (card.id || '') + '-' + (card.srs?.reps || 0);
-        const seed = this.hashCode(seedSource);
-        const originalRandom = Math.random;
-        Math.random = this.mulberry32(seed);
-
         try {
             const scheduler = this.getScheduler(settings);
             // Convert our card format to FSRS format
@@ -307,8 +310,6 @@ class SRSManager {
         } catch (error) {
             console.error('Error reviewing card:', error);
             return card;
-        } finally {
-            Math.random = originalRandom;
         }
     }
 
