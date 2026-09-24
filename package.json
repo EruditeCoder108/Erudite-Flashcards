@@ -15,7 +15,8 @@
     "cap:sync": "npm run build:mobile && cap sync android",
     "cap:open": "cap open android",
     "test": "node --test tests/*.test.js",
-    "test:e2e": "npm run build:mobile && node tests/e2e/smoke.js"
+    "test:e2e": "npm run build:mobile && node tests/e2e/smoke.js",
+    "store:images": "npm run build:mobile && node play-store/generator/generate.js"
   },
   "dependencies": {
     "@capacitor-community/sqlite": "^8.1.0",

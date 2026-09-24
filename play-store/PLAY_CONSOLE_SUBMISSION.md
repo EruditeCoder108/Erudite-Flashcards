@@ -51,31 +51,34 @@ Whether you are learning vocabulary, preparing for exams, mastering technical su
 
 ## Graphic assets
 
+The 2026 redesign images live in `assets/2026/`. Regenerate them after UI changes with `npm run store:images` (it seeds a mock study library, captures the real app at 3x, and frames each screen). Set `APP_NAME="New Name"` in front of the command if the app is renamed.
+
 Upload the assets in this order:
 
 1. Use `assets/app-icon-512.png` as the 512 × 512 app icon.
-2. Use `assets/feature-graphic-1024x500.png` as the 1024 × 500 feature graphic.
-3. Upload `assets/phone-screenshot-01-today-dashboard.png` first.
-4. Upload `assets/phone-screenshot-02-srs-review.png` second.
-5. Upload `assets/phone-screenshot-03-study-card.png` third.
-6. Upload `assets/phone-screenshot-04-retention-insights.png` fourth.
-7. Upload `assets/phone-screenshot-05-premade-decks.png` fifth.
-8. Upload `assets/phone-screenshot-06-card-creator.png` sixth.
-9. Upload `assets/phone-screenshot-07-image-occlusion.png` seventh.
-10. Upload `assets/phone-screenshot-08-onboarding.png` eighth.
+2. Use `assets/2026/feature-graphic-1024x500.png` as the 1024 × 500 feature graphic.
+3. Upload the phone screenshots in this order:
+   1. `assets/2026/phone-01-today.png`
+   2. `assets/2026/phone-02-swipe.png`
+   3. `assets/2026/phone-03-library.png`
+   4. `assets/2026/phone-04-occlusion.png`
+   5. `assets/2026/phone-05-insights.png`
+   6. `assets/2026/phone-06-ai.png`
+   7. `assets/2026/phone-07-complete.png`
+   8. `assets/2026/phone-08-paper.png`
 
 Use these screenshot alt-text descriptions in the same order:
 
-1. `Study dashboard showing deck progress, daily activity, streak, pace, and study heatmap.`
-2. `Spaced-repetition review screen showing a card transition and Again, Hard, Good, and Easy rating controls.`
-3. `Flashcard study screen showing a chemistry definition card and study progress.`
-4. `Retention and review forecast screen with response rates, workload bars, and a study heatmap.`
-5. `Premade deck browser showing Class 11 biology chapters available to add.`
-6. `Flashcard creator with deck settings, formatting tools, card types, and an attached image.`
-7. `Image occlusion editor placing study masks over a biology diagram.`
-8. `Erudite onboarding screen introducing recall, creation, and review tools.`
+1. `Today screen with a daily goal ring at 38 percent, a 63-day streak, and a Review button showing 21 cards left.`
+2. `Flashcard being swiped right mid-review, labelled Good, showing the answer about lysosomes.`
+3. `Library of decks grouped into classes such as NEET Biology and JEE Chemistry.`
+4. `Image occlusion card hiding one label on an animal cell diagram.`
+5. `Insights showing 96 percent retention, due load, weak cards, and a rating breakdown.`
+6. `AI Deck Maker offering study goals such as Quick Revision and Competitive Exam.`
+7. `Session complete screen with a check mark, cards reviewed, percent remembered, and next due date.`
+8. `Today screen in the light theme with the paper texture turned on.`
 
-Keep `assets/feature-graphic-background.png` as the editable source background; do not upload it instead of the final feature graphic.
+The images in `assets/` from July 2026 show the previous design; keep them only for reference.
 
 ## App access
 

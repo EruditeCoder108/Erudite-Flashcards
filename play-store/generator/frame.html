@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Store frame</title>
+<style>
+  @font-face {
+    font-family: "Geist";
+    font-weight: 100 900;
+    src: url("/vendor/geist/geist-latin-wght-normal.woff2") format("woff2-variations");
+  }
+  :root {
+    --bg: #0d0e10;
+    --text: #f2f1ee;
+    --muted: #a3a19b;
+    --accent: #8ea4ff;
+    --bezel: #050506;
+    --glow: rgba(91, 124, 255, 0.22);
+  }
+  .light {
+    --bg: #efe9dc;
+    --text: #1f1c17;
+    --muted: #625b4f;
+    --accent: #3457f0;
+    --bezel: #1b1a18;
+    --glow: rgba(52, 87, 240, 0.12);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; }
+  body {
+    position: relative;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Geist", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* One soft pool of light behind the phone; no neon, no blobs. */
+  .light-pool {
+    position: absolute;
+    left: 50%;
+    top: 1180px;
+    width: 1300px;
+    height: 1100px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--glow), transparent);
+    transform: translateX(-50%);
+  }
+  .grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    background-size: 240px 240px;
+    pointer-events: none;
+  }
+  .copy {
+    position: absolute;
+    top: 140px;
+    left: 96px;
+    right: 96px;
+  }
+  .eyebrow {
+    margin: 0 0 26px;
+    color: var(--accent);
+    font-size: 30px;
+    font-weight: 550;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 0;
+    font-size: 82px;
+    font-weight: 620;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .sub {
+    margin: 28px 0 0;
+    color: var(--muted);
+    font-size: 36px;
+    font-weight: 430;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+  .phone {
+    position: absolute;
+    left: 50%;
+    top: 640px;
+    width: 830px;
+    padding: 22px;
+    border-radius: 118px;
+    background: var(--bezel);
+    box-shadow:
+      0 0 0 2px rgba(255, 255, 255, 0.07) inset,
+      0 60px 120px -40px rgba(0, 0, 0, 0.55);
+    transform: translateX(-50%);
+  }
+  .light .phone {
+    box-shadow:
+      0 0 0 2px rgba(255, 255, 255, 0.05) inset,
+      0 60px 120px -40px rgba(60, 45, 20, 0.35);
+  }
+  .screen {
+    position: relative;
+    overflow: hidden;
+    border-radius: 96px;
+    background: #000;
+  }
+  .status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 78px;
+    padding: 0 70px;
+    color: var(--status, #f2f1ee);
+    background: var(--status-bg, #0d0e10);
+    font-size: 30px;
+    font-weight: 560;
+  }
+  .camera {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    z-index: 3;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #050506;
+    transform: translateX(-50%);
+  }
+  .status svg { height: 28px; }
+  .screen img {
+    display: block;
+    width: 100%;
+    padding-top: 78px;
+  }
+</style>
+</head>
+<body>
+  <div class="light-pool"></div>
+  <div class="copy">
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+  </div>
+  <div class="phone">
+    <div class="screen" id="screen">
+      <div class="status" id="status">
+        <span>9:41</span>
+        <svg viewBox="0 0 96 28" fill="currentColor" aria-hidden="true">
+          <rect x="0" y="16" width="5" height="10" rx="1.5"/><rect x="8" y="11" width="5" height="15" rx="1.5"/><rect x="16" y="6" width="5" height="20" rx="1.5"/><rect x="24" y="1" width="5" height="25" rx="1.5"/>
+          <path d="M44 10.5a17 17 0 0 1 22 0l-2.6 2.9a13 13 0 0 0-16.8 0zM48.8 15.9a10 10 0 0 1 12.4 0L55 23z"/>
+          <rect x="70" y="4" width="22" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="73.5" y="7.5" width="12" height="13" rx="2.5"/><rect x="93" y="11" width="3" height="6" rx="1.2"/>
+        </svg>
+      </div>
+      <div class="camera"></div>
+      <img id="shot" alt="">
+    </div>
+  </div>
+  <div class="grain" id="grain"></div>
+<script>
+  (function () {
+    const size = 240;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const context = canvas.getContext('2d');
+    const image = context.createImageData(size, size);
+    for (let index = 0; index < image.data.length; index += 4) {
+      const value = Math.random();
+      const shade = value > 0.5 ? 255 : 0;
+      image.data[index] = image.data[index + 1] = image.data[index + 2] = shade;
+      image.data[index + 3] = Math.round(Math.pow(Math.abs(value - 0.5) * 2, 1.6) * 30);
+    }
+    context.putImageData(image, 0, 0);
+    document.getElementById('grain').style.backgroundImage = `url(${canvas.toDataURL()})`;
+  }());
+
+  // shift scrolls the phone screen by that many app pixels (390 wide), for
+  // screens whose subject sits below the part of the phone that fits.
+  window.renderFrame = function ({ eyebrow, title, copy, image, light, shift = 0 }) {
+    const shot = document.getElementById('shot');
+    shot.style.marginTop = `${-(shift * (786 / 390))}px`;
+    document.body.classList.toggle('light', Boolean(light));
+    document.getElementById('eyebrow').textContent = eyebrow;
+    document.getElementById('title').textContent = title;
+    document.getElementById('sub').textContent = copy;
+    document.getElementById('shot').src = image;
+    // Match the status bar to the app screen underneath it.
+    document.getElementById('screen').style.background = light ? '#f1ece1' : '#0d0e10';
+    document.getElementById('status').style.setProperty('--status', light ? '#26231e' : '#f2f1ee');
+    document.getElementById('status').style.setProperty('--status-bg', light ? '#f1ece1' : '#0d0e10');
+  };
+</script>
+</body>
+</html>

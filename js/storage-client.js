@@ -1009,7 +1009,16 @@
     return [];
   }
 
+  // Waits for pending local writes. The mobile store debounces saves, so call
+  // this before a reload or navigation that must see the latest data.
+  async function flush() {
+    const nativeApi = getNativeApi();
+    if (nativeApi?.flush) return nativeApi.flush();
+    return undefined;
+  }
+
   window.flashcardStore = {
+    flush,
     listSets,
     listSetsMeta,
     getSetStatsMeta,
