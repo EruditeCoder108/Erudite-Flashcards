@@ -50,13 +50,13 @@
         <button type="button" class="icon-button" id="srs-actions-btn" aria-label="More options">
           <i class="fas fa-ellipsis-vertical"></i>
         </button>
-        <div class="study-progress-chip" aria-live="polite">
-          <strong id="progress-current">0</strong>
-          <span>/</span>
-          <span id="progress-total">0</span>
-        </div>
       </div>
     </header>
+
+    <div class="study-progress" aria-live="polite">
+      <div class="progress-bar" role="progressbar" aria-label="Session progress"><span id="progress-fill"></span></div>
+      <span class="progress-count"><strong id="progress-current">0</strong><span class="progress-divider">/</span><span id="progress-total">0</span></span>
+    </div>
 
     <main class="study-main" id="study-main">
       <section class="study-card-stage" id="card-stage" aria-live="polite">
@@ -65,6 +65,7 @@
           <span>Prev</span>
         </button>
         <div class="study-card slot-prev" id="card-0">
+          <div class="swipe-stamp" aria-hidden="true"></div>
           <div class="study-card-inner">
             <article class="card-face front" aria-label="Term side">
               <div class="card-bg term-bg"></div>
@@ -101,6 +102,7 @@
         </div>
 
         <div class="study-card slot-active" id="card-1">
+          <div class="swipe-stamp" aria-hidden="true"></div>
           <div class="study-card-inner">
             <article class="card-face front" aria-label="Term side">
               <div class="card-bg term-bg"></div>
@@ -137,6 +139,7 @@
         </div>
 
         <div class="study-card slot-next" id="card-2">
+          <div class="swipe-stamp" aria-hidden="true"></div>
           <div class="study-card-inner">
             <article class="card-face front" aria-label="Term side">
               <div class="card-bg term-bg"></div>
@@ -173,28 +176,33 @@
         </div>
       </section>
 
-      <section class="rating-dock hidden" id="rating-dock" aria-label="SRS rating buttons">
+      <section class="study-actions" id="study-actions">
+      <button type="button" class="reveal-button hidden" id="reveal-button">
+        <span>Show answer</span>
+        <kbd aria-hidden="true">Space</kbd>
+      </button>
+      <section class="rating-dock hidden" id="rating-dock" aria-label="How well did you remember it?">
         <button type="button" class="rating-button again" data-rating="Again">
-          <span>Again</span>
           <small id="interval-again">soon</small>
+          <span>Again</span>
         </button>
         <button type="button" class="rating-button hard" data-rating="Hard">
-          <span>Hard</span>
           <small id="interval-hard">soon</small>
+          <span>Hard</span>
         </button>
         <button type="button" class="rating-button good" data-rating="Good">
-          <span>Good</span>
           <small id="interval-good">soon</small>
+          <span>Good</span>
         </button>
         <button type="button" class="rating-button easy" data-rating="Easy">
-          <span>Easy</span>
           <small id="interval-easy">soon</small>
+          <span>Easy</span>
         </button>
+      </section>
       </section>
     </main>
 
     <div class="study-footer">
-      <div class="progress-bar"><span id="progress-fill"></span></div>
       <p id="gesture-hint">Tap to flip. Swipe left or right to move cards.</p>
     </div>
   </div>

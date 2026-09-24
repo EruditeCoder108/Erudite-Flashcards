@@ -146,11 +146,57 @@ async function run(context, base, check, errors) {
   const continueLabel = await page.locator('#continue-button').innerText();
   check('completion offers next due deck', /Continue Review/.test(continueLabel), continueLabel.trim());
 
+  await checkSwipe(page, base, check);
   await checkOcclusion(page, base, check);
   await checkPackageImport(page, base, check);
   await checkReminder(page, base, check);
 
   check('no page errors', errors.length === 0, errors.slice(0, 5).join(' | '));
+}
+
+async function drag(page, from, dx, dy, steps, stepMs) {
+  await page.mouse.move(from.x, from.y);
+  await page.mouse.down();
+  for (let index = 1; index <= steps; index += 1) {
+    await page.mouse.move(from.x + (dx * index) / steps, from.y + (dy * index) / steps);
+    await page.waitForTimeout(stepMs);
+  }
+  await page.mouse.up();
+}
+
+async function checkSwipe(page, base, check) {
+  await page.evaluate(async item => {
+    await window.flashcardStore.saveSet(item);
+    await window.flashcardStore.flush?.();
+  }, deck('gamma', 6));
+  await page.goto(`${base}/mobile/study.html?setId=gamma&srs=true&from=library`);
+  await page.waitForSelector('#card-stage .study-card.slot-active', { timeout: 20000 });
+  await page.waitForTimeout(500);
+  await page.locator('#reveal-button').click();
+  await page.waitForSelector('#rating-dock:not(.hidden)', { timeout: 5000 });
+  const revealHidden = await page.locator('#reveal-button').evaluate(element => element.classList.contains('hidden'));
+  check('reveal button flips and gives way to ratings', revealHidden);
+
+  const box = await page.locator('#card-stage .study-card.slot-active').boundingBox();
+  const center = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+  const ratings = async () => page.evaluate(async () => {
+    await window.flashcardStore.flush?.();
+    const set = await window.flashcardStore.getSet('gamma');
+    return set.cards.flatMap(card => (card.reviewHistory || []).map(entry => entry.rating));
+  });
+
+  // A slow, short drag is not a swipe: the card springs back and nothing is rated.
+  await drag(page, center, 30, 0, 6, 40);
+  await page.waitForTimeout(900);
+  const afterSlow = await ratings();
+  const restored = await page.locator('#card-stage .study-card.slot-active').evaluate(element => element.style.transform || 'none');
+  check('slow short drag springs back without rating', afterSlow.length === 0 && !/translate3d\((?!0px, 0px)/.test(restored), `ratings=${afterSlow.length} transform=${restored}`);
+
+  // A quick flick commits even though it travels less than the swipe distance.
+  await drag(page, center, 44, 0, 3, 8);
+  await page.waitForTimeout(1200);
+  const afterFlick = await ratings();
+  check('quick flick right rates Good', afterFlick.length === 1 && afterFlick[0] === 'Good', afterFlick.join(','));
 }
 
 function occlusionDeck(id, guessMode, image) {

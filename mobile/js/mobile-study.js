@@ -91,6 +91,7 @@
     card: null,
     stage: document.getElementById('card-stage'),
     ratingDock: document.getElementById('rating-dock'),
+    reveal: document.getElementById('reveal-button'),
     completionModal: document.getElementById('completion-modal'),
     completionTitle: document.getElementById('completion-title'),
     completionCopy: document.getElementById('completion-copy'),
@@ -169,7 +170,9 @@
   let restoredProgress = null;
   const preloadedImages = new Set();
   const pendingCardPatches = new Map();
-  const SWIPE_DURATION = 175;
+  // Time before the next card takes input. The departing card keeps flying on
+  // its own spring, so this only needs to cover the first part of its exit.
+  const SWIPE_DURATION = 190;
   const FLIP_DURATION = 340;
 
   function showToast(message) {
@@ -836,12 +839,9 @@
     if (cardEl === cards[activeCardIndex]) {
       state.flipped = Boolean(flipped);
       clearTimeout(ratingTimer);
-      if (!options.noTransition && state.srsMode && flipped) {
-        els.hint.textContent = 'Revealing answer...';
-        ratingTimer = window.setTimeout(updateRatingVisibility, FLIP_DURATION);
-      } else {
-        updateRatingVisibility();
-      }
+      // The rating dock rises while the card turns, so the learner can rate as
+      // soon as they have read the answer.
+      updateRatingVisibility();
     }
     if (options.noTransition) {
       requestAnimationFrame(() => {
@@ -925,7 +925,7 @@
       ? { ...globalStyle, ...deckTypography }
       : globalStyle;
     const fontFamilyByValue = {
-      'sans-serif': 'Inter, sans-serif',
+      'sans-serif': 'var(--font-sans)',
       serif: 'Georgia, serif',
       monospace: 'Courier New, monospace',
       system: 'system-ui, sans-serif'
@@ -1992,9 +1992,16 @@
     });
   }
 
+  function hideStudyActions() {
+    els.ratingDock.classList.add('hidden');
+    els.reveal?.classList.add('hidden');
+  }
+
   function updateRatingVisibility() {
-    const visible = state.srsMode && state.flipped && !state.complete && Boolean(activeCard());
+    const inSession = state.srsMode && !state.complete && Boolean(activeCard());
+    const visible = inSession && state.flipped;
     els.ratingDock.classList.toggle('hidden', !visible);
+    els.reveal?.classList.toggle('hidden', !inSession || state.flipped);
     els.shell.classList.toggle('srs-back-visible', visible);
     els.shell.classList.toggle('srs-mode-active', state.srsMode && !state.complete);
     if (visible) updateRatingIntervals();
@@ -2214,16 +2221,18 @@
     const nextEl = cards[nextCardIndex];
     if (!activeEl) return;
     
-    const rotate = Math.max(-7, Math.min(7, x * 0.032));
+    // Tilt follows the grab point: pulling a card held near its bottom edge
+    // rotates it the other way, like a real card pivoting under a finger.
+    const rotate = Math.max(-14, Math.min(14, x * 0.05 * (pointer?.grabSign || 1)));
     activeEl.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg)`;
-    
+
     if (nextEl && !nextEl.classList.contains('empty-card')) {
       const dist = Math.sqrt(x * x + y * y);
-      const progress = Math.min(1, dist / 50);
-      const nextScale = 0.96 + (0.04 * progress);
-      const nextOffset = 10 - (10 * progress);
+      const progress = Math.min(1, dist / 160);
+      const nextScale = 0.93 + (0.07 * progress);
+      const nextOffset = 30 - (30 * progress);
       nextEl.style.transform = `translate3d(0, ${nextOffset}px, 0) scale(${nextScale})`;
-      nextEl.style.opacity = 0.9 + (0.1 * progress);
+      nextEl.style.opacity = 0.6 + (0.4 * progress);
     }
   }
 
@@ -2267,7 +2276,7 @@
       : (total ? activeIndex() + 1 : 0);
     els.current.textContent = String(index);
     els.total.textContent = String(total);
-    els.fill.style.width = total ? `${Math.round((index / total) * 100)}%` : '0%';
+    els.fill.style.setProperty('--progress', total ? String(Math.min(1, index / total)) : '0');
     els.modeLabel.textContent = state.filteredMode
       ? (state.previewMode ? 'Preview Study' : 'Filtered Study')
       : (state.srsMode ? 'SRS Review' : 'Study');
@@ -2351,8 +2360,8 @@
     
     const activeEl = cards[activeCardIndex];
     const prevEl = cards[prevCardIndex];
+    stopLeavingAnimation(prevEl);
 
-    
     if (prevEl) {
       prevEl.classList.add('no-transition');
       prevEl.style.transform = 'translate3d(-100vw, 0, 0) rotate(-8deg)';
@@ -2395,28 +2404,64 @@
     }, SWIPE_DURATION);
   }
 
+  // Rating buttons send the card the same way the matching swipe would, which
+  // quietly teaches the gestures.
+  const RATING_EXIT = {
+    Again: { x: -1, y: 0 },
+    Hard: { x: 0, y: 1 },
+    Good: { x: 1, y: 0 },
+    Easy: { x: 0, y: -1 }
+  };
+
+  function currentTransformOf(element) {
+    const inline = element?.style.transform;
+    return inline && inline !== 'none' ? inline : 'translate3d(0, 0, 0) rotate(0deg)';
+  }
+
+  function stopLeavingAnimation(element) {
+    if (!element) return;
+    element.getAnimations?.().forEach(animation => animation.cancel());
+    element.classList.remove('is-leaving');
+  }
+
   function animateOut(vector, done) {
-    const vx = (vector?.x || 0) < 0 ? -1 : 1;
+    const horizontal = !vector?.y;
+    const dirX = horizontal ? ((vector?.x || 0) < 0 ? -1 : 1) : 0;
+    const dirY = horizontal ? 0 : (vector.y < 0 ? -1 : 1);
     animating = true;
     const token = ++transitionToken;
     updateProgress();
     playSound('next');
-    
+
     const activeEl = cards[activeCardIndex];
     const nextEl = cards[nextCardIndex];
-    
+    stopLeavingAnimation(cards[prevCardIndex]);
     clearPointerState();
-    
+
     if (activeEl) {
+      const fromX = Number(vector?.fromX) || 0;
+      const fromY = Number(vector?.fromY) || 0;
+      const releaseSpeed = horizontal ? Math.abs(Number(vector?.vx) || 0) : Math.abs(Number(vector?.vy) || 0);
+      const travelX = horizontal ? dirX * (window.innerWidth * 1.15 + 60) : fromX * 0.4;
+      const travelY = horizontal ? fromY + (Number(vector?.vy) || 0) * 0.08 : dirY * (window.innerHeight * 0.95);
+      const remaining = Math.max(120, horizontal ? Math.abs(travelX - fromX) : Math.abs(travelY - fromY));
+      const rotateTo = horizontal ? dirX * 16 : 0;
       activeEl.classList.remove('dragging');
-      // If it's a vertical swipe, translate vertically, otherwise translate horizontally
-      const tx = vector?.y ? 0 : (vx * 118);
-      const ty = vector?.y ? (vector.y * 118) : 0;
-      const rotate = vector?.y ? 0 : (vx * 8);
-      activeEl.style.transform = `translate3d(${tx}vw, ${ty}vh, 0) rotate(${rotate}deg)`;
-      activeEl.style.opacity = 0;
+      activeEl.classList.add('is-leaving');
+      const from = currentTransformOf(activeEl);
+      activeEl.style.transform = '';
+      const motion = window.EruditeMotion;
+      const finish = () => activeEl.classList.remove('is-leaving');
+      if (motion) {
+        motion.animate(activeEl, [
+          { transform: from },
+          { transform: `translate3d(${travelX}px, ${travelY}px, 0) rotate(${rotateTo}deg)` }
+        ], { preset: 'swipe', velocity: releaseSpeed / remaining, commit: false }).then(finish);
+      } else {
+        finish();
+      }
     }
-    
+
     if (nextEl) {
       nextEl.classList.remove('no-transition');
       if (!nextEl.classList.contains('empty-card')) {
@@ -2424,7 +2469,7 @@
         nextEl.style.opacity = 1;
       }
     }
-    
+
     window.setTimeout(() => {
       if (token !== transitionToken) return;
       animating = false;
@@ -2542,7 +2587,7 @@
     const nextDiffMs = nextCardDue - Date.now();
     if (nextDiffMs > 0) {
       resetDragVisuals();
-      els.ratingDock.classList.add('hidden');
+      hideStudyActions();
       showLearningCardsDueSoonMessage(state.activeCards.length, nextCardDue);
       ratingInFlight = false;
       return;
@@ -2631,7 +2676,7 @@
   async function showCompletion() {
     state.complete = true;
     state.nextDueSetId = await findNextDueSetId();
-    els.ratingDock.classList.add('hidden');
+    hideStudyActions();
     els.shell.classList.remove('srs-back-visible');
     playSound('success');
 
@@ -2699,20 +2744,10 @@
     const VELOCITY_THRESHOLD = 0.42;
     const DEAD_ZONE = 10;
 
-    // Create swipe glow overlay dynamically and append to body for full-screen edge glow
-    let overlay = document.querySelector('.swipe-glow-overlay');
-    if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.className = 'swipe-glow-overlay';
-      const directions = ['top', 'bottom', 'left', 'right'];
-      directions.forEach(dir => {
-        const d = document.createElement('div');
-        d.className = `swipe-glow-${dir}`;
-        d.style.display = 'none';
-        overlay.appendChild(d);
-      });
-      document.body.appendChild(overlay);
-    }
+    // A drag past this distance, or a flick faster than FLICK_SPEED, commits.
+    const FLICK_SPEED = 600;
+    const FLICK_MIN_DISTANCE = 20;
+    const tracker = window.EruditeMotion?.createVelocityTracker?.() || null;
 
     const ratingButtons = {
       Again: document.querySelector('.rating-button.again'),
@@ -2721,72 +2756,45 @@
       Easy: document.querySelector('.rating-button.easy')
     };
 
+    function swipeRating(dx, dy) {
+      if (Math.abs(dx) >= Math.abs(dy)) return dx < 0 ? 'Again' : 'Good';
+      return dy < 0 ? 'Easy' : 'Hard';
+    }
+
+    function activeStamp() {
+      return cards[activeCardIndex]?.querySelector('.swipe-stamp') || null;
+    }
+
     function updateSwipeFeedback(dx, dy) {
-      if (!overlay) return;
-      const absDx = Math.abs(dx);
-      const absDy = Math.abs(dy);
       const dist = Math.sqrt(dx * dx + dy * dy);
-
-      if (dist < 15) {
-        overlay.style.opacity = '0';
-        Object.values(ratingButtons).forEach(btn => btn?.classList.remove('active-drag'));
-        return;
-      }
-
-      let activeDir = '';
-      let activeRating = '';
+      const stamp = activeStamp();
+      const rating = dist >= 16 ? swipeRating(dx, dy) : '';
       // A single tick when the drag crosses the commit distance, like a detent.
       const armed = dist >= SWIPE_THRESHOLD;
       if (armed && pointer && !pointer.armed) triggerHaptic();
       if (pointer) pointer.armed = armed;
 
-      if (absDx >= absDy) {
-        if (dx < 0) {
-          activeDir = 'left';
-          activeRating = 'Again';
-        } else {
-          activeDir = 'right';
-          activeRating = 'Good';
+      if (stamp) {
+        if (stamp.dataset.rating !== rating) {
+          stamp.dataset.rating = rating;
+          stamp.textContent = rating;
         }
-      } else {
-        if (dy < 0) {
-          activeDir = 'top';
-          activeRating = 'Easy';
-        } else {
-          activeDir = 'bottom';
-          activeRating = 'Hard';
-        }
+        stamp.style.opacity = rating ? String(Math.min(1, (dist - 16) / (SWIPE_THRESHOLD * 1.4))) : '0';
+        stamp.classList.toggle('is-armed', armed);
       }
-
-      const glows = {
-        top: overlay.querySelector('.swipe-glow-top'),
-        bottom: overlay.querySelector('.swipe-glow-bottom'),
-        left: overlay.querySelector('.swipe-glow-left'),
-        right: overlay.querySelector('.swipe-glow-right')
-      };
-
-      Object.entries(glows).forEach(([dir, el]) => {
-        if (el) el.style.display = dir === activeDir ? 'block' : 'none';
+      Object.entries(ratingButtons).forEach(([name, button]) => {
+        button?.classList.toggle('active-drag', armed && name === rating);
       });
-
-      // Highlight the correct rating button
-      Object.entries(ratingButtons).forEach(([rating, btn]) => {
-        if (btn) {
-          if (rating === activeRating) {
-            btn.classList.add('active-drag');
-          } else {
-            btn.classList.remove('active-drag');
-          }
-        }
-      });
-
-      const opacity = Math.min(1, dist / 120);
-      overlay.style.opacity = String(opacity);
     }
 
     function clearSwipeFeedback() {
-      if (overlay) overlay.style.opacity = '0';
-      Object.values(ratingButtons).forEach(btn => btn?.classList.remove('active-drag'));
+      cards.forEach(card => {
+        const stamp = card?.querySelector('.swipe-stamp');
+        if (!stamp) return;
+        stamp.style.opacity = '0';
+        stamp.classList.remove('is-armed');
+      });
+      Object.values(ratingButtons).forEach(button => button?.classList.remove('active-drag'));
     }
 
     els.stage.addEventListener('pointerdown', event => {
@@ -2801,10 +2809,14 @@
       // Dynamically sync scrollability/touch-action at touch start
       updateCardScrollability(activeCardEl);
       
+      const cardRect = activeCardEl.getBoundingClientRect();
+      tracker?.reset();
+      tracker?.add(event.clientX, event.clientY, event.timeStamp || performance.now());
       pointer = {
         id: event.pointerId,
         x: event.clientX,
         y: event.clientY,
+        grabSign: event.clientY > cardRect.top + cardRect.height * 0.62 ? -1 : 1,
         time: performance.now(),
         dragging: false,
         scrolling: false,
@@ -2846,6 +2858,7 @@
 
       if (pointer.dragging) {
         event.preventDefault();
+        tracker?.add(event.clientX, event.clientY, event.timeStamp || performance.now());
         setDrag(dx, dy);
         if (pointer.srsLocked && state.flipped) {
           updateSwipeFeedback(dx, dy);
@@ -2868,13 +2881,22 @@
       const absDy = Math.abs(dy);
       
       const wasTap = absDx < 9 && absDy < 9 && !pointer.scrolling;
-      
-      const isSwipe = !pointer.scrolling && !wasTap && (
+      tracker?.add(event.clientX, event.clientY, event.timeStamp || performance.now());
+      const velocity = tracker ? tracker.velocity() : { x: dx / dt * 1000, y: dy / dt * 1000 };
+      const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+      // A flick commits even when short, as long as it moves the way it was dragged.
+      const flicked = speed >= FLICK_SPEED
+        && Math.sqrt(dx * dx + dy * dy) >= FLICK_MIN_DISTANCE
+        && (velocity.x * dx + velocity.y * dy) > 0;
+
+      const isSwipe = !pointer.scrolling && !wasTap && pointer.dragging && (
         absDx >= SWIPE_THRESHOLD ||
         absDy >= SWIPE_THRESHOLD ||
+        flicked ||
         (absDx / dt) >= VELOCITY_THRESHOLD ||
         (absDy / dt) >= VELOCITY_THRESHOLD
       );
+      const release = { fromX: dx, fromY: dy, vx: velocity.x, vy: velocity.y };
 
       const wasSrsLocked = pointer.srsLocked;
       pointer = null;
@@ -2884,19 +2906,8 @@
           if (wasTap) {
             flipCard();
           } else if (isSwipe) {
-            if (absDx >= absDy) {
-              if (dx < 0) {
-                handleRating('Again', { x: -1, y: 0 });
-              } else {
-                handleRating('Good', { x: 1, y: 0 });
-              }
-            } else {
-              if (dy < 0) {
-                handleRating('Easy', { x: 0, y: -1 });
-              } else {
-                handleRating('Hard', { x: 0, y: 1 });
-              }
-            }
+            const rating = swipeRating(dx, dy);
+            handleRating(rating, { ...RATING_EXIT[rating], ...release });
             return;
           }
         } else {
@@ -2912,9 +2923,9 @@
 
       if (isSwipe) {
         if (absDx >= absDy) {
-          navigateForward({ x: dx < 0 ? -1 : 1, y: 0 });
+          navigateForward({ x: dx < 0 ? -1 : 1, y: 0, ...release });
         } else {
-          navigateForward({ x: 0, y: dy < 0 ? -1 : 1 });
+          navigateForward({ x: 0, y: dy < 0 ? -1 : 1, ...release });
         }
         return;
       }
@@ -2985,7 +2996,7 @@
 
     // Re-hide rating dock initially on card revert (until card is flipped again)
     state.flipped = false;
-    els.ratingDock.classList.add('hidden');
+    hideStudyActions();
     
     // Hide completion modal if it was shown
     els.completionModal.classList.add('hidden');
@@ -3149,14 +3160,14 @@
     const nextDiffMs = nextCardDue - Date.now();
     if (state.srsMode && nextDiffMs > 0) {
       state.flipped = false;
-      els.ratingDock.classList.add('hidden');
+      hideStudyActions();
       showLearningCardsDueSoonMessage(state.activeCards.length, nextCardDue);
       return;
     }
 
     // Otherwise, reveal the next card
     state.flipped = false;
-    els.ratingDock.classList.add('hidden');
+    hideStudyActions();
 
     // Populate current and neighbor cards in the carousel
     const currentIdx = activeIndex();
@@ -3307,7 +3318,11 @@
     els.ratingDock.addEventListener('click', event => {
       const button = event.target.closest('[data-rating]');
       if (!button) return;
-      handleRating(button.dataset.rating);
+      handleRating(button.dataset.rating, RATING_EXIT[button.dataset.rating]);
+    });
+
+    els.reveal?.addEventListener('click', () => {
+      if (!state.flipped) flipCard();
     });
 
     // SRS Undo & Actions listeners
@@ -3442,7 +3457,8 @@
         navigateForward({ x: -1, y: 0 });
       } else if (state.srsMode && state.flipped && ['1', '2', '3', '4'].includes(event.key)) {
         event.preventDefault();
-        handleRating(['Again', 'Hard', 'Good', 'Easy'][Number(event.key) - 1]);
+        const rating = ['Again', 'Hard', 'Good', 'Easy'][Number(event.key) - 1];
+        handleRating(rating, RATING_EXIT[rating]);
       }
     });
 
