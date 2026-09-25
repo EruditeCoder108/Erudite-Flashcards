@@ -165,6 +165,7 @@
   let onboardingRetrievalMessageTimers = [];
   let onboardingRetrievalMessageReady = false;
   let onboardingRetrievalExplained = false;
+  let onboardingNeuronsShown = false;
   let tourCurrentStep = 0;
   const ROUTE_LOADER_MIN_VISIBLE_MS = 150;
 
@@ -7368,6 +7369,10 @@
     document.querySelector('.memory-screen')?.classList.remove('is-hiding', 'is-complete');
     document.querySelector('.retrieval-screen')?.classList.remove('is-explaining');
     window.EruditeGroove?.reset(document.getElementById('onboarding-groove'), document.getElementById('onboarding-groove-caption'));
+    onboardingNeuronsShown = false;
+    document.querySelector('.retrieval-screen')?.classList.remove('is-neural');
+    document.getElementById('onboarding-neural')?.setAttribute('aria-hidden', 'true');
+    window.EruditeNeurons?.reset(document.getElementById('onboarding-neurons'), document.getElementById('onboarding-neural-caption'));
     const explanation = document.getElementById('onboarding-retrieval-explanation');
     explanation?.setAttribute('aria-hidden', 'true');
     const demo = document.getElementById('onboarding-flip-demo');
@@ -7400,8 +7405,16 @@
     }
     if (onboardingStep === 3) {
       const flipped = document.getElementById('onboarding-flip-demo')?.classList.contains('is-flipped') === true;
-      button.dataset.onboardingAction = onboardingRetrievalExplained ? 'next' : 'explain-retrieval';
-      button.innerHTML = onboardingRetrievalExplained ? icon('Meet Erudite') : icon('How did that help?');
+      if (onboardingNeuronsShown) {
+        button.dataset.onboardingAction = 'next';
+        button.innerHTML = icon('Meet Erudite');
+      } else if (onboardingRetrievalExplained) {
+        button.dataset.onboardingAction = 'show-neurons';
+        button.innerHTML = icon('And inside your head?');
+      } else {
+        button.dataset.onboardingAction = 'explain-retrieval';
+        button.innerHTML = icon('How did that help?');
+      }
       button.disabled = !onboardingRetrievalExplained && (!flipped || !onboardingRetrievalMessageReady);
       return;
     }
@@ -7443,6 +7456,28 @@
         { reducedMotion: prefersReducedMotion() }
       );
     }, prefersReducedMotion() ? 0 : 650);
+    updateOnboardingPrimaryButton();
+  }
+
+  function showOnboardingNeurons() {
+    if (!onboardingRetrievalExplained) return;
+    onboardingNeuronsShown = true;
+    window.EruditeGroove?.stop();
+    const screen = document.querySelector('.retrieval-screen');
+    screen?.classList.add('is-neural');
+    document.getElementById('onboarding-retrieval-explanation')?.setAttribute('aria-hidden', 'true');
+    const neural = document.getElementById('onboarding-neural');
+    neural?.setAttribute('aria-hidden', 'false');
+    if (screen) screen.scrollTop = 0;
+    requestAnimationFrame(() => neural?.querySelector('h2')?.focus?.({ preventScroll: true }));
+    window.setTimeout(() => {
+      if (onboardingStep !== 3 || !onboardingNeuronsShown) return;
+      window.EruditeNeurons?.start(
+        document.getElementById('onboarding-neurons'),
+        document.getElementById('onboarding-neural-caption'),
+        { reducedMotion: prefersReducedMotion() }
+      );
+    }, prefersReducedMotion() ? 0 : 600);
     updateOnboardingPrimaryButton();
   }
 
@@ -7618,7 +7653,9 @@
         }, 550);
       } else {
         requestAnimationFrame(() => {
-          const focusTarget = onboardingStep === 3 && onboardingRetrievalExplained
+          const focusTarget = onboardingStep === 3 && onboardingNeuronsShown
+            ? document.querySelector('#onboarding-neural h2')
+            : onboardingStep === 3 && onboardingRetrievalExplained
             ? document.querySelector('#onboarding-retrieval-explanation h2')
             : document.getElementById(`onboarding-title-${onboardingStep}`);
           focusTarget?.focus?.({ preventScroll: true });
@@ -7664,6 +7701,7 @@
     onboardingGreetingBusy = false;
     closeOnboardingSources();
     window.EruditeGroove?.stop();
+    window.EruditeNeurons?.stop();
     document.getElementById('onboarding-confetti-layer')?.replaceChildren();
     shell.classList.add('is-closing');
     await new Promise(resolve => window.setTimeout(resolve, 180));
@@ -7714,7 +7752,7 @@
   }
 
   async function handleOnboardingAction(action, target) {
-    const isTransitionAction = action === 'next' || action === 'explain-retrieval' || action === 'finish';
+    const isTransitionAction = action === 'next' || action === 'explain-retrieval' || action === 'show-neurons' || action === 'finish';
     if (onboardingActionBusy) return;
     if (isTransitionAction) onboardingActionBusy = true;
 
@@ -7780,6 +7818,11 @@
           await new Promise(resolve => window.setTimeout(resolve, 350));
         }
         explainOnboardingRetrieval();
+        break;
+      }
+      case 'show-neurons': {
+        playAppSound('click');
+        showOnboardingNeurons();
         break;
       }
       case 'open-sources':
@@ -12926,6 +12969,12 @@ Every media/... reference in deck.json must exist inside media/.`;
       backdrop.style.cssText = "position: fixed; inset: 0; z-index: 10000; background: transparent; pointer-events: none;";
       document.body.appendChild(backdrop);
     }
+    if (!document.getElementById('walkthrough-spotlight')) {
+      const spot = document.createElement('div');
+      spot.id = 'walkthrough-spotlight';
+      spot.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(spot);
+    }
     let tooltip = document.getElementById('walkthrough-tooltip');
     if (!tooltip) {
       tooltip = document.createElement('div');
@@ -12935,7 +12984,35 @@ Every media/... reference in deck.json must exist inside media/.`;
     }
   }
 
+  // The spotlight is its own fixed layer placed over the target, so a parent
+  // with overflow: hidden cannot clip the dimming around it.
+  let tourTarget = null;
+  let tourArrow = 'arrow-top';
+
+  function placeTourSpotlight() {
+    const spot = document.getElementById('walkthrough-spotlight');
+    const tooltip = document.getElementById('walkthrough-tooltip');
+    if (!spot || !tourTarget || !tourTarget.isConnected) return;
+    const rect = tourTarget.getBoundingClientRect();
+    const pad = 4;
+    spot.style.top = `${rect.top - pad}px`;
+    spot.style.left = `${rect.left - pad}px`;
+    spot.style.width = `${rect.width + pad * 2}px`;
+    spot.style.height = `${rect.height + pad * 2}px`;
+    const radius = parseFloat(getComputedStyle(tourTarget).borderTopLeftRadius) || 12;
+    spot.style.borderRadius = `${radius + pad}px`;
+    if (tooltip?.classList.contains('is-visible')) positionWalkthroughTooltip(tourTarget, tooltip, tourArrow);
+  }
+
+  function onTourViewportChange() {
+    window.requestAnimationFrame(placeTourSpotlight);
+  }
+
   function cleanupTour() {
+    window.removeEventListener('scroll', onTourViewportChange, true);
+    window.removeEventListener('resize', onTourViewportChange);
+    tourTarget = null;
+    document.getElementById('walkthrough-spotlight')?.remove();
     const backdrop = document.getElementById('walkthrough-backdrop');
     if (backdrop) backdrop.remove();
     const tooltip = document.getElementById('walkthrough-tooltip');
@@ -13000,6 +13077,13 @@ Every media/... reference in deck.json must exist inside media/.`;
     createTourElements();
     target.classList.add('walkthrough-highlight');
     config.onEnter?.();
+    tourTarget = target;
+    tourArrow = config.arrow;
+    window.addEventListener('scroll', onTourViewportChange, true);
+    window.addEventListener('resize', onTourViewportChange);
+    const spot = document.getElementById('walkthrough-spotlight');
+    spot?.classList.toggle('is-pulsing', config.step === 1);
+    placeTourSpotlight();
     
     const tooltip = document.getElementById('walkthrough-tooltip');
     const isFinalStep = config.step === 7;
@@ -13017,9 +13101,10 @@ Every media/... reference in deck.json must exist inside media/.`;
     }
 
     tooltip.innerHTML = `
+      <span class="walkthrough-step">${config.step} of ${getTourSteps().length}</span>
       <p>${config.text}</p>
       <div class="walkthrough-tooltip-buttons">
-        <button type="button" class="walkthrough-btn-skip" id="tour-skip-btn">Skip Guide</button>
+        <button type="button" class="walkthrough-btn-skip" id="tour-skip-btn">Skip guide</button>
         ${buttonHtml}
       </div>
     `;
@@ -13059,6 +13144,9 @@ Every media/... reference in deck.json must exist inside media/.`;
     
     tooltip.style.top = `${top}px`;
     tooltip.style.left = `${left}px`;
+    // Point the arrow at the target even when the tooltip is pushed sideways.
+    const arrowX = Math.min(tooltipRect.width - 18, Math.max(18, rect.left + rect.width / 2 - left));
+    tooltip.style.setProperty('--arrow-x', `${arrowX}px`);
     tooltip.className = `walkthrough-tooltip is-visible ${arrowClass}`;
   }
 

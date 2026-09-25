@@ -837,7 +837,8 @@ html.onboarding-pending #onboarding-shell.hidden {
   pointer-events: none;
 }
 
-.retrieval-screen.is-explaining .retrieval-explanation {
+.retrieval-screen.is-explaining:not(.is-neural) .retrieval-explanation:not(.neural-explanation),
+.retrieval-screen.is-neural .neural-explanation {
   position: relative;
   inset: auto;
   padding-bottom: 0;
@@ -1337,4 +1338,184 @@ html.reduce-motion .onboarding-shell *::after {
 .onboarding-shell input:focus,
 .onboarding-shell input:focus-visible {
   outline: none;
+}
+
+/* Third stage of step 3: the groove steps aside for the neurons. */
+.retrieval-screen.is-neural .retrieval-explanation:not(.neural-explanation) {
+  opacity: 0;
+  transform: translateX(-2rem);
+}
+
+/* ------------------------------------------------------------------ */
+/* Neuron scene                                                        */
+/* ------------------------------------------------------------------ */
+
+.neuron-stage {
+  aspect-ratio: 320 / 200;
+  color: var(--ob-ink);
+}
+
+.neuron-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.neuron-svg path {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.neuron-svg .synapse {
+  stroke: var(--ob-ink);
+  stroke-width: 0.8;
+  opacity: 0.16;
+}
+
+.neuron-svg .memory-base path {
+  stroke: var(--ob-ink);
+  stroke-width: 1.1;
+  stroke-dasharray: 2 3;
+}
+
+.neuron-svg .memory-glow path {
+  stroke: var(--ob-accent);
+  stroke-width: inherit;
+}
+
+.neuron-svg .memory-glow {
+  stroke-width: 1;
+}
+
+.neuron-svg .trace {
+  stroke: none;
+}
+
+.neuron-svg .dendrite {
+  stroke: var(--ob-ink);
+  stroke-width: 0.8;
+  opacity: 0.45;
+}
+
+.neuron-svg .soma {
+  fill: var(--ob-bg);
+  stroke: var(--ob-ink);
+  stroke-width: 1.1;
+  opacity: 0.55;
+}
+
+.neuron-svg .neuron.is-memory .soma {
+  opacity: 1;
+}
+
+.neuron-svg .core {
+  fill: var(--ob-accent);
+  transition: opacity 200ms linear;
+}
+
+.neuron-svg .ring {
+  fill: none;
+  stroke: var(--ob-accent);
+  stroke-width: 1.2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.neuron-svg .ring.is-flicker {
+  animation: ob-ring 700ms ease-out;
+  --ring-scale: 1.6;
+  --ring-opacity: 0.35;
+}
+
+.neuron-svg .ring.is-firing {
+  animation: ob-ring 800ms var(--ob-ease);
+  --ring-scale: 2.6;
+  --ring-opacity: 1;
+}
+
+@keyframes ob-ring {
+  0% { opacity: var(--ring-opacity); transform: scale(1); }
+  100% { opacity: 0; transform: scale(var(--ring-scale)); }
+}
+
+.neuron-svg .pulse {
+  fill: var(--ob-ink);
+}
+
+.neuron-svg .pulse.is-recall {
+  fill: var(--ob-accent);
+  filter: drop-shadow(0 0 4px var(--ob-accent));
+}
+
+.neuron-svg.is-strong .memory-base path {
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.neural-note {
+  color: var(--ob-faint) !important;
+  font-size: 0.8125rem !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Index card: text sits on the rules.                                 */
+/* Rules are every --rule below the red margin line at --head. Every   */
+/* text block uses a line height that is a whole number of rules, and  */
+/* --nudge drops the baseline onto the rule instead of floating        */
+/* between two.                                                        */
+/* ------------------------------------------------------------------ */
+
+.onboarding-demo-face {
+  --head: 2.6rem;
+  --rule: 1.75rem;
+  --nudge: 0.3rem;
+  display: block;
+  padding: 0 1.25rem calc(var(--rule) * 0.5) 1.5rem;
+}
+
+.onboarding-demo-card-inner {
+  min-height: calc(var(--head, 2.6rem) + 1.75rem * 7);
+}
+
+.onboarding-demo-face .demo-card-label {
+  display: flex;
+  align-items: center;
+  height: var(--head);
+}
+
+.onboarding-demo-face strong,
+.onboarding-demo-face small,
+.onboarding-demo-face .retrieval-card-message {
+  display: block;
+  position: relative;
+  top: var(--nudge);
+}
+
+.onboarding-demo-front strong {
+  margin-top: var(--rule);
+  font-size: 1.375rem;
+  line-height: var(--rule);
+}
+
+.onboarding-demo-front small {
+  --nudge: 0.48rem;
+  margin-top: var(--rule);
+  font-size: 0.875rem;
+  line-height: var(--rule);
+}
+
+.onboarding-demo-back strong {
+  margin-top: 0;
+  font-size: 2.75rem;
+  line-height: calc(var(--rule) * 2);
+  --nudge: 0.55rem;
+}
+
+.onboarding-demo-back .retrieval-card-message {
+  --nudge: 0.45rem;
+  margin-top: var(--rule);
+  font-size: 0.9375rem;
+  line-height: var(--rule);
 }

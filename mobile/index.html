@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="mobile/css/shell.css">
   <link rel="stylesheet" href="mobile/css/signature.css">
   <link rel="stylesheet" href="mobile/css/mobile-onboarding.css">
+  <link rel="stylesheet" href="mobile/css/tour.css">
   <link rel="stylesheet" href="css/color-picker.css">
 </head>
 <body>
@@ -174,6 +175,20 @@
           <div class="groove-explanation-lines">
             <p><strong>Rereading</strong> feels familiar, so it feels like learning. It asks almost nothing of your memory.</p>
             <p><strong>Recall</strong> makes you reach for the answer. That effort is what makes it stay.</p>
+          </div>
+        </div>
+        <div class="retrieval-explanation neural-explanation" id="onboarding-neural" aria-hidden="true">
+          <div class="onboarding-copy">
+            <p class="ob-kicker">Inside your head</p>
+            <h2 tabindex="-1">A memory is a path between neurons.</h2>
+          </div>
+          <figure class="groove-figure">
+            <div class="neuron-stage" id="onboarding-neurons" role="img" aria-label="A network of neurons. One path through it is a memory. Rereading sends a faint signal that barely changes it; each recall fires the path and makes its connections stronger."></div>
+            <figcaption class="groove-caption" id="onboarding-neural-caption" aria-hidden="true"><span class="groove-step is-reread"><b>Rereading</b> a faint signal</span><span class="groove-step is-recall"><b>Recall</b> the path fires and grows</span></figcaption>
+          </figure>
+          <div class="groove-explanation-lines">
+            <p>Every recall fires the same path again, and the connections along it get stronger. Next time, the answer comes faster.</p>
+            <p class="neural-note">A simplified picture of how practice strengthens memory.</p>
           </div>
         </div>
       </article>
@@ -2506,6 +2521,7 @@ If you cannot attach a ZIP file:
   <script src="js/core/entitlements.js"></script>
   <script src="mobile/js/signature.js"></script>
   <script src="mobile/js/onboarding-groove.js"></script>
+  <script src="mobile/js/onboarding-neurons.js"></script>
   <script src="mobile/js/mobile-app.js"></script>
 </body>
 </html>
