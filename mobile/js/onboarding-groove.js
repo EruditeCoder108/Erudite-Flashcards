@@ -103,7 +103,9 @@
     const groove = el('path', { d: groovePath(0, 0), class: 'groove' }, svg);
     const grooveHatch = el('path', { d: groovePath(0, 0), class: 'groove-hatch', fill: `url(#${uid}-hg)` }, svg);
     const valley = el('path', { d: valleyPath(0), class: 'valley' }, svg);
-    el('path', { d: 'M20 104 L76 66 L300 66 L244 104 Z', class: 'edge' }, svg);
+    // Top outline without its front edge: the front face draws that edge
+    // with the notch, so a straight line here would cross the groove.
+    el('path', { d: 'M20 104 L76 66 L300 66 L244 104', class: 'edge' }, svg);
 
     // Front face with the notch, hatched and clipped to its outline.
     const front = el('path', { d: frontPath(0, 0), class: 'face front' }, svg);

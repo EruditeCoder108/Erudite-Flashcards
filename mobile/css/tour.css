@@ -1,0 +1,136 @@
+/* ================================================================== */
+/* Guided tour after onboarding: a spotlight on one control and a      */
+/* short note next to it. Kept in its own file so onboarding restyles  */
+/* cannot take it with them.                                           */
+/* ================================================================== */
+
+/* The target stays tappable above the dimming. */
+.walkthrough-highlight {
+  position: relative;
+  z-index: 10001;
+  pointer-events: auto !important;
+}
+
+#walkthrough-spotlight {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  box-shadow:
+    0 0 0 2px var(--text),
+    0 0 0 9999px rgba(8, 8, 7, 0.72);
+  transition: top 260ms var(--spring-snappy, ease), left 260ms var(--spring-snappy, ease), width 260ms var(--spring-snappy, ease), height 260ms var(--spring-snappy, ease);
+}
+
+#walkthrough-spotlight.is-pulsing {
+  animation: walkthrough-breathe 1.6s ease-in-out infinite;
+}
+
+@keyframes walkthrough-breathe {
+  0%, 100% { box-shadow: 0 0 0 2px var(--text), 0 0 0 9999px rgba(8, 8, 7, 0.72); }
+  50% { box-shadow: 0 0 0 5px var(--text), 0 0 0 9999px rgba(8, 8, 7, 0.72); }
+}
+
+.walkthrough-tooltip {
+  position: fixed;
+  z-index: 10002;
+  width: min(19rem, calc(100vw - 1.5rem));
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+  box-shadow: 0 0 0 1px var(--line-strong), var(--shadow-3);
+  color: var(--text);
+  font-size: var(--text-base);
+  line-height: 1.45;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(6px) scale(0.97);
+  transition: opacity 240ms ease, transform 420ms var(--spring-snappy, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.walkthrough-tooltip.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.walkthrough-step {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--subtle);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.walkthrough-tooltip p {
+  margin: 0 0 var(--space-3);
+  color: var(--muted);
+}
+
+.walkthrough-tooltip p strong,
+.walkthrough-tooltip p em {
+  color: var(--text);
+}
+
+.walkthrough-tooltip-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.walkthrough-tooltip-buttons > span {
+  color: var(--primary-text);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.walkthrough-btn-skip,
+.walkthrough-btn-next {
+  min-height: 2.5rem;
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-full);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.walkthrough-btn-skip {
+  margin-left: calc(-1 * var(--space-3));
+  background: transparent;
+  color: var(--muted);
+}
+
+.walkthrough-btn-next {
+  background: var(--text);
+  color: var(--bg);
+  transition: transform var(--dur-spring, 300ms) var(--spring-snappy, ease);
+}
+
+.walkthrough-btn-next:active {
+  transform: scale(0.96);
+}
+
+/* A small rotated square pointing at the target. */
+.walkthrough-tooltip::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--arrow-x, 50%) - 6px);
+  width: 12px;
+  height: 12px;
+  background: var(--surface-raised);
+  box-shadow: 0 0 0 1px var(--line-strong);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.walkthrough-tooltip.arrow-top::after {
+  top: -6px;
+  transform: rotate(-45deg);
+}
+
+.walkthrough-tooltip.arrow-bottom::after {
+  bottom: -6px;
+  transform: rotate(135deg);
+}
