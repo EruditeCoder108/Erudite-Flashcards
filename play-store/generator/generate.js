@@ -130,6 +130,9 @@ async function captureApp(browser, base) {
     localStorage.setItem('erudite-mobile-onboarding-complete-v2', 'true');
     localStorage.setItem('erudite_creator_tour_completed', 'skipped');
     localStorage.setItem('srsModeEnabled', 'true');
+    localStorage.setItem('erudite-preferred-name-v1', 'Aarav');
+    // Store shots show the evening greeting whatever time the generator runs.
+    Date.prototype.getHours = function () { return 19; };
   });
 
   await page.goto(`${base}/index.html`);
