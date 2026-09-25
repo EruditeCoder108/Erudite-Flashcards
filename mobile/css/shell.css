@@ -99,9 +99,11 @@ body[data-active-tab="library"] .mobile-topbar {
 /* Tab bar                                                             */
 /* ------------------------------------------------------------------ */
 
+/* Spacer only: it sits inside the content column, so painting it showed up
+   as a pale rectangle on the paper texture. */
 .mobile-tabbar-gradient-shim {
   height: calc(6rem + var(--safe-bottom));
-  background: linear-gradient(180deg, transparent 0%, var(--bg) 70%);
+  background: none;
 }
 
 .mobile-tabbar {
@@ -364,12 +366,14 @@ body[data-active-tab="library"] .mobile-topbar {
 .deck-row {
   display: grid;
   grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+  /* Meta gets the full width so class names and pills stay on one line; the
+     progress bar shares the last row with the actions. */
   grid-template-areas:
     "icon title title"
-    "icon meta actions"
+    "icon meta meta"
     "icon bar actions";
   column-gap: var(--space-3);
-  row-gap: 0.2rem;
+  row-gap: 0.25rem;
   align-items: center;
   min-height: 0;
   padding: var(--space-4);
@@ -432,7 +436,14 @@ body[data-active-tab="library"] .mobile-topbar {
   font-weight: 450;
 }
 
+.deck-row .deck-subline > * {
+  white-space: nowrap;
+}
+
 .deck-row .class-pill {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
   padding: 0.1rem 0.5rem;
   border-radius: var(--radius-full);
   font-size: var(--text-xs);
@@ -441,8 +452,9 @@ body[data-active-tab="library"] .mobile-topbar {
 
 .deck-row .progress-track {
   grid-area: bar;
+  align-self: center;
   height: 3px;
-  margin-top: 0.35rem;
+  margin-top: 0;
   border-radius: var(--radius-full);
   background: var(--surface-3);
 }
@@ -962,7 +974,7 @@ body[data-active-tab="library"] .mobile-topbar {
 }
 
 /* ------------------------------------------------------------------ */
-/* Smriti Pro                                                          */
+/* Erudite Pro                                                          */
 /* ------------------------------------------------------------------ */
 
 .pro-row {
@@ -1008,6 +1020,8 @@ body[data-active-tab="library"] .mobile-topbar {
 }
 
 .sample-pill {
+  flex: none;
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
@@ -1248,4 +1262,79 @@ body[data-active-tab="library"] .mobile-topbar {
   border: 0;
   background: none;
   font-size: var(--text-sm);
+}
+
+/* ------------------------------------------------------------------ */
+/* Settings fixes                                                      */
+/* ------------------------------------------------------------------ */
+
+#view-more > .section-block.first {
+  margin-bottom: var(--space-4);
+}
+
+/* Diagnostics is a row of the settings list, not a card inside it. */
+.settings-list .settings-diagnostics {
+  overflow: hidden;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+
+.settings-list .settings-diagnostics summary {
+  gap: var(--space-3);
+  min-height: 0;
+  padding: var(--space-4);
+}
+
+.settings-list .settings-diagnostics strong {
+  font-size: var(--text-base);
+  font-weight: 550;
+}
+
+.settings-list .settings-diagnostics small {
+  font-size: var(--text-sm);
+}
+
+/* A closed <details> must not reserve space for its rows. Some WebView
+   versions lay them out anyway, which left a long empty scroll area. */
+.settings-diagnostics:not([open]) > .settings-diagnostics-actions {
+  display: none;
+}
+
+.settings-diagnostics-actions {
+  gap: 0;
+  padding: 0 0 var(--space-2);
+}
+
+/* Library filter chips: the scroller clips vertically, so give the chip
+   outlines room above and below. */
+.filter-strip {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-top: calc(0.55rem - 3px);
+}
+
+.settings-group-title {
+  margin: var(--space-6, 1.5rem) var(--space-1) var(--space-2);
+  color: var(--subtle);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pro-row + .settings-group-title {
+  margin-top: var(--space-5, 1.25rem);
+}
+
+.settings-list .settings-row.danger {
+  margin-top: 0;
+  border-color: transparent;
+  background: transparent;
+}
+
+.settings-list .settings-row.danger strong,
+.settings-list .settings-row.danger .settings-icon {
+  color: var(--red);
 }

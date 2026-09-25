@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  // Billing settings for Smriti Pro. RevenueCat's public SDK key is designed to
+  // Billing settings for Erudite Pro. RevenueCat's public SDK key is designed to
   // ship inside the app; it is not a secret. Leave it empty until the RevenueCat
   // project exists: the app then shows Pro as "coming soon" and keeps every
   // purchase button disabled.

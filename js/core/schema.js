@@ -20,6 +20,7 @@
     theme: 'dark',
     normalStudyOrder: 'forward',
     soundEffectsEnabled: true,
+    hapticsEnabled: true,
     htmlInteractionDisabled: false,
     paperTexture: false,
     srsDefaults: {
@@ -284,6 +285,7 @@
       theme,
       normalStudyOrder,
       soundEffectsEnabled,
+      hapticsEnabled: settings.hapticsEnabled !== false,
       htmlInteractionDisabled,
       paperTexture: settings.paperTexture === true,
       srsDefaults: {

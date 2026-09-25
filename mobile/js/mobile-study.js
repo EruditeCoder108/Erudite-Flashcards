@@ -13,41 +13,17 @@
   const PROGRESS_MIRROR_PREFIX = 'erudite-mobile-progress:';
   const STUDY_PATCHES_KEY = 'erudite-mobile-study-card-patches-v1';
 
-  const sounds = {
-    flip: new Audio('../assets/flashcard-assets/flip-sound.mp3'),
-    next: new Audio('../assets/flashcard-assets/Next-card.mp3'),
-    success: new Audio('../assets/audio/success.mp3')
-  };
-
-  Object.values(sounds).forEach(audio => {
-    audio.volume = 0.85;
-  });
+  const sfx = window.EruditeSfx;
+  sfx?.register('flip', '../assets/flashcard-assets/flip-sound.mp3');
+  sfx?.register('next', '../assets/flashcard-assets/Next-card.mp3');
+  sfx?.register('success', '../assets/audio/success.mp3');
 
   function playSound(type) {
     if (state.settings?.soundEffectsEnabled === false) return;
-    try {
-      const audio = sounds[type];
-      if (audio) {
-        audio.currentTime = 0;
-        audio.play().catch(() => {});
-      }
-    } catch (_) {}
+    sfx?.play(type);
   }
 
-  let lastHapticAt = 0;
-  function triggerHaptic() {
-    const now = performance.now();
-    if (now - lastHapticAt < 80) return;
-    lastHapticAt = now;
-    try {
-      const Haptics = window.Capacitor?.Plugins?.Haptics;
-      if (Haptics && typeof Haptics.impact === 'function') {
-        Haptics.impact({ style: 'light' }).catch(() => {});
-      } else if (navigator.vibrate) {
-        navigator.vibrate(15);
-      }
-    } catch (_e) {}
-  }
+  const haptics = window.EruditeHaptics || { tick() {}, tap() {}, threshold() {}, success() {}, warning() {}, setEnabled() {} };
 
   const state = {
     set: null,
@@ -978,6 +954,7 @@
       state.studyOrder = normalizeStudyOrder(settings?.normalStudyOrder);
     }
     state.settings = settings || {};
+    haptics.setEnabled(state.settings.hapticsEnabled !== false);
     const theme = state.settings?.theme || 'dark';
     localStorage.setItem('erudite-theme', theme);
     document.body.classList.toggle('theme-light', theme === 'light');
@@ -2497,6 +2474,8 @@
     const current = activeCard();
     if (!current) return;
     ratingInFlight = true;
+    // A swipe already ticked when it crossed the threshold; buttons and flicks tick here.
+    if (!exitVector.armed) haptics.tick();
 
     const previous = current.srs ? { ...current.srs } : null;
     const reviewedAt = new Date().toISOString();
@@ -2780,6 +2759,7 @@
     // Celebrate real work only, not an empty or preview session.
     const worked = state.srsMode ? sessionRatingTotals().total > 0 : state.activeCards.length > 0;
     if (worked && !state.previewMode) {
+      haptics.success();
       window.setTimeout(() => signature.cardBurst(els.completionCheck), 420);
     }
   }
@@ -2827,7 +2807,7 @@
       const rating = dist >= 16 ? swipeRating(dx, dy) : '';
       // A single tick when the drag crosses the commit distance, like a detent.
       const armed = dist >= SWIPE_THRESHOLD;
-      if (armed && pointer && !pointer.armed) triggerHaptic();
+      if (armed && pointer && !pointer.armed) haptics.threshold();
       if (pointer) pointer.armed = armed;
 
       if (stamp) {
@@ -2952,7 +2932,7 @@
         (absDx / dt) >= VELOCITY_THRESHOLD ||
         (absDy / dt) >= VELOCITY_THRESHOLD
       );
-      const release = { fromX: dx, fromY: dy, vx: velocity.x, vy: velocity.y };
+      const release = { fromX: dx, fromY: dy, vx: velocity.x, vy: velocity.y, armed: pointer.armed === true };
 
       const wasSrsLocked = pointer.srsLocked;
       pointer = null;
@@ -3444,11 +3424,6 @@
     }
 
     document.addEventListener('click', event => {
-      // Global haptic feedback for click operations in study mode
-      const clickable = event.target.closest('button, [role="button"], .tab-button, .context-option-row, .rating-button, .bottom-sheet-item, .bottom-sheet-cancel, .secondary-action, .primary-action');
-      if (clickable) {
-        triggerHaptic();
-      }
 
       // Close modal/bottom-sheet if clicking on the backdrop overlay
       if (event.target.classList.contains('modal')) {

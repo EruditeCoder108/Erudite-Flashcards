@@ -72,14 +72,14 @@ jobs:
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: smriti-debug-apk
+          name: erudite-debug-apk
           path: android/app/build/outputs/apk/debug/*.apk
 
       - name: Upload release bundle
         if: env.HAS_UPLOAD_KEY == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: smriti-release
+          name: erudite-release
           path: |
             android/app/build/outputs/bundle/release/*.aab
             android/app/build/outputs/apk/release/*.apk

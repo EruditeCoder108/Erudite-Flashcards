@@ -13,7 +13,7 @@ const repo = path.resolve(__dirname, '../..');
 const www = path.join(repo, 'www');
 const outDir = path.join(repo, 'play-store', 'assets', '2026');
 const rawDir = path.join(__dirname, '.raw');
-const APP_NAME = process.env.APP_NAME || 'Smriti';
+const APP_NAME = process.env.APP_NAME || 'Erudite Flashcards';
 
 const MIME = {
   '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.wasm': 'application/wasm',

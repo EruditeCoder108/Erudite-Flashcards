@@ -716,42 +716,32 @@ html.reduce-motion .study-card-inner {
 }
 
 .card-face.advanced-html-card-face .advanced-html-swipe-grip {
+  /* HTML cards take their own touches, so this strip under the card is the
+     drag handle. It reads as a grip, not as a tab hanging off the card. */
   position: absolute;
   left: 50%;
-  bottom: calc(-1.42rem - 5px);
+  bottom: -2.1rem;
   z-index: 5;
   display: grid;
-  place-items: end center;
-  width: 8.9rem;
-  height: 2.12rem;
-  padding-bottom: 0.48rem;
+  place-items: center;
+  width: 9rem;
+  height: 2rem;
   transform: translateX(-50%);
-  border: 1px solid var(--line-strong);
-  border-top: 0;
-  border-radius: 0 0 1.45rem 1.45rem;
-  background: var(--surface);
-  box-shadow: 0 0.9rem 1.6rem color-mix(in srgb, var(--ink) 20%, transparent);
+  background: transparent;
   pointer-events: auto;
   touch-action: none;
 }
 
-.card-face.advanced-html-card-face .advanced-html-swipe-grip::before {
-  content: "";
-  position: absolute;
-  left: -2px;
-  right: -2px;
-  top: -0.62rem;
-  height: 0.98rem;
-  background: var(--surface);
+.card-face.advanced-html-card-face .advanced-html-swipe-grip span {
+  width: 2.75rem;
+  height: 0.3rem;
+  border-radius: 999px;
+  background: var(--line-strong);
+  box-shadow: 0 0 0 1px var(--line);
 }
 
-.card-face.advanced-html-card-face .advanced-html-swipe-grip span {
-  position: relative;
-  z-index: 1;
-  width: 2.6rem;
-  height: 0.25rem;
-  border-radius: 999px;
-  background: rgba(190, 204, 224, 0.82);
+.study-card.dragging .advanced-html-swipe-grip span {
+  background: var(--muted);
 }
 
 .card-bg {
@@ -1830,7 +1820,9 @@ html.reduce-motion .study-card-inner {
   -webkit-overflow-scrolling: touch;
   border: 0;
   border-radius: var(--advanced-html-canvas-radius, 20px);
-  background: color-mix(in srgb, var(--ink) 72%, transparent);
+  /* Transparent: a card whose HTML is shorter than the frame used to show a
+     dark band underneath it. */
+  background: transparent;
   pointer-events: auto;
   touch-action: pan-x pan-y;
 }

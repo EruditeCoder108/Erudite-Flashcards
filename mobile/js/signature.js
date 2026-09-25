@@ -132,11 +132,7 @@
       { transform: 'scale(1.045)' },
       { transform: 'scale(1)' }
     ], { duration: 520, easing: 'cubic-bezier(0.34, 1.4, 0.64, 1)' });
-    try {
-      root.Capacitor?.Plugins?.Haptics?.notification?.({ type: 'SUCCESS' });
-    } catch (_) {
-      // Haptics are optional.
-    }
+    root.EruditeHaptics?.success();
   }
 
   /**
