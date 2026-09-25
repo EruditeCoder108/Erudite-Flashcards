@@ -1,7 +1,7 @@
 (function (root) {
   'use strict';
 
-  // One source of truth for Smriti Pro. Everything that is gated (premade
+  // One source of truth for Erudite Pro. Everything that is gated (premade
   // decks now; ads and Pro-only features later) asks isPro() and listens with
   // onChange(). Purchases go through Google Play via RevenueCat. The last known
   // state is cached so Pro keeps working offline.

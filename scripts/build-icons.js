@@ -48,7 +48,7 @@ const MAP = {
   'table-cells-large': 'layout-grid', 'table-list': 'table', tag: 'tag', terminal: 'terminal', 'text-height': 'type',
   times: 'x', 'trash': 'trash', 'trash-can': 'trash-2', 'trash-restore': 'archive-restore', 'triangle-exclamation': 'triangle-alert',
   trophy: 'trophy', underline: 'underline', undo: 'undo-2', 'user-shield': 'shield-user', 'vector-square': 'square-dashed',
-  vial: 'test-tube', 'volume-high': 'volume-2', 'volume-up': 'volume-2', 'vote-yea': 'vote',
+  crosshairs: 'crosshair', vial: 'test-tube', vibrate: 'vibrate', 'volume-high': 'volume-2', 'volume-up': 'volume-2', 'vote-yea': 'vote',
   'wand-magic-sparkles': 'wand-sparkles', 'wifi-slash': 'wifi-off', xmark: 'x'
 };
 // Icons whose Font Awesome version is solid and reads better filled.

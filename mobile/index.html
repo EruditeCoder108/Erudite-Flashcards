@@ -5,9 +5,11 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; media-src 'self' data: blob: capacitor: cdvfile: http://localhost https://localhost; font-src 'self' data:; connect-src 'self' https://erudite-flashcards.netlify.app http://localhost https://localhost; frame-src 'none'; form-action 'none'">
   <script src="mobile/js/theme-bootstrap.js"></script>
   <script src="js/core/motion.js"></script>
+  <script src="js/core/haptics.js"></script>
+  <script src="js/core/sfx.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#07111f">
-  <title>Smriti</title>
+  <title>Erudite Flashcards</title>
   <link rel="icon" type="image/png" href="assets/icons/icon.png">
   <link rel="stylesheet" href="mobile/css/tokens.css">
   <link rel="stylesheet" href="mobile/css/icons.css">
@@ -34,24 +36,18 @@
         <div></div><div></div><div></div><div></div>
       </div>
     </div>
-    <strong id="app-loading-title">Smriti</strong>
+    <strong id="app-loading-title">Erudite Flashcards</strong>
     <p id="app-loading-copy">Preparing your library</p>
   </div>
 
   <section class="onboarding-shell hidden" id="onboarding-shell" data-step="0" role="dialog" aria-modal="true" aria-labelledby="onboarding-title-0" aria-describedby="onboarding-description-0">
-    <div class="onboarding-atmosphere" aria-hidden="true">
-      <span class="onboarding-glow glow-blue"></span>
-      <span class="onboarding-glow glow-green"></span>
-      <span class="onboarding-grid"></span>
-    </div>
-
     <header class="onboarding-header">
       <button type="button" class="onboarding-icon-button is-hidden" id="onboarding-back" data-onboarding-action="back" aria-label="Go to the previous onboarding screen">
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
       </button>
-      <div class="onboarding-brand" aria-label="Smriti">
+      <div class="onboarding-brand" aria-label="Erudite Flashcards">
         <img src="assets/icons/icon.png" alt="" draggable="false">
-
+        <span>Erudite</span>
       </div>
       <button type="button" class="onboarding-skip" data-onboarding-action="skip">Skip</button>
     </header>
@@ -63,30 +59,23 @@
     <main class="onboarding-stage">
       <article class="onboarding-screen onboarding-greeting-screen is-active" data-onboarding-step="0" aria-hidden="false">
         <button type="button" class="onboarding-name-skip" data-onboarding-action="skip-name">Skip for now</button>
-        <p class="hello-accessible-description" id="onboarding-description-0">Enter the name you would like Smriti to use.</p>
+        <p class="hello-accessible-description" id="onboarding-description-0">Enter the name you would like Erudite to use.</p>
         <div class="onboarding-hello-scene" id="onboarding-hello-scene">
-          <div class="hello-wave-cluster">
-            <div class="hello-hand-visual" aria-hidden="true">
-              <svg class="hello-hand" viewBox="0 0 36 36" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#F7DECE" d="M32.375 16.219c-1.381-.611-3.354.208-4.75 2.188c-.917 1.3-1.187 3.151-2.391 3.344c-.46.074-.71-.206-.84-.609c-.137-.68-.107-1.731.147-3.201l2.74-12.315c.218-.941-.293-1.852-1.523-2.149s-2.155.306-2.374 1.247L20.938 15.89c-.493 2.466-1.407 2.018-1.186-.775l.701-13.092C20.51 1.01 19.732.183 18.582.139c-1.15-.044-1.979.646-2.038 1.657l-.668 13.409c-.143 2.707-1.112 1.687-1.322-.274L13 4.083c-.159-1.023-1.118-1.73-2.268-1.546c-1.15.185-1.845 1.136-1.686 2.159l1.495 9.914c.593 3.785-.182 4.833-1.458.723L7.489 9.308c-.26-.967-1.213-1.567-2.41-1.231c-1.197.336-1.713 1.299-1.454 2.266l1.558 5.663c.651 4.077.651 5.686.651 8.493S7.125 36 17 36s11.906-10.031 12-10.666c0 0 .123-1.48 1.156-2.865a57.846 57.846 0 0 1 3.125-3.866c.317-.359.625-1.707-.906-2.384z"></path>
-                <path fill="#E0AA94" d="M24.911 21.741c-.3-.122-.554-.436-.584-1.119c-1.892.259-4.451.789-6.42 2.715c-2.556 2.499-2.992 5.2-2.971 7.007c.017 1.457.812 2.147 1.045-.012c.293-2.727 2.282-8.143 8.93-8.591z"></path>
-              </svg>
-              <span class="hello-wave-mark mark-one"></span>
-              <span class="hello-wave-mark mark-two"></span>
-            </div>
-            <h2 class="hello-hi" id="onboarding-title-0" tabindex="-1">Hello</h2>
-          </div>
+          <p class="ob-kicker hello-kicker">Erudite Flashcards</p>
+          <h2 class="hello-hi" id="onboarding-title-0" tabindex="-1" aria-label="Hello"><span style="--i:0">H</span><span style="--i:1">e</span><span style="--i:2">l</span><span style="--i:3">l</span><span style="--i:4">o</span><span style="--i:5" class="hello-dot">.</span></h2>
           <form class="onboarding-name-form" id="onboarding-name-form" novalidate>
             <label class="hello-name-line" for="onboarding-name-input">
-              <span class="sr-only">What should Smriti call you?</span>
-              <input id="onboarding-name-input" name="preferredName" type="text" maxlength="32" autocomplete="name" autocapitalize="words" enterkeyhint="done" placeholder="what should we call you?">
+              <span class="hello-name-label">What should we call you?</span>
+              <input id="onboarding-name-input" name="preferredName" type="text" maxlength="32" autocomplete="name" autocapitalize="words" enterkeyhint="done" placeholder="Your name">
+              <span class="hello-rule" aria-hidden="true"></span>
             </label>
-            <p class="hello-storage-note"><i class="fas fa-mobile-screen-button" aria-hidden="true"></i> Saved privately on this device.</p>
+            <p class="hello-storage-note">Saved on this phone only.</p>
             <p class="hello-name-error" id="onboarding-name-error" aria-live="polite"></p>
             <button type="submit" class="hello-name-continue">Continue <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
           </form>
           <div class="hello-personalized" id="onboarding-personalized-greeting" aria-live="polite">
-            <h1 class="celebrate-text">Hello, <span id="onboarding-personalized-name"></span>!</h1>
+            <h1 class="celebrate-text">Hello, <mark class="ob-highlight"><span id="onboarding-personalized-name"></span></mark>.</h1>
+            <p>Let&rsquo;s try something. It takes a minute.</p>
           </div>
         </div>
         <div class="onboarding-confetti-layer" id="onboarding-confetti-layer" aria-hidden="true"></div>
@@ -94,98 +83,79 @@
 
       <article class="onboarding-screen is-after memory-screen" data-onboarding-step="1" aria-hidden="true">
         <div class="onboarding-copy">
+          <p class="ob-kicker"><b>01</b> A small experiment</p>
           <h2 id="onboarding-title-1" tabindex="-1">Copy these six letters.</h2>
           <p id="onboarding-description-1">Type them below. That&rsquo;s it.</p>
         </div>
         <section class="memory-lab-card" aria-labelledby="memory-code-heading">
           <h3 id="memory-code-heading" class="sr-only">Six letters to copy</h3>
           <div class="memory-code-tiles" id="onboarding-memory-code" aria-live="polite" aria-label="Generated six-letter code"></div>
-          <button type="button" class="memory-regenerate" data-onboarding-action="regenerate-code"><i class="fas fa-rotate" aria-hidden="true"></i> Show me another</button>
           <label class="memory-entry" for="onboarding-code-input">
-            <span>Tap here and type</span>
+            <span class="memory-entry-label">Type here</span>
             <span class="memory-entry-slots" id="onboarding-code-slots" aria-hidden="true"></span>
             <input id="onboarding-code-input" type="text" maxlength="6" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="onboarding-code-error">
           </label>
           <p class="memory-code-error" id="onboarding-code-error" aria-live="polite"></p>
+          <button type="button" class="memory-regenerate" data-onboarding-action="regenerate-code"><i class="fas fa-rotate" aria-hidden="true"></i> Different letters</button>
         </section>
-        <p class="memory-hide-message" id="onboarding-hide-message" aria-live="polite">Nice.</p>
+        <p class="memory-hide-message" id="onboarding-hide-message" aria-live="polite">Got it.</p>
       </article>
 
       <article class="onboarding-screen is-after evidence-screen" data-onboarding-step="2" aria-hidden="true">
         <div class="onboarding-copy evidence-copy">
-          <p class="onboarding-eyebrow">A little science</p>
-          <h2 id="onboarding-title-2" tabindex="-1">Some study methods are simply better for memorization.</h2>
-          <p id="onboarding-description-2">Research says</p>
+          <p class="ob-kicker"><b>02</b> What the research says</p>
+          <h2 id="onboarding-title-2" tabindex="-1">Testing yourself beats <mark class="ob-highlight">reading it again</mark>.</h2>
+          <p id="onboarding-description-2" class="sr-only">Students who kept testing themselves remembered 80 percent a week later, against 36 percent for students who only studied again.</p>
         </div>
-        <div class="evidence-board">
-          <article class="evidence-tile evidence-main">
-            <span class="evidence-kicker">1-WEEK RETENTION TEST</span>
-            <h3>Trying to remember made a big difference.</h3>
-            <p class="evidence-story-p">In a classic experiment, college students learned 40 Swahili&ndash;English word pairs. After a correct answer, researchers varied whether a pair was studied again, tested again, both, or neither. One week later, the groups that kept testing remembered:</p>
-            <div class="evidence-compare" aria-label="Repeated testing about 80 percent remembered. Continued study but no further testing 36 percent remembered.">
-              <span class="compare-val"><strong><b data-count-to="80">0</b>%</strong><small>Kept testing</small></span>
-              <em class="compare-vs-divider">vs</em>
-              <span class="compare-val"><strong><b data-count-to="36">0</b>%</strong><small>Studied, but no more tests</small></span>
-            </div>
-          </article>
-          <article class="evidence-tile evidence-donut-tile">
-            <span class="evidence-kicker">THE RESULT</span>
-            <div class="evidence-donut" role="img" aria-label="Approximately 80 percent remembered after one week">
-              <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="donut-track" cx="50" cy="50" r="40"></circle><circle class="donut-value" cx="50" cy="50" r="40"></circle></svg>
-              <strong><b data-count-to="80">0</b>%</strong>
-            </div>
-            <h3>About 8 in 10 answers were still there.</h3>
-            <p>Students had kept practising recall.</p>
-          </article>
-          <article class="evidence-tile evidence-scale">
-            <span class="evidence-kicker">THE SCIENCE</span>
-            <h3>This finding is not alone.</h3>
-            <strong><b data-count-to="184">0</b></strong><span class="scale-unit"> articles</span>
-            <div class="research-counters"><span><b data-count-to="317">0</b> experiments</span><span><b data-count-to="839">0</b> assessments</span></div>
-            <div class="research-spark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <small>Researchers have studied spacing for more than a century.</small>
-          </article>
-          <article class="evidence-tile evidence-effort">
-            <span class="evidence-kicker">THE METHOD</span>
-            <h3>Pulling out an answer makes your brain work for it.</h3>
-            <div class="recall-chart" role="img" aria-label="Illustration showing recall as a stronger learning event than rereading"><span><i></i><b>Reread</b></span><span><i></i><b>Recall</b></span></div>
-            <p>That effort helps more than only seeing the answer again.</p>
-          </article>
-          <article class="evidence-tile evidence-spacing">
-            <span class="evidence-kicker">THE TIMING</span>
-            <h3>Strong memories can wait longer.</h3>
-            <div class="spacing-timeline" role="img" aria-label="Now, later, and later again with expanding gaps">
-              <span>Now</span><i></i><span>Later</span><i></i><span>Later again</span>
-            </div>
-            <p>Recall now. Return later. Let the next gap grow.</p>
-          </article>
-        </div>
-        <button type="button" class="view-sources-button" data-onboarding-action="open-sources"><i class="fas fa-book-open" aria-hidden="true"></i> See the studies</button>
+        <section class="evidence-tile evidence-chart" aria-label="One week later: kept testing, 80 percent remembered. Studied again without tests, 36 percent.">
+          <p class="evidence-lede">Students learned 40 Swahili&ndash;English word pairs. One week later, how many could they still recall?</p>
+          <div class="evidence-bar is-test" style="--value:80">
+            <span class="evidence-bar-label">Kept testing themselves</span>
+            <span class="evidence-bar-track"><i></i></span>
+            <strong><b data-count-to="80">0</b>%</strong>
+          </div>
+          <div class="evidence-bar is-study" style="--value:36">
+            <span class="evidence-bar-label">Kept studying, no more tests</span>
+            <span class="evidence-bar-track"><i></i></span>
+            <strong><b data-count-to="36">0</b>%</strong>
+          </div>
+          <p class="evidence-cite">Karpicke &amp; Roediger, <i>Science</i>, 2008</p>
+        </section>
+        <section class="evidence-tile evidence-scale">
+          <p><strong><b data-count-to="184">0</b> articles</strong> and <strong><b data-count-to="317">0</b> experiments</strong> point the same way. Recall is not a study hack. It is how memory works.</p>
+        </section>
+        <section class="evidence-tile evidence-spacing">
+          <svg class="spacing-line" viewBox="0 0 320 48" role="img" aria-label="Reviews spaced further and further apart">
+            <path class="spacing-rule" d="M8 30 H312"/>
+            <circle cx="12" cy="30" r="5"/><circle cx="40" cy="30" r="5"/><circle cx="92" cy="30" r="5"/><circle cx="176" cy="30" r="5"/><circle cx="300" cy="30" r="5"/>
+            <text x="12" y="12">now</text><text x="300" y="12" text-anchor="end">weeks later</text>
+          </svg>
+          <p><strong>Then space it out.</strong> Each time you remember, the next review can wait longer. Erudite works out when.</p>
+        </section>
+        <button type="button" class="view-sources-button" data-onboarding-action="open-sources">Read the studies <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
       </article>
 
       <article class="onboarding-screen is-after retrieval-screen" data-onboarding-step="3" aria-hidden="true">
         <div class="retrieval-card-state" id="onboarding-retrieval-card-state">
           <div class="onboarding-copy">
+            <p class="ob-kicker"><b>03</b> Your turn</p>
             <h2 id="onboarding-title-3" tabindex="-1">Remember those letters?</h2>
-            <p id="onboarding-description-3" class="onboarding-phase">Part 1 of 2 &middot; Think of the letters, then flip the card.</p>
+            <p id="onboarding-description-3" class="onboarding-phase">Think of them first. Then tap the card.</p>
           </div>
           <div class="onboarding-flip-demo" id="onboarding-flip-demo">
             <button type="button" class="onboarding-demo-card" data-onboarding-action="flip-card" aria-pressed="false" aria-label="Flip the flashcard to reveal your code">
               <span class="onboarding-demo-card-inner">
                 <span class="onboarding-demo-face onboarding-demo-front">
-                  <span class="demo-card-label">TERM</span>
-                  <strong>What were those six letters?</strong>
-                  <small><i class="fas fa-hand-pointer" aria-hidden="true"></i> Please <strong>think</strong> and then click the card to flip.</small>
+                  <span class="demo-card-label">Question</span>
+                  <strong>What were the six letters?</strong>
+                  <small>Say them in your head, then tap.</small>
                 </span>
                 <span class="onboarding-demo-face onboarding-demo-back">
-                  <span class="demo-card-label">ANSWER</span>
+                  <span class="demo-card-label">Answer</span>
                   <strong id="onboarding-retrieval-answer">KAVRAN</strong>
                   <span class="retrieval-card-message" aria-live="polite">
-                    <span style="--word:0">Remembered</span><span style="--word:1">it?</span>
-                    <span style="--word:2">You</span><span style="--word:3">strengthened</span><span style="--word:4">the</span><span style="--word:5">path.</span>
-                    <span style="--word:6">Missed</span><span style="--word:7">it?</span>
-                    <span style="--word:8">Seeing</span><span style="--word:9">the</span><span style="--word:10">answer</span><span style="--word:11">prepares</span><span style="--word:12">the</span><span style="--word:13">next</span><span style="--word:14">recall.</span>
-                    <span style="--word:15">Both</span><span style="--word:16">move</span><span style="--word:17">learning</span><span style="--word:18">forward.</span>
+                    <span style="--word:0">Got</span> <span style="--word:1">it?</span> <span style="--word:2">That</span> <span style="--word:3">recall</span> <span style="--word:4">just</span> <span style="--word:5">made</span> <span style="--word:6">it</span> <span style="--word:7">stronger.</span>
+                    <span style="--word:8">Missed</span> <span style="--word:9">it?</span> <span style="--word:10">Trying</span> <span style="--word:11">first</span> <span style="--word:12">still</span> <span style="--word:13">helps</span> <span style="--word:14">it</span> <span style="--word:15">stick.</span>
                   </span>
                 </span>
               </span>
@@ -194,69 +164,33 @@
         </div>
         <div class="retrieval-explanation" id="onboarding-retrieval-explanation" aria-hidden="true">
           <div class="onboarding-copy">
-            <p class="onboarding-phase">Part 2 of 2 &middot; See why the effort helps.</p>
-            <h2 tabindex="-1">Why trying works better than rereading.</h2>
-            <p>Think of the path to a memory like a groove.</p>
+            <p class="ob-kicker">Why that worked</p>
+            <h2 tabindex="-1">Every recall cuts the groove deeper.</h2>
           </div>
-          <div class="groove-metaphor" role="img" aria-label="A textured sandstone moves across a granite stone and gradually forms a deeper groove">
-            <svg class="stone-texture-defs" aria-hidden="true" focusable="false">
-              <defs>
-                <filter id="onboarding-granite-texture" x="-20%" y="-20%" width="140%" height="140%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="4" result="graniteEdge"/>
-                  <feDisplacementMap in="SourceGraphic" in2="graniteEdge" scale="12" xChannelSelector="R" yChannelSelector="G" result="graniteRugged"/>
-                  <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="4" result="graniteSurface"/>
-                  <feDiffuseLighting in="graniteSurface" lighting-color="#ffffff" surfaceScale="2" result="graniteLight"><feDistantLight azimuth="125" elevation="55"/></feDiffuseLighting>
-                  <feComposite operator="in" in="graniteLight" in2="graniteRugged" result="graniteMasked"/>
-                  <feBlend mode="multiply" in="graniteRugged" in2="graniteMasked" result="graniteBlended"/>
-                  <feComposite operator="in" in="graniteBlended" in2="SourceGraphic"/>
-                </filter>
-                <filter id="onboarding-sandstone-texture" x="-20%" y="-20%" width="140%" height="140%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" result="sandEdge"/>
-                  <feDisplacementMap in="SourceGraphic" in2="sandEdge" scale="9" xChannelSelector="R" yChannelSelector="G" result="sandRugged"/>
-                  <feTurbulence type="fractalNoise" baseFrequency="0.15" numOctaves="3" result="sandSurface"/>
-                  <feDiffuseLighting in="sandSurface" lighting-color="#d9be9b" surfaceScale="1" result="sandLight"><feDistantLight azimuth="145" elevation="65"/></feDiffuseLighting>
-                  <feComposite operator="in" in="sandLight" in2="sandRugged" result="sandMasked"/>
-                  <feBlend mode="multiply" in="sandRugged" in2="sandMasked" result="sandBlended"/>
-                  <feComposite operator="in" in="sandBlended" in2="SourceGraphic"/>
-                </filter>
-              </defs>
-            </svg>
-            <div class="real-stone-stage" aria-hidden="true">
-              <div class="stone-dust"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="stone-slider"></div>
-              <div class="stone-base"><div class="stone-groove-real"></div></div>
-            </div>
-            <span>A metaphor: effort makes the path easier to follow.</span>
-          </div>
+          <figure class="groove-figure">
+            <div class="groove-stage" id="onboarding-groove" role="img" aria-label="A stone rubs a groove into a slab. Light rubs from rereading barely mark it; firm passes from recall cut a deep groove."></div>
+            <figcaption class="groove-caption" id="onboarding-groove-caption" aria-hidden="true"><span class="groove-step is-reread"><b>Rereading</b> a light rub</span><span class="groove-step is-recall"><b>Recall</b> the stone bites in</span></figcaption>
+          </figure>
           <div class="groove-explanation-lines">
-            <p><strong>Rereading</strong> is a light rub. It feels familiar, but asks little of your brain.</p>
-            <p><strong>Active recall</strong> makes your brain reach for the answer. That effort leaves a stronger path.</p>
-            <p>Flashcards create that useful effort, one question at a time.</p>
+            <p><strong>Rereading</strong> feels familiar, so it feels like learning. It asks almost nothing of your memory.</p>
+            <p><strong>Recall</strong> makes you reach for the answer. That effort is what makes it stay.</p>
           </div>
         </div>
       </article>
 
       <article class="onboarding-screen is-after advantages-screen" data-onboarding-step="4" aria-hidden="true">
         <div class="onboarding-copy">
-          <p class="onboarding-eyebrow">Why Smriti?</p>
-          <h2 id="onboarding-title-4" tabindex="-1">Simple up front. Serious underneath.</h2>
-          <p id="onboarding-description-4">Start easy. Go deeper whenever you want.</p>
+          <p class="ob-kicker"><b>04</b> What&rsquo;s inside</p>
+          <h2 id="onboarding-title-4" tabindex="-1">Simple on top. Serious underneath.</h2>
+          <p id="onboarding-description-4">Everything here is built around that one idea.</p>
         </div>
-        <div class="feature-bento">
-          <article class="feature-tile feature-fsrs">
-            <span class="feature-icon"><i class="fas fa-brain" aria-hidden="true"></i></span>
-            <span class="feature-kicker">SCIENCE-BACKED REVIEW</span>
-            <h3>FSRS, timed for your memory</h3>
-            <p>Reviews return when they&rsquo;re useful&mdash;not just &ldquo;later.&rdquo;</p>
-            <div class="feature-ratings" aria-label="Example live review intervals"><span>Again <b>1m</b></span><span>Hard <b>6m</b></span><span>Good <b>10m</b></span><span>Easy <b>10d</b></span></div>
-            <small>Set retention and limits per deck. Prefer normal flashcards? Just flip and go.</small>
-          </article>
-          <article class="feature-tile feature-cards"><span class="feature-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span><h3>Cards without limits</h3><p>Use cloze, image occlusion, maths, code, media and HTML/CSS.</p><div class="feature-card-stack" aria-hidden="true"><i>&lt;/&gt;</i><i>[...]</i><i class="occlusion-card"><span class="mask-box"></span><span class="mask-box active">?</span></i></div></article>
-          <article class="feature-tile feature-ai"><span class="feature-icon"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i></span><h3>Your own free ChatGPT app</h3><p>It can make high-quality flashcards for this app—just use the prompt we give you.</p><div class="feature-flow" aria-hidden="true"><span>PDF</span><i class="fas fa-arrow-right"></i><span>ChatGPT</span><i class="fas fa-arrow-right"></i><span>Deck</span></div></article>
-          <article class="feature-tile feature-focus"><span class="feature-icon"><i class="fas fa-bullseye" aria-hidden="true"></i></span><h3>Know what to study next</h3><p>Jump to weak, overdue or tagged cards. See what&rsquo;s improving.</p><div class="feature-mini-bars" aria-hidden="true"><i></i><i></i><i></i></div></article>
-          <article class="feature-tile feature-private"><span class="feature-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></span><h3>Private by design</h3><p>No account needed. Your decks and progress stay on your phone.</p><div class="privacy-device" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i><span class="fas fa-lock"></span></div></article>
-          <article class="feature-tile feature-premade"><span class="feature-icon"><i class="fas fa-book-open" aria-hidden="true"></i></span><div><h3>Great decks, ready now</h3><p>Start with carefully built NCERT Biology decks. More are on the way.</p><small>QUALITY FIRST &middot; MORE COMING</small></div></article>
-        </div>
+        <ol class="feature-list">
+          <li style="--i:0"><i class="fas fa-brain" aria-hidden="true"></i><span><strong>Reviews on the right day</strong><small>FSRS schedules each card just before you would forget it.</small></span></li>
+          <li style="--i:1"><i class="fas fa-layer-group" aria-hidden="true"></i><span><strong>Any kind of card</strong><small>Cloze, image occlusion, maths, code, audio, and HTML.</small></span></li>
+          <li style="--i:2"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i><span><strong>Decks from a PDF</strong><small>Copy our prompt into ChatGPT, Gemini, or Claude and import the result.</small></span></li>
+          <li style="--i:3"><i class="fas fa-book-open" aria-hidden="true"></i><span><strong>Ready-made chapters</strong><small>NCERT, NEET, and JEE decks, built card by card.</small></span></li>
+          <li style="--i:4"><i class="fas fa-shield-halved" aria-hidden="true"></i><span><strong>Private by default</strong><small>No account. Your decks and progress stay on this phone.</small></span></li>
+        </ol>
       </article>
     </main>
 
@@ -267,7 +201,7 @@
     <div class="onboarding-sources-backdrop hidden" id="onboarding-sources-backdrop" data-onboarding-action="close-sources" aria-hidden="true"></div>
     <section class="onboarding-sources-sheet hidden" id="onboarding-sources-sheet" role="dialog" aria-modal="true" aria-labelledby="onboarding-sources-title">
       <div class="sources-sheet-handle" aria-hidden="true"></div>
-      <div class="sources-sheet-header"><div><p>LOCAL REFERENCE SHEET</p><h2 id="onboarding-sources-title">Research sources</h2></div><button type="button" data-onboarding-action="close-sources" aria-label="Close research sources"><i class="fas fa-xmark" aria-hidden="true"></i></button></div>
+      <div class="sources-sheet-header"><div><p>References</p><h2 id="onboarding-sources-title">The studies</h2></div><button type="button" data-onboarding-action="close-sources" aria-label="Close research sources"><i class="fas fa-xmark" aria-hidden="true"></i></button></div>
       <div class="sources-list">
         <article><span>Retrieval practice</span><h3>The Critical Importance of Retrieval for Learning</h3><p>Jeffrey D. Karpicke &amp; Henry L. Roediger III &middot; Science &middot; 2008</p><a href="https://doi.org/10.1126/science.1152408" target="_blank" rel="noopener noreferrer">DOI 10.1126/science.1152408 <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></article>
         <article><span>Distributed practice</span><h3>Distributed Practice in Verbal Recall Tasks</h3><p>Nicholas J. Cepeda et al. &middot; Psychological Bulletin &middot; 2006</p><a href="https://doi.org/10.1037/0033-2909.132.3.354" target="_blank" rel="noopener noreferrer">DOI 10.1037/0033-2909.132.3.354 <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></article>
@@ -283,7 +217,7 @@
         <img src="assets/icons/icon.png" alt="" class="mobile-brand-logo" draggable="false">
         <div>
           <p class="mobile-eyebrow" id="mobile-eyebrow">Today</p>
-          <h1 id="mobile-title">Smriti</h1>
+          <h1 id="mobile-title">Erudite Flashcards</h1>
         </div>
       </div>
       <div class="mobile-header-quote" id="mobile-header-quote"></div>
@@ -314,36 +248,17 @@
     </header>
 
     <main class="mobile-main" id="mobile-main">
-      <section class="mobile-view active" id="view-today" aria-labelledby="today-heading">
+      <section class="mobile-view active" id="view-today" aria-labelledby="today-greeting-title">
+        <div class="today-greeting" id="today-greeting"></div>
         <div class="today-hero surface-card" id="today-hero"></div>
-        <div class="section-block insights-section">
+        <div class="section-block today-next">
           <div class="section-title-row">
-            <h2>Insights</h2>
-            <button type="button" class="small-icon-button" data-action="refresh-analytics" aria-label="Refresh insights">
-              <i class="fas fa-rotate"></i>
-            </button>
-          </div>
-          <div class="analytics-dashboard" id="analytics-dashboard"></div>
-        </div>
-        <div class="section-block custom-study-section">
-          <div class="section-title-row">
-            <h2>Custom Study</h2>
-          </div>
-          <div class="custom-study-panel" id="custom-study-panel"></div>
-        </div>
-        <div class="section-block">
-          <div class="section-title-row">
-            <h2 id="today-heading">Continue Studying</h2>
-            <button type="button" class="text-button" data-action="tab-library">See all</button>
+            <h2 id="today-heading">Up next</h2>
+            <button type="button" class="text-button" data-action="tab-library">All decks</button>
           </div>
           <div class="deck-stack" id="continue-list"></div>
         </div>
-        <div class="section-block">
-          <div class="section-title-row">
-            <h2>Recent Activity</h2>
-          </div>
-          <div class="activity-list" id="activity-list"></div>
-        </div>
+        <div class="today-links" id="today-links"></div>
       </section>
 
       <section class="mobile-view" id="view-library" aria-labelledby="library-heading">
@@ -509,11 +424,12 @@
         <button type="button" class="pro-row" data-action="open-pro">
           <span class="pro-row-mark" aria-hidden="true"><i class="fas fa-star"></i></span>
           <span>
-            <strong>Smriti Pro</strong>
+            <strong>Erudite Pro</strong>
             <small id="more-pro-label">Unlock full premade chapters</small>
           </span>
           <i class="fas fa-chevron-right" aria-hidden="true"></i>
         </button>
+        <p class="settings-group-title">Study</p>
         <div class="settings-list">
           <button type="button" class="settings-row" data-action="toggle-srs">
             <span class="settings-icon brain"><i class="fas fa-brain"></i></span>
@@ -547,54 +463,9 @@
             </span>
             <i class="fas fa-chevron-right"></i>
           </button>
-          <button type="button" class="settings-row" data-action="toggle-sound">
-            <span class="settings-icon"><i class="fas fa-volume-up"></i></span>
-            <span>
-              <strong>Sound Effects</strong>
-              <small id="more-sound-label">On</small>
-            </span>
-            <span class="switch" id="sound-switch"><span></span></span>
-          </button>
-          <button type="button" class="settings-row highlighted" data-action="import-help">
-            <span class="settings-icon"><i class="fas fa-circle-question"></i></span>
-            <span><strong>Create & import flashcards</strong><small>Creator guide, AI format guide, and custom AI prompt</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
-          <button type="button" class="settings-row" data-action="export-backup">
-            <span class="settings-icon"><i class="fas fa-file-export"></i></span>
-            <span><strong>Export Backup</strong><small>Share a full local JSON backup</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
-          <button type="button" class="settings-row" data-action="import-backup">
-            <span class="settings-icon"><i class="fas fa-file-import"></i></span>
-            <span><strong>Import Backup</strong><small>Restore from desktop or another phone</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
-          <button type="button" class="settings-row" data-action="replay-onboarding">
-            <span class="settings-icon"><i class="fas fa-compass"></i></span>
-            <span><strong>Replay introduction</strong><small>See how active recall, Smart Review, and AI deck creation work</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
-          <button type="button" class="settings-row" data-action="open-privacy">
-            <span class="settings-icon"><i class="fas fa-shield-halved"></i></span>
-            <span><strong>Privacy &amp; Data</strong><small>See what stays on your device and your controls</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
-          <button type="button" class="settings-row danger" data-action="clear-all-data">
-            <span class="settings-icon"><i class="fas fa-trash-can"></i></span>
-            <span><strong>Delete All Local Data</strong><small>Remove decks, media, study history, backups, and settings</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
-          <button type="button" class="settings-row" data-action="copy-export">
-            <span class="settings-icon"><i class="fas fa-copy"></i></span>
-            <span><strong>Copy Export</strong><small>Copy decks as text to clipboard</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
-          <button type="button" class="settings-row" data-action="paste-import">
-            <span class="settings-icon"><i class="fas fa-clipboard"></i></span>
-            <span><strong>Paste Import</strong><small>Import decks from clipboard text</small></span>
-            <i class="fas fa-chevron-right"></i>
-          </button>
+        </div>
+        <p class="settings-group-title">Look &amp; feel</p>
+        <div class="settings-list">
           <button type="button" class="settings-row" data-action="select-theme">
             <span class="settings-icon"><i class="fas fa-palette"></i></span>
             <span>
@@ -614,6 +485,25 @@
             </span>
             <span class="switch" id="paper-switch"><span></span></span>
           </button>
+          <button type="button" class="settings-row" data-action="toggle-sound">
+            <span class="settings-icon"><i class="fas fa-volume-up"></i></span>
+            <span>
+              <strong>Sound Effects</strong>
+              <small id="more-sound-label">On</small>
+            </span>
+            <span class="switch" id="sound-switch"><span></span></span>
+          </button>
+          <button type="button" class="settings-row" data-action="toggle-haptics">
+            <span class="settings-icon"><i class="fas fa-vibrate"></i></span>
+            <span>
+              <strong>Haptics</strong>
+              <small id="more-haptics-label">On</small>
+            </span>
+            <span class="switch" id="haptics-switch"><span></span></span>
+          </button>
+        </div>
+        <p class="settings-group-title">Cards</p>
+        <div class="settings-list">
           <button type="button" class="settings-row" data-action="select-typography">
             <span class="settings-icon"><i class="fas fa-font"></i></span>
             <span>
@@ -638,6 +528,29 @@
             </span>
             <input type="range" id="mobile-bg-opacity" class="mobile-opacity-slider" min="0" max="1" step="0.05" value="0.32">
           </label>
+          <button type="button" class="settings-row" data-action="open-browser">
+            <span class="settings-icon"><i class="fas fa-table-list"></i></span>
+            <span><strong>Card Browser</strong><small>Advanced desktop-style card table</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <p class="settings-group-title">Create &amp; import</p>
+        <div class="settings-list">
+          <button type="button" class="settings-row highlighted" data-action="import-help">
+            <span class="settings-icon"><i class="fas fa-circle-question"></i></span>
+            <span><strong>Create & import flashcards</strong><small>Creator guide, AI format guide, and custom AI prompt</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="paste-import">
+            <span class="settings-icon"><i class="fas fa-clipboard"></i></span>
+            <span><strong>Paste Import</strong><small>Import decks from clipboard text</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="copy-export">
+            <span class="settings-icon"><i class="fas fa-copy"></i></span>
+            <span><strong>Copy Export</strong><small>Copy decks as text to clipboard</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
           <div class="settings-row settings-input-row">
             <span class="settings-icon"><i class="fas fa-divide"></i></span>
             <span style="flex: 1;">
@@ -654,9 +567,35 @@
             </span>
             <input type="text" id="mobile-import-card-sep" class="mobile-settings-input" value="@" style="width: 3.5rem; text-align: center; background: var(--theme-input, rgba(255, 255, 255, 0.05)); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-family: inherit; padding: 0.25rem;">
           </div>
-          <button type="button" class="settings-row" data-action="open-browser">
-            <span class="settings-icon"><i class="fas fa-table-list"></i></span>
-            <span><strong>Card Browser</strong><small>Advanced desktop-style card table</small></span>
+        </div>
+        <p class="settings-group-title">Your data</p>
+        <div class="settings-list">
+          <button type="button" class="settings-row" data-action="export-backup">
+            <span class="settings-icon"><i class="fas fa-file-export"></i></span>
+            <span><strong>Export Backup</strong><small>Share a full local JSON backup</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="import-backup">
+            <span class="settings-icon"><i class="fas fa-file-import"></i></span>
+            <span><strong>Import Backup</strong><small>Restore from desktop or another phone</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="open-privacy">
+            <span class="settings-icon"><i class="fas fa-shield-halved"></i></span>
+            <span><strong>Privacy &amp; Data</strong><small>See what stays on your device and your controls</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row danger" data-action="clear-all-data">
+            <span class="settings-icon"><i class="fas fa-trash-can"></i></span>
+            <span><strong>Delete All Local Data</strong><small>Remove decks, media, study history, backups, and settings</small></span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <p class="settings-group-title">Help</p>
+        <div class="settings-list">
+          <button type="button" class="settings-row" data-action="replay-onboarding">
+            <span class="settings-icon"><i class="fas fa-compass"></i></span>
+            <span><strong>Replay introduction</strong><small>See how active recall, Smart Review, and AI deck creation work</small></span>
             <i class="fas fa-chevron-right"></i>
           </button>
           <details class="settings-diagnostics">
@@ -1234,7 +1173,7 @@ Back:
           </section>
           <section>
             <h4>Cloze and reverse examples</h4>
-            <p>Cloze cards hide answers inside a sentence. If one card has <code>{{c1::...}}</code> and <code>{{c2::...}}</code>, Smriti creates separate recall cards for those blanks. Reverse cards are better for terms that should be remembered both ways.</p>
+            <p>Cloze cards hide answers inside a sentence. If one card has <code>{{c1::...}}</code> and <code>{{c2::...}}</code>, Erudite creates separate recall cards for those blanks. Reverse cards are better for terms that should be remembered both ways.</p>
             <div class="mini-example-list">
               <div class="mini-example-card">
                 <strong>Cloze</strong>
@@ -1397,7 +1336,7 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
             </div>
             <p>Keep media local to the package. Use paths like <code>media/file.webp</code>; avoid external URLs and giant Base64 strings.</p>
             <div class="pb-tip-box" style="background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.25); color: #60a5fa; margin-top: 0.5rem; font-size: 0.76rem; border-radius: 6px; padding: 0.4rem 0.6rem; border: 1px solid; text-align: left; width: 100%;">
-              <i class="fas fa-image"></i> <strong>Auto-Attached Images:</strong> If you use an HTML image tag (e.g., <code>&lt;img src="media/file.webp"&gt;</code>) in a normal card, Smriti automatically converts it into a native attached image during import.
+              <i class="fas fa-image"></i> <strong>Auto-Attached Images:</strong> If you use an HTML image tag (e.g., <code>&lt;img src="media/file.webp"&gt;</code>) in a normal card, Erudite automatically converts it into a native attached image during import.
             </div>
             <p style="margin-top: 0.5rem; text-align: center;">
               <button type="button" class="text-button" id="help-formats-open-converter-btn" style="font-size: 0.82rem; text-decoration: underline; color: var(--amber); font-weight: 600; background: transparent; border: none; cursor: pointer; padding: 0.25rem;">
@@ -1411,13 +1350,13 @@ Newton's law,"\(F = ma\)","physics,forces",true</code></pre>
         <div class="modal-tab-content" id="help-tab-rules">
           <section>
             <h4>Copy this for an AI</h4>
-            <p>This section is not a user questionnaire. It is a raw technical guide for any AI model that needs to create Smriti TXT, JSON, or ZIP flashcards.</p>
+            <p>This section is not a user questionnaire. It is a raw technical guide for any AI model that needs to create Erudite TXT, JSON, or ZIP flashcards.</p>
             <div class="code-block-wrapper">
               <div class="code-block-header">
                 <span class="code-block-title">erudite-ai-format-guide.txt</span>
                 <button type="button" class="code-block-copy" data-copy-target="code-ai-format-guide" title="Copy AI Guide" aria-label="Copy AI formatting guide"><i class="fas fa-copy" aria-hidden="true"></i></button>
               </div>
-              <pre class="help-code help-code-large"><code id="code-ai-format-guide">You are creating importable study decks for Smriti.
+              <pre class="help-code help-code-large"><code id="code-ai-format-guide">You are creating importable study decks for Erudite.
 
 Your job:
 - Convert source material into flashcards, not notes.
@@ -1569,14 +1508,14 @@ Image occlusion rules:
 - Direct JSON must use an image data URL.
 - ZIP deck.json may use "image": "media/file.webp".
 - Best AI-safe mask format: set occlusion.units to "px", include occlusion.imageWidth and occlusion.imageHeight, and use bboxPx: [left, top, width, height].
-- Pixel boxes must be measured on the final cropped image that Smriti will display, not the PDF page and not a screenshot with a different scale.
+- Pixel boxes must be measured on the final cropped image that Erudite will display, not the PDF page and not a screenshot with a different scale.
 - guessMode "hide-all" (default) covers every label and asks one; "hide-one" leaves the other labels visible as context.
 - Normalized x/y/w/h values from 0 to 1 also work when you are certain they are relative to the final image.
 - If using normalized boxes, x and y are top-left position; w and h are width and height.
 - shape is rect or ellipse.
 - Every mask needs answer. hint is optional.
 - Each mask becomes a separate study card.
-- If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Smriti automatically turns each mask into its own study card.
+- If one diagram/image has several labels to test, create ONE image-occlusion card using that image and put ALL label masks in the same occlusion.masks array. Do not duplicate the same image into many one-mask cards. Erudite automatically turns each mask into its own study card.
 - Use image occlusion for labels, anatomy, maps, apparatus, graphs, and diagrams where hiding a part tests recall.
 - Do not add extra masks for arrows, decorative text, repeated labels, uncertain labels, captions, or parts you cannot name confidently.
 - For crowded diagrams, use about 3-12 high-value masks per image. Split into multiple cropped images only when one full image is too crowded or unreadable.
@@ -1667,7 +1606,7 @@ media/
   timeline.webp
 
 If you cannot attach a ZIP file:
-- Return Smriti Package Source instead.
+- Return Erudite Package Source instead.
 - Start exactly with ERUDITE_PACKAGE_SOURCE_V1.
 - Then provide one valid JSON object:
 {
@@ -1786,6 +1725,35 @@ If you cannot attach a ZIP file:
     </div>
   </div>
 
+  <div class="mobile-modal-overlay page-sheet hidden" id="insights-sheet" role="dialog" aria-modal="true" aria-labelledby="insights-sheet-title">
+    <div class="page-sheet-panel">
+      <header class="page-sheet-head">
+        <button type="button" class="icon-button" data-action="close-page-sheet" aria-label="Close insights"><i class="fas fa-chevron-down"></i></button>
+        <h2 id="insights-sheet-title">Insights</h2>
+        <button type="button" class="icon-button" data-action="refresh-analytics" aria-label="Refresh insights"><i class="fas fa-rotate"></i></button>
+      </header>
+      <div class="page-sheet-body">
+        <div class="analytics-dashboard" id="analytics-dashboard"></div>
+        <h3 class="page-sheet-subhead">Recent activity</h3>
+        <div class="activity-list" id="activity-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-modal-overlay page-sheet hidden" id="focus-sheet" role="dialog" aria-modal="true" aria-labelledby="focus-sheet-title">
+    <div class="page-sheet-panel">
+      <header class="page-sheet-head">
+        <button type="button" class="icon-button" data-action="close-page-sheet" aria-label="Close focused practice"><i class="fas fa-chevron-down"></i></button>
+        <h2 id="focus-sheet-title">Focused practice</h2>
+        <span class="page-sheet-head-spacer" aria-hidden="true"></span>
+      </header>
+      <div class="page-sheet-body">
+        <p class="page-sheet-lede"><b>Practice</b> drills the cards without touching their schedule. <b>SRS review</b> counts as a real review.</p>
+        <div class="custom-study-panel" id="custom-study-panel"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="mobile-modal-overlay hidden" id="pro-overlay" role="dialog" aria-modal="true" aria-labelledby="pro-title">
     <div class="mobile-modal-card pro-card">
       <button type="button" class="pro-close" data-action="close-pro" aria-label="Close"><i class="fas fa-xmark"></i></button>
@@ -1794,7 +1762,7 @@ If you cannot attach a ZIP file:
         <span class="pro-hero-card middle"></span>
         <span class="pro-hero-card front"><i class="fas fa-star"></i></span>
       </div>
-      <h3 id="pro-title" class="pro-title">Smriti Pro</h3>
+      <h3 id="pro-title" class="pro-title">Erudite Pro</h3>
       <p class="pro-lede">The full premade library for NEET, JEE, and boards, built chapter by chapter.</p>
       <ul class="pro-benefits">
         <li><i class="fas fa-book-open" aria-hidden="true"></i><span><b>Every premade chapter, complete.</b> Free decks stop after the first 20 cards.</span></li>
@@ -2193,7 +2161,7 @@ If you cannot attach a ZIP file:
       <div class="mobile-modal-scroll-content">
         <p id="import-error-msg" style="font-size: 0.88rem; line-height: 1.5; color: var(--text); margin-bottom: 0.8rem;"></p>
         <p style="font-size: 0.78rem; line-height: 1.4; color: var(--muted);">
-          Smriti cannot process this ZIP package. You can copy the recovery instructions below, paste them in your AI chat, and ask it to correct the output.
+          Erudite cannot process this ZIP package. You can copy the recovery instructions below, paste them in your AI chat, and ask it to correct the output.
         </p>
       </div>
       <div class="mobile-modal-actions" style="flex-direction: column; gap: 0.5rem; width: 100%;">
@@ -2237,7 +2205,7 @@ If you cannot attach a ZIP file:
       <h3 id="pb-convert-text-title"><i class="fas fa-file-import"></i> Build ZIP from AI Output</h3>
       <div class="mobile-modal-scroll-content">
         <p style="font-size: 0.82rem; line-height: 1.45; color: var(--muted); margin: 0 0 0.8rem 0;">
-          Paste the structured output (with the <code>ERUDITE_PACKAGE_SOURCE_V1</code> marker or JSON block) returned by Gemini or Claude. Smriti will convert it into a ZIP deck locally.
+          Paste the structured output (with the <code>ERUDITE_PACKAGE_SOURCE_V1</code> marker or JSON block) returned by Gemini or Claude. Erudite will convert it into a ZIP deck locally.
         </p>
         <div class="mobile-modal-field">
           <textarea id="pb-convert-textarea" class="mobile-modal-textarea" rows="10" placeholder="Paste ERUDITE_PACKAGE_SOURCE_V1 text here..."></textarea>
@@ -2352,7 +2320,7 @@ If you cannot attach a ZIP file:
                     <strong style="font-size: 0.84rem; color: var(--text);">ChatGPT</strong>
                     <span style="font-size: 0.6rem; font-weight: 800; background: var(--surface-3); border: 1px solid var(--line); color: var(--green); padding: 0.1rem 0.35rem; border-radius: 4px; text-transform: uppercase;">Recommended</span>
                   </div>
-                  <small style="display: block; font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; font-weight: 500; line-height: 1.3;"><strong>Best for full ZIP decks with images.</strong> Recommended for Smriti ZIP packages.</small>
+                  <small style="display: block; font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; font-weight: 500; line-height: 1.3;"><strong>Best for full ZIP decks with images.</strong> Recommended for Erudite ZIP packages.</small>
                 </div>
               </button>
               <button type="button" class="provider-card" data-ai-provider="claude" style="min-height: auto; flex-direction: row; justify-content: flex-start; text-align: left; padding: 0.75rem 1rem; width: 100%;">
@@ -2537,6 +2505,7 @@ If you cannot attach a ZIP file:
   <script src="js/mobile/billing-config.js"></script>
   <script src="js/core/entitlements.js"></script>
   <script src="mobile/js/signature.js"></script>
+  <script src="mobile/js/onboarding-groove.js"></script>
   <script src="mobile/js/mobile-app.js"></script>
 </body>
 </html>

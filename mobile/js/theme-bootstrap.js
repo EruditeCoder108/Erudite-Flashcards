@@ -85,6 +85,9 @@
     if (!onboardingComplete || forceOnboarding) {
       root.classList.add('onboarding-pending');
     }
+    // Onboarding is always printed on paper, whatever the app setting.
+    const tile = grainTile();
+    if (tile) root.style.setProperty('--onboarding-grain', `url("${tile}")`);
   } catch (_) {
     // Use the default theme when storage is unavailable.
   }

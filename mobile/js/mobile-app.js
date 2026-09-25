@@ -216,6 +216,8 @@
     customStudyPanel: document.getElementById('custom-study-panel'),
     continueList: document.getElementById('continue-list'),
     activityList: document.getElementById('activity-list'),
+    todayGreeting: document.getElementById('today-greeting'),
+    todayLinks: document.getElementById('today-links'),
     libraryList: document.getElementById('library-list'),
     createForm: document.getElementById('mobile-create-form'),
     createTitle: document.getElementById('mobile-create-title'),
@@ -241,6 +243,8 @@
     moreSrsLabel: document.getElementById('more-srs-label'),
     soundSwitch: document.getElementById('sound-switch'),
     moreSoundLabel: document.getElementById('more-sound-label'),
+    hapticsSwitch: document.getElementById('haptics-switch'),
+    moreHapticsLabel: document.getElementById('more-haptics-label'),
     paperSwitch: document.getElementById('paper-switch'),
     morePaperLabel: document.getElementById('more-paper-label'),
     htmlInteractionSwitch: document.getElementById('html-interaction-switch'),
@@ -727,51 +731,48 @@
   }
 
   const APP_SOUNDS = Object.freeze({
-    click: { src: 'assets/flashcard-assets/click.mp3', poolSize: 2 },
-    flip: { src: 'assets/flashcard-assets/flip-sound.mp3', poolSize: 1 },
-    star: { src: 'assets/audio/Star.mp3', poolSize: 1 },
-    import: { src: 'assets/flashcard-assets/import.mp3', poolSize: 1 }
+    click: 'assets/flashcard-assets/click.mp3',
+    flip: 'assets/flashcard-assets/flip-sound.mp3',
+    star: 'assets/audio/Star.mp3',
+    import: 'assets/flashcard-assets/import.mp3'
   });
-  const appSoundPools = new Map();
-  let lastHapticAt = 0;
+  const sfx = window.EruditeSfx;
+  // Short sounds decode now; the long ones load on first use.
+  Object.entries(APP_SOUNDS).forEach(([name, src]) => sfx?.register(name, src, { preload: name === 'click' || name === 'flip' }));
+  const haptics = window.EruditeHaptics || { tick() {}, tap() {}, toggle() {}, threshold() {}, longPress() {}, success() {}, warning() {}, setEnabled() {}, isEnabled: () => false };
 
-  function triggerHaptic() {
-    const now = performance.now();
-    // Do not queue dozens of vibrations while the user is rapidly selecting items.
-    if (now - lastHapticAt < 80) return;
-    lastHapticAt = now;
-    try {
-      const Haptics = window.Capacitor?.Plugins?.Haptics;
-      if (Haptics && typeof Haptics.impact === 'function') {
-        Haptics.impact({ style: 'light' }).catch(() => {});
-      } else if (navigator.vibrate) {
-        navigator.vibrate(15);
-      }
-    } catch (_e) {}
+  // Which taps deserve a haptic. Ordinary buttons get none; feedback on every
+  // touch stops meaning anything. data-haptic="none|tick|tap|..." overrides.
+  function hapticForClick(target) {
+    const explicit = target.closest('[data-haptic]');
+    if (explicit) {
+      const kind = explicit.dataset.haptic;
+      if (kind && kind !== 'none') haptics.perform?.(kind);
+      return;
+    }
+    const toggle = target.closest('.settings-row [role="switch"], .settings-row .switch, .settings-row[data-action^="toggle-"]');
+    if (toggle) {
+      // The row re-renders after the action; read the switch before it flips.
+      const row = toggle.closest('.settings-row') || toggle;
+      const wasOn = row.querySelector('.switch')?.classList.contains('on');
+      haptics.toggle(!wasOn);
+      return;
+    }
+    if (target.closest('.tab-button, .filter-chip, .source-option, .insight-controls button, .theme-option, [data-action="select-pro-plan"]')) {
+      haptics.tick();
+      return;
+    }
+    if (target.closest('.stack-button, [data-action="study-set"]')) {
+      haptics.tap();
+    }
   }
 
   function playAppSound(name) {
     if (state.settings?.soundEffectsEnabled === false) return;
-    try {
-      const definition = APP_SOUNDS[name];
-      if (!definition) return;
-      let pool = appSoundPools.get(name);
-      if (!pool) {
-        pool = Array.from({ length: definition.poolSize }, () => {
-          const audio = new Audio(definition.src);
-          audio.volume = 0.85;
-          return audio;
-        });
-        appSoundPools.set(name, pool);
-      }
-      const audio = pool.find(candidate => candidate.paused || candidate.ended) || pool[0];
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
-    } catch (_error) {}
+    sfx?.play(name);
   }
 
   function playClick() {
-    triggerHaptic();
     playAppSound('click');
   }
 
@@ -836,7 +837,7 @@
     state.analyticsLoadToken = token;
     state.analyticsLoading = true;
     state.analyticsError = null;
-    if (state.activeTab === 'today') renderAnalyticsDashboard();
+    if (isPageSheetOpen('insights-sheet')) renderAnalyticsDashboard();
 
     try {
       let cards = [];
@@ -860,10 +861,9 @@
     } finally {
       if (token === state.analyticsLoadToken) {
         state.analyticsLoading = false;
-        if (state.activeTab === 'today') {
-          renderAnalyticsDashboard();
-          renderCustomStudyPanel();
-        }
+        if (state.activeTab === 'today') renderToday();
+        if (isPageSheetOpen('insights-sheet')) renderAnalyticsDashboard();
+        if (isPageSheetOpen('focus-sheet')) renderCustomStudyPanel();
       }
     }
   }
@@ -887,6 +887,7 @@
     const normalizedSets = (sets || []).map(set => schema?.normalizeSet ? schema.normalizeSet(set, null, { preserveLastModified: true }) : set);
     state.sets = normalizeSetClassReferences(normalizedSets, state.classes);
     state.settings = settings || {};
+    haptics.setEnabled(state.settings.hapticsEnabled !== false);
     // Apply card styles on startup
     if (state.settings.cardStyle) {
       const cs = state.settings.cardStyle;
@@ -1035,7 +1036,7 @@
       browser: 'Cards',
       more: 'Settings'
     };
-    selectors.eyebrow.textContent = 'Smriti';
+    selectors.eyebrow.textContent = 'Erudite Flashcards';
     selectors.title.textContent = titles[state.activeTab] || 'Today';
   }
 
@@ -1138,7 +1139,7 @@
     const isSelectMode = state.selectMode;
 
     return `
-      <article class="deck-row ${isSelected ? 'selected' : ''}" data-set-card="${escapeAttr(set.id)}">
+      <article class="deck-row ${options.compact ? 'compact' : ''} ${isSelected ? 'selected' : ''}" data-set-card="${escapeAttr(set.id)}">
         <div class="deck-icon" style="background:${color}24;color:${color}">
           <i class="${escapeAttr(icon)}"></i>
         </div>
@@ -1150,7 +1151,7 @@
             <span>${plural(stats.totalCards || 0, 'card')}</span>
             <span class="class-pill" style="background:${color}1f;color:${color}">${escapeHtml(classLabel)}</span>
             ${showDue ? `<span>${due} due</span>` : `<span>${escapeHtml(relativeTime(lastActivity))}</span>`}
-            ${set.premadeSource?.sample ? `<button type="button" class="sample-pill" data-action="open-pro" aria-label="Sample deck. Unlock the full chapter with Smriti Pro"><i class="fas fa-lock" aria-hidden="true"></i>Sample · ${Number(set.premadeSource.sampleNotes) || 0} of ${Number(set.premadeSource.totalNotes) || 0}</button>` : ''}
+            ${set.premadeSource?.sample ? `<button type="button" class="sample-pill" data-action="open-pro" aria-label="Sample deck. Unlock the full chapter with Erudite Pro"><i class="fas fa-lock" aria-hidden="true"></i>Sample ${Number(set.premadeSource.sampleNotes) || 0}/${Number(set.premadeSource.totalNotes) || 0}</button>` : ''}
           </div>
           <div class="progress-track" style="--progress:${percent}%"><span></span></div>
         </div>
@@ -1880,7 +1881,7 @@
           <article class="custom-study-card">
             <span class="insight-icon"><i class="fas ${escapeAttr(customStudyFilterIcon(item.filter))}"></i></span>
             <strong>${escapeHtml(item.label)}</strong>
-            <small>${formatShortNumber(item.choice.count)} cards in ${escapeHtml(item.choice.deck)}</small>
+            <small>${escapeHtml(plural(item.choice.count, 'card'))} in ${escapeHtml(item.choice.deck)}</small>
             <em>${escapeHtml(item.copy)}</em>
             <div class="custom-study-actions">
               <button type="button" data-action="start-custom-study" data-filter="${escapeAttr(item.filter)}" data-tag="${escapeAttr(item.tag || '')}">
@@ -1984,8 +1985,10 @@
       signature?.animateGoalRing(nextRing, ringProgress, { remember: false });
     }
 
-    renderAnalyticsDashboard();
-    renderCustomStudyPanel();
+    // Insights and focused practice live in their own sheets; only redraw
+    // them while one is open.
+    if (isPageSheetOpen('insights-sheet')) renderAnalyticsDashboard();
+    if (isPageSheetOpen('focus-sheet')) renderCustomStudyPanel();
 
     const continueSets = [...state.sets]
       .sort((a, b) => {
@@ -1993,17 +1996,150 @@
         if (state.srsMode && dueDiff !== 0) return dueDiff;
         return normalizeTimestamp(b.lastOpened || b.lastModified) - normalizeTimestamp(a.lastOpened || a.lastModified);
       })
-      .slice(0, 4);
+      .slice(0, 3);
+
+    renderTodayGreeting({ totals, hasDecks, hasDue, activity });
+    renderTodayLinks({ totals, streak, activity });
 
     selectors.continueList.innerHTML = continueSets.length
       ? continueSets.map(set => deckRow(set, { compact: true })).join('')
       : emptyPanel('fa-layer-group', 'No decks yet', 'Create your first flashcard set or import a backup from desktop.');
 
-    selectors.activityList.innerHTML = renderActivity();
+    if (isPageSheetOpen('insights-sheet')) {
+      selectors.activityList.innerHTML = renderActivity();
+    }
     perf?.end(span, {
       cardCount: totals.cardCount,
       dueCount: totals.dueCards
     });
+  }
+
+  function timeOfDayGreeting() {
+    const hour = new Date().getHours();
+    if (hour < 5) return 'Still up';
+    if (hour < 12) return 'Good morning';
+    if (hour < 17) return 'Good afternoon';
+    return 'Good evening';
+  }
+
+  // One sentence that says what today asks for, framed as something doable:
+  // how long the reviews should take, or when the next ones arrive.
+  function todayGreetingLine({ totals, hasDecks, hasDue, activity }) {
+    if (!hasDecks) return 'Make your first deck and the plan for today starts here.';
+    if (hasDue) {
+      const seconds = activity.averageSecondsPerCard || 8;
+      const minutes = Math.max(1, Math.round((totals.dueCards * seconds) / 60));
+      return `${plural(totals.dueCards, 'card')} ready. About ${minutes} min.`;
+    }
+    if (!state.srsMode) return 'Pick a deck and keep the streak going.';
+    if (state.analyticsLoaded) {
+      const tomorrow = buildForecast(state.analyticsCards || [], 2)[1]?.count || 0;
+      return tomorrow
+        ? `All done for today. ${plural(tomorrow, 'card')} come back tomorrow.`
+        : 'All done for today. Nothing is due tomorrow either.';
+    }
+    return 'All done for today.';
+  }
+
+  function renderTodayGreeting(context) {
+    if (!selectors.todayGreeting) return;
+    const name = readPreferredName();
+    const date = new Date().toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
+    selectors.todayGreeting.innerHTML = `
+      <p class="today-date">${escapeHtml(date)}</p>
+      <h2 id="today-greeting-title">${escapeHtml(timeOfDayGreeting())}${name ? `, ${escapeHtml(name)}` : ''}</h2>
+      <p class="today-line">${escapeHtml(todayGreetingLine(context))}</p>
+    `;
+  }
+
+  // Two quiet entry points replace the long stack of panels: a week summary
+  // that opens Insights, and focused practice when something needs it.
+  function renderTodayLinks({ totals, streak, activity }) {
+    if (!selectors.todayLinks) return;
+    if (!totals.cardCount) {
+      selectors.todayLinks.innerHTML = '';
+      return;
+    }
+    const week = buildStudyHeatmap(7);
+    const todayMs = startOfLocalDayMs();
+    const dots = week.map(day => `
+      <span class="week-day ${day.dayMs === todayMs ? 'is-today' : ''}">
+        <i class="level-${day.level}" aria-hidden="true"></i>
+        <small>${escapeHtml(new Date(day.dayMs).toLocaleDateString(undefined, { weekday: 'narrow' }))}</small>
+      </span>
+    `).join('');
+    const activeDays = week.filter(day => day.score > 0).length;
+    let recall = '';
+    if (state.srsMode && state.analyticsLoaded) {
+      const summary = analyticsSummary(state.analyticsCards || [], normalizeAnalyticsWindow(state.analyticsWindow));
+      if (summary.retention !== null) recall = `${summary.retention}% recall`;
+    }
+    const facts = [
+      activity.weekStudyMs ? formatDuration(activity.weekStudyMs) : `${activeDays} of 7 days`,
+      recall,
+      streak ? `${streak}-day streak` : ''
+    ].filter(Boolean);
+
+    let focus = '';
+    if (state.srsMode && state.analyticsLoaded) {
+      const items = buildCustomStudyItems();
+      if (items.length) {
+        const names = items.slice(0, 2).map(item => item.label.replace(/^#/, '#')).join(', ');
+        const more = items.length > 2 ? ` +${items.length - 2}` : '';
+        focus = `
+          <button type="button" class="today-link" data-action="open-focus">
+            <span class="today-link-icon"><i class="fas fa-crosshairs"></i></span>
+            <span class="today-link-copy">
+              <strong>Focused practice</strong>
+              <small>${escapeHtml(names + more)}</small>
+            </span>
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>`;
+      }
+    } else if (state.srsMode && !state.analyticsLoading && !state.analyticsError && state.activeTab === 'today') {
+      loadAnalyticsCards().catch(() => {});
+    }
+
+    selectors.todayLinks.innerHTML = `
+      <button type="button" class="week-card" data-action="open-insights" aria-label="This week: ${escapeAttr(facts.join(', '))}. Open insights">
+        <span class="week-card-head">
+          <strong>This week</strong>
+          <span>Insights <i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        </span>
+        <span class="week-days">${dots}</span>
+        <span class="week-facts">${facts.map(fact => `<span>${escapeHtml(fact)}</span>`).join('')}</span>
+      </button>
+      ${focus}
+    `;
+  }
+
+  function isPageSheetOpen(id) {
+    const sheet = document.getElementById(id);
+    return Boolean(sheet && !sheet.classList.contains('hidden'));
+  }
+
+  function openPageSheet(id) {
+    const sheet = document.getElementById(id);
+    if (!sheet) return;
+    if (id === 'insights-sheet') {
+      renderAnalyticsDashboard();
+      selectors.activityList.innerHTML = renderActivity();
+    }
+    if (id === 'focus-sheet') renderCustomStudyPanel();
+    sheet.classList.remove('hidden');
+    sheet.querySelector('.page-sheet-body')?.scrollTo?.(0, 0);
+    const panel = sheet.querySelector('.page-sheet-panel');
+    if (panel && window.EruditeMotion) {
+      window.EruditeMotion.animate(panel, [
+        { transform: 'translateY(32px)', opacity: 0 },
+        { transform: 'translateY(0)', opacity: 1 }
+      ], { preset: 'sheet', commit: false });
+    }
+  }
+
+  function closePageSheets() {
+    document.querySelectorAll('.page-sheet:not(.hidden)').forEach(sheet => sheet.classList.add('hidden'));
+    state.lastModalClosedAt = Date.now();
   }
 
   function renderActivity() {
@@ -2429,7 +2565,7 @@
     const frontText = plainTextFromHtml(card.term || advancedHtmlSide(card, 'front')).replace(/\s+/g, ' ').trim();
     const backText = plainTextFromHtml(card.definition || advancedHtmlSide(card, 'back')).replace(/\s+/g, ' ').trim();
     return [
-      'Create a Smriti mobile flashcard using HTML and CSS only.',
+      'Create a Erudite mobile flashcard using HTML and CSS only.',
       '',
       'Return exactly four fenced code blocks with these labels:',
       'FRONT_HTML',
@@ -6012,7 +6148,7 @@
   }
 
   // ------------------------------------------------------------------
-  // Smriti Pro and premade samples
+  // Erudite Pro and premade samples
   // ------------------------------------------------------------------
 
   function billingConfig() {
@@ -6137,7 +6273,7 @@
 
     if (isPro()) {
       plans.innerHTML = '';
-      status.textContent = 'Smriti Pro is active on this Google account. Thank you for supporting the app.';
+      status.textContent = 'Erudite Pro is active on this Google account. Thank you for supporting the app.';
       buy.classList.add('hidden');
       return;
     }
@@ -6192,7 +6328,7 @@
     buy.disabled = false;
     if (result.ok) {
       closeProSheet();
-      showToast('Welcome to Smriti Pro');
+      showToast('Welcome to Erudite Pro');
     } else if (!result.cancelled) {
       showToast(result.error || 'Purchase failed');
     }
@@ -6204,7 +6340,7 @@
       showToast(result?.error || 'Restore is available in the Android app');
       return;
     }
-    showToast(result.pro ? 'Smriti Pro restored' : 'No Pro purchase found for this Google account');
+    showToast(result.pro ? 'Erudite Pro restored' : 'No Pro purchase found for this Google account');
     if (result.pro) closeProSheet();
   }
 
@@ -6270,7 +6406,7 @@
       const isSample = sampleNotes.length < imported.cards.length;
       sampleHint.classList.toggle('hidden', !isSample);
       sampleHint.innerHTML = isSample
-        ? `<i class="fas fa-lock" aria-hidden="true"></i><span>You get the first <b>${sampleNotes.length}</b> of ${imported.cards.length} cards. <button type="button" class="text-button" data-action="open-pro">Smriti Pro</button> unlocks the whole chapter and keeps your progress.</span>`
+        ? `<i class="fas fa-lock" aria-hidden="true"></i><span>You get the first <b>${sampleNotes.length}</b> of ${imported.cards.length} cards. <button type="button" class="text-button" data-action="open-pro">Erudite Pro</button> unlocks the whole chapter and keeps your progress.</span>`
         : '';
     }
 
@@ -6834,6 +6970,12 @@
       selectors.moreSoundLabel.textContent = soundEnabled ? 'On' : 'Off';
     }
 
+    const hapticsEnabled = state.settings?.hapticsEnabled !== false;
+    selectors.hapticsSwitch?.classList.toggle('on', hapticsEnabled);
+    if (selectors.moreHapticsLabel) {
+      selectors.moreHapticsLabel.textContent = hapticsEnabled ? 'On - toggles, swipes, and finished sessions' : 'Off';
+    }
+
     renderProRow();
 
     const paperEnabled = state.settings?.paperTexture === true;
@@ -6946,7 +7088,7 @@
     }
   }
 
-  function showAppLoader(title = 'Smriti', copy = 'Loading') {
+  function showAppLoader(title = 'Erudite Flashcards', copy = 'Loading') {
     if (selectors.loadingTitle) selectors.loadingTitle.textContent = title;
     if (selectors.loadingCopy) selectors.loadingCopy.textContent = copy;
     const cover = document.getElementById('app-loading-cover');
@@ -7088,7 +7230,7 @@
     const screen = document.querySelector('.memory-screen');
     if (input) input.readOnly = true;
     screen?.classList.add('is-complete');
-    triggerHaptic();
+    haptics.success();
     onboardingCodeAdvanceTimer = window.setTimeout(() => {
       input?.blur?.();
       screen?.classList.remove('is-complete');
@@ -7160,7 +7302,8 @@
       return;
     }
 
-    const revealDelays = [250, 4000, 7000, 10000, 13000];
+    // Chart first, then the wider evidence, then spacing: one idea at a time.
+    const revealDelays = [200, 2300, 3900];
     tiles.forEach((tile, index) => {
       const revealTimer = window.setTimeout(() => {
         if (runId !== onboardingEvidenceRunId || onboardingStep !== 2) return;
@@ -7169,7 +7312,7 @@
         const countTimer = window.setTimeout(() => {
           if (runId !== onboardingEvidenceRunId) return;
           tile.querySelectorAll('[data-count-to]').forEach(number => animateOnboardingNumber(number, runId));
-        }, 920);
+        }, 360);
         onboardingEvidenceTimers.push(countTimer);
       }, revealDelays[index] ?? (13000 + index * 2800));
       onboardingEvidenceTimers.push(revealTimer);
@@ -7180,7 +7323,7 @@
       onboardingEvidenceStoryComplete = true;
       screen.classList.add('is-story-complete');
       updateOnboardingPrimaryButton();
-    }, prefersReducedMotion() ? 50 : 2800);
+    }, prefersReducedMotion() ? 50 : 4400);
     onboardingEvidenceTimers.push(completeTimer);
   }
 
@@ -7224,6 +7367,7 @@
     document.getElementById('onboarding-code-error')?.replaceChildren();
     document.querySelector('.memory-screen')?.classList.remove('is-hiding', 'is-complete');
     document.querySelector('.retrieval-screen')?.classList.remove('is-explaining');
+    window.EruditeGroove?.reset(document.getElementById('onboarding-groove'), document.getElementById('onboarding-groove-caption'));
     const explanation = document.getElementById('onboarding-retrieval-explanation');
     explanation?.setAttribute('aria-hidden', 'true');
     const demo = document.getElementById('onboarding-flip-demo');
@@ -7257,7 +7401,7 @@
     if (onboardingStep === 3) {
       const flipped = document.getElementById('onboarding-flip-demo')?.classList.contains('is-flipped') === true;
       button.dataset.onboardingAction = onboardingRetrievalExplained ? 'next' : 'explain-retrieval';
-      button.innerHTML = onboardingRetrievalExplained ? icon('Meet Smriti') : icon('How did that help?');
+      button.innerHTML = onboardingRetrievalExplained ? icon('Meet Erudite') : icon('How did that help?');
       button.disabled = !onboardingRetrievalExplained && (!flipped || !onboardingRetrievalMessageReady);
       return;
     }
@@ -7290,6 +7434,15 @@
     const explanation = document.getElementById('onboarding-retrieval-explanation');
     explanation?.setAttribute('aria-hidden', 'false');
     requestAnimationFrame(() => explanation?.querySelector('h2')?.focus?.({ preventScroll: true }));
+    // Let the explanation settle in before the stone starts moving.
+    window.setTimeout(() => {
+      if (onboardingStep !== 3 || !onboardingRetrievalExplained) return;
+      window.EruditeGroove?.start(
+        document.getElementById('onboarding-groove'),
+        document.getElementById('onboarding-groove-caption'),
+        { reducedMotion: prefersReducedMotion() }
+      );
+    }, prefersReducedMotion() ? 0 : 650);
     updateOnboardingPrimaryButton();
   }
 
@@ -7377,7 +7530,7 @@
     if (!preferredName) {
       form?.classList.add('is-invalid');
       if (error) error.textContent = 'Enter a name, nickname, or initials to continue.';
-      triggerHaptic();
+      haptics.warning();
       input?.focus?.({ preventScroll: true });
       return;
     }
@@ -7399,8 +7552,7 @@
     if (nameTarget) nameTarget.textContent = preferredName;
     document.getElementById('onboarding-hello-scene')?.classList.add('is-celebrating');
     playStar();
-    triggerHaptic();
-    launchOnboardingConfetti();
+    haptics.success();
     persistPreferredName(preferredName).catch(() => {});
 
     onboardingGreetingTransitionTimer = window.setTimeout(() => {
@@ -7511,6 +7663,7 @@
     resetOnboardingRetrievalMessage();
     onboardingGreetingBusy = false;
     closeOnboardingSources();
+    window.EruditeGroove?.stop();
     document.getElementById('onboarding-confetti-layer')?.replaceChildren();
     shell.classList.add('is-closing');
     await new Promise(resolve => window.setTimeout(resolve, 180));
@@ -7609,7 +7762,7 @@
         target?.setAttribute('aria-pressed', String(flipped));
         target?.setAttribute('aria-label', flipped ? `Answer: ${onboardingMemoryCode}. Flip back to the question` : 'Flip the flashcard to reveal your code');
         if (flipped) {
-          triggerHaptic();
+          haptics.tick();
           startOnboardingRetrievalMessage();
         } else {
           resetOnboardingRetrievalMessage();
@@ -7872,6 +8025,17 @@
     }
     renderMore();
     showToast(state.settings.soundEffectsEnabled ? 'Sound effects enabled' : 'Sound effects disabled');
+  }
+
+  async function toggleHaptics() {
+    const enabled = state.settings?.hapticsEnabled === false;
+    state.settings = { ...(state.settings || {}), hapticsEnabled: enabled };
+    haptics.setEnabled(enabled);
+    if (enabled) haptics.toggle(true);
+    renderMore();
+    if (window.flashcardStore?.saveSettings) {
+      await window.flashcardStore.saveSettings(state.settings);
+    }
   }
 
   async function togglePaper() {
@@ -8520,7 +8684,7 @@
             const current = await plugin.checkPermissions();
             const result = current?.display === 'granted' ? current : await plugin.requestPermissions();
             if (result?.display !== 'granted') {
-              showToast('Allow notifications for Smriti in Android settings to get reminders');
+              showToast('Allow notifications for Erudite in Android settings to get reminders');
               enabled = false;
             }
           } catch (_) {
@@ -9633,7 +9797,7 @@
       const tips = {
         'chatgpt': '<strong>ChatGPT:</strong> Recommended. Upload your PDF, paste the instructions, and ask ChatGPT to return the ZIP package.',
         'claude': '<strong>Claude:</strong> Recommended. Paste instructions and upload your PDF. Claude is great at PDF reading. Ask it to output a ZIP or Package Source.',
-        'gemini': '<strong>Gemini:</strong> Good for PDF analysis, but ZIP output may fail. Gemini will output Smriti Package Source text; paste it into Step 4 to build the ZIP locally.',
+        'gemini': '<strong>Gemini:</strong> Good for PDF analysis, but ZIP output may fail. Gemini will output Erudite Package Source text; paste it into Step 4 to build the ZIP locally.',
         'other': '<strong>Other AI:</strong> Paste instructions and upload source material. Confirm it outputs ZIP or package source structure.'
       };
       selectors.aiProviderTip.innerHTML = tips[pb.aiProvider] || '';
@@ -9874,7 +10038,7 @@
 
     const finalConfirmation = await showMobileConfirm({
       title: 'Final Confirmation',
-      message: 'This cannot be undone. Delete all Smriti data stored on this device now?',
+      message: 'This cannot be undone. Delete all Erudite data stored on this device now?',
       okText: 'Delete Everything',
       isDanger: true
     });
@@ -10334,6 +10498,15 @@
       case 'start-custom-study-reschedule':
         await startCustomStudy(target.dataset.filter || '', target.dataset.tag || '', { reschedule: true });
         break;
+      case 'open-insights':
+        openPageSheet('insights-sheet');
+        break;
+      case 'open-focus':
+        openPageSheet('focus-sheet');
+        break;
+      case 'close-page-sheet':
+        closePageSheets();
+        break;
       case 'refresh-analytics':
         playClick();
         state.analyticsLoaded = false;
@@ -10349,6 +10522,9 @@
         break;
       case 'toggle-sound':
         await toggleSound();
+        break;
+      case 'toggle-haptics':
+        await toggleHaptics();
         break;
       case 'toggle-paper':
         await togglePaper();
@@ -10962,7 +11138,7 @@
         clearTimeout(highlightHoldTimer);
         highlightHoldTimer = window.setTimeout(() => {
           state.suppressNextHighlightClick = true;
-          triggerHaptic();
+          haptics.longPress();
           openHighlightColorMenu().catch(error => console.warn('[mobile] highlight color menu failed:', error));
         }, 520);
       }
@@ -10973,7 +11149,7 @@
         creatorDeleteHoldTimer = window.setTimeout(() => {
           creatorDeleteHoldTimer = null;
           deleteButton.dataset.longDeleteFired = '1';
-          triggerHaptic();
+          haptics.longPress();
           confirmDeleteCardsFrom(deleteButton.dataset.cardId)
             .catch(error => console.warn('[mobile] bulk delete confirm failed:', error));
         }, 620);
@@ -10990,11 +11166,7 @@
     });
 
     document.addEventListener('click', async event => {
-      // Global haptic feedback for click operations
-      const clickable = event.target.closest('button, [role="button"], .tab-button, .deck-row, .settings-row, .context-option-row, .mobile-modal-option-btn, .rating-btn, .class-card-click-area, .class-delete-btn, .class-edit-btn, .format-button, .compact-action, .primary-action, .secondary-action, .small-icon-button, .creator-bottom-add');
-      if (clickable) {
-        triggerHaptic();
-      }
+      hapticForClick(event.target);
 
       const onboardingAction = event.target.closest('[data-onboarding-action]');
       if (onboardingAction) {
@@ -12177,7 +12349,7 @@
     // Private helper for dynamic retry messages
     function getAiRetryMessage(provider) {
       if (provider === 'gemini') {
-        return `The previous output was not valid Smriti Package Source.
+        return `The previous output was not valid Erudite Package Source.
 
 Please return the output again.
 
@@ -12200,7 +12372,7 @@ Do not include external URLs.
 Do not reference media files unless they are present in the media array.
 Do not put Base64 inside deck fields.`;
       } else {
-        return `The previous output was not a valid Smriti ZIP package.
+        return `The previous output was not a valid Erudite ZIP package.
 
 Please return a normal downloadable .zip file only.
 

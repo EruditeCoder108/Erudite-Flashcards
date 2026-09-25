@@ -13,6 +13,7 @@ public class MainActivity extends BridgeActivity {
         androidx.core.splashscreen.SplashScreen splashScreen = androidx.core.splashscreen.SplashScreen.installSplashScreen(this);
         
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        registerPlugin(TactilePlugin.class);
         super.onCreate(savedInstanceState);
 
         // Smoothly fade out the native splash screen over 250ms
