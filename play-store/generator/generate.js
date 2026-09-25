@@ -141,10 +141,11 @@ async function captureApp(browser, base) {
   await page.waitForTimeout(2600);
   await capture(page, '01-today');
 
-  await page.evaluate(() => document.getElementById('analytics-dashboard')?.scrollIntoView({ block: 'start' }));
-  await page.evaluate(() => window.scrollBy(0, -70));
-  await page.waitForTimeout(700);
+  await page.locator('[data-action="open-insights"]').click();
+  await page.waitForTimeout(900);
   await capture(page, '05-insights');
+  await page.locator('#insights-sheet [data-action="close-page-sheet"]').click();
+  await page.waitForTimeout(300);
 
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.locator('.tab-button[data-tab="library"]').click();

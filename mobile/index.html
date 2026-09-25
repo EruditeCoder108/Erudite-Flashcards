@@ -316,36 +316,17 @@
     </header>
 
     <main class="mobile-main" id="mobile-main">
-      <section class="mobile-view active" id="view-today" aria-labelledby="today-heading">
+      <section class="mobile-view active" id="view-today" aria-labelledby="today-greeting-title">
+        <div class="today-greeting" id="today-greeting"></div>
         <div class="today-hero surface-card" id="today-hero"></div>
-        <div class="section-block insights-section">
+        <div class="section-block today-next">
           <div class="section-title-row">
-            <h2>Insights</h2>
-            <button type="button" class="small-icon-button" data-action="refresh-analytics" aria-label="Refresh insights">
-              <i class="fas fa-rotate"></i>
-            </button>
-          </div>
-          <div class="analytics-dashboard" id="analytics-dashboard"></div>
-        </div>
-        <div class="section-block custom-study-section">
-          <div class="section-title-row">
-            <h2>Custom Study</h2>
-          </div>
-          <div class="custom-study-panel" id="custom-study-panel"></div>
-        </div>
-        <div class="section-block">
-          <div class="section-title-row">
-            <h2 id="today-heading">Continue Studying</h2>
-            <button type="button" class="text-button" data-action="tab-library">See all</button>
+            <h2 id="today-heading">Up next</h2>
+            <button type="button" class="text-button" data-action="tab-library">All decks</button>
           </div>
           <div class="deck-stack" id="continue-list"></div>
         </div>
-        <div class="section-block">
-          <div class="section-title-row">
-            <h2>Recent Activity</h2>
-          </div>
-          <div class="activity-list" id="activity-list"></div>
-        </div>
+        <div class="today-links" id="today-links"></div>
       </section>
 
       <section class="mobile-view" id="view-library" aria-labelledby="library-heading">
@@ -1808,6 +1789,35 @@ If you cannot attach a ZIP file:
       </div>
       <div class="mobile-modal-actions">
         <button type="button" class="mobile-modal-btn cancel" id="new-card-limit-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-modal-overlay page-sheet hidden" id="insights-sheet" role="dialog" aria-modal="true" aria-labelledby="insights-sheet-title">
+    <div class="page-sheet-panel">
+      <header class="page-sheet-head">
+        <button type="button" class="icon-button" data-action="close-page-sheet" aria-label="Close insights"><i class="fas fa-chevron-down"></i></button>
+        <h2 id="insights-sheet-title">Insights</h2>
+        <button type="button" class="icon-button" data-action="refresh-analytics" aria-label="Refresh insights"><i class="fas fa-rotate"></i></button>
+      </header>
+      <div class="page-sheet-body">
+        <div class="analytics-dashboard" id="analytics-dashboard"></div>
+        <h3 class="page-sheet-subhead">Recent activity</h3>
+        <div class="activity-list" id="activity-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-modal-overlay page-sheet hidden" id="focus-sheet" role="dialog" aria-modal="true" aria-labelledby="focus-sheet-title">
+    <div class="page-sheet-panel">
+      <header class="page-sheet-head">
+        <button type="button" class="icon-button" data-action="close-page-sheet" aria-label="Close focused practice"><i class="fas fa-chevron-down"></i></button>
+        <h2 id="focus-sheet-title">Focused practice</h2>
+        <span class="page-sheet-head-spacer" aria-hidden="true"></span>
+      </header>
+      <div class="page-sheet-body">
+        <p class="page-sheet-lede"><b>Practice</b> drills the cards without touching their schedule. <b>SRS review</b> counts as a real review.</p>
+        <div class="custom-study-panel" id="custom-study-panel"></div>
       </div>
     </div>
   </div>

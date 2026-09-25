@@ -216,6 +216,8 @@
     customStudyPanel: document.getElementById('custom-study-panel'),
     continueList: document.getElementById('continue-list'),
     activityList: document.getElementById('activity-list'),
+    todayGreeting: document.getElementById('today-greeting'),
+    todayLinks: document.getElementById('today-links'),
     libraryList: document.getElementById('library-list'),
     createForm: document.getElementById('mobile-create-form'),
     createTitle: document.getElementById('mobile-create-title'),
@@ -835,7 +837,7 @@
     state.analyticsLoadToken = token;
     state.analyticsLoading = true;
     state.analyticsError = null;
-    if (state.activeTab === 'today') renderAnalyticsDashboard();
+    if (isPageSheetOpen('insights-sheet')) renderAnalyticsDashboard();
 
     try {
       let cards = [];
@@ -859,10 +861,9 @@
     } finally {
       if (token === state.analyticsLoadToken) {
         state.analyticsLoading = false;
-        if (state.activeTab === 'today') {
-          renderAnalyticsDashboard();
-          renderCustomStudyPanel();
-        }
+        if (state.activeTab === 'today') renderToday();
+        if (isPageSheetOpen('insights-sheet')) renderAnalyticsDashboard();
+        if (isPageSheetOpen('focus-sheet')) renderCustomStudyPanel();
       }
     }
   }
@@ -1138,7 +1139,7 @@
     const isSelectMode = state.selectMode;
 
     return `
-      <article class="deck-row ${isSelected ? 'selected' : ''}" data-set-card="${escapeAttr(set.id)}">
+      <article class="deck-row ${options.compact ? 'compact' : ''} ${isSelected ? 'selected' : ''}" data-set-card="${escapeAttr(set.id)}">
         <div class="deck-icon" style="background:${color}24;color:${color}">
           <i class="${escapeAttr(icon)}"></i>
         </div>
@@ -1880,7 +1881,7 @@
           <article class="custom-study-card">
             <span class="insight-icon"><i class="fas ${escapeAttr(customStudyFilterIcon(item.filter))}"></i></span>
             <strong>${escapeHtml(item.label)}</strong>
-            <small>${formatShortNumber(item.choice.count)} cards in ${escapeHtml(item.choice.deck)}</small>
+            <small>${escapeHtml(plural(item.choice.count, 'card'))} in ${escapeHtml(item.choice.deck)}</small>
             <em>${escapeHtml(item.copy)}</em>
             <div class="custom-study-actions">
               <button type="button" data-action="start-custom-study" data-filter="${escapeAttr(item.filter)}" data-tag="${escapeAttr(item.tag || '')}">
@@ -1984,8 +1985,10 @@
       signature?.animateGoalRing(nextRing, ringProgress, { remember: false });
     }
 
-    renderAnalyticsDashboard();
-    renderCustomStudyPanel();
+    // Insights and focused practice live in their own sheets; only redraw
+    // them while one is open.
+    if (isPageSheetOpen('insights-sheet')) renderAnalyticsDashboard();
+    if (isPageSheetOpen('focus-sheet')) renderCustomStudyPanel();
 
     const continueSets = [...state.sets]
       .sort((a, b) => {
@@ -1993,17 +1996,150 @@
         if (state.srsMode && dueDiff !== 0) return dueDiff;
         return normalizeTimestamp(b.lastOpened || b.lastModified) - normalizeTimestamp(a.lastOpened || a.lastModified);
       })
-      .slice(0, 4);
+      .slice(0, 3);
+
+    renderTodayGreeting({ totals, hasDecks, hasDue, activity });
+    renderTodayLinks({ totals, streak, activity });
 
     selectors.continueList.innerHTML = continueSets.length
       ? continueSets.map(set => deckRow(set, { compact: true })).join('')
       : emptyPanel('fa-layer-group', 'No decks yet', 'Create your first flashcard set or import a backup from desktop.');
 
-    selectors.activityList.innerHTML = renderActivity();
+    if (isPageSheetOpen('insights-sheet')) {
+      selectors.activityList.innerHTML = renderActivity();
+    }
     perf?.end(span, {
       cardCount: totals.cardCount,
       dueCount: totals.dueCards
     });
+  }
+
+  function timeOfDayGreeting() {
+    const hour = new Date().getHours();
+    if (hour < 5) return 'Still up';
+    if (hour < 12) return 'Good morning';
+    if (hour < 17) return 'Good afternoon';
+    return 'Good evening';
+  }
+
+  // One sentence that says what today asks for, framed as something doable:
+  // how long the reviews should take, or when the next ones arrive.
+  function todayGreetingLine({ totals, hasDecks, hasDue, activity }) {
+    if (!hasDecks) return 'Make your first deck and the plan for today starts here.';
+    if (hasDue) {
+      const seconds = activity.averageSecondsPerCard || 8;
+      const minutes = Math.max(1, Math.round((totals.dueCards * seconds) / 60));
+      return `${plural(totals.dueCards, 'card')} ready. About ${minutes} min.`;
+    }
+    if (!state.srsMode) return 'Pick a deck and keep the streak going.';
+    if (state.analyticsLoaded) {
+      const tomorrow = buildForecast(state.analyticsCards || [], 2)[1]?.count || 0;
+      return tomorrow
+        ? `All done for today. ${plural(tomorrow, 'card')} come back tomorrow.`
+        : 'All done for today. Nothing is due tomorrow either.';
+    }
+    return 'All done for today.';
+  }
+
+  function renderTodayGreeting(context) {
+    if (!selectors.todayGreeting) return;
+    const name = readPreferredName();
+    const date = new Date().toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
+    selectors.todayGreeting.innerHTML = `
+      <p class="today-date">${escapeHtml(date)}</p>
+      <h2 id="today-greeting-title">${escapeHtml(timeOfDayGreeting())}${name ? `, ${escapeHtml(name)}` : ''}</h2>
+      <p class="today-line">${escapeHtml(todayGreetingLine(context))}</p>
+    `;
+  }
+
+  // Two quiet entry points replace the long stack of panels: a week summary
+  // that opens Insights, and focused practice when something needs it.
+  function renderTodayLinks({ totals, streak, activity }) {
+    if (!selectors.todayLinks) return;
+    if (!totals.cardCount) {
+      selectors.todayLinks.innerHTML = '';
+      return;
+    }
+    const week = buildStudyHeatmap(7);
+    const todayMs = startOfLocalDayMs();
+    const dots = week.map(day => `
+      <span class="week-day ${day.dayMs === todayMs ? 'is-today' : ''}">
+        <i class="level-${day.level}" aria-hidden="true"></i>
+        <small>${escapeHtml(new Date(day.dayMs).toLocaleDateString(undefined, { weekday: 'narrow' }))}</small>
+      </span>
+    `).join('');
+    const activeDays = week.filter(day => day.score > 0).length;
+    let recall = '';
+    if (state.srsMode && state.analyticsLoaded) {
+      const summary = analyticsSummary(state.analyticsCards || [], normalizeAnalyticsWindow(state.analyticsWindow));
+      if (summary.retention !== null) recall = `${summary.retention}% recall`;
+    }
+    const facts = [
+      activity.weekStudyMs ? formatDuration(activity.weekStudyMs) : `${activeDays} of 7 days`,
+      recall,
+      streak ? `${streak}-day streak` : ''
+    ].filter(Boolean);
+
+    let focus = '';
+    if (state.srsMode && state.analyticsLoaded) {
+      const items = buildCustomStudyItems();
+      if (items.length) {
+        const names = items.slice(0, 2).map(item => item.label.replace(/^#/, '#')).join(', ');
+        const more = items.length > 2 ? ` +${items.length - 2}` : '';
+        focus = `
+          <button type="button" class="today-link" data-action="open-focus">
+            <span class="today-link-icon"><i class="fas fa-crosshairs"></i></span>
+            <span class="today-link-copy">
+              <strong>Focused practice</strong>
+              <small>${escapeHtml(names + more)}</small>
+            </span>
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>`;
+      }
+    } else if (state.srsMode && !state.analyticsLoading && !state.analyticsError && state.activeTab === 'today') {
+      loadAnalyticsCards().catch(() => {});
+    }
+
+    selectors.todayLinks.innerHTML = `
+      <button type="button" class="week-card" data-action="open-insights" aria-label="This week: ${escapeAttr(facts.join(', '))}. Open insights">
+        <span class="week-card-head">
+          <strong>This week</strong>
+          <span>Insights <i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        </span>
+        <span class="week-days">${dots}</span>
+        <span class="week-facts">${facts.map(fact => `<span>${escapeHtml(fact)}</span>`).join('')}</span>
+      </button>
+      ${focus}
+    `;
+  }
+
+  function isPageSheetOpen(id) {
+    const sheet = document.getElementById(id);
+    return Boolean(sheet && !sheet.classList.contains('hidden'));
+  }
+
+  function openPageSheet(id) {
+    const sheet = document.getElementById(id);
+    if (!sheet) return;
+    if (id === 'insights-sheet') {
+      renderAnalyticsDashboard();
+      selectors.activityList.innerHTML = renderActivity();
+    }
+    if (id === 'focus-sheet') renderCustomStudyPanel();
+    sheet.classList.remove('hidden');
+    sheet.querySelector('.page-sheet-body')?.scrollTo?.(0, 0);
+    const panel = sheet.querySelector('.page-sheet-panel');
+    if (panel && window.EruditeMotion) {
+      window.EruditeMotion.animate(panel, [
+        { transform: 'translateY(32px)', opacity: 0 },
+        { transform: 'translateY(0)', opacity: 1 }
+      ], { preset: 'sheet', commit: false });
+    }
+  }
+
+  function closePageSheets() {
+    document.querySelectorAll('.page-sheet:not(.hidden)').forEach(sheet => sheet.classList.add('hidden'));
+    state.lastModalClosedAt = Date.now();
   }
 
   function renderActivity() {
@@ -10350,6 +10486,15 @@
         break;
       case 'start-custom-study-reschedule':
         await startCustomStudy(target.dataset.filter || '', target.dataset.tag || '', { reschedule: true });
+        break;
+      case 'open-insights':
+        openPageSheet('insights-sheet');
+        break;
+      case 'open-focus':
+        openPageSheet('focus-sheet');
+        break;
+      case 'close-page-sheet':
+        closePageSheets();
         break;
       case 'refresh-analytics':
         playClick();
