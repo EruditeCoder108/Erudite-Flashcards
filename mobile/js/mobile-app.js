@@ -7302,7 +7302,8 @@
       return;
     }
 
-    const revealDelays = [250, 4000, 7000, 10000, 13000];
+    // Chart first, then the wider evidence, then spacing: one idea at a time.
+    const revealDelays = [200, 2300, 3900];
     tiles.forEach((tile, index) => {
       const revealTimer = window.setTimeout(() => {
         if (runId !== onboardingEvidenceRunId || onboardingStep !== 2) return;
@@ -7311,7 +7312,7 @@
         const countTimer = window.setTimeout(() => {
           if (runId !== onboardingEvidenceRunId) return;
           tile.querySelectorAll('[data-count-to]').forEach(number => animateOnboardingNumber(number, runId));
-        }, 920);
+        }, 360);
         onboardingEvidenceTimers.push(countTimer);
       }, revealDelays[index] ?? (13000 + index * 2800));
       onboardingEvidenceTimers.push(revealTimer);
@@ -7322,7 +7323,7 @@
       onboardingEvidenceStoryComplete = true;
       screen.classList.add('is-story-complete');
       updateOnboardingPrimaryButton();
-    }, prefersReducedMotion() ? 50 : 2800);
+    }, prefersReducedMotion() ? 50 : 4400);
     onboardingEvidenceTimers.push(completeTimer);
   }
 
@@ -7366,6 +7367,7 @@
     document.getElementById('onboarding-code-error')?.replaceChildren();
     document.querySelector('.memory-screen')?.classList.remove('is-hiding', 'is-complete');
     document.querySelector('.retrieval-screen')?.classList.remove('is-explaining');
+    window.EruditeGroove?.reset(document.getElementById('onboarding-groove'), document.getElementById('onboarding-groove-caption'));
     const explanation = document.getElementById('onboarding-retrieval-explanation');
     explanation?.setAttribute('aria-hidden', 'true');
     const demo = document.getElementById('onboarding-flip-demo');
@@ -7432,6 +7434,15 @@
     const explanation = document.getElementById('onboarding-retrieval-explanation');
     explanation?.setAttribute('aria-hidden', 'false');
     requestAnimationFrame(() => explanation?.querySelector('h2')?.focus?.({ preventScroll: true }));
+    // Let the explanation settle in before the stone starts moving.
+    window.setTimeout(() => {
+      if (onboardingStep !== 3 || !onboardingRetrievalExplained) return;
+      window.EruditeGroove?.start(
+        document.getElementById('onboarding-groove'),
+        document.getElementById('onboarding-groove-caption'),
+        { reducedMotion: prefersReducedMotion() }
+      );
+    }, prefersReducedMotion() ? 0 : 650);
     updateOnboardingPrimaryButton();
   }
 
@@ -7542,7 +7553,6 @@
     document.getElementById('onboarding-hello-scene')?.classList.add('is-celebrating');
     playStar();
     haptics.success();
-    launchOnboardingConfetti();
     persistPreferredName(preferredName).catch(() => {});
 
     onboardingGreetingTransitionTimer = window.setTimeout(() => {
@@ -7653,6 +7663,7 @@
     resetOnboardingRetrievalMessage();
     onboardingGreetingBusy = false;
     closeOnboardingSources();
+    window.EruditeGroove?.stop();
     document.getElementById('onboarding-confetti-layer')?.replaceChildren();
     shell.classList.add('is-closing');
     await new Promise(resolve => window.setTimeout(resolve, 180));
