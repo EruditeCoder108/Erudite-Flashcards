@@ -369,6 +369,121 @@ def binomial_anatomy(deck):
           HERBARIUM, front, back)
 
 
+SEA = BASE + """
+.w.sea{color:#e6f4f1;background:linear-gradient(180deg,#0f3d4a 0,#0b2e3a 55%,#08222c 100%)}
+.sea .tag{color:#7fe0d0}.sea h2{color:#fff}
+.sea .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:6px}
+.sea .al{border-radius:14px;padding:10px 9px 12px;min-height:250px;display:flex;flex-direction:column;gap:8px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.sea .al em{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  padding:4px 7px;border-radius:999px;align-self:flex-start;color:#08222c}
+.sea .g em{background:#7ddc8a}.sea .br em{background:#d9a85b}.sea .rd em{background:#f2837b}
+.sea .al small{color:#9fc9c1;font-size:10.5px;overflow-wrap:anywhere}
+.sea .al b{font-size:13.5px;line-height:1.35;font-weight:600;overflow-wrap:anywhere}
+.sea .al b.q{color:rgba(230,244,241,.3);letter-spacing:.25em}
+.sea .g{box-shadow:inset 0 3px 0 #7ddc8a}.sea .br{box-shadow:inset 0 3px 0 #d9a85b}.sea .rd{box-shadow:inset 0 3px 0 #f2837b}
+.sea .al b.r{animation:fade .45s ease both}.sea .br b.r{animation-delay:.12s}.sea .rd b.r{animation-delay:.24s}
+.sea .gm{display:grid;grid-template-columns:128px 1fr;align-items:center;gap:10px;padding:9px 10px;margin-top:8px;
+  border-radius:14px;background:rgba(255,255,255,.06)}
+.sea .gm svg{width:128px;height:46px}
+.sea .gm b{display:block;font-size:15px;color:#fff}.sea .gm span{font-size:12.5px;color:#9fc9c1}
+.sea .gm b.q{color:rgba(230,244,241,.3);letter-spacing:.25em}
+.sea .cell{fill:#7ddc8a;stroke:#e6f4f1;stroke-width:1.2}.sea .egg{fill:#f2c14e;stroke:#e6f4f1;stroke-width:1.2}
+.sea .fl{fill:none;stroke:#e6f4f1;stroke-width:1.2;stroke-linecap:round}
+.sea .ml{animation:swimL 1.4s cubic-bezier(.3,.7,.3,1) both}
+.sea .mr{animation:swimR 1.4s cubic-bezier(.3,.7,.3,1) both}
+.sea .gm:nth-child(4) g{animation-delay:.15s}.sea .gm:nth-child(5) g{animation-delay:.3s}.sea .gm:nth-child(6) g{animation-delay:.45s}
+@keyframes swimL{from{transform:translateX(-26px)}to{transform:none}}
+@keyframes swimR{from{transform:translateX(26px)}to{transform:none}}
+"""
+
+
+def algae_tiles(deck, question, answers, term, eyebrow='Table 3.1 · Divisions of algae'):
+    """answers: (green, brown, red) texts."""
+    classes = [('g', 'Chlorophyceae', 'Green'), ('br', 'Phaeophyceae', 'Brown'), ('rd', 'Rhodophyceae', 'Red')]
+    def build(show):
+        cols = ''.join(f'<div class="al {c}"><em>{common}</em><small>{name}</small>'
+                       f'<b class="{"r" if show else "q"}">{a if show else "?"}</b></div>'
+                       for (c, name, common), a in zip(classes, answers))
+        return f'<div class="w sea"><p class="tag">{eyebrow}</p><h2>{question}</h2><div class="cols">{cols}</div></div>'
+    _card(deck, term, '; '.join(f'{n}: {_strip(a)}' for (_, n, _c), a in zip(classes, answers)), SEA, build(False), build(True))
+
+
+def _gamete(x, r, cls, flagella, side):
+    """A round gamete centred at x (y 23); flagella trail away from the partner."""
+    body = f'<circle class="{cls}" cx="{x}" cy="23" r="{r}"></circle>'
+    if not flagella:
+        return body
+    d = -1 if side == 'l' else 1
+    tail = ''.join(f'<path class="fl" d="M{x + d * r} {23 + dy} q{d * 8} {dy * 2 - 4} {d * 16} {dy * 2}"></path>' for dy in (-3, 3))
+    return body + tail
+
+
+def gamete_fusion(deck):
+    rows = [  # (r, cls, flagellated) left, right, name, example
+        ((9, 'cell', True), (9, 'cell', True), 'Isogamy', 'Flagellated, similar size · <i>Ulothrix</i>'),
+        ((9, 'cell', False), (9, 'cell', False), 'Isogamy', 'Non-flagellated, similar size · <i>Spirogyra</i>'),
+        ((12, 'cell', True), (6, 'cell', True), 'Anisogamy', 'Dissimilar in size · <i>Eudorina</i>'),
+        ((16, 'egg', False), (5, 'cell', True), 'Oogamy', 'Large static egg + small motile male · <i>Volvox</i>, <i>Fucus</i>')]
+    q = 'Name each kind of sexual reproduction in algae, with the NCERT example.'
+    def build(show):
+        out = ''
+        for l, r, name, ex in rows:
+            if show:
+                gl = f'<g class="ml">{_gamete(52, l[0], l[1], l[2], "l")}</g>'
+                gr = f'<g class="mr">{_gamete(52 + l[0] + r[0] + 1, r[0], r[1], r[2], "r")}</g>'
+                text = f'<div><b>{name}</b><span>{ex}</span></div>'
+            else:
+                gl = _gamete(36, l[0], l[1], l[2], 'l')
+                gr = _gamete(92, r[0], r[1], r[2], 'r')
+                text = '<div><b class="q">?</b></div>'
+            out += f'<div class="gm"><svg viewBox="0 0 128 46">{gl}{gr}</svg>{text}</div>'
+        return f'<div class="w sea"><p class="tag">3.1 · Algae</p><h2>{q}</h2>{out}</div>'
+    _card(deck, 'Isogamy, anisogamy and oogamy in algae',
+          'Isogamy: similar gametes, flagellated (Ulothrix) or non-flagellated (Spirogyra). Anisogamy: dissimilar in size (Eudorina). '
+          'Oogamy: large non-motile egg + small motile male (Volvox, Fucus).', SEA, build(False), build(True))
+
+
+GROVE = BASE + """
+.w.gv{color:#1e2a1c;background:linear-gradient(170deg,#f3f7ea 0,#e6efd6 100%)}
+.gv .tag{color:#5b7a3a}.gv h2{color:#1e2a1c;font-size:17.5px}
+.gv .grp{margin-top:8px;padding:8px 10px 9px;border-radius:14px;background:#fff;border:1px solid #d9e4c4}
+.gv .grp h3{margin:0 0 4px;font-size:14px;color:#2f4a1f}
+.gv .gen{display:grid;grid-template-columns:34px 1fr;gap:2px 8px;align-items:center;margin:5px 0 0}
+.gv .gen i{grid-row:span 2;font-style:normal;font-size:11px;font-weight:700;text-align:center;padding:3px 0;border-radius:7px;color:#fff}
+.gv .n i{background:#7cb342}.gv .d i{background:#2f6fa3}
+.gv .gen span{font-size:12.5px;color:#2f3a2a;font-weight:600}
+.gv .bar{height:5px;border-radius:3px;background:#eef3e2;overflow:hidden}
+.gv .bar u{display:block;height:100%;border-radius:3px;animation:grow 1.1s cubic-bezier(.2,.8,.2,1) both}
+.gv .n u{background:#7cb342}.gv .d u{background:#2f6fa3}
+.gv .s1{width:100%}.gv .s2{width:34%}.gv .s3{width:12%}
+.gv .q{color:#b7c4a3;letter-spacing:.25em}
+.gv .grp:nth-child(4) u{animation-delay:.2s}.gv .grp:nth-child(5) u{animation-delay:.4s}
+@keyframes grow{from{width:0}}
+"""
+
+
+def dominant_generation(deck):
+    groups = [('Bryophytes', ('s1', 'Dominant, free-living, photosynthetic'), ('s2', 'Attached, depends on it')),
+              ('Pteridophytes', ('s3', 'Prothallus: small, free-living'), ('s1', 'Dominant: true root, stem, leaves')),
+              ('Gymnosperms', ('s3', 'Reduced, inside sporangia'), ('s1', 'Dominant: the plant itself'))]
+    q = 'Gametophyte (n) or sporophyte (2n): which is dominant in each group?'
+    def build(show):
+        out = ''
+        for name, gam, spo in groups:
+            rows = ''
+            for kind, label, (width, note) in (('n', 'n', gam), ('d', '2n', spo)):
+                if show:
+                    rows += f'<div class="gen {kind}"><i>{label}</i><span>{note}</span><div class="bar"><u class="{width}"></u></div></div>'
+                else:
+                    rows += f'<div class="gen {kind}"><i>{label}</i><span class="q">?</span><div class="bar"></div></div>'
+            out += f'<div class="grp"><h3>{name}</h3>{rows}</div>'
+        return f'<div class="w gv"><p class="tag">3.2 – 3.4 · Life cycles</p><h2>{q}</h2>{out}</div>'
+    _card(deck, 'Dominant generation: bryophytes, pteridophytes, gymnosperms',
+          'Bryophytes: gametophyte dominant, sporophyte dependent on it. Pteridophytes: sporophyte dominant; gametophyte (prothallus) small, free-living. '
+          'Gymnosperms: sporophyte dominant; gametophytes reduced, not free-living.', GROVE, build(False), build(True))
+
+
 # ---------------------------------------------------------------- chemistry
 def bond_order_bars(deck):
     def rows(kind, show):
