@@ -244,7 +244,8 @@ Don't polish endlessly: move on to the next chapter.
 | Book | Chapters | Status |
 |---|---|---|
 | Biology 11 | 1–19 | Done (2 = pilot) — complete |
-| Biology 12 | 1–13 | **Next.** Unzip `bio12th.zip` to `NCERT-pdfs/bio12/`; check `premade-cards/12th/Biology` for old zips to replace |
+| Biology 12 | 1 | Done (PDFs unzipped to `NCERT-pdfs/bio12/`) |
+| Biology 12 | 2–13 | **Next.** Old `chapter_N_..._revised_erudite_v2.zip` in `premade-cards/12th/Biology` to replace |
 | Chemistry 11 | 4 | Pilot |
 | Chemistry 11 | 1–3, 5–9 | Old |
 | Chemistry 12 | all | Check `premade-cards/12th/*Chemistry*` for old decks |
