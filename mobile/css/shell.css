@@ -1267,6 +1267,36 @@ body[data-active-tab="library"] .mobile-topbar {
   transform: scale(var(--press-scale));
 }
 
+.pro-coupon {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.pro-coupon.hidden {
+  display: none;
+}
+
+.pro-coupon .mobile-modal-input {
+  flex: 1;
+  min-width: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pro-coupon-btn {
+  flex: none;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: 0.75rem;
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.pro-coupon-btn:disabled {
+  opacity: 0.5;
+}
+
 .pro-restore {
   align-self: center;
   border: 0;

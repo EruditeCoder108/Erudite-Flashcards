@@ -6224,13 +6224,18 @@
     overlay.classList.remove('hidden');
     playClick();
 
+    const coupon = document.getElementById('pro-coupon');
     if (isPro()) {
       plans.innerHTML = '';
-      status.textContent = 'Erudite Pro is active on this Google account. Thank you for supporting the app.';
+      status.textContent = window.EruditeEntitlements?.isCouponPro?.()
+        ? 'Erudite Pro is active on this device.'
+        : 'Erudite Pro is active on this Google account. Thank you for supporting the app.';
       buy.classList.add('hidden');
+      coupon?.classList.add('hidden');
       return;
     }
     buy.classList.remove('hidden');
+    coupon?.classList.remove('hidden');
     const entitlements = window.EruditeEntitlements;
     if (!entitlements?.isAvailable?.()) {
       plans.innerHTML = '';
@@ -6284,6 +6289,26 @@
       showToast('Welcome to Erudite Pro');
     } else if (!result.cancelled) {
       showToast(result.error || 'Purchase failed');
+    }
+  }
+
+  async function redeemProCoupon() {
+    const input = document.getElementById('pro-coupon-input');
+    const button = document.getElementById('pro-coupon-btn');
+    if (!input || !button || button.disabled) return;
+    button.disabled = true;
+    button.textContent = 'Checking...';
+    const result = await window.EruditeEntitlements?.redeemCoupon?.(input.value)
+      || { error: 'Coupons are not available in this build' };
+    button.disabled = false;
+    button.textContent = 'Redeem';
+    if (result.ok) {
+      input.value = '';
+      closeProSheet();
+      // The entitlement onChange listener re-renders and fills in sample decks.
+      showToast('Erudite Pro unlocked');
+    } else {
+      showToast(result.error || 'That code is not valid');
     }
   }
 
@@ -10535,6 +10560,9 @@
         break;
       case 'restore-pro':
         await restorePro();
+        break;
+      case 'redeem-coupon':
+        await redeemProCoupon();
         break;
       case 'select-pro-plan':
         selectedProPackage = proPackages.find(item => item.id === target.dataset.planId) || selectedProPackage;

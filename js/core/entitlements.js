@@ -8,6 +8,10 @@
 
   const CACHE_KEY = 'erudite-pro-entitlement-v1';
   const DEBUG_KEY = 'erudite-pro-debug';
+  // A redeemed coupon is stored apart from the Play entitlement, so a Play
+  // check that finds no purchase never switches coupon Pro off.
+  const COUPON_KEY = 'erudite-pro-coupon-v1';
+  const DEVICE_KEY = 'erudite-device-id';
   // An offline device keeps a cached Pro entitlement for this long past its
   // expiry before falling back to free, so a flaky connection never locks a
   // paying student out mid-revision.
@@ -63,8 +67,18 @@
     }
   }
 
+  function couponPro() {
+    try {
+      const saved = JSON.parse(root.localStorage.getItem(COUPON_KEY) || 'null');
+      return Boolean(saved?.active);
+    } catch (_) {
+      return false;
+    }
+  }
+
   function isPro() {
     if (debugPro()) return true;
+    if (couponPro()) return true;
     if (!state.active) return false;
     if (!state.expiresAt) return true;
     return Date.now() < Number(state.expiresAt) + OFFLINE_GRACE_MS;
@@ -177,12 +191,64 @@
     }
   }
 
+  function deviceId() {
+    try {
+      let id = root.localStorage.getItem(DEVICE_KEY);
+      if (!id) {
+        id = root.crypto?.randomUUID?.() || `d-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+        root.localStorage.setItem(DEVICE_KEY, id);
+      }
+      return id;
+    } catch (_) {
+      return `d-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+    }
+  }
+
+  function couponUrl() {
+    const base = String(root.ERUDITE_PREMADE_CONTENT?.baseUrl || '').replace(/\/+$/, '');
+    return /^https:\/\//i.test(base) ? `${base}/api/redeem-coupon` : '';
+  }
+
+  /** Redeem a Pro coupon code. Resolves { ok: true } or { error }. */
+  async function redeemCoupon(code) {
+    const clean = String(code || '').trim();
+    if (!clean) return { error: 'Enter a code' };
+    const url = couponUrl();
+    if (!url) return { error: 'Coupons are not available in this build' };
+    let result;
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: clean, deviceId: deviceId() })
+      });
+      result = await response.json().catch(() => ({}));
+    } catch (_) {
+      return { error: 'Could not reach the server. Check your connection.' };
+    }
+    if (!result?.ok) return { error: result?.error || 'That code is not valid' };
+    const wasPro = isPro();
+    try {
+      root.localStorage.setItem(COUPON_KEY, JSON.stringify({ active: true, redeemedAt: Date.now() }));
+    } catch (_) {
+      return { error: 'Could not save Pro on this device' };
+    }
+    if (!wasPro) listeners.forEach(listener => {
+      try {
+        listener(true);
+      } catch (error) {
+        console.warn('[entitlements] listener failed:', error);
+      }
+    });
+    return { ok: true };
+  }
+
   function onChange(listener) {
     listeners.add(listener);
     return () => listeners.delete(listener);
   }
 
-  const api = { init, isPro, isAvailable, getPackages, purchase, restore, onChange };
+  const api = { init, isPro, isCouponPro: couponPro, isAvailable, getPackages, purchase, restore, redeemCoupon, onChange };
   root.EruditeEntitlements = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 }(typeof globalThis !== 'undefined' ? globalThis : window));

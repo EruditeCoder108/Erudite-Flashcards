@@ -1,3 +1,6 @@
 [build]
   command = "npm run zip:premade && npm run build:site"
   publish = "site"
+
+[functions]
+  directory = "netlify/functions"
