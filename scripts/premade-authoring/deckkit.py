@@ -70,7 +70,9 @@ class Deck:
 
     def write(self, path):
         with open(path, 'w', encoding='utf8') as f:
-            json.dump({'version': 1, 'name': self.name, 'className': self.class_name, 'cards': self.cards},
+            json.dump({'version': 1, 'name': self.name, 'className': self.class_name,
+                       **({'description': self.description} if getattr(self, 'description', '') else {}),
+                       'cards': self.cards},
                       f, ensure_ascii=False, indent=2)
         return len(self.cards)
 

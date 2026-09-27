@@ -302,6 +302,73 @@ def kingdom_tiles(deck, question, answers, term, eyebrow='Table 2.1 · Five king
     _card(deck, term, '; '.join(f'{k}: {_strip(a)}' for k, (a, _) in zip(KINGDOMS, answers)), TILES, build(False), build(True))
 
 
+HERBARIUM = BASE + """
+.w.hb{color:#2d2a22;background:#f4ecd8;border:1px solid #e2d5b5;
+  font-family:Georgia,"Times New Roman",serif}
+.hb .tag{color:#8a6d3b;font-family:system-ui,sans-serif}.hb h2{color:#2d2a22}
+.hb .sheet{position:relative;margin-top:6px;padding:12px 12px 10px;border-radius:12px;background:#fbf6ea;
+  border:1px solid #e6d9ba;box-shadow:0 1px 0 rgba(90,70,30,.08)}
+.hb .label{position:absolute;right:10px;top:-12px;padding:4px 10px;border:1.5px solid #6b5a33;border-radius:4px;
+  background:#fffdf6;font-size:12px;color:#4a3f26;transform:rotate(2deg)}
+.hb .label b{display:block;font-size:14px}
+.hb .rung{display:grid;grid-template-columns:96px 1fr;align-items:center;gap:8px;padding:6px 0;
+  border-bottom:1px dashed #d8c89f}
+.hb .rung:last-child{border-bottom:0}
+.hb .rung small{font-family:system-ui,sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a6d3b}
+.hb .rung b{font-size:16px;font-weight:600;color:#2d2a22}
+.hb .rung b.q{color:#c9b98f;letter-spacing:.25em}
+.hb .rung i{font-size:16px}
+.hb .up{display:flex;align-items:center;gap:8px;margin-top:10px;font-family:system-ui,sans-serif;font-size:12.5px;color:#6b5a33}
+.hb .up svg{width:22px;height:48px;flex:none}
+.hb .stem{stroke:#8a6d3b;stroke-width:2;fill:none}
+.hb .r1{animation:fade .45s ease both 1.5s}.hb .r2{animation:fade .45s ease both 1.25s}.hb .r3{animation:fade .45s ease both 1s}
+.hb .r4{animation:fade .45s ease both .75s}.hb .r5{animation:fade .45s ease both .5s}.hb .r6{animation:fade .45s ease both .25s}
+.hb .r7{animation:fade .45s ease both 0s}
+.hb .name{margin:18px 0 6px;text-align:center;font-size:30px;line-height:1.2}
+.hb .name span{display:inline-block;padding:0 4px}
+.hb .name .g{color:#1f5f3f}.hb .name .s{color:#7a3b12}.hb .name .a{color:#555;font-size:22px}
+.hb .parts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;font-family:system-ui,sans-serif}
+.hb .parts div{padding:9px 8px;border-radius:10px;background:#fffdf6;border:1px solid #e6d9ba;font-size:12.5px;line-height:1.35}
+.hb .parts b{display:block;margin-bottom:3px;font-size:13.5px}
+.hb .parts .g b{color:#1f5f3f}.hb .parts .s b{color:#7a3b12}.hb .parts .a b{color:#555}
+.hb .rules{margin-top:12px;padding:10px 12px;border-radius:10px;background:#efe3c4;font-family:system-ui,sans-serif;font-size:13px}
+"""
+
+RANKS = ['Kingdom', 'Phylum / Division', 'Class', 'Order', 'Family', 'Genus', 'Species']
+
+
+def taxon_ladder(deck, common, values, italic=(), eyebrow='Table 1.1 · Taxonomic categories'):
+    """values: 7 strings from Kingdom down to Species; italic: ranks (by index) to italicise."""
+    q = f'Place the {common.lower()} in the taxonomic hierarchy.'
+    def build(show):
+        rungs = ''
+        for i, (rank, value) in enumerate(zip(RANKS, values)):
+            shown = f'<i>{value}</i>' if i in italic else value
+            cell = f'<b>{shown}</b>' if show else '<b class="q">?</b>'
+            rungs += f'<div class="rung{f" r{i + 1}" if show else ""}"><small>{rank}</small>{cell}</div>'
+        arrow = ('<div class="up"><svg viewBox="0 0 22 48"><path class="stem" d="M11 46V6M4 13l7-8 7 8"></path></svg>'
+                 '<span>Going up: <b>fewer</b> shared characters in each taxon.</span></div>') if show else ''
+        return (f'<div class="w hb"><p class="tag">{eyebrow}</p><h2>{q}</h2><div class="sheet">'
+                f'<div class="label">Specimen<b>{common}</b></div>{rungs}</div>{arrow}</div>')
+    definition = '; '.join(f'{r}: {v}' for r, v in zip(RANKS, values))
+    _card(deck, f'Classification of {common.lower()}', definition, HERBARIUM, build(False), build(True))
+
+
+def binomial_anatomy(deck):
+    q = 'Name each part of this scientific name and the rule it follows.'
+    name = '<p class="name"><span class="g"><i>Mangifera</i></span> <span class="s"><i>indica</i></span> <span class="a">Linn.</span></p>'
+    front = (f'<div class="w hb"><p class="tag">1.1 · Binomial nomenclature</p><h2>{q}</h2>{name}'
+             '<div class="parts"><div class="g"><b>1 · ?</b></div><div class="s"><b>2 · ?</b></div><div class="a"><b>3 · ?</b></div></div></div>')
+    back = (f'<div class="w hb"><p class="tag">1.1 · Binomial nomenclature</p><h2>{q}</h2>{name}'
+            '<div class="parts"><div class="g fx d1"><b>Genus</b>Starts with a capital letter</div>'
+            '<div class="s fx d2"><b>Specific epithet</b>Starts with a small letter</div>'
+            '<div class="a fx d3"><b>Author</b>Abbreviated, at the end: first described by Linnaeus</div></div>'
+            '<div class="rules fx d4">Latin, in <b>italics</b> when printed; each word <b>underlined separately</b> when handwritten.</div></div>')
+    _card(deck, 'Parts of <i>Mangifera indica</i> Linn.',
+          'Mangifera = genus (capital letter); indica = specific epithet (small letter); Linn. = author (abbreviated). Italics in print, each word underlined separately in handwriting.',
+          HERBARIUM, front, back)
+
+
 # ---------------------------------------------------------------- chemistry
 def bond_order_bars(deck):
     def rows(kind, show):

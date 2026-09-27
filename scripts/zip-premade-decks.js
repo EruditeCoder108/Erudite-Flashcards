@@ -32,7 +32,7 @@ async function exists(filePath) {
 }
 
 async function addDirectoryToZip(zip, srcDir, zipPath = '') {
-  const entries = await fs.readdir(srcDir, { withFileTypes: true });
+  const entries = (await fs.readdir(srcDir, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name));
   for (const entry of entries) {
     const fullPath = path.join(srcDir, entry.name);
     const relPath = zipPath ? `${zipPath}/${entry.name}` : entry.name;
@@ -229,6 +229,9 @@ async function processSubjectDirectory(subjectPath) {
 
       if (needsZipping) {
         console.log(`Zipping ${entry.name} -> ${zipName}...`);
+        // A fixed date makes the zip byte-identical when the deck has not changed,
+        // so rebuilding every deck does not churn files that did not change.
+        Object.values(zip.files).forEach(file => { file.date = FIXED_ZIP_DATE; });
         const buffer = await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' });
         const zipPath = path.join(subjectPath, zipName);
         await fs.writeFile(zipPath, buffer);
@@ -246,6 +249,7 @@ async function processSubjectDirectory(subjectPath) {
 }
 
 const FREE_CHAPTERS = 3;
+const FIXED_ZIP_DATE = new Date(Date.UTC(2026, 0, 1));
 
 /** Chapter number from a deck name or file name ("Chapter 3 : Plant kingdom", "class11-biology-ch02-..."). */
 function chapterNumber(...labels) {
