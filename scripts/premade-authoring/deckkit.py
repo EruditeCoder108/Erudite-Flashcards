@@ -92,6 +92,10 @@ def pad(box, p=6, size=None):
         w, h = min(w, size[0] - x), min(h, size[1] - y)
     return [x, y, w, h]
 
+def wbox(x0, y0, x1, y1, size=None, p=5):
+    """Mask from word-box corners printed by figcrop (left, top, right, bottom), padded and kept inside the image."""
+    return pad([x0, y0, x1 - x0, y1 - y0], p, size)
+
 # ---- Advanced HTML: "reveal the hidden column" table card -------------------------------
 # Paper-coloured card so it reads the same on the dark and light app themes.
 TABLE_CSS = """

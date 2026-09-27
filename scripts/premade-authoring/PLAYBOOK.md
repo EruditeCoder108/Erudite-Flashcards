@@ -189,7 +189,7 @@ Getting any of these wrong breaks cards on real phones.
 
 **Occlusion masks**
 - `bboxPx` is `[x, y, w, h]` in pixels of the saved crop, and `size` must be the crop's actual pixel size (printed by `export`).
-- Use `pad(box, 4–6)` around the word boxes from `export`.
+- Use `pad(box, 4–6)` around the word boxes from `export`, or `wbox(left, top, right, bottom, size)` to span a multi-word label.
 - A label printed on a slant: `rot([x, y, w, h], degrees)`. A negative angle turns it anticlockwise.
 - An odd shape: `poly([(x, y), …])`.
 - Keep these rare: older app builds show them as plain boxes.
@@ -243,8 +243,8 @@ Don't polish endlessly: move on to the next chapter.
 
 | Book | Chapters | Status |
 |---|---|---|
-| Biology 11 | 1–11 | Done (2 = pilot) |
-| Biology 11 | 12–19 | Old: rebuild next, in order |
+| Biology 11 | 1–12 | Done (2 = pilot) |
+| Biology 11 | 13–19 | Old: rebuild next, in order |
 | Biology 12 | 1–13 | Not started (unzip `bio12th.zip`) |
 | Chemistry 11 | 4 | Pilot |
 | Chemistry 11 | 1–3, 5–9 | Old |
