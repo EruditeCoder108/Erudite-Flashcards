@@ -243,8 +243,8 @@ Don't polish endlessly: move on to the next chapter.
 
 | Book | Chapters | Status |
 |---|---|---|
-| Biology 11 | 1–12 | Done (2 = pilot) |
-| Biology 11 | 13–19 | Old: rebuild next, in order |
+| Biology 11 | 1–13 | Done (2 = pilot) |
+| Biology 11 | 14–19 | Old: rebuild next, in order |
 | Biology 12 | 1–13 | Not started (unzip `bio12th.zip`) |
 | Chemistry 11 | 4 | Pilot |
 | Chemistry 11 | 1–3, 5–9 | Old |
