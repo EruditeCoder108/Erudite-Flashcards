@@ -100,9 +100,13 @@ Everything lives in `scripts/premade-authoring/`. Needs Python 3 with `pymupdf` 
 
 Tool output goes to `scripts/premade-authoring/.work/`, which is gitignored. Open the PNGs with the Read tool to look at them.
 
-The rendered contact sheets are scaled. Read coordinates off the grid labels, never off image pixels.
-
-The best source for rects is `figs.py`, which reads bboxes from the PDF. Pad them a little and trim off captions.
+**Getting crop rects right (lesson learned):**
+- Use `figs.py` for rough boxes. Its boxes can be too wide, because clipping paths make vector art report oversized bounds.
+- Then run `ptgrid.py` on the region. It renders the region with the same clip mechanism `export` uses, so its grid labels are exact.
+- Read the grid label values, not image pixels.
+- Don't trust `sheet.py` for final numbers; it is for seeing the page layout.
+- After cropping, always run `montage.py` and fix any clipped edges or stray neighbouring text.
+- Figure labels are often part of the image, not PDF text. In that case `export` prints no word boxes: estimate mask positions from the montage (tile scale = 300 / image width) and confirm with `maskcheck.py`.
 
 ## 4. Source PDFs
 
@@ -239,8 +243,8 @@ Don't polish endlessly: move on to the next chapter.
 
 | Book | Chapters | Status |
 |---|---|---|
-| Biology 11 | 1–9 | Done (2 = pilot) |
-| Biology 11 | 10–19 | Old: rebuild next, in order |
+| Biology 11 | 1–10 | Done (2 = pilot) |
+| Biology 11 | 11–19 | Old: rebuild next, in order |
 | Biology 12 | 1–13 | Not started (unzip `bio12th.zip`) |
 | Chemistry 11 | 4 | Pilot |
 | Chemistry 11 | 1–3, 5–9 | Old |
