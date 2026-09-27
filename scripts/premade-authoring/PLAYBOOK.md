@@ -110,7 +110,7 @@ Tool output goes to `scripts/premade-authoring/.work/`, which is gitignored. Ope
 
 ## 4. Source PDFs
 
-NCERT books are in `NCERT-pdfs/` (gitignored) as zips. Unzip a book into its own folder when you start it. For example, `bio11th.zip` has already been unzipped to `NCERT-pdfs/bio11/`.
+NCERT books are in `NCERT-pdfs/` (gitignored) as zips. Unzip a book into its own folder when you start it. For example, `bio11th.zip` and `bio12th.zip` have already been unzipped to `NCERT-pdfs/bio11/` and `NCERT-pdfs/bio12/`.
 
 | Prefix | Book |
 |---|---|
@@ -125,7 +125,7 @@ NCERT books are in `NCERT-pdfs/` (gitignored) as zips. Unzip a book into its own
 
 Files ending in `ps` or `an` are prelims and answers. Check the chapter title on page 0.
 
-Remaining zips: `bio12th`, `chempart11th`, `chempart211th`, `chempart112th`, `chempart212th`, `physics11th`, `physicspart2` (11th part 2), `physics12thpart1`, `physicspart212th`, `maths11th`, `mathspart1 12th`, `mathspart212th`.
+Remaining zips: `chempart11th`, `chempart211th`, `chempart112th`, `chempart212th`, `physics11th`, `physicspart2` (11th part 2), `physics12thpart1`, `physicspart212th`, `maths11th`, `mathspart1 12th`, `mathspart212th`.
 
 ## 5. Per-chapter workflow
 
@@ -244,10 +244,9 @@ Don't polish endlessly: move on to the next chapter.
 | Book | Chapters | Status |
 |---|---|---|
 | Biology 11 | 1–19 | Done (2 = pilot) — complete |
-| Biology 12 | 1–12 | Done (PDFs unzipped to `NCERT-pdfs/bio12/`) |
-| Biology 12 | 13 | **Next.** Old `chapter_N_..._revised_erudite_v2.zip` in `premade-cards/12th/Biology` to replace |
+| Biology 12 | 1–13 — complete | Done (PDFs unzipped to `NCERT-pdfs/bio12/`) |
 | Chemistry 11 | 4 | Pilot |
-| Chemistry 11 | 1–3, 5–9 | Old |
+| Chemistry 11 | 1–3, 5–9 | Old — **Next** (unzip `chempart11th.zip` / `chempart211th.zip`) |
 | Chemistry 12 | all | Check `premade-cards/12th/*Chemistry*` for old decks |
 | Physics 11 | 4 | Pilot |
 | Physics 11 | others | Not started |
