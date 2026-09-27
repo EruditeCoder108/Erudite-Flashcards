@@ -1,5 +1,7 @@
 # Premade deck authoring kit
 
+**Start with [PLAYBOOK.md](PLAYBOOK.md)**: the full workflow, the owner's rules and the progress table.
+
 Python helpers used to write the premade NCERT decks. The `deck.json` files under `premade-cards/` are what ships; these scripts are how they were written, so later chapters stay consistent.
 
 Requires Python 3 with `pymupdf` and `Pillow`.
@@ -11,6 +13,8 @@ Requires Python 3 with `pymupdf` and `Pillow`.
 | `figcrop.py` | Crops a figure at a given long side, saves `.webp`, and prints the pixel boxes of the printed labels (for masks). |
 | `grid.py` | Rebuilds a tall multi-panel figure as a 2-column grid with a label strip under each panel (easier to read on a phone). |
 | `showcase.py` | Themed advanced-HTML cards with inline SVG and CSS animation: blueprint (physics), chalkboard (maths), petri (biology), lab (chemistry), kingdom tiles. |
+| `replace_deck.py` | Retires an old premade zip in favour of a rebuilt deck and repackages. |
+| `tools/` | Preview helpers: `extract.py` (chapter text), `figs.py` (figure boxes), `sheet.py` / `ptgrid.py` (point grids), `montage.py`, `maskcheck.py`, `cardview.py`. Output goes to `.work/` (gitignored). |
 | `decks/*.py` | One script per chapter, plus `figures_*.py` that crop that chapter's NCERT figures. Run them, then `npm run zip:premade`. |
 
 ```bash
