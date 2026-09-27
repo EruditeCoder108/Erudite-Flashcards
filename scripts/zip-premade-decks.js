@@ -5,6 +5,8 @@ const JSZip = require('jszip');
 const root = path.resolve(__dirname, '..');
 const premadeDir = path.join(root, 'premade-cards');
 const catalogFileName = 'premade-catalog.json';
+// Optional per-class metadata: premade-cards/<class>/class.json, e.g. { "comingSoon": true }.
+const classMetaFileName = 'class.json';
 
 const knownClassNames = {
   '9th': 'Class 9',
@@ -111,7 +113,7 @@ async function processSubjectDirectory(subjectPath) {
   let updated = false;
 
   for (const entry of entries) {
-    if (entry.name === 'manifest.json' || entry.name === catalogFileName) continue;
+    if (entry.name === 'manifest.json' || entry.name === catalogFileName || entry.name === classMetaFileName) continue;
 
     let isDirectory = entry.isDirectory() && entry.name !== 'media' && !entry.name.startsWith('.');
     let isJsonFile = entry.isFile() && entry.name.toLowerCase().endsWith('.json');
@@ -221,13 +223,8 @@ async function processSubjectDirectory(subjectPath) {
         const buffer = await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' });
         const zipPath = path.join(subjectPath, zipName);
         await fs.writeFile(zipPath, buffer);
-
-        // Clean up original folder/file
-        if (isDirectory) {
-          await fs.rm(itemPath, { recursive: true, force: true });
-        } else if (isJsonFile) {
-          await fs.rm(itemPath, { force: true });
-        }
+        // The source folder stays in git so decks can be reviewed and edited;
+        // the zip is the generated artefact.
       }
     }
   }
@@ -247,7 +244,7 @@ async function isSubjectDirectory(dirPath) {
     }
     if (entry.isFile()) {
       const ext = path.extname(entry.name).toLowerCase();
-      if (entry.name === catalogFileName) continue;
+      if (entry.name === catalogFileName || entry.name === classMetaFileName) continue;
       if (ext === '.zip' || (ext === '.json' && entry.name !== 'manifest.json')) {
         return true;
       }
@@ -316,6 +313,21 @@ async function buildPremadeCatalog() {
       }
     }
 
+    const classMetaPath = path.join(dir, classMetaFileName);
+    const relativeDir = path.relative(premadeDir, dir).split(path.sep).filter(Boolean);
+    if (relativeDir.length === 1 && await exists(classMetaPath)) {
+      try {
+        const meta = JSON.parse(await fs.readFile(classMetaPath, 'utf8'));
+        const classId = relativeDir[0];
+        const classEntry = classMap.get(classId) || { id: classId, name: labelFromId(classId), subjects: [] };
+        if (meta.name) classEntry.name = String(meta.name);
+        if (meta.comingSoon === true) classEntry.comingSoon = true;
+        classMap.set(classId, classEntry);
+      } catch (error) {
+        console.warn(`Skipping invalid ${path.relative(root, classMetaPath)}`, error.message);
+      }
+    }
+
     const entries = await fs.readdir(dir, { withFileTypes: true });
     for (const entry of entries) {
       if (entry.isDirectory() && !entry.name.startsWith('.') && entry.name !== 'media') {
@@ -329,11 +341,12 @@ async function buildPremadeCatalog() {
   const classes = Array.from(classMap.values())
     .map(item => ({
       ...item,
-      subjects: item.subjects
+      // A "coming soon" class is listed without its decks.
+      subjects: item.comingSoon ? [] : item.subjects
         .filter(subject => subject.deckCount > 0)
         .sort((a, b) => a.name.localeCompare(b.name))
     }))
-    .filter(item => item.subjects.length)
+    .filter(item => item.comingSoon || item.subjects.length)
     .sort(sortByKnownOrder);
 
   const catalog = {

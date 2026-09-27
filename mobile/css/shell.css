@@ -565,6 +565,16 @@ body[data-active-tab="library"] .mobile-topbar {
   transform: scale(0.95);
 }
 
+.filter-chip.coming-soon:not(.active) {
+  opacity: 0.55;
+}
+
+.filter-chip .chip-note {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  opacity: 0.75;
+}
+
 .library-meta-row {
   color: var(--subtle);
   font-size: var(--text-xs);

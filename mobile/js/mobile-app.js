@@ -81,8 +81,8 @@
     browserFilters: new Set(),
     browserSelectedCards: new Set(),
     browserVisibleIds: [],
-    premadeClass: 'ssc',
-    premadeSubject: 'english',
+    premadeClass: '',
+    premadeSubject: '',
     premadeSets: [],
     creator: {
       editingSetId: null,
@@ -2402,84 +2402,14 @@
     return card.noteFields && typeof card.noteFields === 'object' ? card.noteFields : (direct || {});
   }
 
-  function sanitizeHtmlClassValue(value) {
-    return String(value || '')
-      .split(/\s+/)
-      .map(item => item.replace(/[^\w:-]/g, ''))
-      .filter(Boolean)
-      .slice(0, 12)
-      .join(' ');
-  }
 
   function sanitizeAdvancedHtml(value) {
-    const template = document.createElement('template');
-    template.innerHTML = String(value || '').slice(0, ADVANCED_HTML_MAX_LENGTH);
-    const allowed = new Set([
-      'DIV', 'SECTION', 'ARTICLE', 'HEADER', 'FOOTER', 'MAIN',
-      'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
-      'P', 'SPAN', 'STRONG', 'B', 'EM', 'I', 'U', 'SMALL',
-      'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'BR', 'HR',
-      'UL', 'OL', 'LI',
-      'TABLE', 'THEAD', 'TBODY', 'TFOOT', 'TR', 'TH', 'TD',
-      'IMG', 'SUP', 'SUB'
-    ]);
-    const removeEntirely = new Set(['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED', 'LINK', 'META', 'BASE', 'FORM', 'INPUT', 'BUTTON', 'SELECT', 'TEXTAREA', 'CANVAS', 'VIDEO', 'AUDIO']);
-    const walk = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
-    const nodes = [];
-    while (walk.nextNode()) nodes.push(walk.currentNode);
-    nodes.forEach(node => {
-      if (removeEntirely.has(node.tagName)) {
-        node.remove();
-        return;
-      }
-      if (!allowed.has(node.tagName)) {
-        node.replaceWith(...Array.from(node.childNodes));
-        return;
-      }
-      Array.from(node.attributes).forEach(attr => {
-        const name = attr.name.toLowerCase();
-        const raw = String(attr.value || '');
-        if (name.startsWith('on') || name === 'style' || name === 'srcdoc' || name === 'href') {
-          node.removeAttribute(attr.name);
-          return;
-        }
-        if (name === 'class') {
-          const safeClass = sanitizeHtmlClassValue(raw);
-          if (safeClass) node.setAttribute('class', safeClass);
-          else node.removeAttribute(attr.name);
-          return;
-        }
-        if (name === 'id') {
-          const safeId = raw.replace(/[^\w:-]/g, '').slice(0, 64);
-          if (safeId) node.setAttribute('id', safeId);
-          else node.removeAttribute(attr.name);
-          return;
-        }
-        if (node.tagName === 'IMG') {
-          if (name === 'src') {
-            const src = safeMediaSrc(raw);
-            if (src && !/^data:image\/svg/i.test(src)) node.setAttribute('src', src);
-            else node.removeAttribute(attr.name);
-            return;
-          }
-          if (name === 'alt' || name === 'title') {
-            node.setAttribute(attr.name, raw.slice(0, 160));
-            return;
-          }
-          if ((name === 'width' || name === 'height') && /^(\d{1,4}|[1-9]\d?%)$/.test(raw.trim())) {
-            node.setAttribute(attr.name, raw.trim());
-            return;
-          }
-        }
-        if ((node.tagName === 'TD' || node.tagName === 'TH') && (name === 'colspan' || name === 'rowspan') && /^\d{1,2}$/.test(raw.trim())) {
-          node.setAttribute(attr.name, raw.trim());
-          return;
-        }
-        node.removeAttribute(attr.name);
-      });
+    return window.EruditeCore.advancedHtml.sanitizeAdvancedHtml(value, {
+      maxLength: ADVANCED_HTML_MAX_LENGTH,
+      safeMediaSrc
     });
-    return template.innerHTML.trim();
   }
+
 
   function sanitizeAdvancedCss(value) {
     let css = String(value || '').slice(0, ADVANCED_CSS_MAX_LENGTH);
@@ -5993,7 +5923,8 @@
       const classId = String(classItem?.id || '').trim();
       if (!classId) return;
       const subjects = Array.isArray(classItem.subjects) ? classItem.subjects : [];
-      const subjectIds = subjects
+      const comingSoon = classItem.comingSoon === true;
+      const subjectIds = comingSoon ? [] : subjects
         .map(subject => {
           const subjectId = String(subject?.id || subject || '').trim();
           if (!subjectId) return '';
@@ -6002,10 +5933,11 @@
           return subjectId;
         })
         .filter(Boolean);
-      if (!subjectIds.length) return;
+      if (!subjectIds.length && !comingSoon) return;
       nextClasses.push({
         id: classId,
-        name: String(classItem.name || '').trim() || subjectLabel(classId)
+        name: String(classItem.name || '').trim() || subjectLabel(classId),
+        comingSoon
       });
       nextSubjects[classId] = subjectIds;
     });
@@ -6035,6 +5967,7 @@
         return {
           id,
           name: String(item.name || '').trim() || subjectLabel(id),
+          comingSoon: item.comingSoon === true,
           _order: premadeClassSortValue(item, index)
         };
       })
@@ -6057,7 +5990,7 @@
 
   function ensurePremadeSelection() {
     if (!premadeClasses.some(item => item.id === state.premadeClass)) {
-      state.premadeClass = premadeClasses[0]?.id || '';
+      state.premadeClass = (premadeClasses.find(item => !item.comingSoon) || premadeClasses[0])?.id || '';
     }
     const subjects = premadeSubjects[state.premadeClass] || [];
     if (!subjects.includes(state.premadeSubject)) {
@@ -6083,14 +6016,28 @@
     return PREMADE_ICON_NAMES.has(icon) ? icon : 'fa-book-open';
   }
 
+  function isPremadeClassComingSoon(classId) {
+    return premadeClasses.some(item => item.id === classId && item.comingSoon);
+  }
+
   function renderPremade() {
     if (!selectors.premadeList) return;
     ensurePremadeSelection();
     selectors.premadeClassFilters.innerHTML = premadeClasses.map(item => `
-      <button type="button" class="filter-chip ${state.premadeClass === item.id ? 'active' : ''}" data-action="premade-class" data-class-id="${escapeAttr(item.id)}">
-        ${escapeHtml(item.name)}
+      <button type="button" class="filter-chip ${state.premadeClass === item.id ? 'active' : ''} ${item.comingSoon ? 'coming-soon' : ''}" data-action="premade-class" data-class-id="${escapeAttr(item.id)}">
+        ${escapeHtml(item.name)}${item.comingSoon ? '<span class="chip-note">Soon</span>' : ''}
       </button>
     `).join('');
+
+    if (isPremadeClassComingSoon(state.premadeClass)) {
+      selectors.premadeSubjectFilters.innerHTML = '';
+      selectors.premadeList.innerHTML = emptyPanel(
+        'fa-hourglass-half',
+        'Coming soon',
+        'We are building these decks now. They will appear here as soon as they are ready.'
+      );
+      return;
+    }
 
     const subjects = premadeSubjects[state.premadeClass] || [];
     selectors.premadeSubjectFilters.innerHTML = subjects.map(subject => `
@@ -6136,6 +6083,11 @@
   async function loadPremade() {
     await loadPremadeCatalog();
     ensurePremadeSelection();
+    if (isPremadeClassComingSoon(state.premadeClass)) {
+      state.premadeSets = [];
+      renderPremade();
+      return;
+    }
     const contentConfig = window.flashcardStore?.getPremadeContentConfig?.();
     if (!contentConfig?.isConfigured) {
       state.premadeSets = [];
@@ -7734,8 +7686,8 @@
         await openCreator();
         openAiDeckMaker();
       } else if (destination === 'premade') {
-        state.premadeClass = 'ssc';
-        state.premadeSubject = 'english';
+        state.premadeClass = '';
+        state.premadeSubject = '';
         await handleAction('open-premade', document.querySelector('[data-action="open-premade"]'));
       } else {
         await handleAction('tab-library', document.querySelector('[data-action="tab-library"]'));
@@ -10656,7 +10608,7 @@
         break;
       }
       case 'premade-class':
-        state.premadeClass = target.dataset.classId || '10th';
+        state.premadeClass = target.dataset.classId || '';
         state.premadeSubject = (premadeSubjects[state.premadeClass] || [])[0] || '';
         playClick();
         renderPremade();

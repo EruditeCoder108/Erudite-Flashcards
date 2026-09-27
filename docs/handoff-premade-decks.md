@@ -18,7 +18,11 @@ Build the best NCERT flashcards a student has seen. A student should open a chap
 - Class 11: Physics, Chemistry, Mathematics, Biology. Every chapter.
 - Class 12: Physics, Chemistry, Mathematics, Biology. Every chapter.
 
-**Strictly NCERT.** Include what the NCERT chapter teaches and nothing beyond it. NEET and JEE use the same Class 11 and 12 PCMB syllabus, so there are **no separate NEET/JEE decks** for now.
+**NCERT scope, with two levels of strictness** (owner decision):
+- **Biology, inorganic chemistry, organic chemistry:** strictly NCERT, in NCERT's words and values.
+- **Physics, physical chemistry, mathematics:** NCERT's topics, taught the way a good teacher would. Use the simplest form of each formula, intuitive explanations and simple diagrams; skip NCERT's over-complicated ones. Weight cards towards what NEET and JEE actually ask, and keep rarely asked material to a minimum. A few standard exam results just beyond the text are fine; tag them `exam-extra`.
+
+NEET and JEE use the same Class 11 and 12 PCMB syllabus, so there are **no separate NEET/JEE decks** for now.
 
 **Out of scope for now**
 - Arts, humanities, and commerce for 11 and 12.
@@ -129,7 +133,7 @@ premade-cards/<class>/<Subject>/<deck-id>/media/<files>.webp
 ```
 - `npm run zip:premade` (see `scripts/zip-premade-decks.js`) zips each folder to `<deck-id>.zip`. It also counts the cards that will be created (cloze and occlusion expand into several cards) and updates that subject's `manifest.json` and the top-level `premade-catalog.json`.
 - Use one consistent subject folder name per class: `Physics`, `Chemistry`, `Mathematics`, `Biology`.
-- Merge the three Class 11 chemistry folders into a single `Chemistry` folder, unless the owner wants to keep physical, inorganic, and organic separate. Ask.
+- Chemistry is one `Chemistry` folder per class (merged in the pilot; the old physical, inorganic and organic folders are gone).
 - Deck ids: `class11-biology-ch02-biological-classification`.
 - Keep the unzipped folders in git so decks can be reviewed and edited. The zip is generated.
 
@@ -180,7 +184,8 @@ premade-cards/<class>/<Subject>/<deck-id>/media/<files>.webp
     "masks": [ { "shape": "rect", "bboxPx": [x, y, w, h], "answer": "Dendrite" } ] } }
 ```
 - Mask boxes are measured in pixels of the final cropped image.
-- The app turns each mask into its own card. `hide-one` hides one label at a time; `hide-all` hides every label.
+- The app turns each mask into its own card. **The mode is read from `occlusion.guessMode`**, not `mode`: `hide-all` (default) hides every label and asks one; `hide-one` hides only the asked label.
+- The study front shows "Guess the hidden part", not the card's `term`.
 
 **Advanced HTML**
 ```json
@@ -204,7 +209,7 @@ premade-cards/<class>/<Subject>/<deck-id>/media/<files>.webp
 The full list of what the importer accepts is in the in-app AI format guide (`mobile/index.html`, `#code-ai-format-guide`) and in `js/core/ai-prompt.js`, the copy-paste prompt users get. `js/core/schema.js` normalises cards on import. `mobile/js/mobile-study.js` holds the sanitisers (`sanitizeRichText`, `sanitizeAdvancedHtml`, `sanitizeAdvancedCss`).
 
 ### Images
-- Crop NCERT figures from the PDF at good resolution.
+- Crop NCERT figures from the PDF at good resolution. NCERT PDFs carry a "not to be republished" watermark on an optional-content layer; `scripts/premade-authoring/clean_pdf.py` blanks it before rendering. The owner chose to use NCERT figures.
 - Export `.webp` at about 900–1200 px on the long side, and keep each file under about 200 KB.
 - Name files after the figure: `fig_2_3_bacteria_shapes.webp`.
 
@@ -237,7 +242,7 @@ These do need an app release, so bundle them into 2.0 before production if possi
 - **"Coming soon" for SSC.** Let a class in `premade-catalog.json` carry `"comingSoon": true`. The Premade screen then shows it greyed out with a "Coming soon" label instead of its decks.
 - **Remove the SSC English copies** from `premade-cards/11th/English` and `premade-cards/12th/English`.
 - **Optional: allow inline SVG in advanced HTML.** Add safe SVG elements (`svg g path line polyline polygon rect circle ellipse text tspan defs marker`) and presentational attributes, with no scripts, `foreignObject`, `href` or events. Line diagrams, arrows, and animated cycles become much easier. This is a sanitizer change in `mobile/js/mobile-study.js`. Keep it strict and add a test.
-- Optional: check that KaTeX renders inside advanced HTML cards. Today it renders only in basic text.
+- KaTeX renders only in basic and cloze text, not inside advanced HTML (checked in the pilot).
 
 ## 8. Release plan (owner)
 
@@ -254,3 +259,21 @@ These do need an app release, so bundle them into 2.0 before production if possi
 3. Is the colour code in section 4 right?
 4. Which chapter per subject should be the fully free showcase?
 5. Should the SVG support in section 7 be added now?
+
+## 10. Pilot status and lessons (September 2026)
+
+Pilot decks built, all `"tier": "free"` showcases, and imported and studied in the app at 360 px:
+
+| Deck | Notes | Cards | Card types |
+|---|---|---|---|
+| Biology 11 Ch 2 Biological Classification | 175 | 210 | basic, cloze, 6 image occlusion, 7 tables |
+| Chemistry 11 Ch 4 Chemical Bonding | 139 | 151 | basic, cloze, tables, 3 MO diagrams |
+| Physics 11 Ch 4 Laws of Motion | 76 | 79 | basic, cloze, tables, 3 worked examples |
+| Mathematics 11 Ch 3 Trigonometric Functions | 69 | 70 | basic (KaTeX), tables, quadrant grid |
+
+The authoring kit, one script per chapter, and the rules the app imposes are in `scripts/premade-authoring/README.md`. Read it before writing a deck. The main traps:
+- a cloze inside `\( … \)` breaks KaTeX;
+- `\text{}` inside KaTeX broke letter by letter in installed builds (CSS fixed in `mobile-study.css`, so it needs an app build);
+- no SVG in decks until the SVG-capable build is widespread.
+
+The chemistry PDF's text layer uses a shifted font encoding. Characters below 0x20 are digits shifted by −29; add 29 to recover them. Letters like c/p/v/x show up as F/S/Y/[.

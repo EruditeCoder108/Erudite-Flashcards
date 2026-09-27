@@ -1875,8 +1875,10 @@ html.reduce-motion .study-card-inner {
   text-align: left;
 }
 
+/* The card text allows overflow-wrap:anywhere; inside KaTeX that split
+   \text{FC} into one letter per line. Formula pieces never break internally. */
 .card-text-inline .katex .mord.text {
-  white-space: normal;
+  white-space: nowrap;
 }
 
 .theme-light .card-text-inline .katex-display {
