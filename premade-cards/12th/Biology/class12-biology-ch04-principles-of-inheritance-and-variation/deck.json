@@ -1,0 +1,2071 @@
+{
+  "version": 1,
+  "name": "Chapter 4: Principles of Inheritance and Variation",
+  "className": "Class 12",
+  "description": "Mendel’s laws, incomplete and co-dominance, linkage, polygenic traits, pleiotropy, sex determination, mutation and genetic disorders",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is genetics?",
+      "definition": "Branch of biology dealing with <span style=\"color:#3b82f6\">inheritance</span> and <span style=\"color:#3b82f6\">variation</span> of characters from parents to offspring",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.0-intro"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define inheritance.",
+      "definition": "Process by which characters are passed on from parent to progeny; the basis of <span style=\"color:#3b82f6\">heredity</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.0-intro"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define variation.",
+      "definition": "The degree by which <span style=\"color:#3b82f6\">progeny differ</span> from their parents",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.0-intro"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Since when did humans know variation was hidden in sexual reproduction?",
+      "definition": "As early as <span style=\"color:#f08c00\">8000–1000 B.C.</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.0-intro"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example of an Indian breed made by artificial selection?",
+      "definition": "<span style=\"color:#22a35a\">Sahiwal</span> cows in Punjab",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.0-intro"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mendel’s experiments: organism and period?",
+      "definition": "Garden pea; <span style=\"color:#f08c00\">seven years</span> (<span style=\"color:#f08c00\">1856–1863</span>)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why was Mendel’s work a first in biology?",
+      "definition": "First to apply <span style=\"color:#3b82f6\">statistical analysis and mathematical logic</span> to biological problems",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why were Mendel’s data credible?",
+      "definition": "<span style=\"color:#3b82f6\">Large sampling size</span> and confirmation over <span style=\"color:#3b82f6\">successive generations</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a true-breeding line?",
+      "definition": "A line that, after continuous <span style=\"color:#3b82f6\">self-pollination</span>, shows stable trait inheritance and expression for several generations",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How many true-breeding pea varieties did Mendel select?",
+      "definition": "<span style=\"color:#f08c00\">14</span> (as <span style=\"color:#f08c00\">7</span> pairs differing in one character)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Seven pairs of contrasting traits (Table 4.1)",
+      "definition": "Stem height: Tall / dwarf; Flower colour: Violet / white; Flower position: Axial / terminal; Pod shape: Inflated / constricted; Pod colour: Green / yellow; Seed shape: Round / wrinkled; Seed colour: Yellow / green",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.1</p><h2>Dominant / recessive?</h2><table><tr><td>Stem height</td><td class=\"q\">?</td></tr><tr><td>Flower colour</td><td class=\"q\">?</td></tr><tr><td>Flower position</td><td class=\"q\">?</td></tr><tr><td>Pod shape</td><td class=\"q\">?</td></tr><tr><td>Pod colour</td><td class=\"q\">?</td></tr><tr><td>Seed shape</td><td class=\"q\">?</td></tr><tr><td>Seed colour</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.1</p><h2>Dominant / recessive?</h2><table><tr><td>Stem height</td><td class=\"a\">Tall / dwarf</td></tr><tr><td>Flower colour</td><td class=\"a\">Violet / white</td></tr><tr><td>Flower position</td><td class=\"a\">Axial / terminal</td></tr><tr><td>Pod shape</td><td class=\"a\">Inflated / constricted</td></tr><tr><td>Pod colour</td><td class=\"a\">Green / yellow</td></tr><tr><td>Seed shape</td><td class=\"a\">Round / wrinkled</td></tr><tr><td>Seed colour</td><td class=\"a\">Yellow / green</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: seven pairs of traits Mendel studied.",
+      "definition": "Figure 4.1: seed shape, seed colour, flower colour, pod shape, pod colour, flower position, stem height",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ],
+      "termImage": "media/fig_4_1_seven_traits.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic for the 7 pea characters?",
+      "definition": "\"<span style=\"color:#3b82f6\">Short Silly Flowers Fly Past Poor Seeds</span>\": Stem height, Seed shape, Flower colour, Flower position, Pod shape, Pod colour, Seed colour",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Pod colour trap: which is dominant?",
+      "definition": "<span style=\"color:#3b82f6\">Green</span> pod is dominant over yellow (opposite of seed colour, where <span style=\"color:#3b82f6\">yellow</span> is dominant)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Advantages of pea for Mendel’s experiments? (Exercise 1)",
+      "definition": "Many <span style=\"color:#3b82f6\">contrasting traits</span>, naturally <span style=\"color:#3b82f6\">self-pollinating</span>, easy to cross-pollinate artificially, short life cycle, many seeds",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Steps in making a cross in pea (Figure 4.2)?",
+      "definition": "Remove anthers (<span style=\"color:#3b82f6\">emasculation</span>) from the female parent → transfer pollen from the male parent (pollination) → seeds → progeny",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.1-mendels-laws"
+      ],
+      "definitionImage": "media/fig_4_2_making_cross.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Tall × dwarf pea: F₁ result?",
+      "definition": "All <span style=\"color:#3b82f6\">tall</span>; none dwarf",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ],
+      "definitionImage": "media/fig_4_3_monohybrid.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "F₁ self-pollinated: F₂ result?",
+      "definition": "<span style=\"color:#f08c00\">3/4</span> tall, <span style=\"color:#f08c00\">1/4</span> dwarf; no blending (no in-between heights)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What did Mendel call the units passed on through gametes?",
+      "definition": "<span style=\"color:#3b82f6\">Factors</span>; now called <span style=\"color:#3b82f6\">genes</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are genes?",
+      "definition": "The <span style=\"color:#3b82f6\">units of inheritance</span>; contain information to express a trait",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are alleles?",
+      "definition": "Genes coding for a pair of contrasting traits: <span style=\"color:#3b82f6\">slightly different forms of the same gene</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Symbol convention for alleles?",
+      "definition": "Capital letter for the trait expressed in F₁ (<span style=\"color:#3b82f6\">T</span>), small letter for the other (<span style=\"color:#3b82f6\">t</span>). <span style=\"color:#e5484d\">Never</span> T and d.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Homozygous vs heterozygous?",
+      "definition": "<span style=\"color:#3b82f6\">Homozygous</span>: identical alleles (TT, tt). <span style=\"color:#3b82f6\">Heterozygous</span>: dissimilar alleles (Tt).",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Genotype vs phenotype?",
+      "definition": "<span style=\"color:#3b82f6\">Genotype</span>: genetic make-up (TT, Tt, tt). <span style=\"color:#3b82f6\">Phenotype</span>: observable trait (tall, dwarf).",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dominant vs recessive factor?",
+      "definition": "In a dissimilar pair, the <span style=\"color:#3b82f6\">dominant</span> is expressed; the <span style=\"color:#3b82f6\">recessive</span> is masked (expressed only when homozygous)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a monohybrid cross?",
+      "definition": "A cross studying <span style=\"color:#3b82f6\">one character</span> (e.g. TT × tt); Tt is a monohybrid",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do alleles behave in gamete formation?",
+      "definition": "They <span style=\"color:#3b82f6\">segregate</span> randomly; each gamete gets <span style=\"color:#3b82f6\">one</span> allele (50% chance each)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who developed the Punnett square, and what is it?",
+      "definition": "<span style=\"color:#3b82f6\">Reginald C. Punnett</span>; a graphical way to calculate probability of all possible genotypes in a cross",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ],
+      "definitionImage": "media/fig_4_4_punnett_monohybrid.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "Monohybrid F₂: phenotypic ratio {{c1::3 : 1}}; genotypic ratio {{c2::1 : 2 : 1}} (TT : Tt : tt).",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Binomial form of the monohybrid F₂?",
+      "definition": "\\( (\\tfrac12 T + \\tfrac12 t)^2 = \\tfrac14 TT + \\tfrac12 Tt + \\tfrac14 tt \\)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can’t you tell TT from Tt by looking? (intuition)",
+      "definition": "One working allele (T) is enough to make the plant tall: <span style=\"color:#3b82f6\">dominance</span> hides the recessive",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Result of selfing dwarf F₂ plants?",
+      "definition": "Dwarfs in F₃ and F₄: dwarfs are homozygous <span style=\"color:#3b82f6\">tt</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Self-pollinating a tall F₂ plant would give?",
+      "definition": "1/3 of tall F₂ (TT) breed <span style=\"color:#3b82f6\">true</span>; 2/3 (Tt) give <span style=\"color:#3b82f6\">3 tall : 1 dwarf</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a test cross?",
+      "definition": "Crossing a <span style=\"color:#3b82f6\">dominant phenotype</span> (unknown genotype) with the <span style=\"color:#3b82f6\">recessive parent</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ],
+      "definitionImage": "media/fig_4_5_test_cross.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Test cross results and meaning?",
+      "definition": "All dominant → unknown is <span style=\"color:#3b82f6\">homozygous</span>. <span style=\"color:#f08c00\">1 : 1</span> → unknown is <span style=\"color:#3b82f6\">heterozygous</span>.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Read Figure 4.5: violet flower × ww gives half violet, half white. Genotype?",
+      "definition": "<span style=\"color:#3b82f6\">Ww</span> (heterozygous)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2-inheritance-of-one-gene"
+      ],
+      "termImage": "media/fig_4_5_test_cross.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "Law of Dominance: (i) characters are controlled by discrete units called {{c1::factors}}; (ii) factors occur in {{c2::pairs}}; (iii) in a dissimilar pair one member {{c3::dominates}} the other.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.1-law-of-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the law of dominance explain?",
+      "definition": "Only one parental character in F₁, both in F₂, and the <span style=\"color:#f08c00\">3:1</span> F₂ ratio",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.1-law-of-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State the law of segregation.",
+      "definition": "Alleles of a pair <span style=\"color:#3b82f6\">segregate</span> during gamete formation so each gamete receives only <span style=\"color:#3b82f6\">one</span> factor",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2-law-of-segregation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is it called the law of \"purity of gametes\"?",
+      "definition": "Alleles <span style=\"color:#e5484d\">never blend</span>; each gamete is pure for one allele",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2-law-of-segregation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Gametes from homozygous vs heterozygous parent?",
+      "definition": "<span style=\"color:#3b82f6\">Homozygous</span>: all similar. <span style=\"color:#3b82f6\">Heterozygous</span>: two kinds in equal proportion.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2-law-of-segregation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is incomplete dominance?",
+      "definition": "F₁ phenotype is <span style=\"color:#3b82f6\">in between</span> the two parents",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.1-incomplete-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example of incomplete dominance?",
+      "definition": "Flower colour in dog flower (<span style=\"color:#3b82f6\">snapdragon</span>, <span style=\"color:#22a35a\"><i>Antirrhinum</i></span>)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.1-incomplete-dominance"
+      ],
+      "definitionImage": "media/fig_4_6_snapdragon.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Snapdragon RR × rr: F₁ and F₂?",
+      "definition": "F₁ all <span style=\"color:#3b82f6\">pink (Rr)</span>. F₂ <span style=\"color:#f08c00\">1 red : 2 pink : 1 white</span>.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.1-incomplete-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is incomplete dominance special in ratios?",
+      "definition": "Phenotypic ratio = genotypic ratio = <span style=\"color:#f08c00\">1:2:1</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.1-incomplete-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Molecular view: three possible products of a modified allele?",
+      "definition": "(i) normal or less efficient enzyme, (ii) <span style=\"color:#3b82f6\">non-functional</span> enzyme, (iii) <span style=\"color:#3b82f6\">no enzyme</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.1-incomplete-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the modified allele usually recessive?",
+      "definition": "It makes a non-functional or no enzyme; phenotype then depends on the <span style=\"color:#3b82f6\">unmodified (functioning) allele</span>, which is dominant",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.1-incomplete-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is a modified allele \"equivalent\"?",
+      "definition": "When it still makes a normal/less efficient enzyme: same phenotype (very common)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.1-incomplete-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is co-dominance?",
+      "definition": "F₁ <span style=\"color:#3b82f6\">resembles both parents</span>: both alleles are expressed",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example of co-dominance?",
+      "definition": "<span style=\"color:#3b82f6\">ABO blood groups</span>: alleles Iᴬ and Iᴮ both express in AB",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the gene I control?",
+      "definition": "The kind of <span style=\"color:#3b82f6\">sugar polymer</span> protruding from the RBC plasma membrane",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Alleles of gene I and their products?",
+      "definition": "<span style=\"color:#3b82f6\">Iᴬ</span> and <span style=\"color:#3b82f6\">Iᴮ</span>: slightly different sugars. <span style=\"color:#3b82f6\">i</span>: <span style=\"color:#e5484d\">no sugar</span>.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dominance relations among ABO alleles?",
+      "definition": "Iᴬ and Iᴮ are <span style=\"color:#3b82f6\">completely dominant</span> over i; Iᴬ and Iᴮ are <span style=\"color:#3b82f6\">co-dominant</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "ABO genotypes and blood groups",
+      "definition": "IᴬIᴬ, Iᴬi: A; IᴮIᴮ, Iᴮi: B; IᴬIᴮ: AB; ii: O",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.2</p><h2>Blood group?</h2><table><tr><td>IᴬIᴬ, Iᴬi</td><td class=\"q\">?</td></tr><tr><td>IᴮIᴮ, Iᴮi</td><td class=\"q\">?</td></tr><tr><td>IᴬIᴮ</td><td class=\"q\">?</td></tr><tr><td>ii</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.2</p><h2>Blood group?</h2><table><tr><td>IᴬIᴬ, Iᴬi</td><td class=\"a\">A</td></tr><tr><td>IᴮIᴮ, Iᴮi</td><td class=\"a\">B</td></tr><tr><td>IᴬIᴮ</td><td class=\"a\">AB</td></tr><tr><td>ii</td><td class=\"a\">O</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How many ABO genotypes and phenotypes?",
+      "definition": "<span style=\"color:#f08c00\">6</span> genotypes, <span style=\"color:#f08c00\">4</span> phenotypes",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are multiple alleles?",
+      "definition": "More than two alleles governing the same character (e.g. Iᴬ, Iᴮ, i)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can multiple alleles be found only in population studies?",
+      "definition": "An individual (diploid) carries only <span style=\"color:#f08c00\">two</span> alleles",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Child O; father A; mother B. Genotypes? (Exercise 12)",
+      "definition": "Father <span style=\"color:#3b82f6\">Iᴬi</span>, mother <span style=\"color:#3b82f6\">Iᴮi</span>. Other children: IᴬIᴮ (AB), Iᴬi (A), Iᴮi (B), ii (O).",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Starch synthesis in pea: BB, Bb, bb seeds?",
+      "definition": "<span style=\"color:#3b82f6\">BB</span>: large starch grains, round. <span style=\"color:#3b82f6\">bb</span>: small grains, wrinkled. <span style=\"color:#3b82f6\">Bb</span>: round seeds but intermediate grains.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the pea starch gene show about dominance?",
+      "definition": "Seed shape: B is <span style=\"color:#3b82f6\">dominant</span>. Starch grain size: <span style=\"color:#3b82f6\">incomplete dominance</span>. Dominance depends on the phenotype chosen.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is dominance an autonomous feature of a gene?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. It depends on the gene product and on the particular phenotype examined",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.2.2.2-co-dominance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dihybrid cross: parents and F₁ in Mendel’s example?",
+      "definition": "RRYY (round yellow) × rryy (wrinkled green) → F₁ <span style=\"color:#3b82f6\">RrYy</span> (round yellow)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3-inheritance-of-two-genes"
+      ],
+      "definitionImage": "media/fig_4_7_dihybrid.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Dominant traits in the dihybrid cross?",
+      "definition": "<span style=\"color:#3b82f6\">Yellow</span> over green, <span style=\"color:#3b82f6\">round</span> over wrinkled",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3-inheritance-of-two-genes"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Dihybrid F₂ phenotypic ratio: {{c1::9}} round yellow : {{c2::3}} wrinkled yellow : {{c2::3}} round green : {{c3::1}} wrinkled green.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3-inheritance-of-two-genes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is 9:3:3:1 derived?",
+      "definition": "\\( (3:1) \\times (3:1) \\): (3 round : 1 wrinkled)(3 yellow : 1 green)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3-inheritance-of-two-genes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State the law of independent assortment.",
+      "definition": "When two pairs of traits combine in a hybrid, <span style=\"color:#3b82f6\">segregation of one pair is independent</span> of the other pair",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.1-independent-assortment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Gametes from RrYy and their frequency?",
+      "definition": "<span style=\"color:#3b82f6\">RY, Ry, rY, ry</span>, each <span style=\"color:#f08c00\">1/4</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.1-independent-assortment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dihybrid F₂: number of genotypes and phenotypes?",
+      "definition": "<span style=\"color:#f08c00\">9</span> genotypes, <span style=\"color:#f08c00\">4</span> phenotypes (in <span style=\"color:#f08c00\">16</span> squares)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.1-independent-assortment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dihybrid F₂ genotypic ratio?",
+      "definition": "<span style=\"color:#f08c00\">1:2:1:2:4:2:1:2:1</span> (not 9:3:3:1)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.1-independent-assortment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Types of gametes from an organism heterozygous at 4 loci? (Exercise 3)",
+      "definition": "\\( 2^n = 2^4 = \\) <span style=\"color:#f08c00\">16</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.1-independent-assortment"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "TtYy × Ttyy: tall and green?",
+      "definition": "Tall green 3/8; dwarf green 1/8",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 7</p><h2>TtYy × Ttyy: fraction tall and green?</h2><div class=\"prob\">Treat each gene separately, then multiply.</div><ol><li>Tt × Tt → 3/4 tall, 1/4 dwarf</li><li>Yy × yy → 1/2 yellow, 1/2 green</li><li class=\"h\">?</li><li>Dwarf and green = 1/4 × 1/2 = <b>1/8</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 7</p><h2>TtYy × Ttyy: fraction tall and green?</h2><div class=\"prob\">Treat each gene separately, then multiply.</div><ol><li>Tt × Tt → 3/4 tall, 1/4 dwarf</li><li>Yy × yy → 1/2 yellow, 1/2 green</li><li class=\"r\">Tall and green = 3/4 × 1/2 = <b>3/8</b></li><li>Dwarf and green = 1/4 × 1/2 = <b>1/8</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.1-independent-assortment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dihybrid test cross (RrYy × rryy) ratio?",
+      "definition": "<span style=\"color:#f08c00\">1 : 1 : 1 : 1</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.1-independent-assortment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When did Mendel publish, and when was it recognised?",
+      "definition": "Published <span style=\"color:#f08c00\">1865</span>; unrecognised till <span style=\"color:#f08c00\">1900</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Reasons Mendel’s work was ignored?",
+      "definition": "Poor communication; <span style=\"color:#3b82f6\">discrete non-blending factors</span> vs apparent continuous variation; maths in biology unacceptable; <span style=\"color:#e5484d\">no physical proof</span> of factors",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who rediscovered Mendel’s work in 1900?",
+      "definition": "<span style=\"color:#3b82f6\">de Vries, Correns and von Tschermak</span> (independently)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "By when was chromosome movement in meiosis worked out?",
+      "definition": "<span style=\"color:#f08c00\">1902</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who noted chromosome behaviour parallels gene behaviour?",
+      "definition": "<span style=\"color:#3b82f6\">Walter Sutton and Theodore Boveri</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ],
+      "definitionImage": "media/fig_4_8_meiosis_germ_cells.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Who proposed the chromosomal theory of inheritance? (Exercise 15)",
+      "definition": "<span style=\"color:#3b82f6\">Sutton</span> (with Boveri): united chromosomal segregation with Mendelian principles",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Parallel behaviour of genes and chromosomes",
+      "definition": "Pairs: Occur in pairs; Gamete formation: Segregate; one of each pair to a gamete; Two pairs: Segregate independently of each other",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.3</p><h2>Genes and chromosomes both…</h2><table><tr><td>Pairs</td><td class=\"q\">?</td></tr><tr><td>Gamete formation</td><td class=\"q\">?</td></tr><tr><td>Two pairs</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.3</p><h2>Genes and chromosomes both…</h2><table><tr><td>Pairs</td><td class=\"a\">Occur in pairs</td></tr><tr><td>Gamete formation</td><td class=\"a\">Segregate; one of each pair to a gamete</td></tr><tr><td>Two pairs</td><td class=\"a\">Segregate independently of each other</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where are the two alleles of a gene located?",
+      "definition": "At <span style=\"color:#3b82f6\">homologous sites</span> on homologous chromosomes",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do chromosomes explain independent assortment?",
+      "definition": "In meiosis I, two chromosome pairs align at the metaphase plate <span style=\"color:#3b82f6\">independently</span> (Possibility I or II)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ],
+      "definitionImage": "media/fig_4_9_independent_assortment.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Who experimentally verified the chromosomal theory?",
+      "definition": "<span style=\"color:#3b82f6\">Thomas Hunt Morgan</span> and colleagues",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why was Drosophila ideal for genetics?",
+      "definition": "Grown on simple synthetic medium; life cycle ~<span style=\"color:#f08c00\">2 weeks</span>; many progeny per mating; sexes easy to tell apart; many visible hereditary variations",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.2-chromosomal-theory"
+      ],
+      "definitionImage": "media/fig_4_10_drosophila.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Morgan’s dihybrid cross in Drosophila?",
+      "definition": "Yellow-bodied white-eyed females × brown-bodied red-eyed males; F₂ <span style=\"color:#e5484d\">deviated</span> from 9:3:3:1",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where were these genes located?",
+      "definition": "On the <span style=\"color:#3b82f6\">X chromosome</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define linkage.",
+      "definition": "Physical association of genes on a <span style=\"color:#3b82f6\">chromosome</span> (term coined by Morgan)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define recombination.",
+      "definition": "Generation of <span style=\"color:#3b82f6\">non-parental gene combinations</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When two genes are on the same chromosome, which combinations dominate?",
+      "definition": "<span style=\"color:#3b82f6\">Parental</span> combinations are much higher than non-parental",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ],
+      "definitionImage": "media/fig_4_11_linkage.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "White and yellow genes: {{c1::1.3}}% recombination (tightly linked); white and miniature wing: {{c2::37.2}}% (loosely linked).",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Tight vs loose linkage?",
+      "definition": "<span style=\"color:#3b82f6\">Tight</span>: genes close, very low recombination. <span style=\"color:#3b82f6\">Loose</span>: genes far apart, higher recombination.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who made the first genetic map, and how?",
+      "definition": "<span style=\"color:#3b82f6\">Alfred Sturtevant</span> (Morgan’s student): used <span style=\"color:#3b82f6\">recombination frequency</span> as a measure of gene distance",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does recombination frequency measure distance? (intuition)",
+      "definition": "Crossing over can happen anywhere; the farther apart two genes are, the more likely a crossover falls <span style=\"color:#3b82f6\">between</span> them",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Use of genetic maps today?",
+      "definition": "Starting point for <span style=\"color:#3b82f6\">whole-genome sequencing</span> (e.g. Human Genome Project)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Morgan’s contribution to genetics? (Exercise 9)",
+      "definition": "Verified chromosomal theory; discovered <span style=\"color:#3b82f6\">linkage, recombination</span> and sex-linked inheritance in Drosophila",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two heterozygous parents, loci completely linked: F₁ ratio? (Exercise 8)",
+      "definition": "Like a monohybrid: <span style=\"color:#f08c00\">3 : 1</span> (only parental combinations; with some recombination, parental types exceed recombinants)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.3.3-linkage-recombination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are polygenic traits?",
+      "definition": "Traits controlled by <span style=\"color:#3b82f6\">three or more genes</span>, spread across a gradient; also influenced by <span style=\"color:#3b82f6\">environment</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.4-polygenic-inheritance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Examples of polygenic traits?",
+      "definition": "<span style=\"color:#22a35a\">Human height</span>, <span style=\"color:#22a35a\">human skin colour</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.4-polygenic-inheritance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do alleles act in a polygenic trait?",
+      "definition": "Each allele’s effect is <span style=\"color:#3b82f6\">additive</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.4-polygenic-inheritance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Skin colour model with A, B, C: darkest and lightest?",
+      "definition": "<span style=\"color:#3b82f6\">AABBCC</span> darkest; <span style=\"color:#3b82f6\">aabbcc</span> lightest; three dominant + three recessive = intermediate",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.4-polygenic-inheritance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a pleiotropic gene?",
+      "definition": "A single gene with <span style=\"color:#3b82f6\">multiple phenotypic expressions</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.5-pleiotropy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Usual mechanism of pleiotropy?",
+      "definition": "The gene affects a <span style=\"color:#3b82f6\">metabolic pathway</span> contributing to different phenotypes",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.5-pleiotropy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example of pleiotropy?",
+      "definition": "<span style=\"color:#3b82f6\">Phenylketonuria</span>: mutation in phenylalanine hydroxylase gene → mental retardation + reduced hair and skin pigmentation",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.5-pleiotropy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Polygenic vs pleiotropy? (mnemonic)",
+      "definition": "<span style=\"color:#3b82f6\">Poly-genic</span> = many genes → one trait. <span style=\"color:#3b82f6\">Pleio-tropy</span> = one gene → many traits.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.5-pleiotropy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who first saw the \"X body\", and in what?",
+      "definition": "<span style=\"color:#3b82f6\">Henking</span> (<span style=\"color:#f08c00\">1891</span>), during spermatogenesis in insects; 50% sperms received it",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6-sex-determination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What was Henking’s X body?",
+      "definition": "The <span style=\"color:#3b82f6\">X chromosome</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6-sex-determination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sex chromosomes vs autosomes?",
+      "definition": "<span style=\"color:#3b82f6\">Sex chromosomes</span>: differ between sexes and determine sex. <span style=\"color:#3b82f6\">Autosomes</span>: all the rest.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6-sex-determination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "XO type: example and male/female?",
+      "definition": "<span style=\"color:#22a35a\">Grasshopper</span>: male XO (one X), female XX. Males have <span style=\"color:#e5484d\">one fewer</span> chromosome.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6-sex-determination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "XY type: examples?",
+      "definition": "<span style=\"color:#22a35a\">Humans, Drosophila</span>, many insects and mammals; male XY, female XX",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6-sex-determination"
+      ],
+      "definitionImage": "media/fig_4_12_sex_determination.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is male heterogamety?",
+      "definition": "Males produce two kinds of gametes (X/O or X/Y): XO and XY types",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6-sex-determination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ZW type: example and heterogametic sex?",
+      "definition": "<span style=\"color:#22a35a\">Birds</span>: female <span style=\"color:#3b82f6\">ZW</span> (heterogametic), male <span style=\"color:#3b82f6\">ZZ</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6-sex-determination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In birds, who decides the chick’s sex?",
+      "definition": "The <span style=\"color:#3b82f6\">egg</span> (female makes Z or W eggs)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6-sex-determination"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Types of sex determination",
+      "definition": "XO (grasshopper): XO / XX; XY (humans, Drosophila): XY / XX; ZW (birds): ZZ / ZW; Haplodiploid (honey bee): n (16) / 2n (32)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Sex determination</p><h2>Male / female?</h2><table><tr><td>XO (grasshopper)</td><td class=\"q\">?</td></tr><tr><td>XY (humans, Drosophila)</td><td class=\"q\">?</td></tr><tr><td>ZW (birds)</td><td class=\"q\">?</td></tr><tr><td>Haplodiploid (honey bee)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Sex determination</p><h2>Male / female?</h2><table><tr><td>XO (grasshopper)</td><td class=\"a\">XO / XX</td></tr><tr><td>XY (humans, Drosophila)</td><td class=\"a\">XY / XX</td></tr><tr><td>ZW (birds)</td><td class=\"a\">ZZ / ZW</td></tr><tr><td>Haplodiploid (honey bee)</td><td class=\"a\">n (16) / 2n (32)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6-sex-determination"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Human chromosome complement?",
+      "definition": "<span style=\"color:#f08c00\">23</span> pairs: <span style=\"color:#f08c00\">22</span> pairs autosomes + XX (female) or XY (male)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6.1-humans"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does the father determine the baby’s sex?",
+      "definition": "50% sperms carry <span style=\"color:#3b82f6\">X</span>, 50% carry <span style=\"color:#3b82f6\">Y</span>; all ova carry X",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6.1-humans"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Probability of a boy in each pregnancy?",
+      "definition": "<span style=\"color:#f08c00\">50%</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6.1-humans"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Basis of sex determination in honey bee?",
+      "definition": "Number of <span style=\"color:#3b82f6\">sets of chromosomes</span> (haplodiploidy)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6.2-honey-bee"
+      ],
+      "definitionImage": "media/fig_4_13_honey_bee.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Honey bee: fertilised vs unfertilised egg?",
+      "definition": "<span style=\"color:#3b82f6\">Fertilised</span> → female (queen or worker), <span style=\"color:#f08c00\">32</span> chromosomes. <span style=\"color:#3b82f6\">Unfertilised</span> → male (drone) by parthenogenesis, <span style=\"color:#f08c00\">16</span>.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6.2-honey-bee"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do drones make sperms?",
+      "definition": "By <span style=\"color:#3b82f6\">mitosis</span> (they are already haploid)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6.2-honey-bee"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Family quirks of a drone?",
+      "definition": "<span style=\"color:#e5484d\">No father</span>, cannot have sons; but has a <span style=\"color:#3b82f6\">grandfather</span> and can have <span style=\"color:#3b82f6\">grandsons</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.6.2-honey-bee"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define mutation.",
+      "definition": "Alteration of <span style=\"color:#3b82f6\">DNA sequence</span> changing genotype and phenotype",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.7-mutation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two sources of variation in DNA?",
+      "definition": "<span style=\"color:#3b82f6\">Recombination</span> and <span style=\"color:#3b82f6\">mutation</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.7-mutation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do deletions/insertions cause chromosomal aberrations?",
+      "definition": "One DNA helix runs through each chromatid; losing or gaining a segment alters the chromosome",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.7-mutation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where are chromosomal aberrations commonly seen?",
+      "definition": "In <span style=\"color:#3b82f6\">cancer cells</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.7-mutation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a point mutation? Example? (Exercise 14)",
+      "definition": "Change in a <span style=\"color:#3b82f6\">single base pair</span>; e.g. <span style=\"color:#22a35a\">sickle-cell anaemia</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.7-mutation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What causes frame-shift mutations?",
+      "definition": "<span style=\"color:#3b82f6\">Deletion or insertion</span> of base pairs",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.7-mutation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are mutagens? Example?",
+      "definition": "Chemical and physical factors inducing mutation; e.g. <span style=\"color:#22a35a\">UV radiation</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.7-mutation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is pedigree analysis?",
+      "definition": "Analysis of a trait over several generations of a family, drawn as a <span style=\"color:#3b82f6\">family tree</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.1-pedigree-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is pedigree analysis needed in humans? (Exercise 10)",
+      "definition": "Controlled crosses are <span style=\"color:#e5484d\">not possible</span> in humans; it traces inheritance of a trait, abnormality or disease",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.1-pedigree-analysis"
+      ]
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 4.13 · Pedigree symbols",
+      "definition": "",
+      "image": "media/fig_4_13_pedigree_symbols.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 626,
+        "imageHeight": 1001,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              209,
+              39,
+              80,
+              40
+            ],
+            "answer": "Male",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              209,
+              119,
+              104,
+              42
+            ],
+            "answer": "Female",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              209,
+              205,
+              228,
+              44
+            ],
+            "answer": "Sex unspecified",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              209,
+              287,
+              286,
+              44
+            ],
+            "answer": "Affected individuals",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              209,
+              363,
+              112,
+              44
+            ],
+            "answer": "Mating",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              209,
+              437,
+              364,
+              76
+            ],
+            "answer": "Consanguineous mating (between relatives)",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              209,
+              553,
+              417,
+              108
+            ],
+            "answer": "Parents above, children below (birth order left to right)",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              209,
+              747,
+              344,
+              76
+            ],
+            "answer": "Parents with male child affected",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              209,
+              929,
+              352,
+              46
+            ],
+            "answer": "Five unaffected offspring",
+            "labelInImage": true
+          }
+        ]
+      },
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.1-pedigree-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT labels both the honey bee figure and the pedigree symbols as \"Figure 4.13\". Note?",
+      "definition": "A numbering slip: the pedigree symbols figure should be <span style=\"color:#3b82f6\">4.14</span> (and the next ones shift by one)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.1-pedigree-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two categories of genetic disorders?",
+      "definition": "<span style=\"color:#3b82f6\">Mendelian</span> (single gene) and <span style=\"color:#3b82f6\">chromosomal</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Common Mendelian disorders?",
+      "definition": "Haemophilia, cystic fibrosis, sickle-cell anaemia, colour blindness, phenylketonuria, thalassemia",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the traits in these pedigrees (Figure 4.14).",
+      "definition": "(a) <span style=\"color:#3b82f6\">Autosomal dominant</span> (e.g. myotonic dystrophy); (b) <span style=\"color:#3b82f6\">autosomal recessive</span> (e.g. sickle-cell anaemia)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ],
+      "termImage": "media/fig_4_14_pedigrees.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Pedigree clue for autosomal recessive? (intuition)",
+      "definition": "Affected child from <span style=\"color:#3b82f6\">two unaffected parents</span> (both carriers); often skips generations",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Pedigree clue for X-linked recessive?",
+      "definition": "Mostly <span style=\"color:#3b82f6\">males affected</span>, passed via carrier mothers; never father to son",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Mode of inheritance of disorders",
+      "definition": "Colour blindness: X-linked recessive; Haemophilia: X-linked recessive; Sickle-cell anaemia: Autosomal recessive; Phenylketonuria: Autosomal recessive; Thalassemia: Autosomal recessive; Myotonic dystrophy: Autosomal dominant",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Mendelian disorders</p><h2>Inheritance?</h2><table><tr><td>Colour blindness</td><td class=\"q\">?</td></tr><tr><td>Haemophilia</td><td class=\"q\">?</td></tr><tr><td>Sickle-cell anaemia</td><td class=\"q\">?</td></tr><tr><td>Phenylketonuria</td><td class=\"q\">?</td></tr><tr><td>Thalassemia</td><td class=\"q\">?</td></tr><tr><td>Myotonic dystrophy</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Mendelian disorders</p><h2>Inheritance?</h2><table><tr><td>Colour blindness</td><td class=\"a\">X-linked recessive</td></tr><tr><td>Haemophilia</td><td class=\"a\">X-linked recessive</td></tr><tr><td>Sickle-cell anaemia</td><td class=\"a\">Autosomal recessive</td></tr><tr><td>Phenylketonuria</td><td class=\"a\">Autosomal recessive</td></tr><tr><td>Thalassemia</td><td class=\"a\">Autosomal recessive</td></tr><tr><td>Myotonic dystrophy</td><td class=\"a\">Autosomal dominant</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cause of colour blindness?",
+      "definition": "Defect in <span style=\"color:#3b82f6\">red or green cone</span> due to mutation in genes on the <span style=\"color:#3b82f6\">X chromosome</span>; cannot distinguish red and green",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Incidence of colour blindness?",
+      "definition": "About <span style=\"color:#f08c00\">8%</span> of males, <span style=\"color:#f08c00\">0.4%</span> of females",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is colour blindness commoner in males?",
+      "definition": "Males have only <span style=\"color:#3b82f6\">one X</span>; one recessive allele is enough",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Son of a carrier mother: chance of colour blindness?",
+      "definition": "<span style=\"color:#f08c00\">50%</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When can a daughter be colour blind?",
+      "definition": "Mother is at least a <span style=\"color:#3b82f6\">carrier</span> and father is <span style=\"color:#3b82f6\">colour blind</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What goes wrong in haemophilia?",
+      "definition": "A single protein of the <span style=\"color:#3b82f6\">blood-clotting cascade</span> is affected: a simple cut causes non-stop bleeding",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are haemophilic females extremely rare?",
+      "definition": "Mother must be at least a carrier and father <span style=\"color:#3b82f6\">haemophilic</span> (who rarely survives to later life)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Famous carrier of haemophilia?",
+      "definition": "<span style=\"color:#3b82f6\">Queen Victoria</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Genotypes in sickle-cell anaemia?",
+      "definition": "HbᴬHbᴬ normal; HbᴬHbˢ <span style=\"color:#3b82f6\">carrier</span> (sickle-cell trait); HbˢHbˢ <span style=\"color:#e5484d\">diseased</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Molecular defect in sickle-cell anaemia?",
+      "definition": "<span style=\"color:#3b82f6\">Glutamic acid → valine</span> at the <span style=\"color:#f08c00\">6th</span> position of the <span style=\"color:#3b82f6\">β-globin</span> chain",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ],
+      "definitionImage": "media/fig_4_15_sickle_cell.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Base change in sickle-cell anaemia?",
+      "definition": "Sixth codon <span style=\"color:#3b82f6\">GAG → GUG</span> (single base substitution)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT gives \"GAG to GUG\" for the gene. Precise statement?",
+      "definition": "GUG is the <span style=\"color:#3b82f6\">mRNA</span> codon; in the DNA coding strand it is <span style=\"color:#3b82f6\">GAG → GTG</span> (A→T)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do RBCs sickle?",
+      "definition": "Mutant Hb <span style=\"color:#3b82f6\">polymerises under low O₂ tension</span>; RBC changes from biconcave disc to sickle shape",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is sickle-cell trait common in malaria areas? (beyond NCERT)",
+      "definition": "Carriers (HbᴬHbˢ) resist <span style=\"color:#3b82f6\">malaria</span>: heterozygote advantage keeps the allele in the population",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Defect in phenylketonuria?",
+      "definition": "Lacks the enzyme converting <span style=\"color:#3b82f6\">phenylalanine → tyrosine</span>; phenylalanine → phenylpyruvic acid accumulates in brain → mental retardation; excreted in urine",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cause of thalassemia?",
+      "definition": "Mutation or deletion → <span style=\"color:#3b82f6\">reduced synthesis</span> of α or β globin chains → abnormal Hb → anaemia",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "α vs β thalassemia: genes and chromosome?",
+      "definition": "<span style=\"color:#3b82f6\">α</span>: HBA1 and HBA2 on chromosome <span style=\"color:#f08c00\">16</span> (4 genes). <span style=\"color:#3b82f6\">β</span>: HBB on chromosome <span style=\"color:#f08c00\">11</span>.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Severity rule in α thalassemia?",
+      "definition": "The <span style=\"color:#3b82f6\">more genes affected</span> (of four), the less α-globin made",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Thalassemia vs sickle-cell anaemia?",
+      "definition": "<span style=\"color:#3b82f6\">Thalassemia</span>: quantitative (too few globin). <span style=\"color:#3b82f6\">Sickle-cell</span>: qualitative (incorrectly functioning globin).",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two autosomal disorders with symptoms? (Exercise 16)",
+      "definition": "<span style=\"color:#3b82f6\">Sickle-cell anaemia</span>: sickled RBCs, anaemia. <span style=\"color:#3b82f6\">Phenylketonuria</span>: mental retardation, light pigmentation.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.2-mendelian-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cause of chromosomal disorders?",
+      "definition": "<span style=\"color:#3b82f6\">Absence, excess or abnormal arrangement</span> of one or more chromosomes",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is aneuploidy, and its cause?",
+      "definition": "Gain or loss of chromosome(s), due to <span style=\"color:#3b82f6\">failure of segregation of chromatids</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is polyploidy, and its cause?",
+      "definition": "Increase in a <span style=\"color:#3b82f6\">whole set</span> of chromosomes, due to <span style=\"color:#3b82f6\">failure of cytokinesis</span> after telophase; common in plants",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trisomy vs monosomy?",
+      "definition": "<span style=\"color:#3b82f6\">Trisomy</span>: an extra copy of a chromosome (2n+1). <span style=\"color:#3b82f6\">Monosomy</span>: one chromosome of a pair missing (2n−1).",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cause of Down’s syndrome?",
+      "definition": "<span style=\"color:#3b82f6\">Trisomy of chromosome 21</span> (47 chromosomes)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who first described Down’s syndrome?",
+      "definition": "<span style=\"color:#3b82f6\">Langdon Down</span> (<span style=\"color:#f08c00\">1866</span>)",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Features of Down’s syndrome?",
+      "definition": "Short stature, small round head, <span style=\"color:#3b82f6\">furrowed tongue</span>, partially open mouth, broad palm with <span style=\"color:#3b82f6\">palm crease</span>, retarded physical, psychomotor and mental development",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ],
+      "definitionImage": "media/fig_4_16_down_syndrome.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Karyotype of Klinefelter’s syndrome?",
+      "definition": "<span style=\"color:#3b82f6\">47, XXY</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Features of Klinefelter’s syndrome?",
+      "definition": "Masculine development with feminine traits (<span style=\"color:#3b82f6\">gynaecomastia</span>), tall; <span style=\"color:#e5484d\">sterile</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Karyotype of Turner’s syndrome?",
+      "definition": "<span style=\"color:#3b82f6\">45, XO</span>",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Features of Turner’s syndrome?",
+      "definition": "<span style=\"color:#e5484d\">Sterile</span> female, <span style=\"color:#3b82f6\">rudimentary ovaries</span>, short stature, lack of secondary sexual characters",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify (a) and (b) in Figure 4.17.",
+      "definition": "(a) <span style=\"color:#3b82f6\">Klinefelter</span> (tall, feminised). (b) <span style=\"color:#3b82f6\">Turner</span> (short, underdeveloped feminine character).",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ],
+      "termImage": "media/fig_4_17_klinefelter_turner.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: Klinefelter vs Turner?",
+      "definition": "<span style=\"color:#3b82f6\">Klinefelter</span> = e<span style=\"color:#3b82f6\">X</span>tra X in a male (XXY). <span style=\"color:#3b82f6\">Turner</span> = a female who \"turned\" in one X (XO).",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chromosomal disorders and karyotypes",
+      "definition": "Down’s syndrome: 47, +21 (trisomy 21); Klinefelter’s: 47, XXY; Turner’s: 45, XO",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Chromosomal disorders</p><h2>Karyotype?</h2><table><tr><td>Down’s syndrome</td><td class=\"q\">?</td></tr><tr><td>Klinefelter’s</td><td class=\"q\">?</td></tr><tr><td>Turner’s</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Chromosomal disorders</p><h2>Karyotype?</h2><table><tr><td>Down’s syndrome</td><td class=\"a\">47, +21 (trisomy 21)</td></tr><tr><td>Klinefelter’s</td><td class=\"a\">47, XXY</td></tr><tr><td>Turner’s</td><td class=\"a\">45, XO</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "4.8.3-chromosomal-disorders"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Key Mendelian ratios",
+      "definition": "Monohybrid (complete dominance): 3:1 (phenotype), 1:2:1 (genotype); Incomplete dominance: 1:2:1; Dihybrid: 9:3:3:1; Monohybrid test cross: 1:1; Dihybrid test cross: 1:1:1:1",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Ratios</p><h2>F₂ ratio?</h2><table><tr><td>Monohybrid (complete dominance)</td><td class=\"q\">?</td></tr><tr><td>Incomplete dominance</td><td class=\"q\">?</td></tr><tr><td>Dihybrid</td><td class=\"q\">?</td></tr><tr><td>Monohybrid test cross</td><td class=\"q\">?</td></tr><tr><td>Dihybrid test cross</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Ratios</p><h2>F₂ ratio?</h2><table><tr><td>Monohybrid (complete dominance)</td><td class=\"a\">3:1 (phenotype), 1:2:1 (genotype)</td></tr><tr><td>Incomplete dominance</td><td class=\"a\">1:2:1</td></tr><tr><td>Dihybrid</td><td class=\"a\">9:3:3:1</td></tr><tr><td>Monohybrid test cross</td><td class=\"a\">1:1</td></tr><tr><td>Dihybrid test cross</td><td class=\"a\">1:1:1:1</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Homozygous female × heterozygous male, single locus (Exercise 6)?",
+      "definition": "TT × Tt → all <span style=\"color:#3b82f6\">tall</span> (1 TT : 1 Tt). tt × Tt → <span style=\"color:#f08c00\">1 tall : 1 dwarf</span>.",
+      "tags": [
+        "class-12",
+        "biology",
+        "ch-4",
+        "summary"
+      ]
+    }
+  ]
+}
