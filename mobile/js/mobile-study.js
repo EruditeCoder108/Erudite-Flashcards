@@ -124,6 +124,13 @@
   let queuedNavigation = null;
   let openedSaveTimer = null;
   let progressSaveTimer = null;
+  // Deck coverage for normal study: every card ever shown, and how many times
+  // the whole deck was finished. Practice Again rewinds the position only.
+  let seenCardIds = new Set();
+  let completedPasses = 0;
+  let lastCompletedAt = null;
+  // Card views from earlier passes in this visit (Practice Again starts a new pass).
+  let bankedCardViews = 0;
   let cardProgressSaveTimer = null;
   let dragFrame = 0;
   let queuedDrag = null;
@@ -515,23 +522,26 @@
     shadow.innerHTML = advancedHtmlSrcdoc(card, side);
   }
 
-  function setAdvancedHtmlFaceGrip(face, enabled) {
-    if (!face) return;
-    face.classList.toggle('advanced-html-card-face', enabled);
-    const directGrips = Array.from(face.children).filter(child => child.classList?.contains('advanced-html-swipe-grip'));
-    let grip = directGrips[0] || null;
-    if (!enabled) {
-      directGrips.forEach(item => item.remove());
-      return;
-    }
-    directGrips.slice(1).forEach(item => item.remove());
-    if (!grip) {
-      grip = document.createElement('div');
-      grip.className = 'advanced-html-swipe-grip';
-      grip.setAttribute('aria-hidden', 'true');
-      grip.innerHTML = '<span></span>';
-      face.appendChild(grip);
-    }
+  // A face's CSS animations start as soon as it is rendered, which for the answer
+  // side (and for the preloaded next card) is before anyone can see it. Rewind
+  // them and play them when that side actually comes into view.
+  function replayAdvancedHtml(cardEl, side, delay = 0) {
+    const host = cardEl?.querySelector(`.advanced-html-study-frame[data-advanced-html-side="${side}"]`);
+    const animations = host?.shadowRoot?.getAnimations?.() || [];
+    if (!animations.length) return;
+    animations.forEach(animation => {
+      try {
+        animation.cancel();
+        animation.pause();
+      } catch (_) {
+        // A finished or detached animation can refuse; it simply stays as is.
+      }
+    });
+    window.setTimeout(() => animations.forEach(animation => {
+      try {
+        animation.play();
+      } catch (_) {}
+    }), delay);
   }
 
   function sameCard(a, b) {
@@ -751,6 +761,7 @@
       updateCardScrollability(cardEl);
     });
     if (cardEl === cards[activeCardIndex]) {
+      replayAdvancedHtml(cardEl, flipped ? 'back' : 'front', shouldAnimateFlip ? Math.round(FLIP_DURATION * 0.45) : 0);
       state.flipped = Boolean(flipped);
       clearTimeout(ratingTimer);
       // The rating dock rises while the card turns, so the learner can rate as
@@ -960,7 +971,7 @@
       setId: state.set.id,
       startedAt: state.sessionStartedAt,
       durationMs: durationMs,
-      cardsViewed: state.sessionCardsViewed?.size || 0,
+      cardsViewed: bankedCardViews + (state.sessionCardsViewed?.size || 0),
       mode: state.filteredMode ? (state.previewMode ? 'filtered-preview' : 'filtered-reschedule') : (state.srsMode ? 'srs' : 'normal')
     };
     try {
@@ -990,6 +1001,9 @@
       return;
     }
     restoredProgress = progress;
+    seenCardIds = new Set(Array.isArray(progress.seenCardIds) ? progress.seenCardIds.map(String) : []);
+    completedPasses = Math.max(0, Number(progress.completedPasses || 0) || 0);
+    lastCompletedAt = progress.lastCompletedAt || null;
     const cardCount = state.set.cards?.length || 0;
     state.normalIndex = savedNormalIndex(progress, cardCount || 1);
     state.srsIndex = Math.max(0, Number(progress.srsModeIndex ?? 0) || 0);
@@ -1031,6 +1045,9 @@
       srsCurrentCardKey: state.srsMode ? cardKey(activeCard()) : null,
       srsSessionDayKey: srsDayKey(),
       srsReviewedCardIds: Array.from(srsReviewedCardIds),
+      seenCardIds: Array.from(seenCardIds),
+      completedPasses,
+      lastCompletedAt,
       timestamp: Date.now()
     };
   }
@@ -1053,8 +1070,19 @@
 
   function saveProgress(options = {}) {
     if (state.filteredMode) return Promise.resolve(false);
-    if (!state.srsMode && state.studyOrder === 'random') return Promise.resolve(false);
-    const payload = buildProgressPayload();
+    // Shuffled study has no position worth keeping, but its coverage still counts.
+    const shuffled = !state.srsMode && state.studyOrder === 'random';
+    if (shuffled && !seenCardIds.size) return Promise.resolve(false);
+    const payload = shuffled
+      ? {
+          ...(restoredProgress || {}),
+          setId: state.set?.id,
+          seenCardIds: Array.from(seenCardIds),
+          completedPasses,
+          lastCompletedAt,
+          timestamp: Date.now()
+        }
+      : buildProgressPayload();
     if (!payload) return Promise.resolve(false);
     restoredProgress = payload;
     writeProgressMirror(payload);
@@ -1447,6 +1475,9 @@
     layer.style.width = `${rect.width}px`;
     layer.style.height = `${rect.height}px`;
     layer.classList.add('is-positioned');
+    // Keep the zoom button on the picture's corner, not the canvas corner.
+    container.style.setProperty('--image-inset-right', `${Math.max(0, container.clientWidth - rect.left - rect.width)}px`);
+    container.style.setProperty('--image-inset-bottom', `${Math.max(0, container.clientHeight - rect.top - rect.height)}px`);
   }
 
   function cleanupOcclusionLayer(layer) {
@@ -1532,7 +1563,9 @@
         : index === targetIndex;
       if (!isTarget && hideOne) return;
       const item = document.createElement('span');
-      item.className = `occlusion-mask ${mask.shape === 'ellipse' ? 'shape-ellipse' : ''} ${isTarget ? 'target' : 'context'}`;
+      const points = mask.shape === 'polygon' && Array.isArray(mask.points) && mask.points.length >= 3 ? mask.points : null;
+      const shapeClass = points ? 'shape-polygon' : mask.shape === 'ellipse' ? 'shape-ellipse' : '';
+      item.className = `occlusion-mask ${shapeClass} ${isTarget ? 'target' : 'context'}`;
       const x = normalizedOcclusionUnit(mask.x, 0);
       const y = normalizedOcclusionUnit(mask.y, 0);
       const w = Math.min(1 - x, Math.max(0.012, normalizedOcclusionUnit(mask.w, 0.12)));
@@ -1541,12 +1574,30 @@
       item.style.top = `${y * 100}%`;
       item.style.width = `${w * 100}%`;
       item.style.height = `${h * 100}%`;
+      const rotation = Number(mask.rotate) || 0;
+      if (rotation) item.style.rotate = `${rotation}deg`;
+      if (points) {
+        // Drawn as SVG so the outline follows the polygon instead of the box.
+        const svgNs = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(svgNs, 'svg');
+        svg.setAttribute('viewBox', '0 0 100 100');
+        svg.setAttribute('preserveAspectRatio', 'none');
+        svg.setAttribute('class', 'occlusion-mask-shape');
+        const polygon = document.createElementNS(svgNs, 'polygon');
+        polygon.setAttribute('points', points.map(([px, py]) => `${(Number(px) * 100).toFixed(2)},${(Number(py) * 100).toFixed(2)}`).join(' '));
+        polygon.setAttribute('vector-effect', 'non-scaling-stroke');
+        svg.appendChild(polygon);
+        item.appendChild(svg);
+      }
       if (isTarget && !(revealed && mask.labelInImage)) {
         const label = document.createElement('span');
         if (revealed) {
           // The revealed mask stays translucent so the diagram's own label shows
           // through; the answer sits in a tag just outside the box.
-          label.className = `occlusion-answer-tag ${y + h > 0.82 ? 'above' : 'below'}`;
+          // A rotated mask keeps its tag level and centred on the mask.
+          const place = rotation ? 'centered' : y + h > 0.82 ? 'above' : 'below';
+          label.className = `occlusion-answer-tag ${place}`;
+          if (rotation) label.style.rotate = `${-rotation}deg`;
           label.textContent = plainText(mask.answer || card.noteFields?.answer || card.definition);
         } else {
           label.className = 'occlusion-mask-label';
@@ -1810,44 +1861,48 @@
       img.src = safeSrc;
     }
     wrap.classList.remove('hidden');
+    if (!occlusionCard) markShortImage(img, wrap);
+    else wrap.classList.remove('is-short');
     renderOcclusionMasks(wrap, card, side);
   }
 
   function clearCardBackground(element) {
     if (!element) return;
-    element.classList.remove('visible', 'no-overlay');
+    element.classList.remove('visible');
     element.style.backgroundImage = '';
+    element.closest('.card-face')?.classList.remove('has-strong-bg');
   }
 
+  // The image's strength is the one Settings slider (0 to 1). Text stays
+  // readable over a strong image through a shadow, not by hiding the label.
   function renderCardBackground(element, card, side) {
-    const background = window.EruditeMedia?.getSideBackground?.(card, side) || null;
-    const faceEl = element.closest('.card-face');
-    const labelEl = faceEl?.querySelector('.card-label');
     if (!element) return;
+    const background = window.EruditeMedia?.getSideBackground?.(card, side) || null;
     const backgroundSrc = safeMediaSrc(background?.src);
     if (!backgroundSrc) {
-      element.classList.remove('visible', 'no-overlay');
-      element.style.backgroundImage = '';
-      if (labelEl) labelEl.style.display = '';
+      clearCardBackground(element);
       return;
     }
     element.style.backgroundImage = `url("${backgroundSrc}")`;
     element.style.backgroundSize = background.fit || 'cover';
-    // Use global cardBgOpacity setting if available, otherwise fall back to per-card opacity
-    const globalOpacity = window.flashcardStore?.getSettingsSync?.()?.cardBgOpacity
-      ?? state.settings?.cardBgOpacity;
-    const opacity = Number.isFinite(parseFloat(globalOpacity))
-      ? parseFloat(globalOpacity)
-      : (background.opacity ?? 0.32);
+    const saved = parseFloat(window.flashcardStore?.getSettingsSync?.()?.cardBgOpacity ?? state.settings?.cardBgOpacity);
+    const opacity = Number.isFinite(saved) ? Math.min(1, Math.max(0, saved)) : (background.opacity ?? 0.32);
     element.style.setProperty('--card-bg-opacity', String(opacity));
     element.classList.add('visible');
-    if (opacity >= 1.0) {
-      element.classList.add('no-overlay');
-      if (labelEl) labelEl.style.display = 'none';
-    } else {
-      element.classList.remove('no-overlay');
-      if (labelEl) labelEl.style.display = '';
-    }
+    element.closest('.card-face')?.classList.toggle('has-strong-bg', opacity > 0.45);
+  }
+
+  // A thin strip (a Lewis structure, an equation) would be mostly hidden by a
+  // zoom button laid over it, so short pictures carry the button beside them.
+  const SHORT_IMAGE_PX = 96;
+  function markShortImage(img, holder) {
+    if (!img || !holder) return;
+    const check = () => {
+      if (!img.isConnected || !img.naturalWidth) return;
+      holder.classList.toggle('is-short', img.getBoundingClientRect().height < SHORT_IMAGE_PX);
+    };
+    if (img.complete) requestAnimationFrame(check);
+    else img.addEventListener('load', check, { once: true });
   }
 
   function renderMediaList(container, card, side) {
@@ -1873,6 +1928,7 @@
         </div>
       `;
     }).join('');
+    container.querySelectorAll('.card-media-item').forEach(item => markShortImage(item.querySelector('img'), item));
   }
 
   function preloadNeighborImages() {
@@ -1982,10 +2038,7 @@
     if (!cardEl) return;
     if (!cardData) {
       cardEl.classList.remove('advanced-html-study-card');
-      cardEl.classList.remove('html-interaction-disabled');
       cardEl.classList.remove('image-occlusion-study-card');
-      setAdvancedHtmlFaceGrip(cardEl.querySelector('.card-face.front'), false);
-      setAdvancedHtmlFaceGrip(cardEl.querySelector('.card-face.back'), false);
       cardEl.querySelectorAll('.card-face').forEach(face => face.classList.remove('image-occlusion-card-face'));
       cardEl.classList.add('empty-card');
       return;
@@ -2002,12 +2055,9 @@
     const advanced = isAdvancedHtmlCard(cardData);
     const imageOcclusion = isImageOcclusionCard(cardData);
     cardEl.classList.toggle('advanced-html-study-card', advanced);
-    cardEl.classList.remove('html-interaction-disabled');
     cardEl.classList.toggle('image-occlusion-study-card', imageOcclusion);
     frontFace?.classList.toggle('image-occlusion-card-face', imageOcclusion);
     backFace?.classList.toggle('image-occlusion-card-face', imageOcclusion);
-    setAdvancedHtmlFaceGrip(frontFace, false);
-    setAdvancedHtmlFaceGrip(backFace, false);
     const [frontLabel, backLabel] = cardFaceLabels(cardData, { advanced, imageOcclusion });
     if (frontHeader) frontHeader.textContent = frontLabel;
     if (backHeader) backHeader.textContent = backLabel;
@@ -2117,11 +2167,6 @@
     populateCardElement(cards[nextCardIndex], state.activeCards[currentIdx + 1]);
     populateCardElement(cards[prevCardIndex], state.activeCards[currentIdx - 1]);
     
-    const activeCardData = state.activeCards[currentIdx];
-    if (activeCardData && activeCardData.id && state.sessionCardsViewed) {
-      state.sessionCardsViewed.add(String(activeCardData.id));
-    }
-    
     updateRoles();
     requestAnimationFrame(() => refreshOcclusionLayers(els.stage));
     preloadNeighborImages();
@@ -2179,7 +2224,16 @@
     }
   }
 
+  // Every card that reaches the front counts as studied in this pass.
+  function markActiveCardViewed() {
+    const card = activeCard();
+    if (!card?.id || !state.sessionCardsViewed || state.complete) return;
+    state.sessionCardsViewed.add(String(card.id));
+    if (!state.filteredMode) seenCardIds.add(String(card.id));
+  }
+
   function updateProgress() {
+    markActiveCardViewed();
     const total = state.srsMode
       ? Math.max(Number(state.srsSessionTotal || 0) || 0, state.activeCards.length + srsReviewedCardIds.size)
       : state.activeCards.length;
@@ -2590,6 +2644,15 @@
 
   async function showCompletion() {
     state.complete = true;
+    if (!state.srsMode && !state.filteredMode) {
+      completedPasses += 1;
+      lastCompletedAt = Date.now();
+      state.activeCards.forEach(card => card?.id && seenCardIds.add(String(card.id)));
+    }
+    // Save now, so Today and the library show the finished work even if the
+    // app is closed from this screen.
+    saveProgress({ immediate: true }).catch(() => {});
+    saveSessionLog().catch(() => {});
     state.nextDueSetId = await findNextDueSetId();
     hideStudyActions();
     els.shell.classList.remove('srs-back-visible');
@@ -3255,6 +3318,8 @@
       try {
         els.completionModal.classList.add('hidden');
         state.complete = false;
+        bankedCardViews += state.sessionCardsViewed?.size || 0;
+        state.sessionCardsViewed = new Set();
         state.nextDueSetId = null;
         if (state.srsMode) {
           state.srsIndex = 0;

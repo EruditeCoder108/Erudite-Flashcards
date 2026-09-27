@@ -36,12 +36,23 @@ class Deck:
         self.cards.append(c)
 
     def occlusion(self, prompt, image, size, masks, guess='hide-all', extra='', printed=False):
-        """masks: (answer, [x, y, w, h]) or (answer, box, printed). `printed` means the
-        diagram already shows this label under the mask, so the app skips its answer tag."""
+        """masks: (answer, box) or (answer, box, printed). box is [x, y, w, h] in image
+        pixels, rot(box, degrees) for a label printed on a slant, or poly([(x, y), ...])
+        for an odd shape. `printed` means the diagram already shows this label under
+        the mask, so the app skips its answer tag."""
         w, h = size
         def mask(m):
             answer, box = m[0], m[1]
-            item = {'shape': 'rect', 'bboxPx': list(box), 'answer': answer}
+            if isinstance(box, dict) and 'poly' in box:
+                xs, ys = [p[0] for p in box['poly']], [p[1] for p in box['poly']]
+                x0, y0 = min(xs), min(ys)
+                bw, bh = max(1, max(xs) - x0), max(1, max(ys) - y0)
+                item = {'shape': 'polygon', 'bboxPx': [x0, y0, bw, bh], 'answer': answer,
+                        'points': [[round((px - x0) / bw, 4), round((py - y0) / bh, 4)] for px, py in box['poly']]}
+            elif isinstance(box, dict):
+                item = {'shape': 'rect', 'bboxPx': list(box['box']), 'rotate': box['rotate'], 'answer': answer}
+            else:
+                item = {'shape': 'rect', 'bboxPx': list(box), 'answer': answer}
             if (m[2] if len(m) > 2 else printed):
                 item['labelInImage'] = True
             return item
@@ -62,6 +73,14 @@ class Deck:
             json.dump({'version': 1, 'name': self.name, 'className': self.class_name, 'cards': self.cards},
                       f, ensure_ascii=False, indent=2)
         return len(self.cards)
+
+def rot(box, degrees):
+    """A mask box turned about its centre, for labels printed on a diagonal."""
+    return {'box': list(box), 'rotate': degrees}
+
+def poly(points):
+    """A polygon mask from image-pixel points, for labels that are not boxes."""
+    return {'poly': [tuple(p) for p in points]}
 
 def pad(box, p=6, size=None):
     x, y, w, h = box

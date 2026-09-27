@@ -722,44 +722,6 @@ html.reduce-motion .study-card-inner {
   transition-duration: 1ms;
 }
 
-.card-face.advanced-html-card-face {
-  overflow: visible;
-}
-
-.card-face.advanced-html-card-face .card-scroll {
-  overflow-x: hidden;
-  border-radius: inherit;
-}
-
-.card-face.advanced-html-card-face .advanced-html-swipe-grip {
-  /* HTML cards take their own touches, so this strip under the card is the
-     drag handle. It reads as a grip, not as a tab hanging off the card. */
-  position: absolute;
-  left: 50%;
-  bottom: -2.1rem;
-  z-index: 5;
-  display: grid;
-  place-items: center;
-  width: 9rem;
-  height: 2rem;
-  transform: translateX(-50%);
-  background: transparent;
-  pointer-events: auto;
-  touch-action: none;
-}
-
-.card-face.advanced-html-card-face .advanced-html-swipe-grip span {
-  width: 2.75rem;
-  height: 0.3rem;
-  border-radius: 999px;
-  background: var(--line-strong);
-  box-shadow: 0 0 0 1px var(--line);
-}
-
-.study-card.dragging .advanced-html-swipe-grip span {
-  background: var(--muted);
-}
-
 .card-bg {
   position: absolute;
   inset: 0;
@@ -775,15 +737,9 @@ html.reduce-motion .study-card-inner {
   opacity: var(--card-bg-opacity, 0.32);
 }
 
-.card-bg.visible::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--card-bg-overlay);
-}
-
-.card-bg.no-overlay::after {
-  display: none !important;
+.card-face.has-strong-bg .card-text,
+.card-face.has-strong-bg .card-label {
+  text-shadow: 0 1px 2px color-mix(in srgb, var(--surface) 85%, transparent), 0 0 12px color-mix(in srgb, var(--surface) 70%, transparent);
 }
 
 .card-face.back {
@@ -997,18 +953,22 @@ html.reduce-motion .study-card-inner {
   background: color-mix(in srgb, var(--muted) 20%, transparent);
 }
 
+/* Diagrams: the card's own image slot and attached images share one look.
+   The frame hugs the picture (no grey panel around a letterboxed image) and
+   the zoom button always sits in the picture's corner. */
 .card-image-wrap {
   position: relative;
   display: grid;
   place-items: center;
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
   flex: 0 1 auto;
   max-height: min(40dvh, 17rem);
-  min-height: 7.5rem;
+  min-height: 0;
   margin: 0.45rem auto 0;
   overflow: hidden;
-  border-radius: 1.1rem;
-  background: color-mix(in srgb, var(--ink) 42%, transparent);
+  border-radius: 0.85rem;
+  background: transparent;
 }
 
 .card-image-wrap.hidden {
@@ -1017,10 +977,12 @@ html.reduce-motion .study-card-inner {
 
 .card-image-wrap img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: auto;
+  max-width: 100%;
+  height: auto;
   max-height: min(40dvh, 17rem);
   object-fit: contain;
+  border-radius: 0.85rem;
 }
 
 .occlusion-mask-layer {
@@ -1053,6 +1015,46 @@ html.reduce-motion .study-card-inner {
 
 .occlusion-mask.shape-ellipse {
   border-radius: 999px;
+}
+
+/* Polygon masks: the box is only a frame; the SVG shape is the mask. */
+.occlusion-mask.shape-polygon,
+.occlusion-mask-layer .occlusion-mask.shape-polygon.target {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.occlusion-mask-shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0.15rem 0.3rem color-mix(in srgb, var(--ink) 30%, transparent));
+}
+
+.occlusion-mask-shape polygon {
+  fill: var(--ink);
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 2px;
+  stroke-linejoin: round;
+}
+
+.occlusion-mask-layer.hidden-side .target .occlusion-mask-shape polygon {
+  fill: #b45309;
+  stroke: var(--amber);
+}
+
+.occlusion-mask-layer.revealed .target .occlusion-mask-shape polygon {
+  fill: color-mix(in srgb, var(--green) 18%, transparent);
+  stroke: var(--green);
+}
+
+.occlusion-mask > .occlusion-mask-label {
+  position: relative;
+  z-index: 1;
 }
 
 .occlusion-mask.context {
@@ -1108,6 +1110,12 @@ html.reduce-motion .study-card-inner {
   bottom: calc(100% + 0.3rem);
 }
 
+.occlusion-answer-tag.centered {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+}
+
 .occlusion-mask-layer.revealed .occlusion-mask.target {
   border-color: color-mix(in srgb, var(--green) 96%, transparent);
   background: color-mix(in srgb, var(--green) 18%, transparent);
@@ -1125,13 +1133,13 @@ html.reduce-motion .study-card-inner {
 }
 
 .card-scroll:has(.card-text:empty) .card-image-wrap {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   max-height: 100%;
-  min-height: 17rem;
+  margin: auto;
 }
 
 .card-scroll:has(.card-text:empty) .card-image-wrap img {
-  max-height: 100%;
+  max-height: min(62dvh, 26rem);
 }
 
 .card-face.image-occlusion-card-face .card-scroll {
@@ -1177,6 +1185,7 @@ html.reduce-motion .study-card-inner {
   /* One track sized to the container, so the image's natural height cannot
      stretch the row and push the diagram off-centre. */
   grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  width: 100%;
   flex: 1 1 0;
   align-self: stretch;
   min-height: 0;
@@ -1198,10 +1207,12 @@ html.reduce-motion .study-card-inner {
   border-radius: 0.85rem;
 }
 
-.image-zoom-button {
+.image-zoom-button,
+.media-zoom-button {
   position: absolute;
   right: 0.5rem;
   bottom: 0.5rem;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1228,37 +1239,57 @@ html.reduce-motion .study-card-inner {
   position: relative;
   display: grid;
   place-items: center;
+  justify-self: center;
+  width: fit-content;
+  max-width: 100%;
   overflow: hidden;
-  border-radius: 1.05rem;
-  border: 1px solid color-mix(in srgb, var(--muted) 14%, transparent);
-  background: color-mix(in srgb, var(--ink) 36%, transparent);
+  border-radius: 0.85rem;
 }
 
 .card-media-item img,
 .card-media-item video {
   display: block;
-  width: 100%;
-  max-height: min(34dvh, 16rem);
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(40dvh, 17rem);
   object-fit: contain;
+  border-radius: 0.85rem;
+}
+
+/* A card that is only a picture gives the picture the room. */
+.card-scroll:has(.card-text:empty) .card-media-item img {
+  max-height: min(62dvh, 26rem);
+}
+
+.card-media-item.is-short,
+.card-image-wrap.is-short {
+  overflow: visible;
+  padding-right: 2.5rem;
+}
+
+.card-media-item.is-short .media-zoom-button,
+.card-image-wrap.is-short .image-zoom-button {
+  top: 50%;
+  right: 0;
+  bottom: auto;
+  width: 2rem;
+  height: 2rem;
+  translate: 0 -50%;
+}
+
+.occlusion-study-canvas .image-zoom-button {
+  right: calc(var(--image-inset-right, 0px) + 0.5rem);
+  bottom: calc(var(--image-inset-bottom, 0px) + 0.5rem);
+}
+
+.card-media-item:has(audio) {
+  width: 100%;
 }
 
 .card-media-item audio {
   width: calc(100% - 1rem);
   margin: 0.7rem;
-}
-
-.media-zoom-button {
-  position: absolute;
-  right: 0.65rem;
-  bottom: 0.65rem;
-  display: inline-grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--ink) 68%, transparent);
-  color: var(--primary-text);
-  border: 1px solid color-mix(in srgb, var(--muted) 18%, transparent);
 }
 
 .modal,

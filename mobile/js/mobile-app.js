@@ -13,7 +13,6 @@
   const CREATOR_PROGRESSIVE_BATCH_SIZE = 20;
   const CREATOR_AUTOSAVE_CARD_LIMIT = 160;
   const BROWSER_RENDER_LIMIT = 250;
-  const NORMAL_STUDY_DAILY_GOAL = 20;
   const FORMULA_SYMBOL_GROUPS = [
     {
       label: 'Basic',
@@ -700,33 +699,54 @@
     return streak;
   }
 
+  /**
+   * How far through a deck the learner is. It only ever grows:
+   * - Spaced repetition: cards learned at least once (no longer New). Cards
+   *   falling due again show as "N due" beside the bar, not as lost progress.
+   * - Normal study: cards seen at least once; a finished deck stays at 100%
+   *   after Practice Again.
+   */
   function progressPercent(set) {
     const cardCount = setCardCount(set);
     if (!cardCount) return 0;
-    if (state.srsMode) {
-      const due = dueCountForSet(set, { force: true });
-      return clamp(Math.round(((cardCount - Math.min(due, cardCount)) / cardCount) * 100), 0, 100);
-    }
-    const savedProgress = state.progressBySet?.get(String(set.id));
-    const savedIndex = Number(savedProgress?.normalModeIndex ?? savedProgress?.cardIndex);
-    if (Number.isFinite(savedIndex) && savedIndex >= 0) {
-      const progressLength = Math.max(cardCount, Number(savedProgress?.normalModeLength || 0) || 0);
-      return clamp(Math.round(((Math.min(savedIndex, progressLength - 1) + 1) / Math.max(1, progressLength)) * 100), 0, 100);
-    }
+    const percentOf = count => clamp(Math.round((Math.min(count, cardCount) / cardCount) * 100), 0, 100);
     const meta = metaStats(set);
-    if (meta?.reviewCount) {
-      return clamp(Math.round((Math.min(Number(meta.reviewCount || 0), cardCount) / cardCount) * 100), 0, 100);
+    let learned = 0;
+    if (meta) {
+      learned = Math.max(0, cardCount - Number(meta.newCards || 0));
+    } else if (set.cards?.length) {
+      learned = set.cards.filter(card => (card.srs?.reps || 0) > 0 || (card.reviewHistory || []).length > 0).length;
     }
-    if (set.cards?.length) {
-      const srsReviewed = set.cards.filter(card => (card.srs?.reps || 0) > 0 || (card.reviewHistory || []).length > 0).length;
-      if (srsReviewed > 0) {
-        return clamp(Math.round((srsReviewed / cardCount) * 100), 0, 100);
-      }
-    }
-    if ((set.openedCount || 0) > 0) {
-      return clamp(Math.min(Math.round(((set.openedCount || 0) / Math.max(3, cardCount)) * 100), 95), 5, 95);
-    }
-    return 0;
+    if (state.srsMode) return percentOf(learned);
+
+    const saved = state.progressBySet?.get(String(set.id));
+    if (Number(saved?.completedPasses) > 0) return 100;
+    const seen = Array.isArray(saved?.seenCardIds) ? saved.seenCardIds.length : 0;
+    const savedIndex = Number(saved?.normalModeIndex ?? saved?.cardIndex);
+    const position = Number.isFinite(savedIndex) && savedIndex > 0 ? savedIndex + 1 : 0;
+    return percentOf(Math.max(seen, position, learned));
+  }
+
+  /** The learner's daily card goal from Settings. */
+  function dailyGoal() {
+    const value = Math.round(Number(state.settings?.dailyGoal));
+    return Number.isFinite(value) && value >= 5 ? Math.min(500, value) : 30;
+  }
+
+  /**
+   * Cards studied today, counted once per study action: each spaced-repetition
+   * rating, plus each card shown in normal or preview study (a second pass
+   * through a deck counts again). SRS sessions are left out of the session sum
+   * because their ratings are already counted.
+   */
+  function cardsStudiedToday() {
+    const todayStart = startOfLocalDayMs();
+    const viewed = (state.studySessions || [])
+      .filter(isTrackedStudySession)
+      .filter(session => !['srs', 'filtered-reschedule'].includes(String(session.mode || '')))
+      .filter(session => normalizeTimestamp(session.startedAt) >= todayStart)
+      .reduce((total, session) => total + Number(session.cardsViewed || 0), 0);
+    return reviewsToday() + viewed;
   }
 
   const APP_SOUNDS = Object.freeze({
@@ -1551,7 +1571,7 @@
             </div>
             <div class="insight-widget-value">${formatDuration(activity.todayStudyMs)}</div>
             <div class="insight-widget-footer">
-              <span class="stat-desc">${formatShortNumber(activity.todayCardsViewed)} cards viewed</span>
+              <span class="stat-desc">${formatShortNumber(cardsStudiedToday())} of ${dailyGoal()} cards</span>
             </div>
           </article>
           <article class="insight-card">
@@ -1899,23 +1919,17 @@
   function renderToday() {
     const span = perf?.start('app.render.today', { deckCount: state.sets.length });
     const totals = totalStats({ forceDue: state.srsMode });
-    const todayReviews = reviewsToday();
     const activity = studyActivitySummary();
     const streak = streakDays();
     const hasDecks = totals.setCount > 0 || totals.cardCount > 0;
-    const remainingReviews = state.srsMode ? Number(totals.dueCards || 0) : 0;
-    const dailyWork = state.srsMode ? todayReviews + remainingReviews : activity.todayCardsViewed;
-    const normalStudyGoal = hasDecks ? Math.max(1, Math.min(NORMAL_STUDY_DAILY_GOAL, Number(totals.cardCount || 0) || NORMAL_STUDY_DAILY_GOAL)) : 0;
-    const progress = state.srsMode
-      ? (dailyWork > 0 ? clamp(Math.round((todayReviews / dailyWork) * 100), 0, 100) : (hasDecks ? 100 : 0))
-      : (normalStudyGoal > 0 ? clamp(Math.round((activity.todayCardsViewed / normalStudyGoal) * 100), 0, 100) : 0);
-    const progressLabel = state.srsMode
-      ? (dailyWork > 0 ? 'Goal' : (hasDecks ? 'Ready' : 'Start'))
-      : (hasDecks ? 'Goal' : 'Start');
+    const studiedToday = cardsStudiedToday();
+    const goal = dailyGoal();
+    const progress = hasDecks ? clamp(Math.round((studiedToday / goal) * 100), 0, 100) : 0;
+    const progressLabel = hasDecks ? `${studiedToday} of ${goal}` : 'Start';
     const reviewAction = state.srsMode && totals.dueCards > 0 ? 'review-due-smart' : (hasDecks ? 'tab-library' : 'open-create');
     const reviewLabel = state.srsMode && totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : (hasDecks ? 'Study Decks' : 'Create Deck');
-    const middleMetricValue = state.srsMode ? todayReviews : activity.todayCardsViewed;
-    const middleMetricLabel = state.srsMode ? 'Reviewed' : 'Studied';
+    const middleMetricValue = studiedToday;
+    const middleMetricLabel = 'Studied';
     const hasDue = state.srsMode && totals.dueCards > 0;
     const ctaTitle = hasDue ? 'Review' : (hasDecks ? 'Study Decks' : 'Create Deck');
     const ctaCopy = hasDue
@@ -2030,7 +2044,12 @@
       const minutes = Math.max(1, Math.round((totals.dueCards * seconds) / 60));
       return `${plural(totals.dueCards, 'card')} ready. About ${minutes} min.`;
     }
-    if (!state.srsMode) return 'Pick a deck and keep the streak going.';
+    if (!state.srsMode) {
+      const left = dailyGoal() - cardsStudiedToday();
+      return left > 0
+        ? `${plural(left, 'card')} to today's goal.`
+        : 'Goal done for today. Anything more is a bonus.';
+    }
     if (state.analyticsLoaded) {
       const tomorrow = buildForecast(state.analyticsCards || [], 2)[1]?.count || 0;
       return tomorrow
@@ -3115,7 +3134,7 @@
       <button type="button"
         class="occlusion-editor-mask shape-${escapeAttr(mask.shape || 'rect')} ${String(mask.id) === selected ? 'active' : ''}"
         data-occlusion-mask-id="${escapeAttr(mask.id)}"
-        style="left:${mask.x * 100}%;top:${mask.y * 100}%;width:${mask.w * 100}%;height:${mask.h * 100}%"
+        style="left:${mask.x * 100}%;top:${mask.y * 100}%;width:${mask.w * 100}%;height:${mask.h * 100}%${mask.rotate ? `;rotate:${Number(mask.rotate)}deg` : ''}${mask.shape === 'polygon' && mask.points ? `;clip-path:polygon(${mask.points.map(([px, py]) => `${px * 100}% ${py * 100}%`).join(',')})` : ''}"
         aria-label="Mask ${index + 1}">
         <span>${index + 1}</span>
         <div class="occlusion-move-connector" aria-hidden="true"></div>
@@ -4174,7 +4193,22 @@
     }
     x = clamp(x, 0, 1 - width);
     y = clamp(y, 0, 1 - height);
-    const shape = String(source.shape || '').toLowerCase() === 'ellipse' ? 'ellipse' : 'rect';
+    // Polygon points are fractions (0 to 1) of the mask's own box, so a slanted
+    // or odd-shaped label can be covered tightly. Rotation is in degrees about
+    // the box centre, for labels printed on a diagonal.
+    const points = Array.isArray(source.points)
+      ? source.points
+        .map(point => (Array.isArray(point) ? point : [point?.x, point?.y]).map(Number))
+        .filter(([px, py]) => Number.isFinite(px) && Number.isFinite(py))
+        .slice(0, 24)
+        .map(([px, py]) => [clamp(px, 0, 1), clamp(py, 0, 1)])
+      : [];
+    const requestedShape = String(source.shape || '').toLowerCase();
+    const shape = requestedShape === 'polygon' && points.length >= 3
+      ? 'polygon'
+      : requestedShape === 'ellipse' ? 'ellipse' : 'rect';
+    const rotate = Number(source.rotate ?? source.rotation ?? source.angle);
+    const rotation = Number.isFinite(rotate) ? Math.round(((rotate % 360) + 540) % 360 - 180) : 0;
     return {
       id: String(source.id || createLocalId('mask')),
       cardId: String(source.cardId || source.cardID || createLocalId('card')),
@@ -4187,7 +4221,9 @@
       hint: sanitizeEditorHtml(String(source.hint || '').slice(0, 220)),
       // True when the diagram already prints this label under the mask, so the
       // reveal needs no separate answer tag.
-      ...(source.labelInImage === true ? { labelInImage: true } : {})
+      ...(source.labelInImage === true ? { labelInImage: true } : {}),
+      ...(shape === 'polygon' ? { points } : {}),
+      ...(rotation ? { rotate: rotation } : {})
     };
   }
 
@@ -6288,6 +6324,100 @@
     else label.textContent = 'Unlock full premade chapters';
   }
 
+  // Set while the person is buying, redeeming or restoring, so only an unlock
+  // they just asked for gets the celebration (not a silent background refresh).
+  let proFlowStartedAt = 0;
+  let proCelebrationOpen = false;
+
+  function markProFlow() {
+    proFlowStartedAt = Date.now();
+  }
+
+  function proUnlockedJustNow() {
+    return proFlowStartedAt && Date.now() - proFlowStartedAt < 15 * 60 * 1000;
+  }
+
+  /** Full-screen "Pro unlocked" moment: the gem drops in, rings, sparks, perks. */
+  function celebratePro() {
+    if (proCelebrationOpen) return;
+    proCelebrationOpen = true;
+    proFlowStartedAt = 0;
+    closeProSheet();
+    const overlay = document.createElement('div');
+    overlay.className = 'pro-celebrate';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'pro-celebrate-title');
+    overlay.innerHTML = `
+      <div class="pro-celebrate-stage">
+        <div class="pro-celebrate-emblem" aria-hidden="true">
+          <span class="pro-celebrate-rays"></span>
+          <span class="pro-celebrate-ring"></span>
+          <span class="pro-celebrate-ring late"></span>
+          <svg class="pro-gem"><use href="#pro-gem"/></svg>
+          <span class="pro-celebrate-shine"></span>
+        </div>
+        <h2 id="pro-celebrate-title">You're Pro</h2>
+        <p>Every premade chapter is now complete. Sample decks you already study are being filled in.</p>
+        <ul class="pro-celebrate-perks">
+          <li>All chapters</li>
+          <li>Progress kept</li>
+          <li>New decks as they land</li>
+        </ul>
+        <button type="button" class="pro-celebrate-go">Start studying</button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    requestAnimationFrame(() => overlay.classList.add('show'));
+    playStar();
+    haptics.success?.();
+
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+    const emblem = overlay.querySelector('.pro-celebrate-emblem');
+    if (!reduce && emblem?.animate) {
+      const tones = ['#8ea4ff', '#b9a6ff', '#ffffff', '#ffd27a', '#7ee0c3', '#ff9fc6'];
+      const kinds = ['dot', 'card', 'star', 'star'];
+      const burst = (count, delay, reach) => {
+        for (let index = 0; index < count; index += 1) {
+          const spark = document.createElement('span');
+          spark.className = `pro-spark ${kinds[index % kinds.length]}`;
+          spark.style.setProperty('--tone', tones[index % tones.length]);
+          spark.style.setProperty('--size', `${6 + Math.random() * 9}px`);
+          emblem.appendChild(spark);
+          const angle = (index / count) * Math.PI * 2 + Math.random() * 0.4;
+          const distance = reach * (0.55 + Math.random() * 0.6);
+          const x = Math.cos(angle) * distance;
+          const y = Math.sin(angle) * distance;
+          const spin = (Math.random() - 0.5) * 720;
+          spark.animate([
+            { transform: 'translate(0, 0) scale(0.2) rotate(0deg)', opacity: 0 },
+            { transform: `translate(${x * 0.7}px, ${y * 0.7}px) scale(1) rotate(${spin / 2}deg)`, opacity: 1, offset: 0.35 },
+            { transform: `translate(${x}px, ${y + 60}px) scale(0.6) rotate(${spin}deg)`, opacity: 0 }
+          ], { duration: 1500 + Math.random() * 700, delay, easing: 'cubic-bezier(0.15, 0.7, 0.3, 1)', fill: 'both' })
+            .finished.then(() => spark.remove()).catch(() => {});
+        }
+      };
+      burst(28, 520, 170);
+      burst(18, 900, 240);
+    }
+
+    let closed = false;
+    const close = () => {
+      if (closed) return;
+      closed = true;
+      overlay.classList.remove('show');
+      setTimeout(() => {
+        overlay.remove();
+        proCelebrationOpen = false;
+      }, 280);
+    };
+    overlay.querySelector('.pro-celebrate-go')?.addEventListener('click', () => {
+      playClick();
+      close();
+    });
+    setTimeout(() => overlay.querySelector('.pro-celebrate-go')?.focus({ preventScroll: true }), 1300);
+  }
+
   let proPackages = [];
   let selectedProPackage = null;
 
@@ -6358,11 +6488,12 @@
     const buy = document.getElementById('pro-buy');
     if (!selectedProPackage || !buy) return;
     buy.disabled = true;
+    markProFlow();
     const result = await window.EruditeEntitlements.purchase(selectedProPackage);
     buy.disabled = false;
     if (result.ok) {
-      closeProSheet();
-      showToast('Welcome to Erudite Pro');
+      if (isPro()) celebratePro();
+      else closeProSheet();
     } else if (!result.cancelled) {
       showToast(result.error || 'Purchase failed');
     }
@@ -6374,27 +6505,30 @@
     if (!input || !button || button.disabled) return;
     button.disabled = true;
     button.textContent = 'Checking...';
+    markProFlow();
     const result = await window.EruditeEntitlements?.redeemCoupon?.(input.value)
       || { error: 'Coupons are not available in this build' };
     button.disabled = false;
     button.textContent = 'Redeem';
     if (result.ok) {
       input.value = '';
-      closeProSheet();
       // The entitlement onChange listener re-renders and fills in sample decks.
-      showToast('Erudite Pro unlocked');
+      celebratePro();
     } else {
       showToast(result.error || 'That code is not valid');
     }
   }
 
   async function restorePro() {
+    const wasPro = isPro();
+    markProFlow();
     const result = await window.EruditeEntitlements?.restore?.();
     if (!result || result.error) {
       showToast(result?.error || 'Restore is available in the Android app');
       return;
     }
-    showToast(result.pro ? 'Erudite Pro restored' : 'No Pro purchase found for this Google account');
+    if (result.pro && !wasPro) celebratePro();
+    else showToast(result.pro ? 'Erudite Pro restored' : 'No Pro purchase found for this Google account');
     if (result.pro) closeProSheet();
   }
 
@@ -7039,6 +7173,9 @@
     }
 
     updateReminderLabel();
+
+    const dailyGoalLabel = document.getElementById('more-daily-goal-label');
+    if (dailyGoalLabel) dailyGoalLabel.textContent = `${dailyGoal()} cards a day`;
 
     const newCardLimitLabel = document.getElementById('more-new-card-limit-label');
     if (newCardLimitLabel) {
@@ -8792,6 +8929,47 @@
     }
 
     saveBtn?.addEventListener('click', save);
+    cancelBtn?.addEventListener('click', close);
+  }
+
+  function openDailyGoalModal() {
+    const overlay = document.getElementById('daily-goal-overlay');
+    const cancelBtn = document.getElementById('daily-goal-cancel');
+    if (!overlay) return;
+    const current = String(dailyGoal());
+    const optionButtons = Array.from(overlay.querySelectorAll('.mobile-modal-option-btn'));
+    optionButtons.forEach(btn => {
+      const selected = btn.dataset.value === current;
+      btn.classList.toggle('selected', selected);
+      btn.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+    overlay.classList.remove('hidden');
+
+    function close() {
+      overlay.classList.add('hidden');
+      optionButtons.forEach(btn => btn.removeEventListener('click', handleSelect));
+      cancelBtn?.removeEventListener('click', close);
+      state.lastModalClosedAt = Date.now();
+    }
+
+    async function handleSelect(event) {
+      const btn = event.target.closest('[data-value]');
+      if (!btn) return;
+      const goal = Number(btn.dataset.value);
+      state.settings = { ...(state.settings || {}), dailyGoal: goal };
+      playClick();
+      close();
+      renderMore();
+      try {
+        await window.flashcardStore.saveSettings(state.settings);
+        showToast(`Daily goal: ${goal} cards`);
+      } catch (error) {
+        console.error('Could not save daily goal:', error);
+        showToast('Could not save daily goal');
+      }
+    }
+
+    optionButtons.forEach(btn => btn.addEventListener('click', handleSelect));
     cancelBtn?.addEventListener('click', close);
   }
 
@@ -10643,6 +10821,9 @@
         break;
       case 'select-new-card-limit':
         openNewCardLimitModal();
+        break;
+      case 'select-daily-goal':
+        openDailyGoalModal();
         break;
       case 'open-reminder-settings':
         openReminderModal();
@@ -12865,7 +13046,8 @@ Every media/... reference in deck.json must exist inside media/.`;
       await refresh();
       // Pro: read the cached entitlement now, confirm with Google Play in the
       // background, and finish any sample decks once Pro is active.
-      window.EruditeEntitlements?.onChange?.(() => {
+      window.EruditeEntitlements?.onChange?.(nowPro => {
+        if (nowPro && proUnlockedJustNow()) celebratePro();
         renderMore();
         if (state.activeTab === 'library' || state.activeTab === 'premade') renderActive();
         upgradeSampleDecks().catch(error => console.warn('[mobile] sample upgrade failed:', error));

@@ -191,11 +191,14 @@ Follow these steps with your code tool (for example Python with PyMuPDF, Pillow,
    - Join the words of a multi-word label into one box.
 4. Make one mask per label. Cover the whole label text plus about 4 px of padding on every side. Do not cover the drawing itself unless the drawn part is what is being asked.
 5. Record occlusion.imageWidth and occlusion.imageHeight as the exact pixel size of the saved file, and each mask as bboxPx: [left, top, width, height] in that file's pixels.
+   - A label printed on a slant: keep bboxPx as the unrotated box around the text and add "rotate": degrees (clockwise, about the box centre).
+   - A label that is not box-shaped: set "shape": "polygon" and "points": [[x, y], ...] as fractions (0 to 1) of the bboxPx box.
 6. Check your work: draw every box onto a copy of the crop, look at the copy, and fix any box that misses or clips its label. Do not include the check image in the package.
 7. If you cannot run code in this conversation, do not create image occlusion cards. Guessed coordinates are worse than none.
 
 Mask content:
 - "answer" is the exact label text from the diagram. "hint" is optional and must not give the answer away.
+- Set "labelInImage": true on a mask whose answer is the very text it covers, so the reveal does not print it twice. Leave it off when the mask hides only a letter such as (a) or the answer adds more than the printed text.
 - Use about 3 to 12 masks per image. Skip repeated labels, captions, figure numbers, and arrows without text.
 - "guessMode": "hide-all" (default) covers every label and asks one; use "hide-one" when the other labels are needed as context to make the question fair, such as steps in a cycle.
 - One image-occlusion card per diagram, with all of its masks in occlusion.masks. Never duplicate an image into one-mask cards.`;

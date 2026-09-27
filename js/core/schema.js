@@ -21,8 +21,9 @@
     normalStudyOrder: 'forward',
     soundEffectsEnabled: true,
     hapticsEnabled: true,
-    htmlInteractionDisabled: false,
     paperTexture: false,
+    // Cards a day the Today ring counts towards (reviews plus cards studied).
+    dailyGoal: 30,
     srsDefaults: {
       newCardsPerDay: DEFAULT_NEW_CARDS_PER_DAY
     },
@@ -271,7 +272,7 @@
       ? settings.normalStudyOrder
       : DEFAULT_SETTINGS.normalStudyOrder;
     const soundEffectsEnabled = settings.soundEffectsEnabled !== false;
-    const htmlInteractionDisabled = settings.htmlInteractionDisabled === true;
+    const dailyGoal = numberOrNull(settings.dailyGoal, DEFAULT_SETTINGS.dailyGoal);
     const cardStyle = {
       ...DEFAULT_SETTINGS.cardStyle,
       ...(settings.cardStyle || {})
@@ -286,7 +287,7 @@
       normalStudyOrder,
       soundEffectsEnabled,
       hapticsEnabled: settings.hapticsEnabled !== false,
-      htmlInteractionDisabled,
+      dailyGoal: Math.min(500, Math.max(5, Math.round(dailyGoal))),
       paperTexture: settings.paperTexture === true,
       srsDefaults: {
         newCardsPerDay: Math.max(0, Math.round(defaultNewCards))

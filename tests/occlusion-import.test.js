@@ -7,7 +7,8 @@ const path = require('path');
 // The occlusion helpers live inside the mobile app bundle; extract the pure
 // functions they need and evaluate them in isolation.
 function loadOcclusionHelpers() {
-  const source = fs.readFileSync(path.resolve(__dirname, '../mobile/js/mobile-app.js'), 'utf8');
+  // Normalise line endings so the extraction works on a Windows checkout too.
+  const source = fs.readFileSync(path.resolve(__dirname, '../mobile/js/mobile-app.js'), 'utf8').replace(/\r\n/g, '\n');
   const names = [
     'firstPresent', 'parseCoordinateNumber', 'normalizeCoordinateUnits', 'readPixelDimension',
     'readOcclusionBox', 'resolveOcclusionDimensions'

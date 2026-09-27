@@ -25,8 +25,10 @@ Put the NCERT PDFs in `NCERT-pdfs/` (not committed).
 - **Never put a cloze inside a formula.** `{{c1::…}}` inside `\( … \)` breaks KaTeX, and the raw LaTeX shows.
 - **Avoid `\text{…}` in formulas.** Until the `mobile-study.css` fix ships in an app build, installed apps split it one letter per line. Write words outside the math: `Bond order \(= \tfrac12(N_b - N_a)\)`.
 - **KaTeX renders only in basic and cloze text,** not inside advanced HTML. Use Unicode, `<sub>` and `<sup>` there.
+- **CSS animations play when their side comes into view.** The app rewinds a face's animations when the card becomes the front card and when it flips, so an animation on the answer side runs as the learner turns the card. Scripts never run, and taps always flip the card.
 - **Inline SVG works in the 2.0 build** (shapes, text, markers; style it with classes, never `style=`). Builds before 2.0 strip it.
 - **Occlusion mode is `occlusion.guessMode`** (`hide-all` or `hide-one`); the importer ignores `mode`. The card's `term` is the prompt on the front.
+- **Masks can turn and take any shape.** `rot([x, y, w, h], degrees)` covers a label printed on a slant (the box is the unrotated box around the text, turned about its centre; negative is anticlockwise). `poly([(x, y), ...])` covers an odd shape with a polygon in image pixels. Both need the 2.0 app build; check the fit by drawing the shape on a copy of the crop.
 - **`labelInImage: true` on a mask** (the `printed` option in `deckkit`) when the diagram already prints that label under the mask, so the reveal does not repeat it. Leave it off when the mask hides only a letter like (a) or when the answer adds something the figure does not print.
 - **Use diagrams generously.** Crop, recrop, combine or redraw NCERT figures, or ask the owner for new assets: whatever makes the card clearest. Images on basic cards go in `termImage` / `definitionImage`.
 - Advanced cards carry their own background (paper, blueprint, chalkboard, lab), so they read the same on the dark and light app themes.

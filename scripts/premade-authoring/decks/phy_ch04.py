@@ -105,7 +105,7 @@ d.basic('Max acceleration of a truck so a box on it does not slide (μₛ)?', r'
 d.basic('A block just starts to slide when the incline reaches angle θ. Relation with μₛ?', r'\(\tan\theta = \mu_s\)' + ' (angle of repose). Independent of mass')
 d.occlusion('Fig. 4.11 · Forces on a block resting on an incline', M + 'fig_4_11_incline.webp', (1001, 477), [
     ('N (normal reaction)', [528, 20, 50, 48]), ('f<sub>s</sub> (static friction, up the slope)', [662, 90, 55, 45]),
-    ('mg sin θ', [293, 195, 160, 95]), ('mg cos θ', [652, 285, 165, 100]), ('mg (weight)', [538, 370, 85, 45])], printed=True)
+    ('mg sin θ', rot([291, 222, 168, 44], -24)), ('mg cos θ', rot([648, 312, 172, 46], -24)), ('mg (weight)', [538, 370, 85, 45])], printed=True)
 d.basic('Acceleration down a rough incline (angle θ, μₖ)?', r'\(a = g(\sin\theta - \mu_k\cos\theta)\)')
 d.basic('Why is it easier to pull a roller than to push it (force at an angle)?',
         'Pulling ' + T('reduces N') + ' (mg − F sin θ), so friction is less; pushing increases N')

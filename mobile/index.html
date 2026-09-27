@@ -22,6 +22,33 @@
   <link rel="stylesheet" href="css/color-picker.css">
 </head>
 <body>
+  <!-- Erudite Pro gem, drawn once and reused with <use href="#pro-gem">. -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="pro-gem-fill" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#d9e1ff"/>
+        <stop offset="0.45" stop-color="#7d97ff"/>
+        <stop offset="1" stop-color="#7a4dff"/>
+      </linearGradient>
+      <linearGradient id="pro-gem-shine" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+        <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <symbol id="pro-gem" viewBox="0 0 48 48">
+      <path d="M14 8h20l10 10-20 24L4 18z" fill="url(#pro-gem-fill)"/>
+      <path d="M4 18l10-10 3 10z" fill="#fff" fill-opacity="0.34"/>
+      <path d="M14 8h20l-10 10z" fill="url(#pro-gem-shine)"/>
+      <path d="M14 8l10 10h-7z" fill="#fff" fill-opacity="0.5"/>
+      <path d="M34 8l-10 10h7z" fill="#fff" fill-opacity="0.2"/>
+      <path d="M34 8l10 10H31z" fill="#2b1a7a" fill-opacity="0.12"/>
+      <path d="M4 18h13l7 24z" fill="#fff" fill-opacity="0.22"/>
+      <path d="M17 18h14l-7 24z" fill="#fff" fill-opacity="0.08"/>
+      <path d="M31 18h13L24 42z" fill="#2b1a7a" fill-opacity="0.28"/>
+      <path d="M14 8h20l10 10-20 24L4 18zM4 18h40M17 18l7 24 7-24M14 8l3 10M34 8l-3 10M17 18l7-10 7 10" fill="none" stroke="#fff" stroke-opacity="0.55" stroke-width="0.9" stroke-linejoin="round"/>
+      <path d="M40 3l1.1 2.9L44 7l-2.9 1.1L40 11l-1.1-2.9L36 7l2.9-1.1z" fill="#fff"/>
+    </symbol>
+  </svg>
   <div class="app-loading-cover" id="app-loading-cover" aria-live="polite">
     <div class="boxes">
       <div class="box">
@@ -437,7 +464,7 @@
           <h2 id="more-heading">App tools</h2>
         </div>
         <button type="button" class="pro-row" data-action="open-pro">
-          <span class="pro-row-mark" aria-hidden="true"><i class="fas fa-star"></i></span>
+          <span class="pro-row-mark" aria-hidden="true"><svg class="pro-gem"><use href="#pro-gem"/></svg></span>
           <span>
             <strong>Erudite Pro</strong>
             <small id="more-pro-label">Unlock full premade chapters</small>
@@ -459,6 +486,14 @@
             <span>
               <strong>Daily Reminder</strong>
               <small id="more-reminder-label">Off</small>
+            </span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button type="button" class="settings-row" data-action="select-daily-goal">
+            <span class="settings-icon"><i class="fas fa-bullseye"></i></span>
+            <span>
+              <strong>Daily Goal</strong>
+              <small id="more-daily-goal-label">30 cards a day</small>
             </span>
             <i class="fas fa-chevron-right"></i>
           </button>
@@ -1680,6 +1715,58 @@ If you cannot attach a ZIP file:
     </div>
   </div>
 
+  <div class="mobile-modal-overlay hidden" id="daily-goal-overlay" role="dialog" aria-modal="true" aria-labelledby="daily-goal-title">
+    <div class="mobile-modal-card">
+      <h3 id="daily-goal-title" class="modal-title"><i class="fas fa-bullseye"></i> Daily Goal</h3>
+      <p class="mobile-modal-hint">Cards to study each day. Every review counts, and so does every card you go through in normal study, including a second pass. The ring on Today fills as you go.</p>
+      <div class="mobile-modal-list">
+        <button type="button" class="mobile-modal-option-btn" data-value="20">
+          <span class="option-icon option-number" aria-hidden="true">20</span>
+          <span class="option-details">
+            <strong>Light</strong>
+            <small>About 3 minutes. Good for busy days</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="30">
+          <span class="option-icon option-number" aria-hidden="true">30</span>
+          <span class="option-details">
+            <strong>Steady</strong>
+            <small>About 5 minutes. A pace most students keep (Default)</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="50">
+          <span class="option-icon option-number" aria-hidden="true">50</span>
+          <span class="option-details">
+            <strong>Serious</strong>
+            <small>About 8 minutes. A full chapter in a few days</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="100">
+          <span class="option-icon option-number" aria-hidden="true">100</span>
+          <span class="option-details">
+            <strong>Exam mode</strong>
+            <small>About 15 minutes. For the months before NEET, JEE or boards</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+        <button type="button" class="mobile-modal-option-btn" data-value="150">
+          <span class="option-icon option-number" aria-hidden="true">150</span>
+          <span class="option-details">
+            <strong>Marathon</strong>
+            <small>About 25 minutes. Revision sprints</small>
+          </span>
+          <i class="fas fa-circle-check check-icon"></i>
+        </button>
+      </div>
+      <div class="mobile-modal-actions">
+        <button type="button" class="mobile-modal-btn cancel" id="daily-goal-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <div class="mobile-modal-overlay hidden" id="new-card-limit-overlay" role="dialog" aria-modal="true" aria-labelledby="new-card-limit-title">
     <div class="mobile-modal-card">
       <h3 id="new-card-limit-title" class="modal-title"><i class="fas fa-seedling"></i> New Cards per Day</h3>
@@ -1765,9 +1852,8 @@ If you cannot attach a ZIP file:
     <div class="mobile-modal-card pro-card">
       <button type="button" class="pro-close" data-action="close-pro" aria-label="Close"><i class="fas fa-xmark"></i></button>
       <div class="pro-hero" aria-hidden="true">
-        <span class="pro-hero-card back"></span>
-        <span class="pro-hero-card middle"></span>
-        <span class="pro-hero-card front"><i class="fas fa-star"></i></span>
+        <span class="pro-hero-glow"></span>
+        <svg class="pro-gem"><use href="#pro-gem"/></svg>
       </div>
       <h3 id="pro-title" class="pro-title">Erudite Pro</h3>
       <p class="pro-lede">The full premade library for NEET, JEE, and boards, built chapter by chapter.</p>

@@ -1020,9 +1020,24 @@ body[data-active-tab="library"] .mobile-topbar {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--radius-md);
-  background: var(--primary);
-  color: var(--on-primary);
-  font-size: 1.1rem;
+  background: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--primary) 40%, var(--surface)), color-mix(in srgb, var(--primary) 14%, var(--surface)));
+}
+
+.pro-row-mark .pro-gem {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.svg-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.pro-gem {
+  display: block;
+  overflow: visible;
 }
 
 .pro-row > .fa-chevron-right {
@@ -1101,37 +1116,239 @@ body[data-active-tab="library"] .mobile-topbar {
   font-size: 1.15rem;
 }
 
-/* The same stacked-card motif as the Today review button. */
+/* The Pro gem floats on a soft glow. */
 .pro-hero {
   position: relative;
+  display: grid;
+  place-items: center;
   width: 5.5rem;
-  height: 4.5rem;
+  height: 5rem;
   margin: 0 auto var(--space-2);
 }
 
-.pro-hero-card {
+.pro-hero-glow {
   position: absolute;
-  inset: 0.6rem 0 0;
-  border-radius: var(--radius-md);
-  background: var(--primary);
+  inset: 0.2rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, #7d97ff 45%, transparent), transparent 70%);
+  animation: pro-glow 3.2s ease-in-out infinite;
 }
 
-.pro-hero-card.back {
-  background: color-mix(in srgb, var(--primary) 40%, var(--surface));
-  transform: translateY(-0.6rem) scaleX(0.82) rotate(-6deg);
+.pro-hero .pro-gem {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  filter: drop-shadow(0 6px 14px rgba(91, 76, 255, 0.35));
+  animation: pro-float 3.2s ease-in-out infinite;
 }
 
-.pro-hero-card.middle {
-  background: color-mix(in srgb, var(--primary) 68%, var(--surface));
-  transform: translateY(-0.3rem) scaleX(0.91) rotate(4deg);
+@keyframes pro-glow {
+  50% { transform: scale(1.12); opacity: 0.7; }
 }
 
-.pro-hero-card.front {
+@keyframes pro-float {
+  50% { transform: translateY(-3px); }
+}
+
+/* Pro unlocked: a one-time celebration over the whole app. */
+.pro-celebrate {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
   display: grid;
   place-items: center;
-  color: var(--on-primary);
-  font-size: 1.5rem;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  padding: var(--space-6);
+  background: radial-gradient(circle at 50% 36%, #2b2575, #120f2e 45%, #07070f 80%);
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 260ms ease;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.pro-celebrate.show {
+  opacity: 1;
+}
+
+.pro-celebrate-stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+}
+
+.pro-celebrate-emblem {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 12rem;
+  height: 12rem;
+}
+
+.pro-celebrate-rays {
+  position: absolute;
+  inset: -3rem;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgba(160, 180, 255, 0.22) 0deg 6deg, transparent 6deg 22deg);
+  -webkit-mask: radial-gradient(circle, #000 18%, transparent 68%);
+  mask: radial-gradient(circle, #000 18%, transparent 68%);
+  opacity: 0;
+  animation: pro-rays-in 900ms 380ms ease-out forwards, pro-rays-spin 18s linear infinite;
+}
+
+.pro-celebrate-ring {
+  position: absolute;
+  inset: 2rem;
+  border: 2px solid rgba(190, 200, 255, 0.8);
+  border-radius: 50%;
+  opacity: 0;
+  animation: pro-ring 1100ms 420ms cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+
+.pro-celebrate-ring.late {
+  animation-delay: 640ms;
+}
+
+.pro-celebrate-emblem .pro-gem {
+  position: relative;
+  width: 7.5rem;
+  height: 7.5rem;
+  filter: drop-shadow(0 10px 30px rgba(120, 100, 255, 0.6));
+  animation: pro-gem-drop 900ms cubic-bezier(0.3, 1.5, 0.5, 1) both, pro-float 3.2s 1s ease-in-out infinite;
+}
+
+.pro-celebrate-shine {
+  position: absolute;
+  width: 7.5rem;
+  height: 7.5rem;
+  clip-path: polygon(29% 17%, 71% 17%, 92% 38%, 50% 88%, 8% 38%);
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.85) 50%, transparent 65%) -150% 0 / 250% 100% no-repeat;
+  animation: pro-shine 1100ms 820ms ease-in-out both;
+}
+
+.pro-celebrate h2 {
+  margin: var(--space-2) 0 0;
+  color: #fff;
+  font-size: 1.9rem;
+  letter-spacing: 0.01em;
+  animation: pro-rise 600ms 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.pro-celebrate p {
+  max-width: 17rem;
+  margin: 0;
+  color: rgba(225, 228, 255, 0.82);
+  line-height: 1.5;
+  animation: pro-rise 600ms 820ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.pro-celebrate-perks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: var(--space-1) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pro-celebrate-perks li {
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  font-size: var(--text-sm);
+  animation: pro-rise 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.pro-celebrate-perks li:nth-child(1) { animation-delay: 960ms; }
+.pro-celebrate-perks li:nth-child(2) { animation-delay: 1040ms; }
+.pro-celebrate-perks li:nth-child(3) { animation-delay: 1120ms; }
+
+.pro-celebrate-go {
+  min-width: 12rem;
+  min-height: var(--touch);
+  margin-top: var(--space-4);
+  padding: 0 var(--space-6);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #8ea4ff, #6d4dff);
+  box-shadow: 0 8px 24px rgba(109, 77, 255, 0.45);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  animation: pro-rise 600ms 1250ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.pro-celebrate-go:active {
+  transform: scale(0.97);
+}
+
+.pro-spark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--size, 8px);
+  height: var(--size, 8px);
+  margin: calc(var(--size, 8px) / -2);
+  pointer-events: none;
+}
+
+.pro-spark.dot {
+  border-radius: 50%;
+  background: var(--tone);
+}
+
+.pro-spark.card {
+  width: calc(var(--size) * 0.8);
+  height: calc(var(--size) * 1.1);
+  border-radius: 2px;
+  background: var(--tone);
+}
+
+.pro-spark.star {
+  background: var(--tone);
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+}
+
+@keyframes pro-gem-drop {
+  0% { transform: translateY(-40vh) scale(0.3) rotate(-35deg); opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+
+@keyframes pro-rays-in {
+  to { opacity: 1; }
+}
+
+@keyframes pro-rays-spin {
+  to { rotate: 360deg; }
+}
+
+@keyframes pro-ring {
+  0% { transform: scale(0.4); opacity: 0.9; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+@keyframes pro-shine {
+  to { background-position: 150% 0; }
+}
+
+@keyframes pro-rise {
+  from { transform: translateY(14px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pro-hero-glow,
+  .pro-hero .pro-gem,
+  .pro-celebrate *,
+  .pro-celebrate-emblem .pro-gem {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 .pro-title {
