@@ -2,6 +2,7 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 from deckkit import *
+import showcase as sc
 
 OUT = os.path.join(ROOT, 'premade-cards', '11th', 'Biology', 'class11-biology-ch02-biological-classification')
 d = Deck('Chapter 2: Biological Classification', 'Class 11', ['class-11', 'biology', 'ch-2'])
@@ -32,24 +33,17 @@ d.basic('What does a phylogenetic classification rest on?', T('Evolutionary rela
 d.sec('five-kingdoms-table')
 d.basic('Which is the only kingdom with prokaryotic cells?', T('Monera') + '<br>All other kingdoms are eukaryotic.')
 d.basic('Which kingdom lacks a nuclear membrane?', T('Monera'))
-table_card(d, 'Table 2.1 · Five kingdoms', 'Cell wall in each kingdom?', [
-    ('Monera', 'Non-cellulosic (polysaccharide + amino acid)', False),
-    ('Protista', 'Present in some', False),
-    ('Fungi', 'Present, with chitin', False),
-    ('Plantae', 'Present (cellulose)', False),
-    ('Animalia', 'Absent', True)], term='Five kingdoms: cell wall')
-table_card(d, 'Table 2.1 · Five kingdoms', 'Body organisation in each kingdom?', [
-    ('Monera', 'Cellular', False),
-    ('Protista', 'Cellular', False),
-    ('Fungi', 'Multicellular / loose tissue', False),
-    ('Plantae', 'Tissue / organ', False),
-    ('Animalia', 'Tissue / organ / organ system', False)], term='Five kingdoms: body organisation')
-table_card(d, 'Table 2.1 · Five kingdoms', 'Mode of nutrition in each kingdom?', [
-    ('Monera', 'Autotrophic (chemosynthetic, photosynthetic) and heterotrophic (saprophytic, parasitic)', False),
-    ('Protista', 'Autotrophic (photosynthetic) and heterotrophic', False),
-    ('Fungi', 'Heterotrophic (saprophytic, parasitic)', False),
-    ('Plantae', 'Autotrophic (photosynthetic)', False),
-    ('Animalia', 'Heterotrophic (holozoic, saprophytic etc.)', False)], term='Five kingdoms: mode of nutrition')
+sc.kingdom_tiles(d, 'Cell wall in each kingdom?', [
+    ('Non-cellulosic (polysaccharide + amino acid)', False), ('Present in some', False),
+    ('Present, with chitin', False), ('Present (cellulose)', False), ('Absent', True)], 'Five kingdoms: cell wall')
+sc.kingdom_tiles(d, 'Body organisation in each kingdom?', [
+    ('Cellular', False), ('Cellular', False), ('Multicellular / loose tissue', False),
+    ('Tissue / organ', False), ('Tissue / organ / organ system', False)], 'Five kingdoms: body organisation')
+sc.kingdom_tiles(d, 'Mode of nutrition in each kingdom?', [
+    ('Autotrophic (chemosynthetic, photosynthetic) and heterotrophic', False),
+    ('Autotrophic (photosynthetic) and heterotrophic', False), ('Heterotrophic (saprophytic, parasitic)', False),
+    ('Autotrophic (photosynthetic)', False), ('Heterotrophic (holozoic, saprophytic etc.)', False)],
+    'Five kingdoms: mode of nutrition')
 
 # ---------------------------------------------------------------- 2.1 Monera
 d.sec('2.1-monera')
@@ -58,7 +52,8 @@ d.basic('Name four extreme habitats where bacteria live.', 'Hot springs, deserts
 d.cloze('Bacterial shapes: spherical {{c1::Coccus}}, rod-shaped {{c2::Bacillus}}, comma-shaped {{c3::Vibrium}} and spiral {{c4::Spirillum}}.')
 d.occlusion('Figure 2.1 · Bacteria of different shapes', M + 'fig_2_1_bacteria_shapes.webp', (1000, 252), [
     ('Spore', pad((398, 57, 53, 19))), ('Flagellum', pad((728, 53, 91, 19))), ('Cocci', pad((57, 199, 50, 19))),
-    ('Bacilli', pad((276, 207, 58, 19))), ('Spirilla', pad((538, 195, 67, 19))), ('Vibrio', pad((882, 222, 55, 19)))])
+    ('Bacilli', pad((276, 207, 58, 19))), ('Spirilla', pad((538, 195, 67, 19))), ('Vibrio', pad((882, 222, 55, 19)))],
+    printed=True)
 d.basic('Which group of organisms shows the most extensive metabolic diversity?', T('Bacteria'))
 d.basic('What are the two kinds of autotrophic bacteria?', T('Photosynthetic') + ' autotrophs and ' + T('chemosynthetic') + ' autotrophs')
 d.basic('What is the mode of nutrition of the vast majority of bacteria?', T('Heterotrophic'))
@@ -77,7 +72,7 @@ d.basic('What surrounds cyanobacterial colonies?', 'A ' + T('gelatinous sheath')
 d.basic('What do cyanobacteria often form in polluted water bodies?', T('Blooms'))
 d.cloze('Some cyanobacteria fix atmospheric nitrogen in specialised cells called {{c1::heterocysts}}, e.g. {{c2::<i>Nostoc</i> and <i>Anabaena</i>}}.')
 d.occlusion('Figure 2.2 · A filamentous blue-green alga, <i>Nostoc</i>', M + 'fig_2_2_nostoc.webp', (747, 901), [
-    ('Heterocyst', [255, 172, 245, 60]), ('Mucilaginous sheath', [402, 312, 310, 108])])
+    ('Heterocyst', [255, 172, 245, 60]), ('Mucilaginous sheath', [402, 312, 310, 108])], printed=True)
 d.basic('Which substances do chemosynthetic autotrophic bacteria oxidise for energy?', 'Nitrates, nitrites and ammonia')
 d.basic('Chemosynthetic bacteria help recycle which nutrients?', 'Nitrogen, phosphorous, iron, sulphur')
 d.basic('Which bacteria are the most abundant in nature?', T('Heterotrophic bacteria'))
@@ -160,7 +155,8 @@ d.basic('Name three means of vegetative reproduction in fungi.', 'Fragmentation,
 d.basic('Name three kinds of asexual spores in fungi.', 'Conidia, sporangiospores, zoospores')
 d.basic('Name three kinds of sexual spores in fungi.', 'Oospores, ascospores, basidiospores')
 d.basic('Where are fungal spores produced?', 'In distinct structures called ' + T('fruiting bodies'))
-d.cloze('Sexual cycle of fungi: {{c1::plasmogamy}} (fusion of protoplasms) → {{c2::karyogamy}} (fusion of nuclei) → {{c3::meiosis}} in the zygote, giving haploid spores.')
+sc.fungal_sexual_cycle(d)
+d.basic('In the fungal sexual cycle, what is plasmogamy and what is karyogamy?', T('Plasmogamy') + ': fusion of protoplasms. ' + T('Karyogamy') + ': fusion of nuclei.')
 d.basic('What is a dikaryon?', 'A cell with ' + T('two nuclei') + ' (' + N('n + n') + '). The phase is called the ' + T('dikaryophase') + '.')
 d.basic('In which fungal classes does a dikaryotic stage occur?', T('Ascomycetes') + ' and ' + T('basidiomycetes'))
 d.basic('What is the basis for dividing Kingdom Fungi into classes?', '<ul><li>Morphology of the mycelium</li><li>Mode of spore formation</li><li>Fruiting bodies</li></ul>')
@@ -255,10 +251,10 @@ d.basic('In what geometric forms are capsomeres arranged?', T('Helical') + ' or 
 d.basic('Name five viral diseases of humans.', E('Mumps, small pox, herpes, influenza, AIDS'))
 d.basic('Name four symptoms of viral infection in plants.', '<ul><li>Mosaic formation</li><li>Leaf rolling and curling</li><li>Yellowing and vein clearing</li><li>Dwarfing, stunted growth</li></ul>')
 d.occlusion('Figure 2.6 (a) · Tobacco Mosaic Virus (TMV)', M + 'fig_2_6a_tmv.webp', (901, 619), [
-    ('RNA', pad((196, 544, 70, 33))), ('Capsid', pad((382, 544, 110, 33)))], guess='hide-one')
+    ('RNA', pad((196, 544, 70, 33))), ('Capsid', pad((382, 544, 110, 33)))], guess='hide-one', printed=True)
 d.occlusion('Figure 2.6 (b) · Bacteriophage', M + 'fig_2_6b_bacteriophage.webp', (1001, 976), [
     ('Head', pad((813, 216, 103, 41))), ('Collar', pad((812, 393, 119, 41))), ('Sheath', pad((45, 458, 141, 41))),
-    ('Tail fibres', pad((347, 910, 199, 41)))])
+    ('Tail fibres', pad((347, 910, 199, 41)))], printed=True)
 
 d.sec('2.6-viroids-prions')
 d.basic('Who discovered viroids, and when?', T('T.O. Diener') + ', ' + N('1971'))

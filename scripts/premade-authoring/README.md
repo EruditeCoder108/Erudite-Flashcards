@@ -10,7 +10,8 @@ Requires Python 3 with `pymupdf` and `Pillow`.
 | `clean_pdf.py` | Opens an NCERT PDF with the watermark and header/footer layers blanked. |
 | `figcrop.py` | Crops a figure at a given long side, saves `.webp`, and prints the pixel boxes of the printed labels (for masks). |
 | `grid.py` | Rebuilds a tall multi-panel figure as a 2-column grid with a label strip under each panel (easier to read on a phone). |
-| `decks/*.py` | One script per chapter. Run it, then `npm run zip:premade`. |
+| `showcase.py` | Themed advanced-HTML cards with inline SVG and CSS animation: blueprint (physics), chalkboard (maths), petri (biology), lab (chemistry), kingdom tiles. |
+| `decks/*.py` | One script per chapter, plus `figures_*.py` that crop that chapter's NCERT figures. Run them, then `npm run zip:premade`. |
 
 ```bash
 python scripts/premade-authoring/decks/bio_ch02.py
@@ -24,6 +25,8 @@ Put the NCERT PDFs in `NCERT-pdfs/` (not committed).
 - **Never put a cloze inside a formula.** `{{c1::…}}` inside `\( … \)` breaks KaTeX, and the raw LaTeX shows.
 - **Avoid `\text{…}` in formulas.** Until the `mobile-study.css` fix ships in an app build, installed apps split it one letter per line. Write words outside the math: `Bond order \(= \tfrac12(N_b - N_a)\)`.
 - **KaTeX renders only in basic and cloze text,** not inside advanced HTML. Use Unicode, `<sub>` and `<sup>` there.
-- **No SVG in advanced HTML yet.** The sanitiser allows it from this release on, but decks go live to every installed build. Draw with divs and CSS until the SVG build is widespread.
-- **Occlusion mode is `occlusion.guessMode`** (`hide-all` or `hide-one`); the importer ignores `mode`. The front shows "Guess the hidden part", not the card's `term`.
-- Advanced cards use a paper-coloured background, so they read the same on dark and light themes.
+- **Inline SVG works in the 2.0 build** (shapes, text, markers; style it with classes, never `style=`). Builds before 2.0 strip it.
+- **Occlusion mode is `occlusion.guessMode`** (`hide-all` or `hide-one`); the importer ignores `mode`. The card's `term` is the prompt on the front.
+- **`labelInImage: true` on a mask** (the `printed` option in `deckkit`) when the diagram already prints that label under the mask, so the reveal does not repeat it. Leave it off when the mask hides only a letter like (a) or when the answer adds something the figure does not print.
+- **Use diagrams generously.** Crop, recrop, combine or redraw NCERT figures, or ask the owner for new assets: whatever makes the card clearest. Images on basic cards go in `termImage` / `definitionImage`.
+- Advanced cards carry their own background (paper, blueprint, chalkboard, lab), so they read the same on the dark and light app themes.

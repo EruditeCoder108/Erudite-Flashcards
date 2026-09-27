@@ -35,12 +35,20 @@ class Deck:
         if extra: c['extra'] = extra
         self.cards.append(c)
 
-    def occlusion(self, prompt, image, size, masks, guess='hide-all', extra=''):
+    def occlusion(self, prompt, image, size, masks, guess='hide-all', extra='', printed=False):
+        """masks: (answer, [x, y, w, h]) or (answer, box, printed). `printed` means the
+        diagram already shows this label under the mask, so the app skips its answer tag."""
         w, h = size
+        def mask(m):
+            answer, box = m[0], m[1]
+            item = {'shape': 'rect', 'bboxPx': list(box), 'answer': answer}
+            if (m[2] if len(m) > 2 else printed):
+                item['labelInImage'] = True
+            return item
         self.cards.append({
             'noteType': 'image-occlusion', 'term': prompt, 'definition': extra, 'image': image,
             'occlusion': {'mode': guess, 'guessMode': guess, 'units': 'px', 'imageWidth': w, 'imageHeight': h,
-                          'masks': [{'shape': 'rect', 'bboxPx': list(b), 'answer': a} for a, b in masks]},
+                          'masks': [mask(m) for m in masks]},
             'tags': self._tags()})
 
     def advanced(self, term, definition, front_html, back_html, css):

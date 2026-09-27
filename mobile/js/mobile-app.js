@@ -248,8 +248,6 @@
     moreHapticsLabel: document.getElementById('more-haptics-label'),
     paperSwitch: document.getElementById('paper-switch'),
     morePaperLabel: document.getElementById('more-paper-label'),
-    htmlInteractionSwitch: document.getElementById('html-interaction-switch'),
-    moreHtmlInteractionLabel: document.getElementById('more-html-interaction-label'),
     normalStudyOrder: null,
     bgOpacitySlider: document.getElementById('mobile-bg-opacity'),
     themeLabel: document.getElementById('more-theme-label'),
@@ -4186,7 +4184,10 @@
       w: width,
       h: height,
       answer: sanitizeEditorHtml(String(source.answer || source.label || source.text || '').slice(0, 220)),
-      hint: sanitizeEditorHtml(String(source.hint || '').slice(0, 220))
+      hint: sanitizeEditorHtml(String(source.hint || '').slice(0, 220)),
+      // True when the diagram already prints this label under the mask, so the
+      // reveal needs no separate answer tag.
+      ...(source.labelInImage === true ? { labelInImage: true } : {})
     };
   }
 
@@ -4256,6 +4257,9 @@
     if (!occlusion.image || !occlusion.masks.length) return [];
     const noteId = base.noteId || createLocalId('note');
     const title = plainTextFromHtml(base.term || '').trim() || 'Image occlusion';
+    // A deck-provided title ("Figure 2.2 · Nostoc") says what the diagram is;
+    // editor-made cards keep the generic prompt.
+    const prompt = title !== 'Image occlusion' ? sanitizeEditorHtml(base.term) : 'Guess the hidden part.';
     return occlusion.masks.map((mask, index) => {
       const answerText = sanitizeEditorHtml(mask.answer || `Hidden part ${index + 1}`);
       const hintText = sanitizeEditorHtml(mask.hint || '');
@@ -4274,8 +4278,8 @@
           maskId: mask.id
         },
         term: hintText
-          ? `<strong>Guess the hidden part.</strong><br><small>Hint: ${hintText}</small>`
-          : '<strong>Guess the hidden part.</strong>',
+          ? `<strong>${prompt}</strong><br><small>Hint: ${hintText}</small>`
+          : `<strong>${prompt}</strong>`,
         definition: answerText,
         termImage: occlusion.image,
         definitionImage: occlusion.image,
@@ -5978,14 +5982,50 @@
     premadeSubjectLabels = { ...(normalized?.labels || {}) };
   }
 
+  // The last catalog and deck lists are cached so the Premade screen draws
+  // instantly on later visits, then refreshes quietly from the network.
+  const PREMADE_CACHE_KEY = 'erudite-premade-cache-v1';
+
+  function readPremadeCache() {
+    try {
+      const cache = JSON.parse(localStorage.getItem(PREMADE_CACHE_KEY) || 'null');
+      return cache && typeof cache === 'object' ? cache : { catalog: null, sets: {} };
+    } catch (_) {
+      return { catalog: null, sets: {} };
+    }
+  }
+
+  function writePremadeCache(patch) {
+    try {
+      const cache = readPremadeCache();
+      localStorage.setItem(PREMADE_CACHE_KEY, JSON.stringify({ ...cache, ...patch, sets: { ...cache.sets, ...(patch.sets || {}) } }));
+    } catch (_) {
+      // Cache is a convenience; the network copy is the source of truth.
+    }
+  }
+
   async function loadPremadeCatalog() {
     if (premadeCatalogLoaded) return;
     premadeCatalogLoaded = true;
+    const cached = normalizePremadeCatalog(readPremadeCache().catalog);
+    if (cached) {
+      applyPremadeCatalog(cached);
+      ensurePremadeSelection();
+    }
     const catalog = await window.flashcardStore?.listPremadeCatalog?.().catch(() => null);
     const normalized = normalizePremadeCatalog(catalog);
     if (!normalized) return;
+    writePremadeCache({ catalog });
     applyPremadeCatalog(normalized);
     ensurePremadeSelection();
+  }
+
+  function premadeSkeleton() {
+    return Array.from({ length: 5 }, () => `
+      <article class="premade-row premade-skeleton" aria-hidden="true">
+        <div class="deck-icon"></div>
+        <div class="deck-main"><span></span><span></span></div>
+      </article>`).join('');
   }
 
   function ensurePremadeSelection() {
@@ -6081,6 +6121,22 @@
   }
 
   async function loadPremade() {
+    // Paint straight away: cached decks if we have them, otherwise a skeleton.
+    const cacheKey = () => `${state.premadeClass}/${state.premadeSubject}`;
+    if (!premadeCatalogLoaded) {
+      const cachedCatalog = normalizePremadeCatalog(readPremadeCache().catalog);
+      if (cachedCatalog) {
+        applyPremadeCatalog(cachedCatalog);
+        ensurePremadeSelection();
+      }
+    }
+    const cachedSets = readPremadeCache().sets[cacheKey()];
+    if (Array.isArray(cachedSets) && cachedSets.length && premadeClasses.length) {
+      state.premadeSets = cachedSets;
+      renderPremade();
+    } else if (selectors.premadeList) {
+      selectors.premadeList.innerHTML = premadeSkeleton();
+    }
     await loadPremadeCatalog();
     ensurePremadeSelection();
     if (isPremadeClassComingSoon(state.premadeClass)) {
@@ -6094,9 +6150,29 @@
       selectors.premadeList.innerHTML = emptyPanel('fa-cloud-arrow-down', 'Online deck library is not configured', 'Connect the app to its premade-deck service before publishing this build.');
       return;
     }
-    selectors.premadeList.innerHTML = emptyPanel('fa-spinner', 'Loading premade decks', 'Checking the online deck library.');
-    const sets = await window.flashcardStore.listPremadeSets(state.premadeClass, state.premadeSubject);
+    const key = cacheKey();
+    const cached = readPremadeCache().sets[key];
+    if (Array.isArray(cached) && cached.length) {
+      state.premadeSets = cached;
+      renderPremade();
+    } else {
+      renderPremade();
+      selectors.premadeList.innerHTML = premadeSkeleton();
+    }
+    let sets;
+    try {
+      sets = await window.flashcardStore.listPremadeSets(state.premadeClass, state.premadeSubject);
+    } catch (_) {
+      if (key !== cacheKey()) return;
+      if (!state.premadeSets.length) {
+        selectors.premadeList.innerHTML = emptyPanel('fa-wifi', 'Could not load decks', 'Check your connection and open Premade again.');
+      }
+      return;
+    }
+    // The learner may have switched subject while this was loading.
+    if (key !== cacheKey()) return;
     state.premadeSets = Array.isArray(sets) ? sets : [];
+    if (state.premadeSets.length) writePremadeCache({ sets: { [key]: state.premadeSets } });
     renderPremade();
   }
 
@@ -6962,14 +7038,6 @@
       selectors.morePaperLabel.textContent = paperEnabled ? 'On - soft grain, warmer tones' : 'Off';
     }
 
-    const htmlInteractionEnabled = state.settings?.htmlInteractionDisabled !== true;
-    selectors.htmlInteractionSwitch?.classList.toggle('on', htmlInteractionEnabled);
-    if (selectors.moreHtmlInteractionLabel) {
-      selectors.moreHtmlInteractionLabel.textContent = htmlInteractionEnabled
-        ? 'On - HTML can scroll and receive taps'
-        : 'Off - swipe and tap the whole HTML card';
-    }
-
     updateReminderLabel();
 
     const newCardLimitLabel = document.getElementById('more-new-card-limit-label');
@@ -7072,7 +7140,7 @@
     const cover = document.getElementById('app-loading-cover');
     if (cover) {
       cover.style.display = '';
-      cover.classList.add('no-anim');
+      cover.classList.remove('no-anim');
     }
     routeLoaderShownAt = performance.now();
     document.body.classList.remove('app-ready');
@@ -7960,7 +8028,13 @@
       sourceTab: state.activeTab
     });
     perf?.flush?.();
-    showAppLoader(options.title || 'Opening Study', options.copy || 'Preparing your cards');
+    // Same words study.html shows while it boots, so the hand-off is seamless.
+    showAppLoader('Opening Study', 'Preparing your cards');
+    try {
+      window.sessionStorage.setItem('erudite-route-handoff', '1');
+    } catch (_) {
+      // Without the flag the study page simply shows its normal startup.
+    }
     let committed = false;
     const commitRoute = () => {
       if (committed) return;
@@ -8066,22 +8140,6 @@
       await window.flashcardStore.saveSettings(state.settings);
     }
     renderMore();
-  }
-
-  async function toggleHtmlInteraction() {
-    const interactionEnabled = state.settings?.htmlInteractionDisabled !== true;
-    state.settings = {
-      ...(state.settings || {}),
-      htmlInteractionDisabled: interactionEnabled
-    };
-    if (window.flashcardStore?.saveSettings) {
-      await window.flashcardStore.saveSettings(state.settings);
-    }
-    playClick();
-    renderMore();
-    showToast(interactionEnabled
-      ? 'HTML card interaction disabled'
-      : 'HTML card interaction enabled');
   }
 
   async function togglePin(setId) {
@@ -10568,9 +10626,6 @@
         selectedProPackage = proPackages.find(item => item.id === target.dataset.planId) || selectedProPackage;
         renderProPlans();
         break;
-      case 'toggle-html-interaction':
-        await toggleHtmlInteraction();
-        break;
       case 'toggle-pin':
         await togglePin(target.dataset.setId);
         break;
@@ -10604,7 +10659,7 @@
           endTour('completed');
         }
         const span = perf?.start('app.study.launch', { activeTab: state.activeTab });
-        showAppLoader('Opening Study', 'Preparing your deck');
+        showAppLoader('Opening Study', 'Preparing your cards');
         await new Promise(resolve => setTimeout(resolve, 50));
         await flushStore(1200);
         perf?.end(span, { status: 'navigating' });
@@ -10749,7 +10804,7 @@
       
       if (!isLongPress && !state.selectMode) {
         const setId = selectedDeck.dataset.setCard;
-        showAppLoader('Opening Study', 'Preparing your deck');
+        showAppLoader('Opening Study', 'Preparing your cards');
         await new Promise(resolve => setTimeout(resolve, 50));
         await flushStore(1200);
         navigateTo(mobileStudyUrl(setId || '', { srsMode: state.srsMode }), {

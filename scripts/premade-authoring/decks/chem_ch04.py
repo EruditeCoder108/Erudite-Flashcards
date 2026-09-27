@@ -2,6 +2,8 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 from deckkit import *
+import showcase as sc
+M = 'media/'
 
 OUT = os.path.join(ROOT, 'premade-cards', '11th', 'Chemistry', 'class11-chemistry-ch04-chemical-bonding')
 d = Deck('Chapter 4: Chemical Bonding and Molecular Structure', 'Class 11', ['class-11', 'chemistry', 'ch-4'])
@@ -22,6 +24,10 @@ d.basic("Who introduced the term 'covalent bond'?", T('Langmuir'))
 d.basic('Name a molecule with two double bonds and one with a triple bond.', E('CO₂') + ' (two C=O); ' + E('N₂') + ' or ' + E('C₂H₂') + ' (triple)')
 d.basic('In a Lewis structure, which atom usually goes in the centre?', 'The ' + T('least electronegative') + ' atom')
 d.basic('How do charges change the electron count for a Lewis structure?', 'Add ' + N('1') + ' e⁻ per negative charge; subtract ' + N('1') + ' e⁻ per positive charge')
+d.basic('Draw the Lewis structure of O₃.', 'Central O: one O=O and one O–O; formal charges +1 (centre), 0, −1', definitionImage=M + 'tab_4_1_lewis_o3.webp')
+d.basic('Draw the Lewis structure of NF₃.', 'N with three N–F single bonds and ' + T('one lone pair'), definitionImage=M + 'tab_4_1_lewis_nf3.webp')
+d.basic('Draw the Lewis structure of CO₃²⁻.', 'C with one C=O and two C–O⁻; overall charge ' + N('2−'), definitionImage=M + 'tab_4_1_lewis_co3.webp')
+d.basic('Draw the Lewis structure of HNO₃.', 'N⁺ bonded to one =O, one –O⁻ and one –OH', definitionImage=M + 'tab_4_1_lewis_hno3.webp')
 d.basic('Lewis structure of CO: what bond joins C and O?', 'A ' + T('triple bond') + ', with one lone pair on each atom')
 
 d.sec('4.1.4-formal-charge')
@@ -48,6 +54,7 @@ d.basic('Is ionisation always endothermic?', 'Yes. ' + X('Electron gain') + ' ca
 d.basic('What truly decides the stability of an ionic compound?', 'Its ' + T('lattice enthalpy') + ', not just reaching an octet')
 d.basic('Define lattice enthalpy.', 'Energy needed to completely separate ' + N('1 mol') + ' of a solid ionic compound into gaseous ions')
 d.basic('Lattice enthalpy of NaCl?', N('788 kJ mol⁻¹'))
+d.basic('What is the crystal structure of NaCl called?', T('Rock salt') + ' structure: Na⁺ and Cl⁻ alternate in a cube', definitionImage=M + 'rock_salt.webp')
 d.basic('Na → Na⁺ costs 495.8 kJ/mol and Cl → Cl⁻ releases only 348.7 kJ/mol. Why does NaCl still form?',
         'The ' + T('lattice enthalpy') + ' released (' + N('788 kJ mol⁻¹') + ') more than compensates')
 
@@ -56,6 +63,9 @@ d.sec('4.3-bond-parameters')
 d.basic('Define bond length.', 'Equilibrium distance between the ' + T('nuclei') + ' of two bonded atoms')
 d.basic('Bond length R of molecule AB in terms of covalent radii?', r'\(R = r_A + r_B\)')
 d.cloze('Covalent radius is half the distance between two similar atoms bonded {{c1::in the same molecule}}; van der Waals radius is half the distance between two similar atoms {{c2::in separate molecules}} in a solid.')
+d.occlusion('Fig. 4.2 · Covalent and van der Waals radii of chlorine', M + 'fig_4_2_cl2_radii.webp', (1001, 735), [
+    ('r<sub>c</sub> = 99 pm (covalent radius)', [565, 24, 190, 50]), ('198 pm (Cl–Cl bond length)', [792, 30, 118, 118]),
+    ('r<sub>vdw</sub> = 180 pm (van der Waals radius)', [722, 418, 190, 202]), ('360 pm', [822, 585, 112, 122])], printed=True)
 d.basic('Which is larger for chlorine: covalent or van der Waals radius?', T('van der Waals') + ' (' + N('180 pm') + ' vs ' + N('99 pm') + ')')
 d.basic('Define bond enthalpy.', 'Energy to break ' + N('1 mol') + ' of bonds of a type between two atoms in the ' + T('gaseous') + ' state')
 table_card(d, '4.3.3 · Bond enthalpy', 'Bond enthalpy (kJ mol⁻¹)?', [
@@ -70,24 +80,25 @@ d.basic('Which species share bond order 1 by being isoelectronic?', E('F₂') + 
 d.cloze('As bond order increases, bond enthalpy {{c1::increases}} and bond length {{c2::decreases}}.')
 
 d.sec('4.3.5-resonance')
-d.basic('Both O–O bonds in O₃ are 128 pm. How does this compare with single and double bonds?', 'Between O–O (' + N('148 pm') + ') and O=O (' + N('121 pm') + ')')
+d.basic('Both O–O bonds in O₃ are 128 pm. How does this compare with single and double bonds?', 'Between O–O (' + N('148 pm') + ') and O=O (' + N('121 pm') + ')', definitionImage=M + 'fig_4_3_o3_resonance.webp')
 d.basic('What is a resonance hybrid?', 'The single real structure that the ' + T('canonical forms') + ' together describe')
 d.basic('How is resonance shown?', 'With a ' + T('double-headed arrow') + ' (↔)')
 d.basic('How does resonance affect energy?', 'It ' + T('stabilises') + ' the molecule: the hybrid has ' + T('lower energy') + ' than any canonical form')
 d.basic('Do canonical forms really exist?', X('No') + '. The molecule does not switch between them, and they are not in equilibrium')
-d.basic('How many canonical forms does CO₃²⁻ have, and how do its C–O bonds compare?', N('Three') + '; all C–O bonds are ' + T('equivalent'))
-d.basic('C–O bond length in CO₂ (115 pm) lies between which two values?', 'C=O ' + N('121 pm') + ' and C≡O ' + N('110 pm'))
+d.basic('How many canonical forms does CO₃²⁻ have, and how do its C–O bonds compare?', N('Three') + '; all C–O bonds are ' + T('equivalent'), definitionImage=M + 'fig_4_4_co3_resonance.webp')
+d.basic('C–O bond length in CO₂ (115 pm) lies between which two values?', 'C=O ' + N('121 pm') + ' and C≡O ' + N('110 pm'), definitionImage=M + 'fig_4_5_co2_resonance.webp')
 
 d.sec('4.3.6-polarity')
 d.basic('Which is a non-polar covalent bond: H–H or H–F?', T('H–H') + ' (identical atoms share equally)')
 d.basic('Formula and unit of dipole moment?', r'\(\mu = Q \times r\)' + '<br>Unit: ' + T('debye (D)') + ', ' + N('1 D = 3.33564 × 10⁻³⁰ C m'))
 d.basic('Is dipole moment a scalar or a vector?', T('Vector'))
 d.basic('In the chemist\'s crossed arrow for a dipole, where are the cross and the head?', 'Cross on the ' + T('positive') + ' end, head on the ' + T('negative') + ' end')
-d.basic('Dipole moment of H₂O?', N('1.85 D') + ' (bent, H–O–H ' + N('104.5°') + ')')
+d.basic('Dipole moment of H₂O?', N('1.85 D') + ' (bent, H–O–H ' + N('104.5°') + ')', definitionImage=M + 'h2o_dipole.webp')
 d.basic('Why is the dipole moment of BeF₂ zero?', 'Linear: two equal bond dipoles ' + T('cancel'))
-d.basic('Why is the dipole moment of BF₃ zero though B–F bonds are polar?', 'Trigonal planar at ' + N('120°') + ': the three bond moments sum to ' + T('zero'))
+d.basic('Why is the dipole moment of BF₃ zero though B–F bonds are polar?', 'Trigonal planar at ' + N('120°') + ': the three bond moments sum to ' + T('zero'), definitionImage=M + 'bf3_dipole.webp')
 d.basic('Why is μ(NH₃) greater than μ(NF₃)?',
-        'In NH₃ the lone-pair dipole points the ' + T('same way') + ' as the N–H bond moments; in NF₃ it points ' + X('opposite') + ' to the N–F moments')
+        'In NH₃ the lone-pair dipole points the ' + T('same way') + ' as the N–H bond moments; in NF₃ it points ' + X('opposite') + ' to the N–F moments',
+        definitionImage=M + 'nh3_nf3_dipole.webp')
 d.basic('Dipole moments of NH₃ and NF₃?', 'NH₃: ' + N('1.47 D') + '; NF₃: ' + N('0.23 D'))
 d.basic('Order of dipole moments: HF, HCl, HBr, HI?', 'HF > HCl > HBr > HI (' + N('1.78 > 1.07 > 0.79 > 0.38 D') + ')')
 d.basic('CH₄ and CCl₄ have μ = 0. What is μ of CHCl₃?', N('1.04 D'))
@@ -104,14 +115,13 @@ d.basic('According to VSEPR, what decides the shape of a molecule?', 'The number
 d.basic('How does VSEPR treat a double or triple bond?', 'As a ' + T('single super pair'))
 d.basic('Order of electron-pair repulsions?', 'lp–lp > lp–bp > bp–bp')
 d.basic('Why do lone pairs repel more than bond pairs?', 'A lone pair is held by ' + T('one nucleus only') + ', so it spreads out and takes more space')
-table_card(d, 'Table 4.6 · No lone pair', 'Geometry for each type?', [
-    ('AB₂ · BeCl₂', 'Linear, 180°', False), ('AB₃ · BF₃', 'Trigonal planar, 120°', False),
-    ('AB₄ · CH₄', 'Tetrahedral, 109.5°', False), ('AB₅ · PCl₅', 'Trigonal bipyramidal', False),
-    ('AB₆ · SF₆', 'Octahedral', False)], term='VSEPR: geometry with no lone pairs')
-table_card(d, 'Table 4.7 · With lone pairs', 'Shape of each?', [
-    ('AB₂E · SO₂', 'Bent', False), ('AB₃E · NH₃', 'Trigonal pyramidal', False), ('AB₂E₂ · H₂O', 'Bent', False),
-    ('AB₄E · SF₄', 'See-saw', False), ('AB₃E₂ · ClF₃', 'T-shape', False),
-    ('AB₅E · BrF₅', 'Square pyramid', False), ('AB₄E₂ · XeF₄', 'Square planar', False)], term='VSEPR: shapes with lone pairs')
+d.occlusion('Table 4.6 · Name each molecular geometry (no lone pair)', M + 'tab_4_6_geometry.webp', (450, 1001), [
+    ('Linear', [53, 107, 113, 40]), ('Trigonal planar', [31, 277, 184, 40]), ('Tetrahedral', [53, 483, 143, 40]),
+    ('Trigonal bipyramidal', [4, 713, 237, 40]), ('Octahedral', [53, 952, 143, 40])], printed=True)
+d.occlusion('Table 4.7 · Name each shape (with lone pairs)', M + 'tab_4_7_shapes.webp', (795, 1001), [
+    ('Bent', [497, 94, 164, 30]), ('Trigonal pyramidal', [497, 200, 164, 32]), ('Bent', [497, 336, 164, 30]),
+    ('See-saw', [497, 459, 164, 30]), ('T-shape', [497, 622, 164, 32]), ('Square pyramid', [497, 775, 164, 30]),
+    ('Square planar', [497, 894, 164, 30])], printed=True)
 d.basic('H–N–H angle in NH₃ and why?', N('107°') + ' (from 109.5°): lp–bp repulsion > bp–bp')
 d.basic('Why is the bond angle in H₂O (104.5°) less than in NH₃ (107°)?', 'H₂O has ' + N('two') + ' lone pairs, and lp–lp repulsion is strongest')
 d.basic('In SF₄, is the lone pair axial or equatorial, and why?', T('Equatorial') + ': only two lp–bp repulsions at 90° (vs three if axial)')
@@ -122,15 +132,15 @@ d.basic('For which elements does VSEPR predict shapes especially well?', T('p-bl
 d.sec('4.5-valence-bond')
 d.basic('Who introduced valence bond theory?', T('Heitler and London') + ' (' + N('1927') + '), developed by ' + T('Pauling'))
 d.basic('Why does H₂ form when two H atoms approach?', 'New ' + T('attractive') + ' forces exceed the new repulsive ones, so energy falls to a minimum')
-d.basic('Bond length and bond enthalpy of H₂?', N('74 pm') + '; ' + N('435.8 kJ mol⁻¹'))
+d.basic('Bond length and bond enthalpy of H₂?', N('74 pm') + '; ' + N('435.8 kJ mol⁻¹'), definitionImage=M + 'fig_4_8_h2_energy.webp')
 d.basic('What decides the strength of a covalent bond in VB theory?', 'The ' + T('extent of overlap') + ': greater overlap, stronger bond')
-d.basic('When is an overlap positive (bond-forming)?', 'The orbitals have the ' + T('same sign (phase)') + ' and orientation')
+d.basic('When is an overlap positive (bond-forming)?', 'The orbitals have the ' + T('same sign (phase)') + ' and orientation', definitionImage=M + 'fig_4_9_overlaps.webp')
 d.basic('What H–C–H angle would simple (unhybridised) overlap predict for CH₄?', N('90°') + ' (but the real angle is ' + N('109.5°') + ')')
 
 d.sec('4.5.4-sigma-pi')
 d.basic('How is a σ bond formed?', T('Head-on (axial) overlap') + ' along the internuclear axis')
-d.basic('Which overlaps can give a σ bond?', 's–s, s–p, p–p (head-on)')
-d.basic('How is a π bond formed?', T('Sidewise overlap') + ': orbital axes parallel, perpendicular to the internuclear axis')
+d.basic('Which overlaps can give a σ bond?', 's–s, s–p, p–p (head-on)', definitionImage=M + 'sigma_overlaps.webp')
+d.basic('How is a π bond formed?', T('Sidewise overlap') + ': orbital axes parallel, perpendicular to the internuclear axis', definitionImage=M + 'pi_overlap.webp')
 d.basic('Which is stronger, σ or π, and why?', T('σ') + '. Its orbitals overlap to a larger extent')
 d.basic('Can a π bond exist without a σ bond between two atoms?', X('No') + '. π bonds form in addition to a σ bond')
 d.basic('With x as the internuclear axis, which pair cannot form a σ bond: 1s+1s, 1s+2pₓ, 2p_y+2p_y, 1s+2s?', T('2p_y + 2p_y') + ' (sidewise → π)')
@@ -147,21 +157,24 @@ table_card(d, '4.6.1 · s–p hybrids', '% s-character and angle?', [
     ('sp', '50% s · 180° · linear', False), ('sp²', '33% s · 120° · trigonal planar', False),
     ('sp³', '25% s · 109.5° · tetrahedral', False)], term='sp, sp2, sp3: s-character and angle')
 d.basic('Other name for sp hybridisation?', T('Diagonal') + ' hybridisation')
-d.basic('Hybridisation and shape of BeCl₂?', T('sp') + ', linear (' + N('180°') + ')')
-d.basic('Hybridisation and shape of BCl₃?', T('sp²') + ', trigonal planar (' + N('120°') + ')')
-d.basic('Hybridisation of N in NH₃ and O in H₂O?', 'Both ' + T('sp³') + ' (lone pairs in hybrid orbitals)')
+d.basic('Hybridisation and shape of BeCl₂?', T('sp') + ', linear (' + N('180°') + ')', definitionImage=M + 'fig_4_10_becl2_sp.webp')
+d.basic('Hybridisation and shape of BCl₃?', T('sp²') + ', trigonal planar (' + N('120°') + ')', definitionImage=M + 'fig_4_11_bcl3_sp2.webp')
+sc.sp3_mixer(d)
+d.basic('Hybridisation and shape of CH₄?', T('sp³') + ', tetrahedral (' + N('109.5°') + ')', definitionImage=M + 'fig_4_12_ch4_sp3.webp')
+d.basic('Hybridisation and shape of NH₃?', T('sp³') + ' N with one lone pair: trigonal pyramidal, ' + N('107°'), definitionImage=M + 'fig_4_13_nh3.webp')
+d.basic('Hybridisation and shape of H₂O?', T('sp³') + ' O with two lone pairs: bent (V-shape), ' + N('104.5°'), definitionImage=M + 'fig_4_14_h2o.webp')
 d.basic('Ethane: C–C and C–H bond lengths?', 'C–C ' + N('154 pm') + ' (sp³–sp³); C–H ' + N('109 pm'))
-d.basic('Ethene: what makes up the C=C bond?', 'One ' + T('sp²–sp² σ') + ' + one ' + T('π') + ' (from unhybridised 2p orbitals)')
+d.basic('Ethene: what makes up the C=C bond?', 'One ' + T('sp²–sp² σ') + ' + one ' + T('π') + ' (from unhybridised 2p orbitals)', definitionImage=M + 'fig_4_15_ethene.webp')
 d.basic('Bond angles in ethene?', 'H–C–H ' + N('117.6°') + '; H–C–C ' + N('121°'))
-d.basic('What makes up the C≡C bond in ethyne?', N('1 σ') + ' (sp–sp) + ' + N('2 π'))
+d.basic('What makes up the C≡C bond in ethyne?', N('1 σ') + ' (sp–sp) + ' + N('2 π'), definitionImage=M + 'fig_4_16_ethyne.webp')
 d.basic('Why is no hybridisation of 3p, 3d and 4s possible?', 'The energy gap between ' + T('3p and 4s') + ' is significant')
 table_card(d, '4.6.3 · Hybrids with d orbitals', 'Shape and example?', [
     ('dsp²', 'Square planar · [Ni(CN)₄]²⁻', False), ('sp³d', 'Trigonal bipyramidal · PCl₅', False),
     ('sp³d²', 'Square pyramidal · BrF₅ / octahedral · SF₆', False), ('d²sp³', 'Octahedral · [Co(NH₃)₆]³⁺', False)],
     term='d-orbital hybridisation: shapes and examples')
-d.basic('In PCl₅, how do equatorial and axial bonds differ?', 'Equatorial: three at ' + N('120°') + '. Axial: two at ' + N('90°') + ' to that plane, ' + T('longer and weaker'))
+d.basic('In PCl₅, how do equatorial and axial bonds differ?', 'Equatorial: three at ' + N('120°') + '. Axial: two at ' + N('90°') + ' to that plane, ' + T('longer and weaker'), definitionImage=M + 'fig_4_17_pcl5.webp')
 d.basic('Why are axial bonds in PCl₅ longer than equatorial ones?', 'Axial bond pairs suffer ' + T('more repulsion') + ' from equatorial bond pairs')
-d.basic('Hybridisation and geometry of SF₆?', T('sp³d²') + ', regular octahedral')
+d.basic('Hybridisation and geometry of SF₆?', T('sp³d²') + ', regular octahedral', definitionImage=M + 'fig_4_18_sf6.webp')
 d.basic('AlCl₃ + Cl⁻ → AlCl₄⁻: change in hybridisation of Al?', T('sp²') + ' → ' + T('sp³'))
 d.basic('BF₃ + NH₃ → F₃B–NH₃: change in hybridisation of B and N?', 'B: ' + T('sp² → sp³') + '; N: stays ' + T('sp³'))
 
@@ -170,11 +183,14 @@ d.sec('4.7-mo-theory')
 d.basic('Who developed molecular orbital theory?', T('F. Hund and R.S. Mulliken') + ' (' + N('1932') + ')')
 d.basic('Atomic orbital vs molecular orbital: how many nuclei influence the electron?', 'AO: ' + T('monocentric') + ' (one nucleus). MO: ' + T('polycentric'))
 d.basic('Two atomic orbitals combine. How many MOs form?', N('Two') + ': one ' + T('bonding') + ', one ' + T('antibonding'))
-d.basic('LCAO expressions for σ and σ*?', r'\(\sigma = \psi_A + \psi_B\)<br>\(\sigma^* = \psi_A - \psi_B\)')
+d.basic('LCAO expressions for σ and σ*?', r'\(\sigma = \psi_A + \psi_B\)<br>\(\sigma^* = \psi_A - \psi_B\)', definitionImage=M + 'fig_4_19_lcao.webp')
 d.cloze('A bonding MO forms by {{c1::constructive}} interference; an antibonding MO by {{c2::destructive}} interference.')
 d.basic('What lies between the nuclei in an antibonding MO?', 'A ' + T('nodal plane') + ' (zero electron density)')
 d.cloze('Conditions for LCAO: combining AOs must have {{c1::the same or nearly the same energy}}, {{c2::the same symmetry about the molecular axis}}, and {{c3::maximum overlap}}.')
 d.basic('Can 2p_z of one atom combine with 2pₓ of the other (z = molecular axis)?', X('No') + '. Different ' + T('symmetry'))
+d.occlusion('Fig. 4.20 · Name each molecular orbital', M + 'fig_4_20_mo_contours.webp', (929, 1001), [
+    ('σ*1s', [663, 140, 92, 34]), ('σ1s', [663, 275, 92, 34]), ('σ*2p<sub>z</sub>', [663, 466, 92, 38]),
+    ('σ2p<sub>z</sub>', [663, 594, 92, 36]), ('π*2p<sub>x</sub>', [663, 800, 92, 38]), ('π2p<sub>x</sub>', [663, 937, 92, 38])], printed=True)
 d.basic('Which MOs are symmetrical about the bond axis: σ or π?', T('σ') + ' (π are not)')
 d.cloze('For {{c1::B₂, C₂ and N₂}}, the π2p MOs lie {{c2::below}} σ2p_z; for O₂ and F₂, σ2p_z lies below π2p.')
 d.basic('Bond order formula in MO theory?', r'Bond order \(= \tfrac{1}{2}(N_b - N_a)\)')
@@ -203,7 +219,7 @@ table_card(d, 'Oxygen species', 'Bond order and magnetism?', [
     ('O₂⁺', '2.5 · paramagnetic', False), ('O₂', '2 · paramagnetic', False),
     ('O₂⁻ (superoxide)', '1.5 · paramagnetic', False), ('O₂²⁻ (peroxide)', '1 · diamagnetic', False)],
     note='Stability: O₂⁺ > O₂ > O₂⁻ > O₂²⁻', term='O2+, O2, O2-, O2 2-: bond order and magnetism')
-d.basic('Which of B₂ to F₂ has the highest bond enthalpy?', T('N₂') + ' (' + N('945 kJ mol⁻¹') + ', bond order 3)')
+sc.bond_order_bars(d)
 
 # ---------------------------------------------------------------- 4.9 Hydrogen bonding
 d.sec('4.9-hydrogen-bonding')
@@ -213,7 +229,7 @@ d.basic('Is a hydrogen bond weaker or stronger than a covalent bond?', T('Weaker
 d.basic('Is a hydrogen bond weaker or stronger than van der Waals forces?', T('Stronger'))
 d.basic('In which physical state is hydrogen bonding strongest?', T('Solid') + ' (weakest in gas)')
 d.basic('Give examples of intermolecular hydrogen bonding.', E('HF, water, alcohols'))
-d.basic('Give an example of intramolecular hydrogen bonding.', E('o-Nitrophenol') + ' (H between two O atoms)')
+d.basic('Give an example of intramolecular hydrogen bonding.', E('o-Nitrophenol') + ' (H between two O atoms)', definitionImage=M + 'fig_4_22_o_nitrophenol.webp')
 
 os.makedirs(OUT, exist_ok=True)
 print('notes', d.write(os.path.join(OUT, 'deck.json')))

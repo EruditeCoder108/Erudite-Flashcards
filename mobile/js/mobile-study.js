@@ -176,13 +176,16 @@
     return `study.html?${query.toString()}`;
   }
 
+  // Match the boot text of the page being opened (index.html / study.html).
+  const LIBRARY_LOADER = ['Erudite Flashcards', 'Preparing your library'];
+
   function showStudyLoader(title = 'Opening Study', copy = 'Preparing your cards') {
     if (els.loadingTitle) els.loadingTitle.textContent = title;
     if (els.loadingCopy) els.loadingCopy.textContent = copy;
     const cover = document.getElementById('study-loading-cover');
     if (cover) {
       cover.style.display = '';
-      cover.classList.add('no-anim');
+      cover.classList.remove('no-anim');
     }
     routeLoaderShownAt = performance.now();
     document.body.classList.remove('study-ready');
@@ -205,6 +208,11 @@
     perf?.mark('study.navigation.library_committed', { title });
     perf?.flush?.();
     showStudyLoader(title, copy);
+    try {
+      window.sessionStorage.setItem('erudite-route-handoff', '1');
+    } catch (_) {
+      // Without the flag the next page simply shows its normal startup.
+    }
     let routeCommitted = false;
     const commitRoute = () => {
       if (routeCommitted) return;
@@ -298,7 +306,7 @@
       return;
     }
     routeLeaving = true;
-    showStudyLoader('Opening Library', 'Refreshing your decks');
+    showStudyLoader(LIBRARY_LOADER[0], LIBRARY_LOADER[1]);
     await new Promise(resolve => setTimeout(resolve, 50));
     try {
       await flushStudyStateBeforeRoute();
@@ -308,7 +316,7 @@
       console.error('[mobile-study] Could not finish study saves before routing:', error);
     } finally {
       perf?.end(span, { status: 'navigating' });
-      navigateAway(libraryUrl(), 'Opening Library', 'Refreshing your decks');
+      navigateAway(libraryUrl(), LIBRARY_LOADER[0], LIBRARY_LOADER[1]);
     }
   }
 
@@ -477,18 +485,16 @@
       : (source.frontHtml || '');
   }
 
-  function htmlInteractionDisabled() {
-    return state.settings?.htmlInteractionDisabled === true;
-  }
-
   function advancedHtmlSrcdoc(card = {}, side = 'front') {
     const source = card.sanitizedAdvancedHtml || sanitizeAdvancedHtmlCard(advancedHtmlPayload(card));
     const html = advancedHtmlSide(card, side);
     const css = side === 'back' ? source.backCss : source.frontCss;
     const content = html || `<div class="empty-card-copy">${side === 'back' ? 'Back HTML' : 'Front HTML'}</div>`;
-    const interactionCss = htmlInteractionDisabled()
-      ? 'overflow:hidden;pointer-events:none;user-select:none;-webkit-user-select:none;touch-action:none;'
-      : 'overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;';
+    // Advanced HTML is sanitised down to static markup (no buttons, links,
+    // inputs or scripts), so the card itself owns every gesture: tap flips,
+    // swipe navigates, and a vertical drag scrolls only when the HTML is taller
+    // than the card (touch-action is set per card in updateCardScrollability).
+    const interactionCss = 'overflow:auto;-webkit-overflow-scrolling:touch;user-select:none;-webkit-user-select:none;';
     return `<style>
       :host{all:initial;display:block;width:100%;height:100%;background:transparent;color:#e5edf8;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-wrap:anywhere;${interactionCss}}
       *,*::before,*::after{box-sizing:border-box}.erudite-html-card{display:block;min-width:100%;min-height:100%;padding:0;line-height:1.45;overflow:visible;color:inherit;font-family:inherit}.erudite-html-card img{max-width:100%;height:auto;border-radius:8px}.erudite-html-card table{border-collapse:collapse}.erudite-html-card th,.erudite-html-card td{padding:6px;border:1px solid rgba(148,163,184,.25)}.empty-card-copy{display:grid;min-height:100%;place-items:center;color:#94a3b8;font-weight:800;text-align:center}
@@ -782,11 +788,10 @@
   }
 
   function isScrollableContent(target) {
-    if (target.closest?.('.advanced-html-swipe-grip')) return null;
-    if (htmlInteractionDisabled() && target.closest?.('.html-interaction-disabled')) return null;
     if (target.closest?.('.image-occlusion-study-card')) return null;
-    // Advanced HTML cards have their own scrollable frame. The surrounding
-    // card shell must stay available for swipe navigation.
+    // Advanced HTML scrolls inside its own frame, and only when it overflows.
+    const frame = target.closest?.('.advanced-html-study-frame');
+    if (frame) return frame.scrollHeight > frame.clientHeight + 4 ? frame : null;
     if (target.closest?.('.advanced-html-card-text')) return null;
     const scroll = target.closest?.('.card-scroll');
     return scroll && scroll.scrollHeight > scroll.clientHeight + 4 ? scroll : null;
@@ -794,7 +799,6 @@
 
   function isInteractive(target) {
     if (!target?.closest) return false;
-    if (!htmlInteractionDisabled() && target.closest('.advanced-html-study-frame')) return true;
     return Boolean(target.closest('button, a, input, textarea, select, audio, video, [contenteditable="true"], .modal:not(.hidden), .image-modal:not(.hidden)'));
   }
 
@@ -1537,7 +1541,7 @@
       item.style.top = `${y * 100}%`;
       item.style.width = `${w * 100}%`;
       item.style.height = `${h * 100}%`;
-      if (isTarget) {
+      if (isTarget && !(revealed && mask.labelInImage)) {
         const label = document.createElement('span');
         if (revealed) {
           // The revealed mask stays translucent so the diagram's own label shows
@@ -1922,10 +1926,12 @@
 
   function updateCardScrollability(cardEl) {
     if (!cardEl) return;
+    cardEl.querySelectorAll('.advanced-html-study-frame').forEach(frame => {
+      frame.style.touchAction = frame.scrollHeight > frame.clientHeight + 4 ? 'pan-y' : 'none';
+    });
     cardEl.querySelectorAll('.card-scroll').forEach(scroll => {
       const hasAdvancedHtml = Boolean(scroll.querySelector('.advanced-html-card-text'));
       const isScrollable = !hasAdvancedHtml
-        && !scroll.closest('.study-card.html-interaction-disabled')
         && !scroll.closest('.study-card.image-occlusion-study-card')
         && scroll.scrollHeight > scroll.clientHeight + 4;
       scroll.style.touchAction = isScrollable ? 'pan-y' : 'none';
@@ -1964,7 +1970,6 @@
 
   function cardFaceLabels(cardData, { advanced, imageOcclusion }) {
     if (imageOcclusion) return ['DIAGRAM', 'ANSWER'];
-    if (advanced) return ['CARD', 'ANSWER'];
     const noteType = String(cardData.noteType || '').toLowerCase();
     if (noteType === 'cloze' || String(cardData.cardTemplate || '').startsWith('cloze')) return ['FILL THE GAP', 'ANSWER'];
     if (String(cardData.cardTemplate || '') === 'back-front') return ['DEFINITION', 'TERM'];
@@ -1996,15 +2001,13 @@
     const backFace = cardEl.querySelector('.card-face.back');
     const advanced = isAdvancedHtmlCard(cardData);
     const imageOcclusion = isImageOcclusionCard(cardData);
-    const htmlInteractionOff = htmlInteractionDisabled();
-    const showAdvancedGrip = advanced && !htmlInteractionOff;
-    cardEl.classList.toggle('advanced-html-study-card', showAdvancedGrip);
-    cardEl.classList.toggle('html-interaction-disabled', advanced && htmlInteractionOff);
+    cardEl.classList.toggle('advanced-html-study-card', advanced);
+    cardEl.classList.remove('html-interaction-disabled');
     cardEl.classList.toggle('image-occlusion-study-card', imageOcclusion);
     frontFace?.classList.toggle('image-occlusion-card-face', imageOcclusion);
     backFace?.classList.toggle('image-occlusion-card-face', imageOcclusion);
-    setAdvancedHtmlFaceGrip(frontFace, showAdvancedGrip);
-    setAdvancedHtmlFaceGrip(backFace, showAdvancedGrip);
+    setAdvancedHtmlFaceGrip(frontFace, false);
+    setAdvancedHtmlFaceGrip(backFace, false);
     const [frontLabel, backLabel] = cardFaceLabels(cardData, { advanced, imageOcclusion });
     if (frontHeader) frontHeader.textContent = frontLabel;
     if (backHeader) backHeader.textContent = backLabel;
@@ -3242,10 +3245,10 @@
         if (routeLeaving) return;
         routeLeaving = true;
         els.continueButton.disabled = true;
-        showStudyLoader('Opening Review', 'Loading the next due deck');
+        showStudyLoader('Opening Study', 'Preparing your cards');
         await new Promise(resolve => setTimeout(resolve, 50));
         await flushStudyStateBeforeRoute();
-        navigateAway(studyUrl(state.nextDueSetId, true), 'Opening Review', 'Loading the next due deck');
+        navigateAway(studyUrl(state.nextDueSetId, true), 'Opening Study', 'Preparing your cards');
         return;
       }
       els.continueButton.disabled = true;

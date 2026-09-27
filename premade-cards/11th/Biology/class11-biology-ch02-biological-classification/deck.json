@@ -191,10 +191,10 @@
       "term": "Five kingdoms: cell wall",
       "definition": "Monera: Non-cellulosic (polysaccharide + amino acid); Protista: Present in some; Fungi: Present, with chitin; Plantae: Present (cellulose); Animalia: Absent",
       "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 2.1 · Five kingdoms</p><h2>Cell wall in each kingdom?</h2><table><tr><td>Monera</td><td class=\"q\">?</td></tr><tr><td>Protista</td><td class=\"q\">?</td></tr><tr><td>Fungi</td><td class=\"q\">?</td></tr><tr><td>Plantae</td><td class=\"q\">?</td></tr><tr><td>Animalia</td><td class=\"q\">?</td></tr></table></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 2.1 · Five kingdoms</p><h2>Cell wall in each kingdom?</h2><table><tr><td>Monera</td><td class=\"a\">Non-cellulosic (polysaccharide + amino acid)</td></tr><tr><td>Protista</td><td class=\"a\">Present in some</td></tr><tr><td>Fungi</td><td class=\"a\">Present, with chitin</td></tr><tr><td>Plantae</td><td class=\"a\">Present (cellulose)</td></tr><tr><td>Animalia</td><td class=\"a no\">Absent</td></tr></table></div>",
-        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
-        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+        "frontHtml": "<div class=\"w tl\"><p class=\"tag\">Table 2.1 · Five kingdoms</p><h2>Cell wall in each kingdom?</h2><div class=\"grid\"><div class=\"t c1\"><i>Monera</i><b class=\"q\">?</b></div><div class=\"t c2\"><i>Protista</i><b class=\"q\">?</b></div><div class=\"t c3\"><i>Fungi</i><b class=\"q\">?</b></div><div class=\"t c4\"><i>Plantae</i><b class=\"q\">?</b></div><div class=\"t c5 wide\"><i>Animalia</i><b class=\"q\">?</b></div></div></div>",
+        "backHtml": "<div class=\"w tl\"><p class=\"tag\">Table 2.1 · Five kingdoms</p><h2>Cell wall in each kingdom?</h2><div class=\"grid\"><div class=\"t c1\"><i>Monera</i><b class=\"r\">Non-cellulosic (polysaccharide + amino acid)</b></div><div class=\"t c2\"><i>Protista</i><b class=\"r\">Present in some</b></div><div class=\"t c3\"><i>Fungi</i><b class=\"r\">Present, with chitin</b></div><div class=\"t c4\"><i>Plantae</i><b class=\"r\">Present (cellulose)</b></div><div class=\"t c5 wide\"><i>Animalia</i><b class=\"r no\">Absent</b></div></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.tl{color:#1f2430;background:#f6f4ef}\n.tl .tag{color:#7a7466}.tl h2{color:#1f2430}\n.tl .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}\n.tl .t{border-radius:14px;padding:10px 11px 11px;background:#fff;border:1px solid #e8e1d2;min-height:88px;\n  display:flex;flex-direction:column;gap:6px}\n.tl .t.wide{grid-column:1 / -1;min-height:70px}\n.tl .t i{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;\n  padding:3px 8px;border-radius:999px;align-self:flex-start;color:#fff}\n.tl .t b{font-size:14px;font-weight:600;line-height:1.3}\n.tl .t b.q{color:#c9c0ad;letter-spacing:.25em}\n.tl .t b.no{color:#c93b3f}\n.tl .c1 i{background:#8b5cf6}.tl .c2 i{background:#0891b2}.tl .c3 i{background:#d97706}\n.tl .c4 i{background:#16a34a}.tl .c5 i{background:#dc2626}\n.tl .t b.r{animation:fade .45s ease both}\n.tl .c2 b.r{animation-delay:.08s}.tl .c3 b.r{animation-delay:.16s}.tl .c4 b.r{animation-delay:.24s}.tl .c5 b.r{animation-delay:.32s}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.tl{color:#1f2430;background:#f6f4ef}\n.tl .tag{color:#7a7466}.tl h2{color:#1f2430}\n.tl .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}\n.tl .t{border-radius:14px;padding:10px 11px 11px;background:#fff;border:1px solid #e8e1d2;min-height:88px;\n  display:flex;flex-direction:column;gap:6px}\n.tl .t.wide{grid-column:1 / -1;min-height:70px}\n.tl .t i{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;\n  padding:3px 8px;border-radius:999px;align-self:flex-start;color:#fff}\n.tl .t b{font-size:14px;font-weight:600;line-height:1.3}\n.tl .t b.q{color:#c9c0ad;letter-spacing:.25em}\n.tl .t b.no{color:#c93b3f}\n.tl .c1 i{background:#8b5cf6}.tl .c2 i{background:#0891b2}.tl .c3 i{background:#d97706}\n.tl .c4 i{background:#16a34a}.tl .c5 i{background:#dc2626}\n.tl .t b.r{animation:fade .45s ease both}\n.tl .c2 b.r{animation-delay:.08s}.tl .c3 b.r{animation-delay:.16s}.tl .c4 b.r{animation-delay:.24s}.tl .c5 b.r{animation-delay:.32s}\n"
       },
       "tags": [
         "class-11",
@@ -208,10 +208,10 @@
       "term": "Five kingdoms: body organisation",
       "definition": "Monera: Cellular; Protista: Cellular; Fungi: Multicellular / loose tissue; Plantae: Tissue / organ; Animalia: Tissue / organ / organ system",
       "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 2.1 · Five kingdoms</p><h2>Body organisation in each kingdom?</h2><table><tr><td>Monera</td><td class=\"q\">?</td></tr><tr><td>Protista</td><td class=\"q\">?</td></tr><tr><td>Fungi</td><td class=\"q\">?</td></tr><tr><td>Plantae</td><td class=\"q\">?</td></tr><tr><td>Animalia</td><td class=\"q\">?</td></tr></table></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 2.1 · Five kingdoms</p><h2>Body organisation in each kingdom?</h2><table><tr><td>Monera</td><td class=\"a\">Cellular</td></tr><tr><td>Protista</td><td class=\"a\">Cellular</td></tr><tr><td>Fungi</td><td class=\"a\">Multicellular / loose tissue</td></tr><tr><td>Plantae</td><td class=\"a\">Tissue / organ</td></tr><tr><td>Animalia</td><td class=\"a\">Tissue / organ / organ system</td></tr></table></div>",
-        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
-        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+        "frontHtml": "<div class=\"w tl\"><p class=\"tag\">Table 2.1 · Five kingdoms</p><h2>Body organisation in each kingdom?</h2><div class=\"grid\"><div class=\"t c1\"><i>Monera</i><b class=\"q\">?</b></div><div class=\"t c2\"><i>Protista</i><b class=\"q\">?</b></div><div class=\"t c3\"><i>Fungi</i><b class=\"q\">?</b></div><div class=\"t c4\"><i>Plantae</i><b class=\"q\">?</b></div><div class=\"t c5 wide\"><i>Animalia</i><b class=\"q\">?</b></div></div></div>",
+        "backHtml": "<div class=\"w tl\"><p class=\"tag\">Table 2.1 · Five kingdoms</p><h2>Body organisation in each kingdom?</h2><div class=\"grid\"><div class=\"t c1\"><i>Monera</i><b class=\"r\">Cellular</b></div><div class=\"t c2\"><i>Protista</i><b class=\"r\">Cellular</b></div><div class=\"t c3\"><i>Fungi</i><b class=\"r\">Multicellular / loose tissue</b></div><div class=\"t c4\"><i>Plantae</i><b class=\"r\">Tissue / organ</b></div><div class=\"t c5 wide\"><i>Animalia</i><b class=\"r\">Tissue / organ / organ system</b></div></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.tl{color:#1f2430;background:#f6f4ef}\n.tl .tag{color:#7a7466}.tl h2{color:#1f2430}\n.tl .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}\n.tl .t{border-radius:14px;padding:10px 11px 11px;background:#fff;border:1px solid #e8e1d2;min-height:88px;\n  display:flex;flex-direction:column;gap:6px}\n.tl .t.wide{grid-column:1 / -1;min-height:70px}\n.tl .t i{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;\n  padding:3px 8px;border-radius:999px;align-self:flex-start;color:#fff}\n.tl .t b{font-size:14px;font-weight:600;line-height:1.3}\n.tl .t b.q{color:#c9c0ad;letter-spacing:.25em}\n.tl .t b.no{color:#c93b3f}\n.tl .c1 i{background:#8b5cf6}.tl .c2 i{background:#0891b2}.tl .c3 i{background:#d97706}\n.tl .c4 i{background:#16a34a}.tl .c5 i{background:#dc2626}\n.tl .t b.r{animation:fade .45s ease both}\n.tl .c2 b.r{animation-delay:.08s}.tl .c3 b.r{animation-delay:.16s}.tl .c4 b.r{animation-delay:.24s}.tl .c5 b.r{animation-delay:.32s}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.tl{color:#1f2430;background:#f6f4ef}\n.tl .tag{color:#7a7466}.tl h2{color:#1f2430}\n.tl .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}\n.tl .t{border-radius:14px;padding:10px 11px 11px;background:#fff;border:1px solid #e8e1d2;min-height:88px;\n  display:flex;flex-direction:column;gap:6px}\n.tl .t.wide{grid-column:1 / -1;min-height:70px}\n.tl .t i{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;\n  padding:3px 8px;border-radius:999px;align-self:flex-start;color:#fff}\n.tl .t b{font-size:14px;font-weight:600;line-height:1.3}\n.tl .t b.q{color:#c9c0ad;letter-spacing:.25em}\n.tl .t b.no{color:#c93b3f}\n.tl .c1 i{background:#8b5cf6}.tl .c2 i{background:#0891b2}.tl .c3 i{background:#d97706}\n.tl .c4 i{background:#16a34a}.tl .c5 i{background:#dc2626}\n.tl .t b.r{animation:fade .45s ease both}\n.tl .c2 b.r{animation-delay:.08s}.tl .c3 b.r{animation-delay:.16s}.tl .c4 b.r{animation-delay:.24s}.tl .c5 b.r{animation-delay:.32s}\n"
       },
       "tags": [
         "class-11",
@@ -223,12 +223,12 @@
     {
       "noteType": "advanced-html",
       "term": "Five kingdoms: mode of nutrition",
-      "definition": "Monera: Autotrophic (chemosynthetic, photosynthetic) and heterotrophic (saprophytic, parasitic); Protista: Autotrophic (photosynthetic) and heterotrophic; Fungi: Heterotrophic (saprophytic, parasitic); Plantae: Autotrophic (photosynthetic); Animalia: Heterotrophic (holozoic, saprophytic etc.)",
+      "definition": "Monera: Autotrophic (chemosynthetic, photosynthetic) and heterotrophic; Protista: Autotrophic (photosynthetic) and heterotrophic; Fungi: Heterotrophic (saprophytic, parasitic); Plantae: Autotrophic (photosynthetic); Animalia: Heterotrophic (holozoic, saprophytic etc.)",
       "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 2.1 · Five kingdoms</p><h2>Mode of nutrition in each kingdom?</h2><table><tr><td>Monera</td><td class=\"q\">?</td></tr><tr><td>Protista</td><td class=\"q\">?</td></tr><tr><td>Fungi</td><td class=\"q\">?</td></tr><tr><td>Plantae</td><td class=\"q\">?</td></tr><tr><td>Animalia</td><td class=\"q\">?</td></tr></table></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 2.1 · Five kingdoms</p><h2>Mode of nutrition in each kingdom?</h2><table><tr><td>Monera</td><td class=\"a\">Autotrophic (chemosynthetic, photosynthetic) and heterotrophic (saprophytic, parasitic)</td></tr><tr><td>Protista</td><td class=\"a\">Autotrophic (photosynthetic) and heterotrophic</td></tr><tr><td>Fungi</td><td class=\"a\">Heterotrophic (saprophytic, parasitic)</td></tr><tr><td>Plantae</td><td class=\"a\">Autotrophic (photosynthetic)</td></tr><tr><td>Animalia</td><td class=\"a\">Heterotrophic (holozoic, saprophytic etc.)</td></tr></table></div>",
-        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
-        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+        "frontHtml": "<div class=\"w tl\"><p class=\"tag\">Table 2.1 · Five kingdoms</p><h2>Mode of nutrition in each kingdom?</h2><div class=\"grid\"><div class=\"t c1\"><i>Monera</i><b class=\"q\">?</b></div><div class=\"t c2\"><i>Protista</i><b class=\"q\">?</b></div><div class=\"t c3\"><i>Fungi</i><b class=\"q\">?</b></div><div class=\"t c4\"><i>Plantae</i><b class=\"q\">?</b></div><div class=\"t c5 wide\"><i>Animalia</i><b class=\"q\">?</b></div></div></div>",
+        "backHtml": "<div class=\"w tl\"><p class=\"tag\">Table 2.1 · Five kingdoms</p><h2>Mode of nutrition in each kingdom?</h2><div class=\"grid\"><div class=\"t c1\"><i>Monera</i><b class=\"r\">Autotrophic (chemosynthetic, photosynthetic) and heterotrophic</b></div><div class=\"t c2\"><i>Protista</i><b class=\"r\">Autotrophic (photosynthetic) and heterotrophic</b></div><div class=\"t c3\"><i>Fungi</i><b class=\"r\">Heterotrophic (saprophytic, parasitic)</b></div><div class=\"t c4\"><i>Plantae</i><b class=\"r\">Autotrophic (photosynthetic)</b></div><div class=\"t c5 wide\"><i>Animalia</i><b class=\"r\">Heterotrophic (holozoic, saprophytic etc.)</b></div></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.tl{color:#1f2430;background:#f6f4ef}\n.tl .tag{color:#7a7466}.tl h2{color:#1f2430}\n.tl .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}\n.tl .t{border-radius:14px;padding:10px 11px 11px;background:#fff;border:1px solid #e8e1d2;min-height:88px;\n  display:flex;flex-direction:column;gap:6px}\n.tl .t.wide{grid-column:1 / -1;min-height:70px}\n.tl .t i{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;\n  padding:3px 8px;border-radius:999px;align-self:flex-start;color:#fff}\n.tl .t b{font-size:14px;font-weight:600;line-height:1.3}\n.tl .t b.q{color:#c9c0ad;letter-spacing:.25em}\n.tl .t b.no{color:#c93b3f}\n.tl .c1 i{background:#8b5cf6}.tl .c2 i{background:#0891b2}.tl .c3 i{background:#d97706}\n.tl .c4 i{background:#16a34a}.tl .c5 i{background:#dc2626}\n.tl .t b.r{animation:fade .45s ease both}\n.tl .c2 b.r{animation-delay:.08s}.tl .c3 b.r{animation-delay:.16s}.tl .c4 b.r{animation-delay:.24s}.tl .c5 b.r{animation-delay:.32s}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.tl{color:#1f2430;background:#f6f4ef}\n.tl .tag{color:#7a7466}.tl h2{color:#1f2430}\n.tl .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}\n.tl .t{border-radius:14px;padding:10px 11px 11px;background:#fff;border:1px solid #e8e1d2;min-height:88px;\n  display:flex;flex-direction:column;gap:6px}\n.tl .t.wide{grid-column:1 / -1;min-height:70px}\n.tl .t i{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;\n  padding:3px 8px;border-radius:999px;align-self:flex-start;color:#fff}\n.tl .t b{font-size:14px;font-weight:600;line-height:1.3}\n.tl .t b.q{color:#c9c0ad;letter-spacing:.25em}\n.tl .t b.no{color:#c93b3f}\n.tl .c1 i{background:#8b5cf6}.tl .c2 i{background:#0891b2}.tl .c3 i{background:#d97706}\n.tl .c4 i{background:#16a34a}.tl .c5 i{background:#dc2626}\n.tl .t b.r{animation:fade .45s ease both}\n.tl .c2 b.r{animation-delay:.08s}.tl .c3 b.r{animation-delay:.16s}.tl .c4 b.r{animation-delay:.24s}.tl .c5 b.r{animation-delay:.32s}\n"
       },
       "tags": [
         "class-11",
@@ -289,7 +289,8 @@
               65,
               31
             ],
-            "answer": "Spore"
+            "answer": "Spore",
+            "labelInImage": true
           },
           {
             "shape": "rect",
@@ -299,7 +300,8 @@
               103,
               31
             ],
-            "answer": "Flagellum"
+            "answer": "Flagellum",
+            "labelInImage": true
           },
           {
             "shape": "rect",
@@ -309,7 +311,8 @@
               62,
               31
             ],
-            "answer": "Cocci"
+            "answer": "Cocci",
+            "labelInImage": true
           },
           {
             "shape": "rect",
@@ -319,7 +322,8 @@
               70,
               31
             ],
-            "answer": "Bacilli"
+            "answer": "Bacilli",
+            "labelInImage": true
           },
           {
             "shape": "rect",
@@ -329,7 +333,8 @@
               79,
               31
             ],
-            "answer": "Spirilla"
+            "answer": "Spirilla",
+            "labelInImage": true
           },
           {
             "shape": "rect",
@@ -339,7 +344,8 @@
               67,
               31
             ],
-            "answer": "Vibrio"
+            "answer": "Vibrio",
+            "labelInImage": true
           }
         ]
       },
@@ -511,7 +517,8 @@
               245,
               60
             ],
-            "answer": "Heterocyst"
+            "answer": "Heterocyst",
+            "labelInImage": true
           },
           {
             "shape": "rect",
@@ -521,7 +528,8 @@
               310,
               108
             ],
-            "answer": "Mucilaginous sheath"
+            "answer": "Mucilaginous sheath",
+            "labelInImage": true
           }
         ]
       },
@@ -1284,8 +1292,26 @@
       ]
     },
     {
-      "noteType": "cloze",
-      "text": "Sexual cycle of fungi: {{c1::plasmogamy}} (fusion of protoplasms) → {{c2::karyogamy}} (fusion of nuclei) → {{c3::meiosis}} in the zygote, giving haploid spores.",
+      "noteType": "advanced-html",
+      "term": "Fungal sexual cycle in order",
+      "definition": "Plasmogamy (n + n) → karyogamy (2n) → meiosis → haploid spores",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pt\"><p class=\"tag\">Kingdom Fungi</p><h2>Sexual cycle of fungi: what happens, in order?</h2><div class=\"steps\"><div class=\"st blank\"><svg viewBox=\"0 0 44 44\"><circle class=\"wall\" cx=\"14\" cy=\"22\" r=\"11\"></circle><circle class=\"nA\" cx=\"14\" cy=\"22\" r=\"4\"></circle><circle class=\"wall\" cx=\"31\" cy=\"22\" r=\"11\"></circle><circle class=\"nB\" cx=\"31\" cy=\"22\" r=\"4\"></circle></svg><div><b>Two hyphae meet</b></div></div><div class=\"st blank\"><svg viewBox=\"0 0 44 44\"><circle class=\"wall\" cx=\"14\" cy=\"22\" r=\"11\"></circle><circle class=\"wall\" cx=\"14\" cy=\"22\" r=\"4\"></circle><circle class=\"wall\" cx=\"31\" cy=\"22\" r=\"11\"></circle><circle class=\"wall\" cx=\"31\" cy=\"22\" r=\"4\"></circle></svg><div><b>? ? ?</b></div></div><div class=\"st blank\"><svg viewBox=\"0 0 44 44\"><circle class=\"wall\" cx=\"14\" cy=\"22\" r=\"11\"></circle><circle class=\"wall\" cx=\"14\" cy=\"22\" r=\"4\"></circle><circle class=\"wall\" cx=\"31\" cy=\"22\" r=\"11\"></circle><circle class=\"wall\" cx=\"31\" cy=\"22\" r=\"4\"></circle></svg><div><b>? ? ?</b></div></div><div class=\"st blank\"><svg viewBox=\"0 0 44 44\"><circle class=\"wall\" cx=\"14\" cy=\"22\" r=\"11\"></circle><circle class=\"wall\" cx=\"14\" cy=\"22\" r=\"4\"></circle><circle class=\"wall\" cx=\"31\" cy=\"22\" r=\"11\"></circle><circle class=\"wall\" cx=\"31\" cy=\"22\" r=\"4\"></circle></svg><div><b>? ? ?</b></div></div></div></div>",
+        "backHtml": "<div class=\"w pt\"><p class=\"tag\">Kingdom Fungi</p><h2>Sexual cycle of fungi: what happens, in order?</h2><div class=\"steps\"><div class=\"st fx d1\"><svg viewBox=\"0 0 44 44\"><circle class=\"wall\" cx=\"14\" cy=\"22\" r=\"11\"></circle><circle class=\"nA\" cx=\"14\" cy=\"22\" r=\"4\"></circle><circle class=\"wall\" cx=\"31\" cy=\"22\" r=\"11\"></circle><circle class=\"nB\" cx=\"31\" cy=\"22\" r=\"4\"></circle></svg><div><b>Two hyphae meet</b><span>compatible mating types, each <span class=\"n\">n</span></span></div></div><div class=\"st fx d2\"><svg viewBox=\"0 0 44 44\"><ellipse class=\"wall\" cx=\"22\" cy=\"22\" rx=\"19\" ry=\"13\"></ellipse><circle class=\"nA\" cx=\"15\" cy=\"22\" r=\"4\"></circle><circle class=\"nB\" cx=\"29\" cy=\"22\" r=\"4\"></circle></svg><div><b>Plasmogamy</b><span>protoplasms fuse → <span class=\"n\">n + n</span> dikaryon (asco-, basidiomycetes)</span></div></div><div class=\"st fx d3\"><svg viewBox=\"0 0 44 44\"><ellipse class=\"wall\" cx=\"22\" cy=\"22\" rx=\"19\" ry=\"13\"></ellipse><circle class=\"n2\" cx=\"22\" cy=\"22\" r=\"6.5\"></circle></svg><div><b>Karyogamy</b><span>the two nuclei fuse → <span class=\"n\">2n</span> zygote</span></div></div><div class=\"st fx d4\"><svg viewBox=\"0 0 44 44\"><circle class=\"ring\" cx=\"22\" cy=\"22\" r=\"19\"></circle><circle class=\"sp\" cx=\"15\" cy=\"15\" r=\"5\"></circle><circle class=\"sp\" cx=\"29\" cy=\"15\" r=\"5\"></circle><circle class=\"sp\" cx=\"15\" cy=\"29\" r=\"5\"></circle><circle class=\"sp\" cx=\"29\" cy=\"29\" r=\"5\"></circle></svg><div><b>Meiosis</b><span>in the fruiting body → haploid <span class=\"n\">n</span> spores</span></div></div></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pt{color:#1d2b24;background:linear-gradient(160deg,#f3fbf6 0,#e3f4ea 55%,#d7eee2 100%)}\n.pt .tag{color:#3f7a5a}.pt h2{color:#123a27}\n.pt .steps{position:relative;display:flex;flex-direction:column;gap:9px;margin-top:4px}\n.pt .steps:before{content:\"\";position:absolute;left:31px;top:24px;bottom:24px;width:2px;background:#9fd3b5}\n.pt .st{position:relative;display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:14px;\n  background:rgba(255,255,255,.85);box-shadow:0 1px 0 rgba(18,58,39,.08)}\n.pt .st svg{flex:none;width:44px;height:44px}\n.pt .st b{display:block;font-size:14.5px;color:#123a27}\n.pt .st span{font-size:12.5px;color:#43594d}\n.pt .st .n{color:#b3471d;font-weight:700}\n.pt .blank b{color:#9cb3a6;letter-spacing:.2em}\n.pt .wall{fill:#fff;stroke:#3f7a5a;stroke-width:2}\n.pt .nA{fill:#e2562b}.pt .nB{fill:#2b7de2}.pt .n2{fill:#7a3fe2}.pt .sp{fill:#f2c14e;stroke:#b3871d}\n.pt .ring{fill:none;stroke:#3f7a5a;stroke-width:1.6;stroke-dasharray:3 3}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pt{color:#1d2b24;background:linear-gradient(160deg,#f3fbf6 0,#e3f4ea 55%,#d7eee2 100%)}\n.pt .tag{color:#3f7a5a}.pt h2{color:#123a27}\n.pt .steps{position:relative;display:flex;flex-direction:column;gap:9px;margin-top:4px}\n.pt .steps:before{content:\"\";position:absolute;left:31px;top:24px;bottom:24px;width:2px;background:#9fd3b5}\n.pt .st{position:relative;display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:14px;\n  background:rgba(255,255,255,.85);box-shadow:0 1px 0 rgba(18,58,39,.08)}\n.pt .st svg{flex:none;width:44px;height:44px}\n.pt .st b{display:block;font-size:14.5px;color:#123a27}\n.pt .st span{font-size:12.5px;color:#43594d}\n.pt .st .n{color:#b3471d;font-weight:700}\n.pt .blank b{color:#9cb3a6;letter-spacing:.2em}\n.pt .wall{fill:#fff;stroke:#3f7a5a;stroke-width:2}\n.pt .nA{fill:#e2562b}.pt .nB{fill:#2b7de2}.pt .n2{fill:#7a3fe2}.pt .sp{fill:#f2c14e;stroke:#b3871d}\n.pt .ring{fill:none;stroke:#3f7a5a;stroke-width:1.6;stroke-dasharray:3 3}\n"
+      },
+      "tags": [
+        "class-11",
+        "biology",
+        "ch-2",
+        "2.3-fungi"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In the fungal sexual cycle, what is plasmogamy and what is karyogamy?",
+      "definition": "<span style=\"color:#3b82f6\">Plasmogamy</span>: fusion of protoplasms. <span style=\"color:#3b82f6\">Karyogamy</span>: fusion of nuclei.",
       "tags": [
         "class-11",
         "biology",
@@ -2035,7 +2061,8 @@
               82,
               45
             ],
-            "answer": "RNA"
+            "answer": "RNA",
+            "labelInImage": true
           },
           {
             "shape": "rect",
@@ -2045,7 +2072,8 @@
               122,
               45
             ],
-            "answer": "Capsid"
+            "answer": "Capsid",
+            "labelInImage": true
           }
         ]
       },
@@ -2076,7 +2104,8 @@
               115,
               53
             ],
-            "answer": "Head"
+            "answer": "Head",
+            "labelInImage": true
           },
           {
             "shape": "rect",
@@ -2086,7 +2115,8 @@
               131,
               53
             ],
-            "answer": "Collar"
+            "answer": "Collar",
+            "labelInImage": true
           },
           {
             "shape": "rect",
@@ -2096,7 +2126,8 @@
               153,
               53
             ],
-            "answer": "Sheath"
+            "answer": "Sheath",
+            "labelInImage": true
           },
           {
             "shape": "rect",
@@ -2106,7 +2137,8 @@
               211,
               53
             ],
-            "answer": "Tail fibres"
+            "answer": "Tail fibres",
+            "labelInImage": true
           }
         ]
       },

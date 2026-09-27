@@ -2,7 +2,18 @@
   'use strict';
 
   const root = document.documentElement;
-  root.classList.add('startup-stabilizing');
+  // Arriving from the study screen or the library: the page we left was already
+  // showing the same loading cover, so show ours from the first frame instead of
+  // the blank startup layer. That makes the move read as one loader, not two.
+  let routeHandoff = false;
+  try {
+    routeHandoff = window.sessionStorage.getItem('erudite-route-handoff') === '1';
+    if (routeHandoff) window.sessionStorage.removeItem('erudite-route-handoff');
+  } catch (_) {
+    routeHandoff = false;
+  }
+  if (routeHandoff) root.classList.add('route-handoff');
+  else root.classList.add('startup-stabilizing');
 
   let startupReleased = false;
   const releaseStartupFrame = () => {

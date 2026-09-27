@@ -5323,3 +5323,40 @@ button:active,
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Premade list placeholder while the deck library loads. */
+.premade-skeleton {
+  pointer-events: none;
+}
+
+.premade-skeleton .deck-icon,
+.premade-skeleton .deck-main span {
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--muted) 12%, transparent) 0%,
+    color-mix(in srgb, var(--muted) 24%, transparent) 50%,
+    color-mix(in srgb, var(--muted) 12%, transparent) 100%);
+  background-size: 200% 100%;
+  animation: premade-shimmer 1.2s ease-in-out infinite;
+}
+
+.premade-skeleton .deck-main {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.premade-skeleton .deck-main span {
+  display: block;
+  height: 0.8rem;
+  width: 72%;
+  border-radius: 999px;
+}
+
+.premade-skeleton .deck-main span + span {
+  width: 42%;
+  height: 0.65rem;
+}
+
+@keyframes premade-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}

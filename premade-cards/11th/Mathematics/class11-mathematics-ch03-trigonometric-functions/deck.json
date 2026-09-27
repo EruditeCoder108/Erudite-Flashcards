@@ -56,7 +56,8 @@
         "mathematics",
         "ch-3",
         "3.2-angles"
-      ]
+      ],
+      "definitionImage": "media/fig_3_4_radian.webp"
     },
     {
       "noteType": "basic",
@@ -178,6 +179,81 @@
       "noteType": "basic",
       "term": "On the unit circle, a point at angle x has coordinates?",
       "definition": "\\((\\cos x,\\ \\sin x)\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3-trig-functions"
+      ]
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Fig. 3.6 · The unit circle",
+      "definition": "",
+      "image": "media/fig_3_6_unit_circle.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 901,
+        "imageHeight": 809,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              520,
+              185,
+              142,
+              50
+            ],
+            "answer": "(cos x, sin x)"
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              318,
+              166,
+              95,
+              40
+            ],
+            "answer": "(0, 1)",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              50,
+              344,
+              160,
+              50
+            ],
+            "answer": "(−1, 0)",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              674,
+              359,
+              100,
+              48
+            ],
+            "answer": "(1, 0)",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              300,
+              607,
+              122,
+              50
+            ],
+            "answer": "(0, −1)",
+            "labelInImage": true
+          }
+        ]
+      },
       "tags": [
         "class-11",
         "mathematics",
@@ -312,10 +388,10 @@
       "term": "Signs of trig functions (ASTC)",
       "definition": "I: all; II: sin, cosec; III: tan, cot; IV: cos, sec",
       "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">3.3.1 · Signs</p><h2>Which functions are positive in each quadrant?</h2><div class=\"qg\"><div><small>Quadrant II</small><b class=\"q\">?</b></div><div><small>Quadrant I</small><b class=\"q\">?</b></div><div><small>Quadrant III</small><b class=\"q\">?</b></div><div><small>Quadrant IV</small><b class=\"q\">?</b></div></div></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">3.3.1 · Signs</p><h2>Which functions are positive in each quadrant?</h2><div class=\"qg\"><div><small>Quadrant II</small><b class=\"r\">sin, cosec</b></div><div><small>Quadrant I</small><b class=\"r\">All</b></div><div><small>Quadrant III</small><b class=\"r\">tan, cot</b></div><div><small>Quadrant IV</small><b class=\"r\">cos, sec</b></div></div><p class=\"note\">Mnemonic: <b>A</b>ll <b>S</b>ilver <b>T</b>ea <b>C</b>ups (I → IV)</p></div>",
-        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .qg{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;margin:8px 0 12px;\n  border-radius:14px;overflow:hidden;border:1px solid #e8e1d2}\n.k .qg div{background:#fff;min-height:118px;padding:12px;display:flex;flex-direction:column;justify-content:space-between}\n.k .qg div:nth-child(1){border-right:2px solid #1f2430;border-bottom:2px solid #1f2430}\n.k .qg div:nth-child(2){border-bottom:2px solid #1f2430}\n.k .qg div:nth-child(3){border-right:2px solid #1f2430}\n.k .qg small{color:#7a7466;font-size:11px;letter-spacing:.06em;text-transform:uppercase}\n.k .qg b{font-size:17px;color:#1d5fd6}.k .qg b.q{color:#b8ae99;letter-spacing:.2em}\n.k .qg b.r{animation:pop .45s ease both}\n",
-        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .qg{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;margin:8px 0 12px;\n  border-radius:14px;overflow:hidden;border:1px solid #e8e1d2}\n.k .qg div{background:#fff;min-height:118px;padding:12px;display:flex;flex-direction:column;justify-content:space-between}\n.k .qg div:nth-child(1){border-right:2px solid #1f2430;border-bottom:2px solid #1f2430}\n.k .qg div:nth-child(2){border-bottom:2px solid #1f2430}\n.k .qg div:nth-child(3){border-right:2px solid #1f2430}\n.k .qg small{color:#7a7466;font-size:11px;letter-spacing:.06em;text-transform:uppercase}\n.k .qg b{font-size:17px;color:#1d5fd6}.k .qg b.q{color:#b8ae99;letter-spacing:.2em}\n.k .qg b.r{animation:pop .45s ease both}\n"
+        "frontHtml": "<div class=\"w cb\"><p class=\"tag\">Signs · ASTC</p><h2>Which functions are positive in each quadrant?</h2><div class=\"qg\"><div><small>Quadrant II</small><b class=\"q\">?</b></div><div><small>Quadrant I</small><b class=\"q\">?</b></div><div><small>Quadrant III</small><b class=\"q\">?</b></div><div><small>Quadrant IV</small><b class=\"q\">?</b></div></div></div>",
+        "backHtml": "<div class=\"w cb\"><p class=\"tag\">Signs · ASTC</p><h2>Which functions are positive in each quadrant?</h2><div class=\"qg\"><div><small>Quadrant II</small><b class=\"fx d1\">sin, cosec</b></div><div><small>Quadrant I</small><b class=\"fx d2\">All</b></div><div><small>Quadrant III</small><b class=\"fx d3\">tan, cot</b></div><div><small>Quadrant IV</small><b class=\"fx d4\">cos, sec</b></div></div><div class=\"box fx d5\">Read I → IV: <b>A</b>ll <b>S</b>ilver <b>T</b>ea <b>C</b>ups</div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.cb{color:#f1f5ee;background:radial-gradient(120% 90% at 30% 10%,#27503f 0,#1b3a2f 60%,#15302a 100%)}\n.cb .tag{color:#b8dcc4}.cb h2{color:#fff;font-family:Georgia,\"Times New Roman\",serif}\n.cb .ax{stroke:#dfe9e2;stroke-width:1.3;fill:none}\n.cb .tick{fill:#dfe9e2;font-size:11px;font-family:Georgia,serif;font-style:italic}\n.cb .sin{stroke:#ffe08a;stroke-width:3;fill:none;stroke-linecap:round}\n.cb .cos{stroke:#8fe3ff;stroke-width:2.6;fill:none;stroke-dasharray:7 5}\n.cb .pt{fill:#ffe08a}.cb .pt2{fill:#8fe3ff}\n.cb .say{fill:#ffe08a;font-size:11px;font-family:Georgia,serif}\n.cb .say2{fill:#8fe3ff;font-size:11px;font-family:Georgia,serif}\n.cb .key{display:flex;gap:14px;margin:8px 0 0;font-size:13px}\n.cb .key i{font-style:normal}.cb .k1{color:#ffe08a}.cb .k2{color:#8fe3ff}\n.cb .box{margin-top:10px;padding:10px 12px;border:1px dashed rgba(241,245,238,.45);border-radius:12px;font-size:13.5px}\n.cb .box b{color:#ffe08a}\n.cb .qg{display:grid;grid-template-columns:1fr 1fr;margin:6px 0 10px;border-radius:14px;overflow:hidden}\n.cb .qg div{min-height:112px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;\n  background:rgba(255,255,255,.05)}\n.cb .qg div:nth-child(1){border-right:2px solid #dfe9e2;border-bottom:2px solid #dfe9e2}\n.cb .qg div:nth-child(2){border-bottom:2px solid #dfe9e2}\n.cb .qg div:nth-child(3){border-right:2px solid #dfe9e2}\n.cb .qg small{color:#b8dcc4;font-size:11px;letter-spacing:.06em;text-transform:uppercase}\n.cb .qg b{font-size:18px;color:#ffe08a;font-family:Georgia,serif}\n.cb .qg b.q{color:rgba(241,245,238,.35);letter-spacing:.2em}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.cb{color:#f1f5ee;background:radial-gradient(120% 90% at 30% 10%,#27503f 0,#1b3a2f 60%,#15302a 100%)}\n.cb .tag{color:#b8dcc4}.cb h2{color:#fff;font-family:Georgia,\"Times New Roman\",serif}\n.cb .ax{stroke:#dfe9e2;stroke-width:1.3;fill:none}\n.cb .tick{fill:#dfe9e2;font-size:11px;font-family:Georgia,serif;font-style:italic}\n.cb .sin{stroke:#ffe08a;stroke-width:3;fill:none;stroke-linecap:round}\n.cb .cos{stroke:#8fe3ff;stroke-width:2.6;fill:none;stroke-dasharray:7 5}\n.cb .pt{fill:#ffe08a}.cb .pt2{fill:#8fe3ff}\n.cb .say{fill:#ffe08a;font-size:11px;font-family:Georgia,serif}\n.cb .say2{fill:#8fe3ff;font-size:11px;font-family:Georgia,serif}\n.cb .key{display:flex;gap:14px;margin:8px 0 0;font-size:13px}\n.cb .key i{font-style:normal}.cb .k1{color:#ffe08a}.cb .k2{color:#8fe3ff}\n.cb .box{margin-top:10px;padding:10px 12px;border:1px dashed rgba(241,245,238,.45);border-radius:12px;font-size:13.5px}\n.cb .box b{color:#ffe08a}\n.cb .qg{display:grid;grid-template-columns:1fr 1fr;margin:6px 0 10px;border-radius:14px;overflow:hidden}\n.cb .qg div{min-height:112px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;\n  background:rgba(255,255,255,.05)}\n.cb .qg div:nth-child(1){border-right:2px solid #dfe9e2;border-bottom:2px solid #dfe9e2}\n.cb .qg div:nth-child(2){border-bottom:2px solid #dfe9e2}\n.cb .qg div:nth-child(3){border-right:2px solid #dfe9e2}\n.cb .qg small{color:#b8dcc4;font-size:11px;letter-spacing:.06em;text-transform:uppercase}\n.cb .qg b{font-size:18px;color:#ffe08a;font-family:Georgia,serif}\n.cb .qg b.q{color:rgba(241,245,238,.35);letter-spacing:.2em}\n"
       },
       "tags": [
         "class-11",
@@ -345,6 +421,95 @@
         "ch-3",
         "3.3.1-signs"
       ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Graphs of sin x and cos x on [0, 2π]",
+      "definition": "sin: max 1 at π/2, min −1 at 3π/2; curves cross at π/4 and 5π/4",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w cb\"><p class=\"tag\">Graphs · sin and cos</p><h2>Sketch sin x and cos x on [0, 2π]. Where are the max and min of sin x, and where do the curves cross?</h2><svg viewBox=\"0 0 300 190\"><line class=\"ax\" x1=\"20\" y1=\"92\" x2=\"294\" y2=\"92\"></line><line class=\"ax\" x1=\"24\" y1=\"20\" x2=\"24\" y2=\"164\"></line><text class=\"tick\" x=\"14\" y=\"38\">1</text><text class=\"tick\" x=\"9\" y=\"154\">−1</text><line class=\"ax\" x1=\"90.0\" y1=\"88\" x2=\"90.0\" y2=\"96\"></line><text class=\"tick\" x=\"90.0\" y=\"182\" text-anchor=\"middle\">π/2</text><line class=\"ax\" x1=\"90.0\" y1=\"96\" x2=\"90.0\" y2=\"170\" stroke-dasharray=\"2 4\" opacity=\".35\"></line><line class=\"ax\" x1=\"156.0\" y1=\"88\" x2=\"156.0\" y2=\"96\"></line><text class=\"tick\" x=\"156.0\" y=\"182\" text-anchor=\"middle\">π</text><line class=\"ax\" x1=\"156.0\" y1=\"96\" x2=\"156.0\" y2=\"170\" stroke-dasharray=\"2 4\" opacity=\".35\"></line><line class=\"ax\" x1=\"222.0\" y1=\"88\" x2=\"222.0\" y2=\"96\"></line><text class=\"tick\" x=\"222.0\" y=\"182\" text-anchor=\"middle\">3π/2</text><line class=\"ax\" x1=\"222.0\" y1=\"96\" x2=\"222.0\" y2=\"170\" stroke-dasharray=\"2 4\" opacity=\".35\"></line><line class=\"ax\" x1=\"288.0\" y1=\"88\" x2=\"288.0\" y2=\"96\"></line><text class=\"tick\" x=\"288.0\" y=\"182\" text-anchor=\"middle\">2π</text><line class=\"ax\" x1=\"288.0\" y1=\"96\" x2=\"288.0\" y2=\"170\" stroke-dasharray=\"2 4\" opacity=\".35\"></line></svg></div>",
+        "backHtml": "<div class=\"w cb\"><p class=\"tag\">Graphs · sin and cos</p><h2>Sketch sin x and cos x on [0, 2π]. Where are the max and min of sin x, and where do the curves cross?</h2><svg viewBox=\"0 0 300 190\"><line class=\"ax\" x1=\"20\" y1=\"92\" x2=\"294\" y2=\"92\"></line><line class=\"ax\" x1=\"24\" y1=\"20\" x2=\"24\" y2=\"164\"></line><text class=\"tick\" x=\"14\" y=\"38\">1</text><text class=\"tick\" x=\"9\" y=\"154\">−1</text><line class=\"ax\" x1=\"90.0\" y1=\"88\" x2=\"90.0\" y2=\"96\"></line><text class=\"tick\" x=\"90.0\" y=\"182\" text-anchor=\"middle\">π/2</text><line class=\"ax\" x1=\"90.0\" y1=\"96\" x2=\"90.0\" y2=\"170\" stroke-dasharray=\"2 4\" opacity=\".35\"></line><line class=\"ax\" x1=\"156.0\" y1=\"88\" x2=\"156.0\" y2=\"96\"></line><text class=\"tick\" x=\"156.0\" y=\"182\" text-anchor=\"middle\">π</text><line class=\"ax\" x1=\"156.0\" y1=\"96\" x2=\"156.0\" y2=\"170\" stroke-dasharray=\"2 4\" opacity=\".35\"></line><line class=\"ax\" x1=\"222.0\" y1=\"88\" x2=\"222.0\" y2=\"96\"></line><text class=\"tick\" x=\"222.0\" y=\"182\" text-anchor=\"middle\">3π/2</text><line class=\"ax\" x1=\"222.0\" y1=\"96\" x2=\"222.0\" y2=\"170\" stroke-dasharray=\"2 4\" opacity=\".35\"></line><line class=\"ax\" x1=\"288.0\" y1=\"88\" x2=\"288.0\" y2=\"96\"></line><text class=\"tick\" x=\"288.0\" y=\"182\" text-anchor=\"middle\">2π</text><line class=\"ax\" x1=\"288.0\" y1=\"96\" x2=\"288.0\" y2=\"170\" stroke-dasharray=\"2 4\" opacity=\".35\"></line><polyline class=\"sin draw\" pathLength=\"100\" points=\"24.0,92.0 26.8,88.2 29.5,84.4 32.2,80.7 35.0,77.0 37.8,73.4 40.5,69.8 43.2,66.3 46.0,63.0 48.8,59.8 51.5,56.7 54.2,53.8 57.0,51.0 59.8,48.4 62.5,46.0 65.2,43.8 68.0,41.8 70.8,40.0 73.5,38.4 76.2,37.1 79.0,36.0 81.8,35.1 84.5,34.5 87.2,34.1 90.0,34.0 92.8,34.1 95.5,34.5 98.2,35.1 101.0,36.0 103.8,37.1 106.5,38.4 109.2,40.0 112.0,41.8 114.8,43.8 117.5,46.0 120.2,48.4 123.0,51.0 125.8,53.8 128.5,56.7 131.2,59.8 134.0,63.0 136.8,66.3 139.5,69.8 142.2,73.4 145.0,77.0 147.8,80.7 150.5,84.4 153.2,88.2 156.0,92.0 158.8,95.8 161.5,99.6 164.2,103.3 167.0,107.0 169.8,110.6 172.5,114.2 175.2,117.7 178.0,121.0 180.8,124.2 183.5,127.3 186.2,130.2 189.0,133.0 191.8,135.6 194.5,138.0 197.2,140.2 200.0,142.2 202.8,144.0 205.5,145.6 208.2,146.9 211.0,148.0 213.8,148.9 216.5,149.5 219.2,149.9 222.0,150.0 224.8,149.9 227.5,149.5 230.2,148.9 233.0,148.0 235.8,146.9 238.5,145.6 241.2,144.0 244.0,142.2 246.8,140.2 249.5,138.0 252.2,135.6 255.0,133.0 257.8,130.2 260.5,127.3 263.2,124.2 266.0,121.0 268.8,117.7 271.5,114.2 274.2,110.6 277.0,107.0 279.8,103.3 282.5,99.6 285.2,95.8 288.0,92.0\"></polyline><polyline class=\"cos fx d3\" points=\"24.0,34.0 26.8,34.1 29.5,34.5 32.2,35.1 35.0,36.0 37.8,37.1 40.5,38.4 43.2,40.0 46.0,41.8 48.8,43.8 51.5,46.0 54.2,48.4 57.0,51.0 59.8,53.8 62.5,56.7 65.2,59.8 68.0,63.0 70.8,66.3 73.5,69.8 76.2,73.4 79.0,77.0 81.8,80.7 84.5,84.4 87.2,88.2 90.0,92.0 92.8,95.8 95.5,99.6 98.2,103.3 101.0,107.0 103.8,110.6 106.5,114.2 109.2,117.7 112.0,121.0 114.8,124.2 117.5,127.3 120.2,130.2 123.0,133.0 125.8,135.6 128.5,138.0 131.2,140.2 134.0,142.2 136.8,144.0 139.5,145.6 142.2,146.9 145.0,148.0 147.8,148.9 150.5,149.5 153.2,149.9 156.0,150.0 158.8,149.9 161.5,149.5 164.2,148.9 167.0,148.0 169.8,146.9 172.5,145.6 175.2,144.0 178.0,142.2 180.8,140.2 183.5,138.0 186.2,135.6 189.0,133.0 191.8,130.2 194.5,127.3 197.2,124.2 200.0,121.0 202.8,117.7 205.5,114.2 208.2,110.6 211.0,107.0 213.8,103.3 216.5,99.6 219.2,95.8 222.0,92.0 224.8,88.2 227.5,84.4 230.2,80.7 233.0,77.0 235.8,73.4 238.5,69.8 241.2,66.3 244.0,63.0 246.8,59.8 249.5,56.7 252.2,53.8 255.0,51.0 257.8,48.4 260.5,46.0 263.2,43.8 266.0,41.8 268.8,40.0 271.5,38.4 274.2,37.1 277.0,36.0 279.8,35.1 282.5,34.5 285.2,34.1 288.0,34.0\"></polyline><circle class=\"pt fx d2\" cx=\"90.0\" cy=\"34\" r=\"4\"></circle><text class=\"say fx d2\" x=\"90.0\" y=\"24\" text-anchor=\"middle\">max 1</text><circle class=\"pt fx d2\" cx=\"222.0\" cy=\"150\" r=\"4\"></circle><text class=\"say fx d2\" x=\"230.0\" y=\"160\">min −1</text><circle class=\"pt2 fx d4\" cx=\"57.0\" cy=\"51.0\" r=\"3.5\"></circle><circle class=\"pt2 fx d4\" cx=\"189.0\" cy=\"133.0\" r=\"3.5\"></circle></svg><div class=\"key\"><i class=\"k1\">━ sin x</i><i class=\"k2\">┅ cos x</i></div><div class=\"box fx d5\">sin x: <b>max at π/2</b>, <b>min at 3π/2</b>, zero at 0, π, 2π.<br>They cross at <b>π/4</b> and <b>5π/4</b>. cos x is sin x shifted left by π/2.</div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.cb{color:#f1f5ee;background:radial-gradient(120% 90% at 30% 10%,#27503f 0,#1b3a2f 60%,#15302a 100%)}\n.cb .tag{color:#b8dcc4}.cb h2{color:#fff;font-family:Georgia,\"Times New Roman\",serif}\n.cb .ax{stroke:#dfe9e2;stroke-width:1.3;fill:none}\n.cb .tick{fill:#dfe9e2;font-size:11px;font-family:Georgia,serif;font-style:italic}\n.cb .sin{stroke:#ffe08a;stroke-width:3;fill:none;stroke-linecap:round}\n.cb .cos{stroke:#8fe3ff;stroke-width:2.6;fill:none;stroke-dasharray:7 5}\n.cb .pt{fill:#ffe08a}.cb .pt2{fill:#8fe3ff}\n.cb .say{fill:#ffe08a;font-size:11px;font-family:Georgia,serif}\n.cb .say2{fill:#8fe3ff;font-size:11px;font-family:Georgia,serif}\n.cb .key{display:flex;gap:14px;margin:8px 0 0;font-size:13px}\n.cb .key i{font-style:normal}.cb .k1{color:#ffe08a}.cb .k2{color:#8fe3ff}\n.cb .box{margin-top:10px;padding:10px 12px;border:1px dashed rgba(241,245,238,.45);border-radius:12px;font-size:13.5px}\n.cb .box b{color:#ffe08a}\n.cb .qg{display:grid;grid-template-columns:1fr 1fr;margin:6px 0 10px;border-radius:14px;overflow:hidden}\n.cb .qg div{min-height:112px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;\n  background:rgba(255,255,255,.05)}\n.cb .qg div:nth-child(1){border-right:2px solid #dfe9e2;border-bottom:2px solid #dfe9e2}\n.cb .qg div:nth-child(2){border-bottom:2px solid #dfe9e2}\n.cb .qg div:nth-child(3){border-right:2px solid #dfe9e2}\n.cb .qg small{color:#b8dcc4;font-size:11px;letter-spacing:.06em;text-transform:uppercase}\n.cb .qg b{font-size:18px;color:#ffe08a;font-family:Georgia,serif}\n.cb .qg b.q{color:rgba(241,245,238,.35);letter-spacing:.2em}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.cb{color:#f1f5ee;background:radial-gradient(120% 90% at 30% 10%,#27503f 0,#1b3a2f 60%,#15302a 100%)}\n.cb .tag{color:#b8dcc4}.cb h2{color:#fff;font-family:Georgia,\"Times New Roman\",serif}\n.cb .ax{stroke:#dfe9e2;stroke-width:1.3;fill:none}\n.cb .tick{fill:#dfe9e2;font-size:11px;font-family:Georgia,serif;font-style:italic}\n.cb .sin{stroke:#ffe08a;stroke-width:3;fill:none;stroke-linecap:round}\n.cb .cos{stroke:#8fe3ff;stroke-width:2.6;fill:none;stroke-dasharray:7 5}\n.cb .pt{fill:#ffe08a}.cb .pt2{fill:#8fe3ff}\n.cb .say{fill:#ffe08a;font-size:11px;font-family:Georgia,serif}\n.cb .say2{fill:#8fe3ff;font-size:11px;font-family:Georgia,serif}\n.cb .key{display:flex;gap:14px;margin:8px 0 0;font-size:13px}\n.cb .key i{font-style:normal}.cb .k1{color:#ffe08a}.cb .k2{color:#8fe3ff}\n.cb .box{margin-top:10px;padding:10px 12px;border:1px dashed rgba(241,245,238,.45);border-radius:12px;font-size:13.5px}\n.cb .box b{color:#ffe08a}\n.cb .qg{display:grid;grid-template-columns:1fr 1fr;margin:6px 0 10px;border-radius:14px;overflow:hidden}\n.cb .qg div{min-height:112px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;\n  background:rgba(255,255,255,.05)}\n.cb .qg div:nth-child(1){border-right:2px solid #dfe9e2;border-bottom:2px solid #dfe9e2}\n.cb .qg div:nth-child(2){border-bottom:2px solid #dfe9e2}\n.cb .qg div:nth-child(3){border-right:2px solid #dfe9e2}\n.cb .qg small{color:#b8dcc4;font-size:11px;letter-spacing:.06em;text-transform:uppercase}\n.cb .qg b{font-size:18px;color:#ffe08a;font-family:Georgia,serif}\n.cb .qg b.q{color:rgba(241,245,238,.35);letter-spacing:.2em}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3.3-graphs"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which function is this graph?",
+      "definition": "<span style=\"color:#3b82f6\">y = sin x</span><br><small>period 2π, range [−1, 1]</small>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3.3-graphs"
+      ],
+      "termImage": "media/fig_3_8_sin.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Which function is this graph?",
+      "definition": "<span style=\"color:#3b82f6\">y = cos x</span><br><small>period 2π, range [−1, 1]</small>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3.3-graphs"
+      ],
+      "termImage": "media/fig_3_9_cos.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Which function is this graph?",
+      "definition": "<span style=\"color:#3b82f6\">y = tan x</span><br><small>period π, asymptotes at odd multiples of π/2</small>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3.3-graphs"
+      ],
+      "termImage": "media/fig_3_10_tan.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Which function is this graph?",
+      "definition": "<span style=\"color:#3b82f6\">y = cot x</span><br><small>period π, asymptotes at multiples of π</small>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3.3-graphs"
+      ],
+      "termImage": "media/fig_3_11_cot.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Which function is this graph?",
+      "definition": "<span style=\"color:#3b82f6\">y = sec x</span><br><small>never between −1 and 1; asymptotes at odd multiples of π/2</small>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3.3-graphs"
+      ],
+      "termImage": "media/fig_3_12_sec.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Which function is this graph?",
+      "definition": "<span style=\"color:#3b82f6\">y = cosec x</span><br><small>never between −1 and 1; asymptotes at multiples of π</small>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3.3-graphs"
+      ],
+      "termImage": "media/fig_3_13_cosec.webp"
     },
     {
       "noteType": "advanced-html",

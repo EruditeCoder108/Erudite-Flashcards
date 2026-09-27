@@ -43,9 +43,11 @@ body.study-ready .study-loading-cover {
   justify-content: center;
   padding: 1.5rem;
   gap: 0.7rem;
+  /* Same backdrop as the library's loading cover, so moving between the two
+     pages reads as one continuous loader. */
   background:
     radial-gradient(circle at 50% 36%, color-mix(in srgb, var(--primary) 12%, transparent), transparent 34%),
-    var(--bg-gradient);
+    linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
   color: var(--text);
   opacity: 1;
   transition: opacity 180ms ease-out;
@@ -815,6 +817,12 @@ html.reduce-motion .study-card-inner {
   touch-action: none;
 }
 
+/* The HTML card uses tighter padding; offset the label so it sits exactly
+   where it does on every other card (1.1rem top, 1.25rem left). */
+.card-face:has(.advanced-html-card-text) .card-label {
+  margin: 0.55rem 0 0 0.6rem;
+}
+
 .card-scroll::-webkit-scrollbar {
   width: 0.38rem;
 }
@@ -1040,7 +1048,7 @@ html.reduce-motion .study-card-inner {
   color: var(--paper);
   font-size: 1rem;
   font-weight: 620;
-  box-shadow: 0 0.7rem 1.4rem color-mix(in srgb, var(--ink) 35%, transparent);
+  box-shadow: 0 0.2rem 0.5rem color-mix(in srgb, var(--ink) 30%, transparent);
 }
 
 .occlusion-mask.shape-ellipse {
@@ -1056,7 +1064,7 @@ html.reduce-motion .study-card-inner {
   container-type: size;
   border-color: var(--amber);
   background: #b45309;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--amber) 28%, transparent), 0 0.7rem 1.4rem color-mix(in srgb, var(--ink) 35%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--amber) 28%, transparent), 0 0.2rem 0.5rem color-mix(in srgb, var(--ink) 30%, transparent);
 }
 
 .occlusion-mask-label {
@@ -1104,7 +1112,7 @@ html.reduce-motion .study-card-inner {
   border-color: color-mix(in srgb, var(--green) 96%, transparent);
   background: color-mix(in srgb, var(--green) 18%, transparent);
   color: #dcfce7;
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 16%, transparent), 0 0.7rem 1.4rem color-mix(in srgb, var(--ink) 24%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 16%, transparent);
 }
 
 .card-scroll:has(.card-text:not(:empty)) .card-image-wrap {
@@ -1176,7 +1184,8 @@ html.reduce-motion .study-card-inner {
   height: 100%;
   margin: 0;
   border-radius: var(--radius-lg);
-  background: var(--surface-2);
+  /* No backdrop: a panel around a letterboxed diagram showed as grey bands. */
+  background: transparent;
 }
 
 .card-image-wrap.occlusion-study-canvas img {
@@ -1186,21 +1195,26 @@ html.reduce-motion .study-card-inner {
   max-height: 100%;
   object-fit: contain;
   object-position: center;
+  border-radius: 0.85rem;
 }
 
 .image-zoom-button {
   position: absolute;
-  right: 0.65rem;
-  bottom: 0.65rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--ink) 68%, transparent);
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   color: var(--primary-text);
   border: 1px solid color-mix(in srgb, var(--muted) 18%, transparent);
+  font-size: 0.85rem;
+  opacity: 0.85;
 }
 
 .card-media-list {
@@ -1838,7 +1852,9 @@ html.reduce-motion .study-card-inner {
      dark band underneath it. */
   background: transparent;
   pointer-events: auto;
-  touch-action: pan-x pan-y;
+  /* The study stage handles tap and swipe; JS switches this to pan-y when the
+     HTML is taller than the card so it can scroll. */
+  touch-action: none;
 }
 
 .card-text-inline .katex-display {

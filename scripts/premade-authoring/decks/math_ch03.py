@@ -2,6 +2,8 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 from deckkit import *
+import showcase as sc
+M = 'media/'
 
 OUT = os.path.join(ROOT, 'premade-cards', '11th', 'Mathematics', 'class11-mathematics-ch03-trigonometric-functions')
 d = Deck('Chapter 3: Trigonometric Functions', 'Class 11', ['class-11', 'mathematics', 'ch-3'])
@@ -12,7 +14,7 @@ d.basic('What is an angle, in terms of rotation?', 'The amount of ' + T('rotatio
 d.basic('Sign of an angle by direction of rotation?', 'Anticlockwise: ' + T('positive') + '. Clockwise: ' + X('negative'))
 d.basic('Define 1 degree.', 'Rotation of ' + r'\(\tfrac{1}{360}\)' + ' of a full revolution')
 d.basic('1° in minutes, and 1′ in seconds?', N('1° = 60′') + ', ' + N('1′ = 60″'))
-d.basic('Define 1 radian.', 'The angle at the centre subtended by an arc ' + T('equal in length to the radius'))
+d.basic('Define 1 radian.', 'The angle at the centre subtended by an arc ' + T('equal in length to the radius'), definitionImage=M + 'fig_3_4_radian.webp')
 d.basic('Arc length l, radius r, angle θ (in radians): relation?', r'\(l = r\theta\)')
 d.basic('A full circle is how many radians?', r'\(2\pi\)' + ' rad (' + N('360°') + ')')
 d.basic('Radian → degree conversion?', r'\(D = \dfrac{180}{\pi} \times R\)' +'<br><small>D = degrees, R = radians</small>')
@@ -29,6 +31,9 @@ d.basic('Equal arcs subtend 65° and 110° in two circles. Ratio of radii r₁ :
 # ---------------------------------------------------------------- 3.3 Trig functions
 d.sec('3.3-trig-functions')
 d.basic('On the unit circle, a point at angle x has coordinates?', r'\((\cos x,\ \sin x)\)')
+d.occlusion('Fig. 3.6 · The unit circle', M + 'fig_3_6_unit_circle.webp', (901, 809), [
+    ('(cos x, sin x)', [520, 185, 142, 50], False), ('(0, 1)', [318, 166, 95, 40]), ('(−1, 0)', [50, 344, 160, 50]),
+    ('(1, 0)', [674, 359, 100, 48]), ('(0, −1)', [300, 607, 122, 50])], printed=True)
 d.basic('Pythagorean identity from the unit circle?', r'\(\cos^2 x + \sin^2 x = 1\)')
 d.basic('Identity involving tan and sec?', r'\(1 + \tan^2 x = \sec^2 x\)')
 d.basic('Identity involving cot and cosec?', r'\(1 + \cot^2 x = \operatorname{cosec}^2 x\)')
@@ -45,12 +50,20 @@ d.basic(r'\(\sin(2n\pi + x)\) and \(\cos(2n\pi + x)\) = ?', r'\(\sin x\)' + ' an
 d.basic('Is sin an even or odd function? And cos?', r'\(\sin(-x) = -\sin x\)' + ' (' + T('odd') + '); ' + r'\(\cos(-x) = \cos x\)' + ' (' + T('even') + ')')
 
 d.sec('3.3.1-signs')
-quadrant_card(d, '3.3.1 · Signs', 'Which functions are positive in each quadrant?',
-              [('Quadrant II', 'sin, cosec'), ('Quadrant I', 'All'), ('Quadrant III', 'tan, cot'), ('Quadrant IV', 'cos, sec')],
-              'Mnemonic: <b>A</b>ll <b>S</b>ilver <b>T</b>ea <b>C</b>ups (I → IV)', 'Signs of trig functions (ASTC)',
-              'I: all; II: sin, cosec; III: tan, cot; IV: cos, sec')
+sc.astc(d)
 d.basic('cos x = −3/5 and x is in quadrant III. sin x and tan x?', r'\(\sin x = -\tfrac45,\ \tan x = \tfrac43\)')
 d.basic('cot x = −5/12 and x is in quadrant II. sin x and cos x?', r'\(\sin x = \tfrac{12}{13},\ \cos x = -\tfrac{5}{13}\)')
+
+d.sec('3.3.3-graphs')
+sc.sin_cos_graph(d)
+for fn, name, note in [
+        ('sin x', 'fig_3_8_sin', 'period 2π, range [−1, 1]'),
+        ('cos x', 'fig_3_9_cos', 'period 2π, range [−1, 1]'),
+        ('tan x', 'fig_3_10_tan', 'period π, asymptotes at odd multiples of π/2'),
+        ('cot x', 'fig_3_11_cot', 'period π, asymptotes at multiples of π'),
+        ('sec x', 'fig_3_12_sec', 'never between −1 and 1; asymptotes at odd multiples of π/2'),
+        ('cosec x', 'fig_3_13_cosec', 'never between −1 and 1; asymptotes at multiples of π')]:
+    d.basic('Which function is this graph?', T('y = ' + fn) + '<br><small>' + note + '</small>', termImage=M + name + '.webp')
 
 d.sec('3.3.2-domain-range')
 table_card(d, '3.3.2 · Domain and range', 'Range of each function?', [
