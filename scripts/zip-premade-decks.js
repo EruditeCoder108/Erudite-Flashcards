@@ -218,6 +218,15 @@ async function processSubjectDirectory(subjectPath) {
         if ((!manifestItem.tags || !manifestItem.tags.length) && deckJson.tags) { manifestItem.tags = deckJson.tags; updated = true; }
       }
 
+      // Pricing: the first three chapters of every subject are free in full;
+      // later chapters give a free sample and Pro unlocks the rest.
+      const chapter = chapterNumber(manifestItem.name, deckJson.name, baseName);
+      if (chapter !== null) {
+        const free = chapter <= FREE_CHAPTERS;
+        if (free && manifestItem.tier !== 'free') { manifestItem.tier = 'free'; updated = true; }
+        if (!free && manifestItem.tier === 'free') { delete manifestItem.tier; updated = true; }
+      }
+
       if (needsZipping) {
         console.log(`Zipping ${entry.name} -> ${zipName}...`);
         const buffer = await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' });
@@ -234,6 +243,18 @@ async function processSubjectDirectory(subjectPath) {
     await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2), 'utf8');
     console.log(`Saved manifest.json in ${path.relative(root, subjectPath)}`);
   }
+}
+
+const FREE_CHAPTERS = 3;
+
+/** Chapter number from a deck name or file name ("Chapter 3 : Plant kingdom", "class11-biology-ch02-..."). */
+function chapterNumber(...labels) {
+  for (const label of labels) {
+    const text = String(label || '');
+    const match = text.match(/chapter[\s_:-]*(\d{1,2})/i) || text.match(/(?:^|[^a-z])ch[\s_-]*0*(\d{1,2})(?!\d)/i);
+    if (match) return Number(match[1]);
+  }
+  return null;
 }
 
 async function isSubjectDirectory(dirPath) {
