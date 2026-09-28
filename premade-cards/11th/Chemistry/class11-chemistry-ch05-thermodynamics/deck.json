@@ -1,0 +1,1495 @@
+{
+  "version": 1,
+  "name": "Chapter 5: Thermodynamics",
+  "className": "Class 11",
+  "description": "Systems, first law, work and heat, enthalpy, calorimetry, Hess’s law, bond and lattice enthalpy, entropy, Gibbs energy and equilibrium",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "System vs surroundings vs universe?",
+      "definition": "<span style=\"color:#3b82f6\">System</span>: the part being studied. <span style=\"color:#3b82f6\">Surroundings</span>: the rest that can interact. <span style=\"color:#3b82f6\">Universe</span> = system + surroundings.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ],
+      "definitionImage": "media/fig_5_1_system_surroundings.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the boundary?",
+      "definition": "The real or imaginary wall separating system from surroundings; tracks matter and energy flow",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Open, closed and isolated systems",
+      "definition": "Open (open beaker): Matter and energy; Closed (sealed copper vessel): Energy only; Isolated (thermos flask): Neither",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Types of system</p><h2>Exchanges?</h2><table><tr><td>Open (open beaker)</td><td class=\"q\">?</td></tr><tr><td>Closed (sealed copper vessel)</td><td class=\"q\">?</td></tr><tr><td>Isolated (thermos flask)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Types of system</p><h2>Exchanges?</h2><table><tr><td>Open (open beaker)</td><td class=\"a\">Matter and energy</td></tr><tr><td>Closed (sealed copper vessel)</td><td class=\"a\">Energy only</td></tr><tr><td>Isolated (thermos flask)</td><td class=\"a no\">Neither</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the three systems.",
+      "definition": "(a) <span style=\"color:#3b82f6\">Open</span>, (b) <span style=\"color:#3b82f6\">closed</span>, (c) <span style=\"color:#3b82f6\">isolated</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ],
+      "termImage": "media/fig_5_2_open_closed_isolated.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What are state functions? Examples?",
+      "definition": "Depend only on the state, <span style=\"color:#e5484d\">not the path</span>: p, V, T, U, H, S, G",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is heat (q) or work (w) a state function?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: both are path functions; but q + w = ΔU is",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Everyday example of a state function? (NCERT)",
+      "definition": "Volume of water in a pond: same whether filled by rain or tubewell",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is internal energy U?",
+      "definition": "Total energy of the system (chemical, electrical, mechanical…); only <span style=\"color:#3b82f6\">ΔU</span> can be measured",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Three ways U can change?",
+      "definition": "Heat flows in/out, work is done on/by the system, matter enters/leaves",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is an adiabatic process?",
+      "definition": "No <span style=\"color:#3b82f6\">heat transfer</span> between system and surroundings (adiabatic wall)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ],
+      "definitionImage": "media/fig_5_3_adiabatic.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What did Joule’s paddle/immersion-rod experiments show?",
+      "definition": "The same adiabatic work, done any way, gives the same change of state: <span style=\"color:#3b82f6\">ΔU = w_ad</span>, so U is a state function",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "IUPAC sign convention: w is {{c1::positive}} when work is done on the system; q is {{c2::positive}} when heat flows into the system.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ],
+      "extra": "Trap: many physics books use the old convention (work done BY the system positive)."
+    },
+    {
+      "noteType": "basic",
+      "term": "When heat flows through conducting walls with no work, ΔU = ?",
+      "definition": "<span style=\"color:#3b82f6\">q</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.1-thermodynamic-terms"
+      ],
+      "definitionImage": "media/fig_5_4_conducting_walls.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "First law of thermodynamics?",
+      "definition": "\\( \\Delta U = q + w \\): energy of an isolated system is constant",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Problem 5.1: ΔU for (i) adiabatic, work done on; (ii) heat lost, no work; (iii) work by system, heat supplied?",
+      "definition": "(i) ΔU = w_ad (adiabatic wall). (ii) ΔU = −q (conducting wall). (iii) ΔU = q − w (closed system).",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Work against constant external pressure?",
+      "definition": "\\( w = -p_{ex} \\Delta V = -p_{ex}(V_f - V_i) \\)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ],
+      "definitionImage": "media/fig_5_5a_compression.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "On a p-V plot, what does work on the gas equal?",
+      "definition": "The <span style=\"color:#3b82f6\">shaded area</span> under the curve",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ],
+      "definitionImage": "media/fig_5_5b_finite_steps.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a reversible process?",
+      "definition": "One that can be reversed at any moment by an <span style=\"color:#3b82f6\">infinitesimal change</span>; proceeds infinitely slowly through equilibrium states",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ],
+      "definitionImage": "media/fig_5_5c_reversible.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Reversible isothermal work for an ideal gas?",
+      "definition": "\\( w_{rev} = -2.303 \\, nRT \\log \\frac{V_f}{V_i} \\)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is free expansion, and the work done?",
+      "definition": "Expansion into <span style=\"color:#3b82f6\">vacuum</span> (p_ex = 0): <span style=\"color:#3b82f6\">w = 0</span>, reversible or not",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For isothermal expansion of an ideal gas, ΔU = ?",
+      "definition": "<span style=\"color:#f08c00\">0</span> (U depends only on T), so q = −w",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does reversible expansion give the most work? (intuition)",
+      "definition": "The gas always pushes against the <span style=\"color:#3b82f6\">largest possible</span> opposing pressure; area under the curve is maximum",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2 L gas at 10 atm expands isothermally into vacuum to 10 L. q and w? (Problem 5.2)",
+      "definition": "<span style=\"color:#3b82f6\">q = w = 0</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Same expansion against 1 atm? (Problem 5.3)",
+      "definition": "q = −w = 1 × 8 = <span style=\"color:#f08c00\">8 L atm</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Reversible isothermal expansion",
+      "definition": "39.37 L atm",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.4</p><h2>1 mol gas, 2 L → 10 L reversibly at 298 K. q?</h2><div class=\"prob\">q = −w = 2.303 nRT log(V_f/V_i)</div><ol><li>V_f/V_i = 10/2 = 5</li><li>q = 2.303 × 1 × 0.08206 × 298 × log 5</li><li>= 2.303 × 0.08206 × 298 × 0.699</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.4</p><h2>1 mol gas, 2 L → 10 L reversibly at 298 K. q?</h2><div class=\"prob\">q = −w = 2.303 nRT log(V_f/V_i)</div><ol><li>V_f/V_i = 10/2 = 5</li><li>q = 2.303 × 1 × 0.08206 × 298 × log 5</li><li>= 2.303 × 0.08206 × 298 × 0.699</li><li class=\"r\">= <b>39.37 L atm</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: 1 L atm in joules?",
+      "definition": "<span style=\"color:#f08c00\">101.3 J</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For an adiabatic change, ΔU = ?",
+      "definition": "<span style=\"color:#3b82f6\">w_ad</span> (q = 0)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "At constant volume, ΔU = ?",
+      "definition": "<span style=\"color:#3b82f6\">q_V</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2-first-law-and-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define enthalpy.",
+      "definition": "\\( H = U + pV \\); a state function (Greek \"enthalpien\", to warm)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is ΔH physically?",
+      "definition": "Heat absorbed at <span style=\"color:#3b82f6\">constant pressure</span>: ΔH = q_p",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between ΔH and ΔU for gaseous reactions?",
+      "definition": "\\( \\Delta H = \\Delta U + \\Delta n_g RT \\)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is Δn_g?",
+      "definition": "Moles of <span style=\"color:#3b82f6\">gaseous products − gaseous reactants</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is ΔH ≈ ΔU?",
+      "definition": "For solids/liquids only, or when <span style=\"color:#3b82f6\">Δn_g = 0</span> (e.g. H₂ + Cl₂ → 2HCl)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔU for vaporising 1 mol water at 100 °C if ΔvapH = 41 kJ/mol? (Problem 5.5)",
+      "definition": "41.00 − (1 × 8.3 × 373 × 10⁻³) = <span style=\"color:#f08c00\">37.9 kJ mol⁻¹</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: sign of ΔH − ΔU for N₂ + 3H₂ → 2NH₃?",
+      "definition": "Δn_g = <span style=\"color:#f08c00\">−2</span>, so ΔH < ΔU",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Extensive vs intensive property?",
+      "definition": "<span style=\"color:#3b82f6\">Extensive</span>: depends on amount (mass, V, U, H, C). <span style=\"color:#3b82f6\">Intensive</span>: does not (T, p, density).",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ],
+      "definitionImage": "media/fig_5_6_extensive_intensive.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Is a molar property extensive or intensive?",
+      "definition": "<span style=\"color:#3b82f6\">Intensive</span> (e.g. molar volume, molar heat capacity)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Heat capacity, molar heat capacity and specific heat?",
+      "definition": "<span style=\"color:#3b82f6\">C</span>: q = CΔT. <span style=\"color:#3b82f6\">Cₘ</span>: per mole. <span style=\"color:#3b82f6\">Specific heat c</span>: per unit mass, q = c·m·ΔT.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between Cp and Cv for an ideal gas?",
+      "definition": "\\( C_p - C_V = R \\)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is Cp > Cv? (intuition)",
+      "definition": "At constant p, part of the heat does <span style=\"color:#3b82f6\">expansion work</span>, so more heat is needed per degree",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.2.2-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which calorimeter measures ΔU, and why?",
+      "definition": "The <span style=\"color:#3b82f6\">bomb calorimeter</span>: sealed steel bomb, constant volume, so q_V = ΔU",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.3-calorimetry"
+      ]
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 5.7 · Bomb calorimeter",
+      "definition": "",
+      "image": "media/fig_5_7_bomb_calorimeter.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 776,
+        "imageHeight": 1001,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              440,
+              5,
+              250,
+              44
+            ],
+            "answer": "Thermometer",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              280,
+              48,
+              190,
+              46
+            ],
+            "answer": "Firing leads",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              30,
+              165,
+              112,
+              48
+            ],
+            "answer": "Stirrer",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              272,
+              172,
+              136,
+              92
+            ],
+            "answer": "Oxygen inlet",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              2,
+              462,
+              130,
+              48
+            ],
+            "answer": "Sample",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              2,
+              598,
+              104,
+              50
+            ],
+            "answer": "Bomb",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              410,
+              672,
+              152,
+              128
+            ],
+            "answer": "Oxygen under pressure",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              414,
+              876,
+              116,
+              48
+            ],
+            "answer": "Water",
+            "labelInImage": true
+          }
+        ]
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.3-calorimetry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What measures ΔH directly?",
+      "definition": "A <span style=\"color:#3b82f6\">constant-pressure calorimeter</span> (e.g. coffee-cup / foamed polystyrene cup)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.3-calorimetry"
+      ],
+      "definitionImage": "media/fig_5_8_constant_p_calorimeter.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Bomb calorimeter: graphite",
+      "definition": "−248 kJ/mol",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.6</p><h2>1 g graphite burnt in bomb calorimeter, C = 20.7 kJ/K, T 298 → 299 K. ΔH?</h2><div class=\"prob\">q = −C·ΔT; scale to 1 mol; Δn_g = 0.</div><ol><li>q(1 g) = −20.7 × 1 = −20.7 kJ</li><li class=\"h\">?</li><li>Δn_g = 0, so ΔH = ΔU = <b>−2.48 × 10² kJ mol⁻¹</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.6</p><h2>1 g graphite burnt in bomb calorimeter, C = 20.7 kJ/K, T 298 → 299 K. ΔH?</h2><div class=\"prob\">q = −C·ΔT; scale to 1 mol; Δn_g = 0.</div><ol><li>q(1 g) = −20.7 × 1 = −20.7 kJ</li><li class=\"r\">Per mol: −20.7 × 12 = −248 kJ</li><li>Δn_g = 0, so ΔH = ΔU = <b>−2.48 × 10² kJ mol⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.3-calorimetry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sign of ΔrH for exothermic and endothermic reactions?",
+      "definition": "Exothermic: <span style=\"color:#3b82f6\">negative</span>; endothermic: <span style=\"color:#3b82f6\">positive</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.3-calorimetry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔrH from molar enthalpies?",
+      "definition": "\\( \\Delta_r H = \\sum a_i H_{products} - \\sum b_i H_{reactants} \\)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the standard state?",
+      "definition": "Pure form at <span style=\"color:#f08c00\">1 bar</span> and the specified temperature (usually 298 K)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Phase-change enthalpies: melting = {{c1::ΔfusH}}, boiling = {{c2::ΔvapH}}, solid → vapour = {{c3::ΔsubH}}; all are {{c4::positive}}.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔfusH and ΔvapH of water?",
+      "definition": "<span style=\"color:#f08c00\">6.01</span> and <span style=\"color:#f08c00\">40.79 kJ mol⁻¹</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ],
+      "definitionImage": "media/tab_5_1_fusion_vaporisation.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Sublimation examples in NCERT?",
+      "definition": "Dry ice CO₂ at 195 K (<span style=\"color:#f08c00\">25.2 kJ/mol</span>); naphthalene (<span style=\"color:#f08c00\">73.0 kJ/mol</span>)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does acetone need less heat to vaporise than water?",
+      "definition": "Water has strong <span style=\"color:#3b82f6\">H-bonds</span>; acetone only weaker dipole-dipole forces",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Heat to evaporate 18 g water at 298 K, and ΔvapU? (Problem 5.7)",
+      "definition": "q = <span style=\"color:#f08c00\">44.01 kJ</span>; ΔU = 44.01 − 2.48 = <span style=\"color:#f08c00\">41.53 kJ</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Water at 100 °C to ice",
+      "definition": "−13.56 kJ/mol",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.8</p><h2>1 mol water at 100 °C → ice at 0 °C. ΔU? (ΔfusH = 6.00 kJ/mol, c = 4.2 J/g°C)</h2><div class=\"prob\">Cool the liquid, then freeze.</div><ol><li>ΔH₁ = −18 × 4.2 × 100 = −7.56 kJ</li><li>ΔH₂ = −6.00 kJ</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.8</p><h2>1 mol water at 100 °C → ice at 0 °C. ΔU? (ΔfusH = 6.00 kJ/mol, c = 4.2 J/g°C)</h2><div class=\"prob\">Cool the liquid, then freeze.</div><ol><li>ΔH₁ = −18 × 4.2 × 100 = −7.56 kJ</li><li>ΔH₂ = −6.00 kJ</li><li class=\"r\">ΔH = −13.56 kJ; no gas, so <b>ΔU = −13.56 kJ mol⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define standard enthalpy of formation ΔfH°.",
+      "definition": "Enthalpy change to form <span style=\"color:#3b82f6\">one mole</span> of a compound from its elements in their <span style=\"color:#3b82f6\">most stable states</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Reference states of H, O, C, S?",
+      "definition": "H₂(g), O₂(g), <span style=\"color:#3b82f6\">C (graphite)</span>, <span style=\"color:#3b82f6\">S (rhombic)</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔfH° of an element in its reference state?",
+      "definition": "<span style=\"color:#3b82f6\">Zero</span> by convention",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is CaO + CO₂ → CaCO₃ not ΔfH of CaCO₃?",
+      "definition": "CaCO₃ is formed from <span style=\"color:#e5484d\">compounds</span>, not from elements",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is H₂ + Br₂ → 2HBr not ΔfH of HBr?",
+      "definition": "It forms <span style=\"color:#e5484d\">2 mol</span>: ΔfH(HBr) = ½ of it = <span style=\"color:#f08c00\">−36.4 kJ/mol</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔfH° of H₂O(l), CH₄(g), CO₂(g)?",
+      "definition": "<span style=\"color:#f08c00\">−285.8</span>, <span style=\"color:#f08c00\">−74.81</span>, <span style=\"color:#f08c00\">−393.5 kJ mol⁻¹</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ],
+      "definitionImage": "media/tab_5_2_formation_enthalpies.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔrH from enthalpies of formation?",
+      "definition": "\\( \\Delta_r H^{\\circ} = \\sum a \\, \\Delta_f H^{\\circ}_{prod} - \\sum b \\, \\Delta_f H^{\\circ}_{react} \\)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔrH for CaCO₃ → CaO + CO₂?",
+      "definition": "(−635.1) + (−393.5) − (−1206.9) = <span style=\"color:#f08c00\">+178.3 kJ mol⁻¹</span>: endothermic",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a thermochemical equation?",
+      "definition": "A balanced equation with <span style=\"color:#3b82f6\">physical states</span> and its <span style=\"color:#3b82f6\">ΔrH</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Thermochemical rules: coefficients mean {{c1::moles}} (never molecules); halving the equation {{c2::halves}} ΔrH; reversing it {{c3::reverses the sign}}.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔrH for Fe₂O₃ + 3H₂ → 2Fe + 3H₂O(l)?",
+      "definition": "3(−285.83) − (−824.2) = <span style=\"color:#f08c00\">−33.3 kJ mol⁻¹</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Hess’s law of constant heat summation?",
+      "definition": "ΔrH is the <span style=\"color:#3b82f6\">same</span> whether a reaction occurs in one step or many (H is a state function)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Hess: enthalpy of formation of CO",
+      "definition": "−110.5 kJ/mol",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Hess’s law</p><h2>ΔrH for C(graphite) + ½O₂ → CO?</h2><div class=\"prob\">C + O₂ → CO₂: −393.5. CO + ½O₂ → CO₂: −283.0.</div><ol><li>Reverse the second: CO₂ → CO + ½O₂, +283.0</li><li>Add to the first</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Hess’s law</p><h2>ΔrH for C(graphite) + ½O₂ → CO?</h2><div class=\"prob\">C + O₂ → CO₂: −393.5. CO + ½O₂ → CO₂: −283.0.</div><ol><li>Reverse the second: CO₂ → CO + ½O₂, +283.0</li><li>Add to the first</li><li class=\"r\">ΔrH = −393.5 + 283.0 = <b>−110.5 kJ mol⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can’t ΔfH of CO be measured directly?",
+      "definition": "Burning carbon always gives <span style=\"color:#e5484d\">some CO₂</span> along with CO",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.4-reaction-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define standard enthalpy of combustion.",
+      "definition": "Enthalpy change per mole when a substance <span style=\"color:#3b82f6\">burns completely</span>, all in standard states",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔcH° of butane (LPG) and glucose?",
+      "definition": "Butane <span style=\"color:#f08c00\">−2658 kJ/mol</span>; glucose <span style=\"color:#f08c00\">−2802 kJ/mol</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Enthalpy of formation of benzene",
+      "definition": "+48.5 kJ/mol",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.9</p><h2>ΔcH(benzene) = −3267 kJ/mol. ΔfH(benzene)? (ΔfH CO₂ −393.5, H₂O −285.83)</h2><div class=\"prob\">C₆H₆ + 15/2 O₂ → 6CO₂ + 3H₂O</div><ol><li>6(−393.5) + 3(−285.83) = −3218.5</li><li>ΔfH = −3218.5 − (−3267.0)</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.9</p><h2>ΔcH(benzene) = −3267 kJ/mol. ΔfH(benzene)? (ΔfH CO₂ −393.5, H₂O −285.83)</h2><div class=\"prob\">C₆H₆ + 15/2 O₂ → 6CO₂ + 3H₂O</div><ol><li>6(−393.5) + 3(−285.83) = −3218.5</li><li>ΔfH = −3218.5 − (−3267.0)</li><li class=\"r\">= <b>+48.5 kJ mol⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT’s Problem 5.9 working prints the final ΔfH(benzene) with a minus sign. Right sign?",
+      "definition": "<span style=\"color:#3b82f6\">+48.5 kJ/mol</span>: −3218.5 − (−3267.0) is positive; reversing the combustion equation gives +3267, not −3267",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define enthalpy of atomization.",
+      "definition": "Enthalpy change to break <span style=\"color:#3b82f6\">one mole of bonds completely</span> into gaseous atoms (e.g. H₂ → 2H, 435 kJ/mol; CH₄ → C + 4H, 1665 kJ/mol)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For Na(s) → Na(g), atomization enthalpy equals?",
+      "definition": "Enthalpy of <span style=\"color:#3b82f6\">sublimation</span> (108.4 kJ/mol)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Bond dissociation enthalpy vs mean bond enthalpy?",
+      "definition": "<span style=\"color:#3b82f6\">Dissociation</span>: for a specific bond. <span style=\"color:#3b82f6\">Mean</span>: average over identical bonds, e.g. C–H in CH₄ = 1665/4 = <span style=\"color:#f08c00\">416 kJ/mol</span>.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do the 4 C–H bonds of CH₄ need different energies (427, 439, 452, 347)?",
+      "definition": "Each step breaks a bond in a <span style=\"color:#3b82f6\">different fragment</span> (CH₄, CH₃, CH₂, CH)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Bond enthalpies of H–H, Cl–Cl, O=O?",
+      "definition": "<span style=\"color:#f08c00\">435</span>, <span style=\"color:#f08c00\">242</span>, <span style=\"color:#f08c00\">498</span> kJ/mol (Table 5.3; the text says 428 for O=O)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ],
+      "definitionImage": "media/tab_5_3a_single_bonds.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔrH from bond enthalpies (gas phase)?",
+      "definition": "\\( \\Delta_r H = \\sum BE_{reactants} - \\sum BE_{products} \\) (bonds broken − bonds formed)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ],
+      "definitionImage": "media/tab_5_3b_multiple_bonds.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: order of terms in the bond-enthalpy formula vs the ΔfH formula?",
+      "definition": "Bond enthalpies: <span style=\"color:#3b82f6\">reactants − products</span>. Formation enthalpies: <span style=\"color:#3b82f6\">products − reactants</span>.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define lattice enthalpy.",
+      "definition": "Enthalpy change when 1 mol of an ionic solid <span style=\"color:#3b82f6\">dissociates into gaseous ions</span> (NaCl: <span style=\"color:#f08c00\">+788 kJ/mol</span>)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is lattice enthalpy found?",
+      "definition": "Indirectly, by a <span style=\"color:#3b82f6\">Born-Haber cycle</span> (Hess’s law; sum round a cycle = 0)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ],
+      "definitionImage": "media/fig_5_9_born_haber.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "Born-Haber for NaCl: ΔlatticeH = {{c1::411.2}} (−ΔfH) + {{c2::108.4}} (ΔsubH Na) + {{c3::121}} (½ Cl–Cl) + {{c4::496}} (ΔiH Na) − {{c5::348.6}} (ΔegH Cl) = 788 kJ/mol.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ionization energy vs ionization enthalpy (box)?",
+      "definition": "Energies are defined at 0 K; ΔiH = E₀ + <span style=\"color:#3b82f6\">5/2 RT</span>; ΔegH = −A − 5/2 RT",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Enthalpy of solution from lattice and hydration enthalpy?",
+      "definition": "\\( \\Delta_{sol} H = \\Delta_{lattice} H + \\Delta_{hyd} H \\); NaCl: 788 − 784 = <span style=\"color:#f08c00\">+4 kJ/mol</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does solubility of most salts rise with temperature?",
+      "definition": "ΔsolH is usually <span style=\"color:#3b82f6\">positive</span> (endothermic dissolution)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are many fluorides less soluble than chlorides?",
+      "definition": "Small F⁻ gives a very high <span style=\"color:#3b82f6\">lattice enthalpy</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is enthalpy of dilution?",
+      "definition": "Heat change on adding more solvent to a solution, e.g. HCl·25aq + 15aq → HCl·40aq: <span style=\"color:#f08c00\">−0.76 kJ/mol</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Enthalpy of solution at infinite dilution for HCl?",
+      "definition": "<span style=\"color:#f08c00\">−74.85 kJ/mol</span> (limiting value as solvent increases)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.5-types-of-reaction-enthalpies"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Meaning of \"spontaneous\"?",
+      "definition": "Has the potential to proceed <span style=\"color:#3b82f6\">without external help</span>; says <span style=\"color:#e5484d\">nothing about rate</span> (H₂ + O₂ at room T)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is a spontaneous process reversible?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is irreversible and can be reversed only by an external agency",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is decrease in enthalpy enough for spontaneity?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: some endothermic reactions are spontaneous (e.g. ½N₂ + O₂ → NO₂; C + 2S → CS₂)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ],
+      "definitionImage": "media/fig_5_10b_endothermic.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Enthalpy diagram of an exothermic reaction?",
+      "definition": "Products lie <span style=\"color:#3b82f6\">below</span> reactants; ΔrH negative",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ],
+      "definitionImage": "media/fig_5_10a_exothermic.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What drives diffusion of two gases when ΔH = 0?",
+      "definition": "Increase in <span style=\"color:#3b82f6\">entropy</span> (disorder)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ],
+      "definitionImage": "media/fig_5_11_diffusion.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Entropy change for a reversible process?",
+      "definition": "\\( \\Delta S = \\frac{q_{rev}}{T} \\)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does heat added at low T raise entropy more? (intuition)",
+      "definition": "A cold system is ordered, so the same heat causes a <span style=\"color:#3b82f6\">bigger relative increase</span> in randomness (like a sneeze in a quiet library vs a busy street)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Entropy order of solid, liquid, gas?",
+      "definition": "<span style=\"color:#3b82f6\">Solid < liquid < gas</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Criterion for spontaneity in terms of entropy?",
+      "definition": "\\( \\Delta S_{total} = \\Delta S_{sys} + \\Delta S_{surr} > 0 \\); at equilibrium ΔS_total = 0",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does ΔU distinguish reversible from irreversible expansion?",
+      "definition": "<span style=\"color:#e5484d\">No</span> (ΔU = 0 for both isothermally); <span style=\"color:#3b82f6\">ΔS_total</span> does",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Entropy increases or decreases? (i) liquid → solid, (ii) solid 0 → 115 K, (iii) NaHCO₃ decomposes, (iv) H₂ → 2H. (Problem 5.10)",
+      "definition": "(i) <span style=\"color:#e5484d\">decreases</span>; (ii), (iii), (iv) <span style=\"color:#3b82f6\">increase</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Rusting is spontaneous",
+      "definition": "ΔS_total = +4980.6 J/K/mol",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.11</p><h2>4Fe + 3O₂ → 2Fe₂O₃: ΔS = −549.4 J/K/mol, ΔH = −1648 kJ/mol. Why spontaneous?</h2><div class=\"prob\">ΔS_surr = −ΔH/T</div><ol><li>ΔS_surr = 1648 × 10³ / 298 = 5530 J/K/mol</li><li class=\"h\">?</li><li>= <b>+4980.6 J/K/mol > 0</b>, spontaneous</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.11</p><h2>4Fe + 3O₂ → 2Fe₂O₃: ΔS = −549.4 J/K/mol, ΔH = −1648 kJ/mol. Why spontaneous?</h2><div class=\"prob\">ΔS_surr = −ΔH/T</div><ol><li>ΔS_surr = 1648 × 10³ / 298 = 5530 J/K/mol</li><li class=\"r\">ΔS_total = 5530 − 549.4</li><li>= <b>+4980.6 J/K/mol > 0</b>, spontaneous</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define Gibbs energy.",
+      "definition": "\\( G = H - TS \\); extensive state function",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Gibbs equation?",
+      "definition": "\\( \\Delta G = \\Delta H - T \\Delta S \\)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "At constant T and p: ΔG {{c1::< 0}} → spontaneous; ΔG {{c2::> 0}} → non-spontaneous; ΔG {{c3::= 0}} → equilibrium.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is G called \"free energy\"?",
+      "definition": "ΔG is the net energy <span style=\"color:#3b82f6\">available for useful work</span> (TΔS is unavailable)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Effect of temperature on spontaneity",
+      "definition": "ΔH−ΔS+: always; ΔH+ΔS+: high T; ΔH−ΔS−: low T; ΔH+ΔS−: never",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 5.4</p><h2>When is the reaction spontaneous?</h2><div class=\"qg\"><div><small>ΔH −, ΔS +</small><b class=\"q\">?</b></div><div><small>ΔH +, ΔS +</small><b class=\"q\">?</b></div><div><small>ΔH −, ΔS −</small><b class=\"q\">?</b></div><div><small>ΔH +, ΔS −</small><b class=\"q\">?</b></div></div></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 5.4</p><h2>When is the reaction spontaneous?</h2><div class=\"qg\"><div><small>ΔH −, ΔS +</small><b class=\"r\">Always</b></div><div><small>ΔH +, ΔS +</small><b class=\"r\">High T</b></div><div><small>ΔH −, ΔS −</small><b class=\"r\">Low T</b></div><div><small>ΔH +, ΔS −</small><b class=\"r\">Never</b></div></div><p class=\"note\">Low/high T are relative; the crossover is at T = ΔH/ΔS.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .qg{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;margin:8px 0 12px;\n  border-radius:14px;overflow:hidden;border:1px solid #e8e1d2}\n.k .qg div{background:#fff;min-height:118px;padding:12px;display:flex;flex-direction:column;justify-content:space-between}\n.k .qg div:nth-child(1){border-right:2px solid #1f2430;border-bottom:2px solid #1f2430}\n.k .qg div:nth-child(2){border-bottom:2px solid #1f2430}\n.k .qg div:nth-child(3){border-right:2px solid #1f2430}\n.k .qg small{color:#7a7466;font-size:11px;letter-spacing:.06em;text-transform:uppercase}\n.k .qg b{font-size:17px;color:#1d5fd6}.k .qg b.q{color:#b8ae99;letter-spacing:.2em}\n.k .qg b.r{animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .qg{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;margin:8px 0 12px;\n  border-radius:14px;overflow:hidden;border:1px solid #e8e1d2}\n.k .qg div{background:#fff;min-height:118px;padding:12px;display:flex;flex-direction:column;justify-content:space-between}\n.k .qg div:nth-child(1){border-right:2px solid #1f2430;border-bottom:2px solid #1f2430}\n.k .qg div:nth-child(2){border-bottom:2px solid #1f2430}\n.k .qg div:nth-child(3){border-right:2px solid #1f2430}\n.k .qg small{color:#7a7466;font-size:11px;letter-spacing:.06em;text-transform:uppercase}\n.k .qg b{font-size:17px;color:#1d5fd6}.k .qg b.q{color:#b8ae99;letter-spacing:.2em}\n.k .qg b.r{animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Table 5.4 in full?",
+      "definition": "Signs of ΔH, ΔS and ΔG with the temperature condition",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ],
+      "definitionImage": "media/tab_5_4_spontaneity.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Temperature at which ΔG changes sign?",
+      "definition": "\\( T = \\frac{\\Delta H}{\\Delta S} \\)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Second law of thermodynamics (NCERT form)?",
+      "definition": "The entropy of an <span style=\"color:#3b82f6\">isolated system</span> increases in a spontaneous change",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are spontaneous exothermic reactions so common?",
+      "definition": "Released heat increases the <span style=\"color:#3b82f6\">entropy of the surroundings</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Third law of thermodynamics?",
+      "definition": "Entropy of a <span style=\"color:#3b82f6\">pure perfect crystal</span> → 0 as T → 0 K",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the third law limited to pure crystals?",
+      "definition": "Solutions and supercooled liquids have <span style=\"color:#e5484d\">non-zero</span> entropy at 0 K",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Use of the third law?",
+      "definition": "Lets us find <span style=\"color:#3b82f6\">absolute entropies</span> from thermal data",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.6-spontaneity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between ΔG° and K?",
+      "definition": "\\( \\Delta_r G^{\\circ} = -RT \\ln K = -2.303 \\, RT \\log K \\)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.7-gibbs-energy-and-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If ΔG° is large and negative, K is?",
+      "definition": "Much <span style=\"color:#3b82f6\">greater than 1</span>: reaction goes nearly to completion",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.7-gibbs-energy-and-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔrG° for 3/2 O₂ → O₃ at 298 K, Kp = 2.47 × 10⁻²⁹? (Problem 5.12)",
+      "definition": "<span style=\"color:#f08c00\">+163 kJ mol⁻¹</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.7-gibbs-energy-and-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "K at 298 K if ΔrG° = −13.6 kJ/mol? (Problem 5.13)",
+      "definition": "log K = 2.38 → K = <span style=\"color:#f08c00\">2.4 × 10²</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.7-gibbs-energy-and-equilibrium"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "ΔG° of N₂O₄ dissociation",
+      "definition": "≈ −0.79 kJ/mol",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.14</p><h2>N₂O₄ ⇌ 2NO₂ is 50% dissociated at 60 °C, 1 atm. ΔG°?</h2><div class=\"prob\">Start with 1 mol N₂O₄.</div><ol><li>Mol: N₂O₄ 0.5, NO₂ 1.0; total 1.5</li><li>Kp = (1/1.5)² / (0.5/1.5) = 1.33 atm</li><li>ΔG° = −2.303 × 8.314 × 333 × log 1.33</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Problem 5.14</p><h2>N₂O₄ ⇌ 2NO₂ is 50% dissociated at 60 °C, 1 atm. ΔG°?</h2><div class=\"prob\">Start with 1 mol N₂O₄.</div><ol><li>Mol: N₂O₄ 0.5, NO₂ 1.0; total 1.5</li><li>Kp = (1/1.5)² / (0.5/1.5) = 1.33 atm</li><li>ΔG° = −2.303 × 8.314 × 333 × log 1.33</li><li class=\"r\">= <b>≈ −790 J mol⁻¹ (−0.79 kJ mol⁻¹)</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.7-gibbs-energy-and-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT prints ΔG° = −763.8 kJ/mol in Problem 5.14. Right answer?",
+      "definition": "2.303 × 8.314 × 333 × 0.1239 ≈ <span style=\"color:#3b82f6\">790 J</span>, so ΔG° ≈ <span style=\"color:#f08c00\">−0.79 kJ/mol</span>. Sanity check: K ≈ 1 always means ΔG° ≈ 0, never hundreds of kJ.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "5.7-gibbs-energy-and-equilibrium"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Thermodynamics formula sheet",
+      "definition": "First law: ΔU = q + w; Enthalpy: ΔH = ΔU + Δn_g RT; Heat capacities: Cp − Cv = R; Reversible isothermal work: w = −2.303 nRT log(V_f/V_i); Gibbs: ΔG = ΔH − TΔS; Equilibrium: ΔG° = −2.303 RT log K",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Key relation?</h2><table><tr><td>First law</td><td class=\"q\">?</td></tr><tr><td>Enthalpy</td><td class=\"q\">?</td></tr><tr><td>Heat capacities</td><td class=\"q\">?</td></tr><tr><td>Reversible isothermal work</td><td class=\"q\">?</td></tr><tr><td>Gibbs</td><td class=\"q\">?</td></tr><tr><td>Equilibrium</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Key relation?</h2><table><tr><td>First law</td><td class=\"a\">ΔU = q + w</td></tr><tr><td>Enthalpy</td><td class=\"a\">ΔH = ΔU + Δn_g RT</td></tr><tr><td>Heat capacities</td><td class=\"a\">Cp − Cv = R</td></tr><tr><td>Reversible isothermal work</td><td class=\"a\">w = −2.303 nRT log(V_f/V_i)</td></tr><tr><td>Gibbs</td><td class=\"a\">ΔG = ΔH − TΔS</td></tr><tr><td>Equilibrium</td><td class=\"a\">ΔG° = −2.303 RT log K</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Heat and work special cases",
+      "definition": "q at constant V: ΔU (bomb calorimeter); q at constant p: ΔH (coffee-cup calorimeter); q in adiabatic process: zero; w in free expansion: zero",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Measured by / equals?</h2><table><tr><td>q at constant V</td><td class=\"q\">?</td></tr><tr><td>q at constant p</td><td class=\"q\">?</td></tr><tr><td>q in adiabatic process</td><td class=\"q\">?</td></tr><tr><td>w in free expansion</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Measured by / equals?</h2><table><tr><td>q at constant V</td><td class=\"a\">ΔU (bomb calorimeter)</td></tr><tr><td>q at constant p</td><td class=\"a\">ΔH (coffee-cup calorimeter)</td></tr><tr><td>q in adiabatic process</td><td class=\"a no\">zero</td></tr><tr><td>w in free expansion</td><td class=\"a no\">zero</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-5",
+        "summary"
+      ]
+    }
+  ]
+}
