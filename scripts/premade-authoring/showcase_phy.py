@@ -33,10 +33,11 @@ PHY = BLUEPRINT + """
 """
 
 
-def anim(deck, tag, q, svg_front, svg_back, note_html, term, definition, css='', hint='Think it through, then flip.', vb='0 0 300 200'):
-    """One blueprint card: same question on both faces; the back adds the animated layer and a note."""
+def anim(deck, tag, q, svg_front, svg_back, note_html, term, definition, css='', hint='Think it through, then flip.', vb='0 0 300 200', front_only=''):
+    """One blueprint card: same question on both faces; the back adds the animated layer and a note.
+    `front_only` is SVG shown on the front but not the back (e.g. a static object that moves on the back)."""
     front = (f'<div class="w bp"><p class="tag">{tag}</p><h2>{q}</h2>'
-             f'<svg viewBox="{vb}">{ARROW_DEFS}{svg_front}</svg><p class="hint">{hint}</p></div>')
+             f'<svg viewBox="{vb}">{ARROW_DEFS}{svg_front}{front_only}</svg><p class="hint">{hint}</p></div>')
     back = (f'<div class="w bp"><p class="tag">{tag}</p><h2>{q}</h2>'
             f'<svg viewBox="{vb}">{ARROW_DEFS}{svg_front}{svg_back}</svg>'
             f'<div class="eq fx d5">{note_html}</div></div>')
@@ -167,3 +168,79 @@ def relative_velocity_1d(deck):
             '<p>From A, B appears to move backward at 5 m/s (and the road rushes back at 20 m/s).</p></div></div>')
     _card(deck, 'Relative velocity of B with respect to A (same direction)',
           'v_BA = v_B − v_A = 15 − 20 = −5 m/s: B appears to move backward at 5 m/s as seen from A', PHY + css, front, back)
+
+
+# ---------------------------------------------------------------- Ch 3 Motion in a plane
+def projectile_shadows(deck):
+    ox, oy, R, H, n, T = 40, 172, 220, 118, 30, 3.0
+    fr = [i / n for i in range(n + 1)]
+    css = (keyframes('pb', [(R * f, -4 * H * f * (1 - f)) for f in fr], T, 'linear', 0.4) +
+           keyframes('px', [(R * f, 0) for f in fr], T, 'linear', 0.4) +
+           keyframes('py', [(0, -4 * H * f * (1 - f)) for f in fr], T, 'linear', 0.4))
+    path = ' '.join(f'{ox + R * f:.1f},{oy - 4 * H * f * (1 - f):.1f}' for f in fr)
+    base = (f'<line class="ax" x1="{ox - 12}" y1="{oy}" x2="{ox + R + 25}" y2="{oy}" marker-end="url(#ah)"></line>'
+            f'<line class="ax" x1="{ox - 12}" y1="{oy + 10}" x2="{ox - 12}" y2="30" marker-end="url(#ah)"></line>'
+            f'<text class="lbl" x="{ox + R + 22}" y="{oy + 16}" text-anchor="end">x</text><text class="lbl" x="{ox - 4}" y="38">y</text>'
+            f'<polyline class="guide" points="{path}"></polyline>')
+    back = (f'<g transform="translate({ox},{oy})"><circle class="dot pb" cx="0" cy="0" r="7"></circle></g>'
+            f'<g transform="translate({ox},{oy + 12})"><circle class="dot3 px" cx="0" cy="0" r="5"></circle></g>'
+            f'<g transform="translate({ox - 12},{oy})"><circle class="dot2 py" cx="0" cy="0" r="5"></circle></g>'
+            f'<text class="rd" x="{ox + 60}" y="{oy + 26}">x-shadow: steady pace</text>'
+            f'<text class="gr" x="{ox + 2}" y="26">y-shadow: up, stop, down (free fall)</text>')
+    anim(deck, 'Projectile · independence of motions',
+         'Watch the shadows of a projectile on the two axes. What kind of motion does each shadow do?',
+         base, back,
+         '<p>Horizontal: <b>uniform velocity</b> (aₓ = 0, vₓ = u cos θ).</p>'
+         '<p>Vertical: <b>free fall</b> (aᵧ = −g), exactly like a ball thrown straight up with u sin θ.</p>'
+         '<p>Both shadows share only the <b>time</b>.</p>',
+         'Projectile = uniform horizontal motion + vertical free fall',
+         'x-shadow moves uniformly (ax = 0); y-shadow rises and falls like a vertical throw (ay = −g); they share only time',
+         css, hint='Imagine a light above and a light to the side.', vb='0 0 300 200')
+
+
+def circular_arrows(deck):
+    cx, cy, r = 150, 104, 72
+    css = (f'.bp .spinr{{transform-origin:{cx}px {cy}px;animation:spinr 4s linear infinite .3s}}'
+           '@keyframes spinr{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}')
+    base = (f'<circle class="ghost" cx="{cx}" cy="{cy}" r="{r}"></circle>'
+            f'<circle class="dot" cx="{cx}" cy="{cy}" r="3"></circle>')
+    still = f'<circle class="obj2" cx="{cx + r}" cy="{cy}" r="7"></circle>'
+    back = (f'<g class="spinr"><line class="f-n" x1="{cx + r}" y1="{cy}" x2="{cx + r}" y2="{cy - 50}" marker-end="url(#an)"></line>'
+            f'<line class="f-mg" x1="{cx + r}" y1="{cy}" x2="{cx + r - 40}" y2="{cy}" marker-end="url(#am)"></line>'
+            f'<circle class="obj2" cx="{cx + r}" cy="{cy}" r="7"></circle></g>'
+            '<text class="gr" x="8" y="20">v: tangent</text><text class="rd" x="8" y="36">a: to centre</text>')
+    anim(deck, 'Uniform circular motion · intuition',
+         'A ball goes round a circle at constant speed. Which way do its velocity and acceleration point, and is it accelerating at all?',
+         base, back,
+         '<p><b>v</b> is along the tangent; <b>a = v²/R</b> points to the centre, always ⟂ v.</p>'
+         '<p>Speed is constant but the <b>direction</b> of v keeps turning, so the ball <b>is</b> accelerating. '
+         'a has constant size but is <b>not a constant vector</b>.</p>',
+         'Uniform circular motion: directions of v and a',
+         'v tangent, a = v²/R towards the centre (perpendicular to v); acceleration exists because the direction of v changes',
+         css, hint='Constant speed… so is a = 0?', vb='0 0 300 190', front_only=still)
+
+
+def complementary_ranges(deck):
+    import math
+    ox, oy, L = 24, 178, 250          # L = u²/g in px
+    cols = {15: 'curve', 75: 'curve', 30: 'c2', 60: 'c2', 45: 'c3'}
+    delays = {45: .2, 30: .9, 60: 1.3, 15: 1.9, 75: 2.3}
+    paths, css = '', ''
+    for th in (45, 30, 60, 15, 75):
+        t = math.radians(th); R = L * math.sin(2 * t)
+        pts = ' '.join(f'{ox + x:.1f},{oy - (x * math.tan(t) - x * x / (2 * L * math.cos(t) ** 2)):.1f}'
+                       for x in [R * i / 60 for i in range(61)])
+        cls = f'r{th}'
+        css += f'.bp .{cls}{{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards {delays[th]}s}}'
+        paths += f'<polyline class="{cols[th]} {cls}" pathLength="100" points="{pts}"></polyline>'
+    labels = ('<text class="yl fx d6" x="150" y="40" text-anchor="middle">15° &amp; 75°</text>'
+              '<text class="gr fx d6" x="150" y="56" text-anchor="middle">30° &amp; 60°</text>'
+              '<text class="rd fx d6" x="150" y="72" text-anchor="middle">45° (max R)</text>')
+    base = f'<line class="road" x1="{ox - 6}" y1="{oy}" x2="{ox + L + 14}" y2="{oy}"></line>'
+    anim(deck, 'Projectile · complementary angles',
+         'Same launch speed at 15°, 30°, 45°, 60°, 75°. Which angles land at the same spot, and which goes farthest?',
+         base, paths + labels,
+         '<p>R = u² sin 2θ / g, and sin 2θ = sin(180° − 2θ), so <b>θ and 90° − θ give equal range</b>.</p>'
+         '<p><b>45°</b> gives the maximum R = u²/g. The steeper twin goes higher and stays up longer.</p>',
+         'Equal ranges for complementary angles; maximum at 45°',
+         'R = u² sin 2θ / g: θ and 90° − θ give the same range; 45° gives the maximum u²/g', css, vb='0 0 300 190')

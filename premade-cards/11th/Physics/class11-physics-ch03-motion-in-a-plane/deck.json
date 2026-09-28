@@ -1,0 +1,1168 @@
+{
+  "version": 1,
+  "name": "Chapter 3: Motion in a Plane",
+  "className": "Class 11",
+  "description": "Vectors, resolution, addition, motion in a plane, projectile motion, relative velocity, uniform circular motion",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Scalar vs vector?",
+      "definition": "<span style=\"color:#3b82f6\">Scalar</span>: magnitude only (mass, time, temperature). <span style=\"color:#3b82f6\">Vector</span>: magnitude and direction, and it obeys the <span style=\"color:#3b82f6\">triangle/parallelogram law</span> of addition",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.2-scalars-and-vectors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is having magnitude and direction enough to be a vector?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it must also add by the triangle law. <span style=\"color:#22a35a\">Electric current</span> has a direction but adds like a scalar, so it is a scalar",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.2-scalars-and-vectors"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Scalar or vector (NCERT exercises)",
+      "definition": "Volume, mass, speed, density, moles: scalar; Angular frequency: scalar; Displacement, velocity, acceleration: vector; Angular velocity, impulse: vector; Work, current, pressure, energy: scalar",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercises 3.1–3.3</p><h2>Scalar or vector?</h2><table><tr><td>Volume, mass, speed, density, moles</td><td class=\"q\">?</td></tr><tr><td>Angular frequency</td><td class=\"q\">?</td></tr><tr><td>Displacement, velocity, acceleration</td><td class=\"q\">?</td></tr><tr><td>Angular velocity, impulse</td><td class=\"q\">?</td></tr><tr><td>Work, current, pressure, energy</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercises 3.1–3.3</p><h2>Scalar or vector?</h2><table><tr><td>Volume, mass, speed, density, moles</td><td class=\"a\">scalar</td></tr><tr><td>Angular frequency</td><td class=\"a\">scalar</td></tr><tr><td>Displacement, velocity, acceleration</td><td class=\"a\">vector</td></tr><tr><td>Angular velocity, impulse</td><td class=\"a\">vector</td></tr><tr><td>Work, current, pressure, energy</td><td class=\"a\">scalar</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.2-scalars-and-vectors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is a vector written by hand and in print?",
+      "definition": "An arrow over the letter, \\( \\vec v \\), or bold <span style=\"color:#3b82f6\">v</span>. Its magnitude is |v| or v",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.2-scalars-and-vectors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Position vector vs displacement vector?",
+      "definition": "<span style=\"color:#3b82f6\">Position vector</span> r: from the origin to the object. <span style=\"color:#3b82f6\">Displacement</span> PP′: from the initial to the final position",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.2-scalars-and-vectors"
+      ],
+      "definitionImage": "media/fig_3_1_position_paths.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Does displacement depend on the path taken?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: only on the <span style=\"color:#3b82f6\">end points</span>; every path from P to Q gives the same PQ",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.2-scalars-and-vectors"
+      ],
+      "definitionImage": "media/fig_3_1_position_paths.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "When are two vectors equal?",
+      "definition": "Same <span style=\"color:#3b82f6\">magnitude</span> and same <span style=\"color:#3b82f6\">direction</span>. Shift one parallel to itself: the tails and tips coincide",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.2-scalars-and-vectors"
+      ],
+      "definitionImage": "media/fig_3_2_equal_vectors.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Free vector vs localised vector?",
+      "definition": "<span style=\"color:#3b82f6\">Free</span>: can be shifted parallel to itself without change. <span style=\"color:#3b82f6\">Localised</span>: its line of action matters (e.g. a force producing torque)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.2-scalars-and-vectors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.8: three skaters go from P to Q across a circular rink of radius 200 m by different paths. Displacement of each?",
+      "definition": "<span style=\"color:#f08c00\">400 m</span> each; only <span style=\"color:#3b82f6\">B</span> (straight along the diameter) has path length = displacement",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.2-scalars-and-vectors"
+      ],
+      "definitionImage": "media/fig_3_19_skaters.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "λA for λ > 0 and λ < 0?",
+      "definition": "λ > 0: same direction, magnitude λ|A|. λ < 0: <span style=\"color:#3b82f6\">opposite</span> direction, magnitude |λ||A|",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.3-multiplication-by-number"
+      ],
+      "definitionImage": "media/fig_3_3_scalar_multiple.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Dimensions of λA when λ has units?",
+      "definition": "Product of the two, e.g. velocity × time = <span style=\"color:#3b82f6\">displacement</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.3-multiplication-by-number"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Triangle (head-to-tail) law?",
+      "definition": "Place the tail of B at the head of A; the resultant R = A + B runs from the <span style=\"color:#3b82f6\">tail of A to the head of B</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.4-graphical-addition"
+      ],
+      "definitionImage": "media/fig_3_4_addition_laws.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "Vector addition is {{c1::commutative}} (A + B = B + A) and {{c2::associative}} ((A + B) + C = A + (B + C)).",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.4-graphical-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Parallelogram law?",
+      "definition": "Put A and B tail to tail; the <span style=\"color:#3b82f6\">diagonal</span> from the common tail is A + B. Equivalent to the triangle law",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.4-graphical-addition"
+      ],
+      "definitionImage": "media/fig_3_6_parallelogram.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a null (zero) vector? Its properties?",
+      "definition": "Magnitude 0, direction undefined. A + 0 = A, λ0 = 0, 0A = 0. E.g. displacement after returning to the start",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.4-graphical-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is A − B defined?",
+      "definition": "\\( \\vec A - \\vec B = \\vec A + (-\\vec B) \\): add the reverse of B",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.4-graphical-addition"
+      ],
+      "definitionImage": "media/fig_3_5_subtraction.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT 3.4 says \"as mentioned in section 4.2\". Which section?",
+      "definition": "Section <span style=\"color:#3b82f6\">3.2</span> (Scalars and vectors). The reference is left over from the old chapter numbering",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.4-graphical-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.1: rain falls at 35 m/s, wind blows east to west at 12 m/s. How should the umbrella be held?",
+      "definition": "Resultant <span style=\"color:#f08c00\">37 m/s</span> at tan⁻¹(12/35) ≈ <span style=\"color:#f08c00\">19°</span> to the vertical; tilt the umbrella <span style=\"color:#3b82f6\">towards the east</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.4-graphical-addition"
+      ],
+      "definitionImage": "media/drawn_rain_umbrella.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Resolving A along two non-collinear vectors a and b in its plane?",
+      "definition": "\\( \\vec A = \\lambda \\vec a + \\mu \\vec b \\) for suitable real numbers λ, μ",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.5-resolution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a unit vector?",
+      "definition": "A vector of magnitude <span style=\"color:#f08c00\">1</span> that only gives a direction; <span style=\"color:#e5484d\">no</span> unit or dimension. \\( \\hat n = \\dfrac{\\vec A}{|\\vec A|} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.5-resolution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "î, ĵ, k̂?",
+      "definition": "Unit vectors along x, y and z; mutually <span style=\"color:#3b82f6\">perpendicular</span>; |î| = |ĵ| = |k̂| = 1",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.5-resolution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Components of A making angle θ with the x-axis?",
+      "definition": "\\( A_x = A\\cos\\theta,\\ A_y = A\\sin\\theta \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.5-resolution"
+      ],
+      "definitionImage": "media/drawn_components.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Magnitude and direction from components?",
+      "definition": "\\( A = \\sqrt{A_x^2 + A_y^2},\\ \\tan\\theta = \\dfrac{A_y}{A_x} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.5-resolution"
+      ],
+      "definitionImage": "media/drawn_components.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Is Aₓ a vector?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: Aₓ is a real number (can be +, − or 0); <span style=\"color:#3b82f6\">Aₓî</span> is the vector component",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.5-resolution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3D components with direction angles α, β, γ?",
+      "definition": "\\( A_x = A\\cos\\alpha,\\ A_y = A\\cos\\beta,\\ A_z = A\\cos\\gamma,\\ A = \\sqrt{A_x^2 + A_y^2 + A_z^2} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.5-resolution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: sum of squares of direction cosines?",
+      "definition": "\\( \\cos^2\\alpha + \\cos^2\\beta + \\cos^2\\gamma = 1 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.5-resolution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.19: magnitude and direction of î + ĵ and î − ĵ?",
+      "definition": "<span style=\"color:#f08c00\">√2</span> at <span style=\"color:#f08c00\">45°</span> and <span style=\"color:#f08c00\">√2</span> at <span style=\"color:#f08c00\">−45°</span> to the x-axis",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.5-resolution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Adding vectors by components?",
+      "definition": "Add like components: \\( R_x = A_x + B_x,\\ R_y = A_y + B_y,\\ R_z = A_z + B_z \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.6-analytical-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why prefer the analytical method?",
+      "definition": "The graphical method is <span style=\"color:#e5484d\">tedious and less accurate</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.6-analytical-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Resultant of A and B at angle θ (law of cosines)?",
+      "definition": "\\( R = \\sqrt{A^2 + B^2 + 2AB\\cos\\theta} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.6-analytical-addition"
+      ],
+      "definitionImage": "media/drawn_resultant.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction of the resultant (angle α with A)?",
+      "definition": "\\( \\tan\\alpha = \\dfrac{B\\sin\\theta}{A + B\\cos\\theta} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.6-analytical-addition"
+      ],
+      "definitionImage": "media/drawn_resultant.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Law of sines for the vector triangle (Fig. 3.10)?",
+      "definition": "\\( \\dfrac{R}{\\sin\\theta} = \\dfrac{A}{\\sin\\beta} = \\dfrac{B}{\\sin\\alpha} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.6-analytical-addition"
+      ],
+      "definitionImage": "media/fig_3_10_resultant.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Resultant in special cases",
+      "definition": "θ = 0° (parallel): A + B (maximum); θ = 180° (antiparallel): |A − B| (minimum); θ = 90°: √(A² + B²); A = B, θ = 120°: A (same size as each); A = B, any θ: 2A cos(θ/2)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · resultant of A and B</p><h2>Resultant R?</h2><table><tr><td>θ = 0° (parallel)</td><td class=\"q\">?</td></tr><tr><td>θ = 180° (antiparallel)</td><td class=\"q\">?</td></tr><tr><td>θ = 90°</td><td class=\"q\">?</td></tr><tr><td>A = B, θ = 120°</td><td class=\"q\">?</td></tr><tr><td>A = B, any θ</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · resultant of A and B</p><h2>Resultant R?</h2><table><tr><td>θ = 0° (parallel)</td><td class=\"a\">A + B (maximum)</td></tr><tr><td>θ = 180° (antiparallel)</td><td class=\"a\">|A − B| (minimum)</td></tr><tr><td>θ = 90°</td><td class=\"a\">√(A² + B²)</td></tr><tr><td>A = B, θ = 120°</td><td class=\"a\">A (same size as each)</td></tr><tr><td>A = B, any θ</td><td class=\"a\">2A cos(θ/2)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.6-analytical-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Range of possible resultants of A and B?",
+      "definition": "\\( |A - B| \\le R \\le A + B \\) (Exercise 3.6; equality only for collinear vectors)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.6-analytical-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.3: boat heads north at 25 km/h; current 10 km/h at 60° east of south. Resultant?",
+      "definition": "\\( R = \\sqrt{25^2 + 10^2 + 2(25)(10)\\cos 120^\\circ} \\approx \\) <span style=\"color:#f08c00\">22 km/h</span>, about <span style=\"color:#f08c00\">23.4°</span> east of north",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.6-analytical-addition"
+      ],
+      "definitionImage": "media/fig_3_11_boat.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.5(e): can three vectors not in one plane add to zero?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the sum of two lies in their plane, so the third must lie there too",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.6-analytical-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.7: a + b + c + d = 0. Must each be zero?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. But |a + c| = |b + d| and |a| ≤ |b| + |c| + |d| are true",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.6-analytical-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Position and displacement in a plane?",
+      "definition": "\\( \\vec r = x\\hat i + y\\hat j \\), \\( \\Delta\\vec r = \\Delta x\\,\\hat i + \\Delta y\\,\\hat j \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.7-motion-in-a-plane"
+      ],
+      "definitionImage": "media/fig_3_12_position_velocity.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Average velocity in a plane: direction?",
+      "definition": "Along the <span style=\"color:#3b82f6\">displacement Δr</span> (chord), since v̄ = Δr/Δt",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.7-motion-in-a-plane"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction of instantaneous velocity?",
+      "definition": "Along the <span style=\"color:#3b82f6\">tangent</span> to the path, in the direction of motion",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.7-motion-in-a-plane"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Velocity components and magnitude?",
+      "definition": "\\( v_x = \\dfrac{dx}{dt},\\ v_y = \\dfrac{dy}{dt},\\ v = \\sqrt{v_x^2 + v_y^2},\\ \\tan\\theta = \\dfrac{v_y}{v_x} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.7-motion-in-a-plane"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angle between v and a in 1D vs 2D?",
+      "definition": "1D: <span style=\"color:#3b82f6\">0° or 180°</span>. In 2D/3D: <span style=\"color:#3b82f6\">any angle</span> from 0° to 180°",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.7-motion-in-a-plane"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.4: r = 3.0t î + 2.0t² ĵ + 5.0 k̂. v, a, and v at t = 1 s?",
+      "definition": "v = 3.0î + 4.0t ĵ; a = <span style=\"color:#f08c00\">4.0 ĵ m s⁻²</span>; at 1 s: <span style=\"color:#f08c00\">5.0 m/s</span> at <span style=\"color:#f08c00\">53°</span> to x",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.7-motion-in-a-plane"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.17: r = 3.0t î − 2.0t² ĵ + 4.0 k̂. Speed at t = 2 s?",
+      "definition": "v = 3î − 8ĵ → <span style=\"color:#f08c00\">8.54 m/s</span>, 70° below the x-axis; a = <span style=\"color:#f08c00\">−4.0 ĵ</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.7-motion-in-a-plane"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Which relations hold for arbitrary motion",
+      "definition": "v_avg = ½[v(t₁) + v(t₂)]: No (constant a only); v_avg = [r(t₂) − r(t₁)]/(t₂ − t₁): Yes; v(t) = v(0) + at: No; r(t) = r(0) + v(0)t + ½at²: No; a_avg = [v(t₂) − v(t₁)]/(t₂ − t₁): Yes",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 3.20</p><h2>True for any motion?</h2><table><tr><td>v_avg = ½[v(t₁) + v(t₂)]</td><td class=\"q\">?</td></tr><tr><td>v_avg = [r(t₂) − r(t₁)]/(t₂ − t₁)</td><td class=\"q\">?</td></tr><tr><td>v(t) = v(0) + at</td><td class=\"q\">?</td></tr><tr><td>r(t) = r(0) + v(0)t + ½at²</td><td class=\"q\">?</td></tr><tr><td>a_avg = [v(t₂) − v(t₁)]/(t₂ − t₁)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 3.20</p><h2>True for any motion?</h2><table><tr><td>v_avg = ½[v(t₁) + v(t₂)]</td><td class=\"a no\">No (constant a only)</td></tr><tr><td>v_avg = [r(t₂) − r(t₁)]/(t₂ − t₁)</td><td class=\"a\">Yes</td></tr><tr><td>v(t) = v(0) + at</td><td class=\"a no\">No</td></tr><tr><td>r(t) = r(0) + v(0)t + ½at²</td><td class=\"a no\">No</td></tr><tr><td>a_avg = [v(t₂) − v(t₁)]/(t₂ − t₁)</td><td class=\"a\">Yes</td></tr></table><p class=\"note\">Definitions always hold; the kinematic equations need constant acceleration.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.7-motion-in-a-plane"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Vector equations for constant acceleration in a plane?",
+      "definition": "\\( \\vec v = \\vec v_0 + \\vec a t,\\quad \\vec r = \\vec r_0 + \\vec v_0 t + \\tfrac12 \\vec a t^2 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.8-constant-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Key idea of 3.8?",
+      "definition": "Motion in a plane = <span style=\"color:#3b82f6\">two independent 1D motions</span> along perpendicular axes, linked only by time",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.8-constant-acceleration"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Example 3.5: constant acceleration in a plane",
+      "definition": "t = 6 s from x = 84 m; y = 36 m; speed ≈ 26 m/s",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.5</p><h2>Find the missing step.</h2><div class=\"prob\">Starts at origin with 5.0î m/s; a = (3.0î + 2.0ĵ) m/s². y and speed when x = 84 m?</div><ol><li>x = 5t + 1.5t², y = 1.0t²</li><li class=\"h\">?</li><li>y = 36 m</li><li>v = (5 + 3t)î + 2tĵ = 23î + 12ĵ → <b>26 m/s</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.5</p><h2>Find the missing step.</h2><div class=\"prob\">Starts at origin with 5.0î m/s; a = (3.0î + 2.0ĵ) m/s². y and speed when x = 84 m?</div><ol><li>x = 5t + 1.5t², y = 1.0t²</li><li class=\"r\">5t + 1.5t² = 84 → t = 6 s</li><li>y = 36 m</li><li>v = (5 + 3t)î + 2tĵ = 23î + 12ĵ → <b>26 m/s</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.8-constant-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.18: from origin with 10ĵ m/s, a = (8î + 2ĵ) m/s². When is x = 16 m? y then?",
+      "definition": "t = <span style=\"color:#f08c00\">2 s</span>, y = <span style=\"color:#f08c00\">24 m</span>, speed <span style=\"color:#f08c00\">21.26 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.8-constant-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a projectile?",
+      "definition": "An object in flight after being thrown or projected, moving under <span style=\"color:#3b82f6\">gravity alone</span> (air resistance neglected)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who first stated that horizontal and vertical motions of a projectile are independent?",
+      "definition": "<span style=\"color:#3b82f6\">Galileo</span> (Dialogue on the Great World Systems, 1632)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Projectile = uniform horizontal motion + vertical free fall",
+      "definition": "x-shadow moves uniformly (ax = 0); y-shadow rises and falls like a vertical throw (ay = −g); they share only time",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Projectile · independence of motions</p><h2>Watch the shadows of a projectile on the two axes. What kind of motion does each shadow do?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"28\" y1=\"172\" x2=\"285\" y2=\"172\" marker-end=\"url(#ah)\"></line><line class=\"ax\" x1=\"28\" y1=\"182\" x2=\"28\" y2=\"30\" marker-end=\"url(#ah)\"></line><text class=\"lbl\" x=\"282\" y=\"188\" text-anchor=\"end\">x</text><text class=\"lbl\" x=\"36\" y=\"38\">y</text><polyline class=\"guide\" points=\"40.0,172.0 47.3,156.8 54.7,142.6 62.0,129.5 69.3,117.5 76.7,106.4 84.0,96.5 91.3,87.6 98.7,79.7 106.0,72.9 113.3,67.1 120.7,62.4 128.0,58.7 135.3,56.1 142.7,54.5 150.0,54.0 157.3,54.5 164.7,56.1 172.0,58.7 179.3,62.4 186.7,67.1 194.0,72.9 201.3,79.7 208.7,87.6 216.0,96.5 223.3,106.4 230.7,117.5 238.0,129.5 245.3,142.6 252.7,156.8 260.0,172.0\"></polyline></svg><p class=\"hint\">Imagine a light above and a light to the side.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Projectile · independence of motions</p><h2>Watch the shadows of a projectile on the two axes. What kind of motion does each shadow do?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"28\" y1=\"172\" x2=\"285\" y2=\"172\" marker-end=\"url(#ah)\"></line><line class=\"ax\" x1=\"28\" y1=\"182\" x2=\"28\" y2=\"30\" marker-end=\"url(#ah)\"></line><text class=\"lbl\" x=\"282\" y=\"188\" text-anchor=\"end\">x</text><text class=\"lbl\" x=\"36\" y=\"38\">y</text><polyline class=\"guide\" points=\"40.0,172.0 47.3,156.8 54.7,142.6 62.0,129.5 69.3,117.5 76.7,106.4 84.0,96.5 91.3,87.6 98.7,79.7 106.0,72.9 113.3,67.1 120.7,62.4 128.0,58.7 135.3,56.1 142.7,54.5 150.0,54.0 157.3,54.5 164.7,56.1 172.0,58.7 179.3,62.4 186.7,67.1 194.0,72.9 201.3,79.7 208.7,87.6 216.0,96.5 223.3,106.4 230.7,117.5 238.0,129.5 245.3,142.6 252.7,156.8 260.0,172.0\"></polyline><g transform=\"translate(40,172)\"><circle class=\"dot pb\" cx=\"0\" cy=\"0\" r=\"7\"></circle></g><g transform=\"translate(40,184)\"><circle class=\"dot3 px\" cx=\"0\" cy=\"0\" r=\"5\"></circle></g><g transform=\"translate(28,172)\"><circle class=\"dot2 py\" cx=\"0\" cy=\"0\" r=\"5\"></circle></g><text class=\"rd\" x=\"100\" y=\"198\">x-shadow: steady pace</text><text class=\"gr\" x=\"42\" y=\"26\">y-shadow: up, stop, down (free fall)</text></svg><div class=\"eq fx d5\"><p>Horizontal: <b>uniform velocity</b> (aₓ = 0, vₓ = u cos θ).</p><p>Vertical: <b>free fall</b> (aᵧ = −g), exactly like a ball thrown straight up with u sin θ.</p><p>Both shadows share only the <b>time</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .pb{animation:pb 3.0s linear 0.4s infinite both}@keyframes pb{0.00%{transform:translate(0.0px,-0.0px)}3.33%{transform:translate(7.3px,-15.2px)}6.67%{transform:translate(14.7px,-29.4px)}10.00%{transform:translate(22.0px,-42.5px)}13.33%{transform:translate(29.3px,-54.5px)}16.67%{transform:translate(36.7px,-65.6px)}20.00%{transform:translate(44.0px,-75.5px)}23.33%{transform:translate(51.3px,-84.4px)}26.67%{transform:translate(58.7px,-92.3px)}30.00%{transform:translate(66.0px,-99.1px)}33.33%{transform:translate(73.3px,-104.9px)}36.67%{transform:translate(80.7px,-109.6px)}40.00%{transform:translate(88.0px,-113.3px)}43.33%{transform:translate(95.3px,-115.9px)}46.67%{transform:translate(102.7px,-117.5px)}50.00%{transform:translate(110.0px,-118.0px)}53.33%{transform:translate(117.3px,-117.5px)}56.67%{transform:translate(124.7px,-115.9px)}60.00%{transform:translate(132.0px,-113.3px)}63.33%{transform:translate(139.3px,-109.6px)}66.67%{transform:translate(146.7px,-104.9px)}70.00%{transform:translate(154.0px,-99.1px)}73.33%{transform:translate(161.3px,-92.3px)}76.67%{transform:translate(168.7px,-84.4px)}80.00%{transform:translate(176.0px,-75.5px)}83.33%{transform:translate(183.3px,-65.6px)}86.67%{transform:translate(190.7px,-54.5px)}90.00%{transform:translate(198.0px,-42.5px)}93.33%{transform:translate(205.3px,-29.4px)}96.67%{transform:translate(212.7px,-15.2px)}100.00%{transform:translate(220.0px,-0.0px)}}.bp .px{animation:px 3.0s linear 0.4s infinite both}@keyframes px{0.00%{transform:translate(0.0px,0.0px)}3.33%{transform:translate(7.3px,0.0px)}6.67%{transform:translate(14.7px,0.0px)}10.00%{transform:translate(22.0px,0.0px)}13.33%{transform:translate(29.3px,0.0px)}16.67%{transform:translate(36.7px,0.0px)}20.00%{transform:translate(44.0px,0.0px)}23.33%{transform:translate(51.3px,0.0px)}26.67%{transform:translate(58.7px,0.0px)}30.00%{transform:translate(66.0px,0.0px)}33.33%{transform:translate(73.3px,0.0px)}36.67%{transform:translate(80.7px,0.0px)}40.00%{transform:translate(88.0px,0.0px)}43.33%{transform:translate(95.3px,0.0px)}46.67%{transform:translate(102.7px,0.0px)}50.00%{transform:translate(110.0px,0.0px)}53.33%{transform:translate(117.3px,0.0px)}56.67%{transform:translate(124.7px,0.0px)}60.00%{transform:translate(132.0px,0.0px)}63.33%{transform:translate(139.3px,0.0px)}66.67%{transform:translate(146.7px,0.0px)}70.00%{transform:translate(154.0px,0.0px)}73.33%{transform:translate(161.3px,0.0px)}76.67%{transform:translate(168.7px,0.0px)}80.00%{transform:translate(176.0px,0.0px)}83.33%{transform:translate(183.3px,0.0px)}86.67%{transform:translate(190.7px,0.0px)}90.00%{transform:translate(198.0px,0.0px)}93.33%{transform:translate(205.3px,0.0px)}96.67%{transform:translate(212.7px,0.0px)}100.00%{transform:translate(220.0px,0.0px)}}.bp .py{animation:py 3.0s linear 0.4s infinite both}@keyframes py{0.00%{transform:translate(0.0px,-0.0px)}3.33%{transform:translate(0.0px,-15.2px)}6.67%{transform:translate(0.0px,-29.4px)}10.00%{transform:translate(0.0px,-42.5px)}13.33%{transform:translate(0.0px,-54.5px)}16.67%{transform:translate(0.0px,-65.6px)}20.00%{transform:translate(0.0px,-75.5px)}23.33%{transform:translate(0.0px,-84.4px)}26.67%{transform:translate(0.0px,-92.3px)}30.00%{transform:translate(0.0px,-99.1px)}33.33%{transform:translate(0.0px,-104.9px)}36.67%{transform:translate(0.0px,-109.6px)}40.00%{transform:translate(0.0px,-113.3px)}43.33%{transform:translate(0.0px,-115.9px)}46.67%{transform:translate(0.0px,-117.5px)}50.00%{transform:translate(0.0px,-118.0px)}53.33%{transform:translate(0.0px,-117.5px)}56.67%{transform:translate(0.0px,-115.9px)}60.00%{transform:translate(0.0px,-113.3px)}63.33%{transform:translate(0.0px,-109.6px)}66.67%{transform:translate(0.0px,-104.9px)}70.00%{transform:translate(0.0px,-99.1px)}73.33%{transform:translate(0.0px,-92.3px)}76.67%{transform:translate(0.0px,-84.4px)}80.00%{transform:translate(0.0px,-75.5px)}83.33%{transform:translate(0.0px,-65.6px)}86.67%{transform:translate(0.0px,-54.5px)}90.00%{transform:translate(0.0px,-42.5px)}93.33%{transform:translate(0.0px,-29.4px)}96.67%{transform:translate(0.0px,-15.2px)}100.00%{transform:translate(0.0px,-0.0px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .pb{animation:pb 3.0s linear 0.4s infinite both}@keyframes pb{0.00%{transform:translate(0.0px,-0.0px)}3.33%{transform:translate(7.3px,-15.2px)}6.67%{transform:translate(14.7px,-29.4px)}10.00%{transform:translate(22.0px,-42.5px)}13.33%{transform:translate(29.3px,-54.5px)}16.67%{transform:translate(36.7px,-65.6px)}20.00%{transform:translate(44.0px,-75.5px)}23.33%{transform:translate(51.3px,-84.4px)}26.67%{transform:translate(58.7px,-92.3px)}30.00%{transform:translate(66.0px,-99.1px)}33.33%{transform:translate(73.3px,-104.9px)}36.67%{transform:translate(80.7px,-109.6px)}40.00%{transform:translate(88.0px,-113.3px)}43.33%{transform:translate(95.3px,-115.9px)}46.67%{transform:translate(102.7px,-117.5px)}50.00%{transform:translate(110.0px,-118.0px)}53.33%{transform:translate(117.3px,-117.5px)}56.67%{transform:translate(124.7px,-115.9px)}60.00%{transform:translate(132.0px,-113.3px)}63.33%{transform:translate(139.3px,-109.6px)}66.67%{transform:translate(146.7px,-104.9px)}70.00%{transform:translate(154.0px,-99.1px)}73.33%{transform:translate(161.3px,-92.3px)}76.67%{transform:translate(168.7px,-84.4px)}80.00%{transform:translate(176.0px,-75.5px)}83.33%{transform:translate(183.3px,-65.6px)}86.67%{transform:translate(190.7px,-54.5px)}90.00%{transform:translate(198.0px,-42.5px)}93.33%{transform:translate(205.3px,-29.4px)}96.67%{transform:translate(212.7px,-15.2px)}100.00%{transform:translate(220.0px,-0.0px)}}.bp .px{animation:px 3.0s linear 0.4s infinite both}@keyframes px{0.00%{transform:translate(0.0px,0.0px)}3.33%{transform:translate(7.3px,0.0px)}6.67%{transform:translate(14.7px,0.0px)}10.00%{transform:translate(22.0px,0.0px)}13.33%{transform:translate(29.3px,0.0px)}16.67%{transform:translate(36.7px,0.0px)}20.00%{transform:translate(44.0px,0.0px)}23.33%{transform:translate(51.3px,0.0px)}26.67%{transform:translate(58.7px,0.0px)}30.00%{transform:translate(66.0px,0.0px)}33.33%{transform:translate(73.3px,0.0px)}36.67%{transform:translate(80.7px,0.0px)}40.00%{transform:translate(88.0px,0.0px)}43.33%{transform:translate(95.3px,0.0px)}46.67%{transform:translate(102.7px,0.0px)}50.00%{transform:translate(110.0px,0.0px)}53.33%{transform:translate(117.3px,0.0px)}56.67%{transform:translate(124.7px,0.0px)}60.00%{transform:translate(132.0px,0.0px)}63.33%{transform:translate(139.3px,0.0px)}66.67%{transform:translate(146.7px,0.0px)}70.00%{transform:translate(154.0px,0.0px)}73.33%{transform:translate(161.3px,0.0px)}76.67%{transform:translate(168.7px,0.0px)}80.00%{transform:translate(176.0px,0.0px)}83.33%{transform:translate(183.3px,0.0px)}86.67%{transform:translate(190.7px,0.0px)}90.00%{transform:translate(198.0px,0.0px)}93.33%{transform:translate(205.3px,0.0px)}96.67%{transform:translate(212.7px,0.0px)}100.00%{transform:translate(220.0px,0.0px)}}.bp .py{animation:py 3.0s linear 0.4s infinite both}@keyframes py{0.00%{transform:translate(0.0px,-0.0px)}3.33%{transform:translate(0.0px,-15.2px)}6.67%{transform:translate(0.0px,-29.4px)}10.00%{transform:translate(0.0px,-42.5px)}13.33%{transform:translate(0.0px,-54.5px)}16.67%{transform:translate(0.0px,-65.6px)}20.00%{transform:translate(0.0px,-75.5px)}23.33%{transform:translate(0.0px,-84.4px)}26.67%{transform:translate(0.0px,-92.3px)}30.00%{transform:translate(0.0px,-99.1px)}33.33%{transform:translate(0.0px,-104.9px)}36.67%{transform:translate(0.0px,-109.6px)}40.00%{transform:translate(0.0px,-113.3px)}43.33%{transform:translate(0.0px,-115.9px)}46.67%{transform:translate(0.0px,-117.5px)}50.00%{transform:translate(0.0px,-118.0px)}53.33%{transform:translate(0.0px,-117.5px)}56.67%{transform:translate(0.0px,-115.9px)}60.00%{transform:translate(0.0px,-113.3px)}63.33%{transform:translate(0.0px,-109.6px)}66.67%{transform:translate(0.0px,-104.9px)}70.00%{transform:translate(0.0px,-99.1px)}73.33%{transform:translate(0.0px,-92.3px)}76.67%{transform:translate(0.0px,-84.4px)}80.00%{transform:translate(0.0px,-75.5px)}83.33%{transform:translate(0.0px,-65.6px)}86.67%{transform:translate(0.0px,-54.5px)}90.00%{transform:translate(0.0px,-42.5px)}93.33%{transform:translate(0.0px,-29.4px)}96.67%{transform:translate(0.0px,-15.2px)}100.00%{transform:translate(0.0px,-0.0px)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Acceleration and initial velocity components of a projectile?",
+      "definition": "\\( a_x = 0,\\ a_y = -g;\\ \\ u_x = u\\cos\\theta,\\ u_y = u\\sin\\theta \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ],
+      "definitionImage": "media/drawn_projectile.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Position and velocity of a projectile at time t?",
+      "definition": "\\( x = (u\\cos\\theta)t,\\ y = (u\\sin\\theta)t - \\tfrac12 gt^2;\\ v_x = u\\cos\\theta,\\ v_y = u\\sin\\theta - gt \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equation of trajectory?",
+      "definition": "\\( y = x\\tan\\theta - \\dfrac{g x^2}{2u^2\\cos^2\\theta} \\): form y = ax − bx², a <span style=\"color:#3b82f6\">parabola</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Projectile formulas (ground to ground)",
+      "definition": "Time to reach the top tₘ: u sin θ / g; Time of flight T: 2u sin θ / g; Maximum height H: u² sin²θ / 2g; Horizontal range R: u² sin 2θ / g; Maximum range: u²/g at θ = 45°",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">3.9 · projectile formulas</p><h2>Formula?</h2><table><tr><td>Time to reach the top tₘ</td><td class=\"q\">?</td></tr><tr><td>Time of flight T</td><td class=\"q\">?</td></tr><tr><td>Maximum height H</td><td class=\"q\">?</td></tr><tr><td>Horizontal range R</td><td class=\"q\">?</td></tr><tr><td>Maximum range</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">3.9 · projectile formulas</p><h2>Formula?</h2><table><tr><td>Time to reach the top tₘ</td><td class=\"a\">u sin θ / g</td></tr><tr><td>Time of flight T</td><td class=\"a\">2u sin θ / g</td></tr><tr><td>Maximum height H</td><td class=\"a\">u² sin²θ / 2g</td></tr><tr><td>Horizontal range R</td><td class=\"a\">u² sin 2θ / g</td></tr><tr><td>Maximum range</td><td class=\"a\">u²/g at θ = 45°</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is T = 2tₘ?",
+      "definition": "The parabola is <span style=\"color:#3b82f6\">symmetric</span>: rising and falling take equal time (same level, no air)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Velocity at the highest point?",
+      "definition": "\\( u\\cos\\theta \\), horizontal (vᵧ = 0). Acceleration there is still <span style=\"color:#3b82f6\">g downward</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ],
+      "definitionImage": "media/drawn_projectile.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Speed and angle at landing (same level)?",
+      "definition": "Speed <span style=\"color:#3b82f6\">u</span> again, at θ <span style=\"color:#3b82f6\">below</span> the horizontal",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Minimum speed of a projectile and where?",
+      "definition": "\\( u\\cos\\theta \\) at the <span style=\"color:#3b82f6\">top</span>. Minimum kinetic energy = K cos²θ",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Equal ranges for complementary angles; maximum at 45°",
+      "definition": "R = u² sin 2θ / g: θ and 90° − θ give the same range; 45° gives the maximum u²/g",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Projectile · complementary angles</p><h2>Same launch speed at 15°, 30°, 45°, 60°, 75°. Which angles land at the same spot, and which goes farthest?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"18\" y1=\"178\" x2=\"288\" y2=\"178\"></line></svg><p class=\"hint\">Think it through, then flip.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Projectile · complementary angles</p><h2>Same launch speed at 15°, 30°, 45°, 60°, 75°. Which angles land at the same spot, and which goes farthest?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"18\" y1=\"178\" x2=\"288\" y2=\"178\"></line><polyline class=\"c3 r45\" pathLength=\"100\" points=\"24.0,178.0 28.2,173.9 32.3,169.9 36.5,166.1 40.7,162.4 44.8,158.9 49.0,155.5 53.2,152.2 57.3,149.1 61.5,146.1 65.7,143.3 69.8,140.6 74.0,138.0 78.2,135.6 82.3,133.3 86.5,131.1 90.7,129.1 94.8,127.2 99.0,125.5 103.2,123.9 107.3,122.4 111.5,121.1 115.7,119.9 119.8,118.9 124.0,118.0 128.2,117.2 132.3,116.6 136.5,116.1 140.7,115.8 144.8,115.6 149.0,115.5 153.2,115.6 157.3,115.8 161.5,116.1 165.7,116.6 169.8,117.2 174.0,118.0 178.2,118.9 182.3,119.9 186.5,121.1 190.7,122.4 194.8,123.9 199.0,125.5 203.2,127.2 207.3,129.1 211.5,131.1 215.7,133.3 219.8,135.6 224.0,138.0 228.2,140.6 232.3,143.3 236.5,146.1 240.7,149.1 244.8,152.2 249.0,155.5 253.2,158.9 257.3,162.4 261.5,166.1 265.7,169.9 269.8,173.9 274.0,178.0\"></polyline><polyline class=\"c2 r30\" pathLength=\"100\" points=\"24.0,178.0 27.6,176.0 31.2,174.0 34.8,172.1 38.4,170.2 42.0,168.5 45.7,166.8 49.3,165.1 52.9,163.6 56.5,162.1 60.1,160.6 63.7,159.3 67.3,158.0 70.9,156.8 74.5,155.6 78.1,154.6 81.7,153.6 85.3,152.6 89.0,151.8 92.6,151.0 96.2,150.2 99.8,149.6 103.4,149.0 107.0,148.5 110.6,148.0 114.2,147.6 117.8,147.3 121.4,147.1 125.0,146.9 128.6,146.8 132.3,146.8 135.9,146.8 139.5,146.9 143.1,147.1 146.7,147.3 150.3,147.6 153.9,148.0 157.5,148.5 161.1,149.0 164.7,149.6 168.3,150.2 171.9,151.0 175.6,151.8 179.2,152.6 182.8,153.6 186.4,154.6 190.0,155.6 193.6,156.8 197.2,158.0 200.8,159.3 204.4,160.6 208.0,162.1 211.6,163.6 215.2,165.1 218.9,166.8 222.5,168.5 226.1,170.2 229.7,172.1 233.3,174.0 236.9,176.0 240.5,178.0\"></polyline><polyline class=\"c2 r60\" pathLength=\"100\" points=\"24.0,178.0 27.6,171.9 31.2,165.9 34.8,160.2 38.4,154.7 42.0,149.4 45.7,144.2 49.3,139.4 52.9,134.7 56.5,130.2 60.1,125.9 63.7,121.9 67.3,118.0 70.9,114.4 74.5,110.9 78.1,107.7 81.7,104.7 85.3,101.9 89.0,99.3 92.6,96.9 96.2,94.7 99.8,92.7 103.4,90.9 107.0,89.4 110.6,88.0 114.2,86.9 117.8,85.9 121.4,85.2 125.0,84.7 128.6,84.4 132.3,84.3 135.9,84.4 139.5,84.7 143.1,85.2 146.7,85.9 150.3,86.9 153.9,88.0 157.5,89.4 161.1,90.9 164.7,92.7 168.3,94.7 171.9,96.9 175.6,99.2 179.2,101.9 182.8,104.7 186.4,107.7 190.0,110.9 193.6,114.4 197.2,118.0 200.8,121.9 204.4,125.9 208.0,130.2 211.6,134.7 215.2,139.4 218.9,144.2 222.5,149.4 226.1,154.7 229.7,160.2 233.3,165.9 236.9,171.9 240.5,178.0\"></polyline><polyline class=\"curve r15\" pathLength=\"100\" points=\"24.0,178.0 26.1,177.5 28.2,176.9 30.2,176.4 32.3,175.9 34.4,175.4 36.5,175.0 38.6,174.5 40.7,174.1 42.8,173.7 44.8,173.3 46.9,173.0 49.0,172.6 51.1,172.3 53.2,172.0 55.2,171.7 57.3,171.5 59.4,171.2 61.5,171.0 63.6,170.8 65.7,170.6 67.8,170.4 69.8,170.2 71.9,170.1 74.0,170.0 76.1,169.9 78.2,169.8 80.2,169.7 82.3,169.7 84.4,169.6 86.5,169.6 88.6,169.6 90.7,169.7 92.7,169.7 94.8,169.8 96.9,169.9 99.0,170.0 101.1,170.1 103.2,170.2 105.2,170.4 107.3,170.6 109.4,170.8 111.5,171.0 113.6,171.2 115.7,171.5 117.7,171.7 119.8,172.0 121.9,172.3 124.0,172.6 126.1,173.0 128.2,173.3 130.2,173.7 132.3,174.1 134.4,174.5 136.5,175.0 138.6,175.4 140.7,175.9 142.8,176.4 144.8,176.9 146.9,177.5 149.0,178.0\"></polyline><polyline class=\"curve r75\" pathLength=\"100\" points=\"24.0,178.0 26.1,170.4 28.2,163.0 30.2,155.8 32.3,149.0 34.4,142.4 36.5,136.0 38.6,129.9 40.7,124.1 42.8,118.5 44.8,113.2 46.9,108.2 49.0,103.4 51.1,98.8 53.2,94.5 55.2,90.5 57.3,86.8 59.4,83.3 61.5,80.0 63.6,77.1 65.7,74.3 67.8,71.9 69.8,69.7 71.9,67.7 74.0,66.0 76.1,64.6 78.2,63.4 80.2,62.5 82.3,61.9 84.4,61.5 86.5,61.4 88.6,61.5 90.7,61.9 92.7,62.5 94.8,63.4 96.9,64.6 99.0,66.0 101.1,67.7 103.2,69.7 105.2,71.9 107.3,74.3 109.4,77.1 111.5,80.0 113.6,83.3 115.7,86.8 117.7,90.5 119.8,94.5 121.9,98.8 124.0,103.4 126.1,108.2 128.2,113.2 130.2,118.5 132.3,124.1 134.4,129.9 136.5,136.0 138.6,142.4 140.7,149.0 142.8,155.8 144.8,163.0 146.9,170.4 149.0,178.0\"></polyline><text class=\"yl fx d6\" x=\"150\" y=\"40\" text-anchor=\"middle\">15° &amp; 75°</text><text class=\"gr fx d6\" x=\"150\" y=\"56\" text-anchor=\"middle\">30° &amp; 60°</text><text class=\"rd fx d6\" x=\"150\" y=\"72\" text-anchor=\"middle\">45° (max R)</text></svg><div class=\"eq fx d5\"><p>R = u² sin 2θ / g, and sin 2θ = sin(180° − 2θ), so <b>θ and 90° − θ give equal range</b>.</p><p><b>45°</b> gives the maximum R = u²/g. The steeper twin goes higher and stays up longer.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .r45{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards 0.2s}.bp .r30{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards 0.9s}.bp .r60{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards 1.3s}.bp .r15{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards 1.9s}.bp .r75{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards 2.3s}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .r45{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards 0.2s}.bp .r30{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards 0.9s}.bp .r60{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards 1.3s}.bp .r15{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards 1.9s}.bp .r75{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.2s ease forwards 2.3s}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.6: prove that 45° + α and 45° − α give equal ranges.",
+      "definition": "sin 2θ = sin(90° ± 2α) = <span style=\"color:#3b82f6\">cos 2α</span> for both",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: relation between range and maximum height?",
+      "definition": "\\( R = 4H\\cot\\theta \\); at θ = 45°, \\( H = R/4 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: projectiles at θ and 90° − θ (same u). Product of their times of flight?",
+      "definition": "\\( T_1 T_2 = \\dfrac{2R}{g} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.8: cricket ball at 28 m/s, 30° above horizontal. H, T, R?",
+      "definition": "H = <span style=\"color:#f08c00\">10.0 m</span>, T = <span style=\"color:#f08c00\">2.9 s</span>, R = <span style=\"color:#f08c00\">69 m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.13: a cricketer can throw 100 m at most. How high can he throw the same ball?",
+      "definition": "<span style=\"color:#f08c00\">50 m</span> (u²/g = 100 m; H = u²/2g)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Ball under a 25 m ceiling",
+      "definition": "Choose θ so that H = 25 m (θ ≈ 33.6°), then R ≈ 150.5 m",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 3.12</p><h2>Find the missing step.</h2><div class=\"prob\">Ceiling 25 m high, ball thrown at 40 m/s. Max horizontal distance without hitting the ceiling?</div><ol><li>Set H = 25: u² sin²θ / 2g = 25</li><li class=\"h\">?</li><li>R = u² sin 2θ / g = 1600 × sin 67.2° / 9.8</li><li><b>R ≈ 150.5 m</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 3.12</p><h2>Find the missing step.</h2><div class=\"prob\">Ceiling 25 m high, ball thrown at 40 m/s. Max horizontal distance without hitting the ceiling?</div><ol><li>Set H = 25: u² sin²θ / 2g = 25</li><li class=\"r\">sin²θ = 2 × 9.8 × 25 / 1600 = 0.306 → θ ≈ 33.6°</li><li>R = u² sin 2θ / g = 1600 × sin 67.2° / 9.8</li><li><b>R ≈ 150.5 m</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-projectile-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Thrown horizontally at u from height h: time to reach the ground?",
+      "definition": "\\( t = \\sqrt{\\dfrac{2h}{g}} \\), <span style=\"color:#3b82f6\">independent of u</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-horizontal-projection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Thrown horizontally at u from height h: horizontal distance?",
+      "definition": "\\( x = u\\sqrt{\\dfrac{2h}{g}} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-horizontal-projection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.7: stone thrown horizontally at 15 m/s from a 490 m cliff. Time and impact speed?",
+      "definition": "<span style=\"color:#f08c00\">10 s</span>; vᵧ = 98 m/s, speed = √(15² + 98²) ≈ <span style=\"color:#f08c00\">99 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-horizontal-projection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "One ball is dropped and another thrown horizontally from the same height at the same time. Which lands first?",
+      "definition": "<span style=\"color:#3b82f6\">Together</span>: vertical motion is identical (uᵧ = 0 for both)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-horizontal-projection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: does a projectile’s path depend only on its acceleration?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the same g gives a straight line (thrown vertically) or a parabola, depending on the <span style=\"color:#3b82f6\">initial velocity</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.9-horizontal-projection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Resultant velocity vs relative velocity?",
+      "definition": "<span style=\"color:#3b82f6\">Resultant</span>: an object with two velocities has v = v₁ + v₂. <span style=\"color:#3b82f6\">Relative</span>: v₁₂ = v₁ − v₂ (velocity of 1 as seen from 2)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.x-relative-velocity-2d"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rain falls vertically; you walk forward. Which way should you tilt the umbrella?",
+      "definition": "<span style=\"color:#3b82f6\">Forward</span>: the rain relative to you is v_rain − v_you, which slants towards you",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.x-relative-velocity-2d"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Crossing a river of width d in the least time: heading and time?",
+      "definition": "Head <span style=\"color:#3b82f6\">perpendicular</span> to the bank; t = d/vʙ; drift = vᵣd/vʙ",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.x-relative-velocity-2d"
+      ],
+      "definitionImage": "media/drawn_river.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Crossing a river along the shortest path (straight across): heading?",
+      "definition": "Upstream at angle θ to the normal with \\( \\sin\\theta = \\dfrac{v_r}{v_b} \\); time \\( \\dfrac{d}{\\sqrt{v_b^2 - v_r^2}} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.x-relative-velocity-2d"
+      ],
+      "definitionImage": "media/drawn_river.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: can a boat reach the opposite point if the river is faster than the boat?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: sin θ = vᵣ/vʙ > 1 is impossible; it will always drift downstream",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.x-relative-velocity-2d"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is uniform circular motion?",
+      "definition": "Motion in a circle at <span style=\"color:#3b82f6\">constant speed</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Uniform circular motion: directions of v and a",
+      "definition": "v tangent, a = v²/R towards the centre (perpendicular to v); acceleration exists because the direction of v changes",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Uniform circular motion · intuition</p><h2>A ball goes round a circle at constant speed. Which way do its velocity and acceleration point, and is it accelerating at all?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><circle class=\"ghost\" cx=\"150\" cy=\"104\" r=\"72\"></circle><circle class=\"dot\" cx=\"150\" cy=\"104\" r=\"3\"></circle><circle class=\"obj2\" cx=\"222\" cy=\"104\" r=\"7\"></circle></svg><p class=\"hint\">Constant speed… so is a = 0?</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Uniform circular motion · intuition</p><h2>A ball goes round a circle at constant speed. Which way do its velocity and acceleration point, and is it accelerating at all?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><circle class=\"ghost\" cx=\"150\" cy=\"104\" r=\"72\"></circle><circle class=\"dot\" cx=\"150\" cy=\"104\" r=\"3\"></circle><g class=\"spinr\"><line class=\"f-n\" x1=\"222\" y1=\"104\" x2=\"222\" y2=\"54\" marker-end=\"url(#an)\"></line><line class=\"f-mg\" x1=\"222\" y1=\"104\" x2=\"182\" y2=\"104\" marker-end=\"url(#am)\"></line><circle class=\"obj2\" cx=\"222\" cy=\"104\" r=\"7\"></circle></g><text class=\"gr\" x=\"8\" y=\"20\">v: tangent</text><text class=\"rd\" x=\"8\" y=\"36\">a: to centre</text></svg><div class=\"eq fx d5\"><p><b>v</b> is along the tangent; <b>a = v²/R</b> points to the centre, always ⟂ v.</p><p>Speed is constant but the <b>direction</b> of v keeps turning, so the ball <b>is</b> accelerating. a has constant size but is <b>not a constant vector</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .spinr{transform-origin:150px 104px;animation:spinr 4s linear infinite .3s}@keyframes spinr{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .spinr{transform-origin:150px 104px;animation:spinr 4s linear infinite .3s}@keyframes spinr{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Magnitude and direction of centripetal acceleration?",
+      "definition": "\\( a_c = \\dfrac{v^2}{R} = \\omega^2 R \\), towards the <span style=\"color:#3b82f6\">centre</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ],
+      "definitionImage": "media/drawn_circular.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How is v²/R derived (Fig. 3.18)?",
+      "definition": "Triangles of position vectors and velocity vectors are <span style=\"color:#3b82f6\">similar</span>: |Δv|/v = |Δr|/R, and |Δr| ≈ vΔt",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is centripetal acceleration a constant vector?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: constant magnitude, but its direction keeps changing",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can the kinematic equations be used for uniform circular motion?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: acceleration is not constant in direction",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who named centripetal acceleration, and who first published its analysis?",
+      "definition": "<span style=\"color:#3b82f6\">Newton</span> named it (\"centre-seeking\"); <span style=\"color:#3b82f6\">Huygens</span> published the analysis in 1673",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define angular speed and relate it to v.",
+      "definition": "\\( \\omega = \\dfrac{\\Delta\\theta}{\\Delta t} \\) ; \\( v = R\\omega \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ω, v, a in terms of frequency ν?",
+      "definition": "\\( \\omega = 2\\pi\\nu,\\ v = 2\\pi R\\nu,\\ a_c = 4\\pi^2\\nu^2 R \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.9: insect in a 12 cm groove makes 7 revolutions in 100 s. ω, v, a?",
+      "definition": "ω = <span style=\"color:#f08c00\">0.44 rad/s</span>, v = <span style=\"color:#f08c00\">5.3 cm/s</span>, a = <span style=\"color:#f08c00\">2.3 cm/s²</span> (not a constant vector)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.14: stone on an 80 cm string makes 14 revolutions in 25 s. Acceleration?",
+      "definition": "<span style=\"color:#f08c00\">9.9 m s⁻²</span> along the radius, towards the centre",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.15: aircraft loop of radius 1.00 km at 900 km/h. a_c compared with g?",
+      "definition": "a = 250²/1000 = 62.5 m s⁻² ≈ <span style=\"color:#f08c00\">6.4 g</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is the net acceleration in any circular motion towards the centre?",
+      "definition": "<span style=\"color:#e5484d\">Only if the speed is constant</span>. If speed changes, there is also a tangential component",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.16(c): average acceleration over one full cycle of uniform circular motion?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span> (the velocity returns to its starting value)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "3.10-uniform-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.9: cyclist goes O → P (1 km), a quarter circle, then back to O in 10 min. Displacement, average velocity, average speed?",
+      "definition": "<span style=\"color:#f08c00\">0</span>, <span style=\"color:#f08c00\">0</span>, and (2 + π/2) km ÷ 1/6 h ≈ <span style=\"color:#f08c00\">21.4 km/h</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "exercises"
+      ],
+      "definitionImage": "media/fig_3_20_cyclist.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.11: cab takes 23 km in 28 min to reach a hotel 10 km away. Average speed and |average velocity|?",
+      "definition": "<span style=\"color:#f08c00\">49.3 km/h</span> and <span style=\"color:#f08c00\">21.4 km/h</span>; equal only for a straight path",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.22: aircraft at 3400 m; positions 10 s apart subtend 30° at an observer. Speed?",
+      "definition": "Distance = 2 × 3400 tan 15° ≈ 1822 m → <span style=\"color:#f08c00\">182 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "What makes a quantity a scalar",
+      "definition": "is conserved in a process: False (e.g. KE in inelastic collision); can never be negative: False (temperature in °C); must be dimensionless: False (mass); does not vary in space: False (temperature); is the same for observers with rotated axes: True",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 3.21</p><h2>A scalar quantity is one that…</h2><table><tr><td>is conserved in a process</td><td class=\"q\">?</td></tr><tr><td>can never be negative</td><td class=\"q\">?</td></tr><tr><td>must be dimensionless</td><td class=\"q\">?</td></tr><tr><td>does not vary in space</td><td class=\"q\">?</td></tr><tr><td>is the same for observers with rotated axes</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 3.21</p><h2>A scalar quantity is one that…</h2><table><tr><td>is conserved in a process</td><td class=\"a no\">False (e.g. KE in inelastic collision)</td></tr><tr><td>can never be negative</td><td class=\"a no\">False (temperature in °C)</td></tr><tr><td>must be dimensionless</td><td class=\"a no\">False (mass)</td></tr><tr><td>does not vary in space</td><td class=\"a no\">False (temperature)</td></tr><tr><td>is the same for observers with rotated axes</td><td class=\"a\">True</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Projectile at its highest point",
+      "definition": "Vertical velocity: 0; Horizontal velocity: u cos θ; Acceleration: g downward; Angle between v and a: 90°",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary · projectile at the top</p><h2>Value at the highest point?</h2><table><tr><td>Vertical velocity</td><td class=\"q\">?</td></tr><tr><td>Horizontal velocity</td><td class=\"q\">?</td></tr><tr><td>Acceleration</td><td class=\"q\">?</td></tr><tr><td>Angle between v and a</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary · projectile at the top</p><h2>Value at the highest point?</h2><table><tr><td>Vertical velocity</td><td class=\"a\">0</td></tr><tr><td>Horizontal velocity</td><td class=\"a\">u cos θ</td></tr><tr><td>Acceleration</td><td class=\"a\">g downward</td></tr><tr><td>Angle between v and a</td><td class=\"a\">90°</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "What stays constant: projectile vs circular motion",
+      "definition": "Projectile: horizontal velocity: constant; Projectile: acceleration: constant (g); Uniform circular motion: speed: constant; Uniform circular motion: velocity: not constant; Uniform circular motion: acceleration: not constant (direction turns)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Which is constant?</h2><table><tr><td>Projectile: horizontal velocity</td><td class=\"q\">?</td></tr><tr><td>Projectile: acceleration</td><td class=\"q\">?</td></tr><tr><td>Uniform circular motion: speed</td><td class=\"q\">?</td></tr><tr><td>Uniform circular motion: velocity</td><td class=\"q\">?</td></tr><tr><td>Uniform circular motion: acceleration</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Which is constant?</h2><table><tr><td>Projectile: horizontal velocity</td><td class=\"a\">constant</td></tr><tr><td>Projectile: acceleration</td><td class=\"a\">constant (g)</td></tr><tr><td>Uniform circular motion: speed</td><td class=\"a\">constant</td></tr><tr><td>Uniform circular motion: velocity</td><td class=\"a no\">not constant</td></tr><tr><td>Uniform circular motion: acceleration</td><td class=\"a no\">not constant (direction turns)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-3",
+        "summary"
+      ]
+    }
+  ]
+}

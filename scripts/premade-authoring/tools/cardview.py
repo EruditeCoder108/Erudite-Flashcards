@@ -1,11 +1,11 @@
 """Render every advanced-HTML card of a deck.json (front + back, 340x470, shadow DOM) into cards.html.
-Usage: python cardview.py <deck.json> [filter-substring]"""
+Usage: python cardview.py <deck.json> [filter-substring, several joined by |]"""
 import sys, json, os, html
 from _work import WORK, ROOT
 HERE = WORK
 deck = json.load(open(sys.argv[1], encoding='utf8'))
 flt = sys.argv[2].lower() if len(sys.argv) > 2 else ''
-cards = [c for c in deck['cards'] if c.get('noteType') == 'advanced-html' and flt in c['term'].lower()]
+cards = [c for c in deck['cards'] if c.get('noteType') == 'advanced-html' and any(f in c['term'].lower() for f in flt.split('|'))]
 items = []
 for i, c in enumerate(cards):
     a = c['advancedHtml']
