@@ -1,0 +1,1445 @@
+{
+  "version": 1,
+  "name": "Chapter 3: Chemical Kinetics",
+  "className": "Class 12",
+  "description": "Reaction rates, rate law, order and molecularity, zero and first order integrated laws, half-life, Arrhenius equation, catalysts, collision theory",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Thermodynamics vs kinetics: what does each tell you?",
+      "definition": "<span style=\"color:#3b82f6\">Thermodynamics</span>: feasibility (ΔG < 0) and extent. <span style=\"color:#3b82f6\">Kinetics</span>: rate and mechanism.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.0-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is \"diamond is forever\" true though diamond → graphite is spontaneous?",
+      "definition": "ΔG < 0, but the rate is <span style=\"color:#e5484d\">imperceptibly slow</span>: feasible does not mean fast",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.0-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Origin of the word kinetics?",
+      "definition": "Greek <i>kinesis</i>: movement",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.0-introduction"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Reaction speeds: very fast = {{c1::precipitation of AgCl (ionic)}}; very slow = {{c2::rusting of iron}}; moderate = {{c3::inversion of cane sugar, hydrolysis of starch}}.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.0-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define rate of reaction.",
+      "definition": "Change in <span style=\"color:#3b82f6\">concentration</span> of a reactant or product per unit time",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Average rate for R → P?",
+      "definition": "\\( r_{av} = -\\frac{\\Delta [R]}{\\Delta t} = \\frac{\\Delta [P]}{\\Delta t} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why the minus sign for reactants?",
+      "definition": "Δ[R] is negative; the minus sign makes the rate <span style=\"color:#3b82f6\">positive</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Instantaneous rate?",
+      "definition": "\\( r_{inst} = -\\frac{d[R]}{dt} = \\frac{d[P]}{dt} \\): slope of the <span style=\"color:#3b82f6\">tangent</span> to the concentration–time curve",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ],
+      "definitionImage": "media/fig_3_1_average_instantaneous.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Units of rate?",
+      "definition": "<span style=\"color:#f08c00\">mol L⁻¹ s⁻¹</span>; for gases <span style=\"color:#f08c00\">atm s⁻¹</span> (partial pressures)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does the average rate of butyl chloride hydrolysis fall with time?",
+      "definition": "Reactant concentration <span style=\"color:#e5484d\">decreases</span>, so collisions and rate fall (1.90 → 0.4 × 10⁻⁴ mol L⁻¹ s⁻¹)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ],
+      "definitionImage": "media/tab_3_1_butyl_chloride.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How is the instantaneous rate at 600 s found from Fig. 3.2?",
+      "definition": "Draw the <span style=\"color:#3b82f6\">tangent at t = 600 s</span>; −slope = <span style=\"color:#f08c00\">5.12 × 10⁻⁵ mol L⁻¹ s⁻¹</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ],
+      "definitionImage": "media/fig_3_2_tangent.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Rate of 2HI → H₂ + I₂ in terms of each species?",
+      "definition": "\\( -\\frac{1}{2}\\frac{d[HI]}{dt} = \\frac{d[H_2]}{dt} = \\frac{d[I_2]}{dt} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "General rule for rate with stoichiometric coefficients?",
+      "definition": "Divide each species’ rate of change by its <span style=\"color:#3b82f6\">coefficient</span> (minus sign for reactants)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For 5Br⁻ + BrO₃⁻ + 6H⁺ → 3Br₂ + 3H₂O, rate in terms of Br⁻ and Br₂?",
+      "definition": "\\( -\\frac{1}{5}\\frac{d[Br^-]}{dt} = \\frac{1}{3}\\frac{d[Br_2]}{dt} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Rate of N₂O₅ decomposition",
+      "definition": "6.79 × 10⁻⁴ M/min; NO₂ 2.72 × 10⁻³",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.2</p><h2>2N₂O₅ → 4NO₂ + O₂: [N₂O₅] 2.33 → 2.08 M in 184 min. Rate, and rate of NO₂ formation?</h2><div class=\"prob\">Rate = −½ Δ[N₂O₅]/Δt.</div><ol><li>Rate = ½ × 0.25/184 = <b>6.79 × 10⁻⁴ M min⁻¹</b></li><li>= 4.07 × 10⁻² M h⁻¹ = 1.13 × 10⁻⁵ M s⁻¹</li><li>d[NO₂]/dt = 4 × rate</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.2</p><h2>2N₂O₅ → 4NO₂ + O₂: [N₂O₅] 2.33 → 2.08 M in 184 min. Rate, and rate of NO₂ formation?</h2><div class=\"prob\">Rate = −½ Δ[N₂O₅]/Δt.</div><ol><li>Rate = ½ × 0.25/184 = <b>6.79 × 10⁻⁴ M min⁻¹</b></li><li>= 4.07 × 10⁻² M h⁻¹ = 1.13 × 10⁻⁵ M s⁻¹</li><li>d[NO₂]/dt = 4 × rate</li><li class=\"r\">= <b>2.72 × 10⁻³ M min⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: 2A → products, [A] 0.5 → 0.4 M in 10 min. Rate? (Intext 3.2)",
+      "definition": "½ × 0.1/10 = <span style=\"color:#f08c00\">5 × 10⁻³ M min⁻¹</span> (don’t forget the ½)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "R → P, [R] 0.03 → 0.02 M in 25 min. Rate in min and s? (Intext 3.1)",
+      "definition": "<span style=\"color:#f08c00\">4 × 10⁻⁴ M min⁻¹</span> = <span style=\"color:#f08c00\">6.67 × 10⁻⁶ M s⁻¹</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.1-rate-of-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Factors affecting rate?",
+      "definition": "<span style=\"color:#3b82f6\">Concentration</span> (pressure for gases), <span style=\"color:#3b82f6\">temperature</span>, <span style=\"color:#3b82f6\">catalyst</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2-rate-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a rate law (rate equation)?",
+      "definition": "Rate expressed in terms of reactant concentrations, each raised to a power: \\( Rate = k[A]^x[B]^y \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2-rate-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Are x and y the stoichiometric coefficients?",
+      "definition": "<span style=\"color:#e5484d\">Not necessarily</span>: they must be found <span style=\"color:#3b82f6\">experimentally</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2-rate-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is k?",
+      "definition": "The <span style=\"color:#3b82f6\">rate constant</span>: the rate when all concentrations are 1 M; depends on T, not on concentration",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2-rate-law"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Initial-rate method",
+      "definition": "Rate = k[NO]²[O₂]",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 3.2</p><h2>2NO + O₂ → 2NO₂. From initial-rate data, find the rate law.</h2><div class=\"prob\">Double one concentration at a time.</div><ol><li>[NO] 0.30 → 0.60, [O₂] fixed: rate 0.096 → 0.384 (×4)</li><li>So order in NO = 2</li><li>[O₂] 0.30 → 0.60, [NO] fixed: rate ×2, order in O₂ = 1</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 3.2</p><h2>2NO + O₂ → 2NO₂. From initial-rate data, find the rate law.</h2><div class=\"prob\">Double one concentration at a time.</div><ol><li>[NO] 0.30 → 0.60, [O₂] fixed: rate 0.096 → 0.384 (×4)</li><li>So order in NO = 2</li><li>[O₂] 0.30 → 0.60, [NO] fixed: rate ×2, order in O₂ = 1</li><li class=\"r\"><b>Rate = k[NO]²[O₂]</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2-rate-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Initial-rate data for NO + O₂?",
+      "definition": "Table 3.2",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2-rate-law"
+      ],
+      "definitionImage": "media/tab_3_2_no_rates.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Experimental rate law of CHCl₃ + Cl₂ → CCl₄ + HCl?",
+      "definition": "\\( Rate = k[CHCl_3][Cl_2]^{1/2} \\): order <span style=\"color:#f08c00\">1.5</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2-rate-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Experimental rate law of ester hydrolysis (CH₃COOC₂H₅ + H₂O)?",
+      "definition": "\\( Rate = k[ester]^1[H_2O]^0 \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2-rate-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: how to read an order from a doubling experiment?",
+      "definition": "Rate ×1 → order 0; ×2 → order 1; ×4 → order 2; ×8 → order 3 (rate multiplies by 2ⁿ)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2-rate-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define order of reaction.",
+      "definition": "Sum of the <span style=\"color:#3b82f6\">powers of concentration</span> in the experimental rate law",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Possible values of order?",
+      "definition": "0, 1, 2, 3, and even <span style=\"color:#3b82f6\">fractions</span> or negative values",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Zero order means?",
+      "definition": "Rate is <span style=\"color:#3b82f6\">independent of reactant concentration</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Order of Rate = k[A]¹ᐟ²[B]³ᐟ² and Rate = k[A]³ᐟ²[B]⁻¹? (Example 3.3)",
+      "definition": "<span style=\"color:#f08c00\">2</span> and <span style=\"color:#f08c00\">½</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Order of r = k[A]¹ᐟ²[B]²? (Intext 3.3)",
+      "definition": "<span style=\"color:#f08c00\">2.5</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Second order in X; [X] tripled. Effect on rate? (Intext 3.4)",
+      "definition": "Rate × 3² = <span style=\"color:#f08c00\">9 times</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Elementary vs complex reaction?",
+      "definition": "<span style=\"color:#3b82f6\">Elementary</span>: occurs in one step. <span style=\"color:#3b82f6\">Complex</span>: a sequence of elementary steps (mechanism).",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Types of complex reactions (NCERT examples)?",
+      "definition": "Consecutive (ethane → alcohol → aldehyde → acid → CO₂), reverse, side reactions (phenol → o- and p-nitrophenol)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "General unit of k for order n?",
+      "definition": "\\( (mol \\, L^{-1})^{1-n} \\, s^{-1} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Units of rate constant by order",
+      "definition": "Zero order: mol L⁻¹ s⁻¹; First order: s⁻¹; Second order: L mol⁻¹ s⁻¹; Third order: L² mol⁻² s⁻¹",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Units of k</p><h2>Unit of k?</h2><table><tr><td>Zero order</td><td class=\"q\">?</td></tr><tr><td>First order</td><td class=\"q\">?</td></tr><tr><td>Second order</td><td class=\"q\">?</td></tr><tr><td>Third order</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Units of k</p><h2>Unit of k?</h2><table><tr><td>Zero order</td><td class=\"a\">mol L⁻¹ s⁻¹</td></tr><tr><td>First order</td><td class=\"a\">s⁻¹</td></tr><tr><td>Second order</td><td class=\"a\">L mol⁻¹ s⁻¹</td></tr><tr><td>Third order</td><td class=\"a\">L² mol⁻² s⁻¹</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Order from k = 2.3 × 10⁻⁵ L mol⁻¹ s⁻¹ and k = 3 × 10⁻⁴ s⁻¹? (Example 3.4)",
+      "definition": "<span style=\"color:#3b82f6\">Second</span> order and <span style=\"color:#3b82f6\">first</span> order",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.3-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define molecularity.",
+      "definition": "Number of reacting species that must <span style=\"color:#3b82f6\">collide simultaneously</span> in an <span style=\"color:#3b82f6\">elementary</span> reaction",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.4-molecularity"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Molecularity examples: unimolecular = {{c1::NH₄NO₂ → N₂ + 2H₂O}}; bimolecular = {{c2::2HI → H₂ + I₂}}; termolecular = {{c3::2NO + O₂ → 2NO₂}}.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.4-molecularity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are reactions of molecularity > 3 not seen?",
+      "definition": "The chance of <span style=\"color:#e5484d\">more than three</span> molecules colliding at once is negligible",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.4-molecularity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "KClO₃ + 6FeSO₄ + 3H₂SO₄ → … looks 10th order. Actual order?",
+      "definition": "<span style=\"color:#f08c00\">Second order</span>: it goes in several steps",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.4-molecularity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the rate-determining step?",
+      "definition": "The <span style=\"color:#3b82f6\">slowest step</span> of a mechanism; it controls the overall rate (like the slowest runner in a relay)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.4-molecularity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mechanism of I⁻-catalysed decomposition of H₂O₂ (alkaline)?",
+      "definition": "(1) H₂O₂ + I⁻ → H₂O + IO⁻ (<span style=\"color:#3b82f6\">slow</span>); (2) H₂O₂ + IO⁻ → H₂O + I⁻ + O₂. Rate = k[H₂O₂][I⁻].",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.4-molecularity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is IO⁻ in that mechanism?",
+      "definition": "An <span style=\"color:#3b82f6\">intermediate</span>: formed and used up; not in the overall equation",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.4-molecularity"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Order vs molecularity",
+      "definition": "Found experimentally: Order; Can be zero or fractional: Order; Always a whole number 1–3: Molecularity; Meaningful only for elementary steps: Molecularity; Applies to complex reactions too: Order",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Order vs molecularity</p><h2>Which one?</h2><table><tr><td>Found experimentally</td><td class=\"q\">?</td></tr><tr><td>Can be zero or fractional</td><td class=\"q\">?</td></tr><tr><td>Always a whole number 1–3</td><td class=\"q\">?</td></tr><tr><td>Meaningful only for elementary steps</td><td class=\"q\">?</td></tr><tr><td>Applies to complex reactions too</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Order vs molecularity</p><h2>Which one?</h2><table><tr><td>Found experimentally</td><td class=\"a\">Order</td></tr><tr><td>Can be zero or fractional</td><td class=\"a\">Order</td></tr><tr><td>Always a whole number 1–3</td><td class=\"a no\">Molecularity</td></tr><tr><td>Meaningful only for elementary steps</td><td class=\"a no\">Molecularity</td></tr><tr><td>Applies to complex reactions too</td><td class=\"a\">Order</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.4-molecularity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NCERT: for a complex reaction, molecularity of the slowest step = order. Correction?",
+      "definition": "True only when the slow step is the <span style=\"color:#3b82f6\">first step</span> (or involves only reactants). If fast steps come first, intermediates in the slow step change the order.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.2.4-molecularity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why integrate rate laws?",
+      "definition": "Instantaneous rates (tangents) are hard to measure; integrated laws link <span style=\"color:#3b82f6\">concentration directly to time</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3-integrated-rate-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integrated zero-order rate law?",
+      "definition": "\\( [R] = [R]_0 - kt \\), so \\( k = \\frac{[R]_0 - [R]}{t} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.1-zero-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Straight-line plot for zero order?",
+      "definition": "<span style=\"color:#3b82f6\">[R] vs t</span>: slope = −k, intercept = [R]₀",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.1-zero-order"
+      ],
+      "definitionImage": "media/fig_3_3_zero_order.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Examples of zero-order reactions?",
+      "definition": "Some <span style=\"color:#3b82f6\">enzyme</span> reactions and reactions on metal surfaces: 2NH₃ → N₂ + 3H₂ on hot <span style=\"color:#3b82f6\">Pt</span> (1130 K, high pressure); HI on <span style=\"color:#3b82f6\">gold</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.1-zero-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is NH₃ decomposition on Pt zero order at high pressure?",
+      "definition": "The Pt <span style=\"color:#3b82f6\">surface is saturated</span>; extra NH₃ can’t find sites, so rate is independent of [NH₃]",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.1-zero-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: zero order is like…?",
+      "definition": "A ticket counter with one clerk: the queue length (concentration) doesn’t change how fast people are served",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.1-zero-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integrated first-order rate law?",
+      "definition": "\\( k = \\frac{2.303}{t} \\log \\frac{[R]_0}{[R]} \\) or \\( [R] = [R]_0 e^{-kt} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Straight-line plots for first order?",
+      "definition": "<span style=\"color:#3b82f6\">ln[R] vs t</span>: slope −k. <span style=\"color:#3b82f6\">log([R]₀/[R]) vs t</span>: slope k/2.303, through origin.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the plot and give its slope.",
+      "definition": "First order: ln[R] vs t, slope = <span style=\"color:#3b82f6\">−k</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ],
+      "termImage": "media/fig_3_4_ln_r_vs_t.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the plot and give its slope.",
+      "definition": "First order: log([R]₀/[R]) vs t, slope = <span style=\"color:#3b82f6\">k/2.303</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ],
+      "termImage": "media/fig_3_5_log_ratio_vs_t.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "k from two times t₁, t₂?",
+      "definition": "\\( k = \\frac{2.303}{t_2 - t_1} \\log \\frac{[R]_1}{[R]_2} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Examples of first-order reactions?",
+      "definition": "Hydrogenation of ethene, <span style=\"color:#3b82f6\">all radioactive decay</span> (e.g. ²²⁶Ra → ²²²Rn + ⁴He), decomposition of N₂O₅ and N₂O",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "First-order rate constant of N₂O₅",
+      "definition": "0.0304 min⁻¹",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.5</p><h2>[N₂O₅] 1.24 × 10⁻² → 0.20 × 10⁻² M in 60 min, first order. k?</h2><div class=\"prob\">k = (2.303/t) log([R]₀/[R])</div><ol><li>Ratio = 1.24/0.20 = 6.2</li><li>log 6.2 = 0.792</li><li>k = 2.303 × 0.792/60</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.5</p><h2>[N₂O₅] 1.24 × 10⁻² → 0.20 × 10⁻² M in 60 min, first order. k?</h2><div class=\"prob\">k = (2.303/t) log([R]₀/[R])</div><ol><li>Ratio = 1.24/0.20 = 6.2</li><li>log 6.2 = 0.792</li><li>k = 2.303 × 0.792/60</li><li class=\"r\">= <b>0.0304 min⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "First-order gas reaction A(g) → B(g) + C(g): k in terms of total pressure?",
+      "definition": "\\( k = \\frac{2.303}{t} \\log \\frac{p_i}{2p_i - p_t} \\) (p_A = 2pᵢ − pₜ)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "k from total pressure",
+      "definition": "4.92 × 10⁻⁴ s⁻¹",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.6</p><h2>2N₂O₅ → 2N₂O₄ + O₂ at constant V: pₜ = 0.5 atm at 0 s, 0.512 atm at 100 s. k?</h2><div class=\"prob\">N₂O₅ falls by 2x, total rises by x.</div><ol><li>pₜ = 0.5 + x ⇒ x = 0.012</li><li class=\"h\">?</li><li>k = (2.303/100) log(0.5/0.476)</li><li>= 0.02303 × 0.0214 = <b>4.92 × 10⁻⁴ s⁻¹</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.6</p><h2>2N₂O₅ → 2N₂O₄ + O₂ at constant V: pₜ = 0.5 atm at 0 s, 0.512 atm at 100 s. k?</h2><div class=\"prob\">N₂O₅ falls by 2x, total rises by x.</div><ol><li>pₜ = 0.5 + x ⇒ x = 0.012</li><li class=\"r\">p(N₂O₅) = 0.5 − 2x = 1.5 − 2pₜ = 0.476 atm</li><li>k = (2.303/100) log(0.5/0.476)</li><li>= 0.02303 × 0.0214 = <b>4.92 × 10⁻⁴ s⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT’s Example 3.6 gives k = 4.98 × 10⁻⁴ s⁻¹. Exact value?",
+      "definition": "log(0.5/0.476) = 0.02136 (NCERT rounds to 0.0216), so k = <span style=\"color:#3b82f6\">4.92 × 10⁻⁴ s⁻¹</span>. Small rounding slip, same method.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: in pressure problems, why not use pₜ directly?",
+      "definition": "Only the <span style=\"color:#3b82f6\">reactant’s partial pressure</span> follows the first-order law; build it from the stoichiometry first",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.2-first-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define half-life.",
+      "definition": "Time for the reactant concentration to fall to <span style=\"color:#3b82f6\">half</span> its initial value",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Half-life of a zero-order reaction?",
+      "definition": "\\( t_{1/2} = \\frac{[R]_0}{2k} \\): ∝ <span style=\"color:#3b82f6\">[R]₀</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Half-life of a first-order reaction?",
+      "definition": "\\( t_{1/2} = \\frac{0.693}{k} \\): <span style=\"color:#3b82f6\">independent of [R]₀</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Half-life of a second-order reaction? (teacher addition)",
+      "definition": "\\( t_{1/2} = \\frac{1}{k[R]_0} \\); general: \\( t_{1/2} \\propto [R]_0^{\\,1-n} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integrated second-order law, 2A → P type with rate k[A]²? (teacher addition)",
+      "definition": "\\( \\frac{1}{[A]} - \\frac{1}{[A]_0} = kt \\); plot 1/[A] vs t is linear",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "t½ for k = 5.5 × 10⁻¹⁴ s⁻¹? (Example 3.7)",
+      "definition": "0.693/k = <span style=\"color:#f08c00\">1.26 × 10¹³ s</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Show t(99.9%) = 10 t½ for first order. (Example 3.8)",
+      "definition": "t = (2.303/k) log 1000 = 6.909/k; ÷ (0.693/k) = <span style=\"color:#f08c00\">10</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "First-order shortcuts: t(75%) and t(87.5%)?",
+      "definition": "<span style=\"color:#3b82f6\">2 t½</span> and <span style=\"color:#3b82f6\">3 t½</span> (halve, halve, halve)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why is a first-order t½ constant?",
+      "definition": "A fixed <span style=\"color:#3b82f6\">fraction</span> reacts per unit time, however much is left: like radioactive atoms, each has the same chance to react each second",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "After n half-lives, fraction left (first order)?",
+      "definition": "\\( \\left(\\frac{1}{2}\\right)^n \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "5 g → 3 g, first order, k = 1.15 × 10⁻³ s⁻¹. Time? (Intext 3.5)",
+      "definition": "(2.303/1.15 × 10⁻³) log(5/3) = <span style=\"color:#f08c00\">444 s</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "SO₂Cl₂ half-life 60 min (first order). k? (Intext 3.6)",
+      "definition": "0.693/60 = <span style=\"color:#f08c00\">1.16 × 10⁻² min⁻¹</span> (1.93 × 10⁻⁴ s⁻¹)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Integrated rate laws: zero vs first order",
+      "definition": "Integrated law: [R] = [R]₀ − kt  |  [R] = [R]₀e⁻ᵏᵗ; Straight-line plot: [R] vs t  |  ln[R] vs t; Half-life: [R]₀/2k  |  0.693/k; Units of k: mol L⁻¹ s⁻¹  |  s⁻¹",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 3.4</p><h2>Zero vs first order?</h2><table><tr><td>Integrated law</td><td class=\"q\">?</td></tr><tr><td>Straight-line plot</td><td class=\"q\">?</td></tr><tr><td>Half-life</td><td class=\"q\">?</td></tr><tr><td>Units of k</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 3.4</p><h2>Zero vs first order?</h2><table><tr><td>Integrated law</td><td class=\"a\">[R] = [R]₀ − kt  |  [R] = [R]₀e⁻ᵏᵗ</td></tr><tr><td>Straight-line plot</td><td class=\"a\">[R] vs t  |  ln[R] vs t</td></tr><tr><td>Half-life</td><td class=\"a\">[R]₀/2k  |  0.693/k</td></tr><tr><td>Units of k</td><td class=\"a\">mol L⁻¹ s⁻¹  |  s⁻¹</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Table 3.4 as printed?",
+      "definition": "Integrated rate laws summary",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.3-half-life"
+      ],
+      "definitionImage": "media/tab_3_4_integrated_laws.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a pseudo first-order reaction?",
+      "definition": "A higher-order reaction that behaves as first order because one reactant is in <span style=\"color:#3b82f6\">large excess</span> (its concentration barely changes)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.4-pseudo-first-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is acid hydrolysis of ethyl acetate pseudo first order?",
+      "definition": "Water is in huge excess (0.01 mol ester vs 10 mol water → 9.99 mol), so Rate = k′[ester]",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.4-pseudo-first-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Inversion of cane sugar: products and rate law?",
+      "definition": "Sucrose + H₂O →(H⁺) <span style=\"color:#3b82f6\">glucose + fructose</span>; Rate = k[C₁₂H₂₂O₁₁] (pseudo first order)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.3.4-pseudo-first-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Half-life of N₂O₅ at 50, 25, 0 °C?",
+      "definition": "<span style=\"color:#f08c00\">12 min</span>, <span style=\"color:#f08c00\">5 h</span>, <span style=\"color:#f08c00\">10 days</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rule of thumb for temperature (temperature coefficient)?",
+      "definition": "A 10° rise nearly <span style=\"color:#3b82f6\">doubles</span> the rate constant (k₃₀₈/k₂₉₈ ≈ 2–3)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Arrhenius equation?",
+      "definition": "\\( k = A e^{-E_a/RT} \\); A = frequency / pre-exponential factor, Eₐ = activation energy",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who proposed and who justified the Arrhenius equation?",
+      "definition": "Proposed by <span style=\"color:#3b82f6\">van’t Hoff</span>; physical justification by <span style=\"color:#3b82f6\">Arrhenius</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Activated complex in H₂ + I₂ → 2HI?",
+      "definition": "An unstable <span style=\"color:#3b82f6\">intermediate</span> H₂···I₂ that exists briefly then breaks into 2HI",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ],
+      "definitionImage": "media/fig_3_6_hi_intermediate.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define activation energy.",
+      "definition": "Energy needed to form the <span style=\"color:#3b82f6\">activated complex</span> from reactants (the energy barrier)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 3.7 · Potential energy vs reaction coordinate",
+      "definition": "",
+      "image": "media/fig_3_7_energy_profile.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 1001,
+        "imageHeight": 650,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              455,
+              25,
+              215,
+              100
+            ],
+            "answer": "Activated complex",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              240,
+              225,
+              225,
+              105
+            ],
+            "answer": "Activation energy",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              495,
+              405,
+              85,
+              65
+            ],
+            "answer": "ΔH"
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              262,
+              432,
+              150,
+              72
+            ],
+            "answer": "Reactants (H₂ + I₂)"
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              700,
+              452,
+              105,
+              62
+            ],
+            "answer": "Products (2HI)"
+          }
+        ]
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "On the energy profile, what gives ΔH?",
+      "definition": "Energy of <span style=\"color:#3b82f6\">products − reactants</span> (independent of the barrier)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation of forward and backward activation energies? (teacher addition)",
+      "definition": "\\( E_{a,f} - E_{a,b} = \\Delta H \\); for endothermic reactions Eₐ,f ≥ ΔH",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the Maxwell–Boltzmann curve show?",
+      "definition": "Fraction of molecules (N_E/N_T) vs kinetic energy; peak = <span style=\"color:#3b82f6\">most probable kinetic energy</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ],
+      "definitionImage": "media/fig_3_8_maxwell_boltzmann.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of raising T on the distribution curve?",
+      "definition": "Peak shifts to <span style=\"color:#3b82f6\">higher energy</span> and the curve <span style=\"color:#3b82f6\">broadens</span>; total area stays constant",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ],
+      "definitionImage": "media/fig_3_9_temperature_curve.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a 10° rise roughly double the rate?",
+      "definition": "The fraction of molecules with E ≥ Eₐ (tail area) <span style=\"color:#3b82f6\">about doubles</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Physical meaning of e^(−Eₐ/RT)?",
+      "definition": "Fraction of molecules with kinetic energy <span style=\"color:#3b82f6\">≥ Eₐ</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why does rate rise so steeply with T?",
+      "definition": "Only the tail of the distribution reacts; a small shift of the curve adds many molecules to that thin tail (exponential, not linear)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Log form of Arrhenius and its plot?",
+      "definition": "\\( \\ln k = -\\frac{E_a}{RT} + \\ln A \\); ln k vs 1/T: slope <span style=\"color:#3b82f6\">−Eₐ/R</span>, intercept <span style=\"color:#3b82f6\">ln A</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ],
+      "definitionImage": "media/fig_3_10_arrhenius_plot.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Two-temperature Arrhenius equation?",
+      "definition": "\\( \\log \\frac{k_2}{k_1} = \\frac{E_a}{2.303R}\\left(\\frac{T_2 - T_1}{T_1 T_2}\\right) \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: units in the two-temperature formula?",
+      "definition": "Eₐ in <span style=\"color:#3b82f6\">J mol⁻¹</span> with R = 8.314 J K⁻¹ mol⁻¹; T in <span style=\"color:#3b82f6\">kelvin</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Eₐ and A from two rate constants",
+      "definition": "Eₐ 18.23 kJ/mol; A 1.61",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.9</p><h2>k = 0.02 s⁻¹ at 500 K and 0.07 s⁻¹ at 700 K. Eₐ and A?</h2><div class=\"prob\">Use the two-temperature form.</div><ol><li>log(0.07/0.02) = 0.544</li><li>(T₂ − T₁)/(T₁T₂) = 200/350000 = 5.714 × 10⁻⁴</li><li class=\"h\">?</li><li>A = 0.02/e^(−4.385) = 0.02/0.0125 = <b>1.61 s⁻¹</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.9</p><h2>k = 0.02 s⁻¹ at 500 K and 0.07 s⁻¹ at 700 K. Eₐ and A?</h2><div class=\"prob\">Use the two-temperature form.</div><ol><li>log(0.07/0.02) = 0.544</li><li>(T₂ − T₁)/(T₁T₂) = 200/350000 = 5.714 × 10⁻⁴</li><li class=\"r\">Eₐ = 0.544 × 19.15/5.714 × 10⁻⁴ = <b>18.23 kJ mol⁻¹</b></li><li>A = 0.02/e^(−4.385) = 0.02/0.0125 = <b>1.61 s⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Rate constant at a new temperature",
+      "definition": "6.36 × 10⁻³ s⁻¹",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.10</p><h2>C₂H₅I decomposition: k = 1.60 × 10⁻⁵ s⁻¹ at 600 K, Eₐ = 209 kJ/mol. k at 700 K?</h2><div class=\"prob\">log k₂ = log k₁ + (Eₐ/2.303R)(1/T₁ − 1/T₂).</div><ol><li>Eₐ/2.303R = 209000/19.15 = 10914</li><li class=\"h\">?</li><li>log k₂ = −4.796 + 2.599 = −2.197</li><li>k₂ = <b>6.36 × 10⁻³ s⁻¹</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.10</p><h2>C₂H₅I decomposition: k = 1.60 × 10⁻⁵ s⁻¹ at 600 K, Eₐ = 209 kJ/mol. k at 700 K?</h2><div class=\"prob\">log k₂ = log k₁ + (Eₐ/2.303R)(1/T₁ − 1/T₂).</div><ol><li>Eₐ/2.303R = 209000/19.15 = 10914</li><li class=\"r\">× (1/600 − 1/700) = 10914 × 2.381 × 10⁻⁴ = 2.599</li><li>log k₂ = −4.796 + 2.599 = −2.197</li><li>k₂ = <b>6.36 × 10⁻³ s⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of higher T or lower Eₐ on k?",
+      "definition": "Both give an <span style=\"color:#3b82f6\">exponential increase</span> in k",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4-temperature-dependence"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define a catalyst. Example?",
+      "definition": "Increases rate without permanent chemical change; <span style=\"color:#22a35a\">MnO₂ in 2KClO₃ → 2KCl + 3O₂</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4.1-catalyst"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is an inhibitor?",
+      "definition": "A substance that <span style=\"color:#e5484d\">reduces</span> the rate (not called a catalyst)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4.1-catalyst"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intermediate complex theory?",
+      "definition": "Catalyst forms <span style=\"color:#3b82f6\">temporary bonds</span> with reactants → intermediate complex → products + catalyst",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4.1-catalyst"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a catalyst speed up a reaction?",
+      "definition": "Provides an alternate pathway of <span style=\"color:#3b82f6\">lower activation energy</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4.1-catalyst"
+      ],
+      "definitionImage": "media/fig_3_11_catalyst.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "A catalyst does not change {{c1::ΔG}} or the {{c2::equilibrium constant}}; it speeds up forward and backward reactions {{c3::equally}}, so equilibrium is reached {{c4::faster}}.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4.1-catalyst"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can a catalyst make a non-spontaneous reaction occur?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it only speeds up reactions that are already spontaneous",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4.1-catalyst"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: catalyst as a mountain tunnel?",
+      "definition": "Same start and end points (same ΔH, ΔG), but a <span style=\"color:#3b82f6\">lower pass</span> through the mountain, so far more travellers make it across per hour",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.4.1-catalyst"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who developed collision theory, and its basis?",
+      "definition": "<span style=\"color:#3b82f6\">Trautz and Lewis</span> (1916–18); based on kinetic theory of gases, molecules as hard spheres",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.5-collision-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Collision frequency Z?",
+      "definition": "Number of collisions per second per unit volume",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.5-collision-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Collision-theory rate for A + B?",
+      "definition": "\\( Rate = Z_{AB} \\, e^{-E_a/RT} \\); A in Arrhenius is related to Z",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.5-collision-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are effective collisions?",
+      "definition": "Collisions with energy ≥ <span style=\"color:#3b82f6\">threshold energy</span> and <span style=\"color:#3b82f6\">proper orientation</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.5-collision-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Threshold energy (footnote)?",
+      "definition": "Activation energy + energy possessed by the reacting species",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.5-collision-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rate with steric factor P?",
+      "definition": "\\( Rate = P \\, Z_{AB} \\, e^{-E_a/RT} \\); P accounts for <span style=\"color:#3b82f6\">orientation</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.5-collision-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the idea shown.",
+      "definition": "Only a <span style=\"color:#3b82f6\">properly oriented</span> collision (OH⁻ attacking C opposite Br) gives CH₃OH; others bounce back",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.5-collision-theory"
+      ],
+      "termImage": "media/fig_3_12_orientation.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT says \"methanol from bromoethane\" for Fig. 3.12. Right reactant?",
+      "definition": "<span style=\"color:#3b82f6\">Bromomethane</span> (CH₃Br): the figure shows CH₃Br + OH⁻ → CH₃OH + Br⁻; bromoethane would give ethanol",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.5-collision-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Drawback of collision theory?",
+      "definition": "Treats molecules as <span style=\"color:#e5484d\">hard spheres</span>, ignoring their structure",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "3.5-collision-theory"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chemical kinetics formula sheet",
+      "definition": "Zero order: k = ([R]₀ − [R])/t; t½ = [R]₀/2k; First order: k = (2.303/t) log([R]₀/[R]); t½ = 0.693/k; Arrhenius: k = A e^(−Eₐ/RT); Two temperatures: log(k₂/k₁) = Eₐ(T₂ − T₁)/(2.303 R T₁T₂); Collision theory: Rate = P Z e^(−Eₐ/RT)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Zero order</td><td class=\"q\">?</td></tr><tr><td>First order</td><td class=\"q\">?</td></tr><tr><td>Arrhenius</td><td class=\"q\">?</td></tr><tr><td>Two temperatures</td><td class=\"q\">?</td></tr><tr><td>Collision theory</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Zero order</td><td class=\"a\">k = ([R]₀ − [R])/t; t½ = [R]₀/2k</td></tr><tr><td>First order</td><td class=\"a\">k = (2.303/t) log([R]₀/[R]); t½ = 0.693/k</td></tr><tr><td>Arrhenius</td><td class=\"a\">k = A e^(−Eₐ/RT)</td></tr><tr><td>Two temperatures</td><td class=\"a\">log(k₂/k₁) = Eₐ(T₂ − T₁)/(2.303 R T₁T₂)</td></tr><tr><td>Collision theory</td><td class=\"a\">Rate = P Z e^(−Eₐ/RT)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "What affects the rate constant",
+      "definition": "Temperature: Yes: exponential rise; Catalyst: Yes: lowers Eₐ; Concentration: No (changes rate, not k); Reaction time elapsed: No",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>What changes k?</h2><table><tr><td>Temperature</td><td class=\"q\">?</td></tr><tr><td>Catalyst</td><td class=\"q\">?</td></tr><tr><td>Concentration</td><td class=\"q\">?</td></tr><tr><td>Reaction time elapsed</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>What changes k?</h2><table><tr><td>Temperature</td><td class=\"a\">Yes: exponential rise</td></tr><tr><td>Catalyst</td><td class=\"a\">Yes: lowers Eₐ</td></tr><tr><td>Concentration</td><td class=\"a no\">No (changes rate, not k)</td></tr><tr><td>Reaction time elapsed</td><td class=\"a no\">No</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-3",
+        "summary"
+      ]
+    }
+  ]
+}
