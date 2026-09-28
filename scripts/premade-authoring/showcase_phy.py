@@ -312,3 +312,84 @@ def collision_1d(deck):
          'Equal masses: elastic exchange vs sticking together',
          'Elastic: A stops, B moves at v. Completely inelastic: both at v/2, half the KE lost', css,
          hint='Momentum is conserved in both.', vb='0 0 300 180', front_only=still)
+
+
+# ---------------------------------------------------------------- Ch 6 Systems of particles and rotation
+def rolling_wheel(deck):
+    import math
+    R, x0, cy = 28, 40, 132
+    D = 2 * math.pi * R                      # one revolution = distance rolled (no slipping)
+    css = (f'.bp .roll{{animation:roll 3.2s linear infinite .3s}}'
+           f'@keyframes roll{{from{{transform:translateX(0)}}to{{transform:translateX({D:.1f}px)}}}}'
+           '.bp .spin6{transform-box:fill-box;transform-origin:center;animation:spin6 3.2s linear infinite .3s}'
+           '@keyframes spin6{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}'
+           '.bp .rim{fill:rgba(58,160,255,.18);stroke:#cfe0f7;stroke-width:2}.bp .spk{stroke:#9fc2ee;stroke-width:1.4}')
+    cyc = ' '.join(f'{x0 + R * (t - math.sin(t)):.1f},{cy + R - R * (1 - math.cos(t)):.1f}' for t in [2 * math.pi * i / 40 for i in range(41)])
+    wheel = (f'<g class="spin6"><circle class="rim" cx="{x0}" cy="{cy}" r="{R}"></circle>'
+             + ''.join(f'<line class="spk" x1="{x0}" y1="{cy}" x2="{x0 + R * math.cos(a):.1f}" y2="{cy + R * math.sin(a):.1f}"></line>' for a in [k * math.pi / 3 for k in range(6)])
+             + f'<circle class="dot3" cx="{x0}" cy="{cy + R}" r="4.5"></circle></g>')
+    arrows = (f'<line class="f-mg" x1="{x0}" y1="{cy - R}" x2="{x0 + 64}" y2="{cy - R}" marker-end="url(#am)"></line>'
+              f'<line class="f-n" x1="{x0}" y1="{cy}" x2="{x0 + 32}" y2="{cy}" marker-end="url(#an)"></line>')
+    base = (f'<line class="road" x1="10" y1="{cy + R}" x2="290" y2="{cy + R}"></line>')
+    still = (f'<circle class="rim" cx="{x0}" cy="{cy}" r="{R}"></circle><circle class="dot3" cx="{x0}" cy="{cy + R}" r="4.5"></circle>')
+    back = (f'<polyline class="guide" points="{cyc}"></polyline>'
+            f'<g class="roll">{wheel}{arrows}</g>'
+            '<text class="rd" x="150" y="40">top: 2v</text><text class="gr" x="150" y="56">centre: v</text>'
+            '<text class="yl" x="150" y="72">contact point: 0</text>')
+    anim(deck, 'Rolling motion · intuition',
+         'A wheel rolls without slipping at speed v. How fast do its top, centre and contact point move? What path does a rim point trace?',
+         base, back,
+         '<p>Rolling = translation (v) + rotation (Rω = v). Top: v + v = <b>2v</b>; centre: <b>v</b>; contact: v − v = <b>0</b>.</p>'
+         '<p>A rim point traces a <b>cycloid</b> (dashed) and touches the ground at rest each turn.</p>',
+         'Rolling without slipping: speeds of top, centre and contact point',
+         'Top moves at 2v, centre at v, contact point at 0 (v = Rω); a rim point traces a cycloid',
+         css, hint='Rolling = sliding + spinning.', vb='0 0 300 180', front_only=still)
+
+
+def spinning_arms(deck):
+    def body(cx, arm, cls):
+        return (f'<g class="{cls}"><line class="road" x1="{cx - arm}" y1="100" x2="{cx + arm}" y2="100"></line>'
+                f'<circle class="obj2" cx="{cx - arm}" cy="100" r="7"></circle><circle class="obj2" cx="{cx + arm}" cy="100" r="7"></circle>'
+                f'<circle class="obj" cx="{cx}" cy="100" r="16"></circle><circle class="dot3" cx="{cx}" cy="88" r="3"></circle></g>')
+    css = ('.bp .slow{transform-box:fill-box;transform-origin:center;animation:sp 6s linear infinite .3s}'
+           '.bp .fast{transform-box:fill-box;transform-origin:center;animation:sp 1.5s linear infinite .3s}'
+           '@keyframes sp{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}')
+    base = ('<circle class="ghost" cx="75" cy="100" r="64"></circle><circle class="ghost" cx="225" cy="100" r="64"></circle>'
+            '<text class="lbl" x="75" y="186" text-anchor="middle">arms out</text><text class="lbl" x="225" y="186" text-anchor="middle">arms tucked in</text>')
+    still = body(75, 58, '') + body(225, 22, '')
+    back = (body(75, 58, 'slow') + body(225, 22, 'fast') +
+            '<text class="yl" x="75" y="22" text-anchor="middle">I large → ω small</text>'
+            '<text class="gr" x="225" y="22" text-anchor="middle">I small → ω large</text>')
+    anim(deck, 'Conservation of angular momentum',
+         'A person spins on a frictionless swivel chair holding two weights. What happens when the arms are pulled in?',
+         base, back,
+         '<p>No external torque → <b>L = Iω = constant</b>. Pulling the mass inward cuts I, so ω rises.</p>'
+         '<p>Skaters, divers and dancers doing a pirouette use this. Rotational KE = L²/2I <b>increases</b>: the muscles do work pulling the arms in.</p>',
+         'Arms in, spin faster: Iω = constant',
+         'No external torque so Iω is constant; pulling arms in reduces I and increases ω (KE rises by the work of the muscles)',
+         css, hint='What stays constant?', vb='0 0 300 195', front_only=still)
+
+
+def explosion_cm(deck):
+    ox, oy, Rg, H, n = 34, 170, 220, 118, 30
+    fr = [i / n for i in range(n + 1)]
+    cm = lambda f: (Rg * f, -4 * H * f * (1 - f))
+    sep = lambda f: 150 * max(0.0, f - 0.5)
+    css = (keyframes('cm', [cm(f) for f in fr], 3.4, 'linear', 0.3) +
+           keyframes('f1', [(cm(f)[0] + sep(f), cm(f)[1]) for f in fr], 3.4, 'linear', 0.3) +
+           keyframes('f2', [(cm(f)[0] - sep(f), cm(f)[1]) for f in fr], 3.4, 'linear', 0.3))
+    path = ' '.join(f'{ox + cm(f)[0]:.1f},{oy + cm(f)[1]:.1f}' for f in fr)
+    base = (f'<line class="road" x1="10" y1="{oy}" x2="290" y2="{oy}"></line><polyline class="guide" points="{path}"></polyline>'
+            f'<text class="sm" x="{ox + Rg / 2}" y="{oy - H - 8}" text-anchor="middle">explodes at the top</text>')
+    back = (f'<g transform="translate({ox},{oy})"><circle class="obj f1" cx="0" cy="0" r="6"></circle>'
+            f'<circle class="obj3 f2" cx="0" cy="0" r="6"></circle>'
+            f'<g class="cm"><line class="f-mg" x1="-6" y1="-6" x2="6" y2="6"></line><line class="f-mg" x1="-6" y1="6" x2="6" y2="-6"></line></g></g>'
+            '<text class="rd" x="290" y="30" text-anchor="end">✕ = centre of mass</text>')
+    anim(deck, 'Centre of mass · explosion',
+         'A shell explodes into two equal pieces at the top of its path. What path does the centre of mass follow?',
+         base, back,
+         '<p>The explosion forces are <b>internal</b>; the only external force is still gravity (Mg).</p>'
+         '<p>So Ma<sub>cm</sub> = Mg: the CM continues on the <b>same parabola</b> as if nothing happened.</p>',
+         'Exploding projectile: path of the centre of mass',
+         'Internal explosion forces do not affect the CM; with gravity alone acting, the CM continues on the original parabola',
+         css, hint='Which forces are external?', vb='0 0 300 185')

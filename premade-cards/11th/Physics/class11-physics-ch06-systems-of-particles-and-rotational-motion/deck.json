@@ -1,0 +1,1358 @@
+{
+  "version": 1,
+  "name": "Chapter 6: Systems of Particles and Rotational Motion",
+  "className": "Class 11",
+  "description": "Centre of mass, cross product, torque, angular momentum, equilibrium, moment of inertia, rotational kinematics and dynamics, rolling",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is a rigid body?",
+      "definition": "A body whose shape never changes: the <span style=\"color:#3b82f6\">distance between every pair of particles</span> stays fixed. No real body is perfectly rigid",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.1-rigid-body-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is pure translation?",
+      "definition": "Every particle of the body has the <span style=\"color:#3b82f6\">same velocity</span> at any instant",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.1-rigid-body-motion"
+      ],
+      "definitionImage": "media/fig_6_1_sliding.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is a rolling cylinder not in pure translation?",
+      "definition": "Its points have <span style=\"color:#3b82f6\">different velocities</span>; the contact point is momentarily at rest",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.1-rigid-body-motion"
+      ],
+      "definitionImage": "media/fig_6_2_rolling.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "In rotation about a fixed axis, how does each particle move?",
+      "definition": "In a <span style=\"color:#3b82f6\">circle</span> in a plane ⟂ to the axis, centred on the axis. Points on the axis stay at rest",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.1-rigid-body-motion"
+      ],
+      "definitionImage": "media/fig_6_4_fixed_axis.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is precession? Example?",
+      "definition": "The axis of a spinning body sweeps out a <span style=\"color:#3b82f6\">cone</span> about the vertical; a spinning <span style=\"color:#22a35a\">top</span> (only its tip is fixed)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.1-rigid-body-motion"
+      ],
+      "definitionImage": "media/fig_6_5a_top.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Motion of a rigid body that is pivoted vs not pivoted?",
+      "definition": "<span style=\"color:#3b82f6\">Pivoted/fixed</span>: rotation only. <span style=\"color:#3b82f6\">Free</span>: pure translation, or translation + rotation",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.1-rigid-body-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Centre of mass of two particles on the x-axis?",
+      "definition": "\\( X = \\dfrac{m_1x_1 + m_2x_2}{m_1 + m_2} \\): a mass-weighted mean; midway if masses are equal",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Centre of mass of n particles (vector form)?",
+      "definition": "\\( \\vec R = \\dfrac{\\sum m_i \\vec r_i}{M} \\), M = total mass",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "CM of a continuous body?",
+      "definition": "\\( \\vec R = \\dfrac{1}{M}\\int \\vec r\\,dm \\); if the origin is at the CM, ∫r dm = 0",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "CM of three equal masses at the corners of a triangle?",
+      "definition": "At the <span style=\"color:#3b82f6\">centroid</span> of the triangle",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where is the CM of a uniform rod, ring, disc, sphere, cube?",
+      "definition": "At the <span style=\"color:#3b82f6\">geometric centre</span>, by reflection symmetry",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Must the CM lie inside the body? (Exercise 6.1)",
+      "definition": "<span style=\"color:#e5484d\">No</span>: e.g. a <span style=\"color:#22a35a\">ring, hollow sphere, hollow cylinder</span> have their CM in empty space",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.1: 100 g, 150 g, 200 g at the corners of an equilateral triangle of side 0.5 m (100 g at origin, 150 g at (0.5, 0)). CM?",
+      "definition": "X = <span style=\"color:#f08c00\">5/18 m</span>, Y = <span style=\"color:#f08c00\">1/(3√3) m</span> — not the geometric centre, as the masses differ",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ],
+      "definitionImage": "media/fig_6_9_triangle.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.2: CM of a triangular lamina?",
+      "definition": "At the <span style=\"color:#3b82f6\">centroid</span>: each strip parallel to a side has its CM on the median, so the CM lies on all three medians",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ],
+      "definitionImage": "media/fig_6_10_lamina.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.3: uniform L-shaped lamina of three 1 m squares (3 kg). CM?",
+      "definition": "<span style=\"color:#f08c00\">(5/6 m, 5/6 m)</span>: on the line of symmetry OD",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ],
+      "definitionImage": "media/fig_6_11_l_lamina.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.2: HCl, bond 1.27 Å, Cl is 35.5 × H. Location of the CM?",
+      "definition": "<span style=\"color:#f08c00\">1.24 Å</span> from the H nucleus (very close to Cl)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: CM of a uniform semicircular ring and disc (radius R) from the centre?",
+      "definition": "Ring: \\( \\dfrac{2R}{\\pi} \\); disc: \\( \\dfrac{4R}{3\\pi} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.15: a hole of radius R/2 is cut from a disc of radius R, centred R/2 from the centre. CM of the rest?",
+      "definition": "<span style=\"color:#f08c00\">R/6</span> from the centre, on the side <span style=\"color:#3b82f6\">opposite</span> the hole (treat the hole as negative mass)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.2-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equation of motion of the centre of mass?",
+      "definition": "\\( M\\vec A = \\vec F_{ext} \\): the CM moves as if all mass were there and all <span style=\"color:#3b82f6\">external</span> forces acted there",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.3-motion-of-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do internal forces not affect the CM?",
+      "definition": "By the third law they come in <span style=\"color:#3b82f6\">equal and opposite pairs</span> and cancel in the sum",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.3-motion-of-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Exploding projectile: path of the centre of mass",
+      "definition": "Internal explosion forces do not affect the CM; with gravity alone acting, the CM continues on the original parabola",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Centre of mass · explosion</p><h2>A shell explodes into two equal pieces at the top of its path. What path does the centre of mass follow?</h2><svg viewBox=\"0 0 300 185\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"10\" y1=\"170\" x2=\"290\" y2=\"170\"></line><polyline class=\"guide\" points=\"34.0,170.0 41.3,154.8 48.7,140.6 56.0,127.5 63.3,115.5 70.7,104.4 78.0,94.5 85.3,85.6 92.7,77.7 100.0,70.9 107.3,65.1 114.7,60.4 122.0,56.7 129.3,54.1 136.7,52.5 144.0,52.0 151.3,52.5 158.7,54.1 166.0,56.7 173.3,60.4 180.7,65.1 188.0,70.9 195.3,77.7 202.7,85.6 210.0,94.5 217.3,104.4 224.7,115.5 232.0,127.5 239.3,140.6 246.7,154.8 254.0,170.0\"></polyline><text class=\"sm\" x=\"144.0\" y=\"44\" text-anchor=\"middle\">explodes at the top</text></svg><p class=\"hint\">Which forces are external?</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Centre of mass · explosion</p><h2>A shell explodes into two equal pieces at the top of its path. What path does the centre of mass follow?</h2><svg viewBox=\"0 0 300 185\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"10\" y1=\"170\" x2=\"290\" y2=\"170\"></line><polyline class=\"guide\" points=\"34.0,170.0 41.3,154.8 48.7,140.6 56.0,127.5 63.3,115.5 70.7,104.4 78.0,94.5 85.3,85.6 92.7,77.7 100.0,70.9 107.3,65.1 114.7,60.4 122.0,56.7 129.3,54.1 136.7,52.5 144.0,52.0 151.3,52.5 158.7,54.1 166.0,56.7 173.3,60.4 180.7,65.1 188.0,70.9 195.3,77.7 202.7,85.6 210.0,94.5 217.3,104.4 224.7,115.5 232.0,127.5 239.3,140.6 246.7,154.8 254.0,170.0\"></polyline><text class=\"sm\" x=\"144.0\" y=\"44\" text-anchor=\"middle\">explodes at the top</text><g transform=\"translate(34,170)\"><circle class=\"obj f1\" cx=\"0\" cy=\"0\" r=\"6\"></circle><circle class=\"obj3 f2\" cx=\"0\" cy=\"0\" r=\"6\"></circle><g class=\"cm\"><line class=\"f-mg\" x1=\"-6\" y1=\"-6\" x2=\"6\" y2=\"6\"></line><line class=\"f-mg\" x1=\"-6\" y1=\"6\" x2=\"6\" y2=\"-6\"></line></g></g><text class=\"rd\" x=\"290\" y=\"30\" text-anchor=\"end\">✕ = centre of mass</text></svg><div class=\"eq fx d5\"><p>The explosion forces are <b>internal</b>; the only external force is still gravity (Mg).</p><p>So Ma<sub>cm</sub> = Mg: the CM continues on the <b>same parabola</b> as if nothing happened.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .cm{animation:cm 3.4s linear 0.3s infinite both}@keyframes cm{0.00%{transform:translate(0.0px,-0.0px)}3.33%{transform:translate(7.3px,-15.2px)}6.67%{transform:translate(14.7px,-29.4px)}10.00%{transform:translate(22.0px,-42.5px)}13.33%{transform:translate(29.3px,-54.5px)}16.67%{transform:translate(36.7px,-65.6px)}20.00%{transform:translate(44.0px,-75.5px)}23.33%{transform:translate(51.3px,-84.4px)}26.67%{transform:translate(58.7px,-92.3px)}30.00%{transform:translate(66.0px,-99.1px)}33.33%{transform:translate(73.3px,-104.9px)}36.67%{transform:translate(80.7px,-109.6px)}40.00%{transform:translate(88.0px,-113.3px)}43.33%{transform:translate(95.3px,-115.9px)}46.67%{transform:translate(102.7px,-117.5px)}50.00%{transform:translate(110.0px,-118.0px)}53.33%{transform:translate(117.3px,-117.5px)}56.67%{transform:translate(124.7px,-115.9px)}60.00%{transform:translate(132.0px,-113.3px)}63.33%{transform:translate(139.3px,-109.6px)}66.67%{transform:translate(146.7px,-104.9px)}70.00%{transform:translate(154.0px,-99.1px)}73.33%{transform:translate(161.3px,-92.3px)}76.67%{transform:translate(168.7px,-84.4px)}80.00%{transform:translate(176.0px,-75.5px)}83.33%{transform:translate(183.3px,-65.6px)}86.67%{transform:translate(190.7px,-54.5px)}90.00%{transform:translate(198.0px,-42.5px)}93.33%{transform:translate(205.3px,-29.4px)}96.67%{transform:translate(212.7px,-15.2px)}100.00%{transform:translate(220.0px,-0.0px)}}.bp .f1{animation:f1 3.4s linear 0.3s infinite both}@keyframes f1{0.00%{transform:translate(0.0px,-0.0px)}3.33%{transform:translate(7.3px,-15.2px)}6.67%{transform:translate(14.7px,-29.4px)}10.00%{transform:translate(22.0px,-42.5px)}13.33%{transform:translate(29.3px,-54.5px)}16.67%{transform:translate(36.7px,-65.6px)}20.00%{transform:translate(44.0px,-75.5px)}23.33%{transform:translate(51.3px,-84.4px)}26.67%{transform:translate(58.7px,-92.3px)}30.00%{transform:translate(66.0px,-99.1px)}33.33%{transform:translate(73.3px,-104.9px)}36.67%{transform:translate(80.7px,-109.6px)}40.00%{transform:translate(88.0px,-113.3px)}43.33%{transform:translate(95.3px,-115.9px)}46.67%{transform:translate(102.7px,-117.5px)}50.00%{transform:translate(110.0px,-118.0px)}53.33%{transform:translate(122.3px,-117.5px)}56.67%{transform:translate(134.7px,-115.9px)}60.00%{transform:translate(147.0px,-113.3px)}63.33%{transform:translate(159.3px,-109.6px)}66.67%{transform:translate(171.7px,-104.9px)}70.00%{transform:translate(184.0px,-99.1px)}73.33%{transform:translate(196.3px,-92.3px)}76.67%{transform:translate(208.7px,-84.4px)}80.00%{transform:translate(221.0px,-75.5px)}83.33%{transform:translate(233.3px,-65.6px)}86.67%{transform:translate(245.7px,-54.5px)}90.00%{transform:translate(258.0px,-42.5px)}93.33%{transform:translate(270.3px,-29.4px)}96.67%{transform:translate(282.7px,-15.2px)}100.00%{transform:translate(295.0px,-0.0px)}}.bp .f2{animation:f2 3.4s linear 0.3s infinite both}@keyframes f2{0.00%{transform:translate(0.0px,-0.0px)}3.33%{transform:translate(7.3px,-15.2px)}6.67%{transform:translate(14.7px,-29.4px)}10.00%{transform:translate(22.0px,-42.5px)}13.33%{transform:translate(29.3px,-54.5px)}16.67%{transform:translate(36.7px,-65.6px)}20.00%{transform:translate(44.0px,-75.5px)}23.33%{transform:translate(51.3px,-84.4px)}26.67%{transform:translate(58.7px,-92.3px)}30.00%{transform:translate(66.0px,-99.1px)}33.33%{transform:translate(73.3px,-104.9px)}36.67%{transform:translate(80.7px,-109.6px)}40.00%{transform:translate(88.0px,-113.3px)}43.33%{transform:translate(95.3px,-115.9px)}46.67%{transform:translate(102.7px,-117.5px)}50.00%{transform:translate(110.0px,-118.0px)}53.33%{transform:translate(112.3px,-117.5px)}56.67%{transform:translate(114.7px,-115.9px)}60.00%{transform:translate(117.0px,-113.3px)}63.33%{transform:translate(119.3px,-109.6px)}66.67%{transform:translate(121.7px,-104.9px)}70.00%{transform:translate(124.0px,-99.1px)}73.33%{transform:translate(126.3px,-92.3px)}76.67%{transform:translate(128.7px,-84.4px)}80.00%{transform:translate(131.0px,-75.5px)}83.33%{transform:translate(133.3px,-65.6px)}86.67%{transform:translate(135.7px,-54.5px)}90.00%{transform:translate(138.0px,-42.5px)}93.33%{transform:translate(140.3px,-29.4px)}96.67%{transform:translate(142.7px,-15.2px)}100.00%{transform:translate(145.0px,-0.0px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .cm{animation:cm 3.4s linear 0.3s infinite both}@keyframes cm{0.00%{transform:translate(0.0px,-0.0px)}3.33%{transform:translate(7.3px,-15.2px)}6.67%{transform:translate(14.7px,-29.4px)}10.00%{transform:translate(22.0px,-42.5px)}13.33%{transform:translate(29.3px,-54.5px)}16.67%{transform:translate(36.7px,-65.6px)}20.00%{transform:translate(44.0px,-75.5px)}23.33%{transform:translate(51.3px,-84.4px)}26.67%{transform:translate(58.7px,-92.3px)}30.00%{transform:translate(66.0px,-99.1px)}33.33%{transform:translate(73.3px,-104.9px)}36.67%{transform:translate(80.7px,-109.6px)}40.00%{transform:translate(88.0px,-113.3px)}43.33%{transform:translate(95.3px,-115.9px)}46.67%{transform:translate(102.7px,-117.5px)}50.00%{transform:translate(110.0px,-118.0px)}53.33%{transform:translate(117.3px,-117.5px)}56.67%{transform:translate(124.7px,-115.9px)}60.00%{transform:translate(132.0px,-113.3px)}63.33%{transform:translate(139.3px,-109.6px)}66.67%{transform:translate(146.7px,-104.9px)}70.00%{transform:translate(154.0px,-99.1px)}73.33%{transform:translate(161.3px,-92.3px)}76.67%{transform:translate(168.7px,-84.4px)}80.00%{transform:translate(176.0px,-75.5px)}83.33%{transform:translate(183.3px,-65.6px)}86.67%{transform:translate(190.7px,-54.5px)}90.00%{transform:translate(198.0px,-42.5px)}93.33%{transform:translate(205.3px,-29.4px)}96.67%{transform:translate(212.7px,-15.2px)}100.00%{transform:translate(220.0px,-0.0px)}}.bp .f1{animation:f1 3.4s linear 0.3s infinite both}@keyframes f1{0.00%{transform:translate(0.0px,-0.0px)}3.33%{transform:translate(7.3px,-15.2px)}6.67%{transform:translate(14.7px,-29.4px)}10.00%{transform:translate(22.0px,-42.5px)}13.33%{transform:translate(29.3px,-54.5px)}16.67%{transform:translate(36.7px,-65.6px)}20.00%{transform:translate(44.0px,-75.5px)}23.33%{transform:translate(51.3px,-84.4px)}26.67%{transform:translate(58.7px,-92.3px)}30.00%{transform:translate(66.0px,-99.1px)}33.33%{transform:translate(73.3px,-104.9px)}36.67%{transform:translate(80.7px,-109.6px)}40.00%{transform:translate(88.0px,-113.3px)}43.33%{transform:translate(95.3px,-115.9px)}46.67%{transform:translate(102.7px,-117.5px)}50.00%{transform:translate(110.0px,-118.0px)}53.33%{transform:translate(122.3px,-117.5px)}56.67%{transform:translate(134.7px,-115.9px)}60.00%{transform:translate(147.0px,-113.3px)}63.33%{transform:translate(159.3px,-109.6px)}66.67%{transform:translate(171.7px,-104.9px)}70.00%{transform:translate(184.0px,-99.1px)}73.33%{transform:translate(196.3px,-92.3px)}76.67%{transform:translate(208.7px,-84.4px)}80.00%{transform:translate(221.0px,-75.5px)}83.33%{transform:translate(233.3px,-65.6px)}86.67%{transform:translate(245.7px,-54.5px)}90.00%{transform:translate(258.0px,-42.5px)}93.33%{transform:translate(270.3px,-29.4px)}96.67%{transform:translate(282.7px,-15.2px)}100.00%{transform:translate(295.0px,-0.0px)}}.bp .f2{animation:f2 3.4s linear 0.3s infinite both}@keyframes f2{0.00%{transform:translate(0.0px,-0.0px)}3.33%{transform:translate(7.3px,-15.2px)}6.67%{transform:translate(14.7px,-29.4px)}10.00%{transform:translate(22.0px,-42.5px)}13.33%{transform:translate(29.3px,-54.5px)}16.67%{transform:translate(36.7px,-65.6px)}20.00%{transform:translate(44.0px,-75.5px)}23.33%{transform:translate(51.3px,-84.4px)}26.67%{transform:translate(58.7px,-92.3px)}30.00%{transform:translate(66.0px,-99.1px)}33.33%{transform:translate(73.3px,-104.9px)}36.67%{transform:translate(80.7px,-109.6px)}40.00%{transform:translate(88.0px,-113.3px)}43.33%{transform:translate(95.3px,-115.9px)}46.67%{transform:translate(102.7px,-117.5px)}50.00%{transform:translate(110.0px,-118.0px)}53.33%{transform:translate(112.3px,-117.5px)}56.67%{transform:translate(114.7px,-115.9px)}60.00%{transform:translate(117.0px,-113.3px)}63.33%{transform:translate(119.3px,-109.6px)}66.67%{transform:translate(121.7px,-104.9px)}70.00%{transform:translate(124.0px,-99.1px)}73.33%{transform:translate(126.3px,-92.3px)}76.67%{transform:translate(128.7px,-84.4px)}80.00%{transform:translate(131.0px,-75.5px)}83.33%{transform:translate(133.3px,-65.6px)}86.67%{transform:translate(135.7px,-54.5px)}90.00%{transform:translate(138.0px,-42.5px)}93.33%{transform:translate(140.3px,-29.4px)}96.67%{transform:translate(142.7px,-15.2px)}100.00%{transform:translate(145.0px,-0.0px)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.3-motion-of-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Total momentum of a system and the CM velocity?",
+      "definition": "\\( \\vec P = M\\vec V \\) ; \\( \\dfrac{d\\vec P}{dt} = \\vec F_{ext} \\) (second law for a system)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.3-motion-of-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If the net external force is zero?",
+      "definition": "Total momentum is <span style=\"color:#3b82f6\">conserved</span> and the CM moves with <span style=\"color:#3b82f6\">constant velocity</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.3-motion-of-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Radium nucleus decays into radon + α. Seen from the CM frame?",
+      "definition": "The two products fly apart <span style=\"color:#3b82f6\">back to back</span>; the CM stays at rest (or keeps moving uniformly in the lab)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.3-motion-of-centre-of-mass"
+      ],
+      "definitionImage": "media/fig_6_13_decay.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Binary stars: what do their paths look like in the CM frame?",
+      "definition": "<span style=\"color:#3b82f6\">Circles</span> about the CM, diametrically opposite; in the lab, circles + uniform drift of the CM",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.3-motion-of-centre-of-mass"
+      ],
+      "definitionImage": "media/fig_6_14_binary.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.3: a child runs about on a trolley moving at V on a smooth floor. Speed of the CM of (trolley + child)?",
+      "definition": "<span style=\"color:#3b82f6\">Still V</span>: the running forces are internal",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.3-motion-of-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Useful split of kinetic energy of a system (Points to ponder)?",
+      "definition": "\\( K = K' + \\tfrac12 MV^2 \\) : KE about the CM + KE of the CM",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.3-motion-of-centre-of-mass"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the vector (cross) product a × b.",
+      "definition": "Magnitude \\( ab\\sin\\theta \\), direction ⟂ to both a and b by the <span style=\"color:#3b82f6\">right-hand rule</span> (curl fingers from a to b; thumb gives c)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.5-vector-product"
+      ],
+      "definitionImage": "media/fig_6_15_screw_rule.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Is the cross product commutative?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: \\( \\vec b \\times \\vec a = -\\vec a \\times \\vec b \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.5-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "a × a = ?",
+      "definition": "The <span style=\"color:#3b82f6\">null vector</span> (sin 0 = 0)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.5-vector-product"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "î × ĵ = {{c1::k̂}}, ĵ × k̂ = {{c2::î}}, k̂ × î = {{c3::ĵ}}; in reverse order the sign is negative.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.5-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic for unit-vector cross products?",
+      "definition": "Write <span style=\"color:#3b82f6\">i → j → k → i</span> in a circle: going clockwise gives +, anticlockwise gives −",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.5-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "a × b in components?",
+      "definition": "Determinant with rows (î ĵ k̂), (aₓ aᵧ a𝓏), (bₓ bᵧ b𝓏)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.5-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.4: a = 3î − 4ĵ + 5k̂, b = −2î + ĵ − 3k̂. a·b and a × b?",
+      "definition": "a·b = <span style=\"color:#f08c00\">−25</span>; a × b = <span style=\"color:#f08c00\">7î − ĵ − 5k̂</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.5-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does a × b change sign under reflection?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: both a and b flip sign, so a × b does not (it is an axial vector)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.5-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.4: area of the triangle formed by a and b?",
+      "definition": "\\( \\tfrac12 |\\vec a \\times \\vec b| \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.5-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.5: what does a·(b × c) represent?",
+      "definition": "The <span style=\"color:#3b82f6\">volume</span> of the parallelepiped on a, b, c",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.5-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between linear and angular velocity (vector form)?",
+      "definition": "\\( \\vec v = \\vec\\omega \\times \\vec r \\) ; magnitude \\( v = \\omega r_\\perp \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.6-angular-velocity"
+      ],
+      "definitionImage": "media/fig_6_17b_v_omega_r.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction of the angular velocity vector?",
+      "definition": "Along the <span style=\"color:#3b82f6\">axis</span>, the way a right-handed screw turning with the body would advance",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.6-angular-velocity"
+      ],
+      "definitionImage": "media/fig_6_17a_omega.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What characterises pure rotation about a fixed axis?",
+      "definition": "Every particle has the <span style=\"color:#3b82f6\">same angular velocity</span> (but different linear speeds, ∝ distance from the axis)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.6-angular-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define angular acceleration.",
+      "definition": "\\( \\vec\\alpha = \\dfrac{d\\vec\\omega}{dt} \\); for a fixed axis, α = dω/dt (scalar)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.6-angular-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does pushing a door at the hinge not open it?",
+      "definition": "Rotation depends on <span style=\"color:#3b82f6\">where and how</span> the force acts, not the force alone: at the hinge the lever arm is zero",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define torque (moment of force).",
+      "definition": "\\( \\vec\\tau = \\vec r \\times \\vec F \\); \\( \\tau = rF\\sin\\theta = r_\\perp F \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ],
+      "definitionImage": "media/drawn_torque_lever_arm.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Unit and dimensions of torque; is it the same as work?",
+      "definition": "<span style=\"color:#3b82f6\">N m</span>, [M L² T⁻²] like work, but torque is a <span style=\"color:#3b82f6\">vector</span> and is never called joule",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is the torque of a force zero?",
+      "definition": "F = 0, r = 0, or the <span style=\"color:#3b82f6\">line of action passes through the origin</span> (θ = 0° or 180°)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ],
+      "definitionImage": "media/fig_6_18_torque.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.5: τ of F = 7î + 3ĵ − 5k̂ acting at r = î − ĵ + k̂?",
+      "definition": "<span style=\"color:#f08c00\">2î + 12ĵ + 10k̂</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the angular momentum of a particle.",
+      "definition": "\\( \\vec l = \\vec r \\times \\vec p \\) ; \\( l = rp\\sin\\theta = r_\\perp p \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between torque and angular momentum?",
+      "definition": "\\( \\dfrac{d\\vec l}{dt} = \\vec\\tau \\): the rotational analogue of F = dp/dt",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For a system, which torques change L?",
+      "definition": "Only <span style=\"color:#3b82f6\">external</span> torques: \\( \\dfrac{d\\vec L}{dt} = \\vec\\tau_{ext} \\) (internal forces along the joining lines cancel)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State conservation of angular momentum.",
+      "definition": "If \\( \\vec\\tau_{ext} = 0 \\), <span style=\"color:#3b82f6\">L is constant</span> (each component separately)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.6: angular momentum of a particle moving with constant velocity, about any point?",
+      "definition": "<span style=\"color:#3b82f6\">Constant</span>: r sin θ (perpendicular distance of the line of motion) and p stay fixed; no torque acts",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ],
+      "definitionImage": "media/fig_6_19_const_velocity.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.6: components of l = r × p?",
+      "definition": "\\( l_x = yp_z - zp_y,\\ l_y = zp_x - xp_z,\\ l_z = xp_y - yp_x \\); motion in the x-y plane gives only l𝓏",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Bicycle-rim experiment: spinning rim held by one string. What happens?",
+      "definition": "Instead of falling, its axis (angular momentum) <span style=\"color:#3b82f6\">precesses</span> about the string",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.7-torque"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conditions for mechanical equilibrium of a rigid body?",
+      "definition": "<span style=\"color:#3b82f6\">Translational</span>: ΣF = 0. <span style=\"color:#3b82f6\">Rotational</span>: Στ = 0",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How many conditions for coplanar forces?",
+      "definition": "<span style=\"color:#f08c00\">Three</span>: two force components and one torque component (⟂ to the plane)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equal parallel forces, same direction, at the ends of a light rod?",
+      "definition": "<span style=\"color:#3b82f6\">Rotational</span> equilibrium but <span style=\"color:#e5484d\">not translational</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ],
+      "definitionImage": "media/fig_6_20a_parallel_forces.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a couple? Effect?",
+      "definition": "Two equal and opposite forces with different lines of action: <span style=\"color:#3b82f6\">rotation without translation</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ],
+      "definitionImage": "media/fig_6_20b_couple.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Two examples of a couple?",
+      "definition": "Fingers turning a <span style=\"color:#22a35a\">bottle lid</span>; Earth’s field on a <span style=\"color:#22a35a\">compass needle</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ],
+      "definitionImage": "media/fig_6_21b_compass.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.7: does the moment of a couple depend on the reference point?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: moment = AB × F for any origin",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is total torque independent of the origin?",
+      "definition": "When the <span style=\"color:#3b82f6\">total external force is zero</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Principle of moments for a lever?",
+      "definition": "\\( d_1F_1 = d_2F_2 \\): load arm × load = effort arm × effort",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ],
+      "definitionImage": "media/fig_6_23_lever.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Mechanical advantage of a lever?",
+      "definition": "\\( MA = \\dfrac{F_1}{F_2} = \\dfrac{d_2}{d_1} \\); > 1 when the effort arm is longer than the load arm",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the centre of gravity.",
+      "definition": "The point about which the <span style=\"color:#3b82f6\">total gravitational torque</span> on the body is zero",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ],
+      "definitionImage": "media/fig_6_24_balance.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "When do the centre of gravity and centre of mass coincide?",
+      "definition": "When <span style=\"color:#3b82f6\">g is uniform</span> over the body. For a very tall body (g varies) they differ",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How to find the CG of an irregular lamina by suspension?",
+      "definition": "Hang it from two or three points; the <span style=\"color:#3b82f6\">verticals</span> through the suspension points meet at the CG",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ],
+      "definitionImage": "media/fig_6_25_suspension.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Bar on two knife edges: reactions",
+      "definition": "R₁ + R₂ = 98 N and R₁ − R₂ = 11.76 N give R₁ ≈ 55 N, R₂ ≈ 43 N",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.8 · knife edges</p><h2>Find the missing step.</h2><div class=\"prob\">70 cm, 4.00 kg bar on knife edges 10 cm from each end; 6.00 kg hung 30 cm from end A. Reactions?</div><ol><li>R₁ + R₂ = 10.00g = 98.0 N</li><li class=\"h\">?</li><li>R₁ − R₂ = 1.2g = 11.76 N</li><li><b>R₁ ≈ 55 N, R₂ ≈ 43 N</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.8 · knife edges</p><h2>Find the missing step.</h2><div class=\"prob\">70 cm, 4.00 kg bar on knife edges 10 cm from each end; 6.00 kg hung 30 cm from end A. Reactions?</div><ol><li>R₁ + R₂ = 10.00g = 98.0 N</li><li class=\"r\">Moments about G: −0.25R₁ + 0.05 × 6g + 0.25R₂ = 0</li><li>R₁ − R₂ = 1.2g = 11.76 N</li><li><b>R₁ ≈ 55 N, R₂ ≈ 43 N</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.8: why take moments about G?",
+      "definition": "The rod’s own weight then has <span style=\"color:#3b82f6\">zero moment</span>, removing one unknown term",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ],
+      "definitionImage": "media/fig_6_26_bar.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.9: 3 m, 20 kg ladder on a frictionless wall, foot 1 m out. Reactions?",
+      "definition": "Wall F₁ = <span style=\"color:#f08c00\">34.6 N</span>; floor: N = <span style=\"color:#f08c00\">196 N</span>, friction 34.6 N, total ≈ <span style=\"color:#f08c00\">199 N</span> at ≈ 80° to the horizontal",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ],
+      "definitionImage": "media/fig_6_27_ladder.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.9: 1800 kg car, axles 1.8 m apart, CG 1.05 m behind the front axle. Force on each front and back wheel?",
+      "definition": "Front <span style=\"color:#f08c00\">3675 N</span> each; back <span style=\"color:#f08c00\">5145 N</span> each",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.16: two 5 g coins at the 12.0 cm mark shift the balance point of a metre stick to 45.0 cm. Mass of the stick?",
+      "definition": "<span style=\"color:#f08c00\">66.0 g</span> (10 g × 33 cm = m × 5 cm)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.8: bar hung by strings at 36.9° and 53.1° to the vertical, length 2 m. CG from the left end?",
+      "definition": "<span style=\"color:#f08c00\">72 cm</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.8-equilibrium"
+      ],
+      "definitionImage": "media/fig_6_33_bar_strings.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define moment of inertia.",
+      "definition": "\\( I = \\sum m_i r_i^2 \\) (rᵢ = perpendicular distance from the axis); unit <span style=\"color:#f08c00\">kg m²</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rotational kinetic energy?",
+      "definition": "\\( K = \\tfrac12 I\\omega^2 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is I the rotational analogue of mass?",
+      "definition": "It measures <span style=\"color:#3b82f6\">resistance to change</span> in rotational motion, just as mass does for translation (compare ½Iω² with ½mv²)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does a body have a fixed moment of inertia like its mass?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: I depends on the <span style=\"color:#3b82f6\">axis</span> and on how mass is distributed about it",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "I of a pair of masses M/2 on a light rod of length l, about the perpendicular axis through the centre?",
+      "definition": "\\( \\dfrac{Ml^2}{4} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ],
+      "definitionImage": "media/fig_6_28_dumbbell.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Moments of inertia (Table 6.1, part 1)",
+      "definition": "Ring, ⟂ axis through centre: MR²; Ring, about a diameter: MR²/2; Thin rod, ⟂ axis at midpoint: ML²/12; Disc, ⟂ axis through centre: MR²/2; Disc, about a diameter: MR²/4",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 6.1 · moments of inertia</p><h2>I about the given axis?</h2><table><tr><td>Ring, ⟂ axis through centre</td><td class=\"q\">?</td></tr><tr><td>Ring, about a diameter</td><td class=\"q\">?</td></tr><tr><td>Thin rod, ⟂ axis at midpoint</td><td class=\"q\">?</td></tr><tr><td>Disc, ⟂ axis through centre</td><td class=\"q\">?</td></tr><tr><td>Disc, about a diameter</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 6.1 · moments of inertia</p><h2>I about the given axis?</h2><table><tr><td>Ring, ⟂ axis through centre</td><td class=\"a\">MR²</td></tr><tr><td>Ring, about a diameter</td><td class=\"a\">MR²/2</td></tr><tr><td>Thin rod, ⟂ axis at midpoint</td><td class=\"a\">ML²/12</td></tr><tr><td>Disc, ⟂ axis through centre</td><td class=\"a\">MR²/2</td></tr><tr><td>Disc, about a diameter</td><td class=\"a\">MR²/4</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Moments of inertia (Table 6.1, part 2)",
+      "definition": "Hollow cylinder, own axis: MR²; Solid cylinder, own axis: MR²/2; Solid sphere, diameter: 2MR²/5; Teacher addition: hollow sphere, diameter: 2MR²/3; Teacher addition: rod about one end: ML²/3",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 6.1 · moments of inertia</p><h2>I about the given axis?</h2><table><tr><td>Hollow cylinder, own axis</td><td class=\"q\">?</td></tr><tr><td>Solid cylinder, own axis</td><td class=\"q\">?</td></tr><tr><td>Solid sphere, diameter</td><td class=\"q\">?</td></tr><tr><td>Teacher addition: hollow sphere, diameter</td><td class=\"q\">?</td></tr><tr><td>Teacher addition: rod about one end</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 6.1 · moments of inertia</p><h2>I about the given axis?</h2><table><tr><td>Hollow cylinder, own axis</td><td class=\"a\">MR²</td></tr><tr><td>Solid cylinder, own axis</td><td class=\"a\">MR²/2</td></tr><tr><td>Solid sphere, diameter</td><td class=\"a\">2MR²/5</td></tr><tr><td>Teacher addition: hollow sphere, diameter</td><td class=\"a\">2MR²/3</td></tr><tr><td>Teacher addition: rod about one end</td><td class=\"a\">ML²/3</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: which shapes in Table 6.1 have the largest and smallest I for the same M and R?",
+      "definition": "Largest: <span style=\"color:#3b82f6\">ring / hollow cylinder (MR²)</span>; smallest: <span style=\"color:#3b82f6\">disc about a diameter (MR²/4)</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ],
+      "termImage": "media/tab_6_1_moment_of_inertia.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: why does a ring have more I than a disc of the same mass and radius?",
+      "definition": "All the ring’s mass sits at the <span style=\"color:#3b82f6\">rim</span> (distance R); the disc’s mass is spread inwards: \"mass far out, spin hard to start\"",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define radius of gyration.",
+      "definition": "\\( I = Mk^2 \\): k is the distance at which the whole mass, as a point, would give the same I",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Radius of gyration of a rod (⟂ axis at centre) and a disc (about a diameter)?",
+      "definition": "\\( k = \\dfrac{L}{\\sqrt{12}} \\) and \\( k = \\dfrac{R}{2} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a flywheel and why is it used?",
+      "definition": "A disc with <span style=\"color:#3b82f6\">large I</span> in engines; it resists sudden changes of speed, giving smooth motion",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ],
+      "definitionImage": "media/fig_6_31_flywheel.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition (not in rationalised NCERT, needed for JEE): parallel axis theorem?",
+      "definition": "\\( I = I_{cm} + Md^2 \\) for a parallel axis at distance d from the axis through the CM",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ],
+      "definitionImage": "media/drawn_axis_theorems.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: perpendicular axis theorem?",
+      "definition": "\\( I_z = I_x + I_y \\) for a <span style=\"color:#3b82f6\">plane lamina</span> (x, y in its plane, z ⟂ through the same point)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ],
+      "definitionImage": "media/drawn_axis_theorems.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: I of a disc about a tangent in its plane?",
+      "definition": "\\( \\tfrac14 MR^2 + MR^2 = \\tfrac54 MR^2 \\) (perpendicular then parallel axis theorem)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.9-moment-of-inertia"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Equations of rotational motion with constant α: {{c1::ω = ω₀ + αt}},  {{c2::θ = θ₀ + ω₀t + ½αt²}},  {{c3::ω² = ω₀² + 2α(θ − θ₀)}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.10-rotational-kinematics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How many degrees of freedom does rotation about a fixed axis have?",
+      "definition": "<span style=\"color:#f08c00\">One</span> (the angle θ), like motion along a line",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.10-rotational-kinematics"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Motor wheel: angular acceleration and revolutions",
+      "definition": "α = 4π rad/s²; θ = 1152π rad = 576 revolutions",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.11 · motor wheel</p><h2>Find the missing step.</h2><div class=\"prob\">A motor goes from 1200 rpm to 3120 rpm in 16 s (uniform). α and revolutions?</div><ol><li>ω₀ = 2π × 1200/60 = 40π rad/s; ω = 104π rad/s</li><li>α = (104π − 40π)/16 = 4π rad/s²</li><li class=\"h\">?</li><li><b>576 revolutions</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.11 · motor wheel</p><h2>Find the missing step.</h2><div class=\"prob\">A motor goes from 1200 rpm to 3120 rpm in 16 s (uniform). α and revolutions?</div><ol><li>ω₀ = 2π × 1200/60 = 40π rad/s; ω = 104π rad/s</li><li>α = (104π − 40π)/16 = 4π rad/s²</li><li class=\"r\">θ = 40π × 16 + ½ × 4π × 16² = 1152π rad</li><li><b>576 revolutions</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.10-rotational-kinematics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: converting rpm to rad/s?",
+      "definition": "Multiply by <span style=\"color:#f08c00\">2π/60</span>: 1200 rpm = 20 rev/s = 40π rad/s",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.10-rotational-kinematics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which forces matter for rotation about a fixed axis?",
+      "definition": "Only components in planes ⟂ to the axis, with position vectors ⟂ to the axis; the rest are cancelled by the <span style=\"color:#3b82f6\">constraint forces</span> of the bearings",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.11-rotational-dynamics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Work and power of a torque?",
+      "definition": "\\( dW = \\tau\\,d\\theta,\\quad P = \\tau\\omega \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.11-rotational-dynamics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Newton’s second law for rotation about a fixed axis?",
+      "definition": "\\( \\tau = I\\alpha \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.11-rotational-dynamics"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Translational and rotational analogues (Table 6.2)",
+      "definition": "Mass M: moment of inertia I; Force F = Ma: torque τ = Iα; Work F ds: τ dθ; KE ½Mv²: ½Iω²; Power Fv: τω; Momentum Mv: L = Iω",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 6.2 · linear vs rotational</p><h2>Rotational analogue?</h2><table><tr><td>Mass M</td><td class=\"q\">?</td></tr><tr><td>Force F = Ma</td><td class=\"q\">?</td></tr><tr><td>Work F ds</td><td class=\"q\">?</td></tr><tr><td>KE ½Mv²</td><td class=\"q\">?</td></tr><tr><td>Power Fv</td><td class=\"q\">?</td></tr><tr><td>Momentum Mv</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 6.2 · linear vs rotational</p><h2>Rotational analogue?</h2><table><tr><td>Mass M</td><td class=\"a\">moment of inertia I</td></tr><tr><td>Force F = Ma</td><td class=\"a\">torque τ = Iα</td></tr><tr><td>Work F ds</td><td class=\"a\">τ dθ</td></tr><tr><td>KE ½Mv²</td><td class=\"a\">½Iω²</td></tr><tr><td>Power Fv</td><td class=\"a\">τω</td></tr><tr><td>Momentum Mv</td><td class=\"a\">L = Iω</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.11-rotational-dynamics"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Flywheel pulled by a cord",
+      "definition": "α = 5/0.4 = 12.5 rad/s²; work 50 J = rotational KE gained (no friction)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.12 · flywheel</p><h2>Find the missing step.</h2><div class=\"prob\">25 N pull on a cord round a 20 kg, 20 cm radius flywheel (disc) from rest. α, work and KE after 2 m of cord?</div><ol><li>τ = FR = 25 × 0.2 = 5 N m; I = ½MR² = 0.4 kg m²</li><li class=\"h\">?</li><li>W = F × 2 m = 50 J; θ = 2/0.2 = 10 rad</li><li>ω² = 2αθ = 250 → KE = ½Iω² = <b>50 J</b> = W</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.12 · flywheel</p><h2>Find the missing step.</h2><div class=\"prob\">25 N pull on a cord round a 20 kg, 20 cm radius flywheel (disc) from rest. α, work and KE after 2 m of cord?</div><ol><li>τ = FR = 25 × 0.2 = 5 N m; I = ½MR² = 0.4 kg m²</li><li class=\"r\">α = τ/I = 12.5 rad/s²</li><li>W = F × 2 m = 50 J; θ = 2/0.2 = 10 rad</li><li>ω² = 2αθ = 250 → KE = ½Iω² = <b>50 J</b> = W</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.11-rotational-dynamics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.10: equal torques on a hollow cylinder and a solid sphere (same M, R). Which spins faster after a time?",
+      "definition": "The <span style=\"color:#3b82f6\">sphere</span>: smaller I (2MR²/5 < MR²), so larger α",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.11-rotational-dynamics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.13: 30 N pulls a rope on a 3 kg hollow cylinder of radius 40 cm. α and linear acceleration of the rope?",
+      "definition": "α = 30 × 0.4 / (3 × 0.16) = <span style=\"color:#f08c00\">25 rad/s²</span>; a = αR = <span style=\"color:#f08c00\">10 m/s²</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.11-rotational-dynamics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.14: torque 180 N m at 200 rad/s. Power?",
+      "definition": "P = τω = <span style=\"color:#f08c00\">36 kW</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.11-rotational-dynamics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.11: solid cylinder 20 kg, R = 0.25 m, ω = 100 rad/s. KE and L?",
+      "definition": "I = 0.625 kg m²; KE = <span style=\"color:#f08c00\">3125 J</span>, L = <span style=\"color:#f08c00\">62.5 J s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.11-rotational-dynamics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angular momentum about a fixed axis?",
+      "definition": "\\( L_z = I\\omega \\); for bodies symmetric about the axis, L = Iω along the axis",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.12-angular-momentum-fixed-axis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Are l and ω always parallel?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: for a single particle or an unsymmetric body, L is not along the axis; only for a symmetric body is L = Iω",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.12-angular-momentum-fixed-axis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Law for fixed-axis rotation with changing I?",
+      "definition": "\\( \\dfrac{d(I\\omega)}{dt} = \\tau \\); with τ = 0: <span style=\"color:#3b82f6\">Iω = constant</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.12-angular-momentum-fixed-axis"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Arms in, spin faster: Iω = constant",
+      "definition": "No external torque so Iω is constant; pulling arms in reduces I and increases ω (KE rises by the work of the muscles)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Conservation of angular momentum</p><h2>A person spins on a frictionless swivel chair holding two weights. What happens when the arms are pulled in?</h2><svg viewBox=\"0 0 300 195\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><circle class=\"ghost\" cx=\"75\" cy=\"100\" r=\"64\"></circle><circle class=\"ghost\" cx=\"225\" cy=\"100\" r=\"64\"></circle><text class=\"lbl\" x=\"75\" y=\"186\" text-anchor=\"middle\">arms out</text><text class=\"lbl\" x=\"225\" y=\"186\" text-anchor=\"middle\">arms tucked in</text><g class=\"\"><line class=\"road\" x1=\"17\" y1=\"100\" x2=\"133\" y2=\"100\"></line><circle class=\"obj2\" cx=\"17\" cy=\"100\" r=\"7\"></circle><circle class=\"obj2\" cx=\"133\" cy=\"100\" r=\"7\"></circle><circle class=\"obj\" cx=\"75\" cy=\"100\" r=\"16\"></circle><circle class=\"dot3\" cx=\"75\" cy=\"88\" r=\"3\"></circle></g><g class=\"\"><line class=\"road\" x1=\"203\" y1=\"100\" x2=\"247\" y2=\"100\"></line><circle class=\"obj2\" cx=\"203\" cy=\"100\" r=\"7\"></circle><circle class=\"obj2\" cx=\"247\" cy=\"100\" r=\"7\"></circle><circle class=\"obj\" cx=\"225\" cy=\"100\" r=\"16\"></circle><circle class=\"dot3\" cx=\"225\" cy=\"88\" r=\"3\"></circle></g></svg><p class=\"hint\">What stays constant?</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Conservation of angular momentum</p><h2>A person spins on a frictionless swivel chair holding two weights. What happens when the arms are pulled in?</h2><svg viewBox=\"0 0 300 195\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><circle class=\"ghost\" cx=\"75\" cy=\"100\" r=\"64\"></circle><circle class=\"ghost\" cx=\"225\" cy=\"100\" r=\"64\"></circle><text class=\"lbl\" x=\"75\" y=\"186\" text-anchor=\"middle\">arms out</text><text class=\"lbl\" x=\"225\" y=\"186\" text-anchor=\"middle\">arms tucked in</text><g class=\"slow\"><line class=\"road\" x1=\"17\" y1=\"100\" x2=\"133\" y2=\"100\"></line><circle class=\"obj2\" cx=\"17\" cy=\"100\" r=\"7\"></circle><circle class=\"obj2\" cx=\"133\" cy=\"100\" r=\"7\"></circle><circle class=\"obj\" cx=\"75\" cy=\"100\" r=\"16\"></circle><circle class=\"dot3\" cx=\"75\" cy=\"88\" r=\"3\"></circle></g><g class=\"fast\"><line class=\"road\" x1=\"203\" y1=\"100\" x2=\"247\" y2=\"100\"></line><circle class=\"obj2\" cx=\"203\" cy=\"100\" r=\"7\"></circle><circle class=\"obj2\" cx=\"247\" cy=\"100\" r=\"7\"></circle><circle class=\"obj\" cx=\"225\" cy=\"100\" r=\"16\"></circle><circle class=\"dot3\" cx=\"225\" cy=\"88\" r=\"3\"></circle></g><text class=\"yl\" x=\"75\" y=\"22\" text-anchor=\"middle\">I large → ω small</text><text class=\"gr\" x=\"225\" y=\"22\" text-anchor=\"middle\">I small → ω large</text></svg><div class=\"eq fx d5\"><p>No external torque → <b>L = Iω = constant</b>. Pulling the mass inward cuts I, so ω rises.</p><p>Skaters, divers and dancers doing a pirouette use this. Rotational KE = L²/2I <b>increases</b>: the muscles do work pulling the arms in.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .slow{transform-box:fill-box;transform-origin:center;animation:sp 6s linear infinite .3s}.bp .fast{transform-box:fill-box;transform-origin:center;animation:sp 1.5s linear infinite .3s}@keyframes sp{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .slow{transform-box:fill-box;transform-origin:center;animation:sp 6s linear infinite .3s}.bp .fast{transform-box:fill-box;transform-origin:center;animation:sp 1.5s linear infinite .3s}@keyframes sp{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.12-angular-momentum-fixed-axis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do divers and acrobats curl up in mid-air?",
+      "definition": "Curling up <span style=\"color:#3b82f6\">reduces I</span>, so ω rises (L conserved) and they complete more somersaults",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.12-angular-momentum-fixed-axis"
+      ],
+      "definitionImage": "media/fig_6_32b_acrobat.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Swivel-chair demonstration?",
+      "definition": "Stretching the arms <span style=\"color:#3b82f6\">slows</span> the spin, pulling them in <span style=\"color:#3b82f6\">speeds it up</span> (Iω constant)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.12-angular-momentum-fixed-axis"
+      ],
+      "definitionImage": "media/fig_6_32a_swivel.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.12: a child on a turntable at 40 rpm reduces I to 2/5. New speed and KE?",
+      "definition": "<span style=\"color:#f08c00\">100 rpm</span>; KE becomes <span style=\"color:#f08c00\">2.5×</span>: the child’s <span style=\"color:#3b82f6\">internal energy</span> does the work",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.12-angular-momentum-fixed-axis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.17: O₂ molecule, I = 1.94 × 10⁻⁴⁶ kg m², m = 5.30 × 10⁻²⁶ kg, v = 500 m/s, rotational KE = ⅔ translational KE. ω?",
+      "definition": "<span style=\"color:#f08c00\">6.75 × 10¹² rad/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "6.12-angular-momentum-fixed-axis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition (dropped from rationalised NCERT, still in JEE): condition for rolling without slipping?",
+      "definition": "\\( v_{cm} = R\\omega \\): the contact point is instantaneously at rest",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "rolling-motion-teacher-addition"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Rolling without slipping: speeds of top, centre and contact point",
+      "definition": "Top moves at 2v, centre at v, contact point at 0 (v = Rω); a rim point traces a cycloid",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Rolling motion · intuition</p><h2>A wheel rolls without slipping at speed v. How fast do its top, centre and contact point move? What path does a rim point trace?</h2><svg viewBox=\"0 0 300 180\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"10\" y1=\"160\" x2=\"290\" y2=\"160\"></line><circle class=\"rim\" cx=\"40\" cy=\"132\" r=\"28\"></circle><circle class=\"dot3\" cx=\"40\" cy=\"160\" r=\"4.5\"></circle></svg><p class=\"hint\">Rolling = sliding + spinning.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Rolling motion · intuition</p><h2>A wheel rolls without slipping at speed v. How fast do its top, centre and contact point move? What path does a rim point trace?</h2><svg viewBox=\"0 0 300 180\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"10\" y1=\"160\" x2=\"290\" y2=\"160\"></line><polyline class=\"guide\" points=\"40.0,160.0 40.0,159.7 40.1,158.6 40.5,156.9 41.1,154.7 42.2,151.8 43.7,148.5 45.8,144.7 48.6,140.7 51.9,136.4 56.0,132.0 60.7,127.6 66.1,123.3 72.2,119.3 78.9,115.5 86.2,112.2 93.9,109.3 102.1,107.1 110.5,105.4 119.2,104.3 128.0,104.0 136.7,104.3 145.4,105.4 153.9,107.1 162.0,109.3 169.8,112.2 177.0,115.5 183.7,119.3 189.8,123.3 195.2,127.6 199.9,132.0 204.0,136.4 207.4,140.7 210.1,144.7 212.2,148.5 213.7,151.8 214.8,154.7 215.4,156.9 215.8,158.6 215.9,159.7 215.9,160.0\"></polyline><g class=\"roll\"><g class=\"spin6\"><circle class=\"rim\" cx=\"40\" cy=\"132\" r=\"28\"></circle><line class=\"spk\" x1=\"40\" y1=\"132\" x2=\"68.0\" y2=\"132.0\"></line><line class=\"spk\" x1=\"40\" y1=\"132\" x2=\"54.0\" y2=\"156.2\"></line><line class=\"spk\" x1=\"40\" y1=\"132\" x2=\"26.0\" y2=\"156.2\"></line><line class=\"spk\" x1=\"40\" y1=\"132\" x2=\"12.0\" y2=\"132.0\"></line><line class=\"spk\" x1=\"40\" y1=\"132\" x2=\"26.0\" y2=\"107.8\"></line><line class=\"spk\" x1=\"40\" y1=\"132\" x2=\"54.0\" y2=\"107.8\"></line><circle class=\"dot3\" cx=\"40\" cy=\"160\" r=\"4.5\"></circle></g><line class=\"f-mg\" x1=\"40\" y1=\"104\" x2=\"104\" y2=\"104\" marker-end=\"url(#am)\"></line><line class=\"f-n\" x1=\"40\" y1=\"132\" x2=\"72\" y2=\"132\" marker-end=\"url(#an)\"></line></g><text class=\"rd\" x=\"150\" y=\"40\">top: 2v</text><text class=\"gr\" x=\"150\" y=\"56\">centre: v</text><text class=\"yl\" x=\"150\" y=\"72\">contact point: 0</text></svg><div class=\"eq fx d5\"><p>Rolling = translation (v) + rotation (Rω = v). Top: v + v = <b>2v</b>; centre: <b>v</b>; contact: v − v = <b>0</b>.</p><p>A rim point traces a <b>cycloid</b> (dashed) and touches the ground at rest each turn.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .roll{animation:roll 3.2s linear infinite .3s}@keyframes roll{from{transform:translateX(0)}to{transform:translateX(175.9px)}}.bp .spin6{transform-box:fill-box;transform-origin:center;animation:spin6 3.2s linear infinite .3s}@keyframes spin6{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}.bp .rim{fill:rgba(58,160,255,.18);stroke:#cfe0f7;stroke-width:2}.bp .spk{stroke:#9fc2ee;stroke-width:1.4}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .roll{animation:roll 3.2s linear infinite .3s}@keyframes roll{from{transform:translateX(0)}to{transform:translateX(175.9px)}}.bp .spin6{transform-box:fill-box;transform-origin:center;animation:spin6 3.2s linear infinite .3s}@keyframes spin6{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}.bp .rim{fill:rgba(58,160,255,.18);stroke:#cfe0f7;stroke-width:2}.bp .spk{stroke:#9fc2ee;stroke-width:1.4}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "rolling-motion-teacher-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Speeds of the top point, centre and contact point of a rolling wheel?",
+      "definition": "<span style=\"color:#f08c00\">2v</span>, <span style=\"color:#f08c00\">v</span>, <span style=\"color:#f08c00\">0</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "rolling-motion-teacher-addition"
+      ],
+      "definitionImage": "media/drawn_rolling_velocities.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Kinetic energy of a rolling body?",
+      "definition": "\\( K = \\tfrac12 mv^2 + \\tfrac12 I\\omega^2 = \\tfrac12 mv^2\\left(1 + \\dfrac{k^2}{R^2}\\right) \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "rolling-motion-teacher-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Acceleration of a body rolling down an incline of angle θ?",
+      "definition": "\\( a = \\dfrac{g\\sin\\theta}{1 + k^2/R^2} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "rolling-motion-teacher-addition"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Which rolls down an incline first?",
+      "definition": "Solid sphere: 2/5 — fastest; Solid cylinder / disc: 1/2 — second; Hollow sphere: 2/3 — third; Ring / hollow cylinder: 1 — slowest",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · rolling race</p><h2>k²/R² and order down an incline?</h2><table><tr><td>Solid sphere</td><td class=\"q\">?</td></tr><tr><td>Solid cylinder / disc</td><td class=\"q\">?</td></tr><tr><td>Hollow sphere</td><td class=\"q\">?</td></tr><tr><td>Ring / hollow cylinder</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · rolling race</p><h2>k²/R² and order down an incline?</h2><table><tr><td>Solid sphere</td><td class=\"a\">2/5 — fastest</td></tr><tr><td>Solid cylinder / disc</td><td class=\"a\">1/2 — second</td></tr><tr><td>Hollow sphere</td><td class=\"a\">2/3 — third</td></tr><tr><td>Ring / hollow cylinder</td><td class=\"a no\">1 — slowest</td></tr></table><p class=\"note\">Smaller k²/R² → less energy locked in rotation → faster. Mass and radius do not matter.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "rolling-motion-teacher-addition"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 6 concept checks",
+      "definition": "Internal forces can change the CM motion: False; Zero net force ⇒ zero net torque: False (couple); CG = CM always: False (only in uniform g); To prove dL/dt = τext you need the third law with central forces: True; Torque about any origin is the same if net force is zero: True",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>Internal forces can change the CM motion</td><td class=\"q\">?</td></tr><tr><td>Zero net force ⇒ zero net torque</td><td class=\"q\">?</td></tr><tr><td>CG = CM always</td><td class=\"q\">?</td></tr><tr><td>To prove dL/dt = τext you need the third law with central forces</td><td class=\"q\">?</td></tr><tr><td>Torque about any origin is the same if net force is zero</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>Internal forces can change the CM motion</td><td class=\"a no\">False</td></tr><tr><td>Zero net force ⇒ zero net torque</td><td class=\"a no\">False (couple)</td></tr><tr><td>CG = CM always</td><td class=\"a no\">False (only in uniform g)</td></tr><tr><td>To prove dL/dt = τext you need the third law with central forces</td><td class=\"a\">True</td></tr><tr><td>Torque about any origin is the same if net force is zero</td><td class=\"a\">True</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-6",
+        "summary"
+      ]
+    }
+  ]
+}
