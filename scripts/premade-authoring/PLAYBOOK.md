@@ -247,10 +247,9 @@ Don't polish endlessly: move on to the next chapter.
 | Biology 12 | 1–13 — complete | Done (PDFs unzipped to `NCERT-pdfs/bio12/`) |
 | Chemistry 11 | 1–3, 5–9 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
 | Chemistry 11 | 4 | Pilot |
-| Chemistry 12 | 1–9 | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
-| Chemistry 12 | 10 | **Next: Ch 10 Biomolecules (`lech205`, replaces `biomolecules-chemistry.zip`; organic: strict NCERT; owner wants nearly every drawn NCERT reaction cropped and used, as in `chem12_ch06.py`).** No old zips except Ch 10, which replaces `biomolecules-chemistry.zip`; for the others run `replace_deck.py premade-cards/12th/Chemistry none.zip <new id>` |
+| Chemistry 12 | 1–10 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
 | Physics 11 | 4 | Pilot |
-| Physics 11 | others | Not started |
+| Physics 11 | others | **Next** — unzip `physics11th.zip` / `physicspart2.zip` (check page 0 of each PDF for the title); check `premade-cards/11th/Physics` for old zips. Teacher-style: formulas, `steps_card` numericals, units, traps; intuition cards and animated `showcase.py` cards where concepts confuse students (owner asked for this in Chem 12). |
 | Physics 12 | all | Not started |
 | Maths 11 | 3 | Pilot |
 | Maths 11 | others | Not started |
