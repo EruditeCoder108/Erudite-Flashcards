@@ -7,6 +7,7 @@ Removes the old zip and its manifest entry, runs `npm run zip:premade`, copies t
 new deck's description into the manifest, and keeps the manifest in chapter order.
 """
 import json, os, re, subprocess, sys
+sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 subject = os.path.join(ROOT, sys.argv[1])
