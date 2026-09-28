@@ -79,3 +79,91 @@ def ruler_sig_figs(deck):
          '<p>Writing 2.8734 cm would claim precision the ruler does not have.</p>',
          'Significant figures: reliable digits + first uncertain digit',
          'Report 2.87 cm: certain digits 2, 8 plus one estimated digit 7, so 3 significant figures')
+
+
+# ---------------------------------------------------------------- Ch 2 Motion in a straight line
+def _varrow(length, cls, marker):
+    """Vertical arrow from (0, 0) upward by `length` (negative = downward), drawn in local coordinates."""
+    return f'<line class="{cls}" x1="0" y1="0" x2="0" y2="{-length}" marker-end="url(#{marker})"></line>'
+
+
+def vertical_throw(deck):
+    T, H, n = 3.2, 140, 24          # flight time (s of animation), max rise in units, frames
+    pts = [(0, -H * 4 * (i / n) * (1 - i / n)) for i in range(n + 1)]   # y = parabola in time
+    css = (keyframes('mv', pts, T, 'linear', 0.3) +
+           '.bp .vel{transform-origin:0 0;animation:vel ' + str(T) + 's linear .3s infinite both}'
+           '@keyframes vel{from{transform:scaleY(1)}to{transform:scaleY(-1)}}'
+           '.bp .ball{fill:#ffd166;stroke:#fff3c4;stroke-width:1.5}')
+    ground = ('<line class="road" x1="20" y1="196" x2="280" y2="196"></line>'
+              '<line class="guide" x1="110" y1="46" x2="190" y2="46"></line>'
+              '<text class="sm" x="196" y="50">top</text>')
+    static_ball = '<g transform="translate(150,186)"><circle class="ball" cx="0" cy="0" r="9"></circle></g>'
+    moving = ('<g transform="translate(150,186)"><g class="mv">'
+              f'<g class="vel">{_varrow(52, "f-n", "an")}</g>'
+              '<line class="f-mg" x1="16" y1="0" x2="16" y2="34" marker-end="url(#am)"></line>'
+              '<circle class="ball" cx="0" cy="0" r="9"></circle></g></g>'
+              '<text class="gr" x="22" y="80">v (green): shrinks,</text><text class="gr" x="22" y="96">0 at top, then flips</text>'
+              '<text class="rd" x="196" y="120">a = g (red):</text><text class="rd" x="196" y="136">never changes</text>')
+    q = 'A ball is thrown straight up. At the top, its velocity is zero. Is its acceleration zero there too?'
+    front = (f'<div class="w bp"><p class="tag">Free fall · intuition</p><h2>{q}</h2>'
+             f'<svg viewBox="0 0 300 205">{ARROW_DEFS}{ground}{static_ball}</svg><p class="hint">Picture the velocity arrow on the way up and down.</p></div>')
+    back = (f'<div class="w bp"><p class="tag">Free fall · intuition</p><h2>{q}</h2>'
+            f'<svg viewBox="0 0 300 205">{ARROW_DEFS}{ground}{moving}</svg>'
+            '<div class="eq fx d3"><p><b>No.</b> a = g downward at every instant, including the top.</p>'
+            '<p>If a were 0 at the top, v would stay 0 and the ball would hang in the air. '
+            'Zero velocity ≠ zero acceleration.</p></div></div>')
+    _card(deck, 'Ball thrown up: velocity and acceleration at the top',
+          'At the top v = 0 but a = g downward; velocity shrinks, passes through zero and reverses while a stays constant', PHY + css, front, back)
+
+
+def odd_numbers_strobe(deck):
+    unit = 6.2
+    dots, braces = '', ''
+    for k in range(6):
+        y = 22 + unit * k * k
+        dots += f'<circle class="dot fx d{k + 1}" cx="90" cy="{y:.1f}" r="7"></circle>'
+        dots += f'<text class="sm fx d{k + 1}" x="62" y="{y + 4:.1f}" text-anchor="end">{k}τ</text>'
+        if k:
+            y0 = 22 + unit * (k - 1) ** 2
+            braces += (f'<line class="guide fx d{k + 1}" x1="112" y1="{y0:.1f}" x2="112" y2="{y:.1f}"></line>'
+                       f'<text class="yl fx d{k + 1}" x="124" y="{(y0 + y) / 2 + 4:.1f}">{2 * k - 1} units</text>')
+    q = 'A stone falls from rest. Distances covered in successive equal time intervals are in what ratio?'
+    front = (f'<div class="w bp"><p class="tag">Galileo’s law of odd numbers</p><h2>{q}</h2>'
+             '<svg viewBox="0 0 300 180"><circle class="dot" cx="90" cy="22" r="7"></circle>'
+             '<line class="road" x1="40" y1="178" x2="260" y2="178"></line></svg><p class="hint">Flash a strobe every τ seconds.</p></div>')
+    back = (f'<div class="w bp"><p class="tag">Galileo’s law of odd numbers</p><h2>{q}</h2>'
+            f'<svg viewBox="0 0 300 180">{dots}{braces}<line class="road" x1="40" y1="178" x2="260" y2="178"></line></svg>'
+            '<div class="eq fx d6"><p><b>1 : 3 : 5 : 7 : 9 …</b></p>'
+            '<p>Positions after τ, 2τ, 3τ… are ∝ 1, 4, 9, 16 (y = ½gt²); the gaps are the differences: 1, 3, 5, 7.</p></div></div>')
+    _card(deck, "Galileo's law of odd numbers (free fall)",
+          'Distances in successive equal intervals from rest are 1 : 3 : 5 : 7…, because total distance ∝ t² (1, 4, 9, 16…)', PHY, front, back)
+
+
+def relative_velocity_1d(deck):
+    css = ('.bp .road2{stroke:#9fc2ee;stroke-width:1.2;stroke-dasharray:10 10}'
+           '.bp .ca{animation:ca 3s linear infinite}.bp .cb{animation:cb 3s linear infinite}'
+           '.bp .rb{animation:rb 3s linear infinite}.bp .dash{animation:dash 3s linear infinite}'
+           '@keyframes ca{from{transform:translateX(0)}to{transform:translateX(200px)}}'
+           '@keyframes cb{from{transform:translateX(40px)}to{transform:translateX(190px)}}'
+           '@keyframes rb{from{transform:translateX(40px)}to{transform:translateX(-10px)}}'
+           '@keyframes dash{from{stroke-dashoffset:0}to{stroke-dashoffset:200}}')
+    def car(cls, x, y, body, label):
+        return (f'<g class="{cls}"><rect class="{body}" x="{x}" y="{y}" width="38" height="16" rx="5"></rect>'
+                f'<text class="num" x="{x + 19}" y="{y + 12}">{label}</text></g>')
+    top = ('<text class="sm" x="10" y="16">Seen from the ground</text>'
+           '<line class="road" x1="10" y1="62" x2="290" y2="62"></line>' +
+           car('ca', 10, 44, 'obj', 'A') + car('cb', 10, 24, 'obj2', 'B') +
+           '<text class="lbl" x="290" y="80" text-anchor="end">A: 20 m/s   B: 15 m/s →</text>')
+    bot = ('<text class="sm" x="10" y="112">Seen from car A</text>'
+           '<line class="road2 dash" x1="10" y1="158" x2="290" y2="158"></line>' +
+           car('', 130, 140, 'obj', 'A') + car('rb', 130, 120, 'obj2', 'B') +
+           '<text class="lbl" x="290" y="176" text-anchor="end">A still; B drifts back at 5 m/s</text>')
+    q = 'Car A moves at 20 m/s and car B at 15 m/s, same direction. What is the velocity of B relative to A?'
+    front = (f'<div class="w bp"><p class="tag">Relative velocity · 1D</p><h2>{q}</h2>'
+             f'<svg viewBox="0 0 300 185">{top}</svg><p class="hint">Imagine sitting in car A.</p></div>')
+    back = (f'<div class="w bp"><p class="tag">Relative velocity · 1D</p><h2>{q}</h2>'
+            f'<svg viewBox="0 0 300 185">{top}{bot}</svg>'
+            '<div class="eq fx d3"><p><b>v<sub>BA</sub> = v<sub>B</sub> − v<sub>A</sub> = 15 − 20 = −5 m/s</b></p>'
+            '<p>From A, B appears to move backward at 5 m/s (and the road rushes back at 20 m/s).</p></div></div>')
+    _card(deck, 'Relative velocity of B with respect to A (same direction)',
+          'v_BA = v_B − v_A = 15 − 20 = −5 m/s: B appears to move backward at 5 m/s as seen from A', PHY + css, front, back)

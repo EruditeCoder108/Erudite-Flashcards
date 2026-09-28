@@ -99,7 +99,7 @@ Everything lives in `scripts/premade-authoring/`. Needs Python 3 with `pymupdf` 
 | `tools/pg.py <pdf> <pages> [dpi]` | Renders pages. |
 | `tools/montage.py <media folder> <name>` | Montage of all crops, to check them in one look. |
 | `tools/maskcheck.py <deck folder> <name>` | Draws every occlusion mask in red on its image. **Always check this before publishing.** |
-| `tools/cardview.py <deck.json> [filter]` | Renders advanced-HTML cards to `.work/cards.html` for a browser look. Only needed if you made bespoke HTML. |
+| `tools/cardview.py <deck.json> [filter]` | Renders advanced-HTML cards to `.work/cards.html` for a browser look. Only needed if you made bespoke HTML. Open it in the browser pane (file:// URL); cards sit in shadow roots, so `document.getAnimations()` cannot pause them — take screenshots at a few moments instead. |
 | `tools/capacitor-stub.js` | Only for testing the full app in a browser. See the app-testing note in section 8. |
 
 Tool output goes to `scripts/premade-authoring/.work/`, which is gitignored. Open the PNGs with the Read tool to look at them.
@@ -186,7 +186,7 @@ Getting any of these wrong breaks cards on real phones.
 
 **Math and cloze**
 - **KaTeX:** use `\( … \)` inline in basic and cloze text.
-  - Never put a cloze inside math.
+  - Never put a cloze inside math, and don't wrap math in a cloze either: write cloze formulas in Unicode (`{{c1::v = v₀ + at}}`).
   - Avoid `\text{…}` in formulas: installed builds break it letter by letter. Keep words outside the math.
   - KaTeX does **not** render inside advanced HTML; use Unicode, `<sub>` and `<sup>` there.
 - **Cloze extra:** `extra=` shows on the back. Use it for the "why" or the NCERT correction.
@@ -252,9 +252,9 @@ Don't polish endlessly: move on to the next chapter.
 | Chemistry 11 | 1–3, 5–9 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
 | Chemistry 11 | 4 | Pilot |
 | Chemistry 12 | 1–10 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
-| Physics 11 | 1 | Done (PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py`; no old zips, so run `replace_deck.py premade-cards/11th/Physics none.zip <new id>`) |
+| Physics 11 | 1–2 | Done (PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py`; no old zips, so run `replace_deck.py premade-cards/11th/Physics none.zip <new id>`) |
 | Physics 11 | 4 | Pilot |
-| Physics 11 | 2, 3, 5–14 | **Next: Ch 2 Motion in a Straight Line (`keph102`).** Teacher-style: formulas, `steps_card` numericals, units, traps; intuition cards and animated `showcase_phy.py` cards where concepts confuse students; self-drawn `draw.py` figures where NCERT's are cluttered. |
+| Physics 11 | 3, 5–14 | **Next: Ch 3 Motion in a Plane (`keph103`).** Teacher-style: formulas, `steps_card` numericals, units, traps; intuition cards and animated `showcase_phy.py` cards where concepts confuse students; self-drawn `draw.py` figures where NCERT's are cluttered. |
 | Physics 12 | all | Not started |
 | Maths 11 | 3 | Pilot |
 | Maths 11 | others | Not started |

@@ -1,0 +1,1026 @@
+{
+  "version": 1,
+  "name": "Chapter 2: Motion in a Straight Line",
+  "className": "Class 11",
+  "description": "Displacement, velocity, acceleration, x-t and v-t graphs, equations of motion, free fall, relative velocity",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is motion?",
+      "definition": "Change in <span style=\"color:#3b82f6\">position</span> of an object with time",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is rectilinear motion?",
+      "definition": "Motion along a <span style=\"color:#3b82f6\">straight line</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is kinematics?",
+      "definition": "Describing motion <span style=\"color:#e5484d\">without</span> going into its causes (forces)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When can a body be treated as a point object?",
+      "definition": "When its size is much smaller than the <span style=\"color:#3b82f6\">distance it moves</span> in the time considered",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.1: which are point objects? (a) carriage between stations (b) monkey on a cyclist on a circular track (c) spinning ball turning sharply (d) tumbling beaker",
+      "definition": "<span style=\"color:#3b82f6\">(a) and (b)</span>. In (c) and (d) the size matters compared with the distance moved",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Path length vs displacement?",
+      "definition": "<span style=\"color:#3b82f6\">Path length</span>: total distance travelled (scalar, never decreases). <span style=\"color:#3b82f6\">Displacement</span>: change in position Δx = x₂ − x₁ (vector, can be 0 or negative)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-displacement-and-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can displacement be larger than path length?",
+      "definition": "<span style=\"color:#e5484d\">Never</span>. |displacement| ≤ path length; equal only for motion in <span style=\"color:#3b82f6\">one direction</span> without turning back",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-displacement-and-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define average velocity and average speed.",
+      "definition": "Average velocity = \\( \\dfrac{\\Delta x}{\\Delta t} \\); average speed = <span style=\"color:#3b82f6\">total path length</span> ÷ time",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-displacement-and-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A man walks 2.5 km to a market in 30 min and returns home in 20 min. Average velocity and average speed for the full 50 min?",
+      "definition": "Velocity <span style=\"color:#f08c00\">0</span> (back home). Speed = 5 km ÷ (5/6 h) = <span style=\"color:#f08c00\">6 km/h</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-displacement-and-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.10(c): the same man, 0 to 40 min (30 min out at 5 km/h, then 10 min back at 7.5 km/h)?",
+      "definition": "Displacement 1.25 km, path 3.75 km in 2/3 h → average velocity <span style=\"color:#f08c00\">15/8 km/h</span>, average speed <span style=\"color:#f08c00\">45/8 km/h</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-displacement-and-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why define average speed as path length ÷ time, not |average velocity|?",
+      "definition": "Otherwise a tired man who walks to the market and back would have <span style=\"color:#e5484d\">zero</span> average speed",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.1-displacement-and-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define instantaneous velocity.",
+      "definition": "\\( v = \\lim_{\\Delta t \\to 0} \\dfrac{\\Delta x}{\\Delta t} = \\dfrac{dx}{dt} \\): rate of change of position at that instant",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.2-instantaneous-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you read instantaneous velocity from an x–t graph?",
+      "definition": "<span style=\"color:#3b82f6\">Slope of the tangent</span> at that instant",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.2-instantaneous-velocity"
+      ],
+      "definitionImage": "media/drawn_tangent_velocity.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Table 2.1 (x = 0.08t³): what happens to Δx/Δt at t = 4 s as Δt shrinks from 2 s to 0.01 s?",
+      "definition": "It falls 3.92 → 3.86 → 3.845 → … and <span style=\"color:#3b82f6\">approaches 3.84 m/s</span>, the instantaneous velocity (= 0.24t²)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.2-instantaneous-velocity"
+      ],
+      "definitionImage": "media/tab_2_1_limit.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.1: x = a + bt² with a = 8.5 m, b = 2.5 m s⁻². Velocity at t = 0 and 2 s?",
+      "definition": "v = dx/dt = 2bt = 5t: <span style=\"color:#f08c00\">0</span> and <span style=\"color:#f08c00\">10 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.2-instantaneous-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.1: average velocity between t = 2 s and 4 s?",
+      "definition": "[x(4) − x(2)] / 2 = 6b = <span style=\"color:#f08c00\">15 m/s</span> (the a cancels)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.2-instantaneous-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For uniform motion, instantaneous vs average velocity?",
+      "definition": "<span style=\"color:#3b82f6\">Equal</span> at every instant",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.2-instantaneous-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is instantaneous speed?",
+      "definition": "The <span style=\"color:#3b82f6\">magnitude of instantaneous velocity</span>. +24 m/s and −24 m/s both have speed 24 m/s",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.2-instantaneous-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is instantaneous speed always equal to |instantaneous velocity|, while average speed can exceed |average velocity|?",
+      "definition": "Over an <span style=\"color:#3b82f6\">infinitesimally small</span> interval the particle cannot turn back, so |displacement| = path length",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.2-instantaneous-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Galileo: is change of velocity constant per unit time or per unit distance in free fall?",
+      "definition": "Per unit <span style=\"color:#3b82f6\">time</span> (constant); per unit distance it <span style=\"color:#e5484d\">decreases</span>. Hence acceleration = rate of change of velocity with time",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define average and instantaneous acceleration.",
+      "definition": "\\( \\bar a = \\dfrac{v_2 - v_1}{t_2 - t_1} \\) ; \\( a = \\dfrac{dv}{dt} \\). SI unit <span style=\"color:#f08c00\">m s⁻²</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you read acceleration from a v–t graph?",
+      "definition": "The <span style=\"color:#3b82f6\">slope</span> of the v–t graph (tangent for instantaneous, chord for average)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can acceleration arise without a change in speed?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: a change in <span style=\"color:#3b82f6\">direction</span> alone is an acceleration",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Shape of the x–t graph for a > 0, a < 0 and a = 0?",
+      "definition": "Curves <span style=\"color:#3b82f6\">upward</span> (concave up), curves <span style=\"color:#3b82f6\">downward</span>, <span style=\"color:#3b82f6\">straight line</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ],
+      "definitionImage": "media/drawn_xt_acceleration.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Fig. 2.3: describe the four v–t graphs.",
+      "definition": "(a) moving +, speeding up; (b) moving +, slowing down; (c) moving −, speeding up; (d) slows, stops at t₁ and <span style=\"color:#3b82f6\">turns back</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ],
+      "definitionImage": "media/drawn_vt_cases.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the area under a v–t graph give?",
+      "definition": "The <span style=\"color:#3b82f6\">displacement</span> in that time interval",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ],
+      "definitionImage": "media/drawn_vt_area.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How can an area equal a distance?",
+      "definition": "The axes are velocity [L T⁻¹] and time [T], so \"area\" has dimensions <span style=\"color:#3b82f6\">[L]</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the area under an a–t graph give?",
+      "definition": "The <span style=\"color:#3b82f6\">change in velocity</span> Δv",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Slopes and areas of motion graphs",
+      "definition": "Slope of x–t: velocity; Slope of v–t: acceleration; Area under v–t: displacement; Area under a–t: change in velocity; Area under x–t: nothing useful",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Graph toolkit</p><h2>What does it give?</h2><table><tr><td>Slope of x–t</td><td class=\"q\">?</td></tr><tr><td>Slope of v–t</td><td class=\"q\">?</td></tr><tr><td>Area under v–t</td><td class=\"q\">?</td></tr><tr><td>Area under a–t</td><td class=\"q\">?</td></tr><tr><td>Area under x–t</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Graph toolkit</p><h2>What does it give?</h2><table><tr><td>Slope of x–t</td><td class=\"a\">velocity</td></tr><tr><td>Slope of v–t</td><td class=\"a\">acceleration</td></tr><tr><td>Area under v–t</td><td class=\"a\">displacement</td></tr><tr><td>Area under a–t</td><td class=\"a\">change in velocity</td></tr><tr><td>Area under x–t</td><td class=\"a no\">nothing useful</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can real x–t and v–t graphs not have sharp kinks?",
+      "definition": "A kink means velocity or acceleration changes <span style=\"color:#3b82f6\">instantly</span>; real changes are always continuous",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Impossible motion graphs (Fig. 2.10)",
+      "definition": "(a) x–t curve loops back in time: two positions at one instant; (b) v–t circle: two velocities at one instant; (c) speed–t goes below axis: speed cannot be negative; (d) path length–t falls: path length never decreases",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 2.12 · Fig. 2.10</p><h2>Why is each graph impossible?</h2><table><tr><td>(a) x–t curve loops back in time</td><td class=\"q\">?</td></tr><tr><td>(b) v–t circle</td><td class=\"q\">?</td></tr><tr><td>(c) speed–t goes below axis</td><td class=\"q\">?</td></tr><tr><td>(d) path length–t falls</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 2.12 · Fig. 2.10</p><h2>Why is each graph impossible?</h2><table><tr><td>(a) x–t curve loops back in time</td><td class=\"a no\">two positions at one instant</td></tr><tr><td>(b) v–t circle</td><td class=\"a no\">two velocities at one instant</td></tr><tr><td>(c) speed–t goes below axis</td><td class=\"a no\">speed cannot be negative</td></tr><tr><td>(d) path length–t falls</td><td class=\"a no\">path length never decreases</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: which graph cannot describe one-dimensional motion, and why?",
+      "definition": "All four: two positions or velocities at one time, negative speed, falling path length",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ],
+      "termImage": "media/fig_2_10_impossible.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.13 (Fig. 2.11): does the particle move in a straight line for t < 0 and on a parabola for t > 0?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: an x–t graph is not the path. Example: a body at rest at x = 0 is <span style=\"color:#3b82f6\">dropped at t = 0</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-acceleration"
+      ],
+      "definitionImage": "media/fig_2_11_xt.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "When is a particle speeding up? Slowing down?",
+      "definition": "<span style=\"color:#3b82f6\">Speeding up</span>: a in the same direction as v. <span style=\"color:#3b82f6\">Slowing down</span>: a opposite to v",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-signs-of-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does a negative acceleration mean slowing down?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the sign depends on the chosen axis. A ball falling with \"up\" positive has a = −g yet <span style=\"color:#3b82f6\">speeds up</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-signs-of-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.7(d): must a particle with positive acceleration be speeding up?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: only if v is also positive. With v < 0, a > 0 means slowing down",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-signs-of-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.7(c): must a particle with constant speed have zero acceleration (1D)?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span> in 1D: constant speed with no turning means constant velocity. (An instant rebound would need infinite acceleration.)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.3-signs-of-acceleration"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Equations of motion for constant acceleration: {{c1::v = v₀ + at}},  {{c2::x = v₀t + ½at²}},  {{c3::v² = v₀² + 2ax}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which quantity is missing from each equation of motion?",
+      "definition": "\\( v = v_0 + at \\): x.  \\( x = v_0t + \\tfrac12 at^2 \\): v.  \\( v^2 = v_0^2 + 2ax \\): t.  \\( x = \\tfrac{v_0 + v}{2}t \\): a",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How to pick the right equation fast?",
+      "definition": "Find the one quantity the question neither gives nor asks for, and use the equation <span style=\"color:#3b82f6\">without it</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Average velocity under constant acceleration?",
+      "definition": "\\( \\bar v = \\dfrac{v_0 + v}{2} \\) (true <span style=\"color:#e5484d\">only</span> for constant acceleration)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Deriving x = v₀t + ½at² from the v–t area",
+      "definition": "Rectangle v₀t plus triangle ½(v − v₀)t = ½at²",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Derivation · area of v–t graph</p><h2>Find the missing step.</h2><div class=\"prob\">Derive x = v₀t + ½at² from the v–t graph of v = v₀ + at.</div><ol><li>Area = rectangle + triangle</li><li>Rectangle = v₀t</li><li class=\"h\">?</li><li>x = v₀t + ½at²</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Derivation · area of v–t graph</p><h2>Find the missing step.</h2><div class=\"prob\">Derive x = v₀t + ½at² from the v–t graph of v = v₀ + at.</div><ol><li>Area = rectangle + triangle</li><li>Rectangle = v₀t</li><li class=\"r\">Triangle = ½(v − v₀)t = ½(at)t</li><li>x = v₀t + ½at²</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equations of motion when the particle starts at x₀?",
+      "definition": "Replace x by <span style=\"color:#3b82f6\">(x − x₀)</span>: \\( x = x_0 + v_0t + \\tfrac12 at^2 \\), \\( v^2 = v_0^2 + 2a(x - x_0) \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Deriving v² = v₀² + 2a(x − x₀) by calculus",
+      "definition": "Write a = v dv/dx, so v dv = a dx, then integrate",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.2 · calculus method</p><h2>Find the missing step.</h2><div class=\"prob\">Derive v² = v₀² + 2a(x − x₀) by calculus.</div><ol><li>a = dv/dt = (dv/dx)(dx/dt) = v dv/dx</li><li class=\"h\">?</li><li>Integrate: (v² − v₀²)/2 = a(x − x₀)</li><li>v² = v₀² + 2a(x − x₀)</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.2 · calculus method</p><h2>Find the missing step.</h2><div class=\"prob\">Derive v² = v₀² + 2a(x − x₀) by calculus.</div><ol><li>a = dv/dt = (dv/dx)(dx/dt) = v dv/dx</li><li class=\"r\">v dv = a dx</li><li>Integrate: (v² − v₀²)/2 = a(x − x₀)</li><li>v² = v₀² + 2a(x − x₀)</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Advantage of the calculus method?",
+      "definition": "It also works for <span style=\"color:#3b82f6\">non-uniform acceleration</span> (a as a function of t, x or v)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Are the quantities in the equations of motion scalars?",
+      "definition": "They are <span style=\"color:#3b82f6\">algebraic</span>: put in + or − signs according to the chosen positive direction",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When are v = dx/dt and a = dv/dt valid vs the equations of motion?",
+      "definition": "Definitions: <span style=\"color:#3b82f6\">always</span>. Equations of motion: <span style=\"color:#e5484d\">only</span> when a is constant in magnitude and direction",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: distance covered in the nth second?",
+      "definition": "\\( s_n = u + \\dfrac{a}{2}(2n - 1) \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: a body starts from rest with uniform a. Ratio of distances in the 1st, 2nd, 3rd seconds?",
+      "definition": "<span style=\"color:#f08c00\">1 : 3 : 5</span> (sₙ ∝ 2n − 1)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-equations-of-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.3: ball thrown up at 20 m/s from a 25 m high building (g = 10). How high does it rise?",
+      "definition": "<span style=\"color:#f08c00\">20 m</span> above the roof (0 = 20² − 2 × 10 × h)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-examples"
+      ],
+      "definitionImage": "media/fig_2_6_building.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Ball from a roof: time to hit the ground",
+      "definition": "0 = 25 + 20t − 5t² gives t = 5 s",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.3</p><h2>Find the missing step.</h2><div class=\"prob\">Ball thrown up at 20 m/s from 25 m high roof (g = 10). Time to hit the ground?</div><ol><li>Take up +, origin at ground: y₀ = 25, v₀ = 20, a = −10</li><li>y = y₀ + v₀t + ½at² with y = 0</li><li class=\"h\">?</li><li>t² − 4t − 5 = 0 → (t − 5)(t + 1) = 0 → <b>t = 5 s</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.3</p><h2>Find the missing step.</h2><div class=\"prob\">Ball thrown up at 20 m/s from 25 m high roof (g = 10). Time to hit the ground?</div><ol><li>Take up +, origin at ground: y₀ = 25, v₀ = 20, a = −10</li><li>y = y₀ + v₀t + ½at² with y = 0</li><li class=\"r\">0 = 25 + 20t − 5t²</li><li>t² − 4t − 5 = 0 → (t − 5)(t + 1) = 0 → <b>t = 5 s</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the single-equation method better in Example 2.3?",
+      "definition": "Acceleration is constant throughout, so there is <span style=\"color:#3b82f6\">no need to split</span> the path at the top",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.5: 126 km/h car stops in 200 m. Retardation and time?",
+      "definition": "<span style=\"color:#f08c00\">3.06 m s⁻²</span> and <span style=\"color:#f08c00\">11.4 s</span> (v₀ = 35 m/s)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.4: a drunkard goes 5 steps forward, 3 back (1 m, 1 s each). Time to fall into a pit 13 m away?",
+      "definition": "<span style=\"color:#f08c00\">37 s</span>: 2 m net per 8 s; after 32 s he is at 8 m, then 5 more steps",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is free fall?",
+      "definition": "Motion under gravity alone (air resistance neglected): uniform acceleration <span style=\"color:#f08c00\">g = 9.8 m s⁻²</span> downward",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-free-fall"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Free fall from rest, upward positive: equations?",
+      "definition": "\\( v = -gt, \\quad y = -\\tfrac12 gt^2, \\quad v^2 = -2gy \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-free-fall"
+      ],
+      "definitionImage": "media/drawn_freefall_graphs.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "a–t, v–t, y–t graphs in free fall (up positive)?",
+      "definition": "a–t: <span style=\"color:#3b82f6\">horizontal line at −g</span>; v–t: straight line with slope −g; y–t: downward parabola",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-free-fall"
+      ],
+      "definitionImage": "media/drawn_freefall_graphs.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Ball thrown up: velocity and acceleration at the top",
+      "definition": "At the top v = 0 but a = g downward; velocity shrinks, passes through zero and reverses while a stays constant",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Free fall · intuition</p><h2>A ball is thrown straight up. At the top, its velocity is zero. Is its acceleration zero there too?</h2><svg viewBox=\"0 0 300 205\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"20\" y1=\"196\" x2=\"280\" y2=\"196\"></line><line class=\"guide\" x1=\"110\" y1=\"46\" x2=\"190\" y2=\"46\"></line><text class=\"sm\" x=\"196\" y=\"50\">top</text><g transform=\"translate(150,186)\"><circle class=\"ball\" cx=\"0\" cy=\"0\" r=\"9\"></circle></g></svg><p class=\"hint\">Picture the velocity arrow on the way up and down.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Free fall · intuition</p><h2>A ball is thrown straight up. At the top, its velocity is zero. Is its acceleration zero there too?</h2><svg viewBox=\"0 0 300 205\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"20\" y1=\"196\" x2=\"280\" y2=\"196\"></line><line class=\"guide\" x1=\"110\" y1=\"46\" x2=\"190\" y2=\"46\"></line><text class=\"sm\" x=\"196\" y=\"50\">top</text><g transform=\"translate(150,186)\"><g class=\"mv\"><g class=\"vel\"><line class=\"f-n\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"-52\" marker-end=\"url(#an)\"></line></g><line class=\"f-mg\" x1=\"16\" y1=\"0\" x2=\"16\" y2=\"34\" marker-end=\"url(#am)\"></line><circle class=\"ball\" cx=\"0\" cy=\"0\" r=\"9\"></circle></g></g><text class=\"gr\" x=\"22\" y=\"80\">v (green): shrinks,</text><text class=\"gr\" x=\"22\" y=\"96\">0 at top, then flips</text><text class=\"rd\" x=\"196\" y=\"120\">a = g (red):</text><text class=\"rd\" x=\"196\" y=\"136\">never changes</text></svg><div class=\"eq fx d3\"><p><b>No.</b> a = g downward at every instant, including the top.</p><p>If a were 0 at the top, v would stay 0 and the ball would hang in the air. Zero velocity ≠ zero acceleration.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .mv{animation:mv 3.2s linear 0.3s infinite both}@keyframes mv{0.00%{transform:translate(0.0px,-0.0px)}4.17%{transform:translate(0.0px,-22.4px)}8.33%{transform:translate(0.0px,-42.8px)}12.50%{transform:translate(0.0px,-61.2px)}16.67%{transform:translate(0.0px,-77.8px)}20.83%{transform:translate(0.0px,-92.4px)}25.00%{transform:translate(0.0px,-105.0px)}29.17%{transform:translate(0.0px,-115.7px)}33.33%{transform:translate(0.0px,-124.4px)}37.50%{transform:translate(0.0px,-131.2px)}41.67%{transform:translate(0.0px,-136.1px)}45.83%{transform:translate(0.0px,-139.0px)}50.00%{transform:translate(0.0px,-140.0px)}54.17%{transform:translate(0.0px,-139.0px)}58.33%{transform:translate(0.0px,-136.1px)}62.50%{transform:translate(0.0px,-131.2px)}66.67%{transform:translate(0.0px,-124.4px)}70.83%{transform:translate(0.0px,-115.7px)}75.00%{transform:translate(0.0px,-105.0px)}79.17%{transform:translate(0.0px,-92.4px)}83.33%{transform:translate(0.0px,-77.8px)}87.50%{transform:translate(0.0px,-61.2px)}91.67%{transform:translate(0.0px,-42.8px)}95.83%{transform:translate(0.0px,-22.4px)}100.00%{transform:translate(0.0px,-0.0px)}}.bp .vel{transform-origin:0 0;animation:vel 3.2s linear .3s infinite both}@keyframes vel{from{transform:scaleY(1)}to{transform:scaleY(-1)}}.bp .ball{fill:#ffd166;stroke:#fff3c4;stroke-width:1.5}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .mv{animation:mv 3.2s linear 0.3s infinite both}@keyframes mv{0.00%{transform:translate(0.0px,-0.0px)}4.17%{transform:translate(0.0px,-22.4px)}8.33%{transform:translate(0.0px,-42.8px)}12.50%{transform:translate(0.0px,-61.2px)}16.67%{transform:translate(0.0px,-77.8px)}20.83%{transform:translate(0.0px,-92.4px)}25.00%{transform:translate(0.0px,-105.0px)}29.17%{transform:translate(0.0px,-115.7px)}33.33%{transform:translate(0.0px,-124.4px)}37.50%{transform:translate(0.0px,-131.2px)}41.67%{transform:translate(0.0px,-136.1px)}45.83%{transform:translate(0.0px,-139.0px)}50.00%{transform:translate(0.0px,-140.0px)}54.17%{transform:translate(0.0px,-139.0px)}58.33%{transform:translate(0.0px,-136.1px)}62.50%{transform:translate(0.0px,-131.2px)}66.67%{transform:translate(0.0px,-124.4px)}70.83%{transform:translate(0.0px,-115.7px)}75.00%{transform:translate(0.0px,-105.0px)}79.17%{transform:translate(0.0px,-92.4px)}83.33%{transform:translate(0.0px,-77.8px)}87.50%{transform:translate(0.0px,-61.2px)}91.67%{transform:translate(0.0px,-42.8px)}95.83%{transform:translate(0.0px,-22.4px)}100.00%{transform:translate(0.0px,-0.0px)}}.bp .vel{transform-origin:0 0;animation:vel 3.2s linear .3s infinite both}@keyframes vel{from{transform:scaleY(1)}to{transform:scaleY(-1)}}.bp .ball{fill:#ffd166;stroke:#fff3c4;stroke-width:1.5}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-free-fall"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ball thrown up: velocity and acceleration at the highest point?",
+      "definition": "v = <span style=\"color:#f08c00\">0</span>, a = <span style=\"color:#f08c00\">g downward</span> (Exercise 2.6)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-free-fall"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Vertical throw formulas",
+      "definition": "Maximum height: H = u² / 2g; Time to rise: u / g; Time of flight (back to hand): 2u / g; Speed on return to launch point: u (same as launch)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · vertical throw at u</p><h2>Formula?</h2><table><tr><td>Maximum height</td><td class=\"q\">?</td></tr><tr><td>Time to rise</td><td class=\"q\">?</td></tr><tr><td>Time of flight (back to hand)</td><td class=\"q\">?</td></tr><tr><td>Speed on return to launch point</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · vertical throw at u</p><h2>Formula?</h2><table><tr><td>Maximum height</td><td class=\"a\">H = u² / 2g</td></tr><tr><td>Time to rise</td><td class=\"a\">u / g</td></tr><tr><td>Time of flight (back to hand)</td><td class=\"a\">2u / g</td></tr><tr><td>Speed on return to launch point</td><td class=\"a\">u (same as launch)</td></tr></table><p class=\"note\">Time up = time down only when air resistance is neglected.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-free-fall"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.6: ball thrown up at 29.4 m/s (g = 9.8). Height and time to return?",
+      "definition": "<span style=\"color:#f08c00\">44.1 m</span> and <span style=\"color:#f08c00\">6 s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-free-fall"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: dropped from height h. Time to fall and speed on hitting ground?",
+      "definition": "\\( t = \\sqrt{\\dfrac{2h}{g}}, \\quad v = \\sqrt{2gh} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-free-fall"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: a stone is dropped from a balloon rising at 5 m/s. Initial velocity of the stone?",
+      "definition": "<span style=\"color:#f08c00\">5 m/s upward</span> (the balloon’s velocity), not zero",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-free-fall"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Galileo's law of odd numbers (free fall)",
+      "definition": "Distances in successive equal intervals from rest are 1 : 3 : 5 : 7…, because total distance ∝ t² (1, 4, 9, 16…)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Galileo’s law of odd numbers</p><h2>A stone falls from rest. Distances covered in successive equal time intervals are in what ratio?</h2><svg viewBox=\"0 0 300 180\"><circle class=\"dot\" cx=\"90\" cy=\"22\" r=\"7\"></circle><line class=\"road\" x1=\"40\" y1=\"178\" x2=\"260\" y2=\"178\"></line></svg><p class=\"hint\">Flash a strobe every τ seconds.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Galileo’s law of odd numbers</p><h2>A stone falls from rest. Distances covered in successive equal time intervals are in what ratio?</h2><svg viewBox=\"0 0 300 180\"><circle class=\"dot fx d1\" cx=\"90\" cy=\"22.0\" r=\"7\"></circle><text class=\"sm fx d1\" x=\"62\" y=\"26.0\" text-anchor=\"end\">0τ</text><circle class=\"dot fx d2\" cx=\"90\" cy=\"28.2\" r=\"7\"></circle><text class=\"sm fx d2\" x=\"62\" y=\"32.2\" text-anchor=\"end\">1τ</text><circle class=\"dot fx d3\" cx=\"90\" cy=\"46.8\" r=\"7\"></circle><text class=\"sm fx d3\" x=\"62\" y=\"50.8\" text-anchor=\"end\">2τ</text><circle class=\"dot fx d4\" cx=\"90\" cy=\"77.8\" r=\"7\"></circle><text class=\"sm fx d4\" x=\"62\" y=\"81.8\" text-anchor=\"end\">3τ</text><circle class=\"dot fx d5\" cx=\"90\" cy=\"121.2\" r=\"7\"></circle><text class=\"sm fx d5\" x=\"62\" y=\"125.2\" text-anchor=\"end\">4τ</text><circle class=\"dot fx d6\" cx=\"90\" cy=\"177.0\" r=\"7\"></circle><text class=\"sm fx d6\" x=\"62\" y=\"181.0\" text-anchor=\"end\">5τ</text><line class=\"guide fx d2\" x1=\"112\" y1=\"22.0\" x2=\"112\" y2=\"28.2\"></line><text class=\"yl fx d2\" x=\"124\" y=\"29.1\">1 units</text><line class=\"guide fx d3\" x1=\"112\" y1=\"28.2\" x2=\"112\" y2=\"46.8\"></line><text class=\"yl fx d3\" x=\"124\" y=\"41.5\">3 units</text><line class=\"guide fx d4\" x1=\"112\" y1=\"46.8\" x2=\"112\" y2=\"77.8\"></line><text class=\"yl fx d4\" x=\"124\" y=\"66.3\">5 units</text><line class=\"guide fx d5\" x1=\"112\" y1=\"77.8\" x2=\"112\" y2=\"121.2\"></line><text class=\"yl fx d5\" x=\"124\" y=\"103.5\">7 units</text><line class=\"guide fx d6\" x1=\"112\" y1=\"121.2\" x2=\"112\" y2=\"177.0\"></line><text class=\"yl fx d6\" x=\"124\" y=\"153.1\">9 units</text><line class=\"road\" x1=\"40\" y1=\"178\" x2=\"260\" y2=\"178\"></line></svg><div class=\"eq fx d6\"><p><b>1 : 3 : 5 : 7 : 9 …</b></p><p>Positions after τ, 2τ, 3τ… are ∝ 1, 4, 9, 16 (y = ½gt²); the gaps are the differences: 1, 3, 5, 7.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-galileo-stopping-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Table 2.2: positions after τ, 2τ, 3τ… in units of ½gτ²?",
+      "definition": "<span style=\"color:#f08c00\">1, 4, 9, 16, 25…</span> (∝ n²), so gaps are <span style=\"color:#f08c00\">1, 3, 5, 7, 9</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-galileo-stopping-reaction"
+      ],
+      "definitionImage": "media/tab_2_2_odd_numbers.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Stopping distance of a vehicle braking with deceleration a?",
+      "definition": "\\( d_s = \\dfrac{v_0^2}{2a} \\) : ∝ <span style=\"color:#3b82f6\">square of the speed</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-galileo-stopping-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Double the speed of a car. Stopping distance (same braking)?",
+      "definition": "<span style=\"color:#f08c00\">4 times</span>. This is why speed limits in school zones are low",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-galileo-stopping-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is reaction time?",
+      "definition": "Time a person takes to <span style=\"color:#3b82f6\">observe, think and act</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-galileo-stopping-reaction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.7: a falling ruler is caught after 21.0 cm. Reaction time?",
+      "definition": "\\( t_r = \\sqrt{\\dfrac{2d}{g}} = \\sqrt{\\dfrac{2 \\times 0.21}{9.8}} \\approx \\) <span style=\"color:#f08c00\">0.2 s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.4-galileo-stopping-reaction"
+      ],
+      "definitionImage": "media/fig_2_8_ruler.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Note: NCERT lists 2.5 Relative velocity, but the rationalised text dropped it. Is it still needed?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: Exercise 2.14 and Chapter 3 use it, and JEE/NEET ask it every year",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.5-relative-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Velocity of B relative to A (1D)?",
+      "definition": "\\( v_{BA} = v_B - v_A \\) : velocity of B as seen by an observer moving with A",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.5-relative-velocity"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Relative velocity of B with respect to A (same direction)",
+      "definition": "v_BA = v_B − v_A = 15 − 20 = −5 m/s: B appears to move backward at 5 m/s as seen from A",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Relative velocity · 1D</p><h2>Car A moves at 20 m/s and car B at 15 m/s, same direction. What is the velocity of B relative to A?</h2><svg viewBox=\"0 0 300 185\"><text class=\"sm\" x=\"10\" y=\"16\">Seen from the ground</text><line class=\"road\" x1=\"10\" y1=\"62\" x2=\"290\" y2=\"62\"></line><g class=\"ca\"><rect class=\"obj\" x=\"10\" y=\"44\" width=\"38\" height=\"16\" rx=\"5\"></rect><text class=\"num\" x=\"29\" y=\"56\">A</text></g><g class=\"cb\"><rect class=\"obj2\" x=\"10\" y=\"24\" width=\"38\" height=\"16\" rx=\"5\"></rect><text class=\"num\" x=\"29\" y=\"36\">B</text></g><text class=\"lbl\" x=\"290\" y=\"80\" text-anchor=\"end\">A: 20 m/s   B: 15 m/s →</text></svg><p class=\"hint\">Imagine sitting in car A.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Relative velocity · 1D</p><h2>Car A moves at 20 m/s and car B at 15 m/s, same direction. What is the velocity of B relative to A?</h2><svg viewBox=\"0 0 300 185\"><text class=\"sm\" x=\"10\" y=\"16\">Seen from the ground</text><line class=\"road\" x1=\"10\" y1=\"62\" x2=\"290\" y2=\"62\"></line><g class=\"ca\"><rect class=\"obj\" x=\"10\" y=\"44\" width=\"38\" height=\"16\" rx=\"5\"></rect><text class=\"num\" x=\"29\" y=\"56\">A</text></g><g class=\"cb\"><rect class=\"obj2\" x=\"10\" y=\"24\" width=\"38\" height=\"16\" rx=\"5\"></rect><text class=\"num\" x=\"29\" y=\"36\">B</text></g><text class=\"lbl\" x=\"290\" y=\"80\" text-anchor=\"end\">A: 20 m/s   B: 15 m/s →</text><text class=\"sm\" x=\"10\" y=\"112\">Seen from car A</text><line class=\"road2 dash\" x1=\"10\" y1=\"158\" x2=\"290\" y2=\"158\"></line><g class=\"\"><rect class=\"obj\" x=\"130\" y=\"140\" width=\"38\" height=\"16\" rx=\"5\"></rect><text class=\"num\" x=\"149\" y=\"152\">A</text></g><g class=\"rb\"><rect class=\"obj2\" x=\"130\" y=\"120\" width=\"38\" height=\"16\" rx=\"5\"></rect><text class=\"num\" x=\"149\" y=\"132\">B</text></g><text class=\"lbl\" x=\"290\" y=\"176\" text-anchor=\"end\">A still; B drifts back at 5 m/s</text></svg><div class=\"eq fx d3\"><p><b>v<sub>BA</sub> = v<sub>B</sub> − v<sub>A</sub> = 15 − 20 = −5 m/s</b></p><p>From A, B appears to move backward at 5 m/s (and the road rushes back at 20 m/s).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .road2{stroke:#9fc2ee;stroke-width:1.2;stroke-dasharray:10 10}.bp .ca{animation:ca 3s linear infinite}.bp .cb{animation:cb 3s linear infinite}.bp .rb{animation:rb 3s linear infinite}.bp .dash{animation:dash 3s linear infinite}@keyframes ca{from{transform:translateX(0)}to{transform:translateX(200px)}}@keyframes cb{from{transform:translateX(40px)}to{transform:translateX(190px)}}@keyframes rb{from{transform:translateX(40px)}to{transform:translateX(-10px)}}@keyframes dash{from{stroke-dashoffset:0}to{stroke-dashoffset:200}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .road2{stroke:#9fc2ee;stroke-width:1.2;stroke-dasharray:10 10}.bp .ca{animation:ca 3s linear infinite}.bp .cb{animation:cb 3s linear infinite}.bp .rb{animation:rb 3s linear infinite}.bp .dash{animation:dash 3s linear infinite}@keyframes ca{from{transform:translateX(0)}to{transform:translateX(200px)}}@keyframes cb{from{transform:translateX(40px)}to{transform:translateX(190px)}}@keyframes rb{from{transform:translateX(40px)}to{transform:translateX(-10px)}}@keyframes dash{from{stroke-dashoffset:0}to{stroke-dashoffset:200}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.5-relative-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between v_AB and v_BA?",
+      "definition": "\\( v_{AB} = -v_{BA} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.5-relative-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two trains at 54 km/h and 72 km/h approach each other. Relative speed?",
+      "definition": "<span style=\"color:#f08c00\">126 km/h = 35 m/s</span> (opposite directions: speeds add)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.5-relative-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two bodies with equal velocities: how does each look to the other?",
+      "definition": "<span style=\"color:#3b82f6\">At rest</span>; their separation stays constant and x–t lines are parallel",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.5-relative-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.14: police van at 30 km/h fires a bullet (150 m/s) at a thief’s car at 192 km/h ahead. Speed of impact?",
+      "definition": "Bullet: 150 + 8.33 = 158.33 m/s; car: 53.33 m/s; relative <span style=\"color:#f08c00\">105 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.5-relative-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does the relative speed matter for damage in Exercise 2.14?",
+      "definition": "The damage depends on how fast the bullet <span style=\"color:#3b82f6\">meets the car</span>, i.e. relative to the car",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "2.5-relative-velocity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.2 (Fig. 2.9): who lives closer, who starts earlier, who walks faster?",
+      "definition": "<span style=\"color:#3b82f6\">A</span> lives closer; <span style=\"color:#3b82f6\">A</span> starts earlier; <span style=\"color:#3b82f6\">B</span> walks faster (steeper), overtakes A once",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "exercises-graphs"
+      ],
+      "definitionImage": "media/fig_2_9_children.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.15(a): suggest a situation for this x–t graph.",
+      "definition": "A ball at rest on a smooth floor is kicked, rebounds from a wall with <span style=\"color:#3b82f6\">reduced speed</span> and is stopped by the opposite wall",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "exercises-graphs"
+      ],
+      "termImage": "media/fig_2_12_situations.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.15(b), (c): situations for the v–t and a–t graphs?",
+      "definition": "(b) A ball thrown up that rebounds from the floor with <span style=\"color:#3b82f6\">less speed each time</span>. (c) A cricket ball moving uniformly, hit back by a bat for a <span style=\"color:#3b82f6\">very short time</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "exercises-graphs"
+      ],
+      "termImage": "media/fig_2_12_situations.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.16 (SHM x–t): signs of x, v, a at t = 0.3 s?",
+      "definition": "x < 0, v < 0, a > 0. (In SHM, a is always opposite to x)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "exercises-graphs"
+      ],
+      "termImage": "media/fig_2_13_shm.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.17 (Fig. 2.14): which interval has the greatest and least average speed?",
+      "definition": "Greatest in <span style=\"color:#f08c00\">3</span> (steepest), least in <span style=\"color:#f08c00\">2</span>; v > 0 in 1 and 2, v < 0 in 3",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "exercises-graphs"
+      ],
+      "termImage": "media/fig_2_14_xt.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.18 (Fig. 2.15): acceleration at the points A, B, C, D (speed–time graph)?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span> at all four: the tangent is horizontal there. |a| greatest in interval 2",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "exercises-graphs"
+      ],
+      "termImage": "media/fig_2_15_speed.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 2 traps",
+      "definition": "Zero velocity means zero acceleration: False (top of a throw); Negative a means slowing down: False (depends on axis); Average speed ≥ |average velocity|: True; Kinematic equations hold for any motion: False (constant a only); Origin and positive direction are a choice: True",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>Zero velocity means zero acceleration</td><td class=\"q\">?</td></tr><tr><td>Negative a means slowing down</td><td class=\"q\">?</td></tr><tr><td>Average speed ≥ |average velocity|</td><td class=\"q\">?</td></tr><tr><td>Kinematic equations hold for any motion</td><td class=\"q\">?</td></tr><tr><td>Origin and positive direction are a choice</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>Zero velocity means zero acceleration</td><td class=\"a no\">False (top of a throw)</td></tr><tr><td>Negative a means slowing down</td><td class=\"a no\">False (depends on axis)</td></tr><tr><td>Average speed ≥ |average velocity|</td><td class=\"a\">True</td></tr><tr><td>Kinematic equations hold for any motion</td><td class=\"a no\">False (constant a only)</td></tr><tr><td>Origin and positive direction are a choice</td><td class=\"a\">True</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Graph shapes for uniformly accelerated motion",
+      "definition": "x–t: parabola; v–t: inclined straight line; a–t: horizontal line",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Shape of the graph for uniform acceleration?</h2><table><tr><td>x–t</td><td class=\"q\">?</td></tr><tr><td>v–t</td><td class=\"q\">?</td></tr><tr><td>a–t</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Shape of the graph for uniform acceleration?</h2><table><tr><td>x–t</td><td class=\"a\">parabola</td></tr><tr><td>v–t</td><td class=\"a\">inclined straight line</td></tr><tr><td>a–t</td><td class=\"a\">horizontal line</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-2",
+        "summary"
+      ]
+    }
+  ]
+}

@@ -3,6 +3,8 @@
 Owner rule for physics: when an NCERT figure is cluttered or uses odd notation, draw a clean
 one here instead. Build an SVG with Fig, then fig.save(media, name). PyMuPDF rasterises it
 (it ignores <marker>, so arrows are drawn as explicit heads). Warm paper colours, dark ink.
+Phone rule: keep the canvas about 600–650 units wide and text >= 19, so labels stay readable
+when the image is shown ~340 px wide.
 
     f = Fig(400, 260)
     f.arrow(50, 200, 300, 200, cls='f1'); f.text(305, 205, 'x')
@@ -89,11 +91,11 @@ class Fig:
         """Italic symbol label, e.g. label(x, y, 'v', sub='0')."""
         return self.text(x, y, s, c, size, anchor, italic=True, sub=sub)
 
-    def axes(self, ox, oy, xlen, ylen, xl='x', yl='y', c='ink', neg_y=0, neg_x=0):
-        self.arrow(ox - neg_x, oy, ox + xlen, oy, c, 1.8, 9)
-        self.arrow(ox, oy + neg_y, ox, oy - ylen, c, 1.8, 9)
-        self.text(ox + xlen - 2, oy + 22, xl, c, 16, 'end', italic=True)
-        self.text(ox - 8, oy - ylen + 6, yl, c, 16, 'end', italic=True)
+    def axes(self, ox, oy, xlen, ylen, xl='x', yl='y', c='ink', neg_y=0, neg_x=0, size=20):
+        self.arrow(ox - neg_x, oy, ox + xlen, oy, c, 1.8, 10)
+        self.arrow(ox, oy + neg_y, ox, oy - ylen, c, 1.8, 10)
+        self.text(ox + xlen - 2, oy + size + 6, xl, c, size, 'end', italic=True)
+        self.text(ox - 8, oy - ylen + 8, yl, c, size, 'end', italic=True)
         return self
 
     def svg(self):
