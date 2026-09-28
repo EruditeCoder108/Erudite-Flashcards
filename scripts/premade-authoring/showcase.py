@@ -527,3 +527,184 @@ def sp3_mixer(deck):
             '<div class="rule fx d6">Four equivalent hybrids point to the corners of a <b>tetrahedron</b> (e.g. CH₄).</div></div>')
     _card(deck, 'sp3 hybridisation: orbitals, number, angle',
           '1 s + 3 p → 4 equivalent sp³ hybrids, 25% s-character, 109.5°, tetrahedral', LAB, front, back)
+
+
+# ---------------------------------------------------------------- coordination chemistry (Chem 12 Ch 5)
+CRYSTAL = LAB + """
+.lb .lvl{stroke:#e8edf5;stroke-width:3;stroke-linecap:round}
+.lb .lvl.eg{stroke:#fb923c}.lb .lvl.t2{stroke:#67e8f9}
+.lb .gd{stroke:#64748b;stroke-width:1;stroke-dasharray:3 3;fill:none}
+.lb .dl{stroke:#fde68a;stroke-width:1.4;fill:none}
+.lb .tx{fill:#cbd5e1;font-size:10.5px}.lb .txe{fill:#fdba74;font-size:12px;font-weight:700}
+.lb .txt{fill:#a5f3fc;font-size:12px;font-weight:700}.lb .txy{fill:#fde68a;font-size:11px;font-weight:700}
+.lb .el{fill:#fff;font-size:15px;font-weight:700}.lb .el2{fill:#fbbf24;font-size:15px;font-weight:700}
+.lb .up{transform-box:fill-box;animation:rise 1.2s cubic-bezier(.2,.8,.2,1) both .3s}
+.lb .dn{transform-box:fill-box;animation:sink 1.2s cubic-bezier(.2,.8,.2,1) both .3s}
+.lb .axl{stroke:#475569;stroke-width:1.2}
+.lb .lig{fill:#334155;stroke:#94a3b8;stroke-width:1.2}.lb .ligt{fill:#e2e8f0;font-size:9px;font-weight:700}
+.lb .hot{fill:rgba(251,146,60,.35);stroke:#fb923c;stroke-width:1.4}
+.lb .cool{fill:rgba(103,232,249,.25);stroke:#67e8f9;stroke-width:1.4}
+.lb .clash{fill:none;stroke:#f87171;stroke-width:2;transform-box:fill-box;transform-origin:center;animation:pulse 1.4s ease-out infinite .6s}
+.lb .pan{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.12)}
+.lb .bx{display:flex;flex-wrap:nowrap;align-items:flex-end;gap:7px;margin:4px 0 2px}
+.lb .gp{display:flex;flex-direction:column;align-items:center;gap:2px}
+.lb .gp small{font-size:10px;color:#94a3b8}
+.lb .bs{display:flex}
+.lb .bs i{font-style:normal;width:17px;height:19px;border:1px solid #64748b;margin-left:-1px;display:flex;
+  align-items:center;justify-content:center;font-size:10.5px;color:#fff;letter-spacing:-1px}
+.lb .bs i.lg{background:rgba(167,139,250,.45);border-color:#c4b5fd;color:#ede9fe;animation:fade .45s ease both}
+.lb .bs i.h{color:#475569}
+.lb .rw{margin:8px 0 0;padding:8px 9px;border-radius:12px;background:rgba(255,255,255,.04)}
+.lb .rw p{margin:0 0 2px;font-size:12.5px;color:#e2e8f0}.lb .rw p b{color:#fde68a}
+.lb .rw .res{font-size:12px;color:#a5f3fc}
+.lb .l1{animation-delay:.2s}.lb .l2{animation-delay:.35s}.lb .l3{animation-delay:.5s}.lb .l4{animation-delay:.65s}
+.lb .l5{animation-delay:.8s}.lb .l6{animation-delay:.95s}
+@keyframes rise{from{transform:translateY(58px);opacity:.25}to{transform:none;opacity:1}}
+@keyframes sink{from{transform:translateY(-38px);opacity:.25}to{transform:none;opacity:1}}
+@keyframes pulse{from{transform:scale(.6);opacity:1}to{transform:scale(1.6);opacity:0}}
+"""
+
+
+def _levels(xs, y, cls='lvl', w=16):
+    return ''.join(f'<line class="{cls}" x1="{x}" y1="{y}" x2="{x + w}" y2="{y}"></line>' for x in xs)
+
+
+def _sub(s):
+    return f'<tspan dy="3" font-size="8">{s}</tspan>'
+
+
+def cft_octahedral_split(deck):
+    q = 'Six ligands approach along ±x, ±y, ±z. What happens to the five d orbitals?'
+    free = (_levels([6, 24, 42, 60, 78], 150) + '<text class="tx" x="50" y="170" text-anchor="middle">free ion</text>'
+            '<text class="tx" x="50" y="182" text-anchor="middle">(all 5 equal)</text>')
+    sph = (_levels([100, 118, 136, 154, 172], 112) + '<text class="tx" x="144" y="132" text-anchor="middle">spherical field</text>'
+           '<text class="tx" x="144" y="144" text-anchor="middle">(all raised)</text>')
+    front = (f'<div class="w lb"><p class="tag">Crystal field theory · Fig. 5.8</p><h2>{q}</h2>'
+             f'<svg viewBox="0 0 300 190">{free}{sph}<text class="big" x="240" y="104" text-anchor="middle">?</text></svg>'
+             '<div class="rule">Hint: which orbitals point <b>at</b> the ligands?</div></div>')
+    split = ('<line class="gd" x1="194" y1="112" x2="296" y2="112"></line>'
+             '<text class="tx" x="296" y="106" text-anchor="end">barycentre</text>'
+             f'<g class="up">{_levels([204, 228], 50, "lvl eg", 18)}<text class="txe" x="200" y="40">e{_sub("g")}</text>'
+             f'<text class="tx" x="256" y="46">d{_sub("x²−y²")}</text><text class="tx" x="256" y="62">d{_sub("z²")}</text></g>'
+             f'<g class="dn">{_levels([200, 222, 244], 150, "lvl t2", 18)}<text class="txt" x="268" y="154">t{_sub("2g")}</text>'
+             f'<text class="tx" x="198" y="172">d{_sub("xy")}  d{_sub("yz")}  d{_sub("xz")}</text></g>'
+             '<line class="dl fx d3" x1="194" y1="52" x2="194" y2="148"></line>'
+             '<text class="txy fx d3" x="256" y="86">+3/5 Δ₀</text>'
+             '<text class="txy fx d3" x="256" y="136">−2/5 Δ₀</text>')
+    back = (f'<div class="w lb"><p class="tag">Crystal field theory · Fig. 5.8</p><h2>{q}</h2>'
+            f'<svg viewBox="0 0 300 190">{free}{sph}{split}</svg>'
+            '<div class="chips fx d5"><span>e<sub>g</sub>: 2 go up</span><span>t<sub>2g</sub>: 3 go down</span><span>gap = Δ₀</span></div>'
+            '<div class="rule fx d6">Lobes pointing <b>at</b> ligands (e<sub>g</sub>) are repelled most and rise by 3/5 Δ₀; '
+            'lobes <b>between</b> ligands (t<sub>2g</sub>) drop by 2/5 Δ₀. The average stays put: 2 × 3/5 = 3 × 2/5.</div></div>')
+    _card(deck, 'Octahedral crystal field splitting',
+          'd orbitals split into e_g (dx²−y², dz²; up by 3/5 Δo) and t2g (dxy, dyz, dxz; down by 2/5 Δo)', CRYSTAL, front, back)
+
+
+def _panel(ox, lobes_cls, angles, clash):
+    axes = (f'<line class="axl" x1="{ox + 8}" y1="80" x2="{ox + 132}" y2="80"></line>'
+            f'<line class="axl" x1="{ox + 70}" y1="18" x2="{ox + 70}" y2="142"></line>')
+    lobes = ''.join(_lobe(a, ox + 70, 80, lobes_cls, 50) for a in angles)
+    ligs = ''
+    for lx, ly in [(ox + 128, 80), (ox + 12, 80), (ox + 70, 22), (ox + 70, 138)]:
+        ring = f'<circle class="clash" cx="{lx}" cy="{ly}" r="11"></circle>' if clash else ''
+        ligs += (f'{ring}<circle class="lig" cx="{lx}" cy="{ly}" r="9"></circle>'
+                 f'<text class="ligt" x="{lx}" y="{ly + 3}" text-anchor="middle">L</text>')
+    return (f'<rect class="pan" x="{ox}" y="6" width="140" height="148" rx="12"></rect>{axes}{lobes}{ligs}'
+            f'<text class="tx" x="{ox + 134}" y="94" text-anchor="end">x</text><text class="tx" x="{ox + 76}" y="16">y</text>')
+
+
+def d_orbital_pointing(deck):
+    q = 'Ligands sit on the x and y axes. Which orbital is repelled more, A or B? Name both.'
+    def svg(show):
+        return (f'<svg viewBox="0 0 300 176">{_panel(4, "hot" if show else "orb", [0, 90, 180, 270], show)}'
+                f'{_panel(156, "cool" if show else "orb", [45, 135, 225, 315], False)}'
+                '<text class="big" x="74" y="174" text-anchor="middle">A</text><text class="big" x="226" y="174" text-anchor="middle">B</text></svg>')
+    front = f'<div class="w lb"><p class="tag">What the d-orbital labels mean</p><h2>{q}</h2>{svg(False)}</div>'
+    back = (f'<div class="w lb"><p class="tag">What the d-orbital labels mean</p><h2>{q}</h2>{svg(True)}'
+            '<div class="chips fx d3"><span>A = d<sub>x²−y²</sub>: e<sub>g</sub>, up</span><span>B = d<sub>xy</sub>: t<sub>2g</sub>, down</span></div>'
+            '<div class="rule fx d4">Read the subscript. <b>x²−y²</b>: lobes lie <b>along</b> the x and y axes, head-on into the ligands. '
+            '<b>xy</b>: lobes lie <b>between</b> x and y, dodging them. d<sub>z²</sub> points along z (also e<sub>g</sub>); '
+            'd<sub>yz</sub> and d<sub>xz</sub> lie between axes (t<sub>2g</sub>).</div></div>')
+    _card(deck, 'Which d orbitals point at the ligands?',
+          'dx²−y² and dz² point along the axes at the ligands (e_g, raised); dxy, dyz, dxz point between them (t2g, lowered)', CRYSTAL, front, back)
+
+
+def high_low_spin(deck):
+    q = 'A d⁴ ion has 3 electrons in t₂g. Where does the 4th go: weak vs strong field ligand?'
+    def side(ox, egy, title, show, strong):
+        t2 = _levels([ox + 14, ox + 46, ox + 78], 150, 'lvl t2', 24)
+        eg = _levels([ox + 30, ox + 62], egy, 'lvl eg', 24)
+        els = ''.join(f'<text class="el" x="{ox + 22 + 32 * i}" y="145" text-anchor="middle">↑</text>' for i in range(3))
+        gap = (f'<line class="dl" x1="{ox + 116}" y1="{egy + 2}" x2="{ox + 116}" y2="148"></line>'
+               f'<text class="txy" x="{ox + 120}" y="{(egy + 150) // 2 + 4}">Δ₀</text>')
+        if show:
+            if strong:
+                fourth = f'<text class="el2 fx d2" x="{ox + 32}" y="145" text-anchor="middle">↓</text>'
+                res = 't₂g⁴ · 2 unpaired'
+            else:
+                fourth = f'<text class="el2 fx d2" x="{ox + 42}" y="{egy - 5}" text-anchor="middle">↑</text>'
+                res = 't₂g³e_g¹ · 4 unpaired'
+            fourth += f'<text class="txy fx d3" x="{ox + 70}" y="176" text-anchor="middle">{res}</text>'
+        else:
+            fourth = f'<text class="big" x="{ox + 64}" y="{(egy + 150) // 2 + 6}" text-anchor="middle">?</text>'
+        return (f'<text class="txe" x="{ox + 70}" y="16" text-anchor="middle">{title}</text>'
+                f'<text class="tx" x="{ox + 4}" y="{egy + 4}">e{_sub("g")}</text>{eg}{t2}{els}{gap}{fourth}')
+    def svg(show):
+        return (f'<svg viewBox="0 0 300 184">{side(0, 104, "weak field: F⁻, H₂O", show, False)}'
+                f'{side(152, 40, "strong field: CN⁻, CO", show, True)}</svg>')
+    front = f'<div class="w lb"><p class="tag">High spin vs low spin</p><h2>{q}</h2>{svg(False)}</div>'
+    back = (f'<div class="w lb"><p class="tag">High spin vs low spin</p><h2>{q}</h2>{svg(True)}'
+            '<div class="rule fx d4"><b>Δ₀ &lt; P</b>: climbing up is cheaper than pairing, so the electron goes up: <b>high spin</b>. '
+            '<b>Δ₀ &gt; P</b>: pairing is cheaper: <b>low spin</b>.<br>Like a bus: sit alone upstairs if the stairs (Δ₀) cost less '
+            'than squeezing into a shared seat (P).</div></div>')
+    _card(deck, 'High spin vs low spin (d4)',
+          'Weak field, Δo < P: t2g³eg¹, high spin (4 unpaired). Strong field, Δo > P: t2g⁴, low spin (2 unpaired).', CRYSTAL, front, back)
+
+
+def _boxes(groups):
+    out = ''
+    for label, cells in groups:
+        cs = ''.join(f'<i class="{c}">{t}</i>' for t, c in cells)
+        out += f'<div class="gp"><div class="bs">{cs}</div><small>{label}</small></div>'
+    return f'<div class="bx">{out}</div>'
+
+
+def vbt_inner_outer(deck):
+    q = 'VBT: how does Co³⁺ (3d⁶) bond six NH₃ vs six F⁻?'
+    E, P, U = ('·', 'h'), ('↑↓', ''), ('↑', '')
+    def lig(n):
+        return ('⇅', f'lg l{n}')
+    free = _boxes([('3d', [P, U, U, U, U]), ('4s', [E]), ('4p', [E, E, E]), ('4d', [E, E, E, E, E])])
+    nh3 = _boxes([('3d', [P, P, P, lig(1), lig(2)]), ('4s', [lig(3)]), ('4p', [lig(4), lig(5), lig(6)]), ('4d', [E, E, E, E, E])])
+    f6 = _boxes([('3d', [P, U, U, U, U]), ('4s', [lig(1)]), ('4p', [lig(2), lig(3), lig(4)]), ('4d', [lig(5), lig(6), E, E, E])])
+    head = (f'<div class="w lb"><p class="tag">Valence bond theory · inner vs outer orbital</p><h2>{q}</h2>'
+            f'<div class="rw"><p>Co³⁺ free ion: 4 unpaired</p>{free}</div>')
+    front = head + ('<div class="rw"><p><b>[Co(NH₃)₆]³⁺</b></p><p class="q">? ? ?</p></div>'
+                    '<div class="rw"><p><b>[CoF₆]³⁻</b></p><p class="q">? ? ?</p></div></div>')
+    back = head + (f'<div class="rw"><p><b>[Co(NH₃)₆]³⁺</b>: strong NH₃ makes the 3d electrons pair up</p>{nh3}'
+                   '<p class="res">d²sp³ · inner orbital · low spin · diamagnetic</p></div>'
+                   f'<div class="rw"><p><b>[CoF₆]³⁻</b>: weak F⁻, no pairing, so outer 4d is used</p>{f6}'
+                   '<p class="res">sp³d² · outer orbital · high spin · 4 unpaired</p></div>'
+                   '<div class="rule fx d6">⇅ = electron pair donated by a ligand. Inner (n−1)d used = inner orbital; outer nd used = outer orbital.</div></div>')
+    _card(deck, 'VBT: [Co(NH3)6]3+ vs [CoF6]3-',
+          '[Co(NH3)6]3+: 3d electrons pair, d²sp³, inner orbital, low spin, diamagnetic. [CoF6]3-: sp³d², outer orbital, high spin, 4 unpaired.', CRYSTAL, front, back)
+
+
+def cft_tetrahedral_split(deck):
+    q = 'Tetrahedral field: how does the splitting differ from octahedral?'
+    oct_ = (f'<g>{_levels([20, 44], 40, "lvl eg", 18)}{_levels([10, 34, 58], 130, "lvl t2", 18)}'
+            f'<text class="txe" x="84" y="44">e{_sub("g")}</text><text class="txt" x="84" y="134">t{_sub("2g")}</text>'
+            '<line class="dl" x1="112" y1="42" x2="112" y2="128"></line><text class="txy" x="116" y="90">Δ₀</text>'
+            '<text class="tx" x="50" y="160" text-anchor="middle">octahedral</text></g>')
+    tet = (f'<g class="fx d2">{_levels([178, 202, 226], 70, "lvl t2", 18)}{_levels([190, 214], 110, "lvl eg", 18)}'
+           f'<text class="txt" x="250" y="74">t{_sub("2")}</text><text class="txe" x="240" y="114">e</text>'
+           '<line class="dl" x1="272" y1="72" x2="272" y2="108"></line><text class="txy" x="276" y="94">Δₜ</text>'
+           '<text class="tx" x="214" y="160" text-anchor="middle">tetrahedral</text></g>')
+    front = (f'<div class="w lb"><p class="tag">Crystal field theory · Fig. 5.9</p><h2>{q}</h2>'
+             f'<svg viewBox="0 0 300 170">{oct_}<text class="big" x="214" y="96" text-anchor="middle">?</text></svg></div>')
+    back = (f'<div class="w lb"><p class="tag">Crystal field theory · Fig. 5.9</p><h2>{q}</h2><svg viewBox="0 0 300 170">{oct_}{tet}</svg>'
+            '<div class="chips fx d3"><span>inverted</span><span>Δₜ = 4/9 Δ₀</span><span>high spin</span></div>'
+            '<div class="rule fx d4">Only 4 ligands, and none point straight at a d lobe, so the pattern is <b>upside down</b> and <b>small</b>: '
+            'never big enough to force pairing. No "g": a tetrahedron has no centre of symmetry.</div></div>')
+    _card(deck, 'Tetrahedral vs octahedral splitting',
+          'Tetrahedral splitting is inverted (e lower, t2 higher) and smaller: Δt = 4/9 Δo, so low spin is rare', CRYSTAL, front, back)
