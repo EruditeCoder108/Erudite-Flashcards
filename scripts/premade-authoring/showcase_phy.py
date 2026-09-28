@@ -495,3 +495,85 @@ def stress_strain_story(deck):
          'Stress–strain curve of a metal: O, A, B, D, E',
          'O–A linear (Hooke); B yield point/elastic limit; beyond B permanent set; D ultimate strength; E fracture; ductile if D, E far apart',
          hint='Label the points as you go.', vb='0 0 300 200')
+
+
+# ---------------------------------------------------------------- Ch 9 Mechanical properties of fluids
+def venturi_flow(deck):
+    cy = 128
+    def h(x):                                   # half-height of the pipe
+        if x <= 100 or x >= 200:
+            return 30.0
+        import math
+        return 30 - 18 * (1 - math.cos(2 * math.pi * (x - 100) / 100)) / 2
+    top = ' '.join(f'{x},{cy - h(x):.1f}' for x in range(16, 285, 4))
+    bot = ' '.join(f'{x},{cy + h(x):.1f}' for x in range(16, 285, 4))
+    # time to travel: dt = dx / v, v ∝ 30 / h
+    xs, ts, t = list(range(16, 285, 4)), [], 0.0
+    for x in xs:
+        ts.append(t); t += 4 * h(x) / 30
+    T = 3.2
+    css = ''
+    dots = ''
+    for li, lane in enumerate((-0.6, 0.0, 0.6)):
+        for k in range(3):
+            name = f'vf{li}{k}'
+            # resample to equal time steps
+            n, pts, j = 40, [], 0
+            for i in range(n + 1):
+                tt = ts[-1] * i / n
+                while j < len(ts) - 2 and ts[j + 1] < tt:
+                    j += 1
+                f = (tt - ts[j]) / (ts[j + 1] - ts[j])
+                x = xs[j] + 4 * f
+                pts.append((x - 16, lane * h(x)))
+            css += keyframes(name, pts, T, 'linear', -T * k / 3).replace('1 both', 'infinite both')
+            dots += f'<g transform="translate(16,{cy})"><circle class="dot {name}" cx="0" cy="0" r="3.2"></circle></g>'
+    tubes = ''
+    for x, hh, cls in ((58, 58, 'zone2'), (150, 22, 'zone'), (242, 58, 'zone2')):
+        base_y = cy - h(x)
+        tubes += (f'<rect class="ghost" x="{x - 6}" y="{base_y - 70 - (30 - h(x)):.1f}" width="12" height="{70 + 30 - h(x):.1f}"></rect>'
+                  f'<rect class="{cls} fx d3" x="{x - 6}" y="{base_y - hh - (30 - h(x)):.1f}" width="12" height="{hh + 30 - h(x):.1f}"></rect>')
+    base = (f'<polyline class="road" points="{top}"></polyline><polyline class="road" points="{bot}"></polyline>'
+            f'<text class="sm" x="58" y="{cy + 50}" text-anchor="middle">wide</text><text class="sm" x="150" y="{cy + 50}" text-anchor="middle">narrow</text>')
+    back = (dots + tubes +
+            '<text class="gr" x="58" y="18" text-anchor="middle">slow, high P</text>'
+            '<text class="yl" x="150" y="18" text-anchor="middle">fast, low P</text>')
+    anim(deck, 'Continuity + Bernoulli · venturi',
+         'Water flows steadily through a pipe with a narrow section. Where is it fastest, and where is the pressure lowest?',
+         base, back,
+         '<p><b>Continuity</b>: Av = constant, so the fluid speeds up in the narrow part.</p>'
+         '<p><b>Bernoulli</b> (same height): P + ½ρv² = constant, so faster flow means <b>lower pressure</b>: the column above the constriction is shortest.</p>',
+         'Flow through a constriction: speed and pressure',
+         'Av = constant so v is largest in the narrow part; P + ½ρv² = constant so pressure is lowest there',
+         css, hint='Mass in = mass out.', vb='0 0 300 190')
+
+
+def terminal_velocity(deck):
+    import math
+    n, T = 30, 3.6
+    # v(t) = vt (1 − e^(−t/τ)); position y(t) = vt (t − τ(1 − e^(−t/τ)))
+    tau, tmax = 0.8, 4.0
+    ys = [60 * (t - tau * (1 - math.exp(-t / tau))) for t in [tmax * i / n for i in range(n + 1)]]
+    scale = 128 / ys[-1]
+    css = keyframes('tv', [(0, y * scale) for y in ys], T, 'linear', 0.3)
+    css += ('.bp .oil{fill:rgba(255,209,102,.10);stroke:#9fc2ee;stroke-width:1.2}'
+            '.bp .tvarr{transform-origin:0 0;animation:tvarr ' + str(T) + 's linear .3s infinite both}'
+            '@keyframes tvarr{' + ''.join(f'{100 * i / 10:.0f}%{{transform:scaleY({max(0.02, 1 - math.exp(-tmax * i / 10 / tau)):.3f})}}' for i in range(11)) + '}')
+    vt_curve = ' '.join(f'{170 + 115 * t / tmax:.1f},{160 - 100 * (1 - math.exp(-t / tau)):.1f}' for t in [tmax * i / 40 for i in range(41)])
+    base = ('<rect class="oil" x="30" y="20" width="90" height="165" rx="6"></rect>'
+            '<line class="ax" x1="170" y1="160" x2="292" y2="160" marker-end="url(#ah)"></line>'
+            '<line class="ax" x1="170" y1="160" x2="170" y2="40" marker-end="url(#ah)"></line>'
+            '<text class="lbl" x="290" y="176" text-anchor="end">t</text><text class="lbl" x="176" y="46">v</text>')
+    still = '<circle class="obj2" cx="75" cy="36" r="8"></circle>'
+    back = ('<g transform="translate(75,36)"><g class="tv"><circle class="obj2" cx="0" cy="0" r="8"></circle>'
+            '<g class="tvarr"><line class="f-mg" x1="0" y1="10" x2="0" y2="42" marker-end="url(#am)"></line></g></g></g>'
+            f'<polyline class="curve draw" pathLength="100" points="{vt_curve}"></polyline>'
+            '<line class="guide fx d4" x1="170" y1="60" x2="290" y2="60"></line><text class="hi fx d4" x="288" y="54" text-anchor="end">v_t</text>'.replace('v_t', 'vₜ'))
+    anim(deck, 'Viscosity · terminal velocity',
+         'A small metal ball is dropped into a tall jar of oil. How does its speed change with time?',
+         base, back,
+         '<p>Speed rises, but the Stokes drag <b>6πηav</b> grows with it. When drag + buoyancy = weight, acceleration is zero: '
+         '<b>vₜ = 2a²(ρ − σ)g / 9η</b>.</p><p>vₜ ∝ a²: bigger drops fall faster; more viscous oil → slower.</p>',
+         'Ball in oil: approach to terminal velocity',
+         'Speed rises to a constant terminal value when 6πηav + buoyancy = weight; vt = 2a²(ρ−σ)g/9η',
+         css, hint='What force grows with speed?', vb='0 0 300 190', front_only=still)

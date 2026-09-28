@@ -1,0 +1,1268 @@
+{
+  "version": 1,
+  "name": "Chapter 9: Mechanical Properties of Fluids",
+  "className": "Class 11",
+  "description": "Pressure, Pascal’s law, hydraulics, continuity, Bernoulli’s principle, Torricelli, lift, viscosity, Stokes’ law, surface tension, capillarity",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What makes a substance a fluid?",
+      "definition": "It can <span style=\"color:#3b82f6\">flow</span>: liquids and gases",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Key mechanical difference between fluids and solids?",
+      "definition": "Fluids offer very little resistance to <span style=\"color:#3b82f6\">shear stress</span> (about a million times less than solids); they have no shape of their own",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Liquid vs gas: volume?",
+      "definition": "A liquid has a fixed volume and a free surface; a gas fills its container and is highly <span style=\"color:#3b82f6\">compressible</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a needle pierce the skin but a spoon does not, for the same force?",
+      "definition": "Smaller area → larger <span style=\"color:#3b82f6\">pressure</span> (force per unit area)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2-pressure"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the force of a fluid at rest always normal to a surface?",
+      "definition": "A parallel component would make the fluid <span style=\"color:#3b82f6\">flow</span> (third law); a fluid at rest cannot",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2-pressure"
+      ],
+      "definitionImage": "media/fig_9_1_normal_force.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define pressure; scalar or vector?",
+      "definition": "\\( P = \\lim_{\\Delta A \\to 0}\\dfrac{\\Delta F}{\\Delta A} \\) (normal force per area): a <span style=\"color:#3b82f6\">scalar</span>; unit pascal, [M L⁻¹ T⁻²]",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2-pressure"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "1 atm, 1 bar, 1 torr in Pa?",
+      "definition": "1 atm = <span style=\"color:#f08c00\">1.013 × 10⁵ Pa</span>; 1 bar = <span style=\"color:#f08c00\">10⁵ Pa</span>; 1 torr = 1 mm Hg = <span style=\"color:#f08c00\">133 Pa</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2-pressure"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relative density; density of water at 4 °C?",
+      "definition": "Density ÷ density of water at 4 °C (dimensionless). Water: <span style=\"color:#f08c00\">1.0 × 10³ kg m⁻³</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2-pressure"
+      ],
+      "definitionImage": "media/tab_9_1_densities.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9.1: two femurs (10 cm² each) carry 40 kg. Average pressure?",
+      "definition": "400 N / 20 × 10⁻⁴ m² = <span style=\"color:#f08c00\">2 × 10⁵ Pa</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2-pressure"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.5: a 50 kg girl balances on one circular heel of diameter 1.0 cm. Pressure?",
+      "definition": "<span style=\"color:#f08c00\">6.2 × 10⁶ Pa</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2-pressure"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Pascal’s law: in a fluid at rest, pressure is the {{c1::same in all directions}} and the same at all points at the {{c2::same height}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.1-pascals-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is Pascal’s law proved with a small prism?",
+      "definition": "Balance forces on a tiny right-angled prism: Fb sin θ = Fc, Fb cos θ = Fa with Ab sin θ = Ac, Ab cos θ = Aa → <span style=\"color:#3b82f6\">Pa = Pb = Pc</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.1-pascals-law"
+      ],
+      "definitionImage": "media/fig_9_2_pascal_prism.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why must pressure be equal at points on the same horizontal level?",
+      "definition": "Otherwise a horizontal fluid bar would have a net force and <span style=\"color:#3b82f6\">flow</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.1-pascals-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Pressure difference between two points h apart vertically?",
+      "definition": "\\( P_2 - P_1 = \\rho g h \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.2-variation-with-depth"
+      ],
+      "definitionImage": "media/fig_9_3_fluid_column.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Pressure at depth h in a liquid open to the air?",
+      "definition": "\\( P = P_a + \\rho g h \\); P − Pₐ is the <span style=\"color:#3b82f6\">gauge pressure</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.2-variation-with-depth"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the hydrostatic paradox?",
+      "definition": "Vessels of different shapes joined at the bottom fill to the <span style=\"color:#3b82f6\">same height</span>: pressure depends only on depth, not on shape or amount of liquid",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.2-variation-with-depth"
+      ],
+      "definitionImage": "media/fig_9_4_hydrostatic_paradox.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9.2: pressure on a swimmer 10 m below a lake surface?",
+      "definition": "<span style=\"color:#f08c00\">2.01 × 10⁵ Pa ≈ 2 atm</span> (a 100 % increase)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.2-variation-with-depth"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9.4: at 1000 m in the sea (ρ = 1.03 × 10³): absolute and gauge pressure; force on a 20 cm × 20 cm submarine window?",
+      "definition": "<span style=\"color:#f08c00\">≈ 104 atm</span> and <span style=\"color:#f08c00\">≈ 103 atm</span>; F = gauge pressure × 0.04 m² = <span style=\"color:#f08c00\">4.12 × 10⁵ N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.2-variation-with-depth"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.1(a): why is blood pressure greater at the feet than at the brain?",
+      "definition": "The blood column above the feet is taller: extra <span style=\"color:#3b82f6\">ρgh</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.2-variation-with-depth"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.7: an off-shore structure can take 10⁹ Pa. Suitable for 3 km of ocean?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: pressure there ≈ 3 × 10⁷ Pa, far less",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.2-variation-with-depth"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who invented the mercury barometer, and how does it work?",
+      "definition": "<span style=\"color:#3b82f6\">Torricelli</span>: a mercury-filled tube inverted in mercury; the column height h gives \\( P_a = \\rho g h \\) (≈ 76 cm Hg)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.3-atmospheric-and-gauge-pressure"
+      ],
+      "definitionImage": "media/fig_9_5a_barometer.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What does an open-tube manometer measure?",
+      "definition": "The <span style=\"color:#3b82f6\">gauge pressure</span> P − Pₐ = ρgh; oil for small differences, mercury for large ones",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.3-atmospheric-and-gauge-pressure"
+      ],
+      "definitionImage": "media/fig_9_5b_manometer.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9.3: if air had constant density 1.29 kg/m³, how high would the atmosphere reach?",
+      "definition": "≈ <span style=\"color:#f08c00\">8 km</span> (in reality density and g fall; the atmosphere extends beyond 100 km)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.3-atmospheric-and-gauge-pressure"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does a drop of 10 mm or more in a barometer reading signal?",
+      "definition": "An approaching <span style=\"color:#3b82f6\">storm</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.3-atmospheric-and-gauge-pressure"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.6: height of a French-wine barometer (ρ = 984 kg/m³)?",
+      "definition": "<span style=\"color:#f08c00\">≈ 10.5 m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.3-atmospheric-and-gauge-pressure"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.1(b): why does air pressure halve by 6 km though the atmosphere is > 100 km thick?",
+      "definition": "Air is compressible: most of it is <span style=\"color:#3b82f6\">packed near the ground</span>, so density falls rapidly with height",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.3-atmospheric-and-gauge-pressure"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.9: 10.0 cm of water balances 12.5 cm of spirit over mercury. Specific gravity of spirit?",
+      "definition": "<span style=\"color:#f08c00\">0.800</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.3-atmospheric-and-gauge-pressure"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Pascal’s law, second form?",
+      "definition": "Pressure applied to an enclosed fluid is transmitted <span style=\"color:#3b82f6\">undiminished and equally in all directions</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.4-hydraulic-machines"
+      ],
+      "definitionImage": "media/fig_9_6a_pascal_transmission.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Force on the big piston of a hydraulic lift?",
+      "definition": "\\( F_2 = F_1\\dfrac{A_2}{A_1} \\); mechanical advantage A₂/A₁",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.4-hydraulic-machines"
+      ],
+      "definitionImage": "media/fig_9_6b_hydraulic_lift.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: does a hydraulic lift give free energy?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the large piston moves a smaller distance; <span style=\"color:#3b82f6\">A₁d₁ = A₂d₂</span> (same volume), so work in = work out",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.4-hydraulic-machines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9.5: syringes of diameter 1.0 cm and 3.0 cm; 10 N on the small one, pushed in 6.0 cm. Force and movement of the big one?",
+      "definition": "<span style=\"color:#f08c00\">90 N</span> and <span style=\"color:#f08c00\">0.67 cm</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.4-hydraulic-machines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9.6: car lift, pistons of radius 5.0 cm and 15 cm, car 1350 kg. Force F₁ and air pressure needed?",
+      "definition": "<span style=\"color:#f08c00\">≈ 1.5 × 10³ N</span> and <span style=\"color:#f08c00\">1.9 × 10⁵ Pa</span> (about 2 atm)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.4-hydraulic-machines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do hydraulic brakes brake all wheels equally?",
+      "definition": "The pedal’s pressure is transmitted <span style=\"color:#3b82f6\">equally to all four wheel cylinders</span> through the brake oil",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.4-hydraulic-machines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.8: hydraulic lift for 3000 kg, load piston 425 cm². Maximum pressure on the small piston?",
+      "definition": "<span style=\"color:#f08c00\">6.92 × 10⁵ Pa</span> (same pressure everywhere)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.2.4-hydraulic-machines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is flow steady?",
+      "definition": "When the velocity of fluid at <span style=\"color:#3b82f6\">each point</span> stays constant in time (it may differ from point to point)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.3-streamline-flow"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define a streamline.",
+      "definition": "The path of a fluid particle in steady flow; its <span style=\"color:#3b82f6\">tangent</span> gives the fluid velocity at each point",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.3-streamline-flow"
+      ],
+      "definitionImage": "media/fig_9_7_streamlines.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can two streamlines never cross?",
+      "definition": "At the crossing a particle would have <span style=\"color:#3b82f6\">two velocities</span>; the flow would not be steady",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.3-streamline-flow"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equation of continuity?",
+      "definition": "\\( A_1v_1 = A_2v_2 \\) (Av = constant) for an incompressible fluid: <span style=\"color:#3b82f6\">conservation of mass</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.3-streamline-flow"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What do crowded streamlines mean?",
+      "definition": "<span style=\"color:#3b82f6\">Higher speed</span> (narrow cross-section)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.3-streamline-flow"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Laminar vs turbulent flow?",
+      "definition": "<span style=\"color:#3b82f6\">Laminar</span>: layers slide smoothly, parallel velocities. <span style=\"color:#3b82f6\">Turbulent</span>: irregular, eddies, above a <span style=\"color:#3b82f6\">critical speed</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.3-streamline-flow"
+      ],
+      "definitionImage": "media/fig_9_8_laminar_turbulent.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition (JEE): Reynolds number and its meaning?",
+      "definition": "\\( R_e = \\dfrac{\\rho v d}{\\eta} \\): < ~1000 laminar, > ~2000 turbulent",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.3-streamline-flow"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.4(b): why does water gush out fast when you cover most of a tap with your fingers?",
+      "definition": "Smaller outlet area → larger speed (Av = constant)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.3-streamline-flow"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.16: spray pump tube 8.0 cm², 40 holes of 1.0 mm diameter, flow 1.5 m/min inside. Ejection speed?",
+      "definition": "<span style=\"color:#f08c00\">0.64 m/s</span> (continuity)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.3-streamline-flow"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Bernoulli’s equation.",
+      "definition": "\\( P + \\tfrac12\\rho v^2 + \\rho g h = constant \\) along a streamline",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does each term of Bernoulli’s equation mean?",
+      "definition": "P: pressure (work per volume); ½ρv²: <span style=\"color:#3b82f6\">KE per unit volume</span>; ρgh: <span style=\"color:#3b82f6\">PE per unit volume</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Bernoulli’s equation is an expression of which principle?",
+      "definition": "Conservation of <span style=\"color:#3b82f6\">energy</span> (work-energy theorem applied to a fluid element)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ],
+      "definitionImage": "media/fig_9_9_bernoulli_pipe.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT says the work-energy theorem is in \"Chapter 6\". Where is it?",
+      "definition": "<span style=\"color:#3b82f6\">Chapter 5</span> (Work, Energy and Power); left over from the old numbering",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "When Bernoulli’s equation applies",
+      "definition": "Viscosity: zero (non-viscous fluid); Compressibility: incompressible; Type of flow: steady, streamline (not turbulent)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">9.4 · limits of Bernoulli</p><h2>Assumption needed?</h2><table><tr><td>Viscosity</td><td class=\"q\">?</td></tr><tr><td>Compressibility</td><td class=\"q\">?</td></tr><tr><td>Type of flow</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">9.4 · limits of Bernoulli</p><h2>Assumption needed?</h2><table><tr><td>Viscosity</td><td class=\"a\">zero (non-viscous fluid)</td></tr><tr><td>Compressibility</td><td class=\"a\">incompressible</td></tr><tr><td>Type of flow</td><td class=\"a\">steady, streamline (not turbulent)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Bernoulli’s equation for a fluid at rest?",
+      "definition": "Reduces to \\( P_1 - P_2 = \\rho g(h_2 - h_1) \\) — the hydrostatic result",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Daniel Bernoulli gave the equation in which year?",
+      "definition": "<span style=\"color:#f08c00\">1738</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Flow through a constriction: speed and pressure",
+      "definition": "Av = constant so v is largest in the narrow part; P + ½ρv² = constant so pressure is lowest there",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Continuity + Bernoulli · venturi</p><h2>Water flows steadily through a pipe with a narrow section. Where is it fastest, and where is the pressure lowest?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><polyline class=\"road\" points=\"16,98.0 20,98.0 24,98.0 28,98.0 32,98.0 36,98.0 40,98.0 44,98.0 48,98.0 52,98.0 56,98.0 60,98.0 64,98.0 68,98.0 72,98.0 76,98.0 80,98.0 84,98.0 88,98.0 92,98.0 96,98.0 100,98.0 104,98.3 108,99.1 112,100.4 116,102.2 120,104.2 124,106.4 128,108.7 132,110.8 136,112.7 140,114.3 144,115.4 148,115.9 152,115.9 156,115.4 160,114.3 164,112.7 168,110.8 172,108.7 176,106.4 180,104.2 184,102.2 188,100.4 192,99.1 196,98.3 200,98.0 204,98.0 208,98.0 212,98.0 216,98.0 220,98.0 224,98.0 228,98.0 232,98.0 236,98.0 240,98.0 244,98.0 248,98.0 252,98.0 256,98.0 260,98.0 264,98.0 268,98.0 272,98.0 276,98.0 280,98.0 284,98.0\"></polyline><polyline class=\"road\" points=\"16,158.0 20,158.0 24,158.0 28,158.0 32,158.0 36,158.0 40,158.0 44,158.0 48,158.0 52,158.0 56,158.0 60,158.0 64,158.0 68,158.0 72,158.0 76,158.0 80,158.0 84,158.0 88,158.0 92,158.0 96,158.0 100,158.0 104,157.7 108,156.9 112,155.6 116,153.8 120,151.8 124,149.6 128,147.3 132,145.2 136,143.3 140,141.7 144,140.6 148,140.1 152,140.1 156,140.6 160,141.7 164,143.3 168,145.2 172,147.3 176,149.6 180,151.8 184,153.8 188,155.6 192,156.9 196,157.7 200,158.0 204,158.0 208,158.0 212,158.0 216,158.0 220,158.0 224,158.0 228,158.0 232,158.0 236,158.0 240,158.0 244,158.0 248,158.0 252,158.0 256,158.0 260,158.0 264,158.0 268,158.0 272,158.0 276,158.0 280,158.0 284,158.0\"></polyline><text class=\"sm\" x=\"58\" y=\"178\" text-anchor=\"middle\">wide</text><text class=\"sm\" x=\"150\" y=\"178\" text-anchor=\"middle\">narrow</text></svg><p class=\"hint\">Mass in = mass out.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Continuity + Bernoulli · venturi</p><h2>Water flows steadily through a pipe with a narrow section. Where is it fastest, and where is the pressure lowest?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><polyline class=\"road\" points=\"16,98.0 20,98.0 24,98.0 28,98.0 32,98.0 36,98.0 40,98.0 44,98.0 48,98.0 52,98.0 56,98.0 60,98.0 64,98.0 68,98.0 72,98.0 76,98.0 80,98.0 84,98.0 88,98.0 92,98.0 96,98.0 100,98.0 104,98.3 108,99.1 112,100.4 116,102.2 120,104.2 124,106.4 128,108.7 132,110.8 136,112.7 140,114.3 144,115.4 148,115.9 152,115.9 156,115.4 160,114.3 164,112.7 168,110.8 172,108.7 176,106.4 180,104.2 184,102.2 188,100.4 192,99.1 196,98.3 200,98.0 204,98.0 208,98.0 212,98.0 216,98.0 220,98.0 224,98.0 228,98.0 232,98.0 236,98.0 240,98.0 244,98.0 248,98.0 252,98.0 256,98.0 260,98.0 264,98.0 268,98.0 272,98.0 276,98.0 280,98.0 284,98.0\"></polyline><polyline class=\"road\" points=\"16,158.0 20,158.0 24,158.0 28,158.0 32,158.0 36,158.0 40,158.0 44,158.0 48,158.0 52,158.0 56,158.0 60,158.0 64,158.0 68,158.0 72,158.0 76,158.0 80,158.0 84,158.0 88,158.0 92,158.0 96,158.0 100,158.0 104,157.7 108,156.9 112,155.6 116,153.8 120,151.8 124,149.6 128,147.3 132,145.2 136,143.3 140,141.7 144,140.6 148,140.1 152,140.1 156,140.6 160,141.7 164,143.3 168,145.2 172,147.3 176,149.6 180,151.8 184,153.8 188,155.6 192,156.9 196,157.7 200,158.0 204,158.0 208,158.0 212,158.0 216,158.0 220,158.0 224,158.0 228,158.0 232,158.0 236,158.0 240,158.0 244,158.0 248,158.0 252,158.0 256,158.0 260,158.0 264,158.0 268,158.0 272,158.0 276,158.0 280,158.0 284,158.0\"></polyline><text class=\"sm\" x=\"58\" y=\"178\" text-anchor=\"middle\">wide</text><text class=\"sm\" x=\"150\" y=\"178\" text-anchor=\"middle\">narrow</text><g transform=\"translate(16,128)\"><circle class=\"dot vf00\" cx=\"0\" cy=\"0\" r=\"3.2\"></circle></g><g transform=\"translate(16,128)\"><circle class=\"dot vf01\" cx=\"0\" cy=\"0\" r=\"3.2\"></circle></g><g transform=\"translate(16,128)\"><circle class=\"dot vf02\" cx=\"0\" cy=\"0\" r=\"3.2\"></circle></g><g transform=\"translate(16,128)\"><circle class=\"dot vf10\" cx=\"0\" cy=\"0\" r=\"3.2\"></circle></g><g transform=\"translate(16,128)\"><circle class=\"dot vf11\" cx=\"0\" cy=\"0\" r=\"3.2\"></circle></g><g transform=\"translate(16,128)\"><circle class=\"dot vf12\" cx=\"0\" cy=\"0\" r=\"3.2\"></circle></g><g transform=\"translate(16,128)\"><circle class=\"dot vf20\" cx=\"0\" cy=\"0\" r=\"3.2\"></circle></g><g transform=\"translate(16,128)\"><circle class=\"dot vf21\" cx=\"0\" cy=\"0\" r=\"3.2\"></circle></g><g transform=\"translate(16,128)\"><circle class=\"dot vf22\" cx=\"0\" cy=\"0\" r=\"3.2\"></circle></g><rect class=\"ghost\" x=\"52\" y=\"28.0\" width=\"12\" height=\"70.0\"></rect><rect class=\"zone2 fx d3\" x=\"52\" y=\"40.0\" width=\"12\" height=\"58.0\"></rect><rect class=\"ghost\" x=\"144\" y=\"28.0\" width=\"12\" height=\"88.0\"></rect><rect class=\"zone fx d3\" x=\"144\" y=\"76.0\" width=\"12\" height=\"40.0\"></rect><rect class=\"ghost\" x=\"236\" y=\"28.0\" width=\"12\" height=\"70.0\"></rect><rect class=\"zone2 fx d3\" x=\"236\" y=\"40.0\" width=\"12\" height=\"58.0\"></rect><text class=\"gr\" x=\"58\" y=\"18\" text-anchor=\"middle\">slow, high P</text><text class=\"yl\" x=\"150\" y=\"18\" text-anchor=\"middle\">fast, low P</text></svg><div class=\"eq fx d5\"><p><b>Continuity</b>: Av = constant, so the fluid speeds up in the narrow part.</p><p><b>Bernoulli</b> (same height): P + ½ρv² = constant, so faster flow means <b>lower pressure</b>: the column above the constriction is shortest.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .vf00{animation:vf00 3.2s linear -0.0s infinite both}@keyframes vf00{0.00%{transform:translate(0.0px,-18.0px)}2.50%{transform:translate(5.9px,-18.0px)}5.00%{transform:translate(11.9px,-18.0px)}7.50%{transform:translate(17.9px,-18.0px)}10.00%{transform:translate(23.8px,-18.0px)}12.50%{transform:translate(29.8px,-18.0px)}15.00%{transform:translate(35.7px,-18.0px)}17.50%{transform:translate(41.6px,-18.0px)}20.00%{transform:translate(47.6px,-18.0px)}22.50%{transform:translate(53.5px,-18.0px)}25.00%{transform:translate(59.5px,-18.0px)}27.50%{transform:translate(65.5px,-18.0px)}30.00%{transform:translate(71.4px,-18.0px)}32.50%{transform:translate(77.3px,-18.0px)}35.00%{transform:translate(83.3px,-18.0px)}37.50%{transform:translate(89.3px,-17.7px)}40.00%{transform:translate(95.4px,-16.7px)}42.50%{transform:translate(101.9px,-14.9px)}45.00%{transform:translate(109.4px,-12.5px)}47.50%{transform:translate(118.6px,-9.5px)}50.00%{transform:translate(131.1px,-7.3px)}52.50%{transform:translate(145.4px,-8.5px)}55.00%{transform:translate(156.7px,-11.8px)}57.50%{transform:translate(165.2px,-14.7px)}60.00%{transform:translate(172.3px,-16.6px)}62.50%{transform:translate(178.7px,-17.7px)}65.00%{transform:translate(184.7px,-18.0px)}67.50%{transform:translate(190.7px,-18.0px)}70.00%{transform:translate(196.6px,-18.0px)}72.50%{transform:translate(202.6px,-18.0px)}75.00%{transform:translate(208.5px,-18.0px)}77.50%{transform:translate(214.4px,-18.0px)}80.00%{transform:translate(220.4px,-18.0px)}82.50%{transform:translate(226.3px,-18.0px)}85.00%{transform:translate(232.3px,-18.0px)}87.50%{transform:translate(238.2px,-18.0px)}90.00%{transform:translate(244.2px,-18.0px)}92.50%{transform:translate(250.1px,-18.0px)}95.00%{transform:translate(256.1px,-18.0px)}97.50%{transform:translate(262.1px,-18.0px)}100.00%{transform:translate(268.0px,-18.0px)}}.bp .vf01{animation:vf01 3.2s linear -1.0666666666666667s infinite both}@keyframes vf01{0.00%{transform:translate(0.0px,-18.0px)}2.50%{transform:translate(5.9px,-18.0px)}5.00%{transform:translate(11.9px,-18.0px)}7.50%{transform:translate(17.9px,-18.0px)}10.00%{transform:translate(23.8px,-18.0px)}12.50%{transform:translate(29.8px,-18.0px)}15.00%{transform:translate(35.7px,-18.0px)}17.50%{transform:translate(41.6px,-18.0px)}20.00%{transform:translate(47.6px,-18.0px)}22.50%{transform:translate(53.5px,-18.0px)}25.00%{transform:translate(59.5px,-18.0px)}27.50%{transform:translate(65.5px,-18.0px)}30.00%{transform:translate(71.4px,-18.0px)}32.50%{transform:translate(77.3px,-18.0px)}35.00%{transform:translate(83.3px,-18.0px)}37.50%{transform:translate(89.3px,-17.7px)}40.00%{transform:translate(95.4px,-16.7px)}42.50%{transform:translate(101.9px,-14.9px)}45.00%{transform:translate(109.4px,-12.5px)}47.50%{transform:translate(118.6px,-9.5px)}50.00%{transform:translate(131.1px,-7.3px)}52.50%{transform:translate(145.4px,-8.5px)}55.00%{transform:translate(156.7px,-11.8px)}57.50%{transform:translate(165.2px,-14.7px)}60.00%{transform:translate(172.3px,-16.6px)}62.50%{transform:translate(178.7px,-17.7px)}65.00%{transform:translate(184.7px,-18.0px)}67.50%{transform:translate(190.7px,-18.0px)}70.00%{transform:translate(196.6px,-18.0px)}72.50%{transform:translate(202.6px,-18.0px)}75.00%{transform:translate(208.5px,-18.0px)}77.50%{transform:translate(214.4px,-18.0px)}80.00%{transform:translate(220.4px,-18.0px)}82.50%{transform:translate(226.3px,-18.0px)}85.00%{transform:translate(232.3px,-18.0px)}87.50%{transform:translate(238.2px,-18.0px)}90.00%{transform:translate(244.2px,-18.0px)}92.50%{transform:translate(250.1px,-18.0px)}95.00%{transform:translate(256.1px,-18.0px)}97.50%{transform:translate(262.1px,-18.0px)}100.00%{transform:translate(268.0px,-18.0px)}}.bp .vf02{animation:vf02 3.2s linear -2.1333333333333333s infinite both}@keyframes vf02{0.00%{transform:translate(0.0px,-18.0px)}2.50%{transform:translate(5.9px,-18.0px)}5.00%{transform:translate(11.9px,-18.0px)}7.50%{transform:translate(17.9px,-18.0px)}10.00%{transform:translate(23.8px,-18.0px)}12.50%{transform:translate(29.8px,-18.0px)}15.00%{transform:translate(35.7px,-18.0px)}17.50%{transform:translate(41.6px,-18.0px)}20.00%{transform:translate(47.6px,-18.0px)}22.50%{transform:translate(53.5px,-18.0px)}25.00%{transform:translate(59.5px,-18.0px)}27.50%{transform:translate(65.5px,-18.0px)}30.00%{transform:translate(71.4px,-18.0px)}32.50%{transform:translate(77.3px,-18.0px)}35.00%{transform:translate(83.3px,-18.0px)}37.50%{transform:translate(89.3px,-17.7px)}40.00%{transform:translate(95.4px,-16.7px)}42.50%{transform:translate(101.9px,-14.9px)}45.00%{transform:translate(109.4px,-12.5px)}47.50%{transform:translate(118.6px,-9.5px)}50.00%{transform:translate(131.1px,-7.3px)}52.50%{transform:translate(145.4px,-8.5px)}55.00%{transform:translate(156.7px,-11.8px)}57.50%{transform:translate(165.2px,-14.7px)}60.00%{transform:translate(172.3px,-16.6px)}62.50%{transform:translate(178.7px,-17.7px)}65.00%{transform:translate(184.7px,-18.0px)}67.50%{transform:translate(190.7px,-18.0px)}70.00%{transform:translate(196.6px,-18.0px)}72.50%{transform:translate(202.6px,-18.0px)}75.00%{transform:translate(208.5px,-18.0px)}77.50%{transform:translate(214.4px,-18.0px)}80.00%{transform:translate(220.4px,-18.0px)}82.50%{transform:translate(226.3px,-18.0px)}85.00%{transform:translate(232.3px,-18.0px)}87.50%{transform:translate(238.2px,-18.0px)}90.00%{transform:translate(244.2px,-18.0px)}92.50%{transform:translate(250.1px,-18.0px)}95.00%{transform:translate(256.1px,-18.0px)}97.50%{transform:translate(262.1px,-18.0px)}100.00%{transform:translate(268.0px,-18.0px)}}.bp .vf10{animation:vf10 3.2s linear -0.0s infinite both}@keyframes vf10{0.00%{transform:translate(0.0px,0.0px)}2.50%{transform:translate(5.9px,0.0px)}5.00%{transform:translate(11.9px,0.0px)}7.50%{transform:translate(17.9px,0.0px)}10.00%{transform:translate(23.8px,0.0px)}12.50%{transform:translate(29.8px,0.0px)}15.00%{transform:translate(35.7px,0.0px)}17.50%{transform:translate(41.6px,0.0px)}20.00%{transform:translate(47.6px,0.0px)}22.50%{transform:translate(53.5px,0.0px)}25.00%{transform:translate(59.5px,0.0px)}27.50%{transform:translate(65.5px,0.0px)}30.00%{transform:translate(71.4px,0.0px)}32.50%{transform:translate(77.3px,0.0px)}35.00%{transform:translate(83.3px,0.0px)}37.50%{transform:translate(89.3px,0.0px)}40.00%{transform:translate(95.4px,0.0px)}42.50%{transform:translate(101.9px,0.0px)}45.00%{transform:translate(109.4px,0.0px)}47.50%{transform:translate(118.6px,0.0px)}50.00%{transform:translate(131.1px,0.0px)}52.50%{transform:translate(145.4px,0.0px)}55.00%{transform:translate(156.7px,0.0px)}57.50%{transform:translate(165.2px,0.0px)}60.00%{transform:translate(172.3px,0.0px)}62.50%{transform:translate(178.7px,0.0px)}65.00%{transform:translate(184.7px,0.0px)}67.50%{transform:translate(190.7px,0.0px)}70.00%{transform:translate(196.6px,0.0px)}72.50%{transform:translate(202.6px,0.0px)}75.00%{transform:translate(208.5px,0.0px)}77.50%{transform:translate(214.4px,0.0px)}80.00%{transform:translate(220.4px,0.0px)}82.50%{transform:translate(226.3px,0.0px)}85.00%{transform:translate(232.3px,0.0px)}87.50%{transform:translate(238.2px,0.0px)}90.00%{transform:translate(244.2px,0.0px)}92.50%{transform:translate(250.1px,0.0px)}95.00%{transform:translate(256.1px,0.0px)}97.50%{transform:translate(262.1px,0.0px)}100.00%{transform:translate(268.0px,0.0px)}}.bp .vf11{animation:vf11 3.2s linear -1.0666666666666667s infinite both}@keyframes vf11{0.00%{transform:translate(0.0px,0.0px)}2.50%{transform:translate(5.9px,0.0px)}5.00%{transform:translate(11.9px,0.0px)}7.50%{transform:translate(17.9px,0.0px)}10.00%{transform:translate(23.8px,0.0px)}12.50%{transform:translate(29.8px,0.0px)}15.00%{transform:translate(35.7px,0.0px)}17.50%{transform:translate(41.6px,0.0px)}20.00%{transform:translate(47.6px,0.0px)}22.50%{transform:translate(53.5px,0.0px)}25.00%{transform:translate(59.5px,0.0px)}27.50%{transform:translate(65.5px,0.0px)}30.00%{transform:translate(71.4px,0.0px)}32.50%{transform:translate(77.3px,0.0px)}35.00%{transform:translate(83.3px,0.0px)}37.50%{transform:translate(89.3px,0.0px)}40.00%{transform:translate(95.4px,0.0px)}42.50%{transform:translate(101.9px,0.0px)}45.00%{transform:translate(109.4px,0.0px)}47.50%{transform:translate(118.6px,0.0px)}50.00%{transform:translate(131.1px,0.0px)}52.50%{transform:translate(145.4px,0.0px)}55.00%{transform:translate(156.7px,0.0px)}57.50%{transform:translate(165.2px,0.0px)}60.00%{transform:translate(172.3px,0.0px)}62.50%{transform:translate(178.7px,0.0px)}65.00%{transform:translate(184.7px,0.0px)}67.50%{transform:translate(190.7px,0.0px)}70.00%{transform:translate(196.6px,0.0px)}72.50%{transform:translate(202.6px,0.0px)}75.00%{transform:translate(208.5px,0.0px)}77.50%{transform:translate(214.4px,0.0px)}80.00%{transform:translate(220.4px,0.0px)}82.50%{transform:translate(226.3px,0.0px)}85.00%{transform:translate(232.3px,0.0px)}87.50%{transform:translate(238.2px,0.0px)}90.00%{transform:translate(244.2px,0.0px)}92.50%{transform:translate(250.1px,0.0px)}95.00%{transform:translate(256.1px,0.0px)}97.50%{transform:translate(262.1px,0.0px)}100.00%{transform:translate(268.0px,0.0px)}}.bp .vf12{animation:vf12 3.2s linear -2.1333333333333333s infinite both}@keyframes vf12{0.00%{transform:translate(0.0px,0.0px)}2.50%{transform:translate(5.9px,0.0px)}5.00%{transform:translate(11.9px,0.0px)}7.50%{transform:translate(17.9px,0.0px)}10.00%{transform:translate(23.8px,0.0px)}12.50%{transform:translate(29.8px,0.0px)}15.00%{transform:translate(35.7px,0.0px)}17.50%{transform:translate(41.6px,0.0px)}20.00%{transform:translate(47.6px,0.0px)}22.50%{transform:translate(53.5px,0.0px)}25.00%{transform:translate(59.5px,0.0px)}27.50%{transform:translate(65.5px,0.0px)}30.00%{transform:translate(71.4px,0.0px)}32.50%{transform:translate(77.3px,0.0px)}35.00%{transform:translate(83.3px,0.0px)}37.50%{transform:translate(89.3px,0.0px)}40.00%{transform:translate(95.4px,0.0px)}42.50%{transform:translate(101.9px,0.0px)}45.00%{transform:translate(109.4px,0.0px)}47.50%{transform:translate(118.6px,0.0px)}50.00%{transform:translate(131.1px,0.0px)}52.50%{transform:translate(145.4px,0.0px)}55.00%{transform:translate(156.7px,0.0px)}57.50%{transform:translate(165.2px,0.0px)}60.00%{transform:translate(172.3px,0.0px)}62.50%{transform:translate(178.7px,0.0px)}65.00%{transform:translate(184.7px,0.0px)}67.50%{transform:translate(190.7px,0.0px)}70.00%{transform:translate(196.6px,0.0px)}72.50%{transform:translate(202.6px,0.0px)}75.00%{transform:translate(208.5px,0.0px)}77.50%{transform:translate(214.4px,0.0px)}80.00%{transform:translate(220.4px,0.0px)}82.50%{transform:translate(226.3px,0.0px)}85.00%{transform:translate(232.3px,0.0px)}87.50%{transform:translate(238.2px,0.0px)}90.00%{transform:translate(244.2px,0.0px)}92.50%{transform:translate(250.1px,0.0px)}95.00%{transform:translate(256.1px,0.0px)}97.50%{transform:translate(262.1px,0.0px)}100.00%{transform:translate(268.0px,0.0px)}}.bp .vf20{animation:vf20 3.2s linear -0.0s infinite both}@keyframes vf20{0.00%{transform:translate(0.0px,18.0px)}2.50%{transform:translate(5.9px,18.0px)}5.00%{transform:translate(11.9px,18.0px)}7.50%{transform:translate(17.9px,18.0px)}10.00%{transform:translate(23.8px,18.0px)}12.50%{transform:translate(29.8px,18.0px)}15.00%{transform:translate(35.7px,18.0px)}17.50%{transform:translate(41.6px,18.0px)}20.00%{transform:translate(47.6px,18.0px)}22.50%{transform:translate(53.5px,18.0px)}25.00%{transform:translate(59.5px,18.0px)}27.50%{transform:translate(65.5px,18.0px)}30.00%{transform:translate(71.4px,18.0px)}32.50%{transform:translate(77.3px,18.0px)}35.00%{transform:translate(83.3px,18.0px)}37.50%{transform:translate(89.3px,17.7px)}40.00%{transform:translate(95.4px,16.7px)}42.50%{transform:translate(101.9px,14.9px)}45.00%{transform:translate(109.4px,12.5px)}47.50%{transform:translate(118.6px,9.5px)}50.00%{transform:translate(131.1px,7.3px)}52.50%{transform:translate(145.4px,8.5px)}55.00%{transform:translate(156.7px,11.8px)}57.50%{transform:translate(165.2px,14.7px)}60.00%{transform:translate(172.3px,16.6px)}62.50%{transform:translate(178.7px,17.7px)}65.00%{transform:translate(184.7px,18.0px)}67.50%{transform:translate(190.7px,18.0px)}70.00%{transform:translate(196.6px,18.0px)}72.50%{transform:translate(202.6px,18.0px)}75.00%{transform:translate(208.5px,18.0px)}77.50%{transform:translate(214.4px,18.0px)}80.00%{transform:translate(220.4px,18.0px)}82.50%{transform:translate(226.3px,18.0px)}85.00%{transform:translate(232.3px,18.0px)}87.50%{transform:translate(238.2px,18.0px)}90.00%{transform:translate(244.2px,18.0px)}92.50%{transform:translate(250.1px,18.0px)}95.00%{transform:translate(256.1px,18.0px)}97.50%{transform:translate(262.1px,18.0px)}100.00%{transform:translate(268.0px,18.0px)}}.bp .vf21{animation:vf21 3.2s linear -1.0666666666666667s infinite both}@keyframes vf21{0.00%{transform:translate(0.0px,18.0px)}2.50%{transform:translate(5.9px,18.0px)}5.00%{transform:translate(11.9px,18.0px)}7.50%{transform:translate(17.9px,18.0px)}10.00%{transform:translate(23.8px,18.0px)}12.50%{transform:translate(29.8px,18.0px)}15.00%{transform:translate(35.7px,18.0px)}17.50%{transform:translate(41.6px,18.0px)}20.00%{transform:translate(47.6px,18.0px)}22.50%{transform:translate(53.5px,18.0px)}25.00%{transform:translate(59.5px,18.0px)}27.50%{transform:translate(65.5px,18.0px)}30.00%{transform:translate(71.4px,18.0px)}32.50%{transform:translate(77.3px,18.0px)}35.00%{transform:translate(83.3px,18.0px)}37.50%{transform:translate(89.3px,17.7px)}40.00%{transform:translate(95.4px,16.7px)}42.50%{transform:translate(101.9px,14.9px)}45.00%{transform:translate(109.4px,12.5px)}47.50%{transform:translate(118.6px,9.5px)}50.00%{transform:translate(131.1px,7.3px)}52.50%{transform:translate(145.4px,8.5px)}55.00%{transform:translate(156.7px,11.8px)}57.50%{transform:translate(165.2px,14.7px)}60.00%{transform:translate(172.3px,16.6px)}62.50%{transform:translate(178.7px,17.7px)}65.00%{transform:translate(184.7px,18.0px)}67.50%{transform:translate(190.7px,18.0px)}70.00%{transform:translate(196.6px,18.0px)}72.50%{transform:translate(202.6px,18.0px)}75.00%{transform:translate(208.5px,18.0px)}77.50%{transform:translate(214.4px,18.0px)}80.00%{transform:translate(220.4px,18.0px)}82.50%{transform:translate(226.3px,18.0px)}85.00%{transform:translate(232.3px,18.0px)}87.50%{transform:translate(238.2px,18.0px)}90.00%{transform:translate(244.2px,18.0px)}92.50%{transform:translate(250.1px,18.0px)}95.00%{transform:translate(256.1px,18.0px)}97.50%{transform:translate(262.1px,18.0px)}100.00%{transform:translate(268.0px,18.0px)}}.bp .vf22{animation:vf22 3.2s linear -2.1333333333333333s infinite both}@keyframes vf22{0.00%{transform:translate(0.0px,18.0px)}2.50%{transform:translate(5.9px,18.0px)}5.00%{transform:translate(11.9px,18.0px)}7.50%{transform:translate(17.9px,18.0px)}10.00%{transform:translate(23.8px,18.0px)}12.50%{transform:translate(29.8px,18.0px)}15.00%{transform:translate(35.7px,18.0px)}17.50%{transform:translate(41.6px,18.0px)}20.00%{transform:translate(47.6px,18.0px)}22.50%{transform:translate(53.5px,18.0px)}25.00%{transform:translate(59.5px,18.0px)}27.50%{transform:translate(65.5px,18.0px)}30.00%{transform:translate(71.4px,18.0px)}32.50%{transform:translate(77.3px,18.0px)}35.00%{transform:translate(83.3px,18.0px)}37.50%{transform:translate(89.3px,17.7px)}40.00%{transform:translate(95.4px,16.7px)}42.50%{transform:translate(101.9px,14.9px)}45.00%{transform:translate(109.4px,12.5px)}47.50%{transform:translate(118.6px,9.5px)}50.00%{transform:translate(131.1px,7.3px)}52.50%{transform:translate(145.4px,8.5px)}55.00%{transform:translate(156.7px,11.8px)}57.50%{transform:translate(165.2px,14.7px)}60.00%{transform:translate(172.3px,16.6px)}62.50%{transform:translate(178.7px,17.7px)}65.00%{transform:translate(184.7px,18.0px)}67.50%{transform:translate(190.7px,18.0px)}70.00%{transform:translate(196.6px,18.0px)}72.50%{transform:translate(202.6px,18.0px)}75.00%{transform:translate(208.5px,18.0px)}77.50%{transform:translate(214.4px,18.0px)}80.00%{transform:translate(220.4px,18.0px)}82.50%{transform:translate(226.3px,18.0px)}85.00%{transform:translate(232.3px,18.0px)}87.50%{transform:translate(238.2px,18.0px)}90.00%{transform:translate(244.2px,18.0px)}92.50%{transform:translate(250.1px,18.0px)}95.00%{transform:translate(256.1px,18.0px)}97.50%{transform:translate(262.1px,18.0px)}100.00%{transform:translate(268.0px,18.0px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .vf00{animation:vf00 3.2s linear -0.0s infinite both}@keyframes vf00{0.00%{transform:translate(0.0px,-18.0px)}2.50%{transform:translate(5.9px,-18.0px)}5.00%{transform:translate(11.9px,-18.0px)}7.50%{transform:translate(17.9px,-18.0px)}10.00%{transform:translate(23.8px,-18.0px)}12.50%{transform:translate(29.8px,-18.0px)}15.00%{transform:translate(35.7px,-18.0px)}17.50%{transform:translate(41.6px,-18.0px)}20.00%{transform:translate(47.6px,-18.0px)}22.50%{transform:translate(53.5px,-18.0px)}25.00%{transform:translate(59.5px,-18.0px)}27.50%{transform:translate(65.5px,-18.0px)}30.00%{transform:translate(71.4px,-18.0px)}32.50%{transform:translate(77.3px,-18.0px)}35.00%{transform:translate(83.3px,-18.0px)}37.50%{transform:translate(89.3px,-17.7px)}40.00%{transform:translate(95.4px,-16.7px)}42.50%{transform:translate(101.9px,-14.9px)}45.00%{transform:translate(109.4px,-12.5px)}47.50%{transform:translate(118.6px,-9.5px)}50.00%{transform:translate(131.1px,-7.3px)}52.50%{transform:translate(145.4px,-8.5px)}55.00%{transform:translate(156.7px,-11.8px)}57.50%{transform:translate(165.2px,-14.7px)}60.00%{transform:translate(172.3px,-16.6px)}62.50%{transform:translate(178.7px,-17.7px)}65.00%{transform:translate(184.7px,-18.0px)}67.50%{transform:translate(190.7px,-18.0px)}70.00%{transform:translate(196.6px,-18.0px)}72.50%{transform:translate(202.6px,-18.0px)}75.00%{transform:translate(208.5px,-18.0px)}77.50%{transform:translate(214.4px,-18.0px)}80.00%{transform:translate(220.4px,-18.0px)}82.50%{transform:translate(226.3px,-18.0px)}85.00%{transform:translate(232.3px,-18.0px)}87.50%{transform:translate(238.2px,-18.0px)}90.00%{transform:translate(244.2px,-18.0px)}92.50%{transform:translate(250.1px,-18.0px)}95.00%{transform:translate(256.1px,-18.0px)}97.50%{transform:translate(262.1px,-18.0px)}100.00%{transform:translate(268.0px,-18.0px)}}.bp .vf01{animation:vf01 3.2s linear -1.0666666666666667s infinite both}@keyframes vf01{0.00%{transform:translate(0.0px,-18.0px)}2.50%{transform:translate(5.9px,-18.0px)}5.00%{transform:translate(11.9px,-18.0px)}7.50%{transform:translate(17.9px,-18.0px)}10.00%{transform:translate(23.8px,-18.0px)}12.50%{transform:translate(29.8px,-18.0px)}15.00%{transform:translate(35.7px,-18.0px)}17.50%{transform:translate(41.6px,-18.0px)}20.00%{transform:translate(47.6px,-18.0px)}22.50%{transform:translate(53.5px,-18.0px)}25.00%{transform:translate(59.5px,-18.0px)}27.50%{transform:translate(65.5px,-18.0px)}30.00%{transform:translate(71.4px,-18.0px)}32.50%{transform:translate(77.3px,-18.0px)}35.00%{transform:translate(83.3px,-18.0px)}37.50%{transform:translate(89.3px,-17.7px)}40.00%{transform:translate(95.4px,-16.7px)}42.50%{transform:translate(101.9px,-14.9px)}45.00%{transform:translate(109.4px,-12.5px)}47.50%{transform:translate(118.6px,-9.5px)}50.00%{transform:translate(131.1px,-7.3px)}52.50%{transform:translate(145.4px,-8.5px)}55.00%{transform:translate(156.7px,-11.8px)}57.50%{transform:translate(165.2px,-14.7px)}60.00%{transform:translate(172.3px,-16.6px)}62.50%{transform:translate(178.7px,-17.7px)}65.00%{transform:translate(184.7px,-18.0px)}67.50%{transform:translate(190.7px,-18.0px)}70.00%{transform:translate(196.6px,-18.0px)}72.50%{transform:translate(202.6px,-18.0px)}75.00%{transform:translate(208.5px,-18.0px)}77.50%{transform:translate(214.4px,-18.0px)}80.00%{transform:translate(220.4px,-18.0px)}82.50%{transform:translate(226.3px,-18.0px)}85.00%{transform:translate(232.3px,-18.0px)}87.50%{transform:translate(238.2px,-18.0px)}90.00%{transform:translate(244.2px,-18.0px)}92.50%{transform:translate(250.1px,-18.0px)}95.00%{transform:translate(256.1px,-18.0px)}97.50%{transform:translate(262.1px,-18.0px)}100.00%{transform:translate(268.0px,-18.0px)}}.bp .vf02{animation:vf02 3.2s linear -2.1333333333333333s infinite both}@keyframes vf02{0.00%{transform:translate(0.0px,-18.0px)}2.50%{transform:translate(5.9px,-18.0px)}5.00%{transform:translate(11.9px,-18.0px)}7.50%{transform:translate(17.9px,-18.0px)}10.00%{transform:translate(23.8px,-18.0px)}12.50%{transform:translate(29.8px,-18.0px)}15.00%{transform:translate(35.7px,-18.0px)}17.50%{transform:translate(41.6px,-18.0px)}20.00%{transform:translate(47.6px,-18.0px)}22.50%{transform:translate(53.5px,-18.0px)}25.00%{transform:translate(59.5px,-18.0px)}27.50%{transform:translate(65.5px,-18.0px)}30.00%{transform:translate(71.4px,-18.0px)}32.50%{transform:translate(77.3px,-18.0px)}35.00%{transform:translate(83.3px,-18.0px)}37.50%{transform:translate(89.3px,-17.7px)}40.00%{transform:translate(95.4px,-16.7px)}42.50%{transform:translate(101.9px,-14.9px)}45.00%{transform:translate(109.4px,-12.5px)}47.50%{transform:translate(118.6px,-9.5px)}50.00%{transform:translate(131.1px,-7.3px)}52.50%{transform:translate(145.4px,-8.5px)}55.00%{transform:translate(156.7px,-11.8px)}57.50%{transform:translate(165.2px,-14.7px)}60.00%{transform:translate(172.3px,-16.6px)}62.50%{transform:translate(178.7px,-17.7px)}65.00%{transform:translate(184.7px,-18.0px)}67.50%{transform:translate(190.7px,-18.0px)}70.00%{transform:translate(196.6px,-18.0px)}72.50%{transform:translate(202.6px,-18.0px)}75.00%{transform:translate(208.5px,-18.0px)}77.50%{transform:translate(214.4px,-18.0px)}80.00%{transform:translate(220.4px,-18.0px)}82.50%{transform:translate(226.3px,-18.0px)}85.00%{transform:translate(232.3px,-18.0px)}87.50%{transform:translate(238.2px,-18.0px)}90.00%{transform:translate(244.2px,-18.0px)}92.50%{transform:translate(250.1px,-18.0px)}95.00%{transform:translate(256.1px,-18.0px)}97.50%{transform:translate(262.1px,-18.0px)}100.00%{transform:translate(268.0px,-18.0px)}}.bp .vf10{animation:vf10 3.2s linear -0.0s infinite both}@keyframes vf10{0.00%{transform:translate(0.0px,0.0px)}2.50%{transform:translate(5.9px,0.0px)}5.00%{transform:translate(11.9px,0.0px)}7.50%{transform:translate(17.9px,0.0px)}10.00%{transform:translate(23.8px,0.0px)}12.50%{transform:translate(29.8px,0.0px)}15.00%{transform:translate(35.7px,0.0px)}17.50%{transform:translate(41.6px,0.0px)}20.00%{transform:translate(47.6px,0.0px)}22.50%{transform:translate(53.5px,0.0px)}25.00%{transform:translate(59.5px,0.0px)}27.50%{transform:translate(65.5px,0.0px)}30.00%{transform:translate(71.4px,0.0px)}32.50%{transform:translate(77.3px,0.0px)}35.00%{transform:translate(83.3px,0.0px)}37.50%{transform:translate(89.3px,0.0px)}40.00%{transform:translate(95.4px,0.0px)}42.50%{transform:translate(101.9px,0.0px)}45.00%{transform:translate(109.4px,0.0px)}47.50%{transform:translate(118.6px,0.0px)}50.00%{transform:translate(131.1px,0.0px)}52.50%{transform:translate(145.4px,0.0px)}55.00%{transform:translate(156.7px,0.0px)}57.50%{transform:translate(165.2px,0.0px)}60.00%{transform:translate(172.3px,0.0px)}62.50%{transform:translate(178.7px,0.0px)}65.00%{transform:translate(184.7px,0.0px)}67.50%{transform:translate(190.7px,0.0px)}70.00%{transform:translate(196.6px,0.0px)}72.50%{transform:translate(202.6px,0.0px)}75.00%{transform:translate(208.5px,0.0px)}77.50%{transform:translate(214.4px,0.0px)}80.00%{transform:translate(220.4px,0.0px)}82.50%{transform:translate(226.3px,0.0px)}85.00%{transform:translate(232.3px,0.0px)}87.50%{transform:translate(238.2px,0.0px)}90.00%{transform:translate(244.2px,0.0px)}92.50%{transform:translate(250.1px,0.0px)}95.00%{transform:translate(256.1px,0.0px)}97.50%{transform:translate(262.1px,0.0px)}100.00%{transform:translate(268.0px,0.0px)}}.bp .vf11{animation:vf11 3.2s linear -1.0666666666666667s infinite both}@keyframes vf11{0.00%{transform:translate(0.0px,0.0px)}2.50%{transform:translate(5.9px,0.0px)}5.00%{transform:translate(11.9px,0.0px)}7.50%{transform:translate(17.9px,0.0px)}10.00%{transform:translate(23.8px,0.0px)}12.50%{transform:translate(29.8px,0.0px)}15.00%{transform:translate(35.7px,0.0px)}17.50%{transform:translate(41.6px,0.0px)}20.00%{transform:translate(47.6px,0.0px)}22.50%{transform:translate(53.5px,0.0px)}25.00%{transform:translate(59.5px,0.0px)}27.50%{transform:translate(65.5px,0.0px)}30.00%{transform:translate(71.4px,0.0px)}32.50%{transform:translate(77.3px,0.0px)}35.00%{transform:translate(83.3px,0.0px)}37.50%{transform:translate(89.3px,0.0px)}40.00%{transform:translate(95.4px,0.0px)}42.50%{transform:translate(101.9px,0.0px)}45.00%{transform:translate(109.4px,0.0px)}47.50%{transform:translate(118.6px,0.0px)}50.00%{transform:translate(131.1px,0.0px)}52.50%{transform:translate(145.4px,0.0px)}55.00%{transform:translate(156.7px,0.0px)}57.50%{transform:translate(165.2px,0.0px)}60.00%{transform:translate(172.3px,0.0px)}62.50%{transform:translate(178.7px,0.0px)}65.00%{transform:translate(184.7px,0.0px)}67.50%{transform:translate(190.7px,0.0px)}70.00%{transform:translate(196.6px,0.0px)}72.50%{transform:translate(202.6px,0.0px)}75.00%{transform:translate(208.5px,0.0px)}77.50%{transform:translate(214.4px,0.0px)}80.00%{transform:translate(220.4px,0.0px)}82.50%{transform:translate(226.3px,0.0px)}85.00%{transform:translate(232.3px,0.0px)}87.50%{transform:translate(238.2px,0.0px)}90.00%{transform:translate(244.2px,0.0px)}92.50%{transform:translate(250.1px,0.0px)}95.00%{transform:translate(256.1px,0.0px)}97.50%{transform:translate(262.1px,0.0px)}100.00%{transform:translate(268.0px,0.0px)}}.bp .vf12{animation:vf12 3.2s linear -2.1333333333333333s infinite both}@keyframes vf12{0.00%{transform:translate(0.0px,0.0px)}2.50%{transform:translate(5.9px,0.0px)}5.00%{transform:translate(11.9px,0.0px)}7.50%{transform:translate(17.9px,0.0px)}10.00%{transform:translate(23.8px,0.0px)}12.50%{transform:translate(29.8px,0.0px)}15.00%{transform:translate(35.7px,0.0px)}17.50%{transform:translate(41.6px,0.0px)}20.00%{transform:translate(47.6px,0.0px)}22.50%{transform:translate(53.5px,0.0px)}25.00%{transform:translate(59.5px,0.0px)}27.50%{transform:translate(65.5px,0.0px)}30.00%{transform:translate(71.4px,0.0px)}32.50%{transform:translate(77.3px,0.0px)}35.00%{transform:translate(83.3px,0.0px)}37.50%{transform:translate(89.3px,0.0px)}40.00%{transform:translate(95.4px,0.0px)}42.50%{transform:translate(101.9px,0.0px)}45.00%{transform:translate(109.4px,0.0px)}47.50%{transform:translate(118.6px,0.0px)}50.00%{transform:translate(131.1px,0.0px)}52.50%{transform:translate(145.4px,0.0px)}55.00%{transform:translate(156.7px,0.0px)}57.50%{transform:translate(165.2px,0.0px)}60.00%{transform:translate(172.3px,0.0px)}62.50%{transform:translate(178.7px,0.0px)}65.00%{transform:translate(184.7px,0.0px)}67.50%{transform:translate(190.7px,0.0px)}70.00%{transform:translate(196.6px,0.0px)}72.50%{transform:translate(202.6px,0.0px)}75.00%{transform:translate(208.5px,0.0px)}77.50%{transform:translate(214.4px,0.0px)}80.00%{transform:translate(220.4px,0.0px)}82.50%{transform:translate(226.3px,0.0px)}85.00%{transform:translate(232.3px,0.0px)}87.50%{transform:translate(238.2px,0.0px)}90.00%{transform:translate(244.2px,0.0px)}92.50%{transform:translate(250.1px,0.0px)}95.00%{transform:translate(256.1px,0.0px)}97.50%{transform:translate(262.1px,0.0px)}100.00%{transform:translate(268.0px,0.0px)}}.bp .vf20{animation:vf20 3.2s linear -0.0s infinite both}@keyframes vf20{0.00%{transform:translate(0.0px,18.0px)}2.50%{transform:translate(5.9px,18.0px)}5.00%{transform:translate(11.9px,18.0px)}7.50%{transform:translate(17.9px,18.0px)}10.00%{transform:translate(23.8px,18.0px)}12.50%{transform:translate(29.8px,18.0px)}15.00%{transform:translate(35.7px,18.0px)}17.50%{transform:translate(41.6px,18.0px)}20.00%{transform:translate(47.6px,18.0px)}22.50%{transform:translate(53.5px,18.0px)}25.00%{transform:translate(59.5px,18.0px)}27.50%{transform:translate(65.5px,18.0px)}30.00%{transform:translate(71.4px,18.0px)}32.50%{transform:translate(77.3px,18.0px)}35.00%{transform:translate(83.3px,18.0px)}37.50%{transform:translate(89.3px,17.7px)}40.00%{transform:translate(95.4px,16.7px)}42.50%{transform:translate(101.9px,14.9px)}45.00%{transform:translate(109.4px,12.5px)}47.50%{transform:translate(118.6px,9.5px)}50.00%{transform:translate(131.1px,7.3px)}52.50%{transform:translate(145.4px,8.5px)}55.00%{transform:translate(156.7px,11.8px)}57.50%{transform:translate(165.2px,14.7px)}60.00%{transform:translate(172.3px,16.6px)}62.50%{transform:translate(178.7px,17.7px)}65.00%{transform:translate(184.7px,18.0px)}67.50%{transform:translate(190.7px,18.0px)}70.00%{transform:translate(196.6px,18.0px)}72.50%{transform:translate(202.6px,18.0px)}75.00%{transform:translate(208.5px,18.0px)}77.50%{transform:translate(214.4px,18.0px)}80.00%{transform:translate(220.4px,18.0px)}82.50%{transform:translate(226.3px,18.0px)}85.00%{transform:translate(232.3px,18.0px)}87.50%{transform:translate(238.2px,18.0px)}90.00%{transform:translate(244.2px,18.0px)}92.50%{transform:translate(250.1px,18.0px)}95.00%{transform:translate(256.1px,18.0px)}97.50%{transform:translate(262.1px,18.0px)}100.00%{transform:translate(268.0px,18.0px)}}.bp .vf21{animation:vf21 3.2s linear -1.0666666666666667s infinite both}@keyframes vf21{0.00%{transform:translate(0.0px,18.0px)}2.50%{transform:translate(5.9px,18.0px)}5.00%{transform:translate(11.9px,18.0px)}7.50%{transform:translate(17.9px,18.0px)}10.00%{transform:translate(23.8px,18.0px)}12.50%{transform:translate(29.8px,18.0px)}15.00%{transform:translate(35.7px,18.0px)}17.50%{transform:translate(41.6px,18.0px)}20.00%{transform:translate(47.6px,18.0px)}22.50%{transform:translate(53.5px,18.0px)}25.00%{transform:translate(59.5px,18.0px)}27.50%{transform:translate(65.5px,18.0px)}30.00%{transform:translate(71.4px,18.0px)}32.50%{transform:translate(77.3px,18.0px)}35.00%{transform:translate(83.3px,18.0px)}37.50%{transform:translate(89.3px,17.7px)}40.00%{transform:translate(95.4px,16.7px)}42.50%{transform:translate(101.9px,14.9px)}45.00%{transform:translate(109.4px,12.5px)}47.50%{transform:translate(118.6px,9.5px)}50.00%{transform:translate(131.1px,7.3px)}52.50%{transform:translate(145.4px,8.5px)}55.00%{transform:translate(156.7px,11.8px)}57.50%{transform:translate(165.2px,14.7px)}60.00%{transform:translate(172.3px,16.6px)}62.50%{transform:translate(178.7px,17.7px)}65.00%{transform:translate(184.7px,18.0px)}67.50%{transform:translate(190.7px,18.0px)}70.00%{transform:translate(196.6px,18.0px)}72.50%{transform:translate(202.6px,18.0px)}75.00%{transform:translate(208.5px,18.0px)}77.50%{transform:translate(214.4px,18.0px)}80.00%{transform:translate(220.4px,18.0px)}82.50%{transform:translate(226.3px,18.0px)}85.00%{transform:translate(232.3px,18.0px)}87.50%{transform:translate(238.2px,18.0px)}90.00%{transform:translate(244.2px,18.0px)}92.50%{transform:translate(250.1px,18.0px)}95.00%{transform:translate(256.1px,18.0px)}97.50%{transform:translate(262.1px,18.0px)}100.00%{transform:translate(268.0px,18.0px)}}.bp .vf22{animation:vf22 3.2s linear -2.1333333333333333s infinite both}@keyframes vf22{0.00%{transform:translate(0.0px,18.0px)}2.50%{transform:translate(5.9px,18.0px)}5.00%{transform:translate(11.9px,18.0px)}7.50%{transform:translate(17.9px,18.0px)}10.00%{transform:translate(23.8px,18.0px)}12.50%{transform:translate(29.8px,18.0px)}15.00%{transform:translate(35.7px,18.0px)}17.50%{transform:translate(41.6px,18.0px)}20.00%{transform:translate(47.6px,18.0px)}22.50%{transform:translate(53.5px,18.0px)}25.00%{transform:translate(59.5px,18.0px)}27.50%{transform:translate(65.5px,18.0px)}30.00%{transform:translate(71.4px,18.0px)}32.50%{transform:translate(77.3px,18.0px)}35.00%{transform:translate(83.3px,18.0px)}37.50%{transform:translate(89.3px,17.7px)}40.00%{transform:translate(95.4px,16.7px)}42.50%{transform:translate(101.9px,14.9px)}45.00%{transform:translate(109.4px,12.5px)}47.50%{transform:translate(118.6px,9.5px)}50.00%{transform:translate(131.1px,7.3px)}52.50%{transform:translate(145.4px,8.5px)}55.00%{transform:translate(156.7px,11.8px)}57.50%{transform:translate(165.2px,14.7px)}60.00%{transform:translate(172.3px,16.6px)}62.50%{transform:translate(178.7px,17.7px)}65.00%{transform:translate(184.7px,18.0px)}67.50%{transform:translate(190.7px,18.0px)}70.00%{transform:translate(196.6px,18.0px)}72.50%{transform:translate(202.6px,18.0px)}75.00%{transform:translate(208.5px,18.0px)}77.50%{transform:translate(214.4px,18.0px)}80.00%{transform:translate(220.4px,18.0px)}82.50%{transform:translate(226.3px,18.0px)}85.00%{transform:translate(232.3px,18.0px)}87.50%{transform:translate(238.2px,18.0px)}90.00%{transform:translate(244.2px,18.0px)}92.50%{transform:translate(250.1px,18.0px)}95.00%{transform:translate(256.1px,18.0px)}97.50%{transform:translate(262.1px,18.0px)}100.00%{transform:translate(268.0px,18.0px)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.15: which of the two flows through a constriction is wrong?",
+      "definition": "The one showing <span style=\"color:#e5484d\">higher</span> liquid level (pressure) at the constriction: there v is larger, so P must be lower",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ],
+      "termImage": "media/fig_9_20_flow_ex.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.11: can Bernoulli’s equation describe water through river rapids?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the flow is turbulent, not streamline",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.12: does it matter if gauge pressure is used in Bernoulli’s equation?",
+      "definition": "<span style=\"color:#e5484d\">No</span>, unless the atmospheric pressure differs significantly between the two points",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4-bernoullis-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Torricelli’s law: speed of efflux from a hole h below the surface of an open tank?",
+      "definition": "\\( v = \\sqrt{2gh} \\) — same as free fall from h",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4.1-torricelli"
+      ],
+      "definitionImage": "media/fig_9_10_torricelli.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Speed of efflux from a closed tank at pressure P?",
+      "definition": "\\( v = \\sqrt{2gh + \\dfrac{2(P - P_a)}{\\rho}} \\); if P ≫ Pₐ the pressure term dominates (rocket propulsion)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4.1-torricelli"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.4(d): why does fluid leaving a hole push the vessel backwards?",
+      "definition": "The out-flowing fluid carries momentum; by the third law the vessel gets an equal <span style=\"color:#3b82f6\">backward thrust</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4.1-torricelli"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is dynamic lift?",
+      "definition": "Force on a body such as a wing, hydrofoil or spinning ball due to its <span style=\"color:#3b82f6\">motion through a fluid</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4.2-dynamic-lift"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Magnus effect: why does a spinning ball swerve?",
+      "definition": "Spin drags air: relative air speed is larger on one side → <span style=\"color:#3b82f6\">lower pressure</span> there → sideways/upward force",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4.2-dynamic-lift"
+      ],
+      "definitionImage": "media/fig_9_11_lift.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does an aerofoil give lift?",
+      "definition": "Its shape and tilt crowd streamlines <span style=\"color:#3b82f6\">above</span> the wing: faster air, lower pressure above than below",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4.2-dynamic-lift"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9.7: 3.3 × 10⁵ kg aircraft, wing area 500 m², 960 km/h. Pressure difference and speed difference?",
+      "definition": "ΔP = <span style=\"color:#f08c00\">6.5 × 10³ Pa</span>; air above needs to be only ≈ <span style=\"color:#f08c00\">8 %</span> faster",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4.2-dynamic-lift"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.14: wind-tunnel wing, speeds 70 and 63 m/s, area 2.5 m², ρ = 1.3. Lift?",
+      "definition": "½ρ(v₂² − v₁²)A ≈ <span style=\"color:#f08c00\">1.5 × 10³ N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4.2-dynamic-lift"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.4(a): to keep paper horizontal, blow over it or under it?",
+      "definition": "<span style=\"color:#3b82f6\">Over</span>: faster air above → lower pressure above → paper lifts",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.4.2-dynamic-lift"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is viscosity?",
+      "definition": "Internal <span style=\"color:#3b82f6\">friction</span> between fluid layers moving relative to each other",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5-viscosity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Velocity profile of a liquid between a fixed and a moving plate; in a pipe?",
+      "definition": "Plates: rises <span style=\"color:#3b82f6\">uniformly</span> from 0 to v. Pipe: maximum at the <span style=\"color:#3b82f6\">axis</span>, zero at the walls",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5-viscosity"
+      ],
+      "definitionImage": "media/fig_9_12_viscous_layers.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the coefficient of viscosity.",
+      "definition": "\\( \\eta = \\dfrac{F/A}{v/l} \\): shear stress ÷ <span style=\"color:#3b82f6\">rate of shear strain</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5-viscosity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solid vs fluid under shear: stress depends on what?",
+      "definition": "Solid: on shear <span style=\"color:#3b82f6\">strain</span>. Fluid: on the <span style=\"color:#3b82f6\">rate</span> of shear strain (Exercise 9.3c)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5-viscosity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "SI unit and dimensions of viscosity?",
+      "definition": "<span style=\"color:#3b82f6\">poiseuille (Pl)</span> = N s m⁻² = Pa s; [M L⁻¹ T⁻¹]",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5-viscosity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of temperature on viscosity?",
+      "definition": "Liquids: η <span style=\"color:#e5484d\">decreases</span> (molecules more mobile). Gases: η <span style=\"color:#3b82f6\">increases</span> (more random motion)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5-viscosity"
+      ],
+      "definitionImage": "media/tab_9_2_viscosities.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9.8: 0.10 m² block on a 0.30 mm oil film pulled by 0.010 kg at a steady 0.085 m/s. η?",
+      "definition": "η = (0.098/0.10) / (0.085/3 × 10⁻⁴) = <span style=\"color:#f08c00\">3.46 × 10⁻³ Pa s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5-viscosity"
+      ],
+      "definitionImage": "media/fig_9_13_viscosity_block.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.4(c): why does needle size control injection flow better than thumb pressure?",
+      "definition": "Flow through a narrow tube depends very strongly on its radius (∝ r⁴ in viscous flow), much more than on pressure",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5-viscosity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Stokes’ law.",
+      "definition": "\\( F = 6\\pi\\eta a v \\): viscous drag on a sphere of radius a moving at v",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5.1-stokes-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Terminal velocity of a sphere in a fluid?",
+      "definition": "\\( v_t = \\dfrac{2a^2(\\rho - \\sigma)g}{9\\eta} \\) (ρ sphere, σ fluid)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5.1-stokes-law"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Ball in oil: approach to terminal velocity",
+      "definition": "Speed rises to a constant terminal value when 6πηav + buoyancy = weight; vt = 2a²(ρ−σ)g/9η",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Viscosity · terminal velocity</p><h2>A small metal ball is dropped into a tall jar of oil. How does its speed change with time?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><rect class=\"oil\" x=\"30\" y=\"20\" width=\"90\" height=\"165\" rx=\"6\"></rect><line class=\"ax\" x1=\"170\" y1=\"160\" x2=\"292\" y2=\"160\" marker-end=\"url(#ah)\"></line><line class=\"ax\" x1=\"170\" y1=\"160\" x2=\"170\" y2=\"40\" marker-end=\"url(#ah)\"></line><text class=\"lbl\" x=\"290\" y=\"176\" text-anchor=\"end\">t</text><text class=\"lbl\" x=\"176\" y=\"46\">v</text><circle class=\"obj2\" cx=\"75\" cy=\"36\" r=\"8\"></circle></svg><p class=\"hint\">What force grows with speed?</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Viscosity · terminal velocity</p><h2>A small metal ball is dropped into a tall jar of oil. How does its speed change with time?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><rect class=\"oil\" x=\"30\" y=\"20\" width=\"90\" height=\"165\" rx=\"6\"></rect><line class=\"ax\" x1=\"170\" y1=\"160\" x2=\"292\" y2=\"160\" marker-end=\"url(#ah)\"></line><line class=\"ax\" x1=\"170\" y1=\"160\" x2=\"170\" y2=\"40\" marker-end=\"url(#ah)\"></line><text class=\"lbl\" x=\"290\" y=\"176\" text-anchor=\"end\">t</text><text class=\"lbl\" x=\"176\" y=\"46\">v</text><g transform=\"translate(75,36)\"><g class=\"tv\"><circle class=\"obj2\" cx=\"0\" cy=\"0\" r=\"8\"></circle><g class=\"tvarr\"><line class=\"f-mg\" x1=\"0\" y1=\"10\" x2=\"0\" y2=\"42\" marker-end=\"url(#am)\"></line></g></g></g><polyline class=\"curve draw\" pathLength=\"100\" points=\"170.0,160.0 172.9,148.2 175.8,137.9 178.6,128.7 181.5,120.7 184.4,113.5 187.2,107.2 190.1,101.7 193.0,96.8 195.9,92.5 198.8,88.7 201.6,85.3 204.5,82.3 207.4,79.7 210.2,77.4 213.1,75.3 216.0,73.5 218.9,71.9 221.8,70.5 224.6,69.3 227.5,68.2 230.4,67.2 233.2,66.4 236.1,65.6 239.0,65.0 241.9,64.4 244.8,63.9 247.6,63.4 250.5,63.0 253.4,62.7 256.2,62.4 259.1,62.1 262.0,61.8 264.9,61.6 267.8,61.4 270.6,61.3 273.5,61.1 276.4,61.0 279.2,60.9 282.1,60.8 285.0,60.7\"></polyline><line class=\"guide fx d4\" x1=\"170\" y1=\"60\" x2=\"290\" y2=\"60\"></line><text class=\"hi fx d4\" x=\"288\" y=\"54\" text-anchor=\"end\">vₜ</text></svg><div class=\"eq fx d5\"><p>Speed rises, but the Stokes drag <b>6πηav</b> grows with it. When drag + buoyancy = weight, acceleration is zero: <b>vₜ = 2a²(ρ − σ)g / 9η</b>.</p><p>vₜ ∝ a²: bigger drops fall faster; more viscous oil → slower.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .tv{animation:tv 3.6s linear 0.3s infinite both}@keyframes tv{0.00%{transform:translate(0.0px,0.0px)}3.33%{transform:translate(0.0px,0.4px)}6.67%{transform:translate(0.0px,1.6px)}10.00%{transform:translate(0.0px,3.4px)}13.33%{transform:translate(0.0px,5.8px)}16.67%{transform:translate(0.0px,8.6px)}20.00%{transform:translate(0.0px,11.8px)}23.33%{transform:translate(0.0px,15.3px)}26.67%{transform:translate(0.0px,19.1px)}30.00%{transform:translate(0.0px,23.1px)}33.33%{transform:translate(0.0px,27.3px)}36.67%{transform:translate(0.0px,31.7px)}40.00%{transform:translate(0.0px,36.3px)}43.33%{transform:translate(0.0px,40.9px)}46.67%{transform:translate(0.0px,45.7px)}50.00%{transform:translate(0.0px,50.5px)}53.33%{transform:translate(0.0px,55.5px)}56.67%{transform:translate(0.0px,60.4px)}60.00%{transform:translate(0.0px,65.5px)}63.33%{transform:translate(0.0px,70.6px)}66.67%{transform:translate(0.0px,75.7px)}70.00%{transform:translate(0.0px,80.8px)}73.33%{transform:translate(0.0px,86.0px)}76.67%{transform:translate(0.0px,91.2px)}80.00%{transform:translate(0.0px,96.4px)}83.33%{transform:translate(0.0px,101.7px)}86.67%{transform:translate(0.0px,106.9px)}90.00%{transform:translate(0.0px,112.2px)}93.33%{transform:translate(0.0px,117.4px)}96.67%{transform:translate(0.0px,122.7px)}100.00%{transform:translate(0.0px,128.0px)}}.bp .oil{fill:rgba(255,209,102,.10);stroke:#9fc2ee;stroke-width:1.2}.bp .tvarr{transform-origin:0 0;animation:tvarr 3.6s linear .3s infinite both}@keyframes tvarr{0%{transform:scaleY(0.020)}10%{transform:scaleY(0.393)}20%{transform:scaleY(0.632)}30%{transform:scaleY(0.777)}40%{transform:scaleY(0.865)}50%{transform:scaleY(0.918)}60%{transform:scaleY(0.950)}70%{transform:scaleY(0.970)}80%{transform:scaleY(0.982)}90%{transform:scaleY(0.989)}100%{transform:scaleY(0.993)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .tv{animation:tv 3.6s linear 0.3s infinite both}@keyframes tv{0.00%{transform:translate(0.0px,0.0px)}3.33%{transform:translate(0.0px,0.4px)}6.67%{transform:translate(0.0px,1.6px)}10.00%{transform:translate(0.0px,3.4px)}13.33%{transform:translate(0.0px,5.8px)}16.67%{transform:translate(0.0px,8.6px)}20.00%{transform:translate(0.0px,11.8px)}23.33%{transform:translate(0.0px,15.3px)}26.67%{transform:translate(0.0px,19.1px)}30.00%{transform:translate(0.0px,23.1px)}33.33%{transform:translate(0.0px,27.3px)}36.67%{transform:translate(0.0px,31.7px)}40.00%{transform:translate(0.0px,36.3px)}43.33%{transform:translate(0.0px,40.9px)}46.67%{transform:translate(0.0px,45.7px)}50.00%{transform:translate(0.0px,50.5px)}53.33%{transform:translate(0.0px,55.5px)}56.67%{transform:translate(0.0px,60.4px)}60.00%{transform:translate(0.0px,65.5px)}63.33%{transform:translate(0.0px,70.6px)}66.67%{transform:translate(0.0px,75.7px)}70.00%{transform:translate(0.0px,80.8px)}73.33%{transform:translate(0.0px,86.0px)}76.67%{transform:translate(0.0px,91.2px)}80.00%{transform:translate(0.0px,96.4px)}83.33%{transform:translate(0.0px,101.7px)}86.67%{transform:translate(0.0px,106.9px)}90.00%{transform:translate(0.0px,112.2px)}93.33%{transform:translate(0.0px,117.4px)}96.67%{transform:translate(0.0px,122.7px)}100.00%{transform:translate(0.0px,128.0px)}}.bp .oil{fill:rgba(255,209,102,.10);stroke:#9fc2ee;stroke-width:1.2}.bp .tvarr{transform-origin:0 0;animation:tvarr 3.6s linear .3s infinite both}@keyframes tvarr{0%{transform:scaleY(0.020)}10%{transform:scaleY(0.393)}20%{transform:scaleY(0.632)}30%{transform:scaleY(0.777)}40%{transform:scaleY(0.865)}50%{transform:scaleY(0.918)}60%{transform:scaleY(0.950)}70%{transform:scaleY(0.970)}80%{transform:scaleY(0.982)}90%{transform:scaleY(0.989)}100%{transform:scaleY(0.993)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5.1-stokes-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do raindrops not hit us at bullet speeds?",
+      "definition": "Air drag grows with speed; they reach a small <span style=\"color:#3b82f6\">terminal velocity</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5.1-stokes-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9.9: copper ball (radius 2.0 mm) reaches 6.5 cm/s in oil (1.5 × 10³ kg/m³). η of oil?",
+      "definition": "<span style=\"color:#f08c00\">≈ 0.99 Pa s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5.1-stokes-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT 9.5.1 says \"refer back to Example 6.2\". Which example?",
+      "definition": "The raindrop example is <span style=\"color:#3b82f6\">Example 5.2</span> (Work, Energy and Power)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5.1-stokes-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.13: glycerine through a 1.5 m tube (r = 1.0 cm), 4.0 × 10⁻³ kg/s. Pressure difference?",
+      "definition": "<span style=\"color:#f08c00\">≈ 9.8 × 10² Pa</span> (Poiseuille; Reynolds number ≈ 0.3, so laminar)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.5.1-stokes-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do surface molecules have extra energy?",
+      "definition": "They have neighbours on only one side, so less (negative) binding energy — about <span style=\"color:#3b82f6\">half</span> that of a molecule inside",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ],
+      "definitionImage": "media/fig_9_14_surface_molecules.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a liquid tend to minimise its surface area?",
+      "definition": "Creating surface costs energy; the liquid takes the <span style=\"color:#3b82f6\">least area</span> that conditions allow",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define surface tension (two ways).",
+      "definition": "Force per unit length in the surface, or <span style=\"color:#3b82f6\">surface energy per unit area</span>; unit N/m = J/m²",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A film on a wire frame with a slider of length l needs force F. Surface tension?",
+      "definition": "\\( S = \\dfrac{F}{2l} \\) — the film has <span style=\"color:#3b82f6\">two surfaces</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ],
+      "definitionImage": "media/fig_9_15_film.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of temperature on surface tension?",
+      "definition": "Usually <span style=\"color:#e5484d\">decreases</span> as temperature rises",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ],
+      "definitionImage": "media/tab_9_3_surface_tension.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Surface tension of water and mercury at 20 °C?",
+      "definition": "Water <span style=\"color:#f08c00\">0.0727 N/m</span>; mercury <span style=\"color:#f08c00\">0.4355 N/m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How can surface tension be measured with a balance?",
+      "definition": "Raise a liquid to touch a glass plate hung from the balance; extra weight to free it: \\( S = \\dfrac{mg}{2l} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ],
+      "definitionImage": "media/fig_9_16_balance.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Is surface tension a property of one liquid alone?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it belongs to the <span style=\"color:#3b82f6\">interface</span> between two substances, at least one a fluid",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.2(c): why is surface tension independent of surface area?",
+      "definition": "It is energy per unit area (or force per unit length) — a property of the interface, not of its size",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.17: a soap film on a 30 cm slider supports 1.5 × 10⁻² N. Surface tension?",
+      "definition": "S = F/2l = <span style=\"color:#f08c00\">2.5 × 10⁻² N/m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.18: a film supports 4.5 × 10⁻² N in (a). In the other frames with the same slider length?",
+      "definition": "The <span style=\"color:#3b82f6\">same 4.5 × 10⁻² N</span>: the force depends only on the length of the slider",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6-surface-tension"
+      ],
+      "termImage": "media/fig_9_21_films_ex.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define angle of contact.",
+      "definition": "Angle between the <span style=\"color:#3b82f6\">tangent to the liquid surface</span> at the point of contact and the solid surface, measured inside the liquid",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.3-angle-of-contact"
+      ],
+      "definitionImage": "media/fig_9_17_contact_angle.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Equilibrium of interfacial tensions at the contact line?",
+      "definition": "\\( S_{la}\\cos\\theta + S_{sl} = S_{sa} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.3-angle-of-contact"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Acute vs obtuse angle of contact: wetting?",
+      "definition": "<span style=\"color:#3b82f6\">Acute</span> (water on glass, kerosene on anything): liquid wets and spreads. <span style=\"color:#3b82f6\">Obtuse</span> (water on lotus leaf, mercury on glass): forms drops",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.3-angle-of-contact"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is mercury’s contact angle with glass obtuse?",
+      "definition": "Mercury molecules attract <span style=\"color:#3b82f6\">each other</span> more strongly than they attract glass",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.3-angle-of-contact"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do detergents help cleaning, and waterproofing agents do the opposite?",
+      "definition": "Detergents make the contact angle <span style=\"color:#3b82f6\">small</span> (penetrate fibres); waterproofing makes it <span style=\"color:#3b82f6\">large</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.3-angle-of-contact"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are free drops and bubbles spherical?",
+      "definition": "For a given volume a <span style=\"color:#3b82f6\">sphere has the least surface area</span> (least surface energy)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.4-drops-and-bubbles"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Excess pressure in drops and bubbles",
+      "definition": "Liquid drop (one surface): 2S / r; Air bubble in a liquid (one surface): 2S / r; Soap bubble in air (two surfaces): 4S / r",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">9.6.4 · excess pressure inside</p><h2>Pᵢ − P₀ = ?</h2><table><tr><td>Liquid drop (one surface)</td><td class=\"q\">?</td></tr><tr><td>Air bubble in a liquid (one surface)</td><td class=\"q\">?</td></tr><tr><td>Soap bubble in air (two surfaces)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">9.6.4 · excess pressure inside</p><h2>Pᵢ − P₀ = ?</h2><table><tr><td>Liquid drop (one surface)</td><td class=\"a\">2S / r</td></tr><tr><td>Air bubble in a liquid (one surface)</td><td class=\"a\">2S / r</td></tr><tr><td>Soap bubble in air (two surfaces)</td><td class=\"a\">4S / r</td></tr></table><p class=\"note\">The concave side is always at higher pressure.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.4-drops-and-bubbles"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: which of (a), (b), (c) is a drop, a cavity (air bubble in liquid) and a soap bubble?",
+      "definition": "(a) drop, (b) cavity: 2S/r; (c) soap bubble with two surfaces: 4S/r",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.4-drops-and-bubbles"
+      ],
+      "definitionImage": "media/fig_9_18_drop_bubble.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9.10: capillary (diameter 2.00 mm) 8.00 cm under water; pressure to blow a hemispherical bubble at its end?",
+      "definition": "P₀ = 1.01784 × 10⁵ Pa; excess 2S/r = <span style=\"color:#f08c00\">146 Pa</span> → <span style=\"color:#f08c00\">1.02 × 10⁵ Pa</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.4-drops-and-bubbles"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.19: mercury drop, r = 3.00 mm, S = 0.465 N/m. Excess pressure?",
+      "definition": "2S/r = <span style=\"color:#f08c00\">310 Pa</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.4-drops-and-bubbles"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 9.20: soap bubble, r = 5.00 mm, S = 2.50 × 10⁻² N/m. Excess pressure?",
+      "definition": "4S/r = <span style=\"color:#f08c00\">20 Pa</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.4-drops-and-bubbles"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Height of capillary rise?",
+      "definition": "\\( h = \\dfrac{2S\\cos\\theta}{\\rho g a} \\) (a = tube radius)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.5-capillary-rise"
+      ],
+      "definitionImage": "media/fig_9_19_capillary.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does water rise in a capillary tube?",
+      "definition": "The meniscus is <span style=\"color:#3b82f6\">concave</span>, so the pressure just under it is below atmospheric; water rises until ρgh makes up the difference",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.5-capillary-rise"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Capillary rise of water in a tube of radius 0.05 cm?",
+      "definition": "<span style=\"color:#f08c00\">≈ 2.98 cm</span> — larger for thinner tubes (h ∝ 1/a)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.5-capillary-rise"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What happens to mercury in a glass capillary?",
+      "definition": "It is <span style=\"color:#e5484d\">depressed</span> below the outside level (θ obtuse, cos θ < 0)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.5-capillary-rise"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Everyday examples of capillarity?",
+      "definition": "Oil rising up a <span style=\"color:#22a35a\">lamp wick</span>, sap and water rising in <span style=\"color:#22a35a\">plants</span>, paint-brush hairs forming a tip when wet",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "9.6.5-capillary-rise"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: Archimedes’ principle?",
+      "definition": "A body in a fluid feels an upward <span style=\"color:#3b82f6\">buoyant force</span> equal to the weight of fluid displaced: F = σVg",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "buoyancy-teacher-addition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: fraction of a floating body that is submerged?",
+      "definition": "\\( \\dfrac{V_{in}}{V} = \\dfrac{\\rho_{body}}{\\rho_{fluid}} \\) (ice in water: about 90 %)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "buoyancy-teacher-addition"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Fluid facts (Exercise 9.3)",
+      "definition": "Surface tension with temperature: decreases; Viscosity of gases with temperature: increases; Viscosity of liquids with temperature: decreases; Speed-up at a constriction follows: conservation of mass; Turbulence speed for a wind-tunnel model vs real plane: greater",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 9.3</p><h2>Fill in the blank?</h2><table><tr><td>Surface tension with temperature</td><td class=\"q\">?</td></tr><tr><td>Viscosity of gases with temperature</td><td class=\"q\">?</td></tr><tr><td>Viscosity of liquids with temperature</td><td class=\"q\">?</td></tr><tr><td>Speed-up at a constriction follows</td><td class=\"q\">?</td></tr><tr><td>Turbulence speed for a wind-tunnel model vs real plane</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 9.3</p><h2>Fill in the blank?</h2><table><tr><td>Surface tension with temperature</td><td class=\"a\">decreases</td></tr><tr><td>Viscosity of gases with temperature</td><td class=\"a\">increases</td></tr><tr><td>Viscosity of liquids with temperature</td><td class=\"a no\">decreases</td></tr><tr><td>Speed-up at a constriction follows</td><td class=\"a\">conservation of mass</td></tr><tr><td>Turbulence speed for a wind-tunnel model vs real plane</td><td class=\"a\">greater</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 9 formula sheet",
+      "definition": "Pressure at depth: P = Pₐ + ρgh; Continuity: A₁v₁ = A₂v₂; Bernoulli: P + ½ρv² + ρgh = constant; Stokes’ drag: 6πηav; Capillary rise: h = 2S cos θ / ρga",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Pressure at depth</td><td class=\"q\">?</td></tr><tr><td>Continuity</td><td class=\"q\">?</td></tr><tr><td>Bernoulli</td><td class=\"q\">?</td></tr><tr><td>Stokes’ drag</td><td class=\"q\">?</td></tr><tr><td>Capillary rise</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Pressure at depth</td><td class=\"a\">P = Pₐ + ρgh</td></tr><tr><td>Continuity</td><td class=\"a\">A₁v₁ = A₂v₂</td></tr><tr><td>Bernoulli</td><td class=\"a\">P + ½ρv² + ρgh = constant</td></tr><tr><td>Stokes’ drag</td><td class=\"a\">6πηav</td></tr><tr><td>Capillary rise</td><td class=\"a\">h = 2S cos θ / ρga</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-9",
+        "summary"
+      ]
+    }
+  ]
+}
