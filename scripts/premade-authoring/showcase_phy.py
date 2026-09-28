@@ -470,3 +470,28 @@ def newtons_cannon(deck):
          'Newton’s cannon: orbital speed vs escape speed',
          'Slow: falls back; v0 = √(gR) ≈ 7.9 km/s: circular orbit; ve = √(2gR) ≈ 11.2 km/s = √2 v0: escapes',
          css, hint='Faster and faster…', vb='0 0 300 195')
+
+
+# ---------------------------------------------------------------- Ch 8 Mechanical properties of solids
+def stress_strain_story(deck):
+    axes = ('<line class="ax" x1="30" y1="175" x2="292" y2="175" marker-end="url(#ah)"></line>'
+            '<line class="ax" x1="30" y1="175" x2="30" y2="14" marker-end="url(#ah)"></line>'
+            '<text class="lbl" x="290" y="192" text-anchor="end">strain</text><text class="lbl" x="36" y="22">stress</text>')
+    curve = ('<path class="curve draw" pathLength="100" d="M30 175 L58 70 C62 58 66 56 72 58 C110 66 150 40 200 30 C220 27 236 36 252 60"></path>'
+             '<circle class="dot fx d1" cx="58" cy="70" r="4"></circle><text class="hi fx d1" x="46" y="66" text-anchor="end">A</text>'
+             '<circle class="dot fx d2" cx="70" cy="57" r="4"></circle><text class="hi fx d2" x="70" y="48" text-anchor="middle">B</text>'
+             '<circle class="dot fx d3" cx="200" cy="30" r="4"></circle><text class="hi fx d3" x="200" y="22" text-anchor="middle">D</text>'
+             '<circle class="dot3 fx d4" cx="252" cy="60" r="4"></circle><text class="rd fx d4" x="258" y="64">E</text>'
+             '<line class="guide fx d4" x1="120" y1="56" x2="148" y2="175"></line>'
+             '<text class="sm fx d4" x="152" y="170">permanent set</text>'
+             '<text class="lbl fx d1" x="62" y="130">Hooke’s law</text><text class="lbl fx d1" x="62" y="143">(elastic, linear)</text>'
+             '<text class="lbl fx d3" x="150" y="90">plastic region</text>')
+    anim(deck, 'Stress–strain curve · the story of a stretched wire',
+         'A metal wire is loaded more and more until it snaps. Sketch stress vs strain and name the key points.',
+         axes, curve,
+         '<p><b>O–A</b>: linear, Hooke’s law (A = proportional limit). <b>B</b>: yield point / elastic limit (σᵧ).</p>'
+         '<p>Beyond B, unloading leaves a <b>permanent set</b>. <b>D</b>: ultimate tensile strength (σᵤ). <b>E</b>: fracture. '
+         'D and E far apart → <b>ductile</b>; close → <b>brittle</b>.</p>',
+         'Stress–strain curve of a metal: O, A, B, D, E',
+         'O–A linear (Hooke); B yield point/elastic limit; beyond B permanent set; D ultimate strength; E fracture; ductile if D, E far apart',
+         hint='Label the points as you go.', vb='0 0 300 200')

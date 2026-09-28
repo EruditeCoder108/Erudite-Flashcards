@@ -1,0 +1,867 @@
+{
+  "version": 1,
+  "name": "Chapter 8: Mechanical Properties of Solids",
+  "className": "Class 11",
+  "description": "Elasticity, stress and strain, Hooke’s law, stress-strain curve, Young’s, shear and bulk moduli, Poisson’s ratio, elastic energy, applications",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Are real solids perfectly rigid?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: even a steel bar deforms under a large enough force",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define elasticity and elastic deformation.",
+      "definition": "The property by which a body <span style=\"color:#3b82f6\">regains its original size and shape</span> when the deforming force is removed",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define plasticity. Example?",
+      "definition": "No tendency to regain shape: the body is <span style=\"color:#3b82f6\">permanently deformed</span>. <span style=\"color:#22a35a\">Putty, mud</span> are near-ideal plastics",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does elasticity matter in engineering?",
+      "definition": "Designing buildings, bridges, cranes, aircraft and artificial limbs needs the elastic properties of steel, concrete etc.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define stress. Unit and dimensions?",
+      "definition": "Restoring force per unit area, \\( \\sigma = \\dfrac{F}{A} \\); <span style=\"color:#f08c00\">N m⁻² = Pa</span>, [M L⁻¹ T⁻²]",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.2-stress-and-strain"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When a body is deformed, how big is the restoring force?",
+      "definition": "<span style=\"color:#3b82f6\">Equal and opposite</span> to the applied force (body in equilibrium)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.2-stress-and-strain"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Stress types and their strains",
+      "definition": "Tensile / compressive (longitudinal) stress: longitudinal strain ΔL/L; Tangential (shearing) stress: shearing strain Δx/L = tan θ ≈ θ; Hydraulic stress (pressure on all sides): volume strain ΔV/V, no change in shape",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">8.2 · three kinds of stress</p><h2>Strain produced?</h2><table><tr><td>Tensile / compressive (longitudinal) stress</td><td class=\"q\">?</td></tr><tr><td>Tangential (shearing) stress</td><td class=\"q\">?</td></tr><tr><td>Hydraulic stress (pressure on all sides)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">8.2 · three kinds of stress</p><h2>Strain produced?</h2><table><tr><td>Tensile / compressive (longitudinal) stress</td><td class=\"a\">longitudinal strain ΔL/L</td></tr><tr><td>Tangential (shearing) stress</td><td class=\"a\">shearing strain Δx/L = tan θ ≈ θ</td></tr><tr><td>Hydraulic stress (pressure on all sides)</td><td class=\"a\">volume strain ΔV/V, no change in shape</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.2-stress-and-strain"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the four deformations in Fig. 8.1.",
+      "definition": "(a) tensile stretching; (b) shear of a cylinder; (c) shear of a book pushed sideways; (d) hydraulic compression of a body in a fluid",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.2-stress-and-strain"
+      ],
+      "termImage": "media/fig_8_1_stress_types.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is shearing strain ≈ θ?",
+      "definition": "For small θ, tan θ ≈ θ (at 10° they differ by only about 1 %)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.2-stress-and-strain"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Units of strain?",
+      "definition": "<span style=\"color:#e5484d\">None</span>: a ratio of like quantities, dimensionless",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.2-stress-and-strain"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT says the book-pushing example is \"Fig. 8.2(c)\". Which figure is it?",
+      "definition": "<span style=\"color:#3b82f6\">Fig. 8.1(c)</span>. Fig. 8.2 is the stress–strain curve",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.2-stress-and-strain"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is stress a vector (Points to ponder)?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it cannot be given a single direction; the force on a given side of a section has a direction",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.2-stress-and-strain"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A wire hangs from the ceiling with weight F at its end. Tension at a cross-section: F or 2F?",
+      "definition": "<span style=\"color:#3b82f6\">F</span>: the ceiling’s pull balances the weight; stress = F/A",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.2-stress-and-strain"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Hooke’s law: for small deformations, {{c1::stress ∝ strain}}; the constant of proportionality is the {{c2::modulus of elasticity}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.3-hookes-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is Hooke’s law a fundamental law?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is <span style=\"color:#3b82f6\">empirical</span>, valid only in the linear part of the stress–strain curve; some materials never obey it",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.3-hookes-law"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Stress–strain curve of a metal: O, A, B, D, E",
+      "definition": "O–A linear (Hooke); B yield point/elastic limit; beyond B permanent set; D ultimate strength; E fracture; ductile if D, E far apart",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Stress–strain curve · the story of a stretched wire</p><h2>A metal wire is loaded more and more until it snaps. Sketch stress vs strain and name the key points.</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"30\" y1=\"175\" x2=\"292\" y2=\"175\" marker-end=\"url(#ah)\"></line><line class=\"ax\" x1=\"30\" y1=\"175\" x2=\"30\" y2=\"14\" marker-end=\"url(#ah)\"></line><text class=\"lbl\" x=\"290\" y=\"192\" text-anchor=\"end\">strain</text><text class=\"lbl\" x=\"36\" y=\"22\">stress</text></svg><p class=\"hint\">Label the points as you go.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Stress–strain curve · the story of a stretched wire</p><h2>A metal wire is loaded more and more until it snaps. Sketch stress vs strain and name the key points.</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"30\" y1=\"175\" x2=\"292\" y2=\"175\" marker-end=\"url(#ah)\"></line><line class=\"ax\" x1=\"30\" y1=\"175\" x2=\"30\" y2=\"14\" marker-end=\"url(#ah)\"></line><text class=\"lbl\" x=\"290\" y=\"192\" text-anchor=\"end\">strain</text><text class=\"lbl\" x=\"36\" y=\"22\">stress</text><path class=\"curve draw\" pathLength=\"100\" d=\"M30 175 L58 70 C62 58 66 56 72 58 C110 66 150 40 200 30 C220 27 236 36 252 60\"></path><circle class=\"dot fx d1\" cx=\"58\" cy=\"70\" r=\"4\"></circle><text class=\"hi fx d1\" x=\"46\" y=\"66\" text-anchor=\"end\">A</text><circle class=\"dot fx d2\" cx=\"70\" cy=\"57\" r=\"4\"></circle><text class=\"hi fx d2\" x=\"70\" y=\"48\" text-anchor=\"middle\">B</text><circle class=\"dot fx d3\" cx=\"200\" cy=\"30\" r=\"4\"></circle><text class=\"hi fx d3\" x=\"200\" y=\"22\" text-anchor=\"middle\">D</text><circle class=\"dot3 fx d4\" cx=\"252\" cy=\"60\" r=\"4\"></circle><text class=\"rd fx d4\" x=\"258\" y=\"64\">E</text><line class=\"guide fx d4\" x1=\"120\" y1=\"56\" x2=\"148\" y2=\"175\"></line><text class=\"sm fx d4\" x=\"152\" y=\"170\">permanent set</text><text class=\"lbl fx d1\" x=\"62\" y=\"130\">Hooke’s law</text><text class=\"lbl fx d1\" x=\"62\" y=\"143\">(elastic, linear)</text><text class=\"lbl fx d3\" x=\"150\" y=\"90\">plastic region</text></svg><div class=\"eq fx d5\"><p><b>O–A</b>: linear, Hooke’s law (A = proportional limit). <b>B</b>: yield point / elastic limit (σᵧ).</p><p>Beyond B, unloading leaves a <b>permanent set</b>. <b>D</b>: ultimate tensile strength (σᵤ). <b>E</b>: fracture. D and E far apart → <b>ductile</b>; close → <b>brittle</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.4-stress-strain-curve"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Stress–strain curve, O to A?",
+      "definition": "<span style=\"color:#3b82f6\">Linear</span>: Hooke’s law holds; the body is elastic",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.4-stress-strain-curve"
+      ],
+      "definitionImage": "media/fig_8_2_stress_strain.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Stress–strain curve, A to B?",
+      "definition": "Not proportional, but the body <span style=\"color:#3b82f6\">still returns</span> to its original size. B = <span style=\"color:#3b82f6\">yield point / elastic limit</span>, stress there = yield strength σᵧ",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.4-stress-strain-curve"
+      ],
+      "definitionImage": "media/fig_8_2_stress_strain.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a permanent set?",
+      "definition": "Loaded beyond B and unloaded (e.g. at C), the strain does not return to zero: <span style=\"color:#3b82f6\">plastic deformation</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.4-stress-strain-curve"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ultimate tensile strength and fracture point?",
+      "definition": "<span style=\"color:#3b82f6\">D</span>: maximum stress (σᵤ); beyond it strain grows even with less force, fracture at <span style=\"color:#3b82f6\">E</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.4-stress-strain-curve"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Brittle vs ductile from the stress–strain curve?",
+      "definition": "<span style=\"color:#3b82f6\">Brittle</span>: D and E close together (e.g. glass). <span style=\"color:#3b82f6\">Ductile</span>: D and E far apart (e.g. copper, mild steel)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.4-stress-strain-curve"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are elastomers? Example?",
+      "definition": "Materials stretched to <span style=\"color:#3b82f6\">large strains</span> that still return, without obeying Hooke’s law and with no clear plastic region: <span style=\"color:#22a35a\">rubber, aorta tissue</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.4-stress-strain-curve"
+      ],
+      "definitionImage": "media/fig_8_3_aorta.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.2: from the given graph, stress 150 × 10⁶ Pa gives strain 0.002. Young’s modulus and yield strength?",
+      "definition": "Y = <span style=\"color:#f08c00\">7.5 × 10¹⁰ Pa</span>; yield strength ≈ <span style=\"color:#f08c00\">3 × 10⁸ Pa</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.4-stress-strain-curve"
+      ],
+      "definitionImage": "media/fig_8_9_ex_curve.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.3: A’s curve is steeper and goes higher than B’s. Greater Young’s modulus? Stronger?",
+      "definition": "<span style=\"color:#3b82f6\">A</span> for both: steeper slope → larger Y; higher breaking stress → stronger",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.4-stress-strain-curve"
+      ],
+      "termImage": "media/fig_8_10_two_materials.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define Young’s modulus.",
+      "definition": "\\( Y = \\dfrac{\\sigma}{\\varepsilon} = \\dfrac{FL}{A\\,\\Delta L} \\) (tensile or compressive stress ÷ longitudinal strain)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Unit of Young’s modulus?",
+      "definition": "Same as stress: <span style=\"color:#f08c00\">N m⁻² (Pa)</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Table 8.1: Young’s modulus of steel, copper, aluminium, bone?",
+      "definition": "Steel <span style=\"color:#f08c00\">200 GPa</span>, copper <span style=\"color:#f08c00\">110 GPa</span>, aluminium <span style=\"color:#f08c00\">70 GPa</span>, bone <span style=\"color:#f08c00\">9.4 GPa</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ],
+      "definitionImage": "media/tab_8_1_youngs_moduli.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Force to stretch a 0.1 cm² wire by 0.1 %: steel vs aluminium, brass, copper?",
+      "definition": "Steel <span style=\"color:#f08c00\">2000 N</span>; Al 690 N, brass 900 N, Cu 1100 N",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is steel called \"more elastic\" than rubber?",
+      "definition": "Elasticity is about <span style=\"color:#3b82f6\">resisting deformation</span>: steel stretches far less for the same stress (larger Y). \"Stretches more = more elastic\" is a misconception",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.4(a): is Young’s modulus of rubber greater than that of steel?",
+      "definition": "<span style=\"color:#e5484d\">False</span>: steel’s is far greater",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.4(b): the stretching of a coil spring is determined by which modulus?",
+      "definition": "<span style=\"color:#3b82f6\">Shear modulus</span> (true): the wire of a spring twists rather than stretches",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Steel rod under tension",
+      "definition": "Stress 3.18 × 10⁸ Pa, elongation 1.59 mm, strain 0.16 %",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 8.1 · steel rod</p><h2>Find the missing step.</h2><div class=\"prob\">Steel rod, r = 10 mm, L = 1.0 m, pulled by 100 kN; Y = 2.0 × 10¹¹ Pa. Stress, elongation, strain?</div><ol><li>A = π(0.01)² = 3.14 × 10⁻⁴ m²</li><li>Stress = 10⁵ / 3.14 × 10⁻⁴ = 3.18 × 10⁸ Pa</li><li class=\"h\">?</li><li>Strain = 1.59 × 10⁻³ = <b>0.16 %</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 8.1 · steel rod</p><h2>Find the missing step.</h2><div class=\"prob\">Steel rod, r = 10 mm, L = 1.0 m, pulled by 100 kN; Y = 2.0 × 10¹¹ Pa. Stress, elongation, strain?</div><ol><li>A = π(0.01)² = 3.14 × 10⁻⁴ m²</li><li>Stress = 10⁵ / 3.14 × 10⁻⁴ = 3.18 × 10⁸ Pa</li><li class=\"r\">ΔL = stress × L / Y = 1.59 × 10⁻³ m</li><li>Strain = 1.59 × 10⁻³ = <b>0.16 %</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Copper and steel wires in series",
+      "definition": "Equal stress: ΔLc/ΔLs = 2.5 → ΔLc = 0.5 mm → W ≈ 180 N",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 8.2 · wires in series</p><h2>Find the missing step.</h2><div class=\"prob\">Copper (2.2 m) and steel (1.6 m) wires, both 3.0 mm diameter, joined end to end; total stretch 0.70 mm. Load?</div><ol><li>Same tension and area → Y_c ΔL_c/L_c = Y_s ΔL_s/L_s</li><li class=\"h\">?</li><li>ΔL_c = 0.50 mm, ΔL_s = 0.20 mm</li><li>W = A Y_c ΔL_c / L_c = <b>1.8 × 10² N</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 8.2 · wires in series</p><h2>Find the missing step.</h2><div class=\"prob\">Copper (2.2 m) and steel (1.6 m) wires, both 3.0 mm diameter, joined end to end; total stretch 0.70 mm. Load?</div><ol><li>Same tension and area → Y_c ΔL_c/L_c = Y_s ΔL_s/L_s</li><li class=\"r\">ΔL_c/ΔL_s = (2.0/1.1)(2.2/1.6) = 2.5</li><li>ΔL_c = 0.50 mm, ΔL_s = 0.20 mm</li><li>W = A Y_c ΔL_c / L_c = <b>1.8 × 10² N</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8.3: circus human pyramid, 220 kg on a performer’s two thighbones (L 0.5 m, r 2.0 cm, Y 9.4 GPa). Compression of each?",
+      "definition": "<span style=\"color:#f08c00\">4.55 × 10⁻⁵ m</span> (strain ≈ 0.009 %)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ],
+      "definitionImage": "media/fig_8_4_pyramid.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Examples 8.2–8.4 cite \"Table 9.1\" and \"Eq. (9.8)\". What do they mean?",
+      "definition": "<span style=\"color:#3b82f6\">Table 8.1</span> and <span style=\"color:#3b82f6\">Eq. (8.8)</span>: references left over from the old chapter numbering",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.1: steel wire (4.7 m, 3.0 × 10⁻⁵ m²) and copper wire (3.5 m, 4.0 × 10⁻⁵ m²) stretch equally under the same load. Y(steel)/Y(copper)?",
+      "definition": "<span style=\"color:#f08c00\">1.8</span> (Y ∝ L/A for equal F and ΔL)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.5: steel (1.5 m) holds 4 kg + brass, brass (1.0 m) holds 6 kg; diameter 0.25 cm. Elongations?",
+      "definition": "Steel <span style=\"color:#f08c00\">1.5 × 10⁻⁴ m</span> (carries 10 kg); brass <span style=\"color:#f08c00\">1.3 × 10⁻⁴ m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ],
+      "definitionImage": "media/fig_8_11_two_wires.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.9: steel cable, radius 1.5 cm, stress limit 10⁸ Pa. Maximum load?",
+      "definition": "F = 10⁸ × π(0.015)² ≈ <span style=\"color:#f08c00\">7.07 × 10⁴ N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.1-youngs-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define shear modulus (modulus of rigidity).",
+      "definition": "\\( G = \\dfrac{F/A}{\\Delta x/L} = \\dfrac{F}{A\\theta} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.2-shear-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Typical relation between G and Y?",
+      "definition": "\\( G \\approx \\dfrac{Y}{3} \\) for most materials",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.2-shear-modulus"
+      ],
+      "definitionImage": "media/tab_8_2_shear_moduli.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Which moduli apply only to solids?",
+      "definition": "Young’s and shear moduli: only <span style=\"color:#3b82f6\">solids</span> have fixed lengths and shapes",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.2-shear-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8.4: lead slab 50 cm × 50 cm × 10 cm, shear force 9.0 × 10⁴ N on the narrow face, lower edge riveted, G = 5.6 GPa. Displacement of the top edge?",
+      "definition": "Stress = 9.0 × 10⁴ / 0.05 = 1.8 × 10⁶ Pa; Δx = stress × L / G = <span style=\"color:#f08c00\">0.16 mm</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.2-shear-modulus"
+      ],
+      "definitionImage": "media/fig_8_5_lead_slab.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Example 8.4 writes the stress as 9.4 × 10⁴ N / 0.05 m². What is right?",
+      "definition": "The force is <span style=\"color:#3b82f6\">9.0 × 10⁴ N</span> (as given); 9.0 × 10⁴ / 0.05 = 1.8 × 10⁶ Pa, which is the value NCERT then uses",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.2-shear-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.6: Al cube, edge 10 cm, one face fixed to a wall, 100 kg hung on the opposite face, G = 25 GPa. Vertical deflection?",
+      "definition": "Δx = FL/(AG) = 980 × 0.1 / (0.01 × 2.5 × 10¹⁰) ≈ <span style=\"color:#f08c00\">3.9 × 10⁻⁷ m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.2-shear-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT’s answer key gives 4 × 10⁻⁶ m for Exercise 8.6. Check.",
+      "definition": "Recomputing: 98 / (2.5 × 10⁸) = <span style=\"color:#3b82f6\">3.92 × 10⁻⁷ m</span>. The key is ten times too large",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.2-shear-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define bulk modulus.",
+      "definition": "\\( B = -\\dfrac{p}{\\Delta V/V} \\); the minus sign makes B positive, since ΔV < 0 when p rises",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define compressibility.",
+      "definition": "\\( k = \\dfrac{1}{B} = -\\dfrac{1}{\\Delta p}\\dfrac{\\Delta V}{V} \\): fractional volume change per unit pressure",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Order of bulk moduli: solids, liquids, gases?",
+      "definition": "Solids > liquids ≫ gases; gases are about a <span style=\"color:#3b82f6\">million times</span> more compressible than solids",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ],
+      "definitionImage": "media/tab_8_3_bulk_moduli.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are solids so incompressible?",
+      "definition": "Tight coupling between neighbouring <span style=\"color:#3b82f6\">atoms</span>; in liquids the coupling is weaker, in gases very weak",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which modulus applies to solids, liquids and gases?",
+      "definition": "<span style=\"color:#3b82f6\">Bulk modulus</span> only",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Bulk modulus of water and of air (STP)?",
+      "definition": "Water <span style=\"color:#f08c00\">2.2 × 10⁹ Pa</span>; air <span style=\"color:#f08c00\">1.0 × 10⁵ Pa</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8.5: fractional compression of water at the bottom of the Indian Ocean (3000 m)?",
+      "definition": "p = hρg = 3 × 10⁷ Pa; ΔV/V = p/B = <span style=\"color:#f08c00\">1.36 %</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Stress, strain and moduli at a glance (Table 8.4)",
+      "definition": "Young’s modulus Y (tensile/compressive): shape: yes, volume: no; Shear modulus G: shape: yes, volume: no; Bulk modulus B (hydraulic): shape: no, volume: yes",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 8.4 · summary of moduli</p><h2>Change in shape / volume?</h2><table><tr><td>Young’s modulus Y (tensile/compressive)</td><td class=\"q\">?</td></tr><tr><td>Shear modulus G</td><td class=\"q\">?</td></tr><tr><td>Bulk modulus B (hydraulic)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 8.4 · summary of moduli</p><h2>Change in shape / volume?</h2><table><tr><td>Young’s modulus Y (tensile/compressive)</td><td class=\"a\">shape: yes, volume: no</td></tr><tr><td>Shear modulus G</td><td class=\"a\">shape: yes, volume: no</td></tr><tr><td>Bulk modulus B (hydraulic)</td><td class=\"a\">shape: no, volume: yes</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.12: 100.0 L of water compressed by 0.5 L under 100 atm. Bulk modulus? Compare with air.",
+      "definition": "<span style=\"color:#f08c00\">2.0 × 10⁹ Pa</span>, about <span style=\"color:#f08c00\">2 × 10⁴</span> times that of air (B = p ≈ 10⁵ Pa at constant T): molecules in a liquid are tightly packed",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.16: pressure change to compress a litre of water by 0.10 %?",
+      "definition": "Δp = B × 0.001 = <span style=\"color:#f08c00\">2.2 × 10⁶ Pa</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.13: density of water at 80.0 atm if 1.03 × 10³ kg/m³ at the surface?",
+      "definition": "\\( \\rho = \\dfrac{\\rho_0}{1 - p/B} \\approx \\) <span style=\"color:#f08c00\">1.034 × 10³ kg/m³</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.3-bulk-modulus"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define Poisson’s ratio.",
+      "definition": "\\( \\dfrac{lateral\\ strain}{longitudinal\\ strain} = \\dfrac{\\Delta d/d}{\\Delta L/L} \\); no units",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.4-poissons-ratio"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Typical Poisson’s ratio for steel and aluminium alloys?",
+      "definition": "Steel <span style=\"color:#f08c00\">0.28–0.30</span>; aluminium alloys ≈ <span style=\"color:#f08c00\">0.33</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.4-poissons-ratio"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is lateral strain?",
+      "definition": "Strain <span style=\"color:#3b82f6\">perpendicular</span> to the applied force (the wire gets thinner as it lengthens)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.4-poissons-ratio"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Elastic potential energy stored in a stretched wire?",
+      "definition": "\\( U = \\tfrac12 \\dfrac{YAl^2}{L} = \\tfrac12 \\times \\sigma \\times \\varepsilon \\times V \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.5-elastic-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Elastic energy per unit volume?",
+      "definition": "\\( u = \\tfrac12\\,\\sigma\\varepsilon = \\tfrac12 Y\\varepsilon^2 = \\dfrac{\\sigma^2}{2Y} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.5-elastic-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: why is the energy ½ F l, not F l?",
+      "definition": "The force grows from 0 to F as the wire stretches; the average force is F/2 (triangle under the F–l line)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.5.5-elastic-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Crane rope for 10 tonnes, mild steel σᵧ = 300 MPa. Minimum area and practical radius?",
+      "definition": "A ≥ Mg/σᵧ = <span style=\"color:#f08c00\">3.3 × 10⁻⁴ m²</span> (r ≈ 1 cm); with a safety factor of 10, r ≈ <span style=\"color:#f08c00\">3 cm</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.6-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are crane ropes made of many braided thin wires?",
+      "definition": "For ease of manufacture, <span style=\"color:#3b82f6\">flexibility</span> and strength; a single 3 cm wire would be a rigid rod",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.6-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sag of a beam loaded at the centre?",
+      "definition": "\\( \\delta = \\dfrac{Wl^3}{4bd^3Y} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.6-applications"
+      ],
+      "definitionImage": "media/fig_8_6_beam.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "To reduce bending of a beam, increase breadth or depth?",
+      "definition": "<span style=\"color:#3b82f6\">Depth</span>: δ ∝ 1/d³ but only 1/b",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.6-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are beams given an I-shaped cross-section?",
+      "definition": "Enough depth to resist bending, less material and weight, and it avoids <span style=\"color:#3b82f6\">buckling</span> of a deep thin bar",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.6-applications"
+      ],
+      "definitionImage": "media/fig_8_7_beam_sections.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Pillar with rounded ends vs distributed (flared) ends?",
+      "definition": "The one with <span style=\"color:#3b82f6\">distributed ends</span> supports more load",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.6-applications"
+      ],
+      "definitionImage": "media/fig_8_8_pillars.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can mountains on Earth not be much higher than ~10 km?",
+      "definition": "At height h the base shear stress ≈ hρg; rock flows beyond ~3 × 10⁸ Pa: h ≈ 3 × 10⁸ / (3 × 10³ × 10) = <span style=\"color:#f08c00\">10 km</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.6-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.7: four hollow steel columns (radii 30 and 60 cm) share 50 000 kg. Compressional strain of each?",
+      "definition": "F = 50 000 × 9.8 / 4, A = π(0.6² − 0.3²) = 0.848 m² → strain ≈ <span style=\"color:#f08c00\">7.2 × 10⁻⁷</span> (Y = 2 × 10¹¹ Pa)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.6-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT’s key gives 2.8 × 10⁻⁶ for Exercise 8.7. Check.",
+      "definition": "That equals the strain if <span style=\"color:#e5484d\">one column carried the whole load</span>. Shared by four columns, as the question says: <span style=\"color:#3b82f6\">7.2 × 10⁻⁷</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "8.6-applications"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 8 concept checks",
+      "definition": "Hooke’s law holds all the way to the breaking point: False (linear part only); A material that stretches more is more elastic: False; Bulk modulus applies to gases too: True; Stress is a vector: False; A longitudinal stress also changes the width of a wire: True (Poisson’s ratio)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>Hooke’s law holds all the way to the breaking point</td><td class=\"q\">?</td></tr><tr><td>A material that stretches more is more elastic</td><td class=\"q\">?</td></tr><tr><td>Bulk modulus applies to gases too</td><td class=\"q\">?</td></tr><tr><td>Stress is a vector</td><td class=\"q\">?</td></tr><tr><td>A longitudinal stress also changes the width of a wire</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>Hooke’s law holds all the way to the breaking point</td><td class=\"a no\">False (linear part only)</td></tr><tr><td>A material that stretches more is more elastic</td><td class=\"a no\">False</td></tr><tr><td>Bulk modulus applies to gases too</td><td class=\"a\">True</td></tr><tr><td>Stress is a vector</td><td class=\"a no\">False</td></tr><tr><td>A longitudinal stress also changes the width of a wire</td><td class=\"a\">True (Poisson’s ratio)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 8 formula sheet",
+      "definition": "Young’s modulus: Y = FL / (AΔL); Shear modulus: G = F / (Aθ); Bulk modulus: B = −p / (ΔV/V); Elastic energy density: u = ½ stress × strain",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Young’s modulus</td><td class=\"q\">?</td></tr><tr><td>Shear modulus</td><td class=\"q\">?</td></tr><tr><td>Bulk modulus</td><td class=\"q\">?</td></tr><tr><td>Elastic energy density</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Young’s modulus</td><td class=\"a\">Y = FL / (AΔL)</td></tr><tr><td>Shear modulus</td><td class=\"a\">G = F / (Aθ)</td></tr><tr><td>Bulk modulus</td><td class=\"a\">B = −p / (ΔV/V)</td></tr><tr><td>Elastic energy density</td><td class=\"a\">u = ½ stress × strain</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-8",
+        "summary"
+      ]
+    }
+  ]
+}
