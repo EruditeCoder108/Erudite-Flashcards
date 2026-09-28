@@ -1,0 +1,826 @@
+{
+  "version": 1,
+  "name": "Chapter 13: Oscillations",
+  "className": "Class 11",
+  "description": "Periodic and oscillatory motion, SHM, phase, reference circle, velocity and acceleration, force law, energy, spring systems, simple pendulum",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Periodic vs oscillatory motion?",
+      "definition": "<span style=\"color:#3b82f6\">Periodic</span>: repeats at regular intervals. <span style=\"color:#3b82f6\">Oscillatory</span>: periodic to-and-fro motion about a mean (equilibrium) position",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ],
+      "definitionImage": "media/fig_13_1_periodic.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Is every periodic motion oscillatory?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: every oscillation is periodic, but <span style=\"color:#22a35a\">uniform circular motion</span> is periodic without being oscillatory",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Oscillation vs vibration?",
+      "definition": "No real difference: low frequency is usually called <span style=\"color:#3b82f6\">oscillation</span> (tree branch), high frequency <span style=\"color:#3b82f6\">vibration</span> (guitar string)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do real oscillations die out? How can they be kept going?",
+      "definition": "<span style=\"color:#3b82f6\">Damping</span> (friction, dissipation); an external periodic force can keep them going (forced oscillations)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How are waves related to oscillations?",
+      "definition": "A medium is a collection of coupled oscillators; their <span style=\"color:#3b82f6\">collective oscillations</span> are waves",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define period and frequency. Unit of frequency?",
+      "definition": "<span style=\"color:#3b82f6\">Period</span> T: smallest interval after which motion repeats. <span style=\"color:#3b82f6\">Frequency</span> ν = 1/T, in <span style=\"color:#f08c00\">hertz</span> (1 Hz = 1 s⁻¹)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13.1: heart beats 75 times a minute. Frequency and period?",
+      "definition": "<span style=\"color:#f08c00\">1.25 Hz</span>, <span style=\"color:#f08c00\">0.8 s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does \"displacement\" mean in oscillations?",
+      "definition": "Change with time of <span style=\"color:#3b82f6\">any physical quantity</span>: position, angle of a pendulum, capacitor voltage, air pressure in sound…",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ],
+      "definitionImage": "media/fig_13_2b_pendulum.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Fourier’s theorem?",
+      "definition": "Any periodic function can be written as a <span style=\"color:#3b82f6\">superposition of sines and cosines</span> of different periods",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Show that A sin ωt + B cos ωt is simple harmonic.",
+      "definition": "It equals \\( D\\sin(\\omega t + \\phi) \\) with \\( D = \\sqrt{A^2 + B^2},\\ \\tan\\phi = B/A \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Is it SHM, periodic, or neither?",
+      "definition": "sin ωt + cos ωt: SHM, T = 2π/ω; sin ωt + cos 2ωt + sin 4ωt: periodic, not SHM; T = 2π/ω; 3 cos(π/4 − 2ωt): SHM, T = π/ω; cos ωt + cos 3ωt + cos 5ωt: periodic, not SHM; T = 2π/ω; e^(−ωt), log ωt, 1 + ωt + ω²t²: non-periodic",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 13.2 / Exercise 13.4</p><h2>Type of motion?</h2><table><tr><td>sin ωt + cos ωt</td><td class=\"q\">?</td></tr><tr><td>sin ωt + cos 2ωt + sin 4ωt</td><td class=\"q\">?</td></tr><tr><td>3 cos(π/4 − 2ωt)</td><td class=\"q\">?</td></tr><tr><td>cos ωt + cos 3ωt + cos 5ωt</td><td class=\"q\">?</td></tr><tr><td>e^(−ωt), log ωt, 1 + ωt + ω²t²</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 13.2 / Exercise 13.4</p><h2>Type of motion?</h2><table><tr><td>sin ωt + cos ωt</td><td class=\"a\">SHM, T = 2π/ω</td></tr><tr><td>sin ωt + cos 2ωt + sin 4ωt</td><td class=\"a\">periodic, not SHM; T = 2π/ω</td></tr><tr><td>3 cos(π/4 − 2ωt)</td><td class=\"a\">SHM, T = π/ω</td></tr><tr><td>cos ωt + cos 3ωt + cos 5ωt</td><td class=\"a\">periodic, not SHM; T = 2π/ω</td></tr><tr><td>e^(−ωt), log ωt, 1 + ωt + ω²t²</td><td class=\"a no\">non-periodic</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13.3: is sin²ωt simple harmonic?",
+      "definition": "sin²ωt = ½ − ½ cos 2ωt: harmonic with period <span style=\"color:#f08c00\">π/ω</span>, but about the mean value ½, not 0",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.4(b): is sin³ωt simple harmonic?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: sin³ωt = (3 sin ωt − sin 3ωt)/4, periodic (T = 2π/ω) but not SHM",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.2-periodic-and-oscillatory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define simple harmonic motion.",
+      "definition": "Motion in which displacement is a <span style=\"color:#3b82f6\">sinusoidal function of time</span>: \\( x(t) = A\\cos(\\omega t + \\phi) \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.3-simple-harmonic-motion"
+      ],
+      "definitionImage": "media/fig_13_5_x_vs_t.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Meaning of symbols in x = A cos(ωt + φ)",
+      "definition": "A: amplitude (maximum displacement); ω: angular frequency (rad/s); ωt + φ: phase (time-dependent); φ: phase constant (phase at t = 0)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Fig. 13.6 · symbols of SHM</p><h2>Name?</h2><table><tr><td>A</td><td class=\"q\">?</td></tr><tr><td>ω</td><td class=\"q\">?</td></tr><tr><td>ωt + φ</td><td class=\"q\">?</td></tr><tr><td>φ</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Fig. 13.6 · symbols of SHM</p><h2>Name?</h2><table><tr><td>A</td><td class=\"a\">amplitude (maximum displacement)</td></tr><tr><td>ω</td><td class=\"a\">angular frequency (rad/s)</td></tr><tr><td>ωt + φ</td><td class=\"a\">phase (time-dependent)</td></tr><tr><td>φ</td><td class=\"a\">phase constant (phase at t = 0)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.3-simple-harmonic-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: where is the particle and how fast at t = 0, T/4, T/2, 3T/4?",
+      "definition": "At +A (rest), 0 (vₘₐₓ, moving to −A), −A (rest), 0 (vₘₐₓ, moving to +A)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.3-simple-harmonic-motion"
+      ],
+      "termImage": "media/fig_13_4_positions.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between ω, T and ν?",
+      "definition": "\\( \\omega = \\dfrac{2\\pi}{T} = 2\\pi\\nu \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.3-simple-harmonic-motion"
+      ],
+      "definitionImage": "media/fig_13_8_two_periods.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the phase tell you?",
+      "definition": "The <span style=\"color:#3b82f6\">state of motion</span> (position and velocity) at time t",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.3-simple-harmonic-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How many initial conditions fix a given SHM (known ω)?",
+      "definition": "<span style=\"color:#f08c00\">Two</span>: e.g. initial position and velocity, or amplitude and phase",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.3-simple-harmonic-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does the period of SHM depend on amplitude?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: T is independent of amplitude, energy and phase (unlike planetary orbits)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.3-simple-harmonic-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.7: x(0) = 1 cm, v(0) = ω cm/s, ω = π s⁻¹. Amplitude and phase for x = A cos(ωt + φ)?",
+      "definition": "A = <span style=\"color:#f08c00\">√2 cm</span>, φ = <span style=\"color:#f08c00\">−π/4 (= 7π/4)</span>. With sine: B = √2 cm, α = π/4",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.3-simple-harmonic-motion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "SHM as the projection of uniform circular motion",
+      "definition": "The projection of uniform circular motion on a diameter is SHM: x = A cos(ωt + φ); fastest at centre, at rest at ±A",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">SHM · reference circle</p><h2>A point moves uniformly round a circle. How does its shadow on a diameter move?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><circle class=\"ghost\" cx=\"100\" cy=\"92\" r=\"62\"></circle><line class=\"ax\" x1=\"26\" y1=\"176\" x2=\"174\" y2=\"176\"></line><text class=\"sm\" x=\"38\" y=\"192\" text-anchor=\"middle\">−A</text><text class=\"sm\" x=\"100\" y=\"192\" text-anchor=\"middle\">0</text><text class=\"sm\" x=\"162\" y=\"192\" text-anchor=\"middle\">+A</text></svg><p class=\"hint\">Imagine light from above.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">SHM · reference circle</p><h2>A point moves uniformly round a circle. How does its shadow on a diameter move?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><circle class=\"ghost\" cx=\"100\" cy=\"92\" r=\"62\"></circle><line class=\"ax\" x1=\"26\" y1=\"176\" x2=\"174\" y2=\"176\"></line><text class=\"sm\" x=\"38\" y=\"192\" text-anchor=\"middle\">−A</text><text class=\"sm\" x=\"100\" y=\"192\" text-anchor=\"middle\">0</text><text class=\"sm\" x=\"162\" y=\"192\" text-anchor=\"middle\">+A</text><g class=\"refp\"><line class=\"guide\" x1=\"100\" y1=\"92\" x2=\"162\" y2=\"92\"></line><circle class=\"obj2\" cx=\"162\" cy=\"92\" r=\"6\"></circle></g><g transform=\"translate(162,176)\"><circle class=\"dot3 shd\" cx=\"0\" cy=\"0\" r=\"6\"></circle></g><polyline class=\"c2\" points=\"190.0,53.6 191.2,53.7 192.5,54.0 193.8,54.6 195.0,55.4 196.2,56.5 197.5,57.7 198.8,59.2 200.0,60.9 201.2,62.8 202.5,64.8 203.8,67.0 205.0,69.4 206.2,71.9 207.5,74.5 208.8,77.3 210.0,80.1 211.2,83.0 212.5,86.0 213.8,89.0 215.0,92.0 216.2,95.0 217.5,98.0 218.8,101.0 220.0,103.9 221.2,106.7 222.5,109.5 223.8,112.1 225.0,114.6 226.2,117.0 227.5,119.2 228.8,121.2 230.0,123.1 231.2,124.8 232.5,126.3 233.8,127.5 235.0,128.6 236.2,129.4 237.5,130.0 238.8,130.3 240.0,130.4 241.2,130.3 242.5,130.0 243.8,129.4 245.0,128.6 246.2,127.5 247.5,126.3 248.8,124.8 250.0,123.1 251.2,121.2 252.5,119.2 253.8,117.0 255.0,114.6 256.2,112.1 257.5,109.5 258.8,106.7 260.0,103.9 261.2,101.0 262.5,98.0 263.8,95.0 265.0,92.0 266.2,89.0 267.5,86.0 268.8,83.0 270.0,80.1 271.2,77.3 272.5,74.5 273.8,71.9 275.0,69.4 276.2,67.0 277.5,64.8 278.8,62.8 280.0,60.9 281.2,59.2 282.5,57.7 283.8,56.5 285.0,55.4 286.2,54.6 287.5,54.0 288.8,53.7 290.0,53.6\"></polyline><text class=\"gr\" x=\"240\" y=\"30\" text-anchor=\"middle\">x = A cos ωt</text><text class=\"yl\" x=\"100\" y=\"16\" text-anchor=\"middle\">uniform circular motion</text><text class=\"rd\" x=\"100\" y=\"208\" text-anchor=\"middle\">its shadow: SHM</text></svg><div class=\"eq fx d5\"><p>The shadow executes <b>SHM</b>: x = A cos(ωt + φ), with A = radius and ω = angular speed of the point.</p><p>It is fastest at the centre (v = ωA) and momentarily at rest at ±A.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .refp{transform-origin:100px 92px;animation:refp 4.0s linear infinite .3s}@keyframes refp{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}.bp .shd{animation:shd 4.0s linear 0.3s infinite both}@keyframes shd{0.00%{transform:translate(0.0px,0.0px)}2.50%{transform:translate(-0.8px,0.0px)}5.00%{transform:translate(-3.0px,0.0px)}7.50%{transform:translate(-6.8px,0.0px)}10.00%{transform:translate(-11.8px,0.0px)}12.50%{transform:translate(-18.2px,0.0px)}15.00%{transform:translate(-25.6px,0.0px)}17.50%{transform:translate(-33.9px,0.0px)}20.00%{transform:translate(-42.8px,0.0px)}22.50%{transform:translate(-52.3px,0.0px)}25.00%{transform:translate(-62.0px,0.0px)}27.50%{transform:translate(-71.7px,0.0px)}30.00%{transform:translate(-81.2px,0.0px)}32.50%{transform:translate(-90.1px,0.0px)}35.00%{transform:translate(-98.4px,0.0px)}37.50%{transform:translate(-105.8px,0.0px)}40.00%{transform:translate(-112.2px,0.0px)}42.50%{transform:translate(-117.2px,0.0px)}45.00%{transform:translate(-121.0px,0.0px)}47.50%{transform:translate(-123.2px,0.0px)}50.00%{transform:translate(-124.0px,0.0px)}52.50%{transform:translate(-123.2px,0.0px)}55.00%{transform:translate(-121.0px,0.0px)}57.50%{transform:translate(-117.2px,0.0px)}60.00%{transform:translate(-112.2px,0.0px)}62.50%{transform:translate(-105.8px,0.0px)}65.00%{transform:translate(-98.4px,0.0px)}67.50%{transform:translate(-90.1px,0.0px)}70.00%{transform:translate(-81.2px,0.0px)}72.50%{transform:translate(-71.7px,0.0px)}75.00%{transform:translate(-62.0px,0.0px)}77.50%{transform:translate(-52.3px,0.0px)}80.00%{transform:translate(-42.8px,0.0px)}82.50%{transform:translate(-33.9px,0.0px)}85.00%{transform:translate(-25.6px,0.0px)}87.50%{transform:translate(-18.2px,0.0px)}90.00%{transform:translate(-11.8px,0.0px)}92.50%{transform:translate(-6.8px,0.0px)}95.00%{transform:translate(-3.0px,0.0px)}97.50%{transform:translate(-0.8px,0.0px)}100.00%{transform:translate(0.0px,0.0px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .refp{transform-origin:100px 92px;animation:refp 4.0s linear infinite .3s}@keyframes refp{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}.bp .shd{animation:shd 4.0s linear 0.3s infinite both}@keyframes shd{0.00%{transform:translate(0.0px,0.0px)}2.50%{transform:translate(-0.8px,0.0px)}5.00%{transform:translate(-3.0px,0.0px)}7.50%{transform:translate(-6.8px,0.0px)}10.00%{transform:translate(-11.8px,0.0px)}12.50%{transform:translate(-18.2px,0.0px)}15.00%{transform:translate(-25.6px,0.0px)}17.50%{transform:translate(-33.9px,0.0px)}20.00%{transform:translate(-42.8px,0.0px)}22.50%{transform:translate(-52.3px,0.0px)}25.00%{transform:translate(-62.0px,0.0px)}27.50%{transform:translate(-71.7px,0.0px)}30.00%{transform:translate(-81.2px,0.0px)}32.50%{transform:translate(-90.1px,0.0px)}35.00%{transform:translate(-98.4px,0.0px)}37.50%{transform:translate(-105.8px,0.0px)}40.00%{transform:translate(-112.2px,0.0px)}42.50%{transform:translate(-117.2px,0.0px)}45.00%{transform:translate(-121.0px,0.0px)}47.50%{transform:translate(-123.2px,0.0px)}50.00%{transform:translate(-124.0px,0.0px)}52.50%{transform:translate(-123.2px,0.0px)}55.00%{transform:translate(-121.0px,0.0px)}57.50%{transform:translate(-117.2px,0.0px)}60.00%{transform:translate(-112.2px,0.0px)}62.50%{transform:translate(-105.8px,0.0px)}65.00%{transform:translate(-98.4px,0.0px)}67.50%{transform:translate(-90.1px,0.0px)}70.00%{transform:translate(-81.2px,0.0px)}72.50%{transform:translate(-71.7px,0.0px)}75.00%{transform:translate(-62.0px,0.0px)}77.50%{transform:translate(-52.3px,0.0px)}80.00%{transform:translate(-42.8px,0.0px)}82.50%{transform:translate(-33.9px,0.0px)}85.00%{transform:translate(-25.6px,0.0px)}87.50%{transform:translate(-18.2px,0.0px)}90.00%{transform:translate(-11.8px,0.0px)}92.50%{transform:translate(-6.8px,0.0px)}95.00%{transform:translate(-3.0px,0.0px)}97.50%{transform:translate(-0.8px,0.0px)}100.00%{transform:translate(0.0px,0.0px)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.4-shm-and-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is SHM related to uniform circular motion?",
+      "definition": "The <span style=\"color:#3b82f6\">projection</span> of uniform circular motion on any diameter is SHM (reference circle, reference particle)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.4-shm-and-circular-motion"
+      ],
+      "definitionImage": "media/fig_13_10_reference_circle.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "A ball whirled in a horizontal circle, seen edge-on: what motion do you see?",
+      "definition": "To-and-fro <span style=\"color:#3b82f6\">SHM</span> along a line",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.4-shm-and-circular-motion"
+      ],
+      "definitionImage": "media/fig_13_9_ball_circle.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Projections on the x- and y-axes: how do they differ?",
+      "definition": "Same amplitude and ω, but differ in phase by <span style=\"color:#f08c00\">π/2</span> (cos vs sin)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.4-shm-and-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is the restoring force in SHM the same as the centripetal force of the reference circle?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: they are very different forces; only the projected motion matches",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.4-shm-and-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13.4(a): radius A, T = 4 s, starts at 45°, anticlockwise. x(t)?",
+      "definition": "\\( x = A\\cos\\left(\\dfrac{\\pi}{2}t + \\dfrac{\\pi}{4}\\right) \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.4-shm-and-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13.4(b): radius B, T = 30 s, starts at 90°, clockwise. x(t)?",
+      "definition": "\\( x = B\\sin\\left(\\dfrac{\\pi}{15}t\\right) = B\\cos\\left(\\dfrac{\\pi}{15}t - \\dfrac{\\pi}{2}\\right) \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.4-shm-and-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.11 (Fig. 13.20): x-projections of the two motions shown?",
+      "definition": "(a) <span style=\"color:#f08c00\">x = −3 sin πt cm</span>; (b) <span style=\"color:#f08c00\">x = −2 cos (πt/2) cm</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.4-shm-and-circular-motion"
+      ],
+      "definitionImage": "media/fig_13_20_ex_circles.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Velocity in SHM?",
+      "definition": "\\( v = -\\omega A\\sin(\\omega t + \\phi) \\); in terms of x: \\( v = \\pm\\omega\\sqrt{A^2 - x^2} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.5-velocity-and-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Acceleration in SHM?",
+      "definition": "\\( a = -\\omega^2 A\\cos(\\omega t + \\phi) = -\\omega^2 x \\): always towards the mean position",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.5-velocity-and-acceleration"
+      ],
+      "definitionImage": "media/fig_13_12_acceleration_projection.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Maximum speed and maximum acceleration?",
+      "definition": "\\( v_{max} = \\omega A \\) at x = 0; \\( a_{max} = \\omega^2 A \\) at x = ±A",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.5-velocity-and-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Phase relations between x, v and a?",
+      "definition": "v leads x by <span style=\"color:#f08c00\">π/2</span>; a is <span style=\"color:#f08c00\">π</span> out of phase with x",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.5-velocity-and-acceleration"
+      ],
+      "definitionImage": "media/fig_13_13_x_v_a.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: where is each quantity zero or maximum?",
+      "definition": "\"<span style=\"color:#3b82f6\">Middle: fast, no force</span>; <span style=\"color:#3b82f6\">ends: still, big force</span>\": at x = 0, v max and a = 0; at x = ±A, v = 0 and |a| max",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.5-velocity-and-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13.5: x = 5 cos(2πt + π/4) m. Displacement, speed and acceleration at t = 1.5 s?",
+      "definition": "x = <span style=\"color:#f08c00\">−3.535 m</span>; speed ≈ <span style=\"color:#f08c00\">22 m/s</span>; a ≈ <span style=\"color:#f08c00\">+140 m/s²</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.5-velocity-and-acceleration"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Signs of v and a in SHM (Exercise 13.5)",
+      "definition": "At end A: v = 0, a +; At end B: v = 0, a −; Mid-point, going to A: v −, a = 0; 2 cm from B, going to A: v −, a −; 3 cm from A, going to B: v +, a +",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 13.5 · signs</p><h2>Signs of v, a (= F)? (A → B positive, 10 cm apart)</h2><table><tr><td>At end A</td><td class=\"q\">?</td></tr><tr><td>At end B</td><td class=\"q\">?</td></tr><tr><td>Mid-point, going to A</td><td class=\"q\">?</td></tr><tr><td>2 cm from B, going to A</td><td class=\"q\">?</td></tr><tr><td>3 cm from A, going to B</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 13.5 · signs</p><h2>Signs of v, a (= F)? (A → B positive, 10 cm apart)</h2><table><tr><td>At end A</td><td class=\"a\">v = 0, a +</td></tr><tr><td>At end B</td><td class=\"a\">v = 0, a −</td></tr><tr><td>Mid-point, going to A</td><td class=\"a\">v −, a = 0</td></tr><tr><td>2 cm from B, going to A</td><td class=\"a\">v −, a −</td></tr><tr><td>3 cm from A, going to B</td><td class=\"a\">v +, a +</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.5-velocity-and-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.6: which is SHM: a = 0.7x, a = −200x², a = −10x, a = 100x³?",
+      "definition": "<span style=\"color:#3b82f6\">a = −10x</span> only (a ∝ −x)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.5-velocity-and-acceleration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Force law for SHM?",
+      "definition": "\\( F = -kx \\) with \\( k = m\\omega^2 \\): restoring force ∝ displacement, towards the mean position",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Period of a mass on a spring?",
+      "definition": "\\( T = 2\\pi\\sqrt{\\dfrac mk} \\), \\( \\omega = \\sqrt{\\dfrac km} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Linear vs non-linear oscillator?",
+      "definition": "<span style=\"color:#3b82f6\">Linear</span>: F ∝ −x exactly. <span style=\"color:#3b82f6\">Non-linear</span>: extra x², x³ terms (real systems at large amplitude)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13.6: mass between two identical springs k. Period?",
+      "definition": "Net force −2kx → \\( T = 2\\pi\\sqrt{\\dfrac{m}{2k}} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ],
+      "definitionImage": "media/fig_13_14_two_springs.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Effective spring constant",
+      "definition": "Two springs in parallel (or on both sides of a mass): k₁ + k₂; Two springs in series: k₁k₂/(k₁ + k₂); Spring cut into two equal halves: each half 2k",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · spring combinations</p><h2>Effective k?</h2><table><tr><td>Two springs in parallel (or on both sides of a mass)</td><td class=\"q\">?</td></tr><tr><td>Two springs in series</td><td class=\"q\">?</td></tr><tr><td>Spring cut into two equal halves</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · spring combinations</p><h2>Effective k?</h2><table><tr><td>Two springs in parallel (or on both sides of a mass)</td><td class=\"a\">k₁ + k₂</td></tr><tr><td>Two springs in series</td><td class=\"a\">k₁k₂/(k₁ + k₂)</td></tr><tr><td>Spring cut into two equal halves</td><td class=\"a\">each half 2k</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.13: spring k with mass m at one end (a) vs masses m at both ends (b), each pulled by F. Extension and period?",
+      "definition": "Extension <span style=\"color:#f08c00\">F/k</span> in both. T = \\( 2\\pi\\sqrt{m/k} \\) for (a), \\( 2\\pi\\sqrt{m/2k} \\) for (b) (each half acts as a 2k spring)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ],
+      "termImage": "media/fig_13_21_ex_springs.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.8: spring balance, 0–50 kg over 20 cm; a hanging body oscillates with T = 0.6 s. Its weight?",
+      "definition": "k = 50 × 9.8/0.2 = 2450 N/m → m ≈ 22.3 kg → weight ≈ <span style=\"color:#f08c00\">219 N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.9: 3 kg on a spring k = 1200 N/m pulled 2.0 cm. Frequency, max acceleration, max speed?",
+      "definition": "ω = 20 rad/s → ν ≈ <span style=\"color:#f08c00\">3.2 Hz</span>; aₘₐₓ = <span style=\"color:#f08c00\">8.0 m/s²</span>; vₘₐₓ = <span style=\"color:#f08c00\">0.4 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ],
+      "definitionImage": "media/fig_13_19_ex_spring.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.10: same spring; x(t) if timing starts at the mean position, at maximum stretch, at maximum compression?",
+      "definition": "<span style=\"color:#f08c00\">x = 2 sin 20t</span>, <span style=\"color:#f08c00\">2 cos 20t</span>, <span style=\"color:#f08c00\">−2 cos 20t</span> (cm): only the initial phase differs",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.17: why does a floating cork pushed down execute SHM?",
+      "definition": "The extra buoyancy is ∝ depth pushed (Aρₗgx): a restoring force ∝ −x; \\( T = 2\\pi\\sqrt{\\dfrac{h\\rho}{\\rho_l g}} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: period of a liquid column (total length L) oscillating in a U-tube (Exercise 13.18)?",
+      "definition": "\\( T = 2\\pi\\sqrt{\\dfrac{L}{2g}} \\): restoring force from the level difference 2x",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.14: locomotive piston, stroke 1.0 m, ω = 200 rad/min. Maximum speed?",
+      "definition": "vₘₐₓ = ωA = 200 × 0.5 = <span style=\"color:#f08c00\">100 m/min</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.6-force-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Kinetic and potential energy in SHM?",
+      "definition": "\\( K = \\tfrac12 kA^2\\sin^2(\\omega t + \\phi),\\quad U = \\tfrac12 kx^2 = \\tfrac12 kA^2\\cos^2(\\omega t + \\phi) \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.7-energy-in-shm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Total energy in SHM?",
+      "definition": "\\( E = \\tfrac12 kA^2 = \\tfrac12 m\\omega^2A^2 \\): constant, ∝ amplitude²",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.7-energy-in-shm"
+      ],
+      "definitionImage": "media/fig_13_16_energy.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Period of K and U compared with the period of motion?",
+      "definition": "<span style=\"color:#f08c00\">T/2</span>: each peaks twice per oscillation",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.7-energy-in-shm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where is energy all kinetic, all potential?",
+      "definition": "All <span style=\"color:#3b82f6\">kinetic</span> at x = 0; all <span style=\"color:#3b82f6\">potential</span> at x = ±A",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.7-energy-in-shm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "At what displacement are K and U equal?",
+      "definition": "\\( x = \\pm\\dfrac{A}{\\sqrt2} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.7-energy-in-shm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13.7: 1 kg on a 50 N/m spring pulled 10 cm. K, U and E at x = 5 cm?",
+      "definition": "K ≈ <span style=\"color:#f08c00\">0.19 J</span>, U = <span style=\"color:#f08c00\">0.0625 J</span>, E = <span style=\"color:#f08c00\">0.25 J</span> (= ½ × 50 × 0.1²)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.7-energy-in-shm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who noticed the periodic swing of a chandelier, timing it with his pulse?",
+      "definition": "<span style=\"color:#3b82f6\">Galileo</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.8-simple-pendulum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which force gives the restoring torque on a pendulum bob?",
+      "definition": "The tangential component <span style=\"color:#3b82f6\">mg sin θ</span>; T − mg cos θ provides the centripetal force",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.8-simple-pendulum"
+      ],
+      "definitionImage": "media/fig_13_17_pendulum_forces.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is a pendulum SHM only for small angles?",
+      "definition": "Restoring torque ∝ sin θ, and <span style=\"color:#3b82f6\">sin θ ≈ θ</span> (radians) only for small θ — within ~1 % up to about 20°",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.8-simple-pendulum"
+      ],
+      "definitionImage": "media/tab_13_1_sin_theta.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Period of a simple pendulum?",
+      "definition": "\\( T = 2\\pi\\sqrt{\\dfrac Lg} \\) — independent of mass and (small) amplitude",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.8-simple-pendulum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13.8: length of a seconds pendulum (T = 2 s)?",
+      "definition": "L = gT²/4π² ≈ <span style=\"color:#f08c00\">1 m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.8-simple-pendulum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.15: a pendulum has T = 3.5 s on Earth. On the Moon (g = 1.7 m/s²)?",
+      "definition": "3.5 × √(9.8/1.7) ≈ <span style=\"color:#f08c00\">8.4 s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.8-simple-pendulum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.16: pendulum in a car going round a circle (radius R, speed v). Period?",
+      "definition": "\\( T = 2\\pi\\sqrt{\\dfrac{l}{\\sqrt{g^2 + v^4/R^2}}} \\) (effective g includes v²/R)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.8-simple-pendulum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: pendulum in a lift accelerating up at a?",
+      "definition": "\\( T = 2\\pi\\sqrt{\\dfrac{L}{g + a}} \\) (down: g − a; free fall: no oscillation)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "13.8-simple-pendulum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.1: which are periodic — swimmer’s return trip, displaced bar magnet, rotating H₂ molecule, arrow from a bow?",
+      "definition": "<span style=\"color:#3b82f6\">Bar magnet</span> and <span style=\"color:#3b82f6\">rotating H₂ molecule</span>; the swimmer and arrow do not repeat",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.2: which are (nearly) SHM — Earth’s rotation, mercury in a U-tube, ball in a bowl, polyatomic molecule vibrations?",
+      "definition": "SHM: <span style=\"color:#3b82f6\">U-tube mercury</span>, <span style=\"color:#3b82f6\">ball in a bowl</span>. Periodic but not SHM: Earth’s rotation, polyatomic vibrations",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 13.3 (Fig. 13.18): which x–t plots are periodic?",
+      "definition": "(b) and (d), each with period <span style=\"color:#f08c00\">2 s</span>; (a), (c) are not (repeating one position is not enough)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "exercises"
+      ],
+      "termImage": "media/fig_13_18_ex_xt.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT labels the Exercise 13.3 figure \"Fig. 18.18\", cites \"Eq. (14.4)\" and potential energy \"in Chapter 6\". Right references?",
+      "definition": "<span style=\"color:#3b82f6\">Fig. 13.18</span>, <span style=\"color:#3b82f6\">Eq. (13.4)</span>, and <span style=\"color:#3b82f6\">Chapter 5</span> (Work, Energy and Power) — leftovers of the old numbering",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 13 formula sheet",
+      "definition": "Displacement: x = A cos(ωt + φ); Velocity: v = ±ω√(A² − x²); Acceleration: a = −ω²x; Spring: T = 2π√(m/k); Pendulum: T = 2π√(L/g); Energy: E = ½kA²",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Displacement</td><td class=\"q\">?</td></tr><tr><td>Velocity</td><td class=\"q\">?</td></tr><tr><td>Acceleration</td><td class=\"q\">?</td></tr><tr><td>Spring</td><td class=\"q\">?</td></tr><tr><td>Pendulum</td><td class=\"q\">?</td></tr><tr><td>Energy</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Displacement</td><td class=\"a\">x = A cos(ωt + φ)</td></tr><tr><td>Velocity</td><td class=\"a\">v = ±ω√(A² − x²)</td></tr><tr><td>Acceleration</td><td class=\"a\">a = −ω²x</td></tr><tr><td>Spring</td><td class=\"a\">T = 2π√(m/k)</td></tr><tr><td>Pendulum</td><td class=\"a\">T = 2π√(L/g)</td></tr><tr><td>Energy</td><td class=\"a\">E = ½kA²</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 13 concept checks",
+      "definition": "Every periodic motion is SHM: False (only F = −kx); A sum of two SHMs is always periodic: False (frequencies must be commensurate); Damped oscillation is strictly SHM: False; Period of SHM is independent of amplitude: True",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>Every periodic motion is SHM</td><td class=\"q\">?</td></tr><tr><td>A sum of two SHMs is always periodic</td><td class=\"q\">?</td></tr><tr><td>Damped oscillation is strictly SHM</td><td class=\"q\">?</td></tr><tr><td>Period of SHM is independent of amplitude</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>Every periodic motion is SHM</td><td class=\"a no\">False (only F = −kx)</td></tr><tr><td>A sum of two SHMs is always periodic</td><td class=\"a no\">False (frequencies must be commensurate)</td></tr><tr><td>Damped oscillation is strictly SHM</td><td class=\"a no\">False</td></tr><tr><td>Period of SHM is independent of amplitude</td><td class=\"a\">True</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-13",
+        "summary"
+      ]
+    }
+  ]
+}

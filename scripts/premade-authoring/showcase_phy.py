@@ -577,3 +577,31 @@ def terminal_velocity(deck):
          'Ball in oil: approach to terminal velocity',
          'Speed rises to a constant terminal value when 6πηav + buoyancy = weight; vt = 2a²(ρ−σ)g/9η',
          css, hint='What force grows with speed?', vb='0 0 300 190', front_only=still)
+
+
+# ---------------------------------------------------------------- Ch 13 Oscillations
+def shm_reference_circle(deck):
+    import math
+    cx, cy, r, T, n = 100, 92, 62, 4.0, 40
+    css = (f'.bp .refp{{transform-origin:{cx}px {cy}px;animation:refp {T}s linear infinite .3s}}'
+           '@keyframes refp{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}'
+           + keyframes('shd', [(r * math.cos(2 * math.pi * i / n) - r, 0) for i in range(n + 1)], T, 'linear', 0.3))
+    wave = ' '.join(f'{190 + 100 * i / 80:.1f},{cy - 0.62 * r * math.cos(2 * math.pi * i / 80):.1f}' for i in range(81))
+    base = (f'<circle class="ghost" cx="{cx}" cy="{cy}" r="{r}"></circle>'
+            f'<line class="ax" x1="{cx - r - 12}" y1="{cy + r + 22}" x2="{cx + r + 12}" y2="{cy + r + 22}"></line>'
+            f'<text class="sm" x="{cx - r}" y="{cy + r + 38}" text-anchor="middle">−A</text><text class="sm" x="{cx}" y="{cy + r + 38}" text-anchor="middle">0</text>'
+            f'<text class="sm" x="{cx + r}" y="{cy + r + 38}" text-anchor="middle">+A</text>')
+    back = (f'<g class="refp"><line class="guide" x1="{cx}" y1="{cy}" x2="{cx + r}" y2="{cy}"></line>'
+            f'<circle class="obj2" cx="{cx + r}" cy="{cy}" r="6"></circle></g>'
+            f'<g transform="translate({cx + r},{cy + r + 22})"><circle class="dot3 shd" cx="0" cy="0" r="6"></circle></g>'
+            f'<polyline class="c2" points="{wave}"></polyline><text class="gr" x="240" y="30" text-anchor="middle">x = A cos ωt</text>'
+            '<text class="yl" x="100" y="16" text-anchor="middle">uniform circular motion</text>'
+            f'<text class="rd" x="100" y="{cy + r + 54}" text-anchor="middle">its shadow: SHM</text>')
+    anim(deck, 'SHM · reference circle',
+         'A point moves uniformly round a circle. How does its shadow on a diameter move?',
+         base, back,
+         '<p>The shadow executes <b>SHM</b>: x = A cos(ωt + φ), with A = radius and ω = angular speed of the point.</p>'
+         '<p>It is fastest at the centre (v = ωA) and momentarily at rest at ±A.</p>',
+         'SHM as the projection of uniform circular motion',
+         'The projection of uniform circular motion on a diameter is SHM: x = A cos(ωt + φ); fastest at centre, at rest at ±A',
+         css, hint='Imagine light from above.', vb='0 0 300 200')
