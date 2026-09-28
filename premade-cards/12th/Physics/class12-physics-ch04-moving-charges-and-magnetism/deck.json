@@ -1,0 +1,1342 @@
+{
+  "version": 1,
+  "name": "Chapter 4: Moving Charges and Magnetism",
+  "className": "Class 12",
+  "description": "Lorentz force, motion in B, Biot–Savart law, circular loop, Ampere’s law, solenoid, parallel currents, torque on a loop, galvanometer",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Who discovered that a current deflects a compass needle? When?",
+      "definition": "<span style=\"color:#3b82f6\">Hans Christian Oersted</span> (Danish), <span style=\"color:#f08c00\">1820</span>, during a lecture demonstration",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a compass needle align near a long straight current?",
+      "definition": "<span style=\"color:#3b82f6\">Tangent to circles</span> centred on the wire, in a plane perpendicular to it; reversing the current reverses the needle",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.1-introduction"
+      ],
+      "definitionImage": "media/drawn_wire_field.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How do iron filings arrange around a straight current-carrying wire?",
+      "definition": "In <span style=\"color:#3b82f6\">concentric circles</span> centred on the wire",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Oersted’s conclusion?",
+      "definition": "<span style=\"color:#3b82f6\">Moving charges (currents) produce a magnetic field</span> in the surrounding space",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who unified electricity and magnetism, and when? What did he realise?",
+      "definition": "<span style=\"color:#3b82f6\">James Maxwell</span>, <span style=\"color:#f08c00\">1864</span>; light is an electromagnetic wave",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who discovered and who produced radio waves?",
+      "definition": "Discovered by <span style=\"color:#3b82f6\">Hertz</span>; produced by <span style=\"color:#3b82f6\">J. C. Bose</span> and <span style=\"color:#3b82f6\">G. Marconi</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Convention: dot ⊙ and cross ⊗ for a field or current?",
+      "definition": "⊙ = <span style=\"color:#3b82f6\">out of the page</span> (arrow tip towards you); ⊗ = <span style=\"color:#3b82f6\">into the page</span> (feathered tail going away)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Properties the magnetic field shares with the electric field?",
+      "definition": "Defined at every point (vector field), can vary with time, obeys <span style=\"color:#3b82f6\">superposition</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Lorentz force on a charge q?",
+      "definition": "\\( \\vec F = q\\left[\\vec E + \\vec v\\times\\vec B\\right] \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Three features of the magnetic force q(v × B)?",
+      "definition": "(1) Opposite for − charges; (2) <span style=\"color:#3b82f6\">perpendicular to v and B</span>, zero if v ∥ B; (3) <span style=\"color:#e5484d\">zero for a charge at rest</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ],
+      "definitionImage": "media/fig_4_2_force_direction.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define 1 tesla.",
+      "definition": "Field in which a charge of <span style=\"color:#f08c00\">1 C</span> moving at <span style=\"color:#f08c00\">1 m/s</span> perpendicular to B feels <span style=\"color:#f08c00\">1 N</span>: 1 T = 1 N s C⁻¹ m⁻¹",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Gauss in tesla? Earth’s field?",
+      "definition": "1 G = <span style=\"color:#f08c00\">10⁻⁴ T</span>; Earth ≈ <span style=\"color:#f08c00\">3.6 × 10⁻⁵ T</span> (≈ 0.4 G)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dimensions of B?",
+      "definition": "[M T⁻² A⁻¹]",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Force on a straight current-carrying rod in a uniform B?",
+      "definition": "\\( \\vec F = I\\,\\vec l\\times\\vec B \\), with \\( \\vec l \\) along the current (current itself is not a vector)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In F = Il × B, whose field is B?",
+      "definition": "The <span style=\"color:#3b82f6\">external</span> field — not the field of the rod itself",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Force on a wire of arbitrary shape?",
+      "definition": "Sum over elements: \\( \\vec F = \\sum I\\,d\\vec l_j\\times\\vec B \\) (an integral)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: force on a closed loop or a bent wire in a uniform B?",
+      "definition": "Closed loop: <span style=\"color:#f08c00\">zero</span>. Bent wire from P to Q: same as a <span style=\"color:#3b82f6\">straight wire PQ</span> carrying I",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.1: 200 g, 1.5 m wire with 2 A suspended by a horizontal B. B?",
+      "definition": "mg = IlB → B = 0.2 × 9.8/(2 × 1.5) = <span style=\"color:#f08c00\">0.65 T</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ],
+      "definitionImage": "media/fig_4_3_suspended_wire.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.2: B along +y, particle moves along +x. Force on an electron? On a proton?",
+      "definition": "v × B is along +z: proton <span style=\"color:#3b82f6\">+z</span>, electron <span style=\"color:#3b82f6\">−z</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ],
+      "definitionImage": "media/fig_4_4_example.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.5: 8 A wire at 30° to B = 0.15 T. Force per unit length?",
+      "definition": "IB sin 30° = <span style=\"color:#f08c00\">0.6 N/m</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.6: 3.0 cm wire with 10 A inside a solenoid, perpendicular to its axis, B = 0.27 T. Force?",
+      "definition": "IlB = 10 × 0.03 × 0.27 = <span style=\"color:#f08c00\">8.1 × 10⁻² N</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: direction of force on a current (or + charge) in B?",
+      "definition": "<span style=\"color:#3b82f6\">Right-hand rule</span>: fingers along v (or I), curl towards B; thumb gives F. For an electron, reverse it. (Fleming’s left-hand rule gives the same: Field, Current, Motion)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.2-magnetic-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does a magnetic force change a particle’s speed or kinetic energy? Why?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: F ⊥ v, so it does <span style=\"color:#3b82f6\">no work</span>; only the direction changes",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Charge moving perpendicular to a uniform B: path and radius?",
+      "definition": "<span style=\"color:#3b82f6\">Circle</span> in the plane ⊥ B; \\( r = \\dfrac{mv}{qB} = \\dfrac{p}{qB} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ],
+      "definitionImage": "media/fig_4_5_circular.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Angular frequency and period of circular motion in B?",
+      "definition": "\\( \\omega = \\dfrac{qB}{m},\\ T = \\dfrac{2\\pi m}{qB} \\) — <span style=\"color:#3b82f6\">independent of speed and radius</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Velocity at an angle to B: path? Pitch?",
+      "definition": "<span style=\"color:#3b82f6\">Helix</span> with axis along B; pitch \\( p = v_\\parallel T = \\dfrac{2\\pi m v_\\parallel}{qB} \\); radius uses v⊥",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ],
+      "definitionImage": "media/fig_4_6_helical.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define cyclotron frequency.",
+      "definition": "\\( \\nu_c = \\dfrac{qB}{2\\pi m} \\): frequency of circular motion in B, independent of energy",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Note: NCERT’s introduction and summary mention the cyclotron. Is its section in the book?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it was removed in the rationalised syllabus. Just know it uses ν_c being <span style=\"color:#3b82f6\">independent of speed</span> to accelerate particles",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Electron circling in a magnetic field (Example 4.3)",
+      "definition": "r = 28 cm, ν = 17 MHz, E ≈ 2.5 keV",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.3 · electron in B</p><h2>Find the missing step.</h2><div class=\"prob\">Electron (9 × 10⁻³¹ kg) at 3 × 10⁷ m/s perpendicular to B = 6 × 10⁻⁴ T. Radius, frequency, energy?</div><ol><li>r = mv/qB = 9 × 10⁻³¹ × 3 × 10⁷ / (1.6 × 10⁻¹⁹ × 6 × 10⁻⁴) = <b>28 cm</b></li><li class=\"h\">?</li><li>E = ½mv² = ½ × 9 × 10⁻³¹ × 9 × 10¹⁴ ≈ 4 × 10⁻¹⁶ J</li><li>= 4 × 10⁻¹⁶ / 1.6 × 10⁻¹⁹ eV = <b>2.5 keV</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.3 · electron in B</p><h2>Find the missing step.</h2><div class=\"prob\">Electron (9 × 10⁻³¹ kg) at 3 × 10⁷ m/s perpendicular to B = 6 × 10⁻⁴ T. Radius, frequency, energy?</div><ol><li>r = mv/qB = 9 × 10⁻³¹ × 3 × 10⁷ / (1.6 × 10⁻¹⁹ × 6 × 10⁻⁴) = <b>28 cm</b></li><li class=\"r\">ν = v/2πr = <b>17 MHz</b></li><li>E = ½mv² = ½ × 9 × 10⁻³¹ × 9 × 10¹⁴ ≈ 4 × 10⁻¹⁶ J</li><li>= 4 × 10⁻¹⁶ / 1.6 × 10⁻¹⁹ eV = <b>2.5 keV</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.11: electron at 4.8 × 10⁶ m/s normal to B = 6.5 G. Why a circle? Radius?",
+      "definition": "F ⊥ v provides centripetal force; r = mv/eB ≈ <span style=\"color:#f08c00\">4.2 cm</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Exercise 4.11 gives e = 1.5 × 10⁻¹⁹ C. Right value, and does it matter?",
+      "definition": "e = <span style=\"color:#3b82f6\">1.6 × 10⁻¹⁹ C</span> (typo). With 1.6, r = 4.2 cm (the answer key value); with 1.5 you would get 4.5 cm",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.12: frequency of that electron? Depends on speed?",
+      "definition": "ν = eB/2πm ≈ <span style=\"color:#f08c00\">18 MHz</span>; <span style=\"color:#e5484d\">independent of speed</span> (r grows with v, time per turn stays the same)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: an electron and a proton enter the same B with equal momenta. Compare radii.",
+      "definition": "Equal (r = p/qB, same |q|). With equal kinetic energy, r ∝ √m, so the proton’s circle is larger",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.3-motion-in-magnetic-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sources of all known magnetic fields?",
+      "definition": "<span style=\"color:#3b82f6\">Currents / moving charges</span> and <span style=\"color:#3b82f6\">intrinsic magnetic moments</span> of particles",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.4-biot-savart-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State the Biot–Savart law.",
+      "definition": "\\( d\\vec B = \\dfrac{\\mu_0}{4\\pi}\\dfrac{I\\,d\\vec l\\times\\vec r}{r^3} \\); magnitude \\( \\dfrac{\\mu_0}{4\\pi}\\dfrac{I\\,dl\\sin\\theta}{r^2} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.4-biot-savart-law"
+      ],
+      "definitionImage": "media/fig_4_7_biot_savart.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Value of μ₀/4π? Name of μ₀?",
+      "definition": "\\( \\dfrac{\\mu_0}{4\\pi} = 10^{-7} \\) T m/A; μ₀ = <span style=\"color:#3b82f6\">permeability of free space</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.4-biot-savart-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Update: NCERT says μ₀ = 4π × 10⁻⁷ exactly. Still exact?",
+      "definition": "<span style=\"color:#e5484d\">Not since 2019</span>: fixing e made μ₀ a measured constant, 1.25663706… × 10⁻⁶ T m/A — equal to 4π × 10⁻⁷ to 10 digits, so use it freely",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.4-biot-savart-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Biot–Savart vs Coulomb: similarities?",
+      "definition": "Both <span style=\"color:#3b82f6\">inverse-square</span> and long range; both obey superposition; both linear in their source",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.4-biot-savart-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Biot–Savart vs Coulomb: differences?",
+      "definition": "Source: <span style=\"color:#3b82f6\">vector I dl</span> vs scalar q. Direction: B ⊥ plane of dl and r vs E along r. B has a <span style=\"color:#3b82f6\">sin θ</span> dependence",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.4-biot-savart-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Magnetic field of a current element at a point along its own line?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span> (θ = 0, sin θ = 0)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.4-biot-savart-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between ε₀, μ₀ and c?",
+      "definition": "\\( c = \\dfrac{1}{\\sqrt{\\mu_0\\varepsilon_0}} \\) — fixing one of μ₀, ε₀ fixes the other",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.4-biot-savart-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.4: element Δl = 1 cm along x at the origin, I = 10 A. B at 0.5 m on the y-axis?",
+      "definition": "dB = 10⁻⁷ × 10 × 10⁻² / 0.25 = <span style=\"color:#f08c00\">4 × 10⁻⁸ T</span>, along <span style=\"color:#3b82f6\">+z</span> (î × ĵ = k̂)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.4-biot-savart-law"
+      ],
+      "definitionImage": "media/fig_4_8_element.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Field on the axis of a circular loop (radius R) at distance x?",
+      "definition": "\\( B = \\dfrac{\\mu_0 I R^2}{2(x^2 + R^2)^{3/2}} \\), along the axis",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.5-field-on-axis-of-circular-loop"
+      ],
+      "definitionImage": "media/fig_4_9_loop_axis.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does only the axial component survive for a circular loop?",
+      "definition": "The perpendicular components dB⊥ of <span style=\"color:#3b82f6\">diametrically opposite</span> elements cancel",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.5-field-on-axis-of-circular-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field at the centre of a circular loop? N turns?",
+      "definition": "\\( B = \\dfrac{\\mu_0 I}{2R} \\); with N turns \\( \\dfrac{\\mu_0 NI}{2R} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.5-field-on-axis-of-circular-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Right-hand thumb rule for a loop?",
+      "definition": "Curl the fingers along the current; the <span style=\"color:#3b82f6\">thumb</span> gives B (and the loop’s N face)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.5-field-on-axis-of-circular-loop"
+      ],
+      "definitionImage": "media/fig_4_10_loop_lines.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Two right-hand rules: how do fingers and thumb swap roles?",
+      "definition": "Straight wire: <span style=\"color:#3b82f6\">thumb = current</span>, fingers = B. Loop: <span style=\"color:#3b82f6\">fingers = current</span>, thumb = B",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.5-field-on-axis-of-circular-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.5: 12 A wire bent into a semicircle (R = 2 cm) with straight leads. B at the centre?",
+      "definition": "Straight parts: 0 (dl ∥ r). Semicircle: half a loop, \\( \\mu_0 I/4R \\) = <span style=\"color:#f08c00\">1.9 × 10⁻⁴ T</span> into the page; bent the other way, same size, opposite direction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.5-field-on-axis-of-circular-loop"
+      ],
+      "definitionImage": "media/fig_4_11_semicircle.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.6: 100 turns, R = 10 cm, I = 1 A. B at the centre?",
+      "definition": "\\( \\mu_0NI/2R \\) = <span style=\"color:#f08c00\">6.28 × 10⁻⁴ T</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.5-field-on-axis-of-circular-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.1: 100 turns, R = 8.0 cm, 0.40 A. B at the centre?",
+      "definition": "<span style=\"color:#f08c00\">3.1 × 10⁻⁴ T</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.5-field-on-axis-of-circular-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: field at the centre of an arc subtending angle φ (radians)?",
+      "definition": "\\( B = \\dfrac{\\mu_0 I\\varphi}{4\\pi R} \\) (φ = 2π gives the loop, φ = π the semicircle)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.5-field-on-axis-of-circular-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Ampere’s circuital law.",
+      "definition": "\\( \\oint \\vec B\\cdot d\\vec l = \\mu_0 I \\), I = net current through the surface bounded by the loop",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ],
+      "definitionImage": "media/fig_4_12_amperian.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Sign convention in Ampere’s law?",
+      "definition": "<span style=\"color:#3b82f6\">Right-hand rule</span>: curl the fingers along the direction of traversal; the thumb gives the positive current direction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Simplified form for symmetric cases?",
+      "definition": "\\( BL = \\mu_0 I_e \\) where B is tangential and constant over length L of the loop (elsewhere B ⊥ loop or zero)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field of a long straight wire from Ampere’s law?",
+      "definition": "\\( B\\cdot2\\pi r = \\mu_0 I \\Rightarrow B = \\dfrac{\\mu_0 I}{2\\pi r} \\), tangential circles",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Four lessons from B = μ₀I/2πr?",
+      "definition": "(1) <span style=\"color:#3b82f6\">Cylindrical symmetry</span>; (2) field lines are closed circles; (3) finite at finite r even for an infinite wire; (4) direction by the right-hand grip rule",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ampere’s law is to Biot–Savart as ___ is to ___?",
+      "definition": "<span style=\"color:#3b82f6\">Gauss’s law</span> to <span style=\"color:#3b82f6\">Coulomb’s law</span>: same content, handy under symmetry",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can Ampere’s law give B at the centre of a circular loop?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: no suitable symmetric loop; use Biot–Savart",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ampere’s law as given here holds for what kind of currents?",
+      "definition": "<span style=\"color:#3b82f6\">Steady</span> currents only",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.7: thick wire (radius a, uniform current I). B inside and outside?",
+      "definition": "Outside: \\( \\dfrac{\\mu_0I}{2\\pi r} \\) (∝ 1/r). Inside: \\( \\dfrac{\\mu_0 I r}{2\\pi a^2} \\) (∝ r, enclosed current Ir²/a²)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ],
+      "definitionImage": "media/fig_4_13_thick_wire.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Sketch B versus r for a thick wire with uniform current.",
+      "definition": "Rises <span style=\"color:#3b82f6\">linearly</span> from 0 at the centre to a maximum at r = a, then falls as <span style=\"color:#3b82f6\">1/r</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ],
+      "definitionImage": "media/fig_4_14_B_vs_r.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.2: 35 A wire. B at 20 cm?",
+      "definition": "<span style=\"color:#f08c00\">3.5 × 10⁻⁵ T</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.3: 50 A flowing north to south in a horizontal wire. B at 2.5 m east of it?",
+      "definition": "<span style=\"color:#f08c00\">4 × 10⁻⁶ T</span>, vertically <span style=\"color:#3b82f6\">upward</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.4: overhead line, 90 A east to west. B 1.5 m below it?",
+      "definition": "<span style=\"color:#f08c00\">1.2 × 10⁻⁵ T</span>, towards the <span style=\"color:#3b82f6\">south</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.6-amperes-circuital-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a long solenoid? Why enamelled wire?",
+      "definition": "A tightly wound helix whose length ≫ radius; enamel <span style=\"color:#3b82f6\">insulates</span> neighbouring turns",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.7-the-solenoid"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field pattern of a finite solenoid?",
+      "definition": "Inside: <span style=\"color:#3b82f6\">strong, uniform, along the axis</span>; outside: weak; fields between neighbouring turns cancel",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.7-the-solenoid"
+      ],
+      "definitionImage": "media/fig_4_15_solenoid.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Field inside a long solenoid? Derive with Ampere’s law.",
+      "definition": "Rectangular loop abcd: only side ab (length h) inside contributes; Bh = μ₀(nh)I → \\( B = \\mu_0 n I \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.7-the-solenoid"
+      ],
+      "definitionImage": "media/fig_4_16_long_solenoid.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How can the field of a solenoid be made much larger?",
+      "definition": "Insert a <span style=\"color:#3b82f6\">soft iron core</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.7-the-solenoid"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: field at the end of a long solenoid?",
+      "definition": "\\( \\tfrac12\\mu_0 nI \\) — half the value at the centre",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.7-the-solenoid"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.8: 0.5 m solenoid, 500 turns, 5 A. B inside?",
+      "definition": "n = 1000/m; B = 4π × 10⁻⁷ × 10³ × 5 = <span style=\"color:#f08c00\">6.28 × 10⁻³ T</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.7-the-solenoid"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Example 4.8 cites “Eq. (4.20)” for the long-solenoid field. Right equation?",
+      "definition": "<span style=\"color:#3b82f6\">Eq. (4.16)</span>, B = μ₀nI; Eq. (4.20) is the torque on a loop",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.7-the-solenoid"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.8: 80 cm long, 5 layers of 400 turns, 8.0 A. B near the centre?",
+      "definition": "n = 2000/0.8 = 2500 m⁻¹ → B = <span style=\"color:#f08c00\">2.5 × 10⁻² T</span> (diameter doesn’t matter)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.7-the-solenoid"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Force per unit length between two long parallel currents?",
+      "definition": "\\( f = \\dfrac{\\mu_0 I_a I_b}{2\\pi d} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.8-force-between-parallel-currents"
+      ],
+      "definitionImage": "media/fig_4_17_parallel_wires.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Parallel vs antiparallel currents?",
+      "definition": "<span style=\"color:#3b82f6\">Parallel attract</span>, <span style=\"color:#e5484d\">antiparallel repel</span> — the opposite of the charge rule (like charges repel)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.8-force-between-parallel-currents"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Do forces between parallel steady currents obey Newton’s third law?",
+      "definition": "Yes: F_ba = −F_ab. (For time-varying fields, only if field momentum is included)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.8-force-between-parallel-currents"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NCERT’s definition of the ampere (1946)?",
+      "definition": "Current in two infinitely long parallel thin wires <span style=\"color:#f08c00\">1 m</span> apart in vacuum giving a force of <span style=\"color:#f08c00\">2 × 10⁻⁷ N per metre</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.8-force-between-parallel-currents"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Update: is the ampere still defined by parallel wires?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: since 2019 it is defined by fixing <span style=\"color:#3b82f6\">e = 1.602176634 × 10⁻¹⁹ C</span> (1 A = 1 C/s with e exact); the wire result still holds",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.8-force-between-parallel-currents"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Instrument used to measure the force between currents?",
+      "definition": "A <span style=\"color:#3b82f6\">current balance</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.8-force-between-parallel-currents"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.9: 1 A on a table, Earth’s horizontal field 3.0 × 10⁻⁵ T (S → N). Force per metre for current E → W? S → N?",
+      "definition": "E → W: <span style=\"color:#f08c00\">3 × 10⁻⁵ N/m</span>, downward. S → N: <span style=\"color:#f08c00\">0</span> (parallel to B)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.8-force-between-parallel-currents"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.7: 8.0 A and 5.0 A in the same direction, 4.0 cm apart. Force on 10 cm of A?",
+      "definition": "<span style=\"color:#f08c00\">2 × 10⁻⁵ N</span>, attractive",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.8-force-between-parallel-currents"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why do parallel currents attract?",
+      "definition": "Between the wires their circular fields <span style=\"color:#3b82f6\">oppose</span> (weak); outside they add (strong). Wires get pushed towards the weak-field region — towards each other",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.8-force-between-parallel-currents"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rectangular loop in a uniform B: net force? Torque?",
+      "definition": "Net force <span style=\"color:#f08c00\">0</span>; torque \\( \\tau = IAB\\sin\\theta \\) (θ between normal and B)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ],
+      "definitionImage": "media/fig_4_18_coil_torque.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does the torque on a loop fall as it turns towards θ = 0?",
+      "definition": "The forces on AB and CD stay IbB but the <span style=\"color:#3b82f6\">perpendicular distance between them</span> (a sin θ) shrinks",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ],
+      "definitionImage": "media/fig_4_19_coil_angle.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Magnetic moment of a current loop? Unit and dimensions?",
+      "definition": "\\( \\vec m = NI\\vec A \\) (direction by right-hand thumb rule); A m² (= J/T), [L²A]",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Torque on a magnetic dipole in B (vector)?",
+      "definition": "\\( \\vec\\tau = \\vec m\\times\\vec B \\) — analogue of τ = p × E",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Stable and unstable equilibrium of a loop in B?",
+      "definition": "<span style=\"color:#3b82f6\">Stable</span>: m parallel to B. <span style=\"color:#e5484d\">Unstable</span>: m antiparallel",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: potential energy of a magnetic dipole in B?",
+      "definition": "\\( U = -\\vec m\\cdot\\vec B = -mB\\cos\\theta \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Coil rotating in a magnetic field (Example 4.10)",
+      "definition": "m ≈ 10 A m²; τ from 0 to 20 N m; ½𝐼ω² = mB → ω = 20 s⁻¹",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.10 · coil released in B</p><h2>Find the missing step.</h2><div class=\"prob\">100 turns, R = 10 cm, 3.2 A; B = 2 T with the axis initially along B; the coil turns 90°. Torques, and angular speed (moment of inertia 0.1 kg m²)?</div><ol><li>m = NIπR² = 100 × 3.2 × 3.14 × 10⁻² ≈ <b>10 A m²</b></li><li>τ = mB sin θ: 0 at the start, <b>20 N m</b> at 90°</li><li class=\"h\">?</li><li>ω = √(2 × 20/0.1) = <b>20 rad/s</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.10 · coil released in B</p><h2>Find the missing step.</h2><div class=\"prob\">100 turns, R = 10 cm, 3.2 A; B = 2 T with the axis initially along B; the coil turns 90°. Torques, and angular speed (moment of inertia 0.1 kg m²)?</div><ol><li>m = NIπR² = 100 × 3.2 × 3.14 × 10⁻² ≈ <b>10 A m²</b></li><li>τ = mB sin θ: 0 at the start, <b>20 N m</b> at 90°</li><li class=\"r\">Work done by field over 90° = mB(1 − cos 90°) = 20 J = ½ 𝐼ω²</li><li>ω = √(2 × 20/0.1) = <b>20 rad/s</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: in Example 4.10, “initially the axis of the coil is along the field” and the coil then rotates 90°. Would it rotate on its own?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: θ = 0 is <span style=\"color:#3b82f6\">stable equilibrium</span> (zero torque); the example only works if it starts at 90° and swings to 0°. The numbers (τ 0 ↔ 20 N m, ω = 20 s⁻¹) are unaffected",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.11(a): can a uniform B spin a horizontal loop about the vertical axis?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: τ = IA × B is always in the plane of the loop, never vertical",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.11(b): stable orientation of a loop in B? What about the flux?",
+      "definition": "Area vector <span style=\"color:#3b82f6\">along B</span>; then the loop’s own field adds to B, giving <span style=\"color:#3b82f6\">maximum total flux</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.11(c): why does a flexible irregular current loop become circular?",
+      "definition": "To <span style=\"color:#3b82f6\">maximise flux</span>: a circle encloses the most area for a given perimeter",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.9: square coil, side 10 cm, 20 turns, 12 A; normal at 30° to B = 0.80 T. Torque?",
+      "definition": "NIAB sin 30° = <span style=\"color:#f08c00\">0.96 N m</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.13: 30 turns, R = 8.0 cm, 6.0 A, B = 1.0 T at 60° to the normal. Counter-torque? Irregular coil of equal area?",
+      "definition": "<span style=\"color:#f08c00\">3.1 N m</span>; <span style=\"color:#3b82f6\">unchanged</span> — torque depends only on area, not shape",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9-torque-on-current-loop"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field of a current loop far away on its axis?",
+      "definition": "\\( B \\approx \\dfrac{\\mu_0}{4\\pi}\\dfrac{2m}{x^3} \\) — like the axial field of an electric dipole",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9.2-current-loop-as-magnetic-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field of a loop far away in its own plane?",
+      "definition": "\\( B \\approx \\dfrac{\\mu_0}{4\\pi}\\dfrac{m}{x^3} \\) (equatorial field)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9.2-current-loop-as-magnetic-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Substitutions that turn electric dipole formulas into magnetic ones?",
+      "definition": "\\( p \\to m,\\ E \\to B,\\ \\dfrac{1}{\\varepsilon_0} \\to \\mu_0 \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9.2-current-loop-as-magnetic-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fundamental difference between electric and magnetic dipoles?",
+      "definition": "An electric dipole is made of two charges; <span style=\"color:#e5484d\">magnetic monopoles are not known</span> — the current loop is the most elementary magnetic element",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9.2-current-loop-as-magnetic-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ampere’s hypothesis? Is it the whole story?",
+      "definition": "All magnetism comes from <span style=\"color:#3b82f6\">circulating currents</span>. Partly true: electrons and protons also have <span style=\"color:#3b82f6\">intrinsic</span> magnetic moments",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.9.2-current-loop-as-magnetic-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Principle of a moving coil galvanometer?",
+      "definition": "Torque <span style=\"color:#3b82f6\">NIAB</span> on a coil in a radial field is balanced by the spring’s restoring torque kφ",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ],
+      "definitionImage": "media/fig_4_20_mcg.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the field in a galvanometer radial? Role of the soft-iron core?",
+      "definition": "Radial field keeps the coil’s plane along B, so <span style=\"color:#3b82f6\">sin θ = 1</span> at every deflection (linear scale); the core makes it radial and <span style=\"color:#3b82f6\">stronger</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Deflection of a galvanometer?",
+      "definition": "\\( \\varphi = \\left(\\dfrac{NAB}{k}\\right) I \\) (k = torsional constant, restoring torque per unit twist)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Current sensitivity? Voltage sensitivity?",
+      "definition": "\\( \\dfrac{\\varphi}{I} = \\dfrac{NAB}{k},\\quad \\dfrac{\\varphi}{V} = \\dfrac{NAB}{kR} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Doubling the turns: effect on current and voltage sensitivity?",
+      "definition": "Current sensitivity <span style=\"color:#3b82f6\">doubles</span>; resistance also doubles, so voltage sensitivity <span style=\"color:#e5484d\">is unchanged</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can’t a galvanometer be used directly as an ammeter?",
+      "definition": "It is very sensitive (full-scale ~<span style=\"color:#f08c00\">μA</span>) and has a large resistance that would change the circuit current",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is a galvanometer converted to an ammeter?",
+      "definition": "A small <span style=\"color:#3b82f6\">shunt r_s in parallel</span>; net resistance ≈ r_s",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ],
+      "definitionImage": "media/fig_4_21_ammeter.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How is a galvanometer converted to a voltmeter?",
+      "definition": "A large <span style=\"color:#3b82f6\">resistance R in series</span>; net resistance ≈ R, so it draws little current",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ],
+      "definitionImage": "media/fig_4_22_voltmeter.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: shunt needed for full-scale current I (galvanometer G, full scale I_g)? Series R for voltage V?",
+      "definition": "\\( S = \\dfrac{I_g G}{I - I_g},\\quad R = \\dfrac{V}{I_g} - G \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ideal ammeter and ideal voltmeter resistances?",
+      "definition": "Ammeter: <span style=\"color:#f08c00\">zero</span>; voltmeter: <span style=\"color:#f08c00\">infinite</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Galvanometer used as a null detector (bridge): pointer zero where?",
+      "definition": "In the <span style=\"color:#3b82f6\">middle</span> of the scale, deflecting left or right with current direction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.12: 3 V across 3 Ω. Current read by (a) a 60 Ω galvanometer, (b) with a 0.02 Ω shunt, (c) an ideal ammeter?",
+      "definition": "(a) 3/63 = <span style=\"color:#f08c00\">0.048 A</span>; (b) 3/3.02 = <span style=\"color:#f08c00\">0.99 A</span>; (c) <span style=\"color:#f08c00\">1.00 A</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ],
+      "definitionImage": "media/fig_4_23_example.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.10: M1 (10 Ω, 30 turns, 3.6 × 10⁻³ m², 0.25 T) vs M2 (14 Ω, 42, 1.8 × 10⁻³ m², 0.50 T). Ratios M2:M1?",
+      "definition": "Current sensitivity <span style=\"color:#f08c00\">1.4</span>; voltage sensitivity <span style=\"color:#f08c00\">1</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "4.10-moving-coil-galvanometer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Electric vs magnetic field lines?",
+      "definition": "Electric: start on + and end on − (or at infinity). Magnetic: <span style=\"color:#3b82f6\">always closed loops</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: in a frame moving with the charge, the magnetic force vanishes. What explains the motion there?",
+      "definition": "An <span style=\"color:#3b82f6\">electric field</span> appears in that frame — E and B are parts of one electromagnetic field; no preferred frame",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is Ampere’s law independent of Biot–Savart?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it can be derived from it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 4 formula sheet",
+      "definition": "Lorentz force: F = q(E + v × B); Force on a wire: F = I l × B; Radius in B: r = mv/qB; Cyclotron frequency: ν = qB/2πm; Loop centre: B = μ₀NI/2R; Long wire: B = μ₀I/2πr; Solenoid: B = μ₀nI; Parallel wires: f = μ₀I₁I₂/2πd; Torque on loop: τ = m × B, m = NIA",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Lorentz force</td><td class=\"q\">?</td></tr><tr><td>Force on a wire</td><td class=\"q\">?</td></tr><tr><td>Radius in B</td><td class=\"q\">?</td></tr><tr><td>Cyclotron frequency</td><td class=\"q\">?</td></tr><tr><td>Loop centre</td><td class=\"q\">?</td></tr><tr><td>Long wire</td><td class=\"q\">?</td></tr><tr><td>Solenoid</td><td class=\"q\">?</td></tr><tr><td>Parallel wires</td><td class=\"q\">?</td></tr><tr><td>Torque on loop</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Lorentz force</td><td class=\"a\">F = q(E + v × B)</td></tr><tr><td>Force on a wire</td><td class=\"a\">F = I l × B</td></tr><tr><td>Radius in B</td><td class=\"a\">r = mv/qB</td></tr><tr><td>Cyclotron frequency</td><td class=\"a\">ν = qB/2πm</td></tr><tr><td>Loop centre</td><td class=\"a\">B = μ₀NI/2R</td></tr><tr><td>Long wire</td><td class=\"a\">B = μ₀I/2πr</td></tr><tr><td>Solenoid</td><td class=\"a\">B = μ₀nI</td></tr><tr><td>Parallel wires</td><td class=\"a\">f = μ₀I₁I₂/2πd</td></tr><tr><td>Torque on loop</td><td class=\"a\">τ = m × B, m = NIA</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 4 concept checks",
+      "definition": "A magnetic field can speed up a charge: False (no work); Period of circular motion depends on speed: False; Parallel currents repel: False (attract); Net force on a current loop in uniform B is zero: True; B inside a long solenoid is uniform: True",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>A magnetic field can speed up a charge</td><td class=\"q\">?</td></tr><tr><td>Period of circular motion depends on speed</td><td class=\"q\">?</td></tr><tr><td>Parallel currents repel</td><td class=\"q\">?</td></tr><tr><td>Net force on a current loop in uniform B is zero</td><td class=\"q\">?</td></tr><tr><td>B inside a long solenoid is uniform</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>A magnetic field can speed up a charge</td><td class=\"a no\">False (no work)</td></tr><tr><td>Period of circular motion depends on speed</td><td class=\"a no\">False</td></tr><tr><td>Parallel currents repel</td><td class=\"a no\">False (attract)</td></tr><tr><td>Net force on a current loop in uniform B is zero</td><td class=\"a\">True</td></tr><tr><td>B inside a long solenoid is uniform</td><td class=\"a\">True</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-4",
+        "summary"
+      ]
+    }
+  ]
+}
