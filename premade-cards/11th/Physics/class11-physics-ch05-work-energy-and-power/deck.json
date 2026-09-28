@@ -1,0 +1,1247 @@
+{
+  "version": 1,
+  "name": "Chapter 5: Work, Energy and Power",
+  "className": "Class 11",
+  "description": "Dot product, work, kinetic energy, work-energy theorem, potential energy, springs, conservation of energy, power, collisions",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Define the scalar (dot) product.",
+      "definition": "\\( \\vec A \\cdot \\vec B = AB\\cos\\theta \\): a <span style=\"color:#3b82f6\">scalar</span>, θ = angle between the vectors",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.1-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Geometric meaning of A · B?",
+      "definition": "|A| × (component of B along A) = |B| × (<span style=\"color:#3b82f6\">projection</span> of A on B)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.1-scalar-product"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "The dot product is {{c1::commutative}} (A·B = B·A) and {{c2::distributive}} (A·(B + C) = A·B + A·C).",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.1-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "î·î and î·ĵ?",
+      "definition": "î·î = ĵ·ĵ = k̂·k̂ = <span style=\"color:#f08c00\">1</span>; î·ĵ = ĵ·k̂ = k̂·î = <span style=\"color:#f08c00\">0</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.1-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A · B in components?",
+      "definition": "\\( A_xB_x + A_yB_y + A_zB_z \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.1-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does A · B = 0 mean (non-zero vectors)?",
+      "definition": "A and B are <span style=\"color:#3b82f6\">perpendicular</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.1-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A · A = ?",
+      "definition": "\\( A^2 = A_x^2 + A_y^2 + A_z^2 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.1-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.1: F = 3î + 4ĵ − 5k̂, d = 5î + 4ĵ + 3k̂. Angle between them?",
+      "definition": "F·d = 15 + 16 − 15 = 16; |F| = |d| = √50 → cos θ = 16/50 = <span style=\"color:#f08c00\">0.32</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.1-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: projection of A on B?",
+      "definition": "\\( \\dfrac{\\vec A \\cdot \\vec B}{|\\vec B|} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.1-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does v² − u² = 2as lead to the work-energy idea?",
+      "definition": "Multiply by m/2: ½mv² − ½mu² = mas = <span style=\"color:#3b82f6\">Fs</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.2-work-energy-theorem"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State the work-energy theorem.",
+      "definition": "Change in kinetic energy of a particle = work done on it by the <span style=\"color:#3b82f6\">net force</span>: K𝒻 − Kᵢ = W",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.2-work-energy-theorem"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT 5.2 says v² − u² = 2as was met \"in Chapter 3\". Where was it?",
+      "definition": "In <span style=\"color:#3b82f6\">Chapter 2</span> (Motion in a Straight Line); the reference is left over from the old numbering",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.2-work-energy-theorem"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Raindrop: work by air resistance",
+      "definition": "W(resistive) = ΔK − W(gravity) = 1.25 − 10 = −8.75 J",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 5.2 · raindrop</p><h2>Find the missing step.</h2><div class=\"prob\">1.00 g drop falls 1.00 km and hits the ground at 50.0 m/s (g = 10). Work by the resistive force?</div><ol><li>ΔK = ½ × 10⁻³ × 50² = 1.25 J</li><li>W(gravity) = mgh = 10⁻³ × 10 × 10³ = 10.0 J</li><li class=\"h\">?</li><li>W(resistive) = 1.25 − 10 = <b>−8.75 J</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 5.2 · raindrop</p><h2>Find the missing step.</h2><div class=\"prob\">1.00 g drop falls 1.00 km and hits the ground at 50.0 m/s (g = 10). Work by the resistive force?</div><ol><li>ΔK = ½ × 10⁻³ × 50² = 1.25 J</li><li>W(gravity) = mgh = 10⁻³ × 10 × 10³ = 10.0 J</li><li class=\"r\">W-E theorem: ΔK = W(gravity) + W(resistive)</li><li>W(resistive) = 1.25 − 10 = <b>−8.75 J</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.2-work-energy-theorem"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does Example 5.2 show about unknown forces?",
+      "definition": "The work of a force can be found from the W-E theorem <span style=\"color:#3b82f6\">without knowing the force law</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.2-work-energy-theorem"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define work done by a constant force.",
+      "definition": "\\( W = Fd\\cos\\theta = \\vec F \\cdot \\vec d \\): component of force along the displacement × displacement",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.3-work"
+      ],
+      "definitionImage": "media/drawn_work_angle.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "When is no work done?",
+      "definition": "Pushing a rigid wall: displacement = 0; Weightlifter holding 150 kg steady: displacement = 0; Block sliding on a smooth table (horizontal): horizontal force = 0; Gravity on a block moving horizontally: F ⟂ d; Earth’s pull on the Moon (circular orbit): F ⟂ d",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">5.3 · zero work</p><h2>Why is no work done?</h2><table><tr><td>Pushing a rigid wall</td><td class=\"q\">?</td></tr><tr><td>Weightlifter holding 150 kg steady</td><td class=\"q\">?</td></tr><tr><td>Block sliding on a smooth table (horizontal)</td><td class=\"q\">?</td></tr><tr><td>Gravity on a block moving horizontally</td><td class=\"q\">?</td></tr><tr><td>Earth’s pull on the Moon (circular orbit)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">5.3 · zero work</p><h2>Why is no work done?</h2><table><tr><td>Pushing a rigid wall</td><td class=\"a\">displacement = 0</td></tr><tr><td>Weightlifter holding 150 kg steady</td><td class=\"a\">displacement = 0</td></tr><tr><td>Block sliding on a smooth table (horizontal)</td><td class=\"a\">horizontal force = 0</td></tr><tr><td>Gravity on a block moving horizontally</td><td class=\"a\">F ⟂ d</td></tr><tr><td>Earth’s pull on the Moon (circular orbit)</td><td class=\"a\">F ⟂ d</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.3-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do you get tired pushing a wall though no work is done on it?",
+      "definition": "Your muscles repeatedly <span style=\"color:#3b82f6\">contract and relax</span>, using internal energy",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.3-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sign of work for θ < 90°, θ = 90°, θ > 90°?",
+      "definition": "<span style=\"color:#f08c00\">Positive</span>, <span style=\"color:#f08c00\">zero</span>, <span style=\"color:#f08c00\">negative</span> (friction usually has θ = 180°)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.3-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dimensions and SI unit of work and energy?",
+      "definition": "[M L² T⁻²]; <span style=\"color:#3b82f6\">joule</span> (J), after James Prescott Joule",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.3-work"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Alternative units of work and energy (Table 5.1)",
+      "definition": "1 erg: 10⁻⁷ J; 1 electron volt (eV): 1.6 × 10⁻¹⁹ J; 1 calorie (cal): 4.186 J; 1 kilowatt hour (kWh): 3.6 × 10⁶ J",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 5.1</p><h2>Value in joules?</h2><table><tr><td>1 erg</td><td class=\"q\">?</td></tr><tr><td>1 electron volt (eV)</td><td class=\"q\">?</td></tr><tr><td>1 calorie (cal)</td><td class=\"q\">?</td></tr><tr><td>1 kilowatt hour (kWh)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 5.1</p><h2>Value in joules?</h2><table><tr><td>1 erg</td><td class=\"a\">10⁻⁷ J</td></tr><tr><td>1 electron volt (eV)</td><td class=\"a\">1.6 × 10⁻¹⁹ J</td></tr><tr><td>1 calorie (cal)</td><td class=\"a\">4.186 J</td></tr><tr><td>1 kilowatt hour (kWh)</td><td class=\"a\">3.6 × 10⁶ J</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.3-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.3: a cyclist skids to a stop in 10 m; road force 200 N. Work by the road on the cycle, and by the cycle on the road?",
+      "definition": "<span style=\"color:#f08c00\">−2000 J</span> on the cycle; <span style=\"color:#f08c00\">zero</span> on the road (the road does not move)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.3-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Lesson of Example 5.3?",
+      "definition": "Action and reaction are equal and opposite, but the <span style=\"color:#e5484d\">work</span> they do need not be equal and opposite",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.3-work"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Signs of work (Exercise 5.1)",
+      "definition": "Man lifting a bucket out of a well: positive; Gravity on that bucket: negative; Friction on a body sliding down an incline: negative; Applied force, body moving uniformly on rough floor: positive; Air resistance on a swinging pendulum: negative",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 5.1</p><h2>Sign of the work?</h2><table><tr><td>Man lifting a bucket out of a well</td><td class=\"q\">?</td></tr><tr><td>Gravity on that bucket</td><td class=\"q\">?</td></tr><tr><td>Friction on a body sliding down an incline</td><td class=\"q\">?</td></tr><tr><td>Applied force, body moving uniformly on rough floor</td><td class=\"q\">?</td></tr><tr><td>Air resistance on a swinging pendulum</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 5.1</p><h2>Sign of the work?</h2><table><tr><td>Man lifting a bucket out of a well</td><td class=\"a\">positive</td></tr><tr><td>Gravity on that bucket</td><td class=\"a no\">negative</td></tr><tr><td>Friction on a body sliding down an incline</td><td class=\"a no\">negative</td></tr><tr><td>Applied force, body moving uniformly on rough floor</td><td class=\"a\">positive</td></tr><tr><td>Air resistance on a swinging pendulum</td><td class=\"a no\">negative</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.3-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.11: F = (−î + 2ĵ + 3k̂) N; the body moves 4 m along z. Work?",
+      "definition": "Only the z-component works: <span style=\"color:#f08c00\">3 × 4 = 12 J</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.3-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Kinetic energy formula; scalar or vector?",
+      "definition": "\\( K = \\tfrac12 mv^2 = \\tfrac12 m\\,\\vec v \\cdot \\vec v \\) ; a <span style=\"color:#3b82f6\">scalar</span>, never negative",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.4-kinetic-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between kinetic energy and momentum?",
+      "definition": "\\( K = \\dfrac{p^2}{2m}, \\quad p = \\sqrt{2mK} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.4-kinetic-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Same kinetic energy: which has more momentum, a heavy or a light body?",
+      "definition": "The <span style=\"color:#3b82f6\">heavier</span> (p = √(2mK))",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.4-kinetic-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Same momentum: which has more kinetic energy?",
+      "definition": "The <span style=\"color:#3b82f6\">lighter</span> (K = p²/2m)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.4-kinetic-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Table 5.2: typical kinetic energies of a car, a bullet, an air molecule?",
+      "definition": "Car ~<span style=\"color:#f08c00\">6 × 10⁵ J</span>, bullet ~<span style=\"color:#f08c00\">10³ J</span>, air molecule ~<span style=\"color:#f08c00\">10⁻²¹ J</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.4-kinetic-energy"
+      ],
+      "definitionImage": "media/tab_5_2_kinetic_energies.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.4: 50 g bullet at 200 m/s keeps 10 % of its KE after passing through plywood. Emergent speed?",
+      "definition": "<span style=\"color:#f08c00\">63.2 m/s</span>: speed falls by about 68 %, <span style=\"color:#e5484d\">not 90 %</span> (K ∝ v²)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.4-kinetic-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.12: electron with 10 keV, proton with 100 keV. Which is faster?",
+      "definition": "The <span style=\"color:#3b82f6\">electron</span>, about <span style=\"color:#f08c00\">13.5×</span> faster (v = √(2K/m))",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.4-kinetic-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Work done by a variable force?",
+      "definition": "\\( W = \\int_{x_i}^{x_f} F(x)\\,dx \\) = <span style=\"color:#3b82f6\">area under the F–x graph</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.5-variable-force"
+      ],
+      "definitionImage": "media/drawn_variable_force.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Area below the x-axis on an F–x graph?",
+      "definition": "<span style=\"color:#3b82f6\">Negative work</span> (force opposite to displacement)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.5-variable-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.5: a woman pushes a trunk with 100 N for 10 m, then her force falls linearly to 50 N at 20 m; friction is 50 N. Work by each?",
+      "definition": "Woman: 1000 + 750 = <span style=\"color:#f08c00\">1750 J</span>; friction: <span style=\"color:#f08c00\">−1000 J</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.5-variable-force"
+      ],
+      "definitionImage": "media/drawn_ex_5_5.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Proof of the W-E theorem for a variable force?",
+      "definition": "\\( \\dfrac{dK}{dt} = mv\\dfrac{dv}{dt} = Fv = F\\dfrac{dx}{dt} \\Rightarrow dK = F\\,dx \\), then integrate",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.5-variable-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "W-E theorem vs Newton’s second law: what information is lost?",
+      "definition": "It is a <span style=\"color:#3b82f6\">scalar, integrated</span> form: the <span style=\"color:#e5484d\">time</span> and <span style=\"color:#e5484d\">direction</span> information of F = ma is not available",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.5-variable-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.6: 1 kg block at 2 m/s crosses a patch with F = −k/x (k = 0.5 J) from 0.1 m to 2.01 m. Final speed?",
+      "definition": "K𝒻 = 2 − 0.5 ln(20.1) = 2 − 1.5 = 0.5 J → v = <span style=\"color:#f08c00\">1 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.5-variable-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.20: 0.5 kg body moves with v = a x^(3/2), a = 5 m^(−1/2) s⁻¹. Work by the net force from x = 0 to 2 m?",
+      "definition": "v² at x = 2 is 25 × 8 = 200, so W = ΔK = ½ × 0.5 × 200 = <span style=\"color:#f08c00\">50 J</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.5-variable-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.2: 2 kg body pulled by 7 N on a table, μₖ = 0.1, for 10 s. Work by F, friction, net force?",
+      "definition": "<span style=\"color:#f08c00\">882 J</span>, <span style=\"color:#f08c00\">−247 J</span>, <span style=\"color:#f08c00\">635 J</span> = ΔK (W-E theorem)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.5-variable-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is potential energy?",
+      "definition": "\"Stored\" energy due to the <span style=\"color:#3b82f6\">position or configuration</span> of a body (stretched bowstring, strained fault lines)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.7-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Gravitational PE near Earth’s surface?",
+      "definition": "\\( V(h) = mgh \\) (for h ≪ R, g constant), with V = 0 at the ground",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.7-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between a conservative force and its potential energy (1D)?",
+      "definition": "\\( F(x) = -\\dfrac{dV}{dx} \\) ; ΔV = −(work done by the force)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.7-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why the minus sign in F = −dV/dx?",
+      "definition": "The force points towards <span style=\"color:#3b82f6\">decreasing potential energy</span> (gravity pulls down as V = mgh grows upward)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.7-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Block slides from rest down a smooth incline of height h. Speed at the bottom?",
+      "definition": "\\( \\sqrt{2gh} \\), <span style=\"color:#3b82f6\">independent of the angle</span> (gravity is conservative)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.7-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is potential energy defined for friction?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: friction is non-conservative; its work depends on the path",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.7-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State the conservation of mechanical energy.",
+      "definition": "If only <span style=\"color:#3b82f6\">conservative forces</span> do work, K + V stays constant",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Definitions of a conservative force",
+      "definition": "1: F = −dV/dx for some scalar V(x); 2: Work depends only on the end points; 3: Work over any closed path is zero",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">5.8 · conservative force</p><h2>Three equivalent definitions?</h2><table><tr><td>1</td><td class=\"q\">?</td></tr><tr><td>2</td><td class=\"q\">?</td></tr><tr><td>3</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">5.8 · conservative force</p><h2>Three equivalent definitions?</h2><table><tr><td>1</td><td class=\"a\">F = −dV/dx for some scalar V(x)</td></tr><tr><td>2</td><td class=\"a\">Work depends only on the end points</td></tr><tr><td>3</td><td class=\"a\">Work over any closed path is zero</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ball dropped from height H: speed at height h?",
+      "definition": "\\( v = \\sqrt{2g(H - h)} \\); at the ground, \\( \\sqrt{2gH} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.7: a bob just completes a vertical circle (string slack only at the top). v at A (bottom), B (side), C (top)?",
+      "definition": "\\( \\sqrt{5gL},\\ \\sqrt{3gL},\\ \\sqrt{gL} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ],
+      "definitionImage": "media/drawn_vertical_circle.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is v = √(gL) at the top of the vertical circle?",
+      "definition": "Tension is zero there, so gravity alone provides the centripetal force: mg = mv²/L",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.7: ratio of kinetic energies at B and C?",
+      "definition": "<span style=\"color:#f08c00\">3 : 1</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.7: what happens if the string is cut at C?",
+      "definition": "The bob has horizontal velocity √(gL) → a <span style=\"color:#3b82f6\">projectile</span> path, like a stone kicked off a cliff",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does tension do no work on a pendulum bob?",
+      "definition": "Tension is always <span style=\"color:#3b82f6\">perpendicular</span> to the bob’s displacement",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is the zero of potential energy fixed?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is <span style=\"color:#3b82f6\">arbitrary</span>, but once chosen it must be kept throughout the problem",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy with a non-conservative force?",
+      "definition": "\\( E_f - E_i = W_{nc} \\) : change in mechanical energy = work by non-conservative forces (path dependent)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.18: bob released from horizontal, L = 1.5 m, loses 5 % of its energy. Speed at the bottom?",
+      "definition": "<span style=\"color:#f08c00\">5.3 m/s</span> (½v² = 0.95 gL)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.8-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Hooke’s law and unit of k?",
+      "definition": "\\( F_s = -kx \\); k in <span style=\"color:#f08c00\">N m⁻¹</span>. Stiff spring: large k",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Work done by the spring force when it is stretched by xₘ from its natural length?",
+      "definition": "\\( W_s = -\\tfrac12 kx_m^2 \\) (triangle under the Fₛ–x line); the pulling force does +½kxₘ²",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ],
+      "definitionImage": "media/drawn_spring.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Work done by the spring force from xᵢ to x𝒻?",
+      "definition": "\\( W_s = -\\tfrac12 k(x_f^2 - x_i^2) \\); zero over a closed cycle → <span style=\"color:#3b82f6\">conservative</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential energy of a spring?",
+      "definition": "\\( V(x) = \\tfrac12 kx^2 \\), zero at the natural length",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Spring–block: KE and PE exchange, total constant",
+      "definition": "At the ends all PE and v = 0; at x = 0 all KE and v max = A√(k/m); K + V = ½kA² constant",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Spring · energy exchange</p><h2>A block on a smooth floor oscillates on a spring between −A and +A. How do its KE and PE change, and where is it fastest?</h2><svg viewBox=\"0 0 300 210\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"20\" y1=\"20\" x2=\"20\" y2=\"80\"></line><line class=\"road\" x1=\"20\" y1=\"80\" x2=\"290\" y2=\"80\"></line><line class=\"guide\" x1=\"150\" y1=\"28\" x2=\"150\" y2=\"86\"></line><text class=\"sm\" x=\"150\" y=\"98\" text-anchor=\"middle\">x = 0</text><text class=\"sm\" x=\"95\" y=\"98\" text-anchor=\"middle\">−A</text><text class=\"sm\" x=\"205\" y=\"98\" text-anchor=\"middle\">+A</text><line class=\"ax\" x1=\"80\" y1=\"190\" x2=\"260\" y2=\"190\"></line><polyline class=\"curve\" points=\"20.0,60 29.3,51 38.7,69 48.0,51 57.3,69 66.7,51 76.0,69 85.3,51 94.7,69 104.0,51 113.3,69 122.7,51 132.0,60\" transform=\"translate(0,0)\"></polyline><rect class=\"obj\" x=\"132\" y=\"44\" width=\"36\" height=\"34\" rx=\"4\"></rect></svg><p class=\"hint\">Picture two bars, KE and PE.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Spring · energy exchange</p><h2>A block on a smooth floor oscillates on a spring between −A and +A. How do its KE and PE change, and where is it fastest?</h2><svg viewBox=\"0 0 300 210\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"20\" y1=\"20\" x2=\"20\" y2=\"80\"></line><line class=\"road\" x1=\"20\" y1=\"80\" x2=\"290\" y2=\"80\"></line><line class=\"guide\" x1=\"150\" y1=\"28\" x2=\"150\" y2=\"86\"></line><text class=\"sm\" x=\"150\" y=\"98\" text-anchor=\"middle\">x = 0</text><text class=\"sm\" x=\"95\" y=\"98\" text-anchor=\"middle\">−A</text><text class=\"sm\" x=\"205\" y=\"98\" text-anchor=\"middle\">+A</text><line class=\"ax\" x1=\"80\" y1=\"190\" x2=\"260\" y2=\"190\"></line><g class=\"spr\"><polyline class=\"curve\" points=\"20.0,60 29.3,51 38.7,69 48.0,51 57.3,69 66.7,51 76.0,69 85.3,51 94.7,69 104.0,51 113.3,69 122.7,51 132.0,60\"></polyline></g><g class=\"blk\"><rect class=\"obj\" x=\"132\" y=\"44\" width=\"36\" height=\"34\" rx=\"4\"></rect></g><rect class=\"ef\" x=\"96\" y=\"112\" width=\"36\" height=\"78\"></rect><rect class=\"ef\" x=\"166\" y=\"112\" width=\"36\" height=\"78\"></rect><rect class=\"pef pe\" x=\"96\" y=\"112\" width=\"36\" height=\"78\"></rect><rect class=\"kef ke\" x=\"166\" y=\"112\" width=\"36\" height=\"78\"></rect><text class=\"lbl\" x=\"114\" y=\"204\" text-anchor=\"middle\">PE ½kx²</text><text class=\"lbl\" x=\"184\" y=\"204\" text-anchor=\"middle\">KE ½mv²</text><text class=\"yl\" x=\"214\" y=\"120\">total E</text><text class=\"yl\" x=\"214\" y=\"134\">constant</text></svg><div class=\"eq fx d5\"><p>At ±A: all <b>PE</b> (½kA²), v = 0. At x = 0: all <b>KE</b>, speed maximum v = A√(k/m).</p><p>K + V = ½kA² stays constant: the two parabolas of Fig. 5.8 are mirror images.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .blk{animation:blk 3s linear infinite .3s}.bp .spr{transform-origin:20px 0;animation:spr 3s linear infinite .3s}.bp .pe,.bp .ke{transform-box:fill-box;transform-origin:50% 100%}.bp .pe{animation:pe 3s linear infinite .3s}.bp .ke{animation:ke 3s linear infinite .3s}.bp .pef{fill:#3aa0ff}.bp .kef{fill:#80e8a8}.bp .ef{fill:none;stroke:#ffd166;stroke-width:1.5;stroke-dasharray:4 3}@keyframes blk{0.00%{transform:translateX(55.0px)}4.17%{transform:translateX(53.1px)}8.33%{transform:translateX(47.6px)}12.50%{transform:translateX(38.9px)}16.67%{transform:translateX(27.5px)}20.83%{transform:translateX(14.2px)}25.00%{transform:translateX(0.0px)}29.17%{transform:translateX(-14.2px)}33.33%{transform:translateX(-27.5px)}37.50%{transform:translateX(-38.9px)}41.67%{transform:translateX(-47.6px)}45.83%{transform:translateX(-53.1px)}50.00%{transform:translateX(-55.0px)}54.17%{transform:translateX(-53.1px)}58.33%{transform:translateX(-47.6px)}62.50%{transform:translateX(-38.9px)}66.67%{transform:translateX(-27.5px)}70.83%{transform:translateX(-14.2px)}75.00%{transform:translateX(-0.0px)}79.17%{transform:translateX(14.2px)}83.33%{transform:translateX(27.5px)}87.50%{transform:translateX(38.9px)}91.67%{transform:translateX(47.6px)}95.83%{transform:translateX(53.1px)}100.00%{transform:translateX(55.0px)}}@keyframes spr{0.00%{transform:scaleX(1.491)}4.17%{transform:scaleX(1.474)}8.33%{transform:scaleX(1.425)}12.50%{transform:scaleX(1.347)}16.67%{transform:scaleX(1.246)}20.83%{transform:scaleX(1.127)}25.00%{transform:scaleX(1.000)}29.17%{transform:scaleX(0.873)}33.33%{transform:scaleX(0.754)}37.50%{transform:scaleX(0.653)}41.67%{transform:scaleX(0.575)}45.83%{transform:scaleX(0.526)}50.00%{transform:scaleX(0.509)}54.17%{transform:scaleX(0.526)}58.33%{transform:scaleX(0.575)}62.50%{transform:scaleX(0.653)}66.67%{transform:scaleX(0.754)}70.83%{transform:scaleX(0.873)}75.00%{transform:scaleX(1.000)}79.17%{transform:scaleX(1.127)}83.33%{transform:scaleX(1.246)}87.50%{transform:scaleX(1.347)}91.67%{transform:scaleX(1.425)}95.83%{transform:scaleX(1.474)}100.00%{transform:scaleX(1.491)}}@keyframes pe{0.00%{transform:scaleY(1.000)}4.17%{transform:scaleY(0.933)}8.33%{transform:scaleY(0.750)}12.50%{transform:scaleY(0.500)}16.67%{transform:scaleY(0.250)}20.83%{transform:scaleY(0.067)}25.00%{transform:scaleY(0.020)}29.17%{transform:scaleY(0.067)}33.33%{transform:scaleY(0.250)}37.50%{transform:scaleY(0.500)}41.67%{transform:scaleY(0.750)}45.83%{transform:scaleY(0.933)}50.00%{transform:scaleY(1.000)}54.17%{transform:scaleY(0.933)}58.33%{transform:scaleY(0.750)}62.50%{transform:scaleY(0.500)}66.67%{transform:scaleY(0.250)}70.83%{transform:scaleY(0.067)}75.00%{transform:scaleY(0.020)}79.17%{transform:scaleY(0.067)}83.33%{transform:scaleY(0.250)}87.50%{transform:scaleY(0.500)}91.67%{transform:scaleY(0.750)}95.83%{transform:scaleY(0.933)}100.00%{transform:scaleY(1.000)}}@keyframes ke{0.00%{transform:scaleY(0.020)}4.17%{transform:scaleY(0.067)}8.33%{transform:scaleY(0.250)}12.50%{transform:scaleY(0.500)}16.67%{transform:scaleY(0.750)}20.83%{transform:scaleY(0.933)}25.00%{transform:scaleY(1.000)}29.17%{transform:scaleY(0.933)}33.33%{transform:scaleY(0.750)}37.50%{transform:scaleY(0.500)}41.67%{transform:scaleY(0.250)}45.83%{transform:scaleY(0.067)}50.00%{transform:scaleY(0.020)}54.17%{transform:scaleY(0.067)}58.33%{transform:scaleY(0.250)}62.50%{transform:scaleY(0.500)}66.67%{transform:scaleY(0.750)}70.83%{transform:scaleY(0.933)}75.00%{transform:scaleY(1.000)}79.17%{transform:scaleY(0.933)}83.33%{transform:scaleY(0.750)}87.50%{transform:scaleY(0.500)}91.67%{transform:scaleY(0.250)}95.83%{transform:scaleY(0.067)}100.00%{transform:scaleY(0.020)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .blk{animation:blk 3s linear infinite .3s}.bp .spr{transform-origin:20px 0;animation:spr 3s linear infinite .3s}.bp .pe,.bp .ke{transform-box:fill-box;transform-origin:50% 100%}.bp .pe{animation:pe 3s linear infinite .3s}.bp .ke{animation:ke 3s linear infinite .3s}.bp .pef{fill:#3aa0ff}.bp .kef{fill:#80e8a8}.bp .ef{fill:none;stroke:#ffd166;stroke-width:1.5;stroke-dasharray:4 3}@keyframes blk{0.00%{transform:translateX(55.0px)}4.17%{transform:translateX(53.1px)}8.33%{transform:translateX(47.6px)}12.50%{transform:translateX(38.9px)}16.67%{transform:translateX(27.5px)}20.83%{transform:translateX(14.2px)}25.00%{transform:translateX(0.0px)}29.17%{transform:translateX(-14.2px)}33.33%{transform:translateX(-27.5px)}37.50%{transform:translateX(-38.9px)}41.67%{transform:translateX(-47.6px)}45.83%{transform:translateX(-53.1px)}50.00%{transform:translateX(-55.0px)}54.17%{transform:translateX(-53.1px)}58.33%{transform:translateX(-47.6px)}62.50%{transform:translateX(-38.9px)}66.67%{transform:translateX(-27.5px)}70.83%{transform:translateX(-14.2px)}75.00%{transform:translateX(-0.0px)}79.17%{transform:translateX(14.2px)}83.33%{transform:translateX(27.5px)}87.50%{transform:translateX(38.9px)}91.67%{transform:translateX(47.6px)}95.83%{transform:translateX(53.1px)}100.00%{transform:translateX(55.0px)}}@keyframes spr{0.00%{transform:scaleX(1.491)}4.17%{transform:scaleX(1.474)}8.33%{transform:scaleX(1.425)}12.50%{transform:scaleX(1.347)}16.67%{transform:scaleX(1.246)}20.83%{transform:scaleX(1.127)}25.00%{transform:scaleX(1.000)}29.17%{transform:scaleX(0.873)}33.33%{transform:scaleX(0.754)}37.50%{transform:scaleX(0.653)}41.67%{transform:scaleX(0.575)}45.83%{transform:scaleX(0.526)}50.00%{transform:scaleX(0.509)}54.17%{transform:scaleX(0.526)}58.33%{transform:scaleX(0.575)}62.50%{transform:scaleX(0.653)}66.67%{transform:scaleX(0.754)}70.83%{transform:scaleX(0.873)}75.00%{transform:scaleX(1.000)}79.17%{transform:scaleX(1.127)}83.33%{transform:scaleX(1.246)}87.50%{transform:scaleX(1.347)}91.67%{transform:scaleX(1.425)}95.83%{transform:scaleX(1.474)}100.00%{transform:scaleX(1.491)}}@keyframes pe{0.00%{transform:scaleY(1.000)}4.17%{transform:scaleY(0.933)}8.33%{transform:scaleY(0.750)}12.50%{transform:scaleY(0.500)}16.67%{transform:scaleY(0.250)}20.83%{transform:scaleY(0.067)}25.00%{transform:scaleY(0.020)}29.17%{transform:scaleY(0.067)}33.33%{transform:scaleY(0.250)}37.50%{transform:scaleY(0.500)}41.67%{transform:scaleY(0.750)}45.83%{transform:scaleY(0.933)}50.00%{transform:scaleY(1.000)}54.17%{transform:scaleY(0.933)}58.33%{transform:scaleY(0.750)}62.50%{transform:scaleY(0.500)}66.67%{transform:scaleY(0.250)}70.83%{transform:scaleY(0.067)}75.00%{transform:scaleY(0.020)}79.17%{transform:scaleY(0.067)}83.33%{transform:scaleY(0.250)}87.50%{transform:scaleY(0.500)}91.67%{transform:scaleY(0.750)}95.83%{transform:scaleY(0.933)}100.00%{transform:scaleY(1.000)}}@keyframes ke{0.00%{transform:scaleY(0.020)}4.17%{transform:scaleY(0.067)}8.33%{transform:scaleY(0.250)}12.50%{transform:scaleY(0.500)}16.67%{transform:scaleY(0.750)}20.83%{transform:scaleY(0.933)}25.00%{transform:scaleY(1.000)}29.17%{transform:scaleY(0.933)}33.33%{transform:scaleY(0.750)}37.50%{transform:scaleY(0.500)}41.67%{transform:scaleY(0.250)}45.83%{transform:scaleY(0.067)}50.00%{transform:scaleY(0.020)}54.17%{transform:scaleY(0.067)}58.33%{transform:scaleY(0.250)}62.50%{transform:scaleY(0.500)}66.67%{transform:scaleY(0.750)}70.83%{transform:scaleY(0.933)}75.00%{transform:scaleY(1.000)}79.17%{transform:scaleY(0.933)}83.33%{transform:scaleY(0.750)}87.50%{transform:scaleY(0.500)}91.67%{transform:scaleY(0.250)}95.83%{transform:scaleY(0.067)}100.00%{transform:scaleY(0.020)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Block on a spring released from xₘ: maximum speed, and where?",
+      "definition": "\\( v_m = x_m\\sqrt{\\dfrac{k}{m}} \\) at the <span style=\"color:#3b82f6\">equilibrium position</span> x = 0",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ],
+      "definitionImage": "media/drawn_spring.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.4: V = ½kx², k = 0.5 N/m, total energy 1 J. Where does the particle turn back?",
+      "definition": "Where V = E: ½ × 0.5 × x² = 1 → <span style=\"color:#f08c00\">x = ±2 m</span> (KE would be negative beyond)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.8 (NCERT): a 1000 kg car at 18 km/h hits a spring, k = 5.25 × 10³ N/m. NCERT’s maximum compression?",
+      "definition": "<span style=\"color:#f08c00\">2.00 m</span> (½mv² = ½kxₘ², K = 1.25 × 10⁴ J)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ],
+      "definitionImage": "media/fig_5_9_car_spring.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: recompute Example 5.8 with k = 5.25 × 10³ N/m as printed.",
+      "definition": "xₘ = √(2 × 12500 / 5250) = <span style=\"color:#3b82f6\">2.18 m</span>. NCERT’s 2.00 m (and 1.35 m in Example 5.9) fit <span style=\"color:#3b82f6\">k = 6.25 × 10³ N/m</span>; the printed k is a typo",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.9: the same car with friction μ = 0.5. Equation for xₘ?",
+      "definition": "\\( \\tfrac12 mv^2 = \\tfrac12 kx_m^2 + \\mu mg\\,x_m \\) → with k = 6.25 × 10³: <span style=\"color:#f08c00\">1.35 m</span> (less than without friction)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Useful conversion from Example 5.8?",
+      "definition": "<span style=\"color:#f08c00\">36 km/h = 10 m/s</span> (multiply km/h by 5/18)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What can energy conservation NOT tell you in the car–spring problem?",
+      "definition": "The <span style=\"color:#e5484d\">time</span> taken to compress; that needs Newton’s second law",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.9-spring"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define average and instantaneous power.",
+      "definition": "\\( P_{av} = \\dfrac{W}{t},\\quad P = \\dfrac{dW}{dt} = \\vec F \\cdot \\vec v \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.10-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Unit and dimensions of power; 1 hp?",
+      "definition": "<span style=\"color:#3b82f6\">watt</span> (1 W = 1 J/s), [M L² T⁻³]; 1 hp = <span style=\"color:#f08c00\">746 W</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.10-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is kWh a unit of power?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: of energy. 1 kWh = <span style=\"color:#f08c00\">3.6 × 10⁶ J</span> (a 100 W bulb for 10 h)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.10-power"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Elevator motor power",
+      "definition": "P = (mg + f) v = 22000 × 2 = 44 kW ≈ 59 hp",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 5.10 · elevator</p><h2>Find the missing step.</h2><div class=\"prob\">1800 kg elevator rises at a constant 2 m/s against 4000 N friction (g = 10). Minimum motor power?</div><ol><li>Constant speed → motor force balances the downward forces</li><li class=\"h\">?</li><li>P = Fv = 22000 × 2 = 44000 W</li><li>= 44000 / 746 ≈ <b>59 hp</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 5.10 · elevator</p><h2>Find the missing step.</h2><div class=\"prob\">1800 kg elevator rises at a constant 2 m/s against 4000 N friction (g = 10). Minimum motor power?</div><ol><li>Constant speed → motor force balances the downward forces</li><li class=\"r\">F = mg + f = 18000 + 4000 = 22000 N</li><li>P = Fv = 22000 × 2 = 44000 W</li><li>= 44000 / 746 ≈ <b>59 hp</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.10-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.9: body from rest with constant acceleration. Power delivered ∝ ?",
+      "definition": "<span style=\"color:#3b82f6\">t</span> (P = Fv = ma · at)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.10-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.10: body driven by a constant power. Displacement ∝ ?",
+      "definition": "<span style=\"color:#3b82f6\">t^(3/2)</span> (½mv² = Pt → v ∝ t^½)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.10-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.15: a pump fills 30 m³ at 40 m height in 15 min with 30 % efficiency. Electric power?",
+      "definition": "Useful power = 30000 × 9.8 × 40 / 900 ≈ 13.1 kW → input <span style=\"color:#f08c00\">43.6 kW</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.10-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.21: windmill of area A, wind speed v, air density ρ. Mass and KE of the air in time t?",
+      "definition": "\\( m = \\rho A v t,\\quad K = \\tfrac12 \\rho A v^3 t \\); 25 % of that with A = 30 m², v = 10 m/s → <span style=\"color:#f08c00\">4.5 kW</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.10-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is conserved in every collision?",
+      "definition": "Total <span style=\"color:#3b82f6\">linear momentum</span> (and total energy); kinetic energy <span style=\"color:#e5484d\">only in elastic</span> collisions",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is momentum conserved in a collision whatever the forces?",
+      "definition": "By the <span style=\"color:#3b82f6\">third law</span>, the impulses on the two bodies are equal and opposite at every instant",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Elastic, inelastic and completely inelastic collisions",
+      "definition": "Elastic: conserved; Inelastic: partly lost (heat, sound, deformation); Completely inelastic: maximum loss; bodies move together",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">5.11.1 · types of collision</p><h2>Kinetic energy after the collision?</h2><table><tr><td>Elastic</td><td class=\"q\">?</td></tr><tr><td>Inelastic</td><td class=\"q\">?</td></tr><tr><td>Completely inelastic</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">5.11.1 · types of collision</p><h2>Kinetic energy after the collision?</h2><table><tr><td>Elastic</td><td class=\"a\">conserved</td></tr><tr><td>Inelastic</td><td class=\"a no\">partly lost (heat, sound, deformation)</td></tr><tr><td>Completely inelastic</td><td class=\"a no\">maximum loss; bodies move together</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "During an elastic collision (balls in contact), is KE conserved?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: KE is conserved only <span style=\"color:#3b82f6\">after</span> the collision; during contact some is stored as deformation. Momentum is conserved at every instant",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Completely inelastic collision: m₁ at v hits m₂ at rest. Common velocity?",
+      "definition": "\\( v_f = \\dfrac{m_1 v}{m_1 + m_2} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "KE lost in that completely inelastic collision?",
+      "definition": "\\( \\Delta K = \\dfrac{1}{2}\\dfrac{m_1 m_2}{m_1 + m_2}v^2 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Elastic 1D collision, m₂ at rest: final velocities?",
+      "definition": "\\( v_{1f} = \\dfrac{m_1 - m_2}{m_1 + m_2}v_{1i},\\quad v_{2f} = \\dfrac{2m_1}{m_1 + m_2}v_{1i} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Elastic 1D collision: relative velocity before and after?",
+      "definition": "Speed of separation = speed of approach: \\( v_{2f} - v_{1f} = v_{1i} - v_{2i} \\) (coefficient of restitution e = 1)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Equal masses: elastic exchange vs sticking together",
+      "definition": "Elastic: A stops, B moves at v. Completely inelastic: both at v/2, half the KE lost",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Collisions · 1D</p><h2>Ball A (speed v) hits an identical ball B at rest. What happens if the collision is elastic? If they stick together?</h2><svg viewBox=\"0 0 300 180\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><text class=\"sm\" x=\"10\" y=\"18\">Elastic, equal masses</text><line class=\"road\" x1=\"10\" y1=\"62\" x2=\"290\" y2=\"62\"></line><text class=\"sm\" x=\"10\" y=\"108\">Completely inelastic, equal masses</text><line class=\"road\" x1=\"10\" y1=\"152\" x2=\"290\" y2=\"152\"></line><circle class=\"obj\" cx=\"30\" cy=\"50\" r=\"11\"></circle><circle class=\"obj2\" cx=\"162\" cy=\"50\" r=\"11\"></circle><circle class=\"obj\" cx=\"30\" cy=\"140\" r=\"11\"></circle><circle class=\"obj2\" cx=\"162\" cy=\"140\" r=\"11\"></circle><text class=\"lbl\" x=\"30\" y=\"84\" text-anchor=\"middle\">v →</text><text class=\"lbl\" x=\"162\" y=\"84\" text-anchor=\"middle\">at rest</text></svg><p class=\"hint\">Momentum is conserved in both.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Collisions · 1D</p><h2>Ball A (speed v) hits an identical ball B at rest. What happens if the collision is elastic? If they stick together?</h2><svg viewBox=\"0 0 300 180\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><text class=\"sm\" x=\"10\" y=\"18\">Elastic, equal masses</text><line class=\"road\" x1=\"10\" y1=\"62\" x2=\"290\" y2=\"62\"></line><text class=\"sm\" x=\"10\" y=\"108\">Completely inelastic, equal masses</text><line class=\"road\" x1=\"10\" y1=\"152\" x2=\"290\" y2=\"152\"></line><g class=\"ea\"><circle class=\"obj\" cx=\"30\" cy=\"50\" r=\"11\"></circle></g><g class=\"eb\"><circle class=\"obj2\" cx=\"162\" cy=\"50\" r=\"11\"></circle></g><g class=\"ia\"><circle class=\"obj\" cx=\"30\" cy=\"140\" r=\"11\"></circle></g><g class=\"ib\"><circle class=\"obj2\" cx=\"162\" cy=\"140\" r=\"11\"></circle></g><text class=\"gr\" x=\"290\" y=\"80\" text-anchor=\"end\">A stops, B leaves with v</text><text class=\"yl\" x=\"290\" y=\"170\" text-anchor=\"end\">stick together at v/2</text></svg><div class=\"eq fx d5\"><p><b>Elastic</b>: velocities exchange — A stops, B moves off with v. KE and momentum both conserved.</p><p><b>Completely inelastic</b>: common velocity v/2 (momentum mv = 2m·v/2); half the KE is lost as heat and sound.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .ea{animation:ea 4s linear infinite .3s}.bp .eb{animation:eb 4s linear infinite .3s}.bp .ia{animation:ia 4s linear infinite .3s}.bp .ib{animation:ib 4s linear infinite .3s}@keyframes ib{0%,40%{transform:translateX(0)}80%{transform:translateX(55px)}100%{transform:translateX(55px)}}@keyframes ea{0%{transform:translateX(0)}40%{transform:translateX(110px)}100%{transform:translateX(110px)}}@keyframes eb{0%,40%{transform:translateX(0)}80%{transform:translateX(110px)}100%{transform:translateX(110px)}}@keyframes ia{0%{transform:translateX(0)}40%{transform:translateX(110px)}80%{transform:translateX(165px)}100%{transform:translateX(165px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .ea{animation:ea 4s linear infinite .3s}.bp .eb{animation:eb 4s linear infinite .3s}.bp .ia{animation:ia 4s linear infinite .3s}.bp .ib{animation:ib 4s linear infinite .3s}@keyframes ib{0%,40%{transform:translateX(0)}80%{transform:translateX(55px)}100%{transform:translateX(55px)}}@keyframes ea{0%{transform:translateX(0)}40%{transform:translateX(110px)}100%{transform:translateX(110px)}}@keyframes eb{0%,40%{transform:translateX(0)}80%{transform:translateX(110px)}100%{transform:translateX(110px)}}@keyframes ia{0%{transform:translateX(0)}40%{transform:translateX(110px)}80%{transform:translateX(165px)}100%{transform:translateX(165px)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Special cases of elastic collisions",
+      "definition": "m₁ = m₂: m₁ stops, m₂ moves off with v₁ᵢ (velocities exchange); m₂ ≫ m₁ (ball on a wall): m₁ bounces back with −v₁ᵢ; m₂ stays at rest; m₁ ≫ m₂: m₁ barely slows; m₂ flies off at ≈ 2v₁ᵢ",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">5.11.2 · special cases (elastic, m₂ at rest)</p><h2>Result?</h2><table><tr><td>m₁ = m₂</td><td class=\"q\">?</td></tr><tr><td>m₂ ≫ m₁ (ball on a wall)</td><td class=\"q\">?</td></tr><tr><td>m₁ ≫ m₂</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">5.11.2 · special cases (elastic, m₂ at rest)</p><h2>Result?</h2><table><tr><td>m₁ = m₂</td><td class=\"a\">m₁ stops, m₂ moves off with v₁ᵢ (velocities exchange)</td></tr><tr><td>m₂ ≫ m₁ (ball on a wall)</td><td class=\"a\">m₁ bounces back with −v₁ᵢ; m₂ stays at rest</td></tr><tr><td>m₁ ≫ m₂</td><td class=\"a\">m₁ barely slows; m₂ flies off at ≈ 2v₁ᵢ</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.11: why are heavy water or graphite used as moderators?",
+      "definition": "A neutron loses most of its KE to a <span style=\"color:#3b82f6\">light</span> nucleus: deuterium takes 8/9 of it per head-on collision, carbon 28.4 %",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fraction of KE a neutron keeps after a head-on elastic collision with a nucleus of mass m₂?",
+      "definition": "\\( f_1 = \\left(\\dfrac{m_1 - m_2}{m_1 + m_2}\\right)^2 \\); deuterium: 1/9, carbon: 71.6 %",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a head-on (1D) collision?",
+      "definition": "Initial and final velocities lie on one line: the path of body 1 passes through the <span style=\"color:#3b82f6\">centre</span> of body 2",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2D collision, m₂ at rest: momentum equations?",
+      "definition": "\\( m_1v_{1i} = m_1v_{1f}\\cos\\theta_1 + m_2v_{2f}\\cos\\theta_2;\\ \\ 0 = m_1v_{1f}\\sin\\theta_1 - m_2v_{2f}\\sin\\theta_2 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ],
+      "definitionImage": "media/fig_5_10_collision_2d.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can a 2D elastic collision not be solved from the conservation laws alone?",
+      "definition": "Four unknowns (two final speeds, two angles) but only three equations; one (e.g. θ₁) must be measured",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5.12: equal billiard balls, elastic glancing collision, target goes off at 37°. Angle of the cue ball?",
+      "definition": "<span style=\"color:#f08c00\">53°</span>: equal masses, one at rest → they move off at <span style=\"color:#3b82f6\">90°</span> to each other",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is scattering?",
+      "definition": "A \"collision\" through <span style=\"color:#3b82f6\">action at a distance</span> without touching (a comet near the Sun, an α-particle near a nucleus)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.16: a ball hits two identical touching balls head-on (elastic). Result?",
+      "definition": "The first two end at rest; the <span style=\"color:#3b82f6\">last ball</span> moves off with V",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ],
+      "definitionImage": "media/fig_5_14_ball_bearings.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.17: bob A released from 30° hits identical bob B at rest (elastic). How high does A rise?",
+      "definition": "<span style=\"color:#e5484d\">Not at all</span>: equal masses exchange velocities; A stops and B moves on",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ],
+      "definitionImage": "media/fig_5_15_pendulum_bobs.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.19: sand leaks out of a trolley moving at 27 km/h on a frictionless track. Final speed?",
+      "definition": "<span style=\"color:#f08c00\">27 km/h</span>: the sand leaves with the trolley’s own velocity, so no horizontal force acts",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.14: a molecule hits a wall at 200 m/s, 30° to the normal, and rebounds with the same speed. Momentum conserved? Elastic?",
+      "definition": "Momentum of molecule + wall <span style=\"color:#3b82f6\">is</span> conserved (the wall’s recoil is negligible); KE is conserved → <span style=\"color:#3b82f6\">elastic</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "5.11-collisions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.5(b): why is the work done by the Sun’s gravity on a comet zero over each full orbit?",
+      "definition": "Gravity is <span style=\"color:#3b82f6\">conservative</span>; over a closed path the PE returns to its starting value",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.5(c): a satellite loses energy to air drag, yet it speeds up as it spirals in. Why?",
+      "definition": "PE falls <span style=\"color:#3b82f6\">twice as fast</span> as the total energy, so KE rises (for a circular orbit KE = −E)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.5(a): the casing of a rocket burns up by friction. Whose energy is used?",
+      "definition": "The <span style=\"color:#3b82f6\">rocket’s</span> (its kinetic and potential energy)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.5(d): a man walks 2 m carrying 15 kg in his hands, or walks 2 m pulling a rope that lifts 15 kg over a pulley. When is more work done?",
+      "definition": "Pulling: the load rises, W = mgh = 15 × 9.8 × 2 = <span style=\"color:#f08c00\">294 J</span>. Carrying horizontally does <span style=\"color:#e5484d\">no work against gravity</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "exercises"
+      ],
+      "definitionImage": "media/fig_5_13_man_load.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Energy concept checks (Exercises 5.6–5.7)",
+      "definition": "Conservative force does positive work → PE…: decreases; Work against friction costs…: kinetic energy; Inelastic collision: unchanged quantities: total momentum and total energy; Work over a closed loop is zero for every force: False (friction); Inelastic collision: final KE < initial KE, always: False (usually, not always)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercises 5.6–5.7</p><h2>Correct choice?</h2><table><tr><td>Conservative force does positive work → PE…</td><td class=\"q\">?</td></tr><tr><td>Work against friction costs…</td><td class=\"q\">?</td></tr><tr><td>Inelastic collision: unchanged quantities</td><td class=\"q\">?</td></tr><tr><td>Work over a closed loop is zero for every force</td><td class=\"q\">?</td></tr><tr><td>Inelastic collision: final KE < initial KE, always</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercises 5.6–5.7</p><h2>Correct choice?</h2><table><tr><td>Conservative force does positive work → PE…</td><td class=\"a\">decreases</td></tr><tr><td>Work against friction costs…</td><td class=\"a\">kinetic energy</td></tr><tr><td>Inelastic collision: unchanged quantities</td><td class=\"a\">total momentum and total energy</td></tr><tr><td>Work over a closed loop is zero for every force</td><td class=\"a no\">False (friction)</td></tr><tr><td>Inelastic collision: final KE < initial KE, always</td><td class=\"a no\">False (usually, not always)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.3 (Fig. 5.11): with total energy E, where can a particle NOT be found?",
+      "definition": "Where <span style=\"color:#3b82f6\">V(x) > E</span> (KE would be negative). The minimum energy needed is the lowest V",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "exercises"
+      ],
+      "termImage": "media/fig_5_11_pe_functions.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 5.22: lifting 10 kg through 0.5 m, 1000 times. Work against gravity, and fat used at 20 % efficiency (3.8 × 10⁷ J/kg)?",
+      "definition": "<span style=\"color:#f08c00\">49 000 J</span> and <span style=\"color:#f08c00\">6.45 × 10⁻³ kg</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 5 formula sheet",
+      "definition": "Work (constant F): F · d = Fd cos θ; Kinetic energy: ½mv² = p²/2m; Gravitational PE: mgh; Spring PE: ½kx²; Power: dW/dt = F · v",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Work (constant F)</td><td class=\"q\">?</td></tr><tr><td>Kinetic energy</td><td class=\"q\">?</td></tr><tr><td>Gravitational PE</td><td class=\"q\">?</td></tr><tr><td>Spring PE</td><td class=\"q\">?</td></tr><tr><td>Power</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Work (constant F)</td><td class=\"a\">F · d = Fd cos θ</td></tr><tr><td>Kinetic energy</td><td class=\"a\">½mv² = p²/2m</td></tr><tr><td>Gravitational PE</td><td class=\"a\">mgh</td></tr><tr><td>Spring PE</td><td class=\"a\">½kx²</td></tr><tr><td>Power</td><td class=\"a\">dW/dt = F · v</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-5",
+        "summary"
+      ]
+    }
+  ]
+}

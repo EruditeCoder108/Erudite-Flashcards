@@ -244,3 +244,71 @@ def complementary_ranges(deck):
          '<p><b>45°</b> gives the maximum R = u²/g. The steeper twin goes higher and stays up longer.</p>',
          'Equal ranges for complementary angles; maximum at 45°',
          'R = u² sin 2θ / g: θ and 90° − θ give the same range; 45° gives the maximum u²/g', css, vb='0 0 300 190')
+
+
+# ---------------------------------------------------------------- Ch 5 Work, energy and power
+def spring_energy_bars(deck):
+    import math
+    T, A, n, rest = 3.0, 55, 24, 150          # period, amplitude, frames, block centre at rest
+    xs = [A * math.cos(2 * math.pi * i / n) for i in range(n + 1)]
+    def frames(name, fn):
+        body = ''.join(f'{100 * i / n:.2f}%{{transform:{fn(x)}}}' for i, x in enumerate(xs))
+        return f'@keyframes {name}{{{body}}}'
+    sl = rest - 18 - 20                         # spring length at rest (wall x = 20, block half-width 18)
+    css = ('.bp .blk{animation:blk 3s linear infinite .3s}'
+           f'.bp .spr{{transform-origin:20px 0;animation:spr 3s linear infinite .3s}}'
+           '.bp .pe,.bp .ke{transform-box:fill-box;transform-origin:50% 100%}'
+           '.bp .pe{animation:pe 3s linear infinite .3s}.bp .ke{animation:ke 3s linear infinite .3s}'
+           '.bp .pef{fill:#3aa0ff}.bp .kef{fill:#80e8a8}.bp .ef{fill:none;stroke:#ffd166;stroke-width:1.5;stroke-dasharray:4 3}'
+           + frames('blk', lambda x: f'translateX({x:.1f}px)')
+           + frames('spr', lambda x: f'scaleX({(sl + x) / sl:.3f})')
+           + frames('pe', lambda x: f'scaleY({max(0.02, (x / A) ** 2):.3f})')
+           + frames('ke', lambda x: f'scaleY({max(0.02, 1 - (x / A) ** 2):.3f})'))
+    zig = ' '.join(f'{20 + sl * i / 12:.1f},{60 + (0 if i in (0, 12) else (-9 if i % 2 else 9))}' for i in range(13))
+    base = ('<line class="road" x1="20" y1="20" x2="20" y2="80"></line><line class="road" x1="20" y1="80" x2="290" y2="80"></line>'
+            f'<line class="guide" x1="{rest}" y1="28" x2="{rest}" y2="86"></line><text class="sm" x="{rest}" y="98" text-anchor="middle">x = 0</text>'
+            f'<text class="sm" x="{rest - A}" y="98" text-anchor="middle">−A</text><text class="sm" x="{rest + A}" y="98" text-anchor="middle">+A</text>'
+            '<line class="ax" x1="80" y1="190" x2="260" y2="190"></line>')
+    still = (f'<polyline class="curve" points="{zig}" transform="translate(0,0)"></polyline>'
+             f'<rect class="obj" x="{rest - 18}" y="44" width="36" height="34" rx="4"></rect>')
+    back = (f'<g class="spr"><polyline class="curve" points="{zig}"></polyline></g>'
+            f'<g class="blk"><rect class="obj" x="{rest - 18}" y="44" width="36" height="34" rx="4"></rect></g>'
+            '<rect class="ef" x="96" y="112" width="36" height="78"></rect><rect class="ef" x="166" y="112" width="36" height="78"></rect>'
+            '<rect class="pef pe" x="96" y="112" width="36" height="78"></rect><rect class="kef ke" x="166" y="112" width="36" height="78"></rect>'
+            '<text class="lbl" x="114" y="204" text-anchor="middle">PE ½kx²</text><text class="lbl" x="184" y="204" text-anchor="middle">KE ½mv²</text>'
+            '<text class="yl" x="214" y="120">total E</text><text class="yl" x="214" y="134">constant</text>')
+    anim(deck, 'Spring · energy exchange',
+         'A block on a smooth floor oscillates on a spring between −A and +A. How do its KE and PE change, and where is it fastest?',
+         base, back,
+         '<p>At ±A: all <b>PE</b> (½kA²), v = 0. At x = 0: all <b>KE</b>, speed maximum v = A√(k/m).</p>'
+         '<p>K + V = ½kA² stays constant: the two parabolas of Fig. 5.8 are mirror images.</p>',
+         'Spring–block: KE and PE exchange, total constant',
+         'At the ends all PE and v = 0; at x = 0 all KE and v max = A√(k/m); K + V = ½kA² constant',
+         css, hint='Picture two bars, KE and PE.', vb='0 0 300 210', front_only=still)
+
+
+def collision_1d(deck):
+    css = ('.bp .ea{animation:ea 4s linear infinite .3s}.bp .eb{animation:eb 4s linear infinite .3s}'
+           '.bp .ia{animation:ia 4s linear infinite .3s}.bp .ib{animation:ib 4s linear infinite .3s}'
+           '@keyframes ib{0%,40%{transform:translateX(0)}80%{transform:translateX(55px)}100%{transform:translateX(55px)}}'
+           '@keyframes ea{0%{transform:translateX(0)}40%{transform:translateX(110px)}100%{transform:translateX(110px)}}'
+           '@keyframes eb{0%,40%{transform:translateX(0)}80%{transform:translateX(110px)}100%{transform:translateX(110px)}}'
+           '@keyframes ia{0%{transform:translateX(0)}40%{transform:translateX(110px)}80%{transform:translateX(165px)}100%{transform:translateX(165px)}}')
+    base = ('<text class="sm" x="10" y="18">Elastic, equal masses</text><line class="road" x1="10" y1="62" x2="290" y2="62"></line>'
+            '<text class="sm" x="10" y="108">Completely inelastic, equal masses</text><line class="road" x1="10" y1="152" x2="290" y2="152"></line>')
+    still = ('<circle class="obj" cx="30" cy="50" r="11"></circle><circle class="obj2" cx="162" cy="50" r="11"></circle>'
+             '<circle class="obj" cx="30" cy="140" r="11"></circle><circle class="obj2" cx="162" cy="140" r="11"></circle>'
+             '<text class="lbl" x="30" y="84" text-anchor="middle">v →</text><text class="lbl" x="162" y="84" text-anchor="middle">at rest</text>')
+    back = ('<g class="ea"><circle class="obj" cx="30" cy="50" r="11"></circle></g><g class="eb"><circle class="obj2" cx="162" cy="50" r="11"></circle></g>'
+            '<g class="ia"><circle class="obj" cx="30" cy="140" r="11"></circle></g>'
+            '<g class="ib"><circle class="obj2" cx="162" cy="140" r="11"></circle></g>'
+            '<text class="gr" x="290" y="80" text-anchor="end">A stops, B leaves with v</text>'
+            '<text class="yl" x="290" y="170" text-anchor="end">stick together at v/2</text>')
+    anim(deck, 'Collisions · 1D',
+         'Ball A (speed v) hits an identical ball B at rest. What happens if the collision is elastic? If they stick together?',
+         base, back,
+         '<p><b>Elastic</b>: velocities exchange — A stops, B moves off with v. KE and momentum both conserved.</p>'
+         '<p><b>Completely inelastic</b>: common velocity v/2 (momentum mv = 2m·v/2); half the KE is lost as heat and sound.</p>',
+         'Equal masses: elastic exchange vs sticking together',
+         'Elastic: A stops, B moves at v. Completely inelastic: both at v/2, half the KE lost', css,
+         hint='Momentum is conserved in both.', vb='0 0 300 180', front_only=still)
