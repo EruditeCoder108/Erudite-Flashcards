@@ -1,0 +1,1942 @@
+{
+  "version": 1,
+  "name": "Chapter 1: Electric Charges and Fields",
+  "className": "Class 12",
+  "description": "Charge and its properties, Coulomb’s law, superposition, electric field and field lines, flux, dipoles, Gauss’s law and its applications",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Why do you get a shock touching a car door after sliding off the seat?",
+      "definition": "<span style=\"color:#3b82f6\">Discharge</span> through your body of charge built up by rubbing of insulating surfaces (static electricity)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does electrostatics study?",
+      "definition": "Forces, fields and potentials arising from <span style=\"color:#3b82f6\">static charges</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who first noticed that rubbed amber attracts light objects? Origin of the word “electricity”?",
+      "definition": "<span style=\"color:#3b82f6\">Thales of Miletus</span>, about 600 BC; from Greek <i>elektron</i> = amber",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.2-electric-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Glass rod rubbed with silk vs plastic rod rubbed with fur: what do they do to each other?",
+      "definition": "<span style=\"color:#3b82f6\">Attract</span> (unlike charges); two glass rods or two plastic rods <span style=\"color:#3b82f6\">repel</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.2-electric-charge"
+      ],
+      "definitionImage": "media/fig_1_1_rods.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "Like charges {{c1::repel}}; unlike charges {{c2::attract}}. The property that distinguishes the two kinds of charge is called {{c3::polarity}}.",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.2-electric-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who named charges positive and negative? Why those names?",
+      "definition": "<span style=\"color:#3b82f6\">Benjamin Franklin</span>: the two kinds <span style=\"color:#3b82f6\">cancel</span> each other when brought in contact, like + and − numbers",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.2-electric-charge"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Frictional electricity: signs by convention",
+      "definition": "Glass rod (rubbed with silk): positive; Silk: negative; Plastic rod (rubbed with fur): negative; Cat’s fur: positive",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Convention</p><h2>Sign of charge?</h2><table><tr><td>Glass rod (rubbed with silk)</td><td class=\"q\">?</td></tr><tr><td>Silk</td><td class=\"q\">?</td></tr><tr><td>Plastic rod (rubbed with fur)</td><td class=\"q\">?</td></tr><tr><td>Cat’s fur</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Convention</p><h2>Sign of charge?</h2><table><tr><td>Glass rod (rubbed with silk)</td><td class=\"a\">positive</td></tr><tr><td>Silk</td><td class=\"a no\">negative</td></tr><tr><td>Plastic rod (rubbed with fur)</td><td class=\"a no\">negative</td></tr><tr><td>Cat’s fur</td><td class=\"a\">positive</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.2-electric-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify this device and how it shows charge.",
+      "definition": "<span style=\"color:#3b82f6\">Gold-leaf electroscope</span>: charge flows down the rod to the leaves, which <span style=\"color:#3b82f6\">diverge</span>; divergence indicates the amount of charge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.2-electric-charge"
+      ],
+      "termImage": "media/fig_1_2_electroscope.webp"
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 1.2(a) · Gold-leaf electroscope",
+      "definition": "",
+      "image": "media/fig_1_2_electroscope.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 860,
+        "imageHeight": 1001,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              298,
+              26,
+              188,
+              44
+            ],
+            "answer": "Metal knob",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              301,
+              72,
+              160,
+              44
+            ],
+            "answer": "Metal rod",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              264,
+              170,
+              128,
+              44
+            ],
+            "answer": "Rubber (insulating stopper)"
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              104,
+              404,
+              132,
+              70
+            ],
+            "answer": "Glass window",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              271,
+              404,
+              188,
+              46
+            ],
+            "answer": "Gold leaves",
+            "labelInImage": true
+          }
+        ]
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.2-electric-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What actually moves when a glass rod is rubbed with silk?",
+      "definition": "<span style=\"color:#3b82f6\">Electrons</span> move from the rod to the silk: rod becomes +, silk −. No charge is created",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.2-electric-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which everyday forces are basically electrical?",
+      "definition": "Forces holding atoms and molecules together, <span style=\"color:#22a35a\">glue adhesion</span>, <span style=\"color:#22a35a\">surface tension</span>, contact forces, friction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.2-electric-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does rubbing transfer a large share of a body’s electrons?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: only a very small fraction of the electrons is transferred",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.2-electric-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conductors vs insulators?",
+      "definition": "<span style=\"color:#3b82f6\">Conductors</span>: charges (electrons) move freely — <span style=\"color:#22a35a\">metals, human body, earth</span>. <span style=\"color:#3b82f6\">Insulators</span>: high resistance — <span style=\"color:#22a35a\">glass, porcelain, plastic, nylon, wood</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.3-conductors-and-insulators"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Charge given to a conductor vs an insulator: where does it go?",
+      "definition": "Conductor: spreads over the whole <span style=\"color:#3b82f6\">surface</span>. Insulator: <span style=\"color:#3b82f6\">stays where it was put</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.3-conductors-and-insulators"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a metal spoon held in the hand not get charged on rubbing?",
+      "definition": "The charge <span style=\"color:#3b82f6\">leaks through your body to earth</span> (both conductors); with an insulating handle it does charge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.3-conductors-and-insulators"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the third category besides conductors and insulators?",
+      "definition": "<span style=\"color:#3b82f6\">Semiconductors</span>: resistance intermediate between the two",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.3-conductors-and-insulators"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mobile charges in metals vs electrolytes?",
+      "definition": "Metals: <span style=\"color:#3b82f6\">electrons</span>. Electrolytes: both <span style=\"color:#3b82f6\">positive and negative ions</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.3-conductors-and-insulators"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When can a charged body be treated as a point charge?",
+      "definition": "When its size is <span style=\"color:#3b82f6\">very small compared with the distances</span> involved",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Three basic properties of electric charge: {{c1::additivity}}, {{c2::conservation}} and {{c3::quantisation}}.",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Additivity of charge: how is it like mass, and how is it unlike mass?",
+      "definition": "Like mass: a <span style=\"color:#3b82f6\">scalar</span> that adds algebraically. Unlike mass: charge can be <span style=\"color:#e5484d\">negative</span>, so signs matter",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Total charge of +1, +2, −3, +4, −5 (same units)?",
+      "definition": "<span style=\"color:#f08c00\">−1</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State conservation of charge.",
+      "definition": "The total charge of an <span style=\"color:#3b82f6\">isolated system</span> never changes; charge carriers can be created or destroyed only in equal and opposite pairs",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A neutron decays into a proton and an electron. Is charge conserved?",
+      "definition": "Yes: 0 = (+e) + (−e)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State quantisation of charge.",
+      "definition": "\\( q = ne \\), n an integer: every free charge is an <span style=\"color:#3b82f6\">integral multiple of e</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who suggested and who demonstrated quantisation of charge?",
+      "definition": "Suggested by <span style=\"color:#3b82f6\">Faraday</span>’s laws of electrolysis; demonstrated by <span style=\"color:#3b82f6\">Millikan</span> (<span style=\"color:#f08c00\">1912</span>, oil-drop experiment)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Value of e (NCERT) and number of electrons in 1 C?",
+      "definition": "e = <span style=\"color:#f08c00\">1.602192 × 10⁻¹⁹ C</span>; about <span style=\"color:#f08c00\">6 × 10¹⁸</span> electrons in −1 C",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Update: is e still a measured constant in SI?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: since the <span style=\"color:#3b82f6\">2019 SI redefinition</span>, e is fixed exactly at <span style=\"color:#f08c00\">1.602176634 × 10⁻¹⁹ C</span>. Use 1.6 × 10⁻¹⁹ C in problems",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define 1 coulomb (via current).",
+      "definition": "Charge flowing through a wire in <span style=\"color:#f08c00\">1 s</span> when the current is <span style=\"color:#f08c00\">1 A</span>: 1 C = 1 A s",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can quantisation be ignored for macroscopic charges?",
+      "definition": "1 μC ≈ <span style=\"color:#f08c00\">10¹³ e</span>: steps of e are too tiny to notice, so charge looks continuous (like a dotted line from far away)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Update: quarks carry ±e/3 and ±2e/3. Does this break q = ne?",
+      "definition": "<span style=\"color:#e5484d\">Not for free charges</span>: quarks are always confined inside hadrons, so every observed free charge is still a multiple of e",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.1: 10⁹ electrons leave a body every second. Time to collect 1 C?",
+      "definition": "1 / (1.6 × 10⁻¹⁰ C/s) = 6.25 × 10⁹ s ≈ <span style=\"color:#f08c00\">200 years</span>: 1 C is a huge unit",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.2: total positive (and negative) charge in a cup of water (250 g)?",
+      "definition": "(250/18) × 6.02 × 10²³ × 10 × 1.6 × 10⁻¹⁹ ≈ <span style=\"color:#f08c00\">1.34 × 10⁷ C</span> (10 protons, 10 electrons per molecule)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Roughly how many electrons in a 1 cm³ copper cube?",
+      "definition": "About <span style=\"color:#f08c00\">2.5 × 10²⁴</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.11: polythene rubbed with wool gets −3 × 10⁻⁷ C. Electrons transferred? Mass transferred?",
+      "definition": "<span style=\"color:#f08c00\">1.9 × 10¹²</span> electrons, from <span style=\"color:#3b82f6\">wool to polythene</span>. Yes, mass is transferred, but only ~<span style=\"color:#f08c00\">2 × 10⁻¹⁸ kg</span> (negligible)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.5: glass rubbed with silk — how is charging consistent with conservation?",
+      "definition": "Electrons are only <span style=\"color:#3b82f6\">transferred</span>: the rod’s + charge exactly equals the silk’s − charge; the total stays zero",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.4-basic-properties-of-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Coulomb’s law.",
+      "definition": "Force between two point charges ∝ <span style=\"color:#3b82f6\">product of charges</span>, ∝ <span style=\"color:#3b82f6\">1/r²</span>, along the line joining them: \\( F = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{|q_1 q_2|}{r^2} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What instrument did Coulomb use? Who else used it?",
+      "definition": "A <span style=\"color:#3b82f6\">torsion balance</span>; later <span style=\"color:#3b82f6\">Cavendish</span> used one to measure gravitational force",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Coulomb did not know the charges. How did he vary them?",
+      "definition": "By touching a charged sphere with an <span style=\"color:#3b82f6\">identical uncharged sphere</span>: charge halves each time (q/2, q/4…) — relying on additivity and conservation",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Values of k and ε₀?",
+      "definition": "\\( k = \\dfrac{1}{4\\pi\\varepsilon_0} \\approx 9\\times10^{9} \\) N m² C⁻²; ε₀ = <span style=\"color:#f08c00\">8.854 × 10⁻¹² C² N⁻¹ m⁻²</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is ε₀ called?",
+      "definition": "<span style=\"color:#3b82f6\">Permittivity of free space</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Force between two 1 C charges 1 m apart in vacuum?",
+      "definition": "<span style=\"color:#f08c00\">9 × 10⁹ N</span> — why 1 C is far too big for electrostatics (use μC, mC)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Vector form of Coulomb’s law: force on q₂ due to q₁?",
+      "definition": "\\( \\vec F_{21} = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{q_1q_2}{r_{21}^2}\\,\\hat r_{21} \\), with \\( \\hat r_{21} \\) pointing from 1 to 2",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ],
+      "definitionImage": "media/fig_1_3_coulomb_vectors.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does the vector form need no separate formula for attraction?",
+      "definition": "If q₁q₂ < 0, F₂₁ points along \\( -\\hat r_{21} \\) (towards q₁): the sign of q₁q₂ handles it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does Coulomb’s law obey Newton’s third law?",
+      "definition": "Yes: \\( \\vec F_{12} = -\\vec F_{21} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Down to what distance has Coulomb’s law been verified?",
+      "definition": "Subatomic distances, <span style=\"color:#f08c00\">r ~ 10⁻¹⁰ m</span> (and below)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Charles Augustin de Coulomb: nationality, first career, year of the law?",
+      "definition": "<span style=\"color:#3b82f6\">French</span> physicist, earlier a <span style=\"color:#3b82f6\">military engineer</span> (West Indies); inverse-square law in <span style=\"color:#f08c00\">1785</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who anticipated Coulomb’s law?",
+      "definition": "<span style=\"color:#3b82f6\">Priestley</span> and <span style=\"color:#3b82f6\">Cavendish</span> (Cavendish never published)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.3: ratio of electric to gravitational force, electron–proton? proton–proton?",
+      "definition": "\\( \\dfrac{e^2}{4\\pi\\varepsilon_0 G m_e m_p} \\approx 2.4\\times10^{39} \\); for two protons ≈ <span style=\"color:#f08c00\">1.3 × 10³⁶</span> — independent of distance",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.3(b): accelerations of an electron and a proton 1 Å apart (mutual attraction)?",
+      "definition": "F = <span style=\"color:#f08c00\">2.3 × 10⁻⁸ N</span>; aₑ ≈ <span style=\"color:#f08c00\">2.5 × 10²² m/s²</span>, aₚ ≈ <span style=\"color:#f08c00\">1.4 × 10¹⁹ m/s²</span> — gravity is negligible",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Force between two protons inside a nucleus (~10⁻¹⁵ m apart)? Why don’t they fly apart?",
+      "definition": "Fₑ ≈ <span style=\"color:#f08c00\">230 N</span> (F_G ~ 10⁻³⁴ N); the <span style=\"color:#3b82f6\">strong nuclear force</span> (range ~10⁻¹⁴ m) holds them",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does gravity dominate large scales if it is 10³⁹ times weaker?",
+      "definition": "Gravity is <span style=\"color:#3b82f6\">always attractive</span>; electric forces come in both signs and <span style=\"color:#3b82f6\">cancel</span> in neutral matter",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.4: charges on A and B are both halved by touching identical neutral spheres, and the separation is halved. New force?",
+      "definition": "<span style=\"color:#3b82f6\">Unchanged</span>: (¼)/(¼) = 1",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Coulomb force scaling (Exercise 1.12)",
+      "definition": "F = 1.5 × 10⁻² N; with 2q, 2q and r/2 the force becomes 16F = 0.24 N",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 1.12 · scaling</p><h2>Find the missing step.</h2><div class=\"prob\">Two spheres each 6.5 × 10⁻⁷ C, 50 cm apart. Force? Then each charge doubled and distance halved?</div><ol><li>F = 9 × 10⁹ × (6.5 × 10⁻⁷)² / 0.5²</li><li>F = <b>1.5 × 10⁻² N</b></li><li class=\"h\">?</li><li>New F = 16 × 1.5 × 10⁻² = <b>0.24 N</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 1.12 · scaling</p><h2>Find the missing step.</h2><div class=\"prob\">Two spheres each 6.5 × 10⁻⁷ C, 50 cm apart. Force? Then each charge doubled and distance halved?</div><ol><li>F = 9 × 10⁹ × (6.5 × 10⁻⁷)² / 0.5²</li><li>F = <b>1.5 × 10⁻² N</b></li><li class=\"r\">Doubling both charges → ×4; halving r → ×4</li><li>New F = 16 × 1.5 × 10⁻² = <b>0.24 N</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.1: 2 × 10⁻⁷ C and 3 × 10⁻⁷ C, 30 cm apart in air. Force?",
+      "definition": "<span style=\"color:#f08c00\">6 × 10⁻³ N</span>, repulsive",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.2: 0.4 μC and −0.8 μC attract with 0.2 N. Separation? Force on the second?",
+      "definition": "r = <span style=\"color:#f08c00\">12 cm</span>; 0.2 N, <span style=\"color:#3b82f6\">attractive</span> (towards the first) — Newton’s third law",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.3: what does the dimensionless ratio ke²/(G mₑ mₚ) ≈ 2.3 × 10³⁹ signify?",
+      "definition": "Electric force between an electron and proton is ~10³⁹ times the <span style=\"color:#3b82f6\">gravitational force</span> between them, at any distance",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: why is k so large (why is 1 C so big)?",
+      "definition": "The coulomb is defined through the <span style=\"color:#3b82f6\">ampere</span> (magnetic effects, which are much weaker than electric ones); 1 A is sensible, 1 C = 1 A s is huge electrically",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Update: NCERT says the ampere is defined via the force between current-carrying wires. Still true?",
+      "definition": "<span style=\"color:#e5484d\">Not since 2019</span>: the SI now fixes <span style=\"color:#3b82f6\">e exactly</span>; the ampere (and coulomb) follow from e. k ≈ 8.99 × 10⁹ N m² C⁻² is unchanged",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.5-coulombs-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State the principle of superposition (forces).",
+      "definition": "Force on a charge = <span style=\"color:#3b82f6\">vector sum</span> of the forces from each other charge taken <span style=\"color:#3b82f6\">one at a time</span>, each unaffected by the others",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.6-forces-between-multiple-charges"
+      ],
+      "definitionImage": "media/fig_1_5_superposition.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: superposition says two things beyond “add vectors”. What?",
+      "definition": "(1) Each pair force is <span style=\"color:#3b82f6\">unaffected</span> by other charges; (2) there are <span style=\"color:#e5484d\">no extra three-body</span> (or more) forces",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.6-forces-between-multiple-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "“All of electrostatics is basically a consequence of…”?",
+      "definition": "<span style=\"color:#3b82f6\">Coulomb’s law</span> and the <span style=\"color:#3b82f6\">superposition principle</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.6-forces-between-multiple-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.5: equal charges q at the corners of an equilateral triangle. Force on Q at the centroid?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span> — by symmetry (rotate the figure by 120°: the answer must not change)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.6-forces-between-multiple-charges"
+      ],
+      "termImage": "media/fig_1_6_triangle.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.6: q, q, −q at the corners of an equilateral triangle. Net force on each? Sum of all three?",
+      "definition": "F on each q, <span style=\"color:#f08c00\">√3 F</span> on −q (F = q²/4πε₀l²); the three forces add to <span style=\"color:#f08c00\">zero</span> (Newton’s third law)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.6-forces-between-multiple-charges"
+      ],
+      "definitionImage": "media/fig_1_7_triangle_qqq.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.6: +2, −5, +2, −5 μC at corners A, B, C, D of a 10 cm square. Force on 1 μC at the centre?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span>: equal charges at opposite corners cancel in pairs",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.6-forces-between-multiple-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define electric field at a point.",
+      "definition": "Force per unit positive test charge: \\( \\vec E = \\lim_{q\\to0}\\dfrac{\\vec F}{q} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why take the limit q → 0 for the test charge?",
+      "definition": "So the test charge does <span style=\"color:#3b82f6\">not disturb the source charges</span>; F/q stays finite",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field of a point charge Q?",
+      "definition": "\\( \\vec E = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{Q}{r^2}\\hat r \\): radially outward for +Q, inward for −Q",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ],
+      "definitionImage": "media/fig_1_8_point_field.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "SI unit of electric field (two forms)?",
+      "definition": "<span style=\"color:#f08c00\">N C⁻¹</span> = <span style=\"color:#f08c00\">V m⁻¹</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Source charge vs test charge?",
+      "definition": "<span style=\"color:#3b82f6\">Source</span>: produces the field. <span style=\"color:#3b82f6\">Test</span>: small charge used to detect it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does the field of Q depend on the test charge q?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: F ∝ q, so F/q is independent of q; E depends only on position",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What symmetry does the field of a point charge have?",
+      "definition": "<span style=\"color:#3b82f6\">Spherical</span>: |E| is the same everywhere on a sphere centred on the charge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field due to a system of charges?",
+      "definition": "Vector sum: \\( \\vec E(\\vec r) = \\dfrac{1}{4\\pi\\varepsilon_0}\\sum_i \\dfrac{q_i}{r_{iP}^2}\\hat r_{iP} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ],
+      "definitionImage": "media/fig_1_9_system_field.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Physical significance: why are fields “real” and not just a device?",
+      "definition": "Beyond electrostatics, effects travel at speed <span style=\"color:#3b82f6\">c</span>: fields account for the <span style=\"color:#3b82f6\">time delay</span>, carry energy and have their own dynamics",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who introduced the concept of field?",
+      "definition": "<span style=\"color:#3b82f6\">Faraday</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.7: electron and proton each fall 1.5 cm in a 2 × 10⁴ N/C field. Times of fall?",
+      "definition": "tₑ = <span style=\"color:#f08c00\">2.9 × 10⁻⁹ s</span>, tₚ = <span style=\"color:#f08c00\">1.3 × 10⁻⁷ s</span> (t = √(2hm/eE))",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ],
+      "definitionImage": "media/fig_1_10_fall.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.7: how does fall in an electric field differ from free fall under gravity?",
+      "definition": "Time depends on <span style=\"color:#3b82f6\">mass</span> (a = eE/m): the heavier proton takes longer. In free fall, time is independent of mass",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can gravity be ignored in Example 1.7?",
+      "definition": "aₚ = eE/mₚ ≈ <span style=\"color:#f08c00\">1.9 × 10¹² m/s²</span> ≫ g",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Field midway between +q and −q (Example 1.8)",
+      "definition": "Both fields point towards −q and add: 7.2 × 10⁴ N/C",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 1.8 · two charges</p><h2>Find the missing step.</h2><div class=\"prob\">+10⁻⁸ C and −10⁻⁸ C, 0.1 m apart. Field at A, midway between them?</div><ol><li>Each charge is 0.05 m from A</li><li>E from each = 9 × 10⁹ × 10⁻⁸ / 0.05² = 3.6 × 10⁴ N/C</li><li class=\"h\">?</li><li>E<sub>A</sub> = <b>7.2 × 10⁴ N/C</b>, towards the negative charge</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 1.8 · two charges</p><h2>Find the missing step.</h2><div class=\"prob\">+10⁻⁸ C and −10⁻⁸ C, 0.1 m apart. Field at A, midway between them?</div><ol><li>Each charge is 0.05 m from A</li><li>E from each = 9 × 10⁹ × 10⁻⁸ / 0.05² = 3.6 × 10⁴ N/C</li><li class=\"r\">Both point from + towards −, so they add</li><li>E<sub>A</sub> = <b>7.2 × 10⁴ N/C</b>, towards the negative charge</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.8: fields at B (5 cm outside the + charge) and C (0.1 m from both)?",
+      "definition": "E_B = 3.6 × 10⁴ − 0.4 × 10⁴ = <span style=\"color:#f08c00\">3.2 × 10⁴ N/C</span> away from the pair; E_C = <span style=\"color:#f08c00\">9 × 10³ N/C</span> parallel to the line (+ to −)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ],
+      "termImage": "media/fig_1_11_example.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.8: +3 μC and −3 μC, 20 cm apart. Field at the midpoint? Force on −1.5 × 10⁻⁹ C there?",
+      "definition": "E = <span style=\"color:#f08c00\">5.4 × 10⁶ N/C</span> towards the negative charge; F = <span style=\"color:#f08c00\">8.1 × 10⁻³ N</span> towards the positive charge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.7-electric-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define an electric field line.",
+      "definition": "A curve whose <span style=\"color:#3b82f6\">tangent at each point</span> gives the direction of the net field there (arrow gives the sense)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do field lines show field strength?",
+      "definition": "By their <span style=\"color:#3b82f6\">density</span> (lines per unit area normal to them): crowded = strong, spread out = weak",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ],
+      "definitionImage": "media/fig_1_13_density.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the number of field lines crossing any sphere around a point charge the same?",
+      "definition": "E ∝ 1/r² while the area ∝ r²: lines per area fall as 1/r² — the field lines picture <span style=\"color:#3b82f6\">builds in the inverse-square law</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define solid angle.",
+      "definition": "\\( \\Delta\\Omega = \\Delta S/r^2 \\) (area on a sphere ÷ radius²); unit steradian",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What did Faraday call field lines? Why is the modern name better?",
+      "definition": "“<span style=\"color:#3b82f6\">Lines of force</span>” — misleading, especially for magnetic fields; “field lines” is preferred",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Field lines start on {{c1::positive}} charges and end on {{c2::negative}} charges (or at infinity for a single charge).",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can two field lines never cross?",
+      "definition": "The field at the crossing would have <span style=\"color:#e5484d\">two directions</span> — impossible, E is unique",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can’t electrostatic field lines form closed loops?",
+      "definition": "The electrostatic field is <span style=\"color:#3b82f6\">conservative</span> (Chapter 2)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.7(a): why can’t a field line have sudden breaks?",
+      "definition": "A break would mean E suddenly vanishes; in a <span style=\"color:#3b82f6\">charge-free region E varies continuously</span>, so lines are continuous",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What do field lines look like in a uniform field?",
+      "definition": "<span style=\"color:#3b82f6\">Equally spaced parallel straight lines</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: field lines of which configuration?",
+      "definition": "<span style=\"color:#3b82f6\">Positive point charge</span> (q > 0): radially outward",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ],
+      "termImage": "media/fig_1_14a_pos.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: field lines of which configuration?",
+      "definition": "<span style=\"color:#3b82f6\">Negative point charge</span> (q < 0): radially inward",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ],
+      "termImage": "media/fig_1_14b_neg.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: field lines of which configuration? What does it show?",
+      "definition": "<span style=\"color:#3b82f6\">Two equal positive charges</span>: lines bend away, a <span style=\"color:#3b82f6\">neutral point</span> midway — pictures repulsion",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ],
+      "termImage": "media/fig_1_14c_like.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: field lines of which configuration? What does it show?",
+      "definition": "<span style=\"color:#3b82f6\">Electric dipole</span> (+q, −q): lines go from + to −, picturing attraction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ],
+      "termImage": "media/fig_1_14d_dipole.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Is a field line the path a charge follows?",
+      "definition": "<span style=\"color:#e5484d\">Not in general</span>: it gives the direction of force (acceleration), not velocity. Only a charge released from rest in straight field lines follows the line",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.13 (Fig 1.30): signs of the three particles? Largest q/m?",
+      "definition": "1 and 2 bend towards the + plate → <span style=\"color:#3b82f6\">negative</span>; 3 bends towards − → <span style=\"color:#3b82f6\">positive</span>. Particle <span style=\"color:#f08c00\">3</span> deflects most → largest q/m",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.8-electric-field-lines"
+      ],
+      "termImage": "media/fig_1_30_tracks.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define electric flux through a small area.",
+      "definition": "\\( \\Delta\\phi = \\vec E\\cdot\\Delta\\vec S = E\\,\\Delta S\\cos\\theta \\), θ between E and the normal",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.9-electric-flux"
+      ],
+      "definitionImage": "media/fig_1_15_flux_tilt.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What does flux measure pictorially?",
+      "definition": "The <span style=\"color:#3b82f6\">number of field lines</span> crossing the area (proportional to, not equal to)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.9-electric-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction of an area vector? For a closed surface?",
+      "definition": "Along the <span style=\"color:#3b82f6\">normal</span>; for a closed surface, the <span style=\"color:#3b82f6\">outward normal</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.9-electric-flux"
+      ],
+      "definitionImage": "media/fig_1_16_normal.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "When is the flux through a flat area zero?",
+      "definition": "When E is <span style=\"color:#3b82f6\">parallel to the surface</span> (θ = 90° with the normal)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.9-electric-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Unit and dimensions of electric flux?",
+      "definition": "<span style=\"color:#f08c00\">N C⁻¹ m²</span> = <span style=\"color:#f08c00\">V m</span>; [ML³T⁻³A⁻¹]",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.9-electric-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Liquid flux analogy: what is different about electric flux?",
+      "definition": "<span style=\"color:#e5484d\">Nothing physical actually flows</span> in electric flux",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.9-electric-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.14: E = 3 × 10³ î N/C through a 10 cm square. Flux if the plane is parallel to yz? If the normal is at 60° to x?",
+      "definition": "<span style=\"color:#f08c00\">30 N m²/C</span>; <span style=\"color:#f08c00\">15 N m²/C</span> (× cos 60°)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.9-electric-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.15: flux of the same uniform field through a 20 cm cube?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span>: what enters one face leaves the opposite one",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.9-electric-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define an electric dipole and its dipole moment.",
+      "definition": "Charges +q and −q separated by 2a; \\( \\vec p = q\\times 2a\\,\\hat p \\), directed <span style=\"color:#3b82f6\">from −q to +q</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Unit and dimensions of dipole moment?",
+      "definition": "<span style=\"color:#f08c00\">C m</span>; [LTA]",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Total charge of a dipole is zero. Is its field zero?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the charges are separated, so their fields don’t cancel exactly; far away it falls as <span style=\"color:#3b82f6\">1/r³</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dipole field on the axis (exact and r ≫ a)?",
+      "definition": "\\( E = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{4qar}{(r^2-a^2)^2} \\to \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{2p}{r^3} \\), along p",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ],
+      "definitionImage": "media/fig_1_17_dipole.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Dipole field on the equatorial plane (exact and r ≫ a)?",
+      "definition": "\\( E = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{p}{(r^2+a^2)^{3/2}} \\to \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{p}{r^3} \\), <span style=\"color:#e5484d\">opposite to p</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: axial vs equatorial dipole field at the same large r?",
+      "definition": "“<span style=\"color:#3b82f6\">Axis is double, equator is reversed</span>”: E_axial = 2 E_equatorial, and the equatorial field points opposite to p",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does the dipole field fall as 1/r³ instead of 1/r²?",
+      "definition": "Far away the +q and −q fields <span style=\"color:#3b82f6\">nearly cancel</span>; only their small difference (∝ separation/r) survives, adding one more power of r",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a point dipole?",
+      "definition": "2a → 0 and q → ∞ with p = 2qa finite; the r ≫ a formulas become <span style=\"color:#3b82f6\">exact for all r</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Polar vs non-polar molecules?",
+      "definition": "<span style=\"color:#3b82f6\">Polar</span>: permanent dipole moment, e.g. <span style=\"color:#22a35a\">H₂O</span>. <span style=\"color:#3b82f6\">Non-polar</span>: centres of + and − coincide, e.g. <span style=\"color:#22a35a\">CO₂, CH₄</span> (get induced dipoles in a field)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.9: ±10 μC, 5 mm apart. Field 15 cm away on the axis and on the equatorial line?",
+      "definition": "Axis: <span style=\"color:#f08c00\">2.6 × 10⁵ N/C</span> along p. Equator: <span style=\"color:#f08c00\">1.33 × 10⁵ N/C</span> opposite to p (exact and r ≫ a answers agree since r/a = 60)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.9: +2.5 × 10⁻⁷ C at (0, 0, −15 cm), −2.5 × 10⁻⁷ C at (0, 0, +15 cm). Total charge and dipole moment?",
+      "definition": "Total <span style=\"color:#f08c00\">0</span>; p = 2.5 × 10⁻⁷ × 0.30 = <span style=\"color:#f08c00\">7.5 × 10⁻⁸ C m</span> along <span style=\"color:#3b82f6\">−z</span> (− to +)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.10-electric-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dipole in a uniform field: net force and torque?",
+      "definition": "Net force <span style=\"color:#f08c00\">zero</span>; torque \\( \\vec\\tau = \\vec p\\times\\vec E \\), |τ| = pE sin θ",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.11-dipole-in-uniform-field"
+      ],
+      "definitionImage": "media/fig_1_19_dipole_uniform.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the torque on a dipole try to do? When is it zero?",
+      "definition": "Align <span style=\"color:#3b82f6\">p along E</span>; zero when p ∥ E or antiparallel",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.11-dipole-in-uniform-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dipole in a non-uniform field with p ∥ E or antiparallel: net force?",
+      "definition": "p ∥ E: force towards <span style=\"color:#3b82f6\">increasing field</span>. p antiparallel: towards <span style=\"color:#3b82f6\">decreasing field</span>. Torque zero in both",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.11-dipole-in-uniform-field"
+      ],
+      "definitionImage": "media/fig_1_20_dipole_nonuniform.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a charged comb attract uncharged bits of paper?",
+      "definition": "The comb <span style=\"color:#3b82f6\">polarises</span> the paper (induced dipole along E), and its field is <span style=\"color:#3b82f6\">non-uniform</span>, so the dipole is pulled towards the stronger field — the comb",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.11-dipole-in-uniform-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.10: p = 4 × 10⁻⁹ C m at 30° to E = 5 × 10⁴ N/C. Torque?",
+      "definition": "τ = pE sin 30° = <span style=\"color:#f08c00\">10⁻⁴ N m</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.11-dipole-in-uniform-field"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Linear, surface and volume charge densities",
+      "definition": "Linear λ: ΔQ/Δl, C m⁻¹; Surface σ: ΔQ/ΔS, C m⁻²; Volume ρ: ΔQ/ΔV, C m⁻³",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Fig. 1.21 · charge densities</p><h2>Definition and unit?</h2><table><tr><td>Linear λ</td><td class=\"q\">?</td></tr><tr><td>Surface σ</td><td class=\"q\">?</td></tr><tr><td>Volume ρ</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Fig. 1.21 · charge densities</p><h2>Definition and unit?</h2><table><tr><td>Linear λ</td><td class=\"a\">ΔQ/Δl, C m⁻¹</td></tr><tr><td>Surface σ</td><td class=\"a\">ΔQ/ΔS, C m⁻²</td></tr><tr><td>Volume ρ</td><td class=\"a\">ΔQ/ΔV, C m⁻³</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.12-continuous-charge-distribution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the three kinds of charge distribution shown.",
+      "definition": "<span style=\"color:#3b82f6\">Line</span> (ΔQ = λΔl), <span style=\"color:#3b82f6\">surface</span> (ΔQ = σΔS), <span style=\"color:#3b82f6\">volume</span> (ΔQ = ρΔV)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.12-continuous-charge-distribution"
+      ],
+      "termImage": "media/fig_1_21_densities.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How small is the element ΔS used to define σ?",
+      "definition": "Small <span style=\"color:#3b82f6\">macroscopically</span> but large enough to contain very many <span style=\"color:#3b82f6\">microscopic</span> charges: σ is a smoothed average that ignores quantisation",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.12-continuous-charge-distribution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field of a continuous distribution?",
+      "definition": "\\( \\vec E \\approx \\dfrac{1}{4\\pi\\varepsilon_0}\\sum \\dfrac{\\rho\\,\\Delta V}{r'^2}\\hat r' \\) — Coulomb + superposition, an integral in the limit",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.12-continuous-charge-distribution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: where is the electric field undefined or discontinuous?",
+      "definition": "<span style=\"color:#3b82f6\">Undefined</span> at the location of a point charge; <span style=\"color:#3b82f6\">discontinuous</span> across a surface charge; defined everywhere inside a volume distribution",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.12-continuous-charge-distribution"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Flux through a sphere of radius r around a point charge q at its centre?",
+      "definition": "\\( \\phi = \\dfrac{q}{4\\pi\\varepsilon_0 r^2}\\cdot 4\\pi r^2 = \\dfrac{q}{\\varepsilon_0} \\) — independent of r",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ],
+      "definitionImage": "media/fig_1_22_sphere_flux.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "State Gauss’s law.",
+      "definition": "Flux through any closed surface = \\( \\dfrac{q_{enc}}{\\varepsilon_0} \\), where q_enc is the total charge enclosed",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Uniform field through a closed cylinder with axis along E: net flux?",
+      "definition": "−ES (entry face) + ES (exit face) + 0 (curved) = <span style=\"color:#f08c00\">0</span>: no enclosed charge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ],
+      "definitionImage": "media/fig_1_23_cylinder.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Gauss’s law: whose field appears in the flux, and whose charge on the right side?",
+      "definition": "E is due to <span style=\"color:#3b82f6\">all charges, inside and outside</span>; q counts <span style=\"color:#3b82f6\">only the charge inside</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a Gaussian surface? One restriction on choosing it?",
+      "definition": "Any closed surface used to apply Gauss’s law; it must <span style=\"color:#e5484d\">not pass through a discrete point charge</span> (field undefined there), though it may cut a continuous distribution",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is Gauss’s law useful for finding E?",
+      "definition": "When the charge distribution has <span style=\"color:#3b82f6\">symmetry</span> (spherical, cylindrical, planar)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "On what property of Coulomb’s law does Gauss’s law rest?",
+      "definition": "The <span style=\"color:#3b82f6\">inverse-square</span> dependence; a violation of Gauss’s law would signal a departure from 1/r²",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.16(b): zero net flux out of a box. Is there no charge inside?",
+      "definition": "<span style=\"color:#e5484d\">Not necessarily</span>: the <span style=\"color:#3b82f6\">net</span> charge is zero; equal + and − charges could be inside",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Charge q at the centre of a cube. Flux through one face?",
+      "definition": "\\( \\dfrac{q}{6\\varepsilon_0} \\) by symmetry (Exercise 1.17: +10 μC 5 cm above a 10 cm square → <span style=\"color:#f08c00\">1.9 × 10⁵ N m²/C</span>)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ],
+      "termImage": "media/fig_1_31_square.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Flux of a non-uniform field through a cube (Example 1.10)",
+      "definition": "φ = αa^(5/2)(√2 − 1) = 1.05 N m²/C, q = ε₀φ = 9.27 × 10⁻¹² C",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 1.10 · non-uniform field</p><h2>Find the missing step.</h2><div class=\"prob\">Eₓ = αx^½ (α = 800 N C⁻¹ m^-½), Eᵧ = E_z = 0. Cube of side a = 0.1 m from x = a to x = 2a. Charge inside?</div><ol><li>Only the two faces normal to x have flux</li><li class=\"h\">?</li><li>φ = 800 × (0.1)^2.5 × 0.414 = <b>1.05 N m²/C</b></li><li>q = ε₀φ = <b>9.27 × 10⁻¹² C</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 1.10 · non-uniform field</p><h2>Find the missing step.</h2><div class=\"prob\">Eₓ = αx^½ (α = 800 N C⁻¹ m^-½), Eᵧ = E_z = 0. Cube of side a = 0.1 m from x = a to x = 2a. Charge inside?</div><ol><li>Only the two faces normal to x have flux</li><li class=\"r\">φ = a²(E<sub>R</sub> − E<sub>L</sub>) = αa^(5/2)(√2 − 1)</li><li>φ = 800 × (0.1)^2.5 × 0.414 = <b>1.05 N m²/C</b></li><li>q = ε₀φ = <b>9.27 × 10⁻¹² C</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: in Example 1.10, which faces of the cube carry flux, and why?",
+      "definition": "Only the two shaded faces <span style=\"color:#3b82f6\">normal to x</span>: E has only an x-component",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ],
+      "termImage": "media/fig_1_24_cube.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.11: E = +200 î N/C for x > 0 and −200 î for x < 0; cylinder r = 5 cm, faces at x = ±10 cm. Net flux and charge?",
+      "definition": "Each face +<span style=\"color:#f08c00\">1.57 N m²/C</span>, side 0 → φ = <span style=\"color:#f08c00\">3.14 N m²/C</span>; q = ε₀φ = <span style=\"color:#f08c00\">2.78 × 10⁻¹¹ C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ],
+      "definitionImage": "media/fig_1_25_cylinder_ex.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.16(a): net outward flux 8.0 × 10³ N m²/C. Charge inside?",
+      "definition": "q = ε₀φ ≈ <span style=\"color:#f08c00\">7.1 × 10⁻⁸ C</span> (0.07 μC)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.18: 2.0 μC at the centre of a 9.0 cm cube. Net flux?",
+      "definition": "q/ε₀ ≈ <span style=\"color:#f08c00\">2.3 × 10⁵ N m²/C</span> — cube size is irrelevant",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.19: −1.0 × 10³ N m²/C through a 10 cm sphere. With radius doubled? Charge?",
+      "definition": "Still <span style=\"color:#f08c00\">−1.0 × 10³ N m²/C</span>; q = ε₀φ ≈ <span style=\"color:#f08c00\">−8.8 nC</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.13-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field of an infinitely long line charge λ? Gaussian surface?",
+      "definition": "\\( E = \\dfrac{\\lambda}{2\\pi\\varepsilon_0 r} \\), radial; a <span style=\"color:#3b82f6\">coaxial cylinder</span> (flux only through the curved part)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ],
+      "definitionImage": "media/drawn_line_charge_gauss.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why must the field of an infinite line charge be radial?",
+      "definition": "Pairs of elements on either side of P cancel each other’s <span style=\"color:#3b82f6\">components along the wire</span>; only radial parts survive",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why must the wire be “infinitely long” for E = λ/2πε₀r?",
+      "definition": "Otherwise <span style=\"color:#e5484d\">end effects</span> spoil symmetry and E is not normal to the curved surface; the result holds near the middle of a long wire",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field of an infinite plane sheet σ? Gaussian surface?",
+      "definition": "\\( E = \\dfrac{\\sigma}{2\\varepsilon_0} \\), normal to the sheet; a <span style=\"color:#3b82f6\">box or cylinder</span> piercing the sheet (flux 2EA)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ],
+      "definitionImage": "media/fig_1_27_sheet.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why doesn’t the field of an infinite sheet weaken with distance?",
+      "definition": "Moving away, each patch is farther, but you <span style=\"color:#3b82f6\">see more of the sheet</span> at useful angles; the two effects cancel exactly — like a wall of light that never looks dimmer",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field of a uniformly charged thin spherical shell, outside?",
+      "definition": "\\( E = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{q}{r^2} \\) (r ≥ R): as if all charge were at the <span style=\"color:#3b82f6\">centre</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ],
+      "definitionImage": "media/fig_1_28_shell.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Field inside a uniformly charged thin spherical shell?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span> everywhere inside (Gaussian sphere encloses no charge)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sketch E versus r for a charged spherical shell.",
+      "definition": "0 inside, jumps to \\( q/4\\pi\\varepsilon_0R^2 \\) at r = R, then falls as 1/r²",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ],
+      "definitionImage": "media/drawn_shell_E_vs_r.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the experimental fact “E = 0 inside a charged shell” confirm?",
+      "definition": "The <span style=\"color:#3b82f6\">1/r² law</span> of Coulomb (precision tests of the inverse-square law use this)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does the “charge acts from the centre” result hold for a solid uniformly charged sphere?",
+      "definition": "Yes, for points <span style=\"color:#3b82f6\">outside</span> it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Fields from Gauss’s law",
+      "definition": "Infinite line charge λ: λ / 2πε₀r (∝ 1/r); Infinite plane sheet σ: σ / 2ε₀ (constant); Thin shell, outside: q / 4πε₀r² (∝ 1/r²); Thin shell, inside: 0; Two oppositely charged plates, between: σ / ε₀; Two oppositely charged plates, outside: 0",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Gauss’s law results</p><h2>E?</h2><table><tr><td>Infinite line charge λ</td><td class=\"q\">?</td></tr><tr><td>Infinite plane sheet σ</td><td class=\"q\">?</td></tr><tr><td>Thin shell, outside</td><td class=\"q\">?</td></tr><tr><td>Thin shell, inside</td><td class=\"q\">?</td></tr><tr><td>Two oppositely charged plates, between</td><td class=\"q\">?</td></tr><tr><td>Two oppositely charged plates, outside</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Gauss’s law results</p><h2>E?</h2><table><tr><td>Infinite line charge λ</td><td class=\"a\">λ / 2πε₀r (∝ 1/r)</td></tr><tr><td>Infinite plane sheet σ</td><td class=\"a\">σ / 2ε₀ (constant)</td></tr><tr><td>Thin shell, outside</td><td class=\"a\">q / 4πε₀r² (∝ 1/r²)</td></tr><tr><td>Thin shell, inside</td><td class=\"a no\">0</td></tr><tr><td>Two oppositely charged plates, between</td><td class=\"a\">σ / ε₀</td></tr><tr><td>Two oppositely charged plates, outside</td><td class=\"a no\">0</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.23: two large parallel plates with ±σ on their inner faces (σ = 17.0 × 10⁻²² C/m²). E outside and between?",
+      "definition": "Outside: <span style=\"color:#f08c00\">0</span> (fields of the two sheets cancel); between: σ/ε₀ = <span style=\"color:#f08c00\">1.9 × 10⁻¹⁰ N/C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.12: atom = point nucleus +Ze with −Ze spread uniformly to radius R. E inside and outside?",
+      "definition": "\\( E = \\dfrac{Ze}{4\\pi\\varepsilon_0}\\left(\\dfrac{1}{r^2} - \\dfrac{r}{R^3}\\right) \\) for r < R (outward); <span style=\"color:#f08c00\">0</span> for r > R (neutral)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ],
+      "definitionImage": "media/fig_1_29_atom.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.20: conducting sphere, radius 10 cm; E at 20 cm = 1.5 × 10³ N/C radially inward. Charge?",
+      "definition": "q = Er²/k = <span style=\"color:#f08c00\">−6.7 nC</span> (inward → negative)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.21: sphere of diameter 2.4 m, σ = 80.0 μC/m². Charge and flux leaving?",
+      "definition": "Q = σ·4πR² ≈ <span style=\"color:#f08c00\">1.45 × 10⁻³ C</span>; φ = Q/ε₀ ≈ <span style=\"color:#f08c00\">1.6 × 10⁸ N m²/C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.22: line charge gives 9 × 10⁴ N/C at 2 cm. λ?",
+      "definition": "λ = 2πε₀rE = <span style=\"color:#f08c00\">10⁻⁷ C/m</span> (0.1 μC/m)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "1.14-applications-of-gausss-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Charge is a scalar. What extra invariance does it have that kinetic energy lacks?",
+      "definition": "Charge is the same in all <span style=\"color:#3b82f6\">frames in relative motion</span>; kinetic energy is not",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is every scalar conserved? Is every conserved quantity a scalar?",
+      "definition": "<span style=\"color:#e5484d\">No</span> to both: KE is a scalar but not conserved in inelastic collisions; <span style=\"color:#22a35a\">angular momentum</span> is a conserved vector",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is there a quantisation law for mass like that for charge?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: charge quantisation is a basic (unexplained) law with no mass analogue",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can’t electrons sit on top of protons inside the nucleus?",
+      "definition": "The laws of <span style=\"color:#3b82f6\">quantum mechanics</span> forbid it; this gives atoms their structure",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT prints “1 mC (micro coulomb) = 10⁻⁶ C” in Section 1.4.3. Right symbol?",
+      "definition": "<span style=\"color:#3b82f6\">1 μC</span> = 10⁻⁶ C (micro); 1 mC = 10⁻³ C (milli) — the μ was lost in typesetting",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 1 formula sheet",
+      "definition": "Coulomb’s law: F = kq₁q₂/r², k = 9 × 10⁹; Field of a point charge: E = kq/r²; Dipole moment: p = q × 2a (− to +); Dipole field, axis / equator: 2kp/r³ / kp/r³; Torque on a dipole: τ = p × E; Flux: φ = E·ΔS; Gauss’s law: φ = q_enc/ε₀",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Coulomb’s law</td><td class=\"q\">?</td></tr><tr><td>Field of a point charge</td><td class=\"q\">?</td></tr><tr><td>Dipole moment</td><td class=\"q\">?</td></tr><tr><td>Dipole field, axis / equator</td><td class=\"q\">?</td></tr><tr><td>Torque on a dipole</td><td class=\"q\">?</td></tr><tr><td>Flux</td><td class=\"q\">?</td></tr><tr><td>Gauss’s law</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Coulomb’s law</td><td class=\"a\">F = kq₁q₂/r², k = 9 × 10⁹</td></tr><tr><td>Field of a point charge</td><td class=\"a\">E = kq/r²</td></tr><tr><td>Dipole moment</td><td class=\"a\">p = q × 2a (− to +)</td></tr><tr><td>Dipole field, axis / equator</td><td class=\"a\">2kp/r³ / kp/r³</td></tr><tr><td>Torque on a dipole</td><td class=\"a\">τ = p × E</td></tr><tr><td>Flux</td><td class=\"a\">φ = E·ΔS</td></tr><tr><td>Gauss’s law</td><td class=\"a\">φ = q_enc/ε₀</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 1 concept checks",
+      "definition": "Field lines can cross: False; Net force on a dipole in a uniform field is zero: True; Zero flux means no charges inside: False (net charge zero); E inside a charged shell is zero: True; A field line is the path of a charge: False (in general)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>Field lines can cross</td><td class=\"q\">?</td></tr><tr><td>Net force on a dipole in a uniform field is zero</td><td class=\"q\">?</td></tr><tr><td>Zero flux means no charges inside</td><td class=\"q\">?</td></tr><tr><td>E inside a charged shell is zero</td><td class=\"q\">?</td></tr><tr><td>A field line is the path of a charge</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>Field lines can cross</td><td class=\"a no\">False</td></tr><tr><td>Net force on a dipole in a uniform field is zero</td><td class=\"a\">True</td></tr><tr><td>Zero flux means no charges inside</td><td class=\"a no\">False (net charge zero)</td></tr><tr><td>E inside a charged shell is zero</td><td class=\"a\">True</td></tr><tr><td>A field line is the path of a charge</td><td class=\"a no\">False (in general)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-1",
+        "summary"
+      ]
+    }
+  ]
+}

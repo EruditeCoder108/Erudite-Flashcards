@@ -2,6 +2,31 @@
 
 This is how to build one NCERT chapter into a premade deck for Erudite. It is written for a fresh chat that has no memory of earlier chapters. Read it once, then build.
 
+## 0. Your task in a new chat (start here)
+
+The owner will usually just say "read the playbook and continue". That means:
+
+1. **Read this whole file first.** It has the rules, card style, tools, the per-chapter workflow, the mistakes to avoid and the progress table (section 9).
+2. **Continue from the progress table.** Work through the chapters marked "Next" / "Old" / "Not started", in order, as many as you can do well in this chat.
+3. **Copy the shape of the most recent deck scripts** in `decks/` for the same kind of subject:
+   - Physics: `phy12_ch01.py` + `figures_phy12_ch01.py` (latest), `phy_ch13.py`, `phy_ch04.py` (pilot).
+   - Teacher-style physical subject: `chem12_ch02.py` + `figures_chem12_ch02.py`.
+   - Animated intuition cards: `chem12_ch05.py`. Reaction-heavy chapter: `chem12_ch06.py`.
+   - You may always read an earlier finished script to see how something was done; just don't reread whole finished chapters for no reason.
+4. **Unzip a new book** into its own folder under `NCERT-pdfs/` if not done yet, and check page 0 of each PDF for the chapter title.
+5. **Old zips:** each chapter replaces an old zip in its `premade-cards/<class>/<Subject>` folder if one exists (check exact folder and zip names first). If there is none, run `replace_deck.py` with `none.zip` as the old name; if the subject folder has no `manifest.json` yet, run `npm run zip:premade` instead (see 5.6).
+6. **One chapter at a time:** crop (check every crop in a montage; fix clipped edges and stray text), write the deck, check masks, package, commit, push, and update the progress table in the same commit.
+7. **Before stopping,** make sure the progress table clearly says what's next.
+
+The most important rules, in short (details in section 2):
+- **Build fast, but the cards must actually teach.** Mostly text and cloze with the colour code; attach NCERT figures freely; occlusion only for diagrams students must label.
+- **Biology, inorganic and organic chemistry: strictly NCERT. Physical chemistry, physics and maths: teacher-style and exam-weighted** (JEE/NEET): formulas, worked numericals (`steps_card`), units, standard traps.
+- **KaTeX** `\( … \)` in basic/cloze text; never a cloze inside math; never `\text{}`.
+- **Intuition matters most where students get confused** (physics especially): explain what symbols and quantities mean, use analogies. Animated `showcase`/`showcase_phy` cards only where motion explains better than a figure — the later owner rule caps this at **one per chapter** (section 2.3).
+- **Where a chapter has diagrams or derivations that matter for exams, crop nearly all of them** (one card each).
+- **Mnemonics and clearly labelled corrections/updates** where NCERT is wrong or outdated (about 5–10% of the deck). **Recompute before claiming NCERT is wrong.**
+- **Git:** if `index.lock` exists, wait a few seconds and retry (another program briefly holds it). After each commit, check the old zip was really removed and the push went through.
+
 ## 1. What the app is
 
 **Erudite** is a spaced-repetition flashcard app for Indian students, mainly Class 9–12, NEET and JEE. It is built with Capacitor and ships on Android. Learners study decks in SRS or normal mode.
@@ -168,7 +193,7 @@ Use Biology 11 Ch 10 as the example. Copy the shape of `decks/bio_ch09.py` and `
    ```
    python scripts/premade-authoring/tools/maskcheck.py premade-cards/11th/Biology/<deck-id> chk10
    ```
-6. **Package and replace the old zip.** Look up the old zip name in the subject folder; if the chapter never had an old deck, run `npm run zip:premade` instead.
+6. **Package and replace the old zip.** Look up the old zip name in the subject folder; if the chapter never had an old deck, pass `none.zip` as the old name. If the subject folder has no `manifest.json` yet (a brand-new subject), `replace_deck.py` fails: run `npm run zip:premade` instead, then set the new manifest entry's `tags` (e.g. `["class-12", "physics", "neet"]`), since the script leaves them empty.
    ```
    python scripts/premade-authoring/replace_deck.py premade-cards/11th/Biology erudite_chapter_10_cell_cycle_and_cell_division.zip class11-biology-ch10-cell-cycle-and-cell-division
    ```
@@ -256,7 +281,8 @@ Don't polish endlessly: move on to the next chapter.
 | Chemistry 12 | 1–10 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
 | Physics 11 | 1–3, 5–14 — complete | Done (PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; answer keys `keph1an.pdf`, `keph2an.pdf`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py` + `figures_phy_chNN.py`, animations in `showcase_phy.py`, drawn figures via `draw.py`) |
 | Physics 11 | 4 | Pilot |
-| Physics 12 | all | **Next: Physics 12 Ch 1.** Unzip `physics12thpart1.zip` and `physicspart212th.zip` into `NCERT-pdfs/phy12/` (check page 0 of each PDF for the title; some pages may be scanned images — render with `tools/pg.py`). Check `premade-cards/12th/Physics` for old zips (use `none.zip` if none). Follow the Physics 11 decks (e.g. `phy_ch05.py`, `phy_ch13.py`): teacher-style, `steps_card` numericals, labelled corrections after recomputing, at most one animation per chapter. |
+| Physics 12 | 1 | Done (PDFs unzipped to `NCERT-pdfs/phy12/`: Ch 1–8 = `leph101–108`, Ch 9–14 = `leph201–206`; answer keys `leph1an.pdf`, `leph2an.pdf`; decks in `premade-cards/12th/Physics/` (new folder, no old zips: run `npm run zip:premade`, then set the manifest `tags` to `["class-12", "physics", "neet"]`), scripts `phy12_chNN.py` + `figures_phy12_chNN.py`) |
+| Physics 12 | 2–14 | **Next: Physics 12 Ch 2** (`leph102`). Follow `phy12_ch01.py`: teacher-style, `steps_card` numericals, exercises answered on cards, labelled corrections/updates, drawn figures for cluttered NCERT ones, at most one animation per chapter. |
 | Maths 11 | 3 | Pilot |
 | Maths 11 | others | Not started |
 | Maths 12 | all | Not started |
