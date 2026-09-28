@@ -1,0 +1,1273 @@
+{
+  "version": 1,
+  "name": "Chapter 10: Thermal Properties of Matter",
+  "className": "Class 11",
+  "description": "Temperature scales, ideal gas, thermal expansion, specific heat, calorimetry, change of state, latent heat, conduction, convection, radiation, Newton’s cooling",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Temperature vs heat?",
+      "definition": "<span style=\"color:#3b82f6\">Temperature</span>: measure of hotness (K, °C). <span style=\"color:#3b82f6\">Heat</span>: energy transferred because of a <span style=\"color:#3b82f6\">temperature difference</span> (J)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.2-temperature-and-heat"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is touch not a good thermometer?",
+      "definition": "It is <span style=\"color:#e5484d\">unreliable</span> and its range is too limited",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.2-temperature-and-heat"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Any energy transfer without a temperature difference: is it heat?",
+      "definition": "<span style=\"color:#e5484d\">No</span> (e.g. work done by stirring is not heat)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.2-temperature-and-heat"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a temperature scale need fixed points?",
+      "definition": "All substances expand, so there is no absolute reference; we use phenomena that always happen at the <span style=\"color:#3b82f6\">same temperature</span> (ice point, steam point)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.3-measurement-of-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ice and steam points on the Celsius and Fahrenheit scales?",
+      "definition": "Celsius: <span style=\"color:#f08c00\">0 °C, 100 °C</span> (100 divisions). Fahrenheit: <span style=\"color:#f08c00\">32 °F, 212 °F</span> (180 divisions)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.3-measurement-of-temperature"
+      ],
+      "definitionImage": "media/fig_10_1_f_vs_c.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Celsius–Fahrenheit conversion?",
+      "definition": "\\( \\dfrac{t_F - 32}{180} = \\dfrac{t_C}{100} \\), i.e. \\( t_F = \\tfrac95 t_C + 32 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.3-measurement-of-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "At what temperature do Celsius and Fahrenheit readings agree?",
+      "definition": "<span style=\"color:#f08c00\">−40°</span> (solve x = 9x/5 + 32)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.3-measurement-of-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: general rule to convert between any two linear scales?",
+      "definition": "\\( \\dfrac{X - L}{U - L} \\) is the same on every scale (L = lower, U = upper fixed point)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.3-measurement-of-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Boyle’s law and Charles’ law?",
+      "definition": "<span style=\"color:#3b82f6\">Boyle</span> (T constant): PV = constant. <span style=\"color:#3b82f6\">Charles</span> (P constant): V/T = constant",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ideal gas equation?",
+      "definition": "\\( PV = \\mu RT \\), R = <span style=\"color:#f08c00\">8.31 J mol⁻¹ K⁻¹</span>, μ = number of moles",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is a gas thermometer better than a liquid-in-glass one?",
+      "definition": "All low-density gases expand the same way, so a gas thermometer reads the same <span style=\"color:#3b82f6\">whichever gas</span> is used",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Constant-volume gas thermometer: what is read?",
+      "definition": "<span style=\"color:#3b82f6\">Pressure</span>: at constant V, P ∝ T",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ],
+      "definitionImage": "media/fig_10_2_p_vs_t.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How is absolute zero found?",
+      "definition": "Extrapolate P–T lines of low-density gases to P = 0: all meet at <span style=\"color:#f08c00\">−273.15 °C</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ],
+      "definitionImage": "media/fig_10_3_absolute_zero.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Kelvin–Celsius relation?",
+      "definition": "\\( T = t_C + 273.15 \\); one kelvin = one Celsius degree",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ],
+      "definitionImage": "media/fig_10_4_scales.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Absolute zero in °F?",
+      "definition": "<span style=\"color:#f08c00\">−459.67 °F</span> (NCERT’s Fig. 10.4 prints −459.69 °F; the accepted value is −459.67 °F)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the triple point of water the modern fixed point (Exercise 10.4a)?",
+      "definition": "It has a <span style=\"color:#3b82f6\">unique temperature</span> (273.16 K); melting and boiling points depend on pressure",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is T = tc + 273.15 and not + 273.16 (Exercise 10.4c)?",
+      "definition": "The triple point is <span style=\"color:#3b82f6\">0.01 °C</span> = 273.16 K; the melting point of ice (0 °C) is 273.15 K",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.4(d): triple point of water on an absolute scale with Fahrenheit-sized degrees?",
+      "definition": "<span style=\"color:#f08c00\">491.69</span> (273.16 × 9/5)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.2: absolute scales A and B give the triple point as 200 A and 350 B. Relation?",
+      "definition": "\\( T_A = \\tfrac47 T_B \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.3: R = 101.6 Ω at 273.16 K, 165.5 Ω at 600.5 K (linear). Temperature when R = 123.4 Ω?",
+      "definition": "<span style=\"color:#f08c00\">≈ 384.8 K</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.5: why do oxygen and hydrogen gas thermometers disagree slightly? Remedy?",
+      "definition": "Real gases are <span style=\"color:#3b82f6\">not perfectly ideal</span>. Take readings at lower and lower pressures and extrapolate to P → 0",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.4-ideal-gas-and-absolute-temperature"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does dipping a tight metal lid in hot water help open a bottle?",
+      "definition": "The metal lid <span style=\"color:#3b82f6\">expands</span> more than the glass",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Three kinds of thermal expansion?",
+      "definition": "<span style=\"color:#3b82f6\">Linear</span> (length), <span style=\"color:#3b82f6\">area</span>, <span style=\"color:#3b82f6\">volume</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ],
+      "definitionImage": "media/fig_10_5_expansion.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Coefficient of linear expansion?",
+      "definition": "\\( \\dfrac{\\Delta l}{l} = \\alpha_l\\,\\Delta T \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Table 10.1: αₗ of copper vs glass (pyrex)?",
+      "definition": "Copper <span style=\"color:#f08c00\">1.7 × 10⁻⁵ K⁻¹</span> vs pyrex <span style=\"color:#f08c00\">0.32 × 10⁻⁵ K⁻¹</span>: copper expands about 5 times more",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ],
+      "definitionImage": "media/tab_10_1_linear_expansion.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Coefficient of volume expansion?",
+      "definition": "\\( \\dfrac{\\Delta V}{V} = \\alpha_V\\,\\Delta T \\); not strictly constant — depends on temperature",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ],
+      "definitionImage": "media/fig_10_6_copper_alpha_v.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Relations between αₗ, αA and αV (isotropic solid)?",
+      "definition": "\\( \\alpha_A = 2\\alpha_l,\\quad \\alpha_V = 3\\alpha_l \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Coefficient of area expansion = 2αl",
+      "definition": "ΔA = aΔb + bΔa + ΔaΔb = αl A ΔT (2 + αl ΔT) ≈ 2αl A ΔT",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 10.1 · area expansion</p><h2>Find the missing step.</h2><div class=\"prob\">Show that the coefficient of area expansion of a rectangular sheet is 2αₗ.</div><ol><li>Δa = αₗaΔT, Δb = αₗbΔT</li><li>ΔA = aΔb + bΔa + ΔaΔb</li><li class=\"h\">?</li><li>αₗΔT ≪ 2, so <b>ΔA/A = 2αₗΔT</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 10.1 · area expansion</p><h2>Find the missing step.</h2><div class=\"prob\">Show that the coefficient of area expansion of a rectangular sheet is 2αₗ.</div><ol><li>Δa = αₗaΔT, Δb = αₗbΔT</li><li>ΔA = aΔb + bΔa + ΔaΔb</li><li class=\"r\">= αₗAΔT(2 + αₗΔT)</li><li>αₗΔT ≪ 2, so <b>ΔA/A = 2αₗΔT</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: which strips make up the extra area in Fig. 10.8?",
+      "definition": "ΔA₁ = aΔb, ΔA₂ = bΔa and the tiny corner ΔaΔb (neglected)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ],
+      "definitionImage": "media/fig_10_8_area_expansion.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Which have very low expansion: name two.",
+      "definition": "<span style=\"color:#3b82f6\">Invar</span> (iron–nickel alloy, αV ≈ 2 × 10⁻⁶ K⁻¹) and <span style=\"color:#3b82f6\">pyrex glass</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which expands more for the same rise: alcohol or mercury?",
+      "definition": "<span style=\"color:#3b82f6\">Alcohol</span> (αV ≈ 110 × 10⁻⁵ vs 18.2 × 10⁻⁵ K⁻¹)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Anomalous expansion of water?",
+      "definition": "Water <span style=\"color:#e5484d\">contracts</span> on heating from 0 °C to 4 °C; density is <span style=\"color:#3b82f6\">maximum at 4 °C</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ],
+      "definitionImage": "media/fig_10_7_water_anomaly.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do lakes freeze from the top, and why does it matter?",
+      "definition": "Water below 4 °C is less dense and stays on top where it freezes; the water underneath stays near 4 °C, so <span style=\"color:#3b82f6\">aquatic life survives</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Volume expansivity of an ideal gas at constant pressure?",
+      "definition": "\\( \\alpha_V = \\dfrac1T \\) (≈ 3.7 × 10⁻³ K⁻¹ at 0 °C) — far larger than for solids and liquids",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is thermal stress?",
+      "definition": "Stress in a body <span style=\"color:#3b82f6\">prevented from expanding</span>: strain = αΔT, stress = YαΔT",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Steel rail (40 cm², α = 1.2 × 10⁻⁵ K⁻¹, Y = 2 × 10¹¹ Pa) fixed at both ends, heated 10 °C. Thermal stress and force?",
+      "definition": "Stress = <span style=\"color:#f08c00\">2.4 × 10⁷ Pa</span>; force ≈ <span style=\"color:#f08c00\">10⁵ N</span> — enough to bend rails (hence gaps between rails)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10.2: iron ring 5.231 m fits a 5.243 m wooden rim at 27 °C. To what temperature must the ring be heated?",
+      "definition": "<span style=\"color:#f08c00\">≈ 218 °C</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.7: steel shaft 8.70 cm, wheel hole 8.69 cm at 27 °C. Cool the shaft to what temperature?",
+      "definition": "<span style=\"color:#f08c00\">≈ −69 °C</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.8: a hole of 4.24 cm in a copper sheet, heated from 27 °C to 227 °C. Change in diameter?",
+      "definition": "<span style=\"color:#3b82f6\">Increases</span> by <span style=\"color:#f08c00\">1.44 × 10⁻² cm</span>: a hole expands like the material around it",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.9: brass wire 1.8 m, 2.0 mm diameter, held taut and cooled from 27 °C to −39 °C. Tension?",
+      "definition": "F = YAαΔT ≈ <span style=\"color:#f08c00\">3.8 × 10² N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.10: brass and steel rods (50 cm each) joined, heated 40 → 250 °C, ends free. Change in length? Thermal stress?",
+      "definition": "<span style=\"color:#f08c00\">0.34 cm</span> total; <span style=\"color:#e5484d\">no</span> thermal stress (free to expand)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.11: fractional change in density of glycerine (αV = 49 × 10⁻⁵ K⁻¹) for a 30 °C rise?",
+      "definition": "<span style=\"color:#f08c00\">≈ 1.5 × 10⁻² decrease</span> (Δρ/ρ ≈ −αVΔT)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.6: a steel tape calibrated at 27 °C reads 63.0 cm at 45 °C. Actual length that day?",
+      "definition": "<span style=\"color:#f08c00\">63.0136 cm</span> (≈ 63.0 cm to 3 s.f.)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.5-thermal-expansion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Heat needed to warm a substance depends on…?",
+      "definition": "<span style=\"color:#3b82f6\">Mass</span>, <span style=\"color:#3b82f6\">temperature change</span> and the <span style=\"color:#3b82f6\">nature of the substance</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define heat capacity and specific heat capacity.",
+      "definition": "\\( S = \\dfrac{\\Delta Q}{\\Delta T} \\) ; \\( s = \\dfrac{1}{m}\\dfrac{\\Delta Q}{\\Delta T} \\) (J kg⁻¹ K⁻¹)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define molar specific heat capacity.",
+      "definition": "\\( C = \\dfrac{1}{\\mu}\\dfrac{\\Delta Q}{\\Delta T} \\) (J mol⁻¹ K⁻¹)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do gases have two molar specific heats?",
+      "definition": "Heat can be supplied at constant <span style=\"color:#3b82f6\">pressure</span> (Cₚ) or constant <span style=\"color:#3b82f6\">volume</span> (Cᵥ); Cₚ > Cᵥ",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.6-specific-heat-capacity"
+      ],
+      "definitionImage": "media/tab_10_4_molar_heats.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Which common substance has the highest specific heat? Value?",
+      "definition": "<span style=\"color:#3b82f6\">Water</span>: <span style=\"color:#f08c00\">4186 J kg⁻¹ K⁻¹</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.6-specific-heat-capacity"
+      ],
+      "definitionImage": "media/tab_10_3_specific_heats.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Uses and effects of water’s high specific heat?",
+      "definition": "Coolant in car radiators, hot-water bags; sea warms slowly, so <span style=\"color:#3b82f6\">sea breeze</span> cools the coast; deserts heat and cool quickly",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.15: why are Cᵥ values of diatomic gases (~5 cal/mol K) higher than monatomic (2.92)? Chlorine is higher still.",
+      "definition": "Diatomic molecules also store energy in <span style=\"color:#3b82f6\">rotation</span> (Cᵥ ≈ 5R/2); chlorine’s <span style=\"color:#3b82f6\">vibrational</span> modes are active too",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Principle of calorimetry: in an isolated system, {{c1::heat lost by the hotter part = heat gained by the colder part}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.7-calorimetry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Construction of a calorimeter?",
+      "definition": "Copper/aluminium vessel and stirrer inside a wooden jacket with insulating material (glass wool); thermometer through the lid",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.7-calorimetry"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Specific heat of aluminium by mixtures",
+      "definition": "Heat lost by Al = heat gained by water + calorimeter → s ≈ 0.911 kJ kg⁻¹ K⁻¹",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 10.3 · aluminium sphere</p><h2>Find the missing step.</h2><div class=\"prob\">0.047 kg Al at 100 °C dropped into 0.25 kg water + 0.14 kg copper calorimeter at 20 °C; final 23 °C. s(Al)?</div><ol><li>Heat lost by Al = 0.047 × s × 77</li><li class=\"h\">?</li><li>≈ 3297 J</li><li>s(Al) = 3297 / (0.047 × 77) ≈ <b>911 J kg⁻¹ K⁻¹</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 10.3 · aluminium sphere</p><h2>Find the missing step.</h2><div class=\"prob\">0.047 kg Al at 100 °C dropped into 0.25 kg water + 0.14 kg copper calorimeter at 20 °C; final 23 °C. s(Al)?</div><ol><li>Heat lost by Al = 0.047 × s × 77</li><li class=\"r\">Heat gained = (0.25 × 4180 + 0.14 × 386) × 3</li><li>≈ 3297 J</li><li>s(Al) = 3297 / (0.047 × 77) ≈ <b>911 J kg⁻¹ K⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.7-calorimetry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.14: 0.20 kg metal at 150 °C into water (150 g) + calorimeter (water equivalent 25 g) at 27 °C; final 40 °C. s? Effect of heat loss?",
+      "definition": "<span style=\"color:#f08c00\">0.43 J g⁻¹ K⁻¹</span>; with losses, the calculated value is <span style=\"color:#e5484d\">smaller</span> than the true value",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.7-calorimetry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.12: 10 kW drill, half the power heats an 8.0 kg aluminium block (0.91 J/g K) for 2.5 min. Temperature rise?",
+      "definition": "<span style=\"color:#f08c00\">≈ 103 °C</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.7-calorimetry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.13: 2.5 kg copper at 500 °C on a large ice block. Maximum ice melted?",
+      "definition": "<span style=\"color:#f08c00\">≈ 1.5 kg</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.7-calorimetry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Temperature of ice being heated while it melts?",
+      "definition": "<span style=\"color:#3b82f6\">Stays constant</span> (0 °C) until all the ice melts; the heat goes into changing state",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8-change-of-state"
+      ],
+      "definitionImage": "media/fig_10_9_heating_curve.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define melting point.",
+      "definition": "The temperature at which solid and liquid <span style=\"color:#3b82f6\">coexist in equilibrium</span>; depends on pressure. At 1 atm: normal melting point",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8-change-of-state"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is regelation? Example?",
+      "definition": "Ice melts under pressure (below a loaded wire) and <span style=\"color:#3b82f6\">refreezes</span> when the pressure is removed; the wire passes through without splitting the slab. Also makes skating possible",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8-change-of-state"
+      ],
+      "definitionImage": "media/fig_10_10_regelation.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define boiling point; effect of pressure?",
+      "definition": "Liquid and vapour coexist in equilibrium; boiling point <span style=\"color:#3b82f6\">rises with pressure</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8-change-of-state"
+      ],
+      "definitionImage": "media/fig_10_11_boiling.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is cooking hard on hills but fast in a pressure cooker?",
+      "definition": "Lower pressure on hills → <span style=\"color:#e5484d\">lower</span> boiling point; a pressure cooker raises pressure → <span style=\"color:#3b82f6\">higher</span> boiling point",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8-change-of-state"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is sublimation? Examples?",
+      "definition": "Solid → vapour directly: <span style=\"color:#22a35a\">dry ice (solid CO₂), iodine</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8-change-of-state"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the triple point? Water’s?",
+      "definition": "Where solid, liquid and vapour coexist (sublimation, fusion and vaporisation curves meet). Water: <span style=\"color:#f08c00\">273.16 K, 0.006 atm</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8-change-of-state"
+      ],
+      "definitionImage": "media/fig_10_phase_diagrams.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT’s box gives the triple-point pressure of water as 6.11 × 10⁻³ Pa. What is right?",
+      "definition": "<span style=\"color:#3b82f6\">611 Pa</span> = 6.11 × 10⁻³ bar ≈ 0.006 atm (as its own phase diagram shows). The book wrote Pa where it meant bar",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8-change-of-state"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fusion curve of water vs CO₂: slope?",
+      "definition": "Water: <span style=\"color:#3b82f6\">negative</span> slope (melting point falls with pressure — regelation). CO₂: positive; at 1 atm CO₂ sublimes (triple point 5.11 atm)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8-change-of-state"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define latent heat.",
+      "definition": "\\( Q = mL \\): heat per unit mass for a change of state at constant temperature (J kg⁻¹)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8.1-latent-heat"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Latent heats of water?",
+      "definition": "Fusion Lf = <span style=\"color:#f08c00\">3.33 × 10⁵ J/kg</span>; vaporisation Lv = <span style=\"color:#f08c00\">22.6 × 10⁵ J/kg</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8.1-latent-heat"
+      ],
+      "definitionImage": "media/tab_10_5_latent_heats.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do steam burns hurt more than boiling-water burns?",
+      "definition": "Steam at 100 °C carries an extra <span style=\"color:#f08c00\">22.6 × 10⁵ J/kg</span> of latent heat",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8.1-latent-heat"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In the temperature–heat graph of water, why do the sloping parts differ in slope?",
+      "definition": "Slope ∝ 1/(ms): ice, water and steam have <span style=\"color:#3b82f6\">different specific heats</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8.1-latent-heat"
+      ],
+      "definitionImage": "media/fig_10_12_temp_vs_heat.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10.4: 0.15 kg ice at 0 °C + 0.30 kg water at 50 °C → 6.7 °C. Lf?",
+      "definition": "<span style=\"color:#f08c00\">3.34 × 10⁵ J/kg</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8.1-latent-heat"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Ice at −12 °C to steam at 100 °C",
+      "definition": "Four stages add to about 9.1 × 10⁶ J",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 10.5 · ice to steam</p><h2>Find the missing step.</h2><div class=\"prob\">Heat to turn 3 kg of ice at −12 °C into steam at 100 °C?</div><ol><li>Ice −12 → 0 °C: 3 × 2100 × 12 = 75 600 J</li><li>Melt: 3 × 3.35 × 10⁵ = 1 005 000 J</li><li class=\"h\">?</li><li>Boil: 3 × 2.256 × 10⁶ = 6 768 000 J → total <b>≈ 9.1 × 10⁶ J</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 10.5 · ice to steam</p><h2>Find the missing step.</h2><div class=\"prob\">Heat to turn 3 kg of ice at −12 °C into steam at 100 °C?</div><ol><li>Ice −12 → 0 °C: 3 × 2100 × 12 = 75 600 J</li><li>Melt: 3 × 3.35 × 10⁵ = 1 005 000 J</li><li class=\"r\">Water 0 → 100 °C: 3 × 4186 × 100 = 1 255 800 J</li><li>Boil: 3 × 2.256 × 10⁶ = 6 768 000 J → total <b>≈ 9.1 × 10⁶ J</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8.1-latent-heat"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic for the ice-to-steam heating curve?",
+      "definition": "\"<span style=\"color:#3b82f6\">Slope, flat, slope, flat, slope</span>\": heat (s), melt (Lf), heat (s), boil (Lv), heat (s)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8.1-latent-heat"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.16: a child (30 kg) cools from 101 °F to 98 °F in 20 min by sweating (L = 580 cal/g). Rate of evaporation?",
+      "definition": "<span style=\"color:#f08c00\">≈ 4.3 g/min</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.8.1-latent-heat"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Three modes of heat transfer?",
+      "definition": "<span style=\"color:#3b82f6\">Conduction, convection, radiation</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ],
+      "definitionImage": "media/fig_10_13_modes.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is conduction?",
+      "definition": "Heat transfer between neighbouring parts of a body through molecular collisions, <span style=\"color:#e5484d\">without</span> bulk flow of matter",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rate of heat flow through a bar in steady state?",
+      "definition": "\\( H = KA\\dfrac{T_C - T_D}{L} \\) (K = thermal conductivity, W m⁻¹ K⁻¹)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ],
+      "definitionImage": "media/fig_10_14_conducting_bar.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Table 10.6: best and worst conductors?",
+      "definition": "Silver <span style=\"color:#f08c00\">406</span>, copper <span style=\"color:#f08c00\">385</span> W/m K; air <span style=\"color:#f08c00\">0.024</span>, glass wool 0.04",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ],
+      "definitionImage": "media/tab_10_6_conductivities.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do cooking pots have copper bottoms, and why are plastic foams good insulators?",
+      "definition": "Copper spreads heat evenly (large K); foams trap <span style=\"color:#3b82f6\">pockets of air</span> (very small K)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is a layer of earth or foam put on concrete roofs?",
+      "definition": "Concrete’s K is not small enough; the layer <span style=\"color:#3b82f6\">insulates</span> and keeps rooms cool",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10.6: steel (15 cm, area 2A, K = 50.2) and copper (10 cm, area A, K = 385) in series, 300 °C to 0 °C. Junction temperature?",
+      "definition": "<span style=\"color:#f08c00\">≈ 44.4 °C</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ],
+      "definitionImage": "media/fig_10_15_steel_copper.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10.7: iron (K = 79) and brass (K = 109) bars of equal size in series, 373 K to 273 K. Junction temperature, K(equivalent)?",
+      "definition": "T₀ = <span style=\"color:#f08c00\">315 K</span>; K′ = 2K₁K₂/(K₁ + K₂) = <span style=\"color:#f08c00\">91.6 W m⁻¹ K⁻¹</span>; H ≈ 916 W",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ],
+      "definitionImage": "media/fig_10_16_iron_brass.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: thermal resistance and bars in series/parallel?",
+      "definition": "\\( R_{th} = \\dfrac{L}{KA} \\); in series resistances add, in parallel their reciprocals add (like resistors)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.17: thermacole icebox (30 cm cube, walls 5 cm, K = 0.01), 4 kg ice, outside 45 °C, 6 h. Ice left?",
+      "definition": "<span style=\"color:#f08c00\">≈ 3.7 kg</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.18: brass boiler base 0.15 m², 1.0 cm thick, boils 6.0 kg/min. Flame temperature?",
+      "definition": "<span style=\"color:#f08c00\">≈ 238 °C</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.19(b): why does a brass tumbler feel colder than a wooden tray on a chilly day?",
+      "definition": "Brass is a good <span style=\"color:#3b82f6\">conductor</span>: it draws heat from your hand quickly",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9-heat-transfer"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is convection? Where is it possible?",
+      "definition": "Heat transfer by <span style=\"color:#3b82f6\">actual bulk motion</span> of matter; only in <span style=\"color:#3b82f6\">fluids</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.2-convection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Natural vs forced convection? Examples?",
+      "definition": "<span style=\"color:#3b82f6\">Natural</span>: driven by gravity/buoyancy (sea breeze). <span style=\"color:#3b82f6\">Forced</span>: by a pump or fan (house heating, blood circulation, car cooling system)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.2-convection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sea breeze and land breeze?",
+      "definition": "Day: land heats faster, warm air rises over land, cool air flows in from the sea (<span style=\"color:#3b82f6\">sea breeze</span>). Night: reversed (<span style=\"color:#3b82f6\">land breeze</span>)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.2-convection"
+      ],
+      "definitionImage": "media/fig_10_17_convection.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What are trade winds?",
+      "definition": "Steady surface winds blowing from the north-east towards the equator: convection modified by Earth’s <span style=\"color:#3b82f6\">rotation</span>; air descends near 30° N",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.2-convection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A hot bar under a running tap loses heat mainly by…?",
+      "definition": "<span style=\"color:#3b82f6\">Conduction</span> between the bar and water, not convection within the water",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.2-convection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.19(e): why is steam heating more efficient than hot-water heating?",
+      "definition": "Condensing steam releases a large <span style=\"color:#3b82f6\">latent heat</span> per kg",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.2-convection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is thermal radiation? Why needs no medium?",
+      "definition": "Electromagnetic waves emitted because of temperature; EM waves travel through <span style=\"color:#3b82f6\">vacuum</span> at 3 × 10⁸ m/s",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why wear white clothes in summer and dark ones in winter?",
+      "definition": "Dark bodies <span style=\"color:#3b82f6\">absorb and emit</span> radiation better; white reflects the Sun’s heat",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a thermos (Dewar) flask reduce heat transfer?",
+      "definition": "Silvered walls (<span style=\"color:#3b82f6\">radiation</span>), vacuum between walls (<span style=\"color:#3b82f6\">conduction, convection</span>), cork support",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Wien’s displacement law.",
+      "definition": "\\( \\lambda_m T = b \\), b = <span style=\"color:#f08c00\">2.9 × 10⁻³ m K</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ],
+      "definitionImage": "media/fig_10_18_blackbody.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does heated iron glow dull red, then yellow, then white?",
+      "definition": "As T rises, λₘ shifts to <span style=\"color:#3b82f6\">shorter wavelengths</span> (Wien)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Surface temperatures of the Moon and Sun from Wien’s law?",
+      "definition": "Moon: λₘ ≈ 14 μm → <span style=\"color:#f08c00\">≈ 200 K</span>. Sun: λₘ = 4753 Å → <span style=\"color:#f08c00\">≈ 6000 K</span> (surface, not interior)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State the Stefan–Boltzmann law.",
+      "definition": "\\( H = Ae\\sigma T^4 \\), σ = <span style=\"color:#f08c00\">5.67 × 10⁻⁸ W m⁻² K⁻⁴</span>, e = emissivity (1 for a perfect radiator)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Net radiation loss of a body at T in surroundings at Tₛ?",
+      "definition": "\\( H = e\\sigma A\\,(T^4 - T_s^4) \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Heat radiated by a person (1.9 m², skin 28 °C, room 22 °C, e = 0.97)?",
+      "definition": "<span style=\"color:#f08c00\">≈ 66 W</span> — over half the body’s resting output (120 W); arctic clothing adds a shiny reflecting layer",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.19(a): why is a good reflector a poor emitter?",
+      "definition": "Good reflectors are poor <span style=\"color:#3b82f6\">absorbers</span>, and good absorbers are good emitters",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.19(d): why would Earth be very cold without its atmosphere?",
+      "definition": "The atmosphere traps the Earth’s infrared radiation (<span style=\"color:#3b82f6\">greenhouse effect</span>)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.9.3-radiation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Newton’s law of cooling.",
+      "definition": "\\( -\\dfrac{dQ}{dt} = k(T_2 - T_1) \\): rate of heat loss ∝ excess temperature over the surroundings (small differences only)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.10-newtons-law-of-cooling"
+      ],
+      "definitionImage": "media/fig_10_19_cooling_curve.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Temperature of a cooling body with time?",
+      "definition": "\\( T_2 = T_1 + Ce^{-Kt} \\), K = k/ms: an <span style=\"color:#3b82f6\">exponential decay</span> of the excess temperature",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.10-newtons-law-of-cooling"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is Newton’s law of cooling verified?",
+      "definition": "Plot ln(T₂ − T₁) against t: a <span style=\"color:#3b82f6\">straight line with negative slope</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.10-newtons-law-of-cooling"
+      ],
+      "definitionImage": "media/fig_10_20_newton_cooling.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: average form of Newton’s law used in problems?",
+      "definition": "\\( \\dfrac{\\Delta T}{\\Delta t} = K\\left(\\bar T - T_s\\right) \\) (use the average temperature over the interval)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.10-newtons-law-of-cooling"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10.8: food cools 94 → 86 °C in 2 min (room 20 °C). Time for 71 → 69 °C?",
+      "definition": "8/2 = K(70) and 2/t = K(50) → t = <span style=\"color:#f08c00\">0.7 min = 42 s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.10-newtons-law-of-cooling"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.20: a body cools 80 → 50 °C in 5 min (room 20 °C). Time for 60 → 30 °C?",
+      "definition": "<span style=\"color:#f08c00\">9 min</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "10.10-newtons-law-of-cooling"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 10 formula sheet",
+      "definition": "Linear expansion: Δl = αₗ l ΔT; αV and αₗ: αV = 3αₗ; Heat for temperature change: Q = ms ΔT; Heat for change of state: Q = mL; Conduction: H = KA ΔT / L; Radiation: H = eσAT⁴",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Linear expansion</td><td class=\"q\">?</td></tr><tr><td>αV and αₗ</td><td class=\"q\">?</td></tr><tr><td>Heat for temperature change</td><td class=\"q\">?</td></tr><tr><td>Heat for change of state</td><td class=\"q\">?</td></tr><tr><td>Conduction</td><td class=\"q\">?</td></tr><tr><td>Radiation</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Linear expansion</td><td class=\"a\">Δl = αₗ l ΔT</td></tr><tr><td>αV and αₗ</td><td class=\"a\">αV = 3αₗ</td></tr><tr><td>Heat for temperature change</td><td class=\"a\">Q = ms ΔT</td></tr><tr><td>Heat for change of state</td><td class=\"a\">Q = mL</td></tr><tr><td>Conduction</td><td class=\"a\">H = KA ΔT / L</td></tr><tr><td>Radiation</td><td class=\"a\">H = eσAT⁴</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 10 concept checks",
+      "definition": "Melting and boiling points of water are exactly 0 °C and 100 °C today: False (very close); Two phases in equilibrium have the same density: False (same P and T); Heat transfer always involves a temperature difference: True",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>Melting and boiling points of water are exactly 0 °C and 100 °C today</td><td class=\"q\">?</td></tr><tr><td>Two phases in equilibrium have the same density</td><td class=\"q\">?</td></tr><tr><td>Heat transfer always involves a temperature difference</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>Melting and boiling points of water are exactly 0 °C and 100 °C today</td><td class=\"a no\">False (very close)</td></tr><tr><td>Two phases in equilibrium have the same density</td><td class=\"a no\">False (same P and T)</td></tr><tr><td>Heat transfer always involves a temperature difference</td><td class=\"a\">True</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-10",
+        "summary"
+      ]
+    }
+  ]
+}
