@@ -247,8 +247,8 @@ Don't polish endlessly: move on to the next chapter.
 | Biology 12 | 1–13 — complete | Done (PDFs unzipped to `NCERT-pdfs/bio12/`) |
 | Chemistry 11 | 1–3, 5–9 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
 | Chemistry 11 | 4 | Pilot |
-| Chemistry 12 | 1 | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
-| Chemistry 12 | 2–10 | **Next: Ch 2 Electrochemistry.** No old zips except Ch 10, which replaces `biomolecules-chemistry.zip`; for the others run `replace_deck.py premade-cards/12th/Chemistry none.zip <new id>` |
+| Chemistry 12 | 1–2 | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
+| Chemistry 12 | 3–10 | **Next: Ch 3 Chemical Kinetics.** No old zips except Ch 10, which replaces `biomolecules-chemistry.zip`; for the others run `replace_deck.py premade-cards/12th/Chemistry none.zip <new id>` |
 | Physics 11 | 4 | Pilot |
 | Physics 11 | others | Not started |
 | Physics 12 | all | Not started |

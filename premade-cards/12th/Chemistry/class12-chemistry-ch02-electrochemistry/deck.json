@@ -1,0 +1,2086 @@
+{
+  "version": 1,
+  "name": "Chapter 2: Electrochemistry",
+  "className": "Class 12",
+  "description": "Galvanic cells, electrode potentials, Nernst equation, Gibbs energy, conductivity, Kohlrausch law, electrolysis, batteries, fuel cells, corrosion",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is electrochemistry?",
+      "definition": "Study of producing <span style=\"color:#3b82f6\">electricity from spontaneous reactions</span> and using electricity to drive <span style=\"color:#3b82f6\">non-spontaneous</span> ones",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.0-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Galvanic cell vs electrolytic cell: energy conversion?",
+      "definition": "<span style=\"color:#3b82f6\">Galvanic</span>: chemical → electrical (spontaneous, ΔG < 0). <span style=\"color:#3b82f6\">Electrolytic</span>: electrical → chemical (non-spontaneous).",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.0-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cell reaction and emf of the Daniell cell?",
+      "definition": "\\( Zn + Cu^{2+} \\rightarrow Zn^{2+} + Cu \\); <span style=\"color:#f08c00\">1.1 V</span> at unit concentrations",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.1-electrochemical-cells"
+      ],
+      "definitionImage": "media/fig_2_1_daniell_cell.webp"
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 2.1 · Daniell cell",
+      "definition": "",
+      "image": "media/fig_2_1_daniell_cell.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 1001,
+        "imageHeight": 963,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              62,
+              298,
+              115,
+              62
+            ],
+            "answer": "Zinc (anode)"
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              832,
+              298,
+              165,
+              62
+            ],
+            "answer": "Copper (cathode)"
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              372,
+              326,
+              225,
+              64
+            ],
+            "answer": "Salt bridge",
+            "labelInImage": true
+          }
+        ]
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.1-electrochemical-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "External voltage opposing a Daniell cell: E_ext < 1.1 V, = 1.1 V, > 1.1 V?",
+      "definition": "< 1.1 V: works as a <span style=\"color:#3b82f6\">galvanic cell</span>. = 1.1 V: <span style=\"color:#e5484d\">no current, no reaction</span>. > 1.1 V: reaction <span style=\"color:#3b82f6\">reverses</span> (Zn deposits, Cu dissolves): electrolytic cell.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.1-electrochemical-cells"
+      ],
+      "definitionImage": "media/fig_2_2_external_voltage.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: what does E_ext = 1.1 V tell you about the cell?",
+      "definition": "The opposing push exactly balances the reaction’s own \"push\"; so emf is the maximum voltage the reaction can supply",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.1-electrochemical-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction/footnote: concentration or activity in the Nernst equation?",
+      "definition": "Strictly <span style=\"color:#3b82f6\">activity</span>; it equals concentration only in dilute solutions",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.1-electrochemical-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Half-reactions in the Daniell cell and where they occur?",
+      "definition": "Reduction \\( Cu^{2+} + 2e^- \\rightarrow Cu \\) at copper; oxidation \\( Zn \\rightarrow Zn^{2+} + 2e^- \\) at zinc",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a half-cell (redox couple)?",
+      "definition": "A metal electrode dipped in its electrolyte; the reduction half-cell and the oxidation half-cell",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is a salt bridge not needed?",
+      "definition": "When both electrodes dip in the <span style=\"color:#3b82f6\">same electrolyte</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is a salt bridge needed? (teacher addition)",
+      "definition": "It completes the circuit and keeps both solutions <span style=\"color:#3b82f6\">electrically neutral</span>; without it, charge builds up and current stops at once",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is electrode potential?",
+      "definition": "The potential difference between an electrode and its electrolyte, from the balance of metal → ion and ion → metal tendencies",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is standard electrode potential?",
+      "definition": "Electrode potential when all species are at <span style=\"color:#3b82f6\">unit concentration</span> (gases 1 bar), usually 298 K; IUPAC: standard reduction potential",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "In a galvanic cell, oxidation occurs at the {{c1::anode}}, which is {{c2::negative}}; reduction occurs at the {{c3::cathode}}, which is {{c4::positive}}.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction of electron flow and current in the external circuit?",
+      "definition": "Electrons: <span style=\"color:#3b82f6\">anode → cathode</span> (− to +). Current: the <span style=\"color:#e5484d\">opposite</span> direction.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic for anode and cathode?",
+      "definition": "<span style=\"color:#3b82f6\">An Ox, Red Cat</span>: ANode = OXidation, REDuction = CAThode. True in every cell.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Anode and cathode signs in the two cell types",
+      "definition": "Galvanic cell: anode: − (negative); Galvanic cell: cathode: + (positive); Electrolytic cell: anode: + (connected to battery +); Electrolytic cell: cathode: − (connected to battery −)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Sign trap</p><h2>Sign of the electrode?</h2><table><tr><td>Galvanic cell: anode</td><td class=\"q\">?</td></tr><tr><td>Galvanic cell: cathode</td><td class=\"q\">?</td></tr><tr><td>Electrolytic cell: anode</td><td class=\"q\">?</td></tr><tr><td>Electrolytic cell: cathode</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Sign trap</p><h2>Sign of the electrode?</h2><table><tr><td>Galvanic cell: anode</td><td class=\"a\">− (negative)</td></tr><tr><td>Galvanic cell: cathode</td><td class=\"a\">+ (positive)</td></tr><tr><td>Electrolytic cell: anode</td><td class=\"a no\">+ (connected to battery +)</td></tr><tr><td>Electrolytic cell: cathode</td><td class=\"a no\">− (connected to battery −)</td></tr></table><p class=\"note\">Oxidation is always at the anode; only the sign flips, because in electrolysis the battery forces electrons in.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why is the galvanic anode negative?",
+      "definition": "Oxidation there <span style=\"color:#3b82f6\">releases electrons</span> into the metal, so electrons pile up: it is the electron source (−)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cell potential vs emf?",
+      "definition": "Both = E(cathode) − E(anode); called <span style=\"color:#3b82f6\">emf</span> when <span style=\"color:#e5484d\">no current</span> is drawn",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cell notation convention?",
+      "definition": "<span style=\"color:#3b82f6\">Anode on the left</span>, cathode on the right; | = phase boundary; || = salt bridge; e.g. Cu|Cu²⁺||Ag⁺|Ag",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Formula for E_cell from electrode potentials?",
+      "definition": "\\( E_{cell} = E_{right} - E_{left} = E_{cathode} - E_{anode} \\) (both as reduction potentials)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: in E_cell = E_cathode − E_anode, do you reverse the anode’s sign as well?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: use both <span style=\"color:#3b82f6\">reduction potentials as listed</span>; the minus sign already accounts for the anode being an oxidation",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2-galvanic-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can’t a single electrode potential be measured?",
+      "definition": "A voltmeter needs <span style=\"color:#3b82f6\">two electrodes</span>; only differences can be measured, so a reference is chosen",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Standard hydrogen electrode (SHE): notation and potential?",
+      "definition": "Pt(s)|H₂(g, 1 bar)|H⁺(aq, 1 M); assigned <span style=\"color:#f08c00\">0 V at all temperatures</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 2.3 · Standard hydrogen electrode",
+      "definition": "",
+      "image": "media/fig_2_3_she.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 1001,
+        "imageHeight": 919,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              590,
+              180,
+              175,
+              108
+            ],
+            "answer": "H₂(g) at 1 bar",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              612,
+              730,
+              330,
+              160
+            ],
+            "answer": "Finely divided platinum coated on platinum foil",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              250,
+              758,
+              230,
+              64
+            ],
+            "answer": "1.00 M H⁺",
+            "labelInImage": true
+          }
+        ]
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Construction of SHE?",
+      "definition": "Pt electrode coated with <span style=\"color:#3b82f6\">platinum black</span>, dipped in 1 M acid, pure H₂ bubbled at 1 bar",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is E° of Cu²⁺/Cu measured?",
+      "definition": "SHE as anode (left), Cu half-cell as cathode: measured emf <span style=\"color:#f08c00\">0.34 V</span> = E°",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "E° of Zn²⁺/Zn and its meaning?",
+      "definition": "<span style=\"color:#f08c00\">−0.76 V</span>: H⁺ can oxidise Zn (Zn dissolves in acids)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why doesn’t Cu dissolve in HCl, but does in HNO₃?",
+      "definition": "E°(Cu²⁺/Cu) > 0, so <span style=\"color:#e5484d\">H⁺ cannot oxidise Cu</span>; in HNO₃ the <span style=\"color:#3b82f6\">nitrate ion</span> is the oxidant",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "E° of Daniell cell from E° values?",
+      "definition": "0.34 − (−0.76) = <span style=\"color:#f08c00\">1.10 V</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Role of Pt or Au as inert electrodes?",
+      "definition": "Provide a <span style=\"color:#3b82f6\">surface</span> for the redox reaction and conduct electrons, without reacting (H₂ electrode, Br₂ electrode)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Positive E° means the reduced form is…?",
+      "definition": "More stable than H₂; the couple is a <span style=\"color:#3b82f6\">weaker reducing agent</span> than H⁺/H₂",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Strongest oxidising agent and strongest reducing agent in Table 2.1?",
+      "definition": "<span style=\"color:#3b82f6\">F₂</span> (E° = +2.87 V); <span style=\"color:#3b82f6\">Li</span> (E° = −3.05 V)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ],
+      "definitionImage": "media/tab_2_1_electrode_potentials.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Going down Table 2.1 (E° decreasing): trend?",
+      "definition": "Oxidising power of the left-side species <span style=\"color:#e5484d\">falls</span>; reducing power of the right-side species <span style=\"color:#3b82f6\">rises</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: how to read E° as a \"tug of war\" for electrons?",
+      "definition": "Higher E° = grabs electrons harder (gets reduced). In any pair, the <span style=\"color:#3b82f6\">higher-E° couple is reduced</span>, the lower one is oxidised",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can CuSO₄ be stored in a zinc pot? (Intext 2.2)",
+      "definition": "<span style=\"color:#e5484d\">No</span>: E°(Zn) < E°(Cu), so Zn reduces Cu²⁺ and the pot dissolves",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Three substances that can oxidise Fe²⁺? (Intext 2.3)",
+      "definition": "Any with E° > 0.77 V: <span style=\"color:#22a35a\">F₂, Cl₂, Br₂, MnO₄⁻/H⁺, Cr₂O₇²⁻/H⁺, H₂O₂</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Uses of electrochemical cells (NCERT list)?",
+      "definition": "Finding <span style=\"color:#3b82f6\">pH</span>, solubility product, equilibrium constants, thermodynamic data; potentiometric titrations",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.2.1-measurement-of-electrode-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Nernst equation for Mⁿ⁺ + ne⁻ → M?",
+      "definition": "\\( E = E^{\\circ} - \\frac{RT}{nF} \\ln \\frac{1}{[M^{n+}]} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Nernst equation for a cell at 298 K?",
+      "definition": "\\( E_{cell} = E^{\\circ}_{cell} - \\frac{0.059}{n} \\log Q \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where does 0.059 V come from?",
+      "definition": "\\( \\frac{2.303 \\, RT}{F} \\) at 298 K = 2.303 × 8.314 × 298 / 96487",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Nernst equation for the Daniell cell?",
+      "definition": "\\( E_{cell} = 1.1 - \\frac{0.059}{2} \\log \\frac{[Zn^{2+}]}{[Cu^{2+}]} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does E_cell of Daniell cell change with [Cu²⁺] and [Zn²⁺]?",
+      "definition": "Rises with more <span style=\"color:#3b82f6\">Cu²⁺</span> (reactant), falls with more <span style=\"color:#e5484d\">Zn²⁺</span> (product)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: Nernst equation = Le Chatelier?",
+      "definition": "More reactant pushes the reaction forward, so the cell \"pushes\" electrons harder (higher E); more product pushes back",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What goes into Q in the Nernst equation?",
+      "definition": "<span style=\"color:#3b82f6\">Products over reactants</span> with powers; solids and pure liquids = 1; gases as partial pressures",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: n for Ni + 2Ag⁺ → Ni²⁺ + 2Ag?",
+      "definition": "<span style=\"color:#f08c00\">n = 2</span> (electrons transferred), and Q = [Ni²⁺]/[Ag⁺]²",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential of hydrogen electrode at pH 10? (Intext 2.4)",
+      "definition": "E = −0.059 × pH = <span style=\"color:#f08c00\">−0.59 V</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Nernst: Mg–Ag cell",
+      "definition": "2.96 V",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.1</p><h2>Mg + 2Ag⁺(0.0001 M) → Mg²⁺(0.130 M) + 2Ag; E° = 3.17 V. E_cell?</h2><div class=\"prob\">Cell: Mg|Mg²⁺(0.130 M)||Ag⁺(0.0001 M)|Ag; n = 2.</div><ol><li>Q = 0.130 / (0.0001)² = 1.3 × 10⁷</li><li>log Q = 7.11</li><li class=\"h\">?</li><li>= <b>2.96 V</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.1</p><h2>Mg + 2Ag⁺(0.0001 M) → Mg²⁺(0.130 M) + 2Ag; E° = 3.17 V. E_cell?</h2><div class=\"prob\">Cell: Mg|Mg²⁺(0.130 M)||Ag⁺(0.0001 M)|Ag; n = 2.</div><ol><li>Q = 0.130 / (0.0001)² = 1.3 × 10⁷</li><li>log Q = 7.11</li><li class=\"r\">E = 3.17 − 0.0295 × 7.11 = 3.17 − 0.21</li><li>= <b>2.96 V</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "emf of Ni|Ni²⁺(0.160 M)||Ag⁺(0.002 M)|Ag, E° = 1.05 V? (Intext 2.5)",
+      "definition": "Q = 0.160/(0.002)² = 4 × 10⁴; E = 1.05 − 0.0295 × 4.60 = <span style=\"color:#f08c00\">0.91 V</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What happens to a Daniell cell’s voltage as it runs?",
+      "definition": "[Zn²⁺] rises, [Cu²⁺] falls, so E <span style=\"color:#e5484d\">drops</span> until <span style=\"color:#3b82f6\">E = 0 at equilibrium</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3-nernst-equation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between E°_cell and K?",
+      "definition": "\\( E^{\\circ}_{cell} = \\frac{2.303 \\, RT}{nF} \\log K_C = \\frac{0.059}{n} \\log K_C \\) (298 K)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.1-equilibrium-constant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "K_C for the Daniell cell reaction?",
+      "definition": "log K = 2 × 1.1/0.059 = 37.3, so K_C ≈ <span style=\"color:#f08c00\">2 × 10³⁷</span>: goes to completion",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.1-equilibrium-constant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "K for Cu + 2Ag⁺ → Cu²⁺ + 2Ag, E° = 0.46 V? (Example 2.2)",
+      "definition": "log K = 0.46 × 2/0.059 = 15.6 → K = <span style=\"color:#f08c00\">3.92 × 10¹⁵</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.1-equilibrium-constant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why do small E° values give enormous K?",
+      "definition": "K depends on E° <span style=\"color:#3b82f6\">exponentially</span>: every 0.059/n V multiplies K by 10",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.1-equilibrium-constant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between ΔrG and E_cell?",
+      "definition": "\\( \\Delta_r G = -nFE_{cell} \\); standard: \\( \\Delta_r G^{\\circ} = -nFE^{\\circ}_{cell} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.2-gibbs-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is ΔrG = −nFE the maximum useful work?",
+      "definition": "Reversible work (charge nF moved through potential E) equals the <span style=\"color:#3b82f6\">decrease in Gibbs energy</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.2-gibbs-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Spontaneous cell: signs of E and ΔG?",
+      "definition": "<span style=\"color:#3b82f6\">E > 0, ΔG < 0</span> (and K > 1)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.2-gibbs-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "E_cell is intensive; ΔrG is extensive. Consequence?",
+      "definition": "Doubling the equation <span style=\"color:#3b82f6\">doubles ΔG</span> (n doubles) but <span style=\"color:#e5484d\">E stays the same</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.2-gibbs-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: to balance 2Ag⁺ + 2e⁻ → 2Ag, do you double E°(Ag⁺/Ag)?",
+      "definition": "<span style=\"color:#e5484d\">Never</span>: E° is intensive (volts = energy per charge). Keep 0.80 V.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.2-gibbs-energy"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Combining electrode potentials via ΔG",
+      "definition": "−0.037 V",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Combining half-cells</p><h2>E°(Fe³⁺/Fe²⁺) = 0.77 V, E°(Fe²⁺/Fe) = −0.44 V. E°(Fe³⁺/Fe)?</h2><div class=\"prob\">Potentials don’t add for a half-cell; ΔG does.</div><ol><li>ΔG₁ = −1·F·0.77 = −0.77F</li><li>ΔG₂ = −2·F·(−0.44) = +0.88F</li><li>ΔG₃ = ΔG₁ + ΔG₂ = +0.11F = −3F·E°</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Combining half-cells</p><h2>E°(Fe³⁺/Fe²⁺) = 0.77 V, E°(Fe²⁺/Fe) = −0.44 V. E°(Fe³⁺/Fe)?</h2><div class=\"prob\">Potentials don’t add for a half-cell; ΔG does.</div><ol><li>ΔG₁ = −1·F·0.77 = −0.77F</li><li>ΔG₂ = −2·F·(−0.44) = +0.88F</li><li>ΔG₃ = ΔG₁ + ΔG₂ = +0.11F = −3F·E°</li><li class=\"r\">E°(Fe³⁺/Fe) = <b>−0.037 V</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.2-gibbs-energy"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "ΔG° of the Daniell cell",
+      "definition": "−212.27 kJ/mol",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.3</p><h2>Daniell cell, E° = 1.1 V. ΔrG°?</h2><div class=\"prob\">n = 2, F = 96487 C mol⁻¹.</div><ol><li>ΔrG° = −nFE°</li><li>= −2 × 96487 × 1.1</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.3</p><h2>Daniell cell, E° = 1.1 V. ΔrG°?</h2><div class=\"prob\">n = 2, F = 96487 C mol⁻¹.</div><ol><li>ΔrG° = −nFE°</li><li>= −2 × 96487 × 1.1</li><li class=\"r\">= −212,271 J mol⁻¹ = <b>−212.27 kJ mol⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.2-gibbs-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Example 2.3 prints ΔrG° = −21227 J mol⁻¹. Right value?",
+      "definition": "<span style=\"color:#3b82f6\">−212,271 J mol⁻¹</span> (a digit is missing); the kJ value, −212.27, is correct",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.2-gibbs-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ΔG° and K for 2Fe³⁺ + 2I⁻ → 2Fe²⁺ + I₂, E° = 0.236 V? (Intext 2.6)",
+      "definition": "ΔG° = −2 × 96487 × 0.236 = <span style=\"color:#f08c00\">−45.5 kJ/mol</span>; log K = 8.0 → K ≈ <span style=\"color:#f08c00\">1 × 10⁸</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.2-gibbs-energy"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "E°, ΔG° and K",
+      "definition": "E°cell > 0: ΔG°  1: forward favoured; E°cell = 0: ΔG° = 0, K = 1; E°cell < 0: ΔG° > 0, K < 1: reverse favoured",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Link</p><h2>Spontaneity from each?</h2><table><tr><td>E°cell > 0</td><td class=\"q\">?</td></tr><tr><td>E°cell = 0</td><td class=\"q\">?</td></tr><tr><td>E°cell < 0</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Link</p><h2>Spontaneity from each?</h2><table><tr><td>E°cell > 0</td><td class=\"a\">ΔG° < 0, K > 1: forward favoured</td></tr><tr><td>E°cell = 0</td><td class=\"a\">ΔG° = 0, K = 1</td></tr><tr><td>E°cell < 0</td><td class=\"a no\">ΔG° > 0, K < 1: reverse favoured</td></tr></table><p class=\"note\">ΔG° = −nFE° = −RT ln K ties all three together.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.3.2-gibbs-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Resistance in terms of resistivity?",
+      "definition": "\\( R = \\rho \\frac{l}{A} \\); ρ in <span style=\"color:#f08c00\">Ω m</span> (1 Ω m = 100 Ω cm)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conductance G and conductivity κ?",
+      "definition": "\\( G = \\frac{1}{R} = \\kappa \\frac{A}{l} \\); G in siemens (S = Ω⁻¹ = mho); κ = 1/ρ in S m⁻¹",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Unit conversion: 1 S cm⁻¹ = ? S m⁻¹",
+      "definition": "<span style=\"color:#f08c00\">100 S m⁻¹</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Metallic (electronic) conductance depends on?",
+      "definition": "Nature and structure of metal, number of <span style=\"color:#3b82f6\">valence electrons</span>, temperature (<span style=\"color:#e5484d\">decreases</span> as T rises)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conductivity of pure water and why?",
+      "definition": "<span style=\"color:#f08c00\">3.5 × 10⁻⁵ S m⁻¹</span>: only ~10⁻⁷ M H⁺ and OH⁻ from self-ionisation",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Table 2.2 lists metals at ~10³ S m⁻¹ (Cu 5.9 × 10³). Real values?",
+      "definition": "About <span style=\"color:#3b82f6\">10⁷ S m⁻¹</span> (Cu ≈ 5.9 × 10⁷, Ag ≈ 6.2 × 10⁷); the table’s exponents are off by 10⁴",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Classes by conductivity: {{c1::conductors}} (metals, graphite), {{c2::insulators}} (glass, Teflon), {{c3::semiconductors}} (Si, doped Si, GaAs), {{c4::superconductors}} (zero resistivity).",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Superconductors: temperature range?",
+      "definition": "Metals/alloys at <span style=\"color:#f08c00\">0–15 K</span>; some ceramics and mixed oxides up to ~<span style=\"color:#f08c00\">150 K</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conducting polymers: discovery and examples (box)?",
+      "definition": "<span style=\"color:#3b82f6\">Polyacetylene</span> doped with I₂ (MacDiarmid, Heeger, Shirakawa, Nobel 2000); also polyaniline, polypyrrole, polythiophene",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ionic (electrolytic) conductivity depends on?",
+      "definition": "Nature of electrolyte, <span style=\"color:#3b82f6\">ion size and solvation</span>, solvent and its viscosity, concentration, temperature (<span style=\"color:#3b82f6\">increases</span> with T)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why does heating raise ionic but lower metallic conductivity?",
+      "definition": "Hot solvent is <span style=\"color:#3b82f6\">less viscous</span>, so ions move faster; in metals, hotter vibrating atoms <span style=\"color:#e5484d\">scatter electrons</span> more",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Metallic vs electrolytic conduction: effect on the conductor?",
+      "definition": "Metal: composition <span style=\"color:#3b82f6\">unchanged</span>. Electrolyte: prolonged DC <span style=\"color:#e5484d\">changes composition</span> (electrolysis)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4-conductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two problems in measuring resistance of a solution, and the fixes?",
+      "definition": "DC changes the solution → use <span style=\"color:#3b82f6\">AC</span>. Solution can’t be clamped like a wire → use a <span style=\"color:#3b82f6\">conductivity cell</span>.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.1-measuring-conductivity"
+      ],
+      "definitionImage": "media/fig_2_4_conductivity_cells.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are the electrodes platinised (Pt black)?",
+      "definition": "Finely divided Pt gives a large surface; reduces polarisation errors (teacher note)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.1-measuring-conductivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the cell constant G*?",
+      "definition": "\\( G^* = \\frac{l}{A} = R \\kappa \\); unit length⁻¹; found using <span style=\"color:#3b82f6\">KCl solutions of known κ</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.1-measuring-conductivity"
+      ],
+      "definitionImage": "media/tab_2_3_kcl_conductivity.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Wheatstone bridge for solutions: source and detector?",
+      "definition": "Oscillator O: AC at <span style=\"color:#f08c00\">550–5000 Hz</span>; detector P: headphone; at balance \\( R_2 = \\frac{R_1 R_4}{R_3} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.1-measuring-conductivity"
+      ],
+      "definitionImage": "media/fig_2_5_wheatstone.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Conductivity from cell constant?",
+      "definition": "\\( \\kappa = \\frac{G^*}{R} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.1-measuring-conductivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define molar conductivity.",
+      "definition": "\\( \\Lambda_m = \\frac{\\kappa}{c} \\): conductivity per unit molar concentration",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.1-measuring-conductivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Λm in S cm² mol⁻¹ from κ in S cm⁻¹ and molarity M?",
+      "definition": "\\( \\Lambda_m = \\frac{1000 \\, \\kappa}{M} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.1-measuring-conductivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "1 S m² mol⁻¹ = ? S cm² mol⁻¹",
+      "definition": "<span style=\"color:#f08c00\">10⁴</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.1-measuring-conductivity"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Conductivity from cell constant",
+      "definition": "κ 0.248 S/m; Λm 124 S cm²/mol",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.4</p><h2>Cell: 100 Ω with 0.1 M KCl (κ 1.29 S/m); 520 Ω with 0.02 M KCl. κ and Λm of 0.02 M KCl?</h2><div class=\"prob\">Find G* first.</div><ol><li>G* = κR = 1.29 × 100 = 129 m⁻¹</li><li class=\"h\">?</li><li>c = 0.02 M = 20 mol m⁻³</li><li>Λm = 0.248/20 = <b>124 × 10⁻⁴ S m² mol⁻¹</b> (124 S cm² mol⁻¹)</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.4</p><h2>Cell: 100 Ω with 0.1 M KCl (κ 1.29 S/m); 520 Ω with 0.02 M KCl. κ and Λm of 0.02 M KCl?</h2><div class=\"prob\">Find G* first.</div><ol><li>G* = κR = 1.29 × 100 = 129 m⁻¹</li><li class=\"r\">κ = G*/R = 129/520 = <b>0.248 S m⁻¹</b></li><li>c = 0.02 M = 20 mol m⁻³</li><li>Λm = 0.248/20 = <b>124 × 10⁻⁴ S m² mol⁻¹</b> (124 S cm² mol⁻¹)</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.1-measuring-conductivity"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Resistivity, conductivity and Λm of NaOH",
+      "definition": "87.1 Ω cm; 0.01148 S/cm; 229.6",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.5</p><h2>0.05 M NaOH column: d = 1 cm, l = 50 cm, R = 5.55 × 10³ Ω. ρ, κ, Λm?</h2><div class=\"prob\">A = πr² = 0.785 cm².</div><ol><li>ρ = RA/l = 5550 × 0.785/50 = <b>87.1 Ω cm</b></li><li>κ = 1/ρ = <b>0.01148 S cm⁻¹</b></li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.5</p><h2>0.05 M NaOH column: d = 1 cm, l = 50 cm, R = 5.55 × 10³ Ω. ρ, κ, Λm?</h2><div class=\"prob\">A = πr² = 0.785 cm².</div><ol><li>ρ = RA/l = 5550 × 0.785/50 = <b>87.1 Ω cm</b></li><li>κ = 1/ρ = <b>0.01148 S cm⁻¹</b></li><li class=\"r\">Λm = 1000 × 0.01148/0.05 = <b>229.6 S cm² mol⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.1-measuring-conductivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of dilution on κ, and why?",
+      "definition": "κ <span style=\"color:#e5484d\">decreases</span> (strong and weak): fewer ions per unit volume",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.2-variation-with-concentration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of dilution on Λm, and why?",
+      "definition": "Λm <span style=\"color:#3b82f6\">increases</span>: Λm = κV, and the rise in V (volume holding 1 mol) outweighs the fall in κ",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.2-variation-with-concentration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: κ vs Λm on dilution?",
+      "definition": "κ = current carriers in a fixed 1 cm³ box (fewer as you dilute). Λm = all ions from <span style=\"color:#3b82f6\">1 mole</span>, wherever they are: they are never lost, and on dilution they move more freely (and weak ones ionise more)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.2-variation-with-concentration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is limiting molar conductivity Λ°m?",
+      "definition": "Λm as concentration → <span style=\"color:#3b82f6\">zero</span> (infinite dilution)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.2-variation-with-concentration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Debye–Hückel–Onsager form for strong electrolytes?",
+      "definition": "\\( \\Lambda_m = \\Lambda^{\\circ}_m - A\\sqrt{c} \\); Λm vs √c is a straight line, intercept Λ°m, slope −A",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.2-variation-with-concentration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A depends on?",
+      "definition": "Solvent, temperature and electrolyte <span style=\"color:#3b82f6\">type</span> (1-1 NaCl, 2-1 CaCl₂, 2-2 MgSO₄); same for all of one type",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.2-variation-with-concentration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Strong vs weak electrolyte: shape of Λm vs √c?",
+      "definition": "Strong (KCl): <span style=\"color:#3b82f6\">gentle straight line</span>. Weak (CH₃COOH): <span style=\"color:#3b82f6\">steep rise</span> near zero concentration.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.2-variation-with-concentration"
+      ],
+      "definitionImage": "media/fig_2_6_molar_conductivity.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does Λm of a weak electrolyte rise so steeply on dilution?",
+      "definition": "Degree of <span style=\"color:#3b82f6\">dissociation α increases</span>, creating many more ions per mole",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.2-variation-with-concentration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can’t Λ°m of a weak electrolyte be found by extrapolation?",
+      "definition": "The curve is steep and non-linear near c = 0, and at such dilution κ is <span style=\"color:#e5484d\">too small to measure accurately</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.2-variation-with-concentration"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Λ°m and A for KCl from Example 2.6?",
+      "definition": "Λ°m = <span style=\"color:#f08c00\">150.0 S cm² mol⁻¹</span>; A = <span style=\"color:#f08c00\">87.46 S cm² mol⁻¹ (mol/L)⁻¹ᐟ²</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.2-variation-with-concentration"
+      ],
+      "definitionImage": "media/fig_2_7_kcl_plot.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Kohlrausch’s observation?",
+      "definition": "Λ°(KX) − Λ°(NaX) ≈ <span style=\"color:#f08c00\">23.4</span> for any X; Λ°(NaBr) − Λ°(NaCl) ≈ <span style=\"color:#f08c00\">1.8</span> S cm² mol⁻¹: each ion contributes a fixed amount",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.3-kohlrausch-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Kohlrausch law of independent migration of ions?",
+      "definition": "Λ°m of an electrolyte = sum of the limiting molar conductivities of its <span style=\"color:#3b82f6\">cation and anion</span>: \\( \\Lambda^{\\circ}_m = \\nu_+ \\lambda^{\\circ}_+ + \\nu_- \\lambda^{\\circ}_- \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.3-kohlrausch-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are λ° of H⁺ (349.6) and OH⁻ (199.1) so high?",
+      "definition": "They hop along H-bonded water chains (<span style=\"color:#3b82f6\">Grotthuss mechanism</span>) instead of moving bodily (teacher addition)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.3-kohlrausch-law"
+      ],
+      "definitionImage": "media/tab_2_4_ion_conductivity.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Λ°m of CaCl₂ and MgSO₄? (Example 2.7)",
+      "definition": "CaCl₂: 119.0 + 2(76.3) = <span style=\"color:#f08c00\">271.6</span>; MgSO₄: 106.0 + 160.0 = <span style=\"color:#f08c00\">266 S cm² mol⁻¹</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.3-kohlrausch-law"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Kohlrausch: Λ° of acetic acid",
+      "definition": "390.5 S cm²/mol",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.8</p><h2>Λ° of NaCl, HCl, NaAc = 126.4, 425.9, 91.0. Λ°(HAc)?</h2><div class=\"prob\">Add and subtract so only H⁺ and Ac⁻ remain.</div><ol><li class=\"h\">?</li><li>= 425.9 + 91.0 − 126.4</li><li>= <b>390.5 S cm² mol⁻¹</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.8</p><h2>Λ° of NaCl, HCl, NaAc = 126.4, 425.9, 91.0. Λ°(HAc)?</h2><div class=\"prob\">Add and subtract so only H⁺ and Ac⁻ remain.</div><ol><li class=\"r\">Λ°(HAc) = Λ°(HCl) + Λ°(NaAc) − Λ°(NaCl)</li><li>= 425.9 + 91.0 − 126.4</li><li>= <b>390.5 S cm² mol⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.3-kohlrausch-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Degree of dissociation from conductivity?",
+      "definition": "\\( \\alpha = \\frac{\\Lambda_m}{\\Lambda^{\\circ}_m} \\) and \\( K_a = \\frac{c\\alpha^2}{1 - \\alpha} \\)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.3-kohlrausch-law"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Ka of acetic acid from conductivity",
+      "definition": "1.78 × 10⁻⁵",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.9</p><h2>κ of 0.001028 M acetic acid = 4.95 × 10⁻⁵ S cm⁻¹; Λ° = 390.5. Ka?</h2><div class=\"prob\">Λm = 1000κ/c.</div><ol><li>Λm = 4.95 × 10⁻⁵ × 1000/0.001028 = 48.15 S cm² mol⁻¹</li><li class=\"h\">?</li><li>Ka = cα²/(1 − α)</li><li>= <b>1.78 × 10⁻⁵ mol L⁻¹</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.9</p><h2>κ of 0.001028 M acetic acid = 4.95 × 10⁻⁵ S cm⁻¹; Λ° = 390.5. Ka?</h2><div class=\"prob\">Λm = 1000κ/c.</div><ol><li>Λm = 4.95 × 10⁻⁵ × 1000/0.001028 = 48.15 S cm² mol⁻¹</li><li class=\"r\">α = 48.15/390.5 = 0.1233</li><li>Ka = cα²/(1 − α)</li><li>= <b>1.78 × 10⁻⁵ mol L⁻¹</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.3-kohlrausch-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "α and Ka of 0.025 M HCOOH, Λm = 46.1 (λ° H⁺ 349.6, HCOO⁻ 54.6)? (Intext 2.9)",
+      "definition": "Λ° = 404.2; α = <span style=\"color:#f08c00\">0.114</span>; Ka = 0.025 × 0.114²/0.886 ≈ <span style=\"color:#f08c00\">3.67 × 10⁻⁴</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.3-kohlrausch-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How to get Λ°m of water? (Intext 2.8)",
+      "definition": "λ°(H⁺) + λ°(OH⁻) = <span style=\"color:#f08c00\">548.7 S cm² mol⁻¹</span> (or Λ°HCl + Λ°NaOH − Λ°NaCl)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.4.3-kohlrausch-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Electrolysis of CuSO₄ with copper electrodes?",
+      "definition": "Cathode: Cu²⁺ + 2e⁻ → Cu (deposits). Anode: Cu → Cu²⁺ + 2e⁻ (dissolves).",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Electrolytic refining of copper?",
+      "definition": "<span style=\"color:#3b82f6\">Impure Cu = anode</span> (dissolves); <span style=\"color:#3b82f6\">pure Cu deposits on the cathode</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are Na, Mg, Al made electrolytically? How?",
+      "definition": "No suitable chemical reducing agent. Na, Mg: <span style=\"color:#3b82f6\">fused chlorides</span>; Al: <span style=\"color:#3b82f6\">Al₂O₃ with cryolite</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Faraday’s first law?",
+      "definition": "Amount of reaction at an electrode ∝ <span style=\"color:#3b82f6\">quantity of electricity</span> passed (w = ZQ)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Faraday’s second law?",
+      "definition": "For the same charge, amounts liberated ∝ <span style=\"color:#3b82f6\">equivalent weights</span> (atomic mass ÷ electrons needed)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Charge passed by a current?",
+      "definition": "\\( Q = I t \\) (C = A × s)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is 1 Faraday?",
+      "definition": "Charge on 1 mol electrons = <span style=\"color:#f08c00\">96487 ≈ 96500 C mol⁻¹</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Faradays to deposit 1 mol Ag, Mg, Al?",
+      "definition": "<span style=\"color:#f08c00\">1F, 2F, 3F</span> (electrons in the half-reaction)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Faradays per second at 50,000 A?",
+      "definition": "≈ <span style=\"color:#f08c00\">0.518 F s⁻¹</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Mass of Cu deposited",
+      "definition": "0.294 g",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.10</p><h2>CuSO₄ electrolysed 10 min at 1.5 A. Mass of Cu?</h2><div class=\"prob\">Cu²⁺ + 2e⁻ → Cu (63 g needs 2F).</div><ol><li>Q = 1.5 × 600 = 900 C</li><li class=\"h\">?</li><li>mol Cu = 0.00466</li><li>mass = 0.00466 × 63 = <b>0.2938 g</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.10</p><h2>CuSO₄ electrolysed 10 min at 1.5 A. Mass of Cu?</h2><div class=\"prob\">Cu²⁺ + 2e⁻ → Cu (63 g needs 2F).</div><ol><li>Q = 1.5 × 600 = 900 C</li><li class=\"r\">mol e⁻ = 900/96487 = 0.00933</li><li>mol Cu = 0.00466</li><li>mass = 0.00466 × 63 = <b>0.2938 g</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Electrons through a wire at 0.5 A for 2 h? (Intext 2.10)",
+      "definition": "Q = 3600 C; n = 3600/1.602 × 10⁻¹⁹ = <span style=\"color:#f08c00\">2.25 × 10²²</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Charge to reduce 1 mol Cr₂O₇²⁻ to Cr³⁺? (Intext 2.12)",
+      "definition": "6 mol e⁻ = 6F = <span style=\"color:#f08c00\">5.79 × 10⁵ C</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: 1 mol electrons at the cathode deposits how many moles of H₂, Cu, Al?",
+      "definition": "<span style=\"color:#f08c00\">½, ½, ⅓</span> mol respectively",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Products of electrolysis depend on?",
+      "definition": "Material electrolysed, <span style=\"color:#3b82f6\">electrode type</span> (inert vs reactive), competing E° values, and overpotential",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5.1-products-of-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is overpotential?",
+      "definition": "Extra voltage needed because some feasible electrode reactions are <span style=\"color:#3b82f6\">kinetically slow</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5.1-products-of-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Products of electrolysis of molten NaCl?",
+      "definition": "<span style=\"color:#3b82f6\">Na</span> at cathode, <span style=\"color:#3b82f6\">Cl₂</span> at anode",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5.1-products-of-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Products of electrolysis of aqueous NaCl?",
+      "definition": "<span style=\"color:#3b82f6\">H₂</span> at cathode, <span style=\"color:#3b82f6\">Cl₂</span> at anode, <span style=\"color:#3b82f6\">NaOH</span> in solution",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5.1-products-of-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why H₂ and not Na at the cathode (aq NaCl)?",
+      "definition": "Higher E° is reduced first: H⁺/H₂ <span style=\"color:#f08c00\">0.00 V</span> ≫ Na⁺/Na <span style=\"color:#f08c00\">−2.71 V</span>; net H₂O + e⁻ → ½H₂ + OH⁻",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5.1-products-of-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why Cl₂ and not O₂ at the anode (aq NaCl), though O₂ has lower E° (1.23 vs 1.36 V)?",
+      "definition": "Oxygen evolution has a high <span style=\"color:#3b82f6\">overpotential</span>, so Cl⁻ is oxidised in practice",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5.1-products-of-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rule of thumb for electrolysis products (intuition)?",
+      "definition": "Cathode: the species <span style=\"color:#3b82f6\">easiest to reduce</span> (highest E°). Anode: the species <span style=\"color:#3b82f6\">easiest to oxidise</span> (lowest E°), unless overpotential interferes.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5.1-products-of-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Anode product for dilute vs concentrated H₂SO₄?",
+      "definition": "Dilute: <span style=\"color:#3b82f6\">O₂</span> (2H₂O → O₂ + 4H⁺ + 4e⁻, 1.23 V). Concentrated: <span style=\"color:#3b82f6\">S₂O₈²⁻</span> (peroxodisulphate, 1.96 V).",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5.1-products-of-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: aqueous CuSO₄ with inert Pt electrodes gives?",
+      "definition": "<span style=\"color:#3b82f6\">Cu</span> at cathode, <span style=\"color:#3b82f6\">O₂</span> at anode (solution turns acidic); with Cu electrodes the anode dissolves instead",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.5.1-products-of-electrolysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What makes a battery practical?",
+      "definition": "Light, compact, and <span style=\"color:#3b82f6\">voltage steady</span> during use",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Primary vs secondary battery?",
+      "definition": "<span style=\"color:#3b82f6\">Primary</span>: reaction occurs once, not rechargeable (dry cell). <span style=\"color:#3b82f6\">Secondary</span>: rechargeable (lead storage, Ni–Cd).",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dry (Leclanché) cell: anode, cathode, electrolyte?",
+      "definition": "Anode: <span style=\"color:#3b82f6\">Zn container</span>. Cathode: <span style=\"color:#3b82f6\">graphite rod</span> in MnO₂ + carbon. Electrolyte: moist paste of <span style=\"color:#3b82f6\">NH₄Cl + ZnCl₂</span>.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ],
+      "definitionImage": "media/fig_2_8_dry_cell.webp"
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 2.8 · Dry cell",
+      "definition": "",
+      "image": "media/fig_2_8_dry_cell.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 566,
+        "imageHeight": 1001,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              70,
+              25,
+              250,
+              110
+            ],
+            "answer": "Carbon rod (cathode)",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              60,
+              840,
+              195,
+              110
+            ],
+            "answer": "Zinc cup (anode)",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              262,
+              845,
+              304,
+              156
+            ],
+            "answer": "MnO₂ + carbon black + NH₄Cl paste",
+            "labelInImage": true
+          }
+        ]
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dry cell electrode reactions and voltage?",
+      "definition": "Anode: Zn → Zn²⁺ + 2e⁻. Cathode: MnO₂ + NH₄⁺ + e⁻ → MnO(OH) + NH₃. About <span style=\"color:#f08c00\">1.5 V</span>.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Change in Mn oxidation state in a dry cell? Fate of NH₃?",
+      "definition": "<span style=\"color:#3b82f6\">+4 → +3</span>; NH₃ complexes Zn²⁺ as [Zn(NH₃)₄]²⁺",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mercury cell: electrodes, electrolyte, use?",
+      "definition": "Anode <span style=\"color:#3b82f6\">Zn–Hg amalgam</span>; cathode <span style=\"color:#3b82f6\">HgO + carbon paste</span>; electrolyte KOH + ZnO paste; hearing aids, watches",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ],
+      "definitionImage": "media/fig_2_9_mercury_cell.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Mercury cell overall reaction and voltage?",
+      "definition": "Zn(Hg) + HgO → ZnO + Hg; <span style=\"color:#f08c00\">1.35 V</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the mercury cell voltage constant over its life?",
+      "definition": "No <span style=\"color:#3b82f6\">ion in solution</span> appears in the overall reaction, so no concentration term changes",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Lead storage battery: anode, cathode, electrolyte?",
+      "definition": "Anode <span style=\"color:#3b82f6\">Pb</span>; cathode <span style=\"color:#3b82f6\">grid of Pb packed with PbO₂</span>; <span style=\"color:#f08c00\">38%</span> H₂SO₄",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 2.10 · Lead storage battery",
+      "definition": "",
+      "image": "media/fig_2_10_lead_storage.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 1001,
+        "imageHeight": 682,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              65,
+              30,
+              120,
+              55
+            ],
+            "answer": "Anode",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              450,
+              35,
+              150,
+              55
+            ],
+            "answer": "Cathode",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              720,
+              325,
+              281,
+              170
+            ],
+            "answer": "Negative plates: lead grids filled with spongy lead",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              65,
+              550,
+              240,
+              90
+            ],
+            "answer": "38% sulphuric acid solution",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              585,
+              535,
+              300,
+              130
+            ],
+            "answer": "Positive plates: lead grids filled with PbO₂",
+            "labelInImage": true
+          }
+        ]
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Lead storage discharge: anode {{c1::Pb + SO₄²⁻ → PbSO₄ + 2e⁻}}; cathode {{c2::PbO₂ + SO₄²⁻ + 4H⁺ + 2e⁻ → PbSO₄ + 2H₂O}}.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Overall lead storage reaction (discharge)?",
+      "definition": "Pb + PbO₂ + 2H₂SO₄ → <span style=\"color:#3b82f6\">2PbSO₄</span> + 2H₂O",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What happens on recharging a lead storage battery? (Intext 2.13)",
+      "definition": "Reaction reverses: PbSO₄ → <span style=\"color:#3b82f6\">Pb at anode, PbO₂ at cathode</span>; H₂SO₄ regenerated",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does acid density drop as a car battery discharges? (intuition)",
+      "definition": "H₂SO₄ is <span style=\"color:#e5484d\">used up</span> and water formed; mechanics check charge with a hydrometer",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ni–Cd cell: vs lead storage, and overall reaction (NCERT)?",
+      "definition": "<span style=\"color:#3b82f6\">Longer life</span>, costlier; Cd + 2Ni(OH)₃ → CdO + 2Ni(OH)₂ + H₂O",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ],
+      "definitionImage": "media/fig_2_11_nicd.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Update: how is the Ni–Cd discharge usually written now?",
+      "definition": "Cd + 2NiO(OH) + 2H₂O → <span style=\"color:#3b82f6\">Cd(OH)₂ + 2Ni(OH)₂</span> (alkaline, KOH)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.6-batteries"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a fuel cell?",
+      "definition": "Galvanic cell converting combustion energy of fuels (H₂, CH₄, CH₃OH) directly to electricity, with <span style=\"color:#3b82f6\">reactants fed continuously</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.7-fuel-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "H₂–O₂ fuel cell: electrodes, electrolyte, catalyst?",
+      "definition": "Porous <span style=\"color:#3b82f6\">carbon</span> electrodes; concentrated <span style=\"color:#3b82f6\">NaOH</span>; finely divided <span style=\"color:#3b82f6\">Pt or Pd</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.7-fuel-cells"
+      ],
+      "definitionImage": "media/fig_2_12_fuel_cell.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "H₂–O₂ fuel cell: cathode {{c1::O₂ + 2H₂O + 4e⁻ → 4OH⁻}}; anode {{c2::2H₂ + 4OH⁻ → 4H₂O + 4e⁻}}; overall {{c3::2H₂ + O₂ → 2H₂O}}.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.7-fuel-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where was the H₂–O₂ fuel cell used? Bonus?",
+      "definition": "Apollo space programme; the water was <span style=\"color:#3b82f6\">drunk by astronauts</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.7-fuel-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Efficiency: fuel cell vs thermal plant?",
+      "definition": "Fuel cell ~<span style=\"color:#f08c00\">70%</span>; thermal plant ~<span style=\"color:#f08c00\">40%</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.7-fuel-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why is a fuel cell more efficient than burning fuel?",
+      "definition": "It skips heat → steam → turbine; each conversion step wastes energy (heat engines are Carnot-limited)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.7-fuel-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fuels other than H₂ in fuel cells? (Intext 2.14)",
+      "definition": "<span style=\"color:#22a35a\">Methane, methanol</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.7-fuel-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Hydrogen economy (box)?",
+      "definition": "H₂ from <span style=\"color:#3b82f6\">solar splitting of water</span>, burnt in fuel cells: product only water; both steps are electrochemical",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.7-fuel-cells"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Examples of corrosion?",
+      "definition": "Rusting of iron, <span style=\"color:#3b82f6\">tarnishing of silver</span>, green coating on copper and bronze",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.8-corrosion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rusting as an electrochemical cell: anode and cathode reactions?",
+      "definition": "Anode spot: 2Fe → 2Fe²⁺ + 4e⁻ (<span style=\"color:#f08c00\">−0.44 V</span>). Cathode spot: O₂ + 4H⁺ + 4e⁻ → 2H₂O (<span style=\"color:#f08c00\">1.23 V</span>).",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.8-corrosion"
+      ],
+      "definitionImage": "media/fig_2_13_corrosion.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "E°cell for rusting?",
+      "definition": "1.23 − (−0.44) = <span style=\"color:#f08c00\">1.67 V</span>",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.8-corrosion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Source of H⁺ for rusting?",
+      "definition": "<span style=\"color:#3b82f6\">H₂CO₃</span> from dissolved CO₂ (and other acidic oxides)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.8-corrosion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Composition of rust?",
+      "definition": "Hydrated ferric oxide, <span style=\"color:#3b82f6\">Fe₂O₃·xH₂O</span> (Fe²⁺ oxidised further by air)",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.8-corrosion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why does rust form away from where the metal is eaten?",
+      "definition": "One drop is a <span style=\"color:#3b82f6\">mini galvanic cell</span>: electrons travel through the iron from the anodic pit to a cathodic spot where O₂ is abundant",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.8-corrosion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does salt water (sea air) speed up rusting?",
+      "definition": "Dissolved ions make the water a better <span style=\"color:#3b82f6\">electrolyte</span>, completing the mini cell",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.8-corrosion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ways to prevent corrosion?",
+      "definition": "Barrier: <span style=\"color:#3b82f6\">paint</span>, chemicals (bisphenol), coating with Sn/Zn. Electrochemical: <span style=\"color:#3b82f6\">sacrificial electrode</span> of Mg or Zn.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.8-corrosion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a sacrificial anode work?",
+      "definition": "A more reactive metal (<span style=\"color:#22a35a\">Mg, Zn</span>, lower E°) is oxidised instead of iron, pushing electrons into the iron",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.8-corrosion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Galvanised (Zn) vs tin-plated iron when scratched? (teacher trap)",
+      "definition": "Zinc still protects (Zn is more reactive). <span style=\"color:#e5484d\">Tin makes it worse</span>: Fe becomes the anode next to Sn.",
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "2.8-corrosion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Electrochemistry formula sheet",
+      "definition": "Cell emf: E°cell = E°cathode − E°anode; Nernst (298 K): E = E° − (0.059/n) log Q; Gibbs energy: ΔG° = −nFE°; Equilibrium: log K = nE°/0.059; Conductivity: κ = G*/R; Molar conductivity: Λm = 1000κ/M; Faraday: m = (M/nF)·It",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Cell emf</td><td class=\"q\">?</td></tr><tr><td>Nernst (298 K)</td><td class=\"q\">?</td></tr><tr><td>Gibbs energy</td><td class=\"q\">?</td></tr><tr><td>Equilibrium</td><td class=\"q\">?</td></tr><tr><td>Conductivity</td><td class=\"q\">?</td></tr><tr><td>Molar conductivity</td><td class=\"q\">?</td></tr><tr><td>Faraday</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Cell emf</td><td class=\"a\">E°cell = E°cathode − E°anode</td></tr><tr><td>Nernst (298 K)</td><td class=\"a\">E = E° − (0.059/n) log Q</td></tr><tr><td>Gibbs energy</td><td class=\"a\">ΔG° = −nFE°</td></tr><tr><td>Equilibrium</td><td class=\"a\">log K = nE°/0.059</td></tr><tr><td>Conductivity</td><td class=\"a\">κ = G*/R</td></tr><tr><td>Molar conductivity</td><td class=\"a\">Λm = 1000κ/M</td></tr><tr><td>Faraday</td><td class=\"a\">m = (M/nF)·It</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Cells and batteries at a glance",
+      "definition": "Dry cell: Zn / graphite + MnO₂ / NH₄Cl + ZnCl₂; Mercury cell: Zn–Hg / HgO + C / KOH + ZnO; Lead storage: Pb / PbO₂ / 38% H₂SO₄; H₂–O₂ fuel cell: H₂ on C / O₂ on C / conc. NaOH",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Anode / cathode / electrolyte?</h2><table><tr><td>Dry cell</td><td class=\"q\">?</td></tr><tr><td>Mercury cell</td><td class=\"q\">?</td></tr><tr><td>Lead storage</td><td class=\"q\">?</td></tr><tr><td>H₂–O₂ fuel cell</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Anode / cathode / electrolyte?</h2><table><tr><td>Dry cell</td><td class=\"a\">Zn / graphite + MnO₂ / NH₄Cl + ZnCl₂</td></tr><tr><td>Mercury cell</td><td class=\"a\">Zn–Hg / HgO + C / KOH + ZnO</td></tr><tr><td>Lead storage</td><td class=\"a\">Pb / PbO₂ / 38% H₂SO₄</td></tr><tr><td>H₂–O₂ fuel cell</td><td class=\"a\">H₂ on C / O₂ on C / conc. NaOH</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "chemistry",
+        "ch-2",
+        "summary"
+      ]
+    }
+  ]
+}
