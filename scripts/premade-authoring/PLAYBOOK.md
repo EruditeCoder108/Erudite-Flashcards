@@ -2,30 +2,21 @@
 
 This is how to build one NCERT chapter into a premade deck for Erudite. It is written for a fresh chat that has no memory of earlier chapters. Read it once, then build.
 
-## 0. Your task in a new chat (start here)
+## 0. Start here
 
-The owner will usually just say "read the playbook and continue". That means:
-
-1. **Read this whole file first.** It has the rules, card style, tools, the per-chapter workflow, the mistakes to avoid and the progress table (section 9).
-2. **Continue from the progress table.** Work through the chapters marked "Next" / "Old" / "Not started", in order, as many as you can do well in this chat.
-3. **Copy the shape of the most recent deck scripts** in `decks/` for the same kind of subject:
-   - Physics: `phy12_ch01.py` + `figures_phy12_ch01.py` (latest), `phy_ch13.py`, `phy_ch04.py` (pilot).
-   - Teacher-style physical subject: `chem12_ch02.py` + `figures_chem12_ch02.py`.
-   - Animated intuition cards: `chem12_ch05.py`. Reaction-heavy chapter: `chem12_ch06.py`.
-   - You may always read an earlier finished script to see how something was done; just don't reread whole finished chapters for no reason.
-4. **Unzip a new book** into its own folder under `NCERT-pdfs/` if not done yet, and check page 0 of each PDF for the chapter title.
-5. **Old zips:** each chapter replaces an old zip in its `premade-cards/<class>/<Subject>` folder if one exists (check exact folder and zip names first). If there is none, run `replace_deck.py` with `none.zip` as the old name; if the subject folder has no `manifest.json` yet, run `npm run zip:premade` instead (see 5.6).
-6. **One chapter at a time:** crop (check every crop in a montage; fix clipped edges and stray text), write the deck, check masks, package, commit, push, and update the progress table in the same commit.
-7. **Before stopping,** make sure the progress table clearly says what's next.
-
-The most important rules, in short (details in section 2):
-- **Build fast, but the cards must actually teach.** Mostly text and cloze with the colour code; figures by subject (section 2.3: nearly all in biology/organic, selective in physics, physical chemistry and maths); occlusion only for diagrams students must label.
-- **Biology, inorganic and organic chemistry: strictly NCERT. Physical chemistry, physics and maths: teacher-style and exam-weighted** (JEE/NEET): formulas, worked numericals (`steps_card`), units, standard traps.
-- **KaTeX** `\( … \)` in basic/cloze text; never a cloze inside math; never `\text{}`.
-- **Intuition matters most where students get confused** (physics especially): explain what symbols and quantities mean, use analogies. **Ship first, upgrade later** (owner, Physics 12): animated cards and occlusion are optional extras. Most chapters need **no** animation; add 1–2 only where motion genuinely teaches what a figure cannot. Spend the effort on high-quality text/cloze/figure cards (section 2.3).
-- **Diagrams by subject:** biology and organic chemistry: crop nearly every figure / reaction scheme (one card each). Inorganic: the examinable ones. Physics, physical chemistry, maths: **selective** — only figures that teach or are examined (section 2.3).
-- **Mnemonics and clearly labelled corrections/updates** where NCERT is wrong or outdated (about 5–10% of the deck). **Recompute before claiming NCERT is wrong.**
-- **Git:** if `index.lock` exists, wait a few seconds and retry (another program briefly holds it). After each commit, check the old zip was really removed and the push went through.
+When the owner says "read the playbook and continue":
+1. **Read this whole file**, then **continue from the progress table** (section 9): chapters marked "Next" / "Old" / "Not started", in order, as many as you can do well.
+2. **Copy the latest script for the same subject** (section 5 lists them). You may read any finished script to see how something was done.
+3. **Per chapter:** unzip the book if needed (section 4) → crop figures per the subject rule (2.3) and check the montage → write the deck → check masks → package with `replace_deck.py` (old zip name, or `none.zip`) → commit, push and update the progress table in the same commit.
+4. **Rules in one breath:**
+   - Build fast, but every card must teach. Mostly text and cloze with the colour code (2.4).
+   - Biology, inorganic and organic: strictly NCERT. Physics, physical chemistry and maths: teacher-style and exam-weighted (2.3, 2.6).
+   - Figures: nearly all in biology/organic, selective elsewhere (2.3).
+   - "How fancy" (2.1): intuition cards always where students get confused; animations only 1–2 in chapters that genuinely need them; bespoke cards use warm paper/ink, no neon.
+   - 5–10% intuition, mnemonic and labelled correction cards; recompute before calling NCERT wrong.
+   - KaTeX `\( … \)` only outside clozes; never `\text{}` (section 6).
+5. **Git:** if `index.lock` exists, wait a few seconds and retry. After each commit, check the old zip is gone and the push went through.
+6. **Before stopping,** make the progress table say clearly what's next.
 
 ## 1. What the app is
 
@@ -62,6 +53,8 @@ Card types, from cheapest to most expensive to build:
 | Bespoke advanced HTML/SVG/animation (`showcase.py`) | expensive | Rarely: only when one visual truly explains a process better than text plus a figure. Most chapters need zero. |
 | Royalty-free photo | moderate | Allowed when relevant and no NCERT figure exists. Use Unsplash or Pixabay only, with a licence that permits commercial use. Note the source in the script. |
 
+**How fancy, in one line (resolves the older "creative freedom", "build fast" and "animated intuition" notes):** intuition cards (text + figure) always, wherever students get confused; animations only 1–2, in chapters that genuinely need them (most need none); bespoke HTML cards only rarely, and then in warm paper/ink themes (cream #fbf8f1, ink #1f2430, deep blue #1d5fd6), never neon glows or "cyber" styling.
+
 ### 2.2 Teach, don't just copy NCERT
 
 The owner said: *"we are not just mimicking what NCERT says… use your own knowledge in between the cards… NCERT might say something wrong or outdated, you can correct it on the next card… intuitive examples… or a mnemonic."*
@@ -91,6 +84,8 @@ The owner said: *"we are not just mimicking what NCERT says… use your own know
 
 **Physics figures (owner, Physics 11):** NCERT physics diagrams are often cluttered and use uncommon units or symbols. Use the notation and units students commonly use. Crop NCERT figures when they are clear; otherwise draw a clean one with `draw.py` (free-body diagrams, graphs, vectors, ray diagrams) or use a royalty-free image, but only if it is precise and correct.
 
+**Exam weighting (owner):** for physics, physical chemistry and maths, web search for previous-year NEET/JEE/board question patterns is allowed, to decide what to emphasise and what to minimise. Stay within the chapter's syllabus.
+
 ### 2.4 Colour code
 
 The helpers are in `deckkit.py`. Colour only the key word, not whole sentences.
@@ -113,6 +108,18 @@ The helpers are in `deckkit.py`. Colour only the key word, not whole sentences.
 - **Size the deck to the chapter:** about 80–250 cards, which works out to about one card per examinable fact. Short chapters produce short decks; that's fine.
 - **"Identify this" cards:** a figure on the front, with the name or labels on the back. Trim captions off crops when they would give the answer away.
 - **Add a closing summary section** with one or two `table_card` comparisons.
+
+### 2.6 Maths
+
+Maths is teacher-style and exam-weighted (JEE/boards), like physics. Only the pilot exists (`decks/math_ch03.py`, Class 11 Ch 3). Each chapter should have:
+- **Standard formulas and results as cloze cards.** Write the formula in Unicode inside the cloze (`{{c1::sin²x + cos²x = 1}}`); use KaTeX only in `basic` cards or outside the cloze (section 6).
+- **The patterns behind NCERT solved examples:** one card per pattern ("What is the trick in Example 5?"), not one card per example.
+- **Common mistakes:** e.g. sign errors, forgotten domain restrictions, dividing by a variable that can be zero. Label them "Trap:".
+- **A short "method" card per problem type:** "How do you solve …?" → 2–4 steps.
+- **Step-by-step worked problems with one step hidden:** `steps_card` (set `hide` to the step students most often get wrong).
+- **Figures:** selective (2.3): graphs, unit circles, Venn diagrams and geometry the question needs; skip the rest.
+
+Folders: Class 11 decks go in `premade-cards/11th/Mathematics/` (manifest exists; only the Ch 3 pilot is there). Class 12 has **no** `Mathematics` folder yet: create `premade-cards/12th/Mathematics/`, run `npm run zip:premade` for the first chapter, then set the manifest `tags` (see 5.6). Deck id: `class11-mathematics-ch04-complex-numbers-and-quadratic-equations`; tags `['class-11', 'mathematics', 'ch-4']`.
 
 ## 3. Toolkit
 
@@ -150,7 +157,7 @@ Tool output goes to `scripts/premade-authoring/.work/`, which is gitignored. Ope
 
 ## 4. Source PDFs
 
-NCERT books are in `NCERT-pdfs/` (gitignored) as zips. Unzip a book into its own folder when you start it. For example, `bio11th.zip` and `bio12th.zip` have already been unzipped to `NCERT-pdfs/bio11/` and `NCERT-pdfs/bio12/`.
+NCERT books are in `NCERT-pdfs/` (gitignored) as zips. Unzip a book into its own folder when you start it (`unzip -o -j <zip> -d NCERT-pdfs/<folder>`), then check page 0 of each PDF for the chapter title. Already unzipped: `bio11/`, `bio12/`, `chem11/`, `chem12/`, `phy11/`, `phy12/`.
 
 | Prefix | Book |
 |---|---|
@@ -165,11 +172,20 @@ NCERT books are in `NCERT-pdfs/` (gitignored) as zips. Unzip a book into its own
 
 Files ending in `ps` or `an` are prelims and answers. Some PDFs (e.g. `kech202`) extract as Caesar-shifted text (capitals and lowercase swapped, letters shifted by 29): decode each garbled word with lowercase→uppercase and other chars chr(ord+29). Check the chapter title on page 0.
 
-Remaining zips: `chempart11th`, `chempart211th`, `chempart112th`, `chempart212th`, `physics11th`, `physicspart2` (11th part 2), `physics12thpart1`, `physicspart212th`, `maths11th`, `mathspart1 12th`, `mathspart212th`.
+Still zipped (maths only): `maths11th.zip` → `maths11/`, `mathspart1 12th.zip` and `mathspart212th.zip` → `maths12/`. (`NCERT-pdfs/kemh103.pdf` is a loose copy of the Maths 11 Ch 3 pilot's PDF.)
 
 ## 5. Per-chapter workflow
 
-Use Biology 11 Ch 10 as the example. Copy the shape of `decks/bio_ch09.py` and `decks/figures_bio_ch09.py`.
+The steps below use Biology 11 Ch 10 as the example. For each subject, copy the latest good script (and its `figures_…` twin):
+
+| Subject | Reference script(s) |
+|---|---|
+| Biology | `bio12_ch13.py` (latest), `bio_ch09.py` (occlusion-heavy) |
+| Organic chemistry | `chem12_ch06.py` (one card per reaction scheme) |
+| Inorganic chemistry | `chem12_ch04.py`; animated intuition cards: `chem12_ch05.py` |
+| Physical chemistry | `chem12_ch02.py` |
+| Physics | `phy12_ch04.py` (latest), `phy12_ch01.py`; drawn figures in `figures_phy12_ch01.py` |
+| Maths | `math_ch03.py` (pilot) plus section 2.6 |
 
 1. **Read the chapter.**
    ```
@@ -266,7 +282,7 @@ Don't polish endlessly: move on to the next chapter.
 
 - **Work chapter by chapter** and commit each one. Nothing from a finished chapter needs to stay in memory.
 - **Don't read back large deck scripts or `deck.json` files** you've already written. Read only the chapter text and tool output you need.
-- **One chat can usually do about 4–6 biology chapters.** Hand off at a chapter boundary with the progress table updated.
+- **Rough chapters per chat:** biology 4–6; physics about 4 (numericals and recomputed exercises take longer); chemistry about 3–5; maths untested, probably 3–5. Hand off at a chapter boundary with the progress table updated.
 - **Testing the app itself is rarely needed.** If you do:
   1. Run `npm run build:mobile`, then `git checkout -- mobile/css/icons.css`.
   2. Copy `tools/capacitor-stub.js` to `www/capacitor.js`.
