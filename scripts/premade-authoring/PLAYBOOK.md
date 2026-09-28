@@ -245,9 +245,9 @@ Don't polish endlessly: move on to the next chapter.
 |---|---|---|
 | Biology 11 | 1–19 | Done (2 = pilot) — complete |
 | Biology 12 | 1–13 — complete | Done (PDFs unzipped to `NCERT-pdfs/bio12/`) |
-| Chemistry 11 | 1–3, 5 | Done (PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
+| Chemistry 11 | 1–3, 5–6 | Done (PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
 | Chemistry 11 | 4 | Pilot |
-| Chemistry 11 | 6–9 | Old — **Next: Ch 6** |
+| Chemistry 11 | 7–9 | Old — **Next: Ch 7** (`kech201`) |
 | Chemistry 12 | all | Check `premade-cards/12th/*Chemistry*` for old decks |
 | Physics 11 | 4 | Pilot |
 | Physics 11 | others | Not started |
