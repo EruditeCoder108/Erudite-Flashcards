@@ -123,7 +123,7 @@ NCERT books are in `NCERT-pdfs/` (gitignored) as zips. Unzip a book into its own
 | `kemh1NN` | Class 11 Maths |
 | `lemh1NN` / `lemh2NN` | Class 12 Maths |
 
-Files ending in `ps` or `an` are prelims and answers. Check the chapter title on page 0.
+Files ending in `ps` or `an` are prelims and answers. Some PDFs (e.g. `kech202`) extract as Caesar-shifted text (capitals and lowercase swapped, letters shifted by 29): decode each garbled word with lowercase→uppercase and other chars chr(ord+29). Check the chapter title on page 0.
 
 Remaining zips: `chempart11th`, `chempart211th`, `chempart112th`, `chempart212th`, `physics11th`, `physicspart2` (11th part 2), `physics12thpart1`, `physicspart212th`, `maths11th`, `mathspart1 12th`, `mathspart212th`.
 
@@ -245,9 +245,9 @@ Don't polish endlessly: move on to the next chapter.
 |---|---|---|
 | Biology 11 | 1–19 | Done (2 = pilot) — complete |
 | Biology 12 | 1–13 — complete | Done (PDFs unzipped to `NCERT-pdfs/bio12/`) |
-| Chemistry 11 | 1–3, 5–7 | Done (PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
+| Chemistry 11 | 1–3, 5–8 | Done (PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
 | Chemistry 11 | 4 | Pilot |
-| Chemistry 11 | 8–9 | Old — **Next: Ch 8** (`kech202`) |
+| Chemistry 11 | 9 | Old — **Next: Ch 9** (`kech203`) |
 | Chemistry 12 | all | Check `premade-cards/12th/*Chemistry*` for old decks |
 | Physics 11 | 4 | Pilot |
 | Physics 11 | others | Not started |
