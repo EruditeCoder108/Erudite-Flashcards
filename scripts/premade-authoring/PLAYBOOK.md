@@ -53,6 +53,8 @@ The owner said: *"we are not just mimicking what NCERT says… use your own know
 | Biology, inorganic chemistry, organic chemistry | **Strictly NCERT.** Use NCERT wording, examples, tables and figures. NEET asks line-by-line. |
 | Physics, physical chemistry, maths | **Teacher-style and exam-weighted** (JEE/NEET/boards). Include formulas, derivation steps that matter, standard traps, units and worked examples. Skip fluff. |
 
+**Physics figures (owner, Physics 11):** NCERT physics diagrams are often cluttered and use uncommon units or symbols. Use the notation and units students commonly use. Crop NCERT figures when they are clear; otherwise draw a clean one with `draw.py` (free-body diagrams, graphs, vectors, ray diagrams) or use a royalty-free image, but only if it is precise and correct.
+
 ### 2.4 Colour code
 
 The helpers are in `deckkit.py`. Colour only the key word, not whole sentences.
@@ -84,6 +86,8 @@ Everything lives in `scripts/premade-authoring/`. Needs Python 3 with `pymupdf` 
 |---|---|
 | `deckkit.py` | `Deck`, colour helpers, `pad`, `rot`, `poly`, `table_card`, `steps_card`, `quadrant_card`, `mo_card`. |
 | `showcase.py` | Themed bespoke HTML cards. Use rarely. |
+| `showcase_phy.py` | Animated physics cards: `anim(deck, tag, q, svg_front, svg_back, note, term, definition, css)` on the blueprint theme, plus `keyframes(name, pts, dur)` to move an SVG group through points (projectiles, oscillations). Put each chapter's cards here under a `# Ch N` header. |
+| `draw.py` | Self-drawn diagrams → `.webp` (`Fig(w,h)` with `arrow`, `line`, `poly`, `curve`, `axes`, `text`, `label`, `arc`; `save(media, name)`). PyMuPDF rasterises the SVG; it ignores `<marker>`, so `arrow` draws its own head. Check every drawn figure in the montage like a crop. |
 | `figcrop.py` | `export(pdf, {name: (page, (x0,y0,x1,y1))}, outdir, long_side=1000)`. Saves `.webp` crops and **prints every printed word with its pixel box inside the crop**; use those boxes for occlusion masks. |
 | `grid.py` | Rebuilds a tall multi-panel figure as a 2-column grid (phone-friendly). |
 | `clean_pdf.py` | Opens an NCERT PDF with the watermark removed. |
@@ -248,8 +252,9 @@ Don't polish endlessly: move on to the next chapter.
 | Chemistry 11 | 1–3, 5–9 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
 | Chemistry 11 | 4 | Pilot |
 | Chemistry 12 | 1–10 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
+| Physics 11 | 1 | Done (PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py`; no old zips, so run `replace_deck.py premade-cards/11th/Physics none.zip <new id>`) |
 | Physics 11 | 4 | Pilot |
-| Physics 11 | others | **Next** — unzip `physics11th.zip` / `physicspart2.zip` (check page 0 of each PDF for the title); check `premade-cards/11th/Physics` for old zips. Teacher-style: formulas, `steps_card` numericals, units, traps; intuition cards and animated `showcase.py` cards where concepts confuse students (owner asked for this in Chem 12). |
+| Physics 11 | 2, 3, 5–14 | **Next: Ch 2 Motion in a Straight Line (`keph102`).** Teacher-style: formulas, `steps_card` numericals, units, traps; intuition cards and animated `showcase_phy.py` cards where concepts confuse students; self-drawn `draw.py` figures where NCERT's are cluttered. |
 | Physics 12 | all | Not started |
 | Maths 11 | 3 | Pilot |
 | Maths 11 | others | Not started |

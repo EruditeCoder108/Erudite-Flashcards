@@ -1,0 +1,1212 @@
+{
+  "version": 1,
+  "name": "Chapter 1: Units and Measurement",
+  "className": "Class 11",
+  "description": "SI base units, significant figures, rounding, error in results, dimensions, dimensional analysis and unit conversion",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is a unit?",
+      "definition": "An internationally accepted <span style=\"color:#3b82f6\">reference standard</span> used to measure a physical quantity",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A measurement is written as…?",
+      "definition": "A <span style=\"color:#3b82f6\">number</span> (numerical measure) × a <span style=\"color:#3b82f6\">unit</span>, e.g. <span style=\"color:#f08c00\">5 kg</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.1-introduction"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Units of base quantities are {{c1::fundamental (base) units}}; units made from them are {{c2::derived units}}; the full set is a {{c3::system of units}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do we need only a few base units?",
+      "definition": "All physical quantities are <span style=\"color:#3b82f6\">inter-related</span>, so the rest can be built from a few",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.1-introduction"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "CGS, FPS and MKS systems",
+      "definition": "CGS: centimetre, gram, second; FPS (British): foot, pound, second; MKS: metre, kilogram, second",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Older systems</p><h2>Base units of length, mass, time?</h2><table><tr><td>CGS</td><td class=\"q\">?</td></tr><tr><td>FPS (British)</td><td class=\"q\">?</td></tr><tr><td>MKS</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Older systems</p><h2>Base units of length, mass, time?</h2><table><tr><td>CGS</td><td class=\"a\">centimetre, gram, second</td></tr><tr><td>FPS (British)</td><td class=\"a\">foot, pound, second</td></tr><tr><td>MKS</td><td class=\"a\">metre, kilogram, second</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does SI stand for, and who developed it?",
+      "definition": "<span style=\"color:#3b82f6\">Système International d’Unités</span>; by BIPM (International Bureau of Weights and Measures) in <span style=\"color:#f08c00\">1971</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When was SI last revised?",
+      "definition": "<span style=\"color:#f08c00\">November 2018</span>, by the General Conference on Weights and Measures",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is SI convenient?",
+      "definition": "It uses the <span style=\"color:#3b82f6\">decimal system</span>, so conversions within it are simple",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Seven SI base quantities and units",
+      "definition": "Length: metre (m); Mass: kilogram (kg); Time: second (s); Electric current: ampere (A); Thermodynamic temperature: kelvin (K); Amount of substance: mole (mol); Luminous intensity: candela (cd)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 1.1 · SI base units</p><h2>SI unit (symbol) of each base quantity?</h2><table><tr><td>Length</td><td class=\"q\">?</td></tr><tr><td>Mass</td><td class=\"q\">?</td></tr><tr><td>Time</td><td class=\"q\">?</td></tr><tr><td>Electric current</td><td class=\"q\">?</td></tr><tr><td>Thermodynamic temperature</td><td class=\"q\">?</td></tr><tr><td>Amount of substance</td><td class=\"q\">?</td></tr><tr><td>Luminous intensity</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 1.1 · SI base units</p><h2>SI unit (symbol) of each base quantity?</h2><table><tr><td>Length</td><td class=\"a\">metre (m)</td></tr><tr><td>Mass</td><td class=\"a\">kilogram (kg)</td></tr><tr><td>Time</td><td class=\"a\">second (s)</td></tr><tr><td>Electric current</td><td class=\"a\">ampere (A)</td></tr><tr><td>Thermodynamic temperature</td><td class=\"a\">kelvin (K)</td></tr><tr><td>Amount of substance</td><td class=\"a\">mole (mol)</td></tr><tr><td>Luminous intensity</td><td class=\"a\">candela (cd)</td></tr></table><p class=\"note\">Mnemonic for the units in this order: <b>M</b>any <b>K</b>ids <b>S</b>ing <b>A</b>nd <b>K</b>ick <b>M</b>any <b>C</b>ans → m, kg, s, A, K, mol, cd.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "There are {{c1::seven}} SI base units.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Since 2018, how are SI base units defined?",
+      "definition": "By fixing the exact numerical value of a <span style=\"color:#3b82f6\">fundamental constant</span> (c, h, e, k, N<sub>A</sub>, the caesium frequency)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Constants that define the SI units",
+      "definition": "second: caesium-133 hyperfine frequency ΔνCs = 9 192 631 770 Hz; metre: speed of light c = 299 792 458 m s⁻¹; kilogram: Planck constant h = 6.626 070 15 × 10⁻³⁴ J s; ampere: elementary charge e = 1.602 176 634 × 10⁻¹⁹ C; kelvin: Boltzmann constant k = 1.380 649 × 10⁻²³ J K⁻¹; mole: Avogadro constant NA = 6.022 140 76 × 10²³ mol⁻¹",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 1.1 · Revised SI (2018)</p><h2>Which constant defines each unit?</h2><table><tr><td>second</td><td class=\"q\">?</td></tr><tr><td>metre</td><td class=\"q\">?</td></tr><tr><td>kilogram</td><td class=\"q\">?</td></tr><tr><td>ampere</td><td class=\"q\">?</td></tr><tr><td>kelvin</td><td class=\"q\">?</td></tr><tr><td>mole</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 1.1 · Revised SI (2018)</p><h2>Which constant defines each unit?</h2><table><tr><td>second</td><td class=\"a\">caesium-133 hyperfine frequency Δν<sub>Cs</sub> = 9 192 631 770 Hz</td></tr><tr><td>metre</td><td class=\"a\">speed of light c = 299 792 458 m s⁻¹</td></tr><tr><td>kilogram</td><td class=\"a\">Planck constant h = 6.626 070 15 × 10⁻³⁴ J s</td></tr><tr><td>ampere</td><td class=\"a\">elementary charge e = 1.602 176 634 × 10⁻¹⁹ C</td></tr><tr><td>kelvin</td><td class=\"a\">Boltzmann constant k = 1.380 649 × 10⁻²³ J K⁻¹</td></tr><tr><td>mole</td><td class=\"a\">Avogadro constant N<sub>A</sub> = 6.022 140 76 × 10²³ mol⁻¹</td></tr></table><p class=\"note\">NCERT: the numbers need not be memorised; know which constant goes with which unit.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Table 1.1 writes e = 1.602176634 × 10¹⁹ C. What is right?",
+      "definition": "e = 1.602 × 10<span style=\"color:#e5484d\">⁻¹⁹</span> C: the minus sign is missing in the book. (It also writes k⁻¹ for <span style=\"color:#3b82f6\">K⁻¹</span> in the kelvin row.)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When using the mole, what must be specified?",
+      "definition": "The <span style=\"color:#3b82f6\">elementary entities</span>: atoms, molecules, ions, electrons, other particles or groups",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the radian (plane angle).",
+      "definition": "\\( d\\theta = \\dfrac{ds}{r} \\) : arc length ÷ radius",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ],
+      "definitionImage": "media/fig_1_1_angles.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the steradian (solid angle).",
+      "definition": "\\( d\\Omega = \\dfrac{dA}{r^2} \\) : intercepted spherical area ÷ radius²",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ],
+      "definitionImage": "media/fig_1_1_angles.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Dimensions of the radian and steradian?",
+      "definition": "<span style=\"color:#3b82f6\">Dimensionless</span> (ratio of like quantities). Symbols <span style=\"color:#f08c00\">rad</span> and <span style=\"color:#f08c00\">sr</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Total solid angle around a point? Total plane angle?",
+      "definition": "<span style=\"color:#f08c00\">4π sr</span> (4πr² / r²) and <span style=\"color:#f08c00\">2π rad</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "1° in radians?",
+      "definition": "\\( 1^\\circ = \\dfrac{\\pi}{180} \\) rad ≈ <span style=\"color:#f08c00\">0.01745 rad</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ],
+      "definitionImage": "media/tab_1_2_units_outside_si.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Units retained for general use (Table 1.2)",
+      "definition": "1 litre (L): 1 dm³ = 10⁻³ m³; 1 tonne (t): 10³ kg; 1 quintal (q): 100 kg; 1 bar: 0.1 MPa = 10⁵ Pa; 1 atm: 101325 Pa ≈ 1.013 × 10⁵ Pa; 1 hectare (ha): 1 hm² = 10⁴ m²",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 1.2 · units outside SI</p><h2>Value in SI?</h2><table><tr><td>1 litre (L)</td><td class=\"q\">?</td></tr><tr><td>1 tonne (t)</td><td class=\"q\">?</td></tr><tr><td>1 quintal (q)</td><td class=\"q\">?</td></tr><tr><td>1 bar</td><td class=\"q\">?</td></tr><tr><td>1 atm</td><td class=\"q\">?</td></tr><tr><td>1 hectare (ha)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 1.2 · units outside SI</p><h2>Value in SI?</h2><table><tr><td>1 litre (L)</td><td class=\"a\">1 dm³ = 10⁻³ m³</td></tr><tr><td>1 tonne (t)</td><td class=\"a\">10³ kg</td></tr><tr><td>1 quintal (q)</td><td class=\"a\">100 kg</td></tr><tr><td>1 bar</td><td class=\"a\">0.1 MPa = 10⁵ Pa</td></tr><tr><td>1 atm</td><td class=\"a\">101325 Pa ≈ 1.013 × 10⁵ Pa</td></tr><tr><td>1 hectare (ha)</td><td class=\"a\">1 hm² = 10⁴ m²</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "More units outside SI (Table 1.2)",
+      "definition": "1 carat: 200 mg; 1 barn (b): 100 fm² = 10⁻²⁸ m²; 1 curie (Ci): 3.7 × 10¹⁰ s⁻¹; 1 roentgen (R): 2.58 × 10⁻⁴ C/kg; 1 year: 365.25 d = 3.156 × 10⁷ s; 1 are (a): 1 dam² = 10² m²",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 1.2 · units outside SI</p><h2>Value in SI?</h2><table><tr><td>1 carat</td><td class=\"q\">?</td></tr><tr><td>1 barn (b)</td><td class=\"q\">?</td></tr><tr><td>1 curie (Ci)</td><td class=\"q\">?</td></tr><tr><td>1 roentgen (R)</td><td class=\"q\">?</td></tr><tr><td>1 year</td><td class=\"q\">?</td></tr><tr><td>1 are (a)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 1.2 · units outside SI</p><h2>Value in SI?</h2><table><tr><td>1 carat</td><td class=\"a\">200 mg</td></tr><tr><td>1 barn (b)</td><td class=\"a\">100 fm² = 10⁻²⁸ m²</td></tr><tr><td>1 curie (Ci)</td><td class=\"a\">3.7 × 10¹⁰ s⁻¹</td></tr><tr><td>1 roentgen (R)</td><td class=\"a\">2.58 × 10⁻⁴ C/kg</td></tr><tr><td>1 year</td><td class=\"a\">365.25 d = 3.156 × 10⁷ s</td></tr><tr><td>1 are (a)</td><td class=\"a\">1 dam² = 10² m²</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Fermi, angstrom, light year, AU, parsec",
+      "definition": "1 fermi (fm): 10⁻¹⁵ m; 1 ångström (Å): 10⁻¹⁰ m; 1 light year (ly): 9.46 × 10¹⁵ m; 1 astronomical unit (AU): 1.496 × 10¹¹ m; 1 parsec (pc): 3.08 × 10¹⁶ m ≈ 3.26 ly",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · handy length units</p><h2>Value in metres?</h2><table><tr><td>1 fermi (fm)</td><td class=\"q\">?</td></tr><tr><td>1 ångström (Å)</td><td class=\"q\">?</td></tr><tr><td>1 light year (ly)</td><td class=\"q\">?</td></tr><tr><td>1 astronomical unit (AU)</td><td class=\"q\">?</td></tr><tr><td>1 parsec (pc)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · handy length units</p><h2>Value in metres?</h2><table><tr><td>1 fermi (fm)</td><td class=\"a\">10⁻¹⁵ m</td></tr><tr><td>1 ångström (Å)</td><td class=\"a\">10⁻¹⁰ m</td></tr><tr><td>1 light year (ly)</td><td class=\"a\">9.46 × 10¹⁵ m</td></tr><tr><td>1 astronomical unit (AU)</td><td class=\"a\">1.496 × 10¹¹ m</td></tr><tr><td>1 parsec (pc)</td><td class=\"a\">3.08 × 10¹⁶ m ≈ 3.26 ly</td></tr></table><p class=\"note\">Light year is a unit of <b>distance</b>, not time.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: is a light year a unit of time?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is the <span style=\"color:#3b82f6\">distance</span> light travels in one year, ≈ <span style=\"color:#f08c00\">9.46 × 10¹⁵ m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.5: a unit of length is chosen so that c = 1. Sun–Earth distance if light takes 8 min 20 s?",
+      "definition": "<span style=\"color:#f08c00\">500</span> new units (= 500 light-seconds)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.2-si-units"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Significant figures = the {{c1::reliable digits}} plus the {{c2::first uncertain digit}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Significant figures: reliable digits + first uncertain digit",
+      "definition": "Report 2.87 cm: certain digits 2, 8 plus one estimated digit 7, so 3 significant figures",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Significant figures · intuition</p><h2>A ruler has mm marks. The rod ends between 2.8 and 2.9 cm. How should you report it, and how many significant figures?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><rect class=\"ghost\" x=\"14\" y=\"104\" width=\"262\" height=\"44\" rx=\"4\"></rect><line class=\"tkb\" x1=\"20.0\" y1=\"110\" x2=\"20.0\" y2=\"126\"></line><text class=\"num\" x=\"20.0\" y=\"140\">0</text><line class=\"tk\" x1=\"25.0\" y1=\"110\" x2=\"25.0\" y2=\"117\"></line><line class=\"tk\" x1=\"30.0\" y1=\"110\" x2=\"30.0\" y2=\"117\"></line><line class=\"tk\" x1=\"35.0\" y1=\"110\" x2=\"35.0\" y2=\"117\"></line><line class=\"tk\" x1=\"40.0\" y1=\"110\" x2=\"40.0\" y2=\"117\"></line><line class=\"tk\" x1=\"45.0\" y1=\"110\" x2=\"45.0\" y2=\"121\"></line><line class=\"tk\" x1=\"50.0\" y1=\"110\" x2=\"50.0\" y2=\"117\"></line><line class=\"tk\" x1=\"55.0\" y1=\"110\" x2=\"55.0\" y2=\"117\"></line><line class=\"tk\" x1=\"60.0\" y1=\"110\" x2=\"60.0\" y2=\"117\"></line><line class=\"tk\" x1=\"65.0\" y1=\"110\" x2=\"65.0\" y2=\"117\"></line><line class=\"tkb\" x1=\"70.0\" y1=\"110\" x2=\"70.0\" y2=\"126\"></line><text class=\"num\" x=\"70.0\" y=\"140\">1</text><line class=\"tk\" x1=\"75.0\" y1=\"110\" x2=\"75.0\" y2=\"117\"></line><line class=\"tk\" x1=\"80.0\" y1=\"110\" x2=\"80.0\" y2=\"117\"></line><line class=\"tk\" x1=\"85.0\" y1=\"110\" x2=\"85.0\" y2=\"117\"></line><line class=\"tk\" x1=\"90.0\" y1=\"110\" x2=\"90.0\" y2=\"117\"></line><line class=\"tk\" x1=\"95.0\" y1=\"110\" x2=\"95.0\" y2=\"121\"></line><line class=\"tk\" x1=\"100.0\" y1=\"110\" x2=\"100.0\" y2=\"117\"></line><line class=\"tk\" x1=\"105.0\" y1=\"110\" x2=\"105.0\" y2=\"117\"></line><line class=\"tk\" x1=\"110.0\" y1=\"110\" x2=\"110.0\" y2=\"117\"></line><line class=\"tk\" x1=\"115.0\" y1=\"110\" x2=\"115.0\" y2=\"117\"></line><line class=\"tkb\" x1=\"120.0\" y1=\"110\" x2=\"120.0\" y2=\"126\"></line><text class=\"num\" x=\"120.0\" y=\"140\">2</text><line class=\"tk\" x1=\"125.0\" y1=\"110\" x2=\"125.0\" y2=\"117\"></line><line class=\"tk\" x1=\"130.0\" y1=\"110\" x2=\"130.0\" y2=\"117\"></line><line class=\"tk\" x1=\"135.0\" y1=\"110\" x2=\"135.0\" y2=\"117\"></line><line class=\"tk\" x1=\"140.0\" y1=\"110\" x2=\"140.0\" y2=\"117\"></line><line class=\"tk\" x1=\"145.0\" y1=\"110\" x2=\"145.0\" y2=\"121\"></line><line class=\"tk\" x1=\"150.0\" y1=\"110\" x2=\"150.0\" y2=\"117\"></line><line class=\"tk\" x1=\"155.0\" y1=\"110\" x2=\"155.0\" y2=\"117\"></line><line class=\"tk\" x1=\"160.0\" y1=\"110\" x2=\"160.0\" y2=\"117\"></line><line class=\"tk\" x1=\"165.0\" y1=\"110\" x2=\"165.0\" y2=\"117\"></line><line class=\"tkb\" x1=\"170.0\" y1=\"110\" x2=\"170.0\" y2=\"126\"></line><text class=\"num\" x=\"170.0\" y=\"140\">3</text><line class=\"tk\" x1=\"175.0\" y1=\"110\" x2=\"175.0\" y2=\"117\"></line><line class=\"tk\" x1=\"180.0\" y1=\"110\" x2=\"180.0\" y2=\"117\"></line><line class=\"tk\" x1=\"185.0\" y1=\"110\" x2=\"185.0\" y2=\"117\"></line><line class=\"tk\" x1=\"190.0\" y1=\"110\" x2=\"190.0\" y2=\"117\"></line><line class=\"tk\" x1=\"195.0\" y1=\"110\" x2=\"195.0\" y2=\"121\"></line><line class=\"tk\" x1=\"200.0\" y1=\"110\" x2=\"200.0\" y2=\"117\"></line><line class=\"tk\" x1=\"205.0\" y1=\"110\" x2=\"205.0\" y2=\"117\"></line><line class=\"tk\" x1=\"210.0\" y1=\"110\" x2=\"210.0\" y2=\"117\"></line><line class=\"tk\" x1=\"215.0\" y1=\"110\" x2=\"215.0\" y2=\"117\"></line><line class=\"tkb\" x1=\"220.0\" y1=\"110\" x2=\"220.0\" y2=\"126\"></line><text class=\"num\" x=\"220.0\" y=\"140\">4</text><line class=\"tk\" x1=\"225.0\" y1=\"110\" x2=\"225.0\" y2=\"117\"></line><line class=\"tk\" x1=\"230.0\" y1=\"110\" x2=\"230.0\" y2=\"117\"></line><line class=\"tk\" x1=\"235.0\" y1=\"110\" x2=\"235.0\" y2=\"117\"></line><line class=\"tk\" x1=\"240.0\" y1=\"110\" x2=\"240.0\" y2=\"117\"></line><line class=\"tk\" x1=\"245.0\" y1=\"110\" x2=\"245.0\" y2=\"121\"></line><line class=\"tk\" x1=\"250.0\" y1=\"110\" x2=\"250.0\" y2=\"117\"></line><line class=\"tk\" x1=\"255.0\" y1=\"110\" x2=\"255.0\" y2=\"117\"></line><line class=\"tk\" x1=\"260.0\" y1=\"110\" x2=\"260.0\" y2=\"117\"></line><line class=\"tk\" x1=\"265.0\" y1=\"110\" x2=\"265.0\" y2=\"117\"></line><line class=\"tkb\" x1=\"270.0\" y1=\"110\" x2=\"270.0\" y2=\"126\"></line><text class=\"num\" x=\"270.0\" y=\"140\">5</text><text class=\"sm\" x=\"268\" y=\"160\" text-anchor=\"end\">cm (least count 1 mm)</text><rect class=\"obj slide\" x=\"20\" y=\"80\" width=\"143.5\" height=\"24\" rx=\"3\"></rect></svg><p class=\"hint\">Think it through, then flip.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Significant figures · intuition</p><h2>A ruler has mm marks. The rod ends between 2.8 and 2.9 cm. How should you report it, and how many significant figures?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><rect class=\"ghost\" x=\"14\" y=\"104\" width=\"262\" height=\"44\" rx=\"4\"></rect><line class=\"tkb\" x1=\"20.0\" y1=\"110\" x2=\"20.0\" y2=\"126\"></line><text class=\"num\" x=\"20.0\" y=\"140\">0</text><line class=\"tk\" x1=\"25.0\" y1=\"110\" x2=\"25.0\" y2=\"117\"></line><line class=\"tk\" x1=\"30.0\" y1=\"110\" x2=\"30.0\" y2=\"117\"></line><line class=\"tk\" x1=\"35.0\" y1=\"110\" x2=\"35.0\" y2=\"117\"></line><line class=\"tk\" x1=\"40.0\" y1=\"110\" x2=\"40.0\" y2=\"117\"></line><line class=\"tk\" x1=\"45.0\" y1=\"110\" x2=\"45.0\" y2=\"121\"></line><line class=\"tk\" x1=\"50.0\" y1=\"110\" x2=\"50.0\" y2=\"117\"></line><line class=\"tk\" x1=\"55.0\" y1=\"110\" x2=\"55.0\" y2=\"117\"></line><line class=\"tk\" x1=\"60.0\" y1=\"110\" x2=\"60.0\" y2=\"117\"></line><line class=\"tk\" x1=\"65.0\" y1=\"110\" x2=\"65.0\" y2=\"117\"></line><line class=\"tkb\" x1=\"70.0\" y1=\"110\" x2=\"70.0\" y2=\"126\"></line><text class=\"num\" x=\"70.0\" y=\"140\">1</text><line class=\"tk\" x1=\"75.0\" y1=\"110\" x2=\"75.0\" y2=\"117\"></line><line class=\"tk\" x1=\"80.0\" y1=\"110\" x2=\"80.0\" y2=\"117\"></line><line class=\"tk\" x1=\"85.0\" y1=\"110\" x2=\"85.0\" y2=\"117\"></line><line class=\"tk\" x1=\"90.0\" y1=\"110\" x2=\"90.0\" y2=\"117\"></line><line class=\"tk\" x1=\"95.0\" y1=\"110\" x2=\"95.0\" y2=\"121\"></line><line class=\"tk\" x1=\"100.0\" y1=\"110\" x2=\"100.0\" y2=\"117\"></line><line class=\"tk\" x1=\"105.0\" y1=\"110\" x2=\"105.0\" y2=\"117\"></line><line class=\"tk\" x1=\"110.0\" y1=\"110\" x2=\"110.0\" y2=\"117\"></line><line class=\"tk\" x1=\"115.0\" y1=\"110\" x2=\"115.0\" y2=\"117\"></line><line class=\"tkb\" x1=\"120.0\" y1=\"110\" x2=\"120.0\" y2=\"126\"></line><text class=\"num\" x=\"120.0\" y=\"140\">2</text><line class=\"tk\" x1=\"125.0\" y1=\"110\" x2=\"125.0\" y2=\"117\"></line><line class=\"tk\" x1=\"130.0\" y1=\"110\" x2=\"130.0\" y2=\"117\"></line><line class=\"tk\" x1=\"135.0\" y1=\"110\" x2=\"135.0\" y2=\"117\"></line><line class=\"tk\" x1=\"140.0\" y1=\"110\" x2=\"140.0\" y2=\"117\"></line><line class=\"tk\" x1=\"145.0\" y1=\"110\" x2=\"145.0\" y2=\"121\"></line><line class=\"tk\" x1=\"150.0\" y1=\"110\" x2=\"150.0\" y2=\"117\"></line><line class=\"tk\" x1=\"155.0\" y1=\"110\" x2=\"155.0\" y2=\"117\"></line><line class=\"tk\" x1=\"160.0\" y1=\"110\" x2=\"160.0\" y2=\"117\"></line><line class=\"tk\" x1=\"165.0\" y1=\"110\" x2=\"165.0\" y2=\"117\"></line><line class=\"tkb\" x1=\"170.0\" y1=\"110\" x2=\"170.0\" y2=\"126\"></line><text class=\"num\" x=\"170.0\" y=\"140\">3</text><line class=\"tk\" x1=\"175.0\" y1=\"110\" x2=\"175.0\" y2=\"117\"></line><line class=\"tk\" x1=\"180.0\" y1=\"110\" x2=\"180.0\" y2=\"117\"></line><line class=\"tk\" x1=\"185.0\" y1=\"110\" x2=\"185.0\" y2=\"117\"></line><line class=\"tk\" x1=\"190.0\" y1=\"110\" x2=\"190.0\" y2=\"117\"></line><line class=\"tk\" x1=\"195.0\" y1=\"110\" x2=\"195.0\" y2=\"121\"></line><line class=\"tk\" x1=\"200.0\" y1=\"110\" x2=\"200.0\" y2=\"117\"></line><line class=\"tk\" x1=\"205.0\" y1=\"110\" x2=\"205.0\" y2=\"117\"></line><line class=\"tk\" x1=\"210.0\" y1=\"110\" x2=\"210.0\" y2=\"117\"></line><line class=\"tk\" x1=\"215.0\" y1=\"110\" x2=\"215.0\" y2=\"117\"></line><line class=\"tkb\" x1=\"220.0\" y1=\"110\" x2=\"220.0\" y2=\"126\"></line><text class=\"num\" x=\"220.0\" y=\"140\">4</text><line class=\"tk\" x1=\"225.0\" y1=\"110\" x2=\"225.0\" y2=\"117\"></line><line class=\"tk\" x1=\"230.0\" y1=\"110\" x2=\"230.0\" y2=\"117\"></line><line class=\"tk\" x1=\"235.0\" y1=\"110\" x2=\"235.0\" y2=\"117\"></line><line class=\"tk\" x1=\"240.0\" y1=\"110\" x2=\"240.0\" y2=\"117\"></line><line class=\"tk\" x1=\"245.0\" y1=\"110\" x2=\"245.0\" y2=\"121\"></line><line class=\"tk\" x1=\"250.0\" y1=\"110\" x2=\"250.0\" y2=\"117\"></line><line class=\"tk\" x1=\"255.0\" y1=\"110\" x2=\"255.0\" y2=\"117\"></line><line class=\"tk\" x1=\"260.0\" y1=\"110\" x2=\"260.0\" y2=\"117\"></line><line class=\"tk\" x1=\"265.0\" y1=\"110\" x2=\"265.0\" y2=\"117\"></line><line class=\"tkb\" x1=\"270.0\" y1=\"110\" x2=\"270.0\" y2=\"126\"></line><text class=\"num\" x=\"270.0\" y=\"140\">5</text><text class=\"sm\" x=\"268\" y=\"160\" text-anchor=\"end\">cm (least count 1 mm)</text><rect class=\"obj slide\" x=\"20\" y=\"80\" width=\"143.5\" height=\"24\" rx=\"3\"></rect><line class=\"guide fx d2\" x1=\"163.5\" y1=\"70\" x2=\"163.5\" y2=\"130\"></line><rect class=\"zone fx d2\" x=\"160.0\" y=\"106\" width=\"5.0\" height=\"22\"></rect><text class=\"gr fx d3\" x=\"60\" y=\"40\">2 . 8 → read off marks</text><text class=\"gr fx d3\" x=\"60\" y=\"56\">(certain)</text><text class=\"yl fx d4\" x=\"169.5\" y=\"72\">7 ← guessed</text><text class=\"yl fx d4\" x=\"196\" y=\"88\">(first uncertain)</text></svg><div class=\"eq fx d5\"><p>Report <b>2.87 cm</b>: the reliable digits (2, 8) plus <b>one</b> estimated digit (7) → <b>3 significant figures</b>.</p><p>Writing 2.8734 cm would claim precision the ruler does not have.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Pendulum period 1.62 s: which digits are certain?",
+      "definition": "<span style=\"color:#3b82f6\">1 and 6</span> certain; <span style=\"color:#f08c00\">2</span> uncertain → 3 significant figures",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What do significant figures indicate?",
+      "definition": "The <span style=\"color:#3b82f6\">precision</span> of a measurement, set by the <span style=\"color:#3b82f6\">least count</span> of the instrument",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does changing units change the number of significant figures?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: 2.308 cm = 0.02308 m = 23.08 mm, all four significant figures",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT writes 2.308 cm = \"23080 mm\". What is right?",
+      "definition": "2.308 cm = 23.08 mm = <span style=\"color:#3b82f6\">23080 μm</span> (micrometres); the book has a typo",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Rules for counting significant figures",
+      "definition": "All non-zero digits: Significant; Zeros between non-zero digits (2.0308): Significant; Leading zeros in a number < 1 (0.002308): Not significant; Trailing zeros, no decimal point (12300): Not significant; Trailing zeros after a decimal point (3.500): Significant",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Significant figure rules</p><h2>Significant or not?</h2><table><tr><td>All non-zero digits</td><td class=\"q\">?</td></tr><tr><td>Zeros between non-zero digits (2.0308)</td><td class=\"q\">?</td></tr><tr><td>Leading zeros in a number < 1 (0.002308)</td><td class=\"q\">?</td></tr><tr><td>Trailing zeros, no decimal point (12300)</td><td class=\"q\">?</td></tr><tr><td>Trailing zeros after a decimal point (3.500)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Significant figure rules</p><h2>Significant or not?</h2><table><tr><td>All non-zero digits</td><td class=\"a\">Significant</td></tr><tr><td>Zeros between non-zero digits (2.0308)</td><td class=\"a\">Significant</td></tr><tr><td>Leading zeros in a number < 1 (0.002308)</td><td class=\"a no\">Not significant</td></tr><tr><td>Trailing zeros, no decimal point (12300)</td><td class=\"a no\">Not significant</td></tr><tr><td>Trailing zeros after a decimal point (3.500)</td><td class=\"a\">Significant</td></tr></table><p class=\"note\">The 0 written before the decimal point (0.1250) is never significant.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How many significant figures in 123 m = 12300 cm = 123000 mm?",
+      "definition": "<span style=\"color:#f08c00\">3</span> in each (trailing zeros without a decimal are not significant)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How many significant figures in 3.500 and in 0.06900?",
+      "definition": "<span style=\"color:#f08c00\">4</span> each",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4.700 m = 4700 mm. Why does \"4700 mm\" mislead?",
+      "definition": "By the trailing-zero rule it looks like <span style=\"color:#e5484d\">2</span> significant figures, but it has <span style=\"color:#3b82f6\">4</span>; a unit change cannot change that",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does scientific notation remove the trailing-zero confusion?",
+      "definition": "Write a × 10ᵇ: <span style=\"color:#3b82f6\">every digit in a is significant</span>. 4.700 × 10³ mm has 4",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is the power of 10 counted in significant figures?",
+      "definition": "<span style=\"color:#e5484d\">No</span>; it is irrelevant to the count",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Count significant figures (Exercise 1.10)",
+      "definition": "0.007 m²: 1; 2.64 × 10²⁴ kg: 3; 0.2370 g cm⁻³: 4; 6.320 J: 4; 6.032 N m⁻²: 4; 0.0006032 m²: 4",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 1.10</p><h2>Number of significant figures?</h2><table><tr><td>0.007 m²</td><td class=\"q\">?</td></tr><tr><td>2.64 × 10²⁴ kg</td><td class=\"q\">?</td></tr><tr><td>0.2370 g cm⁻³</td><td class=\"q\">?</td></tr><tr><td>6.320 J</td><td class=\"q\">?</td></tr><tr><td>6.032 N m⁻²</td><td class=\"q\">?</td></tr><tr><td>0.0006032 m²</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 1.10</p><h2>Number of significant figures?</h2><table><tr><td>0.007 m²</td><td class=\"a\">1</td></tr><tr><td>2.64 × 10²⁴ kg</td><td class=\"a\">3</td></tr><tr><td>0.2370 g cm⁻³</td><td class=\"a\">4</td></tr><tr><td>6.320 J</td><td class=\"a\">4</td></tr><tr><td>6.032 N m⁻²</td><td class=\"a\">4</td></tr><tr><td>0.0006032 m²</td><td class=\"a\">4</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How many significant figures does an exact number like the 2 in s = 2πr have?",
+      "definition": "<span style=\"color:#3b82f6\">Infinite</span>: exact counts and factors do not limit the result",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-significant-figures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the order of magnitude of a quantity?",
+      "definition": "Write it as a × 10ᵇ, round a to 1 (a ≤ 5) or 10 (a > 5); the resulting power <span style=\"color:#3b82f6\">b</span> is the order of magnitude",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-order-of-magnitude"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Order of magnitude of Earth’s diameter (1.28 × 10⁷ m) and an H atom (1.06 × 10⁻¹⁰ m)?",
+      "definition": "<span style=\"color:#f08c00\">7</span> and <span style=\"color:#f08c00\">−10</span>; Earth is <span style=\"color:#f08c00\">17 orders</span> larger",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-order-of-magnitude"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Note: order of magnitude of 4 × 10⁶ — NCERT rule vs √10 rule?",
+      "definition": "NCERT (round a ≤ 5 down): <span style=\"color:#f08c00\">6</span>. Many JEE books round down only if a < √10 ≈ 3.16, giving <span style=\"color:#f08c00\">7</span>. In boards and NEET, follow <span style=\"color:#3b82f6\">NCERT</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3-order-of-magnitude"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "In multiplication or division, keep as many {{c1::significant figures}} as the number with the {{c2::fewest significant figures}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "In addition or subtraction, keep as many {{c1::decimal places}} as the number with the {{c2::fewest decimal places}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Density = 4.237 g ÷ 2.51 cm³ = 1.688047… Report?",
+      "definition": "<span style=\"color:#f08c00\">1.69 g cm⁻³</span> (3 significant figures, from 2.51)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "436.32 g + 227.2 g + 0.301 g = 663.821 g. Report?",
+      "definition": "<span style=\"color:#f08c00\">663.8 g</span> (one decimal place, from 227.2)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "0.307 m − 0.304 m. Report?",
+      "definition": "<span style=\"color:#f08c00\">0.003 m = 3 × 10⁻³ m</span>, <span style=\"color:#e5484d\">not</span> 3.00 × 10⁻³ m",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Light year from c = 3.00 × 10⁸ m/s and 1 y = 3.1557 × 10⁷ s?",
+      "definition": "<span style=\"color:#f08c00\">9.47 × 10¹⁵ m</span> (3 significant figures)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Cube side 7.203 m: area and volume",
+      "definition": "Area 311.3 m², volume 373.7 m³ (4 significant figures)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 1.1</p><h2>Find the missing step.</h2><div class=\"prob\">Each side of a cube is 7.203 m. Surface area and volume?</div><ol><li>Side has 4 significant figures → answers keep 4</li><li>Area = 6(7.203)² = 311.299254 m²</li><li class=\"h\">?</li><li>Volume = (7.203)³ = 373.714754 → <b>373.7 m³</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 1.1</p><h2>Find the missing step.</h2><div class=\"prob\">Each side of a cube is 7.203 m. Surface area and volume?</div><ol><li>Side has 4 significant figures → answers keep 4</li><li>Area = 6(7.203)² = 311.299254 m²</li><li class=\"r\">Report area = <b>311.3 m²</b></li><li>Volume = (7.203)³ = 373.714754 → <b>373.7 m³</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.2: 5.74 g occupies 1.2 cm³. Density?",
+      "definition": "<span style=\"color:#f08c00\">4.8 g cm⁻³</span> (only 2 significant figures, from 1.2)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.11: sheet 4.234 m × 1.005 m × 2.01 cm. Area and volume?",
+      "definition": "Area <span style=\"color:#f08c00\">8.72 m²</span>, volume <span style=\"color:#f08c00\">0.0855 m³</span> (3 significant figures, from 2.01)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.12: a 2.30 kg box plus gold pieces 20.15 g and 20.17 g. Difference of the pieces?",
+      "definition": "<span style=\"color:#f08c00\">0.02 g</span> (two decimal places)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Note: Exercise 1.12(a) total mass — NCERT key says 2.3 kg. What does the decimal-place rule give?",
+      "definition": "2.30 + 0.02015 + 0.02017 = 2.34032 kg → <span style=\"color:#3b82f6\">2.34 kg</span> (2.30 has two decimal places). The key’s 2.3 kg drops a digit; if asked in a test, show the rule and write 2.34 kg",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.1-arithmetic-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Round 2.746 and 1.743 to 3 significant figures.",
+      "definition": "<span style=\"color:#f08c00\">2.75</span> and <span style=\"color:#f08c00\">1.74</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.2-rounding-off"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Rounding when the dropped digit is exactly 5: if the preceding digit is {{c1::even}}, just drop the 5; if it is {{c2::odd}}, raise it by 1.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.2-rounding-off"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Round 2.745 and 2.735 to 3 significant figures (NCERT rule).",
+      "definition": "Both → <span style=\"color:#f08c00\">2.74</span> (4 is even: drop; 3 is odd: raise)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.2-rounding-off"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why the \"round half to even\" rule?",
+      "definition": "Rounding 5 always up biases a long calculation upward; going to the even digit rounds up half the time and down half the time",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.2-rounding-off"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In a multi-step calculation, how many digits do you keep in intermediate steps?",
+      "definition": "<span style=\"color:#3b82f6\">One more</span> than the least precise measurement; round only at the end",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.2-rounding-off"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why keep an extra digit? (1/9.58 example)",
+      "definition": "1/9.58 = 0.104 → 1/0.104 = <span style=\"color:#e5484d\">9.62</span>. With 0.1044 you get back <span style=\"color:#3b82f6\">9.58</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.2-rounding-off"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What value of π to use?",
+      "definition": "3.142 or 3.14, as the other data require (π is known to many figures)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.2-rounding-off"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A metre scale reads l = 16.2 cm. Absolute and percentage error?",
+      "definition": "<span style=\"color:#f08c00\">± 0.1 cm</span>, i.e. ± 0.6 %",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.3-uncertainty-in-results"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Combining errors in a product l × b?",
+      "definition": "<span style=\"color:#3b82f6\">Percentage errors add</span>: 0.6 % + 1 % = 1.6 %",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.3-uncertainty-in-results"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Error in area of a sheet",
+      "definition": "Relative errors add: 1.6 %, so A = 164 ± 3 cm²",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">1.3.3 · Error in a product</p><h2>Find the missing step.</h2><div class=\"prob\">l = 16.2 ± 0.1 cm, b = 10.1 ± 0.1 cm. Area with its error?</div><ol><li>Δl/l = 0.6 %, Δb/b = 1 %</li><li class=\"h\">?</li><li>A = 163.62 cm², ΔA = 1.6 % of 163.62 ≈ 2.6 cm²</li><li>Report <b>A = 164 ± 3 cm²</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">1.3.3 · Error in a product</p><h2>Find the missing step.</h2><div class=\"prob\">l = 16.2 ± 0.1 cm, b = 10.1 ± 0.1 cm. Area with its error?</div><ol><li>Δl/l = 0.6 %, Δb/b = 1 %</li><li class=\"r\">ΔA/A = 0.6 % + 1 % = 1.6 %</li><li>A = 163.62 cm², ΔA = 1.6 % of 163.62 ≈ 2.6 cm²</li><li>Report <b>A = 164 ± 3 cm²</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.3-uncertainty-in-results"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "12.9 g − 7.06 g: report?",
+      "definition": "<span style=\"color:#f08c00\">5.8 g</span>, not 5.84 g (subtraction can reduce significant figures)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.3-uncertainty-in-results"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "1.02 g and 9.89 g are both ± 0.01 g. Relative errors?",
+      "definition": "<span style=\"color:#f08c00\">± 1 %</span> and <span style=\"color:#f08c00\">± 0.1 %</span>: relative error depends on the <span style=\"color:#3b82f6\">size of the number</span>, not just the digits",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.3-uncertainty-in-results"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Rules for combining errors",
+      "definition": "Z = A ± B: ΔZ = ΔA + ΔB (absolute errors add); Z = AB or A/B: ΔZ/Z = ΔA/A + ΔB/B (relative errors add); Z = Aⁿ: ΔZ/Z = n · ΔA/A; Z = Aᵖ Bᑫ / Cʳ: ΔZ/Z = pΔA/A + qΔB/B + rΔC/C",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · error propagation</p><h2>Error in Z?</h2><table><tr><td>Z = A ± B</td><td class=\"q\">?</td></tr><tr><td>Z = AB or A/B</td><td class=\"q\">?</td></tr><tr><td>Z = Aⁿ</td><td class=\"q\">?</td></tr><tr><td>Z = Aᵖ Bᑫ / Cʳ</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · error propagation</p><h2>Error in Z?</h2><table><tr><td>Z = A ± B</td><td class=\"a\">ΔZ = ΔA + ΔB (absolute errors add)</td></tr><tr><td>Z = AB or A/B</td><td class=\"a\">ΔZ/Z = ΔA/A + ΔB/B (relative errors add)</td></tr><tr><td>Z = Aⁿ</td><td class=\"a\">ΔZ/Z = n · ΔA/A</td></tr><tr><td>Z = Aᵖ Bᑫ / Cʳ</td><td class=\"a\">ΔZ/Z = pΔA/A + qΔB/B + rΔC/C</td></tr></table><p class=\"note\">Errors never cancel: always add, even for subtraction or division.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.3-uncertainty-in-results"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: Z = A − B. Do the errors subtract?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: ΔZ = ΔA + ΔB. Worst case, both errors push the same way",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.3-uncertainty-in-results"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: g = 4π²L/T². L has 2 % error, T has 1 %. Error in g?",
+      "definition": "2 % + 2 × 1 % = <span style=\"color:#f08c00\">4 %</span> (T is squared)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.3-uncertainty-in-results"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why should the quantity with the highest power be measured most precisely?",
+      "definition": "Its relative error is <span style=\"color:#3b82f6\">multiplied by the power</span> in the result",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.3.3-uncertainty-in-results"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are the dimensions of a physical quantity?",
+      "definition": "The <span style=\"color:#3b82f6\">powers</span> to which the base quantities are raised to represent it",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Symbols of the seven dimensions",
+      "definition": "Length: [L]; Mass: [M]; Time: [T]; Electric current: [A]; Temperature: [K]; Luminous intensity: [cd]; Amount of substance: [mol]",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">1.4 · Dimension symbols</p><h2>Symbol of each base dimension?</h2><table><tr><td>Length</td><td class=\"q\">?</td></tr><tr><td>Mass</td><td class=\"q\">?</td></tr><tr><td>Time</td><td class=\"q\">?</td></tr><tr><td>Electric current</td><td class=\"q\">?</td></tr><tr><td>Temperature</td><td class=\"q\">?</td></tr><tr><td>Luminous intensity</td><td class=\"q\">?</td></tr><tr><td>Amount of substance</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">1.4 · Dimension symbols</p><h2>Symbol of each base dimension?</h2><table><tr><td>Length</td><td class=\"a\">[L]</td></tr><tr><td>Mass</td><td class=\"a\">[M]</td></tr><tr><td>Time</td><td class=\"a\">[T]</td></tr><tr><td>Electric current</td><td class=\"a\">[A]</td></tr><tr><td>Temperature</td><td class=\"a\">[K]</td></tr><tr><td>Luminous intensity</td><td class=\"a\">[cd]</td></tr><tr><td>Amount of substance</td><td class=\"a\">[mol]</td></tr></table><p class=\"note\">Many books use [I] for current and [θ] for temperature; [A] and [K] are NCERT’s.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which three dimensions are enough for mechanics?",
+      "definition": "[M], [L], [T]",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dimensions of force from F = ma?",
+      "definition": "[M L T⁻²]: one in mass, one in length, −2 in time",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do speed, initial velocity and change in velocity all have the same dimensions?",
+      "definition": "Dimensions ignore magnitude and type; all are <span style=\"color:#3b82f6\">length/time</span> = [L T⁻¹]",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "The {{c1::dimensional formula}} shows which base quantities, with which powers, make up a quantity, e.g. [M⁰ L T⁻¹] for velocity; equating the quantity to it, [v] = [M⁰ L T⁻¹], is its {{c2::dimensional equation}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Dimensional formulae: mechanics set 1",
+      "definition": "Volume: [M⁰ L³ T⁰]; Density: [M L⁻³]; Acceleration: [L T⁻²]; Momentum, impulse: [M L T⁻¹]; Work, energy, torque: [M L² T⁻²]; Power: [M L² T⁻³]",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">1.5 · dimensional formulae</p><h2>Dimensional formula?</h2><table><tr><td>Volume</td><td class=\"q\">?</td></tr><tr><td>Density</td><td class=\"q\">?</td></tr><tr><td>Acceleration</td><td class=\"q\">?</td></tr><tr><td>Momentum, impulse</td><td class=\"q\">?</td></tr><tr><td>Work, energy, torque</td><td class=\"q\">?</td></tr><tr><td>Power</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">1.5 · dimensional formulae</p><h2>Dimensional formula?</h2><table><tr><td>Volume</td><td class=\"a\">[M⁰ L³ T⁰]</td></tr><tr><td>Density</td><td class=\"a\">[M L⁻³]</td></tr><tr><td>Acceleration</td><td class=\"a\">[L T⁻²]</td></tr><tr><td>Momentum, impulse</td><td class=\"a\">[M L T⁻¹]</td></tr><tr><td>Work, energy, torque</td><td class=\"a\">[M L² T⁻²]</td></tr><tr><td>Power</td><td class=\"a\">[M L² T⁻³]</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Dimensional formulae: set 2",
+      "definition": "Pressure, stress, Young’s modulus: [M L⁻¹ T⁻²]; Surface tension, spring constant: [M T⁻²]; Gravitational constant G: [M⁻¹ L³ T⁻²]; Planck constant h, angular momentum: [M L² T⁻¹]; Coefficient of viscosity η: [M L⁻¹ T⁻¹]; Frequency, angular velocity: [T⁻¹]",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · dimensional formulae</p><h2>Dimensional formula?</h2><table><tr><td>Pressure, stress, Young’s modulus</td><td class=\"q\">?</td></tr><tr><td>Surface tension, spring constant</td><td class=\"q\">?</td></tr><tr><td>Gravitational constant G</td><td class=\"q\">?</td></tr><tr><td>Planck constant h, angular momentum</td><td class=\"q\">?</td></tr><tr><td>Coefficient of viscosity η</td><td class=\"q\">?</td></tr><tr><td>Frequency, angular velocity</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · dimensional formulae</p><h2>Dimensional formula?</h2><table><tr><td>Pressure, stress, Young’s modulus</td><td class=\"a\">[M L⁻¹ T⁻²]</td></tr><tr><td>Surface tension, spring constant</td><td class=\"a\">[M T⁻²]</td></tr><tr><td>Gravitational constant G</td><td class=\"a\">[M⁻¹ L³ T⁻²]</td></tr><tr><td>Planck constant h, angular momentum</td><td class=\"a\">[M L² T⁻¹]</td></tr><tr><td>Coefficient of viscosity η</td><td class=\"a\">[M L⁻¹ T⁻¹]</td></tr><tr><td>Frequency, angular velocity</td><td class=\"a\">[T⁻¹]</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Dimensionless quantities",
+      "definition": "Strain: none; Angle (rad), solid angle (sr): none; Refractive index: none; Relative density: none; Coefficient of friction μ: none",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · dimensionless</p><h2>Dimensions?</h2><table><tr><td>Strain</td><td class=\"q\">?</td></tr><tr><td>Angle (rad), solid angle (sr)</td><td class=\"q\">?</td></tr><tr><td>Refractive index</td><td class=\"q\">?</td></tr><tr><td>Relative density</td><td class=\"q\">?</td></tr><tr><td>Coefficient of friction μ</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Teacher addition · dimensionless</p><h2>Dimensions?</h2><table><tr><td>Strain</td><td class=\"a\">none</td></tr><tr><td>Angle (rad), solid angle (sr)</td><td class=\"a\">none</td></tr><tr><td>Refractive index</td><td class=\"a\">none</td></tr><tr><td>Relative density</td><td class=\"a\">none</td></tr><tr><td>Coefficient of friction μ</td><td class=\"a\">none</td></tr></table><p class=\"note\">Ratios of like quantities are dimensionless. A dimensionless quantity may still have a unit (rad).</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: quantities sharing [M L² T⁻²]?",
+      "definition": "<span style=\"color:#3b82f6\">Work, energy, torque</span>: \"a torque does the Work of Energy\". Torque is N m, but never called joule",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: can a quantity have a unit but no dimensions?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: angle has the unit radian but is dimensionless",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.4-dimensions"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Principle of {{c1::homogeneity}} of dimensions: only quantities with the {{c2::same dimensions}} can be added, subtracted or equated.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-dimensional-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can velocity be added to force?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: different dimensions",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-dimensional-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What must be true of the argument of sin, log or exp?",
+      "definition": "It must be <span style=\"color:#3b82f6\">dimensionless</span> (e.g. ωt in sin ωt)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-dimensional-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Check x = x₀ + v₀t + ½at².",
+      "definition": "Each term is [L]: [x₀] = L, [v₀t] = L T⁻¹·T = L, [at²] = L T⁻²·T² = L → <span style=\"color:#3b82f6\">consistent</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-dimensional-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "An equation is dimensionally correct. Is it right?",
+      "definition": "<span style=\"color:#e5484d\">Not necessarily</span>: dimensionless factors (½, 2π) are unchecked. A dimensionally <span style=\"color:#3b82f6\">wrong</span> equation is <span style=\"color:#3b82f6\">surely wrong</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-dimensional-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.3: is ½mv² = mgh dimensionally correct?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: both sides [M L² T⁻²]",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-dimensional-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1.4: which formulas for kinetic energy fail? (a) m²v³ (b) ½mv² (c) ma (d) (3/16)mv² (e) ½mv² + ma",
+      "definition": "<span style=\"color:#e5484d\">(a), (c), (e)</span>. Dimensions cannot choose between (b) and (d); the definition gives (b)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-dimensional-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.13: fix m = m₀ / (1 − v²)^½ using dimensions.",
+      "definition": "\\( m = \\dfrac{m_0}{\\sqrt{1 - v^2/c^2}} \\) : 1 − v² needs v² divided by c² to be dimensionless",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-dimensional-analysis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is dimensional analysis used to deduce a relation?",
+      "definition": "Assume a <span style=\"color:#3b82f6\">product of powers</span> Q = k aˣ bʸ cᶻ, then equate powers of M, L, T",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6.2-deducing-relations"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Pendulum period by dimensions",
+      "definition": "T = k√(l/g); k = 2π comes from experiment/theory, not dimensions",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 1.5 · pendulum</p><h2>Find the missing step.</h2><div class=\"prob\">Period T depends on length l, mass m and g. Find the formula by dimensions.</div><ol><li>T = k lˣ gʸ mᶻ</li><li>[T] = [L]ˣ [L T⁻²]ʸ [M]ᶻ = Lˣ⁺ʸ T⁻²ʸ Mᶻ</li><li class=\"h\">?</li><li>x = ½, y = −½, z = 0 → <b>T = k√(l/g)</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 1.5 · pendulum</p><h2>Find the missing step.</h2><div class=\"prob\">Period T depends on length l, mass m and g. Find the formula by dimensions.</div><ol><li>T = k lˣ gʸ mᶻ</li><li>[T] = [L]ˣ [L T⁻²]ʸ [M]ᶻ = Lˣ⁺ʸ T⁻²ʸ Mᶻ</li><li class=\"r\">x + y = 0, −2y = 1, z = 0</li><li>x = ½, y = −½, z = 0 → <b>T = k√(l/g)</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6.2-deducing-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the pendulum result say about the bob’s mass?",
+      "definition": "Period is <span style=\"color:#3b82f6\">independent of mass</span> (z = 0)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6.2-deducing-relations"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Limitations of dimensional analysis",
+      "definition": "Find dimensionless constants (2π, ½): No; Tell apart quantities with the same dimensions (work vs torque): No; Derive relations with sin, log, exp: No; Handle a quantity depending on > 3 variables (in mechanics): No; Check consistency, convert units, guess relations: Yes",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Limits of dimensional analysis</p><h2>Can dimensions do this?</h2><table><tr><td>Find dimensionless constants (2π, ½)</td><td class=\"q\">?</td></tr><tr><td>Tell apart quantities with the same dimensions (work vs torque)</td><td class=\"q\">?</td></tr><tr><td>Derive relations with sin, log, exp</td><td class=\"q\">?</td></tr><tr><td>Handle a quantity depending on > 3 variables (in mechanics)</td><td class=\"q\">?</td></tr><tr><td>Check consistency, convert units, guess relations</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Limits of dimensional analysis</p><h2>Can dimensions do this?</h2><table><tr><td>Find dimensionless constants (2π, ½)</td><td class=\"a no\">No</td></tr><tr><td>Tell apart quantities with the same dimensions (work vs torque)</td><td class=\"a no\">No</td></tr><tr><td>Derive relations with sin, log, exp</td><td class=\"a no\">No</td></tr><tr><td>Handle a quantity depending on > 3 variables (in mechanics)</td><td class=\"a no\">No</td></tr><tr><td>Check consistency, convert units, guess relations</td><td class=\"a\">Yes</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6.2-deducing-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: rule for converting a value between unit systems?",
+      "definition": "\\( n_1 u_1 = n_2 u_2 \\), so \\( n_2 = n_1\\left[\\dfrac{M_1}{M_2}\\right]^a\\left[\\dfrac{L_1}{L_2}\\right]^b\\left[\\dfrac{T_1}{T_2}\\right]^c \\) for [MᵃLᵇTᶜ]",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-unit-conversion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Joule to erg",
+      "definition": "1 J = 10⁷ erg",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Unit conversion</p><h2>Find the missing step.</h2><div class=\"prob\">Convert 1 J into erg (CGS).</div><ol><li>[energy] = [M L² T⁻²]</li><li class=\"h\">?</li><li>= 10³ × (10²)² = <b>10⁷ erg</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Unit conversion</p><h2>Find the missing step.</h2><div class=\"prob\">Convert 1 J into erg (CGS).</div><ol><li>[energy] = [M L² T⁻²]</li><li class=\"r\">n₂ = 1 × (1 kg / 1 g)¹ × (1 m / 1 cm)² × (1 s / 1 s)⁻²</li><li>= 10³ × (10²)² = <b>10⁷ erg</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-unit-conversion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.2(d): G = 6.67 × 10⁻¹¹ N m² kg⁻² in cm³ s⁻² g⁻¹?",
+      "definition": "<span style=\"color:#f08c00\">6.67 × 10⁻⁸</span>  ([M⁻¹ L³ T⁻²]: 10⁻³ × 10⁶ = 10³ factor)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-unit-conversion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.3: 1 cal = 4.2 J. Its value if units of mass, length, time are α kg, β m, γ s?",
+      "definition": "<span style=\"color:#f08c00\">4.2 α⁻¹ β⁻² γ²</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-unit-conversion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.2(c): 3.0 m s⁻² in km h⁻²?",
+      "definition": "<span style=\"color:#f08c00\">3.9 × 10⁴ km h⁻²</span> (3.0 × 10⁻³ × 3600²)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-unit-conversion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.1(c): 18 km/h covers how far in 1 s?",
+      "definition": "<span style=\"color:#f08c00\">5 m</span> (× 5/18 converts km/h to m/s)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "1.6-unit-conversion"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 1 rules at a glance",
+      "definition": "Multiply / divide measured values: fewest significant figures; Add / subtract measured values: fewest decimal places; Dropped digit exactly 5: round to even preceding digit; Error of a product / quotient: add percentage errors; Error of a sum / difference: add absolute errors",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Which rule applies?</h2><table><tr><td>Multiply / divide measured values</td><td class=\"q\">?</td></tr><tr><td>Add / subtract measured values</td><td class=\"q\">?</td></tr><tr><td>Dropped digit exactly 5</td><td class=\"q\">?</td></tr><tr><td>Error of a product / quotient</td><td class=\"q\">?</td></tr><tr><td>Error of a sum / difference</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Which rule applies?</h2><table><tr><td>Multiply / divide measured values</td><td class=\"a\">fewest significant figures</td></tr><tr><td>Add / subtract measured values</td><td class=\"a\">fewest decimal places</td></tr><tr><td>Dropped digit exactly 5</td><td class=\"a\">round to even preceding digit</td></tr><tr><td>Error of a product / quotient</td><td class=\"a\">add percentage errors</td></tr><tr><td>Error of a sum / difference</td><td class=\"a\">add absolute errors</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 1.17: estimate the Sun’s mean density (M = 2.0 × 10³⁰ kg, R = 7.0 × 10⁸ m).",
+      "definition": "<span style=\"color:#f08c00\">≈ 1.4 × 10³ kg m⁻³</span>: like liquids/solids, not gases, because gravity compresses it",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-1",
+        "summary"
+      ]
+    }
+  ]
+}
