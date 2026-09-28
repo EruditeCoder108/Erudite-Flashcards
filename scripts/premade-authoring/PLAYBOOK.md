@@ -281,8 +281,8 @@ Don't polish endlessly: move on to the next chapter.
 | Chemistry 12 | 1–10 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
 | Physics 11 | 1–3, 5–14 — complete | Done (PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; answer keys `keph1an.pdf`, `keph2an.pdf`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py` + `figures_phy_chNN.py`, animations in `showcase_phy.py`, drawn figures via `draw.py`) |
 | Physics 11 | 4 | Pilot |
-| Physics 12 | 1 | Done (PDFs unzipped to `NCERT-pdfs/phy12/`: Ch 1–8 = `leph101–108`, Ch 9–14 = `leph201–206`; answer keys `leph1an.pdf`, `leph2an.pdf`; decks in `premade-cards/12th/Physics/` (new folder, no old zips: run `npm run zip:premade`, then set the manifest `tags` to `["class-12", "physics", "neet"]`), scripts `phy12_chNN.py` + `figures_phy12_chNN.py`) |
-| Physics 12 | 2–14 | **Next: Physics 12 Ch 2** (`leph102`). Follow `phy12_ch01.py`: teacher-style, `steps_card` numericals, exercises answered on cards, labelled corrections/updates, drawn figures for cluttered NCERT ones, at most one animation per chapter. |
+| Physics 12 | 1–2 | Done (PDFs unzipped to `NCERT-pdfs/phy12/`: Ch 1–8 = `leph101–108`, Ch 9–14 = `leph201–206`; answer keys `leph1an.pdf`, `leph2an.pdf`; decks in `premade-cards/12th/Physics/` (new folder, no old zips: manifest now exists, so use `replace_deck.py premade-cards/12th/Physics none.zip <deck-id>`), scripts `phy12_chNN.py` + `figures_phy12_chNN.py`) |
+| Physics 12 | 3–14 | **Next: Physics 12 Ch 3** (`leph103`, Current Electricity). Follow `phy12_ch01.py`: teacher-style, `steps_card` numericals, exercises answered on cards, labelled corrections/updates, drawn figures for cluttered NCERT ones, at most one animation per chapter. |
 | Maths 11 | 3 | Pilot |
 | Maths 11 | others | Not started |
 | Maths 12 | all | Not started |

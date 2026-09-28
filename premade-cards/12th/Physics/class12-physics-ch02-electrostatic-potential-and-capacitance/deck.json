@@ -1,0 +1,1628 @@
+{
+  "version": 1,
+  "name": "Chapter 2: Electrostatic Potential and Capacitance",
+  "className": "Class 12",
+  "description": "Potential and potential energy, dipole potential, equipotentials, E from V, conductors, dielectrics, capacitors, combinations, stored energy",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Why can we define electrostatic potential energy at all?",
+      "definition": "The Coulomb force between static charges is <span style=\"color:#3b82f6\">conservative</span>: work done depends only on the end points, not the path",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ],
+      "definitionImage": "media/fig_2_2_path.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define potential energy difference U(P) − U(R) of a charge q.",
+      "definition": "Work done by an <span style=\"color:#3b82f6\">external force</span> in moving q from R to P <span style=\"color:#3b82f6\">without acceleration</span> (F_ext = −F_E)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why must the charge be moved “without acceleration”?",
+      "definition": "Then no kinetic energy is gained: all the external work is <span style=\"color:#3b82f6\">stored as potential energy</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Work done by the field vs by the external agent (R → P)?",
+      "definition": "Equal and opposite: W_field = <span style=\"color:#e5484d\">−W_ext</span> = −ΔU",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is the absolute value of potential energy meaningful?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: only differences are; adding a constant to U everywhere changes nothing. We choose <span style=\"color:#3b82f6\">U = 0 at infinity</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define potential energy of q at a point (U(∞) = 0).",
+      "definition": "Work done by an external force in bringing q from <span style=\"color:#3b82f6\">infinity</span> to that point",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define electrostatic potential at a point.",
+      "definition": "Work done by an external force in bringing a <span style=\"color:#3b82f6\">unit positive charge</span> from infinity to the point, without acceleration: V = W/q",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.2-electrostatic-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why divide work by q to define potential?",
+      "definition": "Work ∝ q, so W/q depends only on the <span style=\"color:#3b82f6\">charge configuration</span>, not on the test charge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.2-electrostatic-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential: scalar or vector? SI unit and dimensions?",
+      "definition": "<span style=\"color:#3b82f6\">Scalar</span>; volt, 1 V = 1 J C⁻¹; [ML²T⁻³A⁻¹]",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.2-electrostatic-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential difference V_P − V_R in terms of work?",
+      "definition": "\\( V_P - V_R = \\dfrac{U_P - U_R}{q} \\) = work per unit positive charge from R to P",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.2-electrostatic-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Alessandro Volta: what did he show about Galvani’s “animal electricity”?",
+      "definition": "It was not special to animal tissue: any <span style=\"color:#3b82f6\">wet body between dissimilar metals</span> produces it → the first <span style=\"color:#3b82f6\">voltaic pile</span> (battery)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.2-electrostatic-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: what is potential, in one picture?",
+      "definition": "Electric “height”. A + charge rolls <span style=\"color:#3b82f6\">downhill</span> from high V to low V (a − charge rolls uphill); V tells you energy per coulomb, like gh is energy per kg",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.2-electrostatic-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential of a point charge Q at distance r?",
+      "definition": "\\( V = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{Q}{r} \\) — valid for either sign of Q",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.3-potential-due-to-point-charge"
+      ],
+      "definitionImage": "media/fig_2_3_point.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Sketch the key steps deriving V = Q/4πε₀r.",
+      "definition": "Work against the field along the radial path from ∞: \\( W = -\\int_\\infty^r \\dfrac{Q}{4\\pi\\varepsilon_0 r^{\\prime 2}}\\,dr^\\prime = \\dfrac{Q}{4\\pi\\varepsilon_0 r} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.3-potential-due-to-point-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sign of V near a negative charge? Meaning?",
+      "definition": "<span style=\"color:#e5484d\">Negative</span>: the field itself does positive work bringing a unit + charge in from ∞ (attraction)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.3-potential-due-to-point-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do V and E of a point charge fall off with r?",
+      "definition": "V ∝ <span style=\"color:#f08c00\">1/r</span>; E ∝ <span style=\"color:#f08c00\">1/r²</span> (E falls faster)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.3-potential-due-to-point-charge"
+      ],
+      "definitionImage": "media/fig_2_4_V_E_graph.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.1: V at 9 cm from 4 × 10⁻⁷ C? Work to bring 2 × 10⁻⁹ C from ∞? Path-dependent?",
+      "definition": "V = <span style=\"color:#f08c00\">4 × 10⁴ V</span>; W = qV = <span style=\"color:#f08c00\">8 × 10⁻⁵ J</span>; <span style=\"color:#e5484d\">no</span> — any path splits into radial and perpendicular steps, the latter doing no work",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.3-potential-due-to-point-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential of a dipole (r ≫ a)?",
+      "definition": "\\( V = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{p\\cos\\theta}{r^2} = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{\\vec p\\cdot\\hat r}{r^2} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.4-potential-due-to-dipole"
+      ],
+      "definitionImage": "media/fig_2_5_dipole.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Dipole potential on the axis and on the equatorial plane?",
+      "definition": "Axis: \\( \\pm\\dfrac{p}{4\\pi\\varepsilon_0 r^2} \\) (+ on the +q side). Equatorial plane: <span style=\"color:#f08c00\">V = 0</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.4-potential-due-to-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equatorial plane of a dipole: V = 0. Is E zero there too?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: E = p/4πε₀r³, opposite to p. Zero potential does not mean zero field",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.4-potential-due-to-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two ways the dipole potential differs from a point charge’s?",
+      "definition": "(1) Depends on the <span style=\"color:#3b82f6\">angle θ</span> (axially symmetric about p); (2) falls as <span style=\"color:#3b82f6\">1/r²</span>, not 1/r",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.4-potential-due-to-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: powers of r for a point charge vs dipole?",
+      "definition": "“<span style=\"color:#3b82f6\">Dipole adds one</span>”: charge V ∝ 1/r, E ∝ 1/r²; dipole V ∝ 1/r², E ∝ 1/r³",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.4-potential-due-to-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For which dipole is V = p cos θ/4πε₀r² exact?",
+      "definition": "A <span style=\"color:#3b82f6\">point dipole</span> (2a → 0, p finite); otherwise only for r ≫ a",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.4-potential-due-to-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT (Sec 2.4) says graphs of 1/r² and 1/r vs r are in “Fig. 2.5”. Which figure is it?",
+      "definition": "<span style=\"color:#3b82f6\">Fig. 2.4</span> (V and E of a point charge); Fig. 2.5 is the dipole geometry",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.4-potential-due-to-dipole"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential due to a system of point charges?",
+      "definition": "Algebraic (scalar) sum: \\( V = \\dfrac{1}{4\\pi\\varepsilon_0}\\sum_i \\dfrac{q_i}{r_{iP}} \\) — no vector addition needed",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.5-potential-due-to-system-of-charges"
+      ],
+      "definitionImage": "media/fig_2_6_system.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential of a uniformly charged spherical shell (radius R), outside and inside?",
+      "definition": "Outside: \\( \\dfrac{q}{4\\pi\\varepsilon_0 r} \\). Inside: <span style=\"color:#3b82f6\">constant</span> = \\( \\dfrac{q}{4\\pi\\varepsilon_0 R} \\) (E = 0 inside, so no work is done)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.5-potential-due-to-system-of-charges"
+      ],
+      "definitionImage": "media/drawn_sphere_V_E.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Across a charged shell’s surface, which is continuous: E or V?",
+      "definition": "<span style=\"color:#3b82f6\">V</span> is continuous; <span style=\"color:#e5484d\">E jumps</span> from 0 to σ/ε₀",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.5-potential-due-to-system-of-charges"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Points of zero potential for two unlike charges",
+      "definition": "x = 9 cm (between) and x = 45 cm (beyond the negative charge)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.2 · zero potential</p><h2>Find the missing step.</h2><div class=\"prob\">3 × 10⁻⁸ C at x = 0 and −2 × 10⁻⁸ C at x = 15 cm. Where on the line is V = 0?</div><ol><li>V = 0 only where the + charge’s larger |q| is offset by being farther: x > 0</li><li>Between: 3/x − 2/(15 − x) = 0 → <b>x = 9 cm</b></li><li class=\"h\">?</li><li>→ <b>x = 45 cm</b> (from the + charge)</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.2 · zero potential</p><h2>Find the missing step.</h2><div class=\"prob\">3 × 10⁻⁸ C at x = 0 and −2 × 10⁻⁸ C at x = 15 cm. Where on the line is V = 0?</div><ol><li>V = 0 only where the + charge’s larger |q| is offset by being farther: x > 0</li><li>Between: 3/x − 2/(15 − x) = 0 → <b>x = 9 cm</b></li><li class=\"r\">Beyond the − charge: 3/x − 2/(x − 15) = 0</li><li>→ <b>x = 45 cm</b> (from the + charge)</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.5-potential-due-to-system-of-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.1: 5 × 10⁻⁸ C and −3 × 10⁻⁸ C, 16 cm apart. Points of zero potential?",
+      "definition": "<span style=\"color:#f08c00\">10 cm</span> and <span style=\"color:#f08c00\">40 cm</span> from the positive charge, both on the side of the negative charge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.5-potential-due-to-system-of-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.2: 5 μC at each vertex of a regular hexagon of side 10 cm. V at the centre?",
+      "definition": "6 × kq/a = 6 × 4.5 × 10⁵ = <span style=\"color:#f08c00\">2.7 × 10⁶ V</span> (E at the centre is zero, V is not)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.5-potential-due-to-system-of-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.3: for a positive charge, which is higher, V_P (nearer) or V_Q? For a negative charge, V_B (farther) or V_A?",
+      "definition": "V_P > V_Q, and V_B > V_A: potential always <span style=\"color:#3b82f6\">falls along field lines</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.5-potential-due-to-system-of-charges"
+      ],
+      "termImage": "media/fig_2_8_example.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.3(e): a small negative charge moves from B to A (towards a negative charge). Its KE?",
+      "definition": "<span style=\"color:#3b82f6\">Decreases</span>: it is repelled, the field does negative work",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.5-potential-due-to-system-of-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define an equipotential surface.",
+      "definition": "A surface on which the potential has the <span style=\"color:#3b82f6\">same value everywhere</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6-equipotential-surfaces"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equipotential surfaces of a point charge?",
+      "definition": "<span style=\"color:#3b82f6\">Concentric spheres</span> centred on the charge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6-equipotential-surfaces"
+      ],
+      "definitionImage": "media/fig_2_9_point_equi.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Equipotential surfaces of a uniform field?",
+      "definition": "<span style=\"color:#3b82f6\">Parallel planes</span> normal to the field",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6-equipotential-surfaces"
+      ],
+      "definitionImage": "media/fig_2_10_uniform_equi.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: equipotentials of which two configurations?",
+      "definition": "(a) An <span style=\"color:#3b82f6\">electric dipole</span>; (b) <span style=\"color:#3b82f6\">two identical positive charges</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6-equipotential-surfaces"
+      ],
+      "termImage": "media/fig_2_11_dipole_equi.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is E always normal to an equipotential surface?",
+      "definition": "A component along the surface would mean <span style=\"color:#3b82f6\">work is done moving charge along it</span> — contradicting ΔV = 0",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6-equipotential-surfaces"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Work done moving a charge along an equipotential?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6-equipotential-surfaces"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can two equipotential surfaces intersect?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the point of intersection would have two values of potential",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6-equipotential-surfaces"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.3: 2 μC and −2 μC, 6 cm apart. An equipotential surface? Direction of E on it?",
+      "definition": "The <span style=\"color:#3b82f6\">plane perpendicular to AB through its midpoint</span> (V = 0); E is normal to it, pointing from the + charge towards the − charge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6-equipotential-surfaces"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between E and V?",
+      "definition": "\\( E = -\\dfrac{dV}{dl} \\) (along the normal to equipotentials)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6.1-relation-between-field-and-potential"
+      ],
+      "definitionImage": "media/fig_2_12_E_from_V.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "Electric field points in the direction in which potential {{c1::decreases steepest}}; its magnitude is the {{c2::change in potential per unit normal displacement}}.",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6.1-relation-between-field-and-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Close equipotentials vs widely spaced ones: what does it say about E?",
+      "definition": "Close spacing = <span style=\"color:#3b82f6\">strong field</span> (steep slope); wide spacing = weak field",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6.1-relation-between-field-and-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: E from V(x, y, z)?",
+      "definition": "\\( E_x = -\\dfrac{\\partial V}{\\partial x},\\ E_y = -\\dfrac{\\partial V}{\\partial y},\\ E_z = -\\dfrac{\\partial V}{\\partial z} \\) (E = −grad V)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6.1-relation-between-field-and-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: uniform field E between two points d apart along E. Potential difference?",
+      "definition": "V = <span style=\"color:#f08c00\">Ed</span> (higher potential at the start); unit of E is also <span style=\"color:#f08c00\">V/m</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6.1-relation-between-field-and-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: can V be zero where E ≠ 0, and E be zero where V ≠ 0?",
+      "definition": "Yes to both: <span style=\"color:#22a35a\">equatorial plane of a dipole</span> (V = 0, E ≠ 0); <span style=\"color:#22a35a\">inside a charged shell</span> (E = 0, V ≠ 0)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.6.1-relation-between-field-and-potential"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential energy of two charges q₁, q₂ at separation r₁₂?",
+      "definition": "\\( U = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{q_1q_2}{r_{12}} \\) = work to assemble them from infinity",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.7-potential-energy-of-system-of-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sign of U for like and unlike charges? Meaning?",
+      "definition": "Like: <span style=\"color:#f08c00\">U > 0</span> (work needed to push them together). Unlike: <span style=\"color:#e5484d\">U < 0</span> (work needed to pull them apart)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.7-potential-energy-of-system-of-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential energy of three charges?",
+      "definition": "\\( U = \\dfrac{1}{4\\pi\\varepsilon_0}\\left(\\dfrac{q_1q_2}{r_{12}} + \\dfrac{q_1q_3}{r_{13}} + \\dfrac{q_2q_3}{r_{23}}\\right) \\) — one term per pair",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.7-potential-energy-of-system-of-charges"
+      ],
+      "definitionImage": "media/fig_2_14_three.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Does the order of assembling charges change U?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the force is conservative, so U depends only on the <span style=\"color:#3b82f6\">final configuration</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.7-potential-energy-of-system-of-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: how many pair terms for n charges?",
+      "definition": "\\( \\dfrac{n(n-1)}{2} \\) (e.g. 6 for four charges)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.7-potential-energy-of-system-of-charges"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Energy of a square of alternating charges (Example 2.4)",
+      "definition": "U = −(4 − √2) q²/(4πε₀d); bringing q₀ to the centre needs zero work since V = 0 there",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.4 · square of charges</p><h2>Find the missing step.</h2><div class=\"prob\">+q, −q, +q, −q at corners A, B, C, D of a square of side d. Work to assemble? Extra work to bring q₀ to the centre?</div><ol><li>4 adjacent unlike pairs: 4 × (−q²/4πε₀d)</li><li class=\"h\">?</li><li>U = <b>−(4 − √2) q²/4πε₀d</b></li><li>V at the centre = 0 (± cancel) → <b>no extra work</b> for q₀</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.4 · square of charges</p><h2>Find the missing step.</h2><div class=\"prob\">+q, −q, +q, −q at corners A, B, C, D of a square of side d. Work to assemble? Extra work to bring q₀ to the centre?</div><ol><li>4 adjacent unlike pairs: 4 × (−q²/4πε₀d)</li><li class=\"r\">2 diagonal like pairs: 2 × q²/(4πε₀ d√2) = +√2 q²/4πε₀d</li><li>U = <b>−(4 − √2) q²/4πε₀d</b></li><li>V at the centre = 0 (± cancel) → <b>no extra work</b> for q₀</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.7-potential-energy-of-system-of-charges"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the arrangement and its electrostatic energy.",
+      "definition": "Alternating ±q on a square of side d: \\( U = -\\dfrac{(4-\\sqrt2)\\,q^2}{4\\pi\\varepsilon_0 d} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.7-potential-energy-of-system-of-charges"
+      ],
+      "termImage": "media/fig_2_15_square.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential energy of a charge q in an external potential V(r)?",
+      "definition": "<span style=\"color:#f08c00\">U = qV(r)</span>, where V is due to <span style=\"color:#3b82f6\">external charges only</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can V in qV(r) not include q’s own potential?",
+      "definition": "A charge’s potential at its own location is <span style=\"color:#e5484d\">infinite / undefined</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define 1 electron volt.",
+      "definition": "Energy gained by an electron accelerated through <span style=\"color:#f08c00\">1 V</span>: 1 eV = <span style=\"color:#f08c00\">1.6 × 10⁻¹⁹ J</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "eV multiples",
+      "definition": "1 keV: 1.6 × 10⁻¹⁶ J; 1 MeV: 1.6 × 10⁻¹³ J; 1 GeV: 1.6 × 10⁻¹⁰ J; 1 TeV: 1.6 × 10⁻⁷ J",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Energy units</p><h2>In joules?</h2><table><tr><td>1 keV</td><td class=\"q\">?</td></tr><tr><td>1 MeV</td><td class=\"q\">?</td></tr><tr><td>1 GeV</td><td class=\"q\">?</td></tr><tr><td>1 TeV</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Energy units</p><h2>In joules?</h2><table><tr><td>1 keV</td><td class=\"a\">1.6 × 10⁻¹⁶ J</td></tr><tr><td>1 MeV</td><td class=\"a\">1.6 × 10⁻¹³ J</td></tr><tr><td>1 GeV</td><td class=\"a\">1.6 × 10⁻¹⁰ J</td></tr><tr><td>1 TeV</td><td class=\"a\">1.6 × 10⁻⁷ J</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential energy of two charges in an external field?",
+      "definition": "\\( U = q_1V(\\vec r_1) + q_2V(\\vec r_2) + \\dfrac{q_1q_2}{4\\pi\\varepsilon_0 r_{12}} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.5: 7 μC at (−9 cm, 0, 0) and −2 μC at (9 cm, 0, 0). U? Work to separate them to infinity?",
+      "definition": "U = 9 × 10⁹ × (7 × −2) × 10⁻¹² / 0.18 = <span style=\"color:#f08c00\">−0.7 J</span>; work needed = <span style=\"color:#f08c00\">+0.7 J</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.5(c): same pair in an external field E = A/r² (A = 9 × 10⁵ N C⁻¹ m²). Total energy?",
+      "definition": "V = A/r: q₁V₁ + q₂V₂ = 70 − 20 = 50 J; total = 50 − 0.7 = <span style=\"color:#f08c00\">49.3 J</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential energy of a dipole in a uniform field?",
+      "definition": "\\( U(\\theta) = -pE\\cos\\theta = -\\vec p\\cdot\\vec E \\) (zero chosen at θ = 90°)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ],
+      "definitionImage": "media/fig_2_16_dipole_pe.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Work done by an external torque to rotate a dipole from θ₁ to θ₂?",
+      "definition": "\\( W = pE(\\cos\\theta_1 - \\cos\\theta_2) \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Dipole energy at key angles",
+      "definition": "θ = 0° (p along E): U = −pE, stable equilibrium (minimum); θ = 90°: U = 0, maximum torque pE; θ = 180°: U = +pE, unstable equilibrium (maximum)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Dipole in a uniform field</p><h2>U and nature?</h2><table><tr><td>θ = 0° (p along E)</td><td class=\"q\">?</td></tr><tr><td>θ = 90°</td><td class=\"q\">?</td></tr><tr><td>θ = 180°</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Dipole in a uniform field</p><h2>U and nature?</h2><table><tr><td>θ = 0° (p along E)</td><td class=\"a\">U = −pE, stable equilibrium (minimum)</td></tr><tr><td>θ = 90°</td><td class=\"a\">U = 0, maximum torque pE</td></tr><tr><td>θ = 180°</td><td class=\"a no\">U = +pE, unstable equilibrium (maximum)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is θ = 90° the natural zero of dipole potential energy?",
+      "definition": "There, the work against E in bringing +q and −q in from infinity is <span style=\"color:#3b82f6\">equal and opposite</span> and cancels",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.6: 1 mole of dipoles (p = 10⁻²⁹ C m each), fully aligned in 10⁶ V/m; the field turns by 60°. Heat released?",
+      "definition": "Total p = 6 × 10⁻⁶ C m; Uᵢ = −6 J, U_f = −3 J → <span style=\"color:#f08c00\">3 J</span> of heat",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: a dipole released at an angle in a uniform field — does it just align with E?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the torque makes it <span style=\"color:#3b82f6\">oscillate</span> about E; it settles only if there is damping",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.8-potential-energy-in-external-field"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Free electrons in a metal: free to do what, and not to do what?",
+      "definition": "Free to move <span style=\"color:#3b82f6\">within</span> the metal (like a gas), <span style=\"color:#e5484d\">not free to leave</span> it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "In electrostatics, the field {{c1::inside a conductor is zero}}; just outside a charged conductor it is {{c2::normal to the surface}}.",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is E = 0 inside a conductor in the static situation?",
+      "definition": "Otherwise free charges would keep <span style=\"color:#3b82f6\">drifting</span>; they rearrange until the field inside vanishes (this can be taken as the defining property of a conductor)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the field at a conductor’s surface normal to it?",
+      "definition": "A tangential component would <span style=\"color:#3b82f6\">move surface charges</span> — not static",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where does excess charge on a conductor reside? Why?",
+      "definition": "Only on the <span style=\"color:#3b82f6\">surface</span>: Gauss’s law on any tiny surface inside (E = 0) gives zero enclosed charge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Potential of a conductor?",
+      "definition": "<span style=\"color:#3b82f6\">Same everywhere</span> in its volume and on its surface (an equipotential)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field just outside a charged conductor?",
+      "definition": "\\( \\vec E = \\dfrac{\\sigma}{\\varepsilon_0}\\hat n \\) — derived with a <span style=\"color:#3b82f6\">pill-box</span> Gaussian surface",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ],
+      "definitionImage": "media/fig_2_17_pillbox.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Charged conductor surface: σ/ε₀. Infinite charged sheet: σ/2ε₀. Why the factor 2?",
+      "definition": "A conductor has <span style=\"color:#3b82f6\">E = 0 inside</span>, so all the flux leaves through one face of the pill-box; a thin sheet sends flux out both sides",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State electrostatic shielding.",
+      "definition": "Field inside a <span style=\"color:#3b82f6\">charge-free cavity</span> of a conductor is zero, whatever the outside charges and fields; any charge sits on the outer surface",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ],
+      "definitionImage": "media/fig_2_18_cavity.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Use of electrostatic shielding?",
+      "definition": "Protecting sensitive instruments; why you are safe inside a <span style=\"color:#22a35a\">car</span> in a thunderstorm",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: does shielding work the other way round?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: charges placed inside the cavity do produce fields outside the conductor",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: what does this figure summarise?",
+      "definition": "Electrostatic properties of conductors: E = 0 and V constant inside, E = σ/ε₀ normal at the surface, E = 0 in a cavity",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ],
+      "termImage": "media/fig_2_19_properties.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: on an irregular conductor, where is σ largest?",
+      "definition": "At <span style=\"color:#3b82f6\">sharp points</span> (small radius of curvature) — hence corona discharge and lightning conductors",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.4: sphere (R = 12 cm) with 1.6 × 10⁻⁷ C. E inside, just outside, and at 18 cm?",
+      "definition": "<span style=\"color:#f08c00\">0</span>; <span style=\"color:#f08c00\">10⁵ N/C</span>; <span style=\"color:#f08c00\">4.4 × 10⁴ N/C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.7: why are aircraft tyres slightly conducting, and fuel trucks fitted with ground-touching chains?",
+      "definition": "To <span style=\"color:#3b82f6\">leak frictional charge to the ground</span> before it builds up and sparks a fire",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.7: why is a bird on a live wire safe, but a man on the ground touching it is not?",
+      "definition": "Current needs a <span style=\"color:#3b82f6\">potential difference</span>: the bird is at one potential; the man bridges the line and earth",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.7: why does a comb fail to pick up paper on a rainy day?",
+      "definition": "Moist air/wet hair <span style=\"color:#e5484d\">prevents charging</span> (charge leaks away), so the comb cannot polarise the paper",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.9-electrostatics-of-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conductor vs dielectric in an external field?",
+      "definition": "Conductor: induced field <span style=\"color:#3b82f6\">cancels</span> E₀ inside (net 0). Dielectric: induced field only <span style=\"color:#3b82f6\">reduces</span> it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.10-dielectrics-and-polarisation"
+      ],
+      "definitionImage": "media/fig_2_20_conductor_dielectric.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Non-polar vs polar molecules? Examples?",
+      "definition": "<span style=\"color:#3b82f6\">Non-polar</span>: + and − centres coincide — <span style=\"color:#22a35a\">O₂, H₂</span>. <span style=\"color:#3b82f6\">Polar</span>: permanent dipole — <span style=\"color:#22a35a\">HCl, H₂O</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.10-dielectrics-and-polarisation"
+      ],
+      "definitionImage": "media/fig_2_21_molecules.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT calls HCl “an ionic molecule”. Is it?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: HCl is a <span style=\"color:#3b82f6\">polar covalent</span> molecule (partial ionic character); the example of a polar molecule is still correct",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.10-dielectrics-and-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a non-polar dielectric get polarised?",
+      "definition": "The field <span style=\"color:#3b82f6\">displaces</span> + and − charges oppositely → an <span style=\"color:#3b82f6\">induced dipole moment</span> along E",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.10-dielectrics-and-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a polar dielectric get polarised?",
+      "definition": "Permanent dipoles, randomly oriented by thermal agitation, partly <span style=\"color:#3b82f6\">align</span> with E; alignment competes with thermal energy",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.10-dielectrics-and-polarisation"
+      ],
+      "definitionImage": "media/fig_2_22_polarisation.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define polarisation P. Relation to E for a linear isotropic dielectric?",
+      "definition": "Dipole moment per unit volume: \\( \\vec P = \\varepsilon_0\\chi_e\\vec E \\) (χₑ = electric susceptibility); unit C m⁻²",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.10-dielectrics-and-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Uniformly polarised slab: where is the net induced charge?",
+      "definition": "Only on the <span style=\"color:#3b82f6\">surfaces normal to the field</span> (±σₚ); the interior is neutral",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.10-dielectrics-and-polarisation"
+      ],
+      "definitionImage": "media/fig_2_23_slab.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Are the induced charges ±σₚ free or bound?",
+      "definition": "<span style=\"color:#3b82f6\">Bound</span> charges of the dielectric",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.10-dielectrics-and-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a capacitor?",
+      "definition": "Two conductors separated by an <span style=\"color:#3b82f6\">insulator</span>, usually carrying +Q and −Q",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.11-capacitors-and-capacitance"
+      ],
+      "definitionImage": "media/fig_2_24_two_conductors.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define capacitance. Unit?",
+      "definition": "\\( C = \\dfrac{Q}{V} \\); farad, 1 F = 1 C V⁻¹",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.11-capacitors-and-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "On what does capacitance depend?",
+      "definition": "Only on <span style=\"color:#3b82f6\">geometry</span> (shape, size, separation) and the <span style=\"color:#3b82f6\">dielectric</span> — not on Q or V",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.11-capacitors-and-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "“Charge on a capacitor” Q: what is the total charge?",
+      "definition": "Q is the charge on one plate; the total is <span style=\"color:#f08c00\">zero</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.11-capacitors-and-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is a large capacitance useful?",
+      "definition": "It stores large Q at <span style=\"color:#3b82f6\">low V</span>, so the field stays below the breakdown limit",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.11-capacitors-and-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dielectric strength? Value for air?",
+      "definition": "Maximum field a dielectric can bear without breakdown; air ≈ <span style=\"color:#f08c00\">3 × 10⁶ V/m</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.11-capacitors-and-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dimensions of capacitance?",
+      "definition": "[M⁻¹L⁻²T⁴A²]",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.11-capacitors-and-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Symbols: fixed vs variable capacitor?",
+      "definition": "Fixed: two parallel lines ─┤├─. Variable: the same with an <span style=\"color:#3b82f6\">arrow</span> across it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.11-capacitors-and-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field of a parallel-plate capacitor: between and outside the plates?",
+      "definition": "Between: \\( E = \\dfrac{\\sigma}{\\varepsilon_0} = \\dfrac{Q}{\\varepsilon_0 A} \\), uniform, + to −. Outside: <span style=\"color:#f08c00\">0</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.12-parallel-plate-capacitor"
+      ],
+      "definitionImage": "media/fig_2_25_parallel_plate.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Capacitance of a parallel-plate capacitor (vacuum)?",
+      "definition": "\\( C = \\dfrac{\\varepsilon_0 A}{d} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.12-parallel-plate-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is fringing?",
+      "definition": "Field lines <span style=\"color:#3b82f6\">bend outward at the edges</span> of finite plates; ignored when d² ≪ A",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.12-parallel-plate-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "C for A = 1 m², d = 1 mm? Plate size for 1 F at d = 1 cm?",
+      "definition": "<span style=\"color:#f08c00\">8.85 nF</span>; A ≈ 10⁹ m² — a plate about <span style=\"color:#f08c00\">30 km</span> on a side. The farad is huge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.12-parallel-plate-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT (Sec 2.12) uses the sheet result from “Section 1.15”. Right section?",
+      "definition": "<span style=\"color:#3b82f6\">Section 1.14.2</span> (field of an infinite plane sheet, Eq. 1.33)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.12-parallel-plate-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.8: air capacitor, A = 6 × 10⁻³ m², d = 3 mm, on 100 V. C and Q?",
+      "definition": "C = <span style=\"color:#f08c00\">17.7 pF</span>; Q = <span style=\"color:#f08c00\">1.77 × 10⁻⁹ C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.12-parallel-plate-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: force of attraction between the plates?",
+      "definition": "\\( F = \\dfrac{Q^2}{2\\varepsilon_0 A} \\) — each plate feels only the other plate’s field σ/2ε₀",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.12-parallel-plate-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: capacitance of an isolated sphere of radius R?",
+      "definition": "\\( C = 4\\pi\\varepsilon_0 R \\) (Earth ≈ 711 μF)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.12-parallel-plate-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: why is V small in a capacitor even when E is large?",
+      "definition": "The field is confined to a <span style=\"color:#3b82f6\">small gap d</span>: V = Ed stays small",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.12-parallel-plate-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Field inside a dielectric filling a capacitor?",
+      "definition": "\\( E = \\dfrac{\\sigma - \\sigma_p}{\\varepsilon_0} = \\dfrac{E_0}{K} \\) — reduced by the bound charges",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.13-effect-of-dielectric-on-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Capacitance with a dielectric of constant K filling the gap?",
+      "definition": "\\( C = \\dfrac{K\\varepsilon_0 A}{d} = KC_0 \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.13-effect-of-dielectric-on-capacitance"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Permittivity of a medium: ε = {{c1::ε₀K}}. Dielectric constant (relative permittivity): K = {{c2::ε/ε₀}}, always {{c3::greater than 1}}.",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.13-effect-of-dielectric-on-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "General definition of dielectric constant (any capacitor)?",
+      "definition": "Factor by which capacitance increases when the dielectric <span style=\"color:#3b82f6\">fills the space</span>: K = C/C₀",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.13-effect-of-dielectric-on-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2.8: slab of constant K, thickness 3d/4, inserted. New capacitance?",
+      "definition": "\\( C = \\dfrac{4K}{K+3}C_0 \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.13-effect-of-dielectric-on-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: slab of thickness t (constant K) in a gap d. C?",
+      "definition": "\\( C = \\dfrac{\\varepsilon_0 A}{d - t + t/K} \\); for a metal slab (K → ∞): \\( \\dfrac{\\varepsilon_0 A}{d-t} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.13-effect-of-dielectric-on-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.5: 8 pF air capacitor; separation halved and gap filled with K = 6. New C?",
+      "definition": "8 × 2 × 6 = <span style=\"color:#f08c00\">96 pF</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.13-effect-of-dielectric-on-capacitance"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Dielectric inserted: battery connected vs disconnected",
+      "definition": "Battery connected (V fixed): C ×6, Q ×6, E same, U ×6; Battery disconnected (Q fixed): C ×6, V ÷6, E ÷6, U ÷6",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 2.9 · inserting a dielectric (K = 6)</p><h2>Q, V, C, E, U?</h2><table><tr><td>Battery connected (V fixed)</td><td class=\"q\">?</td></tr><tr><td>Battery disconnected (Q fixed)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 2.9 · inserting a dielectric (K = 6)</p><h2>Q, V, C, E, U?</h2><table><tr><td>Battery connected (V fixed)</td><td class=\"a\">C ×6, Q ×6, E same, U ×6</td></tr><tr><td>Battery disconnected (Q fixed)</td><td class=\"a no\">C ×6, V ÷6, E ÷6, U ÷6</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.13-effect-of-dielectric-on-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.9: mica (K = 6) fills the 17.7 pF capacitor of Ex 2.8. (a) still on 100 V; (b) disconnected first?",
+      "definition": "(a) C = 106 pF, Q = <span style=\"color:#f08c00\">1.06 × 10⁻⁸ C</span>. (b) Q stays 1.77 × 10⁻⁹ C, V = <span style=\"color:#f08c00\">16.7 V</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.13-effect-of-dielectric-on-capacitance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Capacitors in series: what is common, what adds?",
+      "definition": "Same <span style=\"color:#3b82f6\">charge Q</span> on each; voltages add: \\( \\dfrac1C = \\dfrac1{C_1} + \\dfrac1{C_2} + \\dots \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.14-combination-of-capacitors"
+      ],
+      "definitionImage": "media/fig_2_26_series_two.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do series capacitors all carry the same charge?",
+      "definition": "The inner plates plus connecting wire form an <span style=\"color:#3b82f6\">isolated neutral conductor</span>; any imbalance would drive charge until each capacitor has ±Q",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.14-combination-of-capacitors"
+      ],
+      "definitionImage": "media/fig_2_27_series_n.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Capacitors in parallel: what is common, what adds?",
+      "definition": "Same <span style=\"color:#3b82f6\">voltage V</span>; charges add: \\( C = C_1 + C_2 + \\dots \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.14-combination-of-capacitors"
+      ],
+      "definitionImage": "media/fig_2_28_parallel.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: capacitors vs resistors?",
+      "definition": "Capacitors combine <span style=\"color:#3b82f6\">opposite to resistors</span>: series uses reciprocals, parallel simply adds",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.14-combination-of-capacitors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Series combination: bigger or smaller than the smallest C?",
+      "definition": "<span style=\"color:#e5484d\">Smaller</span> than the smallest; parallel is larger than the largest",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.14-combination-of-capacitors"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Capacitor network (Example 2.9)",
+      "definition": "C = 13.3 μF; each series capacitor 1.7 × 10⁻³ C; C₄ 5.0 × 10⁻³ C",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.9 · network</p><h2>Find the missing step.</h2><div class=\"prob\">Four 10 μF capacitors: C₁, C₂, C₃ in series, with C₄ in parallel across the 500 V supply. C_eq and charges?</div><ol><li>C₁, C₂, C₃ in series: C′ = 10/3 μF</li><li>C′ ∥ C₄: C = 10/3 + 10 = <b>13.3 μF</b></li><li class=\"h\">?</li><li>C₄: Q′ = 10 μF × 500 V = <b>5.0 × 10⁻³ C</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.9 · network</p><h2>Find the missing step.</h2><div class=\"prob\">Four 10 μF capacitors: C₁, C₂, C₃ in series, with C₄ in parallel across the 500 V supply. C_eq and charges?</div><ol><li>C₁, C₂, C₃ in series: C′ = 10/3 μF</li><li>C′ ∥ C₄: C = 10/3 + 10 = <b>13.3 μF</b></li><li class=\"r\">Series branch: Q = C′V = (10/3 μF)(500 V) = <b>1.7 × 10⁻³ C</b> on each of C₁–C₃</li><li>C₄: Q′ = 10 μF × 500 V = <b>5.0 × 10⁻³ C</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.14-combination-of-capacitors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: the network of Example 2.9.",
+      "definition": "C₁, C₂, C₃ in <span style=\"color:#3b82f6\">series</span>, together in <span style=\"color:#3b82f6\">parallel</span> with C₄ across 500 V",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.14-combination-of-capacitors"
+      ],
+      "termImage": "media/fig_2_29_network.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.6: three 9 pF in series on 120 V. C and voltage on each?",
+      "definition": "<span style=\"color:#f08c00\">3 pF</span>; <span style=\"color:#f08c00\">40 V</span> each",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.14-combination-of-capacitors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.7: 2, 3, 4 pF in parallel on 100 V. C and charges?",
+      "definition": "<span style=\"color:#f08c00\">9 pF</span>; <span style=\"color:#f08c00\">2, 3, 4 × 10⁻¹⁰ C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.14-combination-of-capacitors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy stored in a capacitor (three forms)?",
+      "definition": "\\( U = \\dfrac{Q^2}{2C} = \\dfrac12 CV^2 = \\dfrac12 QV \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.15-energy-stored-in-capacitor"
+      ],
+      "definitionImage": "media/fig_2_30_charging.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the energy ½QV and not QV?",
+      "definition": "Early charge moves across a <span style=\"color:#3b82f6\">small V</span>, later charge across larger V; the average potential during charging is <span style=\"color:#3b82f6\">V/2</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.15-energy-stored-in-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy density of an electric field?",
+      "definition": "\\( u = \\dfrac12\\varepsilon_0E^2 \\) — true for any field, not just capacitors (Ad = volume of the field)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.15-energy-stored-in-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where is a capacitor’s energy “stored”?",
+      "definition": "In the <span style=\"color:#3b82f6\">electric field</span> between the plates",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.15-energy-stored-in-capacitor"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Energy lost when capacitors share charge (Example 2.10)",
+      "definition": "Final energy is half the initial: 4.5 → 2.25 μJ, lost as heat and radiation",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.10 · sharing charge</p><h2>Find the missing step.</h2><div class=\"prob\">900 pF charged to 100 V, then disconnected and joined to an uncharged 900 pF. Energies?</div><ol><li>Q = CV = 9 × 10⁻⁸ C; U₁ = ½QV = <b>4.5 × 10⁻⁶ J</b></li><li class=\"h\">?</li><li>U₂ = 2 × ½ (Q/2)(V/2) = <b>2.25 × 10⁻⁶ J</b></li><li>Half the energy is lost as heat and EM radiation during the transient current</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 2.10 · sharing charge</p><h2>Find the missing step.</h2><div class=\"prob\">900 pF charged to 100 V, then disconnected and joined to an uncharged 900 pF. Energies?</div><ol><li>Q = CV = 9 × 10⁻⁸ C; U₁ = ½QV = <b>4.5 × 10⁻⁶ J</b></li><li class=\"r\">Charge shares equally: Q′ = Q/2, so V′ = 50 V</li><li>U₂ = 2 × ½ (Q/2)(V/2) = <b>2.25 × 10⁻⁶ J</b></li><li>Half the energy is lost as heat and EM radiation during the transient current</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.15-energy-stored-in-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: what happens in (a) and (b)?",
+      "definition": "(a) Capacitor charged by 100 V; (b) connected to an identical uncharged one: charge <span style=\"color:#3b82f6\">shared equally</span>, half the energy lost",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.15-energy-stored-in-capacitor"
+      ],
+      "termImage": "media/fig_2_31_sharing.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: energy lost when C₁ at V₁ is joined to C₂ at V₂ (like plates together)?",
+      "definition": "\\( \\Delta U = \\dfrac{C_1C_2}{2(C_1+C_2)}(V_1 - V_2)^2 \\) — never zero unless V₁ = V₂",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.15-energy-stored-in-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.10: 12 pF on 50 V. Energy?",
+      "definition": "½ × 12 × 10⁻¹² × 2500 = <span style=\"color:#f08c00\">1.5 × 10⁻⁸ J</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.15-energy-stored-in-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 2.11: 600 pF charged to 200 V, then joined to an uncharged 600 pF. Energy lost?",
+      "definition": "U₁ = 1.2 × 10⁻⁵ J → U₂ = 6 × 10⁻⁶ J; lost <span style=\"color:#f08c00\">6 × 10⁻⁶ J</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.15-energy-stored-in-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: a battery charges C to V. Work by the battery vs energy stored?",
+      "definition": "Battery supplies QV = CV²; capacitor stores ½CV²; <span style=\"color:#3b82f6\">half is lost</span> as heat in the wires, whatever the resistance",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "2.15-energy-stored-in-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: if a charge feels a force, how can electrostatics treat it as at rest?",
+      "definition": "Each charge is assumed <span style=\"color:#3b82f6\">held in place by unspecified forces</span> balancing the Coulomb force",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is the potential of a point charge at its own location defined?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is infinite",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 2 formula sheet",
+      "definition": "Point charge: V = kq/r; Dipole (r ≫ a): V = kp cos θ/r²; Field from potential: E = −dV/dl; Two-charge energy: U = kq₁q₂/r; Dipole in field: U = −p·E; Parallel plate: C = Kε₀A/d; Stored energy: U = Q²/2C = ½CV²; Energy density: u = ½ε₀E²",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Point charge</td><td class=\"q\">?</td></tr><tr><td>Dipole (r ≫ a)</td><td class=\"q\">?</td></tr><tr><td>Field from potential</td><td class=\"q\">?</td></tr><tr><td>Two-charge energy</td><td class=\"q\">?</td></tr><tr><td>Dipole in field</td><td class=\"q\">?</td></tr><tr><td>Parallel plate</td><td class=\"q\">?</td></tr><tr><td>Stored energy</td><td class=\"q\">?</td></tr><tr><td>Energy density</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Point charge</td><td class=\"a\">V = kq/r</td></tr><tr><td>Dipole (r ≫ a)</td><td class=\"a\">V = kp cos θ/r²</td></tr><tr><td>Field from potential</td><td class=\"a\">E = −dV/dl</td></tr><tr><td>Two-charge energy</td><td class=\"a\">U = kq₁q₂/r</td></tr><tr><td>Dipole in field</td><td class=\"a\">U = −p·E</td></tr><tr><td>Parallel plate</td><td class=\"a\">C = Kε₀A/d</td></tr><tr><td>Stored energy</td><td class=\"a\">U = Q²/2C = ½CV²</td></tr><tr><td>Energy density</td><td class=\"a\">u = ½ε₀E²</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 2 concept checks",
+      "definition": "E = 0 at a point implies V = 0 there: False (inside a shell); Field lines are normal to equipotentials: True; Excess charge can sit inside a conductor: False (surface only); A dielectric increases capacitance: True; Charge sharing between capacitors conserves energy: False (charge is conserved, energy is not)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>E = 0 at a point implies V = 0 there</td><td class=\"q\">?</td></tr><tr><td>Field lines are normal to equipotentials</td><td class=\"q\">?</td></tr><tr><td>Excess charge can sit inside a conductor</td><td class=\"q\">?</td></tr><tr><td>A dielectric increases capacitance</td><td class=\"q\">?</td></tr><tr><td>Charge sharing between capacitors conserves energy</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>E = 0 at a point implies V = 0 there</td><td class=\"a no\">False (inside a shell)</td></tr><tr><td>Field lines are normal to equipotentials</td><td class=\"a\">True</td></tr><tr><td>Excess charge can sit inside a conductor</td><td class=\"a no\">False (surface only)</td></tr><tr><td>A dielectric increases capacitance</td><td class=\"a\">True</td></tr><tr><td>Charge sharing between capacitors conserves energy</td><td class=\"a no\">False (charge is conserved, energy is not)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-2",
+        "summary"
+      ]
+    }
+  ]
+}
