@@ -605,3 +605,29 @@ def shm_reference_circle(deck):
          'SHM as the projection of uniform circular motion',
          'The projection of uniform circular motion on a diameter is SHM: x = A cos(ωt + φ); fastest at centre, at rest at ±A',
          css, hint='Imagine light from above.', vb='0 0 300 200')
+
+
+# ---------------------------------------------------------------- Ch 14 Waves
+def standing_wave_string(deck):
+    import math
+    x0, x1, cy, amp, n = 30, 270, 96, 38, 3
+    L = x1 - x0
+    shape = ' '.join(f'{x0 + L * i / 90:.1f},{cy - amp * math.sin(n * math.pi * i / 90):.1f}' for i in range(91))
+    css = (f'.bp .sw{{transform-origin:0 {cy}px;animation:sw 1.6s ease-in-out infinite alternate .2s}}'
+           '@keyframes sw{from{transform:scaleY(1)}to{transform:scaleY(-1)}}')
+    nodes = ''.join(f'<circle class="dot3" cx="{x0 + L * k / n:.1f}" cy="{cy}" r="4.5"></circle>' for k in range(n + 1))
+    anti = ''.join(f'<text class="yl fx d3" x="{x0 + L * (k + 0.5) / n:.1f}" y="{cy + amp + 22}" text-anchor="middle">A</text>' for k in range(n))
+    base = (f'<line class="road" x1="{x0 - 10}" y1="{cy - 50}" x2="{x0 - 10}" y2="{cy + 50}"></line>'
+            f'<line class="road" x1="{x1 + 10}" y1="{cy - 50}" x2="{x1 + 10}" y2="{cy + 50}"></line>'
+            f'<line class="guide" x1="{x0}" y1="{cy}" x2="{x1}" y2="{cy}"></line>')
+    back = (f'<polyline class="curve sw" points="{shape}"></polyline><polyline class="ghost" points="{shape}"></polyline>' + nodes + anti +
+            ''.join(f'<text class="rd" x="{x0 + L * k / n:.1f}" y="{cy - 12}" text-anchor="middle">N</text>' for k in range(n + 1)) +
+            f'<text class="lbl" x="150" y="{cy + amp + 44}" text-anchor="middle">third harmonic: L = 3λ/2</text>')
+    anim(deck, 'Stationary waves · string',
+         'A string fixed at both ends vibrates in a stationary wave. What do the nodes and antinodes do, and are the points in phase?',
+         base, back,
+         '<p><b>Nodes</b> (N) never move; <b>antinodes</b> (A) swing with the largest amplitude. Nodes are λ/2 apart.</p>'
+         '<p>y = 2a sin kx cos ωt: all points between two nodes move <b>in phase</b>; neighbouring loops are opposite in phase. Nothing travels.</p>',
+         'Stationary wave: nodes, antinodes and phase',
+         'Nodes stay at rest, antinodes have maximum amplitude, nodes are λ/2 apart; points within a loop move in phase, adjacent loops opposite',
+         css, hint='Pluck, then watch one point.', vb='0 0 300 190')

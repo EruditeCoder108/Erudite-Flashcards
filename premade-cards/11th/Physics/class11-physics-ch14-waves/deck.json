@@ -1,0 +1,986 @@
+{
+  "version": 1,
+  "name": "Chapter 14: Waves",
+  "className": "Class 11",
+  "description": "Transverse and longitudinal waves, wave equation, wave speed on strings and in gases, superposition, reflection, standing waves, pipes, beats",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is a wave?",
+      "definition": "A pattern of disturbance that moves <span style=\"color:#e5484d\">without</span> bulk flow of matter, carrying <span style=\"color:#3b82f6\">energy and information</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do cork pieces on a rippled pond not move outward?",
+      "definition": "Water only moves <span style=\"color:#3b82f6\">up and down</span> locally; only the disturbance travels",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Three kinds of waves",
+      "definition": "Mechanical: yes — string, water, sound, seismic waves; Electromagnetic: no — light, radio, X-rays (speed c in vacuum); Matter waves: associated with electrons, protons, atoms (electron microscope)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">14.1 · kinds of waves</p><h2>Needs a medium? Example?</h2><table><tr><td>Mechanical</td><td class=\"q\">?</td></tr><tr><td>Electromagnetic</td><td class=\"q\">?</td></tr><tr><td>Matter waves</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">14.1 · kinds of waves</p><h2>Needs a medium? Example?</h2><table><tr><td>Mechanical</td><td class=\"a\">yes — string, water, sound, seismic waves</td></tr><tr><td>Electromagnetic</td><td class=\"a\">no — light, radio, X-rays (speed c in vacuum)</td></tr><tr><td>Matter waves</td><td class=\"a\">associated with electrons, protons, atoms (electron microscope)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Speed of electromagnetic waves in vacuum?",
+      "definition": "<span style=\"color:#f08c00\">c = 299 792 458 m/s</span> (exact)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a disturbance travel along coupled springs or train bogies?",
+      "definition": "Each part pushes the next through <span style=\"color:#3b82f6\">elastic coupling</span>; each only oscillates about its own equilibrium",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ],
+      "definitionImage": "media/fig_14_1_springs.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What plays the role of the spring’s extension in a sound wave?",
+      "definition": "The change in <span style=\"color:#3b82f6\">density</span> (and pressure): compressions and rarefactions",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Transverse vs longitudinal wave?",
+      "definition": "<span style=\"color:#3b82f6\">Transverse</span>: particles oscillate ⟂ to the direction of travel (string). <span style=\"color:#3b82f6\">Longitudinal</span>: particles oscillate along it (sound)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.2-transverse-and-longitudinal"
+      ],
+      "definitionImage": "media/fig_14_3_harmonic_wave.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "A single jerk on a string produces…?",
+      "definition": "A transverse <span style=\"color:#3b82f6\">pulse</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.2-transverse-and-longitudinal"
+      ],
+      "definitionImage": "media/fig_14_2_pulse.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How is a longitudinal wave produced in a pipe?",
+      "definition": "A piston pushed and pulled creates <span style=\"color:#3b82f6\">compressions and rarefactions</span> travelling along the air",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.2-transverse-and-longitudinal"
+      ],
+      "definitionImage": "media/fig_14_4_sound_pipe.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can’t transverse waves travel through fluids?",
+      "definition": "They need a medium that resists <span style=\"color:#3b82f6\">shear</span>; fluids cannot sustain shearing stress. Longitudinal waves need only compressibility (all media)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.2-transverse-and-longitudinal"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which waves can travel in steel? In air?",
+      "definition": "Steel: <span style=\"color:#3b82f6\">both</span> transverse and longitudinal. Air: <span style=\"color:#3b82f6\">only longitudinal</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.2-transverse-and-longitudinal"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Capillary vs gravity water waves?",
+      "definition": "<span style=\"color:#3b82f6\">Capillary</span>: ripples of a few cm, restoring force surface tension. <span style=\"color:#3b82f6\">Gravity</span>: metres to hundreds of metres, restoring force gravity",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.2-transverse-and-longitudinal"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ocean waves: transverse or longitudinal?",
+      "definition": "A <span style=\"color:#3b82f6\">combination</span>: water particles move up–down and back–forth",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.2-transverse-and-longitudinal"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Wind vs sound wave?",
+      "definition": "Wind is <span style=\"color:#3b82f6\">motion of air as a whole</span>; a sound wave is a moving pattern of compressions with no net flow",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.2-transverse-and-longitudinal"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Wave type examples (Example 14.1)",
+      "definition": "Kink in a spring from a sideways jerk: transverse and longitudinal; Piston moved back and forth in a liquid: longitudinal; Waves from a motorboat: transverse and longitudinal; Ultrasonic waves from a quartz crystal: longitudinal",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 14.1</p><h2>Transverse, longitudinal or both?</h2><table><tr><td>Kink in a spring from a sideways jerk</td><td class=\"q\">?</td></tr><tr><td>Piston moved back and forth in a liquid</td><td class=\"q\">?</td></tr><tr><td>Waves from a motorboat</td><td class=\"q\">?</td></tr><tr><td>Ultrasonic waves from a quartz crystal</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 14.1</p><h2>Transverse, longitudinal or both?</h2><table><tr><td>Kink in a spring from a sideways jerk</td><td class=\"a\">transverse and longitudinal</td></tr><tr><td>Piston moved back and forth in a liquid</td><td class=\"a\">longitudinal</td></tr><tr><td>Waves from a motorboat</td><td class=\"a\">transverse and longitudinal</td></tr><tr><td>Ultrasonic waves from a quartz crystal</td><td class=\"a\">longitudinal</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.2-transverse-and-longitudinal"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equation of a harmonic wave travelling in +x?",
+      "definition": "\\( y(x,t) = a\\sin(kx - \\omega t + \\phi) \\); for −x: \\( a\\sin(kx + \\omega t + \\phi) \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.3-displacement-relation"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Symbols in y = a sin(kx − ωt + φ)",
+      "definition": "a: amplitude; k: angular wave number (rad/m); ω: angular frequency (rad/s); kx − ωt + φ: phase; φ: initial phase angle",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Fig. 14.5 · wave symbols</p><h2>Name?</h2><table><tr><td>a</td><td class=\"q\">?</td></tr><tr><td>k</td><td class=\"q\">?</td></tr><tr><td>ω</td><td class=\"q\">?</td></tr><tr><td>kx − ωt + φ</td><td class=\"q\">?</td></tr><tr><td>φ</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Fig. 14.5 · wave symbols</p><h2>Name?</h2><table><tr><td>a</td><td class=\"a\">amplitude</td></tr><tr><td>k</td><td class=\"a\">angular wave number (rad/m)</td></tr><tr><td>ω</td><td class=\"a\">angular frequency (rad/s)</td></tr><tr><td>kx − ωt + φ</td><td class=\"a\">phase</td></tr><tr><td>φ</td><td class=\"a\">initial phase angle</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.3-displacement-relation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fix t, then fix x in y = a sin(kx − ωt): what do you see?",
+      "definition": "Fixed t: the <span style=\"color:#3b82f6\">shape</span> of the wave (a sine in x). Fixed x: that particle does <span style=\"color:#3b82f6\">SHM</span> in time",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.3-displacement-relation"
+      ],
+      "definitionImage": "media/fig_14_6_progressing.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define wavelength and angular wave number.",
+      "definition": "<span style=\"color:#3b82f6\">λ</span>: least distance between points in the same phase (crest to crest). \\( k = \\dfrac{2\\pi}{\\lambda} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.3-displacement-relation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relations for period and frequency of a wave?",
+      "definition": "\\( \\omega = \\dfrac{2\\pi}{T} = 2\\pi\\nu \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.3-displacement-relation"
+      ],
+      "definitionImage": "media/fig_14_7_element_time.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Longitudinal wave: what does the displacement mean?",
+      "definition": "\\( s(x,t) = a\\sin(kx - \\omega t + \\phi) \\) — displacement <span style=\"color:#3b82f6\">along</span> the direction of travel",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.3-displacement-relation"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Reading a wave equation",
+      "definition": "a = 5 mm, λ = 7.85 cm, T = 2.09 s, ν = 0.48 Hz",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 14.2</p><h2>Find the missing step.</h2><div class=\"prob\">y = 0.005 sin(80.0x − 3.0t) (SI). Amplitude, wavelength, period, frequency?</div><ol><li>a = 0.005 m = 5 mm</li><li class=\"h\">?</li><li>T = 2π/ω = 2.09 s</li><li>ν = 1/T = <b>0.48 Hz</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 14.2</p><h2>Find the missing step.</h2><div class=\"prob\">y = 0.005 sin(80.0x − 3.0t) (SI). Amplitude, wavelength, period, frequency?</div><ol><li>a = 0.005 m = 5 mm</li><li class=\"r\">λ = 2π/k = 2π/80 = 7.85 cm</li><li>T = 2π/ω = 2.09 s</li><li>ν = 1/T = <b>0.48 Hz</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.3-displacement-relation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Phase difference between two points Δx apart on a wave?",
+      "definition": "\\( \\Delta\\phi = \\dfrac{2\\pi}{\\lambda}\\Delta x = k\\,\\Delta x \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.3-displacement-relation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Wave speed in terms of ω, k, λ, ν?",
+      "definition": "\\( v = \\dfrac{\\omega}{k} = \\lambda\\nu = \\dfrac{\\lambda}{T} \\): in one period the pattern moves one wavelength",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ],
+      "definitionImage": "media/fig_14_8_shift.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What sets the speed and what sets the frequency of a mechanical wave?",
+      "definition": "Speed: the <span style=\"color:#3b82f6\">medium</span> (elasticity and inertia). Frequency: the <span style=\"color:#3b82f6\">source</span>. Then λ = v/ν",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Speed of transverse waves on a stretched string?",
+      "definition": "\\( v = \\sqrt{\\dfrac{T}{\\mu}} \\) (T = tension, μ = mass per unit length)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is v = √(T/μ) found in NCERT?",
+      "definition": "By <span style=\"color:#3b82f6\">dimensional analysis</span> (the constant C = 1 comes from the exact theory)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 14.3: steel wire 0.72 m, 5.0 g, tension 60 N. Wave speed?",
+      "definition": "μ = 6.9 × 10⁻³ kg/m → v = <span style=\"color:#f08c00\">≈ 93 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Speed of longitudinal (sound) waves in a fluid and in a solid bar?",
+      "definition": "\\( v = \\sqrt{\\dfrac{B}{\\rho}} \\) (fluid); \\( v = \\sqrt{\\dfrac{Y}{\\rho}} \\) (thin bar)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is sound faster in solids and liquids than in gases?",
+      "definition": "They are denser, but their <span style=\"color:#3b82f6\">elastic moduli are far larger</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ],
+      "definitionImage": "media/tab_14_1_sound_speeds.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Speed of sound in air (0 °C), water, steel (Table 14.1)?",
+      "definition": "Air <span style=\"color:#f08c00\">331 m/s</span>, water <span style=\"color:#f08c00\">≈ 1402–1482 m/s</span>, steel <span style=\"color:#f08c00\">5941 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Newton’s formula for sound in a gas, and its value for air?",
+      "definition": "\\( v = \\sqrt{\\dfrac{P}{\\rho}} \\) (isothermal, B = P) → <span style=\"color:#f08c00\">280 m/s</span>: about 15 % too low",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What was the Laplace correction?",
+      "definition": "Sound compressions are too fast for heat flow → <span style=\"color:#3b82f6\">adiabatic</span>, B = γP: \\( v = \\sqrt{\\dfrac{\\gamma P}{\\rho}} \\) ≈ <span style=\"color:#f08c00\">331 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.4: speed of sound in air vs pressure, temperature, humidity?",
+      "definition": "\\( v = \\sqrt{\\gamma RT/M} \\): <span style=\"color:#3b82f6\">independent of pressure</span>; ∝ √T; <span style=\"color:#3b82f6\">increases with humidity</span> (water vapour lowers M)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does the speed of a mechanical wave depend on the source’s velocity?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: relative to the medium it depends only on the medium",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.1: 2.50 kg, 20.0 m string under 200 N. Time for a jerk to travel its length?",
+      "definition": "v = √(200/0.125) = 40 m/s → <span style=\"color:#f08c00\">0.5 s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.2: stone dropped from a 300 m tower. When is the splash heard at the top (sound 340 m/s)?",
+      "definition": "7.82 s fall + 0.88 s sound ≈ <span style=\"color:#f08c00\">8.7 s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.3: 12.0 m, 2.10 kg steel wire. Tension for wave speed 343 m/s?",
+      "definition": "T = μv² ≈ <span style=\"color:#f08c00\">2.06 × 10⁴ N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.6: 1000 kHz bat sound hits water. Wavelength reflected (air 340 m/s) and transmitted (water 1486 m/s)?",
+      "definition": "<span style=\"color:#f08c00\">3.4 × 10⁻⁴ m</span> and <span style=\"color:#f08c00\">1.49 × 10⁻³ m</span> (frequency is unchanged)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.7: ultrasonic scanner 4.2 MHz in tissue (1.7 km/s). Wavelength?",
+      "definition": "<span style=\"color:#f08c00\">4.1 × 10⁻⁴ m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.8: y = 3.0 sin(36t + 0.018x + π/4) (cm, s). Direction, speed, frequency, λ?",
+      "definition": "Travels <span style=\"color:#3b82f6\">right to left</span> at <span style=\"color:#f08c00\">20 m/s</span>; a = 3.0 cm, ν ≈ <span style=\"color:#f08c00\">5.7 Hz</span>, φ = π/4, λ ≈ <span style=\"color:#f08c00\">3.5 m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.10: y = 2.0 cos 2π(10t − 0.0080x + 0.35) (cm). Phase difference for points 4 m and 0.5 m apart?",
+      "definition": "<span style=\"color:#f08c00\">6.4π rad</span> and <span style=\"color:#f08c00\">0.8π rad</span>; for λ/2: π; for 3λ/4: 3π/2 (the key writes π/2, the same phase counted the other way round)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.5: must every function of (x ± vt) represent a travelling wave?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it must also be <span style=\"color:#3b82f6\">finite everywhere, always</span>; of (x − vt)², log[(x + vt)/x₀], 1/(x + vt), none qualifies",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.4-speed-of-waves"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Principle of superposition: when waves overlap, the resultant displacement is the {{c1::algebraic sum}} of the individual displacements; each wave moves {{c2::as if the others were absent}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.5-superposition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two equal and opposite pulses cross. What happens at the moment of full overlap? After?",
+      "definition": "Displacement is <span style=\"color:#3b82f6\">zero everywhere</span> for an instant; afterwards both pulses continue unchanged",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.5-superposition"
+      ],
+      "definitionImage": "media/fig_14_9_pulses.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Two identical waves with phase difference φ: resultant amplitude?",
+      "definition": "\\( A = 2a\\cos\\dfrac{\\phi}{2} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.5-superposition"
+      ],
+      "definitionImage": "media/fig_14_10_interference.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Constructive vs destructive interference?",
+      "definition": "<span style=\"color:#3b82f6\">Constructive</span>: φ = 0, 2π… → amplitude 2a. <span style=\"color:#3b82f6\">Destructive</span>: φ = π → amplitude 0",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.5-superposition"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Reflection at a rigid boundary vs an open (free) boundary?",
+      "definition": "<span style=\"color:#3b82f6\">Rigid</span>: phase change of <span style=\"color:#f08c00\">π</span> (pulse inverted). <span style=\"color:#3b82f6\">Free</span>: no phase change",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6-reflection"
+      ],
+      "definitionImage": "media/fig_14_11_reflection.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is a pulse inverted at a rigid wall?",
+      "definition": "The end cannot move, so incident + reflected must cancel there; also the wall pulls back on the string (third law)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Eqs. (14.35)–(14.36) write the reflected wave as a sin(kx − ωt ± …). What is right?",
+      "definition": "A reflected wave travels the <span style=\"color:#3b82f6\">other way</span>: \\( y_r = -a\\sin(kx + \\omega t) \\) (rigid) or \\( +a\\sin(kx + \\omega t) \\) (open), as NCERT’s own summary states",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Examples of rigid and open reflection?",
+      "definition": "Rigid: echo, string tied to a wall. Open: string on a freely sliding ring, open end of an organ pipe",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equation of a stationary wave?",
+      "definition": "\\( y = 2a\\sin kx\\,\\cos\\omega t \\): kx and ωt appear <span style=\"color:#3b82f6\">separately</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ],
+      "definitionImage": "media/fig_14_12_stationary.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Stationary wave: nodes, antinodes and phase",
+      "definition": "Nodes stay at rest, antinodes have maximum amplitude, nodes are λ/2 apart; points within a loop move in phase, adjacent loops opposite",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Stationary waves · string</p><h2>A string fixed at both ends vibrates in a stationary wave. What do the nodes and antinodes do, and are the points in phase?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"20\" y1=\"46\" x2=\"20\" y2=\"146\"></line><line class=\"road\" x1=\"280\" y1=\"46\" x2=\"280\" y2=\"146\"></line><line class=\"guide\" x1=\"30\" y1=\"96\" x2=\"270\" y2=\"96\"></line></svg><p class=\"hint\">Pluck, then watch one point.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Stationary waves · string</p><h2>A string fixed at both ends vibrates in a stationary wave. What do the nodes and antinodes do, and are the points in phase?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"20\" y1=\"46\" x2=\"20\" y2=\"146\"></line><line class=\"road\" x1=\"280\" y1=\"46\" x2=\"280\" y2=\"146\"></line><line class=\"guide\" x1=\"30\" y1=\"96\" x2=\"270\" y2=\"96\"></line><polyline class=\"curve sw\" points=\"30.0,96.0 32.7,92.0 35.3,88.1 38.0,84.3 40.7,80.5 43.3,77.0 46.0,73.7 48.7,70.6 51.3,67.8 54.0,65.3 56.7,63.1 59.3,61.3 62.0,59.9 64.7,58.8 67.3,58.2 70.0,58.0 72.7,58.2 75.3,58.8 78.0,59.9 80.7,61.3 83.3,63.1 86.0,65.3 88.7,67.8 91.3,70.6 94.0,73.7 96.7,77.0 99.3,80.5 102.0,84.3 104.7,88.1 107.3,92.0 110.0,96.0 112.7,100.0 115.3,103.9 118.0,107.7 120.7,111.5 123.3,115.0 126.0,118.3 128.7,121.4 131.3,124.2 134.0,126.7 136.7,128.9 139.3,130.7 142.0,132.1 144.7,133.2 147.3,133.8 150.0,134.0 152.7,133.8 155.3,133.2 158.0,132.1 160.7,130.7 163.3,128.9 166.0,126.7 168.7,124.2 171.3,121.4 174.0,118.3 176.7,115.0 179.3,111.5 182.0,107.7 184.7,103.9 187.3,100.0 190.0,96.0 192.7,92.0 195.3,88.1 198.0,84.3 200.7,80.5 203.3,77.0 206.0,73.7 208.7,70.6 211.3,67.8 214.0,65.3 216.7,63.1 219.3,61.3 222.0,59.9 224.7,58.8 227.3,58.2 230.0,58.0 232.7,58.2 235.3,58.8 238.0,59.9 240.7,61.3 243.3,63.1 246.0,65.3 248.7,67.8 251.3,70.6 254.0,73.7 256.7,77.0 259.3,80.5 262.0,84.3 264.7,88.1 267.3,92.0 270.0,96.0\"></polyline><polyline class=\"ghost\" points=\"30.0,96.0 32.7,92.0 35.3,88.1 38.0,84.3 40.7,80.5 43.3,77.0 46.0,73.7 48.7,70.6 51.3,67.8 54.0,65.3 56.7,63.1 59.3,61.3 62.0,59.9 64.7,58.8 67.3,58.2 70.0,58.0 72.7,58.2 75.3,58.8 78.0,59.9 80.7,61.3 83.3,63.1 86.0,65.3 88.7,67.8 91.3,70.6 94.0,73.7 96.7,77.0 99.3,80.5 102.0,84.3 104.7,88.1 107.3,92.0 110.0,96.0 112.7,100.0 115.3,103.9 118.0,107.7 120.7,111.5 123.3,115.0 126.0,118.3 128.7,121.4 131.3,124.2 134.0,126.7 136.7,128.9 139.3,130.7 142.0,132.1 144.7,133.2 147.3,133.8 150.0,134.0 152.7,133.8 155.3,133.2 158.0,132.1 160.7,130.7 163.3,128.9 166.0,126.7 168.7,124.2 171.3,121.4 174.0,118.3 176.7,115.0 179.3,111.5 182.0,107.7 184.7,103.9 187.3,100.0 190.0,96.0 192.7,92.0 195.3,88.1 198.0,84.3 200.7,80.5 203.3,77.0 206.0,73.7 208.7,70.6 211.3,67.8 214.0,65.3 216.7,63.1 219.3,61.3 222.0,59.9 224.7,58.8 227.3,58.2 230.0,58.0 232.7,58.2 235.3,58.8 238.0,59.9 240.7,61.3 243.3,63.1 246.0,65.3 248.7,67.8 251.3,70.6 254.0,73.7 256.7,77.0 259.3,80.5 262.0,84.3 264.7,88.1 267.3,92.0 270.0,96.0\"></polyline><circle class=\"dot3\" cx=\"30.0\" cy=\"96\" r=\"4.5\"></circle><circle class=\"dot3\" cx=\"110.0\" cy=\"96\" r=\"4.5\"></circle><circle class=\"dot3\" cx=\"190.0\" cy=\"96\" r=\"4.5\"></circle><circle class=\"dot3\" cx=\"270.0\" cy=\"96\" r=\"4.5\"></circle><text class=\"yl fx d3\" x=\"70.0\" y=\"156\" text-anchor=\"middle\">A</text><text class=\"yl fx d3\" x=\"150.0\" y=\"156\" text-anchor=\"middle\">A</text><text class=\"yl fx d3\" x=\"230.0\" y=\"156\" text-anchor=\"middle\">A</text><text class=\"rd\" x=\"30.0\" y=\"84\" text-anchor=\"middle\">N</text><text class=\"rd\" x=\"110.0\" y=\"84\" text-anchor=\"middle\">N</text><text class=\"rd\" x=\"190.0\" y=\"84\" text-anchor=\"middle\">N</text><text class=\"rd\" x=\"270.0\" y=\"84\" text-anchor=\"middle\">N</text><text class=\"lbl\" x=\"150\" y=\"178\" text-anchor=\"middle\">third harmonic: L = 3λ/2</text></svg><div class=\"eq fx d5\"><p><b>Nodes</b> (N) never move; <b>antinodes</b> (A) swing with the largest amplitude. Nodes are λ/2 apart.</p><p>y = 2a sin kx cos ωt: all points between two nodes move <b>in phase</b>; neighbouring loops are opposite in phase. Nothing travels.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .sw{transform-origin:0 96px;animation:sw 1.6s ease-in-out infinite alternate .2s}@keyframes sw{from{transform:scaleY(1)}to{transform:scaleY(-1)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .sw{transform-origin:0 96px;animation:sw 1.6s ease-in-out infinite alternate .2s}@keyframes sw{from{transform:scaleY(1)}to{transform:scaleY(-1)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Positions of nodes and antinodes?",
+      "definition": "Nodes: \\( x = \\dfrac{n\\lambda}{2} \\); antinodes: \\( x = \\left(n + \\tfrac12\\right)\\dfrac{\\lambda}{2} \\); each set is λ/2 apart",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Progressive vs stationary waves",
+      "definition": "Progressive wave: amplitude: same; Progressive wave: phase: different; Stationary wave: amplitude: different (0 at nodes); Stationary wave: phase (within a loop): same",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>Same or different for all particles?</h2><table><tr><td>Progressive wave: amplitude</td><td class=\"q\">?</td></tr><tr><td>Progressive wave: phase</td><td class=\"q\">?</td></tr><tr><td>Stationary wave: amplitude</td><td class=\"q\">?</td></tr><tr><td>Stationary wave: phase (within a loop)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>Same or different for all particles?</h2><table><tr><td>Progressive wave: amplitude</td><td class=\"a\">same</td></tr><tr><td>Progressive wave: phase</td><td class=\"a no\">different</td></tr><tr><td>Stationary wave: amplitude</td><td class=\"a no\">different (0 at nodes)</td></tr><tr><td>Stationary wave: phase (within a loop)</td><td class=\"a\">same</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "String of length L fixed at both ends: allowed wavelengths and frequencies?",
+      "definition": "\\( \\lambda_n = \\dfrac{2L}{n},\\quad \\nu_n = \\dfrac{nv}{2L} \\), n = 1, 2, 3… (all harmonics)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ],
+      "definitionImage": "media/fig_14_13_string_harmonics.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Fundamental of a string fixed at both ends?",
+      "definition": "\\( \\nu_1 = \\dfrac{v}{2L} = \\dfrac{1}{2L}\\sqrt{\\dfrac T\\mu} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do a violin and a sitar playing the same note sound different?",
+      "definition": "They excite different mixtures of <span style=\"color:#3b82f6\">harmonics</span> (timbre / quality)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Pipe closed at one end: allowed frequencies?",
+      "definition": "\\( \\nu = \\left(n + \\tfrac12\\right)\\dfrac{v}{2L} \\): fundamental \\( \\dfrac{v}{4L} \\), then <span style=\"color:#3b82f6\">only odd harmonics</span> (3, 5, 7…)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ],
+      "definitionImage": "media/fig_14_14a_closed_pipe.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the higher modes of a closed pipe.",
+      "definition": "Seventh, ninth, eleventh harmonics: still only odd multiples, closed end a node, open end an antinode",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ],
+      "termImage": "media/fig_14_14b_closed_pipe.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Pipe open at both ends: allowed frequencies?",
+      "definition": "\\( \\nu_n = \\dfrac{nv}{2L} \\): <span style=\"color:#3b82f6\">all harmonics</span>; both ends antinodes",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ],
+      "definitionImage": "media/fig_14_15_open_pipe.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic for pipes?",
+      "definition": "\"<span style=\"color:#3b82f6\">Closed is Odd</span>\": closed pipe → v/4L and odd harmonics; open pipe and string → v/2L and all harmonics",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In a sound wave, why is a displacement node a pressure antinode?",
+      "definition": "Where air cannot move, neighbouring layers push in and pull away → <span style=\"color:#3b82f6\">largest pressure change</span> (Exercise 14.19a)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 14.5: 30.0 cm pipe open at both ends, source 1.1 kHz (v = 330 m/s). Which mode? And with one end closed?",
+      "definition": "Open: νₙ = 550n → <span style=\"color:#3b82f6\">2nd harmonic</span>. Closed: 275 Hz × odd only; 1.1 kHz = 4th → <span style=\"color:#e5484d\">no resonance</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is resonance for strings and pipes?",
+      "definition": "Large response when a driving frequency matches a <span style=\"color:#3b82f6\">natural (normal-mode) frequency</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.11: y = 0.06 sin(2πx/3) cos(120πt), 1.5 m, 30 g string. λ, ν, v of the component waves and the tension?",
+      "definition": "λ = <span style=\"color:#f08c00\">3 m</span>, ν = <span style=\"color:#f08c00\">60 Hz</span>, v = <span style=\"color:#f08c00\">180 m/s</span>; T = μv² = <span style=\"color:#f08c00\">648 N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.12: on that string, do all points have the same frequency, phase, amplitude? Amplitude at 0.375 m?",
+      "definition": "Same frequency and phase (except nodes), different amplitudes; at 0.375 m: 0.06 sin(π/4) ≈ <span style=\"color:#f08c00\">0.042 m</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Exercise 14.12 refers to \"Exercise 15.11\". Which one?",
+      "definition": "<span style=\"color:#3b82f6\">Exercise 14.11</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.14: wire in its fundamental at 45 Hz, mass 3.5 × 10⁻² kg, μ = 4.0 × 10⁻² kg/m. Speed and tension?",
+      "definition": "L = 0.875 m → v = 2Lν ≈ <span style=\"color:#f08c00\">79 m/s</span>; T = μv² ≈ <span style=\"color:#f08c00\">248 N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.15: resonance tube with a 340 Hz fork resonates at 25.5 cm. Speed of sound?",
+      "definition": "L = λ/4 → λ = 1.02 m → v ≈ <span style=\"color:#f08c00\">347 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.16: 100 cm steel rod clamped at the middle; fundamental 2.53 kHz. Speed of sound in steel?",
+      "definition": "Ends are antinodes, middle a node: L = λ/2 → v = 2 × 2530 = <span style=\"color:#f08c00\">5.06 km/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.17: 20 cm pipe closed at one end, 430 Hz source (v = 340 m/s). Which mode? Open at both ends?",
+      "definition": "Fundamental (340/0.8 ≈ 425 Hz); with both ends open (850 Hz) <span style=\"color:#e5484d\">no resonance</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.6.1-standing-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are beats?",
+      "definition": "Periodic <span style=\"color:#3b82f6\">waxing and waning of loudness</span> when two sounds of slightly different frequencies are heard together",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.7-beats"
+      ],
+      "definitionImage": "media/fig_14_16_beats.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Beat frequency?",
+      "definition": "\\( \\nu_{beat} = |\\nu_1 - \\nu_2| \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.7-beats"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Resultant of two nearly equal frequencies?",
+      "definition": "\\( s = [2a\\cos\\omega_b t]\\cos\\omega_a t \\): oscillates at the average frequency with a slowly varying amplitude",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.7-beats"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do musicians use beats?",
+      "definition": "To <span style=\"color:#3b82f6\">tune</span> instruments: adjust until the beats disappear",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.7-beats"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 14.6: A (427 Hz) and B give 5 beats/s; tightening B reduces beats to 3/s. Original frequency of B?",
+      "definition": "Tightening raises νB and beats fall, so νB < νA: <span style=\"color:#f08c00\">422 Hz</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.7-beats"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.18: A (324 Hz) and B give 6 beats/s; loosening A reduces beats to 3/s. Frequency of B?",
+      "definition": "Loosening lowers A and beats fall, so A > B: <span style=\"color:#f08c00\">318 Hz</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.7-beats"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are the musical pillars of the Nellaiappar temple?",
+      "definition": "Stone pillars (7th century, Tamil Nadu) that give the <span style=\"color:#3b82f6\">notes of Indian music</span> when tapped; their vibrations depend on elasticity, density and shape",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "14.7-beats"
+      ],
+      "definitionImage": "media/fig_14_pillars.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Classify the wave functions (Exercise 14.13)",
+      "definition": "y = 2 cos(3x) sin(10t): stationary; (b) the function that blows up at x + vt = 0: none: not an acceptable wave; y = 3 sin(5x − 0.5t) + 4 cos(5x − 0.5t): travelling harmonic wave; y = cos x sin t + cos 2x sin 2t: sum of two stationary waves",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 14.13</p><h2>Travelling, stationary or none?</h2><table><tr><td>y = 2 cos(3x) sin(10t)</td><td class=\"q\">?</td></tr><tr><td>(b) the function that blows up at x + vt = 0</td><td class=\"q\">?</td></tr><tr><td>y = 3 sin(5x − 0.5t) + 4 cos(5x − 0.5t)</td><td class=\"q\">?</td></tr><tr><td>y = cos x sin t + cos 2x sin 2t</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 14.13</p><h2>Travelling, stationary or none?</h2><table><tr><td>y = 2 cos(3x) sin(10t)</td><td class=\"a\">stationary</td></tr><tr><td>(b) the function that blows up at x + vt = 0</td><td class=\"a no\">none: not an acceptable wave</td></tr><tr><td>y = 3 sin(5x − 0.5t) + 4 cos(5x − 0.5t)</td><td class=\"a\">travelling harmonic wave</td></tr><tr><td>y = cos x sin t + cos 2x sin 2t</td><td class=\"a\">sum of two stationary waves</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.19(b): how do bats locate obstacles without eyes?",
+      "definition": "<span style=\"color:#3b82f6\">Echolocation</span>: they emit ultrasound and use the delay and change of the reflected waves",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.19(e): why does a pulse change shape in a dispersive medium?",
+      "definition": "Its component frequencies travel at <span style=\"color:#3b82f6\">different speeds</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 14 formula sheet",
+      "definition": "Wave speed: v = νλ = ω/k; String: v = √(T/μ); Sound in a gas: v = √(γP/ρ); String / open pipe: νₙ = nv/2L; Closed pipe: ν = (2n + 1)v/4L; Beats: ν₁ − ν₂",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Wave speed</td><td class=\"q\">?</td></tr><tr><td>String</td><td class=\"q\">?</td></tr><tr><td>Sound in a gas</td><td class=\"q\">?</td></tr><tr><td>String / open pipe</td><td class=\"q\">?</td></tr><tr><td>Closed pipe</td><td class=\"q\">?</td></tr><tr><td>Beats</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Wave speed</td><td class=\"a\">v = νλ = ω/k</td></tr><tr><td>String</td><td class=\"a\">v = √(T/μ)</td></tr><tr><td>Sound in a gas</td><td class=\"a\">v = √(γP/ρ)</td></tr><tr><td>String / open pipe</td><td class=\"a\">νₙ = nv/2L</td></tr><tr><td>Closed pipe</td><td class=\"a\">ν = (2n + 1)v/4L</td></tr><tr><td>Beats</td><td class=\"a\">ν₁ − ν₂</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-14",
+        "summary"
+      ]
+    }
+  ]
+}

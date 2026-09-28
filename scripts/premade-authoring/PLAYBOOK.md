@@ -254,10 +254,9 @@ Don't polish endlessly: move on to the next chapter.
 | Chemistry 11 | 1–3, 5–9 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
 | Chemistry 11 | 4 | Pilot |
 | Chemistry 12 | 1–10 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
-| Physics 11 | 1–3, 5–13 | Done (PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py`; no old zips, so run `replace_deck.py premade-cards/11th/Physics none.zip <new id>`) |
+| Physics 11 | 1–3, 5–14 — complete | Done (PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; answer keys `keph1an.pdf`, `keph2an.pdf`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py` + `figures_phy_chNN.py`, animations in `showcase_phy.py`, drawn figures via `draw.py`) |
 | Physics 11 | 4 | Pilot |
-| Physics 11 | 8–14 | **Next: Ch 14 Waves (`keph207`).** Tip: `figs.py` boxes can point at example boxes instead of figures; always check the montage and use `ptgrid.py` when in doubt. Note: some PDF pages are scanned images with no text (e.g. keph107); render them with `tools/pg.py` and read the PNGs. Teacher-style: formulas, `steps_card` numericals, units, traps; intuition cards and animated `showcase_phy.py` cards where concepts confuse students; self-drawn `draw.py` figures where NCERT's are cluttered. |
-| Physics 12 | all | Not started |
+| Physics 12 | all | **Next: Physics 12 Ch 1.** Unzip `physics12thpart1.zip` and `physicspart212th.zip` into `NCERT-pdfs/phy12/` (check page 0 of each PDF for the title; some pages may be scanned images — render with `tools/pg.py`). Check `premade-cards/12th/Physics` for old zips (use `none.zip` if none). Follow the Physics 11 decks (e.g. `phy_ch05.py`, `phy_ch13.py`): teacher-style, `steps_card` numericals, labelled corrections after recomputing, at most one animation per chapter. |
 | Maths 11 | 3 | Pilot |
 | Maths 11 | others | Not started |
 | Maths 12 | all | Not started |
