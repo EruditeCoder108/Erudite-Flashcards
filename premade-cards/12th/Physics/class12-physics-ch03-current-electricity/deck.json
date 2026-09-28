@@ -1,0 +1,1223 @@
+{
+  "version": 1,
+  "name": "Chapter 3: Current Electricity",
+  "className": "Class 12",
+  "description": "Current, Ohm’s law, drift velocity, mobility, resistivity and temperature, power, emf and internal resistance, cells, Kirchhoff’s rules, Wheatstone bridge",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Define electric current (steady and instantaneous).",
+      "definition": "Net charge crossing an area per unit time: I = q/t; in general \\( I = \\lim_{\\Delta t\\to0}\\dfrac{\\Delta Q}{\\Delta t} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.2-electric-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Net charge q crossing an area when both + and − charges move?",
+      "definition": "q = q₊ − q₋ (forward flow of + minus forward flow of −); a negative I means current in the backward direction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.2-electric-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Orders of magnitude: lightning, domestic appliances, nerves?",
+      "definition": "Lightning: <span style=\"color:#f08c00\">tens of thousands of A</span>; appliances: <span style=\"color:#f08c00\">~1 A</span>; nerves: <span style=\"color:#f08c00\">μA</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.2-electric-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is current a scalar or a vector?",
+      "definition": "<span style=\"color:#3b82f6\">Scalar</span> (the arrow only shows sense of flow; currents don’t add as vectors). \\( I = \\vec j\\cdot\\Delta\\vec S \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.2-electric-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Name natural free charges and the charge carriers in solids and electrolytes.",
+      "definition": "Free: <span style=\"color:#22a35a\">ionosphere</span>. Solid conductors: <span style=\"color:#3b82f6\">electrons</span> (ions fixed). Electrolytes: <span style=\"color:#3b82f6\">positive and negative ions</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.2-electric-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "With no field, why is there no current even though electrons move fast?",
+      "definition": "Thermal motion is <span style=\"color:#3b82f6\">random</span>: as many electrons cross each way, so the net flow is zero",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.3-currents-in-conductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Charges ±Q stuck on the ends of a metal cylinder: what current flows?",
+      "definition": "Only a <span style=\"color:#3b82f6\">brief</span> current until the charges are neutralised; a cell must <span style=\"color:#3b82f6\">replenish</span> them to keep a steady field and current",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.3-currents-in-conductors"
+      ],
+      "definitionImage": "media/fig_3_1_cylinder.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "State Ohm’s law. Who, when?",
+      "definition": "\\( V \\propto I \\), V = RI (at constant physical conditions); <span style=\"color:#3b82f6\">G. S. Ohm</span>, <span style=\"color:#f08c00\">1828</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.4-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What analogy led Ohm to his law?",
+      "definition": "<span style=\"color:#3b82f6\">Heat conduction</span>: electric field ↔ temperature gradient, current ↔ heat flow",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.4-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Resistance: unit and dimensions?",
+      "definition": "ohm, 1 Ω = 1 V A⁻¹; [ML²T⁻³A⁻²]",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.4-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does R depend on length and area? Show why.",
+      "definition": "\\( R = \\rho\\dfrac{l}{A} \\): two slabs end to end double V at the same I (R ∝ l); cut lengthwise, each half carries I/2 at the same V (R ∝ 1/A)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.4-ohms-law"
+      ],
+      "definitionImage": "media/fig_3_2_slabs.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is resistivity? Unit and dimensions?",
+      "definition": "Material constant ρ in R = ρl/A (depends on material and temperature, not size); Ω m, [ML³T⁻³A⁻²]",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.4-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define current density. Unit?",
+      "definition": "\\( j = I/A \\) (area normal to the current), a vector along E; A m⁻²",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.4-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ohm’s law in terms of E and j?",
+      "definition": "\\( \\vec E = \\rho\\,\\vec j \\) or \\( \\vec j = \\sigma\\vec E \\), with conductivity σ = 1/ρ",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.4-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT’s table gives the unit of conductivity σ as “S”. Right unit?",
+      "definition": "<span style=\"color:#3b82f6\">S m⁻¹</span> (siemens per metre) — the dimensions it lists, [M⁻¹L⁻³T³A²], are those of S m⁻¹; S alone is the unit of conductance (1/R)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.4-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: is V = IR itself Ohm’s law?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: V = IR <span style=\"color:#3b82f6\">defines</span> R for any device. Ohm’s law is the claim that R is <span style=\"color:#3b82f6\">independent of V</span> (I–V plot linear)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.4-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Stretching trap: a wire is stretched to n times its length (volume constant). New R?",
+      "definition": "<span style=\"color:#f08c00\">n²R</span>: l → nl and A → A/n",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.4-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Acceleration of a free electron in a field E?",
+      "definition": "\\( \\vec a = -\\dfrac{e\\vec E}{m} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define relaxation time τ.",
+      "definition": "Average time between <span style=\"color:#3b82f6\">successive collisions</span> of an electron",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Drift velocity formula?",
+      "definition": "\\( \\vec v_d = -\\dfrac{e\\vec E}{m}\\tau \\) — opposite to E for electrons",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Electrons accelerate, so why a constant drift velocity?",
+      "definition": "Each collision <span style=\"color:#3b82f6\">randomises</span> the velocity; between collisions the gain is eEt/m, averaging to eEτ/m — like a ball bouncing down a pin-board",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between current and drift speed?",
+      "definition": "\\( I = neAv_d \\) (charge in a cylinder of length v_d Δt crossing A per Δt)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ],
+      "definitionImage": "media/fig_3_4_current_cylinder.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: what does this path show?",
+      "definition": "Random zig-zag of an electron between collisions (A → B); with a field it ends at <span style=\"color:#3b82f6\">B′</span> — a slight <span style=\"color:#3b82f6\">drift opposite to E</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ],
+      "termImage": "media/fig_3_3_drift_path.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive conductivity from the drift model.",
+      "definition": "\\( j = \\dfrac{ne^2\\tau}{m}E \\Rightarrow \\sigma = \\dfrac{ne^2\\tau}{m},\\ \\rho = \\dfrac{m}{ne^2\\tau} \\) — Ohm’s law, if n and τ don’t depend on E",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Drift speed of electrons in copper (Example 3.1)",
+      "definition": "n = 8.5 × 10²⁸ m⁻³; v_d = I/neA ≈ 1.1 × 10⁻³ m/s",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.1 · drift speed in copper</p><h2>Find the missing step.</h2><div class=\"prob\">Cu wire, A = 1.0 × 10⁻⁷ m², I = 1.5 A, ρ(density) = 9.0 × 10³ kg/m³, 63.5 u, one free electron per atom. v_d?</div><ol><li>n = (9.0 × 10⁶ g/m³ ÷ 63.5 g) × 6.0 × 10²³ = <b>8.5 × 10²⁸ m⁻³</b></li><li class=\"h\">?</li><li>v<sub>d</sub> = 1.5/(8.5 × 10²⁸ × 1.6 × 10⁻¹⁹ × 10⁻⁷) = <b>1.1 mm/s</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.1 · drift speed in copper</p><h2>Find the missing step.</h2><div class=\"prob\">Cu wire, A = 1.0 × 10⁻⁷ m², I = 1.5 A, ρ(density) = 9.0 × 10³ kg/m³, 63.5 u, one free electron per atom. v_d?</div><ol><li>n = (9.0 × 10⁶ g/m³ ÷ 63.5 g) × 6.0 × 10²³ = <b>8.5 × 10²⁸ m⁻³</b></li><li class=\"r\">v<sub>d</sub> = I/(neA)</li><li>v<sub>d</sub> = 1.5/(8.5 × 10²⁸ × 1.6 × 10⁻¹⁹ × 10⁻⁷) = <b>1.1 mm/s</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.1(b): drift speed vs thermal speed of Cu atoms vs speed of the field signal?",
+      "definition": "v_d ~ 10⁻³ m/s; thermal speed of Cu atoms ~ <span style=\"color:#f08c00\">2 × 10² m/s</span> (~10⁵ times more); field travels at <span style=\"color:#f08c00\">3 × 10⁸ m/s</span> (~10¹¹ times more)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Update: how fast do the conduction electrons themselves move at random?",
+      "definition": "About <span style=\"color:#f08c00\">10⁶ m/s</span> (the Fermi speed, a quantum effect) — so v_d is ~10⁻⁹ of their random speed; NCERT compares with atoms’ thermal speed instead",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.2(a): drift is only mm/s. Why does a bulb light instantly?",
+      "definition": "The <span style=\"color:#3b82f6\">electric field</span> is set up in the whole circuit at nearly the speed of light; electrons everywhere start drifting at once",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.2(c): tiny drift, tiny charge — how are currents large?",
+      "definition": "The <span style=\"color:#3b82f6\">number density</span> of free electrons is enormous, ~<span style=\"color:#f08c00\">10²⁹ m⁻³</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.2(d): do all free electrons move in the same direction?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the small drift is <span style=\"color:#3b82f6\">superposed</span> on large random velocities",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.2(e): are electron paths straight between collisions?",
+      "definition": "Without a field: <span style=\"color:#3b82f6\">straight</span>. With a field: <span style=\"color:#3b82f6\">curved</span> (parabolic), like projectiles",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.9: n = 8.5 × 10²⁸ m⁻³, A = 2.0 × 10⁻⁶ m², I = 3.0 A. Time to drift along 3.0 m?",
+      "definition": "v_d ≈ 1.1 × 10⁻⁴ m/s → t ≈ <span style=\"color:#f08c00\">2.7 × 10⁴ s</span> (~7.5 h)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5-drift-of-electrons"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define mobility. Unit?",
+      "definition": "\\( \\mu = \\dfrac{|v_d|}{E} = \\dfrac{e\\tau}{m} \\); m² V⁻¹ s⁻¹ (1 m²/Vs = 10⁴ cm²/Vs); always positive",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5.1-mobility"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dimensions of mobility?",
+      "definition": "[M⁻¹ T² A]",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5.1-mobility"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mobile charge carriers in metals, ionised gases, electrolytes?",
+      "definition": "Metals: <span style=\"color:#3b82f6\">electrons</span>; ionised gas: <span style=\"color:#3b82f6\">electrons and positive ions</span>; electrolytes: <span style=\"color:#3b82f6\">positive and negative ions</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5.1-mobility"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: conductivity in terms of mobility?",
+      "definition": "\\( \\sigma = ne\\mu \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.5.1-mobility"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Three kinds of deviation from Ohm’s law?",
+      "definition": "(a) V not ∝ I (<span style=\"color:#22a35a\">good conductor at large I</span>); (b) depends on the <span style=\"color:#3b82f6\">sign of V</span> (<span style=\"color:#22a35a\">diode</span>); (c) <span style=\"color:#3b82f6\">non-unique</span> V for the same I (<span style=\"color:#22a35a\">GaAs</span>)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.6-limitations-of-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: what does this V–I graph show?",
+      "definition": "A <span style=\"color:#3b82f6\">good conductor</span> deviating from the straight Ohm’s-law line (dashed) at large current",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.6-limitations-of-ohms-law"
+      ],
+      "termImage": "media/fig_3_5_ohmic.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: which device has this I–V curve? Note the axes.",
+      "definition": "A <span style=\"color:#3b82f6\">diode</span>: current depends on the sign of V; note different scales (mA/V forward, μA/V reverse)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.6-limitations-of-ohms-law"
+      ],
+      "termImage": "media/fig_3_6_diode.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: which material shows this I–V curve?",
+      "definition": "<span style=\"color:#3b82f6\">GaAs</span>: a negative-resistance region, so one I can occur at more than one V",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.6-limitations-of-ohms-law"
+      ],
+      "termImage": "media/fig_3_7_gaas.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: do silver or germanium obey Ohm’s law always?",
+      "definition": "Only within some range of field; <span style=\"color:#e5484d\">all materials deviate</span> in very strong fields",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.6-limitations-of-ohms-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Resistivity range of metals? Insulators?",
+      "definition": "Metals: <span style=\"color:#f08c00\">10⁻⁸ to 10⁻⁶ Ω m</span>. Insulators (ceramic, rubber, plastic): <span style=\"color:#f08c00\">≥10¹⁸ times</span> larger",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.7-resistivity-of-materials"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Note: NCERT’s summary says insulators are 10²² to 10²⁴ times more resistive; the text says 10¹⁸ or more. Which is right?",
+      "definition": "Both are rough: real insulators span ~<span style=\"color:#f08c00\">10¹⁸–10²⁴</span> times metals (glass lower, hard rubber higher). Remember “metals 10⁻⁸, insulators ~10¹⁰ and up”",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.7-resistivity-of-materials"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two special features of semiconductors’ resistivity?",
+      "definition": "It <span style=\"color:#3b82f6\">decreases with temperature</span>, and falls sharply on adding small amounts of suitable <span style=\"color:#3b82f6\">impurities</span> (doping)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.7-resistivity-of-materials"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Resistivity of a metal vs temperature (limited range)?",
+      "definition": "\\( \\rho_T = \\rho_0[1 + \\alpha(T - T_0)] \\); α > 0 for metals, unit K⁻¹ (or °C⁻¹)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the temperature coefficient of resistivity α.",
+      "definition": "The <span style=\"color:#3b82f6\">fractional increase in resistivity per unit rise</span> in temperature",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: whose resistivity–temperature graph is this?",
+      "definition": "<span style=\"color:#3b82f6\">Copper</span>: roughly linear near room temperature, curving away at low T",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ],
+      "termImage": "media/fig_3_8_copper.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: whose resistivity–temperature graph is this? Why useful?",
+      "definition": "<span style=\"color:#3b82f6\">Nichrome</span>: very weak dependence (also manganin, constantan) → used in <span style=\"color:#3b82f6\">standard resistors</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ],
+      "termImage": "media/fig_3_9_nichrome.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: what kind of material has this ρ–T graph?",
+      "definition": "A <span style=\"color:#3b82f6\">semiconductor</span>: ρ falls steeply as T rises",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ],
+      "termImage": "media/fig_3_10_semiconductor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a metal’s resistivity rise with temperature?",
+      "definition": "n is almost constant, but faster random motion means more frequent collisions: <span style=\"color:#3b82f6\">τ decreases</span> → ρ = m/ne²τ rises",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a semiconductor’s resistivity fall with temperature?",
+      "definition": "<span style=\"color:#3b82f6\">n increases</span> sharply with T, more than offsetting the fall in τ",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Nichrome is an alloy of which metals?",
+      "definition": "<span style=\"color:#3b82f6\">Nickel and chromium</span> (NCERT adds iron, present in some grades)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Heating element temperature from resistance (Example 3.3)",
+      "definition": "R₂ = 85.8 Ω; ΔT = 820 °C; T₂ = 847 °C",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.3 · toaster</p><h2>Find the missing step.</h2><div class=\"prob\">Nichrome element: 75.3 Ω at 27.0 °C; on 230 V the current settles at 2.68 A. α = 1.70 × 10⁻⁴ °C⁻¹. Steady temperature?</div><ol><li>Hot resistance R₂ = 230/2.68 = <b>85.8 Ω</b></li><li>R₂ = R₁[1 + α(T₂ − T₁)]</li><li class=\"h\">?</li><li>T₂ = <b>847 °C</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.3 · toaster</p><h2>Find the missing step.</h2><div class=\"prob\">Nichrome element: 75.3 Ω at 27.0 °C; on 230 V the current settles at 2.68 A. α = 1.70 × 10⁻⁴ °C⁻¹. Steady temperature?</div><ol><li>Hot resistance R₂ = 230/2.68 = <b>85.8 Ω</b></li><li>R₂ = R₁[1 + α(T₂ − T₁)]</li><li class=\"r\">T₂ − T₁ = (85.8 − 75.3)/(75.3 × 1.70 × 10⁻⁴) = 820 °C</li><li>T₂ = <b>847 °C</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.4: Pt thermometer reads 5 Ω at 0 °C, 5.23 Ω at 100 °C, 5.795 Ω in a bath. Bath temperature?",
+      "definition": "t = (5.795 − 5)/(5.23 − 5) × 100 = <span style=\"color:#f08c00\">345.65 °C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.3: 100 Ω at 27 °C becomes 117 Ω; α = 1.70 × 10⁻⁴ °C⁻¹. Temperature?",
+      "definition": "ΔT = 0.17/1.7 × 10⁻⁴ = 1000 °C → <span style=\"color:#f08c00\">1027 °C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.5: silver wire 2.1 Ω at 27.5 °C, 2.7 Ω at 100 °C. α?",
+      "definition": "0.6/(2.1 × 72.5) ≈ <span style=\"color:#f08c00\">0.0039 °C⁻¹</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.6: nichrome on 230 V draws 3.2 A initially, 2.8 A steady; room 27 °C. Steady temperature?",
+      "definition": "R = 71.9 Ω → 82.1 Ω; ΔT ≈ 840 °C → <span style=\"color:#f08c00\">≈ 867 °C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.4: 15 m wire, A = 6.0 × 10⁻⁷ m², R = 5.0 Ω. Resistivity?",
+      "definition": "ρ = RA/l = <span style=\"color:#f08c00\">2.0 × 10⁻⁷ Ω m</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.8-temperature-dependence-of-resistivity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Charge ΔQ falls through V: where does the lost potential energy go in a real conductor?",
+      "definition": "Not into KE (drift is steady) but into <span style=\"color:#3b82f6\">heat</span>: collisions pass it to the ions, which vibrate more",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.9-electrical-energy-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Power dissipated in a resistor?",
+      "definition": "\\( P = IV = I^2R = \\dfrac{V^2}{R} \\) (ohmic loss)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.9-electrical-energy-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who supplies the power in a simple cell–resistor circuit?",
+      "definition": "The <span style=\"color:#3b82f6\">chemical energy</span> of the cell",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.9-electrical-energy-power"
+      ],
+      "definitionImage": "media/fig_3_11_cell_resistor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is power transmitted at very high voltage?",
+      "definition": "Line loss \\( P_c = \\dfrac{P^2R_c}{V^2} \\) ∝ 1/V²: high V means small I and small loss; a <span style=\"color:#3b82f6\">transformer</span> steps it down for use",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.9-electrical-energy-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Series or parallel: which bulb glows brighter, 100 W or 60 W (both 220 V)?",
+      "definition": "Parallel: <span style=\"color:#3b82f6\">100 W</span> (P = V²/R, smaller R). Series: <span style=\"color:#3b82f6\">60 W</span> (same I, P = I²R, larger R)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.9-electrical-energy-power"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define emf of a cell (in terms of electrode potentials).",
+      "definition": "ε = V₊ + V₋: potential difference between the terminals on <span style=\"color:#3b82f6\">open circuit</span> (no current)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ],
+      "definitionImage": "media/fig_3_12_cell.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Summary definition of emf (work).",
+      "definition": "Work done per unit charge by the source in taking charge from <span style=\"color:#3b82f6\">lower to higher potential energy</span> inside it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is emf a force?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is a potential difference; the name is historical",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Terminal voltage when the cell delivers current I?",
+      "definition": "\\( V = \\varepsilon - Ir \\) (r = internal resistance)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Current from a cell into an external resistor R?",
+      "definition": "\\( I = \\dfrac{\\varepsilon}{R + r} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Maximum current a cell can give? Is it safe?",
+      "definition": "\\( I_{max} = \\varepsilon/r \\) (short circuit); <span style=\"color:#e5484d\">usually far above the safe limit</span> — damages the cell",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Terminal voltage while a cell is being charged?",
+      "definition": "\\( V = \\varepsilon + Ir \\) (current enters at the + terminal)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which has higher internal resistance: dry cells or common electrolytic cells?",
+      "definition": "<span style=\"color:#3b82f6\">Dry cells</span> (much higher)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.1: car battery ε = 12 V, r = 0.4 Ω. Maximum current?",
+      "definition": "<span style=\"color:#f08c00\">30 A</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.2: ε = 10 V, r = 3 Ω, I = 0.5 A. External R and terminal voltage?",
+      "definition": "R = 20 − 3 = <span style=\"color:#f08c00\">17 Ω</span>; V = 10 − 1.5 = <span style=\"color:#f08c00\">8.5 V</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Terminal voltage during charging (Exercise 3.8)",
+      "definition": "I = 7 A; V = ε + Ir = 11.5 V; the series resistor limits the current",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 3.8 · charging a battery</p><h2>Find the missing step.</h2><div class=\"prob\">8.0 V battery (r = 0.5 Ω) charged from 120 V dc through a 15.5 Ω series resistor. Terminal voltage?</div><ol><li>Net driving emf = 120 − 8 = 112 V</li><li>I = 112/(15.5 + 0.5) = <b>7 A</b></li><li class=\"h\">?</li><li>The series resistor limits the current, which would otherwise be dangerously large</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 3.8 · charging a battery</p><h2>Find the missing step.</h2><div class=\"prob\">8.0 V battery (r = 0.5 Ω) charged from 120 V dc through a 15.5 Ω series resistor. Terminal voltage?</div><ol><li>Net driving emf = 120 − 8 = 112 V</li><li>I = 112/(15.5 + 0.5) = <b>7 A</b></li><li class=\"r\">Charging: V = ε + Ir = 8 + 7 × 0.5 = <b>11.5 V</b></li><li>The series resistor limits the current, which would otherwise be dangerously large</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: power delivered to R by a cell (ε, r) is maximum when?",
+      "definition": "\\( R = r \\) (maximum power transfer); P_max = ε²/4r",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.10-cells-emf-internal-resistance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two cells in series (+ to −): equivalent emf and internal resistance?",
+      "definition": "\\( \\varepsilon_{eq} = \\varepsilon_1 + \\varepsilon_2,\\ r_{eq} = r_1 + r_2 \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.11-cells-in-series-and-parallel"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two cells in series with like terminals joined (opposing)?",
+      "definition": "\\( \\varepsilon_{eq} = \\varepsilon_1 - \\varepsilon_2 \\) (ε₁ > ε₂); r still adds",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.11-cells-in-series-and-parallel"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two cells in parallel: equivalent emf and internal resistance?",
+      "definition": "\\( \\dfrac{1}{r_{eq}} = \\dfrac1{r_1} + \\dfrac1{r_2},\\quad \\dfrac{\\varepsilon_{eq}}{r_{eq}} = \\dfrac{\\varepsilon_1}{r_1} + \\dfrac{\\varepsilon_2}{r_2} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.11-cells-in-series-and-parallel"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Parallel cells with one reversed?",
+      "definition": "Use the same formulas with \\( \\varepsilon_2 \\to -\\varepsilon_2 \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.11-cells-in-series-and-parallel"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: n identical cells (ε, r) in parallel?",
+      "definition": "ε_eq = <span style=\"color:#f08c00\">ε</span>, r_eq = <span style=\"color:#f08c00\">r/n</span>: same emf, more current capacity",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.11-cells-in-series-and-parallel"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: when is series better, when parallel (n identical cells, external R)?",
+      "definition": "<span style=\"color:#3b82f6\">Series</span> if R ≫ r (I = nε/(R + nr)); <span style=\"color:#3b82f6\">parallel</span> if R ≪ r (I = ε/(R + r/n))",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.11-cells-in-series-and-parallel"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Kirchhoff’s junction rule. Basis?",
+      "definition": "Sum of currents entering = sum leaving; based on <span style=\"color:#3b82f6\">conservation of charge</span> (no charge piles up in steady state)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Kirchhoff’s loop rule. Basis?",
+      "definition": "Algebraic sum of potential changes around any closed loop = 0; based on <span style=\"color:#3b82f6\">potential being single-valued</span> (energy conservation)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: write the junction rule at a and the loop rules shown.",
+      "definition": "I₃ = I₁ + I₂; loop ahdcba: −30I₁ − 41I₃ + 45 = 0; loop ahdefga: −30I₁ + 21I₂ − 80 = 0",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ],
+      "termImage": "media/fig_3_15_kirchhoff.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Sign convention: crossing a resistor and a cell in a loop?",
+      "definition": "Resistor <span style=\"color:#3b82f6\">along the current</span>: −IR (drop); against: +IR. Cell from − to +: +ε; from + to −: −ε",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A current comes out negative after solving. What does it mean?",
+      "definition": "The actual current flows <span style=\"color:#3b82f6\">opposite</span> to the arrow you assumed — no need to redo",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: does bending or reorienting wires affect the junction rule?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is charge conservation, independent of geometry",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Cube of equal resistors, body diagonal (Example 3.5)",
+      "definition": "R_eq = 5R/6; with 10 V and R = 1 Ω: 12 A total, 4 A in each edge next to A or C′, 2 A in the middle edges",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.5 · cube of resistors</p><h2>Find the missing step.</h2><div class=\"prob\">Twelve 1 Ω resistors on the edges of a cube; 10 V across diagonally opposite corners A and C′. R_eq and currents?</div><ol><li>By symmetry each of the 3 edges from A carries I, total 3I</li><li>Each splits into two edges carrying I/2, which recombine into 3 edges carrying I</li><li class=\"h\">?</li><li>R<sub>eq</sub> = ε/3I = <b>5R/6 = 5/6 Ω</b>; 3I = 12 A, I = 4 A</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.5 · cube of resistors</p><h2>Find the missing step.</h2><div class=\"prob\">Twelve 1 Ω resistors on the edges of a cube; 10 V across diagonally opposite corners A and C′. R_eq and currents?</div><ol><li>By symmetry each of the 3 edges from A carries I, total 3I</li><li>Each splits into two edges carrying I/2, which recombine into 3 edges carrying I</li><li class=\"r\">Loop A → B → C → C′ → battery: ε = IR + ½IR + IR = (5/2) IR</li><li>R<sub>eq</sub> = ε/3I = <b>5R/6 = 5/6 Ω</b>; 3I = 12 A, I = 4 A</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: equivalent resistance between opposite corners of this cube (each edge R)?",
+      "definition": "\\( R_{eq} = \\dfrac56 R \\) (symmetry: I, I/2, I pattern)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ],
+      "termImage": "media/fig_3_16_cube.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: cube of resistors R between the ends of one edge? Across a face diagonal?",
+      "definition": "Edge: <span style=\"color:#f08c00\">7R/12</span>; face diagonal: <span style=\"color:#f08c00\">3R/4</span>; body diagonal: <span style=\"color:#f08c00\">5R/6</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3.6 (Fig 3.17): branch currents?",
+      "definition": "I₁ = <span style=\"color:#f08c00\">2.5 A</span>, I₂ = <span style=\"color:#f08c00\">5/8 A</span>, I₃ = <span style=\"color:#f08c00\">15/8 A</span>; AB 5/8 A, CA and BC 2.5 A, AD and DEB 15/8 A, CD <span style=\"color:#f08c00\">0</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ],
+      "termImage": "media/fig_3_17_network.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction/reading note: NCERT prints I₃ in Example 3.6 as a mixed fraction. Value?",
+      "definition": "I₃ = 1⁷⁄₈ A = <span style=\"color:#f08c00\">15/8 A = 1.875 A</span> (check: I₂ + I₃ = 2.5 A)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.12-kirchhoffs-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Wheatstone bridge: name the arms.",
+      "definition": "Battery across A–C (<span style=\"color:#3b82f6\">battery arm</span>); galvanometer across B–D (<span style=\"color:#3b82f6\">galvanometer arm</span>); four resistors R₁…R₄",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.13-wheatstone-bridge"
+      ],
+      "definitionImage": "media/fig_3_18_wheatstone.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Balance condition of a Wheatstone bridge?",
+      "definition": "\\( \\dfrac{R_2}{R_1} = \\dfrac{R_4}{R_3} \\) → I_g = 0 (null deflection)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.13-wheatstone-bridge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is an unknown resistance found with a Wheatstone bridge?",
+      "definition": "Put it in arm 4, fix R₁ and R₂, vary R₃ until null: \\( R_4 = R_3\\dfrac{R_2}{R_1} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.13-wheatstone-bridge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "At balance, does it matter if the battery and galvanometer are swapped?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the balance condition is unchanged; the galvanometer resistance also doesn’t matter at balance",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.13-wheatstone-bridge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Name a practical device based on the Wheatstone bridge.",
+      "definition": "The <span style=\"color:#3b82f6\">meter bridge</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.13-wheatstone-bridge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: balance condition?",
+      "definition": "“<span style=\"color:#3b82f6\">Products of opposite arms are equal</span>”: R₁R₄ = R₂R₃",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.13-wheatstone-bridge"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Current through the galvanometer in an unbalanced bridge (Example 3.7)",
+      "definition": "Three loop equations; I₂ = 31.5 I_g; I_g ≈ 4.87 mA",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.7 · unbalanced bridge</p><h2>Find the missing step.</h2><div class=\"prob\">AB = 100 Ω, BC = 10 Ω, CD = 5 Ω, DA = 60 Ω; galvanometer 15 Ω across BD; 10 V across AC. I_g?</div><ol><li>Loop BADB: 100I₁ + 15I<sub>g</sub> − 60I₂ = 0</li><li class=\"h\">?</li><li>Loop ADCEA: 60I₂ + 5(I₂ + I<sub>g</sub>) = 10</li><li>Eliminate I₁: I₂ = 31.5 I<sub>g</sub> → I<sub>g</sub> = 2/410.5 = <b>4.87 mA</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 3.7 · unbalanced bridge</p><h2>Find the missing step.</h2><div class=\"prob\">AB = 100 Ω, BC = 10 Ω, CD = 5 Ω, DA = 60 Ω; galvanometer 15 Ω across BD; 10 V across AC. I_g?</div><ol><li>Loop BADB: 100I₁ + 15I<sub>g</sub> − 60I₂ = 0</li><li class=\"r\">Loop BCDB: 10(I₁ − I<sub>g</sub>) − 15I<sub>g</sub> − 5(I₂ + I<sub>g</sub>) = 0</li><li>Loop ADCEA: 60I₂ + 5(I₂ + I<sub>g</sub>) = 10</li><li>Eliminate I₁: I₂ = 31.5 I<sub>g</sub> → I<sub>g</sub> = 2/410.5 = <b>4.87 mA</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.13-wheatstone-bridge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: the unbalanced bridge of Example 3.7. Why is it unbalanced?",
+      "definition": "100/10 ≠ 60/5 (10 ≠ 12), so <span style=\"color:#3b82f6\">I_g ≠ 0</span> (4.87 mA)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.13-wheatstone-bridge"
+      ],
+      "termImage": "media/fig_3_19_example.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 3.7 (Fig 3.20): currents in the network with 10 V and a 10 Ω series resistor?",
+      "definition": "R_AC = 7 Ω → total <span style=\"color:#f08c00\">10/17 A</span>; AB and DC <span style=\"color:#f08c00\">4/17 A</span>, AD and BC <span style=\"color:#f08c00\">6/17 A</span>, BD <span style=\"color:#f08c00\">2/17 A</span> (from D to B)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "3.13-wheatstone-bridge"
+      ],
+      "termImage": "media/fig_3_20_exercise.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: why can j = ρv (charge density × velocity) not be applied to the total charge of a wire?",
+      "definition": "A current-carrying wire is <span style=\"color:#3b82f6\">neutral</span> (ρ₊ = −ρ₋, total ρ = 0), yet j ≠ 0; apply j = ρv to each carrier type separately (j = ρ₋v₋, as v₊ ≈ 0)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Kirchhoff’s rules: which conservation law does each express?",
+      "definition": "Junction: <span style=\"color:#3b82f6\">charge</span>. Loop: <span style=\"color:#3b82f6\">energy</span> (potential is single-valued)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 3 formula sheet",
+      "definition": "Resistance: R = ρl/A; Drift velocity: v_d = eEτ/m; Current: I = neAv_d; Resistivity: ρ = m/ne²τ; Mobility: μ = v_d/E = eτ/m; Temperature: ρ_T = ρ₀[1 + α(T − T₀)]; Cell: V = ε − Ir, I = ε/(R + r); Power: P = VI = I²R = V²/R; Bridge balance: R₁R₄ = R₂R₃",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Resistance</td><td class=\"q\">?</td></tr><tr><td>Drift velocity</td><td class=\"q\">?</td></tr><tr><td>Current</td><td class=\"q\">?</td></tr><tr><td>Resistivity</td><td class=\"q\">?</td></tr><tr><td>Mobility</td><td class=\"q\">?</td></tr><tr><td>Temperature</td><td class=\"q\">?</td></tr><tr><td>Cell</td><td class=\"q\">?</td></tr><tr><td>Power</td><td class=\"q\">?</td></tr><tr><td>Bridge balance</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Resistance</td><td class=\"a\">R = ρl/A</td></tr><tr><td>Drift velocity</td><td class=\"a\">v_d = eEτ/m</td></tr><tr><td>Current</td><td class=\"a\">I = neAv_d</td></tr><tr><td>Resistivity</td><td class=\"a\">ρ = m/ne²τ</td></tr><tr><td>Mobility</td><td class=\"a\">μ = v_d/E = eτ/m</td></tr><tr><td>Temperature</td><td class=\"a\">ρ_T = ρ₀[1 + α(T − T₀)]</td></tr><tr><td>Cell</td><td class=\"a\">V = ε − Ir, I = ε/(R + r)</td></tr><tr><td>Power</td><td class=\"a\">P = VI = I²R = V²/R</td></tr><tr><td>Bridge balance</td><td class=\"a\">R₁R₄ = R₂R₃</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 3 concept checks",
+      "definition": "Current is a vector: False (scalar); Metals’ resistance rises with temperature: True; Drift speed is of the order of the speed of light: False (~mm/s); Terminal voltage < emf while discharging: True; Ohm’s law holds for a diode: False",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>Current is a vector</td><td class=\"q\">?</td></tr><tr><td>Metals’ resistance rises with temperature</td><td class=\"q\">?</td></tr><tr><td>Drift speed is of the order of the speed of light</td><td class=\"q\">?</td></tr><tr><td>Terminal voltage < emf while discharging</td><td class=\"q\">?</td></tr><tr><td>Ohm’s law holds for a diode</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>Current is a vector</td><td class=\"a no\">False (scalar)</td></tr><tr><td>Metals’ resistance rises with temperature</td><td class=\"a\">True</td></tr><tr><td>Drift speed is of the order of the speed of light</td><td class=\"a no\">False (~mm/s)</td></tr><tr><td>Terminal voltage < emf while discharging</td><td class=\"a\">True</td></tr><tr><td>Ohm’s law holds for a diode</td><td class=\"a no\">False</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-3",
+        "summary"
+      ]
+    }
+  ]
+}

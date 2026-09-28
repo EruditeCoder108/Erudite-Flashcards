@@ -22,7 +22,7 @@ The most important rules, in short (details in section 2):
 - **Build fast, but the cards must actually teach.** Mostly text and cloze with the colour code; attach NCERT figures freely; occlusion only for diagrams students must label.
 - **Biology, inorganic and organic chemistry: strictly NCERT. Physical chemistry, physics and maths: teacher-style and exam-weighted** (JEE/NEET): formulas, worked numericals (`steps_card`), units, standard traps.
 - **KaTeX** `\( … \)` in basic/cloze text; never a cloze inside math; never `\text{}`.
-- **Intuition matters most where students get confused** (physics especially): explain what symbols and quantities mean, use analogies. Animated `showcase`/`showcase_phy` cards only where motion explains better than a figure — the later owner rule caps this at **one per chapter** (section 2.3).
+- **Intuition matters most where students get confused** (physics especially): explain what symbols and quantities mean, use analogies. **Ship first, upgrade later** (owner, Physics 12): animated cards and occlusion are optional extras. Most chapters need **no** animation; add 1–2 only where motion genuinely teaches what a figure cannot. Spend the effort on high-quality text/cloze/figure cards (section 2.3).
 - **Where a chapter has diagrams or derivations that matter for exams, crop nearly all of them** (one card each).
 - **Mnemonics and clearly labelled corrections/updates** where NCERT is wrong or outdated (about 5–10% of the deck). **Recompute before claiming NCERT is wrong.**
 - **Git:** if `index.lock` exists, wait a few seconds and retry (another program briefly holds it). After each commit, check the old zip was really removed and the push went through.
@@ -78,7 +78,7 @@ The owner said: *"we are not just mimicking what NCERT says… use your own know
 | Biology, inorganic chemistry, organic chemistry | **Strictly NCERT.** Use NCERT wording, examples, tables and figures. NEET asks line-by-line. |
 | Physics, physical chemistry, maths | **Teacher-style and exam-weighted** (JEE/NEET/boards). Include formulas, derivation steps that matter, standard traps, units and worked examples. Skip fluff. |
 
-**Animations (owner, Physics 11 Ch 10):** at most one animated `showcase_phy` card per chapter, and only where motion teaches something a figure cannot. Spend the effort on card content, diagrams (cropped or `draw.py`), colour and styling instead.
+**Animations and occlusion (owner, Physics 11 Ch 10, reaffirmed Physics 12):** the priority is to ship every chapter fast with great text, cloze and figure cards. Animated `showcase_phy` cards only rarely, where motion genuinely teaches something a figure cannot: most chapters need none, a few may need 1–2. Occlusion likewise only for diagrams students must label; skip it when in doubt. Both can be added later as upgrades. Spend the effort on card content, diagrams (cropped or `draw.py`), colour and styling instead.
 
 **Physics figures (owner, Physics 11):** NCERT physics diagrams are often cluttered and use uncommon units or symbols. Use the notation and units students commonly use. Crop NCERT figures when they are clear; otherwise draw a clean one with `draw.py` (free-body diagrams, graphs, vectors, ray diagrams) or use a royalty-free image, but only if it is precise and correct.
 
@@ -281,8 +281,8 @@ Don't polish endlessly: move on to the next chapter.
 | Chemistry 12 | 1–10 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
 | Physics 11 | 1–3, 5–14 — complete | Done (PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; answer keys `keph1an.pdf`, `keph2an.pdf`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py` + `figures_phy_chNN.py`, animations in `showcase_phy.py`, drawn figures via `draw.py`) |
 | Physics 11 | 4 | Pilot |
-| Physics 12 | 1–2 | Done (PDFs unzipped to `NCERT-pdfs/phy12/`: Ch 1–8 = `leph101–108`, Ch 9–14 = `leph201–206`; answer keys `leph1an.pdf`, `leph2an.pdf`; decks in `premade-cards/12th/Physics/` (new folder, no old zips: manifest now exists, so use `replace_deck.py premade-cards/12th/Physics none.zip <deck-id>`), scripts `phy12_chNN.py` + `figures_phy12_chNN.py`) |
-| Physics 12 | 3–14 | **Next: Physics 12 Ch 3** (`leph103`, Current Electricity). Follow `phy12_ch01.py`: teacher-style, `steps_card` numericals, exercises answered on cards, labelled corrections/updates, drawn figures for cluttered NCERT ones, at most one animation per chapter. |
+| Physics 12 | 1–3 | Done (PDFs unzipped to `NCERT-pdfs/phy12/`: Ch 1–8 = `leph101–108`, Ch 9–14 = `leph201–206`; answer keys `leph1an.pdf`, `leph2an.pdf`; decks in `premade-cards/12th/Physics/` (new folder, no old zips: manifest now exists, so use `replace_deck.py premade-cards/12th/Physics none.zip <deck-id>`), scripts `phy12_chNN.py` + `figures_phy12_chNN.py`) |
+| Physics 12 | 4–14 | **Next: Physics 12 Ch 4** (`leph104`, Moving Charges and Magnetism). Follow `phy12_ch01.py`: teacher-style, `steps_card` numericals, exercises answered on cards, labelled corrections/updates, drawn figures for cluttered NCERT ones; animation/occlusion only where genuinely needed (usually none). |
 | Maths 11 | 3 | Pilot |
 | Maths 11 | others | Not started |
 | Maths 12 | all | Not started |
