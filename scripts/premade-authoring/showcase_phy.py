@@ -393,3 +393,80 @@ def explosion_cm(deck):
          'Exploding projectile: path of the centre of mass',
          'Internal explosion forces do not affect the CM; with gravity alone acting, the CM continues on the original parabola',
          css, hint='Which forces are external?', vb='0 0 300 185')
+
+
+# ---------------------------------------------------------------- Ch 7 Gravitation
+def kepler_second_law(deck):
+    import math
+    a, e, cx, cy, n = 112, 0.6, 142, 96, 60
+    b, c = a * math.sqrt(1 - e * e), a * e
+    def pos(M):
+        E = M
+        for _ in range(30):
+            E -= (E - e * math.sin(E) - M) / (1 - e * math.cos(E))
+        return cx + a * math.cos(E), cy + b * math.sin(E)
+    sx, sy = cx + c, cy                           # Sun at the right focus; perihelion is the right end
+    p0 = pos(0)
+    pts = [(x - p0[0], y - p0[1]) for x, y in (pos(2 * math.pi * i / n) for i in range(n + 1))]
+    css = keyframes('kp', pts, 6.0, 'linear', 0.3)
+    orbit = ' '.join(f'{cx + a * math.cos(t):.1f},{cy + b * math.sin(t):.1f}' for t in [2 * math.pi * i / 80 for i in range(81)])
+    def wedge(m0, m1):
+        arc = [pos(m0 + (m1 - m0) * k / 12) for k in range(13)]
+        return f'{sx:.1f},{sy:.1f} ' + ' '.join(f'{x:.1f},{y:.1f}' for x, y in arc)
+    base = (f'<polyline class="guide" points="{orbit}"></polyline>'
+            f'<circle class="dot" cx="{sx:.1f}" cy="{sy:.1f}" r="7"></circle><text class="yl" x="{sx:.1f}" y="{sy + 22:.1f}" text-anchor="middle">Sun</text>')
+    still = f'<circle class="obj" cx="{p0[0]:.1f}" cy="{p0[1]:.1f}" r="6"></circle>'
+    back = (f'<polygon class="zone" points="{wedge(-0.45, 0.45)}"></polygon>'
+            f'<polygon class="zone2" points="{wedge(math.pi - 0.45, math.pi + 0.45)}"></polygon>'
+            f'<g transform="translate({p0[0]:.1f},{p0[1]:.1f})"><circle class="obj kp" cx="0" cy="0" r="6"></circle></g>'
+            '<text class="yl" x="292" y="30" text-anchor="end">near Sun: fast</text>'
+            '<text class="gr" x="8" y="30">far: slow</text>')
+    anim(deck, 'Kepler’s second law · intuition',
+         'Why does a planet move fastest at perihelion and slowest at aphelion?',
+         base, back,
+         '<p>The two shaded wedges are swept in <b>equal times</b> and have <b>equal areas</b>: short and wide near the Sun, long and thin far away.</p>'
+         '<p>Gravity is a central force, so <b>L = m r v⊥ is conserved</b>: small r → large v.</p>',
+         'Law of areas: fast at perihelion, slow at aphelion',
+         'Equal areas in equal times because L = mr v⊥ is conserved (central force); small r gives large speed',
+         css, hint='Watch the speed, then think about angular momentum.', vb='0 0 300 190', front_only=still)
+
+
+def newtons_cannon(deck):
+    import math
+    S, cx, cy, Re = 58, 150, 118, 0.86          # px per unit, centre, Earth radius (launch at r = 1)
+    def path(v, tmax):
+        x, y, vx, vy, dt, t, out = 0.0, 1.0, v, 0.0, 0.002, 0.0, [(0.0, 1.0)]
+        while t < tmax:
+            r3 = (x * x + y * y) ** 1.5
+            vx -= x / r3 * dt; vy -= y / r3 * dt
+            x += vx * dt; y += vy * dt; t += dt
+            if int(t / dt) % 25 == 0:
+                out.append((x, y))
+            if x * x + y * y < Re * Re or abs(x) > 2.5 or y > 1.9 or y < -1.9:
+                break
+        return out
+    runs = [('c3', 'dot3', 0.62, 'falls back', 3.0), ('curve', 'dot', 1.0, 'orbit: v = √(gR)', 6.3), ('c2', 'dot2', math.sqrt(2), 'escapes: √2 × orbit speed', 3.2)]
+    base = (f'<circle class="obj" cx="{cx}" cy="{cy}" r="{Re * S:.1f}"></circle>'
+            f'<polygon class="road" points="{cx - 8},{cy - Re * S + 2:.1f} {cx},{cy - S:.1f} {cx + 8},{cy - Re * S + 2:.1f}"></polygon>'
+            '<text class="lbl" x="150" y="122" text-anchor="middle">Earth</text>')
+    css, back, legend = '', '', ''
+    for k, (cls, dcls, v, label, dur) in enumerate(runs):
+        pts = path(v, 12.0)
+        poly = ' '.join(f'{cx + S * x:.1f},{cy - S * y:.1f}' for x, y in pts)
+        back += f'<polyline class="{cls}" points="{poly}" opacity=".55"></polyline>'
+        rel = [(S * x, -S * (y - 1)) for x, y in pts]
+        step = max(1, len(rel) // 50)
+        rel = rel[::step] + [rel[-1]]
+        css += keyframes(f'nc{k}', rel, dur, 'linear', 0.3)
+        back += f'<g transform="translate({cx},{cy - S})"><circle class="{dcls} nc{k}" cx="0" cy="0" r="4.5"></circle></g>'
+        legend += f'<text class="{["rd", "yl", "gr"][k]}" x="8" y="{186 + 0 * k}"></text>'
+    back += ('<text class="rd" x="8" y="20">slow: falls back</text><text class="yl" x="8" y="36">√(gR) ≈ 7.9 km/s: orbits</text>'
+             '<text class="gr" x="8" y="52">√(2gR) ≈ 11.2 km/s: escapes</text>')
+    anim(deck, 'Orbits · Newton’s cannon',
+         'A cannon on a very tall mountain fires horizontally, faster each time. What happens to the ball?',
+         base, back,
+         '<p>Too slow: it falls back. At <b>v₀ = √(gR) ≈ 7.9 km/s</b> it keeps "falling around" the Earth: a circular orbit.</p>'
+         '<p>At <b>vₑ = √(2gR) = √2 v₀ ≈ 11.2 km/s</b> its total energy is zero and it escapes.</p>',
+         'Newton’s cannon: orbital speed vs escape speed',
+         'Slow: falls back; v0 = √(gR) ≈ 7.9 km/s: circular orbit; ve = √(2gR) ≈ 11.2 km/s = √2 v0: escapes',
+         css, hint='Faster and faster…', vb='0 0 300 195')

@@ -1,0 +1,1030 @@
+{
+  "version": 1,
+  "name": "Chapter 7: Gravitation",
+  "className": "Class 11",
+  "description": "Kepler’s laws, universal gravitation, G, variation of g, gravitational potential energy, escape speed, satellites and their energy",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Who first recognised that all bodies fall with the same constant acceleration?",
+      "definition": "<span style=\"color:#3b82f6\">Galileo</span> (1564–1642), using bodies rolling down inclined planes",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Geocentric vs heliocentric model: who proposed each?",
+      "definition": "<span style=\"color:#3b82f6\">Ptolemy</span>: geocentric (~2000 years ago). <span style=\"color:#3b82f6\">Aryabhatta</span> (5th century AD) mentioned a heliocentric model; <span style=\"color:#3b82f6\">Copernicus</span> (1473–1543) gave the definitive one",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Whose observations did Kepler analyse?",
+      "definition": "Those of his master <span style=\"color:#3b82f6\">Tycho Brahe</span> (1546–1601), made with the naked eye",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.1-introduction"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Kepler’s law of orbits: all planets move in {{c1::elliptical}} orbits with the Sun at {{c2::one of the foci}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ],
+      "extra": "This broke from Copernicus’s circles."
+    },
+    {
+      "noteType": "basic",
+      "term": "Perihelion and aphelion?",
+      "definition": "<span style=\"color:#3b82f6\">Perihelion</span> P: closest point to the Sun. <span style=\"color:#3b82f6\">Aphelion</span> A: farthest. Semi-major axis a = AP/2",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ],
+      "definitionImage": "media/fig_7_1a_ellipse.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How can you draw an ellipse with a string?",
+      "definition": "Pin the ends at F₁ and F₂ and move a pencil keeping the string taut: <span style=\"color:#3b82f6\">F₁T + F₂T = constant</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ],
+      "definitionImage": "media/fig_7_1b_drawing_ellipse.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "An ellipse whose two foci merge is a…?",
+      "definition": "<span style=\"color:#3b82f6\">Circle</span> (semi-major axis = radius)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Kepler’s law of areas: the line joining a planet to the Sun sweeps {{c1::equal areas in equal times}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Law of areas: fast at perihelion, slow at aphelion",
+      "definition": "Equal areas in equal times because L = mr v⊥ is conserved (central force); small r gives large speed",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Kepler’s second law · intuition</p><h2>Why does a planet move fastest at perihelion and slowest at aphelion?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><polyline class=\"guide\" points=\"254.0,96.0 253.7,103.0 252.6,110.0 250.9,116.9 248.5,123.7 245.5,130.3 241.8,136.7 237.5,142.8 232.6,148.7 227.2,154.2 221.2,159.4 214.7,164.1 207.8,168.5 200.5,172.4 192.8,175.8 184.9,178.8 176.6,181.2 168.1,183.1 159.5,184.5 150.8,185.3 142.0,185.6 133.2,185.3 124.5,184.5 115.9,183.1 107.4,181.2 99.1,178.8 91.2,175.8 83.5,172.4 76.2,168.5 69.3,164.1 62.8,159.4 56.8,154.2 51.4,148.7 46.5,142.8 42.2,136.7 38.5,130.3 35.5,123.7 33.1,116.9 31.4,110.0 30.3,103.0 30.0,96.0 30.3,89.0 31.4,82.0 33.1,75.1 35.5,68.3 38.5,61.7 42.2,55.3 46.5,49.2 51.4,43.3 56.8,37.8 62.8,32.6 69.3,27.9 76.2,23.5 83.5,19.6 91.2,16.2 99.1,13.2 107.4,10.8 115.9,8.9 124.5,7.5 133.2,6.7 142.0,6.4 150.8,6.7 159.5,7.5 168.1,8.9 176.6,10.8 184.9,13.2 192.8,16.2 200.5,19.6 207.8,23.5 214.7,27.9 221.2,32.6 227.2,37.8 232.6,43.3 237.5,49.2 241.8,55.3 245.5,61.7 248.5,68.3 250.9,75.1 252.6,82.0 253.7,89.0 254.0,96.0\"></polyline><circle class=\"dot\" cx=\"209.2\" cy=\"96.0\" r=\"7\"></circle><text class=\"yl\" x=\"209.2\" y=\"118.0\" text-anchor=\"middle\">Sun</text><circle class=\"obj\" cx=\"254.0\" cy=\"96.0\" r=\"6\"></circle></svg><p class=\"hint\">Watch the speed, then think about angular momentum.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Kepler’s second law · intuition</p><h2>Why does a planet move fastest at perihelion and slowest at aphelion?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><polyline class=\"guide\" points=\"254.0,96.0 253.7,103.0 252.6,110.0 250.9,116.9 248.5,123.7 245.5,130.3 241.8,136.7 237.5,142.8 232.6,148.7 227.2,154.2 221.2,159.4 214.7,164.1 207.8,168.5 200.5,172.4 192.8,175.8 184.9,178.8 176.6,181.2 168.1,183.1 159.5,184.5 150.8,185.3 142.0,185.6 133.2,185.3 124.5,184.5 115.9,183.1 107.4,181.2 99.1,178.8 91.2,175.8 83.5,172.4 76.2,168.5 69.3,164.1 62.8,159.4 56.8,154.2 51.4,148.7 46.5,142.8 42.2,136.7 38.5,130.3 35.5,123.7 33.1,116.9 31.4,110.0 30.3,103.0 30.0,96.0 30.3,89.0 31.4,82.0 33.1,75.1 35.5,68.3 38.5,61.7 42.2,55.3 46.5,49.2 51.4,43.3 56.8,37.8 62.8,32.6 69.3,27.9 76.2,23.5 83.5,19.6 91.2,16.2 99.1,13.2 107.4,10.8 115.9,8.9 124.5,7.5 133.2,6.7 142.0,6.4 150.8,6.7 159.5,7.5 168.1,8.9 176.6,10.8 184.9,13.2 192.8,16.2 200.5,19.6 207.8,23.5 214.7,27.9 221.2,32.6 227.2,37.8 232.6,43.3 237.5,49.2 241.8,55.3 245.5,61.7 248.5,68.3 250.9,75.1 252.6,82.0 253.7,89.0 254.0,96.0\"></polyline><circle class=\"dot\" cx=\"209.2\" cy=\"96.0\" r=\"7\"></circle><text class=\"yl\" x=\"209.2\" y=\"118.0\" text-anchor=\"middle\">Sun</text><polygon class=\"zone\" points=\"209.2,96.0 208.8,24.1 219.3,31.1 229.4,40.0 238.8,51.0 246.7,64.2 252.1,79.4 254.0,96.0 252.1,112.6 246.7,127.8 238.8,141.0 229.4,152.0 219.3,160.9 208.8,167.9\"></polygon><polygon class=\"zone2\" points=\"209.2,96.0 34.4,121.0 33.1,116.9 32.0,112.7 31.1,108.6 30.5,104.4 30.1,100.2 30.0,96.0 30.1,91.8 30.5,87.6 31.1,83.4 32.0,79.3 33.1,75.1 34.4,71.0\"></polygon><g transform=\"translate(254.0,96.0)\"><circle class=\"obj kp\" cx=\"0\" cy=\"0\" r=\"6\"></circle></g><text class=\"yl\" x=\"292\" y=\"30\" text-anchor=\"end\">near Sun: fast</text><text class=\"gr\" x=\"8\" y=\"30\">far: slow</text></svg><div class=\"eq fx d5\"><p>The two shaded wedges are swept in <b>equal times</b> and have <b>equal areas</b>: short and wide near the Sun, long and thin far away.</p><p>Gravity is a central force, so <b>L = m r v⊥ is conserved</b>: small r → large v.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .kp{animation:kp 6.0s linear 0.3s infinite both}@keyframes kp{0.00%{transform:translate(0.0px,0.0px)}1.67%{transform:translate(-3.7px,22.8px)}3.33%{transform:translate(-13.4px,42.5px)}5.00%{transform:translate(-26.4px,57.8px)}6.67%{transform:translate(-40.8px,69.2px)}8.33%{transform:translate(-55.4px,77.3px)}10.00%{transform:translate(-69.7px,83.0px)}11.67%{transform:translate(-83.5px,86.6px)}13.33%{transform:translate(-96.5px,88.7px)}15.00%{transform:translate(-108.8px,89.6px)}16.67%{transform:translate(-120.4px,89.3px)}18.33%{transform:translate(-131.2px,88.3px)}20.00%{transform:translate(-141.3px,86.5px)}21.67%{transform:translate(-150.8px,84.1px)}23.33%{transform:translate(-159.6px,81.1px)}25.00%{transform:translate(-167.7px,77.7px)}26.67%{transform:translate(-175.2px,74.0px)}28.33%{transform:translate(-182.2px,69.8px)}30.00%{transform:translate(-188.5px,65.4px)}31.67%{transform:translate(-194.3px,60.8px)}33.33%{transform:translate(-199.6px,55.9px)}35.00%{transform:translate(-204.3px,50.8px)}36.67%{transform:translate(-208.5px,45.5px)}38.33%{transform:translate(-212.1px,40.1px)}40.00%{transform:translate(-215.3px,34.6px)}41.67%{transform:translate(-218.0px,29.0px)}43.33%{transform:translate(-220.2px,23.3px)}45.00%{transform:translate(-221.8px,17.5px)}46.67%{transform:translate(-223.0px,11.7px)}48.33%{transform:translate(-223.8px,5.9px)}50.00%{transform:translate(-224.0px,0.0px)}51.67%{transform:translate(-223.8px,-5.9px)}53.33%{transform:translate(-223.0px,-11.7px)}55.00%{transform:translate(-221.8px,-17.5px)}56.67%{transform:translate(-220.2px,-23.3px)}58.33%{transform:translate(-218.0px,-29.0px)}60.00%{transform:translate(-215.3px,-34.6px)}61.67%{transform:translate(-212.1px,-40.1px)}63.33%{transform:translate(-208.5px,-45.5px)}65.00%{transform:translate(-204.3px,-50.8px)}66.67%{transform:translate(-199.6px,-55.9px)}68.33%{transform:translate(-194.3px,-60.8px)}70.00%{transform:translate(-188.5px,-65.4px)}71.67%{transform:translate(-182.2px,-69.8px)}73.33%{transform:translate(-175.2px,-74.0px)}75.00%{transform:translate(-167.7px,-77.7px)}76.67%{transform:translate(-159.6px,-81.1px)}78.33%{transform:translate(-150.8px,-84.1px)}80.00%{transform:translate(-141.3px,-86.5px)}81.67%{transform:translate(-131.2px,-88.3px)}83.33%{transform:translate(-120.4px,-89.3px)}85.00%{transform:translate(-108.8px,-89.6px)}86.67%{transform:translate(-96.5px,-88.7px)}88.33%{transform:translate(-83.5px,-86.6px)}90.00%{transform:translate(-69.7px,-83.0px)}91.67%{transform:translate(-55.4px,-77.3px)}93.33%{transform:translate(-40.8px,-69.2px)}95.00%{transform:translate(-26.4px,-57.8px)}96.67%{transform:translate(-13.4px,-42.5px)}98.33%{transform:translate(-3.7px,-22.8px)}100.00%{transform:translate(0.0px,-0.0px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .kp{animation:kp 6.0s linear 0.3s infinite both}@keyframes kp{0.00%{transform:translate(0.0px,0.0px)}1.67%{transform:translate(-3.7px,22.8px)}3.33%{transform:translate(-13.4px,42.5px)}5.00%{transform:translate(-26.4px,57.8px)}6.67%{transform:translate(-40.8px,69.2px)}8.33%{transform:translate(-55.4px,77.3px)}10.00%{transform:translate(-69.7px,83.0px)}11.67%{transform:translate(-83.5px,86.6px)}13.33%{transform:translate(-96.5px,88.7px)}15.00%{transform:translate(-108.8px,89.6px)}16.67%{transform:translate(-120.4px,89.3px)}18.33%{transform:translate(-131.2px,88.3px)}20.00%{transform:translate(-141.3px,86.5px)}21.67%{transform:translate(-150.8px,84.1px)}23.33%{transform:translate(-159.6px,81.1px)}25.00%{transform:translate(-167.7px,77.7px)}26.67%{transform:translate(-175.2px,74.0px)}28.33%{transform:translate(-182.2px,69.8px)}30.00%{transform:translate(-188.5px,65.4px)}31.67%{transform:translate(-194.3px,60.8px)}33.33%{transform:translate(-199.6px,55.9px)}35.00%{transform:translate(-204.3px,50.8px)}36.67%{transform:translate(-208.5px,45.5px)}38.33%{transform:translate(-212.1px,40.1px)}40.00%{transform:translate(-215.3px,34.6px)}41.67%{transform:translate(-218.0px,29.0px)}43.33%{transform:translate(-220.2px,23.3px)}45.00%{transform:translate(-221.8px,17.5px)}46.67%{transform:translate(-223.0px,11.7px)}48.33%{transform:translate(-223.8px,5.9px)}50.00%{transform:translate(-224.0px,0.0px)}51.67%{transform:translate(-223.8px,-5.9px)}53.33%{transform:translate(-223.0px,-11.7px)}55.00%{transform:translate(-221.8px,-17.5px)}56.67%{transform:translate(-220.2px,-23.3px)}58.33%{transform:translate(-218.0px,-29.0px)}60.00%{transform:translate(-215.3px,-34.6px)}61.67%{transform:translate(-212.1px,-40.1px)}63.33%{transform:translate(-208.5px,-45.5px)}65.00%{transform:translate(-204.3px,-50.8px)}66.67%{transform:translate(-199.6px,-55.9px)}68.33%{transform:translate(-194.3px,-60.8px)}70.00%{transform:translate(-188.5px,-65.4px)}71.67%{transform:translate(-182.2px,-69.8px)}73.33%{transform:translate(-175.2px,-74.0px)}75.00%{transform:translate(-167.7px,-77.7px)}76.67%{transform:translate(-159.6px,-81.1px)}78.33%{transform:translate(-150.8px,-84.1px)}80.00%{transform:translate(-141.3px,-86.5px)}81.67%{transform:translate(-131.2px,-88.3px)}83.33%{transform:translate(-120.4px,-89.3px)}85.00%{transform:translate(-108.8px,-89.6px)}86.67%{transform:translate(-96.5px,-88.7px)}88.33%{transform:translate(-83.5px,-86.6px)}90.00%{transform:translate(-69.7px,-83.0px)}91.67%{transform:translate(-55.4px,-77.3px)}93.33%{transform:translate(-40.8px,-69.2px)}95.00%{transform:translate(-26.4px,-57.8px)}96.67%{transform:translate(-13.4px,-42.5px)}98.33%{transform:translate(-3.7px,-22.8px)}100.00%{transform:translate(0.0px,-0.0px)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Kepler’s second law follows from which conservation law?",
+      "definition": "Conservation of <span style=\"color:#3b82f6\">angular momentum</span>: ΔA/Δt = L/2m, constant because gravity is a <span style=\"color:#3b82f6\">central force</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ],
+      "definitionImage": "media/fig_7_2_law_of_areas.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Is the law of areas special to the inverse-square law?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it holds for <span style=\"color:#3b82f6\">any central force</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.1: relate the speeds at perihelion and aphelion.",
+      "definition": "\\( m r_P v_P = m r_A v_A \\Rightarrow \\dfrac{v_P}{v_A} = \\dfrac{r_A}{r_P} \\); the planet takes longer on the far arc BAC than on CPB",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Kepler’s law of periods: {{c1::T² ∝ a³}}, where a is the semi-major axis.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Table 7.1: what does Q = T²/a³ show for the eight planets?",
+      "definition": "Q ≈ <span style=\"color:#f08c00\">3 × 10⁻³⁴ y² m⁻³</span> for all: the same constant → the law of periods",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ],
+      "definitionImage": "media/tab_7_1_kepler_data.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Kepler’s third law in full (circular orbit, radius R)?",
+      "definition": "\\( T^2 = \\dfrac{4\\pi^2}{GM_S}R^3 \\); also valid for ellipses with R → a",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.3: a planet goes round the Sun twice as fast as the Earth. Orbital size?",
+      "definition": "\\( (1/2)^{2/3} \\approx \\) <span style=\"color:#f08c00\">0.63</span> times the Earth’s",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.2-keplers-laws"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Newton’s moon test: ratio g / a(moon)?",
+      "definition": "\\( \\dfrac{g}{a_m} = \\dfrac{R_m^2}{R_E^2} \\approx 3600 \\): gravity falls as <span style=\"color:#3b82f6\">1/r²</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.3-universal-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Newton’s universal law of gravitation.",
+      "definition": "Every body attracts every other with a force \\( F = G\\dfrac{m_1m_2}{r^2} \\), along the line joining them",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.3-universal-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Vector form of the law?",
+      "definition": "\\( \\vec F = -G\\dfrac{m_1m_2}{r^2}\\hat r \\) ; force on m₁ due to m₂ and on m₂ due to m₁ are equal and opposite",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.3-universal-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Principle of superposition for gravity?",
+      "definition": "The net force on a mass is the <span style=\"color:#3b82f6\">vector sum</span> of the forces from each other mass, each acting as if the others were absent",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.3-universal-law"
+      ],
+      "definitionImage": "media/fig_7_4_superposition.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.2: equal masses m at the corners of an equilateral triangle, 2m at the centroid. Net force on 2m? And if the mass at A is doubled?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span> (symmetry); with 2m at A: \\( 2Gm^2\\,\\hat j \\) (towards A, AG = 1 m)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.3-universal-law"
+      ],
+      "definitionImage": "media/fig_7_5_triangle.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Force between a uniform spherical shell and a point mass outside it?",
+      "definition": "As if the whole mass were at the <span style=\"color:#3b82f6\">centre</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.3-universal-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Force on a point mass inside a uniform spherical shell?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span>: pulls from different parts cancel",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.3-universal-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can a body be shielded from gravity (Exercise 7.1a)?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: a shell gives zero force only from itself; outside bodies still pull. Gravitational shielding is impossible",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.3-universal-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is the force between two extended bodies along the line joining their CMs?",
+      "definition": "<span style=\"color:#e5484d\">Not necessarily</span>; it is for spherically symmetric bodies",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.3-universal-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who first measured G, and when?",
+      "definition": "<span style=\"color:#3b82f6\">Henry Cavendish</span>, <span style=\"color:#f08c00\">1798</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.4-gravitational-constant"
+      ],
+      "definitionImage": "media/fig_7_6_cavendish.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Principle of Cavendish’s experiment?",
+      "definition": "Big spheres pull small ones on a suspended bar; the gravitational torque twists the wire until \\( \\tau\\theta = \\dfrac{GMm}{d^2}L \\); measure θ → G",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.4-gravitational-constant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Value and SI unit of G?",
+      "definition": "<span style=\"color:#f08c00\">6.67 × 10⁻¹¹ N m² kg⁻²</span>; dimensions [M⁻¹ L³ T⁻²]",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.4-gravitational-constant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is Cavendish said to have \"weighed the Earth\"?",
+      "definition": "With G known, \\( M_E = \\dfrac{gR_E^2}{G} \\) follows from g and R_E",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.4-gravitational-constant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "g at the Earth’s surface in terms of G?",
+      "definition": "\\( g = \\dfrac{GM_E}{R_E^2} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.6: find M_E from g = 9.81, R = 6.37 × 10⁶ m. And from the Moon’s orbit?",
+      "definition": "<span style=\"color:#f08c00\">5.97 × 10²⁴ kg</span> from g; <span style=\"color:#f08c00\">6.02 × 10²⁴ kg</span> from Kepler’s third law — within 1 %",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Force on a mass m inside the (uniform) Earth at distance r from the centre?",
+      "definition": "Only the sphere of radius r pulls: \\( F = \\dfrac{GM_E m}{R_E^3}r \\) (∝ r)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ],
+      "definitionImage": "media/fig_7_7_mine.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "g at height h above the surface?",
+      "definition": "\\( g(h) = \\dfrac{GM_E}{(R_E + h)^2} \\approx g\\left(1 - \\dfrac{2h}{R_E}\\right) \\) for h ≪ R",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ],
+      "definitionImage": "media/fig_7_8a_height.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "g at depth d below the surface?",
+      "definition": "\\( g(d) = g\\left(1 - \\dfrac{d}{R_E}\\right) \\) (exact for uniform Earth)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ],
+      "definitionImage": "media/fig_7_8b_depth.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Where is g maximum? Its value at the centre?",
+      "definition": "Maximum at the <span style=\"color:#3b82f6\">surface</span>; <span style=\"color:#f08c00\">zero</span> at the centre",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ],
+      "definitionImage": "media/drawn_g_vs_r.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: for small h and d = h, where is g smaller — at height h or depth h?",
+      "definition": "At <span style=\"color:#3b82f6\">height h</span>: it falls twice as fast (2h/R vs h/R)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.16: a body weighs 250 N on the surface. Weight halfway to the centre?",
+      "definition": "<span style=\"color:#f08c00\">125 N</span> (g ∝ r inside)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.15: 63 N on the surface. Force at height R/2?",
+      "definition": "63 × (1/1.5)² = <span style=\"color:#f08c00\">28 N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.2(c): g depends on the mass of the Earth or the mass of the body?",
+      "definition": "The <span style=\"color:#3b82f6\">Earth</span>; g is independent of the body’s mass",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: effect of Earth’s rotation on g at latitude λ?",
+      "definition": "\\( g_\\lambda = g - \\omega^2R\\cos^2\\lambda \\): least at the equator, unchanged at the poles",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.5-acceleration-due-to-gravity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Notation: NCERT writes W (and V) for potential energy. What do most books use?",
+      "definition": "<span style=\"color:#3b82f6\">U</span> for potential energy and <span style=\"color:#3b82f6\">V</span> for gravitational potential (energy per unit mass). This deck follows that",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is mgh only an approximation?",
+      "definition": "It assumes g constant; valid only for heights <span style=\"color:#3b82f6\">≪ R_E</span>. mgh is the <span style=\"color:#3b82f6\">difference</span> in PE near the surface",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Gravitational PE of two masses at distance r (zero at infinity)?",
+      "definition": "\\( U = -\\dfrac{Gm_1m_2}{r} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is gravitational PE negative?",
+      "definition": "Zero is chosen at infinity and gravity is attractive: work is needed to pull the masses <span style=\"color:#3b82f6\">apart to infinity</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Work done by gravity in moving m from r₁ to r₂?",
+      "definition": "\\( W = -GM_Em\\left(\\dfrac{1}{r_2} - \\dfrac{1}{r_1}\\right) \\); it depends only on the end points (conservative)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define gravitational potential.",
+      "definition": "PE per unit mass: \\( V = -\\dfrac{GM}{r} \\) (scalar, J kg⁻¹)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Gravitational intensity (field) and its relation to g?",
+      "definition": "Force per unit mass, \\( \\dfrac{GM}{r^2} \\) towards the mass; at the surface it equals g (vector, m s⁻²)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "PE of a system of many particles?",
+      "definition": "Sum over <span style=\"color:#3b82f6\">all pairs</span> of −Gmᵢmⱼ/rᵢⱼ (superposition)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.3: four masses m at the corners of a square of side l. Total PE and potential at the centre?",
+      "definition": "\\( U = -\\dfrac{Gm^2}{l}(4 + \\sqrt2) \\approx -5.41\\dfrac{Gm^2}{l} \\); \\( V = -\\dfrac{4\\sqrt2\\,Gm}{l} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ],
+      "definitionImage": "media/fig_7_9_square.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.2(d): is −GMm(1/r₂ − 1/r₁) more or less accurate than mg(r₂ − r₁)?",
+      "definition": "<span style=\"color:#3b82f6\">More</span> accurate; mg(r₂ − r₁) holds only near the surface",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.21: two 100 kg spheres 1.0 m apart. Force and potential at the midpoint? Equilibrium?",
+      "definition": "Force <span style=\"color:#f08c00\">0</span>, potential <span style=\"color:#f08c00\">−2.7 × 10⁻⁸ J/kg</span>; <span style=\"color:#e5484d\">unstable</span> equilibrium",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.7-gravitational-potential-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Escape speed from the Earth’s surface?",
+      "definition": "\\( v_e = \\sqrt{\\dfrac{2GM_E}{R_E}} = \\sqrt{2gR_E} \\approx \\) <span style=\"color:#f08c00\">11.2 km/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.8-escape-speed"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive the escape speed idea in one line.",
+      "definition": "Total energy must be ≥ 0: \\( \\tfrac12 mv^2 - \\dfrac{GMm}{R} \\ge 0 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.8-escape-speed"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.7: does escape speed depend on the mass of the body or the direction of projection?",
+      "definition": "<span style=\"color:#e5484d\">No</span> to both; it depends on the <span style=\"color:#3b82f6\">location</span> (potential there): slightly on latitude and height",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.8-escape-speed"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does the Moon have no atmosphere?",
+      "definition": "Its escape speed is only <span style=\"color:#f08c00\">2.3 km/s</span> (≈ 1/5 of Earth’s); gas molecules faster than that escape",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.8-escape-speed"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.4: spheres M and 4M (radius R), 6R apart. Where is the neutral point, and what minimum speed from M’s surface reaches 4M?",
+      "definition": "Neutral point <span style=\"color:#f08c00\">2R</span> from M’s centre; \\( v_{min} = \\sqrt{\\dfrac{3GM}{5R}} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.8-escape-speed"
+      ],
+      "definitionImage": "media/fig_7_10_two_spheres.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.18: a body is projected at 3 × escape speed. Speed far away?",
+      "definition": "\\( \\sqrt{9 - 1}\\,v_e = 2\\sqrt2 \\times 11.2 \\approx \\) <span style=\"color:#f08c00\">31.7 km/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.8-escape-speed"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.17: rocket fired up at 5 km/s. How far does it go?",
+      "definition": "To r ≈ <span style=\"color:#f08c00\">8.0 × 10⁶ m</span> from the centre (≈ 1600 km above the surface)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.8-escape-speed"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Speed of a satellite in a circular orbit at height h?",
+      "definition": "\\( v = \\sqrt{\\dfrac{GM_E}{R_E + h}} \\) — decreases with height, independent of the satellite’s mass",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Orbital speed close to the surface?",
+      "definition": "\\( v_0 = \\sqrt{gR_E} \\approx \\) <span style=\"color:#f08c00\">7.9 km/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Newton’s cannon: orbital speed vs escape speed",
+      "definition": "Slow: falls back; v0 = √(gR) ≈ 7.9 km/s: circular orbit; ve = √(2gR) ≈ 11.2 km/s = √2 v0: escapes",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Orbits · Newton’s cannon</p><h2>A cannon on a very tall mountain fires horizontally, faster each time. What happens to the ball?</h2><svg viewBox=\"0 0 300 195\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><circle class=\"obj\" cx=\"150\" cy=\"118\" r=\"49.9\"></circle><polygon class=\"road\" points=\"142,70.1 150,60.0 158,70.1\"></polygon><text class=\"lbl\" x=\"150\" y=\"122\" text-anchor=\"middle\">Earth</text></svg><p class=\"hint\">Faster and faster…</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Orbits · Newton’s cannon</p><h2>A cannon on a very tall mountain fires horizontally, faster each time. What happens to the ball?</h2><svg viewBox=\"0 0 300 195\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><circle class=\"obj\" cx=\"150\" cy=\"118\" r=\"49.9\"></circle><polygon class=\"road\" points=\"142,70.1 150,60.0 158,70.1\"></polygon><text class=\"lbl\" x=\"150\" y=\"122\" text-anchor=\"middle\">Earth</text><polyline class=\"c3\" points=\"150.0,60.0 151.8,60.1 153.6,60.3 155.4,60.7 157.1,61.2 158.9,61.8 160.6,62.6 162.3,63.6 164.0,64.7 165.6,66.0 167.2,67.4 168.7,69.0 170.2,70.8 171.5,72.7\" opacity=\".55\"></polyline><g transform=\"translate(150,60)\"><circle class=\"dot3 nc0\" cx=\"0\" cy=\"0\" r=\"4.5\"></circle></g><polyline class=\"curve\" points=\"150.0,60.0 152.9,60.1 155.8,60.3 158.7,60.7 161.5,61.2 164.3,61.8 167.1,62.6 169.9,63.5 172.6,64.6 175.2,65.8 177.8,67.1 180.3,68.6 182.7,70.2 185.1,71.9 187.4,73.7 189.5,75.6 191.6,77.6 193.6,79.8 195.4,82.0 197.2,84.3 198.8,86.7 200.3,89.2 201.7,91.8 202.9,94.4 204.0,97.1 205.0,99.8 205.9,102.6 206.6,105.4 207.1,108.2 207.5,111.1 207.8,114.0 207.9,116.9 207.9,119.8 207.8,122.7 207.4,125.6 207.0,128.5 206.4,131.3 205.7,134.1 204.8,136.9 203.8,139.6 202.6,142.3 201.3,145.0 199.9,147.5 198.3,150.0 196.7,152.3 194.9,154.6 193.0,156.8 191.0,159.0 188.9,161.0 186.7,162.8 184.4,164.6 182.1,166.3 179.6,167.8 177.1,169.3 174.5,170.6 171.8,171.7 169.1,172.7 166.3,173.6 163.5,174.4 160.7,175.0 157.8,175.5 155.0,175.8 152.1,176.0 149.2,176.0 146.3,175.9 143.4,175.6 140.5,175.2 137.7,174.7 134.8,174.0 132.1,173.2 129.3,172.2 126.6,171.1 124.0,169.9 121.5,168.5 119.0,167.0 116.6,165.4 114.2,163.7 112.0,161.9 109.9,159.9 107.8,157.9 105.9,155.7 104.0,153.5 102.3,151.1 100.7,148.7 99.3,146.2 97.9,143.6 96.7,141.0 95.6,138.3 94.7,135.6 93.9,132.8 93.2,130.0 92.7,127.1 92.3,124.3 92.0,121.4 91.9,118.5 92.0,115.6 92.2,112.7 92.5,109.8 93.0,107.0 93.6,104.1 94.4,101.3 95.3,98.6 96.3,95.9 97.5,93.2 98.8,90.6 100.2,88.1 101.8,85.7 103.5,83.3 105.2,81.0 107.1,78.9 109.2,76.8 111.3,74.8 113.5,72.9 115.8,71.1 118.2,69.5 120.6,68.0 123.2,66.6 125.8,65.3 128.4,64.1 131.1,63.1 133.9,62.3 136.7,61.5 139.5,60.9 142.4,60.5 145.3,60.2 148.2,60.0 151.1,60.0 154.0,60.1 156.9,60.4 159.7,60.8 162.6,61.4 165.4,62.1 168.2,62.9 170.9,63.9 173.6,65.0 176.2,66.3 178.8,67.7 181.2,69.2 183.6,70.8 186.0,72.5 188.2,74.4 190.3,76.4 192.4,78.4 194.3,80.6 196.1,82.9 197.8,85.2 199.4,87.7 200.8,90.2 202.2,92.7 203.4,95.4 204.4,98.1 205.3,100.8 206.1,103.6 206.8,106.5 207.3,109.3 207.7,112.2 207.9,115.1 207.9,118.0 207.9,120.9 207.7,123.8 207.3,126.7 206.8,129.5 206.1,132.4 205.3,135.2 204.4,137.9 203.4,140.6 202.2,143.3 200.8,145.8 199.4,148.3 197.8,150.8 196.1,153.1 194.3,155.4 192.4,157.6 190.3,159.6 188.2,161.6 186.0,163.5 183.6,165.2 181.2,166.8 178.8,168.3 176.2,169.7 173.6,171.0 170.9,172.1 168.2,173.1 165.4,173.9 162.6,174.6 159.7,175.2 156.9,175.6 154.0,175.9 151.1,176.0 148.2,176.0 145.3,175.8 142.4,175.5 139.5,175.1 136.7,174.5 133.9,173.7 131.1,172.9 128.4,171.9 125.8,170.7 123.2,169.4 120.6,168.0 118.3,166.6 115.9,164.9 113.6,163.2 111.4,161.3 109.2,159.3 107.2,157.2 105.3,155.1 103.5,152.8 101.8,150.4 100.3,148.0 98.9,145.5 97.5,142.9 96.4,140.2 95.3,137.5 94.4,134.8 93.7,132.0 93.0,129.1 92.5,126.3 92.2,123.4 92.0,120.5 91.9,117.6 92.0,114.7 92.3,111.8 92.6,109.0 93.2,106.1 93.8,103.3 94.6,100.5 95.6,97.8 96.7,95.1 97.9,92.5 99.2,89.9 100.7,87.4 102.3,85.0 104.0,82.6 105.8,80.4 107.7,78.2 109.8,76.2 111.9,74.2 114.1,72.4 116.5,70.6 118.9,69.0\" opacity=\".55\"></polyline><g transform=\"translate(150,60)\"><circle class=\"dot nc1\" cx=\"0\" cy=\"0\" r=\"4.5\"></circle></g><polyline class=\"c2\" points=\"150.0,60.0 154.1,60.1 158.2,60.3 162.3,60.7 166.3,61.2 170.3,61.8 174.3,62.6 178.2,63.4 182.0,64.4 185.8,65.5 189.5,66.8 193.1,68.1 196.7,69.4 200.2,70.9 203.6,72.4 206.9,74.0 210.2,75.7 213.4,77.4 216.5,79.1 219.6,80.9 222.6,82.8 225.5,84.6 228.3,86.5 231.1,88.4 233.8,90.4 236.5,92.3 239.1,94.3 241.6,96.3 244.1,98.3 246.6,100.3 249.0,102.3 251.3,104.4 253.6,106.4 255.9,108.5 258.1,110.5 260.3,112.6 262.4,114.6 264.5,116.7 266.5,118.7 268.6,120.8 270.6,122.8 272.6,125.0 274.5,127.0 276.4,129.0 278.2,131.1 280.1,133.1 281.9,135.2 283.6,137.2 285.4,139.2 287.1,141.3 288.8,143.3 290.5,145.3 292.1,147.3 293.8,149.3\" opacity=\".55\"></polyline><g transform=\"translate(150,60)\"><circle class=\"dot2 nc2\" cx=\"0\" cy=\"0\" r=\"4.5\"></circle></g><text class=\"rd\" x=\"8\" y=\"20\">slow: falls back</text><text class=\"yl\" x=\"8\" y=\"36\">√(gR) ≈ 7.9 km/s: orbits</text><text class=\"gr\" x=\"8\" y=\"52\">√(2gR) ≈ 11.2 km/s: escapes</text></svg><div class=\"eq fx d5\"><p>Too slow: it falls back. At <b>v₀ = √(gR) ≈ 7.9 km/s</b> it keeps \"falling around\" the Earth: a circular orbit.</p><p>At <b>vₑ = √(2gR) = √2 v₀ ≈ 11.2 km/s</b> its total energy is zero and it escapes.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .nc0{animation:nc0 3.0s linear 0.3s infinite both}@keyframes nc0{0.00%{transform:translate(0.0px,-0.0px)}7.14%{transform:translate(1.8px,0.1px)}14.29%{transform:translate(3.6px,0.3px)}21.43%{transform:translate(5.4px,0.7px)}28.57%{transform:translate(7.1px,1.2px)}35.71%{transform:translate(8.9px,1.8px)}42.86%{transform:translate(10.6px,2.6px)}50.00%{transform:translate(12.3px,3.6px)}57.14%{transform:translate(14.0px,4.7px)}64.29%{transform:translate(15.6px,6.0px)}71.43%{transform:translate(17.2px,7.4px)}78.57%{transform:translate(18.7px,9.0px)}85.71%{transform:translate(20.2px,10.8px)}92.86%{transform:translate(21.5px,12.7px)}100.00%{transform:translate(21.5px,12.7px)}}.bp .nc1{animation:nc1 6.3s linear 0.3s infinite both}@keyframes nc1{0.00%{transform:translate(0.0px,-0.0px)}1.64%{transform:translate(11.5px,1.2px)}3.28%{transform:translate(22.6px,4.6px)}4.92%{transform:translate(32.7px,10.2px)}6.56%{transform:translate(41.6px,17.6px)}8.20%{transform:translate(48.8px,26.7px)}9.84%{transform:translate(54.0px,37.1px)}11.48%{transform:translate(57.1px,48.2px)}13.11%{transform:translate(57.9px,59.8px)}14.75%{transform:translate(56.4px,71.3px)}16.39%{transform:translate(52.6px,82.3px)}18.03%{transform:translate(46.7px,92.3px)}19.67%{transform:translate(38.9px,101.0px)}21.31%{transform:translate(29.6px,107.8px)}22.95%{transform:translate(19.1px,112.7px)}24.59%{transform:translate(7.8px,115.5px)}26.23%{transform:translate(-3.7px,115.9px)}27.87%{transform:translate(-15.2px,114.0px)}29.51%{transform:translate(-26.0px,109.9px)}31.15%{transform:translate(-35.8px,103.7px)}32.79%{transform:translate(-44.1px,95.7px)}34.43%{transform:translate(-50.7px,86.2px)}36.07%{transform:translate(-55.3px,75.6px)}37.70%{transform:translate(-57.7px,64.3px)}39.34%{transform:translate(-57.8px,52.7px)}40.98%{transform:translate(-55.6px,41.3px)}42.62%{transform:translate(-51.2px,30.6px)}44.26%{transform:translate(-44.8px,21.0px)}45.90%{transform:translate(-36.5px,12.9px)}47.54%{transform:translate(-26.8px,6.6px)}49.18%{transform:translate(-16.1px,2.3px)}50.82%{transform:translate(-4.7px,0.2px)}52.46%{transform:translate(6.9px,0.4px)}54.10%{transform:translate(18.2px,2.9px)}55.74%{transform:translate(28.8px,7.7px)}57.38%{transform:translate(38.2px,14.4px)}59.02%{transform:translate(46.1px,22.9px)}60.66%{transform:translate(52.2px,32.7px)}62.30%{transform:translate(56.1px,43.6px)}63.93%{transform:translate(57.9px,55.1px)}65.57%{transform:translate(57.3px,66.7px)}67.21%{transform:translate(54.4px,77.9px)}68.85%{transform:translate(49.4px,88.3px)}70.49%{transform:translate(42.4px,97.6px)}72.13%{transform:translate(33.6px,105.2px)}73.77%{transform:translate(23.6px,111.0px)}75.41%{transform:translate(12.6px,114.6px)}77.05%{transform:translate(1.1px,116.0px)}78.69%{transform:translate(-10.5px,115.1px)}80.33%{transform:translate(-21.6px,111.9px)}81.97%{transform:translate(-31.7px,106.6px)}83.61%{transform:translate(-40.8px,99.3px)}85.25%{transform:translate(-48.2px,90.4px)}86.89%{transform:translate(-53.6px,80.2px)}88.52%{transform:translate(-57.0px,69.1px)}90.16%{transform:translate(-58.1px,57.6px)}91.80%{transform:translate(-56.8px,46.1px)}93.44%{transform:translate(-53.3px,35.1px)}95.08%{transform:translate(-47.7px,25.0px)}96.72%{transform:translate(-40.2px,16.2px)}98.36%{transform:translate(-31.1px,9.0px)}100.00%{transform:translate(-31.1px,9.0px)}}.bp .nc2{animation:nc2 3.2s linear 0.3s infinite both}@keyframes nc2{0.00%{transform:translate(0.0px,-0.0px)}1.85%{transform:translate(4.1px,0.1px)}3.70%{transform:translate(8.2px,0.3px)}5.56%{transform:translate(12.3px,0.7px)}7.41%{transform:translate(16.3px,1.2px)}9.26%{transform:translate(20.3px,1.8px)}11.11%{transform:translate(24.3px,2.6px)}12.96%{transform:translate(28.2px,3.4px)}14.81%{transform:translate(32.0px,4.4px)}16.67%{transform:translate(35.8px,5.5px)}18.52%{transform:translate(39.5px,6.8px)}20.37%{transform:translate(43.1px,8.1px)}22.22%{transform:translate(46.7px,9.4px)}24.07%{transform:translate(50.2px,10.9px)}25.93%{transform:translate(53.6px,12.4px)}27.78%{transform:translate(56.9px,14.0px)}29.63%{transform:translate(60.2px,15.7px)}31.48%{transform:translate(63.4px,17.4px)}33.33%{transform:translate(66.5px,19.1px)}35.19%{transform:translate(69.6px,20.9px)}37.04%{transform:translate(72.6px,22.8px)}38.89%{transform:translate(75.5px,24.6px)}40.74%{transform:translate(78.3px,26.5px)}42.59%{transform:translate(81.1px,28.4px)}44.44%{transform:translate(83.8px,30.4px)}46.30%{transform:translate(86.5px,32.3px)}48.15%{transform:translate(89.1px,34.3px)}50.00%{transform:translate(91.6px,36.3px)}51.85%{transform:translate(94.1px,38.3px)}53.70%{transform:translate(96.6px,40.3px)}55.56%{transform:translate(99.0px,42.3px)}57.41%{transform:translate(101.3px,44.4px)}59.26%{transform:translate(103.6px,46.4px)}61.11%{transform:translate(105.9px,48.5px)}62.96%{transform:translate(108.1px,50.5px)}64.81%{transform:translate(110.3px,52.6px)}66.67%{transform:translate(112.4px,54.6px)}68.52%{transform:translate(114.5px,56.7px)}70.37%{transform:translate(116.5px,58.7px)}72.22%{transform:translate(118.6px,60.8px)}74.07%{transform:translate(120.6px,62.8px)}75.93%{transform:translate(122.6px,65.0px)}77.78%{transform:translate(124.5px,67.0px)}79.63%{transform:translate(126.4px,69.0px)}81.48%{transform:translate(128.2px,71.1px)}83.33%{transform:translate(130.1px,73.1px)}85.19%{transform:translate(131.9px,75.2px)}87.04%{transform:translate(133.6px,77.2px)}88.89%{transform:translate(135.4px,79.2px)}90.74%{transform:translate(137.1px,81.3px)}92.59%{transform:translate(138.8px,83.3px)}94.44%{transform:translate(140.5px,85.3px)}96.30%{transform:translate(142.1px,87.3px)}98.15%{transform:translate(143.8px,89.3px)}100.00%{transform:translate(143.8px,89.3px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .nc0{animation:nc0 3.0s linear 0.3s infinite both}@keyframes nc0{0.00%{transform:translate(0.0px,-0.0px)}7.14%{transform:translate(1.8px,0.1px)}14.29%{transform:translate(3.6px,0.3px)}21.43%{transform:translate(5.4px,0.7px)}28.57%{transform:translate(7.1px,1.2px)}35.71%{transform:translate(8.9px,1.8px)}42.86%{transform:translate(10.6px,2.6px)}50.00%{transform:translate(12.3px,3.6px)}57.14%{transform:translate(14.0px,4.7px)}64.29%{transform:translate(15.6px,6.0px)}71.43%{transform:translate(17.2px,7.4px)}78.57%{transform:translate(18.7px,9.0px)}85.71%{transform:translate(20.2px,10.8px)}92.86%{transform:translate(21.5px,12.7px)}100.00%{transform:translate(21.5px,12.7px)}}.bp .nc1{animation:nc1 6.3s linear 0.3s infinite both}@keyframes nc1{0.00%{transform:translate(0.0px,-0.0px)}1.64%{transform:translate(11.5px,1.2px)}3.28%{transform:translate(22.6px,4.6px)}4.92%{transform:translate(32.7px,10.2px)}6.56%{transform:translate(41.6px,17.6px)}8.20%{transform:translate(48.8px,26.7px)}9.84%{transform:translate(54.0px,37.1px)}11.48%{transform:translate(57.1px,48.2px)}13.11%{transform:translate(57.9px,59.8px)}14.75%{transform:translate(56.4px,71.3px)}16.39%{transform:translate(52.6px,82.3px)}18.03%{transform:translate(46.7px,92.3px)}19.67%{transform:translate(38.9px,101.0px)}21.31%{transform:translate(29.6px,107.8px)}22.95%{transform:translate(19.1px,112.7px)}24.59%{transform:translate(7.8px,115.5px)}26.23%{transform:translate(-3.7px,115.9px)}27.87%{transform:translate(-15.2px,114.0px)}29.51%{transform:translate(-26.0px,109.9px)}31.15%{transform:translate(-35.8px,103.7px)}32.79%{transform:translate(-44.1px,95.7px)}34.43%{transform:translate(-50.7px,86.2px)}36.07%{transform:translate(-55.3px,75.6px)}37.70%{transform:translate(-57.7px,64.3px)}39.34%{transform:translate(-57.8px,52.7px)}40.98%{transform:translate(-55.6px,41.3px)}42.62%{transform:translate(-51.2px,30.6px)}44.26%{transform:translate(-44.8px,21.0px)}45.90%{transform:translate(-36.5px,12.9px)}47.54%{transform:translate(-26.8px,6.6px)}49.18%{transform:translate(-16.1px,2.3px)}50.82%{transform:translate(-4.7px,0.2px)}52.46%{transform:translate(6.9px,0.4px)}54.10%{transform:translate(18.2px,2.9px)}55.74%{transform:translate(28.8px,7.7px)}57.38%{transform:translate(38.2px,14.4px)}59.02%{transform:translate(46.1px,22.9px)}60.66%{transform:translate(52.2px,32.7px)}62.30%{transform:translate(56.1px,43.6px)}63.93%{transform:translate(57.9px,55.1px)}65.57%{transform:translate(57.3px,66.7px)}67.21%{transform:translate(54.4px,77.9px)}68.85%{transform:translate(49.4px,88.3px)}70.49%{transform:translate(42.4px,97.6px)}72.13%{transform:translate(33.6px,105.2px)}73.77%{transform:translate(23.6px,111.0px)}75.41%{transform:translate(12.6px,114.6px)}77.05%{transform:translate(1.1px,116.0px)}78.69%{transform:translate(-10.5px,115.1px)}80.33%{transform:translate(-21.6px,111.9px)}81.97%{transform:translate(-31.7px,106.6px)}83.61%{transform:translate(-40.8px,99.3px)}85.25%{transform:translate(-48.2px,90.4px)}86.89%{transform:translate(-53.6px,80.2px)}88.52%{transform:translate(-57.0px,69.1px)}90.16%{transform:translate(-58.1px,57.6px)}91.80%{transform:translate(-56.8px,46.1px)}93.44%{transform:translate(-53.3px,35.1px)}95.08%{transform:translate(-47.7px,25.0px)}96.72%{transform:translate(-40.2px,16.2px)}98.36%{transform:translate(-31.1px,9.0px)}100.00%{transform:translate(-31.1px,9.0px)}}.bp .nc2{animation:nc2 3.2s linear 0.3s infinite both}@keyframes nc2{0.00%{transform:translate(0.0px,-0.0px)}1.85%{transform:translate(4.1px,0.1px)}3.70%{transform:translate(8.2px,0.3px)}5.56%{transform:translate(12.3px,0.7px)}7.41%{transform:translate(16.3px,1.2px)}9.26%{transform:translate(20.3px,1.8px)}11.11%{transform:translate(24.3px,2.6px)}12.96%{transform:translate(28.2px,3.4px)}14.81%{transform:translate(32.0px,4.4px)}16.67%{transform:translate(35.8px,5.5px)}18.52%{transform:translate(39.5px,6.8px)}20.37%{transform:translate(43.1px,8.1px)}22.22%{transform:translate(46.7px,9.4px)}24.07%{transform:translate(50.2px,10.9px)}25.93%{transform:translate(53.6px,12.4px)}27.78%{transform:translate(56.9px,14.0px)}29.63%{transform:translate(60.2px,15.7px)}31.48%{transform:translate(63.4px,17.4px)}33.33%{transform:translate(66.5px,19.1px)}35.19%{transform:translate(69.6px,20.9px)}37.04%{transform:translate(72.6px,22.8px)}38.89%{transform:translate(75.5px,24.6px)}40.74%{transform:translate(78.3px,26.5px)}42.59%{transform:translate(81.1px,28.4px)}44.44%{transform:translate(83.8px,30.4px)}46.30%{transform:translate(86.5px,32.3px)}48.15%{transform:translate(89.1px,34.3px)}50.00%{transform:translate(91.6px,36.3px)}51.85%{transform:translate(94.1px,38.3px)}53.70%{transform:translate(96.6px,40.3px)}55.56%{transform:translate(99.0px,42.3px)}57.41%{transform:translate(101.3px,44.4px)}59.26%{transform:translate(103.6px,46.4px)}61.11%{transform:translate(105.9px,48.5px)}62.96%{transform:translate(108.1px,50.5px)}64.81%{transform:translate(110.3px,52.6px)}66.67%{transform:translate(112.4px,54.6px)}68.52%{transform:translate(114.5px,56.7px)}70.37%{transform:translate(116.5px,58.7px)}72.22%{transform:translate(118.6px,60.8px)}74.07%{transform:translate(120.6px,62.8px)}75.93%{transform:translate(122.6px,65.0px)}77.78%{transform:translate(124.5px,67.0px)}79.63%{transform:translate(126.4px,69.0px)}81.48%{transform:translate(128.2px,71.1px)}83.33%{transform:translate(130.1px,73.1px)}85.19%{transform:translate(131.9px,75.2px)}87.04%{transform:translate(133.6px,77.2px)}88.89%{transform:translate(135.4px,79.2px)}90.74%{transform:translate(137.1px,81.3px)}92.59%{transform:translate(138.8px,83.3px)}94.44%{transform:translate(140.5px,85.3px)}96.30%{transform:translate(142.1px,87.3px)}98.15%{transform:translate(143.8px,89.3px)}100.00%{transform:translate(143.8px,89.3px)}}"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between escape speed and orbital speed near the surface?",
+      "definition": "\\( v_e = \\sqrt2\\,v_0 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Period of a satellite?",
+      "definition": "\\( T = 2\\pi\\sqrt{\\dfrac{(R_E + h)^3}{GM_E}} \\) → T² ∝ (R + h)³ (Kepler’s third law)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Period of a satellite just above the surface?",
+      "definition": "\\( T_0 = 2\\pi\\sqrt{\\dfrac{R_E}{g}} \\approx \\) <span style=\"color:#f08c00\">85 min</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Moon’s period and a curiosity about it?",
+      "definition": "<span style=\"color:#f08c00\">27.3 days</span>, roughly equal to its own spin period, so we always see the same face",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.5: Phobos has period 7 h 39 min and orbit radius 9.4 × 10³ km. Mass of Mars? Martian year if its orbit is 1.52 × Earth’s?",
+      "definition": "<span style=\"color:#f08c00\">6.48 × 10²³ kg</span>; <span style=\"color:#f08c00\">684 days</span> (1.52^(3/2) × 365)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.7: k = 10⁻¹³ s² m⁻³ in T² = k r³. Moon at 3.84 × 10⁵ km: period?",
+      "definition": "k = 1.33 × 10⁻¹⁴ d² km⁻³ → T ≈ <span style=\"color:#f08c00\">27.3 days</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does an astronaut in an orbiting satellite feel weightless?",
+      "definition": "Not because gravity is small, but because astronaut and satellite are both in <span style=\"color:#3b82f6\">free fall</span> towards the Earth",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.4: Io’s period 1.769 days, orbit 4.22 × 10⁸ m. Show M(Jupiter) ≈ M(Sun)/1000. Method?",
+      "definition": "Use M = 4π²R³/(GT²) for Io and for the Earth; the ratio comes to ≈ <span style=\"color:#f08c00\">1/1000</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.13: how to \"weigh the Sun\"?",
+      "definition": "\\( M_S = \\dfrac{4\\pi^2 R^3}{GT^2} \\) with R = 1.5 × 10¹¹ m, T = 1 year → <span style=\"color:#f08c00\">2.0 × 10³⁰ kg</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.14: a Saturn year is 29.5 Earth years. Distance from the Sun?",
+      "definition": "(29.5)^(2/3) × 1.5 × 10⁸ km ≈ <span style=\"color:#f08c00\">1.43 × 10⁹ km</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.5: a star 50 000 ly from the centre of a galaxy of 2.5 × 10¹¹ solar masses. Period?",
+      "definition": "≈ <span style=\"color:#f08c00\">3.5 × 10⁸ years</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.9-earth-satellites"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Energies of an orbiting satellite",
+      "definition": "Kinetic energy K: +GMm / 2r; Potential energy U: −GMm / r; Total energy E: −GMm / 2r; Relations: U = 2E,  K = −E",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">7.10 · satellite in a circular orbit of radius r</p><h2>Energy?</h2><table><tr><td>Kinetic energy K</td><td class=\"q\">?</td></tr><tr><td>Potential energy U</td><td class=\"q\">?</td></tr><tr><td>Total energy E</td><td class=\"q\">?</td></tr><tr><td>Relations</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">7.10 · satellite in a circular orbit of radius r</p><h2>Energy?</h2><table><tr><td>Kinetic energy K</td><td class=\"a\">+GMm / 2r</td></tr><tr><td>Potential energy U</td><td class=\"a no\">−GMm / r</td></tr><tr><td>Total energy E</td><td class=\"a no\">−GMm / 2r</td></tr><tr><td>Relations</td><td class=\"a\">U = 2E,  K = −E</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.10-energy-of-satellite"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why must the total energy of a satellite be negative?",
+      "definition": "It is a <span style=\"color:#3b82f6\">bound</span> system; E ≥ 0 would let it escape to infinity",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.10-energy-of-satellite"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy needed to take a satellite in orbit (radius r) out of Earth’s influence?",
+      "definition": "\\( +\\dfrac{GMm}{2r} \\) (= −E). Less than for a body at rest at that height (Exercise 7.6b)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.10-energy-of-satellite"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.19: 200 kg satellite at 400 km height. Energy to escape?",
+      "definition": "<span style=\"color:#f08c00\">5.9 × 10⁹ J</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.10-energy-of-satellite"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Raising a satellite from 2R to 4R",
+      "definition": "ΔE = +3.13 × 10⁹ J; ΔK = −3.13 × 10⁹ J; ΔU = +6.25 × 10⁹ J",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.8</p><h2>Find the missing step.</h2><div class=\"prob\">400 kg satellite moved from orbit radius 2R_E to 4R_E. Energy needed and changes in K and U?</div><ol><li>Eᵢ = −GMm/4R, E𝒻 = −GMm/8R</li><li>ΔE = GMm/8R = gmR/8 = 3.13 × 10⁹ J</li><li>ΔK = −ΔE = −3.13 × 10⁹ J</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.8</p><h2>Find the missing step.</h2><div class=\"prob\">400 kg satellite moved from orbit radius 2R_E to 4R_E. Energy needed and changes in K and U?</div><ol><li>Eᵢ = −GMm/4R, E𝒻 = −GMm/8R</li><li>ΔE = GMm/8R = gmR/8 = 3.13 × 10⁹ J</li><li>ΔK = −ΔE = −3.13 × 10⁹ J</li><li class=\"r\">ΔU = 2ΔE = <b>+6.25 × 10⁹ J</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.10-energy-of-satellite"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Example 7.8 prints ΔV = −6.25 × 10⁹ J. What is the correct sign?",
+      "definition": "<span style=\"color:#3b82f6\">Positive</span>: Uᵢ = −GMm/2R, U𝒻 = −GMm/4R, so U rises (becomes less negative) by +6.25 × 10⁹ J. Check: ΔK + ΔU = ΔE = +3.13 × 10⁹ J",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.10-energy-of-satellite"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A satellite loses energy to air drag. What happens to its speed?",
+      "definition": "It <span style=\"color:#3b82f6\">increases</span>: E falls, r shrinks, K = −E rises (Exercise 5.5c)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "7.10-energy-of-satellite"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.1(c): the Sun pulls the Earth harder than the Moon does, yet the Moon causes bigger tides. Why?",
+      "definition": "Tides depend on the <span style=\"color:#3b82f6\">difference</span> of pull across the Earth, ∝ M/r³, not M/r²; the nearby Moon wins",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.1(b): can an astronaut in a very large space station detect gravity?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>, through the variation of g across the station (tidal effect)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "What stays constant for a comet",
+      "definition": "Linear speed: no; Angular speed: no; Angular momentum: yes; Kinetic energy: no; Potential energy: no; Total energy: yes",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 7.8 · comet in an elliptical orbit</p><h2>Constant?</h2><table><tr><td>Linear speed</td><td class=\"q\">?</td></tr><tr><td>Angular speed</td><td class=\"q\">?</td></tr><tr><td>Angular momentum</td><td class=\"q\">?</td></tr><tr><td>Kinetic energy</td><td class=\"q\">?</td></tr><tr><td>Potential energy</td><td class=\"q\">?</td></tr><tr><td>Total energy</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 7.8 · comet in an elliptical orbit</p><h2>Constant?</h2><table><tr><td>Linear speed</td><td class=\"a no\">no</td></tr><tr><td>Angular speed</td><td class=\"a no\">no</td></tr><tr><td>Angular momentum</td><td class=\"a\">yes</td></tr><tr><td>Kinetic energy</td><td class=\"a no\">no</td></tr><tr><td>Potential energy</td><td class=\"a no\">no</td></tr><tr><td>Total energy</td><td class=\"a\">yes</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.9: which symptoms may an astronaut in space get?",
+      "definition": "<span style=\"color:#3b82f6\">Swollen face, headache, orientation problems</span> (body fluids shift upwards); not swollen feet",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercises 7.10–7.11: direction of the gravitational field at the centre C and at a point P on the open face of a hemispherical shell?",
+      "definition": "Along <span style=\"color:#3b82f6\">c</span> and <span style=\"color:#3b82f6\">e</span> (straight down): complete the sphere, where the field inside is zero",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "exercises"
+      ],
+      "termImage": "media/fig_7_11_hemisphere.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.12: where between the Earth and Sun is the net gravitational force on a rocket zero?",
+      "definition": "About <span style=\"color:#f08c00\">2.6 × 10⁸ m</span> from the Earth’s centre",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.20: two solar-mass stars start at rest 10⁹ km apart. Speed at collision (radius 10⁴ km each)?",
+      "definition": "≈ <span style=\"color:#f08c00\">2.6 × 10⁶ m/s</span> each",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Conserved quantities under gravity",
+      "definition": "Angular momentum (about the centre): yes; Total mechanical energy: yes; Linear momentum of the orbiting body: no",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>In motion under gravity, is it conserved?</h2><table><tr><td>Angular momentum (about the centre)</td><td class=\"q\">?</td></tr><tr><td>Total mechanical energy</td><td class=\"q\">?</td></tr><tr><td>Linear momentum of the orbiting body</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>In motion under gravity, is it conserved?</h2><table><tr><td>Angular momentum (about the centre)</td><td class=\"a\">yes</td></tr><tr><td>Total mechanical energy</td><td class=\"a\">yes</td></tr><tr><td>Linear momentum of the orbiting body</td><td class=\"a no\">no</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 7 formula sheet",
+      "definition": "g at height h: GM/(R + h)² ≈ g(1 − 2h/R); g at depth d: g(1 − d/R); Orbital speed near surface: √(gR) ≈ 7.9 km/s; Escape speed: √(2gR) ≈ 11.2 km/s; Satellite energy: E = −GMm/2r",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>g at height h</td><td class=\"q\">?</td></tr><tr><td>g at depth d</td><td class=\"q\">?</td></tr><tr><td>Orbital speed near surface</td><td class=\"q\">?</td></tr><tr><td>Escape speed</td><td class=\"q\">?</td></tr><tr><td>Satellite energy</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>g at height h</td><td class=\"a\">GM/(R + h)² ≈ g(1 − 2h/R)</td></tr><tr><td>g at depth d</td><td class=\"a\">g(1 − d/R)</td></tr><tr><td>Orbital speed near surface</td><td class=\"a\">√(gR) ≈ 7.9 km/s</td></tr><tr><td>Escape speed</td><td class=\"a\">√(2gR) ≈ 11.2 km/s</td></tr><tr><td>Satellite energy</td><td class=\"a\">E = −GMm/2r</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-7",
+        "summary"
+      ]
+    }
+  ]
+}
