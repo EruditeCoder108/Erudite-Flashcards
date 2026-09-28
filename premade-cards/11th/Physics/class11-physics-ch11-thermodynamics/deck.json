@@ -1,0 +1,935 @@
+{
+  "version": 1,
+  "name": "Chapter 11: Thermodynamics",
+  "className": "Class 11",
+  "description": "Zeroth law, internal energy, heat and work, first law, Cp − Cv, state variables, isothermal and adiabatic processes, second law, Carnot engine",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What was the caloric theory of heat?",
+      "definition": "Heat as an invisible <span style=\"color:#e5484d\">fluid</span> (\"caloric\") filling the pores of matter, flowing until \"caloric levels\" equalised",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How did Count Rumford (1798) disprove caloric theory?",
+      "definition": "Boring a cannon produced heat that depended on the <span style=\"color:#3b82f6\">work done</span> (by horses), not on the drill’s sharpness → heat is a form of <span style=\"color:#3b82f6\">energy</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Thermodynamics vs mechanics?",
+      "definition": "Mechanics: motion of the body as a whole. Thermodynamics: the <span style=\"color:#3b82f6\">internal macroscopic state</span> (P, V, T, U) — a bullet is not hotter because it is fast",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is thermodynamics a microscopic or macroscopic science?",
+      "definition": "<span style=\"color:#3b82f6\">Macroscopic</span>: it uses bulk variables (P, V, T, mass, composition) and ignores molecules",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Thermodynamic equilibrium vs mechanical equilibrium?",
+      "definition": "Thermodynamic: macroscopic variables <span style=\"color:#3b82f6\">do not change with time</span>. Mechanical: net force and torque are zero",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.2-thermal-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Adiabatic wall vs diathermic wall?",
+      "definition": "<span style=\"color:#3b82f6\">Adiabatic</span>: insulating, no heat flow. <span style=\"color:#3b82f6\">Diathermic</span>: conducting, heat flows until thermal equilibrium",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.2-thermal-equilibrium"
+      ],
+      "definitionImage": "media/fig_11_1_walls.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "Zeroth law: two systems in thermal equilibrium with a {{c1::third system}} separately are in thermal equilibrium with {{c2::each other}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.2-thermal-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What concept does the zeroth law define?",
+      "definition": "<span style=\"color:#3b82f6\">Temperature</span>: the quantity that is equal for systems in thermal equilibrium",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.2-thermal-equilibrium"
+      ],
+      "definitionImage": "media/fig_11_2_zeroth_law.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Who formulated the zeroth law, and why is it called \"zeroth\"?",
+      "definition": "<span style=\"color:#3b82f6\">R. H. Fowler</span> (1931), after the first and second laws were already numbered; it is logically more basic",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.2-thermal-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define internal energy.",
+      "definition": "Sum of molecular <span style=\"color:#3b82f6\">kinetic and potential energies</span> in the frame where the centre of mass is at rest; excludes KE of the body as a whole",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.4-heat-internal-energy-work"
+      ],
+      "definitionImage": "media/fig_11_3_internal_energy.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Is internal energy a state variable? Heat? Work?",
+      "definition": "U: <span style=\"color:#3b82f6\">yes</span> (depends only on the state). Heat and work: <span style=\"color:#e5484d\">no</span> — they are energy in transit and depend on the path",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.4-heat-internal-energy-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Heat vs work as ways to change U?",
+      "definition": "<span style=\"color:#3b82f6\">Heat</span>: transfer due to a temperature difference. <span style=\"color:#3b82f6\">Work</span>: transfer by other means (e.g. moving a piston)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.4-heat-internal-energy-work"
+      ],
+      "definitionImage": "media/fig_11_4_heat_work.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is \"a gas has a certain amount of heat\" meaningless?",
+      "definition": "Heat is energy <span style=\"color:#3b82f6\">in transit</span>, not a property of a state; the state has internal energy",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.4-heat-internal-energy-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For an ideal gas, U depends on…?",
+      "definition": "<span style=\"color:#3b82f6\">Temperature only</span> (no intermolecular forces)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.4-heat-internal-energy-work"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State the first law of thermodynamics.",
+      "definition": "\\( \\Delta Q = \\Delta U + \\Delta W \\): heat supplied = rise in internal energy + work done <span style=\"color:#3b82f6\">by</span> the system",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.5-first-law"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "First law sign conventions",
+      "definition": "Heat absorbed by the system: ΔQ > 0; Heat released: ΔQ < 0; Work done by the system (expansion): ΔW > 0; Work done on the system (compression): ΔW < 0",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Sign convention (NCERT)</p><h2>Sign?</h2><table><tr><td>Heat absorbed by the system</td><td class=\"q\">?</td></tr><tr><td>Heat released</td><td class=\"q\">?</td></tr><tr><td>Work done by the system (expansion)</td><td class=\"q\">?</td></tr><tr><td>Work done on the system (compression)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Sign convention (NCERT)</p><h2>Sign?</h2><table><tr><td>Heat absorbed by the system</td><td class=\"a\">ΔQ > 0</td></tr><tr><td>Heat released</td><td class=\"a no\">ΔQ < 0</td></tr><tr><td>Work done by the system (expansion)</td><td class=\"a\">ΔW > 0</td></tr><tr><td>Work done on the system (compression)</td><td class=\"a no\">ΔW < 0</td></tr></table><p class=\"note\">Chemistry books often write ΔU = q + w with w = work done ON the system — same physics, different sign.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.5-first-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "The first law is really the law of…?",
+      "definition": "Conservation of <span style=\"color:#3b82f6\">energy</span>, including heat and work exchanges",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.5-first-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which combination of Q and W is path independent?",
+      "definition": "\\( \\Delta Q - \\Delta W = \\Delta U \\), because U is a state variable (Q and W separately depend on the path)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.5-first-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Work done by a gas against constant pressure?",
+      "definition": "\\( \\Delta W = P\\,\\Delta V \\); in general, W = ∫P dV = area under the P–V curve",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.5-first-law"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Internal energy change on boiling water",
+      "definition": "ΔU = 2256 − 169 ≈ 2087 J",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">11.5 · boiling 1 g of water</p><h2>Find the missing step.</h2><div class=\"prob\">L = 2256 J/g; 1 g of water: 1 cm³ as liquid, 1671 cm³ as steam, at 1 atm. ΔU?</div><ol><li>ΔQ = 2256 J</li><li>ΔW = P(V_g − V_l) = 1.013 × 10⁵ × 1670 × 10⁻⁶ ≈ 169 J</li><li class=\"h\">?</li><li>= <b>≈ 2087 J</b>: most heat goes into internal energy</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">11.5 · boiling 1 g of water</p><h2>Find the missing step.</h2><div class=\"prob\">L = 2256 J/g; 1 g of water: 1 cm³ as liquid, 1671 cm³ as steam, at 1 atm. ΔU?</div><ol><li>ΔQ = 2256 J</li><li>ΔW = P(V_g − V_l) = 1.013 × 10⁵ × 1670 × 10⁻⁶ ≈ 169 J</li><li class=\"r\">ΔU = ΔQ − ΔW</li><li>= <b>≈ 2087 J</b>: most heat goes into internal energy</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.5-first-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.7: heater supplies 100 W; system does work at 75 J/s. Rate of rise of U?",
+      "definition": "<span style=\"color:#f08c00\">25 W</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.5-first-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.5: A → B adiabatically needs 22.3 J of work on the gas. Via another path the gas absorbs 9.35 cal. Work done by the gas then?",
+      "definition": "ΔU = +22.3 J (same for any path); W = Q − ΔU = 39.2 − 22.3 = <span style=\"color:#f08c00\">16.9 J</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.5-first-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Molar specific heat of solids (Dulong–Petit)?",
+      "definition": "\\( C \\approx 3R \\approx 25 \\) J mol⁻¹ K⁻¹: each atom is a 3D oscillator with energy 3kT",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ],
+      "definitionImage": "media/tab_11_1_solids_heat.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Which solid in Table 11.1 breaks the 3R rule?",
+      "definition": "<span style=\"color:#22a35a\">Carbon</span> (6.1 J mol⁻¹ K⁻¹); the rule also fails at low temperatures",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the calorie precisely. 1 cal in joules?",
+      "definition": "Heat to raise 1 g of water from <span style=\"color:#3b82f6\">14.5 °C to 15.5 °C</span>; 1 cal = <span style=\"color:#f08c00\">4.186 J</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ],
+      "definitionImage": "media/fig_11_5_water_specific_heat.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is \"mechanical equivalent of heat\" now superfluous?",
+      "definition": "Heat and work are both energy measured in <span style=\"color:#3b82f6\">joules</span>; 4.186 J/cal is only a unit conversion",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mayer’s relation for an ideal gas?",
+      "definition": "\\( C_p - C_v = R \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Proof of Mayer’s relation",
+      "definition": "At constant P the extra heat does work PΔV = RΔT per mole, so Cp − Cv = R",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">11.6 · proof of Cp − Cv = R</p><h2>Find the missing step.</h2><div class=\"prob\">Prove Cp − Cv = R for one mole of an ideal gas.</div><ol><li>ΔQ = ΔU + PΔV</li><li>Constant V: Cv = ΔU/ΔT</li><li class=\"h\">?</li><li>So <b>Cp − Cv = R</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">11.6 · proof of Cp − Cv = R</p><h2>Find the missing step.</h2><div class=\"prob\">Prove Cp − Cv = R for one mole of an ideal gas.</div><ol><li>ΔQ = ΔU + PΔV</li><li>Constant V: Cv = ΔU/ΔT</li><li class=\"r\">Constant P: Cp = ΔU/ΔT + P(ΔV/ΔT); PV = RT gives P ΔV/ΔT = R</li><li>So <b>Cp − Cv = R</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is Cp > Cv?",
+      "definition": "At constant pressure part of the heat does <span style=\"color:#3b82f6\">work</span> (expansion); at constant volume all of it raises U",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.2: heat to raise 20 g of nitrogen by 45 °C at constant pressure?",
+      "definition": "μ = 20/28 mol, Cp = 7R/2 → Q ≈ <span style=\"color:#f08c00\">933 J</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.3(a): why don’t two bodies in contact settle at (T₁ + T₂)/2?",
+      "definition": "Only if their <span style=\"color:#3b82f6\">heat capacities</span> are equal; in general the final temperature is weighted by ms",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.3(b): why should a coolant have high specific heat?",
+      "definition": "It absorbs a lot of heat with only a small <span style=\"color:#3b82f6\">rise in its temperature</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.3(d): why is a harbour town’s climate milder than a desert town’s?",
+      "definition": "The sea’s high heat capacity (and humid air) smooths temperature changes",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.6-specific-heat-capacity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is an equation of state? Example?",
+      "definition": "A relation among state variables; for an ideal gas \\( PV = \\mu RT \\) (only two of P, V, T independent)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.7-state-variables"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can a gas in free expansion or an explosion be described by state variables?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is not in equilibrium; P and T are not uniform",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.7-state-variables"
+      ],
+      "definitionImage": "media/fig_11_6_non_equilibrium.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Extensive vs intensive variables? Test?",
+      "definition": "Divide the system in two: variables that <span style=\"color:#3b82f6\">halve</span> are extensive (U, V, mass); those <span style=\"color:#3b82f6\">unchanged</span> are intensive (P, T, ρ)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.7-state-variables"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is ΔQ = ΔU + PΔV consistent in extensive/intensive terms?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: every term is extensive (P × ΔV is intensive × extensive)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.7-state-variables"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is an isotherm?",
+      "definition": "The P–V curve at fixed temperature",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.7-state-variables"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a quasi-static process?",
+      "definition": "An <span style=\"color:#3b82f6\">infinitely slow</span> process: the system stays in equilibrium, differing from the surroundings only infinitesimally in P and T",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ],
+      "definitionImage": "media/fig_11_7_quasi_static.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Special thermodynamic processes (Table 11.2)",
+      "definition": "Isothermal: temperature; Isobaric: pressure; Isochoric: volume; Adiabatic: no heat flow (ΔQ = 0)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 11.2</p><h2>What is kept fixed?</h2><table><tr><td>Isothermal</td><td class=\"q\">?</td></tr><tr><td>Isobaric</td><td class=\"q\">?</td></tr><tr><td>Isochoric</td><td class=\"q\">?</td></tr><tr><td>Adiabatic</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 11.2</p><h2>What is kept fixed?</h2><table><tr><td>Isothermal</td><td class=\"a\">temperature</td></tr><tr><td>Isobaric</td><td class=\"a\">pressure</td></tr><tr><td>Isochoric</td><td class=\"a\">volume</td></tr><tr><td>Adiabatic</td><td class=\"a\">no heat flow (ΔQ = 0)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the four processes starting from A on this P–V diagram.",
+      "definition": "Horizontal: isobaric; vertical: isochoric; PV = const: isothermal; steeper PVᵞ = const: adiabatic",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ],
+      "termImage": "media/drawn_pv_processes.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Isothermal process of an ideal gas: relation, ΔU, work?",
+      "definition": "PV = constant (Boyle); ΔU = 0; \\( Q = W = \\mu RT\\ln\\dfrac{V_2}{V_1} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Isothermal expansion vs compression: heat?",
+      "definition": "Expansion: gas <span style=\"color:#3b82f6\">absorbs</span> heat and does work. Compression: work is done on it and it <span style=\"color:#3b82f6\">releases</span> heat",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Adiabatic process of an ideal gas: relation?",
+      "definition": "\\( PV^\\gamma = constant \\), γ = Cp/Cv; also \\( TV^{\\gamma-1} = constant \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Work done by an ideal gas in an adiabatic change?",
+      "definition": "\\( W = \\dfrac{P_1V_1 - P_2V_2}{\\gamma - 1} = \\dfrac{\\mu R(T_1 - T_2)}{\\gamma - 1} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Adiabatic expansion: what happens to temperature? Compression?",
+      "definition": "Expansion: work comes from U → gas <span style=\"color:#3b82f6\">cools</span>. Compression: gas <span style=\"color:#3b82f6\">heats up</span> (e.g. a bicycle pump)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is an adiabat steeper than an isotherm on a P–V graph?",
+      "definition": "Slope: isotherm −P/V, adiabat <span style=\"color:#3b82f6\">−γP/V</span> (γ > 1)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ],
+      "definitionImage": "media/fig_11_8_isotherm_adiabat.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Isochoric process?",
+      "definition": "W = 0; all heat changes U: \\( Q = \\mu C_v\\Delta T \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Isobaric process?",
+      "definition": "\\( W = P(V_2 - V_1) = \\mu R(T_2 - T_1) \\); Q = μCₚΔT",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cyclic process?",
+      "definition": "ΔU = 0, so <span style=\"color:#3b82f6\">net heat absorbed = net work done</span> = area enclosed by the loop",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.4: 3 mol of H₂ compressed adiabatically to half its volume. Pressure factor?",
+      "definition": "\\( 2^{1.4} \\approx \\) <span style=\"color:#f08c00\">2.64</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.6: gas in A expands freely into evacuated B (equal volumes, insulated). Final P, ΔU, ΔT?",
+      "definition": "P halves (<span style=\"color:#f08c00\">0.5 atm</span>); ΔU = <span style=\"color:#f08c00\">0</span>, ΔT = <span style=\"color:#f08c00\">0</span> (ideal gas: Q = 0, W = 0)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.6(d): do the intermediate states of free expansion lie on the P–V–T surface?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: free expansion is rapid; intermediate states are not equilibrium states",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.3(c): why does tyre pressure rise while driving?",
+      "definition": "Friction heats the tyre air at nearly <span style=\"color:#3b82f6\">constant volume</span>, so P rises",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 11.8: gas goes D → E linearly (600 → 300 N/m², 2 → 5 m³), then isobarically back E → F. Total work?",
+      "definition": "Area of triangle DEF = ½ × 3 × 300 = <span style=\"color:#f08c00\">450 J</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ],
+      "definitionImage": "media/fig_11_11_ex_pv.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Exercise 11.8 refers to \"Fig. (11.13)\". Which figure?",
+      "definition": "<span style=\"color:#3b82f6\">Fig. 11.11</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.8-thermodynamic-processes"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the first law not enough?",
+      "definition": "Many energy-conserving events never happen (a book jumping up by cooling the table); the <span style=\"color:#3b82f6\">second law</span> forbids them",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.9-second-law"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Kelvin–Planck statement: no process is possible whose sole result is the absorption of heat from a reservoir and its {{c1::complete conversion into work}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.9-second-law"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Clausius statement: no process is possible whose sole result is the transfer of heat from a {{c1::colder}} object to a {{c2::hotter}} object.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.9-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What do the two statements rule out?",
+      "definition": "A heat engine with efficiency <span style=\"color:#e5484d\">1</span> and a refrigerator with infinite coefficient of performance; the statements are equivalent",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.9-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: efficiency of a heat engine?",
+      "definition": "\\( \\eta = \\dfrac{W}{Q_1} = 1 - \\dfrac{Q_2}{Q_1} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.9-second-law"
+      ],
+      "definitionImage": "media/drawn_engine_fridge.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: coefficient of performance of a refrigerator?",
+      "definition": "\\( \\beta = \\dfrac{Q_2}{W} = \\dfrac{Q_2}{Q_1 - Q_2} \\); for a Carnot fridge \\( \\dfrac{T_2}{T_1 - T_2} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.9-second-law"
+      ],
+      "definitionImage": "media/drawn_engine_fridge.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Define a reversible process.",
+      "definition": "One that can be turned back so that <span style=\"color:#3b82f6\">both system and surroundings</span> return to their original states, with no change elsewhere",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.10-reversible-irreversible"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conditions for reversibility?",
+      "definition": "<span style=\"color:#3b82f6\">Quasi-static</span> and <span style=\"color:#3b82f6\">no dissipative effects</span> (friction, viscosity)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.10-reversible-irreversible"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two main causes of irreversibility?",
+      "definition": "Passing through <span style=\"color:#e5484d\">non-equilibrium states</span> (free expansion, explosions) and <span style=\"color:#e5484d\">dissipation</span> (friction, viscosity)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.10-reversible-irreversible"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Examples of irreversible processes?",
+      "definition": "Heat flowing from a hot base to the rest of a vessel, free expansion, combustion, diffusion of leaking gas, stirring a liquid",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.10-reversible-irreversible"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example of a (nearly) reversible process?",
+      "definition": "Quasi-static isothermal expansion of an ideal gas with a <span style=\"color:#3b82f6\">frictionless piston</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.10-reversible-irreversible"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why must a reversible engine between two temperatures use isothermal and adiabatic steps?",
+      "definition": "Heat must be exchanged with no finite temperature difference (<span style=\"color:#3b82f6\">isothermal</span>), and temperature changed without other reservoirs (<span style=\"color:#3b82f6\">adiabatic</span>)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.11-carnot-engine"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Carnot cycle: {{c1::isothermal expansion}} at T₁ → {{c2::adiabatic expansion}} to T₂ → {{c3::isothermal compression}} at T₂ → {{c4::adiabatic compression}} back to T₁.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.11-carnot-engine"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify: which parts of the Carnot cycle absorb and reject heat?",
+      "definition": "1 → 2 (isothermal at T₁) absorbs Q₁; 3 → 4 (isothermal at T₂) rejects Q₂; the two adiabats exchange no heat",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.11-carnot-engine"
+      ],
+      "termImage": "media/fig_11_9_carnot.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Efficiency of a Carnot engine?",
+      "definition": "\\( \\eta = 1 - \\dfrac{T_2}{T_1} \\) (kelvin temperatures)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.11-carnot-engine"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Key relation in a Carnot cycle (used to define temperature)?",
+      "definition": "\\( \\dfrac{Q_1}{Q_2} = \\dfrac{T_1}{T_2} \\) — independent of the working substance",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.11-carnot-engine"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Carnot’s theorem.",
+      "definition": "(a) No engine between T₁ and T₂ is more efficient than a <span style=\"color:#3b82f6\">Carnot</span> engine. (b) Carnot efficiency is <span style=\"color:#3b82f6\">independent of the working substance</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.11-carnot-engine"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is Carnot’s theorem proved?",
+      "definition": "If an engine I beat a reversible engine R run as a refrigerator, the pair would turn heat from one reservoir fully into work, violating <span style=\"color:#3b82f6\">Kelvin–Planck</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.11-carnot-engine"
+      ],
+      "definitionImage": "media/fig_11_10_engine_refrigerator.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Who first analysed the ideal heat engine?",
+      "definition": "<span style=\"color:#3b82f6\">Sadi Carnot</span>, French engineer, 1824",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.11-carnot-engine"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: Carnot engine between 500 K and 300 K. Efficiency?",
+      "definition": "1 − 300/500 = <span style=\"color:#f08c00\">40 %</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.11-carnot-engine"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can a Carnot engine have 100 % efficiency?",
+      "definition": "Only if T₂ = <span style=\"color:#e5484d\">0 K</span>, which is unattainable",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "11.11-carnot-engine"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Work in thermodynamic processes",
+      "definition": "Isochoric: 0; Isobaric: P(V₂ − V₁); Isothermal: μRT ln(V₂/V₁); Adiabatic: (P₁V₁ − P₂V₂)/(γ − 1); Cyclic: area of the loop",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary · ideal gas processes</p><h2>W done by the gas?</h2><table><tr><td>Isochoric</td><td class=\"q\">?</td></tr><tr><td>Isobaric</td><td class=\"q\">?</td></tr><tr><td>Isothermal</td><td class=\"q\">?</td></tr><tr><td>Adiabatic</td><td class=\"q\">?</td></tr><tr><td>Cyclic</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary · ideal gas processes</p><h2>W done by the gas?</h2><table><tr><td>Isochoric</td><td class=\"a\">0</td></tr><tr><td>Isobaric</td><td class=\"a\">P(V₂ − V₁)</td></tr><tr><td>Isothermal</td><td class=\"a\">μRT ln(V₂/V₁)</td></tr><tr><td>Adiabatic</td><td class=\"a\">(P₁V₁ − P₂V₂)/(γ − 1)</td></tr><tr><td>Cyclic</td><td class=\"a\">area of the loop</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 11 concept checks",
+      "definition": "A fast bullet is hotter because of its speed: False; In thermodynamic equilibrium, molecules are at rest: False; Heat capacity depends on the process: True; An isothermal process exchanges heat though T never changes: True (tiny ΔT with the reservoir)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>A fast bullet is hotter because of its speed</td><td class=\"q\">?</td></tr><tr><td>In thermodynamic equilibrium, molecules are at rest</td><td class=\"q\">?</td></tr><tr><td>Heat capacity depends on the process</td><td class=\"q\">?</td></tr><tr><td>An isothermal process exchanges heat though T never changes</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Points to ponder</p><h2>True or false?</h2><table><tr><td>A fast bullet is hotter because of its speed</td><td class=\"a no\">False</td></tr><tr><td>In thermodynamic equilibrium, molecules are at rest</td><td class=\"a no\">False</td></tr><tr><td>Heat capacity depends on the process</td><td class=\"a\">True</td></tr><tr><td>An isothermal process exchanges heat though T never changes</td><td class=\"a\">True (tiny ΔT with the reservoir)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT’s summary table gives thermal conductivity in J s⁻¹ K⁻¹. What is right?",
+      "definition": "<span style=\"color:#3b82f6\">J s⁻¹ m⁻¹ K⁻¹</span> (W m⁻¹ K⁻¹): H = KA ΔT/L needs a per-metre unit",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-11",
+        "summary"
+      ]
+    }
+  ]
+}
