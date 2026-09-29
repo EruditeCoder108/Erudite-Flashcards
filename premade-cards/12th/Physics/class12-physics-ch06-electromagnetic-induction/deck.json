@@ -1,0 +1,1550 @@
+{
+  "version": 1,
+  "name": "Chapter 6: Electromagnetic Induction",
+  "className": "Class 12",
+  "description": "Faraday’s experiments, flux, Faraday’s and Lenz’s laws, motional emf, mutual and self inductance, magnetic energy, ac generator",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Who showed around 1830 that changing magnetic fields induce currents in closed coils?",
+      "definition": "<span style=\"color:#3b82f6\">Michael Faraday</span> (England) and <span style=\"color:#3b82f6\">Joseph Henry</span> (USA)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define electromagnetic induction.",
+      "definition": "Generation of an <span style=\"color:#3b82f6\">emf / current</span> in a circuit by a <span style=\"color:#3b82f6\">changing magnetic flux</span> through it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which two devices came directly from Faraday and Henry’s work?",
+      "definition": "<span style=\"color:#3b82f6\">Generators</span> and <span style=\"color:#3b82f6\">transformers</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Experiment 6.1: N-pole pushed towards a coil joined to a galvanometer. What happens?",
+      "definition": "The pointer <span style=\"color:#3b82f6\">deflects</span> while the magnet moves; no deflection when it is held still",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.2-experiments-of-faraday-and-henry"
+      ],
+      "definitionImage": "media/fig_6_1_magnet_coil.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Experiment 6.1: what happens when the magnet is pulled away, or the S-pole is used?",
+      "definition": "Deflection <span style=\"color:#e5484d\">reverses</span> for withdrawing; S-pole gives the opposite deflection to N-pole for the same motion",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.2-experiments-of-faraday-and-henry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of moving the magnet faster?",
+      "definition": "Larger deflection: a larger <span style=\"color:#3b82f6\">rate of change of flux</span> gives a larger emf and current",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.2-experiments-of-faraday-and-henry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Magnet fixed, coil moved instead. Result?",
+      "definition": "Same effects: only the <span style=\"color:#3b82f6\">relative motion</span> matters",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.2-experiments-of-faraday-and-henry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Experiment 6.2: coil C₂ (with battery) moved towards coil C₁. Result?",
+      "definition": "Current is induced in C₁ (reverses when C₂ moves away). C₂’s steady current acts like a <span style=\"color:#3b82f6\">bar magnet</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.2-experiments-of-faraday-and-henry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Experiment 6.3: coils held fixed, key K pressed or released. What is observed?",
+      "definition": "<span style=\"color:#3b82f6\">Momentary</span> deflection on making and (opposite) on breaking; <span style=\"color:#e5484d\">none</span> while K is held closed",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.2-experiments-of-faraday-and-henry"
+      ],
+      "definitionImage": "media/fig_6_3_two_coils.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Experiment 6.3: effect of inserting an iron rod along the coils?",
+      "definition": "Deflection increases <span style=\"color:#3b82f6\">dramatically</span>: iron concentrates the flux",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.2-experiments-of-faraday-and-henry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Key idea of all three experiments?",
+      "definition": "Steady flux, however large, induces <span style=\"color:#e5484d\">nothing</span>. Only a <span style=\"color:#3b82f6\">changing</span> flux does",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.2-experiments-of-faraday-and-henry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.1(a): three ways to get a larger deflection in Experiment 6.2?",
+      "definition": "Soft-iron core in C₂; more powerful battery; move the arrangement faster",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.2-experiments-of-faraday-and-henry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.1(b): show induced current without a galvanometer?",
+      "definition": "Replace it with a small <span style=\"color:#3b82f6\">torch bulb</span>: it glows during relative motion",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.2-experiments-of-faraday-and-henry"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Magnetic flux through a plane area A in a uniform B?",
+      "definition": "\\( \\Phi_B = \\vec B\\cdot\\vec A = BA\\cos\\theta \\), θ = angle between B and the <span style=\"color:#3b82f6\">area vector (normal)</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.3-magnetic-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Flux through a curved surface or non-uniform field?",
+      "definition": "\\( \\Phi_B = \\int \\vec B\\cdot d\\vec A = \\sum \\vec B_i\\cdot d\\vec A_i \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.3-magnetic-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Unit and nature of magnetic flux?",
+      "definition": "<span style=\"color:#3b82f6\">weber</span> (Wb = T m²); a <span style=\"color:#3b82f6\">scalar</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.3-magnetic-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Flux is maximum and zero when?",
+      "definition": "Max BA at θ = <span style=\"color:#f08c00\">0°</span> (plane ⊥ B). Zero at θ = <span style=\"color:#f08c00\">90°</span> (plane ∥ B, field lines in the plane)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.3-magnetic-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: θ in Φ = BA cos θ is the angle between B and what?",
+      "definition": "<span style=\"color:#e5484d\">The normal</span> to the plane, not the plane itself. If given the angle with the plane, use sin",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.3-magnetic-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Three ways to change the flux through a loop?",
+      "definition": "Change <span style=\"color:#3b82f6\">B</span>, change the <span style=\"color:#3b82f6\">area A</span> (shrink or stretch), change the <span style=\"color:#3b82f6\">angle θ</span> (rotate)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.3-magnetic-flux"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Faraday’s law of induction.",
+      "definition": "The magnitude of the induced emf equals the <span style=\"color:#3b82f6\">rate of change of magnetic flux</span> through the circuit",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mathematical form of Faraday’s law? Coil of N turns?",
+      "definition": "\\( \\varepsilon = -\\dfrac{d\\Phi_B}{dt} \\); for N turns \\( \\varepsilon = -N\\dfrac{d\\Phi_B}{dt} \\) (Φ per turn)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the negative sign stand for?",
+      "definition": "The <span style=\"color:#3b82f6\">direction</span> of the induced emf (Lenz’s law): it opposes the flux change",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Induced current in a closed loop of resistance R?",
+      "definition": "\\( I = \\dfrac{\\varepsilon}{R} = -\\dfrac{N}{R}\\dfrac{d\\Phi_B}{dt} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: charge that flows through the loop when flux changes by ΔΦ?",
+      "definition": "\\( q = \\int I\\,dt = \\dfrac{N\\,\\Delta\\Phi}{R} \\): independent of <span style=\"color:#3b82f6\">how fast</span> the flux changes",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the total induced emf in a coil of N turns N times larger?",
+      "definition": "Each turn sees the same flux change; the <span style=\"color:#3b82f6\">emfs add in series</span>. Hence more turns → more emf",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Faraday explained Experiment 6.3 how?",
+      "definition": "Pressing K raises C₂’s current, so flux through C₁ <span style=\"color:#3b82f6\">rises</span> → emf. Steady current: flux constant → none. Releasing K: flux falls → emf of <span style=\"color:#3b82f6\">opposite sign</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Induced emf when B decreases (Example 6.2)",
+      "definition": "ε ≈ 1.0 mV, I = 2 mA",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.2 · decreasing field</p><h2>Find the missing step.</h2><div class=\"prob\">Square loop of side 10 cm, R = 0.5 Ω. B = 0.10 T at 45° to the loop’s area vector falls to zero uniformly in 0.70 s. Find emf and I.</div><ol><li class=\"h\">?</li><li>Φ₂ = 0, so ΔΦ = 7.1 × 10⁻⁴ Wb</li><li>|ε| = ΔΦ/Δt = 7.1 × 10⁻⁴/0.7 ≈ <b>1.0 mV</b></li><li>I = ε/R = 1.0 × 10⁻³/0.5 = <b>2 mA</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.2 · decreasing field</p><h2>Find the missing step.</h2><div class=\"prob\">Square loop of side 10 cm, R = 0.5 Ω. B = 0.10 T at 45° to the loop’s area vector falls to zero uniformly in 0.70 s. Find emf and I.</div><ol><li class=\"r\">Φ₁ = BA cos 45° = 0.1 × 10⁻² × 0.707 = <b>7.1 × 10⁻⁴ Wb</b></li><li>Φ₂ = 0, so ΔΦ = 7.1 × 10⁻⁴ Wb</li><li>|ε| = ΔΦ/Δt = 7.1 × 10⁻⁴/0.7 ≈ <b>1.0 mV</b></li><li>I = ε/R = 1.0 × 10⁻³/0.5 = <b>2 mA</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.2: does Earth’s magnetic field also add an emf?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is steady over the experiment, so its flux does not change",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Flipping a coil in Earth’s field (Example 6.3)",
+      "definition": "ε ≈ 3.8 mV, I ≈ 1.9 mA",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.3 · coil flipped</p><h2>Find the missing step.</h2><div class=\"prob\">Circular coil, r = 10 cm, N = 500, R = 2 Ω, plane ⊥ horizontal B = 3.0 × 10⁻⁵ T. Turned through 180° about a vertical diameter in 0.25 s. Estimate emf and I.</div><ol><li>Φ_initial = BA cos 0° = 3 × 10⁻⁵ × π × 10⁻² = <b>3π × 10⁻⁷ Wb</b></li><li class=\"h\">?</li><li>ε = NΔΦ/Δt = 500 × 6π × 10⁻⁷/0.25 ≈ <b>3.8 × 10⁻³ V</b></li><li>I = ε/R ≈ <b>1.9 mA</b> (average value)</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.3 · coil flipped</p><h2>Find the missing step.</h2><div class=\"prob\">Circular coil, r = 10 cm, N = 500, R = 2 Ω, plane ⊥ horizontal B = 3.0 × 10⁻⁵ T. Turned through 180° about a vertical diameter in 0.25 s. Estimate emf and I.</div><ol><li>Φ_initial = BA cos 0° = 3 × 10⁻⁵ × π × 10⁻² = <b>3π × 10⁻⁷ Wb</b></li><li class=\"r\">Φ_final = BA cos 180° = <b>−3π × 10⁻⁷ Wb</b>, so |ΔΦ| = 6π × 10⁻⁷ Wb</li><li>ε = NΔΦ/Δt = 500 × 6π × 10⁻⁷/0.25 ≈ <b>3.8 × 10⁻³ V</b></li><li>I = ε/R ≈ <b>1.9 mA</b> (average value)</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap in Example 6.3: why does a 180° flip give ΔΦ = 2BA, not zero?",
+      "definition": "Flux changes sign, <span style=\"color:#3b82f6\">+BA → −BA</span>, so |ΔΦ| = <span style=\"color:#f08c00\">2BA</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.4-faradays-law-of-induction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State Lenz’s law.",
+      "definition": "The polarity of the induced emf is such that it tends to produce a current which <span style=\"color:#3b82f6\">opposes the change in flux</span> that produced it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the minus sign of Faraday’s law express?",
+      "definition": "<span style=\"color:#3b82f6\">Lenz’s law</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Lenz’s law opposes the ______, not the ______.",
+      "definition": "Opposes the <span style=\"color:#3b82f6\">change</span> in flux, not the flux itself (a decreasing flux is supported, not opposed)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "N-pole of a magnet approaches a closed coil. Induced current direction and pole faced?",
+      "definition": "<span style=\"color:#3b82f6\">Anticlockwise</span> as seen from the magnet’s side; the coil face acts as an <span style=\"color:#3b82f6\">N-pole</span> (repels the magnet)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ],
+      "definitionImage": "media/fig_6_6_lenz.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "N-pole withdrawn from a coil. Induced current?",
+      "definition": "<span style=\"color:#3b82f6\">Clockwise</span> (seen from the magnet); near face is a <span style=\"color:#3b82f6\">S-pole</span>, attracts the receding magnet",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Quick rule for the coil face nearest an approaching or receding pole?",
+      "definition": "<span style=\"color:#3b82f6\">Approach → same pole (repel)</span>; <span style=\"color:#3b82f6\">recede → opposite pole (attract)</span>. Both oppose the motion",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: how can you remember Lenz’s law?",
+      "definition": "Nature is “lazy”: it resists change. Flux up → induced field points <span style=\"color:#3b82f6\">against</span> B. Flux down → induced field points <span style=\"color:#3b82f6\">along</span> B",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction of the current in an open circuit?",
+      "definition": "None flows, but an <span style=\"color:#3b82f6\">emf</span> still appears across the open ends, with polarity given by Lenz’s law",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why must Lenz’s law hold? (energy argument)",
+      "definition": "If the induced current aided the change, the magnet would accelerate itself: <span style=\"color:#e5484d\">perpetual motion</span>, violating <span style=\"color:#3b82f6\">conservation of energy</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where does the work done pulling the magnet against repulsion go?",
+      "definition": "Into <span style=\"color:#3b82f6\">Joule heating</span> in the coil (I²R losses)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.4: Fig 6.7(i): rectangular loop moving into a field pointing into the page. Direction of I?",
+      "definition": "Flux <span style=\"color:#3b82f6\">increases</span>, so induced current is anticlockwise as needed: along <span style=\"color:#3b82f6\">bcdab</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ],
+      "definitionImage": "media/fig_6_7_loops.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.4: triangular loop (ii) moving out of the field, and irregular loop (iii)?",
+      "definition": "Flux <span style=\"color:#3b82f6\">decreases</span> in both, so current supports it. (ii) along <span style=\"color:#3b82f6\">bacb</span>, (iii) along <span style=\"color:#3b82f6\">cdabc</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ],
+      "termImage": "media/fig_6_7_loops.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.4: when is there no induced current?",
+      "definition": "While the loop is <span style=\"color:#3b82f6\">completely inside or completely outside</span> the field: flux is constant",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.5(a): stationary closed loop between fixed strong magnets. Can it carry current?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: flux must <span style=\"color:#3b82f6\">change</span>; strength alone does nothing",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.5(b): closed loop moves normal to a constant E between capacitor plates. Current?",
+      "definition": "<span style=\"color:#e5484d\">None</span> in both cases (wholly or partly inside): changing electric flux does not induce current here",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.5(c): a rectangular and a circular loop leave a uniform B at constant speed. Which has constant emf?",
+      "definition": "<span style=\"color:#3b82f6\">Rectangular</span>: its area inside changes at a constant rate. The circle’s rate <span style=\"color:#e5484d\">varies</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ],
+      "definitionImage": "media/fig_6_8_rect_circle.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.5(d): polarity of the capacitor plates in Fig 6.9?",
+      "definition": "Plate <span style=\"color:#3b82f6\">A is positive</span> with respect to B (approaching magnets raise the flux; Lenz’s law sets the sense)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.5-lenzs-law-and-conservation-of-energy"
+      ],
+      "definitionImage": "media/fig_6_9_capacitor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Rod PQ (length l) slides at speed v in a uniform B ⊥ the circuit. Flux and emf?",
+      "definition": "Φ = Blx, so \\( \\varepsilon = -\\dfrac{d(Blx)}{dt} = Blv \\) (motional emf)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ],
+      "definitionImage": "media/fig_6_10_motional.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Motional emf from the Lorentz force?",
+      "definition": "Force on a charge = qvB along the rod. Work carrying it across l: W = qvBl, so \\( \\varepsilon = \\dfrac{W}{q} = Blv \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Condition for ε = Blv?",
+      "definition": "<span style=\"color:#3b82f6\">B, l and v mutually perpendicular</span>. In general \\( \\varepsilon = (\\vec v\\times\\vec B)\\cdot\\vec l \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: rod moves parallel to B, or the rod is parallel to v. Emf?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span>: the rod does not cut field lines. Only the component ⊥ to both counts",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If the field is uniform and the rod slides, why is emf across it Blv even without a closed circuit?",
+      "definition": "Lorentz force separates charge to the ends until <span style=\"color:#3b82f6\">qE = qvB</span>; the ends stay at potential difference Blv",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which end of the rod is at higher potential?",
+      "definition": "The end towards which the <span style=\"color:#3b82f6\">force on positive charges</span> (q v × B) pushes; current inside the rod flows from low to high potential (source)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: rod PQ on rails of resistance R pulled at constant v. Current, force and power?",
+      "definition": "I = Blv/R; magnetic drag \\( F = BIl = \\dfrac{B^2l^2v}{R} \\); power = Fv = \\( \\dfrac{B^2l^2v^2}{R} \\) = I²R (<span style=\"color:#3b82f6\">mechanical → heat</span>)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is there a magnetic force opposing the rod (Lenz’s law in disguise)?",
+      "definition": "The induced current in a field feels <span style=\"color:#3b82f6\">F = I l × B</span> opposing v; otherwise energy would be created",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Faraday’s law when the conductor is stationary and B changes: which force acts on the charges?",
+      "definition": "Only <span style=\"color:#3b82f6\">qE</span> (v = 0): a <span style=\"color:#3b82f6\">time-varying magnetic field creates an electric field</span>, unlike an electrostatic one",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does the induced E-field differ from an electrostatic E?",
+      "definition": "Its field lines form <span style=\"color:#3b82f6\">closed loops</span>; it is non-conservative (∮E·dl = −dΦ/dt ≠ 0)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fundamental significance of Faraday’s discovery?",
+      "definition": "A moving magnet or changing B exerts force on a <span style=\"color:#3b82f6\">stationary charge</span>: electricity and magnetism are <span style=\"color:#3b82f6\">related</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.6: rod of length R rotating at ω about one end in a field B ⊥ its plane. Emf between centre and rim?",
+      "definition": "\\( \\varepsilon = \\tfrac12 B\\omega R^2 \\), from \\( \\int_0^R B\\omega r\\,dr \\) (mean speed ωR/2)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ],
+      "definitionImage": "media/fig_6_11_rotating_rod.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.6: second method for the rotating rod?",
+      "definition": "Rate of area swept: dA/dt = ½R²ω, so \\( \\varepsilon = B\\dfrac{dA}{dt} = \\tfrac12 B\\omega R^2 \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.6: R = 1 m, 50 rev/s, B = 1 T. Emf?",
+      "definition": "½ × 1 × (2π × 50) × 1² = <span style=\"color:#f08c00\">≈ 157 V</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.7: wheel with 10 spokes of 0.5 m, 120 rev/min, H_E = 0.4 G. Emf between axle and rim?",
+      "definition": "<span style=\"color:#3b82f6\">½ω B R²</span> = ½ × 4π × 0.4 × 10⁻⁴ × 0.25 = <span style=\"color:#f08c00\">6.28 × 10⁻⁵ V</span>. The 10 spokes are <span style=\"color:#3b82f6\">in parallel</span>, so their number does not matter",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: which component of Earth’s field induces emf in a spinning wheel or falling wire?",
+      "definition": "The component <span style=\"color:#3b82f6\">perpendicular to the plane of motion</span> (vertical for a wheel in a horizontal plane; horizontal for a wire falling east–west)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.6-motional-electromotive-force"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Flux linkage for a closely wound coil of N turns?",
+      "definition": "<span style=\"color:#3b82f6\">NΦ_B</span> (proportional to the current I)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define inductance. Unit and dimensions?",
+      "definition": "Ratio of <span style=\"color:#3b82f6\">flux linkage to current</span>: NΦ/I. Unit <span style=\"color:#3b82f6\">henry (H)</span> = Wb/A; [ML²T⁻²A⁻²]. It is a scalar",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dimensions of flux? Of emf?",
+      "definition": "Flux: [ML²T⁻²A⁻¹]; emf: [ML²T⁻³A⁻¹]",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Inductance depends on what? Analogy?",
+      "definition": "Geometry and intrinsic material properties only (like capacitance: area, separation, dielectric constant)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define mutual inductance M₁₂.",
+      "definition": "Flux linkage in coil 1 per unit current in coil 2: \\( N_1\\Phi_1 = M_{12}I_2 \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.1-mutual-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mutual inductance of two long coaxial solenoids (inner radius r₁, length l)?",
+      "definition": "\\( M = \\mu_0 n_1 n_2 \\pi r_1^2 l \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.1-mutual-inductance"
+      ],
+      "definitionImage": "media/fig_6_12_coaxial.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How is this derived?",
+      "definition": "B₂ = μ₀n₂I₂ (outer). Flux linkage with inner: N₁Φ = (n₁l)(πr₁²)(μ₀n₂I₂), so M = μ₀n₁n₂πr₁²l",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.1-mutual-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between M₁₂ and M₂₁?",
+      "definition": "<span style=\"color:#3b82f6\">M₁₂ = M₂₁ = M</span> (general result, shown here for coaxial solenoids)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.1-mutual-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is M₁₂ = M₂₁ useful?",
+      "definition": "Compute whichever flux is <span style=\"color:#3b82f6\">easy</span> (small coil inside a big one: uniform field) and use the equality for the hard direction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.1-mutual-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solenoids filled with a medium of relative permeability μᵣ. Mutual inductance?",
+      "definition": "\\( M = \\mu_r\\mu_0 n_1 n_2 \\pi r_1^2 l \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.1-mutual-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What else does M depend on for a pair of coils?",
+      "definition": "Their <span style=\"color:#3b82f6\">separation</span> and <span style=\"color:#3b82f6\">relative orientation</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.1-mutual-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.8: concentric coils, r₁ ≪ r₂. Mutual inductance?",
+      "definition": "\\( M_{12} = M_{21} = \\dfrac{\\mu_0\\pi r_1^2}{2r_2} \\) (B₂ = μ₀I₂/2r₂ taken uniform over the small coil)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.1-mutual-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "EMF induced in coil 1 when the current in coil 2 varies?",
+      "definition": "\\( \\varepsilon_1 = -M\\dfrac{dI_2}{dt} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.1-mutual-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: coupling coefficient k?",
+      "definition": "\\( M = k\\sqrt{L_1L_2} \\), 0 ≤ k ≤ 1; k = 1 for perfect flux linkage",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.1-mutual-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define self-induction and self-inductance L.",
+      "definition": "Emf induced in a coil by its own changing current. \\( N\\Phi_B = LI \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Self-induced emf?",
+      "definition": "\\( \\varepsilon = -L\\dfrac{dI}{dt} \\): it opposes any <span style=\"color:#3b82f6\">increase or decrease</span> of current (“back emf”)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Self-inductance of a long solenoid (area A, length l, n turns per length)?",
+      "definition": "\\( L = \\mu_0 n^2 A l \\); with a core \\( L = \\mu_r\\mu_0 n^2 A l \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive L of a solenoid.",
+      "definition": "B = μ₀nI; N = nl. NΦ = (nl)(μ₀nI)A = μ₀n²AlI, so L = NΦ/I = <span style=\"color:#3b82f6\">μ₀n²Al</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: L in terms of total turns N?",
+      "definition": "\\( L = \\dfrac{\\mu_0 N^2 A}{l} \\): <span style=\"color:#f08c00\">L ∝ N²</span>. Doubling the turns (same length) quadruples L",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Physical role of self-inductance?",
+      "definition": "Electrical <span style=\"color:#3b82f6\">inertia</span>: analogue of <span style=\"color:#3b82f6\">mass</span> in mechanics; opposes growth and decay of current",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy needed to build up current I in an inductor?",
+      "definition": "\\( W = \\int LI\\,dI = \\tfrac12 LI^2 \\) (analogue of ½mv²)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where is that energy stored?",
+      "definition": "In the <span style=\"color:#3b82f6\">magnetic field</span> (magnetic potential energy)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two coils carrying currents together: emf in coil 1?",
+      "definition": "\\( \\varepsilon_1 = -L_1\\dfrac{dI_1}{dt} - M_{12}\\dfrac{dI_2}{dt} \\) (M₁₁ = L₁ is self-inductance)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6.9(a): magnetic energy stored in a solenoid in terms of B, A, l?",
+      "definition": "\\( U_B = \\dfrac{1}{2}LI^2 = \\dfrac{B^2}{2\\mu_0}Al \\), using I = B/μ₀n and L = μ₀n²Al",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy density of a magnetic field?",
+      "definition": "\\( u_B = \\dfrac{B^2}{2\\mu_0} \\), valid for <span style=\"color:#3b82f6\">any region</span> with a B-field, not just a solenoid",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Magnetic vs electric energy density?",
+      "definition": "<span style=\"color:#3b82f6\">u_B = B²/2μ₀</span> and <span style=\"color:#3b82f6\">u_E = ½ε₀E²</span>: both ∝ (field)²",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: why does a spark appear when a circuit with a big coil is broken?",
+      "definition": "Current falls fast: large dI/dt gives a big <span style=\"color:#3b82f6\">back emf</span> (L·dI/dt) that can exceed the supply and ionise air across the switch",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: LR growth and decay in one line?",
+      "definition": "Current in an LR circuit changes over time constant <span style=\"color:#3b82f6\">τ = L/R</span>; the inductor opposes an <span style=\"color:#3b82f6\">instantaneous</span> change. Not in NCERT text but often asked",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: inductors in series (no coupling) and in parallel?",
+      "definition": "Series: <span style=\"color:#3b82f6\">L = L₁ + L₂</span>. Parallel: <span style=\"color:#3b82f6\">1/L = 1/L₁ + 1/L₂</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.7.2-self-inductance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does an ac generator do?",
+      "definition": "Converts <span style=\"color:#3b82f6\">mechanical energy into electrical energy</span> by electromagnetic induction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Basic parts of an ac generator?",
+      "definition": "<span style=\"color:#3b82f6\">Armature coil</span> on a rotor shaft, uniform B from magnets, <span style=\"color:#3b82f6\">slip rings</span> and <span style=\"color:#3b82f6\">carbon brushes</span> to the external circuit",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ],
+      "definitionImage": "media/fig_6_13_generator.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Role of slip rings and brushes?",
+      "definition": "They connect the rotating coil to the <span style=\"color:#3b82f6\">fixed external circuit</span> without twisting the wires",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rotating coil: flux at time t? (θ = ωt, θ = 0 at t = 0)",
+      "definition": "\\( \\Phi_B = BA\\cos\\omega t \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Instantaneous emf of a coil of N turns rotating in B?",
+      "definition": "\\( \\varepsilon = NBA\\omega\\sin\\omega t = \\varepsilon_0\\sin\\omega t \\), ε₀ = <span style=\"color:#3b82f6\">NBAω</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Same emf in terms of frequency ν?",
+      "definition": "\\( \\varepsilon = \\varepsilon_0\\sin 2\\pi\\nu t,\\quad \\varepsilon_0 = NBA(2\\pi\\nu) \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is the emf maximum and when zero?",
+      "definition": "Max at θ = <span style=\"color:#f08c00\">90°, 270°</span> (plane ∥ B, flux changes fastest). Zero at <span style=\"color:#f08c00\">0°, 180°</span> (plane ⊥ B, flux extreme)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: emf is zero when flux is maximum. Why?",
+      "definition": "ε = −dΦ/dt: at the peak of cos ωt the <span style=\"color:#3b82f6\">slope is zero</span>. Flux and emf are <span style=\"color:#3b82f6\">90° out of phase</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ],
+      "definitionImage": "media/fig_6_14_ac_emf.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: if the coil starts parallel to B (θ = 90° at t = 0), what is ε(t)?",
+      "definition": "<span style=\"color:#3b82f6\">ε = ε₀ cos ωt</span>. Always check the position at t = 0",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What sets the frequency of the emf?",
+      "definition": "The coil’s <span style=\"color:#3b82f6\">rotation frequency</span> ν. Mains frequency: <span style=\"color:#f08c00\">50 Hz</span> in India, <span style=\"color:#f08c00\">60 Hz</span> in USA",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Three ways to raise ε₀?",
+      "definition": "Increase <span style=\"color:#3b82f6\">N</span>, <span style=\"color:#3b82f6\">B</span>, <span style=\"color:#3b82f6\">A</span> or <span style=\"color:#3b82f6\">ω</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Types of commercial generator by energy source?",
+      "definition": "<span style=\"color:#3b82f6\">Hydro-electric</span> (falling water), <span style=\"color:#3b82f6\">thermal</span> (steam from coal etc.), <span style=\"color:#3b82f6\">nuclear</span> (nuclear fuel)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In most large generators, which part rotates?",
+      "definition": "The <span style=\"color:#3b82f6\">electromagnets</span>; the coils stay stationary. Modern units reach ~500 MW (about 5 million 100 W bulbs)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT calls Nikola Tesla “Yugoslav” and credits him with the machine. Better?",
+      "definition": "<span style=\"color:#e5484d\">Loose</span>: Tesla (born in what is now Croatia) developed <span style=\"color:#3b82f6\">polyphase ac systems and the induction motor</span>. Simple alternators go back to <span style=\"color:#3b82f6\">Pixii (1832)</span>. Exams just say Tesla",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Kamla’s bicycle generator (Example 6.10)",
+      "definition": "ε₀ = 0.314 V",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.10 · peak emf</p><h2>Find the missing step.</h2><div class=\"prob\">Coil of 100 turns, A = 0.10 m², rotating at 0.5 rev/s in B = 0.01 T ⊥ the axis. Maximum emf?</div><ol><li>ε₀ = NBAω with ω = 2πν</li><li class=\"h\">?</li><li>ε₀ = 100 × 0.01 × 0.1 × 3.14 = <b>0.314 V</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 6.10 · peak emf</p><h2>Find the missing step.</h2><div class=\"prob\">Coil of 100 turns, A = 0.10 m², rotating at 0.5 rev/s in B = 0.01 T ⊥ the axis. Maximum emf?</div><ol><li>ε₀ = NBAω with ω = 2πν</li><li class=\"r\">ω = 2π × 0.5 = <b>π rad/s ≈ 3.14 rad/s</b></li><li>ε₀ = 100 × 0.01 × 0.1 × 3.14 = <b>0.314 V</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "6.8-ac-generator"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: which principle does the conservation of energy demand in a closed circuit?",
+      "definition": "Induced currents flow so as to <span style=\"color:#3b82f6\">oppose</span> the flux change (<span style=\"color:#3b82f6\">Lenz’s law</span>)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: how is an open-circuit emf related to the flux change?",
+      "definition": "Still <span style=\"color:#3b82f6\">ε = −dΦ/dt</span> for the loop; just no current flows",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Points to ponder: moving charge in a static B vs static charge in a changing B?",
+      "definition": "Both give emf: a <span style=\"color:#3b82f6\">symmetric situation</span> hinting at the <span style=\"color:#3b82f6\">principle of relativity</span> behind Faraday’s law",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: Points to Ponder refers to motional emf in “Section 6.5”. Which?",
+      "definition": "<span style=\"color:#3b82f6\">Section 6.6</span> (6.5 is Lenz’s law)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Note: eddy currents in this chapter now?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: removed from rationalised NCERT, but JEE, NEET and boards still ask them: currents induced in a bulk conductor by changing flux; used in induction furnaces, damping, magnetic braking",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Note: LR circuit and transformer here?",
+      "definition": "<span style=\"color:#e5484d\">Not in this chapter</span>: the transformer comes in Ch 7; LR growth/decay is in JEE though",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "NCERT quantity table",
+      "definition": "Magnetic flux Φ_B: Wb; [ML²T⁻²A⁻¹]; EMF ε: V; [ML²T⁻³A⁻¹]; Mutual inductance M: H; [ML²T⁻²A⁻²]; Self inductance L: H; [ML²T⁻²A⁻²]",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary table</p><h2>Symbol, unit, dimensions?</h2><table><tr><td>Magnetic flux Φ_B</td><td class=\"q\">?</td></tr><tr><td>EMF ε</td><td class=\"q\">?</td></tr><tr><td>Mutual inductance M</td><td class=\"q\">?</td></tr><tr><td>Self inductance L</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary table</p><h2>Symbol, unit, dimensions?</h2><table><tr><td>Magnetic flux Φ_B</td><td class=\"a\">Wb; [ML²T⁻²A⁻¹]</td></tr><tr><td>EMF ε</td><td class=\"a\">V; [ML²T⁻³A⁻¹]</td></tr><tr><td>Mutual inductance M</td><td class=\"a\">H; [ML²T⁻²A⁻²]</td></tr><tr><td>Self inductance L</td><td class=\"a\">H; [ML²T⁻²A⁻²]</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.1(a): direction of induced current as the magnet approaches the coil pq (Fig 6.15a)?",
+      "definition": "Along <span style=\"color:#3b82f6\">q → r → p → q</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ],
+      "termImage": "media/fig_6_15a.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.1(b): Fig 6.15(b) with two coils, magnet moving between them. Directions?",
+      "definition": "Coil pq: along <span style=\"color:#3b82f6\">prq</span>; coil xy: along <span style=\"color:#3b82f6\">yzx</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ],
+      "termImage": "media/fig_6_15b.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.1(c): tapping key just closed. Direction in the other loop (x, y, z)?",
+      "definition": "Along <span style=\"color:#3b82f6\">y → z → x</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ],
+      "termImage": "media/fig_6_15c.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.1(d): rheostat setting being changed. Direction?",
+      "definition": "Along <span style=\"color:#3b82f6\">z → y → x</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ],
+      "termImage": "media/fig_6_15d.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.1(e): tapping key just released. Direction?",
+      "definition": "Along <span style=\"color:#3b82f6\">x → r → y</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ],
+      "termImage": "media/fig_6_15e.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.1(f): loop around a straight wire with decreasing current. Direction?",
+      "definition": "<span style=\"color:#e5484d\">No induced current</span>: the wire’s field circles lie <span style=\"color:#3b82f6\">in the plane</span> of the loop, so flux is zero",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ],
+      "termImage": "media/fig_6_15f.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.1: general method for these?",
+      "definition": "(1) Direction of B through the loop. (2) Is flux rising or falling? (3) Induced field <span style=\"color:#3b82f6\">opposes rise, supports fall</span>. (4) Right-hand rule for the current",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.2(a): irregular wire pulled into a circle in a field into the page. Direction?",
+      "definition": "Area (flux) <span style=\"color:#3b82f6\">increases</span>, so induced B points out: <span style=\"color:#3b82f6\">anticlockwise, a → d → c → b → a</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ],
+      "termImage": "media/fig_6_16_deform.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.2(b): circle deformed into a narrow strip, field out of the page. Direction?",
+      "definition": "Flux <span style=\"color:#3b82f6\">decreases</span>, induced B also out: <span style=\"color:#3b82f6\">anticlockwise, a′ → d′ → c′ → b′</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ],
+      "termImage": "media/fig_6_16_deform.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: the answer key writes 6.2(a) as “adcd”. What is right?",
+      "definition": "<span style=\"color:#e5484d\">Typo</span>: the loop has four labelled points, so the path is <span style=\"color:#3b82f6\">a → d → c → b → a</span> (anticlockwise)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Induced emf in a small loop inside a solenoid (Exercise 6.3)",
+      "definition": "ε ≈ 7.5 × 10⁻⁶ V",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 6.3 · solenoid and small loop</p><h2>Find the missing step.</h2><div class=\"prob\">Solenoid, 15 turns/cm. Small loop of area 2.0 cm² inside, normal to the axis. I changes 2.0 A → 4.0 A in 0.1 s. Induced emf?</div><ol><li class=\"h\">?</li><li>B = μ₀nI, so ε = μ₀nA(dI/dt), dI/dt = 20 A/s</li><li>ε = 4π × 10⁻⁷ × 1500 × 2 × 10⁻⁴ × 20</li><li>ε ≈ <b>7.5 × 10⁻⁶ V</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 6.3 · solenoid and small loop</p><h2>Find the missing step.</h2><div class=\"prob\">Solenoid, 15 turns/cm. Small loop of area 2.0 cm² inside, normal to the axis. I changes 2.0 A → 4.0 A in 0.1 s. Induced emf?</div><ol><li class=\"r\">n = 15 × 100 = <b>1500 m⁻¹</b></li><li>B = μ₀nI, so ε = μ₀nA(dI/dt), dI/dt = 20 A/s</li><li>ε = 4π × 10⁻⁷ × 1500 × 2 × 10⁻⁴ × 20</li><li>ε ≈ <b>7.5 × 10⁻⁶ V</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.4(a): 8 cm × 2 cm loop with a cut leaves a 0.3 T field at 1 cm/s, normal to the longer side. Emf and duration?",
+      "definition": "ε = Blv = 0.3 × 0.08 × 0.01 = <span style=\"color:#f08c00\">2.4 × 10⁻⁴ V</span>; lasts 2 cm ÷ 1 cm/s = <span style=\"color:#f08c00\">2 s</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.4(b): same loop moving normal to the shorter side?",
+      "definition": "ε = 0.3 × 0.02 × 0.01 = <span style=\"color:#f08c00\">0.6 × 10⁻⁴ V</span>; lasts 8 cm ÷ 1 cm/s = <span style=\"color:#f08c00\">8 s</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: in Exercise 6.4 which side cuts the field lines?",
+      "definition": "Only the side <span style=\"color:#3b82f6\">perpendicular to v</span> and still in the field: length l = 8 cm in (a), 2 cm in (b). Emf lasts as long as the loop is partly in the field",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.5: 1.0 m rod rotated at 400 rad/s about one end in B = 0.5 T. Emf?",
+      "definition": "½BωR² = ½ × 0.5 × 400 × 1 = <span style=\"color:#f08c00\">100 V</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Emf in a falling wire (Exercise 6.6)",
+      "definition": "1.5 mV, W → E, eastern end higher",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 6.6 · falling wire</p><h2>Find the missing step.</h2><div class=\"prob\">10 m east–west horizontal wire falls at 5.0 m/s. B_H = 0.30 × 10⁻⁴ T. (a) emf, (b) direction, (c) which end is higher?</div><ol><li>ε = Blv = 0.30 × 10⁻⁴ × 10 × 5.0 = <b>1.5 × 10⁻³ V</b></li><li class=\"h\">?</li><li>Force on positive charges is eastward, so emf is directed <b>west → east</b></li><li>The <b>eastern end</b> is at higher potential</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 6.6 · falling wire</p><h2>Find the missing step.</h2><div class=\"prob\">10 m east–west horizontal wire falls at 5.0 m/s. B_H = 0.30 × 10⁻⁴ T. (a) emf, (b) direction, (c) which end is higher?</div><ol><li>ε = Blv = 0.30 × 10⁻⁴ × 10 × 5.0 = <b>1.5 × 10⁻³ V</b></li><li class=\"r\">v is down, B horizontal north: v × B points <b>east</b></li><li>Force on positive charges is eastward, so emf is directed <b>west → east</b></li><li>The <b>eastern end</b> is at higher potential</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.7: current falls 5.0 A → 0 in 0.1 s; average induced emf 200 V. Self-inductance?",
+      "definition": "L = ε/|dI/dt| = 200/(5/0.1) = <span style=\"color:#f08c00\">4 H</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 6.8: M = 1.5 H; current in one coil goes 0 → 20 A in 0.5 s. Change of flux linkage in the other?",
+      "definition": "ΔNΦ = MΔI = 1.5 × 20 = <span style=\"color:#f08c00\">30 Wb</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 6 formula sheet",
+      "definition": "Flux: Φ_B = BA cos θ; Faraday’s law: ε = −N dΦ_B/dt; Motional emf: ε = Blv; Rotating rod: ε = ½Bωl²; Mutual inductance: ε₁ = −M dI₂/dt; Self-induced emf: ε = −L dI/dt; Solenoid L: μᵣμ₀n²Al; Energy in L: ½LI²; Energy density: B²/2μ₀; AC generator: ε = NBAω sin ωt",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Flux</td><td class=\"q\">?</td></tr><tr><td>Faraday’s law</td><td class=\"q\">?</td></tr><tr><td>Motional emf</td><td class=\"q\">?</td></tr><tr><td>Rotating rod</td><td class=\"q\">?</td></tr><tr><td>Mutual inductance</td><td class=\"q\">?</td></tr><tr><td>Self-induced emf</td><td class=\"q\">?</td></tr><tr><td>Solenoid L</td><td class=\"q\">?</td></tr><tr><td>Energy in L</td><td class=\"q\">?</td></tr><tr><td>Energy density</td><td class=\"q\">?</td></tr><tr><td>AC generator</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Flux</td><td class=\"a\">Φ_B = BA cos θ</td></tr><tr><td>Faraday’s law</td><td class=\"a\">ε = −N dΦ_B/dt</td></tr><tr><td>Motional emf</td><td class=\"a\">ε = Blv</td></tr><tr><td>Rotating rod</td><td class=\"a\">ε = ½Bωl²</td></tr><tr><td>Mutual inductance</td><td class=\"a\">ε₁ = −M dI₂/dt</td></tr><tr><td>Self-induced emf</td><td class=\"a\">ε = −L dI/dt</td></tr><tr><td>Solenoid L</td><td class=\"a\">μᵣμ₀n²Al</td></tr><tr><td>Energy in L</td><td class=\"a\">½LI²</td></tr><tr><td>Energy density</td><td class=\"a\">B²/2μ₀</td></tr><tr><td>AC generator</td><td class=\"a\">ε = NBAω sin ωt</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 6 concept checks",
+      "definition": "A strong steady B through a loop induces emf: False (needs change); Lenz’s law is a consequence of energy conservation: True; Self-induced emf opposes only an increase in current: False (opposes any change); M₁₂ = M₂₁: True; Emf of a rotating coil is max when flux is max: False (flux max → emf 0); Energy density of B is B²/2μ₀: True",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>A strong steady B through a loop induces emf</td><td class=\"q\">?</td></tr><tr><td>Lenz’s law is a consequence of energy conservation</td><td class=\"q\">?</td></tr><tr><td>Self-induced emf opposes only an increase in current</td><td class=\"q\">?</td></tr><tr><td>M₁₂ = M₂₁</td><td class=\"q\">?</td></tr><tr><td>Emf of a rotating coil is max when flux is max</td><td class=\"q\">?</td></tr><tr><td>Energy density of B is B²/2μ₀</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>A strong steady B through a loop induces emf</td><td class=\"a no\">False (needs change)</td></tr><tr><td>Lenz’s law is a consequence of energy conservation</td><td class=\"a\">True</td></tr><tr><td>Self-induced emf opposes only an increase in current</td><td class=\"a no\">False (opposes any change)</td></tr><tr><td>M₁₂ = M₂₁</td><td class=\"a\">True</td></tr><tr><td>Emf of a rotating coil is max when flux is max</td><td class=\"a no\">False (flux max → emf 0)</td></tr><tr><td>Energy density of B is B²/2μ₀</td><td class=\"a\">True</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-6",
+        "summary"
+      ]
+    }
+  ]
+}
