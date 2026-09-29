@@ -2956,3 +2956,82 @@ def lp_infeasible(deck):
           'Infeasible LPP: empty feasible region',
           'If the constraints have no common point the feasible region is empty and the LPP has no solution; example x+y>=8 with 3x+5y<=15; Ex 12.1 Q10 also infeasible',
           vb='0 0 300 190', hint='Do the two shaded half-planes overlap anywhere?')
+
+
+# ================================================================ Maths 12 Ch 13 Probability
+def cond_prob_venn(deck):
+    front = (f'<path class="f0" d="{_R}"></path><circle class="c0" cx="115" cy="100" r="58"></circle><circle class="c0" cx="185" cy="100" r="58"></circle>'
+             '<text class="t1" x="88" y="66" text-anchor="middle">E</text><text class="t2" x="212" y="66" text-anchor="middle">F</text><text class="lbi" x="20" y="28">S</text>'
+             '<text class="lbl" x="150" y="104" text-anchor="middle">0.2</text><text class="sm" x="82" y="106" text-anchor="middle">0.4</text><text class="sm" x="218" y="106" text-anchor="middle">0.1</text>')
+    back = (f'<path class="ns2 fx d2" d="{_BMA}"></path><path class="ns4 fx d3" d="{_LENS}"></path>'
+            '<text class="t2 fx d2" x="150" y="182" text-anchor="middle">F has occurred: F is the new sample space (0.3)</text>'
+            '<text class="t4 fx d3" x="150" y="30" text-anchor="middle">P(E|F) = P(E ∩ F)/P(F) = 0.2/0.3 = 2/3</text>')
+    mcard(deck, 'Conditional probability', 'P(E) = 0.6, P(F) = 0.3 and P(E ∩ F) = 0.2. Find P(E|F) and P(F|E). What does conditioning do to the sample space?', front, back,
+          '<p><b>P(E|F) = P(E ∩ F)/P(F)</b> (P(F) ≠ 0): once F has occurred, F becomes the whole sample space, and we ask what fraction of it lies in E. Here 0.2/0.3 = <b>2/3</b>; and P(F|E) = 0.2/0.6 = <b>1/3</b> (Ex 13.1 Q1).</p>'
+          '<p>Facts: 0 ≤ P(E|F) ≤ 1; P(E′|F) = 1 − P(E|F); P((E ∪ F)|G) = P(E|G) + P(F|G) − P((E ∩ F)|G). The conditional probability P(E|F) is generally different from P(F|E).</p>',
+          'Conditional probability: F becomes the new sample space',
+          'P(E|F) = P(E and F)/P(F); F becomes the reduced sample space; P(E|F) = 0.2/0.3 = 2/3 and P(F|E) = 1/3 for P(E)=0.6, P(F)=0.3, P(E and F)=0.2',
+          vb='0 0 300 200', hint='Restrict attention to F.')
+
+
+def dice_conditional(deck):
+    x0, y0, s = 40, 22, 38
+    cell = lambda a, b, cls: f'<rect class="{cls}" x="{x0 + (b - 1) * s}" y="{y0 + (a - 1) * s}" width="{s - 3}" height="{s - 3}" rx="4"></rect>'
+    base = ''.join(cell(a, b, 'f0') for a in range(1, 7) for b in range(1, 7))
+    base += ''.join(f'<text class="num" x="{x0 + (b - 1) * s + 17}" y="{y0 - 6}">{b}</text><text class="num" x="{x0 - 10}" y="{y0 + (b - 1) * s + 20}">{b}</text>' for b in range(1, 7))
+    base += '<text class="sm" x="270" y="8" text-anchor="end">red die →</text><text class="sm" x="4" y="14">black</text>'
+    back = ''.join(cell(5, b, 'f2 fx d2') for b in range(1, 7)) + cell(5, 5, 'f4 fx d3') + cell(5, 6, 'f4 fx d3')
+    back += '<text class="t2 fx d2" x="20" y="268">black = 5: 6 outcomes (new space)</text><text class="t4 fx d3" x="20" y="286">sum &gt; 9: (5,5), (5,6): 2/6 = 1/3</text>'
+    mcard(deck, 'Ex 13.1 Q10(a) · reduced sample space', 'A black and a red die are rolled. Find P(sum greater than 9 | the black die shows 5).', base, back,
+          '<p>Given “black = 5”, only the <b>6 outcomes in that row</b> remain, equally likely. Sums greater than 9 occur for red = 5 and 6 (sums 10 and 11): <b>2 of 6 = 1/3</b>.</p>'
+          '<p>Formula check: P(E ∩ F) = 2/36, P(F) = 6/36, so P(E|F) = 2/6. For (b), given red &lt; 4, the sum 8 needs (6, 2) or (5, 3): 2 of 18 outcomes, <b>1/9</b>.</p>',
+          'Conditional probability by counting the reduced sample space',
+          'Given black die 5, the sample space is the 6 outcomes with black=5; sum>9 happens for red=5,6 so probability 2/6 = 1/3; part (b): sum 8 given red<4 is 2/18 = 1/9',
+          vb='0 0 300 296', hint='Only look at the row where the black die is 5.')
+
+
+def independence_area(deck):
+    base = ('<rect class="f0" x="30" y="30" width="240" height="120"></rect>'
+            '<text class="lbl" x="150" y="20" text-anchor="middle">A: head (½)</text><text class="lbl" x="18" y="95" text-anchor="end">B</text>')
+    back = ('<line class="c1 fx d2" x1="150" y1="30" x2="150" y2="150"></line><line class="c3 fx d2" x1="30" y1="130" x2="270" y2="130"></line>'
+            '<rect class="f4 fx d3" x="30" y="130" width="120" height="20"></rect>'
+            '<text class="t1 fx d2" x="90" y="80" text-anchor="middle">P(A) = 1/2</text><text class="t3 fx d2" x="210" y="145" text-anchor="middle">P(B) = 1/6</text>'
+            '<text class="t4 fx d3" x="150" y="176" text-anchor="middle">P(A ∩ B) = 1/2 · 1/6 = 1/12 = P(A)P(B)</text>')
+    mcard(deck, 'Independent events', 'A fair coin and a fair die are tossed. A: “head”, B: “3 on the die”. Are A and B independent?', base, back,
+          '<p>Events are <b>independent</b> if <b>P(E ∩ F) = P(E) P(F)</b>, equivalently P(E|F) = P(E): learning that F happened does not change the chance of E. On the unit square, the overlap area equals the product of the two side lengths.</p>'
+          '<p>Here P(A ∩ B) = 1/12 = (1/2)(1/6): independent (Ex 13.2 Q4). Independence is <b>not</b> the same as mutually exclusive: exclusive events with positive probabilities are dependent (P(A ∩ B) = 0 ≠ P(A)P(B)).</p>',
+          'Independent events: P(E ∩ F) = P(E)P(F)',
+          'E,F independent iff P(E and F) = P(E)P(F) iff P(E|F) = P(E); coin head and die 3 are independent (1/12 = 1/2 * 1/6); independent is different from mutually exclusive',
+          vb='0 0 300 190', hint='Compare the overlap with the product of the two probabilities.')
+
+
+def bayes_frequencies(deck):
+    base = ('<rect class="f0" x="20" y="30" width="260" height="34" rx="4"></rect><text class="lbl" x="150" y="52" text-anchor="middle">100 000 people</text>')
+    back = ('<rect class="f2 fx d2" x="20" y="90" width="12" height="34" rx="2"></rect><rect class="f1 fx d2" x="36" y="90" width="244" height="34" rx="2"></rect>'
+            '<text class="t2 fx d2" x="26" y="82">100 diseased (0.1%)</text><text class="t1 fx d2" x="280" y="82" text-anchor="end">99 900 healthy</text>'
+            '<rect class="f2 fx d3" x="20" y="150" width="12" height="30" rx="2"></rect><rect class="f4 fx d3" x="36" y="150" width="36" height="30" rx="2"></rect>'
+            '<text class="t2 fx d3" x="20" y="146">99 test +</text><text class="t4 fx d3" x="80" y="172">≈ 500 false +</text>'
+            '<text class="t3 fx d4" x="150" y="204" text-anchor="middle">P(disease | positive) = 99/(99 + 500) ≈ 22/133 ≈ 16.5%</text>')
+    mcard(deck, 'Bayes\' theorem in natural frequencies', 'A test detects the disease 99% of the time, but gives a false positive for 0.5% of healthy people. If 0.1% of people have the disease, what is P(disease | test positive)?', base, back,
+          '<p>Think of 100 000 people: 100 have the disease and 99 of them test positive; of the 99 900 healthy people about 0.5% ≈ 500 also test positive. Among ≈ 599 positives only 99 are ill: <b>99/599 ≈ 16.5%</b>. Exactly: 0.001·0.99/(0.001·0.99 + 0.999·0.005) = <b>22/133</b> (Ex 13.3 Q5).</p>'
+          '<p><b>Bayes’ theorem:</b> P(Eᵢ|A) = P(Eᵢ)P(A|Eᵢ)/Σⱼ P(Eⱼ)P(A|Eⱼ). A rare disease means most positives are false alarms, even for a good test.</p>',
+          'Bayes: why rare-disease tests give many false positives',
+          'Bayes theorem P(Ei|A) = P(Ei)P(A|Ei)/sum P(Ej)P(A|Ej); with prevalence 0.1%, sensitivity 99% and false positive 0.5%, P(disease | +) = 22/133 = 16.5%',
+          vb='0 0 300 216', hint='Imagine a population of 100 000 people.')
+
+
+def total_probability_tree(deck):
+    base = '<circle class="f0" cx="20" cy="100" r="7"></circle>'
+    back = ('<line class="c0 fx d1" x1="26" y1="100" x2="100" y2="50"></line><line class="c0 fx d1" x1="26" y1="100" x2="100" y2="150"></line>'
+            '<text class="lbl fx d1" x="46" y="66">A: 0.6</text><text class="lbl fx d1" x="46" y="146">B: 0.4</text>'
+            '<line class="c2 fx d2" x1="106" y1="50" x2="200" y2="30"></line><line class="c0 fx d2" x1="106" y1="50" x2="200" y2="70"></line>'
+            '<line class="c2 fx d2" x1="106" y1="150" x2="200" y2="130"></line><line class="c0 fx d2" x1="106" y1="150" x2="200" y2="170"></line>'
+            '<text class="t2 fx d2" x="206" y="34">defective 0.012</text><text class="sm fx d2" x="206" y="74">good 0.588</text>'
+            '<text class="t2 fx d2" x="206" y="134">defective 0.004</text><text class="sm fx d2" x="206" y="174">good 0.396</text>'
+            '<text class="t4 fx d3" x="150" y="196" text-anchor="middle">P(B | defective) = 0.004/(0.012 + 0.004) = 1/4</text>')
+    mcard(deck, 'Probability tree', 'Machine A makes 60% of the items (2% defective) and machine B makes 40% (1% defective). An item chosen at random is defective. What is the probability that it came from B?', base, back,
+          '<p><b>Total probability:</b> P(defective) = 0.6 × 0.02 + 0.4 × 0.01 = 0.012 + 0.004 = 0.016 (multiply along a branch, add the branches that lead to “defective”).</p>'
+          '<p><b>Bayes:</b> P(B | defective) = 0.004/0.016 = <b>1/4</b> (Ex 13.3 Q8). Reading a tree: the probability of a full path is the product of its branch probabilities; conditional probabilities are “branch ÷ total”.</p>',
+          'Tree diagram: total probability and Bayes',
+          'Total probability P(A) = sum P(Ei)P(A|Ei); Bayes P(Ei|A) = P(Ei)P(A|Ei)/P(A); machines A (60%,2%) and B (40%,1%): P(B|defective) = 1/4',
+          vb='0 0 300 208', hint='Multiply along the branches, add the two defective paths.')
