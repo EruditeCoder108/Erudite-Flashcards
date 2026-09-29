@@ -2494,3 +2494,92 @@ def nearest_point_circle(deck):
           'Nearest point: shrink a circle until it touches the curve',
           'Minimise squared distance x^2+(y-5)^2 on x^2=2y: y=4, x=+-2sqrt2, distance 3; circle centered at the point touches the parabola at the nearest point',
           vb=f'0 0 300 {h}', hint='Write the squared distance as a function of y.')
+
+
+# ================================================================ Maths 12 Ch 7 Integrals
+def area_function_strips(deck):
+    P = Plane(-0.4, 4.6, -0.5, 4.4, 300, 190, (16, 8, 10, 18))
+    f = lambda x: 0.35 * x * x + 0.6
+    a, xe = 0.5, 3.4
+    base = P.axes([(a, 'a'), (xe, 'x')], [], grid=False, labels=False) + P.curve(f, 'c1', 0, 4.4, clip=(-0.5, 4.4)) + P.text(4.3, f(4.3), 'y = f(t)', 't1', anchor='end', dy=-8)
+    n = 14
+    w = (xe - a) / n
+    css = ''.join(f'.pp .q{k}{{animation-delay:{0.3 + 0.22 * k:.2f}s}}' for k in range(n))
+    strips = ''.join(f'<polygon class="f4 fx q{k}" points="{P.X(a + k * w):.1f},{P.Y(0):.1f} {P.X(a + k * w):.1f},{P.Y(f(a + k * w)):.1f} {P.X(a + (k + 1) * w):.1f},{P.Y(f(a + (k + 1) * w)):.1f} {P.X(a + (k + 1) * w):.1f},{P.Y(0):.1f}"></polygon>' for k in range(n))
+    back = strips + P.text(0.1, 4.05, 'A(x) = ∫ₐˣ f(t) dt', 't4 fx d5') + P.dot(xe, f(xe), 'd2s', 4.5, 'fx d5') + P.text(xe, f(xe), 'height f(x)', 't2 fx d5', dx=-8, dy=12, anchor='end')
+    mcard(deck, 'Area function', 'Let A(x) be the area under y = f(t) from t = a to t = x. How fast does A(x) change as x increases?', base, back,
+          '<p>Adding a thin strip of width Δx at x adds area ≈ f(x)·Δx, so <b>A′(x) = f(x)</b>: this is the <b>first fundamental theorem of calculus</b> (f continuous). The rate at which the area grows equals the height of the curve.</p>'
+          '<p>Hence A is an antiderivative of f, and the definite integral is F(b) − F(a) for any antiderivative F (<b>second fundamental theorem</b>).</p>',
+          'First fundamental theorem: derivative of the area function',
+          'If A(x) = integral from a to x of f(t) dt with f continuous then A\'(x) = f(x); then integral from a to b of f = F(b) - F(a) for an antiderivative F (second fundamental theorem)',
+          css=css, vb='0 0 300 190', hint='Add a thin strip and see how much area it brings.')
+
+
+def riemann_refine(deck):
+    P = Plane(-0.3, 2.4, -0.4, 4.6, 300, 190, (16, 8, 10, 18))
+    f = lambda x: x * x
+    base = P.axes([(1, '1'), (2, '2')], [(2, '2'), (4, '4')], grid=False, labels=False) + P.curve(f, 'c1', 0, 2.2, clip=(-0.4, 4.6))
+    def rects(n, cls, extra):
+        w = 2.0 / n
+        return ''.join(f'<polygon class="{cls} {extra}" points="{P.X(k * w):.1f},{P.Y(0):.1f} {P.X(k * w):.1f},{P.Y(f((k + 1) * w)):.1f} {P.X((k + 1) * w):.1f},{P.Y(f((k + 1) * w)):.1f} {P.X((k + 1) * w):.1f},{P.Y(0):.1f}"></polygon>' for k in range(n))
+    back = (rects(4, 'f2', 'fx d2') + rects(8, 'ns4', 'fx d3') + rects(16, 'ns3', 'fx d4')
+            + '<text class="t2 fx d2" x="70" y="34">n = 4: 3.75</text><text class="t4 fx d3" x="70" y="50">n = 8: 3.19</text><text class="t3 fx d4" x="70" y="66">n = 16: 2.92</text><text class="t1 fx d5" x="70" y="86">n → ∞: 8/3 ≈ 2.67</text>')
+    mcard(deck, 'Definite integral as a limit', 'Approximate the area under y = x² from 0 to 2 by n right-hand rectangles. What happens as n grows?', base, back,
+          '<p>Right-endpoint sums: n = 4 gives 3.75, n = 8 gives 3.1875, n = 16 gives 2.9219. They are always too big (x² is increasing) but decrease towards <b>∫₀² x² dx = 8/3</b>.</p>'
+          '<p><b>∫ₐᵇ f(x) dx = lim n→∞ Σ f(xᵢ)Δx</b> with Δx = (b − a)/n. By the second fundamental theorem you never need the limit: [x³/3]₀² = 8/3.</p>',
+          'Definite integral as the limit of a Riemann sum',
+          'Integral of f from a to b is the limit of sums f(x_i) Delta x as n -> infinity; right sums for x^2 on [0,2]: 3.75, 3.19, 2.92 -> 8/3',
+          vb='0 0 300 190', hint='Make the rectangles thinner.')
+
+
+def signed_area_sine(deck):
+    P = Plane(-0.4, 6.9, -1.5, 1.6, 300, 170, (16, 8, 10, 18))
+    base = P.axes([(math.pi, 'π'), (2 * math.pi, '2π')], [(1, '1'), (-1, '−1')], grid=True, labels=False) + P.curve(math.sin, 'c1', 0, 2 * math.pi, n=200)
+    pos = [(0, 0)] + [(t, math.sin(t)) for t in [i * math.pi / 30 for i in range(31)]] + [(math.pi, 0)]
+    neg = [(math.pi, 0)] + [(math.pi + t, math.sin(math.pi + t)) for t in [i * math.pi / 30 for i in range(31)]] + [(2 * math.pi, 0)]
+    back = (P.poly(pos, 'f3 fx d2') + P.poly(neg, 'f2 fx d3') + P.text(1.6, 0.4, '+2', 't3 fx d2', anchor='middle') + P.text(4.7, -0.4, '−2', 't2 fx d3', anchor='middle')
+            + P.text(3.5, 1.3, '∫ = 0, but area = 4', 't4 fx d4', anchor='middle'))
+    mcard(deck, 'Signed area', 'Find ∫₀^(2π) sin x dx, and the total area between the curve and the x-axis on [0, 2π].', base, back,
+          '<p>Areas above the axis count <b>positive</b>, below the axis <b>negative</b>: ∫₀^π sin x dx = 2 and ∫_π^(2π) sin x dx = −2, so <b>∫₀^(2π) sin x dx = 0</b>.</p>'
+          '<p>The <b>area</b> (always positive) is 2 + 2 = <b>4</b>: split at the zeros and take absolute values. (Same for Ex 7.10 Q5, Q6: |x + 2|, |x − 5|.)</p>',
+          'Signed area versus total area',
+          'Definite integral counts area below the x-axis as negative; integral of sin from 0 to 2pi = 0 but the area is 4; split at zeros and use absolute values for area',
+          vb='0 0 300 170', hint='Which parts lie below the axis?')
+
+
+def even_odd_integrals(deck):
+    def panel(ox, fn, rng, yr, cls_pos, cls_neg):
+        P = Plane(rng[0], rng[1], yr[0], yr[1], 140, 110, (6, 6, 6, 6))
+        return P, ox
+    Pe = Plane(-1.7, 1.7, -0.3, 3.0, 140, 110, (6, 6, 6, 6))
+    Po = Plane(-1.7, 1.7, -3.2, 3.2, 140, 110, (6, 6, 6, 6))
+    def rng_pts(fn, a, b, n=30):
+        return [(a, 0)] + [(a + (b - a) * i / n, fn(a + (b - a) * i / n)) for i in range(n + 1)] + [(b, 0)]
+    left = f'<g transform="translate(4,10)">{Pe.axes(labels=False)}{Pe.curve(lambda x: x * x, "c1", -1.6, 1.6, clip=(-0.3, 3))}</g>'
+    right = f'<g transform="translate(156,10)">{Po.axes(labels=False)}{Po.curve(lambda x: x ** 3, "c1", -1.4, 1.4, clip=(-3.2, 3.2))}</g>'
+    base = left + right + '<text class="lbi" x="74" y="132" text-anchor="middle">(a) even: x²</text><text class="lbi" x="226" y="132" text-anchor="middle">(b) odd: x³</text>'
+    back = (f'<g transform="translate(4,10)">{Pe.poly(rng_pts(lambda x: x * x, -1.5, 0), "f1 fx d2")}{Pe.poly(rng_pts(lambda x: x * x, 0, 1.5), "f1 fx d2")}</g>'
+            f'<g transform="translate(156,10)">{Po.poly(rng_pts(lambda x: x ** 3, 0, 1.3), "f3 fx d3")}{Po.poly(rng_pts(lambda x: x ** 3, -1.3, 0), "f2 fx d3")}</g>'
+            '<text class="t1 fx d2" x="74" y="148" text-anchor="middle">∫ = 2 ∫₀ᵃ f</text><text class="t4 fx d3" x="226" y="148" text-anchor="middle">∫ = 0 (cancels)</text>')
+    mcard(deck, 'Even and odd functions', 'Compare ∫_(−a)^(a) f(x) dx for an even function (like x²) and an odd function (like x³).', base, back,
+          '<p><b>Even</b> (f(−x) = f(x)): the two halves are mirror images, so <b>∫_(−a)^(a) f = 2∫₀ᵃ f</b>. <b>Odd</b> (f(−x) = −f(x)): the halves have opposite signs and cancel: <b>∫_(−a)^(a) f = 0</b>.</p>'
+          '<p>Use it before computing: Ex 7.10 Q13, Q14 and Q20 (∫_(−π/2)^(π/2)(x³ + x cos x + tan⁵x + 1) dx = π since only the constant 1 survives).</p>',
+          'Integrals of even and odd functions over [−a, a]',
+          'Even f: integral over [-a,a] = 2 * integral over [0,a]; odd f: integral over [-a,a] = 0; x^3 + x cos x + tan^5 x are odd so only 1 contributes: pi',
+          vb='0 0 300 160', hint='Look at the symmetry of the graph about the y-axis.')
+
+
+def king_property(deck):
+    P = Plane(-0.2, 1.75, -0.1, 1.15, 300, 180, (16, 8, 10, 18))
+    f = lambda x: math.sin(x) / (math.sin(x) + math.cos(x))
+    g = lambda x: math.cos(x) / (math.sin(x) + math.cos(x))
+    base = P.axes([(math.pi / 4, 'π/4'), (math.pi / 2, 'π/2')], [(0.5, '½'), (1, '1')], grid=False, labels=False) + P.curve(f, 'c1', 0, math.pi / 2, n=120)
+    back = (P.curve(g, 'c2 fx d2', 0, math.pi / 2, n=120) + P.line(math.pi / 4, -0.1, math.pi / 4, 1.1, 'guide fx d3') + P.line(0, 0.5, math.pi / 2, 0.5, 'guide fx d3')
+            + P.text(1.3, 0.95, 'f(x)', 't1 fx d2') + P.text(0.1, 0.95, 'f(π/2 − x)', 't2 fx d2')
+            + P.text(math.pi / 4, 1.1, 'I = π/4', 't4 fx d4', anchor='middle', dx=0, dy=-2))
+    mcard(deck, 'The a + b − x trick', 'Evaluate I = ∫₀^(π/2) sin x/(sin x + cos x) dx. What does the substitution x → π/2 − x do to the graph?', base, back,
+          '<p><b>∫ₐᵇ f(x) dx = ∫ₐᵇ f(a + b − x) dx</b> (property P₄): it reflects the graph about x = (a + b)/2. Here f(π/2 − x) = cos x/(sin x + cos x), so <b>f(x) + f(π/2 − x) = 1</b>.</p>'
+          '<p>Adding: 2I = ∫₀^(π/2) 1 dx = π/2, so <b>I = π/4</b> (Ex 7.10 Q2, Q3, Q4 all use this). The two curves are symmetric about x = π/4 and together fill a rectangle of height 1.</p>',
+          'King property: ∫f(x) = ∫f(a + b − x)',
+          'Property P4: integral of f(x) from a to b equals integral of f(a+b-x); for f = sin x/(sin x+cos x) on [0,pi/2], f(x)+f(pi/2-x)=1 so I = pi/4',
+          vb='0 0 300 180', hint='Reflect the curve in x = π/4.')
