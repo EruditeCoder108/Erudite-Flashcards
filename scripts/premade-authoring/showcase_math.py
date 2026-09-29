@@ -1533,3 +1533,71 @@ def histogram_sd(deck):
           '<p>Most of the data lies within x̄ ± σ (the shaded band). σ has the same unit as the data; variance has the square of the unit.</p>',
           'Grouped data: mean 62, variance 201, SD 14.18', 'Classes 30-100 with f=3,7,12,15,8,3,2: mean 62, variance 201, SD ≈ 14.18',
           css=css, vb='0 0 300 172', hint='Use class mid-points and the frequencies.')
+
+
+# ================================================================ Maths 11 Ch 14 Probability
+def dice_grid(deck):
+    x0, y0, s = 40, 22, 38
+    def cell(a, b, cls):
+        return f'<rect class="{cls}" x="{x0 + (b - 1) * s}" y="{y0 + (a - 1) * s}" width="{s - 3}" height="{s - 3}" rx="4"></rect>'
+    base = ''.join(cell(a, b, 'f0') for a in range(1, 7) for b in range(1, 7))
+    base += ''.join(f'<text class="num" x="{x0 + (b - 1) * s + 17}" y="{y0 - 6}">{b}</text><text class="num" x="{x0 - 10}" y="{y0 + (b - 1) * s + 20}">{b}</text>' for b in range(1, 7))
+    base += '<text class="sm" x="150" y="6" text-anchor="middle">second die →</text>'
+    back = ''
+    for a in range(1, 7):
+        for b in range(1, 7):
+            if a + b == 7:
+                back += cell(a, b, 'f4 fx d2') + f'<text class="lbl fx d2" x="{x0 + (b - 1) * s + 17}" y="{y0 + (a - 1) * s + 20}" text-anchor="middle">7</text>'
+            elif a + b >= 10:
+                back += cell(a, b, 'f2 fx d3')
+    back += '<text class="t4 fx d2" x="150" y="270">sum = 7: 6/36 = 1/6</text><text class="t2 fx d3" x="150" y="286">sum ≥ 10: 6/36 = 1/6</text>'
+    mcard(deck, 'Sample space of two dice', 'Two dice are rolled. How many equally likely outcomes are there? Shade the events “sum = 7” and “sum ≥ 10”.', base, back,
+          '<p>36 ordered pairs (first die, second die), all equally likely: n(S) = 36.</p>'
+          '<p>Sum 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) → <b>6/36 = 1/6</b> (the most likely sum). Sum ≥ 10: (4,6), (5,5), (5,6), (6,4), (6,5), (6,6) → <b>6/36 = 1/6</b>.</p>'
+          '<p class="no">Trap: (1,6) and (6,1) are different outcomes.</p>',
+          'Two-dice sample space of 36 outcomes', 'Two dice: 36 equally likely ordered pairs; P(sum 7) = 6/36 = 1/6, the most likely; P(sum ≥ 10) = 6/36; (1,6) and (6,1) are different',
+          vb='0 0 300 296', hint='Order matters: the dice are distinguishable.')
+
+
+def coin_tree(deck):
+    lv = [(20, 108)]
+    o = ''
+    x = [20, 100, 180, 260]
+    ys = {0: [108], 1: [66, 150], 2: [42, 90, 130, 170]}
+    labels3 = ['HHH', 'HHT', 'HTH', 'HTT', 'THH', 'THT', 'TTH', 'TTT']
+    y3 = [22, 52, 76, 104, 118, 146, 166, 194]
+    y3 = [16 + i * 24.5 for i in range(8)]
+    ys2 = [(y3[2 * i] + y3[2 * i + 1]) / 2 for i in range(4)]
+    ys1 = [(ys2[0] + ys2[1]) / 2, (ys2[2] + ys2[3]) / 2]
+    o = ''
+    back = ''
+    o += '<circle class="f1" cx="14" cy="108" r="6"></circle>'
+    for i, y in enumerate(ys1):
+        back += f'<line class="c0 fx d1" x1="18" y1="108" x2="84" y2="{y:.1f}"></line><text class="lbl fx d1" x="94" y="{y + 4:.1f}">{"HT"[i]}</text>'
+        for j in range(2):
+            y2 = ys2[2 * i + j]
+            back += f'<line class="c0 fx d2" x1="100" y1="{y:.1f}" x2="160" y2="{y2:.1f}"></line><text class="lbl fx d2" x="170" y="{y2 + 4:.1f}">{"HT"[i]}{"HT"[j]}</text>'
+            for k in range(2):
+                idx = 4 * i + 2 * j + k
+                back += (f'<line class="c1 fx d3" x1="192" y1="{y2:.1f}" x2="236" y2="{y3[idx]:.1f}"></line>'
+                         f'<text class="lbl fx d3" x="242" y="{y3[idx] + 4:.1f}">{labels3[idx]}</text>')
+    back += '<text class="t3 fx d5" x="14" y="16">8 leaves = 2 × 2 × 2</text>'
+    mcard(deck, 'Three coins · tree of outcomes', 'Three coins are tossed. List the sample space with a tree and find P(exactly two heads) and P(at least two heads).', o, back,
+          '<p>2 × 2 × 2 = <b>8</b> equally likely outcomes. Exactly two heads: HHT, HTH, THH → <b>3/8</b>. At least two heads: those three plus HHH → <b>4/8 = 1/2</b>.</p>',
+          'Tree diagram for three coins', 'Three coins: 8 equally likely outcomes; P(exactly 2 heads)=3/8, P(at least 2 heads)=1/2, P(3 heads)=1/8',
+          vb='0 0 300 212', hint='Branch H/T at each toss.')
+
+
+def prob_venn(deck):
+    front = ('<path class="f0" d="M10,10 H290 V190 H10 Z"></path><circle class="c0" cx="115" cy="100" r="58"></circle><circle class="c0" cx="185" cy="100" r="58"></circle>'
+             '<text class="t1" x="84" y="66" text-anchor="middle">E</text><text class="t2" x="216" y="66" text-anchor="middle">F</text><text class="lbi" x="20" y="28">S</text>'
+             '<text class="lbl" x="150" y="104" text-anchor="middle">0.02</text>')
+    back = (f'<path class="ns1 fx d2" d="{_AMB}"></path><path class="ns2 fx d3" d="{_BMA}"></path><path class="ns3 fx d2" d="{_LENS}"></path>'
+            f'<path class="ns4 fx d4" d="{_R + _UNION}" fill-rule="evenodd"></path>'
+            '<text class="t1 fx d2" x="88" y="104" text-anchor="middle">0.03</text><text class="t2 fx d3" x="212" y="104" text-anchor="middle">0.08</text>'
+            '<text class="t4 fx d4" x="250" y="176" text-anchor="middle">0.87</text>')
+    mcard(deck, 'Example 7 · Venn probabilities', 'P(E) = 0.05, P(F) = 0.10, P(E ∩ F) = 0.02. Fill each region. Find P(neither), P(not both) and P(exactly one).', front, back,
+          '<p>E only = 0.05 − 0.02 = <b>0.03</b>; F only = 0.10 − 0.02 = <b>0.08</b>. P(E ∪ F) = 0.13 → P(neither) = <b>0.87</b>.</p>'
+          '<p>P(not both) = 1 − 0.02 = <b>0.98</b>. P(exactly one) = 0.03 + 0.08 = <b>0.11</b>. Regions of the Venn diagram add to 1.</p>',
+          'Venn diagram probabilities for two events', 'P(E)=0.05, P(F)=0.10, P(E∩F)=0.02: E only 0.03, F only 0.08, neither 0.87, not both 0.98, exactly one 0.11',
+          vb='0 0 300 200', hint='Subtract the overlap from each event.')

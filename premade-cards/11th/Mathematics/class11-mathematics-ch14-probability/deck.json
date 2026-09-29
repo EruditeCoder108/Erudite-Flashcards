@@ -1,0 +1,1203 @@
+{
+  "version": 1,
+  "name": "Chapter 14: Probability",
+  "className": "Class 11",
+  "description": "Events and their algebra, axiomatic probability, addition rule, complement, equally likely outcomes, plus conditional probability and independence for exams.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Define an event.",
+      "definition": "Any <span style=\"color:#3b82f6\">subset of the sample space S</span> of a random experiment",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When does an event E occur?",
+      "definition": "When the outcome ω of the experiment satisfies <span style=\"color:#3b82f6\">ω ∈ E</span>; if ω ∉ E the event has not occurred",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two coins are tossed: sample space and the event “exactly one head”.",
+      "definition": "S = {HH, HT, TH, TT}; E = <span style=\"color:#f08c00\">{HT, TH}</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Impossible event and sure event?",
+      "definition": "<span style=\"color:#3b82f6\">Impossible</span>: the empty set φ (e.g. a multiple of 7 on a die). <span style=\"color:#3b82f6\">Sure</span>: the whole sample space S (e.g. “odd or even”)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Simple (elementary) event and compound event?",
+      "definition": "<span style=\"color:#3b82f6\">Simple</span>: exactly one sample point, e.g. {HH}. <span style=\"color:#3b82f6\">Compound</span>: more than one sample point, e.g. “exactly one head in three tosses” = {HTT, THT, TTH}. A sample space with n points has n simple events",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Tree diagram for three coins",
+      "definition": "Three coins: 8 equally likely outcomes; P(exactly 2 heads)=3/8, P(at least 2 heads)=1/2, P(3 heads)=1/8",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Three coins · tree of outcomes</p><h2>Three coins are tossed. List the sample space with a tree and find P(exactly two heads) and P(at least two heads).</h2><svg viewBox=\"0 0 300 212\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f1\" cx=\"14\" cy=\"108\" r=\"6\"></circle></svg><p class=\"hint\">Branch H/T at each toss.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Three coins · tree of outcomes</p><h2>Three coins are tossed. List the sample space with a tree and find P(exactly two heads) and P(at least two heads).</h2><svg viewBox=\"0 0 300 212\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f1\" cx=\"14\" cy=\"108\" r=\"6\"></circle><line class=\"c0 fx d1\" x1=\"18\" y1=\"108\" x2=\"84\" y2=\"52.8\"></line><text class=\"lbl fx d1\" x=\"94\" y=\"56.8\">H</text><line class=\"c0 fx d2\" x1=\"100\" y1=\"52.8\" x2=\"160\" y2=\"28.2\"></line><text class=\"lbl fx d2\" x=\"170\" y=\"32.2\">HH</text><line class=\"c1 fx d3\" x1=\"192\" y1=\"28.2\" x2=\"236\" y2=\"16.0\"></line><text class=\"lbl fx d3\" x=\"242\" y=\"20.0\">HHH</text><line class=\"c1 fx d3\" x1=\"192\" y1=\"28.2\" x2=\"236\" y2=\"40.5\"></line><text class=\"lbl fx d3\" x=\"242\" y=\"44.5\">HHT</text><line class=\"c0 fx d2\" x1=\"100\" y1=\"52.8\" x2=\"160\" y2=\"77.2\"></line><text class=\"lbl fx d2\" x=\"170\" y=\"81.2\">HT</text><line class=\"c1 fx d3\" x1=\"192\" y1=\"77.2\" x2=\"236\" y2=\"65.0\"></line><text class=\"lbl fx d3\" x=\"242\" y=\"69.0\">HTH</text><line class=\"c1 fx d3\" x1=\"192\" y1=\"77.2\" x2=\"236\" y2=\"89.5\"></line><text class=\"lbl fx d3\" x=\"242\" y=\"93.5\">HTT</text><line class=\"c0 fx d1\" x1=\"18\" y1=\"108\" x2=\"84\" y2=\"150.8\"></line><text class=\"lbl fx d1\" x=\"94\" y=\"154.8\">T</text><line class=\"c0 fx d2\" x1=\"100\" y1=\"150.8\" x2=\"160\" y2=\"126.2\"></line><text class=\"lbl fx d2\" x=\"170\" y=\"130.2\">TH</text><line class=\"c1 fx d3\" x1=\"192\" y1=\"126.2\" x2=\"236\" y2=\"114.0\"></line><text class=\"lbl fx d3\" x=\"242\" y=\"118.0\">THH</text><line class=\"c1 fx d3\" x1=\"192\" y1=\"126.2\" x2=\"236\" y2=\"138.5\"></line><text class=\"lbl fx d3\" x=\"242\" y=\"142.5\">THT</text><line class=\"c0 fx d2\" x1=\"100\" y1=\"150.8\" x2=\"160\" y2=\"175.2\"></line><text class=\"lbl fx d2\" x=\"170\" y=\"179.2\">TT</text><line class=\"c1 fx d3\" x1=\"192\" y1=\"175.2\" x2=\"236\" y2=\"163.0\"></line><text class=\"lbl fx d3\" x=\"242\" y=\"167.0\">TTH</text><line class=\"c1 fx d3\" x1=\"192\" y1=\"175.2\" x2=\"236\" y2=\"187.5\"></line><text class=\"lbl fx d3\" x=\"242\" y=\"191.5\">TTT</text><text class=\"t3 fx d5\" x=\"14\" y=\"16\">8 leaves = 2 × 2 × 2</text></svg><div class=\"eq fx d5\"><p>2 × 2 × 2 = <b>8</b> equally likely outcomes. Exactly two heads: HHT, HTH, THH → <b>3/8</b>. At least two heads: those three plus HHH → <b>4/8 = 1/2</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Two-dice sample space of 36 outcomes",
+      "definition": "Two dice: 36 equally likely ordered pairs; P(sum 7) = 6/36 = 1/6, the most likely; P(sum ≥ 10) = 6/36; (1,6) and (6,1) are different",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Sample space of two dice</p><h2>Two dice are rolled. How many equally likely outcomes are there? Shade the events “sum = 7” and “sum ≥ 10”.</h2><svg viewBox=\"0 0 300 296\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f0\" x=\"40\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"40\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"40\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"40\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"40\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"40\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><text class=\"num\" x=\"57\" y=\"16\">1</text><text class=\"num\" x=\"30\" y=\"42\">1</text><text class=\"num\" x=\"95\" y=\"16\">2</text><text class=\"num\" x=\"30\" y=\"80\">2</text><text class=\"num\" x=\"133\" y=\"16\">3</text><text class=\"num\" x=\"30\" y=\"118\">3</text><text class=\"num\" x=\"171\" y=\"16\">4</text><text class=\"num\" x=\"30\" y=\"156\">4</text><text class=\"num\" x=\"209\" y=\"16\">5</text><text class=\"num\" x=\"30\" y=\"194\">5</text><text class=\"num\" x=\"247\" y=\"16\">6</text><text class=\"num\" x=\"30\" y=\"232\">6</text><text class=\"sm\" x=\"150\" y=\"6\" text-anchor=\"middle\">second die →</text></svg><p class=\"hint\">Order matters: the dice are distinguishable.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Sample space of two dice</p><h2>Two dice are rolled. How many equally likely outcomes are there? Shade the events “sum = 7” and “sum ≥ 10”.</h2><svg viewBox=\"0 0 300 296\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f0\" x=\"40\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"40\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"40\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"40\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"40\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"40\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"78\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"116\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"154\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"192\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f0\" x=\"230\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><text class=\"num\" x=\"57\" y=\"16\">1</text><text class=\"num\" x=\"30\" y=\"42\">1</text><text class=\"num\" x=\"95\" y=\"16\">2</text><text class=\"num\" x=\"30\" y=\"80\">2</text><text class=\"num\" x=\"133\" y=\"16\">3</text><text class=\"num\" x=\"30\" y=\"118\">3</text><text class=\"num\" x=\"171\" y=\"16\">4</text><text class=\"num\" x=\"30\" y=\"156\">4</text><text class=\"num\" x=\"209\" y=\"16\">5</text><text class=\"num\" x=\"30\" y=\"194\">5</text><text class=\"num\" x=\"247\" y=\"16\">6</text><text class=\"num\" x=\"30\" y=\"232\">6</text><text class=\"sm\" x=\"150\" y=\"6\" text-anchor=\"middle\">second die →</text><rect class=\"f4 fx d2\" x=\"230\" y=\"22\" width=\"35\" height=\"35\" rx=\"4\"></rect><text class=\"lbl fx d2\" x=\"247\" y=\"42\" text-anchor=\"middle\">7</text><rect class=\"f4 fx d2\" x=\"192\" y=\"60\" width=\"35\" height=\"35\" rx=\"4\"></rect><text class=\"lbl fx d2\" x=\"209\" y=\"80\" text-anchor=\"middle\">7</text><rect class=\"f4 fx d2\" x=\"154\" y=\"98\" width=\"35\" height=\"35\" rx=\"4\"></rect><text class=\"lbl fx d2\" x=\"171\" y=\"118\" text-anchor=\"middle\">7</text><rect class=\"f4 fx d2\" x=\"116\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><text class=\"lbl fx d2\" x=\"133\" y=\"156\" text-anchor=\"middle\">7</text><rect class=\"f2 fx d3\" x=\"230\" y=\"136\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f4 fx d2\" x=\"78\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><text class=\"lbl fx d2\" x=\"95\" y=\"194\" text-anchor=\"middle\">7</text><rect class=\"f2 fx d3\" x=\"192\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f2 fx d3\" x=\"230\" y=\"174\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f4 fx d2\" x=\"40\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><text class=\"lbl fx d2\" x=\"57\" y=\"232\" text-anchor=\"middle\">7</text><rect class=\"f2 fx d3\" x=\"154\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f2 fx d3\" x=\"192\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><rect class=\"f2 fx d3\" x=\"230\" y=\"212\" width=\"35\" height=\"35\" rx=\"4\"></rect><text class=\"t4 fx d2\" x=\"150\" y=\"270\">sum = 7: 6/36 = 1/6</text><text class=\"t2 fx d3\" x=\"150\" y=\"286\">sum ≥ 10: 6/36 = 1/6</text></svg><div class=\"eq fx d5\"><p>36 ordered pairs (first die, second die), all equally likely: n(S) = 36.</p><p>Sum 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) → <b>6/36 = 1/6</b> (the most likely sum). Sum ≥ 10: (4,6), (5,5), (5,6), (6,4), (6,5), (6,6) → <b>6/36 = 1/6</b>.</p><p class=\"no\">Trap: (1,6) and (6,1) are different outcomes.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Complementary event A′ (“not A”)?",
+      "definition": "<span style=\"color:#3b82f6\">A′ = S − A</span> = {ω ∈ S : ω ∉ A}. P(A′) = 1 − P(A)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Events “A or B”, “A and B”, “A but not B” as sets?",
+      "definition": "<span style=\"color:#3b82f6\">A ∪ B</span>, <span style=\"color:#3b82f6\">A ∩ B</span>, <span style=\"color:#3b82f6\">A − B = A ∩ B′</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: die; A = prime = {2, 3, 5}, B = odd = {1, 3, 5}. Find A or B, A and B, A but not B, not A.",
+      "definition": "<span style=\"color:#f08c00\">{1, 2, 3, 5}</span>;  <span style=\"color:#f08c00\">{3, 5}</span>;  <span style=\"color:#f08c00\">{2}</span>;  <span style=\"color:#f08c00\">{1, 4, 6}</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two dice: A = first throw is 6, B = sum ≥ 11. Find A ∩ B.",
+      "definition": "A = {(6,1), …, (6,6)}, B = {(5,6), (6,5), (6,6)} → <span style=\"color:#f08c00\">{(6,5), (6,6)}</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mutually exclusive events: definition?",
+      "definition": "<span style=\"color:#3b82f6\">A ∩ B = φ</span>: they cannot occur together. Simple events of a sample space are always mutually exclusive",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Die: A = odd, B = less than 4. Mutually exclusive?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: A = {1, 3, 5}, B = {1, 2, 3} share 1 and 3",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exhaustive events?",
+      "definition": "E₁ ∪ E₂ ∪ … ∪ Eₙ = S: at least one of them must occur. If also pairwise disjoint they are <span style=\"color:#3b82f6\">mutually exclusive and exhaustive</span> (a partition of S)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2: two dice, A sum even, B sum multiple of 3, C sum < 4, D sum > 11. Which pairs are mutually exclusive?",
+      "definition": "C = {(1,1), (2,1), (1,2)} and D = {(6,6)} share nothing: only <span style=\"color:#f08c00\">(C, D)</span>. All other pairs overlap (e.g. A ∩ B contains (3,3))",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3: three coins: A no head, B exactly one head, C at least two heads. Exclusive and exhaustive?",
+      "definition": "A = {TTT}, B has 3 outcomes, C has 4: pairwise disjoint and A ∪ B ∪ C = S → <span style=\"color:#22a35a\">yes, both</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.1 Q1: die; E = “shows 4”, F = “shows an even number”. Mutually exclusive?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: E = {4} ⊂ F = {2, 4, 6}, so 4 is common",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.1 Q2: die events A: < 7, B: > 7, C: multiple of 3, D: < 4, E: even > 4, F: not < 3.",
+      "definition": "A = S = {1,…,6}; B = <span style=\"color:#f08c00\">φ</span>; C = {3, 6}; D = {1, 2, 3}; E = {6}; F = {3, 4, 5, 6}",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.1 Q2: A ∪ B, A ∩ B, B ∪ C, E ∩ F, D ∩ E, A − C, D − E, E ∩ F′, F′.",
+      "definition": "S;  φ;  {3, 6};  {6};  φ;  {1, 2, 4, 5};  {1, 2, 3};  φ;  {1, 2}",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.1 Q3: two dice, A sum > 8, B a 2 on either die, C sum ≥ 7 and a multiple of 3. Exclusive pairs?",
+      "definition": "A has 10 outcomes, B has 11, C = {(3,6), (4,5), (5,4), (6,3), (6,6)}. A and B cannot meet (max sum with a 2 is 8); B and C cannot meet. So <span style=\"color:#f08c00\">(A, B) and (B, C)</span> are mutually exclusive; A and C are not",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.1 Q4: three coins; A = 3 heads, B = 2 heads and a tail, C = 3 tails, D = head on the first coin.",
+      "definition": "Mutually exclusive: <span style=\"color:#f08c00\">A,B; A,C; B,C; C,D</span>. Simple: <span style=\"color:#f08c00\">A and C</span>. Compound: <span style=\"color:#f08c00\">B and D</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.1 Q5: examples of events for three coins.",
+      "definition": "Two exclusive: “3 heads” and “3 tails”. Three exclusive and exhaustive: “no head”, “exactly 1–2 heads”, “3 heads”. Not exclusive: “first is H” and “last is H”. Exclusive not exhaustive: “3 heads”, “3 tails”",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: showing events are mutually exclusive / exhaustive.",
+      "definition": "Write the events as sets. Exclusive: check each pair has empty intersection. Exhaustive: check the union is S (counts add to n(S) if also disjoint)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.1-events"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Axioms of probability?",
+      "definition": "<span style=\"color:#3b82f6\">(i) P(E) ≥ 0</span>;  <span style=\"color:#3b82f6\">(ii) P(S) = 1</span>;  <span style=\"color:#3b82f6\">(iii) P(E ∪ F) = P(E) + P(F)</span> for mutually exclusive E, F",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Prove P(φ) = 0 from the axioms.",
+      "definition": "E and φ are disjoint: P(E) = P(E ∪ φ) = P(E) + P(φ) → <span style=\"color:#f08c00\">P(φ) = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Probability on a finite sample space {ω₁, …, ωₙ}?",
+      "definition": "Assign P(ωᵢ) with 0 ≤ P(ωᵢ) ≤ 1 and ΣP(ωᵢ) = 1. Then P(A) = <span style=\"color:#3b82f6\">Σ P(ωᵢ) over ωᵢ ∈ A</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A coin: P(H) = ½ = P(T). Are P(H) = ¼, P(T) = ¾ also valid?",
+      "definition": "<span style=\"color:#22a35a\">Yes</span>. Any p and 1 − p with 0 ≤ p ≤ 1 satisfy the axioms: infinitely many valid assignments. Equal probabilities are just one choice (the fair coin)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4: which assignments to six outcomes are valid: (a) six positive probabilities summing to 1, (b) 1, 0, 0, 0, 0, 0, (c) with two negative values, (d) with 3/2, (e) 0.1, 0.2, …, 0.6?",
+      "definition": "(a) <span style=\"color:#22a35a\">valid</span> (b) <span style=\"color:#22a35a\">valid</span> (c) <span style=\"color:#e5484d\">no: negative probabilities</span> (d) <span style=\"color:#e5484d\">no: 3/2 > 1</span> (e) <span style=\"color:#e5484d\">no: sum = 2.1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Validity test for a proposed assignment?",
+      "definition": "Check (1) every value in [0, 1] and (2) the values <span style=\"color:#3b82f6\">sum to exactly 1</span>. Fail either and it is invalid",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q1: which of the seven-outcome assignments are invalid: (c) 0.1, 0.2, …, 0.7; (d) −0.1, 0.2, 0.3, 0.4, −0.2, 0.1, 0.3?",
+      "definition": "(c) sums to <span style=\"color:#f08c00\">2.8</span> → invalid. (d) has <span style=\"color:#f08c00\">negative values</span> → invalid. (a) 0.1, 0.01, 0.05, 0.03, 0.01, 0.2, 0.6 sums to 1.0 → valid",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equally likely outcomes: probability of an event?",
+      "definition": "\\(P(E) = \\dfrac{n(E)}{n(S)} = \\dfrac{m}{n}\\) (m favourable outcomes out of n equally likely outcomes)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is P(each outcome) = 1/n for n equally likely outcomes?",
+      "definition": "The n probabilities are equal (p each) and sum to 1: np = 1 → <span style=\"color:#f08c00\">p = 1/n</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Addition rule for any two events?",
+      "definition": "\\(P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\\). If mutually exclusive, the last term is 0",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do we subtract P(A ∩ B)?",
+      "definition": "Outcomes in A ∩ B are counted <span style=\"color:#3b82f6\">twice</span> in P(A) + P(B). Example (3 coins): A = {HHT, HTH, THH}, B = {HTH, THH, HHH}: 3/8 + 3/8 = 6/8 but P(A ∪ B) = 4/8",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Proof of the addition rule (short)?",
+      "definition": "A ∪ B = A ∪ (B − A) (disjoint) and B = (A ∩ B) ∪ (B − A) (disjoint). Subtract: P(A ∪ B) − P(B) = P(A) − P(A ∩ B)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Probability of “not A”?",
+      "definition": "<span style=\"color:#3b82f6\">P(A′) = 1 − P(A)</span> since A and A′ are mutually exclusive and exhaustive: P(A) + P(A′) = 1",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Complement trick: P(at least one) = ?",
+      "definition": "<span style=\"color:#3b82f6\">1 − P(none)</span>. E.g. at least one tail in two tosses = 1 − P(HH) = 3/4",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Inclusion–exclusion for three events (Example 11)?",
+      "definition": "\\(P(A\\cup B\\cup C) = \\sum P(A) - \\sum P(A\\cap B) + P(A\\cap B\\cap C)\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Venn diagram probabilities for two events",
+      "definition": "P(E)=0.05, P(F)=0.10, P(E∩F)=0.02: E only 0.03, F only 0.08, neither 0.87, not both 0.98, exactly one 0.11",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Example 7 · Venn probabilities</p><h2>P(E) = 0.05, P(F) = 0.10, P(E ∩ F) = 0.02. Fill each region. Find P(neither), P(not both) and P(exactly one).</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><path class=\"f0\" d=\"M10,10 H290 V190 H10 Z\"></path><circle class=\"c0\" cx=\"115\" cy=\"100\" r=\"58\"></circle><circle class=\"c0\" cx=\"185\" cy=\"100\" r=\"58\"></circle><text class=\"t1\" x=\"84\" y=\"66\" text-anchor=\"middle\">E</text><text class=\"t2\" x=\"216\" y=\"66\" text-anchor=\"middle\">F</text><text class=\"lbi\" x=\"20\" y=\"28\">S</text><text class=\"lbl\" x=\"150\" y=\"104\" text-anchor=\"middle\">0.02</text></svg><p class=\"hint\">Subtract the overlap from each event.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Example 7 · Venn probabilities</p><h2>P(E) = 0.05, P(F) = 0.10, P(E ∩ F) = 0.02. Fill each region. Find P(neither), P(not both) and P(exactly one).</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><path class=\"f0\" d=\"M10,10 H290 V190 H10 Z\"></path><circle class=\"c0\" cx=\"115\" cy=\"100\" r=\"58\"></circle><circle class=\"c0\" cx=\"185\" cy=\"100\" r=\"58\"></circle><text class=\"t1\" x=\"84\" y=\"66\" text-anchor=\"middle\">E</text><text class=\"t2\" x=\"216\" y=\"66\" text-anchor=\"middle\">F</text><text class=\"lbi\" x=\"20\" y=\"28\">S</text><text class=\"lbl\" x=\"150\" y=\"104\" text-anchor=\"middle\">0.02</text><path class=\"ns1 fx d2\" d=\"M150,53.75 A58,58 0 1 0 150,146.25 A58,58 0 0 1 150,53.75 Z\"></path><path class=\"ns2 fx d3\" d=\"M150,53.75 A58,58 0 1 1 150,146.25 A58,58 0 0 0 150,53.75 Z\"></path><path class=\"ns3 fx d2\" d=\"M150,53.75 A58,58 0 0 1 150,146.25 A58,58 0 0 1 150,53.75 Z\"></path><path class=\"ns4 fx d4\" d=\"M10,10 H290 V190 H10 ZM150,53.75 A58,58 0 1 0 150,146.25 A58,58 0 1 0 150,53.75 Z\" fill-rule=\"evenodd\"></path><text class=\"t1 fx d2\" x=\"88\" y=\"104\" text-anchor=\"middle\">0.03</text><text class=\"t2 fx d3\" x=\"212\" y=\"104\" text-anchor=\"middle\">0.08</text><text class=\"t4 fx d4\" x=\"250\" y=\"176\" text-anchor=\"middle\">0.87</text></svg><div class=\"eq fx d5\"><p>E only = 0.05 − 0.02 = <b>0.03</b>; F only = 0.10 − 0.02 = <b>0.08</b>. P(E ∪ F) = 0.13 → P(neither) = <b>0.87</b>.</p><p>P(not both) = 1 − 0.02 = <b>0.98</b>. P(exactly one) = 0.03 + 0.08 = <b>0.11</b>. Regions of the Venn diagram add to 1.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-axioms"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: one card from 52. P(diamond), P(not an ace), P(black), P(not a diamond), P(not black)?",
+      "definition": "<span style=\"color:#f08c00\">1/4</span>;  <span style=\"color:#f08c00\">12/13</span>;  <span style=\"color:#f08c00\">1/2</span>;  <span style=\"color:#f08c00\">3/4</span>;  <span style=\"color:#f08c00\">1/2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6: bag with 4 red, 3 blue, 2 yellow discs. P(red), P(yellow), P(blue), P(not blue), P(red or blue)?",
+      "definition": "<span style=\"color:#f08c00\">4/9</span>, <span style=\"color:#f08c00\">2/9</span>, <span style=\"color:#f08c00\">1/3</span>, <span style=\"color:#f08c00\">2/3</span>, <span style=\"color:#f08c00\">7/9</span> (red and blue are exclusive, so add)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7: P(E) = 0.05, P(F) = 0.10, P(E ∩ F) = 0.02. Find P(neither), P(at least one fails), P(only one qualifies).",
+      "definition": "P(E ∪ F) = 0.13 → <span style=\"color:#f08c00\">0.87</span>; <span style=\"color:#f08c00\">1 − 0.02 = 0.98</span>; <span style=\"color:#f08c00\">0.03 + 0.08 = 0.11</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8: committee of 2 chosen from 2 men and 2 women. P(no man), P(one man), P(two men)?",
+      "definition": "Total ⁴C₂ = 6: <span style=\"color:#f08c00\">1/6</span>, <span style=\"color:#f08c00\">4/6 = 2/3</span>, <span style=\"color:#f08c00\">1/6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q2: a coin is tossed twice. P(at least one tail)?",
+      "definition": "<span style=\"color:#f08c00\">3/4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q3: a die. P(prime), P(≥ 3), P(≤ 1), P(> 6), P(< 6).",
+      "definition": "<span style=\"color:#f08c00\">1/2</span>, <span style=\"color:#f08c00\">2/3</span>, <span style=\"color:#f08c00\">1/6</span>, <span style=\"color:#f08c00\">0</span>, <span style=\"color:#f08c00\">5/6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q4: a card from 52: number of sample points; P(ace of spades); P(ace); P(black).",
+      "definition": "<span style=\"color:#f08c00\">52</span>;  <span style=\"color:#f08c00\">1/52</span>;  <span style=\"color:#f08c00\">1/13</span>;  <span style=\"color:#f08c00\">1/2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q5: a coin marked 1 and 6 and a die are tossed. P(sum = 3) and P(sum = 12).",
+      "definition": "Sum 3 needs (1, 2); sum 12 needs (6, 6): each <span style=\"color:#f08c00\">1/12</span> (12 equally likely outcomes)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q6: 4 men and 6 women on a council; one member is picked at random. P(woman)?",
+      "definition": "<span style=\"color:#f08c00\">6/10 = 3/5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q7: four tosses; win ₹1 per head, lose ₹1.50 per tail. Possible amounts and their probabilities?",
+      "definition": "k heads → 2.5k − 6: <span style=\"color:#f08c00\">−6 (1/16), −3.5 (1/4), −1 (3/8), +1.5 (1/4), +4 (1/16)</span>: five different amounts",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q8: three coins. P(3 heads), P(2 heads), P(at least 2), P(at most 2), P(no head), P(3 tails), P(exactly two tails), P(no tail), P(at most two tails).",
+      "definition": "<span style=\"color:#f08c00\">1/8, 3/8, 1/2, 7/8, 1/8, 1/8, 3/8, 1/8, 7/8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q9: P(A) = 2/11. Find P(not A).",
+      "definition": "<span style=\"color:#f08c00\">9/11</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q10: a letter chosen at random from ASSASSINATION. P(vowel), P(consonant).",
+      "definition": "13 letters, vowels A, A, I, A, I, O = 6: <span style=\"color:#f08c00\">6/13</span> and <span style=\"color:#f08c00\">7/13</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q11: lottery: choose 6 numbers from 1–20; probability of matching the fixed six?",
+      "definition": "<span style=\"color:#f08c00\">1/²⁰C₆ = 1/38760</span> (order does not matter)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q12: are these consistent? (i) P(A) = 0.5, P(B) = 0.7, P(A ∩ B) = 0.6; (ii) P(A) = 0.5, P(B) = 0.4, P(A ∪ B) = 0.8.",
+      "definition": "(i) <span style=\"color:#e5484d\">No</span>: P(A ∩ B) cannot exceed P(A). (ii) P(A ∩ B) = 0.9 − 0.8 = 0.1 ≤ min → <span style=\"color:#22a35a\">consistent</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q13: fill in: P(A) = 0.35, P(A ∩ B) = 0.25, P(A ∪ B) = 0.6; and P(A) = 0.5, P(B) = 0.35, P(A ∪ B) = 0.7.",
+      "definition": "P(B) = 0.6 − 0.35 + 0.25 = <span style=\"color:#f08c00\">0.5</span>;  P(A ∩ B) = 0.85 − 0.7 = <span style=\"color:#f08c00\">0.15</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q14: P(A) = 3/5, P(B) = 1/5, mutually exclusive. P(A or B)?",
+      "definition": "<span style=\"color:#f08c00\">4/5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q15: P(E) = 1/4, P(F) = 1/2, P(E and F) = 1/8. Find P(E or F) and P(not E and not F).",
+      "definition": "<span style=\"color:#f08c00\">5/8</span> and <span style=\"color:#f08c00\">3/8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q16: P(not E or not F) = 0.25. Are E and F mutually exclusive?",
+      "definition": "P(E ∩ F) = 1 − 0.25 = 0.75 ≠ 0 → <span style=\"color:#f08c00\">not mutually exclusive</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q17: P(A) = 0.42, P(B) = 0.48, P(A and B) = 0.16. Find P(not A), P(not B), P(A or B).",
+      "definition": "<span style=\"color:#f08c00\">0.58</span>, <span style=\"color:#f08c00\">0.52</span>, <span style=\"color:#f08c00\">0.74</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q18: 40% study Maths, 30% Biology, 10% both. P(Maths or Biology)?",
+      "definition": "<span style=\"color:#f08c00\">0.4 + 0.3 − 0.1 = 0.6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q19: P(pass first) = 0.8, P(pass second) = 0.7, P(at least one) = 0.95. P(both)?",
+      "definition": "0.8 + 0.7 − 0.95 = <span style=\"color:#f08c00\">0.55</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q20: P(pass English and Hindi) = 0.5, P(neither) = 0.1, P(English) = 0.75. P(Hindi)?",
+      "definition": "P(E ∪ H) = 0.9 → P(H) = 0.9 − 0.75 + 0.5 = <span style=\"color:#f08c00\">0.65</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 14.2 Q21: 60 students; 30 NCC, 32 NSS, 24 both. P(NCC or NSS), P(neither), P(NSS but not NCC).",
+      "definition": "Union = 38: <span style=\"color:#f08c00\">38/60 = 19/30</span>;  <span style=\"color:#f08c00\">22/60 = 11/30</span>;  <span style=\"color:#f08c00\">8/60 = 2/15</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.2-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9: four cities visited in random order (24 orders). P(A before B)? P(A before B before C)?",
+      "definition": "<span style=\"color:#f08c00\">12/24 = 1/2</span>; <span style=\"color:#f08c00\">4/24 = 1/6</span> (by symmetry: 1/3! for any fixed order of three named cities)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9 (iii)–(v): P(A first and B last); P(A first or second); P(A just before B).",
+      "definition": "<span style=\"color:#f08c00\">2/24 = 1/12</span>;  <span style=\"color:#f08c00\">12/24 = 1/2</span>;  <span style=\"color:#f08c00\">6/24 = 1/4</span> (treat AB as a block: 3! = 6)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10: a 7-card hand from 52. P(all four kings), P(exactly 3 kings), P(at least 3 kings)?",
+      "definition": "<span style=\"color:#f08c00\">1/7735</span>;  <span style=\"color:#f08c00\">9/1547</span> (⁴C₃·⁴⁸C₄/⁵²C₇);  <span style=\"color:#f08c00\">46/7735</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12: five teams in a relay; P(A, B, C finish 1st, 2nd, 3rd in that order); P(they are the first three in any order)?",
+      "definition": "Sample space ⁵P₃ = 60: <span style=\"color:#f08c00\">1/60</span>;  3! orders: <span style=\"color:#f08c00\">6/60 = 1/10</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: box of 10 red, 20 blue, 30 green marbles; 5 drawn. P(all blue), P(at least one green)?",
+      "definition": "<span style=\"color:#f08c00\">²⁰C₅/⁶⁰C₅ = 34/11977 ≈ 0.0028</span>;  <span style=\"color:#f08c00\">1 − ³⁰C₅/⁶⁰C₅ = 4367/4484 ≈ 0.974</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: 4 cards from 52. P(3 diamonds and 1 spade)?",
+      "definition": "¹³C₃ · ¹³C₁ / ⁵²C₄ = 286 × 13/270725 = <span style=\"color:#f08c00\">286/20825 ≈ 0.0137</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: a die with two faces marked 1, three faces 2, one face 3. P(2), P(1 or 3), P(not 3).",
+      "definition": "<span style=\"color:#f08c00\">3/6 = 1/2</span>;  <span style=\"color:#f08c00\">3/6 = 1/2</span>;  <span style=\"color:#f08c00\">5/6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: 10000 tickets, 10 prizes. P(no prize) with one ticket; two tickets.",
+      "definition": "<span style=\"color:#f08c00\">1 − 10/10000 = 999/1000</span>;  <span style=\"color:#f08c00\">(9990/10000)(9989/9999) ≈ 0.998</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: 100 students in sections of 40 and 60. P(you and your friend in the same section)? Different?",
+      "definition": "You are in the 40-section with probability 0.4 (friend joins: 39/99); in the 60-section 0.6 (59/99): <span style=\"color:#f08c00\">17/33</span> and <span style=\"color:#f08c00\">16/33</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q6: three letters put at random into three addressed envelopes. P(at least one letter in its own envelope)?",
+      "definition": "1 − P(none) = 1 − 2/6 = <span style=\"color:#f08c00\">2/3</span> (2 derangements out of 6)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: P(A) = 0.54, P(B) = 0.69, P(A ∩ B) = 0.35. Find P(A ∪ B), P(A′ ∩ B′), P(A ∩ B′), P(B ∩ A′).",
+      "definition": "<span style=\"color:#f08c00\">0.88</span>,  <span style=\"color:#f08c00\">0.12</span>,  <span style=\"color:#f08c00\">0.19</span>,  <span style=\"color:#f08c00\">0.34</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q9: 4-digit numbers > 5000 from 0, 1, 3, 5, 7. P(divisible by 5) with repetition; without?",
+      "definition": "With repetition: 250 numbers, last digit 0 or 5: 100 → <span style=\"color:#f08c00\">2/5</span>. Without: 48 numbers, 18 end in 0 or 5 → <span style=\"color:#f08c00\">3/8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q10: a 4-wheel suitcase lock opens with a sequence of four distinct digits. P(guessing it)?",
+      "definition": "¹⁰P₄ = 5040 sequences → <span style=\"color:#f08c00\">1/5040</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conditional probability P(A | B)?",
+      "definition": "\\(P(A \\mid B) = \\dfrac{P(A \\cap B)}{P(B)}\\), P(B) > 0: the probability of A given that B has occurred (the sample space shrinks to B)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Multiplication rule?",
+      "definition": "<span style=\"color:#3b82f6\">P(A ∩ B) = P(A) · P(B | A) = P(B) · P(A | B)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Independent events: definition and test?",
+      "definition": "<span style=\"color:#3b82f6\">P(A ∩ B) = P(A) · P(B)</span> (equivalently P(A | B) = P(A)). Independent is not the same as mutually exclusive",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: mutually exclusive vs independent?",
+      "definition": "If P(A), P(B) > 0 and A, B are mutually exclusive then P(A ∩ B) = 0 ≠ P(A)P(B): they are <span style=\"color:#e5484d\">dependent</span>. Exclusive events are the most dependent: if one occurs, the other cannot",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two dice: P(sum 8 | first die is 3)?",
+      "definition": "Given a 3, the second must be 5: <span style=\"color:#f08c00\">1/6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two independent events with P(A) = 0.3, P(B) = 0.4: P(A ∪ B)?",
+      "definition": "0.3 + 0.4 − 0.12 = <span style=\"color:#f08c00\">0.58</span> (or 1 − 0.7 × 0.6)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "At least one success in n independent trials, each with probability p?",
+      "definition": "<span style=\"color:#3b82f6\">1 − (1 − p)ⁿ</span>. E.g. at least one six in 3 rolls: 1 − (5/6)³ = 91/216",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Total probability and Bayes’ theorem (Class 12)?",
+      "definition": "For a partition E₁, …, Eₙ: <span style=\"color:#3b82f6\">P(A) = Σ P(Eᵢ)P(A | Eᵢ)</span>;  <span style=\"color:#3b82f6\">P(Eⱼ | A) = P(Eⱼ)P(A | Eⱼ) / Σ P(Eᵢ)P(A | Eᵢ)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Odds in favour and against?",
+      "definition": "If P(A) = m/(m + n): odds in favour <span style=\"color:#3b82f6\">m : n</span>, odds against n : m. P(rain) = 0.2 → odds in favour 1 : 4",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Card facts to remember?",
+      "definition": "52 cards, 4 suits × 13 ranks; 26 red and 26 black; 12 face cards (J, Q, K); 4 aces; 16 honour cards (10, J, Q, K, A) if asked. A hand of n cards: ⁵²Cₙ",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of outcomes for n coins, n dice, and a pair of dice?",
+      "definition": "<span style=\"color:#f08c00\">2ⁿ</span>, <span style=\"color:#f08c00\">6ⁿ</span>, <span style=\"color:#f08c00\">36</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dice sums: which sum is most likely and how many ways for each sum 2 to 12?",
+      "definition": "<span style=\"color:#3b82f6\">7</span> (6 ways). Ways: 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 for sums 2 through 12",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Coin sequences: P(exactly k heads in n tosses)?",
+      "definition": "\\(\\dfrac{\\binom{n}{k}}{2^n}\\). E.g. exactly 2 heads in 4 tosses: 6/16 = 3/8",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Birthday-type problems: P(all n people have different birthdays)?",
+      "definition": "\\(\\dfrac{365\\cdot364\\cdots(365-n+1)}{365^n}\\): 1 − this is P(at least two share): for n = 23 it exceeds ½",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: A die is thrown. P(number > 4) is<br>(a) 1/6 (b) 1/3 (c) 1/2 (d) 2/3",
+      "definition": "<span style=\"color:#22a35a\">(b) 1/3</span> (5, 6)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: Two coins are tossed. P(at least one head) is<br>(a) 1/4 (b) 1/2 (c) 3/4 (d) 1",
+      "definition": "<span style=\"color:#22a35a\">(c) 3/4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: Two dice are thrown. P(sum = 9) is<br>(a) 1/9 (b) 1/6 (c) 1/12 (d) 5/36",
+      "definition": "Ways: (3,6), (4,5), (5,4), (6,3) → 4/36 = <span style=\"color:#22a35a\">(a) 1/9</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: A card is drawn from 52. P(king or heart) is<br>(a) 17/52 (b) 16/52 (c) 4/13 (d) 1/4",
+      "definition": "4/52 + 13/52 − 1/52 = 16/52 = <span style=\"color:#22a35a\">(b)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: If P(A) = 0.4, P(B) = 0.5, P(A ∩ B) = 0.2 then P(A ∪ B) =<br>(a) 0.9 (b) 0.7 (c) 0.1 (d) 0.3",
+      "definition": "0.4 + 0.5 − 0.2 = <span style=\"color:#22a35a\">(b) 0.7</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The probability of an event and its complement add to<br>(a) 0 (b) 1/2 (c) 1 (d) 2",
+      "definition": "<span style=\"color:#22a35a\">(c) 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: A bag has 3 red and 5 blue balls. P(red ball) is<br>(a) 3/5 (b) 3/8 (c) 5/8 (d) 1/3",
+      "definition": "<span style=\"color:#22a35a\">(b) 3/8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The probability that a leap year has 53 Sundays is<br>(a) 1/7 (b) 2/7 (c) 3/7 (d) 5/7",
+      "definition": "366 = 52 weeks + 2 days; the extra two include Sunday in 2 of 7 cases → <span style=\"color:#22a35a\">(b) 2/7</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): three coins are tossed; if P(at least two heads) = p/q in lowest terms, find p + q.",
+      "definition": "P = 1/2 → <span style=\"color:#f08c00\">3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: two dice are rolled; the number of outcomes with sum 7 or 11 is?",
+      "definition": "6 + 2 = <span style=\"color:#f08c00\">8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> P(A ∪ B) ≤ P(A) + P(B).<br><b>R:</b> P(A ∪ B) = P(A) + P(B) − P(A ∩ B) and P(A ∩ B) ≥ 0.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> If P(A) = 0.6 then P(A′) = 0.4.<br><b>R:</b> A and A′ are mutually exclusive and exhaustive.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: the probability of an event can be 1.5 if the event is very likely.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: 0 ≤ P(E) ≤ 1 always",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: two dice thrown. P(doublet) and P(sum is a prime).",
+      "definition": "Doublets: 6/36 = <span style=\"color:#f08c00\">1/6</span>. Prime sums 2, 3, 5, 7, 11: 1 + 2 + 4 + 6 + 2 = 15 → <span style=\"color:#f08c00\">15/36 = 5/12</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: from a well-shuffled deck, two cards are drawn together. P(both aces)?",
+      "definition": "⁴C₂/⁵²C₂ = 6/1326 = <span style=\"color:#f08c00\">1/221</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: P(A) = 0.5, P(B) = 0.3, P(A ∩ B) = 0.1. Find P(A′ ∩ B′) and P(exactly one of A, B).",
+      "definition": "P(A ∪ B) = 0.7 → <span style=\"color:#f08c00\">0.3</span>; exactly one: 0.4 + 0.2 = <span style=\"color:#f08c00\">0.6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a raffle sells 500 tickets with 3 prizes (a ticket wins at most once). You buy 5. P(win at least one prize)?",
+      "definition": "1 − ⁴⁹⁵C₃/⁵⁰⁰C₃ ≈ <span style=\"color:#f08c00\">0.0298</span> (about 3%). Rough check: 3 × 5/500 = 0.03",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-14",
+        "14.z-how-its-asked"
+      ]
+    }
+  ]
+}
