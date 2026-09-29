@@ -1840,3 +1840,167 @@ def inverse_mirror(deck):
           'Graph of f⁻¹ is the mirror image of f in y = x',
           'f⁻¹ swaps (a,b) to (b,a): the graph of f⁻¹ is the reflection of f in y = x; only bijections are invertible; for f(x)=x³, f⁻¹(x)=cube root of x',
           vb=f'0 0 300 {h}', hint='Swap x and y for every point.')
+
+
+# ================================================================ Maths 12 Ch 2 Inverse trigonometric functions
+def _pi_ticks(vals, unit=None):
+    """Ticks at v * pi/2 (vals in half-turns of pi/2) with labels like π/2, π, 3π/2."""
+    out = []
+    for v in vals:
+        lab = {1: 'π/2', -1: '−π/2', 2: 'π', -2: '−π', 3: '3π/2', -3: '−3π/2', 4: '2π', -4: '−2π'}[v]
+        out.append((v * math.pi / 2, lab))
+    return out
+
+
+def inv_restrict_sine(deck):
+    P = Plane(-5.2, 5.2, -1.7, 1.7, 300, 190, (14, 10, 10, 20))
+    xt = _pi_ticks([-3, -2, -1, 1, 2, 3])
+    base = P.axes(xt, [(1, '1'), (-1, '−1')], grid=True) + P.curve(math.sin, 'c0', -4.9, 4.9, n=240)
+    base += P.line(-5.1, 0.5, 5.1, 0.5, 'c2')
+    sols = [math.pi / 6, 5 * math.pi / 6, -7 * math.pi / 6]
+    dots = ''.join(P.dot(x, 0.5, 'd2s', 4.5) for x in sols)
+    back = (P.curve(math.sin, 'c1', -math.pi / 2, math.pi / 2, n=80) + P.dot(math.pi / 6, 0.5, 'd1s', 5.5, 'fx d2')
+            + P.text(math.pi / 2, 1, 'π/2', 't1 fx d2', dx=6, dy=-4) + P.text(-math.pi / 2, -1, '−π/2', 't1 fx d2', anchor='end', dx=-6, dy=14))
+    mcard(deck, 'Why restrict the domain?', 'sin x = ½ has infinitely many solutions, so sin is not one-one on R. Which piece do we keep to define sin⁻¹?', base + dots, back,
+          '<p>An inverse needs a <b>bijection</b>. Keep one piece where sin is one-one and takes <b>every value in [−1, 1]</b> once: <b>[−π/2, π/2]</b>, the <b>principal branch</b>. Then sin⁻¹ : [−1, 1] → [−π/2, π/2].</p>'
+          '<p>Other pieces (like [π/2, 3π/2]) would work too, but this one contains 0 and both positive and negative angles, so it is the standard choice.</p>',
+          'Principal branch of sin⁻¹ comes from restricting sin to [−π/2, π/2]',
+          'sin is not one-one on R; restricting to [−π/2, π/2] makes it a bijection onto [−1,1]; that piece defines the principal branch of sin⁻¹',
+          vb='0 0 300 190', hint='Where does the red line cut the curve? Keep one piece only.')
+
+
+def sin_inverse_mirror(deck):
+    P, h = eqplane(-2.3, 2.3, -2.3, 2.3, pad=(14, 8, 8, 14))
+    pt = _pi_ticks([1, -1])
+    base = (P.axes([(1, '1'), (-1, '−1')], [(v, l) for v, l in pt], grid=False, labels=False) + P.line(-2.2, -2.2, 2.2, 2.2, 'guide')
+            + P.curve(math.sin, 'c1', -math.pi / 2, math.pi / 2, n=80) + P.text(1.0, 1.0, 'y = sin x', 't1', dx=6, dy=18))
+    back = (P.curve(math.asin, 'c2 draw', -1, 1, n=120).replace('class="c2 draw"', 'class="c2 draw" pathLength="100"')
+            + P.dot(1, math.pi / 2, 'd2s', 4.5, 'fx d2') + P.dot(-1, -math.pi / 2, 'd2s', 4.5, 'fx d2')
+            + P.text(0.1, 1.9, 'y = sin⁻¹x', 't2 fx d3', dx=6, dy=0))
+    mcard(deck, 'Graph of sin⁻¹', 'Reflect the principal branch of y = sin x in the line y = x. What are the domain and range of the new curve?', base, back,
+          '<p>Swap x and y for every point: (a, b) on sin becomes (b, a) on sin⁻¹. Ends: (π/2, 1) ↦ (1, π/2) and (−π/2, −1) ↦ (−1, −π/2).</p>'
+          '<p><b>Domain [−1, 1], range [−π/2, π/2].</b> An increasing, odd function through the origin.</p>',
+          'sin⁻¹ graph is the mirror image of sin on [−π/2, π/2]',
+          'sin⁻¹ : [-1,1] -> [-pi/2, pi/2] is the reflection of sin restricted to [-pi/2, pi/2] in y = x; increasing and odd',
+          vb=f'0 0 300 {h}', hint='Swap the roles of x and y.')
+
+
+def principal_arcs(deck):
+    P, h = eqplane(-1.6, 2.4, -1.5, 1.7, pad=(8, 6, 8, 6))
+    ox, oy = P.X(0), P.Y(0)
+    r = P.X(1) - ox
+    base = P.axes(labels=False) + f'<circle class="ghost" cx="{ox:.1f}" cy="{oy:.1f}" r="{r:.1f}"></circle>'
+    r1, r2 = r * 1.3, r * 1.13
+    right = f'<path class="c1 fx d2" d="M{ox:.1f},{oy + r1:.1f} A{r1:.1f},{r1:.1f} 0 0 0 {ox:.1f},{oy - r1:.1f}"></path>'
+    top = f'<path class="c2 fx d3" d="M{ox + r2:.1f},{oy:.1f} A{r2:.1f},{r2:.1f} 0 0 0 {ox - r2:.1f},{oy:.1f}"></path>'
+    back = (right + top
+            + P.text(1.42, 0.5, 'sin⁻¹', 't1 fx d2') + P.text(1.42, 0.32, 'tan⁻¹', 't1 fx d2') + P.text(1.42, 0.14, 'cosec⁻¹', 't1 fx d2') + P.text(1.42, -0.16, '−π/2…π/2', 't1 fx d2')
+            + P.text(-1.55, 1.58, 'cos⁻¹, cot⁻¹, sec⁻¹', 't2 fx d3') + P.text(-1.55, 1.38, '0 … π', 't2 fx d3'))
+    mcard(deck, 'Principal values on the circle', 'Which half of the unit circle holds the principal values of sin⁻¹, tan⁻¹, cosec⁻¹? Which half holds cos⁻¹, cot⁻¹, sec⁻¹?', base, back,
+          '<p><b>Right half</b> (quadrants IV and I, angles from −π/2 to π/2): <b>sin⁻¹, tan⁻¹, cosec⁻¹</b>. They can be negative.</p>'
+          '<p><b>Upper half</b> (quadrants I and II, angles from 0 to π): <b>cos⁻¹, cot⁻¹, sec⁻¹</b>. Never negative.</p>'
+          '<p>Excluded end-points: tan⁻¹ (±π/2), cot⁻¹ (0, π), cosec⁻¹ (0), sec⁻¹ (π/2).</p>',
+          'Principal value ranges: right half circle vs upper half circle',
+          'sin^-1, tan^-1, cosec^-1 take values in the right half (-pi/2 to pi/2, negative allowed); cos^-1, cot^-1, sec^-1 in the upper half (0 to pi)',
+          vb=f'0 0 300 {h}', hint='Think: which angles have negative sine? Negative cosine?')
+
+
+def inverse_complementary(deck):
+    A, B, C = (40, 176), (220, 176), (220, 56)
+    base = (f'<polygon class="f0" points="{A[0]},{A[1]} {B[0]},{B[1]} {C[0]},{C[1]}"></polygon>'
+            f'<polyline class="c0" points="{B[0] - 12},{B[1]} {B[0] - 12},{B[1] - 12} {B[0]},{B[1] - 12}"></polyline>'
+            f'<text class="lbl" x="231" y="118">x</text><text class="lbl" x="118" y="192" text-anchor="middle">√(1 − x²)</text>'
+            f'<text class="lbl" x="108" y="106" text-anchor="end">1</text>')
+    a1 = f'<path class="c1 fx d2" d="M{A[0] + 42},{A[1]} A42,42 0 0 0 {A[0] + 42 * math.cos(math.atan2(A[1] - C[1], C[0] - A[0])):.1f},{A[1] - 42 * math.sin(math.atan2(A[1] - C[1], C[0] - A[0])):.1f}"></path>'
+    ang_c = math.atan2(C[1] - A[1], C[0] - A[0])   # direction of hypotenuse from A
+    # arc at C between CB (down) and CA
+    ca = math.atan2(A[1] - C[1], A[0] - C[0])
+    a2 = f'<path class="c2 fx d3" d="M{C[0]},{C[1] + 34} A34,34 0 0 1 {C[0] + 34 * math.cos(ca):.1f},{C[1] + 34 * math.sin(ca):.1f}"></path>'
+    back = (a1 + a2 + '<text class="t1 fx d2" x="94" y="170">sin⁻¹x</text><text class="t2 fx d3" x="160" y="82" text-anchor="middle">cos⁻¹x</text>'
+            '<text class="t4 fx d4" x="150" y="30" text-anchor="middle">sin⁻¹x + cos⁻¹x = π/2</text>')
+    mcard(deck, 'sin⁻¹x + cos⁻¹x', 'In this right triangle (hypotenuse 1, one leg x), name the two acute angles. What is their sum?', base, back,
+          '<p>The angle opposite the side x has sine x: it is <b>sin⁻¹x</b>. The other angle has cosine x: it is <b>cos⁻¹x</b>. Acute angles of a right triangle add to π/2:</p>'
+          '<p><b>sin⁻¹x + cos⁻¹x = π/2</b>, for x ∈ [−1, 1]. Same idea: <b>tan⁻¹x + cot⁻¹x = π/2</b> (x ∈ R) and <b>sec⁻¹x + cosec⁻¹x = π/2</b> (|x| ≥ 1).</p>'
+          '<p>The same triangle also gives sin⁻¹x = tan⁻¹(x/√(1 − x²)) = cos⁻¹√(1 − x²) for 0 ≤ x < 1.</p>',
+          'Complementary inverse trig identities from a right triangle',
+          'sin^-1 x + cos^-1 x = pi/2 (x in [-1,1]); tan^-1 x + cot^-1 x = pi/2; sec^-1 x + cosec^-1 x = pi/2 (|x|>=1); triangle with hypotenuse 1 and leg x',
+          vb='0 0 300 200', hint='Complementary acute angles.')
+
+
+def _inv_graph(deck, name, pieces, fn, x_rng, y_rng, xt, yt, dom, rng, note, term, guides=(), dots=(), holes=(), tag='Inverse trig graphs · name it'):
+    P = Plane(x_rng[0], x_rng[1], y_rng[0], y_rng[1], 300, 190, (16, 10, 10, 20))
+    base = P.axes(xt, yt, grid=True, labels=False)
+    for a, b in pieces:
+        base += P.curve(fn, 'c1', a, b, n=200, clip=(y_rng[0], y_rng[1]))
+    back = ''
+    for kind, v in guides:
+        back += (P.line(x_rng[0], v, x_rng[1], v, 'guide fx d2') if kind == 'h' else P.line(v, y_rng[0], v, y_rng[1], 'guide fx d2'))
+    for (x, y) in dots:
+        back += P.dot(x, y, 'd1s', 4.5, 'fx d2')
+    for (x, y) in holes:
+        back += P.hole(x, y, 'c1', 4.5).replace('class="f0 c1 "', 'class="f0 c1 fx d2"')
+    mcard(deck, tag, 'Name this function. What are its domain and range?', base, back,
+          f'<p><b>{name}</b></p><p>Domain: <b>{dom}</b> &nbsp; Range: <b>{rng}</b></p><p>{note}</p>', term,
+          f'{name}; domain {dom}; range {rng}. {note}', vb='0 0 300 190', hint='Read the shape, then the extent along each axis.')
+
+
+def inverse_graphs(deck):
+    pi = math.pi
+    cbrt = lambda v: v
+    _inv_graph(deck, 'y = cos⁻¹x', [(-1, 1)], math.acos, (-2.4, 2.4), (-0.6, 3.8), [(1, '1'), (-1, '−1')], [(pi / 2, 'π/2'), (pi, 'π')],
+               '[−1, 1]', '[0, π]', 'Decreasing; cos⁻¹0 = π/2; cos⁻¹(−x) = π − cos⁻¹x, so the graph is symmetric about (0, π/2).', 'cos⁻¹ graph',
+               guides=[('h', pi / 2)], dots=[(1, 0), (-1, pi)])
+    _inv_graph(deck, 'y = tan⁻¹x', [(-5.85, 5.85)], math.atan, (-6, 6), (-2.1, 2.1), [(-4, '−4'), (-2, '−2'), (2, '2'), (4, '4')], [(pi / 2, 'π/2'), (-pi / 2, '−π/2')],
+               'R', '(−π/2, π/2)', 'Increasing, odd, with horizontal asymptotes y = ±π/2 (never reached).', 'tan⁻¹ graph', guides=[('h', pi / 2), ('h', -pi / 2)])
+    _inv_graph(deck, 'y = cot⁻¹x', [(-5.85, 5.85)], lambda x: pi / 2 - math.atan(x), (-6, 6), (-0.6, 3.8), [(-4, '−4'), (-2, '−2'), (2, '2'), (4, '4')], [(pi / 2, 'π/2'), (pi, 'π')],
+               'R', '(0, π)', 'Decreasing, with horizontal asymptotes y = 0 and y = π; cot⁻¹x = π/2 − tan⁻¹x.', 'cot⁻¹ graph', guides=[('h', 0), ('h', pi)])
+    _inv_graph(deck, 'y = sec⁻¹x', [(1, 5.85), (-5.85, -1)], lambda x: math.acos(1 / x), (-6, 6), (-0.6, 3.8), [(-4, '−4'), (-2, '−2'), (-1, '−1'), (1, '1'), (2, '2'), (4, '4')], [(pi / 2, 'π/2'), (pi, 'π')],
+               'R − (−1, 1)', '[0, π] − {π/2}', 'Two branches; asymptote y = π/2; sec⁻¹x = cos⁻¹(1/x).', 'sec⁻¹ graph', guides=[('h', pi / 2)], dots=[(1, 0), (-1, pi)])
+    _inv_graph(deck, 'y = cosec⁻¹x', [(1, 5.85), (-5.85, -1)], lambda x: math.asin(1 / x), (-6, 6), (-2.1, 2.1), [(-4, '−4'), (-2, '−2'), (-1, '−1'), (1, '1'), (2, '2'), (4, '4')], [(pi / 2, 'π/2'), (-pi / 2, '−π/2')],
+               'R − (−1, 1)', '[−π/2, π/2] − {0}', 'Two branches; asymptote y = 0; cosec⁻¹x = sin⁻¹(1/x); odd function.', 'cosec⁻¹ graph', guides=[('h', 0)], dots=[(1, pi / 2), (-1, -pi / 2)])
+
+
+def _zig(deck, kind):
+    pi = math.pi
+    cfg = {
+        'sin': (lambda x: math.asin(math.sin(x)), (-1.9, 1.9), 'y = sin⁻¹(sin x)', '[−π/2, π/2]', 'Equal to x only on [−π/2, π/2]; then a zigzag of slope ±1 with period 2π. Range [−π/2, π/2]: e.g. sin⁻¹(sin 2π/3) = π − 2π/3 = π/3.',
+                'Graph of sin⁻¹(sin x) is a zigzag',
+                [(pi / 2, 'π/2'), (-pi / 2, '−π/2')], -pi / 2, pi / 2),
+        'cos': (lambda x: math.acos(math.cos(x)), (-0.6, 3.8), 'y = cos⁻¹(cos x)', '[0, π]', 'Equal to |x| for x ∈ [−π, π]; zigzag between 0 and π, period 2π, even function. Range [0, π]: e.g. cos⁻¹(cos 7π/6) = 2π − 7π/6 = 5π/6.',
+                'Graph of cos⁻¹(cos x) is a zigzag',
+                [(pi / 2, 'π/2'), (pi, 'π')], 0, pi),
+        'tan': (lambda x: (math.atan(math.tan(x)) if abs(math.cos(x)) > 0.05 else None), (-2.1, 2.1), 'y = tan⁻¹(tan x)', '(−π/2, π/2)', 'Equal to x on (−π/2, π/2), then repeats with period π (a sawtooth); undefined at odd multiples of π/2. Range (−π/2, π/2): e.g. tan⁻¹(tan 3π/4) = 3π/4 − π = −π/4.',
+                'Graph of tan⁻¹(tan x) is a sawtooth',
+                [(pi / 2, 'π/2'), (-pi / 2, '−π/2')], -pi / 2, pi / 2),
+    }
+    fn, yr, name, rng, note, term, yt, ylo, yhi = cfg[kind]
+    P = Plane(-7.2, 7.2, yr[0], yr[1], 300, 190, (14, 10, 10, 20))
+    xt = _pi_ticks([-4, -2, 2, 4])
+    base = P.axes(xt, yt, grid=True, labels=False) + P.line(-pi / 2 if kind != 'cos' else 0, -pi / 2 if kind != 'cos' else 0, pi / 2 if kind != 'cos' else pi, pi / 2 if kind != 'cos' else pi, 'c1')
+    if kind == 'cos':
+        base = P.axes(xt, yt, grid=True, labels=False) + P.line(0, 0, pi, pi, 'c1')
+    back = P.curve(fn, 'c2 draw', -2 * pi, 2 * pi, n=700).replace('class="c2 draw"', 'class="c2 draw" pathLength="100"')
+    mcard(deck, 'Composite graphs · principal branch', f'Sketch {name} for x ∈ [−2π, 2π]. The blue piece is where it equals x (or |x|).', base, back,
+          f'<p><b>{name}</b>: range <b>{rng}</b>.</p><p>{note}</p>'
+          '<p>Method for a value: reduce the angle into the principal interval using the symmetry of the function, then read the inverse.</p>',
+          term, f'{name} is periodic (period 2π for sin and cos, π for tan) with range {rng}; it equals x only inside the principal branch', vb='0 0 300 190',
+          hint='Where is it equal to x? What happens outside?')
+
+
+def tan_sum_circle(deck):
+    P, h = eqplane(-1.4, 1.4, -1.0, 1.4, pad=(8, 6, 8, 6))
+    ox, oy = P.X(0), P.Y(0)
+    r = P.X(1) - ox
+    a, b = math.atan(2), math.atan(3)
+    ray = lambda ang, cls, L=1.05, extra='': P.line(0, 0, L * math.cos(ang), L * math.sin(ang), cls + ' ' + extra)
+    base = P.axes(labels=False) + f'<circle class="ghost" cx="{ox:.1f}" cy="{oy:.1f}" r="{r:.1f}"></circle>' + ray(a, 'c1') + ray(b, 'c1')
+    base += P.text(1.05 * math.cos(a), 1.05 * math.sin(a), 'tan⁻¹2', 't1', dx=4, dy=-4) + P.text(1.05 * math.cos(b), 1.05 * math.sin(b), 'tan⁻¹3', 't1', anchor='end', dx=-4, dy=-4)
+    tot = a + b
+    back = (ray(tot, 'c4', 1.05, 'fx d2') + P.text(1.05 * math.cos(tot), 1.05 * math.sin(tot), '3π/4', 't4 fx d2', anchor='end', dx=-4, dy=-4)
+            + ray(-math.pi / 4, 'dr', 1.0, 'fx d3') + P.text(1.0 * math.cos(-math.pi / 4), 1.0 * math.sin(-math.pi / 4), '−π/4 ✗', 't2 fx d3', dx=4, dy=8))
+    mcard(deck, 'tan⁻¹x + tan⁻¹y', 'tan⁻¹2 + tan⁻¹3 = ? The formula gives tan⁻¹((2 + 3)/(1 − 6)) = tan⁻¹(−1). Is the answer −π/4?', base, back,
+          '<p>Both angles are in (0, π/2) so their sum is in (0, π): it cannot be negative. 63.4° + 71.6° = <b>135° = 3π/4</b>.</p>'
+          '<p><b>tan⁻¹x + tan⁻¹y = tan⁻¹((x + y)/(1 − xy))</b> only when <b>xy &lt; 1</b>. If <b>xy &gt; 1</b> (x, y &gt; 0) add <b>π</b>: tan⁻¹2 + tan⁻¹3 = π + tan⁻¹(−1) = 3π/4. (If xy &gt; 1 with x, y &lt; 0, subtract π.)</p>',
+          'tan⁻¹ addition formula and the xy > 1 correction',
+          'tan^-1 x + tan^-1 y = tan^-1((x+y)/(1-xy)) if xy<1; add pi if xy>1 and x,y>0 (subtract pi if x,y<0); tan^-1 2 + tan^-1 3 = 3pi/4',
+          css=_DR, vb=f'0 0 300 {h}', hint='Add the angles geometrically first.')
