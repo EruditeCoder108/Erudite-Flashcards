@@ -1,0 +1,1520 @@
+{
+  "version": 1,
+  "name": "Chapter 14: Semiconductor Electronics: Materials, Devices and Simple Circuits",
+  "className": "Class 12",
+  "description": "Energy bands, intrinsic and extrinsic semiconductors, p-n junction, diode, rectifiers, plus Zener, LED, transistor and logic gates",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Before transistors (1948), which devices controlled electron flow?",
+      "definition": "<span style=\"color:#3b82f6\">Vacuum tubes (valves)</span>: diode (2 electrodes), triode (cathode, plate, grid), tetrode, pentode",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why were vacuum tubes replaced by semiconductor devices?",
+      "definition": "Tubes are bulky, power-hungry, need high voltages (~100 V), need a heated cathode, and have a short life. Semiconductor devices are <span style=\"color:#3b82f6\">small, low-power, low-voltage, long-lived, reliable</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In which direction do electrons flow in a vacuum diode? Why “valve”?",
+      "definition": "Only from <span style=\"color:#3b82f6\">cathode to anode</span>, so the device acts like a one-way valve",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where do the mobile charges in a semiconductor device come from?",
+      "definition": "From the <span style=\"color:#3b82f6\">solid itself</span> (controlled by light, heat or a small voltage); no external heating or vacuum needed",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Early semiconductor detector of radio waves?",
+      "definition": "A crystal of <span style=\"color:#3b82f6\">galena (PbS)</span> with a metal point contact",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Classify solids by resistivity ρ and conductivity σ.",
+      "definition": "<span style=\"color:#3b82f6\">Metals</span>: ρ ~ 10⁻²–10⁻⁸ Ω m (σ ~ 10²–10⁸ S/m). <span style=\"color:#3b82f6\">Semiconductors</span>: ρ ~ 10⁻⁵–10⁶ Ω m. <span style=\"color:#3b82f6\">Insulators</span>: ρ ~ 10¹¹–10¹⁹ Ω m",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Types of semiconductors (with examples)?",
+      "definition": "<span style=\"color:#3b82f6\">Elemental</span>: Si, Ge. <span style=\"color:#3b82f6\">Compound inorganic</span>: GaAs, CdS, CdSe, InP. <span style=\"color:#3b82f6\">Organic</span>: anthracene, doped phthalocyanines; polymers: polypyrrole, polyaniline",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which semiconductors does the chapter study?",
+      "definition": "Inorganic <span style=\"color:#3b82f6\">Si and Ge</span> (most devices are made of them)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Valence band and conduction band?",
+      "definition": "<span style=\"color:#3b82f6\">Valence band</span>: the energy band containing the valence electrons’ levels. <span style=\"color:#3b82f6\">Conduction band</span>: the band above it; electrons here are free to move",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do energy bands form in a solid?",
+      "definition": "Outer orbits of neighbouring atoms <span style=\"color:#3b82f6\">overlap</span>, so each electron sees a unique surrounding and gets a slightly different energy: closely spaced levels form bands",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Band structure of Si and Ge at 0 K?",
+      "definition": "The 8N states split into two bands with a gap E_g: the lower <span style=\"color:#3b82f6\">valence band</span> (4N states) is completely full with the 4N valence electrons; the upper <span style=\"color:#3b82f6\">conduction band</span> (4N states) is empty",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ],
+      "definitionImage": "media/fig_14_1_bands_0K.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT writes the outer electrons of Si/Ge as “2s and 2p”. What is right?",
+      "definition": "<span style=\"color:#e5484d\">Slip</span>: Si has <span style=\"color:#3b82f6\">3s² 3p²</span> and Ge <span style=\"color:#3b82f6\">4s² 4p²</span> (outermost orbit n = 3 and n = 4, as the same paragraph says)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy band diagram of a metal?",
+      "definition": "Conduction and valence bands <span style=\"color:#3b82f6\">overlap</span> (E_g ≈ 0) or the band is partially filled: many free electrons, high conductivity",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ],
+      "definitionImage": "media/fig_14_2a_metal.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy band diagram of an insulator?",
+      "definition": "Large gap <span style=\"color:#3b82f6\">E_g > 3 eV</span>: no electrons in the conduction band; thermal energy cannot bridge the gap",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ],
+      "definitionImage": "media/fig_14_2b_insulator.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy band diagram of a semiconductor?",
+      "definition": "Small gap <span style=\"color:#3b82f6\">E_g < 3 eV</span> (0.2–3 eV): at room temperature a few electrons cross into the conduction band",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ],
+      "definitionImage": "media/fig_14_2c_semiconductor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Band gaps of C (diamond), Si, Ge and Sn?",
+      "definition": "<span style=\"color:#f08c00\">5.4 eV</span>, <span style=\"color:#f08c00\">1.1 eV</span>, <span style=\"color:#f08c00\">0.7 eV</span> (Ge 0.72), <span style=\"color:#f08c00\">0 eV</span> (tin, a metal)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 14.1: why is carbon an insulator while Si and Ge are semiconductors, with the same lattice?",
+      "definition": "Bonding electrons lie in shells n = 2, 3, 4: ionisation energy (E_g) is least for Ge, then Si, largest for C. So conduction electrons are <span style=\"color:#3b82f6\">significant for Ge, Si and negligible for C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: how does resistance vary with temperature for a metal and a semiconductor?",
+      "definition": "Metal: R <span style=\"color:#3b82f6\">increases</span> with T (more collisions). Semiconductor: R <span style=\"color:#3b82f6\">decreases</span> with T (more electron–hole pairs); temperature coefficient of resistance is negative",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: is an insulator with a small E_g at high temperature a conductor?",
+      "definition": "Its conductivity rises with T; the classification depends on E_g relative to kT (≈ 0.026 eV at 300 K)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.2-classification-of-metals-conductors-and-semiconductors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Crystal structure of Si and Ge?",
+      "definition": "<span style=\"color:#3b82f6\">Diamond-like</span> cubic structure: each atom has four nearest neighbours; lattice spacing C 3.56 Å, Si 5.43 Å, Ge 5.66 Å",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_3_diamond.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a covalent (valence) bond in Si?",
+      "definition": "Two atoms <span style=\"color:#3b82f6\">share electron pairs</span>; each atom shares one of its four valence electrons with each of four neighbours",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_4_bonds.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Intrinsic semiconductor: definition?",
+      "definition": "A <span style=\"color:#3b82f6\">pure</span> semiconductor whose carriers come only from thermal breaking of bonds; n_e = n_h = n_i",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a hole?",
+      "definition": "A <span style=\"color:#3b82f6\">vacancy in a covalent bond</span> left when an electron breaks free; it behaves like a free particle with effective positive charge +q",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_5a_hole.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a hole “move”?",
+      "definition": "A neighbouring bound electron jumps into the vacancy, leaving a hole at its own site: the hole appears to move in the <span style=\"color:#3b82f6\">opposite direction to the electron</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_5b_hole_motion.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Total current in an intrinsic semiconductor?",
+      "definition": "\\( I = I_e + I_h \\); holes move towards the negative potential (hole current in the direction of the field)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Generation and recombination?",
+      "definition": "Thermal generation of electron–hole pairs is balanced at equilibrium by <span style=\"color:#3b82f6\">recombination</span> (an electron falling into a hole)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intrinsic semiconductor at T = 0 K and at T > 0 K?",
+      "definition": "0 K: behaves as an <span style=\"color:#3b82f6\">insulator</span> (valence band full, conduction band empty). T > 0: thermally excited electrons partly occupy the conduction band, leaving equal holes",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_6a_intrinsic_0K.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy-band picture of an intrinsic semiconductor at T > 0 K?",
+      "definition": "Some electrons in the conduction band and an equal number of holes in the valence band",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_6b_intrinsic_T.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: how does intrinsic carrier concentration n_i vary with temperature and gap?",
+      "definition": "<span style=\"color:#3b82f6\">n_i ∝ T^{3/2} e^{−E_g/2kT}</span>: rises rapidly with temperature and falls for a larger gap (Si at 300 K: ~1.5 × 10¹⁶ m⁻³)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: mobility of electrons vs holes?",
+      "definition": "<span style=\"color:#3b82f6\">μ_e > μ_h</span> (electrons move more freely than holes): σ = e(nₑμₑ + nₕμₕ)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.3-intrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is doping? What are extrinsic semiconductors?",
+      "definition": "Deliberate addition of a small amount (parts per million) of a suitable impurity (<span style=\"color:#3b82f6\">dopant</span>) to a pure semiconductor to raise conductivity manifold: <span style=\"color:#3b82f6\">extrinsic (impurity) semiconductors</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Condition on the size of the dopant atom?",
+      "definition": "Its size must be <span style=\"color:#3b82f6\">nearly the same</span> as that of Si/Ge so that it does not distort the lattice",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dopants for Si and Ge?",
+      "definition": "<span style=\"color:#3b82f6\">Pentavalent</span> (As, Sb, P): n-type. <span style=\"color:#3b82f6\">Trivalent</span> (B, Al, In, Ga): p-type",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a pentavalent dopant make an n-type semiconductor?",
+      "definition": "Four of its five valence electrons form bonds; the <span style=\"color:#3b82f6\">fifth is very loosely bound</span> (ionisation energy ~ 0.01 eV for Ge, 0.05 eV for Si) and is free at room temperature. The dopant is a <span style=\"color:#3b82f6\">donor</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_7a_donor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Majority and minority carriers in n-type material?",
+      "definition": "Electrons are <span style=\"color:#3b82f6\">majority</span>, holes <span style=\"color:#3b82f6\">minority</span> (n_e ≫ n_h). The crystal stays <span style=\"color:#3b82f6\">electrically neutral</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_7b_n_type.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a trivalent dopant make a p-type semiconductor?",
+      "definition": "It has one electron too few, leaving a vacancy (<span style=\"color:#3b82f6\">hole</span>) in the fourth bond; a neighbour’s electron fills it and the hole moves on. The dopant is an <span style=\"color:#3b82f6\">acceptor</span> (becomes a fixed negative ion)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_8a_acceptor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Majority and minority carriers in p-type material?",
+      "definition": "Holes are <span style=\"color:#3b82f6\">majority</span>, electrons <span style=\"color:#3b82f6\">minority</span> (n_h ≫ n_e); one acceptor gives one hole",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_8b_p_type.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Mass-action law for doped semiconductors?",
+      "definition": "\\( n_en_h = n_i^2 \\) (in thermal equilibrium, in every case); doping raises one carrier type and <span style=\"color:#3b82f6\">reduces the other</span> via recombination",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do the minority carriers decrease with doping?",
+      "definition": "The abundant majority carriers give the thermally generated minority carriers many more chances to <span style=\"color:#3b82f6\">recombine</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy-band picture of an n-type semiconductor?",
+      "definition": "A donor level E_D lies <span style=\"color:#3b82f6\">just below E_C</span> (~ 0.01–0.05 eV); nearly all donors are ionised at room temperature, so most conduction electrons come from the dopant",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_9a_n_bands.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Energy-band picture of a p-type semiconductor?",
+      "definition": "An acceptor level E_A lies <span style=\"color:#3b82f6\">just above E_V</span> (~ 0.01–0.05 eV); electrons jump up into it, leaving holes in the valence band",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ],
+      "definitionImage": "media/fig_14_9b_p_bands.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: donor vs acceptor?",
+      "definition": "<span style=\"color:#3b82f6\">Donor → n-type</span> (Negative carriers, pentavalent, 5 electrons: “Donate a Negative”). <span style=\"color:#3b82f6\">Acceptor → p-type</span> (Positive holes, trivalent, <span style=\"color:#3b82f6\">3</span> electrons: “Accepts electrons”)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Do the number of donor electrons depend on temperature?",
+      "definition": "Weakly: donor electrons depend on <span style=\"color:#3b82f6\">doping level</span>, not temperature, while the intrinsic pairs rise weakly with temperature",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Carrier densities in doped Si (Example 14.2)",
+      "definition": "n_e ≈ 5 × 10²² m⁻³; n_h ≈ 4.5 × 10⁹ m⁻³",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 14.2 · doped silicon</p><h2>Find the missing step.</h2><div class=\"prob\">Si crystal with 5 × 10²⁸ atoms/m³ is doped with 1 ppm arsenic. Find n_e and n_h (n_i = 1.5 × 10¹⁶ m⁻³).</div><ol><li>N_D = 10⁻⁶ × 5 × 10²⁸ = 5 × 10²² m⁻³</li><li>n_i ≪ N_D, so n_e ≈ N_D = <b>5 × 10²² m⁻³</b></li><li class=\"h\">?</li><li><b>n_h ≈ 4.5 × 10⁹ m⁻³</b> (a factor 10¹³ smaller)</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 14.2 · doped silicon</p><h2>Find the missing step.</h2><div class=\"prob\">Si crystal with 5 × 10²⁸ atoms/m³ is doped with 1 ppm arsenic. Find n_e and n_h (n_i = 1.5 × 10¹⁶ m⁻³).</div><ol><li>N_D = 10⁻⁶ × 5 × 10²⁸ = 5 × 10²² m⁻³</li><li>n_i ≪ N_D, so n_e ≈ N_D = <b>5 × 10²² m⁻³</b></li><li class=\"r\">n_h = n_i²/n_e = (2.25 × 10³²)/(5 × 10²²)</li><li><b>n_h ≈ 4.5 × 10⁹ m⁻³</b> (a factor 10¹³ smaller)</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.1: in n-type silicon which statement is true?",
+      "definition": "<span style=\"color:#3b82f6\">(c)</span>: holes are minority carriers and pentavalent atoms are the dopants",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.2: the true statement for p-type semiconductors?",
+      "definition": "<span style=\"color:#3b82f6\">(d)</span>: holes are the majority carriers and trivalent atoms are the dopants",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.3: carbon, silicon, germanium band gaps?",
+      "definition": "<span style=\"color:#3b82f6\">(c)</span> (E_g)_C > (E_g)_Si > (E_g)_Ge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: a Ge crystal doped with In, or Si with P. n-type or p-type?",
+      "definition": "In (Group III): <span style=\"color:#3b82f6\">p-type</span>. P (Group V): <span style=\"color:#3b82f6\">n-type</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: n-type and p-type materials are separately electrically neutral. Why?",
+      "definition": "The extra carriers (electrons or holes) are balanced by the equal and opposite charge of the <span style=\"color:#3b82f6\">ionised dopant cores</span> fixed in the lattice",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: conductivity of an extrinsic semiconductor?",
+      "definition": "\\( \\sigma = e(n_e\\mu_e + n_h\\mu_h) \\approx e\\,n_e\\mu_e \\) (n-type) or \\( e\\,n_h\\mu_h \\) (p-type)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.4-extrinsic-semiconductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the p-n junction important?",
+      "definition": "It is the basic building block of <span style=\"color:#3b82f6\">diodes, transistors</span> and many other devices",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.5-p-n-junction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Diffusion at a p-n junction?",
+      "definition": "Due to the concentration gradient, holes diffuse <span style=\"color:#3b82f6\">p → n</span> and electrons <span style=\"color:#3b82f6\">n → p</span>: the diffusion current",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.5-p-n-junction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is the depletion region formed?",
+      "definition": "Electrons leaving n leave immobile <span style=\"color:#3b82f6\">positive donor ions</span>; holes leaving p leave immobile <span style=\"color:#3b82f6\">negative acceptor ions</span>. This space-charge layer, free of mobile carriers, is the depletion region (~ 0.1 µm thick)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.5-p-n-junction"
+      ],
+      "definitionImage": "media/fig_14_10_formation.webp"
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 14.10 · Formation of the p-n junction",
+      "definition": "",
+      "image": "media/fig_14_10_formation.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 1001,
+        "imageHeight": 535,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              455,
+              0,
+              425,
+              45
+            ],
+            "answer": "Electron diffusion",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              10,
+              48,
+              315,
+              48
+            ],
+            "answer": "Electron drift",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              0,
+              450,
+              330,
+              50
+            ],
+            "answer": "Hole diffusion",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              462,
+              495,
+              225,
+              42
+            ],
+            "answer": "Hole drift",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              618,
+              405,
+              383,
+              50
+            ],
+            "answer": "Depletion region",
+            "labelInImage": true
+          }
+        ]
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.5-p-n-junction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Drift current at a p-n junction?",
+      "definition": "The junction field (from the positive n-side space charge to the negative p-side charge) sweeps electrons p → n and holes n → p: <span style=\"color:#3b82f6\">drift current, opposite to diffusion</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.5-p-n-junction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equilibrium in a p-n junction?",
+      "definition": "Diffusion current = drift current: <span style=\"color:#3b82f6\">no net current</span>, constant barrier potential V₀",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.5-p-n-junction"
+      ],
+      "definitionImage": "media/fig_14_11a_equilibrium.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Barrier potential (built-in potential V₀)?",
+      "definition": "The potential difference across the junction that opposes further diffusion: n side <span style=\"color:#3b82f6\">positive</span> relative to p. About <span style=\"color:#f08c00\">0.7 V for Si</span> and 0.3 V for Ge",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.5-p-n-junction"
+      ],
+      "definitionImage": "media/fig_14_11b_barrier.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction of the electric field in the depletion region?",
+      "definition": "From the positive ions on the n-side towards the negative ions on the p-side, i.e. <span style=\"color:#3b82f6\">n → p</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.5-p-n-junction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 14.3: can two slabs of p- and n-type semiconductors simply be pressed together?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: surface roughness ≫ atomic spacing (2–3 Å), so there is no atomic-level contact: the junction acts as a discontinuity. The junction must be grown in a single crystal",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.5-p-n-junction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: as the depletion layer grows, why does diffusion stop?",
+      "definition": "The growing field raises the drift current and makes it equal the diffusion current; the barrier V₀ is set by the doping levels and temperature",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.5-p-n-junction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a semiconductor diode? Symbol?",
+      "definition": "A p-n junction with metallic contacts: a <span style=\"color:#3b82f6\">two-terminal</span> device. The arrow head (from p to n) shows the conventional current direction in <span style=\"color:#3b82f6\">forward</span> bias",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ],
+      "definitionImage": "media/fig_14_12a_diode.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Forward bias: connections and effect on the barrier?",
+      "definition": "<span style=\"color:#3b82f6\">p to +, n to −</span>. The applied field opposes V₀: the depletion layer <span style=\"color:#3b82f6\">narrows</span> and barrier falls to \\( V_0 - V \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ],
+      "definitionImage": "media/fig_14_13a_forward.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of forward bias on carriers?",
+      "definition": "Barrier reduced, more carriers cross: <span style=\"color:#3b82f6\">minority-carrier injection</span> (electrons into p-side, holes into n-side); current is large (mA)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ],
+      "definitionImage": "media/fig_14_14_injection.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Reverse bias: connections and effect on the barrier?",
+      "definition": "<span style=\"color:#3b82f6\">n to +, p to −</span>. The applied field adds to V₀: the depletion layer <span style=\"color:#3b82f6\">widens</span> and barrier rises to \\( V_0 + V \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ],
+      "definitionImage": "media/fig_14_15a_reverse.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the reverse current tiny and nearly voltage-independent?",
+      "definition": "It is due to <span style=\"color:#3b82f6\">minority carriers</span> swept across (drift), limited by their concentration, not by the applied voltage; of the order of µA",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Depletion layer and barrier in bias",
+      "definition": "Forward bias narrows the depletion region and lowers the barrier to V0 − V giving a large current; reverse bias widens it and raises the barrier to V0 + V giving a tiny current",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">p-n junction · bias</p><h2>How do the depletion layer, barrier height and current of a p-n junction change with no bias, forward bias and reverse bias?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><text class=\"sm\" x=\"40\" y=\"34\" text-anchor=\"middle\">p</text><text class=\"sm\" x=\"260\" y=\"34\" text-anchor=\"middle\">n</text><text class=\"sm\" x=\"150\" y=\"192\" text-anchor=\"middle\">barrier height (bar) vs bias</text></svg><p class=\"hint\">Watch the width of the grey layer.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">p-n junction · bias</p><h2>How do the depletion layer, barrier height and current of a p-n junction change with no bias, forward bias and reverse bias?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><text class=\"sm\" x=\"40\" y=\"34\" text-anchor=\"middle\">p</text><text class=\"sm\" x=\"260\" y=\"34\" text-anchor=\"middle\">n</text><text class=\"sm\" x=\"150\" y=\"192\" text-anchor=\"middle\">barrier height (bar) vs bias</text><g class=\"sg0\"><rect class=\"zone2\" x=\"20\" y=\"40\" width=\"115.0\" height=\"56\"></rect><rect class=\"zone\" x=\"165.0\" y=\"40\" width=\"115.0\" height=\"56\"></rect><rect class=\"obj3\" x=\"135.0\" y=\"40\" width=\"30\" height=\"56\" opacity=\".55\"></rect><text class=\"rd\" x=\"150\" y=\"72.0\" text-anchor=\"middle\">− +</text><rect class=\"obj2\" x=\"136\" y=\"138\" width=\"28\" height=\"40\"></rect><text class=\"gr\" x=\"150\" y=\"118\" text-anchor=\"middle\">I = 0</text><text class=\"yl\" x=\"150\" y=\"20\" text-anchor=\"middle\">Unbiased: barrier V₀, I = 0</text></g><g class=\"sg1\"><rect class=\"zone2\" x=\"20\" y=\"40\" width=\"124.0\" height=\"56\"></rect><rect class=\"zone\" x=\"156.0\" y=\"40\" width=\"124.0\" height=\"56\"></rect><rect class=\"obj3\" x=\"144.0\" y=\"40\" width=\"12\" height=\"56\" opacity=\".55\"></rect><text class=\"rd\" x=\"150\" y=\"72.0\" text-anchor=\"middle\">− +</text><rect class=\"obj2\" x=\"136\" y=\"160\" width=\"28\" height=\"18\"></rect><text class=\"gr\" x=\"150\" y=\"118\" text-anchor=\"middle\">large current →</text><line class=\"c2\" x1=\"40\" y1=\"120\" x2=\"260\" y2=\"120\" marker-end=\"url(#an)\"></line><text class=\"yl\" x=\"150\" y=\"20\" text-anchor=\"middle\">Forward: barrier V₀ − V, current in mA</text></g><g class=\"sg2\"><rect class=\"zone2\" x=\"20\" y=\"40\" width=\"102.0\" height=\"56\"></rect><rect class=\"zone\" x=\"178.0\" y=\"40\" width=\"102.0\" height=\"56\"></rect><rect class=\"obj3\" x=\"122.0\" y=\"40\" width=\"56\" height=\"56\" opacity=\".55\"></rect><text class=\"rd\" x=\"150\" y=\"72.0\" text-anchor=\"middle\">− +</text><rect class=\"obj2\" x=\"136\" y=\"108\" width=\"28\" height=\"70\"></rect><text class=\"gr\" x=\"150\" y=\"118\" text-anchor=\"middle\">tiny current</text><line class=\"c3\" x1=\"40\" y1=\"120\" x2=\"70\" y2=\"120\" marker-end=\"url(#am)\" opacity=\".7\"></line><text class=\"yl\" x=\"150\" y=\"20\" text-anchor=\"middle\">Reverse: barrier V₀ + V, current in µA</text></g></svg><div class=\"eq fx d5\"><p><b>Forward bias</b> (p to +, n to −): the applied voltage opposes V₀, so the depletion layer <b>narrows</b>, the barrier falls to V₀ − V and a large current (mA) flows by <b>minority-carrier injection</b>.</p><p><b>Reverse bias</b>: the barrier rises to V₀ + V, the depletion layer <b>widens</b>, and only the tiny minority-carrier drift current (µA) flows: a one-way valve.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .sg0{opacity:0;animation:sg0 10.5s linear infinite .2s}@keyframes sg0{0%{opacity:1}32.83%{opacity:1}33.33%{opacity:0}100%{opacity:0}}.bp .sg1{opacity:0;animation:sg1 10.5s linear infinite .2s}@keyframes sg1{0%{opacity:0}32.83%{opacity:0}33.33%{opacity:1}66.17%{opacity:1}66.67%{opacity:0}100%{opacity:0}}.bp .sg2{opacity:0;animation:sg2 10.5s linear infinite .2s}@keyframes sg2{0%{opacity:0}66.17%{opacity:0}66.67%{opacity:1}99.50%{opacity:1}100.00%{opacity:0}100%{opacity:0}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .sg0{opacity:0;animation:sg0 10.5s linear infinite .2s}@keyframes sg0{0%{opacity:1}32.83%{opacity:1}33.33%{opacity:0}100%{opacity:0}}.bp .sg1{opacity:0;animation:sg1 10.5s linear infinite .2s}@keyframes sg1{0%{opacity:0}32.83%{opacity:0}33.33%{opacity:1}66.17%{opacity:1}66.67%{opacity:0}100%{opacity:0}}.bp .sg2{opacity:0;animation:sg2 10.5s linear infinite .2s}@keyframes sg2{0%{opacity:0}66.17%{opacity:0}66.67%{opacity:1}99.50%{opacity:1}100.00%{opacity:0}100%{opacity:0}}"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Diode breakdown voltage?",
+      "definition": "At a critical reverse voltage V_br the reverse current increases <span style=\"color:#3b82f6\">sharply</span>; an ordinary diode is destroyed if the current is not limited by the circuit",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Experimental set-up for diode characteristics?",
+      "definition": "Diode + potentiometer/rheostat + battery; a <span style=\"color:#3b82f6\">milliammeter</span> in forward bias and a <span style=\"color:#3b82f6\">microammeter</span> in reverse bias",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ],
+      "definitionImage": "media/fig_14_16a_forward_circuit.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Typical V–I characteristic of a Si diode?",
+      "definition": "Forward: almost no current till the <span style=\"color:#3b82f6\">threshold (cut-in) voltage</span> (~0.7 V Si, ~0.2 V Ge), then it rises exponentially. Reverse: tiny constant <span style=\"color:#3b82f6\">reverse saturation current</span> till breakdown",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ],
+      "definitionImage": "media/fig_14_16c_vi.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Threshold voltage of Si and Ge diodes?",
+      "definition": "<span style=\"color:#3b82f6\">~0.7 V (Si)</span> and <span style=\"color:#3b82f6\">~0.2 V (Ge)</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dynamic resistance of a diode?",
+      "definition": "\\( r_d = \\dfrac{\\Delta V}{\\Delta I} \\): the small-signal ratio; low in forward bias, very large in reverse bias",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Forward and reverse resistance (Example 14.4)",
+      "definition": "r_fb = 10 Ω; r_rb = 1.0 × 10⁷ Ω",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 14.4 · diode resistance</p><h2>Find the missing step.</h2><div class=\"prob\">For a silicon diode: (a) resistance at I_D = 15 mA (b) resistance at V_D = −10 V (reverse current 1 µA). Read: 0.7 V at 10 mA, 0.8 V at 20 mA.</div><ol><li>(a) Between 10 mA and 20 mA the curve is nearly a line: ΔV = 0.1 V, ΔI = 10 mA</li><li class=\"h\">?</li><li>(b) At −10 V, I = −1 µA</li><li>r_rb = 10 V/1 µA = <b>1.0 × 10⁷ Ω</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 14.4 · diode resistance</p><h2>Find the missing step.</h2><div class=\"prob\">For a silicon diode: (a) resistance at I_D = 15 mA (b) resistance at V_D = −10 V (reverse current 1 µA). Read: 0.7 V at 10 mA, 0.8 V at 20 mA.</div><ol><li>(a) Between 10 mA and 20 mA the curve is nearly a line: ΔV = 0.1 V, ΔI = 10 mA</li><li class=\"r\">r_fb = ΔV/ΔI = 0.1/(10 × 10⁻³) = <b>10 Ω</b></li><li>(b) At −10 V, I = −1 µA</li><li>r_rb = 10 V/1 µA = <b>1.0 × 10⁷ Ω</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.4: in an unbiased p-n junction holes diffuse from p to n because…?",
+      "definition": "<span style=\"color:#3b82f6\">(c)</span> hole concentration is greater in the p-region than in the n-region (concentration gradient)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 14.5: forward bias applied to a p-n junction…?",
+      "definition": "<span style=\"color:#3b82f6\">(c)</span>: lowers the potential barrier",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: ideal diode?",
+      "definition": "Zero resistance in forward bias (short circuit) and infinite resistance in reverse bias (open circuit); a practical Si diode has a <span style=\"color:#3b82f6\">0.7 V drop</span> when conducting",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: a diode in series with a resistor and a battery. Current?",
+      "definition": "If forward biased: I = (E − 0.7)/R for silicon (E − 0 for ideal); if reverse biased: <span style=\"color:#3b82f6\">I ≈ 0</span> (open circuit)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: diode forward current equation?",
+      "definition": "\\( I = I_0\\left(e^{eV/kT} - 1\\right) \\) (Shockley): exponential in forward bias, saturates at −I₀ in reverse bias",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.6-semiconductor-diode"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is rectification?",
+      "definition": "Converting <span style=\"color:#3b82f6\">ac to a unidirectional (pulsating dc)</span> voltage using the one-way conduction of a diode",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Half-wave rectifier: circuit and action?",
+      "definition": "Transformer secondary → diode in series with R_L. Output appears only in the <span style=\"color:#3b82f6\">half-cycles when the diode is forward biased</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ],
+      "definitionImage": "media/fig_14_18_half_wave.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Half-wave rectifier waveforms?",
+      "definition": "Output = positive half-cycles only; <span style=\"color:#3b82f6\">output frequency = input frequency (50 Hz)</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ],
+      "definitionImage": "media/fig_14_18b_half_waveforms.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Full-wave rectifier: circuit and operation?",
+      "definition": "Two diodes with a <span style=\"color:#3b82f6\">centre-tap transformer</span>: D₁ conducts in one half-cycle and D₂ in the other; both give current through R_L in the same direction (each diode rectifies half of the secondary voltage)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ],
+      "definitionImage": "media/fig_14_19_full_wave.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Frequency of output of half-wave and full-wave rectifiers for 50 Hz input? (Exercise 14.6)",
+      "definition": "Half-wave: <span style=\"color:#f08c00\">50 Hz</span>. Full-wave: <span style=\"color:#f08c00\">100 Hz</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Another full-wave circuit?",
+      "definition": "The <span style=\"color:#3b82f6\">bridge rectifier</span> with four diodes needs no centre-tapped transformer",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is a filter needed after a rectifier?",
+      "definition": "The rectified output is <span style=\"color:#3b82f6\">pulsating</span> (half sinusoids); a filter removes the ac ripple to give steady dc",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ],
+      "definitionImage": "media/fig_14_20a_filter.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a capacitor filter work?",
+      "definition": "The capacitor across R_L charges to the peak, then discharges slowly through R_L (time constant <span style=\"color:#3b82f6\">R_LC</span>) while the input dips, and is recharged in the next pulse; large C gives a smoother output",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ],
+      "definitionImage": "media/fig_14_20b_filter_wave.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Half-wave, full-wave and filtered output",
+      "definition": "Half-wave output has the input frequency and full-wave twice the input frequency; a capacitor filter smooths the pulses to nearly steady dc with time constant RLC",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Rectifier · waveforms</p><h2>An ac voltage drives (1) one diode, (2) a centre-tap two-diode circuit, (3) the same with a capacitor across the load. What does the output look like?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"20\" y1=\"60\" x2=\"285\" y2=\"60\"></line><line class=\"ax\" x1=\"20\" y1=\"150\" x2=\"285\" y2=\"150\"></line><polyline class=\"c2\" points=\"20.0,60.0 21.3,57.0 22.6,54.0 24.0,51.1 25.3,48.2 26.6,45.5 27.9,42.9 29.3,40.4 30.6,38.1 31.9,36.0 33.2,34.1 34.6,32.5 35.9,31.0 37.2,29.9 38.5,29.0 39.9,28.4 41.2,28.1 42.5,28.0 43.9,28.3 45.2,28.8 46.5,29.6 47.8,30.6 49.1,32.0 50.5,33.5 51.8,35.3 53.1,37.4 54.5,39.6 55.8,42.0 57.1,44.6 58.4,47.3 59.8,50.1 61.1,53.0 62.4,56.0 63.7,59.0 65.0,62.0 66.4,65.0 67.7,68.0 69.0,70.8 70.3,73.6 71.7,76.3 73.0,78.8 74.3,81.2 75.7,83.3 77.0,85.3 78.3,87.0 79.6,88.5 81.0,89.8 82.3,90.7 83.6,91.4 84.9,91.9 86.2,92.0 87.6,91.9 88.9,91.4 90.2,90.7 91.5,89.8 92.9,88.5 94.2,87.0 95.5,85.3 96.8,83.3 98.2,81.2 99.5,78.8 100.8,76.3 102.2,73.6 103.5,70.8 104.8,68.0 106.1,65.0 107.5,62.0 108.8,59.0 110.1,56.0 111.4,53.0 112.8,50.1 114.1,47.3 115.4,44.6 116.7,42.0 118.0,39.6 119.4,37.4 120.7,35.3 122.0,33.5 123.3,32.0 124.7,30.6 126.0,29.6 127.3,28.8 128.7,28.3 130.0,28.0 131.3,28.1 132.6,28.4 133.9,29.0 135.3,29.9 136.6,31.0 137.9,32.5 139.2,34.1 140.6,36.0 141.9,38.1 143.2,40.4 144.6,42.9 145.9,45.5 147.2,48.2 148.5,51.1 149.8,54.0 151.2,57.0 152.5,60.0 153.8,63.0 155.2,66.0 156.5,68.9 157.8,71.8 159.1,74.5 160.4,77.1 161.8,79.6 163.1,81.9 164.4,84.0 165.8,85.9 167.1,87.5 168.4,89.0 169.7,90.1 171.1,91.0 172.4,91.6 173.7,91.9 175.0,92.0 176.3,91.7 177.7,91.2 179.0,90.4 180.3,89.4 181.7,88.0 183.0,86.5 184.3,84.7 185.6,82.6 186.9,80.4 188.3,78.0 189.6,75.4 190.9,72.7 192.2,69.9 193.6,67.0 194.9,64.0 196.2,61.0 197.6,58.0 198.9,55.0 200.2,52.0 201.5,49.2 202.8,46.4 204.2,43.7 205.5,41.2 206.8,38.8 208.2,36.7 209.5,34.7 210.8,33.0 212.1,31.5 213.4,30.2 214.8,29.3 216.1,28.6 217.4,28.1 218.8,28.0 220.1,28.1 221.4,28.6 222.7,29.3 224.1,30.2 225.4,31.5 226.7,33.0 228.0,34.7 229.3,36.7 230.7,38.8 232.0,41.2 233.3,43.7 234.7,46.4 236.0,49.2 237.3,52.0 238.6,55.0 239.9,58.0 241.3,61.0 242.6,64.0 243.9,67.0 245.2,69.9 246.6,72.7 247.9,75.4 249.2,78.0 250.6,80.4 251.9,82.6 253.2,84.7 254.5,86.5 255.8,88.0 257.2,89.4 258.5,90.4 259.8,91.2 261.1,91.7 262.5,92.0 263.8,91.9 265.1,91.6 266.4,91.0 267.8,90.1 269.1,89.0 270.4,87.5 271.8,85.9 273.1,84.0 274.4,81.9 275.7,79.6 277.1,77.1 278.4,74.5 279.7,71.8 281.0,68.9 282.4,66.0 283.7,63.0 285.0,60.0\"></polyline><text class=\"sm\" x=\"22\" y=\"18\">input ac</text><text class=\"sm\" x=\"22\" y=\"108\">output across R_L</text></svg><p class=\"hint\">Watch the red output.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Rectifier · waveforms</p><h2>An ac voltage drives (1) one diode, (2) a centre-tap two-diode circuit, (3) the same with a capacitor across the load. What does the output look like?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"20\" y1=\"60\" x2=\"285\" y2=\"60\"></line><line class=\"ax\" x1=\"20\" y1=\"150\" x2=\"285\" y2=\"150\"></line><polyline class=\"c2\" points=\"20.0,60.0 21.3,57.0 22.6,54.0 24.0,51.1 25.3,48.2 26.6,45.5 27.9,42.9 29.3,40.4 30.6,38.1 31.9,36.0 33.2,34.1 34.6,32.5 35.9,31.0 37.2,29.9 38.5,29.0 39.9,28.4 41.2,28.1 42.5,28.0 43.9,28.3 45.2,28.8 46.5,29.6 47.8,30.6 49.1,32.0 50.5,33.5 51.8,35.3 53.1,37.4 54.5,39.6 55.8,42.0 57.1,44.6 58.4,47.3 59.8,50.1 61.1,53.0 62.4,56.0 63.7,59.0 65.0,62.0 66.4,65.0 67.7,68.0 69.0,70.8 70.3,73.6 71.7,76.3 73.0,78.8 74.3,81.2 75.7,83.3 77.0,85.3 78.3,87.0 79.6,88.5 81.0,89.8 82.3,90.7 83.6,91.4 84.9,91.9 86.2,92.0 87.6,91.9 88.9,91.4 90.2,90.7 91.5,89.8 92.9,88.5 94.2,87.0 95.5,85.3 96.8,83.3 98.2,81.2 99.5,78.8 100.8,76.3 102.2,73.6 103.5,70.8 104.8,68.0 106.1,65.0 107.5,62.0 108.8,59.0 110.1,56.0 111.4,53.0 112.8,50.1 114.1,47.3 115.4,44.6 116.7,42.0 118.0,39.6 119.4,37.4 120.7,35.3 122.0,33.5 123.3,32.0 124.7,30.6 126.0,29.6 127.3,28.8 128.7,28.3 130.0,28.0 131.3,28.1 132.6,28.4 133.9,29.0 135.3,29.9 136.6,31.0 137.9,32.5 139.2,34.1 140.6,36.0 141.9,38.1 143.2,40.4 144.6,42.9 145.9,45.5 147.2,48.2 148.5,51.1 149.8,54.0 151.2,57.0 152.5,60.0 153.8,63.0 155.2,66.0 156.5,68.9 157.8,71.8 159.1,74.5 160.4,77.1 161.8,79.6 163.1,81.9 164.4,84.0 165.8,85.9 167.1,87.5 168.4,89.0 169.7,90.1 171.1,91.0 172.4,91.6 173.7,91.9 175.0,92.0 176.3,91.7 177.7,91.2 179.0,90.4 180.3,89.4 181.7,88.0 183.0,86.5 184.3,84.7 185.6,82.6 186.9,80.4 188.3,78.0 189.6,75.4 190.9,72.7 192.2,69.9 193.6,67.0 194.9,64.0 196.2,61.0 197.6,58.0 198.9,55.0 200.2,52.0 201.5,49.2 202.8,46.4 204.2,43.7 205.5,41.2 206.8,38.8 208.2,36.7 209.5,34.7 210.8,33.0 212.1,31.5 213.4,30.2 214.8,29.3 216.1,28.6 217.4,28.1 218.8,28.0 220.1,28.1 221.4,28.6 222.7,29.3 224.1,30.2 225.4,31.5 226.7,33.0 228.0,34.7 229.3,36.7 230.7,38.8 232.0,41.2 233.3,43.7 234.7,46.4 236.0,49.2 237.3,52.0 238.6,55.0 239.9,58.0 241.3,61.0 242.6,64.0 243.9,67.0 245.2,69.9 246.6,72.7 247.9,75.4 249.2,78.0 250.6,80.4 251.9,82.6 253.2,84.7 254.5,86.5 255.8,88.0 257.2,89.4 258.5,90.4 259.8,91.2 261.1,91.7 262.5,92.0 263.8,91.9 265.1,91.6 266.4,91.0 267.8,90.1 269.1,89.0 270.4,87.5 271.8,85.9 273.1,84.0 274.4,81.9 275.7,79.6 277.1,77.1 278.4,74.5 279.7,71.8 281.0,68.9 282.4,66.0 283.7,63.0 285.0,60.0\"></polyline><text class=\"sm\" x=\"22\" y=\"18\">input ac</text><text class=\"sm\" x=\"22\" y=\"108\">output across R_L</text><g class=\"sg0\"><polyline class=\"c3\" points=\"20.0,150.0 21.3,146.8 22.6,143.6 24.0,140.5 25.3,137.5 26.6,134.6 27.9,131.8 29.3,129.2 30.6,126.7 31.9,124.5 33.2,122.5 34.6,120.7 35.9,119.2 37.2,118.0 38.5,117.1 39.9,116.4 41.2,116.1 42.5,116.0 43.9,116.3 45.2,116.8 46.5,117.7 47.8,118.8 49.1,120.2 50.5,121.9 51.8,123.8 53.1,126.0 54.5,128.3 55.8,130.9 57.1,133.6 58.4,136.5 59.8,139.5 61.1,142.6 62.4,145.7 63.7,148.9 65.0,150.0 66.4,150.0 67.7,150.0 69.0,150.0 70.3,150.0 71.7,150.0 73.0,150.0 74.3,150.0 75.7,150.0 77.0,150.0 78.3,150.0 79.6,150.0 81.0,150.0 82.3,150.0 83.6,150.0 84.9,150.0 86.2,150.0 87.6,150.0 88.9,150.0 90.2,150.0 91.5,150.0 92.9,150.0 94.2,150.0 95.5,150.0 96.8,150.0 98.2,150.0 99.5,150.0 100.8,150.0 102.2,150.0 103.5,150.0 104.8,150.0 106.1,150.0 107.5,150.0 108.8,148.9 110.1,145.7 111.4,142.6 112.8,139.5 114.1,136.5 115.4,133.6 116.7,130.9 118.0,128.3 119.4,126.0 120.7,123.8 122.0,121.9 123.3,120.2 124.7,118.8 126.0,117.7 127.3,116.8 128.7,116.3 130.0,116.0 131.3,116.1 132.6,116.4 133.9,117.1 135.3,118.0 136.6,119.2 137.9,120.7 139.2,122.5 140.6,124.5 141.9,126.7 143.2,129.2 144.6,131.8 145.9,134.6 147.2,137.5 148.5,140.5 149.8,143.6 151.2,146.8 152.5,150.0 153.8,150.0 155.2,150.0 156.5,150.0 157.8,150.0 159.1,150.0 160.4,150.0 161.8,150.0 163.1,150.0 164.4,150.0 165.8,150.0 167.1,150.0 168.4,150.0 169.7,150.0 171.1,150.0 172.4,150.0 173.7,150.0 175.0,150.0 176.3,150.0 177.7,150.0 179.0,150.0 180.3,150.0 181.7,150.0 183.0,150.0 184.3,150.0 185.6,150.0 186.9,150.0 188.3,150.0 189.6,150.0 190.9,150.0 192.2,150.0 193.6,150.0 194.9,150.0 196.2,150.0 197.6,147.9 198.9,144.7 200.2,141.5 201.5,138.5 202.8,135.5 204.2,132.7 205.5,130.0 206.8,127.5 208.2,125.2 209.5,123.1 210.8,121.3 212.1,119.7 213.4,118.4 214.8,117.4 216.1,116.6 217.4,116.2 218.8,116.0 220.1,116.2 221.4,116.6 222.7,117.4 224.1,118.4 225.4,119.7 226.7,121.3 228.0,123.1 229.3,125.2 230.7,127.5 232.0,130.0 233.3,132.7 234.7,135.5 236.0,138.5 237.3,141.5 238.6,144.7 239.9,147.9 241.3,150.0 242.6,150.0 243.9,150.0 245.2,150.0 246.6,150.0 247.9,150.0 249.2,150.0 250.6,150.0 251.9,150.0 253.2,150.0 254.5,150.0 255.8,150.0 257.2,150.0 258.5,150.0 259.8,150.0 261.1,150.0 262.5,150.0 263.8,150.0 265.1,150.0 266.4,150.0 267.8,150.0 269.1,150.0 270.4,150.0 271.8,150.0 273.1,150.0 274.4,150.0 275.7,150.0 277.1,150.0 278.4,150.0 279.7,150.0 281.0,150.0 282.4,150.0 283.7,150.0 285.0,150.0\"></polyline><text class=\"yl\" x=\"150\" y=\"186\" text-anchor=\"middle\">Half-wave rectifier: one diode, conducts on one half-cycle only</text></g><g class=\"sg1\"><polyline class=\"c3\" points=\"20.0,150.0 21.3,146.8 22.6,143.6 24.0,140.5 25.3,137.5 26.6,134.6 27.9,131.8 29.3,129.2 30.6,126.7 31.9,124.5 33.2,122.5 34.6,120.7 35.9,119.2 37.2,118.0 38.5,117.1 39.9,116.4 41.2,116.1 42.5,116.0 43.9,116.3 45.2,116.8 46.5,117.7 47.8,118.8 49.1,120.2 50.5,121.9 51.8,123.8 53.1,126.0 54.5,128.3 55.8,130.9 57.1,133.6 58.4,136.5 59.8,139.5 61.1,142.6 62.4,145.7 63.7,148.9 65.0,147.9 66.4,144.7 67.7,141.5 69.0,138.5 70.3,135.5 71.7,132.7 73.0,130.0 74.3,127.5 75.7,125.2 77.0,123.1 78.3,121.3 79.6,119.7 81.0,118.4 82.3,117.4 83.6,116.6 84.9,116.2 86.2,116.0 87.6,116.2 88.9,116.6 90.2,117.4 91.5,118.4 92.9,119.7 94.2,121.3 95.5,123.1 96.8,125.2 98.2,127.5 99.5,130.0 100.8,132.7 102.2,135.5 103.5,138.5 104.8,141.5 106.1,144.7 107.5,147.9 108.8,148.9 110.1,145.7 111.4,142.6 112.8,139.5 114.1,136.5 115.4,133.6 116.7,130.9 118.0,128.3 119.4,126.0 120.7,123.8 122.0,121.9 123.3,120.2 124.7,118.8 126.0,117.7 127.3,116.8 128.7,116.3 130.0,116.0 131.3,116.1 132.6,116.4 133.9,117.1 135.3,118.0 136.6,119.2 137.9,120.7 139.2,122.5 140.6,124.5 141.9,126.7 143.2,129.2 144.6,131.8 145.9,134.6 147.2,137.5 148.5,140.5 149.8,143.6 151.2,146.8 152.5,150.0 153.8,146.8 155.2,143.6 156.5,140.5 157.8,137.5 159.1,134.6 160.4,131.8 161.8,129.2 163.1,126.7 164.4,124.5 165.8,122.5 167.1,120.7 168.4,119.2 169.7,118.0 171.1,117.1 172.4,116.4 173.7,116.1 175.0,116.0 176.3,116.3 177.7,116.8 179.0,117.7 180.3,118.8 181.7,120.2 183.0,121.9 184.3,123.8 185.6,126.0 186.9,128.3 188.3,130.9 189.6,133.6 190.9,136.5 192.2,139.5 193.6,142.6 194.9,145.7 196.2,148.9 197.6,147.9 198.9,144.7 200.2,141.5 201.5,138.5 202.8,135.5 204.2,132.7 205.5,130.0 206.8,127.5 208.2,125.2 209.5,123.1 210.8,121.3 212.1,119.7 213.4,118.4 214.8,117.4 216.1,116.6 217.4,116.2 218.8,116.0 220.1,116.2 221.4,116.6 222.7,117.4 224.1,118.4 225.4,119.7 226.7,121.3 228.0,123.1 229.3,125.2 230.7,127.5 232.0,130.0 233.3,132.7 234.7,135.5 236.0,138.5 237.3,141.5 238.6,144.7 239.9,147.9 241.3,148.9 242.6,145.7 243.9,142.6 245.2,139.5 246.6,136.5 247.9,133.6 249.2,130.9 250.6,128.3 251.9,126.0 253.2,123.8 254.5,121.9 255.8,120.2 257.2,118.8 258.5,117.7 259.8,116.8 261.1,116.3 262.5,116.0 263.8,116.1 265.1,116.4 266.4,117.1 267.8,118.0 269.1,119.2 270.4,120.7 271.8,122.5 273.1,124.5 274.4,126.7 275.7,129.2 277.1,131.8 278.4,134.6 279.7,137.5 281.0,140.5 282.4,143.6 283.7,146.8 285.0,150.0\"></polyline><text class=\"yl\" x=\"150\" y=\"186\" text-anchor=\"middle\">Full-wave rectifier: both half-cycles used, output frequency 2f</text></g><g class=\"sg2\"><polyline class=\"c3\" points=\"20.0,150.0 21.3,146.8 22.6,143.6 24.0,140.5 25.3,137.5 26.6,134.6 27.9,131.8 29.3,129.2 30.6,126.7 31.9,124.5 33.2,122.5 34.6,120.7 35.9,119.2 37.2,118.0 38.5,117.1 39.9,116.4 41.2,116.1 42.5,116.6 43.9,118.3 45.2,119.9 46.5,121.4 47.8,122.8 49.1,124.2 50.5,125.5 51.8,126.8 53.1,127.9 54.5,129.0 55.8,130.1 57.1,131.1 58.4,132.1 59.8,133.0 61.1,133.8 62.4,134.6 63.7,135.4 65.0,147.9 66.4,144.7 67.7,141.5 69.0,138.5 70.3,135.5 71.7,132.7 73.0,130.0 74.3,127.5 75.7,125.2 77.0,123.1 78.3,121.3 79.6,119.7 81.0,118.4 82.3,117.4 83.6,116.6 84.9,116.2 86.2,116.0 87.6,117.7 88.9,119.3 90.2,120.9 91.5,122.4 92.9,123.8 94.2,125.1 95.5,126.3 96.8,127.5 98.2,128.7 99.5,129.8 100.8,130.8 102.2,131.7 103.5,132.7 104.8,133.5 106.1,134.4 107.5,135.2 108.8,148.9 110.1,145.7 111.4,142.6 112.8,139.5 114.1,136.5 115.4,133.6 116.7,130.9 118.0,128.3 119.4,126.0 120.7,123.8 122.0,121.9 123.3,120.2 124.7,118.8 126.0,117.7 127.3,116.8 128.7,116.3 130.0,116.0 131.3,117.2 132.6,118.8 133.9,120.4 135.3,121.9 136.6,123.3 137.9,124.7 139.2,125.9 140.6,127.2 141.9,128.3 143.2,129.4 144.6,130.4 145.9,131.4 147.2,132.4 148.5,133.3 149.8,134.1 151.2,134.9 152.5,150.0 153.8,146.8 155.2,143.6 156.5,140.5 157.8,137.5 159.1,134.6 160.4,131.8 161.8,129.2 163.1,126.7 164.4,124.5 165.8,122.5 167.1,120.7 168.4,119.2 169.7,118.0 171.1,117.1 172.4,116.4 173.7,116.1 175.0,116.6 176.3,118.3 177.7,119.9 179.0,121.4 180.3,122.8 181.7,124.2 183.0,125.5 184.3,126.8 185.6,127.9 186.9,129.0 188.3,130.1 189.6,131.1 190.9,132.1 192.2,133.0 193.6,133.8 194.9,134.6 196.2,135.4 197.6,147.9 198.9,144.7 200.2,141.5 201.5,138.5 202.8,135.5 204.2,132.7 205.5,130.0 206.8,127.5 208.2,125.2 209.5,123.1 210.8,121.3 212.1,119.7 213.4,118.4 214.8,117.4 216.1,116.6 217.4,116.2 218.8,116.0 220.1,117.7 221.4,119.3 222.7,120.9 224.1,122.4 225.4,123.8 226.7,125.1 228.0,126.3 229.3,127.5 230.7,128.7 232.0,129.8 233.3,130.8 234.7,131.7 236.0,132.7 237.3,133.5 238.6,134.4 239.9,135.2 241.3,148.9 242.6,145.7 243.9,142.6 245.2,139.5 246.6,136.5 247.9,133.6 249.2,130.9 250.6,128.3 251.9,126.0 253.2,123.8 254.5,121.9 255.8,120.2 257.2,118.8 258.5,117.7 259.8,116.8 261.1,116.3 262.5,116.0 263.8,117.2 265.1,118.8 266.4,120.4 267.8,121.9 269.1,123.3 270.4,124.7 271.8,125.9 273.1,127.2 274.4,128.3 275.7,129.4 277.1,130.4 278.4,131.4 279.7,132.4 281.0,133.3 282.4,134.1 283.7,134.9 285.0,150.0\"></polyline><text class=\"yl\" x=\"150\" y=\"186\" text-anchor=\"middle\">With capacitor filter: pulses smoothed towards a steady dc</text></g></svg><div class=\"eq fx d5\"><p><b>Half-wave</b>: output only in the positive half-cycles, output frequency = input frequency (50 Hz). <b>Full-wave</b>: both half-cycles, output frequency = <b>2 × input</b> (100 Hz).</p><p>A <b>capacitor filter</b> across R_L charges to the peak and discharges slowly (time constant R_LC): the output is nearly steady dc close to the peak value.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .sg0{opacity:0;animation:sg0 9.0s linear infinite .2s}@keyframes sg0{0%{opacity:1}32.83%{opacity:1}33.33%{opacity:0}100%{opacity:0}}.bp .sg1{opacity:0;animation:sg1 9.0s linear infinite .2s}@keyframes sg1{0%{opacity:0}32.83%{opacity:0}33.33%{opacity:1}66.17%{opacity:1}66.67%{opacity:0}100%{opacity:0}}.bp .sg2{opacity:0;animation:sg2 9.0s linear infinite .2s}@keyframes sg2{0%{opacity:0}66.17%{opacity:0}66.67%{opacity:1}99.50%{opacity:1}100.00%{opacity:0}100%{opacity:0}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .sg0{opacity:0;animation:sg0 9.0s linear infinite .2s}@keyframes sg0{0%{opacity:1}32.83%{opacity:1}33.33%{opacity:0}100%{opacity:0}}.bp .sg1{opacity:0;animation:sg1 9.0s linear infinite .2s}@keyframes sg1{0%{opacity:0}32.83%{opacity:0}33.33%{opacity:1}66.17%{opacity:1}66.67%{opacity:0}100%{opacity:0}}.bp .sg2{opacity:0;animation:sg2 9.0s linear infinite .2s}@keyframes sg2{0%{opacity:0}66.17%{opacity:0}66.67%{opacity:1}99.50%{opacity:1}100.00%{opacity:0}100%{opacity:0}}"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Alternative filter?",
+      "definition": "An <span style=\"color:#3b82f6\">inductor in series</span> with R_L (choke input filter)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why must the diode’s reverse breakdown voltage exceed the peak ac secondary voltage?",
+      "definition": "Otherwise the diode breaks down in the non-conducting half-cycle and is damaged",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: peak inverse voltage (PIV) for half-wave and centre-tap full-wave rectifiers?",
+      "definition": "Half-wave: PIV = V_m. Centre-tap full-wave: PIV = <span style=\"color:#3b82f6\">2V_m</span> (V_m = peak of half the secondary). Bridge: PIV = V_m",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: average (dc) and rms values of the output of half-wave and full-wave rectifiers?",
+      "definition": "Half-wave: V_dc = V_m/π, V_rms = V_m/2. Full-wave: V_dc = <span style=\"color:#3b82f6\">2V_m/π</span>, V_rms = V_m/√2",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: ripple factor and efficiency?",
+      "definition": "Half-wave: efficiency 40.6%, ripple factor 1.21. Full-wave: efficiency <span style=\"color:#3b82f6\">81.2%</span>, ripple factor 0.48",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: why does the capacitor filter output approach V_peak?",
+      "definition": "With large R_LC the discharge is small between recharge pulses, so the output stays close to the <span style=\"color:#3b82f6\">peak value</span> of the rectified voltage",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "14.7-application-of-junction-diode-as-a-rectifier"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: Zener diode?",
+      "definition": "A heavily doped p-n diode designed to operate in <span style=\"color:#3b82f6\">reverse breakdown</span>; the voltage across it stays nearly constant (V_Z) over a wide current range. Used as a <span style=\"color:#3b82f6\">voltage regulator</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: how does a Zener regulator work?",
+      "definition": "Connect the Zener in reverse across the load with a series resistor R_s. If input voltage or load current changes, the extra current passes through the Zener while <span style=\"color:#3b82f6\">V_out = V_Z</span> stays fixed; the difference is dropped across R_s",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: two breakdown mechanisms?",
+      "definition": "<span style=\"color:#3b82f6\">Zener breakdown</span> (heavy doping, thin depletion layer, V_Z < 5 V: strong field pulls electrons from bonds) and <span style=\"color:#3b82f6\">avalanche breakdown</span> (lighter doping, V > 6 V: impact ionisation)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: light-emitting diode (LED)?",
+      "definition": "A forward-biased heavily doped p-n junction that emits light on <span style=\"color:#3b82f6\">electron–hole recombination</span>; photon energy ≈ E_g. Made from GaAs, GaP, GaAsP; colour set by the gap (Si and Ge are useless as they are indirect)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: photodiode?",
+      "definition": "A p-n junction operated in <span style=\"color:#3b82f6\">reverse bias</span>; photons of energy hν ≥ E_g create electron–hole pairs and the reverse current rises with light intensity (light detector)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: solar cell?",
+      "definition": "A p-n junction (large area, no bias) that turns light into electricity by generating an emf across the junction; the I–V curve is in the fourth quadrant. Materials: Si, GaAs, CdTe",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: modes of the three optoelectronic junctions?",
+      "definition": "<span style=\"color:#3b82f6\">LED</span>: forward bias, emits light. <span style=\"color:#3b82f6\">Photodiode</span>: reverse bias, detects light. <span style=\"color:#3b82f6\">Solar cell</span>: no bias, generates power",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: the junction transistor?",
+      "definition": "A three-region device (n-p-n or p-n-p): <span style=\"color:#3b82f6\">emitter</span> (heavily doped), <span style=\"color:#3b82f6\">base</span> (thin, lightly doped), <span style=\"color:#3b82f6\">collector</span> (moderately doped, larger). Emitter–base forward biased, collector–base reverse biased",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: transistor current relations?",
+      "definition": "\\( I_E = I_B + I_C \\); \\( \\alpha = \\dfrac{I_C}{I_E} \\) (< 1), \\( \\beta = \\dfrac{I_C}{I_B} \\) (50–200), \\( \\beta = \\dfrac{\\alpha}{1-\\alpha} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: a transistor as an amplifier (common emitter)?",
+      "definition": "A small change in base current gives a large change in collector current; <span style=\"color:#3b82f6\">phase reversal of 180°</span> between input and output; voltage gain A_v = β R_L/R_i",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: a transistor as a switch?",
+      "definition": "In <span style=\"color:#3b82f6\">cut-off</span> (base off) it is an open switch; in <span style=\"color:#3b82f6\">saturation</span> (large base current) a closed switch",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: logic gates (digital electronics)?",
+      "definition": "Circuits that follow Boolean logic: <span style=\"color:#3b82f6\">OR, AND, NOT</span> (basic) and <span style=\"color:#3b82f6\">NAND, NOR</span> (universal gates) plus XOR",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Logic gates (NEET/JEE addition)",
+      "definition": "OR: Y = A + B; output 1 if any input is 1; AND: Y = A · B; output 1 only if both inputs are 1; NOT: Y = NOT A; inverts the input; NAND: Y = NOT(A · B); AND followed by NOT (output 0 only if both inputs are 1); NOR: Y = NOT(A + B); OR followed by NOT (output 1 only if both inputs are 0); XOR: Y = A ⊕ B; output 1 if inputs differ",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Logic gates</p><h2>Boolean expression and output rule?</h2><table><tr><td>OR</td><td class=\"q\">?</td></tr><tr><td>AND</td><td class=\"q\">?</td></tr><tr><td>NOT</td><td class=\"q\">?</td></tr><tr><td>NAND</td><td class=\"q\">?</td></tr><tr><td>NOR</td><td class=\"q\">?</td></tr><tr><td>XOR</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Logic gates</p><h2>Boolean expression and output rule?</h2><table><tr><td>OR</td><td class=\"a\">Y = A + B; output 1 if any input is 1</td></tr><tr><td>AND</td><td class=\"a\">Y = A · B; output 1 only if both inputs are 1</td></tr><tr><td>NOT</td><td class=\"a\">Y = NOT A; inverts the input</td></tr><tr><td>NAND</td><td class=\"a\">Y = NOT(A · B); AND followed by NOT (output 0 only if both inputs are 1)</td></tr><tr><td>NOR</td><td class=\"a\">Y = NOT(A + B); OR followed by NOT (output 1 only if both inputs are 0)</td></tr><tr><td>XOR</td><td class=\"a\">Y = A ⊕ B; output 1 if inputs differ</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: which gates are universal? Why?",
+      "definition": "<span style=\"color:#3b82f6\">NAND and NOR</span>: any Boolean function (AND, OR, NOT) can be built from either alone",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: truth table of NAND for inputs (A, B) = (0,0), (0,1), (1,0), (1,1)?",
+      "definition": "Outputs: <span style=\"color:#f08c00\">1, 1, 1, 0</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: truth table of NOR for the same inputs?",
+      "definition": "Outputs: <span style=\"color:#f08c00\">1, 0, 0, 0</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: NOT gate built from a NAND gate?",
+      "definition": "Join both inputs together: <span style=\"color:#3b82f6\">Y = NOT(A · A) = NOT A</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: symbols of gates?",
+      "definition": "AND: D-shaped; OR: curved-back shield; NOT: triangle with a <span style=\"color:#3b82f6\">bubble</span>; NAND/NOR: AND/OR with a bubble at the output",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "neet-jee-additions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Are E_C and E_V localised in space?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: band energies are <span style=\"color:#3b82f6\">delocalised</span> averages; drawn as straight lines they mean the bottom of the conduction band and the top of the valence band",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How can compound semiconductors become n- or p-type?",
+      "definition": "By changing the <span style=\"color:#3b82f6\">stoichiometric ratio</span> (e.g. Ga-rich or As-rich GaAs) as well as by doping; defects control semiconductor properties",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET pattern: in a p-n junction diode, holes diffuse from p to n because…?",
+      "definition": "Of the <span style=\"color:#3b82f6\">concentration gradient</span> (not because of an applied field)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET pattern: the depletion layer in a p-n junction consists of…?",
+      "definition": "Immobile <span style=\"color:#3b82f6\">ionised donors and acceptors</span> (no mobile carriers)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET pattern: in forward bias the width of the depletion region and the barrier height?",
+      "definition": "Both <span style=\"color:#3b82f6\">decrease</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET pattern: electron–hole pairs in a pure Si crystal at T > 0 K: n_e vs n_h?",
+      "definition": "n_e = n_h = n_i; after n-type doping, n_e ≫ n_h but n_e n_h = n_i² still",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET pattern: Si doped with B. Nature and majority carriers?",
+      "definition": "<span style=\"color:#3b82f6\">p-type</span>, holes",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET pattern: with a half-wave rectifier of 50 Hz input, ripple frequency?",
+      "definition": "<span style=\"color:#3b82f6\">50 Hz</span> (full-wave gives 100 Hz)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "JEE pattern: given the ratio n_e/n_h in a semiconductor, find the type and n_i.",
+      "definition": "n_e n_h = n_i²: e.g. n_e = 10²² and n_h = 10¹⁰ gives n_i = √(10³²) = <span style=\"color:#f08c00\">10¹⁶ m⁻³</span> and it is n-type",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "JEE pattern: a diode with 0.7 V drop in series with 100 Ω across a 5.7 V battery, forward biased. Current?",
+      "definition": "I = (5.7 − 0.7)/100 = <span style=\"color:#f08c00\">50 mA</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "JEE pattern: an ideal diode circuit: two diodes in parallel branches with different resistors, which conducts?",
+      "definition": "The diode whose <span style=\"color:#3b82f6\">anode is at the higher potential</span> (forward biased) conducts; the other is reverse biased and acts as an open circuit",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Board pattern: differentiate between intrinsic and extrinsic semiconductors.",
+      "definition": "Intrinsic: pure, n_e = n_h, conductivity small and strongly temperature-dependent. Extrinsic: doped, n_e ≠ n_h, much higher conductivity from majority carriers",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Board pattern: differentiate n-type and p-type.",
+      "definition": "n-type: pentavalent donor, electrons majority, donor level just below E_C. p-type: trivalent acceptor, holes majority, acceptor level just above E_V",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "exam-patterns"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 14 summary",
+      "definition": "Insulator band gap: E_g > 3 eV; Semiconductor band gap: E_g between 0.2 and 3 eV (Si 1.1, Ge 0.7); Metal: E_g ≈ 0 (bands overlap); Intrinsic: n_e = n_h = n_i; Mass action: n_e n_h = n_i²; n-type / p-type dopants: Pentavalent (donor) / trivalent (acceptor); Forward bias: p to +; barrier V₀ − V; mA current; Reverse bias: p to −; barrier V₀ + V; µA current; Cut-in voltage: 0.7 V (Si), 0.2 V (Ge); Rectifier output frequency: Half-wave f; full-wave 2f",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Fact?</h2><table><tr><td>Insulator band gap</td><td class=\"q\">?</td></tr><tr><td>Semiconductor band gap</td><td class=\"q\">?</td></tr><tr><td>Metal</td><td class=\"q\">?</td></tr><tr><td>Intrinsic</td><td class=\"q\">?</td></tr><tr><td>Mass action</td><td class=\"q\">?</td></tr><tr><td>n-type / p-type dopants</td><td class=\"q\">?</td></tr><tr><td>Forward bias</td><td class=\"q\">?</td></tr><tr><td>Reverse bias</td><td class=\"q\">?</td></tr><tr><td>Cut-in voltage</td><td class=\"q\">?</td></tr><tr><td>Rectifier output frequency</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Fact?</h2><table><tr><td>Insulator band gap</td><td class=\"a\">E_g > 3 eV</td></tr><tr><td>Semiconductor band gap</td><td class=\"a\">E_g between 0.2 and 3 eV (Si 1.1, Ge 0.7)</td></tr><tr><td>Metal</td><td class=\"a\">E_g ≈ 0 (bands overlap)</td></tr><tr><td>Intrinsic</td><td class=\"a\">n_e = n_h = n_i</td></tr><tr><td>Mass action</td><td class=\"a\">n_e n_h = n_i²</td></tr><tr><td>n-type / p-type dopants</td><td class=\"a\">Pentavalent (donor) / trivalent (acceptor)</td></tr><tr><td>Forward bias</td><td class=\"a\">p to +; barrier V₀ − V; mA current</td></tr><tr><td>Reverse bias</td><td class=\"a\">p to −; barrier V₀ + V; µA current</td></tr><tr><td>Cut-in voltage</td><td class=\"a\">0.7 V (Si), 0.2 V (Ge)</td></tr><tr><td>Rectifier output frequency</td><td class=\"a\">Half-wave f; full-wave 2f</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 14 concept checks",
+      "definition": "A pure semiconductor at 0 K behaves as an insulator: True; Adding pentavalent impurity makes a p-type semiconductor: False (n-type); Depletion region has many mobile charges: False (immobile ions only); Forward bias narrows the depletion layer: True; Reverse saturation current strongly depends on the applied voltage: False (nearly constant); Full-wave rectifier output has twice the input frequency: True",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>A pure semiconductor at 0 K behaves as an insulator</td><td class=\"q\">?</td></tr><tr><td>Adding pentavalent impurity makes a p-type semiconductor</td><td class=\"q\">?</td></tr><tr><td>Depletion region has many mobile charges</td><td class=\"q\">?</td></tr><tr><td>Forward bias narrows the depletion layer</td><td class=\"q\">?</td></tr><tr><td>Reverse saturation current strongly depends on the applied voltage</td><td class=\"q\">?</td></tr><tr><td>Full-wave rectifier output has twice the input frequency</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>A pure semiconductor at 0 K behaves as an insulator</td><td class=\"a\">True</td></tr><tr><td>Adding pentavalent impurity makes a p-type semiconductor</td><td class=\"a no\">False (n-type)</td></tr><tr><td>Depletion region has many mobile charges</td><td class=\"a no\">False (immobile ions only)</td></tr><tr><td>Forward bias narrows the depletion layer</td><td class=\"a\">True</td></tr><tr><td>Reverse saturation current strongly depends on the applied voltage</td><td class=\"a no\">False (nearly constant)</td></tr><tr><td>Full-wave rectifier output has twice the input frequency</td><td class=\"a\">True</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-14",
+        "summary"
+      ]
+    }
+  ]
+}

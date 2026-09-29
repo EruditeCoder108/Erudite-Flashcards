@@ -989,3 +989,79 @@ def binding_energy_curve(deck):
          'Why fission and fusion release energy',
          'Both fission of heavy nuclei and fusion of light nuclei increase binding energy per nucleon, moving towards the peak near A = 56; the gain appears as released energy Q = Δm c²',
          css, hint='Watch the dots climb the curve.', vb='0 0 300 200')
+
+
+# ---------------------------------------------------------------- Physics 12 Ch 14 Semiconductors
+def pn_junction_bias(deck):
+    T = 10.5
+    css = _stage_css('sg', 3, T)
+    cx, top, h = 150, 40, 56
+    cases = [(30, 40, 'Unbiased: barrier V₀, I = 0', 0),
+             (12, 18, 'Forward: barrier V₀ − V, current in mA', 1),
+             (56, 70, 'Reverse: barrier V₀ + V, current in µA', 2)]
+    base = ('<text class="sm" x="40" y="34" text-anchor="middle">p</text><text class="sm" x="260" y="34" text-anchor="middle">n</text>'
+            '<text class="sm" x="150" y="192" text-anchor="middle">barrier height (bar) vs bias</text>')
+    stages = ''
+    for w, bar, label, k in cases:
+        x1, x2 = cx - w / 2, cx + w / 2
+        s = f'<g class="sg{k}">'
+        s += f'<rect class="zone2" x="20" y="{top}" width="{x1 - 20:.1f}" height="{h}"></rect>'
+        s += f'<rect class="zone" x="{x2:.1f}" y="{top}" width="{280 - x2:.1f}" height="{h}"></rect>'
+        s += f'<rect class="obj3" x="{x1:.1f}" y="{top}" width="{w}" height="{h}" opacity=".55"></rect>'
+        s += f'<text class="rd" x="{cx}" y="{top + h / 2 + 4}" text-anchor="middle">− +</text>'
+        s += f'<rect class="obj2" x="{cx - 14}" y="{178 - bar}" width="28" height="{bar}"></rect>'
+        cur = {0: 'I = 0', 1: 'large current →', 2: 'tiny current'}[k]
+        s += f'<text class="gr" x="{cx}" y="{top + h + 22}" text-anchor="middle">{cur}</text>'
+        if k == 1:
+            s += '<line class="c2" x1="40" y1="120" x2="260" y2="120" marker-end="url(#an)"></line>'
+        if k == 2:
+            s += '<line class="c3" x1="40" y1="120" x2="70" y2="120" marker-end="url(#am)" opacity=".7"></line>'
+        s += f'<text class="yl" x="150" y="20" text-anchor="middle">{label}</text></g>'
+        stages += s
+    anim(deck, 'p-n junction · bias',
+         'How do the depletion layer, barrier height and current of a p-n junction change with no bias, forward bias and reverse bias?',
+         base, stages,
+         '<p><b>Forward bias</b> (p to +, n to −): the applied voltage opposes V₀, so the depletion layer <b>narrows</b>, the barrier falls to V₀ − V and a large current (mA) flows by <b>minority-carrier injection</b>.</p>'
+         '<p><b>Reverse bias</b>: the barrier rises to V₀ + V, the depletion layer <b>widens</b>, and only the tiny minority-carrier drift current (µA) flows: a one-way valve.</p>',
+         'Depletion layer and barrier in bias',
+         'Forward bias narrows the depletion region and lowers the barrier to V0 − V giving a large current; reverse bias widens it and raises the barrier to V0 + V giving a tiny current',
+         css, hint='Watch the width of the grey layer.', vb='0 0 300 200')
+
+
+def rectifier_waveforms(deck):
+    import math
+    T = 9.0
+    css = _stage_css('sg', 3, T)
+    x0, x1 = 20, 285
+    n = 200
+
+    def poly(f, cy, amp):
+        return ' '.join(f'{x0 + (x1 - x0) * i / n:.1f},{cy - amp * f(3 * 2 * math.pi * i / n):.1f}' for i in range(n + 1))
+    half = lambda t: max(math.sin(t), 0)
+    full = lambda t: abs(math.sin(t))
+
+    def filt(t):
+        # capacitor filter: follows peaks, decays in between
+        period = math.pi
+        ph = t % period
+        peak_rise = math.sin(min(ph, math.pi / 2))
+        if ph <= math.pi / 2:
+            return peak_rise
+        return math.exp(-(ph - math.pi / 2) * 0.55)
+    base = ('<line class="ax" x1="20" y1="60" x2="285" y2="60"></line><line class="ax" x1="20" y1="150" x2="285" y2="150"></line>'
+            f'<polyline class="c2" points="{poly(math.sin, 60, 32)}"></polyline>'
+            '<text class="sm" x="22" y="18">input ac</text><text class="sm" x="22" y="108">output across R_L</text>')
+    labels = ['Half-wave rectifier: one diode, conducts on one half-cycle only', 'Full-wave rectifier: both half-cycles used, output frequency 2f', 'With capacitor filter: pulses smoothed towards a steady dc']
+    funcs = [half, full, filt]
+    stages = ''
+    for k in range(3):
+        stages += (f'<g class="sg{k}"><polyline class="c3" points="{poly(funcs[k], 150, 34)}"></polyline>'
+                   f'<text class="yl" x="150" y="186" text-anchor="middle">{labels[k]}</text></g>')
+    anim(deck, 'Rectifier · waveforms',
+         'An ac voltage drives (1) one diode, (2) a centre-tap two-diode circuit, (3) the same with a capacitor across the load. What does the output look like?',
+         base, stages,
+         '<p><b>Half-wave</b>: output only in the positive half-cycles, output frequency = input frequency (50 Hz). <b>Full-wave</b>: both half-cycles, output frequency = <b>2 × input</b> (100 Hz).</p>'
+         '<p>A <b>capacitor filter</b> across R_L charges to the peak and discharges slowly (time constant R_LC): the output is nearly steady dc close to the peak value.</p>',
+         'Half-wave, full-wave and filtered output',
+         'Half-wave output has the input frequency and full-wave twice the input frequency; a capacitor filter smooths the pulses to nearly steady dc with time constant RLC',
+         css, hint='Watch the red output.', vb='0 0 300 200')
