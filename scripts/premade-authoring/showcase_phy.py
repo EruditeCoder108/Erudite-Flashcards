@@ -631,3 +631,32 @@ def standing_wave_string(deck):
          'Stationary wave: nodes, antinodes and phase',
          'Nodes stay at rest, antinodes have maximum amplitude, nodes are λ/2 apart; points within a loop move in phase, adjacent loops opposite',
          css, hint='Pluck, then watch one point.', vb='0 0 300 190')
+
+
+# ---------------------------------------------------------------- Physics 12 Ch 8 Electromagnetic waves
+def em_wave_travelling(deck):
+    import math
+    lam, cy, amp, y0 = 120, 112, 46, 112
+    pts_e, pts_b = [], []
+    for i in range(0, 61):
+        x = -lam + (300 + lam) * i / 60
+        s = math.sin(2 * math.pi * x / lam)
+        pts_e.append(f'{x:.1f},{cy - amp * s:.1f}')
+        pts_b.append(f'{x - 0.6 * amp * s:.1f},{cy + 0.6 * amp * s:.1f}')
+    css = (f'.bp .tw{{animation:tw 3s linear infinite .2s}}@keyframes tw{{from{{transform:translateX(0)}}to{{transform:translateX({lam}px)}}}}')
+    base = ('<line class="ax" x1="10" y1="112" x2="290" y2="112" marker-end="url(#ah)"></line>'
+            '<text class="sm" x="272" y="128">z (travel)</text>'
+            f'<line class="ax" x1="40" y1="112" x2="40" y2="40"></line><text class="gr" x="46" y="44">E</text>'
+            '<line class="ax" x1="40" y1="112" x2="16" y2="140"></line><text class="pu" x="6" y="152">B</text>')
+    front = (f'<polyline class="c2 tw" points="{" ".join(pts_e)}"></polyline>')
+    back = (f'<polyline class="c4 tw" points="{" ".join(pts_b)}"></polyline>'
+            '<text class="yl" x="150" y="24" text-anchor="middle">E ⟂ B ⟂ direction of travel</text>'
+            '<text class="sm" x="150" y="176" text-anchor="middle">E and B peak together (in phase); E₀ = c B₀</text>')
+    anim(deck, 'EM waves · picture',
+         'A plane EM wave travels along z with E along x. Along which axis does B oscillate, and how are E and B phased?',
+         base + front, back,
+         '<p>B oscillates along <b>y</b>: E, B and the direction of travel are mutually perpendicular, and E × B points along the propagation direction (+z).</p>'
+         '<p>E and B are <b>in phase</b>: both reach zero and both peak at the same point, with <b>E₀/B₀ = c</b>. The pattern moves at c; the fields themselves only oscillate.</p>',
+         'Plane EM wave: E, B and propagation',
+         'E and B are perpendicular to each other and to the direction of propagation, in phase, with E0/B0 = c; E × B gives the direction of travel',
+         css, hint='Watch the crests move along z.', vb='0 0 300 190')

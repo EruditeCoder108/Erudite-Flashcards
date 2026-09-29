@@ -1,0 +1,1432 @@
+{
+  "version": 1,
+  "name": "Chapter 8: Electromagnetic Waves",
+  "className": "Class 12",
+  "description": "Displacement current, Maxwell’s equations, nature of EM waves, E₀ = cB₀, intensity, and the EM spectrum",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Maxwell’s big idea (the converse of Faraday’s law)?",
+      "definition": "A <span style=\"color:#3b82f6\">time-varying electric field</span> also produces a magnetic field (not just a current)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What inconsistency did Maxwell find, and what did he add?",
+      "definition": "Ampere’s circuital law failed for a charging capacitor. He added the <span style=\"color:#3b82f6\">displacement current</span> i_d = ε₀ dΦ_E/dt",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Most important prediction of Maxwell’s equations?",
+      "definition": "Existence of <span style=\"color:#3b82f6\">electromagnetic waves</span> travelling at ≈ <span style=\"color:#f08c00\">3 × 10⁸ m/s</span> = speed of light, so light is an EM wave",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who first demonstrated EM waves experimentally, and who used them for communication?",
+      "definition": "<span style=\"color:#3b82f6\">Hertz</span> demonstrated them; <span style=\"color:#3b82f6\">Marconi</span> used them for communication over many km",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT’s introduction gives Hertz’s experiment as 1885, but §8.3 says 1887. Which?",
+      "definition": "<span style=\"color:#3b82f6\">1887</span> is accepted (and asked). Bose’s mm-wave work followed seven years later",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What did Maxwell’s work unify?",
+      "definition": "<span style=\"color:#3b82f6\">Electricity, magnetism and light</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ampere’s circuital law (before Maxwell)?",
+      "definition": "\\( \\oint \\vec B\\cdot d\\vec l = \\mu_0 i_c \\) (i_c = conduction current through the surface)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Charging capacitor: B at P outside the plates from a circle of radius r?",
+      "definition": "B(2πr) = μ₀i, so \\( B = \\dfrac{\\mu_0 i}{2\\pi r} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ],
+      "definitionImage": "media/fig_8_1a.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Same loop, but a pot-shaped surface passing between the plates. What does Ampere’s law give?",
+      "definition": "<span style=\"color:#3b82f6\">Zero</span>: no conduction current crosses that surface. Contradiction with the flat surface!",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ],
+      "definitionImage": "media/fig_8_1b.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What passes through the surface S between the plates instead?",
+      "definition": "A changing <span style=\"color:#3b82f6\">electric flux</span> (E = Q/ε₀A across area A)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ],
+      "definitionImage": "media/fig_8_1c.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive the missing term.",
+      "definition": "Φ_E = Q/ε₀ so \\( \\varepsilon_0\\dfrac{d\\Phi_E}{dt} = \\dfrac{dQ}{dt} = i \\). This equals the conduction current outside, closing the gap",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define displacement current.",
+      "definition": "\\( i_d = \\varepsilon_0\\dfrac{d\\Phi_E}{dt} \\): the current “due to” a changing electric flux; same magnetic effect as i_c",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ampere–Maxwell law?",
+      "definition": "\\( \\oint \\vec B\\cdot d\\vec l = \\mu_0\\left(i_c + \\varepsilon_0\\dfrac{d\\Phi_E}{dt}\\right) \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Outside vs inside a charging capacitor: which currents exist?",
+      "definition": "Outside: only i_c (i_d = 0). Between plates: only <span style=\"color:#3b82f6\">i_d</span> (i_c = 0). In both, the total current is the same, i",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Displacement current in a capacitor in terms of C and V?",
+      "definition": "\\( i_d = \\varepsilon_0 A\\dfrac{dE}{dt} = C\\dfrac{dV}{dt} \\) (a fast way to answer numericals)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is B between the capacitor plates zero? How is it checked?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: B measured at M between the plates equals that just outside at P; the field lines are circles about the axis (Fig. 8.2)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ],
+      "definitionImage": "media/fig_8_2a.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction relation of E and B between the plates?",
+      "definition": "E ⊥ plates; B circles about the axis, <span style=\"color:#3b82f6\">perpendicular to E</span> — a hint that E ⟂ B in a wave",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ],
+      "definitionImage": "media/fig_8_2b.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: B at distance r from the axis between circular plates of radius R (r < R)?",
+      "definition": "\\( B = \\dfrac{\\mu_0 r}{2\\pi R^2}\\,i_d \\) (uniform i_d over the plate area). Outside (r > R): \\( \\dfrac{\\mu_0 i_d}{2\\pi r} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Do steady currents have displacement current?",
+      "definition": "<span style=\"color:#3b82f6\">Zero</span>: E in a wire does not change with time, so i_d = 0",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Symmetry made by displacement current?",
+      "definition": "Changing B → E (Faraday); changing E → B (Maxwell). They are still not fully symmetric: no <span style=\"color:#3b82f6\">magnetic monopoles</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exam trap: charging capacitor, conduction vs displacement current in the wire and gap?",
+      "definition": "Wire: i_c = i, i_d = 0. Gap: i_c = 0, i_d = i at every instant. Kirchhoff’s junction rule holds for the <span style=\"color:#3b82f6\">total</span> current",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-displacement-current"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Gauss’s law for electricity (Maxwell equation 1)?",
+      "definition": "\\( \\oint \\vec E\\cdot d\\vec A = \\dfrac{Q}{\\varepsilon_0} \\): charges are sources of E",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-maxwells-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Gauss’s law for magnetism (equation 2)?",
+      "definition": "\\( \\oint \\vec B\\cdot d\\vec A = 0 \\): no magnetic monopoles",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-maxwells-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Faraday’s law (equation 3)?",
+      "definition": "\\( \\oint \\vec E\\cdot d\\vec l = -\\dfrac{d\\Phi_B}{dt} \\): changing B produces E",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-maxwells-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ampere–Maxwell law (equation 4)?",
+      "definition": "\\( \\oint \\vec B\\cdot d\\vec l = \\mu_0 i_c + \\mu_0\\varepsilon_0\\dfrac{d\\Phi_E}{dt} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-maxwells-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic: sort Maxwell’s four equations by what they say.",
+      "definition": "<span style=\"color:#3b82f6\">1 & 2</span>: sources (charge yes, monopole no). <span style=\"color:#3b82f6\">3 & 4</span>: changing B makes E, changing E (or current) makes B. Together with the Lorentz force they give all of electromagnetism",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-maxwells-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which of Maxwell’s equations did Maxwell himself add?",
+      "definition": "The <span style=\"color:#3b82f6\">displacement-current term</span> in equation 4 (the other three were known)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.2-maxwells-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which charges radiate electromagnetic waves?",
+      "definition": "<span style=\"color:#3b82f6\">Accelerated</span> charges. Stationary charges give only E; steady currents give only steady B",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does an oscillating charge produce a wave?",
+      "definition": "Oscillating E → oscillating B → oscillating E … each regenerates the other as the wave moves out; energy comes from the <span style=\"color:#3b82f6\">source charge</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Frequency of the wave from a charge oscillating at ν?",
+      "definition": "The same <span style=\"color:#3b82f6\">ν</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Basic source of EM waves?",
+      "definition": "An oscillating <span style=\"color:#3b82f6\">electric dipole</span> (accelerating charge)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why did Hertz’s test have to be in the radio range, not visible light?",
+      "definition": "Yellow light is ≈ <span style=\"color:#f08c00\">6 × 10¹⁴ Hz</span> but circuits reach only ≈ <span style=\"color:#f08c00\">10¹¹ Hz</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Contribution of J. C. Bose?",
+      "definition": "In Calcutta he produced and observed EM waves of <span style=\"color:#3b82f6\">25 mm to 5 mm</span> wavelength (seven years after Hertz)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Contribution of Marconi?",
+      "definition": "Transmitted EM waves over <span style=\"color:#3b82f6\">many kilometres</span>: beginning of wireless communication",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Nature of the E and B fields in an EM wave?",
+      "definition": "<span style=\"color:#3b82f6\">Perpendicular to each other and to the direction of propagation</span> (transverse wave); E × B is along the direction of travel",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ],
+      "definitionImage": "media/fig_8_3_wave.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Plane EM wave: E, B and propagation",
+      "definition": "E and B are perpendicular to each other and to the direction of propagation, in phase, with E0/B0 = c; E × B gives the direction of travel",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">EM waves · picture</p><h2>A plane EM wave travels along z with E along x. Along which axis does B oscillate, and how are E and B phased?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"10\" y1=\"112\" x2=\"290\" y2=\"112\" marker-end=\"url(#ah)\"></line><text class=\"sm\" x=\"272\" y=\"128\">z (travel)</text><line class=\"ax\" x1=\"40\" y1=\"112\" x2=\"40\" y2=\"40\"></line><text class=\"gr\" x=\"46\" y=\"44\">E</text><line class=\"ax\" x1=\"40\" y1=\"112\" x2=\"16\" y2=\"140\"></line><text class=\"pu\" x=\"6\" y=\"152\">B</text><polyline class=\"c2 tw\" points=\"-120.0,112.0 -113.0,95.5 -106.0,81.2 -99.0,71.0 -92.0,66.3 -85.0,67.6 -78.0,74.8 -71.0,86.9 -64.0,102.4 -57.0,119.2 -50.0,135.0 -43.0,147.7 -36.0,155.7 -29.0,157.9 -22.0,154.0 -15.0,144.5 -8.0,130.7 -1.0,114.4 6.0,97.8 13.0,83.1 20.0,72.2 27.0,66.6 34.0,67.0 41.0,73.4 48.0,85.0 55.0,100.1 62.0,116.8 69.0,132.9 76.0,146.2 83.0,154.9 90.0,158.0 97.0,154.9 104.0,146.2 111.0,132.9 118.0,116.8 125.0,100.1 132.0,85.0 139.0,73.4 146.0,67.0 153.0,66.6 160.0,72.2 167.0,83.1 174.0,97.8 181.0,114.4 188.0,130.7 195.0,144.5 202.0,154.0 209.0,157.9 216.0,155.7 223.0,147.7 230.0,135.0 237.0,119.2 244.0,102.4 251.0,86.9 258.0,74.8 265.0,67.6 272.0,66.3 279.0,71.0 286.0,81.2 293.0,95.5 300.0,112.0\"></polyline></svg><p class=\"hint\">Watch the crests move along z.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">EM waves · picture</p><h2>A plane EM wave travels along z with E along x. Along which axis does B oscillate, and how are E and B phased?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"10\" y1=\"112\" x2=\"290\" y2=\"112\" marker-end=\"url(#ah)\"></line><text class=\"sm\" x=\"272\" y=\"128\">z (travel)</text><line class=\"ax\" x1=\"40\" y1=\"112\" x2=\"40\" y2=\"40\"></line><text class=\"gr\" x=\"46\" y=\"44\">E</text><line class=\"ax\" x1=\"40\" y1=\"112\" x2=\"16\" y2=\"140\"></line><text class=\"pu\" x=\"6\" y=\"152\">B</text><polyline class=\"c2 tw\" points=\"-120.0,112.0 -113.0,95.5 -106.0,81.2 -99.0,71.0 -92.0,66.3 -85.0,67.6 -78.0,74.8 -71.0,86.9 -64.0,102.4 -57.0,119.2 -50.0,135.0 -43.0,147.7 -36.0,155.7 -29.0,157.9 -22.0,154.0 -15.0,144.5 -8.0,130.7 -1.0,114.4 6.0,97.8 13.0,83.1 20.0,72.2 27.0,66.6 34.0,67.0 41.0,73.4 48.0,85.0 55.0,100.1 62.0,116.8 69.0,132.9 76.0,146.2 83.0,154.9 90.0,158.0 97.0,154.9 104.0,146.2 111.0,132.9 118.0,116.8 125.0,100.1 132.0,85.0 139.0,73.4 146.0,67.0 153.0,66.6 160.0,72.2 167.0,83.1 174.0,97.8 181.0,114.4 188.0,130.7 195.0,144.5 202.0,154.0 209.0,157.9 216.0,155.7 223.0,147.7 230.0,135.0 237.0,119.2 244.0,102.4 251.0,86.9 258.0,74.8 265.0,67.6 272.0,66.3 279.0,71.0 286.0,81.2 293.0,95.5 300.0,112.0\"></polyline><polyline class=\"c4 tw\" points=\"-120.0,112.0 -122.9,121.9 -124.5,130.5 -123.6,136.6 -119.4,139.4 -111.7,138.7 -100.3,134.3 -86.0,127.0 -69.7,117.7 -52.7,107.7 -36.2,98.2 -21.6,90.6 -9.8,85.8 -1.4,84.4 3.2,86.8 4.5,92.5 3.2,100.8 0.4,110.6 -2.5,120.5 -4.4,129.4 -3.9,135.9 -0.3,139.3 7.0,139.0 17.9,135.1 31.8,128.2 47.9,119.1 64.9,109.1 81.5,99.5 96.5,91.5 108.8,86.2 117.6,84.4 122.8,86.2 124.5,91.5 123.5,99.5 120.9,109.1 117.9,119.1 115.8,128.2 115.9,135.1 119.0,139.0 125.7,139.3 136.1,135.9 149.6,129.4 165.5,120.5 182.4,110.6 199.2,100.8 214.5,92.5 227.2,86.8 236.6,84.4 242.2,85.8 244.4,90.6 243.8,98.2 241.3,107.7 238.3,117.7 236.0,127.0 235.7,134.3 238.3,138.7 244.6,139.4 254.4,136.6 267.5,130.5 283.1,121.9 300.0,112.0\"></polyline><text class=\"yl\" x=\"150\" y=\"24\" text-anchor=\"middle\">E ⟂ B ⟂ direction of travel</text><text class=\"sm\" x=\"150\" y=\"176\" text-anchor=\"middle\">E and B peak together (in phase); E₀ = c B₀</text></svg><div class=\"eq fx d5\"><p>B oscillates along <b>y</b>: E, B and the direction of travel are mutually perpendicular, and E × B points along the propagation direction (+z).</p><p>E and B are <b>in phase</b>: both reach zero and both peak at the same point, with <b>E₀/B₀ = c</b>. The pattern moves at c; the fields themselves only oscillate.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .tw{animation:tw 3s linear infinite .2s}@keyframes tw{from{transform:translateX(0)}to{transform:translateX(120px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .tw{animation:tw 3s linear infinite .2s}@keyframes tw{from{transform:translateX(0)}to{transform:translateX(120px)}}"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equations of a plane EM wave travelling along +z (E along x)?",
+      "definition": "\\( E_x = E_0\\sin(kz-\\omega t),\\quad B_y = B_0\\sin(kz-\\omega t) \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Wave number and speed?",
+      "definition": "\\( k = \\dfrac{2\\pi}{\\lambda},\\quad v = \\dfrac{\\omega}{k} = \\nu\\lambda \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Speed of EM waves in vacuum in terms of ε₀ and μ₀?",
+      "definition": "\\( c = \\dfrac{1}{\\sqrt{\\mu_0\\varepsilon_0}} \\) = 3 × 10⁸ m/s",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between E₀ and B₀?",
+      "definition": "\\( B_0 = \\dfrac{E_0}{c} \\) (E and B are in phase)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is E ≫ B numerically in an EM wave (in SI)?",
+      "definition": "E₀ = cB₀ with c = 3 × 10⁸: e.g. E₀ = 60 V/m goes with B₀ = 2 × 10⁻⁷ T",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Speed of light in a medium (ε, μ)?",
+      "definition": "\\( v = \\dfrac{1}{\\sqrt{\\mu\\varepsilon}} \\), so refractive index \\( n = \\dfrac{c}{v} = \\sqrt{\\mu_r\\varepsilon_r} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Do EM waves need a medium?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: self-sustaining oscillating fields in vacuum, unlike sound or water waves",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does the speed of EM waves in vacuum depend on wavelength?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: radio waves, light and X-rays all travel at c; this constancy is used to define the standard of length (the metre)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What do EM waves carry?",
+      "definition": "<span style=\"color:#3b82f6\">Energy</span> (sunlight, radio, TV signals) and momentum",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: energy density of an EM wave, and how E and B contribute?",
+      "definition": "\\( u = \\tfrac12\\varepsilon_0E^2 + \\dfrac{B^2}{2\\mu_0} \\); the two halves are <span style=\"color:#3b82f6\">equal</span> (B = E/c and c² = 1/μ₀ε₀), so u = ε₀E²",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: intensity of an EM wave (average energy per unit area per second)?",
+      "definition": "\\( I = \\tfrac12\\varepsilon_0cE_0^2 = \\dfrac{cB_0^2}{2\\mu_0} = u_{av}\\,c \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: radiation pressure on a perfectly absorbing and a perfectly reflecting surface?",
+      "definition": "Absorbing: \\( p = \\dfrac{I}{c} \\). Reflecting: \\( \\dfrac{2I}{c} \\). Momentum carried by energy U is U/c",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: how does the intensity of a point source fall with distance?",
+      "definition": "<span style=\"color:#3b82f6\">I ∝ 1/r²</span>, so E₀ and B₀ ∝ 1/r",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8.1: 25 MHz wave along x, E = 6.3 ĵ V/m. B?",
+      "definition": "B = E/c = <span style=\"color:#f08c00\">2.1 × 10⁻⁸ T</span>; E × B along x with E along y means B along <span style=\"color:#3b82f6\">+z</span>: B = 2.1 × 10⁻⁸ k̂ T",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trick for the direction of B?",
+      "definition": "Direction of travel = <span style=\"color:#3b82f6\">E × B</span>. Use right-hand rule: x̂ × ŷ = ẑ, ŷ × ẑ = x̂, ẑ × x̂ = ŷ",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Compare with B = B₀ sin(kx + ωt) (Example 8.2)",
+      "definition": "λ = 1.26 cm, ν = 23.9 GHz, E_z = 60 sin(0.5 × 10³x + 1.5 × 10¹¹t) V/m",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 8.2 · read off a wave equation</p><h2>Find the missing step.</h2><div class=\"prob\">B_y = (2 × 10⁻⁷ T) sin(0.5 × 10³ x + 1.5 × 10¹¹ t). Find λ, ν and the E-field expression.</div><ol><li>k = 0.5 × 10³ m⁻¹ → λ = 2π/k = <b>1.26 cm</b></li><li>ω = 1.5 × 10¹¹ → ν = ω/2π = <b>23.9 GHz</b></li><li class=\"h\">?</li><li>+x in the argument means travel along −x; E ⟂ B and E × B along −x gives <b>E along z</b>: E_z = 60 sin(0.5 × 10³x + 1.5 × 10¹¹t)</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 8.2 · read off a wave equation</p><h2>Find the missing step.</h2><div class=\"prob\">B_y = (2 × 10⁻⁷ T) sin(0.5 × 10³ x + 1.5 × 10¹¹ t). Find λ, ν and the E-field expression.</div><ol><li>k = 0.5 × 10³ m⁻¹ → λ = 2π/k = <b>1.26 cm</b></li><li>ω = 1.5 × 10¹¹ → ν = ω/2π = <b>23.9 GHz</b></li><li class=\"r\">E₀ = cB₀ = 3 × 10⁸ × 2 × 10⁻⁷ = <b>60 V/m</b></li><li>+x in the argument means travel along −x; E ⟂ B and E × B along −x gives <b>E along z</b>: E_z = 60 sin(0.5 × 10³x + 1.5 × 10¹¹t)</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exam trap: sign in sin(kx − ωt) vs sin(kx + ωt)?",
+      "definition": "<span style=\"color:#3b82f6\">kx − ωt</span> → wave travels along <span style=\"color:#3b82f6\">+x</span>. <span style=\"color:#3b82f6\">kx + ωt</span> → along <span style=\"color:#3b82f6\">−x</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exam question: which of E, B, direction of travel is fixed if two are known?",
+      "definition": "The third: E × B = direction of propagation, so any two determine the third (sign included)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.3-electromagnetic-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the electromagnetic spectrum? Sharp boundaries?",
+      "definition": "Classification of EM waves by frequency or wavelength; <span style=\"color:#e5484d\">no sharp boundaries</span>, regions overlap and depend on production/detection",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4-electromagnetic-spectrum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Order of EM waves from longest to shortest wavelength?",
+      "definition": "<span style=\"color:#3b82f6\">Radio</span> > <span style=\"color:#3b82f6\">microwave</span> > <span style=\"color:#3b82f6\">infrared</span> > <span style=\"color:#3b82f6\">visible</span> > <span style=\"color:#3b82f6\">ultraviolet</span> > <span style=\"color:#3b82f6\">X-ray</span> > <span style=\"color:#3b82f6\">γ-ray</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4-electromagnetic-spectrum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic for the order (increasing frequency)?",
+      "definition": "“<span style=\"color:#3b82f6\">R</span>abbits <span style=\"color:#3b82f6\">M</span>ate <span style=\"color:#3b82f6\">I</span>n <span style=\"color:#3b82f6\">V</span>ery <span style=\"color:#3b82f6\">U</span>seful <span style=\"color:#3b82f6\">X</span>-tra <span style=\"color:#3b82f6\">G</span>ardens”: Radio, Microwave, IR, Visible, UV, X-ray, Gamma",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4-electromagnetic-spectrum"
+      ]
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 8.4 · The EM spectrum",
+      "definition": "",
+      "image": "media/fig_8_4_spectrum.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 1001,
+        "imageHeight": 918,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              205,
+              132,
+              152,
+              30
+            ],
+            "answer": "Gamma rays",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              245,
+              224,
+              85,
+              30
+            ],
+            "answer": "X-rays",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              230,
+              316,
+              125,
+              30
+            ],
+            "answer": "Ultraviolet",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              250,
+              381,
+              82,
+              26
+            ],
+            "answer": "Visible",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              238,
+              428,
+              97,
+              30
+            ],
+            "answer": "Infrared",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              218,
+              516,
+              136,
+              30
+            ],
+            "answer": "Microwaves",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              188,
+              565,
+              204,
+              30
+            ],
+            "answer": "Short radio waves",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              156,
+              620,
+              270,
+              30
+            ],
+            "answer": "Television and FM radio",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              236,
+              678,
+              108,
+              30
+            ],
+            "answer": "AM radio",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              190,
+              768,
+              196,
+              30
+            ],
+            "answer": "Long radio waves",
+            "labelInImage": true
+          }
+        ]
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4-electromagnetic-spectrum"
+      ]
+    },
+    {
+      "noteType": "image-occlusion",
+      "term": "Figure 8.4 · Colours of visible light",
+      "definition": "",
+      "image": "media/fig_8_4_spectrum.webp",
+      "occlusion": {
+        "mode": "hide-all",
+        "guessMode": "hide-all",
+        "units": "px",
+        "imageWidth": 1001,
+        "imageHeight": 918,
+        "masks": [
+          {
+            "shape": "rect",
+            "bboxPx": [
+              916,
+              141,
+              75,
+              30
+            ],
+            "answer": "Violet",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              916,
+              258,
+              60,
+              30
+            ],
+            "answer": "Blue",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              916,
+              378,
+              75,
+              30
+            ],
+            "answer": "Green",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              916,
+              520,
+              80,
+              30
+            ],
+            "answer": "Yellow",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              916,
+              610,
+              90,
+              30
+            ],
+            "answer": "Orange",
+            "labelInImage": true
+          },
+          {
+            "shape": "rect",
+            "bboxPx": [
+              916,
+              726,
+              55,
+              30
+            ],
+            "answer": "Red",
+            "labelInImage": true
+          }
+        ]
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4-electromagnetic-spectrum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Visible light: wavelength and frequency range?",
+      "definition": "<span style=\"color:#3b82f6\">400–700 nm</span> (violet → red); ≈ <span style=\"color:#f08c00\">4 × 10¹⁴ to 7 × 10¹⁴ Hz</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4-electromagnetic-spectrum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic for colours of light, short λ to long λ?",
+      "definition": "“<span style=\"color:#3b82f6\">VIBGYOR</span>”: Violet, Indigo, Blue, Green, Yellow, Orange, Red (violet has the highest frequency and energy)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4-electromagnetic-spectrum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Quick photon-energy rule of thumb, from E = hc/λ?",
+      "definition": "E (eV) ≈ 1240 / λ (nm): 500 nm light ≈ 2.5 eV; higher frequency → higher photon energy",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4-electromagnetic-spectrum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How are radio waves produced?",
+      "definition": "<span style=\"color:#3b82f6\">Accelerated motion of charges in conducting wires</span> (aerials)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.1-radio-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Frequency range of radio waves; AM and FM bands?",
+      "definition": "≈ 500 kHz to 1000 MHz. AM: <span style=\"color:#f08c00\">530–1710 kHz</span>; FM: <span style=\"color:#f08c00\">88–108 MHz</span>; TV: 54–890 MHz",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.1-radio-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Radio waves used in cellular phones?",
+      "definition": "<span style=\"color:#3b82f6\">UHF</span> (ultrahigh frequency) band",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.1-radio-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How are microwaves produced?",
+      "definition": "Special vacuum tubes: <span style=\"color:#3b82f6\">klystron, magnetron</span> or <span style=\"color:#3b82f6\">Gunn diode</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.2-microwaves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Uses of microwaves?",
+      "definition": "<span style=\"color:#3b82f6\">Radar</span> (aircraft navigation, speed guns for cricket balls and cars), <span style=\"color:#3b82f6\">microwave ovens</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.2-microwaves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can radar use microwaves rather than long radio waves?",
+      "definition": "Short wavelengths give <span style=\"color:#3b82f6\">narrow, well-defined beams</span> and reflect well from small objects",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.2-microwaves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a microwave oven heat food? NCERT’s explanation and the correction.",
+      "definition": "NCERT: frequency matches the resonant frequency of water molecules. <span style=\"color:#e5484d\">Correction:</span> ovens use ≈ <span style=\"color:#f08c00\">2.45 GHz</span>, well below water’s molecular resonance; the rapidly reversing E-field <span style=\"color:#3b82f6\">rotates polar water molecules</span> and the friction heats the food. Exams still write NCERT’s line",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.2-microwaves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How are infrared waves produced? Detected?",
+      "definition": "Produced by <span style=\"color:#3b82f6\">hot bodies and vibrating molecules</span>. Detected by thermopiles, bolometers, IR film",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.3-infrared-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are infrared waves called “heat waves”?",
+      "definition": "Water and CO₂, NH₃ etc. <span style=\"color:#3b82f6\">absorb IR readily</span>, raising molecular thermal motion and temperature",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.3-infrared-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Role of infrared in the greenhouse effect?",
+      "definition": "Earth absorbs visible light and re-radiates <span style=\"color:#3b82f6\">longer-wavelength IR</span>, which is trapped by CO₂ and water vapour, keeping Earth warm",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.3-infrared-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Uses of infrared?",
+      "definition": "Physical therapy lamps, satellite crop monitoring, <span style=\"color:#3b82f6\">remote controls</span> (IR LEDs), night vision",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.3-infrared-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which animals see IR or UV?",
+      "definition": "Snakes detect <span style=\"color:#3b82f6\">infrared</span>; many insects see into the <span style=\"color:#3b82f6\">ultraviolet</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.3-infrared-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Wavelength range and sources of UV?",
+      "definition": "≈ 400 nm down to 0.6 nm (NCERT text). Sources: special lamps, very hot bodies, the <span style=\"color:#3b82f6\">Sun</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.5-ultraviolet-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What absorbs the Sun’s harmful UV, and where?",
+      "definition": "The <span style=\"color:#3b82f6\">ozone layer</span> at ≈ 40–50 km altitude; depleted by <span style=\"color:#3b82f6\">CFCs</span> (freon)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.5-ultraviolet-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can’t you tan through a glass window?",
+      "definition": "<span style=\"color:#3b82f6\">Ordinary glass absorbs UV</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.5-ultraviolet-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Uses of UV?",
+      "definition": "Water purifiers (kill germs), <span style=\"color:#3b82f6\">LASIK</span> eye surgery (short λ focuses to fine beams), welders’ goggles guard against it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.5-ultraviolet-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of UV on skin?",
+      "definition": "Induces more <span style=\"color:#3b82f6\">melanin</span> (tanning); large doses are harmful",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.5-ultraviolet-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How are X-rays generated? Uses?",
+      "definition": "By bombarding a <span style=\"color:#3b82f6\">metal target with high-energy electrons</span>. Medical diagnosis and cancer treatment; overexposure damages tissue",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.6-x-rays-and-gamma-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "X-ray wavelength range?",
+      "definition": "≈ 10 nm to 10⁻⁴ nm (NCERT text); Table 8.1 says 1 nm to 10⁻³ nm",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.6-x-rays-and-gamma-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Source and use of gamma rays?",
+      "definition": "Nuclear reactions and <span style=\"color:#3b82f6\">radioactive nuclei</span>; used to destroy cancer cells",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.6-x-rays-and-gamma-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Note: NCERT’s wavelength ranges differ between text and Table 8.1. Which do exams use?",
+      "definition": "Ranges overlap (UV/X-ray, X-ray/γ). Learn the <span style=\"color:#3b82f6\">table</span>: radio > 0.1 m; microwave 0.1 m–1 mm; IR 1 mm–700 nm; light 700–400 nm; UV 400–1 nm; X-ray 1 nm–10⁻³ nm; γ < 10⁻³ nm",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.6-x-rays-and-gamma-rays"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Table 8.1 · Production of EM waves",
+      "definition": "Radio: Rapid acceleration/deceleration of electrons in aerials; Microwave: Klystron or magnetron valve; Infrared: Vibration of atoms and molecules; Visible light: Electrons in atoms dropping to lower energy levels; Ultraviolet: Inner-shell electrons moving to lower levels; X-rays: X-ray tubes or inner-shell electrons; Gamma rays: Radioactive decay of the nucleus",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 8.1</p><h2>How produced?</h2><table><tr><td>Radio</td><td class=\"q\">?</td></tr><tr><td>Microwave</td><td class=\"q\">?</td></tr><tr><td>Infrared</td><td class=\"q\">?</td></tr><tr><td>Visible light</td><td class=\"q\">?</td></tr><tr><td>Ultraviolet</td><td class=\"q\">?</td></tr><tr><td>X-rays</td><td class=\"q\">?</td></tr><tr><td>Gamma rays</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 8.1</p><h2>How produced?</h2><table><tr><td>Radio</td><td class=\"a\">Rapid acceleration/deceleration of electrons in aerials</td></tr><tr><td>Microwave</td><td class=\"a\">Klystron or magnetron valve</td></tr><tr><td>Infrared</td><td class=\"a\">Vibration of atoms and molecules</td></tr><tr><td>Visible light</td><td class=\"a\">Electrons in atoms dropping to lower energy levels</td></tr><tr><td>Ultraviolet</td><td class=\"a\">Inner-shell electrons moving to lower levels</td></tr><tr><td>X-rays</td><td class=\"a\">X-ray tubes or inner-shell electrons</td></tr><tr><td>Gamma rays</td><td class=\"a\">Radioactive decay of the nucleus</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.6-x-rays-and-gamma-rays"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Table 8.1 · Detection of EM waves",
+      "definition": "Radio: Receiver’s aerials; Microwave: Point-contact diodes; Infrared: Thermopiles, bolometer, IR film; Visible light: The eye, photocells, photographic film; Ultraviolet: Photocells, photographic film; X-rays: Photographic film, Geiger tube, ionisation chamber; Gamma rays: Same as X-rays",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 8.1</p><h2>How detected?</h2><table><tr><td>Radio</td><td class=\"q\">?</td></tr><tr><td>Microwave</td><td class=\"q\">?</td></tr><tr><td>Infrared</td><td class=\"q\">?</td></tr><tr><td>Visible light</td><td class=\"q\">?</td></tr><tr><td>Ultraviolet</td><td class=\"q\">?</td></tr><tr><td>X-rays</td><td class=\"q\">?</td></tr><tr><td>Gamma rays</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 8.1</p><h2>How detected?</h2><table><tr><td>Radio</td><td class=\"a\">Receiver’s aerials</td></tr><tr><td>Microwave</td><td class=\"a\">Point-contact diodes</td></tr><tr><td>Infrared</td><td class=\"a\">Thermopiles, bolometer, IR film</td></tr><tr><td>Visible light</td><td class=\"a\">The eye, photocells, photographic film</td></tr><tr><td>Ultraviolet</td><td class=\"a\">Photocells, photographic film</td></tr><tr><td>X-rays</td><td class=\"a\">Photographic film, Geiger tube, ionisation chamber</td></tr><tr><td>Gamma rays</td><td class=\"a\">Same as X-rays</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.6-x-rays-and-gamma-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exam trick: which EM wave has the maximum penetrating power? The highest photon energy?",
+      "definition": "<span style=\"color:#3b82f6\">Gamma rays</span> for both (highest frequency, smallest λ)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.6-x-rays-and-gamma-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exam trick: which of these are not EM waves: γ-rays, X-rays, cathode rays, β-rays, sound?",
+      "definition": "<span style=\"color:#e5484d\">Cathode rays, β-rays</span> (electrons) and <span style=\"color:#e5484d\">sound</span> (mechanical). γ- and X-rays are EM",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.6-x-rays-and-gamma-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exam trick: Do EM waves get deflected in electric or magnetic fields?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: they carry no charge (fields of the wave itself are oscillating, not static)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "8.4.6-x-rays-and-gamma-rays"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is different between various EM waves, and what is the same?",
+      "definition": "Same: speed c in vacuum. Different: <span style=\"color:#3b82f6\">wavelength/frequency</span>, hence how they interact with matter",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What sets the wavelength of radiation from a system?",
+      "definition": "Roughly the <span style=\"color:#3b82f6\">size of the source</span>: γ from nuclei (10⁻¹⁴ m), X-rays from heavy atoms, radio from circuits. An antenna radiates best when its size ≈ λ",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do our eyes peak in the visible region?",
+      "definition": "Human vision evolved to be most sensitive to the <span style=\"color:#3b82f6\">strongest wavelengths of sunlight</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Constant charging current (Exercise 8.1)",
+      "definition": "C ≈ 80 pF, dV/dt ≈ 1.9 × 10⁹ V/s, i_d = 0.15 A, rule valid with i_d included",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 8.1 · charging capacitor</p><h2>Find the missing step.</h2><div class=\"prob\">Circular plates of radius 12 cm, gap 5.0 cm, charging current 0.15 A. (a) C and dV/dt (b) i_d (c) Kirchhoff’s rule?</div><ol><li>C = ε₀A/d = 8.85 × 10⁻¹² × π(0.12)²/0.05 ≈ <b>80 pF</b></li><li class=\"h\">?</li><li>i_d = i_c = <b>0.15 A</b> (between plates)</li><li>Kirchhoff’s junction rule holds at each plate <b>if displacement current is counted</b> as part of the total current</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 8.1 · charging capacitor</p><h2>Find the missing step.</h2><div class=\"prob\">Circular plates of radius 12 cm, gap 5.0 cm, charging current 0.15 A. (a) C and dV/dt (b) i_d (c) Kirchhoff’s rule?</div><ol><li>C = ε₀A/d = 8.85 × 10⁻¹² × π(0.12)²/0.05 ≈ <b>80 pF</b></li><li class=\"r\">i = C dV/dt → dV/dt = 0.15/(80 × 10⁻¹²) ≈ <b>1.9 × 10⁹ V/s</b></li><li>i_d = i_c = <b>0.15 A</b> (between plates)</li><li>Kirchhoff’s junction rule holds at each plate <b>if displacement current is counted</b> as part of the total current</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Check: dV/dt in Exercise 8.1, with C = 80.1 pF?",
+      "definition": "0.15/(80.1 × 10⁻¹²) = <span style=\"color:#f08c00\">1.87 × 10⁹ V/s</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ],
+      "termImage": "media/fig_8_5_capacitor.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Displacement current on ac (Exercise 8.2)",
+      "definition": "I_rms = 6.9 μA, i_c = i_d, B₀ ≈ 1.63 × 10⁻¹¹ T",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 8.2 · capacitor on ac</p><h2>Find the missing step.</h2><div class=\"prob\">Circular plates R = 6.0 cm, C = 100 pF, 230 V ac, ω = 300 rad/s. (a) rms conduction current (b) i_c = i_d? (c) amplitude of B at 3.0 cm from the axis.</div><ol><li>I_rms = V/X_C = VωC = 230 × 300 × 100 × 10⁻¹² = <b>6.9 μA</b></li><li>Yes: <b>i_c = i_d</b> at every instant in the wire and between the plates</li><li>Peak current I₀ = √2 × 6.9 μA = 9.76 μA</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 8.2 · capacitor on ac</p><h2>Find the missing step.</h2><div class=\"prob\">Circular plates R = 6.0 cm, C = 100 pF, 230 V ac, ω = 300 rad/s. (a) rms conduction current (b) i_c = i_d? (c) amplitude of B at 3.0 cm from the axis.</div><ol><li>I_rms = V/X_C = VωC = 230 × 300 × 100 × 10⁻¹² = <b>6.9 μA</b></li><li>Yes: <b>i_c = i_d</b> at every instant in the wire and between the plates</li><li>Peak current I₀ = √2 × 6.9 μA = 9.76 μA</li><li class=\"r\">B = μ₀rI₀/(2πR²) = 2 × 10⁻⁷ × 0.03 × 9.76 × 10⁻⁶/(0.06)² ≈ <b>1.63 × 10⁻¹¹ T</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.3: what physical quantity is the same for X-rays (10⁻¹⁰ m), red light (6800 Å) and radio waves (500 m)?",
+      "definition": "<span style=\"color:#3b82f6\">Speed</span> in vacuum (3 × 10⁸ m/s), and they are all transverse EM waves",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.4: EM wave along z in vacuum. Directions of E and B? λ at 30 MHz?",
+      "definition": "E and B lie in the <span style=\"color:#3b82f6\">xy-plane</span>, perpendicular to each other. λ = c/ν = 3 × 10⁸/30 × 10⁶ = <span style=\"color:#f08c00\">10 m</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.5: radio tunes 7.5 MHz to 12 MHz. Wavelength band?",
+      "definition": "λ = c/ν: <span style=\"color:#f08c00\">40 m</span> (7.5 MHz) to <span style=\"color:#f08c00\">25 m</span> (12 MHz); band 25–40 m",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.6: charge oscillating at 10⁹ Hz. Frequency of the EM wave?",
+      "definition": "<span style=\"color:#f08c00\">10⁹ Hz</span>: same as the oscillation",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.7: B₀ = 510 nT. E₀?",
+      "definition": "E₀ = cB₀ = 3 × 10⁸ × 510 × 10⁻⁹ = <span style=\"color:#f08c00\">153 N/C</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Complete EM wave from E₀ and ν (Exercise 8.8)",
+      "definition": "B₀ = 400 nT, ω = 3.14 × 10⁸, k = 1.05, λ = 6 m",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 8.8 · full wave description</p><h2>Find the missing step.</h2><div class=\"prob\">E₀ = 120 N/C, ν = 50.0 MHz. Find B₀, ω, k, λ and write E and B.</div><ol><li>B₀ = E₀/c = 120/(3 × 10⁸) = <b>4 × 10⁻⁷ T</b></li><li>ω = 2πν = <b>3.14 × 10⁸ rad/s</b></li><li class=\"h\">?</li><li>E = 120 sin(1.05z − 3.14 × 10⁸t) N/C (x-direction); B = 4 × 10⁻⁷ sin(1.05z − 3.14 × 10⁸t) T (y-direction)</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 8.8 · full wave description</p><h2>Find the missing step.</h2><div class=\"prob\">E₀ = 120 N/C, ν = 50.0 MHz. Find B₀, ω, k, λ and write E and B.</div><ol><li>B₀ = E₀/c = 120/(3 × 10⁸) = <b>4 × 10⁻⁷ T</b></li><li>ω = 2πν = <b>3.14 × 10⁸ rad/s</b></li><li class=\"r\">k = ω/c = <b>1.05 rad/m</b>; λ = c/ν = <b>6.0 m</b></li><li>E = 120 sin(1.05z − 3.14 × 10⁸t) N/C (x-direction); B = 4 × 10⁻⁷ sin(1.05z − 3.14 × 10⁸t) T (y-direction)</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Exercise 8.9 · Photon energy scale of the spectrum",
+      "definition": "γ-rays (λ ~ 10⁻¹² m): ~ 10⁶ eV (MeV): nuclear energy scale; X-rays (~ 1 nm): ~ 10³ eV (keV): inner-shell electrons; Ultraviolet (~ 100 nm): ~ 10 eV: outer-electron transitions; Visible (~ 500 nm): ~ 2.5 eV: outer-electron transitions; Infrared (~ 10 μm): ~ 0.1 eV: molecular vibrations; Microwave (~ 1 cm): ~ 10⁻⁴ eV: molecular rotations, klystron; Radio (~ 100 m): ~ 10⁻⁸ eV: oscillating circuits",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 8.9</p><h2>Photon energy E = hν = 1240/λ(nm) eV?</h2><table><tr><td>γ-rays (λ ~ 10⁻¹² m)</td><td class=\"q\">?</td></tr><tr><td>X-rays (~ 1 nm)</td><td class=\"q\">?</td></tr><tr><td>Ultraviolet (~ 100 nm)</td><td class=\"q\">?</td></tr><tr><td>Visible (~ 500 nm)</td><td class=\"q\">?</td></tr><tr><td>Infrared (~ 10 μm)</td><td class=\"q\">?</td></tr><tr><td>Microwave (~ 1 cm)</td><td class=\"q\">?</td></tr><tr><td>Radio (~ 100 m)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 8.9</p><h2>Photon energy E = hν = 1240/λ(nm) eV?</h2><table><tr><td>γ-rays (λ ~ 10⁻¹² m)</td><td class=\"a\">~ 10⁶ eV (MeV): nuclear energy scale</td></tr><tr><td>X-rays (~ 1 nm)</td><td class=\"a\">~ 10³ eV (keV): inner-shell electrons</td></tr><tr><td>Ultraviolet (~ 100 nm)</td><td class=\"a\">~ 10 eV: outer-electron transitions</td></tr><tr><td>Visible (~ 500 nm)</td><td class=\"a\">~ 2.5 eV: outer-electron transitions</td></tr><tr><td>Infrared (~ 10 μm)</td><td class=\"a\">~ 0.1 eV: molecular vibrations</td></tr><tr><td>Microwave (~ 1 cm)</td><td class=\"a\">~ 10⁻⁴ eV: molecular rotations, klystron</td></tr><tr><td>Radio (~ 100 m)</td><td class=\"a\">~ 10⁻⁸ eV: oscillating circuits</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 8.9: what do the photon-energy scales tell you about the sources?",
+      "definition": "They match the energy scales of the processes: <span style=\"color:#3b82f6\">nuclear (MeV) → inner shell (keV) → outer electrons (eV) → molecules (< eV) → circuits (tiny)</span>, in line with Table 8.1",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Equal E and B energy densities (Exercise 8.10)",
+      "definition": "λ = 1.5 cm, B₀ = 1.6 × 10⁻⁷ T, u_E = u_B",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 8.10 · wave of 20 GHz</p><h2>Find the missing step.</h2><div class=\"prob\">ν = 2.0 × 10¹⁰ Hz, E₀ = 48 V/m. (a) λ (b) B₀ (c) show u_E = u_B on average.</div><ol><li>λ = c/ν = 3 × 10⁸/2 × 10¹⁰ = <b>1.5 cm</b></li><li>B₀ = E₀/c = 48/3 × 10⁸ = <b>1.6 × 10⁻⁷ T</b></li><li>u_E = ¼ε₀E₀²; u_B = B₀²/4μ₀ = E₀²/(4μ₀c²)</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 8.10 · wave of 20 GHz</p><h2>Find the missing step.</h2><div class=\"prob\">ν = 2.0 × 10¹⁰ Hz, E₀ = 48 V/m. (a) λ (b) B₀ (c) show u_E = u_B on average.</div><ol><li>λ = c/ν = 3 × 10⁸/2 × 10¹⁰ = <b>1.5 cm</b></li><li>B₀ = E₀/c = 48/3 × 10⁸ = <b>1.6 × 10⁻⁷ T</b></li><li>u_E = ¼ε₀E₀²; u_B = B₀²/4μ₀ = E₀²/(4μ₀c²)</li><li class=\"r\">c² = 1/μ₀ε₀ → u_B = ¼ε₀E₀² = <b>u_E</b> ✓</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 8 formula sheet",
+      "definition": "Displacement current: i_d = ε₀ dΦ_E/dt; Ampere–Maxwell law: ∮B·dl = μ₀(i_c + i_d); Speed of EM waves: c = 1/√(μ₀ε₀); Relation of fields: E₀/B₀ = c; Wave relation: c = νλ; Speed in a medium: v = 1/√(με); Refractive index: n = c/v = √(μᵣεᵣ); Intensity (teacher addition): I = ½ε₀cE₀²",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Displacement current</td><td class=\"q\">?</td></tr><tr><td>Ampere–Maxwell law</td><td class=\"q\">?</td></tr><tr><td>Speed of EM waves</td><td class=\"q\">?</td></tr><tr><td>Relation of fields</td><td class=\"q\">?</td></tr><tr><td>Wave relation</td><td class=\"q\">?</td></tr><tr><td>Speed in a medium</td><td class=\"q\">?</td></tr><tr><td>Refractive index</td><td class=\"q\">?</td></tr><tr><td>Intensity (teacher addition)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Displacement current</td><td class=\"a\">i_d = ε₀ dΦ_E/dt</td></tr><tr><td>Ampere–Maxwell law</td><td class=\"a\">∮B·dl = μ₀(i_c + i_d)</td></tr><tr><td>Speed of EM waves</td><td class=\"a\">c = 1/√(μ₀ε₀)</td></tr><tr><td>Relation of fields</td><td class=\"a\">E₀/B₀ = c</td></tr><tr><td>Wave relation</td><td class=\"a\">c = νλ</td></tr><tr><td>Speed in a medium</td><td class=\"a\">v = 1/√(με)</td></tr><tr><td>Refractive index</td><td class=\"a\">n = c/v = √(μᵣεᵣ)</td></tr><tr><td>Intensity (teacher addition)</td><td class=\"a\">I = ½ε₀cE₀²</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 8 concept checks",
+      "definition": "A steady current radiates EM waves: False (accelerated charges do); E and B in an EM wave are in phase: True; EM waves need a material medium: False; Gamma rays have the longest wavelength in the spectrum: False (shortest); Displacement current exists between capacitor plates: True; E and B of an EM wave are parallel: False (perpendicular)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>A steady current radiates EM waves</td><td class=\"q\">?</td></tr><tr><td>E and B in an EM wave are in phase</td><td class=\"q\">?</td></tr><tr><td>EM waves need a material medium</td><td class=\"q\">?</td></tr><tr><td>Gamma rays have the longest wavelength in the spectrum</td><td class=\"q\">?</td></tr><tr><td>Displacement current exists between capacitor plates</td><td class=\"q\">?</td></tr><tr><td>E and B of an EM wave are parallel</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>A steady current radiates EM waves</td><td class=\"a no\">False (accelerated charges do)</td></tr><tr><td>E and B in an EM wave are in phase</td><td class=\"a\">True</td></tr><tr><td>EM waves need a material medium</td><td class=\"a no\">False</td></tr><tr><td>Gamma rays have the longest wavelength in the spectrum</td><td class=\"a no\">False (shortest)</td></tr><tr><td>Displacement current exists between capacitor plates</td><td class=\"a\">True</td></tr><tr><td>E and B of an EM wave are parallel</td><td class=\"a no\">False (perpendicular)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-8",
+        "summary"
+      ]
+    }
+  ]
+}
