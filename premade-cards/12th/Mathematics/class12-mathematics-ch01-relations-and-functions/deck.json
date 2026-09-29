@@ -1,0 +1,1584 @@
+{
+  "version": 1,
+  "name": "Chapter 1: Relations and Functions",
+  "className": "Class 12",
+  "description": "Types of relations, equivalence relations and classes, one-one and onto functions, composition, inverse, counting functions and relations, with exam-style problems.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Define a relation R from A to B.",
+      "definition": "Any <span style=\"color:#3b82f6\">subset of A × B</span>. If (a, b) ∈ R we write a R b. There need be no “meaning” connecting a and b",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Empty and universal relation on a set A?",
+      "definition": "<span style=\"color:#3b82f6\">Empty</span>: R = φ (nothing is related). <span style=\"color:#3b82f6\">Universal</span>: R = A × A (everything is related to everything). Both are “trivial” relations",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: on the students of a boys’ school, is “a is sister of b” empty or universal? And “heights differ by less than 3 m”?",
+      "definition": "No student has a sister in the school: <span style=\"color:#f08c00\">empty</span>. Every height difference is under 3 m: <span style=\"color:#f08c00\">universal (A × A)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define reflexive, symmetric, transitive.",
+      "definition": "<span style=\"color:#3b82f6\">Reflexive</span>: (a, a) ∈ R ∀ a.<br><span style=\"color:#3b82f6\">Symmetric</span>: (a, b) ∈ R ⇒ (b, a) ∈ R.<br><span style=\"color:#3b82f6\">Transitive</span>: (a, b), (b, c) ∈ R ⇒ (a, c) ∈ R",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is an equivalence relation?",
+      "definition": "A relation that is <span style=\"color:#3b82f6\">reflexive, symmetric and transitive</span> (all three)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Reflexive, symmetric, transitive read from a digraph",
+      "definition": "Draw arrows a→b for (a,b) in R. Reflexive: a loop at every node. Symmetric: every arrow has a return arrow. Transitive: every two-step path a→b→c has the direct arrow a→c. Example 4: reflexive only",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Reading a relation as a graph</p><h2>R = {(1,1), (2,2), (3,3), (1,2), (2,3)} on {1, 2, 3}. Is it reflexive, symmetric, transitive?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f0\" cx=\"60\" cy=\"150\" r=\"15\"></circle><text class=\"lbl\" x=\"60\" y=\"154\" text-anchor=\"middle\">1</text><circle class=\"f0\" cx=\"150\" cy=\"40\" r=\"15\"></circle><text class=\"lbl\" x=\"150\" y=\"44\" text-anchor=\"middle\">2</text><circle class=\"f0\" cx=\"240\" cy=\"150\" r=\"15\"></circle><text class=\"lbl\" x=\"240\" y=\"154\" text-anchor=\"middle\">3</text><circle class=\"c1 \" cx=\"34.0\" cy=\"165.6\" r=\"13\"></circle><circle class=\"c1 \" cx=\"150.0\" cy=\"14.0\" r=\"13\"></circle><circle class=\"c1 \" cx=\"266.0\" cy=\"165.6\" r=\"13\"></circle><line class=\"c1 \" x1=\"70.8\" y1=\"136.8\" x2=\"137.3\" y2=\"55.5\" marker-end=\"url(#pb)\"></line><line class=\"c1 \" x1=\"160.8\" y1=\"53.2\" x2=\"227.3\" y2=\"134.5\" marker-end=\"url(#pb)\"></line></svg><p class=\"hint\">Look for loops, return arrows and shortcuts.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Reading a relation as a graph</p><h2>R = {(1,1), (2,2), (3,3), (1,2), (2,3)} on {1, 2, 3}. Is it reflexive, symmetric, transitive?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f0\" cx=\"60\" cy=\"150\" r=\"15\"></circle><text class=\"lbl\" x=\"60\" y=\"154\" text-anchor=\"middle\">1</text><circle class=\"f0\" cx=\"150\" cy=\"40\" r=\"15\"></circle><text class=\"lbl\" x=\"150\" y=\"44\" text-anchor=\"middle\">2</text><circle class=\"f0\" cx=\"240\" cy=\"150\" r=\"15\"></circle><text class=\"lbl\" x=\"240\" y=\"154\" text-anchor=\"middle\">3</text><circle class=\"c1 \" cx=\"34.0\" cy=\"165.6\" r=\"13\"></circle><circle class=\"c1 \" cx=\"150.0\" cy=\"14.0\" r=\"13\"></circle><circle class=\"c1 \" cx=\"266.0\" cy=\"165.6\" r=\"13\"></circle><line class=\"c1 \" x1=\"70.8\" y1=\"136.8\" x2=\"137.3\" y2=\"55.5\" marker-end=\"url(#pb)\"></line><line class=\"c1 \" x1=\"160.8\" y1=\"53.2\" x2=\"227.3\" y2=\"134.5\" marker-end=\"url(#pb)\"></line><path class=\"dr fx d2\" d=\"M139.2,53.2 Q124.5,109.0 72.7,134.5\" marker-end=\"url(#pr)\"></path><path class=\"dr fx d3\" d=\"M77.0,150.0 Q148.5,166.0 220.0,150.0\" marker-end=\"url(#pr)\"></path><text class=\"t2 fx d2\" x=\"52\" y=\"78\" text-anchor=\"middle\">(2,1) missing</text><text class=\"t2 fx d3\" x=\"150\" y=\"182\" text-anchor=\"middle\">(1,3) missing</text><text class=\"t3 fx d1\" x=\"240\" y=\"34\" text-anchor=\"middle\">loops: reflexive ✓</text></svg><div class=\"eq fx d5\"><p><b>Reflexive ✓</b> every element has a loop. <b>Symmetric ✗</b>: 1 → 2 has no return arrow 2 → 1. <b>Transitive ✗</b>: 1 → 2 → 3 needs the shortcut 1 → 3.</p><p>Test for each property: loops everywhere / every arrow returns / every two-step path has a shortcut.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .dr{stroke:#c93b3f;stroke-width:2.2;stroke-dasharray:5 4;fill:none;stroke-linecap:round}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .dr{stroke:#c93b3f;stroke-width:2.2;stroke-dasharray:5 4;fill:none;stroke-linecap:round}"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: “symmetric and transitive, so it must be reflexive” (use (a,b),(b,a),(a,a)).",
+      "definition": "<span style=\"color:#e5484d\">False</span>. R = {(1, 2), (2, 1), (1, 1), (2, 2)} on {1, 2, 3} is symmetric and transitive but 3 is unrelated to itself: not reflexive. Every element of A must have (a, a)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which pairs decide transitivity?",
+      "definition": "Only chains: (a, b) and (b, c) both in R force (a, c). If there is no such chain the relation is <span style=\"color:#3b82f6\">vacuously transitive</span> (e.g. R = {(1, 2)} is transitive, R = φ is symmetric and transitive)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3: L = lines in a plane, L₁ R L₂ iff L₁ ⟂ L₂. Which properties?",
+      "definition": "<span style=\"color:#3b82f6\">Symmetric only</span>. Not reflexive (a line is not ⟂ itself); not transitive (L₁ ⟂ L₂ ⟂ L₃ gives L₁ ∥ L₃, so (L₁, L₃) ∉ R)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2: T₁ R T₂ iff T₁ is congruent to T₂ (triangles). Which properties?",
+      "definition": "<span style=\"color:#22a35a\">Equivalence relation</span>: congruent to itself; if T₁ ≅ T₂ then T₂ ≅ T₁; T₁ ≅ T₂ ≅ T₃ gives T₁ ≅ T₃",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: R = {(a, b) : 2 divides a − b} on Z. Show it is an equivalence relation.",
+      "definition": "Reflexive: a − a = 0 is even. Symmetric: b − a = −(a − b) is even. Transitive: a − c = (a − b) + (b − c) is even. <span style=\"color:#22a35a\">Equivalence ✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Equivalence classes of congruence mod 3",
+      "definition": "R = {(a,b): 3 | a−b} on Z is an equivalence relation with three classes [0], [1], [2] (remainders 0, 1, 2); they are disjoint and their union is Z",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Equivalence classes</p><h2>R = {(a, b) : 3 divides a − b} on Z is an equivalence relation. Sort the integers into its equivalence classes.</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f0\" cx=\"24.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"24.0\" y=\"34\" text-anchor=\"middle\">−4</text><circle class=\"f0\" cx=\"47.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"47.5\" y=\"34\" text-anchor=\"middle\">−3</text><circle class=\"f0\" cx=\"71.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"71.0\" y=\"34\" text-anchor=\"middle\">−2</text><circle class=\"f0\" cx=\"94.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"94.5\" y=\"34\" text-anchor=\"middle\">−1</text><circle class=\"f0\" cx=\"118.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"118.0\" y=\"34\" text-anchor=\"middle\">0</text><circle class=\"f0\" cx=\"141.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"141.5\" y=\"34\" text-anchor=\"middle\">1</text><circle class=\"f0\" cx=\"165.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"165.0\" y=\"34\" text-anchor=\"middle\">2</text><circle class=\"f0\" cx=\"188.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"188.5\" y=\"34\" text-anchor=\"middle\">3</text><circle class=\"f0\" cx=\"212.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"212.0\" y=\"34\" text-anchor=\"middle\">4</text><circle class=\"f0\" cx=\"235.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"235.5\" y=\"34\" text-anchor=\"middle\">5</text><circle class=\"f0\" cx=\"259.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"259.0\" y=\"34\" text-anchor=\"middle\">6</text><circle class=\"f0\" cx=\"282.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"282.5\" y=\"34\" text-anchor=\"middle\">7</text></svg><p class=\"hint\">Group numbers with the same remainder mod 3.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Equivalence classes</p><h2>R = {(a, b) : 3 divides a − b} on Z is an equivalence relation. Sort the integers into its equivalence classes.</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f0\" cx=\"24.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"24.0\" y=\"34\" text-anchor=\"middle\">−4</text><circle class=\"f0\" cx=\"47.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"47.5\" y=\"34\" text-anchor=\"middle\">−3</text><circle class=\"f0\" cx=\"71.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"71.0\" y=\"34\" text-anchor=\"middle\">−2</text><circle class=\"f0\" cx=\"94.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"94.5\" y=\"34\" text-anchor=\"middle\">−1</text><circle class=\"f0\" cx=\"118.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"118.0\" y=\"34\" text-anchor=\"middle\">0</text><circle class=\"f0\" cx=\"141.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"141.5\" y=\"34\" text-anchor=\"middle\">1</text><circle class=\"f0\" cx=\"165.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"165.0\" y=\"34\" text-anchor=\"middle\">2</text><circle class=\"f0\" cx=\"188.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"188.5\" y=\"34\" text-anchor=\"middle\">3</text><circle class=\"f0\" cx=\"212.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"212.0\" y=\"34\" text-anchor=\"middle\">4</text><circle class=\"f0\" cx=\"235.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"235.5\" y=\"34\" text-anchor=\"middle\">5</text><circle class=\"f0\" cx=\"259.0\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"259.0\" y=\"34\" text-anchor=\"middle\">6</text><circle class=\"f0\" cx=\"282.5\" cy=\"30\" r=\"9\"></circle><text class=\"lbl\" x=\"282.5\" y=\"34\" text-anchor=\"middle\">7</text><circle class=\"f3 fx d3\" cx=\"24.0\" cy=\"164\" r=\"9\"></circle><text class=\"lbl fx d3\" x=\"24.0\" y=\"168\" text-anchor=\"middle\">−4</text><circle class=\"f1 fx d1\" cx=\"47.5\" cy=\"84\" r=\"9\"></circle><text class=\"lbl fx d1\" x=\"47.5\" y=\"88\" text-anchor=\"middle\">−3</text><circle class=\"f2 fx d2\" cx=\"71.0\" cy=\"124\" r=\"9\"></circle><text class=\"lbl fx d2\" x=\"71.0\" y=\"128\" text-anchor=\"middle\">−2</text><circle class=\"f3 fx d3\" cx=\"94.5\" cy=\"164\" r=\"9\"></circle><text class=\"lbl fx d3\" x=\"94.5\" y=\"168\" text-anchor=\"middle\">−1</text><circle class=\"f1 fx d1\" cx=\"118.0\" cy=\"84\" r=\"9\"></circle><text class=\"lbl fx d1\" x=\"118.0\" y=\"88\" text-anchor=\"middle\">0</text><circle class=\"f2 fx d2\" cx=\"141.5\" cy=\"124\" r=\"9\"></circle><text class=\"lbl fx d2\" x=\"141.5\" y=\"128\" text-anchor=\"middle\">1</text><circle class=\"f3 fx d3\" cx=\"165.0\" cy=\"164\" r=\"9\"></circle><text class=\"lbl fx d3\" x=\"165.0\" y=\"168\" text-anchor=\"middle\">2</text><circle class=\"f1 fx d1\" cx=\"188.5\" cy=\"84\" r=\"9\"></circle><text class=\"lbl fx d1\" x=\"188.5\" y=\"88\" text-anchor=\"middle\">3</text><circle class=\"f2 fx d2\" cx=\"212.0\" cy=\"124\" r=\"9\"></circle><text class=\"lbl fx d2\" x=\"212.0\" y=\"128\" text-anchor=\"middle\">4</text><circle class=\"f3 fx d3\" cx=\"235.5\" cy=\"164\" r=\"9\"></circle><text class=\"lbl fx d3\" x=\"235.5\" y=\"168\" text-anchor=\"middle\">5</text><circle class=\"f1 fx d1\" cx=\"259.0\" cy=\"84\" r=\"9\"></circle><text class=\"lbl fx d1\" x=\"259.0\" y=\"88\" text-anchor=\"middle\">6</text><circle class=\"f2 fx d2\" cx=\"282.5\" cy=\"124\" r=\"9\"></circle><text class=\"lbl fx d2\" x=\"282.5\" y=\"128\" text-anchor=\"middle\">7</text><text class=\"t1 fx d1\" x=\"8\" y=\"68\">[0] = {3r + 0}</text><text class=\"t2 fx d2\" x=\"8\" y=\"108\">[1] = {3r + 1}</text><text class=\"t3 fx d3\" x=\"8\" y=\"148\">[2] = {3r + 2}</text><text class=\"sm fx d4\" x=\"150\" y=\"192\" text-anchor=\"middle\">same remainder ⇒ same class</text></svg><div class=\"eq fx d5\"><p>Three classes, by remainder on division by 3: <b>[0] = {…, −3, 0, 3, 6, …}</b>, <b>[1] = {…, −2, 1, 4, 7, …}</b>, <b>[2] = {…, −4, −1, 2, 5, …}</b>.</p><p>Classes are <b>disjoint</b>, their <b>union is Z</b>, and everything inside one class is related. Every equivalence relation partitions its set.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is an equivalence class [a]? What do the classes do to the set?",
+      "definition": "<span style=\"color:#3b82f6\">[a] = {b : (a, b) ∈ R}</span>, all elements related to a. The classes are <span style=\"color:#3b82f6\">non-empty, mutually disjoint, and their union is the whole set</span>: a partition. Conversely every partition gives an equivalence relation",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: the classes of “2 divides a − b” on Z?",
+      "definition": "<span style=\"color:#3b82f6\">[0] = even integers</span> and <span style=\"color:#3b82f6\">[1] = odd integers</span>. [0] = [2r], [1] = [2r + 1], [0] ≠ [1], and Z = E ∪ O with E ∩ O = φ",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6: R = {(a, b) : a and b both odd or both even} on {1, ..., 7}. Its classes?",
+      "definition": "<span style=\"color:#22a35a\">{1, 3, 5, 7}</span> and <span style=\"color:#22a35a\">{2, 4, 6}</span>. Elements of one are related to each other, none related across",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 18: R₁, R₂ equivalence relations on A. Is R₁ ∩ R₂ an equivalence relation? R₁ ∪ R₂?",
+      "definition": "<span style=\"color:#22a35a\">R₁ ∩ R₂ is</span> (each property survives intersection). <span style=\"color:#e5484d\">R₁ ∪ R₂ need not be</span>: it can fail transitivity, e.g. R₁ = {1,2 together}, R₂ = {2,3 together} on {1,2,3} gives (1,2), (2,3) but not (1,3)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 19: (x, y) R (u, v) iff xv = yu on pairs of positive integers. Equivalence? What is it saying?",
+      "definition": "<span style=\"color:#22a35a\">Yes</span>. It says <span style=\"color:#3b82f6\">x/y = u/v</span>: two pairs are related when they are the same fraction. Transitivity: xv = yu and ub = va give x/y = u/v = a/b",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 21: f : X → Y, R = {(a, b) : f(a) = f(b)}. Type of relation?",
+      "definition": "<span style=\"color:#22a35a\">Equivalence relation</span>. Reflexive, symmetric, transitive all come from equality of values. Its classes are the <span style=\"color:#3b82f6\">fibres (preimages) f⁻¹(y)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 20: R₁ = “x − y divisible by 3” on {1,...,9} equals R₂ = “x, y in the same one of {1,4,7}, {2,5,8}, {3,6,9}”. Why?",
+      "definition": "Each block is one residue class mod 3, so two numbers differ by a multiple of 3 exactly when they are in the same block: <span style=\"color:#f08c00\">R₁ = R₂</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q1(i): R = {(x, y) : 3x − y = 0} on A = {1, ..., 14}. Reflexive, symmetric, transitive?",
+      "definition": "R = {(1,3), (2,6), (3,9), (4,12)}. (1, 1) ∉ R: not reflexive. (1, 3) ∈ R but (3, 1) ∉ R: not symmetric. (1,3), (3,9) ∈ R but (1, 9) ∉ R: not transitive. <span style=\"color:#f08c00\">None of the three</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q1(ii): R = {(x, y) : y = x + 5 and x < 4} on N. Properties?",
+      "definition": "R = {(1,6), (2,7), (3,8)}. Not reflexive, not symmetric. No chain (b, c) starts from a second coordinate (6, 7, 8 are not first coordinates), so transitive holds vacuously: <span style=\"color:#f08c00\">transitive only</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q1(iii): R = {(x, y) : y is divisible by x} on {1, ..., 6}. Properties?",
+      "definition": "x | x: reflexive. 2 | 4 but 4 ∤ 2: not symmetric. x | y and y | z ⇒ x | z: transitive. <span style=\"color:#f08c00\">Reflexive and transitive, not symmetric</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q1(iv): R = {(x, y) : x − y is an integer} on Z. Properties?",
+      "definition": "x − y is always an integer, so R = Z × Z is the universal relation: <span style=\"color:#22a35a\">equivalence relation</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q1(v)(a),(b): “work at the same place”, “live in the same locality”?",
+      "definition": "<span style=\"color:#22a35a\">Both are equivalence relations</span>: same-place / same-locality is reflexive, symmetric and transitive (the classes are the workplaces / localities)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q1(v)(c): “x is exactly 7 cm taller than y”. Properties?",
+      "definition": "<span style=\"color:#e5484d\">None</span>: x is not 7 cm taller than x; if x is 7 cm taller than y then y is not taller than x; and x is 14 cm taller than z, not 7 cm",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q1(v)(d),(e): “x is wife of y” and “x is father of y”?",
+      "definition": "(d) not reflexive, not symmetric (y is not the wife of x), but <span style=\"color:#3b82f6\">transitive (vacuously)</span>. (e) neither reflexive, symmetric nor transitive (father of father is grandfather)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q2: show R = {(a, b) : a ≤ b²} on R is neither reflexive, symmetric nor transitive.",
+      "definition": "Reflexive fails: ½ ≤ ¼ is false, so (½, ½) ∉ R. Symmetric fails: (1, 4) ∈ R (1 ≤ 16) but (4, 1) ∉ R (4 ≤ 1 is false). Transitive fails: (3, 2) ∈ R (3 ≤ 4) and (2, 1.5) ∈ R (2 ≤ 2.25) but (3, 1.5) ∉ R (3 ≤ 2.25 false)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q3: R = {(a, b) : b = a + 1} on {1, ..., 6}. Properties?",
+      "definition": "R = {(1,2), (2,3), (3,4), (4,5), (5,6)}. (1,1) ∉ R; (1,2) ∈ R but (2,1) ∉ R; (1,2), (2,3) ∈ R but (1,3) ∉ R. <span style=\"color:#f08c00\">None of the three</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q4: R = {(a, b) : a ≤ b} on R. Properties?",
+      "definition": "<span style=\"color:#22a35a\">Reflexive</span> (a ≤ a), <span style=\"color:#22a35a\">transitive</span> (a ≤ b ≤ c ⇒ a ≤ c), <span style=\"color:#e5484d\">not symmetric</span> (1 ≤ 2 but 2 ≰ 1). This is a partial order, not an equivalence relation",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q5: R = {(a, b) : a ≤ b³} on R. Properties?",
+      "definition": "Not reflexive: ½ ≰ (½)³ = ⅛. Not symmetric: (1, 2) ∈ R but 2 ≰ 1. Not transitive: (10, 3): 10 ≤ 27, (3, 1.5): 3 ≤ 3.375, but 10 ≤ (1.5)³ = 3.375 is false. <span style=\"color:#f08c00\">None of the three</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q6: R = {(1, 2), (2, 1)} on {1, 2, 3}. Show symmetric but neither reflexive nor transitive.",
+      "definition": "Symmetric: (1,2) and (2,1) both there. Not reflexive: (1,1) ∉ R. Not transitive: (1,2), (2,1) ∈ R but (1,1) ∉ R",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q7: R = {(x, y) : x and y books with the same number of pages}. Show equivalence.",
+      "definition": "Same page count: reflexive, symmetric (equality is symmetric), transitive (equality is transitive). <span style=\"color:#22a35a\">Equivalence ✓</span> (classes = books with a given page count)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q8: R = {(a, b) : |a − b| is even} on {1, 2, 3, 4, 5}. Equivalence? Classes?",
+      "definition": "Even difference ⇔ same parity, so equivalence. Classes <span style=\"color:#f08c00\">{1, 3, 5}</span> and <span style=\"color:#f08c00\">{2, 4}</span>: none related across (an odd and an even number differ by an odd number)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q9: A = {0, ..., 12}. R = {(a, b) : |a − b| is a multiple of 4}. Elements related to 1?",
+      "definition": "Equivalence (same remainder mod 4). Need |1 − b| ∈ {0, 4, 8, 12}: <span style=\"color:#f08c00\">{1, 5, 9}</span>. For R = {(a, b) : a = b} only <span style=\"color:#f08c00\">{1}</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q10: give an example of a relation on {1, 2, 3} that is (i) symmetric not reflexive nor transitive, (ii) transitive not reflexive nor symmetric.",
+      "definition": "(i) {(1,2), (2,1)}. (ii) {(1,2)}: no chain, so vacuously transitive; not symmetric, not reflexive",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q10 (iii)–(v): reflexive+symmetric not transitive; reflexive+transitive not symmetric; symmetric+transitive not reflexive.",
+      "definition": "(iii) {(1,1),(2,2),(3,3),(1,2),(2,1),(2,3),(3,2)}: (1,2),(2,3) but no (1,3). (iv) {(1,1),(2,2),(3,3),(1,2)}. (v) {(1,2),(2,1),(1,1),(2,2)}: 3 is not related to itself",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q11: R = {(P, Q) : OP = OQ} for points of the plane. Class of P ≠ (0, 0)?",
+      "definition": "Same distance from the origin is an equivalence relation. The class of P is all points at distance OP: <span style=\"color:#f08c00\">the circle through P with centre O</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q12: T₁ (3,4,5), T₂ (5,12,13), T₃ (6,8,10). Under “similar to”, which are related?",
+      "definition": "Similar triangles have proportional sides: 6:8:10 = 3:4:5, so <span style=\"color:#f08c00\">T₁ and T₃</span> are related; T₂ is not",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q13: R = {(P₁, P₂) : same number of sides} on polygons. Class of the 3-4-5 triangle?",
+      "definition": "<span style=\"color:#f08c00\">The set of all triangles</span> (all polygons with 3 sides)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q14: R = {(L₁, L₂) : L₁ ∥ L₂} on lines in the XY plane. Lines related to y = 2x + 4?",
+      "definition": "Parallel ⇔ same slope 2: <span style=\"color:#f08c00\">all lines y = 2x + c, c ∈ R</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q15: R = {(1,2), (2,2), (1,1), (4,4), (1,3), (3,3), (3,2)} on {1,2,3,4}. Choose: (A) reflexive, symmetric not transitive (B) reflexive, transitive not symmetric (C) symmetric, transitive not reflexive (D) equivalence",
+      "definition": "All four (a, a) present: reflexive. (1,2) ∈ R, (2,1) ∉ R: not symmetric. (1,3),(3,2) give (1,2) ✓: transitive. <span style=\"color:#22a35a\">(B)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.1 Q16: R = {(a, b) : a = b − 2, b > 6} on N. Which pair is in R? (A) (2,4) (B) (3,8) (C) (6,8) (D) (8,7)",
+      "definition": "Need b > 6 and a = b − 2: (6, 8): 8 > 6 and 6 = 8 − 2 ✓. (2,4) and (3,8) fail a = b − 2 or b > 6; (8,7) fails. <span style=\"color:#22a35a\">(C)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.1-exercise-1-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define one-one (injective).",
+      "definition": "<span style=\"color:#3b82f6\">f(x₁) = f(x₂) ⇒ x₁ = x₂</span> for all x₁, x₂. Distinct elements have distinct images; otherwise f is many-one",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define onto (surjective).",
+      "definition": "<span style=\"color:#3b82f6\">Every y ∈ Y is f(x) for some x ∈ X</span>, equivalently <span style=\"color:#3b82f6\">range = codomain</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define bijective.",
+      "definition": "One-one <span style=\"color:#3b82f6\">and</span> onto",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is “range = codomain” the same as onto?",
+      "definition": "Range = the set of values actually hit; codomain = the set we declared. If every codomain element is hit they are equal; if some element is missed, range ⊊ codomain",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Injective, surjective and bijective from arrow diagrams",
+      "definition": "One-one: no two arrows meet at one image; onto: every element of the codomain is hit. (a) one-one not onto; (b) neither; (c) onto not one-one; (d) bijective",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">One-one and onto · arrow diagrams</p><h2>Classify each function (left → right): one-one? onto?</h2><svg viewBox=\"0 0 300 288\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><g transform=\"translate(10,6)\"><ellipse class=\"ghost\" cx=\"22\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><ellipse class=\"ghost\" cx=\"98\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><circle class=\"d0s\" cx=\"22\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"18.0\" text-anchor=\"end\">1</text><circle class=\"d0s\" cx=\"22\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"54.0\" text-anchor=\"end\">2</text><circle class=\"d0s\" cx=\"22\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"90.0\" text-anchor=\"end\">3</text><circle class=\"d0s\" cx=\"98\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"18.0\">a</text><circle class=\"d0s\" cx=\"98\" cy=\"38.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"42.0\">b</text><circle class=\"d0s\" cx=\"98\" cy=\"62.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"66.0\">c</text><circle class=\"d0s\" cx=\"98\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"90.0\">d</text><line class=\"c0\" x1=\"26\" y1=\"14.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"50.0\" x2=\"93\" y2=\"38.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"86.0\" x2=\"93\" y2=\"62.0\" marker-end=\"url(#pk)\"></line></g><text class=\"lbi\" x=\"12\" y=\"14\">(a)</text><g transform=\"translate(160,6)\"><ellipse class=\"ghost\" cx=\"22\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><ellipse class=\"ghost\" cx=\"98\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><circle class=\"d0s\" cx=\"22\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"18.0\" text-anchor=\"end\">1</text><circle class=\"d0s\" cx=\"22\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"54.0\" text-anchor=\"end\">2</text><circle class=\"d0s\" cx=\"22\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"90.0\" text-anchor=\"end\">3</text><circle class=\"d0s\" cx=\"98\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"18.0\">a</text><circle class=\"d0s\" cx=\"98\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"54.0\">b</text><circle class=\"d0s\" cx=\"98\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"90.0\">c</text><line class=\"c0\" x1=\"26\" y1=\"14.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"50.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"86.0\" x2=\"93\" y2=\"50.0\" marker-end=\"url(#pk)\"></line></g><text class=\"lbi\" x=\"162\" y=\"14\">(b)</text><g transform=\"translate(10,138)\"><ellipse class=\"ghost\" cx=\"22\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><ellipse class=\"ghost\" cx=\"98\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><circle class=\"d0s\" cx=\"22\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"18.0\" text-anchor=\"end\">1</text><circle class=\"d0s\" cx=\"22\" cy=\"38.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"42.0\" text-anchor=\"end\">2</text><circle class=\"d0s\" cx=\"22\" cy=\"62.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"66.0\" text-anchor=\"end\">3</text><circle class=\"d0s\" cx=\"22\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"90.0\" text-anchor=\"end\">4</text><circle class=\"d0s\" cx=\"98\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"18.0\">a</text><circle class=\"d0s\" cx=\"98\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"54.0\">b</text><circle class=\"d0s\" cx=\"98\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"90.0\">c</text><line class=\"c0\" x1=\"26\" y1=\"14.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"38.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"62.0\" x2=\"93\" y2=\"50.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"86.0\" x2=\"93\" y2=\"86.0\" marker-end=\"url(#pk)\"></line></g><text class=\"lbi\" x=\"12\" y=\"146\">(c)</text><g transform=\"translate(160,138)\"><ellipse class=\"ghost\" cx=\"22\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><ellipse class=\"ghost\" cx=\"98\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><circle class=\"d0s\" cx=\"22\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"18.0\" text-anchor=\"end\">1</text><circle class=\"d0s\" cx=\"22\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"54.0\" text-anchor=\"end\">2</text><circle class=\"d0s\" cx=\"22\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"90.0\" text-anchor=\"end\">3</text><circle class=\"d0s\" cx=\"98\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"18.0\">a</text><circle class=\"d0s\" cx=\"98\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"54.0\">b</text><circle class=\"d0s\" cx=\"98\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"90.0\">c</text><line class=\"c0\" x1=\"26\" y1=\"14.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"50.0\" x2=\"93\" y2=\"50.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"86.0\" x2=\"93\" y2=\"86.0\" marker-end=\"url(#pk)\"></line></g><text class=\"lbi\" x=\"162\" y=\"146\">(d)</text></svg><p class=\"hint\">Look for shared targets and unused targets.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">One-one and onto · arrow diagrams</p><h2>Classify each function (left → right): one-one? onto?</h2><svg viewBox=\"0 0 300 288\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><g transform=\"translate(10,6)\"><ellipse class=\"ghost\" cx=\"22\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><ellipse class=\"ghost\" cx=\"98\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><circle class=\"d0s\" cx=\"22\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"18.0\" text-anchor=\"end\">1</text><circle class=\"d0s\" cx=\"22\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"54.0\" text-anchor=\"end\">2</text><circle class=\"d0s\" cx=\"22\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"90.0\" text-anchor=\"end\">3</text><circle class=\"d0s\" cx=\"98\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"18.0\">a</text><circle class=\"d0s\" cx=\"98\" cy=\"38.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"42.0\">b</text><circle class=\"d0s\" cx=\"98\" cy=\"62.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"66.0\">c</text><circle class=\"d0s\" cx=\"98\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"90.0\">d</text><line class=\"c0\" x1=\"26\" y1=\"14.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"50.0\" x2=\"93\" y2=\"38.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"86.0\" x2=\"93\" y2=\"62.0\" marker-end=\"url(#pk)\"></line></g><text class=\"lbi\" x=\"12\" y=\"14\">(a)</text><g transform=\"translate(160,6)\"><ellipse class=\"ghost\" cx=\"22\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><ellipse class=\"ghost\" cx=\"98\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><circle class=\"d0s\" cx=\"22\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"18.0\" text-anchor=\"end\">1</text><circle class=\"d0s\" cx=\"22\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"54.0\" text-anchor=\"end\">2</text><circle class=\"d0s\" cx=\"22\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"90.0\" text-anchor=\"end\">3</text><circle class=\"d0s\" cx=\"98\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"18.0\">a</text><circle class=\"d0s\" cx=\"98\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"54.0\">b</text><circle class=\"d0s\" cx=\"98\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"90.0\">c</text><line class=\"c0\" x1=\"26\" y1=\"14.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"50.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"86.0\" x2=\"93\" y2=\"50.0\" marker-end=\"url(#pk)\"></line></g><text class=\"lbi\" x=\"162\" y=\"14\">(b)</text><g transform=\"translate(10,138)\"><ellipse class=\"ghost\" cx=\"22\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><ellipse class=\"ghost\" cx=\"98\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><circle class=\"d0s\" cx=\"22\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"18.0\" text-anchor=\"end\">1</text><circle class=\"d0s\" cx=\"22\" cy=\"38.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"42.0\" text-anchor=\"end\">2</text><circle class=\"d0s\" cx=\"22\" cy=\"62.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"66.0\" text-anchor=\"end\">3</text><circle class=\"d0s\" cx=\"22\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"90.0\" text-anchor=\"end\">4</text><circle class=\"d0s\" cx=\"98\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"18.0\">a</text><circle class=\"d0s\" cx=\"98\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"54.0\">b</text><circle class=\"d0s\" cx=\"98\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"90.0\">c</text><line class=\"c0\" x1=\"26\" y1=\"14.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"38.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"62.0\" x2=\"93\" y2=\"50.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"86.0\" x2=\"93\" y2=\"86.0\" marker-end=\"url(#pk)\"></line></g><text class=\"lbi\" x=\"12\" y=\"146\">(c)</text><g transform=\"translate(160,138)\"><ellipse class=\"ghost\" cx=\"22\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><ellipse class=\"ghost\" cx=\"98\" cy=\"50\" rx=\"16\" ry=\"46\"></ellipse><circle class=\"d0s\" cx=\"22\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"18.0\" text-anchor=\"end\">1</text><circle class=\"d0s\" cx=\"22\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"54.0\" text-anchor=\"end\">2</text><circle class=\"d0s\" cx=\"22\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"6\" y=\"90.0\" text-anchor=\"end\">3</text><circle class=\"d0s\" cx=\"98\" cy=\"14.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"18.0\">a</text><circle class=\"d0s\" cx=\"98\" cy=\"50.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"54.0\">b</text><circle class=\"d0s\" cx=\"98\" cy=\"86.0\" r=\"3.5\"></circle><text class=\"sm\" x=\"114\" y=\"90.0\">c</text><line class=\"c0\" x1=\"26\" y1=\"14.0\" x2=\"93\" y2=\"14.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"50.0\" x2=\"93\" y2=\"50.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"26\" y1=\"86.0\" x2=\"93\" y2=\"86.0\" marker-end=\"url(#pk)\"></line></g><text class=\"lbi\" x=\"162\" y=\"146\">(d)</text><circle class=\"d2s fx d1\" cx=\"108\" cy=\"92.0\" r=\"5.5\"></circle><text class=\"t1 fx d1\" x=\"70\" y=\"122\" text-anchor=\"middle\">One-one, not onto</text><text class=\"sm fx d1\" x=\"70\" y=\"134\" text-anchor=\"middle\">d unused</text><circle class=\"d4s fx d2\" cx=\"258\" cy=\"20.0\" r=\"5.5\"></circle><circle class=\"d2s fx d2\" cx=\"258\" cy=\"92.0\" r=\"5.5\"></circle><text class=\"t1 fx d2\" x=\"220\" y=\"122\" text-anchor=\"middle\">Many-one, not onto</text><text class=\"sm fx d2\" x=\"220\" y=\"134\" text-anchor=\"middle\">a hit twice, c unused</text><circle class=\"d4s fx d3\" cx=\"108\" cy=\"152.0\" r=\"5.5\"></circle><text class=\"t1 fx d3\" x=\"70\" y=\"254\" text-anchor=\"middle\">Onto, not one-one</text><text class=\"sm fx d3\" x=\"70\" y=\"266\" text-anchor=\"middle\">a hit twice, all used</text><text class=\"t1 fx d4\" x=\"220\" y=\"254\" text-anchor=\"middle\">One-one and onto</text><text class=\"sm fx d4\" x=\"220\" y=\"266\" text-anchor=\"middle\">a bijection</text></svg><div class=\"eq fx d5\"><p><b>One-one (injective):</b> no two arrows land on the same point (no orange dot). <b>Onto (surjective):</b> every right-hand point is hit (no red dot).</p><p><b>Bijective</b> = both: a perfect pairing. Onto ⇔ range = codomain.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you prove f is one-one? How do you prove it is onto?",
+      "definition": "<span style=\"color:#3b82f6\">One-one</span>: assume f(x₁) = f(x₂) and derive x₁ = x₂. <span style=\"color:#3b82f6\">Onto</span>: take any y in the codomain, solve y = f(x) for x, and check that x lies in the domain",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you disprove one-one? Disprove onto?",
+      "definition": "<span style=\"color:#3b82f6\">Not one-one</span>: exhibit two different inputs with the same output (f(−1) = f(1)). <span style=\"color:#3b82f6\">Not onto</span>: exhibit one codomain element with no input (−2 = x² has no real x)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Horizontal line test for one-one and onto",
+      "definition": "Horizontal line test: one-one iff each horizontal line meets the graph at most once; onto R iff each meets it at least once. x² is neither; x³ is bijective",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Horizontal line test</p><h2>f : R → R. Which graph is one-one? Which is onto?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><g transform=\"translate(0,4) scale(.5)\"><line class=\"ax\" x1=\"16.0\" y1=\"137.0\" x2=\"290.0\" y2=\"137.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"153.0\" y1=\"174.0\" x2=\"153.0\" y2=\"10.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"48.0,14.9 49.3,17.9 50.6,20.9 51.9,23.8 53.2,26.8 54.5,29.6 55.8,32.5 57.2,35.3 58.5,38.1 59.8,40.8 61.1,43.5 62.4,46.1 63.7,48.8 65.0,51.3 66.3,53.9 67.7,56.4 69.0,58.8 70.3,61.3 71.6,63.7 72.9,66.0 74.2,68.3 75.5,70.6 76.9,72.8 78.2,75.0 79.5,77.2 80.8,79.3 82.1,81.4 83.4,83.4 84.7,85.4 86.0,87.4 87.4,89.3 88.7,91.2 90.0,93.1 91.3,94.9 92.6,96.6 93.9,98.4 95.2,100.1 96.5,101.7 97.9,103.4 99.2,104.9 100.5,106.5 101.8,108.0 103.1,109.5 104.4,110.9 105.7,112.3 107.0,113.7 108.4,115.0 109.7,116.3 111.0,117.5 112.3,118.7 113.6,119.9 114.9,121.0 116.2,122.1 117.6,123.1 118.9,124.1 120.2,125.1 121.5,126.0 122.8,126.9 124.1,127.8 125.4,128.6 126.7,129.4 128.1,130.1 129.4,130.9 130.7,131.5 132.0,132.2 133.3,132.7 134.6,133.3 135.9,133.8 137.2,134.3 138.6,134.7 139.9,135.1 141.2,135.5 142.5,135.8 143.8,136.1 145.1,136.4 146.4,136.6 147.7,136.7 149.1,136.9 150.4,137.0 151.7,137.0 153.0,137.0 154.3,137.0 155.6,137.0 156.9,136.9 158.3,136.7 159.6,136.6 160.9,136.4 162.2,136.1 163.5,135.8 164.8,135.5 166.1,135.1 167.4,134.7 168.8,134.3 170.1,133.8 171.4,133.3 172.7,132.7 174.0,132.2 175.3,131.5 176.6,130.9 177.9,130.1 179.3,129.4 180.6,128.6 181.9,127.8 183.2,126.9 184.5,126.0 185.8,125.1 187.1,124.1 188.4,123.1 189.8,122.1 191.1,121.0 192.4,119.9 193.7,118.7 195.0,117.5 196.3,116.3 197.6,115.0 199.0,113.7 200.3,112.3 201.6,110.9 202.9,109.5 204.2,108.0 205.5,106.5 206.8,104.9 208.1,103.4 209.5,101.7 210.8,100.1 212.1,98.4 213.4,96.6 214.7,94.9 216.0,93.1 217.3,91.2 218.6,89.3 220.0,87.4 221.3,85.4 222.6,83.4 223.9,81.4 225.2,79.3 226.5,77.2 227.8,75.0 229.1,72.8 230.5,70.6 231.8,68.3 233.1,66.0 234.4,63.7 235.7,61.3 237.0,58.8 238.3,56.4 239.7,53.9 241.0,51.3 242.3,48.8 243.6,46.1 244.9,43.5 246.2,40.8 247.5,38.1 248.8,35.3 250.2,32.5 251.5,29.6 252.8,26.8 254.1,23.8 255.4,20.9 256.7,17.9 258.0,14.9\"></polyline></g><g transform=\"translate(150,4) scale(.5)\"><line class=\"ax\" x1=\"16.0\" y1=\"92.0\" x2=\"290.0\" y2=\"92.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"153.0\" y1=\"174.0\" x2=\"153.0\" y2=\"10.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"52.5,173.3 53.8,170.3 55.0,167.3 56.3,164.5 57.6,161.7 58.8,159.0 60.1,156.3 61.3,153.8 62.6,151.3 63.8,148.8 65.1,146.5 66.3,144.2 67.6,141.9 68.9,139.7 70.1,137.6 71.4,135.6 72.6,133.6 73.9,131.7 75.1,129.8 76.4,128.0 77.7,126.3 78.9,124.6 80.2,123.0 81.4,121.4 82.7,119.9 83.9,118.4 85.2,117.0 86.4,115.6 87.7,114.3 89.0,113.1 90.2,111.8 91.5,110.7 92.7,109.6 94.0,108.5 95.2,107.5 96.5,106.5 97.7,105.5 99.0,104.6 100.3,103.8 101.5,102.9 102.8,102.2 104.0,101.4 105.3,100.7 106.5,100.0 107.8,99.4 109.0,98.8 110.3,98.2 111.6,97.7 112.8,97.2 114.1,96.7 115.3,96.3 116.6,95.9 117.8,95.5 119.1,95.1 120.3,94.8 121.6,94.5 122.9,94.2 124.1,93.9 125.4,93.7 126.6,93.5 127.9,93.3 129.1,93.1 130.4,92.9 131.7,92.8 132.9,92.7 134.2,92.5 135.4,92.4 136.7,92.3 137.9,92.3 139.2,92.2 140.4,92.2 141.7,92.1 143.0,92.1 144.2,92.1 145.5,92.0 146.7,92.0 148.0,92.0 149.2,92.0 150.5,92.0 151.7,92.0 153.0,92.0 154.3,92.0 155.5,92.0 156.8,92.0 158.0,92.0 159.3,92.0 160.5,92.0 161.8,91.9 163.0,91.9 164.3,91.9 165.6,91.8 166.8,91.8 168.1,91.7 169.3,91.7 170.6,91.6 171.8,91.5 173.1,91.3 174.3,91.2 175.6,91.1 176.9,90.9 178.1,90.7 179.4,90.5 180.6,90.3 181.9,90.1 183.1,89.8 184.4,89.5 185.7,89.2 186.9,88.9 188.2,88.5 189.4,88.1 190.7,87.7 191.9,87.3 193.2,86.8 194.4,86.3 195.7,85.8 197.0,85.2 198.2,84.6 199.5,84.0 200.7,83.3 202.0,82.6 203.2,81.8 204.5,81.1 205.7,80.2 207.0,79.4 208.3,78.5 209.5,77.5 210.8,76.5 212.0,75.5 213.3,74.4 214.5,73.3 215.8,72.2 217.0,70.9 218.3,69.7 219.6,68.4 220.8,67.0 222.1,65.6 223.3,64.1 224.6,62.6 225.8,61.0 227.1,59.4 228.3,57.7 229.6,56.0 230.9,54.2 232.1,52.3 233.4,50.4 234.6,48.4 235.9,46.4 237.1,44.3 238.4,42.1 239.7,39.8 240.9,37.5 242.2,35.2 243.4,32.7 244.7,30.2 245.9,27.7 247.2,25.0 248.4,22.3 249.7,19.5 251.0,16.7 252.2,13.7 253.5,10.7\"></polyline></g><text class=\"lbl\" x=\"75\" y=\"122\" text-anchor=\"middle\">(a) f(x) = x²</text><text class=\"lbl\" x=\"225\" y=\"122\" text-anchor=\"middle\">(b) f(x) = x³</text><g transform=\"translate(0,4) scale(.5)\"><line class=\"c2 sw\" x1=\"16.0\" y1=\"86.2\" x2=\"290.0\" y2=\"86.2\"></line></g><g transform=\"translate(150,4) scale(.5)\"><line class=\"c2 sw\" x1=\"16.0\" y1=\"59.2\" x2=\"290.0\" y2=\"59.2\"></line></g></svg><p class=\"hint\">Slide a horizontal line up and down.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Horizontal line test</p><h2>f : R → R. Which graph is one-one? Which is onto?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><g transform=\"translate(0,4) scale(.5)\"><line class=\"ax\" x1=\"16.0\" y1=\"137.0\" x2=\"290.0\" y2=\"137.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"153.0\" y1=\"174.0\" x2=\"153.0\" y2=\"10.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"48.0,14.9 49.3,17.9 50.6,20.9 51.9,23.8 53.2,26.8 54.5,29.6 55.8,32.5 57.2,35.3 58.5,38.1 59.8,40.8 61.1,43.5 62.4,46.1 63.7,48.8 65.0,51.3 66.3,53.9 67.7,56.4 69.0,58.8 70.3,61.3 71.6,63.7 72.9,66.0 74.2,68.3 75.5,70.6 76.9,72.8 78.2,75.0 79.5,77.2 80.8,79.3 82.1,81.4 83.4,83.4 84.7,85.4 86.0,87.4 87.4,89.3 88.7,91.2 90.0,93.1 91.3,94.9 92.6,96.6 93.9,98.4 95.2,100.1 96.5,101.7 97.9,103.4 99.2,104.9 100.5,106.5 101.8,108.0 103.1,109.5 104.4,110.9 105.7,112.3 107.0,113.7 108.4,115.0 109.7,116.3 111.0,117.5 112.3,118.7 113.6,119.9 114.9,121.0 116.2,122.1 117.6,123.1 118.9,124.1 120.2,125.1 121.5,126.0 122.8,126.9 124.1,127.8 125.4,128.6 126.7,129.4 128.1,130.1 129.4,130.9 130.7,131.5 132.0,132.2 133.3,132.7 134.6,133.3 135.9,133.8 137.2,134.3 138.6,134.7 139.9,135.1 141.2,135.5 142.5,135.8 143.8,136.1 145.1,136.4 146.4,136.6 147.7,136.7 149.1,136.9 150.4,137.0 151.7,137.0 153.0,137.0 154.3,137.0 155.6,137.0 156.9,136.9 158.3,136.7 159.6,136.6 160.9,136.4 162.2,136.1 163.5,135.8 164.8,135.5 166.1,135.1 167.4,134.7 168.8,134.3 170.1,133.8 171.4,133.3 172.7,132.7 174.0,132.2 175.3,131.5 176.6,130.9 177.9,130.1 179.3,129.4 180.6,128.6 181.9,127.8 183.2,126.9 184.5,126.0 185.8,125.1 187.1,124.1 188.4,123.1 189.8,122.1 191.1,121.0 192.4,119.9 193.7,118.7 195.0,117.5 196.3,116.3 197.6,115.0 199.0,113.7 200.3,112.3 201.6,110.9 202.9,109.5 204.2,108.0 205.5,106.5 206.8,104.9 208.1,103.4 209.5,101.7 210.8,100.1 212.1,98.4 213.4,96.6 214.7,94.9 216.0,93.1 217.3,91.2 218.6,89.3 220.0,87.4 221.3,85.4 222.6,83.4 223.9,81.4 225.2,79.3 226.5,77.2 227.8,75.0 229.1,72.8 230.5,70.6 231.8,68.3 233.1,66.0 234.4,63.7 235.7,61.3 237.0,58.8 238.3,56.4 239.7,53.9 241.0,51.3 242.3,48.8 243.6,46.1 244.9,43.5 246.2,40.8 247.5,38.1 248.8,35.3 250.2,32.5 251.5,29.6 252.8,26.8 254.1,23.8 255.4,20.9 256.7,17.9 258.0,14.9\"></polyline></g><g transform=\"translate(150,4) scale(.5)\"><line class=\"ax\" x1=\"16.0\" y1=\"92.0\" x2=\"290.0\" y2=\"92.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"153.0\" y1=\"174.0\" x2=\"153.0\" y2=\"10.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"52.5,173.3 53.8,170.3 55.0,167.3 56.3,164.5 57.6,161.7 58.8,159.0 60.1,156.3 61.3,153.8 62.6,151.3 63.8,148.8 65.1,146.5 66.3,144.2 67.6,141.9 68.9,139.7 70.1,137.6 71.4,135.6 72.6,133.6 73.9,131.7 75.1,129.8 76.4,128.0 77.7,126.3 78.9,124.6 80.2,123.0 81.4,121.4 82.7,119.9 83.9,118.4 85.2,117.0 86.4,115.6 87.7,114.3 89.0,113.1 90.2,111.8 91.5,110.7 92.7,109.6 94.0,108.5 95.2,107.5 96.5,106.5 97.7,105.5 99.0,104.6 100.3,103.8 101.5,102.9 102.8,102.2 104.0,101.4 105.3,100.7 106.5,100.0 107.8,99.4 109.0,98.8 110.3,98.2 111.6,97.7 112.8,97.2 114.1,96.7 115.3,96.3 116.6,95.9 117.8,95.5 119.1,95.1 120.3,94.8 121.6,94.5 122.9,94.2 124.1,93.9 125.4,93.7 126.6,93.5 127.9,93.3 129.1,93.1 130.4,92.9 131.7,92.8 132.9,92.7 134.2,92.5 135.4,92.4 136.7,92.3 137.9,92.3 139.2,92.2 140.4,92.2 141.7,92.1 143.0,92.1 144.2,92.1 145.5,92.0 146.7,92.0 148.0,92.0 149.2,92.0 150.5,92.0 151.7,92.0 153.0,92.0 154.3,92.0 155.5,92.0 156.8,92.0 158.0,92.0 159.3,92.0 160.5,92.0 161.8,91.9 163.0,91.9 164.3,91.9 165.6,91.8 166.8,91.8 168.1,91.7 169.3,91.7 170.6,91.6 171.8,91.5 173.1,91.3 174.3,91.2 175.6,91.1 176.9,90.9 178.1,90.7 179.4,90.5 180.6,90.3 181.9,90.1 183.1,89.8 184.4,89.5 185.7,89.2 186.9,88.9 188.2,88.5 189.4,88.1 190.7,87.7 191.9,87.3 193.2,86.8 194.4,86.3 195.7,85.8 197.0,85.2 198.2,84.6 199.5,84.0 200.7,83.3 202.0,82.6 203.2,81.8 204.5,81.1 205.7,80.2 207.0,79.4 208.3,78.5 209.5,77.5 210.8,76.5 212.0,75.5 213.3,74.4 214.5,73.3 215.8,72.2 217.0,70.9 218.3,69.7 219.6,68.4 220.8,67.0 222.1,65.6 223.3,64.1 224.6,62.6 225.8,61.0 227.1,59.4 228.3,57.7 229.6,56.0 230.9,54.2 232.1,52.3 233.4,50.4 234.6,48.4 235.9,46.4 237.1,44.3 238.4,42.1 239.7,39.8 240.9,37.5 242.2,35.2 243.4,32.7 244.7,30.2 245.9,27.7 247.2,25.0 248.4,22.3 249.7,19.5 251.0,16.7 252.2,13.7 253.5,10.7\"></polyline></g><text class=\"lbl\" x=\"75\" y=\"122\" text-anchor=\"middle\">(a) f(x) = x²</text><text class=\"lbl\" x=\"225\" y=\"122\" text-anchor=\"middle\">(b) f(x) = x³</text><text class=\"t2 fx d2\" x=\"75\" y=\"140\" text-anchor=\"middle\">✗ not one-one</text><text class=\"sm fx d2\" x=\"75\" y=\"154\" text-anchor=\"middle\">a horizontal line hits twice</text><text class=\"t3 fx d3\" x=\"225\" y=\"140\" text-anchor=\"middle\">✓ one-one</text><text class=\"sm fx d3\" x=\"225\" y=\"154\" text-anchor=\"middle\">every horizontal line hits once</text><text class=\"sm fx d4\" x=\"150\" y=\"176\" text-anchor=\"middle\">(x² also misses y &lt; 0, so it is not onto R)</text><g transform=\"translate(0,4) scale(.5)\"><circle class=\"d2s fx d3\" cx=\"220.7\" cy=\"86.2\" r=\"6\"></circle><circle class=\"d2s fx d3\" cx=\"85.3\" cy=\"86.2\" r=\"6\"></circle></g><g transform=\"translate(150,4) scale(.5)\"><circle class=\"d3s fx d3\" cx=\"227.2\" cy=\"59.2\" r=\"6\"></circle></g></svg><div class=\"eq fx d5\"><p><b>Horizontal line test:</b> f is <b>one-one</b> iff every horizontal line cuts the graph <b>at most once</b>; f is <b>onto R</b> iff every horizontal line cuts it <b>at least once</b>.</p><p>x² fails both (twice for y &gt; 0, never for y &lt; 0). x³ passes both: a bijection R → R.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .sw{animation:swh 3.6s ease-in-out .3s infinite alternate both}@keyframes swh{from{transform:translateY(-44px)}to{transform:translateY(44px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .sw{animation:swh 3.6s ease-in-out .3s infinite alternate both}@keyframes swh{from{transform:translateY(-44px)}to{transform:translateY(44px)}}"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8: f : N → N, f(x) = 2x. One-one? Onto?",
+      "definition": "<span style=\"color:#22a35a\">One-one</span> (2x₁ = 2x₂ ⇒ x₁ = x₂), <span style=\"color:#e5484d\">not onto</span>: 1 = 2x has no natural solution (odd numbers are missed)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9: f : R → R, f(x) = 2x. One-one and onto?",
+      "definition": "<span style=\"color:#22a35a\">Both</span>. Given y ∈ R, x = y/2 ∈ R and f(y/2) = y. <span style=\"color:#3b82f6\">Same rule, bigger domain and codomain, now onto</span> (compare Example 8)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: does a function’s rule alone decide one-one/onto?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the <span style=\"color:#3b82f6\">domain and codomain</span> matter. f(x) = 2x is not onto N → N but is onto R → R; x² is not one-one on R but is one-one on [0, ∞)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10: f : N → N, f(1) = f(2) = 1, f(x) = x − 1 for x > 2. One-one? Onto?",
+      "definition": "<span style=\"color:#e5484d\">Not one-one</span> (f(1) = f(2) = 1). <span style=\"color:#22a35a\">Onto</span>: for y ≠ 1 take x = y + 1 (> 2), f(y + 1) = y; and f(1) = 1",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 11: f : R → R, f(x) = x². One-one? Onto?",
+      "definition": "<span style=\"color:#e5484d\">Neither</span>: f(−1) = f(1) = 1 and −2 is not a square",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12: f(x) = x + 1 (x odd), x − 1 (x even), on N. Bijective?",
+      "definition": "<span style=\"color:#22a35a\">Yes</span>. It swaps 1 ↔ 2, 3 ↔ 4, 5 ↔ 6, …: an involution, so f(f(x)) = x and f is its own inverse. If f(x₁) = f(x₂) with x₁ odd, x₂ even then x₂ − x₁ = 2, impossible (odd and even differ by an odd number)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7: A = 50 students, f : A → N, f(x) = roll number. One-one? Onto?",
+      "definition": "<span style=\"color:#22a35a\">One-one</span> (roll numbers are distinct) but <span style=\"color:#e5484d\">not onto N</span> (51 is no student’s roll number)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Examples 13 and 14: f : {1, 2, 3} → {1, 2, 3}. Onto ⇒ one-one? One-one ⇒ onto?",
+      "definition": "<span style=\"color:#22a35a\">Both true</span> for any <span style=\"color:#3b82f6\">finite set X</span> and f : X → X. Not true for infinite sets: f(x) = 2x on N is one-one not onto; Example 10 is onto not one-one. This is the difference between finite and infinite",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Pigeonhole view: A and B finite, f : A → B one-one. What do you know about n(A), n(B)?",
+      "definition": "<span style=\"color:#3b82f6\">n(A) ≤ n(B)</span>. If f is onto then n(A) ≥ n(B); if bijective then n(A) = n(B)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-types-of-functions"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q1: f : R* → R*, f(x) = 1/x. One-one and onto? What if the domain is N (codomain R* as before)?",
+      "definition": "1/x₁ = 1/x₂ ⇒ x₁ = x₂; and y ∈ R* has source 1/y ∈ R*: bijective. With domain N: <span style=\"color:#e5484d\">still one-one but not onto</span> (e.g. 2/3 has 3/2 ∉ N as a source)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q2(i),(ii): f(x) = x² on N → N and Z → Z.",
+      "definition": "N → N: <span style=\"color:#f08c00\">one-one, not onto</span> (2 is not a perfect square). Z → Z: <span style=\"color:#f08c00\">neither</span> (f(−1) = f(1), and −1, 2 are not squares)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q2(iii)–(v): f(x) = x² on R → R; x³ on N → N; x³ on Z → Z.",
+      "definition": "x² on R: <span style=\"color:#f08c00\">neither</span>. x³ on N: <span style=\"color:#f08c00\">one-one, not onto</span> (2 is not a cube). x³ on Z: <span style=\"color:#f08c00\">one-one, not onto</span> (2 is not a cube of an integer)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q3: greatest integer function f(x) = [x] on R → R is neither one-one nor onto. Why?",
+      "definition": "f(1.2) = f(1.5) = 1: not one-one. Range = Z ⊊ R (e.g. 0.5 has no source): not onto",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q4: modulus f(x) = |x| on R → R. Why neither?",
+      "definition": "f(−2) = f(2) = 2: not one-one. Range = [0, ∞), so −1 is not attained: not onto",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q5: signum function on R → R. Why neither?",
+      "definition": "Values are only −1, 0, 1. f(2) = f(3) = 1: not one-one; range {−1, 0, 1} ≠ R: not onto",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q6: A = {1,2,3}, B = {4,5,6,7}, f = {(1,4), (2,5), (3,6)}. Show one-one.",
+      "definition": "Distinct inputs 1, 2, 3 go to distinct outputs 4, 5, 6: <span style=\"color:#22a35a\">one-one</span> (not onto: 7 is missed)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q7(i): f : R → R, f(x) = 3 − 4x. One-one? Onto?",
+      "definition": "f(x₁) = f(x₂) ⇒ −4x₁ = −4x₂ ⇒ x₁ = x₂. For y take x = (3 − y)/4. <span style=\"color:#22a35a\">Bijective</span> (any non-constant linear function R → R is)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q7(ii): f : R → R, f(x) = 1 + x². One-one? Onto?",
+      "definition": "<span style=\"color:#e5484d\">Neither</span>: f(−1) = f(1) = 2; range [1, ∞) so 0 has no source",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q8: f : A × B → B × A, f(a, b) = (b, a). Bijective?",
+      "definition": "If (b₁, a₁) = (b₂, a₂) then a₁ = a₂, b₁ = b₂: one-one. Any (b, a) ∈ B × A is f(a, b): onto. <span style=\"color:#22a35a\">Bijective</span> (it is its own “swap” inverse)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q9: f : N → N, f(n) = (n + 1)/2 for n odd, n/2 for n even. Bijective?",
+      "definition": "f(1) = 1 and f(2) = 1: <span style=\"color:#e5484d\">not one-one</span>, so not bijective (it is onto: every m has source 2m). Answer <span style=\"color:#f08c00\">No</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q10: f : R − {3} → R − {1}, f(x) = (x − 2)/(x − 3). One-one and onto?",
+      "definition": "f(x₁) = f(x₂) ⇒ (x₁ − 2)(x₂ − 3) = (x₂ − 2)(x₁ − 3) ⇒ x₁ = x₂. Solving y = (x − 2)/(x − 3): x = (3y − 2)/(y − 1), defined for y ≠ 1. <span style=\"color:#22a35a\">Yes, bijective</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q11: f : R → R, f(x) = x⁴. (A) one-one onto (B) many-one onto (C) one-one not onto (D) neither",
+      "definition": "f(−1) = f(1): not one-one. Range [0, ∞), −1 missed: not onto. <span style=\"color:#22a35a\">(D)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 1.2 Q12: f : R → R, f(x) = 3x. (A) one-one onto (B) many-one onto (C) one-one not onto (D) neither",
+      "definition": "Linear with non-zero slope: <span style=\"color:#22a35a\">(A) one-one and onto</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.2-exercise-1-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the composition gof.",
+      "definition": "f : A → B, g : B → C. Then <span style=\"color:#3b82f6\">gof : A → C, gof(x) = g(f(x))</span>: f acts first, g second. Needs range of f ⊂ domain of g",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "gof follows f then g",
+      "definition": "gof(x) = g(f(x)) apply f first; Example 15: gof(2)=7, gof(3)=7, gof(4)=11, gof(5)=11 (15 is not hit)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Composition of functions</p><h2>f : {2,3,4,5} → {3,4,5,9} and g : {3,4,5,9} → {7,11,15} are given by the arrows. Find gof.</h2><svg viewBox=\"0 0 300 246\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f0\" cx=\"30\" cy=\"30\" r=\"11\"></circle><text class=\"lbl\" x=\"30\" y=\"34\" text-anchor=\"middle\">2</text><circle class=\"f0\" cx=\"30\" cy=\"80\" r=\"11\"></circle><text class=\"lbl\" x=\"30\" y=\"84\" text-anchor=\"middle\">3</text><circle class=\"f0\" cx=\"30\" cy=\"130\" r=\"11\"></circle><text class=\"lbl\" x=\"30\" y=\"134\" text-anchor=\"middle\">4</text><circle class=\"f0\" cx=\"30\" cy=\"180\" r=\"11\"></circle><text class=\"lbl\" x=\"30\" y=\"184\" text-anchor=\"middle\">5</text><circle class=\"f0\" cx=\"150\" cy=\"30\" r=\"11\"></circle><text class=\"lbl\" x=\"150\" y=\"34\" text-anchor=\"middle\">3</text><circle class=\"f0\" cx=\"150\" cy=\"80\" r=\"11\"></circle><text class=\"lbl\" x=\"150\" y=\"84\" text-anchor=\"middle\">4</text><circle class=\"f0\" cx=\"150\" cy=\"130\" r=\"11\"></circle><text class=\"lbl\" x=\"150\" y=\"134\" text-anchor=\"middle\">5</text><circle class=\"f0\" cx=\"150\" cy=\"180\" r=\"11\"></circle><text class=\"lbl\" x=\"150\" y=\"184\" text-anchor=\"middle\">9</text><circle class=\"f0\" cx=\"270\" cy=\"55\" r=\"11\"></circle><text class=\"lbl\" x=\"270\" y=\"59\" text-anchor=\"middle\">7</text><circle class=\"f0\" cx=\"270\" cy=\"105\" r=\"11\"></circle><text class=\"lbl\" x=\"270\" y=\"109\" text-anchor=\"middle\">11</text><circle class=\"f0\" cx=\"270\" cy=\"155\" r=\"11\"></circle><text class=\"lbl\" x=\"270\" y=\"159\" text-anchor=\"middle\">15</text><line class=\"c1 \" x1=\"43.0\" y1=\"30.0\" x2=\"136.0\" y2=\"30.0\" marker-end=\"url(#pb)\"></line><line class=\"c1 \" x1=\"43.0\" y1=\"80.0\" x2=\"136.0\" y2=\"80.0\" marker-end=\"url(#pb)\"></line><line class=\"c1 \" x1=\"43.0\" y1=\"130.0\" x2=\"136.0\" y2=\"130.0\" marker-end=\"url(#pb)\"></line><line class=\"c1 \" x1=\"42.0\" y1=\"175.0\" x2=\"137.1\" y2=\"135.4\" marker-end=\"url(#pb)\"></line><line class=\"c2 \" x1=\"162.7\" y1=\"32.7\" x2=\"256.3\" y2=\"52.1\" marker-end=\"url(#pr)\"></line><line class=\"c2 \" x1=\"162.7\" y1=\"77.3\" x2=\"256.3\" y2=\"57.9\" marker-end=\"url(#pr)\"></line><line class=\"c2 \" x1=\"162.7\" y1=\"127.3\" x2=\"256.3\" y2=\"107.9\" marker-end=\"url(#pr)\"></line><line class=\"c2 \" x1=\"161.0\" y1=\"173.1\" x2=\"258.1\" y2=\"112.4\" marker-end=\"url(#pr)\"></line><text class=\"t1\" x=\"90\" y=\"14\" text-anchor=\"middle\">f</text><text class=\"t2\" x=\"210\" y=\"14\" text-anchor=\"middle\">g</text><text class=\"sm\" x=\"30\" y=\"14\" text-anchor=\"middle\">A</text><text class=\"sm\" x=\"150\" y=\"14\" text-anchor=\"middle\">B</text><text class=\"sm\" x=\"270\" y=\"14\" text-anchor=\"middle\">C</text></svg><p class=\"hint\">Follow each element through both arrow sets.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Composition of functions</p><h2>f : {2,3,4,5} → {3,4,5,9} and g : {3,4,5,9} → {7,11,15} are given by the arrows. Find gof.</h2><svg viewBox=\"0 0 300 246\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f0\" cx=\"30\" cy=\"30\" r=\"11\"></circle><text class=\"lbl\" x=\"30\" y=\"34\" text-anchor=\"middle\">2</text><circle class=\"f0\" cx=\"30\" cy=\"80\" r=\"11\"></circle><text class=\"lbl\" x=\"30\" y=\"84\" text-anchor=\"middle\">3</text><circle class=\"f0\" cx=\"30\" cy=\"130\" r=\"11\"></circle><text class=\"lbl\" x=\"30\" y=\"134\" text-anchor=\"middle\">4</text><circle class=\"f0\" cx=\"30\" cy=\"180\" r=\"11\"></circle><text class=\"lbl\" x=\"30\" y=\"184\" text-anchor=\"middle\">5</text><circle class=\"f0\" cx=\"150\" cy=\"30\" r=\"11\"></circle><text class=\"lbl\" x=\"150\" y=\"34\" text-anchor=\"middle\">3</text><circle class=\"f0\" cx=\"150\" cy=\"80\" r=\"11\"></circle><text class=\"lbl\" x=\"150\" y=\"84\" text-anchor=\"middle\">4</text><circle class=\"f0\" cx=\"150\" cy=\"130\" r=\"11\"></circle><text class=\"lbl\" x=\"150\" y=\"134\" text-anchor=\"middle\">5</text><circle class=\"f0\" cx=\"150\" cy=\"180\" r=\"11\"></circle><text class=\"lbl\" x=\"150\" y=\"184\" text-anchor=\"middle\">9</text><circle class=\"f0\" cx=\"270\" cy=\"55\" r=\"11\"></circle><text class=\"lbl\" x=\"270\" y=\"59\" text-anchor=\"middle\">7</text><circle class=\"f0\" cx=\"270\" cy=\"105\" r=\"11\"></circle><text class=\"lbl\" x=\"270\" y=\"109\" text-anchor=\"middle\">11</text><circle class=\"f0\" cx=\"270\" cy=\"155\" r=\"11\"></circle><text class=\"lbl\" x=\"270\" y=\"159\" text-anchor=\"middle\">15</text><line class=\"c1 \" x1=\"43.0\" y1=\"30.0\" x2=\"136.0\" y2=\"30.0\" marker-end=\"url(#pb)\"></line><line class=\"c1 \" x1=\"43.0\" y1=\"80.0\" x2=\"136.0\" y2=\"80.0\" marker-end=\"url(#pb)\"></line><line class=\"c1 \" x1=\"43.0\" y1=\"130.0\" x2=\"136.0\" y2=\"130.0\" marker-end=\"url(#pb)\"></line><line class=\"c1 \" x1=\"42.0\" y1=\"175.0\" x2=\"137.1\" y2=\"135.4\" marker-end=\"url(#pb)\"></line><line class=\"c2 \" x1=\"162.7\" y1=\"32.7\" x2=\"256.3\" y2=\"52.1\" marker-end=\"url(#pr)\"></line><line class=\"c2 \" x1=\"162.7\" y1=\"77.3\" x2=\"256.3\" y2=\"57.9\" marker-end=\"url(#pr)\"></line><line class=\"c2 \" x1=\"162.7\" y1=\"127.3\" x2=\"256.3\" y2=\"107.9\" marker-end=\"url(#pr)\"></line><line class=\"c2 \" x1=\"161.0\" y1=\"173.1\" x2=\"258.1\" y2=\"112.4\" marker-end=\"url(#pr)\"></line><text class=\"t1\" x=\"90\" y=\"14\" text-anchor=\"middle\">f</text><text class=\"t2\" x=\"210\" y=\"14\" text-anchor=\"middle\">g</text><text class=\"sm\" x=\"30\" y=\"14\" text-anchor=\"middle\">A</text><text class=\"sm\" x=\"150\" y=\"14\" text-anchor=\"middle\">B</text><text class=\"sm\" x=\"270\" y=\"14\" text-anchor=\"middle\">C</text><line class=\"c4 fx d1\" x1=\"43.0\" y1=\"30.0\" x2=\"136.0\" y2=\"30.0\" marker-end=\"url(#po)\"></line><line class=\"c4 fx d1\" x1=\"162.7\" y1=\"32.7\" x2=\"256.3\" y2=\"52.1\" marker-end=\"url(#po)\"></line><text class=\"t4 fx d1\" x=\"60\" y=\"206\">2 → 3 → 7</text><line class=\"c4 fx d2\" x1=\"43.0\" y1=\"80.0\" x2=\"136.0\" y2=\"80.0\" marker-end=\"url(#po)\"></line><line class=\"c4 fx d2\" x1=\"162.7\" y1=\"77.3\" x2=\"256.3\" y2=\"57.9\" marker-end=\"url(#po)\"></line><text class=\"t4 fx d2\" x=\"190\" y=\"206\">3 → 4 → 7</text><line class=\"c4 fx d3\" x1=\"43.0\" y1=\"130.0\" x2=\"136.0\" y2=\"130.0\" marker-end=\"url(#po)\"></line><line class=\"c4 fx d3\" x1=\"162.7\" y1=\"127.3\" x2=\"256.3\" y2=\"107.9\" marker-end=\"url(#po)\"></line><text class=\"t4 fx d3\" x=\"60\" y=\"221\">4 → 5 → 11</text><line class=\"c4 fx d4\" x1=\"42.0\" y1=\"175.0\" x2=\"137.1\" y2=\"135.4\" marker-end=\"url(#po)\"></line><line class=\"c4 fx d4\" x1=\"162.7\" y1=\"127.3\" x2=\"256.3\" y2=\"107.9\" marker-end=\"url(#po)\"></line><text class=\"t4 fx d4\" x=\"190\" y=\"221\">5 → 5 → 11</text><text class=\"sm fx d5\" x=\"150\" y=\"238\" text-anchor=\"middle\">gof = {(2,7), (3,7), (4,11), (5,11)}: 15 and 9 unused</text></svg><div class=\"eq fx d5\"><p><b>gof(x) = g(f(x))</b>: apply f first, then g. Follow each element along blue then red.</p><p>gof(2) = g(3) = 7, gof(3) = g(4) = 7, gof(4) = g(5) = 11, gof(5) = g(5) = 11. So gof = {(2,7), (3,7), (4,11), (5,11)}.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 16: f(x) = cos x, g(x) = 3x². Find gof and fog. Are they equal?",
+      "definition": "gof(x) = g(cos x) = <span style=\"color:#3b82f6\">3 cos²x</span>; fog(x) = f(3x²) = <span style=\"color:#3b82f6\">cos 3x²</span>. At x = 0: gof = 3 but fog = 1. <span style=\"color:#e5484d\">gof ≠ fog</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is composition commutative? associative?",
+      "definition": "<span style=\"color:#e5484d\">Not commutative</span> (gof ≠ fog in general). <span style=\"color:#22a35a\">Associative</span>: (hog)of = ho(gof). <span style=\"color:#3b82f6\">f o I = I o f = f</span> for the identity",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Compose: f(x) = 2x + 1, g(x) = x². Find gof(3), fog(3).",
+      "definition": "f(3) = 7, gof(3) = g(7) = <span style=\"color:#f08c00\">49</span>. g(3) = 9, fog(3) = f(9) = <span style=\"color:#f08c00\">19</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If f is one-one and g is one-one, is gof one-one? If both onto?",
+      "definition": "<span style=\"color:#22a35a\">Yes</span> in both cases. And if gof is one-one then <span style=\"color:#3b82f6\">f is one-one</span>; if gof is onto then <span style=\"color:#3b82f6\">g is onto</span> (the outer/inner function that must “carry” the property)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Definition of invertible function.",
+      "definition": "f : X → Y is invertible if ∃ g : Y → X with <span style=\"color:#3b82f6\">gof = I_X</span> and <span style=\"color:#3b82f6\">fog = I_Y</span>. Then g = f⁻¹",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which functions are invertible?",
+      "definition": "<span style=\"color:#3b82f6\">Exactly the bijections</span> (one-one and onto). One-one makes the inverse single-valued, onto makes it defined on all of Y",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Graph of f⁻¹ is the mirror image of f in y = x",
+      "definition": "f⁻¹ swaps (a,b) to (b,a): the graph of f⁻¹ is the reflection of f in y = x; only bijections are invertible; for f(x)=x³, f⁻¹(x)=cube root of x",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Inverse function · mirror image</p><h2>f(x) = x³ is one-one and onto R. How are the graphs of f and f⁻¹ related?</h2><svg viewBox=\"0 0 300 300\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"14.0\" y1=\"147.0\" x2=\"292.0\" y2=\"147.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"153.0\" y1=\"286.0\" x2=\"153.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"guide\" x1=\"14.0\" y1=\"286.0\" x2=\"292.0\" y2=\"8.0\"></line><polyline class=\"c1\"  points=\"86.7,283.0 87.5,277.9 88.3,273.0 89.2,268.1 90.0,263.4 90.9,258.8 91.7,254.3 92.5,250.0 93.4,245.7 94.2,241.6 95.1,237.6 95.9,233.7 96.7,230.0 97.6,226.3 98.4,222.8 99.3,219.3 100.1,216.0 100.9,212.8 101.8,209.6 102.6,206.6 103.5,203.7 104.3,200.8 105.1,198.1 106.0,195.4 106.8,192.9 107.7,190.4 108.5,188.1 109.3,185.8 110.2,183.6 111.0,181.5 111.9,179.5 112.7,177.5 113.5,175.6 114.4,173.9 115.2,172.1 116.0,170.5 116.9,168.9 117.7,167.4 118.6,166.0 119.4,164.7 120.2,163.4 121.1,162.1 121.9,161.0 122.8,159.9 123.6,158.8 124.4,157.8 125.3,156.9 126.1,156.0 127.0,155.2 127.8,154.4 128.6,153.7 129.5,153.1 130.3,152.4 131.2,151.8 132.0,151.3 132.8,150.8 133.7,150.4 134.5,149.9 135.4,149.6 136.2,149.2 137.0,148.9 137.9,148.6 138.7,148.4 139.6,148.1 140.4,147.9 141.2,147.8 142.1,147.6 142.9,147.5 143.8,147.4 144.6,147.3 145.4,147.2 146.3,147.1 147.1,147.1 148.0,147.1 148.8,147.0 149.6,147.0 150.5,147.0 151.3,147.0 152.2,147.0 153.0,147.0 153.8,147.0 154.7,147.0 155.5,147.0 156.4,147.0 157.2,147.0 158.0,146.9 158.9,146.9 159.7,146.9 160.6,146.8 161.4,146.7 162.2,146.6 163.1,146.5 163.9,146.4 164.8,146.2 165.6,146.1 166.4,145.9 167.3,145.6 168.1,145.4 169.0,145.1 169.8,144.8 170.6,144.4 171.5,144.1 172.3,143.6 173.2,143.2 174.0,142.7 174.8,142.2 175.7,141.6 176.5,140.9 177.4,140.3 178.2,139.6 179.0,138.8 179.9,138.0 180.7,137.1 181.6,136.2 182.4,135.2 183.2,134.1 184.1,133.0 184.9,131.9 185.8,130.6 186.6,129.3 187.4,128.0 188.3,126.6 189.1,125.1 190.0,123.5 190.8,121.9 191.6,120.1 192.5,118.4 193.3,116.5 194.1,114.5 195.0,112.5 195.8,110.4 196.7,108.2 197.5,105.9 198.3,103.6 199.2,101.1 200.0,98.6 200.9,95.9 201.7,93.2 202.5,90.3 203.4,87.4 204.2,84.4 205.1,81.2 205.9,78.0 206.7,74.7 207.6,71.2 208.4,67.7 209.3,64.0 210.1,60.3 210.9,56.4 211.8,52.4 212.6,48.3 213.5,44.0 214.3,39.7 215.1,35.2 216.0,30.6 216.8,25.9 217.7,21.0 218.5,16.1 219.3,11.0\"></polyline><text class=\"t1 \" x=\"214.6\" y=\"137.1\" text-anchor=\"start\">y = f(x)</text><text class=\"sm \" x=\"269.5\" y=\"33.6\" text-anchor=\"end\">y = x</text></svg><p class=\"hint\">Swap x and y for every point.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Inverse function · mirror image</p><h2>f(x) = x³ is one-one and onto R. How are the graphs of f and f⁻¹ related?</h2><svg viewBox=\"0 0 300 300\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"14.0\" y1=\"147.0\" x2=\"292.0\" y2=\"147.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"153.0\" y1=\"286.0\" x2=\"153.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"guide\" x1=\"14.0\" y1=\"286.0\" x2=\"292.0\" y2=\"8.0\"></line><polyline class=\"c1\"  points=\"86.7,283.0 87.5,277.9 88.3,273.0 89.2,268.1 90.0,263.4 90.9,258.8 91.7,254.3 92.5,250.0 93.4,245.7 94.2,241.6 95.1,237.6 95.9,233.7 96.7,230.0 97.6,226.3 98.4,222.8 99.3,219.3 100.1,216.0 100.9,212.8 101.8,209.6 102.6,206.6 103.5,203.7 104.3,200.8 105.1,198.1 106.0,195.4 106.8,192.9 107.7,190.4 108.5,188.1 109.3,185.8 110.2,183.6 111.0,181.5 111.9,179.5 112.7,177.5 113.5,175.6 114.4,173.9 115.2,172.1 116.0,170.5 116.9,168.9 117.7,167.4 118.6,166.0 119.4,164.7 120.2,163.4 121.1,162.1 121.9,161.0 122.8,159.9 123.6,158.8 124.4,157.8 125.3,156.9 126.1,156.0 127.0,155.2 127.8,154.4 128.6,153.7 129.5,153.1 130.3,152.4 131.2,151.8 132.0,151.3 132.8,150.8 133.7,150.4 134.5,149.9 135.4,149.6 136.2,149.2 137.0,148.9 137.9,148.6 138.7,148.4 139.6,148.1 140.4,147.9 141.2,147.8 142.1,147.6 142.9,147.5 143.8,147.4 144.6,147.3 145.4,147.2 146.3,147.1 147.1,147.1 148.0,147.1 148.8,147.0 149.6,147.0 150.5,147.0 151.3,147.0 152.2,147.0 153.0,147.0 153.8,147.0 154.7,147.0 155.5,147.0 156.4,147.0 157.2,147.0 158.0,146.9 158.9,146.9 159.7,146.9 160.6,146.8 161.4,146.7 162.2,146.6 163.1,146.5 163.9,146.4 164.8,146.2 165.6,146.1 166.4,145.9 167.3,145.6 168.1,145.4 169.0,145.1 169.8,144.8 170.6,144.4 171.5,144.1 172.3,143.6 173.2,143.2 174.0,142.7 174.8,142.2 175.7,141.6 176.5,140.9 177.4,140.3 178.2,139.6 179.0,138.8 179.9,138.0 180.7,137.1 181.6,136.2 182.4,135.2 183.2,134.1 184.1,133.0 184.9,131.9 185.8,130.6 186.6,129.3 187.4,128.0 188.3,126.6 189.1,125.1 190.0,123.5 190.8,121.9 191.6,120.1 192.5,118.4 193.3,116.5 194.1,114.5 195.0,112.5 195.8,110.4 196.7,108.2 197.5,105.9 198.3,103.6 199.2,101.1 200.0,98.6 200.9,95.9 201.7,93.2 202.5,90.3 203.4,87.4 204.2,84.4 205.1,81.2 205.9,78.0 206.7,74.7 207.6,71.2 208.4,67.7 209.3,64.0 210.1,60.3 210.9,56.4 211.8,52.4 212.6,48.3 213.5,44.0 214.3,39.7 215.1,35.2 216.0,30.6 216.8,25.9 217.7,21.0 218.5,16.1 219.3,11.0\"></polyline><text class=\"t1 \" x=\"214.6\" y=\"137.1\" text-anchor=\"start\">y = f(x)</text><text class=\"sm \" x=\"269.5\" y=\"33.6\" text-anchor=\"end\">y = x</text><polyline class=\"c2 draw\" pathLength=\"100\"  points=\"14.0,213.8 15.4,213.6 16.8,213.4 18.2,213.1 19.6,212.9 20.9,212.7 22.3,212.5 23.7,212.2 25.1,212.0 26.5,211.8 27.9,211.5 29.3,211.3 30.7,211.0 32.1,210.8 33.5,210.5 34.9,210.3 36.2,210.1 37.6,209.8 39.0,209.5 40.4,209.3 41.8,209.0 43.2,208.8 44.6,208.5 46.0,208.2 47.4,208.0 48.8,207.7 50.1,207.4 51.5,207.2 52.9,206.9 54.3,206.6 55.7,206.3 57.1,206.0 58.5,205.8 59.9,205.5 61.3,205.2 62.7,204.9 64.0,204.6 65.4,204.3 66.8,204.0 68.2,203.7 69.6,203.4 71.0,203.0 72.4,202.7 73.8,202.4 75.2,202.1 76.6,201.8 77.9,201.4 79.3,201.1 80.7,200.7 82.1,200.4 83.5,200.0 84.9,199.7 86.3,199.3 87.7,199.0 89.1,198.6 90.4,198.2 91.8,197.8 93.2,197.4 94.6,197.0 96.0,196.6 97.4,196.2 98.8,195.8 100.2,195.4 101.6,195.0 103.0,194.5 104.4,194.1 105.7,193.6 107.1,193.2 108.5,192.7 109.9,192.2 111.3,191.7 112.7,191.2 114.1,190.7 115.5,190.2 116.9,189.7 118.2,189.1 119.6,188.5 121.0,187.9 122.4,187.3 123.8,186.7 125.2,186.1 126.6,185.4 128.0,184.7 129.4,184.0 130.8,183.3 132.1,182.5 133.5,181.7 134.9,180.9 136.3,180.0 137.7,179.0 139.1,178.0 140.5,176.9 141.9,175.8 143.3,174.5 144.7,173.2 146.1,171.6 147.4,169.9 148.8,167.8 150.2,165.1 151.6,161.4 153.0,147.0 154.4,132.6 155.8,128.9 157.2,126.2 158.6,124.1 160.0,122.4 161.3,120.8 162.7,119.5 164.1,118.2 165.5,117.1 166.9,116.0 168.3,115.0 169.7,114.0 171.1,113.1 172.5,112.3 173.9,111.5 175.2,110.7 176.6,110.0 178.0,109.3 179.4,108.6 180.8,107.9 182.2,107.3 183.6,106.7 185.0,106.1 186.4,105.5 187.8,104.9 189.1,104.3 190.5,103.8 191.9,103.3 193.3,102.8 194.7,102.3 196.1,101.8 197.5,101.3 198.9,100.8 200.3,100.4 201.6,99.9 203.0,99.5 204.4,99.0 205.8,98.6 207.2,98.2 208.6,97.8 210.0,97.4 211.4,97.0 212.8,96.6 214.2,96.2 215.5,95.8 216.9,95.4 218.3,95.0 219.7,94.7 221.1,94.3 222.5,94.0 223.9,93.6 225.3,93.3 226.7,92.9 228.1,92.6 229.5,92.2 230.8,91.9 232.2,91.6 233.6,91.3 235.0,91.0 236.4,90.6 237.8,90.3 239.2,90.0 240.6,89.7 242.0,89.4 243.4,89.1 244.7,88.8 246.1,88.5 247.5,88.2 248.9,88.0 250.3,87.7 251.7,87.4 253.1,87.1 254.5,86.8 255.9,86.6 257.2,86.3 258.6,86.0 260.0,85.8 261.4,85.5 262.8,85.2 264.2,85.0 265.6,84.7 267.0,84.5 268.4,84.2 269.8,83.9 271.1,83.7 272.5,83.5 273.9,83.2 275.3,83.0 276.7,82.7 278.1,82.5 279.5,82.2 280.9,82.0 282.3,81.8 283.7,81.5 285.1,81.3 286.4,81.1 287.8,80.9 289.2,80.6 290.6,80.4 292.0,80.2\"></polyline><circle class=\"d1s fx d2\" cx=\"217.9\" cy=\"19.9\" r=\"4.5\"></circle><circle class=\"d2s fx d2\" cx=\"280.1\" cy=\"82.1\" r=\"4.5\"></circle><line class=\"guide fx d3\" x1=\"217.9\" y1=\"19.9\" x2=\"280.1\" y2=\"82.1\"></line><text class=\"t2 fx d3 \" x=\"286.1\" y=\"98.1\" text-anchor=\"start\">f⁻¹</text></svg><div class=\"eq fx d5\"><p>If f(a) = b then f⁻¹(b) = a: the point (a, b) becomes (b, a). Every point is <b>reflected in the line y = x</b>.</p><p>Only a <b>bijection</b> has an inverse (one-one so it can be undone, onto so every y has a source). Here f⁻¹(x) = ∛x. Check: f⁻¹(f(x)) = x and f(f⁻¹(y)) = y.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 17: f : N → Y, f(x) = 4x + 3, Y = {4x + 3 : x ∈ N}. Show invertible and find the inverse.",
+      "definition": "f is one-one and onto Y. From y = 4x + 3: x = (y − 3)/4. So <span style=\"color:#f08c00\">g(y) = (y − 3)/4</span>. Check: g(f(x)) = (4x + 3 − 3)/4 = x and f(g(y)) = 4(y − 3)/4 + 3 = y",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: find f⁻¹ of a bijection.",
+      "definition": "1) Write y = f(x). 2) Solve for x in terms of y. 3) Swap names: f⁻¹(x) = that expression. 4) Check f⁻¹(f(x)) = x. The domain of f⁻¹ is the range of f",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Find the inverse of f(x) = (2x + 1)/(x − 3) (x ≠ 3).",
+      "definition": "y(x − 3) = 2x + 1 → x(y − 2) = 3y + 1 → <span style=\"color:#f08c00\">f⁻¹(x) = (3x + 1)/(x − 2)</span> (x ≠ 2). Note f⁻¹ has the same form, with the roles of the numbers rearranged",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If f and g are invertible, what is (gof)⁻¹?",
+      "definition": "<span style=\"color:#3b82f6\">f⁻¹ o g⁻¹</span> (socks and shoes: undo the last step first)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: is f⁻¹(x) the same as 1/f(x)?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. f⁻¹ is the inverse function (undoes f). 1/f(x) is the reciprocal. For f(x) = 2x: f⁻¹(x) = x/2 but 1/f(x) = 1/(2x)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is f = f⁻¹ (an involution)?",
+      "definition": "When f(f(x)) = x. Examples: f(x) = 1/x, f(x) = −x + c, and Example 12 (swapping 1 ↔ 2, 3 ↔ 4, …). The graph is symmetric about y = x",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Domain restriction: f(x) = x² is not invertible on R. How to make it invertible?",
+      "definition": "Restrict to <span style=\"color:#3b82f6\">[0, ∞) → [0, ∞)</span>: now one-one and onto, with inverse √x. Restricting to (−∞, 0] gives the inverse −√x",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.3-composition-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 22: number of one-one functions from {1, 2, 3} to itself?",
+      "definition": "Each is a permutation of 3 symbols: <span style=\"color:#f08c00\">3! = 6</span>. In general n! for a set of n elements (Misc Q4)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 23: A = {1,2,3}. How many relations contain (1,2) and (2,3) and are reflexive and transitive but not symmetric?",
+      "definition": "Forced: the diagonal, (1,2), (2,3) and, by transitivity, (1,3). That is R₁. Add (2,1) alone: still transitive, not symmetric. Add (3,2) alone: same. Adding (3,1), or two of the missing pairs, forces every pair and the relation becomes symmetric. So <span style=\"color:#f08c00\">3</span>: R₁, R₁ ∪ {(2,1)}, R₁ ∪ {(3,2)}",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 24: number of equivalence relations on {1, 2, 3} containing (1, 2) and (2, 1)?",
+      "definition": "Smallest: {(1,1),(2,2),(3,3),(1,2),(2,1)} (classes {1,2}, {3}). Relating 3 to either forces everything (universal). <span style=\"color:#f08c00\">2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 25: I_N is onto. Is I_N + I_N (x ↦ 2x) onto N → N?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: 3 ∈ N has no natural x with 2x = 3. Sum of onto functions need not be onto",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 26: f = sin, g = cos on [0, π/2]. One-one? Is f + g one-one?",
+      "definition": "sin and cos are each strictly monotone there: one-one. But (f + g)(0) = 1 = (f + g)(π/2), so <span style=\"color:#e5484d\">f + g is not one-one</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: f : R → (−1, 1), f(x) = x/(1 + |x|). One-one and onto?",
+      "definition": "For x ≥ 0, f = x/(1 + x) ∈ [0, 1); for x < 0, f = x/(1 − x) ∈ (−1, 0). Solving y = x/(1 + |x|): x = y/(1 − |y|). <span style=\"color:#22a35a\">Bijective</span> (a stretched “S-curve” squeezing R into (−1, 1))",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: f : R → R, f(x) = x³ is injective. Proof?",
+      "definition": "x₁³ = x₂³ ⇒ (x₁ − x₂)(x₁² + x₁x₂ + x₂²) = 0. The second factor is > 0 unless both are 0, so <span style=\"color:#f08c00\">x₁ = x₂</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: on P(X), ARB iff A ⊂ B. Equivalence relation?",
+      "definition": "Reflexive ✓ (A ⊂ A), transitive ✓, but <span style=\"color:#e5484d\">not symmetric</span>: {1} ⊂ {1, 2} but {1, 2} ⊄ {1}. <span style=\"color:#f08c00\">No</span> (it is a partial order)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: number of onto functions from {1, 2, ..., n} to itself?",
+      "definition": "For a finite set onto ⇔ one-one ⇔ permutation: <span style=\"color:#f08c00\">n!</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: A = {−1,0,1,2}, B = {−4,−2,0,2}, f(x) = x² − x, g(x) = 2|x − ½| − 1. Are f = g?",
+      "definition": "f: 2, 0, 0, 2 at −1, 0, 1, 2. g: 2·1.5 − 1 = 2, 0, 0, 2. <span style=\"color:#22a35a\">Equal</span>: same domain, same codomain, same value at every point",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q6: A = {1,2,3}. Relations containing (1,2) and (1,3), reflexive and symmetric, not transitive: (A) 1 (B) 2 (C) 3 (D) 4",
+      "definition": "Forced: diagonal plus (1,2), (2,1), (1,3), (3,1). Missing (2,3), (3,2): adding one alone breaks symmetry, adding both makes it universal (transitive). So exactly <span style=\"color:#22a35a\">(A) 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: A = {1,2,3}. Equivalence relations containing (1, 2): (A) 1 (B) 2 (C) 3 (D) 4",
+      "definition": "Partitions with 1 and 2 together: {1,2}{3} and {1,2,3}. <span style=\"color:#22a35a\">(B) 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two equal functions: what must match?",
+      "definition": "Same <span style=\"color:#3b82f6\">domain</span>, same <span style=\"color:#3b82f6\">codomain</span> and f(x) = g(x) for every x in the domain (Misc Q5). f(x) = x on R and f(x) = √(x²) are different functions",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.4-miscellaneous-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "n(A) = m, n(B) = n. Number of functions A → B?",
+      "definition": "<span style=\"color:#f08c00\">nᵐ</span>: each of the m inputs chooses one of n outputs",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "n(A) = m, n(B) = n. Number of one-one functions A → B?",
+      "definition": "<span style=\"color:#f08c00\">ⁿPₘ = n(n − 1)···(n − m + 1)</span> (0 if m > n). Example: from {1,2,3} to a 5-set: 5·4·3 = 60",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of onto functions from an m-set onto an n-set?",
+      "definition": "Inclusion–exclusion: <span style=\"color:#3b82f6\">Σₖ (−1)ᵏ ⁿCₖ (n − k)ᵐ</span>. Two useful cases: onto from an m-set to a 2-set is <span style=\"color:#f08c00\">2ᵐ − 2</span>; onto from a 4-set to a 3-set is <span style=\"color:#f08c00\">36</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of bijections from an n-set to itself?",
+      "definition": "<span style=\"color:#f08c00\">n!</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of relations from A to B and on A (n(A) = n)?",
+      "definition": "A → B: <span style=\"color:#f08c00\">2^(mn)</span> (subsets of A × B). On A: <span style=\"color:#f08c00\">2^(n²)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of reflexive relations on an n-set? Of symmetric ones?",
+      "definition": "Reflexive: diagonal forced, other n² − n pairs free: <span style=\"color:#f08c00\">2^(n² − n)</span>. Symmetric: choose each unordered pair and each loop: <span style=\"color:#f08c00\">2^(n(n+1)/2)</span>. For n = 3 both are 64",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of reflexive AND symmetric relations on an n-set?",
+      "definition": "<span style=\"color:#f08c00\">2^(n(n − 1)/2)</span> (only the off-diagonal unordered pairs are free). n = 3: 8",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of equivalence relations on sets of size 1, 2, 3, 4, 5?",
+      "definition": "Number of partitions (Bell numbers): <span style=\"color:#f08c00\">1, 2, 5, 15, 52</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of equivalence relations on {1, 2, 3, 4} containing (1, 2)?",
+      "definition": "Partitions of {1,2,3,4} where 1 and 2 are together = partitions of {12, 3, 4} = <span style=\"color:#f08c00\">5</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of symmetric relations on {1, 2, 3} containing (1, 2)?",
+      "definition": "Free unordered pairs/loops: 6 in total, one fixed: <span style=\"color:#f08c00\">2⁵ = 32</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "f : A → B is one-one with n(A) = 4 and n(B) = 3. Possible?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: one-one needs n(A) ≤ n(B) (pigeonhole). Six or more distinct outputs would be needed",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "f : {1, 2, 3} → {a, b, c}. How many are neither one-one nor onto?",
+      "definition": "Total 27; bijections 6; for finite equal sets onto ⇔ one-one, so neither = 27 − 6 = <span style=\"color:#f08c00\">21</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-counting-functions-and-relations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: R = {(1,1), (2,2), (3,3), (1,2), (2,1)} on {1,2,3} is<br>(a) reflexive only (b) symmetric only (c) transitive only (d) equivalence",
+      "definition": "Reflexive ✓; symmetric ✓; transitive: (1,2),(2,1) ⇒ (1,1) ✓; (2,1),(1,2) ⇒ (2,2) ✓. <span style=\"color:#22a35a\">(d) equivalence</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: R = {(a, b) : a ≤ b} on R is<br>(a) equivalence (b) reflexive and transitive only (c) symmetric only (d) none",
+      "definition": "<span style=\"color:#22a35a\">(b)</span>: partial order",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: on Z, R = {(a, b) : a − b is divisible by 5}. Number of equivalence classes?<br>(a) 1 (b) 2 (c) 4 (d) 5",
+      "definition": "One class per remainder 0–4: <span style=\"color:#22a35a\">(d) 5</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: f : R → R, f(x) = x|x| is<br>(a) one-one, not onto (b) onto, not one-one (c) bijective (d) neither",
+      "definition": "Increasing (−x² for x < 0, x² for x ≥ 0), and every real is attained: <span style=\"color:#22a35a\">(c) bijective</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: f : R → R, f(x) = sin x is<br>(a) one-one (b) onto (c) both (d) neither",
+      "definition": "sin(0) = sin(π), range [−1, 1] ≠ R: <span style=\"color:#22a35a\">(d) neither</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: f : R → R, f(x) = x³ + x. Then f is<br>(a) one-one, not onto (b) many-one (c) bijective (d) neither",
+      "definition": "Strictly increasing (f′ = 3x² + 1 > 0) and cubic (goes to ±∞): <span style=\"color:#22a35a\">(c) bijective</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: f : [0, ∞) → [0, ∞), f(x) = x². f is<br>(a) one-one not onto (b) onto not one-one (c) bijective (d) neither",
+      "definition": "<span style=\"color:#22a35a\">(c)</span>. Compare f : R → R, where it is neither",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: f(x) = 2x + 3, g(x) = x². (fog)(2) =<br>(a) 11 (b) 49 (c) 7 (d) 25",
+      "definition": "g(2) = 4, f(4) = 11: <span style=\"color:#22a35a\">(a) 11</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: f(x) = (x − 1)/(x + 1). f(f(x)) =<br>(a) x (b) −1/x (c) 1/x (d) −x",
+      "definition": "f(f(x)) = ((x − 1)/(x + 1) − 1) / ((x − 1)/(x + 1) + 1) = −2/(2x) = <span style=\"color:#22a35a\">(b) −1/x</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: f : R → R, f(x) = 5x − 3. f⁻¹(x) =<br>(a) (x + 3)/5 (b) (x − 3)/5 (c) 5x + 3 (d) 1/(5x − 3)",
+      "definition": "y = 5x − 3 → x = (y + 3)/5: <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: number of one-one functions from {1, 2, 3} to {a, b, c, d, e} is<br>(a) 15 (b) 60 (c) 125 (d) 243",
+      "definition": "5 × 4 × 3 = <span style=\"color:#22a35a\">(b) 60</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: number of onto functions from {1, 2, 3, 4} to {a, b, c} is<br>(a) 36 (b) 81 (c) 24 (d) 12",
+      "definition": "3⁴ − 3·2⁴ + 3 = 81 − 48 + 3 = <span style=\"color:#22a35a\">(a) 36</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: number of reflexive relations on a set with 3 elements is<br>(a) 8 (b) 64 (c) 512 (d) 9",
+      "definition": "2^(9 − 3) = <span style=\"color:#22a35a\">(b) 64</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): number of equivalence relations on {a, b, c, d} containing (a, b)?",
+      "definition": "Partitions of {ab, c, d} = <span style=\"color:#f08c00\">5</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: n(A) = 3, n(B) = 4. Number of one-one functions A → B?",
+      "definition": "4 · 3 · 2 = <span style=\"color:#f08c00\">24</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> f : R → R, f(x) = x² is not invertible.<br><b>R:</b> f is not one-one.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>: invertible ⇔ bijective; f(−1) = f(1) shows f is not one-one (and also not onto)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> A relation on {1, 2, 3} that is symmetric and transitive is reflexive.<br><b>R:</b> (a, b) and (b, a) give (a, a).<br>(a) Both true, R explains A (b) A false, R true (c) A true, R false (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(b)</span>: R is true only for elements that appear in some pair; an isolated element (like 3 in {(1,2),(2,1),(1,1),(2,2)}) breaks A",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: every reflexive relation on a set with two or more elements is symmetric.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: {(1,1), (2,2), (1,2)} is reflexive but not symmetric",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: if f : A → B is onto and A, B are finite with n(A) = n(B), then f is one-one.",
+      "definition": "<span style=\"color:#22a35a\">True</span>: finite sets, same size: onto ⇔ one-one",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: check whether R = {(x, y) : x + y = 6} on {1, ..., 5} is reflexive, symmetric or transitive.",
+      "definition": "R = {(1,5), (2,4), (3,3), (4,2), (5,1)}. Not reflexive ((1,1) ∉ R). <span style=\"color:#3b82f6\">Symmetric</span> (x + y = y + x). Not transitive: (1,5), (5,1) ∈ R but (1,1) ∉ R",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: show that f : R → R, f(x) = (2x − 1)/3 is bijective and find f⁻¹.",
+      "definition": "f(x₁) = f(x₂) ⇒ x₁ = x₂ (one-one). For y take x = (3y + 1)/2 (onto). <span style=\"color:#f08c00\">f⁻¹(x) = (3x + 1)/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: f(x) = x + 5 on Z. Show that f is invertible; find f⁻¹.",
+      "definition": "One-one (x₁ + 5 = x₂ + 5), onto (y − 5 ∈ Z is a source). <span style=\"color:#f08c00\">f⁻¹(y) = y − 5</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: show that R = {(a, b) : a − b is divisible by 3} on Z is an equivalence relation. Find [1].",
+      "definition": "Reflexive (0), symmetric (negation), transitive (sum). <span style=\"color:#f08c00\">[1] = {…, −5, −2, 1, 4, 7, …} = {3r + 1}</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: show that f : R → R, f(x) = x² + 1 is neither one-one nor onto. Restrict the domain and codomain to make it a bijection.",
+      "definition": "f(−1) = f(1) = 2 and 0 ∉ range. Take <span style=\"color:#f08c00\">f : [0, ∞) → [1, ∞)</span>: one-one (x ≥ 0) and onto ([1, ∞) is exactly the range), with f⁻¹(y) = √(y − 1)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: the relation “sits in the same bench” on the students of a class (each student sits on exactly one bench). What type of relation is it? What are its equivalence classes?",
+      "definition": "<span style=\"color:#22a35a\">Equivalence relation</span> (each student is on the same bench as themselves; symmetric; transitive). The classes are <span style=\"color:#f08c00\">the benches (groups of students on the same bench)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a school assigns each student in a class a roll number, f(x) = roll number, A = 40 students, codomain N. One-one? Onto? Make it a bijection.",
+      "definition": "<span style=\"color:#22a35a\">One-one</span> (no two share a roll number), <span style=\"color:#e5484d\">not onto N</span>. Restrict the codomain to {1, …, 40}: then f is a bijection and invertible",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-1",
+        "1.z-how-its-asked"
+      ]
+    }
+  ]
+}

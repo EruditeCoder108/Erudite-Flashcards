@@ -1661,3 +1661,182 @@ def trig_equation_circle(deck):
           '<p>Adding full turns: x = 2nπ + π/6 or 2nπ + 5π/6, combined as <b>x = nπ + (−1)ⁿ π/6</b> (n ∈ Z).</p>',
           'General solution of sin x = 1/2 from the unit circle', 'sin x = 1/2 has solutions 30° and 150° in one turn; general solution x = nπ + (−1)^n π/6',
           vb=f'0 0 300 {h}', hint='Where is the y-coordinate equal to ½?')
+
+
+# ================================================================ Maths 12 Ch 1 Relations and Functions
+_DR = '.pp .dr{stroke:#c93b3f;stroke-width:2.2;stroke-dasharray:5 4;fill:none;stroke-linecap:round}'
+
+
+def rst_digraph(deck):
+    """Ex. 4 relation on {1,2,3} as a digraph: reflexive = a loop on every node."""
+    pos = {1: (60, 150), 2: (150, 40), 3: (240, 150)}
+    def loop(n, cls, extra=''):
+        x, y = pos[n]
+        dx = {1: -1, 2: 0, 3: 1}[n]
+        dy = {1: 0.6, 2: -1, 3: 0.6}[n]
+        cx, cy = x + dx * 26, y + dy * 26
+        return f'<circle class="{cls} {extra}" cx="{cx:.1f}" cy="{cy:.1f}" r="13"></circle>'
+    def arr(a, b, cls, mk, extra='', bend=0):
+        (x0, y0), (x1, y1) = pos[a], pos[b]
+        vx, vy = x1 - x0, y1 - y0
+        L = math.hypot(vx, vy)
+        ux, uy = vx / L, vy / L
+        sx, sy, ex, ey = x0 + ux * 17, y0 + uy * 17, x1 - ux * 20, y1 - uy * 20
+        if bend:
+            mx, my = (sx + ex) / 2 - uy * bend, (sy + ey) / 2 + ux * bend
+            return f'<path class="{cls} {extra}" d="M{sx:.1f},{sy:.1f} Q{mx:.1f},{my:.1f} {ex:.1f},{ey:.1f}" marker-end="url(#{mk})"></path>'
+        return f'<line class="{cls} {extra}" x1="{sx:.1f}" y1="{sy:.1f}" x2="{ex:.1f}" y2="{ey:.1f}" marker-end="url(#{mk})"></line>'
+    nodes = ''.join(f'<circle class="f0" cx="{x}" cy="{y}" r="15"></circle><text class="lbl" x="{x}" y="{y + 4}" text-anchor="middle">{n}</text>' for n, (x, y) in pos.items())
+    base = nodes + ''.join(loop(n, 'c1') for n in pos) + arr(1, 2, 'c1', 'pb', bend=0) + arr(2, 3, 'c1', 'pb')
+    back = (arr(2, 1, 'dr', 'pr', 'fx d2', bend=-24) + arr(1, 3, 'dr', 'pr', 'fx d3', bend=16)
+            + '<text class="t2 fx d2" x="52" y="78" text-anchor="middle">(2,1) missing</text>'
+            + '<text class="t2 fx d3" x="150" y="182" text-anchor="middle">(1,3) missing</text>'
+            + '<text class="t3 fx d1" x="240" y="34" text-anchor="middle">loops: reflexive ✓</text>')
+    mcard(deck, 'Reading a relation as a graph', 'R = {(1,1), (2,2), (3,3), (1,2), (2,3)} on {1, 2, 3}. Is it reflexive, symmetric, transitive?', base, back,
+          '<p><b>Reflexive ✓</b> every element has a loop. <b>Symmetric ✗</b>: 1 → 2 has no return arrow 2 → 1. <b>Transitive ✗</b>: 1 → 2 → 3 needs the shortcut 1 → 3.</p>'
+          '<p>Test for each property: loops everywhere / every arrow returns / every two-step path has a shortcut.</p>',
+          'Reflexive, symmetric, transitive read from a digraph',
+          'Draw arrows a→b for (a,b) in R. Reflexive: a loop at every node. Symmetric: every arrow has a return arrow. Transitive: every two-step path a→b→c has the direct arrow a→c. Example 4: reflexive only',
+          css=_DR, vb='0 0 300 200', hint='Look for loops, return arrows and shortcuts.')
+
+
+def equiv_classes_mod3(deck):
+    """R = {(a,b): 3 | a-b} on Z splits Z into three classes."""
+    xs = list(range(-4, 8))
+    X = lambda v: 24 + (v + 4) * 23.5
+    row = {0: 84, 1: 124, 2: 164}
+    fmt = lambda v: str(v).replace('-', '−')
+    base = ''.join(f'<circle class="f0" cx="{X(v):.1f}" cy="30" r="9"></circle><text class="lbl" x="{X(v):.1f}" y="34" text-anchor="middle">{fmt(v)}</text>' for v in xs)
+    back = ''
+    for v in xs:
+        k = v % 3
+        back += (f'<circle class="f{k + 1} fx d{k + 1}" cx="{X(v):.1f}" cy="{row[k]}" r="9"></circle>'
+                 f'<text class="lbl fx d{k + 1}" x="{X(v):.1f}" y="{row[k] + 4}" text-anchor="middle">{fmt(v)}</text>')
+    for k, tcls in enumerate(['t1', 't2', 't3']):
+        back += f'<text class="{tcls} fx d{k + 1}" x="8" y="{row[k] - 16}">[{k}] = {{3r + {k}}}</text>'
+    back += '<text class="sm fx d4" x="150" y="192" text-anchor="middle">same remainder ⇒ same class</text>'
+    mcard(deck, 'Equivalence classes', 'R = {(a, b) : 3 divides a − b} on Z is an equivalence relation. Sort the integers into its equivalence classes.', base, back,
+          '<p>Three classes, by remainder on division by 3: <b>[0] = {…, −3, 0, 3, 6, …}</b>, <b>[1] = {…, −2, 1, 4, 7, …}</b>, <b>[2] = {…, −4, −1, 2, 5, …}</b>.</p>'
+          '<p>Classes are <b>disjoint</b>, their <b>union is Z</b>, and everything inside one class is related. Every equivalence relation partitions its set.</p>',
+          'Equivalence classes of congruence mod 3',
+          'R = {(a,b): 3 | a−b} on Z is an equivalence relation with three classes [0], [1], [2] (remainders 0, 1, 2); they are disjoint and their union is Z',
+          vb='0 0 300 200', hint='Group numbers with the same remainder mod 3.')
+
+
+def _fn_panel(ox, oy, arrows, nl, nr, hit=None):
+    ly = lambda i, n: 14 + i * (72 / max(n - 1, 1))
+    o = f'<g transform="translate({ox},{oy})">'
+    o += '<ellipse class="ghost" cx="22" cy="50" rx="16" ry="46"></ellipse><ellipse class="ghost" cx="98" cy="50" rx="16" ry="46"></ellipse>'
+    for i in range(nl):
+        o += f'<circle class="d0s" cx="22" cy="{ly(i, nl):.1f}" r="3.5"></circle><text class="sm" x="6" y="{ly(i, nl) + 4:.1f}" text-anchor="end">{i + 1}</text>'
+    for j in range(nr):
+        o += f'<circle class="d0s" cx="98" cy="{ly(j, nr):.1f}" r="3.5"></circle><text class="sm" x="114" y="{ly(j, nr) + 4:.1f}">{"abcd"[j]}</text>'
+    for (i, j) in arrows:
+        o += f'<line class="c0" x1="26" y1="{ly(i, nl):.1f}" x2="93" y2="{ly(j, nr):.1f}" marker-end="url(#pk)"></line>'
+    return o + '</g>', ly
+
+
+def inj_surj_panels(deck):
+    specs = [
+        (10, 6, [(0, 0), (1, 1), (2, 2)], 3, 4, 'One-one, not onto', 'd unused'),
+        (160, 6, [(0, 0), (1, 0), (2, 1)], 3, 3, 'Many-one, not onto', 'a hit twice, c unused'),
+        (10, 138, [(0, 0), (1, 0), (2, 1), (3, 2)], 4, 3, 'Onto, not one-one', 'a hit twice, all used'),
+        (160, 138, [(0, 0), (1, 1), (2, 2)], 3, 3, 'One-one and onto', 'a bijection'),
+    ]
+    base = back = ''
+    for k, (ox, oy, arr, nl, nr, name, why) in enumerate(specs):
+        g, ly = _fn_panel(ox, oy, arr, nl, nr)
+        base += g + f'<text class="lbi" x="{ox + 2}" y="{oy + 8}">({"abcd"[k]})</text>'
+        hits = {}
+        for _, j in arr: hits[j] = hits.get(j, 0) + 1
+        for j in range(nr):
+            n = hits.get(j, 0)
+            if n == 0:
+                back += f'<circle class="d2s fx d{k + 1}" cx="{ox + 98}" cy="{oy + ly(j, nr):.1f}" r="5.5"></circle>'
+            elif n > 1:
+                back += f'<circle class="d4s fx d{k + 1}" cx="{ox + 98}" cy="{oy + ly(j, nr):.1f}" r="5.5"></circle>'
+        back += (f'<text class="t1 fx d{k + 1}" x="{ox + 60}" y="{oy + 116}" text-anchor="middle">{name}</text>'
+                 f'<text class="sm fx d{k + 1}" x="{ox + 60}" y="{oy + 128}" text-anchor="middle">{why}</text>')
+    mcard(deck, 'One-one and onto · arrow diagrams', 'Classify each function (left → right): one-one? onto?', base, back,
+          '<p><b>One-one (injective):</b> no two arrows land on the same point (no orange dot). <b>Onto (surjective):</b> every right-hand point is hit (no red dot).</p>'
+          '<p><b>Bijective</b> = both: a perfect pairing. Onto ⇔ range = codomain.</p>',
+          'Injective, surjective and bijective from arrow diagrams',
+          'One-one: no two arrows meet at one image; onto: every element of the codomain is hit. (a) one-one not onto; (b) neither; (c) onto not one-one; (d) bijective',
+          vb='0 0 300 288', hint='Look for shared targets and unused targets.')
+
+
+def horizontal_line_test(deck):
+    P1 = Plane(-3, 3, -1.6, 5.5, 300, 190, (16, 10, 10, 16))
+    P2 = Plane(-2.4, 2.4, -5.5, 5.5, 300, 190, (16, 10, 10, 16))
+    base = (f'<g transform="translate(0,4) scale(.5)">{P1.axes(labels=False)}{P1.curve(lambda x: x * x, "c1", -2.3, 2.3)}</g>'
+            f'<g transform="translate(150,4) scale(.5)">{P2.axes(labels=False)}{P2.curve(lambda x: x ** 3, "c1", -1.76, 1.76)}</g>'
+            '<text class="lbl" x="75" y="122" text-anchor="middle">(a) f(x) = x²</text><text class="lbl" x="225" y="122" text-anchor="middle">(b) f(x) = x³</text>')
+    ya, yb = P1.Y(2.2), P2.Y(2.2)
+    sweep_a = f'<g transform="translate(0,4) scale(.5)"><line class="c2 sw" x1="{P1.X(-3):.1f}" y1="{ya:.1f}" x2="{P1.X(3):.1f}" y2="{ya:.1f}"></line></g>'
+    sweep_b = f'<g transform="translate(150,4) scale(.5)"><line class="c2 sw" x1="{P2.X(-2.4):.1f}" y1="{yb:.1f}" x2="{P2.X(2.4):.1f}" y2="{yb:.1f}"></line></g>'
+    ha = (f'<g transform="translate(0,4) scale(.5)"><circle class="d2s fx d3" cx="{P1.X(math.sqrt(2.2)):.1f}" cy="{ya:.1f}" r="6"></circle>'
+          f'<circle class="d2s fx d3" cx="{P1.X(-math.sqrt(2.2)):.1f}" cy="{ya:.1f}" r="6"></circle></g>')
+    hb = f'<g transform="translate(150,4) scale(.5)"><circle class="d3s fx d3" cx="{P2.X(2.2 ** (1 / 3)):.1f}" cy="{yb:.1f}" r="6"></circle></g>'
+    back = ('<text class="t2 fx d2" x="75" y="140" text-anchor="middle">✗ not one-one</text><text class="sm fx d2" x="75" y="154" text-anchor="middle">a horizontal line hits twice</text>'
+            '<text class="t3 fx d3" x="225" y="140" text-anchor="middle">✓ one-one</text><text class="sm fx d3" x="225" y="154" text-anchor="middle">every horizontal line hits once</text>'
+            '<text class="sm fx d4" x="150" y="176" text-anchor="middle">(x² also misses y &lt; 0, so it is not onto R)</text>' + ha + hb)
+    css = '.pp .sw{animation:swh 3.6s ease-in-out .3s infinite alternate both}@keyframes swh{from{transform:translateY(-44px)}to{transform:translateY(44px)}}'
+    mcard(deck, 'Horizontal line test', 'f : R → R. Which graph is one-one? Which is onto?', base, back,
+          '<p><b>Horizontal line test:</b> f is <b>one-one</b> iff every horizontal line cuts the graph <b>at most once</b>; f is <b>onto R</b> iff every horizontal line cuts it <b>at least once</b>.</p>'
+          '<p>x² fails both (twice for y &gt; 0, never for y &lt; 0). x³ passes both: a bijection R → R.</p>',
+          'Horizontal line test for one-one and onto',
+          'Horizontal line test: one-one iff each horizontal line meets the graph at most once; onto R iff each meets it at least once. x² is neither; x³ is bijective',
+          css=css, vb='0 0 300 190', front_only=sweep_a + sweep_b, hint='Slide a horizontal line up and down.')
+
+
+def composition_chain(deck):
+    xA, xB, xC = 30, 150, 270
+    yA = [30, 80, 130, 180]
+    yB = [30, 80, 130, 180]
+    yC = [55, 105, 155]
+    def col(x, ys, labs):
+        return ''.join(f'<circle class="f0" cx="{x}" cy="{y}" r="11"></circle><text class="lbl" x="{x}" y="{y + 4}" text-anchor="middle">{l}</text>' for y, l in zip(ys, labs))
+    def line(x0, y0, x1, y1, cls, mk, extra=''):
+        vx, vy = x1 - x0, y1 - y0
+        L = math.hypot(vx, vy)
+        return f'<line class="{cls} {extra}" x1="{x0 + vx / L * 13:.1f}" y1="{y0 + vy / L * 13:.1f}" x2="{x1 - vx / L * 14:.1f}" y2="{y1 - vy / L * 14:.1f}" marker-end="url(#{mk})"></line>'
+    f = {0: 0, 1: 1, 2: 2, 3: 2}      # 2->3, 3->4, 4->5, 5->5 (indices in B = 3,4,5,9)
+    g = {0: 0, 1: 0, 2: 1, 3: 1}      # 3->7, 4->7, 5->11, 9->11
+    base = col(xA, yA, [2, 3, 4, 5]) + col(xB, yB, [3, 4, 5, 9]) + col(xC, yC, [7, 11, 15])
+    base += ''.join(line(xA, yA[i], xB, yB[j], 'c1', 'pb') for i, j in f.items())
+    base += ''.join(line(xB, yB[i], xC, yC[j], 'c2', 'pr') for i, j in g.items())
+    base += '<text class="t1" x="90" y="14" text-anchor="middle">f</text><text class="t2" x="210" y="14" text-anchor="middle">g</text><text class="sm" x="30" y="14" text-anchor="middle">A</text><text class="sm" x="150" y="14" text-anchor="middle">B</text><text class="sm" x="270" y="14" text-anchor="middle">C</text>'
+    back = ''
+    gof = {0: 0, 1: 0, 2: 1, 3: 1}
+    def seg(x0, y0, x1, y1, extra):
+        vx, vy = x1 - x0, y1 - y0
+        L = math.hypot(vx, vy)
+        return f'<line class="c4 {extra}" x1="{x0 + vx / L * 13:.1f}" y1="{y0 + vy / L * 13:.1f}" x2="{x1 - vx / L * 14:.1f}" y2="{y1 - vy / L * 14:.1f}" marker-end="url(#po)"></line>'
+    chains = ['2 → 3 → 7', '3 → 4 → 7', '4 → 5 → 11', '5 → 5 → 11']
+    for k, (i, j) in enumerate(gof.items()):
+        back += seg(xA, yA[i], xB, yB[f[i]], f'fx d{k + 1}') + seg(xB, yB[f[i]], xC, yC[j], f'fx d{k + 1}')
+        back += f'<text class="t4 fx d{k + 1}" x="{60 + (k % 2) * 130}" y="{206 + (k // 2) * 15}">{chains[k]}</text>'
+    back += '<text class="sm fx d5" x="150" y="238" text-anchor="middle">gof = {(2,7), (3,7), (4,11), (5,11)}: 15 and 9 unused</text>'
+    mcard(deck, 'Composition of functions', 'f : {2,3,4,5} → {3,4,5,9} and g : {3,4,5,9} → {7,11,15} are given by the arrows. Find gof.', base, back,
+          '<p><b>gof(x) = g(f(x))</b>: apply f first, then g. Follow each element along blue then red.</p>'
+          '<p>gof(2) = g(3) = 7, gof(3) = g(4) = 7, gof(4) = g(5) = 11, gof(5) = g(5) = 11. So gof = {(2,7), (3,7), (4,11), (5,11)}.</p>',
+          'gof follows f then g',
+          'gof(x) = g(f(x)) apply f first; Example 15: gof(2)=7, gof(3)=7, gof(4)=11, gof(5)=11 (15 is not hit)',
+          vb='0 0 300 246', hint='Follow each element through both arrow sets.')
+
+
+def inverse_mirror(deck):
+    P, h = eqplane(-3, 3, -3, 3, pad=(14, 8, 8, 14))
+    base = (P.axes(labels=False) + P.line(-3, -3, 3, 3, 'guide') + P.curve(lambda x: x ** 3, 'c1', -1.45, 1.45, clip=(-3, 3))
+            + P.text(1.2, 0.3, 'y = f(x)', 't1', dx=6, dy=4) + P.text(2.6, 2.75, 'y = x', 'sm', dx=-4, dy=14, anchor='end'))
+    cb = lambda x: math.copysign(abs(x) ** (1 / 3), x)
+    back = (P.curve(cb, 'c2 draw', -3, 3, n=200).replace('class="c2 draw"', 'class="c2 draw" pathLength="100"')
+            + P.dot(1.4, 1.4 ** 3, 'd1s', 4.5, 'fx d2') + P.dot(1.4 ** 3, 1.4, 'd2s', 4.5, 'fx d2')
+            + P.line(1.4, 1.4 ** 3, 1.4 ** 3, 1.4, 'guide fx d3')
+            + P.text(1.4 ** 3, 1.4, 'f⁻¹', 't2 fx d3', dx=6, dy=16))
+    mcard(deck, 'Inverse function · mirror image', 'f(x) = x³ is one-one and onto R. How are the graphs of f and f⁻¹ related?', base, back,
+          '<p>If f(a) = b then f⁻¹(b) = a: the point (a, b) becomes (b, a). Every point is <b>reflected in the line y = x</b>.</p>'
+          '<p>Only a <b>bijection</b> has an inverse (one-one so it can be undone, onto so every y has a source). Here f⁻¹(x) = ∛x. Check: f⁻¹(f(x)) = x and f(f⁻¹(y)) = y.</p>',
+          'Graph of f⁻¹ is the mirror image of f in y = x',
+          'f⁻¹ swaps (a,b) to (b,a): the graph of f⁻¹ is the reflection of f in y = x; only bijections are invertible; for f(x)=x³, f⁻¹(x)=cube root of x',
+          vb=f'0 0 300 {h}', hint='Swap x and y for every point.')
