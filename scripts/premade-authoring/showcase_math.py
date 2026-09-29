@@ -1366,3 +1366,100 @@ def space_diagonal(deck):
           '<p>Two Pythagoras steps give <b>PQ = √((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²)</b>, the space diagonal of the cuboid on PQ.</p>',
           'Distance in space as a cuboid diagonal', 'PQ = √((x2−x1)²+(y2−y1)²+(z2−z1)²): floor diagonal then Pythagoras again; origin to (2,3,6) is 7',
           vb='0 0 300 230', hint='Do Pythagoras twice.')
+
+
+# ================================================================ Maths 11 Ch 12 Limits and derivatives
+def secant_to_tangent(deck):
+    P = Plane(0, 3.3, -3, 47, 300, 210, (30, 10, 12, 22))
+    xt = [(1, '1'), (2, '2'), (3, '3')]
+    yt = [(10, '10'), (20, '20'), (30, '30'), (40, '40')]
+    s = lambda t: 4.9 * t * t
+    base = (P.axes(xt, yt, grid=True, xl='t (s)', yl='s (m)') + P.curve(s, 'c1', 0, 3.2, clip=(-3, 47)) + P.dot(2, 19.6, 'd0s', 5) + P.text(2, 19.6, 'A (t = 2)', 'lbl', dx=8, dy=16))
+    def sec(h, cls, fx):
+        m = 19.6 + 4.9 * h
+        return P.curve(lambda t: 19.6 + m * (t - 2), f'{cls} {fx}', 1.0, 3.2, clip=(-3, 47))
+    back = (sec(1, 'c4', 'fx d1') + P.dot(3, s(3), 'd4s', 4, 'fx d1') + sec(0.5, 'c4', 'fx d2') + P.dot(2.5, s(2.5), 'd4s', 4, 'fx d2') +
+            sec(0.1, 'c4', 'fx d3') + P.curve(lambda t: 19.6 + 19.6 * (t - 2), 'c2 fx d4', 1.0, 3.2, clip=(-3, 47)) +
+            P.text(0.15, 42, 'secant slopes 24.5, 22.05, 20.09 …', 't4 fx d3') + P.text(0.15, 36, 'tangent slope 19.6 m/s', 't2 fx d4'))
+    mcard(deck, 'Derivative · from secants to the tangent', 'A body falls s = 4.9t² metres. Find its velocity at t = 2 s from average velocities over shrinking intervals.', base, back,
+          '<p>Average velocity over [2, 2 + h] = (s(2 + h) − s(2))/h = <b>19.6 + 4.9h</b>: 24.5, 22.05, 20.09 … as h → 0 it tends to <b>19.6 m/s</b>.</p>'
+          '<p>Geometrically the <b>secant</b> slopes tend to the <b>tangent</b> slope. The derivative s′(2) = lim (s(2 + h) − s(2))/h = 19.6 = instantaneous velocity.</p>',
+          'Instantaneous velocity as the limit of average velocities (secant to tangent)', 'Derivative = limit of secant slopes as h→0; for s=4.9t² at t=2 the average velocity 19.6+4.9h tends to 19.6 m/s = slope of the tangent',
+          vb='0 0 300 210', hint='What happens to the average velocity as the interval shrinks?')
+
+
+def hole_limit(deck):
+    P = Plane(-1, 4.6, -1, 6.6, 300, 200, (26, 10, 12, 22))
+    xt = [(1, '1'), (2, '2'), (3, '3'), (4, '4')]
+    yt = [(2, '2'), (4, '4'), (6, '6')]
+    base = P.axes(xt, yt, grid=True) + P.curve(lambda x: x + 2, 'c1', -0.6, 4.4) + P.hole(2, 4, 'c1', 5.5)
+    back = (P.line(2, 0, 2, 4, 'guide fx d2') + P.line(0, 4, 2, 4, 'guide fx d2') + P.text(0.2, 4, 'limit = 4', 't2 fx d2', dy=-8) +
+            P.text(2, 0, 'f(2) undefined', 'sm fx d2', dx=6, dy=-8))
+    mcard(deck, 'Limits · removable hole', 'f(x) = (x² − 4)/(x − 2). Find the limit as x → 2 even though f(2) is undefined.', base, back,
+          '<p>0/0 form: factorise. (x − 2)(x + 2)/(x − 2) = x + 2 for x ≠ 2, so <b>lim = 2 + 2 = 4</b>.</p>'
+          '<p>The graph is the line y = x + 2 with a <b>hole at (2, 4)</b>. A limit describes where the curve is heading, not what happens at the point itself.</p>',
+          'Limit at a hole: (x²−4)/(x−2) → 4', 'lim x→2 (x²−4)/(x−2) = 4 after cancelling the common factor; graph is y=x+2 with a hole at (2,4); limit ignores the value at the point',
+          vb='0 0 300 200', hint='Factorise before substituting.')
+
+
+def left_right_limits(deck):
+    P = Plane(-3.4, 3.6, -0.6, 3.6, 300, 180, (24, 10, 12, 20))
+    xt = [(-2, '−2'), (-1, '−1'), (1, '1'), (2, '2')]
+    yt = [(1, '1'), (2, '2'), (3, '3')]
+    base = (P.axes(xt, yt, grid=True) + P.line(-3.2, 1, 0, 1, 'c1') + P.dot(0, 1, 'd1s', 5) + P.line(0, 2, 3.4, 2, 'c1') + P.hole(0, 2, 'c1', 5))
+    back = (P.text(-1.5, 1, 'left limit = 1', 't3 fx d2', 'middle', dy=-12) + P.text(1.8, 2, 'right limit = 2', 't2 fx d2', 'middle', dy=-12) +
+            P.text(0, 3.2, 'limit does not exist', 't2 fx d3', 'middle'))
+    mcard(deck, 'One-sided limits', 'f(x) = 1 for x ≤ 0 and f(x) = 2 for x > 0. What are the left and right limits at 0? Does the limit exist?', base, back,
+          '<p>Left-hand limit (x → 0⁻) = <b>1</b>; right-hand limit (x → 0⁺) = <b>2</b>. They differ, so <b>lim x→0 f(x) does not exist</b>, even though f(0) = 1 is defined.</p>'
+          '<p>Rule: <b>the limit exists ⟺ left limit = right limit</b> (both finite).</p>',
+          'Left and right limits differ: the limit does not exist', 'lim exists iff left and right limits are equal; step function 1 (x≤0), 2 (x>0) has LHL 1, RHL 2 at 0, so no limit though f(0)=1',
+          vb='0 0 300 180', hint='Approach 0 from each side separately.')
+
+
+def sandwich_circle(deck):
+    P, h = eqplane(-0.35, 1.55, -0.3, 1.9, pad=(10, 6, 10, 8))
+    x = 0.9
+    cx, cy = math.cos(x), math.sin(x)
+    ox, oy = P.X(0), P.Y(0)
+    r = P.X(1) - ox
+    base = (P.axes(labels=False) + f'<path class="c0" d="M {P.X(1):.1f} {P.Y(0):.1f} A {r:.1f} {r:.1f} 0 0 0 {P.X(0):.1f} {P.Y(1):.1f}" fill="none"></path>' +
+            P.line(0, 0, cx, cy, 'c0') + P.line(0, 0, 1, math.tan(x), 'c0') + P.dot(cx, cy, 'd0s', 3.5) + P.text(cx, cy, 'C', 'lbl', dx=-12, dy=-4) + P.text(1, 0, 'A', 'lbl', dx=4, dy=14) +
+            P.text(1, math.tan(x), 'B', 'lbl', dx=6, dy=4) + P.text(0, 0, 'O', 'lbl', dx=-10, dy=14))
+    arc_pts = ' '.join(f'{P.X(math.cos(t)):.1f},{P.Y(math.sin(t)):.1f}' for t in [x * i / 30 for i in range(31)])
+    back = (P.line(cx, 0, cx, cy, 'c2 fx d2') + P.text(cx, cy / 2, 'sin x', 't2 fx d2', dx=6) +
+            f'<polyline class="c3 fx d3" points="{arc_pts}"></polyline>' + P.text(1.03, 0.4, 'x', 't3 fx d3', dx=10, dy=-14) +
+            P.line(1, 0, 1, math.tan(x), 'c1 fx d4') + P.text(1, math.tan(x) / 2, 'tan x', 't1 fx d4', dx=8))
+    mcard(deck, 'sin x / x · sandwich', 'In the unit circle compare CD = sin x, arc AC = x and AB = tan x. What follows for lim sin x / x?', base, back,
+          '<p>Area △OAC &lt; sector OAC &lt; △OAB ⇒ <b>sin x &lt; x &lt; tan x</b> (0 &lt; x &lt; π/2). Divide by sin x and invert: <b>cos x &lt; sin x / x &lt; 1</b>.</p>'
+          '<p>As x → 0, cos x → 1, so by the <b>sandwich theorem lim sin x / x = 1</b> (x in radians!). Then lim (1 − cos x)/x = 0 and lim tan x / x = 1.</p>',
+          'Sandwich proof of lim sin x / x = 1', 'sin x < x < tan x gives cos x < sin x/x < 1; by the sandwich theorem lim x→0 sin x/x = 1 (radians); also lim tan x/x = 1 and lim (1−cos x)/x = 0',
+          vb=f'0 0 300 {h}', hint='Compare two triangles and a sector.')
+
+
+def sinc_graph(deck):
+    P = Plane(-9.6, 9.6, -0.5, 1.25, 300, 170, (20, 10, 10, 22))
+    xt = [(-6.283, '−2π'), (-3.1416, '−π'), (3.1416, 'π'), (6.283, '2π')]
+    yt = [(1, '1'), (0.5, '½')]
+    base = P.axes(xt, yt, grid=True) + P.curve(lambda x: math.sin(x) / x if abs(x) > 1e-9 else None, 'c1', -9.4, 9.4, n=300, clip=(-1, 2))
+    back = P.hole(0, 1, 'c1', 5) + P.text(0, 1, 'limit 1, f(0) undefined', 't2 fx d2', dx=10, dy=-10) + P.text(-9.4, 0.4, 'squeezed by ±1/|x|', 'sm fx d3', dx=2)
+    mcard(deck, 'Graph of sin x / x', 'Sketch y = sin x / x. What happens at x = 0 and as |x| grows?', base, back,
+          '<p>At x = 0 the function is undefined (0/0) but the curve <b>heads to 1</b>: a removable hole at (0, 1). Because |sin x| ≤ 1, the oscillations are squeezed between ±1/|x| and die out.</p>',
+          'Graph of sin x / x', 'sin x/x has a removable discontinuity at 0 with limit 1, is even, and decays to 0 as |x| grows (squeezed between ±1/|x|)',
+          vb='0 0 300 170', hint='Numerator oscillates; denominator grows.')
+
+
+def parabola_tangents(deck):
+    P = Plane(-2.6, 3.4, -1.5, 9.6, 300, 200, (24, 10, 12, 20))
+    xt = [(-2, '−2'), (-1, '−1'), (1, '1'), (2, '2'), (3, '3')]
+    yt = [(2, '2'), (4, '4'), (6, '6'), (8, '8')]
+    base = P.axes(xt, yt, grid=True) + P.curve(lambda x: x * x, 'c1', -2.4, 3.1, clip=(-1.5, 9.6))
+    back = ''
+    for k, a in enumerate([-1, 0, 1, 2]):
+        m = 2 * a
+        back += (P.curve(lambda x, a=a, m=m: a * a + m * (x - a), 'c2 fx d' + str(k + 2), a - 1.1, a + 1.1, clip=(-1.5, 9.6)) + P.dot(a, a * a, 'd2s', 4, 'fx d' + str(k + 2)) +
+                 P.text(a, a * a, f'm = {m}'.replace('-', '−'), 't2 fx d' + str(k + 2), 'middle', dy=-10 if a != 0 else 18))
+    mcard(deck, 'Derivative as slope of the tangent', 'Draw tangents to y = x² at x = −1, 0, 1, 2. Read off their slopes and guess f′(x).', base, back,
+          '<p>Slopes −2, 0, 2, 4 = <b>2x</b>. So d(x²)/dx = 2x: the derivative is a <b>new function giving the slope at every point</b>.</p>'
+          '<p>First principle: f′(x) = lim (f(x + h) − f(x))/h = lim ((x + h)² − x²)/h = lim (2x + h) = 2x.</p>',
+          'f′(x) is the slope of the tangent: (x²)′ = 2x', 'Tangents to y=x² at x=−1,0,1,2 have slopes −2,0,2,4 = 2x; f′(x)=lim (f(x+h)−f(x))/h; (x²)′=2x',
+          vb='0 0 300 200', hint='Estimate the slope at each marked point.')
