@@ -818,3 +818,36 @@ def malus_law_stages(deck):
          'Transmitted intensity through a rotated analyser',
          'Malus’s law: I = I0 cos²θ; maximum at 0° and 180°, zero when crossed at 90°; unpolarised light through a polaroid drops to half',
          css, hint='Watch the bar.', vb='0 0 300 190')
+
+
+# ---------------------------------------------------------------- Physics 12 Ch 11 Photoelectric effect
+def photoelectric_stages(deck):
+    T = 9.0
+    css = (_stage_css('sg', 3, T) +
+           '.bp .phv{fill:#c9a7ff}.bp .phr{fill:#ff8a80}.bp .elc{fill:#80e8a8}'
+           '.bp .fly{animation:fly 1.2s linear infinite}@keyframes fly{0%{transform:translate(-70px,-70px);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translate(0,0);opacity:0}}'
+           '.bp .up{animation:up 1.2s linear infinite .5s}@keyframes up{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(0,-60px);opacity:0}}'
+           '.bp .dl2{animation-delay:.4s}.bp .dl3{animation-delay:.8s}.bp .dl4{animation-delay:.2s}.bp .dl5{animation-delay:.6s}.bp .dl6{animation-delay:1s}')
+    base = ('<rect class="zone" x="50" y="140" width="200" height="34"></rect>'
+            '<text class="sm" x="150" y="162" text-anchor="middle">metal, work function φ₀</text>'
+            '<text class="sm" x="12" y="24">photons ↘</text>')
+
+    def group(k, colour, xs, n_el, label, cls_extra=''):
+        s = f'<g class="sg{k}">'
+        for i, x in enumerate(xs):
+            s += f'<circle class="fly {colour} dl{(i % 3) + 1 if i else 1}" cx="{x}" cy="138" r="5"></circle>'.replace('dl1', '')
+        for i, x in enumerate(xs[:n_el]):
+            s += f'<circle class="up elc dl{(i % 6) + 1}" cx="{x}" cy="134" r="4"></circle>'
+        s += f'<text class="gr" x="150" y="190" text-anchor="middle">{label}</text></g>'
+        return s
+    back = (group(0, 'phr', [90, 150, 210], 0, 'ν < ν₀ (red): no electrons, however intense') +
+            group(1, 'phv', [90, 150, 210], 3, 'ν > ν₀: each photon frees one electron, K = hν − φ₀') +
+            group(2, 'phv', [70, 100, 130, 160, 190, 220], 6, 'same ν, 2× intensity: 2× electrons, same K'))
+    anim(deck, 'Photoelectric effect · picture',
+         'Light falls on a metal. Compare: (1) low-frequency light of any intensity, (2) high-frequency light, (3) the same high-frequency light with double the intensity.',
+         base, back,
+         '<p>Below the <b>threshold frequency</b> ν₀ = φ₀/h no electron leaves, however bright the light: one photon has too little energy (hν &lt; φ₀).</p>'
+         '<p>Above ν₀, each photon that is absorbed ejects one electron with <b>K<sub>max</sub> = hν − φ₀</b>. Doubling the intensity doubles the number of photons, so the <b>photocurrent doubles</b> but K<sub>max</sub> and the stopping potential do not change.</p>',
+         'Photoelectric effect: frequency vs intensity',
+         'Below the threshold frequency no photoemission; above it each photon ejects one electron with Kmax = hν − φ0; intensity changes the photocurrent, not Kmax or stopping potential',
+         css, hint='Three cases, one after another.', vb='0 0 300 200')
