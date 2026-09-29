@@ -2873,3 +2873,86 @@ def angle_between_lines(deck):
           'Angle between two lines from direction ratios',
           'cos(theta) = |a1a2+b1b2+c1c2| / (sqrt(a1^2+b1^2+c1^2) sqrt(a2^2+b2^2+c2^2)); perpendicular when the dot product is zero; parallel when ratios are proportional',
           vb=f'0 0 300 {h}', hint='Use the direction vectors of the lines.')
+
+
+# ================================================================ Maths 12 Ch 12 Linear programming
+def lp_corner_points(deck):
+    P = Plane(-3, 26, -6, 70, 300, 190, (16, 8, 10, 18))
+    poly = [(0, 0), (20, 0), (10, 50), (0, 60)]
+    base = P.axes([(10, '10'), (20, '20')], [(20, '20'), (40, '40'), (60, '60')], grid=True, labels=False) + P.poly(poly, 'f1')
+    base += P.line(-2, 100 + 10, 22, -20, 'c0') if False else ''
+    back = ''
+    for k, ((x, y), lab) in enumerate(zip(poly, ['O (0,0): 0', 'A (20,0): 5000', 'B (10,50): 6250', 'C (0,60): 4500'])):
+        back += P.dot(x, y, 'd2s' if lab.startswith('B') else 'd1s', 5 if lab.startswith('B') else 4, f'fx d{k % 4 + 1}')
+    back += (P.text(10, 50, 'B: 6250 (max)', 't2 fx d4', dx=8, dy=-4) + P.text(20, 0, 'A: 5000', 'sm fx d2', dx=4, dy=-8) + P.text(0, 60, 'C: 4500', 'sm fx d3', dx=6, dy=-6)
+             + P.text(0, 0, 'O: 0', 'sm fx d1', dx=6, dy=-6))
+    mcard(deck, 'Corner point method', 'Maximise Z = 250x + 75y subject to 5x + y ≤ 100, x + y ≤ 60, x, y ≥ 0. Where does the maximum occur?', base, back,
+          '<p>The feasible region is the polygon OABC. <b>Theorem:</b> an optimal value of a linear objective over a convex polygon occurs at a <b>corner point</b>. So evaluate Z at O(0, 0), A(20, 0), B(10, 50), C(0, 60): 0, 5000, <b>6250</b>, 4500.</p>'
+          '<p>The maximum profit ₹6250 is at B: buy <b>10 tables and 50 chairs</b>. B is the intersection of 5x + y = 100 and x + y = 60 (subtract: 4x = 40).</p>',
+          'Corner point method: evaluate Z at the vertices',
+          'Optimal value of Z = ax+by over a bounded feasible polygon occurs at a corner point; evaluate Z at each vertex; furniture dealer: max 250x+75y at (10,50) = 6250',
+          vb='0 0 300 190', hint='Find the vertices of the feasible region and evaluate Z at each.')
+
+
+def lp_iso_profit(deck):
+    P = Plane(-0.6, 6.2, -0.6, 5.6, 300, 190, (16, 8, 10, 18))
+    base = P.axes([(1, '1'), (2, '2'), (3, '3'), (4, '4')], [(1, '1'), (2, '2'), (3, '3'), (4, '4')], grid=False, labels=False) + P.poly([(0, 0), (4, 0), (0, 4)], 'f1') + P.text(2.0, 1.0, 'x + y ≤ 4', 'sm', anchor='middle')
+    back = ''
+    for k, c in enumerate([4, 8, 12, 16]):
+        # 3x + 4y = c
+        pts = [(0, c / 4), (c / 3, 0)]
+        cls = 'guide' if c < 16 else 'c2'
+        back += P.line(-0.2, (c + 0.6) / 4, (c + 0.8) / 3, -0.2, f'{cls} fx d{k + 1}')
+        back += P.text(c / 3 if c < 16 else 0.15, 0 if c < 16 else c / 4, f'Z = {c}', ('sm' if c < 16 else 't2') + f' fx d{k + 1}', dx=(4 if c < 16 else 8), dy=(-6 if c < 16 else -8))
+    back += P.dot(0, 4, 'd2s', 5.5, 'fx d4')
+    mcard(deck, 'Iso-profit lines', 'Maximise Z = 3x + 4y subject to x + y ≤ 4, x, y ≥ 0. Slide the line 3x + 4y = c across the feasible region: where is it last touching?', base, back,
+          '<p>Each line 3x + 4y = c is a set of points with the same Z. As c increases the line moves up and to the right; the largest c for which it still meets the feasible triangle is when it just touches a <b>corner</b>: here (0, 4) with <b>Z = 16</b>.</p>'
+          '<p>Check with corner values: (0, 0) → 0, (4, 0) → 12, (0, 4) → 16 (Ex 12.1 Q1). Steeper or flatter objective lines would end at a different vertex.</p>',
+          'Iso-profit line touches the last vertex',
+          'Lines 3x+4y=c move across the region; maximum Z is at the last vertex touched, (0,4) with Z=16; corner values 0, 12, 16',
+          vb='0 0 300 190', hint='Move the objective line parallel to itself.')
+
+
+def lp_multiple_optima(deck):
+    P = Plane(-3, 26, -3, 26, 300, 200, (16, 8, 10, 18))
+    poly = [(0, 10), (5, 5), (15, 15), (0, 20)]
+    base = P.axes([(10, '10'), (20, '20')], [(10, '10'), (20, '20')], grid=True, labels=False) + P.poly(poly, 'f1')
+    for (x, y), lab in zip(poly, ['A (0,10)', 'B (5,5)', 'C (15,15)', 'D (0,20)']):
+        base += P.dot(x, y, 'd0s', 3.6) + P.text(x, y, lab, 'sm', dx=6 if x else 8, dy=(14 if y < 10 else -6))
+    back = P.line(-2, 20.7, 16.5, 14.5, 'c2 fx d2') + P.line(0, 20, 15, 15, 'c4 fx d2').replace('class="c4', 'class="c4') + P.text(13, 23.5, 'Z = 180 on all of CD', 't2 fx d3', anchor='middle') + P.dot(5, 5, 'd1s', 5, 'fx d3') + P.text(5, 5, 'min 60', 't1 fx d3', dx=8, dy=-6)
+    mcard(deck, 'Example 3 · multiple optimal solutions', 'Minimise and maximise Z = 3x + 9y subject to x + 3y ≤ 60, x + y ≥ 10, x ≤ y, x, y ≥ 0. Why does the maximum occur at two corners?', base, back,
+          '<p>Corner values: A(0, 10) → 90, B(5, 5) → 60, C(15, 15) → 180, D(0, 20) → 180. Minimum <b>60 at B</b>. Maximum <b>180 at both C and D</b>.</p>'
+          '<p>The objective line 3x + 9y = 180 is the same line as the constraint x + 3y = 60, so it contains the whole edge CD. <b>Every point of segment CD</b> is optimal: infinitely many solutions.</p>',
+          'Two corners with the same optimum ⇒ the whole edge is optimal',
+          'If two corner points give the same optimal value, every point on the segment joining them is also optimal; Example 3: Z=3x+9y max 180 on segment CD (parallel to x+3y=60), min 60 at (5,5)',
+          vb='0 0 300 200', hint='Compare the slope of the objective line with the edges.')
+
+
+def lp_unbounded_check(deck):
+    P = Plane(-0.6, 8.6, -0.6, 10.6, 300, 200, (16, 8, 10, 18))
+    reg = [(0, 3), (1, 0), (6, 0), (8, 4 / 3), (8, 10), (2.5, 10), (0, 5)]
+    base = P.axes([(2, '2'), (4, '4'), (6, '6')], [(2, '2'), (4, '4'), (6, '6'), (8, '8'), (10, '10')], grid=True, labels=False) + P.poly(reg, 'f1')
+    for (x, y), lab in zip([(0, 5), (0, 3), (1, 0), (6, 0)], ['(0,5): 100', '(0,3): 60', '(1,0): −50', '(6,0): −300']):
+        base += P.dot(x, y, 'd0s', 3.8) + P.text(x, y, lab, 'sm', dx=6, dy=(12 if y == 0 else 0))
+    back = (P.poly([(6, 0), (8, 5), (8, 4 / 3)], 'f2 fx d2') + P.line(6, 0, 8.2, 5.5, 'c2 fx d2') + P.text(4.3, 6.6, 'Z < −300 meets the region', 't2 fx d3', anchor='middle')
+            + P.text(4.3, 8.4, 'so no minimum', 't4 fx d4', anchor='middle'))
+    mcard(deck, 'Example 4 · unbounded region', 'Minimise Z = −50x + 20y over the unbounded region 2x − y ≥ −5, 3x + y ≥ 3, 2x − 3y ≤ 12, x, y ≥ 0. The smallest corner value is −300 at (6, 0). Is that the minimum?', base, back,
+          '<p>For an <b>unbounded</b> region the smallest corner value m is the minimum <b>only if the open half-plane ax + by &lt; m has no point in common with the region</b>. Here −50x + 20y &lt; −300, i.e. −5x + 2y &lt; −30, does contain feasible points (the red wedge).</p>'
+          '<p>So Z can be made smaller than −300: <b>Z has no minimum</b>. Similarly, to check the maximum 100 at (0, 5) test −50x + 20y &gt; 100: it also meets the region (large y), so no maximum either.</p>',
+          'Unbounded feasible region: test the open half-plane',
+          'For an unbounded region, corner minimum m is the true minimum iff the open half-plane ax+by<m has no common point with the feasible region; example -50x+20y has no minimum',
+          vb='0 0 300 200', hint='Draw the half-plane Z < −300 and see whether it overlaps the region.')
+
+
+def lp_infeasible(deck):
+    P = Plane(-0.6, 9.6, -0.6, 9.6, 300, 190, (16, 8, 10, 18))
+    upper = [(0, 8), (8, 0), (9.6, 0), (9.6, 9.6), (0, 9.6)]
+    lower = [(0, 0), (5, 0), (0, 3)]
+    base = P.axes([(2, '2'), (4, '4'), (6, '6'), (8, '8')], [(2, '2'), (4, '4'), (6, '6'), (8, '8')], grid=True, labels=False) + P.line(0, 8, 8, 0, 'c1') + P.line(0, 3, 5, 0, 'c2')
+    back = P.poly(upper, 'f1 fx d2') + P.poly(lower, 'f2 fx d3') + P.text(5.5, 6.5, 'x + y ≥ 8', 't1 fx d2', anchor='middle') + P.text(1.6, 1.2, '3x + 5y ≤ 15', 't2 fx d3', anchor='middle') + P.text(4.8, 3.3, 'no overlap: infeasible', 't4 fx d4', anchor='middle')
+    mcard(deck, 'Example 5 · no feasible region', 'Minimise Z = 3x + 2y subject to x + y ≥ 8, 3x + 5y ≤ 15, x, y ≥ 0. What can you say?', base, back,
+          '<p>The half-plane x + y ≥ 8 lies on the far side of its line; 3x + 5y ≤ 15 is the small triangle near the origin. They have <b>no point in common</b> (even the largest x + y in the triangle is 5 &lt; 8), so the <b>feasible region is empty</b> and the problem has no solution.</p>'
+          '<p>Same happens in Ex 12.1 Q10: x − y ≤ −1 means y ≥ x + 1 while −x + y ≤ 0 means y ≤ x. An LPP can therefore be <b>infeasible</b>, <b>unbounded</b> with or without an optimum, or have a <b>unique / multiple</b> optimum.</p>',
+          'Infeasible LPP: empty feasible region',
+          'If the constraints have no common point the feasible region is empty and the LPP has no solution; example x+y>=8 with 3x+5y<=15; Ex 12.1 Q10 also infeasible',
+          vb='0 0 300 190', hint='Do the two shaded half-planes overlap anywhere?')

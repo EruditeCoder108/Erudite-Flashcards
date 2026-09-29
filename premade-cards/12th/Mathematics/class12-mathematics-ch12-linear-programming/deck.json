@@ -1,0 +1,753 @@
+{
+  "version": 1,
+  "name": "Chapter 12: Linear Programming",
+  "className": "Class 12",
+  "description": "Linear programming problems, constraints, feasible region, corner point method, unbounded, infeasible and multiple-optimum cases, formulating word problems, with every answer computed.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is a linear programming problem (LPP)?",
+      "definition": "Finding the <span style=\"color:#3b82f6\">maximum or minimum of a linear objective function Z = ax + by</span> subject to linear inequality constraints (and x, y ≥ 0). “Linear” because all relations are linear; “programming” means finding a plan of action",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define objective function, constraints, decision variables.",
+      "definition": "<span style=\"color:#3b82f6\">Objective function</span>: the linear expression Z = ax + by to be optimised. <span style=\"color:#3b82f6\">Constraints</span>: the linear inequalities (or equations) on the variables. <span style=\"color:#3b82f6\">Decision variables</span>: x and y, with the non-negative restrictions x, y ≥ 0",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define feasible region, feasible and infeasible solutions.",
+      "definition": "<span style=\"color:#3b82f6\">Feasible region</span>: the common region satisfying all constraints including x, y ≥ 0. <span style=\"color:#3b82f6\">Feasible solution</span>: any point in (or on the boundary of) it. <span style=\"color:#3b82f6\">Infeasible</span>: any point outside. <span style=\"color:#3b82f6\">Optimal solution</span>: a feasible point giving the optimal value of Z",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a corner point (vertex) of the feasible region?",
+      "definition": "A point of the region that is the <span style=\"color:#3b82f6\">intersection of two boundary lines</span>. The region is always convex (a convex polygon, bounded or not)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Bounded vs unbounded feasible region?",
+      "definition": "<span style=\"color:#3b82f6\">Bounded</span>: it can be enclosed in a circle. <span style=\"color:#3b82f6\">Unbounded</span>: it extends indefinitely in some direction",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 1 of LPP (fundamental).",
+      "definition": "If Z has an optimal value (max or min) on the feasible region R, it occurs at a <span style=\"color:#3b82f6\">corner point</span> of R",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 2 of LPP.",
+      "definition": "If R is <span style=\"color:#3b82f6\">bounded</span>, Z has both a maximum and a minimum on R, and each occurs at a corner point. If R is unbounded an optimum may not exist",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Steps of the corner point method.",
+      "definition": "1) Graph the constraints and find the feasible region and its corners. 2) Evaluate Z at each corner; let M be the largest, m the smallest. 3) If R is bounded, M is the max and m the min. 4) If R is unbounded: M is the max only if ax + by > M has no common point with R; m is the min only if ax + by < m has none; otherwise there is no such optimum",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Remark: multiple optimal solutions?",
+      "definition": "If two corner points give the same optimal value, then <span style=\"color:#3b82f6\">every point on the line segment joining them</span> gives that value too (infinitely many optimal solutions)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Types of outcomes of an LPP.",
+      "definition": "<span style=\"color:#3b82f6\">Unique optimum</span> (one corner); <span style=\"color:#3b82f6\">multiple optima</span> (an edge); <span style=\"color:#3b82f6\">unbounded</span> (no max or no min); <span style=\"color:#3b82f6\">infeasible</span> (no feasible region)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How to graph a constraint like 3x + 5y ≤ 15.",
+      "definition": "Draw the line 3x + 5y = 15 through (5, 0) and (0, 3). Test the origin: 0 ≤ 15 is true, so shade the <span style=\"color:#3b82f6\">origin side</span>. For a ≥ constraint through the origin, use another test point",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the feasible region of an LPP convex?",
+      "definition": "It is the intersection of half-planes, and each half-plane is convex. This is why optimal values occur at corners (a linear function on a convex polygon is extreme at a vertex)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "The furniture dealer problem: mathematical formulation.",
+      "definition": "Let x tables and y chairs. Maximise <span style=\"color:#3b82f6\">Z = 250x + 75y</span> subject to 2500x + 500y ≤ 50 000 (i.e. 5x + y ≤ 100), x + y ≤ 60, x, y ≥ 0",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Corner point method: evaluate Z at the vertices",
+      "definition": "Optimal value of Z = ax+by over a bounded feasible polygon occurs at a corner point; evaluate Z at each vertex; furniture dealer: max 250x+75y at (10,50) = 6250",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Corner point method</p><h2>Maximise Z = 250x + 75y subject to 5x + y ≤ 100, x + y ≤ 60, x, y ≥ 0. Where does the maximum occur?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"138.8\" y1=\"172.0\" x2=\"138.8\" y2=\"8.0\"></line><line class=\"gd\" x1=\"233.3\" y1=\"172.0\" x2=\"233.3\" y2=\"8.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"115.9\" x2=\"290.0\" y2=\"115.9\"></line><line class=\"gd\" x1=\"16.0\" y1=\"72.7\" x2=\"290.0\" y2=\"72.7\"></line><line class=\"gd\" x1=\"16.0\" y1=\"29.6\" x2=\"290.0\" y2=\"29.6\"></line><line class=\"ax\" x1=\"16.0\" y1=\"159.1\" x2=\"290.0\" y2=\"159.1\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"44.3\" y1=\"172.0\" x2=\"44.3\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"138.8\" y1=\"156.1\" x2=\"138.8\" y2=\"162.1\"></line><text class=\"num\" x=\"138.8\" y=\"173.1\">10</text><line class=\"ax\" x1=\"233.3\" y1=\"156.1\" x2=\"233.3\" y2=\"162.1\"></line><text class=\"num\" x=\"233.3\" y=\"173.1\">20</text><line class=\"ax\" x1=\"41.3\" y1=\"115.9\" x2=\"47.3\" y2=\"115.9\"></line><text class=\"num\" x=\"38.3\" y=\"119.4\" text-anchor=\"end\">20</text><line class=\"ax\" x1=\"41.3\" y1=\"72.7\" x2=\"47.3\" y2=\"72.7\"></line><text class=\"num\" x=\"38.3\" y=\"76.2\" text-anchor=\"end\">40</text><line class=\"ax\" x1=\"41.3\" y1=\"29.6\" x2=\"47.3\" y2=\"29.6\"></line><text class=\"num\" x=\"38.3\" y=\"33.1\" text-anchor=\"end\">60</text><polygon class=\"f1 \" points=\"44.3,159.1 233.3,159.1 138.8,51.2 44.3,29.6\"></polygon></svg><p class=\"hint\">Find the vertices of the feasible region and evaluate Z at each.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Corner point method</p><h2>Maximise Z = 250x + 75y subject to 5x + y ≤ 100, x + y ≤ 60, x, y ≥ 0. Where does the maximum occur?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"138.8\" y1=\"172.0\" x2=\"138.8\" y2=\"8.0\"></line><line class=\"gd\" x1=\"233.3\" y1=\"172.0\" x2=\"233.3\" y2=\"8.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"115.9\" x2=\"290.0\" y2=\"115.9\"></line><line class=\"gd\" x1=\"16.0\" y1=\"72.7\" x2=\"290.0\" y2=\"72.7\"></line><line class=\"gd\" x1=\"16.0\" y1=\"29.6\" x2=\"290.0\" y2=\"29.6\"></line><line class=\"ax\" x1=\"16.0\" y1=\"159.1\" x2=\"290.0\" y2=\"159.1\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"44.3\" y1=\"172.0\" x2=\"44.3\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"138.8\" y1=\"156.1\" x2=\"138.8\" y2=\"162.1\"></line><text class=\"num\" x=\"138.8\" y=\"173.1\">10</text><line class=\"ax\" x1=\"233.3\" y1=\"156.1\" x2=\"233.3\" y2=\"162.1\"></line><text class=\"num\" x=\"233.3\" y=\"173.1\">20</text><line class=\"ax\" x1=\"41.3\" y1=\"115.9\" x2=\"47.3\" y2=\"115.9\"></line><text class=\"num\" x=\"38.3\" y=\"119.4\" text-anchor=\"end\">20</text><line class=\"ax\" x1=\"41.3\" y1=\"72.7\" x2=\"47.3\" y2=\"72.7\"></line><text class=\"num\" x=\"38.3\" y=\"76.2\" text-anchor=\"end\">40</text><line class=\"ax\" x1=\"41.3\" y1=\"29.6\" x2=\"47.3\" y2=\"29.6\"></line><text class=\"num\" x=\"38.3\" y=\"33.1\" text-anchor=\"end\">60</text><polygon class=\"f1 \" points=\"44.3,159.1 233.3,159.1 138.8,51.2 44.3,29.6\"></polygon><circle class=\"d1s fx d1\" cx=\"44.3\" cy=\"159.1\" r=\"4\"></circle><circle class=\"d1s fx d2\" cx=\"233.3\" cy=\"159.1\" r=\"4\"></circle><circle class=\"d2s fx d3\" cx=\"138.8\" cy=\"51.2\" r=\"5\"></circle><circle class=\"d1s fx d4\" cx=\"44.3\" cy=\"29.6\" r=\"4\"></circle><text class=\"t2 fx d4 \" x=\"146.8\" y=\"47.2\" text-anchor=\"start\">B: 6250 (max)</text><text class=\"sm fx d2 \" x=\"237.3\" y=\"151.1\" text-anchor=\"start\">A: 5000</text><text class=\"sm fx d3 \" x=\"50.3\" y=\"23.6\" text-anchor=\"start\">C: 4500</text><text class=\"sm fx d1 \" x=\"50.3\" y=\"153.1\" text-anchor=\"start\">O: 0</text></svg><div class=\"eq fx d5\"><p>The feasible region is the polygon OABC. <b>Theorem:</b> an optimal value of a linear objective over a convex polygon occurs at a <b>corner point</b>. So evaluate Z at O(0, 0), A(20, 0), B(10, 50), C(0, 60): 0, 5000, <b>6250</b>, 4500.</p><p>The maximum profit ₹6250 is at B: buy <b>10 tables and 50 chairs</b>. B is the intersection of 5x + y = 100 and x + y = 60 (subtract: 4x = 40).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Iso-profit line touches the last vertex",
+      "definition": "Lines 3x+4y=c move across the region; maximum Z is at the last vertex touched, (0,4) with Z=16; corner values 0, 12, 16",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Iso-profit lines</p><h2>Maximise Z = 3x + 4y subject to x + y ≤ 4, x, y ≥ 0. Slide the line 3x + 4y = c across the feasible region: where is it last touching?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"16.0\" y1=\"156.1\" x2=\"290.0\" y2=\"156.1\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"40.2\" y1=\"172.0\" x2=\"40.2\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"80.5\" y1=\"153.1\" x2=\"80.5\" y2=\"159.1\"></line><text class=\"num\" x=\"80.5\" y=\"170.1\">1</text><line class=\"ax\" x1=\"120.8\" y1=\"153.1\" x2=\"120.8\" y2=\"159.1\"></line><text class=\"num\" x=\"120.8\" y=\"170.1\">2</text><line class=\"ax\" x1=\"161.1\" y1=\"153.1\" x2=\"161.1\" y2=\"159.1\"></line><text class=\"num\" x=\"161.1\" y=\"170.1\">3</text><line class=\"ax\" x1=\"201.4\" y1=\"153.1\" x2=\"201.4\" y2=\"159.1\"></line><text class=\"num\" x=\"201.4\" y=\"170.1\">4</text><line class=\"ax\" x1=\"37.2\" y1=\"129.7\" x2=\"43.2\" y2=\"129.7\"></line><text class=\"num\" x=\"34.2\" y=\"133.2\" text-anchor=\"end\">1</text><line class=\"ax\" x1=\"37.2\" y1=\"103.2\" x2=\"43.2\" y2=\"103.2\"></line><text class=\"num\" x=\"34.2\" y=\"106.7\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"37.2\" y1=\"76.8\" x2=\"43.2\" y2=\"76.8\"></line><text class=\"num\" x=\"34.2\" y=\"80.3\" text-anchor=\"end\">3</text><line class=\"ax\" x1=\"37.2\" y1=\"50.3\" x2=\"43.2\" y2=\"50.3\"></line><text class=\"num\" x=\"34.2\" y=\"53.8\" text-anchor=\"end\">4</text><polygon class=\"f1 \" points=\"40.2,156.1 201.4,156.1 40.2,50.3\"></polygon><text class=\"sm \" x=\"120.8\" y=\"129.7\" text-anchor=\"middle\">x + y ≤ 4</text></svg><p class=\"hint\">Move the objective line parallel to itself.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Iso-profit lines</p><h2>Maximise Z = 3x + 4y subject to x + y ≤ 4, x, y ≥ 0. Slide the line 3x + 4y = c across the feasible region: where is it last touching?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"16.0\" y1=\"156.1\" x2=\"290.0\" y2=\"156.1\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"40.2\" y1=\"172.0\" x2=\"40.2\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"80.5\" y1=\"153.1\" x2=\"80.5\" y2=\"159.1\"></line><text class=\"num\" x=\"80.5\" y=\"170.1\">1</text><line class=\"ax\" x1=\"120.8\" y1=\"153.1\" x2=\"120.8\" y2=\"159.1\"></line><text class=\"num\" x=\"120.8\" y=\"170.1\">2</text><line class=\"ax\" x1=\"161.1\" y1=\"153.1\" x2=\"161.1\" y2=\"159.1\"></line><text class=\"num\" x=\"161.1\" y=\"170.1\">3</text><line class=\"ax\" x1=\"201.4\" y1=\"153.1\" x2=\"201.4\" y2=\"159.1\"></line><text class=\"num\" x=\"201.4\" y=\"170.1\">4</text><line class=\"ax\" x1=\"37.2\" y1=\"129.7\" x2=\"43.2\" y2=\"129.7\"></line><text class=\"num\" x=\"34.2\" y=\"133.2\" text-anchor=\"end\">1</text><line class=\"ax\" x1=\"37.2\" y1=\"103.2\" x2=\"43.2\" y2=\"103.2\"></line><text class=\"num\" x=\"34.2\" y=\"106.7\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"37.2\" y1=\"76.8\" x2=\"43.2\" y2=\"76.8\"></line><text class=\"num\" x=\"34.2\" y=\"80.3\" text-anchor=\"end\">3</text><line class=\"ax\" x1=\"37.2\" y1=\"50.3\" x2=\"43.2\" y2=\"50.3\"></line><text class=\"num\" x=\"34.2\" y=\"53.8\" text-anchor=\"end\">4</text><polygon class=\"f1 \" points=\"40.2,156.1 201.4,156.1 40.2,50.3\"></polygon><text class=\"sm \" x=\"120.8\" y=\"129.7\" text-anchor=\"middle\">x + y ≤ 4</text><line class=\"guide fx d1\" x1=\"32.1\" y1=\"125.7\" x2=\"104.6\" y2=\"161.4\"></line><text class=\"sm fx d1 \" x=\"97.9\" y=\"150.1\" text-anchor=\"start\">Z = 4</text><line class=\"guide fx d2\" x1=\"32.1\" y1=\"99.3\" x2=\"158.4\" y2=\"161.4\"></line><text class=\"sm fx d2 \" x=\"151.6\" y=\"150.1\" text-anchor=\"start\">Z = 8</text><line class=\"guide fx d3\" x1=\"32.1\" y1=\"72.8\" x2=\"212.1\" y2=\"161.4\"></line><text class=\"sm fx d3 \" x=\"205.4\" y=\"150.1\" text-anchor=\"start\">Z = 12</text><line class=\"c2 fx d4\" x1=\"32.1\" y1=\"46.4\" x2=\"265.8\" y2=\"161.4\"></line><text class=\"t2 fx d4 \" x=\"54.2\" y=\"42.3\" text-anchor=\"start\">Z = 16</text><circle class=\"d2s fx d4\" cx=\"40.2\" cy=\"50.3\" r=\"5.5\"></circle></svg><div class=\"eq fx d5\"><p>Each line 3x + 4y = c is a set of points with the same Z. As c increases the line moves up and to the right; the largest c for which it still meets the feasible triangle is when it just touches a <b>corner</b>: here (0, 4) with <b>Z = 16</b>.</p><p>Check with corner values: (0, 0) → 0, (4, 0) → 12, (0, 4) → 16 (Ex 12.1 Q1). Steeper or flatter objective lines would end at a different vertex.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.2-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: maximise Z = 4x + y subject to x + y ≤ 50, 3x + y ≤ 90, x, y ≥ 0.",
+      "definition": "Corner values: (0, 0) → 0; (0, 50) → 50; (20, 30) → 110; (30, 0) → 120. <span style=\"color:#f08c00\">Maximum Z = 120 at (30, 0)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.3-worked-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2: minimise Z = 200x + 500y subject to x + 2y ≥ 10, 3x + 4y ≤ 24, x, y ≥ 0.",
+      "definition": "Bounded triangle with corners (0, 5), (4, 3), (0, 6): Z = 2500, 3000, 2300. <span style=\"color:#f08c00\">Minimum Z = 2300 at (4, 3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.3-worked-examples"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Two corners with the same optimum ⇒ the whole edge is optimal",
+      "definition": "If two corner points give the same optimal value, every point on the segment joining them is also optimal; Example 3: Z=3x+9y max 180 on segment CD (parallel to x+3y=60), min 60 at (5,5)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Example 3 · multiple optimal solutions</p><h2>Minimise and maximise Z = 3x + 9y subject to x + 3y ≤ 60, x + y ≥ 10, x ≤ y, x, y ≥ 0. Why does the maximum occur at two corners?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"138.8\" y1=\"182.0\" x2=\"138.8\" y2=\"8.0\"></line><line class=\"gd\" x1=\"233.3\" y1=\"182.0\" x2=\"233.3\" y2=\"8.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"104.0\" x2=\"290.0\" y2=\"104.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"44.0\" x2=\"290.0\" y2=\"44.0\"></line><line class=\"ax\" x1=\"16.0\" y1=\"164.0\" x2=\"290.0\" y2=\"164.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"44.3\" y1=\"182.0\" x2=\"44.3\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"138.8\" y1=\"161.0\" x2=\"138.8\" y2=\"167.0\"></line><text class=\"num\" x=\"138.8\" y=\"178.0\">10</text><line class=\"ax\" x1=\"233.3\" y1=\"161.0\" x2=\"233.3\" y2=\"167.0\"></line><text class=\"num\" x=\"233.3\" y=\"178.0\">20</text><line class=\"ax\" x1=\"41.3\" y1=\"104.0\" x2=\"47.3\" y2=\"104.0\"></line><text class=\"num\" x=\"38.3\" y=\"107.5\" text-anchor=\"end\">10</text><line class=\"ax\" x1=\"41.3\" y1=\"44.0\" x2=\"47.3\" y2=\"44.0\"></line><text class=\"num\" x=\"38.3\" y=\"47.5\" text-anchor=\"end\">20</text><polygon class=\"f1 \" points=\"44.3,104.0 91.6,134.0 186.1,74.0 44.3,44.0\"></polygon><circle class=\"d0s \" cx=\"44.3\" cy=\"104.0\" r=\"3.6\"></circle><text class=\"sm \" x=\"52.3\" y=\"98.0\" text-anchor=\"start\">A (0,10)</text><circle class=\"d0s \" cx=\"91.6\" cy=\"134.0\" r=\"3.6\"></circle><text class=\"sm \" x=\"97.6\" y=\"148.0\" text-anchor=\"start\">B (5,5)</text><circle class=\"d0s \" cx=\"186.1\" cy=\"74.0\" r=\"3.6\"></circle><text class=\"sm \" x=\"192.1\" y=\"68.0\" text-anchor=\"start\">C (15,15)</text><circle class=\"d0s \" cx=\"44.3\" cy=\"44.0\" r=\"3.6\"></circle><text class=\"sm \" x=\"52.3\" y=\"38.0\" text-anchor=\"start\">D (0,20)</text></svg><p class=\"hint\">Compare the slope of the objective line with the edges.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Example 3 · multiple optimal solutions</p><h2>Minimise and maximise Z = 3x + 9y subject to x + 3y ≤ 60, x + y ≥ 10, x ≤ y, x, y ≥ 0. Why does the maximum occur at two corners?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"138.8\" y1=\"182.0\" x2=\"138.8\" y2=\"8.0\"></line><line class=\"gd\" x1=\"233.3\" y1=\"182.0\" x2=\"233.3\" y2=\"8.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"104.0\" x2=\"290.0\" y2=\"104.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"44.0\" x2=\"290.0\" y2=\"44.0\"></line><line class=\"ax\" x1=\"16.0\" y1=\"164.0\" x2=\"290.0\" y2=\"164.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"44.3\" y1=\"182.0\" x2=\"44.3\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"138.8\" y1=\"161.0\" x2=\"138.8\" y2=\"167.0\"></line><text class=\"num\" x=\"138.8\" y=\"178.0\">10</text><line class=\"ax\" x1=\"233.3\" y1=\"161.0\" x2=\"233.3\" y2=\"167.0\"></line><text class=\"num\" x=\"233.3\" y=\"178.0\">20</text><line class=\"ax\" x1=\"41.3\" y1=\"104.0\" x2=\"47.3\" y2=\"104.0\"></line><text class=\"num\" x=\"38.3\" y=\"107.5\" text-anchor=\"end\">10</text><line class=\"ax\" x1=\"41.3\" y1=\"44.0\" x2=\"47.3\" y2=\"44.0\"></line><text class=\"num\" x=\"38.3\" y=\"47.5\" text-anchor=\"end\">20</text><polygon class=\"f1 \" points=\"44.3,104.0 91.6,134.0 186.1,74.0 44.3,44.0\"></polygon><circle class=\"d0s \" cx=\"44.3\" cy=\"104.0\" r=\"3.6\"></circle><text class=\"sm \" x=\"52.3\" y=\"98.0\" text-anchor=\"start\">A (0,10)</text><circle class=\"d0s \" cx=\"91.6\" cy=\"134.0\" r=\"3.6\"></circle><text class=\"sm \" x=\"97.6\" y=\"148.0\" text-anchor=\"start\">B (5,5)</text><circle class=\"d0s \" cx=\"186.1\" cy=\"74.0\" r=\"3.6\"></circle><text class=\"sm \" x=\"192.1\" y=\"68.0\" text-anchor=\"start\">C (15,15)</text><circle class=\"d0s \" cx=\"44.3\" cy=\"44.0\" r=\"3.6\"></circle><text class=\"sm \" x=\"52.3\" y=\"38.0\" text-anchor=\"start\">D (0,20)</text><line class=\"c2 fx d2\" x1=\"25.4\" y1=\"39.8\" x2=\"200.2\" y2=\"77.0\"></line><line class=\"c4 fx d2\" x1=\"44.3\" y1=\"44.0\" x2=\"186.1\" y2=\"74.0\"></line><text class=\"t2 fx d3 \" x=\"167.2\" y=\"23.0\" text-anchor=\"middle\">Z = 180 on all of CD</text><circle class=\"d1s fx d3\" cx=\"91.6\" cy=\"134.0\" r=\"5\"></circle><text class=\"t1 fx d3 \" x=\"99.6\" y=\"128.0\" text-anchor=\"start\">min 60</text></svg><div class=\"eq fx d5\"><p>Corner values: A(0, 10) → 90, B(5, 5) → 60, C(15, 15) → 180, D(0, 20) → 180. Minimum <b>60 at B</b>. Maximum <b>180 at both C and D</b>.</p><p>The objective line 3x + 9y = 180 is the same line as the constraint x + 3y = 60, so it contains the whole edge CD. <b>Every point of segment CD</b> is optimal: infinitely many solutions.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.3-worked-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3: minimise and maximise Z = 3x + 9y subject to x + 3y ≤ 60, x + y ≥ 10, x ≤ y, x, y ≥ 0.",
+      "definition": "Corners A(0, 10), B(5, 5), C(15, 15), D(0, 20): Z = 90, 60, 180, 180. <span style=\"color:#f08c00\">Min 60 at (5, 5); max 180 at every point of segment CD</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.3-worked-examples"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Unbounded feasible region: test the open half-plane",
+      "definition": "For an unbounded region, corner minimum m is the true minimum iff the open half-plane ax+by<m has no common point with the feasible region; example -50x+20y has no minimum",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Example 4 · unbounded region</p><h2>Minimise Z = −50x + 20y over the unbounded region 2x − y ≥ −5, 3x + y ≥ 3, 2x − 3y ≤ 12, x, y ≥ 0. The smallest corner value is −300 at (6, 0). Is that the minimum?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"93.4\" y1=\"182.0\" x2=\"93.4\" y2=\"8.0\"></line><line class=\"gd\" x1=\"153.0\" y1=\"182.0\" x2=\"153.0\" y2=\"8.0\"></line><line class=\"gd\" x1=\"212.6\" y1=\"182.0\" x2=\"212.6\" y2=\"8.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"141.6\" x2=\"290.0\" y2=\"141.6\"></line><line class=\"gd\" x1=\"16.0\" y1=\"110.5\" x2=\"290.0\" y2=\"110.5\"></line><line class=\"gd\" x1=\"16.0\" y1=\"79.5\" x2=\"290.0\" y2=\"79.5\"></line><line class=\"gd\" x1=\"16.0\" y1=\"48.4\" x2=\"290.0\" y2=\"48.4\"></line><line class=\"gd\" x1=\"16.0\" y1=\"17.3\" x2=\"290.0\" y2=\"17.3\"></line><line class=\"ax\" x1=\"16.0\" y1=\"172.7\" x2=\"290.0\" y2=\"172.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"33.9\" y1=\"182.0\" x2=\"33.9\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"93.4\" y1=\"169.7\" x2=\"93.4\" y2=\"175.7\"></line><text class=\"num\" x=\"93.4\" y=\"186.7\">2</text><line class=\"ax\" x1=\"153.0\" y1=\"169.7\" x2=\"153.0\" y2=\"175.7\"></line><text class=\"num\" x=\"153.0\" y=\"186.7\">4</text><line class=\"ax\" x1=\"212.6\" y1=\"169.7\" x2=\"212.6\" y2=\"175.7\"></line><text class=\"num\" x=\"212.6\" y=\"186.7\">6</text><line class=\"ax\" x1=\"30.9\" y1=\"141.6\" x2=\"36.9\" y2=\"141.6\"></line><text class=\"num\" x=\"27.9\" y=\"145.1\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"30.9\" y1=\"110.5\" x2=\"36.9\" y2=\"110.5\"></line><text class=\"num\" x=\"27.9\" y=\"114.0\" text-anchor=\"end\">4</text><line class=\"ax\" x1=\"30.9\" y1=\"79.5\" x2=\"36.9\" y2=\"79.5\"></line><text class=\"num\" x=\"27.9\" y=\"83.0\" text-anchor=\"end\">6</text><line class=\"ax\" x1=\"30.9\" y1=\"48.4\" x2=\"36.9\" y2=\"48.4\"></line><text class=\"num\" x=\"27.9\" y=\"51.9\" text-anchor=\"end\">8</text><line class=\"ax\" x1=\"30.9\" y1=\"17.3\" x2=\"36.9\" y2=\"17.3\"></line><text class=\"num\" x=\"27.9\" y=\"20.8\" text-anchor=\"end\">10</text><polygon class=\"f1 \" points=\"33.9,126.1 63.7,172.7 212.6,172.7 272.1,152.0 272.1,17.3 108.3,17.3 33.9,95.0\"></polygon><circle class=\"d0s \" cx=\"33.9\" cy=\"95.0\" r=\"3.8\"></circle><text class=\"sm \" x=\"39.9\" y=\"95.0\" text-anchor=\"start\">(0,5): 100</text><circle class=\"d0s \" cx=\"33.9\" cy=\"126.1\" r=\"3.8\"></circle><text class=\"sm \" x=\"39.9\" y=\"126.1\" text-anchor=\"start\">(0,3): 60</text><circle class=\"d0s \" cx=\"63.7\" cy=\"172.7\" r=\"3.8\"></circle><text class=\"sm \" x=\"69.7\" y=\"184.7\" text-anchor=\"start\">(1,0): −50</text><circle class=\"d0s \" cx=\"212.6\" cy=\"172.7\" r=\"3.8\"></circle><text class=\"sm \" x=\"218.6\" y=\"184.7\" text-anchor=\"start\">(6,0): −300</text></svg><p class=\"hint\">Draw the half-plane Z < −300 and see whether it overlaps the region.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Example 4 · unbounded region</p><h2>Minimise Z = −50x + 20y over the unbounded region 2x − y ≥ −5, 3x + y ≥ 3, 2x − 3y ≤ 12, x, y ≥ 0. The smallest corner value is −300 at (6, 0). Is that the minimum?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"93.4\" y1=\"182.0\" x2=\"93.4\" y2=\"8.0\"></line><line class=\"gd\" x1=\"153.0\" y1=\"182.0\" x2=\"153.0\" y2=\"8.0\"></line><line class=\"gd\" x1=\"212.6\" y1=\"182.0\" x2=\"212.6\" y2=\"8.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"141.6\" x2=\"290.0\" y2=\"141.6\"></line><line class=\"gd\" x1=\"16.0\" y1=\"110.5\" x2=\"290.0\" y2=\"110.5\"></line><line class=\"gd\" x1=\"16.0\" y1=\"79.5\" x2=\"290.0\" y2=\"79.5\"></line><line class=\"gd\" x1=\"16.0\" y1=\"48.4\" x2=\"290.0\" y2=\"48.4\"></line><line class=\"gd\" x1=\"16.0\" y1=\"17.3\" x2=\"290.0\" y2=\"17.3\"></line><line class=\"ax\" x1=\"16.0\" y1=\"172.7\" x2=\"290.0\" y2=\"172.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"33.9\" y1=\"182.0\" x2=\"33.9\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"93.4\" y1=\"169.7\" x2=\"93.4\" y2=\"175.7\"></line><text class=\"num\" x=\"93.4\" y=\"186.7\">2</text><line class=\"ax\" x1=\"153.0\" y1=\"169.7\" x2=\"153.0\" y2=\"175.7\"></line><text class=\"num\" x=\"153.0\" y=\"186.7\">4</text><line class=\"ax\" x1=\"212.6\" y1=\"169.7\" x2=\"212.6\" y2=\"175.7\"></line><text class=\"num\" x=\"212.6\" y=\"186.7\">6</text><line class=\"ax\" x1=\"30.9\" y1=\"141.6\" x2=\"36.9\" y2=\"141.6\"></line><text class=\"num\" x=\"27.9\" y=\"145.1\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"30.9\" y1=\"110.5\" x2=\"36.9\" y2=\"110.5\"></line><text class=\"num\" x=\"27.9\" y=\"114.0\" text-anchor=\"end\">4</text><line class=\"ax\" x1=\"30.9\" y1=\"79.5\" x2=\"36.9\" y2=\"79.5\"></line><text class=\"num\" x=\"27.9\" y=\"83.0\" text-anchor=\"end\">6</text><line class=\"ax\" x1=\"30.9\" y1=\"48.4\" x2=\"36.9\" y2=\"48.4\"></line><text class=\"num\" x=\"27.9\" y=\"51.9\" text-anchor=\"end\">8</text><line class=\"ax\" x1=\"30.9\" y1=\"17.3\" x2=\"36.9\" y2=\"17.3\"></line><text class=\"num\" x=\"27.9\" y=\"20.8\" text-anchor=\"end\">10</text><polygon class=\"f1 \" points=\"33.9,126.1 63.7,172.7 212.6,172.7 272.1,152.0 272.1,17.3 108.3,17.3 33.9,95.0\"></polygon><circle class=\"d0s \" cx=\"33.9\" cy=\"95.0\" r=\"3.8\"></circle><text class=\"sm \" x=\"39.9\" y=\"95.0\" text-anchor=\"start\">(0,5): 100</text><circle class=\"d0s \" cx=\"33.9\" cy=\"126.1\" r=\"3.8\"></circle><text class=\"sm \" x=\"39.9\" y=\"126.1\" text-anchor=\"start\">(0,3): 60</text><circle class=\"d0s \" cx=\"63.7\" cy=\"172.7\" r=\"3.8\"></circle><text class=\"sm \" x=\"69.7\" y=\"184.7\" text-anchor=\"start\">(1,0): −50</text><circle class=\"d0s \" cx=\"212.6\" cy=\"172.7\" r=\"3.8\"></circle><text class=\"sm \" x=\"218.6\" y=\"184.7\" text-anchor=\"start\">(6,0): −300</text><polygon class=\"f2 fx d2 \" points=\"212.6,172.7 272.1,95.0 272.1,152.0\"></polygon><line class=\"c2 fx d2\" x1=\"212.6\" y1=\"172.7\" x2=\"278.1\" y2=\"87.2\"></line><text class=\"t2 fx d3 \" x=\"161.9\" y=\"70.1\" text-anchor=\"middle\">Z < −300 meets the region</text><text class=\"t4 fx d4 \" x=\"161.9\" y=\"42.2\" text-anchor=\"middle\">so no minimum</text></svg><div class=\"eq fx d5\"><p>For an <b>unbounded</b> region the smallest corner value m is the minimum <b>only if the open half-plane ax + by &lt; m has no point in common with the region</b>. Here −50x + 20y &lt; −300, i.e. −5x + 2y &lt; −30, does contain feasible points (the red wedge).</p><p>So Z can be made smaller than −300: <b>Z has no minimum</b>. Similarly, to check the maximum 100 at (0, 5) test −50x + 20y &gt; 100: it also meets the region (large y), so no maximum either.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.3-worked-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4: is the corner value −300 the minimum of Z = −50x + 20y on the unbounded region?",
+      "definition": "No: the half-plane −50x + 20y < −300 meets the region, so <span style=\"color:#f08c00\">Z has no minimum</span>. Likewise 100 at (0, 5) is not the maximum since −50x + 20y > 100 also meets the region",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.3-worked-examples"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Infeasible LPP: empty feasible region",
+      "definition": "If the constraints have no common point the feasible region is empty and the LPP has no solution; example x+y>=8 with 3x+5y<=15; Ex 12.1 Q10 also infeasible",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Example 5 · no feasible region</p><h2>Minimise Z = 3x + 2y subject to x + y ≥ 8, 3x + 5y ≤ 15, x, y ≥ 0. What can you say?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"85.8\" y1=\"172.0\" x2=\"85.8\" y2=\"8.0\"></line><line class=\"gd\" x1=\"139.6\" y1=\"172.0\" x2=\"139.6\" y2=\"8.0\"></line><line class=\"gd\" x1=\"193.3\" y1=\"172.0\" x2=\"193.3\" y2=\"8.0\"></line><line class=\"gd\" x1=\"247.0\" y1=\"172.0\" x2=\"247.0\" y2=\"8.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"130.2\" x2=\"290.0\" y2=\"130.2\"></line><line class=\"gd\" x1=\"16.0\" y1=\"98.0\" x2=\"290.0\" y2=\"98.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"65.9\" x2=\"290.0\" y2=\"65.9\"></line><line class=\"gd\" x1=\"16.0\" y1=\"33.7\" x2=\"290.0\" y2=\"33.7\"></line><line class=\"ax\" x1=\"16.0\" y1=\"162.4\" x2=\"290.0\" y2=\"162.4\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"32.1\" y1=\"172.0\" x2=\"32.1\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"85.8\" y1=\"159.4\" x2=\"85.8\" y2=\"165.4\"></line><text class=\"num\" x=\"85.8\" y=\"176.4\">2</text><line class=\"ax\" x1=\"139.6\" y1=\"159.4\" x2=\"139.6\" y2=\"165.4\"></line><text class=\"num\" x=\"139.6\" y=\"176.4\">4</text><line class=\"ax\" x1=\"193.3\" y1=\"159.4\" x2=\"193.3\" y2=\"165.4\"></line><text class=\"num\" x=\"193.3\" y=\"176.4\">6</text><line class=\"ax\" x1=\"247.0\" y1=\"159.4\" x2=\"247.0\" y2=\"165.4\"></line><text class=\"num\" x=\"247.0\" y=\"176.4\">8</text><line class=\"ax\" x1=\"29.1\" y1=\"130.2\" x2=\"35.1\" y2=\"130.2\"></line><text class=\"num\" x=\"26.1\" y=\"133.7\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"29.1\" y1=\"98.0\" x2=\"35.1\" y2=\"98.0\"></line><text class=\"num\" x=\"26.1\" y=\"101.5\" text-anchor=\"end\">4</text><line class=\"ax\" x1=\"29.1\" y1=\"65.9\" x2=\"35.1\" y2=\"65.9\"></line><text class=\"num\" x=\"26.1\" y=\"69.4\" text-anchor=\"end\">6</text><line class=\"ax\" x1=\"29.1\" y1=\"33.7\" x2=\"35.1\" y2=\"33.7\"></line><text class=\"num\" x=\"26.1\" y=\"37.2\" text-anchor=\"end\">8</text><line class=\"c1\" x1=\"32.1\" y1=\"33.7\" x2=\"247.0\" y2=\"162.4\"></line><line class=\"c2\" x1=\"32.1\" y1=\"114.1\" x2=\"166.4\" y2=\"162.4\"></line></svg><p class=\"hint\">Do the two shaded half-planes overlap anywhere?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Example 5 · no feasible region</p><h2>Minimise Z = 3x + 2y subject to x + y ≥ 8, 3x + 5y ≤ 15, x, y ≥ 0. What can you say?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"85.8\" y1=\"172.0\" x2=\"85.8\" y2=\"8.0\"></line><line class=\"gd\" x1=\"139.6\" y1=\"172.0\" x2=\"139.6\" y2=\"8.0\"></line><line class=\"gd\" x1=\"193.3\" y1=\"172.0\" x2=\"193.3\" y2=\"8.0\"></line><line class=\"gd\" x1=\"247.0\" y1=\"172.0\" x2=\"247.0\" y2=\"8.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"130.2\" x2=\"290.0\" y2=\"130.2\"></line><line class=\"gd\" x1=\"16.0\" y1=\"98.0\" x2=\"290.0\" y2=\"98.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"65.9\" x2=\"290.0\" y2=\"65.9\"></line><line class=\"gd\" x1=\"16.0\" y1=\"33.7\" x2=\"290.0\" y2=\"33.7\"></line><line class=\"ax\" x1=\"16.0\" y1=\"162.4\" x2=\"290.0\" y2=\"162.4\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"32.1\" y1=\"172.0\" x2=\"32.1\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"85.8\" y1=\"159.4\" x2=\"85.8\" y2=\"165.4\"></line><text class=\"num\" x=\"85.8\" y=\"176.4\">2</text><line class=\"ax\" x1=\"139.6\" y1=\"159.4\" x2=\"139.6\" y2=\"165.4\"></line><text class=\"num\" x=\"139.6\" y=\"176.4\">4</text><line class=\"ax\" x1=\"193.3\" y1=\"159.4\" x2=\"193.3\" y2=\"165.4\"></line><text class=\"num\" x=\"193.3\" y=\"176.4\">6</text><line class=\"ax\" x1=\"247.0\" y1=\"159.4\" x2=\"247.0\" y2=\"165.4\"></line><text class=\"num\" x=\"247.0\" y=\"176.4\">8</text><line class=\"ax\" x1=\"29.1\" y1=\"130.2\" x2=\"35.1\" y2=\"130.2\"></line><text class=\"num\" x=\"26.1\" y=\"133.7\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"29.1\" y1=\"98.0\" x2=\"35.1\" y2=\"98.0\"></line><text class=\"num\" x=\"26.1\" y=\"101.5\" text-anchor=\"end\">4</text><line class=\"ax\" x1=\"29.1\" y1=\"65.9\" x2=\"35.1\" y2=\"65.9\"></line><text class=\"num\" x=\"26.1\" y=\"69.4\" text-anchor=\"end\">6</text><line class=\"ax\" x1=\"29.1\" y1=\"33.7\" x2=\"35.1\" y2=\"33.7\"></line><text class=\"num\" x=\"26.1\" y=\"37.2\" text-anchor=\"end\">8</text><line class=\"c1\" x1=\"32.1\" y1=\"33.7\" x2=\"247.0\" y2=\"162.4\"></line><line class=\"c2\" x1=\"32.1\" y1=\"114.1\" x2=\"166.4\" y2=\"162.4\"></line><polygon class=\"f1 fx d2 \" points=\"32.1,33.7 247.0,162.4 290.0,162.4 290.0,8.0 32.1,8.0\"></polygon><polygon class=\"f2 fx d3 \" points=\"32.1,162.4 166.4,162.4 32.1,114.1\"></polygon><text class=\"t1 fx d2 \" x=\"179.9\" y=\"57.8\" text-anchor=\"middle\">x + y ≥ 8</text><text class=\"t2 fx d3 \" x=\"75.1\" y=\"143.1\" text-anchor=\"middle\">3x + 5y ≤ 15</text><text class=\"t4 fx d4 \" x=\"161.1\" y=\"109.3\" text-anchor=\"middle\">no overlap: infeasible</text></svg><div class=\"eq fx d5\"><p>The half-plane x + y ≥ 8 lies on the far side of its line; 3x + 5y ≤ 15 is the small triangle near the origin. They have <b>no point in common</b> (even the largest x + y in the triangle is 5 &lt; 8), so the <b>feasible region is empty</b> and the problem has no solution.</p><p>Same happens in Ex 12.1 Q10: x − y ≤ −1 means y ≥ x + 1 while −x + y ≤ 0 means y ≤ x. An LPP can therefore be <b>infeasible</b>, <b>unbounded</b> with or without an optimum, or have a <b>unique / multiple</b> optimum.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.3-worked-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: minimise Z = 3x + 2y subject to x + y ≥ 8, 3x + 5y ≤ 15, x, y ≥ 0.",
+      "definition": "<span style=\"color:#f08c00\">No feasible region, hence no feasible solution</span> (the two half-planes do not overlap)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.3-worked-examples"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 12.1 Q1: maximise Z = 3x + 4y subject to x + y ≤ 4, x, y ≥ 0.",
+      "definition": "Corners: (0, 0) → 0; (0, 4) → 16; (4, 0) → 12. <span style=\"color:#f08c00\">Maximum Z = 16 at (0, 4)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.4-exercise-12-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 12.1 Q2: minimise Z = −3x + 4y subject to x + 2y ≤ 8, 3x + 2y ≤ 12, x, y ≥ 0.",
+      "definition": "Corners: (0, 0) → 0; (0, 4) → 16; (2, 3) → 6; (4, 0) → -12. <span style=\"color:#f08c00\">Minimum Z = −12 at (4, 0)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.4-exercise-12-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 12.1 Q3: maximise Z = 5x + 3y subject to 3x + 5y ≤ 15, 5x + 2y ≤ 10, x, y ≥ 0.",
+      "definition": "Corners: (0, 0) → 0; (0, 3) → 9; (20/19, 45/19) → 235/19; (2, 0) → 10 (20/19, 45/19 is where the two lines meet). <span style=\"color:#f08c00\">Maximum Z = 235/19 at (20/19, 45/19)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.4-exercise-12-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 12.1 Q4: minimise Z = 3x + 5y subject to x + 3y ≥ 3, x + y ≥ 2, x, y ≥ 0.",
+      "definition": "Unbounded region, corners: (0, 2) → 10; (3/2, 1/2) → 7; (3, 0) → 9. The smallest is 7; the half-plane 3x + 5y < 7 has no point in common with the region, so <span style=\"color:#f08c00\">minimum Z = 7 at (3/2, 1/2)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.4-exercise-12-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 12.1 Q5: maximise Z = 3x + 2y subject to x + 2y ≤ 10, 3x + y ≤ 15, x, y ≥ 0.",
+      "definition": "Corners: (0, 0) → 0; (0, 5) → 10; (4, 3) → 18; (5, 0) → 15. <span style=\"color:#f08c00\">Maximum Z = 18 at (4, 3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.4-exercise-12-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 12.1 Q6: minimise Z = x + 2y subject to 2x + y ≥ 3, x + 2y ≥ 6, x, y ≥ 0. Show the minimum occurs at more than two points.",
+      "definition": "Corners: (0, 3) → 6; (6, 0) → 6. Both give 6, and the objective line x + 2y = 6 is the edge x + 2y ≥ 6. <span style=\"color:#f08c00\">Minimum Z = 6 at every point of the segment joining (0, 3) and (6, 0)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.4-exercise-12-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 12.1 Q7: minimise and maximise Z = 5x + 10y subject to x + 2y ≤ 120, x + y ≥ 60, x − 2y ≥ 0, x, y ≥ 0.",
+      "definition": "Corners: (40, 20) → 400; (60, 0) → 300; (60, 30) → 600; (120, 0) → 600. <span style=\"color:#f08c00\">Minimum Z = 300 at (60, 0)</span>; <span style=\"color:#f08c00\">maximum Z = 600 at (120, 0) and (60, 30) and all points on the segment between them</span> (the objective line is parallel to x + 2y = 120)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.4-exercise-12-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 12.1 Q8: minimise and maximise Z = x + 2y subject to x + 2y ≥ 100, 2x − y ≤ 0, 2x + y ≤ 200, x, y ≥ 0.",
+      "definition": "Corners: (0, 50) → 100; (0, 200) → 400; (20, 40) → 100; (50, 100) → 250. <span style=\"color:#f08c00\">Minimum Z = 100 at every point of the segment joining (0, 50) and (20, 40)</span>; <span style=\"color:#f08c00\">maximum Z = 400 at (0, 200)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.4-exercise-12-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 12.1 Q9: maximise Z = −x + 2y subject to x ≥ 3, x + y ≥ 5, x + 2y ≥ 6, y ≥ 0.",
+      "definition": "Unbounded region with corners: (3, 2) → 1; (4, 1) → -2; (6, 0) → -6. The corner maximum is 1, but −x + 2y > 1 has points in the region (take y large). <span style=\"color:#f08c00\">Z has no maximum value</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.4-exercise-12-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 12.1 Q10: maximise Z = x + y subject to x − y ≤ −1, −x + y ≤ 0, x, y ≥ 0.",
+      "definition": "x − y ≤ −1 gives y ≥ x + 1, while −x + y ≤ 0 gives y ≤ x. These cannot both hold: <span style=\"color:#f08c00\">no feasible region, so no maximum</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.4-exercise-12-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Formulating an LPP from words: method.",
+      "definition": "1) Name the decision variables x, y. 2) Write the objective (profit, cost) as Z = ax + by. 3) Turn each limit (time, money, space, ingredients) into a linear inequality: “at most” → ≤, “at least” → ≥. 4) Add x, y ≥ 0. 5) Solve by corner points",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.5-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Production plan: a factory makes products P and Q. Machine time: 2x + y ≤ 100; labour: x + y ≤ 80; demand for P at most 40. Profit ₹40 on P and ₹30 on Q. Maximise profit.",
+      "definition": "Maximise Z = 40x + 30y. Corners: (0, 0) → 0; (0, 80) → 2400; (20, 60) → 2600; (40, 0) → 1600; (40, 20) → 2200. <span style=\"color:#f08c00\">Maximum profit ₹2600 at (20, 60)</span> (20 of P and 60 of Q use exactly the machine time and labour)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.5-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Diet problem: food X costs ₹5/kg and gives 2 units of vitamin A and 1 of vitamin B; food Y costs ₹4/kg and gives 1 of A and 3 of B. Minimum daily need: 8 units of A and 9 of B. Cheapest mix?",
+      "definition": "Minimise Z = 5x + 4y subject to 2x + y ≥ 8, x + 3y ≥ 9, x, y ≥ 0 (unbounded region). Corners: (0, 8) → 32; (3, 2) → 23; (9, 0) → 45. The half-plane 5x + 4y < 23 misses the region, so <span style=\"color:#f08c00\">minimum cost ₹23 with 3 kg of X and 2 kg of Y</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.5-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A dealer has ₹15 000 and space for 20 items. A fan costs ₹1500 and yields ₹300 profit; a heater costs ₹500 and yields ₹200. Maximise profit.",
+      "definition": "Maximise Z = 300x + 200y subject to 1500x + 500y ≤ 15 000 (3x + y ≤ 30), x + y ≤ 20, x, y ≥ 0. Corners: (0, 0) → 0; (0, 20) → 4000; (5, 15) → 4500; (10, 0) → 3000. <span style=\"color:#f08c00\">Maximum ₹4500 at (5, 15)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.5-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A tailor has 24 hours of cutting time and 16 hours of stitching time. A shirt needs 3 h cutting and 2 h stitching (profit ₹30); a trouser needs 4 h cutting and 2 h stitching (profit ₹40). Maximise profit.",
+      "definition": "Maximise Z = 30x + 40y subject to 3x + 4y ≤ 24, 2x + 2y ≤ 16, x, y ≥ 0. The stitching constraint is redundant. Corners: (0, 0) → 0; (0, 6) → 240; (8, 0) → 240. <span style=\"color:#f08c00\">Maximum ₹240 at (8, 0) and (0, 6), hence at every point of the segment between them</span> (Z = 10(3x + 4y), parallel to the cutting constraint)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.5-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Multiple optimum test: when is the optimal solution not unique?",
+      "definition": "When the objective line is parallel to a <span style=\"color:#3b82f6\">boundary edge</span> that touches the optimum: the two ends of that edge give equal Z (as in Example 3 and Ex 12.1 Q6–Q8)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.5-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Iso-profit / iso-cost line method.",
+      "definition": "Draw Z = 0 and slide it parallel to itself: the last feasible point it touches (largest c for max, smallest for min) is the optimum. It is a picture of the corner-point method",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you find corner points quickly?",
+      "definition": "Intersect pairs of boundary lines (including the axes), then keep only those points that satisfy <span style=\"color:#3b82f6\">all</span> the other constraints (the solver above does exactly this)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can the maximum of an LPP occur at an interior point?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: by Theorem 1 an optimum (if it exists) is at a corner point. For a constant objective (all zero) every point is optimal, but that is not a real LPP",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What if the objective function is a multiple of one of the constraint lines?",
+      "definition": "Then there are <span style=\"color:#3b82f6\">multiple optimal solutions</span>: the whole edge on that line, from vertex to vertex",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does every LPP with a feasible region have a maximum?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: if the region is unbounded the maximum may not exist (Ex 12.1 Q9). A bounded feasible region always has both max and min",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How can you check that the LPP has no solution at all?",
+      "definition": "Look for contradictory constraints (like y ≥ x + 1 and y ≤ x) or plot the half-planes and see that there is no common shaded region",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two-phase check for an unbounded minimisation problem.",
+      "definition": "Compute Z at the corners and take the smallest m. Then draw ax + by < m. If that half-plane misses the region, m is the minimum; otherwise there is no minimum",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A quick sanity check for a computed optimum.",
+      "definition": "Substitute the optimum point into every constraint (it must satisfy all of them), then check that Z at neighbouring corners is not better",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the maximum value of Z = 4x + 3y subject to x + y ≤ 5, x ≤ 3, x, y ≥ 0 is<br>(a) 15 (b) 18 (c) 17 (d) 12",
+      "definition": "Corners (0,0), (3,0), (3,2), (0,5): Z = 0, 12, 18, 15: <span style=\"color:#22a35a\">(b) 18</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the corner points of a feasible region are (0, 0), (4, 0), (2, 3), (0, 2). Z = 5x + 2y is maximum at<br>(a) (0, 0) (b) (4, 0) (c) (2, 3) (d) (0, 2)",
+      "definition": "Z = 0, 20, 16, 4: <span style=\"color:#22a35a\">(b) (4, 0)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: which is a feasible solution of x + y ≤ 4, x, y ≥ 0?<br>(a) (3, 2) (b) (1, 2) (c) (5, 0) (d) (−1, 2)",
+      "definition": "(1, 2): 3 ≤ 4 and non-negative: <span style=\"color:#22a35a\">(b)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: a feasible region that can be enclosed within a circle is called<br>(a) bounded (b) unbounded (c) infeasible (d) optimal",
+      "definition": "<span style=\"color:#22a35a\">(a) bounded</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the constraints x ≥ 0, y ≥ 0 are called<br>(a) non-negativity restrictions (b) objective function (c) decision variables (d) optimal solutions",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if Z = ax + by has the same maximum at two corner points, then<br>(a) the maximum occurs at every point of the segment joining them (b) no maximum (c) a unique maximum (d) the region is unbounded",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the number of corner points of a feasible region defined by x + y ≤ 4, x ≤ 3, x, y ≥ 0 is<br>(a) 4 (b) 5 (c) 3 (d) 6",
+      "definition": "Corners (0,0), (3,0), (3,1), (0,4): <span style=\"color:#22a35a\">(a) 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): the maximum value of Z = x + 2y subject to x + y ≤ 6, x ≤ 4, x, y ≥ 0 is?",
+      "definition": "Corners (0, 0), (4, 0), (4, 2), (0, 6): Z = 0, 4, 8, 12: <span style=\"color:#f08c00\">12</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the minimum value of Z = 2x + 3y subject to x + y ≥ 5, x ≥ 1, y ≥ 1 is?",
+      "definition": "Corners (1, 4) and (4, 1) give Z = 14 and 11. The region is unbounded but Z only increases away from the corners: <span style=\"color:#f08c00\">11</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> the optimal value of an LPP occurs at a corner point of the feasible region.<br><b>R:</b> the objective function is linear and the region is convex.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> every LPP with an unbounded feasible region has no maximum.<br><b>R:</b> in an unbounded region, values of Z may increase indefinitely.<br>(a) Both true, R explains A (b) A false, R true (c) A true, R false (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(b)</span>: in an unbounded region a maximum or minimum may or may not exist (Ex 12.1 Q4 has a minimum)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: the feasible region of an LPP is always convex.",
+      "definition": "<span style=\"color:#22a35a\">True</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: an LPP can have exactly two optimal solutions.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: two optimal corners force infinitely many optimal points (the whole segment)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: define feasible region.",
+      "definition": "The common region determined by all the constraints, including x, y ≥ 0, of a linear programming problem.",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: maximise Z = 3x + 2y subject to x + y ≤ 4, x ≤ 3, x, y ≥ 0.",
+      "definition": "Corners (0, 0), (3, 0), (3, 1), (0, 4): Z = 0, 9, 11, 8. <span style=\"color:#f08c00\">Maximum Z = 11 at (3, 1)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: a manufacturer makes tables and chairs. A table needs 4 h of carpentry and 2 h of finishing; a chair needs 2 h and 2 h. Available: 40 h carpentry, 30 h finishing. Profit ₹100 per table, ₹60 per chair. Maximise profit.",
+      "definition": "Maximise Z = 100x + 60y subject to 4x + 2y ≤ 40, 2x + 2y ≤ 30, x, y ≥ 0. Corners: (0, 0) → 0; (0, 15) → 900; (5, 10) → 1100; (10, 0) → 1000. <span style=\"color:#f08c00\">Maximum ₹1100 at (5, 10)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: minimise Z = 4x + 3y subject to x + y ≥ 5, 2x + y ≥ 8, x, y ≥ 0.",
+      "definition": "Corners: (0, 8) → 24; (3, 2) → 18; (5, 0) → 20. The region is unbounded but Z grows in every unbounded direction (the half-plane 4x + 3y < 18 misses it): <span style=\"color:#f08c00\">minimum Z = 18 at (3, 2)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a farmer has 50 acres and ₹4 000. Wheat costs ₹40/acre and gives ₹200 profit/acre; maize costs ₹100/acre and gives ₹400. How should he plant (fractions of an acre allowed)?",
+      "definition": "Maximise Z = 200x + 400y subject to x + y ≤ 50, 40x + 100y ≤ 4000 (2x + 5y ≤ 200), x, y ≥ 0. Corners: (0, 0) → 0; (0, 40) → 16000; (50/3, 100/3) → 50000/3; (50, 0) → 10000. <span style=\"color:#f08c00\">Maximum ₹50000/3 ≈ ₹16 667 at (50/3, 100/3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-12",
+        "12.z-how-its-asked"
+      ]
+    }
+  ]
+}
