@@ -1067,3 +1067,85 @@ def am_gm_semicircle(deck):
           '<p>A chord’s perpendicular can never exceed the radius: <b>GM ≤ AM</b>, with equality only when a = b (the join is the centre).</p>',
           'AM ≥ GM from a semicircle', 'On a semicircle of diameter a+b, the radius is AM=(a+b)/2 and the perpendicular at the join is GM=√(ab), never longer than the radius, so AM ≥ GM with equality iff a=b',
           vb='0 0 300 190', hint='Which segment is the radius, which is the height?')
+
+
+# ================================================================ Maths 11 Ch 9 Straight lines
+def slope_sweep(deck):
+    P, h = eqplane(-3.4, 3.4, -2.6, 2.6, pad=(10, 6, 10, 6))
+    ox, oy = P.X(0), P.Y(0)
+    s = P.X(1) - ox
+    L = 2.9 * s
+    base = P.axes(labels=False)
+    marks = ''
+    for ang, txt, dx, dy, anc in [(0, 'm = 0', 8, -6, 'start'), (45, 'm = 1', 6, -6, 'start'), (90, 'm undefined', 8, 4, 'start'), (135, 'm = −1', -6, -6, 'end')]:
+        a = math.radians(ang)
+        x2, y2 = ox + L * math.cos(a), oy - L * math.sin(a)
+        marks += (f'<line class="guide" x1="{ox:.1f}" y1="{oy:.1f}" x2="{x2:.1f}" y2="{y2:.1f}"></line>'
+                  f'<text class="t2" x="{x2 + dx:.1f}" y="{y2 + dy:.1f}" text-anchor="{anc}">{txt}</text>')
+    css = (f'.pp .sweep{{transform-box:view-box;transform-origin:{ox:.1f}px {oy:.1f}px;animation:swp2 7s linear infinite}}'
+           '@keyframes swp2{from{transform:rotate(0deg)}to{transform:rotate(-180deg)}}')
+    line = f'<line class="c1 sweep" x1="{ox - L:.1f}" y1="{oy:.1f}" x2="{ox + L:.1f}" y2="{oy:.1f}"></line>'
+    mcard(deck, 'Slope · inclination', 'A line turns anticlockwise from 0° to 180°. How does its slope m = tan θ change?', base, line + marks,
+          '<p>θ = 0°: m = 0. Rising to 45°: m = 1. At <b>90°</b> the line is vertical: <b>slope undefined</b>. Past 90° the slope jumps to −∞ and rises through −1 (135°) back to 0.</p>'
+          '<p>So: acute angle → positive slope; obtuse angle → negative slope. Slope of the x-axis is 0; of the y-axis undefined.</p>',
+          'Slope as tan of the inclination', 'm = tan θ for inclination 0 ≤ θ < 180°, θ ≠ 90°: 0 at 0°, 1 at 45°, undefined at 90°, −1 at 135°; positive for acute, negative for obtuse',
+          css=css, vb=f'0 0 300 {h}', hint='Picture tan θ as θ sweeps from 0° to 180°.')
+
+
+def two_answers_angle(deck):
+    P, h = eqplane(-3.2, 3.2, -2.4, 2.4, pad=(10, 6, 10, 6))
+    ox, oy = P.X(0), P.Y(0)
+    s = P.X(1) - ox
+    def ray(m, cls, extra='', L=3.0):
+        a = math.atan(m)
+        return (f'<line class="{cls} {extra}" x1="{ox - L * s * math.cos(a):.1f}" y1="{oy + L * s * math.sin(a):.1f}" '
+                f'x2="{ox + L * s * math.cos(a):.1f}" y2="{oy - L * s * math.sin(a):.1f}"></line>')
+    base = P.axes(labels=False) + ray(0.5, 'c1', L=2.6) + '<text class="t1" x="240" y="72">m₁ = ½</text>'
+    back = (ray(3, 'c2', 'fx d2', L=0.8) + ray(-1 / 3, 'c3', 'fx d3', L=2.6) +
+            '<text class="t2 fx d2" x="176" y="30">m = 3</text><text class="t3 fx d3" x="34" y="66">m = −⅓</text>')
+    mcard(deck, 'Angle between lines · two answers', 'One line has slope ½. Another makes an angle of 45° with it. Find the other slope.', base, back,
+          '<p>tan 45° = |(m − ½)/(1 + m/2)| = 1 ⇒ (m − ½) = ±(1 + m/2) ⇒ <b>m = 3</b> or <b>m = −⅓</b>.</p>'
+          '<p>Two lines lie at 45° on either side of the given one. The acute angle formula <b>tan θ = |(m₁ − m₂)/(1 + m₁m₂)|</b> has a modulus, so it always gives two solutions when θ is known.</p>',
+          'Example 2: two lines at 45° to a line of slope 1/2', 'tan θ = |(m1−m2)/(1+m1 m2)|; with m1=1/2 and θ=45° the other slope is 3 or −1/3 (one line on each side)',
+          vb=f'0 0 300 {h}', hint='The modulus in the angle formula gives ± cases.')
+
+
+def foot_and_image(deck):
+    P, h = eqplane(-2, 4.2, -0.8, 3.6, pad=(16, 6, 12, 14))
+    line = lambda x: (x + 4) / 3
+    base = (P.axes(labels=False) + P.line(-2, line(-2), 4.2, line(4.2), 'c0') + P.dot(1, 2, 'd1s', 4.5) + P.text(1, 2, 'P(1, 2)', 't1', dx=-8, dy=-8, anchor='end') +
+            P.text(3.4, line(3.4), 'x − 3y + 4 = 0', 'sm', dy=-22, dx=-12, anchor='end'))
+    back = (P.line(1, 2, 1.2, 1.4, 'guide fx d2') + P.dot(1.1, 1.7, 'd3s', 4, 'fx d2') + P.text(1.1, 1.7, 'foot M', 't3 fx d2', dx=10, dy=6) +
+            P.dot(1.2, 1.4, 'd2s', 4.5, 'fx d3') + P.text(1.2, 1.4, 'Q(6/5, 7/5)', 't2 fx d3', dx=8, dy=16))
+    mcard(deck, 'Image in a line (mirror)', 'Find the image of P(1, 2) in the line x − 3y + 4 = 0.', base, back,
+          '<p>The line is the <b>perpendicular bisector</b> of PQ. Two conditions: (i) PQ ⟂ line (slope of PQ = −3); (ii) the midpoint of PQ lies on the line.</p>'
+          '<p>Shortcut: (x′ − x₁)/A = (y′ − y₁)/B = <b>−2(Ax₁ + By₁ + C)/(A² + B²)</b>. Here −2(−1)/10 = 0.2 → Q = (1 + 0.2, 2 − 0.6) = <b>(6/5, 7/5)</b>.</p>',
+          'Reflection of a point in a line (Example 13)', 'Image Q of P(1,2) in x−3y+4=0: PQ ⟂ line and midpoint on line; formula (x′−x1)/A=(y′−y1)/B=−2(Ax1+By1+C)/(A²+B²); Q=(6/5,7/5)',
+          vb=f'0 0 300 {h}', hint='Use “perpendicular” and “midpoint on the line”.')
+
+
+def light_ray(deck):
+    P, h = eqplane(-0.4, 6, -3.6, 3.8, pad=(14, 6, 10, 16))
+    base = (P.axes(labels=False) + P.dot(1, 2, 'd1s', 4.5) + P.text(1, 2, '(1, 2)', 't1', dx=-6, dy=-8, anchor='end') + P.dot(5, 3, 'd1s', 4.5) + P.text(5, 3, '(5, 3)', 't1', dx=4, dy=-8, anchor='end'))
+    back = (P.dot(5, -3, 'd2s', 4.5, 'fx d2') + P.text(5, -3, '(5, −3) image', 't2 fx d2', dx=-6, dy=16, anchor='end') + P.line(1, 2, 5, -3, 'guide fx d2') +
+            P.line(1, 2, 2.6, 0, 'c3 fx d3') + P.line(2.6, 0, 5, 3, 'c3 fx d3') + P.dot(2.6, 0, 'd3s', 5, 'fx d3') + P.text(2.6, 0, 'A(13/5, 0)', 't3 fx d3', dx=-8, dy=18, anchor='end'))
+    mcard(deck, 'Reflection of light · Misc Q21', 'A ray from (1, 2) reflects on the x-axis at A and passes through (5, 3). Find A.', base, back,
+          '<p>Reflect (5, 3) in the x-axis to (5, −3). The reflected ray <b>appears to come from the image</b>, so A lies on the straight line from (1, 2) to (5, −3).</p>'
+          '<p>Slope = −5/4: y − 2 = −(5/4)(x − 1); set y = 0: x = 1 + 8/5 = <b>13/5</b>. A = (13/5, 0).</p>',
+          'Light reflection: use the image point', 'Reflect the target in the mirror line; the light path is the straight line to the image: A(13/5,0) for (1,2)→x-axis→(5,3)',
+          vb=f'0 0 300 {h}', hint='Where would the ray go if the mirror were not there?')
+
+
+def distance_to_line(deck):
+    P, h = eqplane(-0.8, 4.4, -0.8, 3.4, pad=(16, 6, 12, 14))
+    ln = lambda x: (10 - 3 * x) / 4
+    base = (P.axes(labels=False) + P.line(-0.4, ln(-0.4), 4.2, ln(4.2), 'c0') + P.text(3.1, ln(3.1), '3x + 4y − 10 = 0', 'sm', dx=6, dy=-8) +
+            P.dot(0, 0, 'd1s', 4.5) + P.text(0, 0, 'O', 't1', dx=-12, dy=14))
+    back = (P.line(0, 0, 1.2, 1.6, 'c2 fx d2') + P.dot(1.2, 1.6, 'd2s', 4.5, 'fx d2') + P.text(0.6, 0.8, 'd', 't2 fx d2', dx=-12, dy=-2) +
+            P.text(1.2, 1.6, 'foot (6/5, 8/5)', 'sm fx d2', dx=10, dy=-8))
+    mcard(deck, 'Distance of a point from a line', 'Find the distance of the origin from 3x + 4y − 10 = 0 and the foot of the perpendicular.', base, back,
+          '<p><b>d = |Ax₁ + By₁ + C| / √(A² + B²)</b> = |0 + 0 − 10|/5 = <b>2</b>.</p>'
+          '<p>Foot: move from O along the normal (3, 4)/5 by 2 → (6/5, 8/5). Check: 3(6/5) + 4(8/5) = 10 ✓.</p>'
+          '<p class="no">Trap: the absolute value, and √(A² + B²) not A² + B².</p>',
+          'Distance from a point to a line', 'd = |Ax1+By1+C|/√(A²+B²); origin to 3x+4y−10=0 is 2 with foot (6/5, 8/5)',
+          vb=f'0 0 300 {h}', hint='Which quantity goes in the numerator?')

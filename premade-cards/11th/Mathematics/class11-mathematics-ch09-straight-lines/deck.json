@@ -1,0 +1,1331 @@
+{
+  "version": 1,
+  "name": "Chapter 9: Straight Lines",
+  "className": "Class 11",
+  "description": "Slope, angle between lines, forms of a line, distance formulas, concurrency, images and reflections, families of lines.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Distance between P(x₁, y₁) and Q(x₂, y₂)?",
+      "definition": "\\(PQ = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.1-recap"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Section formula (internal, ratio m : n)?",
+      "definition": "\\(\\left(\\dfrac{mx_2 + nx_1}{m+n},\\ \\dfrac{my_2 + ny_1}{m+n}\\right)\\). Midpoint: m = n",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.1-recap"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Area of the triangle with vertices (x₁, y₁), (x₂, y₂), (x₃, y₃)?",
+      "definition": "\\(\\dfrac12\\left|x_1(y_2-y_3) + x_2(y_3-y_1) + x_3(y_1-y_2)\\right|\\). Area = 0 ⟺ points are collinear",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.1-recap"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Distance between (6, −4) and (3, 0)? Area of (4,4), (3,−2), (−3,16)?",
+      "definition": "<span style=\"color:#f08c00\">5</span>; area <span style=\"color:#f08c00\">27</span> (½|4(−18) + 3(12) + (−3)(6)| = ½·54)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.1-recap"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Centroid of a triangle? Which other points are asked?",
+      "definition": "Centroid ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3). Also: <span style=\"color:#3b82f6\">incentre</span> ((ax₁ + bx₂ + cx₃)/(a+b+c), …), circumcentre (equidistant from vertices), orthocentre (meet of altitudes)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.1-recap"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q1: area of the quadrilateral (−4,5), (0,7), (5,−5), (−4,−2)?",
+      "definition": "Shoelace: ½|−28 − 35 − 30 − 28| = <span style=\"color:#f08c00\">60.5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.1-recap"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q2: equilateral triangle, side 2a, base along the y-axis with midpoint at the origin. Vertices?",
+      "definition": "<span style=\"color:#f08c00\">(0, a), (0, −a), (√3a, 0)</span> (or (−√3a, 0) as the third vertex)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.1-recap"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q3: distance PQ when PQ ∥ y-axis; when PQ ∥ x-axis?",
+      "definition": "<span style=\"color:#f08c00\">|y₂ − y₁|</span> and <span style=\"color:#f08c00\">|x₂ − x₁|</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.1-recap"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q4: a point on the x-axis equidistant from (7, 6) and (3, 4)?",
+      "definition": "(x − 7)² + 36 = (x − 3)² + 16 → −8x = −60 → <span style=\"color:#f08c00\">(15/2, 0)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.1-recap"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the inclination and slope of a line.",
+      "definition": "Inclination θ = angle the line makes with the positive x-axis, measured anticlockwise, 0° ≤ θ < 180°. Slope <span style=\"color:#3b82f6\">m = tan θ</span> (θ ≠ 90°)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Slope of the x-axis, of a horizontal line, of a vertical line?",
+      "definition": "<span style=\"color:#f08c00\">0</span>, <span style=\"color:#f08c00\">0</span>, <span style=\"color:#e5484d\">undefined</span> (θ = 90°)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Slope as tan of the inclination",
+      "definition": "m = tan θ for inclination 0 ≤ θ < 180°, θ ≠ 90°: 0 at 0°, 1 at 45°, undefined at 90°, −1 at 135°; positive for acute, negative for obtuse",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Slope · inclination</p><h2>A line turns anticlockwise from 0° to 180°. How does its slope m = tan θ change?</h2><svg viewBox=\"0 0 300 226\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"113.1\" x2=\"290.0\" y2=\"113.1\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"220.1\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line></svg><p class=\"hint\">Picture tan θ as θ sweeps from 0° to 180°.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Slope · inclination</p><h2>A line turns anticlockwise from 0° to 180°. How does its slope m = tan θ change?</h2><svg viewBox=\"0 0 300 226\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"113.1\" x2=\"290.0\" y2=\"113.1\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"220.1\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"c1 sweep\" x1=\"30.6\" y1=\"113.1\" x2=\"269.4\" y2=\"113.1\"></line><line class=\"guide\" x1=\"150.0\" y1=\"113.1\" x2=\"269.4\" y2=\"113.1\"></line><text class=\"t2\" x=\"277.4\" y=\"107.1\" text-anchor=\"start\">m = 0</text><line class=\"guide\" x1=\"150.0\" y1=\"113.1\" x2=\"234.4\" y2=\"28.6\"></line><text class=\"t2\" x=\"240.4\" y=\"22.6\" text-anchor=\"start\">m = 1</text><line class=\"guide\" x1=\"150.0\" y1=\"113.1\" x2=\"150.0\" y2=\"-6.4\"></line><text class=\"t2\" x=\"158.0\" y=\"-2.4\" text-anchor=\"start\">m undefined</text><line class=\"guide\" x1=\"150.0\" y1=\"113.1\" x2=\"65.6\" y2=\"28.6\"></line><text class=\"t2\" x=\"59.6\" y=\"22.6\" text-anchor=\"end\">m = −1</text></svg><div class=\"eq fx d5\"><p>θ = 0°: m = 0. Rising to 45°: m = 1. At <b>90°</b> the line is vertical: <b>slope undefined</b>. Past 90° the slope jumps to −∞ and rises through −1 (135°) back to 0.</p><p>So: acute angle → positive slope; obtuse angle → negative slope. Slope of the x-axis is 0; of the y-axis undefined.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .sweep{transform-box:view-box;transform-origin:150.0px 113.1px;animation:swp2 7s linear infinite}@keyframes swp2{from{transform:rotate(0deg)}to{transform:rotate(-180deg)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .sweep{transform-box:view-box;transform-origin:150.0px 113.1px;animation:swp2 7s linear infinite}@keyframes swp2{from{transform:rotate(0deg)}to{transform:rotate(-180deg)}}"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Slope of the line through (x₁, y₁) and (x₂, y₂)?",
+      "definition": "\\(m = \\dfrac{y_2 - y_1}{x_2 - x_1}\\), x₁ ≠ x₂ (if x₁ = x₂ the line is vertical)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: slopes through (3,−2)&(−1,4); (3,−2)&(7,−2); (3,−2)&(3,4); inclination 60°.",
+      "definition": "<span style=\"color:#f08c00\">−3/2</span>;  <span style=\"color:#f08c00\">0</span>;  <span style=\"color:#e5484d\">undefined</span>;  <span style=\"color:#f08c00\">√3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Condition for two non-vertical lines to be parallel? Perpendicular?",
+      "definition": "<span style=\"color:#3b82f6\">m₁ = m₂</span> (parallel);  <span style=\"color:#3b82f6\">m₁m₂ = −1</span> (perpendicular: negative reciprocals)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is m₁m₂ = −1 for perpendicular lines?",
+      "definition": "β = α + 90° → tan β = −cot α = −1/tan α. A 90° turn sends slope m to −1/m (e.g. 2 → −½)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Condition for three points A, B, C to be collinear?",
+      "definition": "<span style=\"color:#3b82f6\">slope AB = slope BC</span> (or area of ABC = 0)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angle between two lines with slopes m₁ and m₂?",
+      "definition": "\\(\\tan\\theta = \\left|\\dfrac{m_1 - m_2}{1 + m_1m_2}\\right|\\) (acute angle); if 1 + m₁m₂ = 0 the lines are perpendicular",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Example 2: two lines at 45° to a line of slope 1/2",
+      "definition": "tan θ = |(m1−m2)/(1+m1 m2)|; with m1=1/2 and θ=45° the other slope is 3 or −1/3 (one line on each side)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Angle between lines · two answers</p><h2>One line has slope ½. Another makes an angle of 45° with it. Find the other slope.</h2><svg viewBox=\"0 0 300 222\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"111.0\" x2=\"290.0\" y2=\"111.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"216.0\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"c1 \" x1=\"48.3\" y1=\"161.9\" x2=\"251.7\" y2=\"60.1\"></line><text class=\"t1\" x=\"240\" y=\"72\">m₁ = ½</text></svg><p class=\"hint\">The modulus in the angle formula gives ± cases.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Angle between lines · two answers</p><h2>One line has slope ½. Another makes an angle of 45° with it. Find the other slope.</h2><svg viewBox=\"0 0 300 222\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"111.0\" x2=\"290.0\" y2=\"111.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"216.0\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"c1 \" x1=\"48.3\" y1=\"161.9\" x2=\"251.7\" y2=\"60.1\"></line><text class=\"t1\" x=\"240\" y=\"72\">m₁ = ½</text><line class=\"c2 fx d2\" x1=\"138.9\" y1=\"144.2\" x2=\"161.1\" y2=\"77.8\"></line><line class=\"c3 fx d3\" x1=\"42.1\" y1=\"75.0\" x2=\"257.9\" y2=\"147.0\"></line><text class=\"t2 fx d2\" x=\"176\" y=\"30\">m = 3</text><text class=\"t3 fx d3\" x=\"34\" y=\"66\">m = −⅓</text></svg><div class=\"eq fx d5\"><p>tan 45° = |(m − ½)/(1 + m/2)| = 1 ⇒ (m − ½) = ±(1 + m/2) ⇒ <b>m = 3</b> or <b>m = −⅓</b>.</p><p>Two lines lie at 45° on either side of the given one. The acute angle formula <b>tan θ = |(m₁ − m₂)/(1 + m₁m₂)|</b> has a modulus, so it always gives two solutions when θ is known.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3: line through (−2, 6), (4, 8) ⟂ line through (8, 12), (x, 24). Find x.",
+      "definition": "m₁ = 1/3, m₂ = 12/(x − 8) → product −1 → x − 8 = −36 → <span style=\"color:#f08c00\">x = −28</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q5: slope of the line through the origin and the midpoint of (0, −4) and (8, 0)?",
+      "definition": "Midpoint (4, −2): slope <span style=\"color:#f08c00\">−1/2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q6: show (4, 4), (3, 5), (−1, −1) form a right triangle without Pythagoras.",
+      "definition": "Slope of (4,4)→(3,5) is −1; slope of (4,4)→(−1,−1) is 1; product −1, so the right angle is at <span style=\"color:#f08c00\">(4, 4)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q7: slope of a line making 30° with the positive y-axis (anticlockwise)?",
+      "definition": "Inclination = 90° + 30° = 120° → <span style=\"color:#f08c00\">m = tan 120° = −√3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q8: show (−2,−1), (4,0), (3,3), (−3,2) form a parallelogram using slopes.",
+      "definition": "AB and DC both have slope 1/6; BC and AD both have slope −3. Opposite sides parallel ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q9: angle between the x-axis and the line through (3, −1) and (4, −2)?",
+      "definition": "m = −1 → inclination <span style=\"color:#f08c00\">135°</span> (angle with the axis 45°)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q10: one slope is double the other; tan of the angle between them is 1/3. Slopes?",
+      "definition": "|m|/(1 + 2m²) = 1/3 → 2m² − 3|m| + 1 = 0 → <span style=\"color:#f08c00\">(1, 2) or (½, 1)</span> (or their negatives)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q8: angle between √3x + y = 1 and x + √3y = 1.",
+      "definition": "m₁ = −√3, m₂ = −1/√3: tan θ = |(−√3 + 1/√3)/(1 + 1)| = 1/√3 → <span style=\"color:#f08c00\">30°</span> (and 150°)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q9: line through (h, 3), (4, 1) is ⟂ to 7x − 9y − 19 = 0. Find h.",
+      "definition": "Slope needed −9/7: (1 − 3)/(4 − h) = −9/7 → <span style=\"color:#f08c00\">h = 22/9</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q11: two lines through (2, 3) meet at 60°; one has slope 2. The other?",
+      "definition": "|(m − 2)/(1 + 2m)| = √3 → <span style=\"color:#f08c00\">m = −(8 + 5√3)/11</span> or <span style=\"color:#f08c00\">m = (5√3 − 8)/11</span> (two lines, one each side)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q18: y = 3x + 1 and 2y = x + 3 are equally inclined to y = mx + 4. Find m.",
+      "definition": "Equal angles: |(m − 3)/(1 + 3m)| = |(m − ½)/(1 + m/2)|; the non-trivial case gives 7m² − 2m − 7 = 0 → <span style=\"color:#f08c00\">m = (1 ± 5√2)/7</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q12: line through the origin at angle θ to y = mx + c?",
+      "definition": "<span style=\"color:#f08c00\">y = ((m ± tan θ)/(1 ∓ m tan θ)) x</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.2-slope"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Horizontal and vertical lines at distance a from the axes?",
+      "definition": "Horizontal: <span style=\"color:#3b82f6\">y = ±a</span>; vertical: <span style=\"color:#3b82f6\">x = ±b</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4: lines through (−2, 3) parallel to the axes?",
+      "definition": "<span style=\"color:#f08c00\">y = 3</span> (∥ x-axis) and <span style=\"color:#f08c00\">x = −2</span> (∥ y-axis)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Forms of the equation of a line",
+      "definition": "Point–slope: through (x₀, y₀), slope m: y − y₀ = m(x − x₀); Two-point: through (x₁, y₁), (x₂, y₂): y − y₁ = ((y₂ − y₁)/(x₂ − x₁))(x − x₁); Slope–intercept: slope m, y-intercept c: y = mx + c; Slope with x-intercept d: y = m(x − d); Intercept form: intercepts a, b: x/a + y/b = 1; General form: Ax + By + C = 0  (A, B not both 0)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">9.3 · Forms of a line</p><h2>Write the equation.</h2><table><tr><td>Point–slope: through (x₀, y₀), slope m</td><td class=\"q\">?</td></tr><tr><td>Two-point: through (x₁, y₁), (x₂, y₂)</td><td class=\"q\">?</td></tr><tr><td>Slope–intercept: slope m, y-intercept c</td><td class=\"q\">?</td></tr><tr><td>Slope with x-intercept d</td><td class=\"q\">?</td></tr><tr><td>Intercept form: intercepts a, b</td><td class=\"q\">?</td></tr><tr><td>General form</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">9.3 · Forms of a line</p><h2>Write the equation.</h2><table><tr><td>Point–slope: through (x₀, y₀), slope m</td><td class=\"a\">y − y₀ = m(x − x₀)</td></tr><tr><td>Two-point: through (x₁, y₁), (x₂, y₂)</td><td class=\"a\">y − y₁ = ((y₂ − y₁)/(x₂ − x₁))(x − x₁)</td></tr><tr><td>Slope–intercept: slope m, y-intercept c</td><td class=\"a\">y = mx + c</td></tr><tr><td>Slope with x-intercept d</td><td class=\"a\">y = m(x − d)</td></tr><tr><td>Intercept form: intercepts a, b</td><td class=\"a\">x/a + y/b = 1</td></tr><tr><td>General form</td><td class=\"a\">Ax + By + C = 0  (A, B not both 0)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Slope and intercepts from Ax + By + C = 0?",
+      "definition": "Slope <span style=\"color:#3b82f6\">−A/B</span>; y-intercept <span style=\"color:#3b82f6\">−C/B</span>; x-intercept <span style=\"color:#3b82f6\">−C/A</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: line through (−2, 3) with slope −4.",
+      "definition": "y − 3 = −4(x + 2) → <span style=\"color:#f08c00\">4x + y + 5 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6: line through (1, −1) and (3, 5).",
+      "definition": "slope 3: y + 1 = 3(x − 1) → <span style=\"color:#f08c00\">3x − y − 4 = 0</span> (NCERT writes −3x + y + 4 = 0)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7: tan θ = ½ with (i) y-intercept −3/2 (ii) x-intercept 4.",
+      "definition": "(i) y = x/2 − 3/2 → <span style=\"color:#f08c00\">x − 2y − 3 = 0</span> (ii) y = (x − 4)/2 → <span style=\"color:#f08c00\">x − 2y − 4 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8: intercepts −3 and 2.",
+      "definition": "x/(−3) + y/2 = 1 → <span style=\"color:#f08c00\">2x − 3y + 6 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q1–3: equations of the axes; through (−4, 3) with slope ½; through the origin with slope m.",
+      "definition": "<span style=\"color:#f08c00\">y = 0</span> and <span style=\"color:#f08c00\">x = 0</span>;  y − 3 = (x + 4)/2 → <span style=\"color:#f08c00\">x − 2y + 10 = 0</span>;  <span style=\"color:#f08c00\">y = mx</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q5–6: x-intercept 3 units left of the origin, slope −2; y-intercept 2 above the origin at 30°.",
+      "definition": "<span style=\"color:#f08c00\">2x + y + 6 = 0</span>;  y = x/√3 + 2 → <span style=\"color:#f08c00\">x − √3y + 2√3 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q7: line through (−1, 1) and (2, −4).",
+      "definition": "slope −5/3 → <span style=\"color:#f08c00\">5x + 3y + 2 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q8: median through R in triangle P(2,1), Q(−2,3), R(4,5).",
+      "definition": "Midpoint of PQ = (0, 2); slope (5 − 2)/4 = 3/4 → <span style=\"color:#f08c00\">3x − 4y + 8 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q9: through (−3, 5) ⟂ the line through (2, 5) and (−3, 6).",
+      "definition": "That slope is −1/5, so use 5: y − 5 = 5(x + 3) → <span style=\"color:#f08c00\">5x − y + 20 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q10: a line ⟂ to the segment (1,0)–(2,3) divides it 1 : n. Equation?",
+      "definition": "Point ((n + 2)/(n + 1), 3/(n + 1)), slope −1/3: <span style=\"color:#f08c00\">(n + 1)x + 3(n + 1)y = n + 11</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q11: equal intercepts, through (2, 3).",
+      "definition": "x + y = a with 2 + 3 = a → <span style=\"color:#f08c00\">x + y = 5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q12: through (2, 2), sum of intercepts 9.",
+      "definition": "2/a + 2/(9 − a) = 1 → a² − 9a + 18 = 0 → a = 3 or 6: <span style=\"color:#f08c00\">2x + y = 6</span> and <span style=\"color:#f08c00\">x + 2y = 6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q13: through (0, 2) at 2π/3; and the parallel line 2 units below the origin.",
+      "definition": "slope −√3: <span style=\"color:#f08c00\">√3x + y − 2 = 0</span> and <span style=\"color:#f08c00\">√3x + y + 2 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q14: the perpendicular from the origin meets the line at (−2, 9). Equation?",
+      "definition": "Normal direction (−2, 9): −2(x + 2) + 9(y − 9) = 0 → <span style=\"color:#f08c00\">2x − 9y + 85 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q15: L is linear in C: L = 124.942 at 20°C and 125.134 at 110°C. Find L(C).",
+      "definition": "slope 0.192/90: <span style=\"color:#f08c00\">L = 0.00213C + 124.899</span> (approx)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q16: 980 L sold at ₹14, 1220 L at ₹16 (linear). Demand at ₹17?",
+      "definition": "Slope 120 L per rupee: 980 + 120·3 = <span style=\"color:#f08c00\">1340 litres</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q17–18: midpoint (a, b) of a segment between the axes; point (h, k) dividing it 1 : 2.",
+      "definition": "Intercepts 2a, 2b: <span style=\"color:#f08c00\">x/a + y/b = 2</span>. Second: <span style=\"color:#f08c00\">2kx + hy = 3hk</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q19: show (3, 0), (−2, −2), (8, 2) are collinear.",
+      "definition": "Slope of the first two: 2/5; slope of the first and third: 2/5 → same line ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: which form of a line to use?",
+      "definition": "Slope + point → point–slope. Two points → two-point (or find slope). Intercepts → x/a + y/b = 1. Normal direction known → A(x − x₁) + B(y − y₁) = 0",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q1: slope–intercept form of x + 7y = 0, 6x + 3y − 5 = 0, y = 0.",
+      "definition": "y = −x/7 (slope −1/7, c = 0);  y = −2x + 5/3 (slope −2, c = 5/3);  slope 0, c = 0",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q2: intercept form of 3x + 2y − 12 = 0, 4x − 3y = 6, 3y + 2 = 0.",
+      "definition": "x/4 + y/6 = 1 (4, 6);  x/(3/2) + y/(−2) = 1 (3/2, −2);  y = −2/3: y-intercept −2/3, <span style=\"color:#e5484d\">no x-intercept</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q6–7: ∥ to 3x − 4y + 2 = 0 through (−2, 3); ⟂ to x − 7y + 5 = 0 with x-intercept 3.",
+      "definition": "<span style=\"color:#f08c00\">3x − 4y + 18 = 0</span>;  slope −7: y = −7(x − 3) → <span style=\"color:#f08c00\">7x + y − 21 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q10: the line through (x₁, y₁) parallel to Ax + By + C = 0?",
+      "definition": "<span style=\"color:#3b82f6\">A(x − x₁) + B(y − y₁) = 0</span>: same A, B (same direction), new constant. Perpendicular: B(x − x₁) − A(y − y₁) = 0",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q12: right bisector of (3, 4) and (−1, 2).",
+      "definition": "Midpoint (1, 3), slope of segment ½ → perpendicular slope −2: <span style=\"color:#f08c00\">2x + y − 5 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q14: the perpendicular from the origin to y = mx + c meets it at (−1, 2). m and c?",
+      "definition": "Origin-to-point slope −2 = −1/m → <span style=\"color:#f08c00\">m = ½</span>, c = 2 + m = <span style=\"color:#f08c00\">5/2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q16: altitude from A(2, 3) in the triangle A, B(4, −1), C(1, 2): equation and length.",
+      "definition": "BC has slope −1 (x + y = 3), so the altitude has slope 1: <span style=\"color:#f08c00\">x − y + 1 = 0</span>; length = |2 + 3 − 3|/√2 = <span style=\"color:#f08c00\">√2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q17: p = perpendicular from the origin to the line with intercepts a, b. Show 1/p² = 1/a² + 1/b².",
+      "definition": "Line bx + ay = ab: p = ab/√(a² + b²) → 1/p² = (a² + b²)/(a²b²) = 1/a² + 1/b² ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.3-equations-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Distance of the point (x₁, y₁) from the line Ax + By + C = 0?",
+      "definition": "\\(d = \\dfrac{|Ax_1 + By_1 + C|}{\\sqrt{A^2 + B^2}}\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Distance from a point to a line",
+      "definition": "d = |Ax1+By1+C|/√(A²+B²); origin to 3x+4y−10=0 is 2 with foot (6/5, 8/5)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Distance of a point from a line</p><h2>Find the distance of the origin from 3x + 4y − 10 = 0 and the foot of the perpendicular.</h2><svg viewBox=\"0 0 300 240\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"16.0\" y1=\"183.8\" x2=\"288.0\" y2=\"183.8\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"57.8\" y1=\"225.7\" x2=\"57.8\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"36.9\" y1=\"37.4\" x2=\"277.5\" y2=\"217.8\"></line><text class=\"sm \" x=\"226.0\" y=\"166.7\" text-anchor=\"start\">3x + 4y − 10 = 0</text><circle class=\"d1s \" cx=\"57.8\" cy=\"183.8\" r=\"4.5\"></circle><text class=\"t1 \" x=\"45.8\" y=\"197.8\" text-anchor=\"start\">O</text></svg><p class=\"hint\">Which quantity goes in the numerator?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Distance of a point from a line</p><h2>Find the distance of the origin from 3x + 4y − 10 = 0 and the foot of the perpendicular.</h2><svg viewBox=\"0 0 300 240\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"16.0\" y1=\"183.8\" x2=\"288.0\" y2=\"183.8\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"57.8\" y1=\"225.7\" x2=\"57.8\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"36.9\" y1=\"37.4\" x2=\"277.5\" y2=\"217.8\"></line><text class=\"sm \" x=\"226.0\" y=\"166.7\" text-anchor=\"start\">3x + 4y − 10 = 0</text><circle class=\"d1s \" cx=\"57.8\" cy=\"183.8\" r=\"4.5\"></circle><text class=\"t1 \" x=\"45.8\" y=\"197.8\" text-anchor=\"start\">O</text><line class=\"c2 fx d2\" x1=\"57.8\" y1=\"183.8\" x2=\"120.6\" y2=\"100.2\"></line><circle class=\"d2s fx d2\" cx=\"120.6\" cy=\"100.2\" r=\"4.5\"></circle><text class=\"t2 fx d2 \" x=\"77.2\" y=\"140.0\" text-anchor=\"start\">d</text><text class=\"sm fx d2 \" x=\"130.6\" y=\"92.2\" text-anchor=\"start\">foot (6/5, 8/5)</text></svg><div class=\"eq fx d5\"><p><b>d = |Ax₁ + By₁ + C| / √(A² + B²)</b> = |0 + 0 − 10|/5 = <b>2</b>.</p><p>Foot: move from O along the normal (3, 4)/5 by 2 → (6/5, 8/5). Check: 3(6/5) + 4(8/5) = 10 ✓.</p><p class=\"no\">Trap: the absolute value, and √(A² + B²) not A² + B².</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Distance between parallel lines Ax + By + C₁ = 0 and Ax + By + C₂ = 0?",
+      "definition": "\\(d = \\dfrac{|C_1 - C_2|}{\\sqrt{A^2 + B^2}}\\) (first make the A, B identical in both)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: distance between 3x + 4y + 5 = 0 and 6x + 8y − 10 = 0.",
+      "definition": "Divide the second by 2: 3x + 4y − 5 = 0. Then d = |5 − (−5)|/5 = <span style=\"color:#f08c00\">2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9: distance of (3, −5) from 3x − 4y − 26 = 0.",
+      "definition": "|9 + 20 − 26|/5 = <span style=\"color:#f08c00\">3/5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10: distance between 3x − 4y + 7 = 0 and 3x − 4y + 5 = 0.",
+      "definition": "|7 − 5|/5 = <span style=\"color:#f08c00\">2/5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q3: distance of (−1, 1) from 12(x + 6) = 5(y − 2).",
+      "definition": "12x − 5y + 82 = 0: |−12 − 5 + 82|/13 = <span style=\"color:#f08c00\">5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q4: points on the x-axis at distance 4 from x/3 + y/4 = 1.",
+      "definition": "4x + 3y − 12 = 0: |4x − 12|/5 = 4 → <span style=\"color:#f08c00\">(8, 0) and (−2, 0)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q5: distance between 15x + 8y − 34 = 0 and 15x + 8y + 31 = 0; and between l(x + y) + p = 0 and l(x + y) − r = 0.",
+      "definition": "65/17 = <span style=\"color:#f08c00\">65/17</span>;  |p + r|/(|l|√2) = <span style=\"color:#f08c00\">|p + r|/(|l|√2)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q13: foot of the perpendicular from (−1, 3) to 3x − 4y − 16 = 0.",
+      "definition": "Move by t = (−3 − 12 − 16)/25 = −31/25 along (3, −4): <span style=\"color:#f08c00\">(68/25, −49/25)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q15: p, q are perpendiculars from the origin to x cos θ − y sin θ = k cos 2θ and x sec θ + y cosec θ = k. Show p² + 4q² = k².",
+      "definition": "p = |k cos 2θ|; q = k/√(sec²θ + cosec²θ) = k sinθ cosθ = (k/2) sin 2θ. Then p² + 4q² = k²(cos²2θ + sin²2θ) = k² ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: points on the y-axis at distance 4 from x/3 + y/4 = 1.",
+      "definition": "|3y − 12|/5 = 4 → <span style=\"color:#f08c00\">(0, 32/3) and (0, −8/3)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: perpendicular distance from the origin to the line joining (cos θ, sin θ) and (cos φ, sin φ).",
+      "definition": "<span style=\"color:#f08c00\">|cos((θ − φ)/2)|</span> (a chord of the unit circle)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q20: the line equidistant from the parallels 9x + 6y − 7 = 0 and 3x + 2y + 6 = 0.",
+      "definition": "Rewrite the second as 9x + 6y + 18 = 0. Middle constant: (−7 + 18)/2 = 11/2 → <span style=\"color:#f08c00\">18x + 12y + 11 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q22: product of the perpendiculars from (±√(a² − b²), 0) to x cos θ/a + y sin θ/b = 1.",
+      "definition": "Multiply the two distances: the denominators combine to (cos²θ/a² + sin²θ/b²) and the numerators to 1 − (a² − b²)cos²θ/a² = b²(cos²θ/a² + sin²θ/b²). The product is <span style=\"color:#f08c00\">b²</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.4-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Three lines are concurrent. What does that mean and how do you test it?",
+      "definition": "They pass through one point. Solve two, then check the third; or <span style=\"color:#3b82f6\">the 3×3 determinant of coefficients = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 11: 2x + y − 3 = 0, 5x + ky − 3 = 0, 3x − y − 2 = 0 are concurrent. Find k.",
+      "definition": "Lines 1 and 3 meet at (1, 1); it must satisfy the second: 5 + k − 3 = 0 → <span style=\"color:#f08c00\">k = −2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q8: 3x + y − 2 = 0, px + 2y − 3 = 0, 2x − y − 3 = 0 meet at one point. p?",
+      "definition": "Lines 1 and 3 meet at (1, −1): p − 2 − 3 = 0 → <span style=\"color:#f08c00\">p = 5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q9: y = m₁x + c₁ etc. concurrent ⟹ m₁(c₂ − c₃) + m₂(c₃ − c₁) + m₃(c₁ − c₂) = 0. Idea?",
+      "definition": "Concurrency ⟺ determinant |m₁ −1 c₁; m₂ −1 c₂; m₃ −1 c₃| = 0; expanding gives the identity",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Family of lines through the intersection of L₁ = 0 and L₂ = 0?",
+      "definition": "<span style=\"color:#3b82f6\">L₁ + λL₂ = 0</span> (λ a parameter). Choose λ using an extra condition, e.g. passing through a given point",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q11: through the intersection of 4x + 7y − 3 = 0 and 2x − 3y + 1 = 0 with equal intercepts.",
+      "definition": "Intersection (1/13, 5/13). Equal intercepts: x + y = k with k = 6/13 → <span style=\"color:#f08c00\">13x + 13y = 6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: line ∥ the y-axis through the intersection of x − 7y + 5 = 0 and 3x + y = 0.",
+      "definition": "y = −3x → x + 21x + 5 = 0 → x = −5/22: <span style=\"color:#f08c00\">22x + 5 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: (k − 3)x − (4 − k²)y + k² − 7k + 6 = 0 is (a) ∥ x-axis (b) ∥ y-axis (c) through the origin.",
+      "definition": "(a) coefficient of x = 0 → <span style=\"color:#f08c00\">k = 3</span> (b) coefficient of y = 0 → <span style=\"color:#f08c00\">k = ±2</span> (c) constant = 0 → k² − 7k + 6 = 0 → <span style=\"color:#f08c00\">k = 1, 6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: intercepts with sum 1 and product −6.",
+      "definition": "(a, b) = (3, −2) or (−2, 3): <span style=\"color:#f08c00\">2x − 3y = 6</span> and <span style=\"color:#f08c00\">3x − 2y + 6 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: area of the triangle formed by y = x, y = −x, x = k.",
+      "definition": "Vertices (0,0), (k,k), (k,−k): <span style=\"color:#f08c00\">k²</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 14: area of the triangle from y = m₁x + c₁, y = m₂x + c₂, x = 0.",
+      "definition": "<span style=\"color:#f08c00\">(c₁ − c₂)² / (2|m₁ − m₂|)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 15: a line whose segment between 5x − y + 4 = 0 and 3x + 4y − 4 = 0 is bisected at (1, 5).",
+      "definition": "Endpoints (α₁, 5α₁ + 4), (α₂, (4 − 3α₂)/4) with α₁ + α₂ = 2 gives α₁ = 26/23: <span style=\"color:#f08c00\">107x − 3y − 92 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 16: path of a point equidistant from 3x − 2y = 5 and 3x + 2y = 5.",
+      "definition": "Equal distances give k = 0 or h = 5/3: the <span style=\"color:#3b82f6\">angle bisectors</span> y = 0 and x = 5/3, both straight lines",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angle bisectors of a₁x + b₁y + c₁ = 0 and a₂x + b₂y + c₂ = 0?",
+      "definition": "<span style=\"color:#3b82f6\">(a₁x + b₁y + c₁)/√(a₁² + b₁²) = ±(a₂x + b₂y + c₂)/√(a₂² + b₂²)</span>: two perpendicular bisectors (make c₁, c₂ same sign to pick the one containing the origin)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q19: the sum of the distances of P(x, y) from x + y − 5 = 0 and 3x − 2y + 7 = 0 is always 10. Locus?",
+      "definition": "Removing the modulus in each region gives a linear equation, so P moves on a <span style=\"color:#3b82f6\">line (segment)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q23: a person at the meeting point of 2x − 3y + 4 = 0 and 3x + 4y − 5 = 0 wants to reach 6x − 7y + 8 = 0 fastest.",
+      "definition": "The shortest path is the perpendicular from (−1/17, 22/17): <span style=\"color:#f08c00\">119x + 102y − 125 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-concurrency-and-families"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Reflection of a point in a line (Example 13)",
+      "definition": "Image Q of P(1,2) in x−3y+4=0: PQ ⟂ line and midpoint on line; formula (x′−x1)/A=(y′−y1)/B=−2(Ax1+By1+C)/(A²+B²); Q=(6/5,7/5)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Image in a line (mirror)</p><h2>Find the image of P(1, 2) in the line x − 3y + 4 = 0.</h2><svg viewBox=\"0 0 300 213\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"16.0\" y1=\"163.9\" x2=\"288.0\" y2=\"163.9\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"103.7\" y1=\"199.0\" x2=\"103.7\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"16.0\" y1=\"134.7\" x2=\"288.0\" y2=\"44.0\"></line><circle class=\"d1s \" cx=\"147.6\" cy=\"76.2\" r=\"4.5\"></circle><text class=\"t1 \" x=\"139.6\" y=\"68.2\" text-anchor=\"end\">P(1, 2)</text><text class=\"sm \" x=\"240.9\" y=\"33.7\" text-anchor=\"end\">x − 3y + 4 = 0</text></svg><p class=\"hint\">Use “perpendicular” and “midpoint on the line”.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Image in a line (mirror)</p><h2>Find the image of P(1, 2) in the line x − 3y + 4 = 0.</h2><svg viewBox=\"0 0 300 213\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"16.0\" y1=\"163.9\" x2=\"288.0\" y2=\"163.9\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"103.7\" y1=\"199.0\" x2=\"103.7\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"c0\" x1=\"16.0\" y1=\"134.7\" x2=\"288.0\" y2=\"44.0\"></line><circle class=\"d1s \" cx=\"147.6\" cy=\"76.2\" r=\"4.5\"></circle><text class=\"t1 \" x=\"139.6\" y=\"68.2\" text-anchor=\"end\">P(1, 2)</text><text class=\"sm \" x=\"240.9\" y=\"33.7\" text-anchor=\"end\">x − 3y + 4 = 0</text><line class=\"guide fx d2\" x1=\"147.6\" y1=\"76.2\" x2=\"156.4\" y2=\"102.5\"></line><circle class=\"d3s fx d2\" cx=\"152.0\" cy=\"89.4\" r=\"4\"></circle><text class=\"t3 fx d2 \" x=\"162.0\" y=\"95.4\" text-anchor=\"start\">foot M</text><circle class=\"d2s fx d3\" cx=\"156.4\" cy=\"102.5\" r=\"4.5\"></circle><text class=\"t2 fx d3 \" x=\"164.4\" y=\"118.5\" text-anchor=\"start\">Q(6/5, 7/5)</text></svg><div class=\"eq fx d5\"><p>The line is the <b>perpendicular bisector</b> of PQ. Two conditions: (i) PQ ⟂ line (slope of PQ = −3); (ii) the midpoint of PQ lies on the line.</p><p>Shortcut: (x′ − x₁)/A = (y′ − y₁)/B = <b>−2(Ax₁ + By₁ + C)/(A² + B²)</b>. Here −2(−1)/10 = 0.2 → Q = (1 + 0.2, 2 − 0.6) = <b>(6/5, 7/5)</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-reflection"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Light reflection: use the image point",
+      "definition": "Reflect the target in the mirror line; the light path is the straight line to the image: A(13/5,0) for (1,2)→x-axis→(5,3)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Reflection of light · Misc Q21</p><h2>A ray from (1, 2) reflects on the x-axis at A and passes through (5, 3). Find A.</h2><svg viewBox=\"0 0 300 341\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"14.0\" y1=\"169.9\" x2=\"290.0\" y2=\"169.9\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"31.2\" y1=\"325.1\" x2=\"31.2\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><circle class=\"d1s \" cx=\"74.4\" cy=\"83.6\" r=\"4.5\"></circle><text class=\"t1 \" x=\"68.4\" y=\"75.6\" text-anchor=\"end\">(1, 2)</text><circle class=\"d1s \" cx=\"246.9\" cy=\"40.5\" r=\"4.5\"></circle><text class=\"t1 \" x=\"250.9\" y=\"32.5\" text-anchor=\"end\">(5, 3)</text></svg><p class=\"hint\">Where would the ray go if the mirror were not there?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Reflection of light · Misc Q21</p><h2>A ray from (1, 2) reflects on the x-axis at A and passes through (5, 3). Find A.</h2><svg viewBox=\"0 0 300 341\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"14.0\" y1=\"169.9\" x2=\"290.0\" y2=\"169.9\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"31.2\" y1=\"325.1\" x2=\"31.2\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><circle class=\"d1s \" cx=\"74.4\" cy=\"83.6\" r=\"4.5\"></circle><text class=\"t1 \" x=\"68.4\" y=\"75.6\" text-anchor=\"end\">(1, 2)</text><circle class=\"d1s \" cx=\"246.9\" cy=\"40.5\" r=\"4.5\"></circle><text class=\"t1 \" x=\"250.9\" y=\"32.5\" text-anchor=\"end\">(5, 3)</text><circle class=\"d2s fx d2\" cx=\"246.9\" cy=\"299.2\" r=\"4.5\"></circle><text class=\"t2 fx d2 \" x=\"240.9\" y=\"315.2\" text-anchor=\"end\">(5, −3) image</text><line class=\"guide fx d2\" x1=\"74.4\" y1=\"83.6\" x2=\"246.9\" y2=\"299.2\"></line><line class=\"c3 fx d3\" x1=\"74.4\" y1=\"83.6\" x2=\"143.4\" y2=\"169.9\"></line><line class=\"c3 fx d3\" x1=\"143.4\" y1=\"169.9\" x2=\"246.9\" y2=\"40.5\"></line><circle class=\"d3s fx d3\" cx=\"143.4\" cy=\"169.9\" r=\"5\"></circle><text class=\"t3 fx d3 \" x=\"135.4\" y=\"187.9\" text-anchor=\"end\">A(13/5, 0)</text></svg><div class=\"eq fx d5\"><p>Reflect (5, 3) in the x-axis to (5, −3). The reflected ray <b>appears to come from the image</b>, so A lies on the straight line from (1, 2) to (5, −3).</p><p>Slope = −5/4: y − 2 = −(5/4)(x − 1); set y = 0: x = 1 + 8/5 = <b>13/5</b>. A = (13/5, 0).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Reflection of (x₁, y₁) in Ax + By + C = 0?",
+      "definition": "\\(\\dfrac{x^{\\prime}-x_1}{A} = \\dfrac{y^{\\prime}-y_1}{B} = \\dfrac{-2(Ax_1 + By_1 + C)}{A^2 + B^2}\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q17: image of (3, 8) in x + 3y = 7.",
+      "definition": "Ax₁ + By₁ + C = 3 + 24 − 7 = 20 → −2·20/10 = −4: <span style=\"color:#f08c00\">(−1, −4)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Reflection of (a, b) in the axes and in y = x, y = −x?",
+      "definition": "x-axis: (a, −b); y-axis: (−a, b); y = x: (b, a); y = −x: (−b, −a)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12: distance of 4x − y = 0 from (4, 1) measured along a line at 135°.",
+      "definition": "Line x + y = 5 meets 4x − y = 0 at Q(1, 4): PQ = <span style=\"color:#f08c00\">3√2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q14: distance of 4x + 7y + 5 = 0 from (1, 2) along 2x − y = 0.",
+      "definition": "Point (1 + t/√5, 2 + 2t/√5): 23 + 18t/√5 = 0 → |t| = <span style=\"color:#f08c00\">23√5/18</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q15: through (−1, 2) so that the intersection with x + y = 4 is 3 units away.",
+      "definition": "(−1 + 3cos θ) + (2 + 3sin θ) = 4 → cos θ + sin θ = 1 → <span style=\"color:#f08c00\">θ = 0° or 90°</span> (horizontal or vertical line)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q16: hypotenuse ends (1, 3) and (−4, 1); legs parallel to the axes.",
+      "definition": "The right-angle vertex is (1, 1) or (−4, 3): legs <span style=\"color:#f08c00\">x = 1, y = 1</span> or <span style=\"color:#f08c00\">x = −4, y = 3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q13: in what ratio does x + y = 4 divide the segment (−1, 1) to (5, 7)?",
+      "definition": "λ: (−1 + 5λ + 1 + 7λ)/(1 + λ) = 4 → 8λ = 4 → <span style=\"color:#f08c00\">1 : 2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-reflection"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The slope of the line through (2, 3) and (4, 7) is<br>(a) 1 (b) 2 (c) 1/2 (d) −2",
+      "definition": "4/2 = <span style=\"color:#22a35a\">(b) 2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The equation of the line with slope 3 and y-intercept −2 is<br>(a) y = 3x − 2 (b) y = −2x + 3 (c) 3y = x − 2 (d) y = 3x + 2",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The distance of (1, 2) from 3x + 4y − 5 = 0 is<br>(a) 1 (b) 2 (c) 3 (d) 6/5",
+      "definition": "|3 + 8 − 5|/5 = <span style=\"color:#22a35a\">(d) 6/5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The lines 2x + 3y = 5 and 3x − 2y = 7 are<br>(a) parallel (b) perpendicular (c) coincident (d) none",
+      "definition": "Slopes −2/3 and 3/2: product −1 → <span style=\"color:#22a35a\">(b)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: If the points (1, 2), (3, 4), (k, 6) are collinear, k =<br>(a) 4 (b) 5 (c) 6 (d) 3",
+      "definition": "Slope 1: (6 − 2)/(k − 1) = 1 → <span style=\"color:#22a35a\">(a) 4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The angle between y = x and y = √3 x is<br>(a) 15° (b) 30° (c) 45° (d) 60°",
+      "definition": "60° − 45° = <span style=\"color:#22a35a\">(a) 15°</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): the area of the triangle formed by x + y = 4 and the axes is?",
+      "definition": "Legs 4 and 4: <span style=\"color:#f08c00\">8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the distance between the lines 3x + 4y = 9 and 6x + 8y = 15 (as a multiple of 1/10).",
+      "definition": "6x + 8y = 18 vs 15: |18 − 15|/10 = 3/10 → <span style=\"color:#f08c00\">3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> The slope of the y-axis is not defined.<br><b>R:</b> The y-axis makes an angle of 90° with the x-axis and tan 90° is not defined.<br>(a) Both true, R explains A (b) Both true, R does not explain A (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> If m₁m₂ = −1 the lines are perpendicular.<br><b>R:</b> tan θ = |(m₁ − m₂)/(1 + m₁m₂)| is undefined when m₁m₂ = −1.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>: the angle is 90°",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: the lines x − 2y = 3 and 2x − 4y = 7 are perpendicular.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: both have slope ½, so they are parallel",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find the equation of the line through (2, 3) making equal intercepts on the axes.",
+      "definition": "x + y = 5 (and y = (3/2)x through the origin has intercepts 0, 0 if allowed). Standard answer <span style=\"color:#f08c00\">x + y = 5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: find the foot of the perpendicular from (1, 2) to x + y − 5 = 0 and the image.",
+      "definition": "Ax₁ + By₁ + C = −2, so t = −2/2 = −1: foot = (1 + 1, 2 + 1) = <span style=\"color:#f08c00\">(2, 3)</span>; image = (3, 4)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a road passes through A(0, 0) and B(4, 3). A well is at W(5, 0). Shortest distance from W to the road?",
+      "definition": "Road: 3x − 4y = 0; d = |15|/5 = <span style=\"color:#f08c00\">3 units</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    }
+  ]
+}
