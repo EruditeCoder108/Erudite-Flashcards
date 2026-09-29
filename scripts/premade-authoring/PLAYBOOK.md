@@ -144,6 +144,9 @@ Everything lives in `scripts/premade-authoring/`. Needs Python 3 with `pymupdf` 
 | `tools/pg.py <pdf> <pages> [dpi]` | Renders pages. |
 | `tools/montage.py <media folder> <name>` | Montage of all crops, to check them in one look. |
 | `tools/maskcheck.py <deck folder> <name>` | Draws every occlusion mask in red on its image. **Always check this before publishing.** |
+| `tools/shot.py <deck.json> [filter] [page]` | **Fast visual check:** headless-Edge screenshot sheet (`.work/shot_N.png`, 8 faces per page, animations at their final state). Open the PNG with Read. Prefer this to cardview. |
+| `tools/lint.py <deck.json>` | Flags `	ext{}`, KaTeX inside cloze/advanced HTML, unbalanced delimiters, oversized HTML, duplicate questions. Run before packaging. |
+| `showcase_math.py` | Maths cards on the paper theme: `mcard`, `Plane` (graphs), `mkeyframes` from `showcase.py`; Venn/interval/number-line helpers per chapter under `# Maths N Ch M`. |
 | `tools/cardview.py <deck.json> [filter]` | Renders advanced-HTML cards to `.work/cards.html` for a browser look. Only needed if you made bespoke HTML. Open it in the browser pane (file:// URL); cards sit in shadow roots, so `document.getAnimations()` cannot pause them — take screenshots at a few moments instead. |
 | `tools/capacitor-stub.js` | Only for testing the full app in a browser. See the app-testing note in section 8. |
 
@@ -311,8 +314,9 @@ Don't polish endlessly: move on to the next chapter.
 | Physics 11 | 1–3, 5–14 — complete | Done (PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; answer keys `keph1an.pdf`, `keph2an.pdf`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py` + `figures_phy_chNN.py`, animations in `showcase_phy.py`, drawn figures via `draw.py`) |
 | Physics 11 | 4 | Pilot |
 | Physics 12 | 1–14 | Done: **the whole book is complete** (PDFs unzipped to `NCERT-pdfs/phy12/`: Ch 1–8 = `leph101–108`, Ch 9–14 = `leph201–206`; answer keys `leph1an.pdf`, `leph2an.pdf`; decks in `premade-cards/12th/Physics/` (manifest exists, so use `replace_deck.py premade-cards/12th/Physics none.zip <deck-id>`), scripts `phy12_chNN.py` + `figures_phy12_chNN.py`; animations in `showcase_phy.py` under the `# Physics 12 Ch N` headers) |
+| Maths 11 | 1 | Done (PDFs unzipped to `NCERT-pdfs/maths11/`: Ch N = `kemh1NN`; decks in `premade-cards/11th/Mathematics/`, scripts `math11_chNN.py`, animations in `showcase_math.py`) |
 | Maths 11 | 3 | Pilot |
-| Maths 11 | others | Not started |
-| Maths 12 | all | Not started |
+| Maths 11 | 2, 4–14 | Not started; **next: Ch 2** |
+| Maths 12 | all | Not started (PDFs unzipped to `NCERT-pdfs/maths12/`: Ch 1–6 = `lemh101–106`, Ch 7–13 = `lemh201–207`; answer keys `lemh1an.pdf`, `lemh2an.pdf`; create `premade-cards/12th/Mathematics/`) |
 
 Suggested order: Biology 11, Biology 12, Chemistry 11 and 12, Physics 11 and 12, Maths 11 and 12.

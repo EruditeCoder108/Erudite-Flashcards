@@ -708,3 +708,128 @@ def cft_tetrahedral_split(deck):
             'never big enough to force pairing. No "g": a tetrahedron has no centre of symmetry.</div></div>')
     _card(deck, 'Tetrahedral vs octahedral splitting',
           'Tetrahedral splitting is inverted (e lower, t2 higher) and smaller: Δt = 4/9 Δo, so low spin is rare', CRYSTAL, front, back)
+
+
+# ---------------------------------------------------------------- maths (warm paper theme)
+# Maths cards use the deckkit paper/ink look: cream #fbf8f1, ink #1f2430, blue #1d5fd6,
+# red #c93b3f, green #1f8a4c, orange #c77700. SVG is styled by class only (see BASE rules).
+PAPER = BASE + """
+.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}
+.pp .tag{color:#7a7466}.pp h2{color:#1f2430}
+.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}
+.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}
+.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}
+.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}
+.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}
+.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}
+.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}
+.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}
+.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}
+.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}
+.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}
+.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}
+.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}
+.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}
+.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}
+.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}
+.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}
+.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}
+.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}
+.pp .loop{animation-iteration-count:infinite}
+"""
+
+PAPER_ARROWS = ('<defs>'
+                + ''.join(f'<marker id="{i}" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">'
+                          f'<path d="M0 0 L8 4 L0 8 Z" fill="{c}"></path></marker>'
+                          for i, c in [('pk', '#1f2430'), ('pb', '#1d5fd6'), ('pr', '#c93b3f'), ('pg', '#1f8a4c'), ('po', '#c77700')])
+                + '</defs>')
+
+
+def mcard(deck, tag, q, svg_front, svg_back, note_html, term, definition, css='', hint='Think it through, then flip.',
+          vb='0 0 300 200', front_only=''):
+    """One paper-theme card: same question on both faces; the back adds `svg_back` (animated) and a note.
+    `front_only` is SVG shown on the front only (e.g. a static start state)."""
+    front = (f'<div class="w pp"><p class="tag">{tag}</p><h2>{q}</h2>'
+             f'<svg viewBox="{vb}">{PAPER_ARROWS}{svg_front}{front_only}</svg><p class="hint">{hint}</p></div>')
+    back = (f'<div class="w pp"><p class="tag">{tag}</p><h2>{q}</h2>'
+            f'<svg viewBox="{vb}">{PAPER_ARROWS}{svg_front}{svg_back}</svg>'
+            f'<div class="eq fx d5">{note_html}</div></div>')
+    _card(deck, term, definition, PAPER + css, front, back)
+
+
+def mkeyframes(name, pts, dur, extra='linear', delay=0.2, loop=True):
+    """CSS for class `name` that walks an SVG group through (x, y) points in equal time steps."""
+    n = len(pts) - 1
+    frames = ''.join(f'{100 * i / n:.2f}%{{transform:translate({x:.1f}px,{y:.1f}px)}}' for i, (x, y) in enumerate(pts))
+    return (f'.pp .{name}{{animation:{name} {dur}s {extra} {delay}s {"infinite" if loop else "1"} both}}'
+            f'@keyframes {name}{{{frames}}}')
+
+
+class Plane:
+    """Coordinate plane mapped into an SVG viewBox. Curves are split at gaps (asymptotes)."""
+    def __init__(s, xmin, xmax, ymin, ymax, w=300, h=200, pad=(22, 12, 12, 22)):
+        s.xmin, s.xmax, s.ymin, s.ymax, s.w, s.h = xmin, xmax, ymin, ymax, w, h
+        s.l, s.t, s.r, s.b = pad
+
+    def X(s, x): return s.l + (x - s.xmin) / (s.xmax - s.xmin) * (s.w - s.l - s.r)
+    def Y(s, y): return s.h - s.b - (y - s.ymin) / (s.ymax - s.ymin) * (s.h - s.t - s.b)
+
+    def axes(s, xt=(), yt=(), grid=False, labels=True, xl='x', yl='y'):
+        o = ''
+        x0 = s.X(0) if s.xmin < 0 < s.xmax else s.X(s.xmin)
+        y0 = s.Y(0) if s.ymin < 0 < s.ymax else s.Y(s.ymin)
+        if grid:
+            for v, _ in xt: o += f'<line class="gd" x1="{s.X(v):.1f}" y1="{s.Y(s.ymin):.1f}" x2="{s.X(v):.1f}" y2="{s.Y(s.ymax):.1f}"></line>'
+            for v, _ in yt: o += f'<line class="gd" x1="{s.X(s.xmin):.1f}" y1="{s.Y(v):.1f}" x2="{s.X(s.xmax):.1f}" y2="{s.Y(v):.1f}"></line>'
+        o += (f'<line class="ax" x1="{s.X(s.xmin):.1f}" y1="{y0:.1f}" x2="{s.X(s.xmax):.1f}" y2="{y0:.1f}" marker-end="url(#pk)"></line>'
+              f'<line class="ax" x1="{x0:.1f}" y1="{s.Y(s.ymin):.1f}" x2="{x0:.1f}" y2="{s.Y(s.ymax):.1f}" marker-end="url(#pk)"></line>')
+        for v, t in xt:
+            o += f'<line class="ax" x1="{s.X(v):.1f}" y1="{y0 - 3:.1f}" x2="{s.X(v):.1f}" y2="{y0 + 3:.1f}"></line>'
+            if t: o += f'<text class="num" x="{s.X(v):.1f}" y="{y0 + 14:.1f}">{t}</text>'
+        for v, t in yt:
+            o += f'<line class="ax" x1="{x0 - 3:.1f}" y1="{s.Y(v):.1f}" x2="{x0 + 3:.1f}" y2="{s.Y(v):.1f}"></line>'
+            if t: o += f'<text class="num" x="{x0 - 6:.1f}" y="{s.Y(v) + 3.5:.1f}" text-anchor="end">{t}</text>'
+        if labels:
+            o += (f'<text class="lbi" x="{s.X(s.xmax) - 2:.1f}" y="{y0 - 6:.1f}" text-anchor="end">{xl}</text>'
+                  f'<text class="lbi" x="{x0 + 6:.1f}" y="{s.Y(s.ymax) + 8:.1f}">{yl}</text>')
+        return o
+
+    def curve(s, fn, cls='c1', x0=None, x1=None, n=160, clip=None, extra=''):
+        x0 = s.xmin if x0 is None else x0
+        x1 = s.xmax if x1 is None else x1
+        lo, hi = clip if clip else (s.ymin, s.ymax)
+        segs, cur = [], []
+        for i in range(n + 1):
+            x = x0 + (x1 - x0) * i / n
+            try:
+                y = fn(x)
+            except Exception:
+                y = None
+            if y is None or y != y or y < lo or y > hi:
+                if len(cur) > 1: segs.append(cur)
+                cur = []
+            else:
+                cur.append(f'{s.X(x):.1f},{s.Y(y):.1f}')
+        if len(cur) > 1: segs.append(cur)
+        return ''.join(f'<polyline class="{cls}" {extra} points="{" ".join(c)}"></polyline>' for c in segs)
+
+    def line(s, x0, y0, x1, y1, cls='c0'):
+        return f'<line class="{cls}" x1="{s.X(x0):.1f}" y1="{s.Y(y0):.1f}" x2="{s.X(x1):.1f}" y2="{s.Y(y1):.1f}"></line>'
+
+    def dot(s, x, y, cls='d1s', r=4, extra=''):
+        return f'<circle class="{cls} {extra}" cx="{s.X(x):.1f}" cy="{s.Y(y):.1f}" r="{r}"></circle>'
+
+    def hole(s, x, y, cls='c1', r=4):
+        return f'<circle class="f0 {cls}" cx="{s.X(x):.1f}" cy="{s.Y(y):.1f}" r="{r}"></circle>'
+
+    def text(s, x, y, t, cls='lbl', anchor='start', dx=0, dy=0, extra=''):
+        return f'<text class="{cls} {extra}" x="{s.X(x) + dx:.1f}" y="{s.Y(y) + dy:.1f}" text-anchor="{anchor}">{t}</text>'
+
+    def poly(s, pts, cls='f1', extra=''):
+        return f'<polygon class="{cls} {extra}" points="{" ".join(f"{s.X(x):.1f},{s.Y(y):.1f}" for x, y in pts)}"></polygon>'

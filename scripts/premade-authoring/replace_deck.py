@@ -44,7 +44,7 @@ if new_id:
         if item.get('id') == new_id:
             if deck.get('description'):
                 item['description'] = deck['description']
-            item['tags'] = [t for t in deck['cards'][0].get('tags', [])[:2]] + ['neet'] if deck.get('cards') else item.get('tags', [])
+            item['tags'] = [t for t in deck['cards'][0].get('tags', [])[:2]] + (['jee'] if 'mathematics' in deck['cards'][0].get('tags', []) else ['neet']) if deck.get('cards') else item.get('tags', [])
             item['estimatedTime'] = f"{max(10, round(item.get('cardCount', 0) * 0.2))} minutes"
             print(item)
 

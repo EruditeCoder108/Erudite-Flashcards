@@ -1,5 +1,5 @@
 """Render every advanced-HTML card of a deck.json (front + back, 340x470, shadow DOM) into cards.html.
-Usage: python cardview.py <deck.json> [filter-substring, several joined by |]"""
+Usage: python cardview.py <deck.json> [filter-substring, several joined by |] [zoom, e.g. 0.6]"""
 import sys, json, os, html
 from _work import WORK, ROOT
 HERE = WORK
@@ -20,6 +20,7 @@ const items=%s;
 for(const it of items){const f=document.createElement('figure');f.innerHTML='<figcaption></figcaption><div class=h></div>';
 f.querySelector('figcaption').textContent=it.label;document.body.appendChild(f);
 const s=f.querySelector('.h').attachShadow({mode:'open'});s.innerHTML='<style>*{box-sizing:border-box}'+it.css+'</style>'+it.html;}
-</script>""" % json.dumps(items)
+document.body.style.zoom='%s';
+</script>""" % (json.dumps(items), sys.argv[3] if len(sys.argv) > 3 else '1')
 open(os.path.join(HERE, 'cards.html'), 'w', encoding='utf8').write(page)
 print(len(cards), 'cards ->', os.path.join(HERE, 'cards.html'))
