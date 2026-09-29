@@ -246,6 +246,38 @@ def complementary_ranges(deck):
          'R = u² sin 2θ / g: θ and 90° − θ give the same range; 45° gives the maximum u²/g', css, vb='0 0 300 190')
 
 
+# ---------------------------------------------------------------- Ch 4 Laws of motion
+def train_drop(deck):
+    n, hold, T = 24, 8, 3.2
+    fr = [i / n for i in range(n + 1)] + [1.0] * hold
+    css = (keyframes('trn', [(30 * f + 110 * f * f, 0) for f in fr], T, 'linear', 0.4) +
+           keyframes('stn', [(30 * f, 68 * f * f) for f in fr], T, 'linear', 0.4))
+    sx, sy = 92, 106
+    path = ' '.join(f'{sx + 30 * f:.1f},{sy + 68 * f * f:.1f}' for f in [i / 20 for i in range(21)])
+    def train(cls):
+        return (f'<g class="{cls}"><rect class="obj" x="14" y="88" width="92" height="56" rx="6"></rect>'
+                '<rect class="ghost" x="24" y="98" width="24" height="18"></rect><rect class="ghost" x="72" y="98" width="24" height="18"></rect>'
+                '<circle class="dot3" cx="32" cy="150" r="6"></circle><circle class="dot3" cx="88" cy="150" r="6"></circle></g>')
+    base = ('<line class="road" x1="6" y1="176" x2="294" y2="176"></line>'
+            '<text class="sm" x="8" y="18">Ground frame · train accelerating →</text>')
+    still = (train('') + f'<circle class="obj2" cx="{sx}" cy="{sy}" r="6"></circle>'
+             '<line class="f-a" x1="40" y1="74" x2="96" y2="74" marker-end="url(#ah)"></line><text class="t-a" x="40" y="68">a (train)</text>')
+    back = (f'<polyline class="guide" points="{path}"></polyline>' + train('trn') +
+            f'<g class="stn"><circle class="obj2" cx="{sx}" cy="{sy}" r="6"></circle></g>'
+            '<text class="yl" x="292" y="40" text-anchor="end">stone: only mg acts</text>'
+            '<text class="gr" x="292" y="56" text-anchor="end">vₓ frozen at release</text>'
+            '<text class="rd" x="292" y="72" text-anchor="end">train pulls ahead</text>')
+    anim(deck, 'Second law is local · Fig. 4.5',
+         'A stone is dropped from the window of a train that is accelerating. Just after release, what horizontal force acts on it, and where does it land relative to the window?',
+         base, back,
+         '<p>The instant it leaves, the only force is <b>mg (down)</b>: no horizontal force, so <b>aₓ = 0</b>. '
+         'It keeps the horizontal velocity the train had at that instant (a parabola from the ground).</p>'
+         '<p>The train keeps accelerating, so the stone lands <b>behind the window</b>. Force here and now sets a here and now: the stone has no memory of the train’s push.</p>',
+         'Stone dropped from an accelerating train',
+         'Just after release only mg acts (no horizontal force, aₓ = 0); it keeps the train’s velocity at that instant and lands behind the window as the train accelerates away',
+         css, hint='Does the stone remember the train’s acceleration?', vb='0 0 300 190', front_only=still)
+
+
 # ---------------------------------------------------------------- Ch 5 Work, energy and power
 def spring_energy_bars(deck):
     import math

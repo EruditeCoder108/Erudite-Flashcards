@@ -2,78 +2,122 @@
   "version": 1,
   "name": "Chapter 4: Laws of Motion",
   "className": "Class 11",
+  "description": "Inertia, Newton’s three laws, momentum, impulse, equilibrium, friction, banking, free-body diagrams, lifts and pulleys",
   "cards": [
     {
       "noteType": "basic",
-      "term": "What was Aristotle's mistake about motion?",
-      "definition": "He thought a force is needed to <span style=\"color:#e5484d\">keep</span> a body in uniform motion",
+      "term": "Aristotle’s law of motion?",
+      "definition": "An external force is needed to <span style=\"color:#e5484d\">keep</span> a body moving (e.g. air behind an arrow \"pushes\" it)",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.2-4.3-inertia"
+        "4.2-aristotle"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Why does a real object need a push to keep moving at constant speed?",
-      "definition": "Only to <span style=\"color:#3b82f6\">cancel friction</span>. With no friction, no force is needed",
+      "term": "What was the flaw in Aristotle’s argument?",
+      "definition": "He ignored <span style=\"color:#3b82f6\">friction</span>. A toy car stops because the floor’s friction opposes it; the pull only cancels friction, so the net force in uniform motion is zero",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.2-4.3-inertia"
+        "4.2-aristotle"
       ]
     },
     {
       "noteType": "basic",
-      "term": "What did Galileo's double inclined plane show?",
-      "definition": "A ball rises to the <span style=\"color:#3b82f6\">same height</span> on the other side; make that side flat and it would roll <span style=\"color:#3b82f6\">forever</span>",
+      "term": "Is a force needed to keep a body in uniform motion if there is no friction?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: a force is needed only to change the motion, or in practice to cancel friction",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.2-4.3-inertia"
-      ],
-      "definitionImage": "media/fig_4_1b_double_incline.webp"
+        "4.2-aristotle"
+      ]
     },
     {
       "noteType": "basic",
-      "term": "A ball rolls (i) down, (ii) up and (iii) along a smooth plane. What happens to its speed?",
-      "definition": "(i) <span style=\"color:#3b82f6\">speeds up</span>, (ii) <span style=\"color:#3b82f6\">slows down</span>, (iii) <span style=\"color:#3b82f6\">stays constant</span> (no force along the plane)",
+      "term": "Galileo’s single inclined planes: what happens to a ball moving (i) down, (ii) up, (iii) along a smooth horizontal plane?",
+      "definition": "(i) <span style=\"color:#3b82f6\">accelerates</span>, (ii) <span style=\"color:#3b82f6\">retards</span>, (iii) neither: <span style=\"color:#3b82f6\">constant velocity</span>",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.2-4.3-inertia"
+        "4.3-law-of-inertia"
       ],
       "definitionImage": "media/fig_4_1a_galileo_planes.webp"
     },
     {
       "noteType": "basic",
-      "term": "What is inertia?",
-      "definition": "A body's resistance to any <span style=\"color:#3b82f6\">change in its state</span> of rest or uniform motion",
+      "term": "Galileo’s double inclined plane: what happens as the second slope is made flatter?",
+      "definition": "The ball still rises to the <span style=\"color:#3b82f6\">same height</span> but travels farther; on a horizontal plane it would move <span style=\"color:#3b82f6\">forever</span>",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.2-4.3-inertia"
-      ]
+        "4.3-law-of-inertia"
+      ],
+      "definitionImage": "media/fig_4_1b_double_incline.webp"
     },
     {
       "noteType": "basic",
-      "term": "What is the measure of inertia?",
-      "definition": "<span style=\"color:#3b82f6\">Mass</span>",
+      "term": "Galileo’s key insight?",
+      "definition": "The state of <span style=\"color:#3b82f6\">rest</span> and of <span style=\"color:#3b82f6\">uniform linear motion</span> are equivalent: in both the net force is zero",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.2-4.3-inertia"
+        "4.3-law-of-inertia"
       ]
     },
     {
       "noteType": "cloze",
-      "text": "Newton's first law: every body continues in its state of {{c1::rest or uniform motion in a straight line}} unless compelled by an {{c2::external force}} to change it.",
+      "text": "Inertia means {{c1::resistance to change}}: a body does not change its state of rest or uniform motion unless an {{c2::external force}} compels it.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.3-law-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the measure of inertia (of translation)?",
+      "definition": "<span style=\"color:#3b82f6\">Mass</span>: a larger mass needs a larger force for the same change in velocity",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.3-law-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ancient Indian ideas on motion: which concept came closest to inertia?",
+      "definition": "<span style=\"color:#3b82f6\">Vega</span> (Vaisesika theory): the tendency to move in a straight line, opposed by contact with objects and the air",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.3-law-of-inertia"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who introduced \"instantaneous motion\" (tatkaliki gati), anticipating instantaneous velocity?",
+      "definition": "<span style=\"color:#3b82f6\">Bhaskara</span> (<span style=\"color:#f08c00\">1150 A.D.</span>)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.3-law-of-inertia"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Newton’s first law: every body continues in its state of {{c1::rest or of uniform motion in a straight line}} unless compelled by some {{c2::external force}} to act otherwise.",
       "tags": [
         "class-11",
         "physics",
@@ -84,7 +128,7 @@
     {
       "noteType": "basic",
       "term": "First law in one line?",
-      "definition": "Net external force <span style=\"color:#f08c00\">= 0</span>  ⇔  acceleration <span style=\"color:#f08c00\">= 0</span>",
+      "definition": "If the net external force is <span style=\"color:#f08c00\">zero</span>, the acceleration is <span style=\"color:#f08c00\">zero</span> (and vice versa)",
       "tags": [
         "class-11",
         "physics",
@@ -94,8 +138,8 @@
     },
     {
       "noteType": "basic",
-      "term": "A book rests on a table. What is the correct reasoning?",
-      "definition": "It is at rest, so net force <span style=\"color:#f08c00\">= 0</span>, so the normal force <span style=\"color:#3b82f6\">equals</span> the weight. (Not \"forces cancel, so it rests\")",
+      "term": "A spaceship in interstellar space has all rockets off. What is its motion?",
+      "definition": "Zero net force → zero acceleration: it moves with <span style=\"color:#3b82f6\">uniform velocity</span> (or stays at rest)",
       "tags": [
         "class-11",
         "physics",
@@ -105,8 +149,20 @@
     },
     {
       "noteType": "basic",
-      "term": "What external force accelerates a car on a road?",
-      "definition": "<span style=\"color:#3b82f6\">Friction</span> from the road. Internal forces cannot accelerate the car as a whole",
+      "term": "A book rests on a table. Which statement is the correct reasoning: \"W = R, so the book is at rest\", or \"the book is at rest, so R = W\"?",
+      "definition": "<span style=\"color:#3b82f6\">The book is at rest, so the net force is zero, so R = W</span>. We infer the force from the observed state; R is self-adjusting",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.4-first-law"
+      ],
+      "definitionImage": "media/fig_4_15_fbd.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "A car speeds up from rest. Which external force accelerates it?",
+      "definition": "<span style=\"color:#3b82f6\">Friction</span> from the road on the tyres. <span style=\"color:#e5484d\">Internal forces</span> (engine, pistons) cannot accelerate the car as a whole",
       "tags": [
         "class-11",
         "physics",
@@ -116,8 +172,8 @@
     },
     {
       "noteType": "basic",
-      "term": "A bus starts suddenly. Which way are standing passengers thrown, and why?",
-      "definition": "<span style=\"color:#3b82f6\">Backward</span>: friction moves the feet with the bus while the upper body stays at rest (inertia)",
+      "term": "A bus starts suddenly. Why are standing passengers thrown backward?",
+      "definition": "Friction carries the <span style=\"color:#3b82f6\">feet</span> forward with the bus; the upper body stays behind by <span style=\"color:#3b82f6\">inertia</span> (the body is not rigid)",
       "tags": [
         "class-11",
         "physics",
@@ -127,8 +183,8 @@
     },
     {
       "noteType": "basic",
-      "term": "A bus stops suddenly. Which way are passengers thrown?",
-      "definition": "<span style=\"color:#3b82f6\">Forward</span> (upper body keeps moving)",
+      "term": "A speeding bus stops suddenly. Why are passengers thrown forward? (Exercise 4.23 b)",
+      "definition": "Friction stops the feet with the bus; the upper body <span style=\"color:#3b82f6\">keeps moving</span> by inertia",
       "tags": [
         "class-11",
         "physics",
@@ -138,8 +194,19 @@
     },
     {
       "noteType": "basic",
-      "term": "In deep space, a stone is released from a spaceship accelerating at 1 m/s². Acceleration of the stone just after release?",
-      "definition": "<span style=\"color:#f08c00\">0</span>. Once released, no force acts on it",
+      "term": "Example 4.1: an astronaut slips out of a spaceship accelerating at 100 m/s² in deep space. His acceleration just after?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span>: once outside, no force acts on him (no stars nearby; the ship’s gravity is negligible)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.4-first-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why does a tablecloth jerked fast leave the dishes in place?",
+      "definition": "The friction acts for a <span style=\"color:#3b82f6\">very short time</span>, so it gives the dishes only a tiny momentum; their inertia keeps them almost at rest",
       "tags": [
         "class-11",
         "physics",
@@ -150,7 +217,7 @@
     {
       "noteType": "basic",
       "term": "Define momentum.",
-      "definition": "\\(\\vec p = m\\vec v\\), a <span style=\"color:#3b82f6\">vector</span>",
+      "definition": "\\( \\vec p = m\\vec v \\): a <span style=\"color:#3b82f6\">vector</span> along the velocity; SI unit <span style=\"color:#f08c00\">kg m s⁻¹</span>",
       "tags": [
         "class-11",
         "physics",
@@ -160,8 +227,19 @@
     },
     {
       "noteType": "basic",
-      "term": "Why does a cricketer draw the hands back while catching?",
-      "definition": "To <span style=\"color:#3b82f6\">increase the time</span> of stopping the ball, so the force on the hands is smaller",
+      "term": "Why is it easier to catch a light stone than a heavy one dropped from the same height?",
+      "definition": "Same speed, but the heavy stone has more <span style=\"color:#3b82f6\">momentum</span>, so a larger force is needed to stop it in the same time",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a cricketer draw the hands back while catching? (Exercise 4.23 d)",
+      "definition": "He <span style=\"color:#3b82f6\">increases the time</span> over which the ball stops. Same Δp in a longer time → <span style=\"color:#3b82f6\">smaller force</span> on the hands",
       "tags": [
         "class-11",
         "physics",
@@ -171,8 +249,9 @@
       "definitionImage": "media/fig_4_3_catch.webp"
     },
     {
-      "noteType": "cloze",
-      "text": "Newton's second law: the rate of change of momentum is {{c1::proportional to the applied force}} and takes place {{c2::in the direction of the force}}.",
+      "noteType": "basic",
+      "term": "The same force acts for the same time on a light and a heavy body at rest. What is the same for both afterwards?",
+      "definition": "The <span style=\"color:#3b82f6\">momentum</span> gained (the lighter one moves faster)",
       "tags": [
         "class-11",
         "physics",
@@ -182,41 +261,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Second law as an equation (constant mass)?",
-      "definition": "\\(\\vec F = \\dfrac{d\\vec p}{dt} = m\\vec a\\)",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.5-second-law"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Define 1 newton.",
-      "definition": "<span style=\"color:#f08c00\">1 N = 1 kg m s⁻²</span>: the force that gives <span style=\"color:#f08c00\">1 kg</span> an acceleration of <span style=\"color:#f08c00\">1 m s⁻²</span>",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.5-second-law"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Is the second law a scalar or vector law?",
-      "definition": "<span style=\"color:#3b82f6\">Vector</span>: it holds separately for each component",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.5-second-law"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "A force acts perpendicular to the velocity. What changes?",
-      "definition": "Only the <span style=\"color:#3b82f6\">direction</span> of velocity, not its magnitude",
+      "term": "A stone is whirled in a horizontal circle at constant speed. Is a force needed?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: the magnitude of p is constant but its <span style=\"color:#3b82f6\">direction</span> changes; the string supplies the force",
       "tags": [
         "class-11",
         "physics",
@@ -226,9 +272,8 @@
       "definitionImage": "media/fig_4_4_stone_string.webp"
     },
     {
-      "noteType": "basic",
-      "term": "What does 'the second law is a local law' mean?",
-      "definition": "Acceleration at an instant depends only on the force <span style=\"color:#3b82f6\">at that instant</span>, not on past motion",
+      "noteType": "cloze",
+      "text": "Newton’s second law: the rate of change of momentum of a body is {{c1::directly proportional to the applied force}} and takes place {{c2::in the direction in which the force acts}}.",
       "tags": [
         "class-11",
         "physics",
@@ -238,8 +283,74 @@
     },
     {
       "noteType": "basic",
-      "term": "Which F and a go into F = ma for a system of particles?",
-      "definition": "The <span style=\"color:#3b82f6\">total external force</span> and the acceleration of the system as a whole",
+      "term": "Second law as an equation?",
+      "definition": "\\( \\vec F = \\dfrac{d\\vec p}{dt} = m\\vec a \\) (fixed mass), with the constant k chosen as 1",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define one newton.",
+      "definition": "<span style=\"color:#f08c00\">1 N = 1 kg m s⁻²</span>: the force that gives a 1 kg mass an acceleration of 1 m s⁻²",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is the second law consistent with the first law?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: F = 0 gives a = 0",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Second law is a vector law. What does that mean in practice?",
+      "definition": "Three separate equations: \\( F_x = ma_x,\\ F_y = ma_y,\\ F_z = ma_z \\). A force changes only the velocity component <span style=\"color:#3b82f6\">along itself</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a projectile keep its horizontal velocity?",
+      "definition": "Gravity is vertical; the component of velocity <span style=\"color:#3b82f6\">normal to the force</span> is unchanged",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "To a system of particles, what do F and a mean in F = ma?",
+      "definition": "F = total <span style=\"color:#3b82f6\">external</span> force (internal forces excluded); a = acceleration of the <span style=\"color:#3b82f6\">centre of mass</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does \"the second law is a local relation\" mean?",
+      "definition": "Force <span style=\"color:#3b82f6\">here and now</span> decides acceleration here and now; a does <span style=\"color:#e5484d\">not</span> depend on the history of motion",
       "tags": [
         "class-11",
         "physics",
@@ -249,14 +360,69 @@
     },
     {
       "noteType": "advanced-html",
-      "term": "Bullet stopped in block: resistive force",
-      "definition": "F = ma = 0.04 × 6750 = 270 N",
+      "term": "Stone dropped from an accelerating train",
+      "definition": "Just after release only mg acts (no horizontal force, aₓ = 0); it keeps the train’s velocity at that instant and lands behind the window as the train accelerates away",
       "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.2</p><h2>Find the missing step.</h2><div class=\"prob\">A 0.04 kg bullet at 90 m/s stops after 60 cm in a wooden block. Average resistive force?</div><ol><li>v² = u² − 2as with v = 0</li><li>a = 90² / (2 × 0.6) = 6750 m s⁻²</li><li class=\"h\">?</li></ol></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.2</p><h2>Find the missing step.</h2><div class=\"prob\">A 0.04 kg bullet at 90 m/s stops after 60 cm in a wooden block. Average resistive force?</div><ol><li>v² = u² − 2as with v = 0</li><li>a = 90² / (2 × 0.6) = 6750 m s⁻²</li><li class=\"r\">F = ma = 0.04 × 6750 = <b>270 N</b></li></ol></div>",
-        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
-        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Second law is local · Fig. 4.5</p><h2>A stone is dropped from the window of a train that is accelerating. Just after release, what horizontal force acts on it, and where does it land relative to the window?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"6\" y1=\"176\" x2=\"294\" y2=\"176\"></line><text class=\"sm\" x=\"8\" y=\"18\">Ground frame · train accelerating →</text><g class=\"\"><rect class=\"obj\" x=\"14\" y=\"88\" width=\"92\" height=\"56\" rx=\"6\"></rect><rect class=\"ghost\" x=\"24\" y=\"98\" width=\"24\" height=\"18\"></rect><rect class=\"ghost\" x=\"72\" y=\"98\" width=\"24\" height=\"18\"></rect><circle class=\"dot3\" cx=\"32\" cy=\"150\" r=\"6\"></circle><circle class=\"dot3\" cx=\"88\" cy=\"150\" r=\"6\"></circle></g><circle class=\"obj2\" cx=\"92\" cy=\"106\" r=\"6\"></circle><line class=\"f-a\" x1=\"40\" y1=\"74\" x2=\"96\" y2=\"74\" marker-end=\"url(#ah)\"></line><text class=\"t-a\" x=\"40\" y=\"68\">a (train)</text></svg><p class=\"hint\">Does the stone remember the train’s acceleration?</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Second law is local · Fig. 4.5</p><h2>A stone is dropped from the window of a train that is accelerating. Just after release, what horizontal force acts on it, and where does it land relative to the window?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"6\" y1=\"176\" x2=\"294\" y2=\"176\"></line><text class=\"sm\" x=\"8\" y=\"18\">Ground frame · train accelerating →</text><polyline class=\"guide\" points=\"92.0,106.0 93.5,106.2 95.0,106.7 96.5,107.5 98.0,108.7 99.5,110.2 101.0,112.1 102.5,114.3 104.0,116.9 105.5,119.8 107.0,123.0 108.5,126.6 110.0,130.5 111.5,134.7 113.0,139.3 114.5,144.2 116.0,149.5 117.5,155.1 119.0,161.1 120.5,167.4 122.0,174.0\"></polyline><g class=\"trn\"><rect class=\"obj\" x=\"14\" y=\"88\" width=\"92\" height=\"56\" rx=\"6\"></rect><rect class=\"ghost\" x=\"24\" y=\"98\" width=\"24\" height=\"18\"></rect><rect class=\"ghost\" x=\"72\" y=\"98\" width=\"24\" height=\"18\"></rect><circle class=\"dot3\" cx=\"32\" cy=\"150\" r=\"6\"></circle><circle class=\"dot3\" cx=\"88\" cy=\"150\" r=\"6\"></circle></g><g class=\"stn\"><circle class=\"obj2\" cx=\"92\" cy=\"106\" r=\"6\"></circle></g><text class=\"yl\" x=\"292\" y=\"40\" text-anchor=\"end\">stone: only mg acts</text><text class=\"gr\" x=\"292\" y=\"56\" text-anchor=\"end\">vₓ frozen at release</text><text class=\"rd\" x=\"292\" y=\"72\" text-anchor=\"end\">train pulls ahead</text></svg><div class=\"eq fx d5\"><p>The instant it leaves, the only force is <b>mg (down)</b>: no horizontal force, so <b>aₓ = 0</b>. It keeps the horizontal velocity the train had at that instant (a parabola from the ground).</p><p>The train keeps accelerating, so the stone lands <b>behind the window</b>. Force here and now sets a here and now: the stone has no memory of the train’s push.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .trn{animation:trn 3.2s linear 0.4s infinite both}@keyframes trn{0.00%{transform:translate(0.0px,0.0px)}3.12%{transform:translate(1.4px,0.0px)}6.25%{transform:translate(3.3px,0.0px)}9.38%{transform:translate(5.5px,0.0px)}12.50%{transform:translate(8.1px,0.0px)}15.62%{transform:translate(11.0px,0.0px)}18.75%{transform:translate(14.4px,0.0px)}21.88%{transform:translate(18.1px,0.0px)}25.00%{transform:translate(22.2px,0.0px)}28.12%{transform:translate(26.7px,0.0px)}31.25%{transform:translate(31.6px,0.0px)}34.38%{transform:translate(36.9px,0.0px)}37.50%{transform:translate(42.5px,0.0px)}40.62%{transform:translate(48.5px,0.0px)}43.75%{transform:translate(54.9px,0.0px)}46.88%{transform:translate(61.7px,0.0px)}50.00%{transform:translate(68.9px,0.0px)}53.12%{transform:translate(76.4px,0.0px)}56.25%{transform:translate(84.4px,0.0px)}59.38%{transform:translate(92.7px,0.0px)}62.50%{transform:translate(101.4px,0.0px)}65.62%{transform:translate(110.5px,0.0px)}68.75%{transform:translate(119.9px,0.0px)}71.88%{transform:translate(129.8px,0.0px)}75.00%{transform:translate(140.0px,0.0px)}78.12%{transform:translate(140.0px,0.0px)}81.25%{transform:translate(140.0px,0.0px)}84.38%{transform:translate(140.0px,0.0px)}87.50%{transform:translate(140.0px,0.0px)}90.62%{transform:translate(140.0px,0.0px)}93.75%{transform:translate(140.0px,0.0px)}96.88%{transform:translate(140.0px,0.0px)}100.00%{transform:translate(140.0px,0.0px)}}.bp .stn{animation:stn 3.2s linear 0.4s infinite both}@keyframes stn{0.00%{transform:translate(0.0px,0.0px)}3.12%{transform:translate(1.2px,0.1px)}6.25%{transform:translate(2.5px,0.5px)}9.38%{transform:translate(3.8px,1.1px)}12.50%{transform:translate(5.0px,1.9px)}15.62%{transform:translate(6.2px,3.0px)}18.75%{transform:translate(7.5px,4.2px)}21.88%{transform:translate(8.8px,5.8px)}25.00%{transform:translate(10.0px,7.6px)}28.12%{transform:translate(11.2px,9.6px)}31.25%{transform:translate(12.5px,11.8px)}34.38%{transform:translate(13.8px,14.3px)}37.50%{transform:translate(15.0px,17.0px)}40.62%{transform:translate(16.2px,20.0px)}43.75%{transform:translate(17.5px,23.1px)}46.88%{transform:translate(18.8px,26.6px)}50.00%{transform:translate(20.0px,30.2px)}53.12%{transform:translate(21.2px,34.1px)}56.25%{transform:translate(22.5px,38.2px)}59.38%{transform:translate(23.8px,42.6px)}62.50%{transform:translate(25.0px,47.2px)}65.62%{transform:translate(26.2px,52.1px)}68.75%{transform:translate(27.5px,57.1px)}71.88%{transform:translate(28.8px,62.5px)}75.00%{transform:translate(30.0px,68.0px)}78.12%{transform:translate(30.0px,68.0px)}81.25%{transform:translate(30.0px,68.0px)}84.38%{transform:translate(30.0px,68.0px)}87.50%{transform:translate(30.0px,68.0px)}90.62%{transform:translate(30.0px,68.0px)}93.75%{transform:translate(30.0px,68.0px)}96.88%{transform:translate(30.0px,68.0px)}100.00%{transform:translate(30.0px,68.0px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .trn{animation:trn 3.2s linear 0.4s infinite both}@keyframes trn{0.00%{transform:translate(0.0px,0.0px)}3.12%{transform:translate(1.4px,0.0px)}6.25%{transform:translate(3.3px,0.0px)}9.38%{transform:translate(5.5px,0.0px)}12.50%{transform:translate(8.1px,0.0px)}15.62%{transform:translate(11.0px,0.0px)}18.75%{transform:translate(14.4px,0.0px)}21.88%{transform:translate(18.1px,0.0px)}25.00%{transform:translate(22.2px,0.0px)}28.12%{transform:translate(26.7px,0.0px)}31.25%{transform:translate(31.6px,0.0px)}34.38%{transform:translate(36.9px,0.0px)}37.50%{transform:translate(42.5px,0.0px)}40.62%{transform:translate(48.5px,0.0px)}43.75%{transform:translate(54.9px,0.0px)}46.88%{transform:translate(61.7px,0.0px)}50.00%{transform:translate(68.9px,0.0px)}53.12%{transform:translate(76.4px,0.0px)}56.25%{transform:translate(84.4px,0.0px)}59.38%{transform:translate(92.7px,0.0px)}62.50%{transform:translate(101.4px,0.0px)}65.62%{transform:translate(110.5px,0.0px)}68.75%{transform:translate(119.9px,0.0px)}71.88%{transform:translate(129.8px,0.0px)}75.00%{transform:translate(140.0px,0.0px)}78.12%{transform:translate(140.0px,0.0px)}81.25%{transform:translate(140.0px,0.0px)}84.38%{transform:translate(140.0px,0.0px)}87.50%{transform:translate(140.0px,0.0px)}90.62%{transform:translate(140.0px,0.0px)}93.75%{transform:translate(140.0px,0.0px)}96.88%{transform:translate(140.0px,0.0px)}100.00%{transform:translate(140.0px,0.0px)}}.bp .stn{animation:stn 3.2s linear 0.4s infinite both}@keyframes stn{0.00%{transform:translate(0.0px,0.0px)}3.12%{transform:translate(1.2px,0.1px)}6.25%{transform:translate(2.5px,0.5px)}9.38%{transform:translate(3.8px,1.1px)}12.50%{transform:translate(5.0px,1.9px)}15.62%{transform:translate(6.2px,3.0px)}18.75%{transform:translate(7.5px,4.2px)}21.88%{transform:translate(8.8px,5.8px)}25.00%{transform:translate(10.0px,7.6px)}28.12%{transform:translate(11.2px,9.6px)}31.25%{transform:translate(12.5px,11.8px)}34.38%{transform:translate(13.8px,14.3px)}37.50%{transform:translate(15.0px,17.0px)}40.62%{transform:translate(16.2px,20.0px)}43.75%{transform:translate(17.5px,23.1px)}46.88%{transform:translate(18.8px,26.6px)}50.00%{transform:translate(20.0px,30.2px)}53.12%{transform:translate(21.2px,34.1px)}56.25%{transform:translate(22.5px,38.2px)}59.38%{transform:translate(23.8px,42.6px)}62.50%{transform:translate(25.0px,47.2px)}65.62%{transform:translate(26.2px,52.1px)}68.75%{transform:translate(27.5px,57.1px)}71.88%{transform:translate(28.8px,62.5px)}75.00%{transform:translate(30.0px,68.0px)}78.12%{transform:translate(30.0px,68.0px)}81.25%{transform:translate(30.0px,68.0px)}84.38%{transform:translate(30.0px,68.0px)}87.50%{transform:translate(30.0px,68.0px)}90.62%{transform:translate(30.0px,68.0px)}93.75%{transform:translate(30.0px,68.0px)}96.88%{transform:translate(30.0px,68.0px)}100.00%{transform:translate(30.0px,68.0px)}}"
       },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.2: a 0.04 kg bullet at 90 m/s stops in 60 cm of wood. Average resistive force?",
+      "definition": "a = −90²/(2 × 0.6) = −6750 m/s² → F = 0.04 × 6750 = <span style=\"color:#f08c00\">270 N</span> (average; the real force need not be uniform)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.3: y = ut + ½gt². Force on the particle?",
+      "definition": "a = d²y/dt² = g → <span style=\"color:#3b82f6\">F = mg</span>: motion under gravity with y along g",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: is \"ma\" a force acting on the body?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. F is the net force from external agencies; ma is its <span style=\"color:#3b82f6\">effect</span>. Never draw ma on a free-body diagram as an extra force",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: a ball thrown up is momentarily at rest at the top. Is the force on it zero there?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: v = 0 but the force is still <span style=\"color:#3b82f6\">mg</span> and a = g (Points to ponder 2)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-second-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is force always along the velocity?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it can be along, opposite, perpendicular or at any angle to v, but it is always along the <span style=\"color:#3b82f6\">acceleration</span>",
       "tags": [
         "class-11",
         "physics",
@@ -267,7 +433,7 @@
     {
       "noteType": "basic",
       "term": "Define impulse.",
-      "definition": "\\(J = F\\,\\Delta t = \\Delta p\\)<br>Unit: <span style=\"color:#f08c00\">N s</span>",
+      "definition": "Impulse = <span style=\"color:#3b82f6\">force × time</span> = <span style=\"color:#3b82f6\">change in momentum</span>; unit <span style=\"color:#f08c00\">N s = kg m s⁻¹</span>",
       "tags": [
         "class-11",
         "physics",
@@ -278,7 +444,7 @@
     {
       "noteType": "basic",
       "term": "What is an impulsive force?",
-      "definition": "A <span style=\"color:#3b82f6\">large force</span> acting for a <span style=\"color:#3b82f6\">very short time</span> (e.g. bat on ball)",
+      "definition": "A <span style=\"color:#3b82f6\">large force acting for a short time</span> that produces a finite change in momentum (bat on ball, ball on wall). Newtonian mechanics treats it like any other force",
       "tags": [
         "class-11",
         "physics",
@@ -289,7 +455,7 @@
     {
       "noteType": "basic",
       "term": "Why use impulse instead of force for a bat hitting a ball?",
-      "definition": "Force and contact time are hard to measure separately, but <span style=\"color:#3b82f6\">Δp</span> is easy",
+      "definition": "The force and the contact time are hard to measure separately, but their product = Δp is easy to find",
       "tags": [
         "class-11",
         "physics",
@@ -299,31 +465,208 @@
     },
     {
       "noteType": "basic",
-      "term": "A 0.15 kg ball at 12 m/s is hit straight back at the same speed. Impulse?",
-      "definition": "<span style=\"color:#f08c00\">3.6 N s</span>  (0.15 × 12 − (−0.15 × 12))",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.5-impulse"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "A ball of mass m and speed u rebounds from a wall at angle θ to the normal, same speed. Impulse?",
-      "definition": "<span style=\"color:#f08c00\">2mu cos θ</span>, along the <span style=\"color:#3b82f6\">normal</span> to the wall (parallel component unchanged)",
+      "term": "Impulse from a force–time graph?",
+      "definition": "<span style=\"color:#3b82f6\">Area under the F–t graph</span>; the average force × Δt gives the same area",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
         "4.5-impulse"
       ],
+      "definitionImage": "media/drawn_impulse.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.4: a 0.15 kg ball at 12 m/s is hit straight back at the same speed. Impulse?",
+      "definition": "0.15 × 12 − (−0.15 × 12) = <span style=\"color:#f08c00\">3.6 N s</span>, from the batsman towards the bowler",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-impulse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: a ball rebounds from a wall with the same speed. Is the impulse zero because the speed is unchanged?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the <span style=\"color:#3b82f6\">velocity reverses</span>, so Δp = <span style=\"color:#f08c00\">2mu</span> (momentum is a vector)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-impulse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.18: two 0.05 kg billiard balls at 6 m/s collide head-on and rebound with the same speed. Impulse on each?",
+      "definition": "<span style=\"color:#f08c00\">0.6 kg m s⁻¹</span> each, in <span style=\"color:#3b82f6\">opposite directions</span> (0.05 × 12)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-impulse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.20: a batsman deflects a 0.15 kg ball at 54 km/h through 45° without changing its speed. Impulse?",
+      "definition": "2mv cos 22.5° = 2 × 0.15 × 15 × 0.924 ≈ <span style=\"color:#f08c00\">4.2 kg m s⁻¹</span>, along the <span style=\"color:#3b82f6\">bisector</span> of the initial and final directions",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.5-impulse"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Newton’s third law: to every action, there is always {{c1::an equal and opposite reaction}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "The third law in plain words (NCERT)?",
+      "definition": "Forces always occur in <span style=\"color:#3b82f6\">pairs</span>: force on A by B = − force on B by A: \\( \\vec F_{AB} = -\\vec F_{BA} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does action come before reaction?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: they act at the <span style=\"color:#3b82f6\">same instant</span>; there is no cause and effect, and either can be called the action",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can action and reaction never cancel each other?",
+      "definition": "They act on <span style=\"color:#3b82f6\">different bodies</span>. For one body, only one of the pair matters",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When do action–reaction pairs add to zero?",
+      "definition": "When both bodies are inside the system: they are <span style=\"color:#3b82f6\">internal forces</span> and cancel in pairs",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "The Earth pulls a falling stone. Does the stone pull the Earth?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>, with an equal and opposite force; the Earth’s huge mass makes its acceleration negligible",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: a book on a table. Are its weight and the normal force an action–reaction pair?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: both act on the <span style=\"color:#3b82f6\">same body</span> (the book). Weight pairs with the book’s pull on the Earth; the normal force pairs with the book’s push on the table",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.12: before the floor yields, name the two action–reaction pairs for the 2 kg block.",
+      "definition": "(i) Earth pulls the block 20 N down ↔ block pulls the Earth 20 N up. (ii) Block pushes the floor 20 N down ↔ floor pushes the block 20 N up",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ],
+      "definitionImage": "media/fig_4_15_fbd.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.12: a 25 kg cylinder is placed on the 2 kg block and both sink at 0.1 m/s². Force of the block on the floor?",
+      "definition": "270 − R′ = 27 × 0.1 → R′ = <span style=\"color:#f08c00\">267.3 N</span> downward (less than the weight 270 N, since they accelerate)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.23 (a): why can a horse not pull a cart and run in empty space?",
+      "definition": "The horse moves forward only because the <span style=\"color:#3b82f6\">ground pushes it</span> (friction, by the third law). In empty space there is nothing to push against, and internal forces cannot move the horse–cart system",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do we walk?",
+      "definition": "The foot pushes the ground <span style=\"color:#3b82f6\">backward</span>; static friction from the ground pushes us <span style=\"color:#3b82f6\">forward</span> (no friction, no walking)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is it hard to walk on ice or step out of a boat onto a bank?",
+      "definition": "Ice: little <span style=\"color:#3b82f6\">friction</span> to push you. Boat: your push sends the <span style=\"color:#3b82f6\">boat backward</span> (third law), so you move forward less",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.5: identical balls hit a wall at the same speed, (a) along the normal, (b) at 30° to it, and bounce off with the same speed. Direction of the force on the wall?",
+      "definition": "<span style=\"color:#3b82f6\">Normal to the wall</span> in both cases: only pₓ reverses; the parallel component p_y is unchanged",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.6-third-law"
+      ],
       "definitionImage": "media/fig_4_6_billiard.webp"
     },
     {
       "noteType": "basic",
-      "term": "State Newton's third law.",
-      "definition": "To every action there is an <span style=\"color:#3b82f6\">equal and opposite reaction</span>: force on A by B = − force on B by A",
+      "term": "Example 4.5: ratio of impulses on the balls, (a) : (b)?",
+      "definition": "2mu : 2mu cos 30° = 2/√3 ≈ <span style=\"color:#f08c00\">1.2</span>",
       "tags": [
         "class-11",
         "physics",
@@ -332,108 +675,107 @@
       ]
     },
     {
-      "noteType": "basic",
-      "term": "Do action and reaction cancel each other?",
-      "definition": "<span style=\"color:#e5484d\">No</span>. They act on <span style=\"color:#3b82f6\">different bodies</span>",
+      "noteType": "cloze",
+      "text": "Law of conservation of momentum: the total momentum of an {{c1::isolated}} system of interacting particles is {{c2::conserved}}.",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.6-third-law"
+        "4.7-conservation-of-momentum"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Which comes first: action or reaction?",
-      "definition": "<span style=\"color:#e5484d\">Neither</span>. They are simultaneous; either can be called the action",
+      "term": "Conservation of momentum follows from which laws?",
+      "definition": "The <span style=\"color:#3b82f6\">second</span> (F Δt = Δp) and <span style=\"color:#3b82f6\">third</span> (F_AB = −F_BA) laws",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.6-third-law"
+        "4.7-conservation-of-momentum"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Weight of a book and the normal force on it: action–reaction pair?",
-      "definition": "<span style=\"color:#e5484d\">No</span>. Both act on the <span style=\"color:#3b82f6\">same body</span> (the book)",
+      "term": "What is an isolated system?",
+      "definition": "One with <span style=\"color:#3b82f6\">no net external force</span> on it",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.6-third-law"
+        "4.7-conservation-of-momentum"
       ]
     },
     {
       "noteType": "basic",
-      "term": "What is the reaction to the Earth's pull on a book?",
-      "definition": "The book's pull on the <span style=\"color:#3b82f6\">Earth</span> (equal, upward)",
+      "term": "A gun fires a bullet. How are their momenta related?",
+      "definition": "\\( \\vec p_{gun} = -\\vec p_{bullet} \\): total momentum stays <span style=\"color:#f08c00\">zero</span> (the gun recoils)",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.6-third-law"
+        "4.7-conservation-of-momentum"
       ]
     },
     {
       "noteType": "basic",
-      "term": "What do the internal action–reaction forces in a body add up to?",
-      "definition": "<span style=\"color:#f08c00\">Zero</span>",
+      "term": "Exercise 4.19: a 0.020 kg shell leaves a 100 kg gun at 80 m/s. Recoil speed?",
+      "definition": "100 v = 0.02 × 80 → v = <span style=\"color:#f08c00\">0.016 m/s</span> (1.6 cm/s)",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.6-third-law"
+        "4.7-conservation-of-momentum"
       ]
     },
     {
       "noteType": "basic",
-      "term": "State the law of conservation of momentum.",
-      "definition": "Total momentum of an <span style=\"color:#3b82f6\">isolated system</span> (no external force) stays constant",
+      "term": "Exercise 4.17: a nucleus at rest splits into two. Why must the pieces fly apart in opposite directions?",
+      "definition": "Total momentum is <span style=\"color:#f08c00\">zero</span>; two momentum vectors add to zero only if they are <span style=\"color:#3b82f6\">equal and opposite</span>",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.7-momentum-conservation"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Which laws does momentum conservation follow from?",
-      "definition": "The <span style=\"color:#3b82f6\">second</span> and <span style=\"color:#3b82f6\">third</span> laws",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.7-momentum-conservation"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Recoil velocity of a gun (mass M) firing a bullet (mass m, velocity v)?",
-      "definition": "\\(V = -\\dfrac{m v}{M}\\)<br>Opposite to the bullet",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.7-momentum-conservation"
+        "4.7-conservation-of-momentum"
       ]
     },
     {
       "noteType": "basic",
       "term": "Is momentum conserved in an inelastic collision?",
-      "definition": "Yes. Momentum is conserved in <span style=\"color:#3b82f6\">all</span> collisions (kinetic energy only in elastic ones)",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: momentum is conserved in every collision; only <span style=\"color:#e5484d\">kinetic energy</span> is lost in inelastic ones",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.7-momentum-conservation"
+        "4.7-conservation-of-momentum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: why does a rocket accelerate in space with nothing to push against?",
+      "definition": "It pushes exhaust gas <span style=\"color:#3b82f6\">backward</span>; the gas pushes the rocket forward. Thrust = \\( v_{rel}\\,\\dfrac{dm}{dt} \\) (momentum conservation)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.7-conservation-of-momentum"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.9: a 20 000 kg rocket lifts off with a = 5.0 m/s². Initial thrust? (g = 10)",
+      "definition": "F − mg = ma → F = 20 000 × 15 = <span style=\"color:#f08c00\">3.0 × 10⁵ N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.7-conservation-of-momentum"
       ]
     },
     {
       "noteType": "basic",
       "term": "When is a particle in equilibrium?",
-      "definition": "When the <span style=\"color:#3b82f6\">net external force</span> on it is <span style=\"color:#f08c00\">zero</span>",
+      "definition": "When the <span style=\"color:#3b82f6\">net external force</span> on it is zero: it is at rest or in uniform motion",
       "tags": [
         "class-11",
         "physics",
@@ -443,8 +785,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Three concurrent forces keep a particle in equilibrium. Geometric condition?",
-      "definition": "They form a <span style=\"color:#3b82f6\">closed triangle</span> when drawn head to tail",
+      "term": "Condition for equilibrium under three concurrent forces?",
+      "definition": "\\( \\vec F_1 + \\vec F_2 + \\vec F_3 = 0 \\): the resultant of any two is equal and opposite to the third; they form a <span style=\"color:#3b82f6\">closed triangle</span>",
       "tags": [
         "class-11",
         "physics",
@@ -455,8 +797,58 @@
     },
     {
       "noteType": "basic",
-      "term": "A 6 kg mass hangs from a 2 m rope. A 50 N horizontal force pulls the midpoint. Angle of the upper rope with the vertical? (g = 10)",
-      "definition": "\\(\\tan\\theta = \\dfrac{50}{60}\\), so θ ≈ <span style=\"color:#f08c00\">40°</span>",
+      "term": "Equilibrium under n forces, graphically?",
+      "definition": "The forces form a <span style=\"color:#3b82f6\">closed n-sided polygon</span> with arrows in the same sense",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equilibrium in components?",
+      "definition": "\\( \\sum F_x = 0,\\ \\sum F_y = 0,\\ \\sum F_z = 0 \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does zero net force guarantee full equilibrium of an extended body?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it also needs zero net <span style=\"color:#3b82f6\">torque</span> (rotational equilibrium, Chapter 6)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Example 4.6: angle of the rope",
+      "definition": "tan θ = 50/60, θ ≈ 40°; independent of the rope’s length and where the force acts",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.6 · rope pulled sideways</p><h2>Find the missing step.</h2><div class=\"prob\">A 6 kg mass hangs by a rope; a 50 N horizontal force pulls the midpoint P. Angle of the upper rope with the vertical? (g = 10)</div><ol><li>Lower rope: T₂ = mg = 60 N</li><li>At P, vertical: T₁ cos θ = T₂ = 60 N</li><li>At P, horizontal: T₁ sin θ = 50 N</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.6 · rope pulled sideways</p><h2>Find the missing step.</h2><div class=\"prob\">A 6 kg mass hangs by a rope; a 50 N horizontal force pulls the midpoint P. Angle of the upper rope with the vertical? (g = 10)</div><ol><li>Lower rope: T₂ = mg = 60 N</li><li>At P, vertical: T₁ cos θ = T₂ = 60 N</li><li>At P, horizontal: T₁ sin θ = 50 N</li><li class=\"r\">tan θ = 50/60 → <b>θ ≈ 40°</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.8-equilibrium"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.6: does the answer depend on the rope’s length or where the 50 N acts?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: only on the two forces (60 N and 50 N)",
       "tags": [
         "class-11",
         "physics",
@@ -467,8 +859,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Lami's theorem for three forces in equilibrium?",
-      "definition": "\\(\\dfrac{F_1}{\\sin\\alpha} = \\dfrac{F_2}{\\sin\\beta} = \\dfrac{F_3}{\\sin\\gamma}\\)<br><small>each angle is opposite its force</small>",
+      "term": "What is a free-body diagram?",
+      "definition": "A sketch of <span style=\"color:#3b82f6\">one chosen system</span> with all forces <span style=\"color:#3b82f6\">on it</span> from other bodies; forces it exerts on others are left out",
       "tags": [
         "class-11",
         "physics",
@@ -478,29 +870,19 @@
     },
     {
       "noteType": "basic",
-      "term": "Which two kinds of force appear in mechanics problems?",
-      "definition": "<span style=\"color:#3b82f6\">Gravity</span> (non-contact) and <span style=\"color:#3b82f6\">contact forces</span> (normal, friction, tension, spring)",
+      "term": "Lami’s theorem (teacher addition)?",
+      "definition": "For three concurrent forces in equilibrium: \\( \\dfrac{F_1}{\\sin\\alpha} = \\dfrac{F_2}{\\sin\\beta} = \\dfrac{F_3}{\\sin\\gamma} \\), each angle being the one <span style=\"color:#3b82f6\">opposite</span> that force",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-common-forces"
-      ]
-    },
-    {
-      "noteType": "cloze",
-      "text": "The contact force between two surfaces has a component perpendicular to the surface, the {{c1::normal reaction}}, and a component along it, {{c2::friction}}.",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.9-common-forces"
+        "4.8-equilibrium"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Hooke's law for a spring?",
-      "definition": "\\(F = -kx\\)<br>k = spring constant; force opposes the displacement",
+      "term": "Which common force in mechanics is not a contact force?",
+      "definition": "<span style=\"color:#3b82f6\">Gravity</span> (it acts at a distance, with no medium)",
       "tags": [
         "class-11",
         "physics",
@@ -510,8 +892,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Tension in a massless string over a smooth pulley?",
-      "definition": "The <span style=\"color:#3b82f6\">same</span> at every point",
+      "term": "The contact force between two surfaces splits into which two components?",
+      "definition": "Perpendicular to the surfaces: <span style=\"color:#3b82f6\">normal reaction</span>. Parallel to them: <span style=\"color:#3b82f6\">friction</span>",
       "tags": [
         "class-11",
         "physics",
@@ -521,294 +903,370 @@
     },
     {
       "noteType": "basic",
-      "term": "What does friction oppose?",
-      "definition": "<span style=\"color:#3b82f6\">Relative motion</span> (actual or impending) between surfaces, <span style=\"color:#e5484d\">not</span> motion itself",
+      "term": "Give contact forces from fluids.",
+      "definition": "<span style=\"color:#3b82f6\">Buoyant force</span> (weight of fluid displaced), <span style=\"color:#3b82f6\">viscous force</span>, <span style=\"color:#3b82f6\">air resistance</span>",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-friction"
+        "4.9-common-forces"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Why is static friction called self-adjusting?",
-      "definition": "It grows to <span style=\"color:#3b82f6\">match the applied force</span>, up to a maximum",
+      "term": "Spring force?",
+      "definition": "\\( F = -kx \\): proportional to the extension or compression x, opposite to it; k = force constant",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-friction"
+        "4.9-common-forces"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Law of static friction?",
-      "definition": "\\(f_s \\le \\mu_s N\\)<br>Limiting friction: \\(f_{s,\\max} = \\mu_s N\\)",
+      "term": "When is the tension the same all along a string?",
+      "definition": "When the string is <span style=\"color:#3b82f6\">massless</span> (and passes over smooth pulleys only)",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-friction"
+        "4.9-common-forces"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the fundamental origin of all contact forces (friction, normal force, tension)?",
+      "definition": "<span style=\"color:#3b82f6\">Electrical forces</span> between the charged constituents (nuclei and electrons) of the bodies",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9-common-forces"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Of the four fundamental forces, which matter in mechanics?",
+      "definition": "<span style=\"color:#3b82f6\">Gravitational</span> and <span style=\"color:#3b82f6\">electromagnetic</span>; the weak and strong forces act only inside nuclei",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9-common-forces"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is static friction?",
+      "definition": "Friction that opposes <span style=\"color:#3b82f6\">impending</span> relative motion between surfaces at rest relative to each other",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
       ],
       "definitionImage": "media/fig_4_10_friction.webp"
     },
     {
       "noteType": "basic",
-      "term": "Law of kinetic friction?",
-      "definition": "\\(f_k = \\mu_k N\\)",
+      "term": "What is \"impending motion\"?",
+      "definition": "The motion that <span style=\"color:#3b82f6\">would</span> occur under the applied force if friction were absent (but does not actually occur)",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-friction"
+        "4.9.1-friction"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Which is larger: μₛ or μₖ?",
-      "definition": "<span style=\"color:#3b82f6\">μₛ</span>: it is harder to start motion than to keep it going",
+      "term": "Why is static friction called self-adjusting?",
+      "definition": "With no push, fₛ = <span style=\"color:#f08c00\">0</span>. As the push grows, fₛ grows <span style=\"color:#3b82f6\">equal and opposite</span> to it, up to a maximum",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-friction"
+        "4.9.1-friction"
+      ],
+      "definitionImage": "media/drawn_friction_graph.webp"
+    },
+    {
+      "noteType": "cloze",
+      "text": "Law of static friction: {{c1::fₛ ≤ μₛN}}, where the maximum {{c2::(fₛ)ₘₐₓ = μₛN}} is independent of the area of contact.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "cloze",
+      "text": "Kinetic friction: {{c1::fₖ = μₖN}}; it is independent of the area of contact and nearly independent of {{c2::velocity}}.",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Does friction depend on the area of contact?",
-      "definition": "<span style=\"color:#e5484d\">No</span>. It depends on N and the nature of the surfaces",
+      "term": "Which is larger, μₛ or μₖ?",
+      "definition": "<span style=\"color:#3b82f6\">μₛ > μₖ</span>: it is harder to start a body sliding than to keep it sliding",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-friction"
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "On what do μₛ and μₖ depend?",
+      "definition": "Only on the <span style=\"color:#3b82f6\">nature of the two surfaces</span> in contact; <span style=\"color:#e5484d\">not</span> on the area of contact",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Are the laws of friction fundamental laws?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: they are <span style=\"color:#3b82f6\">empirical</span> and only approximately true, but very useful",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A body slides with an applied force F. Acceleration? And after F is removed?",
+      "definition": "\\( a = \\dfrac{F - f_k}{m} \\); after removal a = −fₖ/m and it stops. Constant velocity means F = fₖ",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: when may you put fₛ = μₛN?",
+      "definition": "Only when the body is <span style=\"color:#3b82f6\">just about to slip</span> (limiting friction). Otherwise fₛ is whatever keeps the body at rest (Points to ponder 6)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Friction opposes motion or relative motion?",
+      "definition": "<span style=\"color:#3b82f6\">Relative motion</span>. A box on an accelerating train floor is carried forward <span style=\"color:#3b82f6\">by</span> static friction",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.7: μₛ = 0.15 between a box and a train floor. Maximum acceleration of the train so the box stays put?",
+      "definition": "ma = fₛ ≤ μₛmg → aₘₐₓ = μₛg = <span style=\"color:#f08c00\">1.5 m/s²</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.3(d): a 0.1 kg stone lies at rest on the floor of a train accelerating at 1 m/s². Net force on it?",
+      "definition": "<span style=\"color:#f08c00\">0.1 N</span> horizontal, along the train’s acceleration (supplied by static friction)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.8: a block starts to slide when the plane is tilted to 15°. μₛ?",
+      "definition": "tan θₘₐₓ = μₛ → μₛ = tan 15° = <span style=\"color:#f08c00\">0.27</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ],
+      "definitionImage": "media/fig_4_11_incline.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the angle of repose (θₘₐₓ = tan⁻¹ μₛ) independent of mass?",
+      "definition": "Both mg sin θ (down the slope) and μₛmg cos θ (friction) are proportional to <span style=\"color:#3b82f6\">m</span>, so m cancels",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: acceleration of a block sliding down a rough incline?",
+      "definition": "\\( a = g(\\sin\\theta - \\mu_k\\cos\\theta) \\); on a smooth incline \\( a = g\\sin\\theta \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: a block is pushed up a rough incline. Retardation?",
+      "definition": "\\( a = g(\\sin\\theta + \\mu_k\\cos\\theta) \\): gravity and friction both act down the slope",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
       ]
     },
     {
       "noteType": "advanced-html",
-      "term": "Friction vs applied force graph",
-      "definition": "Static friction rises with F up to μₛN, then drops to kinetic μₖN once sliding starts",
+      "term": "Example 4.9: block and trolley",
+      "definition": "a = 22/23 ≈ 0.96 m/s², T ≈ 27.1 N",
       "advancedHtml": {
-        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Friction · graph</p><h2>How does friction change as the applied force F grows from zero?</h2><svg viewBox=\"0 0 300 205\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"30\" y1=\"180\" x2=\"290\" y2=\"180\" marker-end=\"url(#ah)\"></line><line class=\"ax\" x1=\"30\" y1=\"180\" x2=\"30\" y2=\"15\" marker-end=\"url(#ah)\"></line><text class=\"lbl\" x=\"288\" y=\"198\" text-anchor=\"end\">applied force F</text><text class=\"lbl\" x=\"36\" y=\"22\">friction f</text></svg><p class=\"hint\">Sketch it, then flip.</p></div>",
-        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Friction · graph</p><h2>How does friction change as the applied force F grows from zero?</h2><svg viewBox=\"0 0 300 205\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"30\" y1=\"180\" x2=\"290\" y2=\"180\" marker-end=\"url(#ah)\"></line><line class=\"ax\" x1=\"30\" y1=\"180\" x2=\"30\" y2=\"15\" marker-end=\"url(#ah)\"></line><text class=\"lbl\" x=\"288\" y=\"198\" text-anchor=\"end\">applied force F</text><text class=\"lbl\" x=\"36\" y=\"22\">friction f</text><path class=\"curve draw\" pathLength=\"100\" d=\"M30 180 L150 55 L160 88 L285 88\"></path><line class=\"guide fx d3\" x1=\"150\" y1=\"55\" x2=\"150\" y2=\"180\"></line><text class=\"hi fx d3\" x=\"150\" y=\"46\" text-anchor=\"middle\">limiting fₛ,max = μₛN</text><text class=\"lbl fx d2\" x=\"102\" y=\"128\" text-anchor=\"middle\" transform=\"rotate(-46 102 128)\">static: f = F</text><text class=\"hi fx d4\" x=\"222\" y=\"80\" text-anchor=\"middle\">kinetic fₖ = μₖN</text><text class=\"lbl fx d4\" x=\"104\" y=\"172\" text-anchor=\"middle\">at rest</text><text class=\"lbl fx d5\" x=\"222\" y=\"172\" text-anchor=\"middle\">sliding</text></svg><div class=\"eq fx d5\"><p>Static friction <b>matches F</b> until it reaches μₛN.</p><p>Then the block slides and friction <b>drops</b> to μₖN (μₖ &lt; μₛ).</p></div></div>",
-        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n",
-        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n"
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.9 · block and trolley</p><h2>Find the missing step.</h2><div class=\"prob\">A 3 kg block hangs from a string over a smooth pulley and pulls a 20 kg trolley; μₖ = 0.04 (g = 10). Acceleration and tension?</div><ol><li>Block: 30 − T = 3a</li><li>Trolley: T − fₖ = 20a, with fₖ = μₖN = 0.04 × 200 = 8 N</li><li class=\"h\">?</li><li><b>a = 22/23 ≈ 0.96 m/s²</b>, T = 30 − 3a ≈ 27.1 N</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.9 · block and trolley</p><h2>Find the missing step.</h2><div class=\"prob\">A 3 kg block hangs from a string over a smooth pulley and pulls a 20 kg trolley; μₖ = 0.04 (g = 10). Acceleration and tension?</div><ol><li>Block: 30 − T = 3a</li><li>Trolley: T − fₖ = 20a, with fₖ = μₖN = 0.04 × 200 = 8 N</li><li class=\"r\">Add: 30 − 8 = 23a</li><li><b>a = 22/23 ≈ 0.96 m/s²</b>, T = 30 − 3a ≈ 27.1 N</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
       },
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-friction"
-      ]
-    },
-    {
-      "noteType": "advanced-html",
-      "term": "Static vs kinetic vs rolling friction",
-      "definition": "Largest: Limiting static friction; Middle: Kinetic (sliding) friction; Smallest: Rolling friction (2–3 orders smaller)",
-      "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Friction · order</p><h2>Arrange by size for the same load.</h2><table><tr><td>Largest</td><td class=\"q\">?</td></tr><tr><td>Middle</td><td class=\"q\">?</td></tr><tr><td>Smallest</td><td class=\"q\">?</td></tr></table></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Friction · order</p><h2>Arrange by size for the same load.</h2><table><tr><td>Largest</td><td class=\"a\">Limiting static friction</td></tr><tr><td>Middle</td><td class=\"a\">Kinetic (sliding) friction</td></tr><tr><td>Smallest</td><td class=\"a\">Rolling friction (2–3 orders smaller)</td></tr></table></div>",
-        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
-        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
-      },
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.9-friction"
+        "4.9.1-friction"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Why does rolling friction exist at all?",
-      "definition": "The surfaces <span style=\"color:#3b82f6\">deform</span> slightly, so contact is an area, not a point",
+      "term": "Example 4.9 shortcut: acceleration of a connected system?",
+      "definition": "a = (net driving force) ÷ (<span style=\"color:#3b82f6\">total mass</span>) = (30 − 8)/23; then one body’s own equation gives T",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-friction"
+        "4.9.1-friction"
+      ],
+      "definitionImage": "media/fig_4_12_block_trolley.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.23 (c): why is it easier to pull a lawn mower than to push it?",
+      "definition": "Pulling at an angle <span style=\"color:#3b82f6\">lifts</span> it (N = mg − F sin θ) → less friction. Pushing <span style=\"color:#3b82f6\">presses it down</span> (N = mg + F sin θ) → more friction",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
+      ],
+      "definitionImage": "media/drawn_mower.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: at what angle should you pull a block to need the least force on a rough floor?",
+      "definition": "At \\( \\tan\\phi = \\mu \\) above the horizontal; then \\( F_{min} = \\dfrac{\\mu mg}{\\sqrt{1+\\mu^2}} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-friction"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Three ways to reduce friction?",
-      "definition": "Lubricants, <span style=\"color:#3b82f6\">ball bearings</span>, a cushion of air",
+      "term": "NEET/JEE addition: block A on block B, only B is pulled; μₛ between them. Largest common acceleration?",
+      "definition": "\\( a_{max} = \\mu_s g \\) (the only horizontal force on A is friction from B, at most μₛm_A g)",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-friction"
+        "4.9.1-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why should an ideal ball rolling without slipping feel no friction?",
+      "definition": "The contact point is <span style=\"color:#3b82f6\">momentarily at rest</span> relative to the surface, so there is no relative motion to oppose",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-rolling-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does rolling friction arise in practice?",
+      "definition": "The surfaces <span style=\"color:#3b82f6\">deform</span> slightly, so contact is over a small area, not a point",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-rolling-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does rolling friction compare with sliding friction?",
+      "definition": "Much smaller: by <span style=\"color:#f08c00\">2 to 3 orders of magnitude</span> for the same weight (hence the importance of the wheel)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-rolling-friction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two ways of reducing friction in machines (Fig. 4.13)?",
+      "definition": "<span style=\"color:#3b82f6\">Ball bearings</span> (rolling instead of sliding) and a <span style=\"color:#3b82f6\">cushion of compressed air</span>; also <span style=\"color:#3b82f6\">lubricants</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.9.1-rolling-friction"
       ],
       "definitionImage": "media/fig_4_13_bearings.webp"
     },
     {
       "noteType": "basic",
-      "term": "Three places where friction is needed?",
-      "definition": "Walking, a car accelerating on a road, brakes",
+      "term": "Where is friction essential?",
+      "definition": "<span style=\"color:#3b82f6\">Walking</span>, <span style=\"color:#3b82f6\">brakes</span>, and <span style=\"color:#3b82f6\">tyres</span> accelerating a car (a car cannot move on a very slippery road)",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.9-friction"
+        "4.9.1-rolling-friction"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Max acceleration of a truck so a box on it does not slide (μₛ)?",
-      "definition": "\\(a_{\\max} = \\mu_s g\\)<br>e.g. μₛ = 0.15 → <span style=\"color:#f08c00\">1.5 m s⁻²</span>",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.9-friction"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "A block just starts to slide when the incline reaches angle θ. Relation with μₛ?",
-      "definition": "\\(\\tan\\theta = \\mu_s\\) (angle of repose). Independent of mass",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.9-friction"
-      ]
-    },
-    {
-      "noteType": "image-occlusion",
-      "term": "Fig. 4.11 · Forces on a block resting on an incline",
-      "definition": "",
-      "image": "media/fig_4_11_incline.webp",
-      "occlusion": {
-        "mode": "hide-all",
-        "guessMode": "hide-all",
-        "units": "px",
-        "imageWidth": 1001,
-        "imageHeight": 477,
-        "masks": [
-          {
-            "shape": "rect",
-            "bboxPx": [
-              528,
-              20,
-              50,
-              48
-            ],
-            "answer": "N (normal reaction)",
-            "labelInImage": true
-          },
-          {
-            "shape": "rect",
-            "bboxPx": [
-              662,
-              90,
-              55,
-              45
-            ],
-            "answer": "f<sub>s</sub> (static friction, up the slope)",
-            "labelInImage": true
-          },
-          {
-            "shape": "rect",
-            "bboxPx": [
-              291,
-              222,
-              168,
-              44
-            ],
-            "rotate": -24,
-            "answer": "mg sin θ",
-            "labelInImage": true
-          },
-          {
-            "shape": "rect",
-            "bboxPx": [
-              648,
-              312,
-              172,
-              46
-            ],
-            "rotate": -24,
-            "answer": "mg cos θ",
-            "labelInImage": true
-          },
-          {
-            "shape": "rect",
-            "bboxPx": [
-              538,
-              370,
-              85,
-              45
-            ],
-            "answer": "mg (weight)",
-            "labelInImage": true
-          }
-        ]
-      },
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.9-friction"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Acceleration down a rough incline (angle θ, μₖ)?",
-      "definition": "\\(a = g(\\sin\\theta - \\mu_k\\cos\\theta)\\)",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.9-friction"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Why is it easier to pull a roller than to push it (force at an angle)?",
-      "definition": "Pulling <span style=\"color:#3b82f6\">reduces N</span> (mg − F sin θ), so friction is less; pushing increases N",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.9-friction"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Example 4.9: which horizontal forces act on the 20 kg trolley?",
-      "definition": "Tension <span style=\"color:#3b82f6\">T</span> forward and kinetic friction <span style=\"color:#3b82f6\">fₖ</span> backward",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.9-friction"
-      ],
-      "definitionImage": "media/fig_4_12_block_trolley.webp"
-    },
-    {
-      "noteType": "advanced-html",
-      "term": "Block and trolley: acceleration",
-      "definition": "a = 22/23 = 0.96 m s⁻², T = 27.1 N",
-      "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.9</p><h2>Find the missing step.</h2><div class=\"prob\">3 kg block hangs from a string over a smooth pulley, pulling a 20 kg trolley (μₖ = 0.04). g = 10 m/s².</div><ol><li>Block: 30 − T = 3a</li><li>Trolley: T − f<sub>k</sub> = 20a</li><li>f<sub>k</sub> = μ<sub>k</sub>N = 0.04 × 200 = 8 N</li><li class=\"h\">?</li><li>T = 30 − 3a = 27.1 N</li></ol></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.9</p><h2>Find the missing step.</h2><div class=\"prob\">3 kg block hangs from a string over a smooth pulley, pulling a 20 kg trolley (μₖ = 0.04). g = 10 m/s².</div><ol><li>Block: 30 − T = 3a</li><li>Trolley: T − f<sub>k</sub> = 20a</li><li>f<sub>k</sub> = μ<sub>k</sub>N = 0.04 × 200 = 8 N</li><li class=\"r\">Add: 30 − 8 = 23a → <b>a = 0.96 m s⁻²</b></li><li>T = 30 − 3a = 27.1 N</li></ol></div>",
-        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
-        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
-      },
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.9-friction"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Centripetal force for a body moving in a circle?",
-      "definition": "\\(F = \\dfrac{mv^2}{R}\\), towards the centre",
+      "term": "Centripetal force?",
+      "definition": "\\( f_c = \\dfrac{mv^2}{R} \\), directed <span style=\"color:#3b82f6\">towards the centre</span>",
       "tags": [
         "class-11",
         "physics",
@@ -818,8 +1276,8 @@
     },
     {
       "noteType": "basic",
-      "term": "What provides the centripetal force for a stone on a string, a planet, and a car on a level road?",
-      "definition": "Tension; gravity of the Sun; <span style=\"color:#3b82f6\">static friction</span>",
+      "term": "Correction: NCERT 4.10 says the centripetal acceleration v²/R was seen \"in Chapter 4\". Where was it?",
+      "definition": "In <span style=\"color:#3b82f6\">Chapter 3</span> (Motion in a Plane); the reference is left over from the old chapter numbering",
       "tags": [
         "class-11",
         "physics",
@@ -829,30 +1287,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Max safe speed on a level curve?",
-      "definition": "\\(v_{\\max} = \\sqrt{\\mu_s R g}\\)<br>Independent of the mass of the car",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.10-circular-motion"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Optimum speed on a banked road (no friction needed)?",
-      "definition": "\\(v_0 = \\sqrt{R g \\tan\\theta}\\)",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.10-circular-motion"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Max safe speed on a banked road?",
-      "definition": "\\(v_{\\max} = \\sqrt{Rg\\,\\dfrac{\\mu_s + \\tan\\theta}{1 - \\mu_s\\tan\\theta}}\\)",
+      "term": "Trap: is centripetal force a new kind of force?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is a name for whatever real force points to the centre: <span style=\"color:#3b82f6\">tension, gravity, friction, normal force</span> (Points to ponder 5)",
       "tags": [
         "class-11",
         "physics",
@@ -862,159 +1298,11 @@
     },
     {
       "noteType": "advanced-html",
-      "term": "Banked road: forces and equations",
-      "definition": "mg, N and friction (down the slope); N sin θ + f cos θ = mv²/R, N cos θ = mg + f sin θ",
+      "term": "Sources of centripetal force",
+      "definition": "Stone whirled on a string: tension; Planet round the Sun: gravity; Car turning on a level road: static friction; Car on a smooth banked road: horizontal component of N; Electron round a nucleus (Bohr): electrostatic attraction",
       "advancedHtml": {
-        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Circular motion · banked road</p><h2>Car on a banked curve, faster than v₀. Which forces act, and what gives the centripetal force?</h2><svg viewBox=\"0 0 300 215\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"15\" y1=\"205\" x2=\"290\" y2=\"92\"></line><line class=\"road\" x1=\"15\" y1=\"205\" x2=\"290\" y2=\"205\"></line><path class=\"ax\" d=\"M65 205 A50 50 0 0 0 61.3 186\"></path><text class=\"lbl\" x=\"72\" y=\"198\">θ</text><g transform=\"rotate(-22.3 150 150)\"><rect class=\"car\" x=\"126\" y=\"128\" width=\"48\" height=\"21\" rx=\"6\"></rect><rect class=\"car\" x=\"136\" y=\"120\" width=\"26\" height=\"11\" rx=\"4\"></rect></g></svg><p class=\"hint\">Draw the forces, then write the horizontal and vertical equations.</p></div>",
-        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Circular motion · banked road</p><h2>Car on a banked curve, faster than v₀. Which forces act, and what gives the centripetal force?</h2><svg viewBox=\"0 0 300 215\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"road\" x1=\"15\" y1=\"205\" x2=\"290\" y2=\"92\"></line><line class=\"road\" x1=\"15\" y1=\"205\" x2=\"290\" y2=\"205\"></line><path class=\"ax\" d=\"M65 205 A50 50 0 0 0 61.3 186\"></path><text class=\"lbl\" x=\"72\" y=\"198\">θ</text><g transform=\"rotate(-22.3 150 150)\"><rect class=\"car\" x=\"126\" y=\"128\" width=\"48\" height=\"21\" rx=\"6\"></rect><rect class=\"car\" x=\"136\" y=\"120\" width=\"26\" height=\"11\" rx=\"4\"></rect></g><line class=\"f-mg fx d1\" x1=\"150\" y1=\"140\" x2=\"150\" y2=\"200\" marker-end=\"url(#am)\"></line><text class=\"t-mg fx d1\" x=\"157\" y=\"198\">mg</text><line class=\"f-n fx d2\" x1=\"150\" y1=\"140\" x2=\"116\" y2=\"57\" marker-end=\"url(#an)\"></line><text class=\"t-n fx d2\" x=\"100\" y=\"55\">N</text><line class=\"f-f fx d3\" x1=\"150\" y1=\"140\" x2=\"100\" y2=\"160\" marker-end=\"url(#af)\"></line><text class=\"t-f fx d3\" x=\"84\" y=\"172\">f</text><line class=\"f-a fx d4\" x1=\"232\" y1=\"40\" x2=\"176\" y2=\"40\" marker-end=\"url(#aa)\"></line><text class=\"t-a fx d4\" x=\"236\" y=\"44\">to centre</text></svg><div class=\"eq fx d5\"><p>Horizontal: <b>N sin θ + f cos θ = mv²/R</b></p><p>Vertical: <b>N cos θ = mg + f sin θ</b></p><p>No friction needed at v₀ = √(Rg tan θ)</p></div></div>",
-        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n",
-        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n"
-      },
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.10-circular-motion"
-      ]
-    },
-    {
-      "noteType": "image-occlusion",
-      "term": "Fig. 4.14 · Resolve the forces on a car on a banked road",
-      "definition": "",
-      "image": "media/fig_4_14b_banked_components.webp",
-      "occlusion": {
-        "mode": "hide-all",
-        "guessMode": "hide-all",
-        "units": "px",
-        "imageWidth": 1001,
-        "imageHeight": 721,
-        "masks": [
-          {
-            "shape": "rect",
-            "bboxPx": [
-              690,
-              36,
-              235,
-              80
-            ],
-            "answer": "N cos θ",
-            "labelInImage": true
-          },
-          {
-            "shape": "rect",
-            "bboxPx": [
-              405,
-              252,
-              215,
-              80
-            ],
-            "answer": "N sin θ",
-            "labelInImage": true
-          },
-          {
-            "shape": "rect",
-            "bboxPx": [
-              28,
-              300,
-              200,
-              80
-            ],
-            "answer": "f cos θ",
-            "labelInImage": true
-          },
-          {
-            "shape": "rect",
-            "bboxPx": [
-              696,
-              460,
-              205,
-              80
-            ],
-            "answer": "f sin θ",
-            "labelInImage": true
-          },
-          {
-            "shape": "rect",
-            "bboxPx": [
-              700,
-              606,
-              130,
-              85
-            ],
-            "answer": "mg",
-            "labelInImage": true
-          }
-        ]
-      },
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.10-circular-motion"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Why is driving at the optimum speed on a banked road good for tyres?",
-      "definition": "Friction is not needed, so there is <span style=\"color:#3b82f6\">little wear and tear</span>",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.10-circular-motion"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Car on a banked road at v < v₀: which way does friction act?",
-      "definition": "<span style=\"color:#3b82f6\">Up the slope</span>",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.10-circular-motion"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "When can a car stay parked on a banked road?",
-      "definition": "\\(\\tan\\theta \\le \\mu_s\\)",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.10-circular-motion"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Cyclist: 5 m/s on a 3 m turn, μₛ = 0.1, g = 9.8. Slips?",
-      "definition": "<span style=\"color:#e5484d\">Yes</span>: v² = <span style=\"color:#f08c00\">25</span> > μₛRg = <span style=\"color:#f08c00\">2.94</span>",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.10-circular-motion"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Racetrack R = 300 m, banked 15°. Optimum speed?",
-      "definition": "<span style=\"color:#f08c00\">28.1 m s⁻¹</span>  (√(Rg tan θ))",
-      "tags": [
-        "class-11",
-        "physics",
-        "ch-4",
-        "4.10-circular-motion"
-      ]
-    },
-    {
-      "noteType": "advanced-html",
-      "term": "Apparent weight in a lift",
-      "definition": "At rest / uniform velocity: mg; Accelerating up at a: m(g + a); Accelerating down at a: m(g − a); Free fall (a = g): Zero (weightless)",
-      "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Apparent weight in a lift</p><h2>Reading of the weighing scale?</h2><table><tr><td>At rest / uniform velocity</td><td class=\"q\">?</td></tr><tr><td>Accelerating up at a</td><td class=\"q\">?</td></tr><tr><td>Accelerating down at a</td><td class=\"q\">?</td></tr><tr><td>Free fall (a = g)</td><td class=\"q\">?</td></tr></table></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Apparent weight in a lift</p><h2>Reading of the weighing scale?</h2><table><tr><td>At rest / uniform velocity</td><td class=\"a\">mg</td></tr><tr><td>Accelerating up at a</td><td class=\"a\">m(g + a)</td></tr><tr><td>Accelerating down at a</td><td class=\"a\">m(g − a)</td></tr><tr><td>Free fall (a = g)</td><td class=\"a no\">Zero (weightless)</td></tr></table></div>",
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.10 · who supplies mv²/R?</p><h2>Which real force is the centripetal force?</h2><table><tr><td>Stone whirled on a string</td><td class=\"q\">?</td></tr><tr><td>Planet round the Sun</td><td class=\"q\">?</td></tr><tr><td>Car turning on a level road</td><td class=\"q\">?</td></tr><tr><td>Car on a smooth banked road</td><td class=\"q\">?</td></tr><tr><td>Electron round a nucleus (Bohr)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.10 · who supplies mv²/R?</p><h2>Which real force is the centripetal force?</h2><table><tr><td>Stone whirled on a string</td><td class=\"a\">tension</td></tr><tr><td>Planet round the Sun</td><td class=\"a\">gravity</td></tr><tr><td>Car turning on a level road</td><td class=\"a\">static friction</td></tr><tr><td>Car on a smooth banked road</td><td class=\"a\">horizontal component of N</td></tr><tr><td>Electron round a nucleus (Bohr)</td><td class=\"a\">electrostatic attraction</td></tr></table></div>",
         "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
         "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
       },
@@ -1022,80 +1310,514 @@
         "class-11",
         "physics",
         "ch-4",
-        "applications"
+        "4.10-circular-motion"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Atwood machine (m₁ > m₂): acceleration?",
-      "definition": "\\(a = \\dfrac{(m_1 - m_2)\\,g}{m_1 + m_2}\\)",
+      "term": "Car on a level curve: maximum safe speed?",
+      "definition": "\\( v_{max} = \\sqrt{\\mu_s R g} \\), independent of the car’s <span style=\"color:#3b82f6\">mass</span>",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "applications"
+        "4.10-circular-motion"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Atwood machine: tension in the string?",
-      "definition": "\\(T = \\dfrac{2 m_1 m_2\\,g}{m_1 + m_2}\\)",
+      "term": "Why is it static (not kinetic) friction that turns a car on a level road?",
+      "definition": "The tyres do not slide sideways; static friction opposes the <span style=\"color:#3b82f6\">impending</span> motion of the car out of the circle",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "applications"
+        "4.10-circular-motion"
       ]
     },
     {
       "noteType": "basic",
-      "term": "What is a free-body diagram?",
-      "definition": "A diagram of the chosen system showing <span style=\"color:#3b82f6\">all forces on it</span> from everything else",
+      "term": "Example 4.10: a cyclist at 18 km/h turns on a level road with R = 3 m, μₛ = 0.1. Will he slip?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: v² = 25 but μₛRg = 2.94 m²/s², so v² > μₛRg",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.11-solving-problems"
+        "4.10-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Car on a banked road: equations (friction down the slope, at v_max)?",
+      "definition": "\\( N\\cos\\theta = mg + f\\sin\\theta,\\quad N\\sin\\theta + f\\cos\\theta = \\dfrac{mv^2}{R} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.10-circular-motion"
       ],
-      "definitionImage": "media/fig_4_15_fbd.webp"
+      "definitionImage": "media/drawn_banked_road.webp"
     },
     {
       "noteType": "basic",
-      "term": "Should a free-body diagram show forces the system exerts on its surroundings?",
-      "definition": "<span style=\"color:#e5484d\">No</span>",
+      "term": "Maximum speed on a banked road?",
+      "definition": "\\( v_{max} = \\sqrt{Rg\\,\\dfrac{\\mu_s + \\tan\\theta}{1 - \\mu_s\\tan\\theta}} \\): greater than on a level road",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.11-solving-problems"
+        "4.10-circular-motion"
       ]
     },
     {
       "noteType": "basic",
-      "term": "If the force on A by B is F in A's free-body diagram, what goes in B's?",
-      "definition": "\\(-\\vec F\\) (third law)",
+      "term": "Optimum speed on a banked road, and its meaning?",
+      "definition": "\\( v_0 = \\sqrt{Rg\\tan\\theta} \\): the <span style=\"color:#3b82f6\">horizontal component of N alone</span> supplies mv²/R; no friction needed, least tyre wear",
       "tags": [
         "class-11",
         "physics",
         "ch-4",
-        "4.11-solving-problems"
+        "4.10-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Banked road: which way does friction act if v < v₀?",
+      "definition": "<span style=\"color:#3b82f6\">Up the slope</span> (the car tends to slide down and in)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.10-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When can a car be parked on a banked road without sliding?",
+      "definition": "If \\( \\tan\\theta \\le \\mu_s \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.10-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4.11: track R = 300 m, banked at 15°, μₛ = 0.2. Optimum and maximum speeds?",
+      "definition": "v₀ = √(300 × 9.8 × tan 15°) = <span style=\"color:#f08c00\">28.1 m/s</span>; vₘₐₓ = √(2940 × 0.468/0.946) ≈ <span style=\"color:#f08c00\">38.1 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.10-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: why are railway tracks banked (outer rail raised)?",
+      "definition": "So the <span style=\"color:#3b82f6\">normal force</span> supplies the centripetal force, saving the rails and flanges from wear; tan θ = v²/(Rg)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.10-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: maximum speed over a convex bridge (hump) of radius R without losing contact?",
+      "definition": "\\( v = \\sqrt{gR} \\): at that speed N = 0 at the top",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.10-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.4: a particle on a smooth table circles a peg on a string of tension T. Net force towards the centre?",
+      "definition": "<span style=\"color:#3b82f6\">T</span> (option i). Gravity and the normal force cancel vertically",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.10-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.21: a 0.25 kg stone on a 1.5 m string makes 40 rev/min. Tension? Max speed if the string can take 200 N?",
+      "definition": "v = 2π × 1.5 × 40/60 = 6.28 m/s → T = mv²/r ≈ <span style=\"color:#f08c00\">6.6 N</span>. 200 = 0.25v²/1.5 → vₘₐₓ ≈ <span style=\"color:#f08c00\">35 m/s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.10-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.22: the string breaks while a stone is whirled. Its path?",
+      "definition": "<span style=\"color:#3b82f6\">Tangential</span> from the instant the string breaks (option b): no force → straight line along the velocity it had",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.10-circular-motion"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: on a merry-go-round you feel pushed outward. Is there an outward force?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: every part of you gets an <span style=\"color:#3b82f6\">inward</span> force; the \"outward push\" is the feeling of the impending motion (Points to ponder 11)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.10-circular-motion"
       ]
     },
     {
       "noteType": "advanced-html",
-      "term": "Block and cylinder sinking: normal force",
-      "definition": "R' = 270 − 2.7 = 267.3 N",
+      "term": "Steps for solving mechanics problems",
+      "definition": "1: Sketch the assembly of bodies, links and supports; 2: Choose one part as the system; 3: Free-body diagram: all forces ON the system (not by it); 4: Mark known forces; treat the rest as unknowns; 5: Repeat for another part, using −F by the third law",
       "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.12</p><h2>Find the missing step.</h2><div class=\"prob\">A 2 kg block and a 25 kg cylinder on it sink together at 0.1 m/s² into a soft floor. g = 10 m/s². Force of the floor?</div><ol><li>Weight of system = 27 × 10 = 270 N</li><li>270 − R′ = 27 × 0.1</li><li class=\"h\">?</li></ol></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 4.12</p><h2>Find the missing step.</h2><div class=\"prob\">A 2 kg block and a 25 kg cylinder on it sink together at 0.1 m/s² into a soft floor. g = 10 m/s². Force of the floor?</div><ol><li>Weight of system = 27 × 10 = 270 N</li><li>270 − R′ = 27 × 0.1</li><li class=\"r\"><b>R′ = 267.3 N</b></li></ol></div>",
-        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
-        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.11 · method</p><h2>Step?</h2><table><tr><td>1</td><td class=\"q\">?</td></tr><tr><td>2</td><td class=\"q\">?</td></tr><tr><td>3</td><td class=\"q\">?</td></tr><tr><td>4</td><td class=\"q\">?</td></tr><tr><td>5</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.11 · method</p><h2>Step?</h2><table><tr><td>1</td><td class=\"a\">Sketch the assembly of bodies, links and supports</td></tr><tr><td>2</td><td class=\"a\">Choose one part as the system</td></tr><tr><td>3</td><td class=\"a\">Free-body diagram: all forces ON the system (not by it)</td></tr><tr><td>4</td><td class=\"a\">Mark known forces; treat the rest as unknowns</td></tr><tr><td>5</td><td class=\"a\">Repeat for another part, using −F by the third law</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
       },
       "tags": [
         "class-11",
         "physics",
         "ch-4",
         "4.11-solving-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In a free-body diagram of a system of two blocks, do you draw the forces between them?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: they are <span style=\"color:#3b82f6\">internal</span> and cancel. Draw them only when each block is taken separately",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.11-solving-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Every force should be read as…?",
+      "definition": "\"Force <span style=\"color:#3b82f6\">on A by B</span>\": friction, normal reaction, tension, thrust, buoyancy, weight are all just forces (Points to ponder 9)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.11-solving-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: is mg = N for a body on a floor a consequence of the third law?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it holds only if the body is in <span style=\"color:#3b82f6\">equilibrium</span> (e.g. not in an accelerating lift). mg and N act on the same body (Points to ponder 7)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "4.11-solving-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does a weighing scale in a lift actually read?",
+      "definition": "The <span style=\"color:#3b82f6\">normal force</span> N between you and the scale (divided by g), not your true weight",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ],
+      "definitionImage": "media/drawn_lift.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Apparent weight in a lift accelerating up, down, and in free fall?",
+      "definition": "Up: \\( m(g+a) \\); down: \\( m(g-a) \\); free fall: <span style=\"color:#f08c00\">0</span> (weightlessness)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Apparent weight in a lift (Exercise 4.13)",
+      "definition": "Lift going up at a uniform 10 m/s: 70 kg (a = 0); Accelerating down at 5 m/s²: 35 kg; Accelerating up at 5 m/s²: 105 kg; Cable snaps: free fall: 0",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 4.13</p><h2>Scale reading for a 70 kg man (g = 10)?</h2><table><tr><td>Lift going up at a uniform 10 m/s</td><td class=\"q\">?</td></tr><tr><td>Accelerating down at 5 m/s²</td><td class=\"q\">?</td></tr><tr><td>Accelerating up at 5 m/s²</td><td class=\"q\">?</td></tr><tr><td>Cable snaps: free fall</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 4.13</p><h2>Scale reading for a 70 kg man (g = 10)?</h2><table><tr><td>Lift going up at a uniform 10 m/s</td><td class=\"a\">70 kg (a = 0)</td></tr><tr><td>Accelerating down at 5 m/s²</td><td class=\"a\">35 kg</td></tr><tr><td>Accelerating up at 5 m/s²</td><td class=\"a\">105 kg</td></tr><tr><td>Cable snaps: free fall</td><td class=\"a no\">0</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: a lift moves up at constant speed. Does the scale read more?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: uniform velocity means a = 0, so N = mg; only <span style=\"color:#3b82f6\">acceleration</span> changes the reading",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Atwood machine (m₂ > m₁, light string, smooth pulley): acceleration and tension?",
+      "definition": "\\( a = \\dfrac{(m_2 - m_1)g}{m_1 + m_2},\\quad T = \\dfrac{2m_1m_2\\,g}{m_1 + m_2} \\)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ],
+      "definitionImage": "media/drawn_atwood.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.16: 8 kg and 12 kg hang over a frictionless pulley. a and T? (g = 10)",
+      "definition": "a = 4 × 10/20 = <span style=\"color:#f08c00\">2 m/s²</span>; T = 8(10 + 2) = <span style=\"color:#f08c00\">96 N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.15: 10 kg and 20 kg on a smooth floor, joined by a string; 600 N pulls one of them. Tension if the 20 kg is pulled? If the 10 kg is pulled?",
+      "definition": "a = 600/30 = 20 m/s² either way. Pull 20 kg: T = 10 × 20 = <span style=\"color:#f08c00\">200 N</span>. Pull 10 kg: T = 20 × 20 = <span style=\"color:#f08c00\">400 N</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ],
+      "definitionImage": "media/drawn_connected_blocks.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Shortcut for the tension in a string joining bodies pulled by F on a smooth floor?",
+      "definition": "T = F × (mass <span style=\"color:#3b82f6\">behind</span> the string) / (total mass): the string only has to accelerate what trails it",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: a uniform rope of mass M is pulled by F on a smooth floor. Tension at a distance x from the free end (length L)?",
+      "definition": "\\( T = F\\,\\dfrac{x}{L} \\): a heavy rope’s tension <span style=\"color:#e5484d\">varies</span> along its length",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: what is a pseudo force?",
+      "definition": "In a frame accelerating with a, add a fictitious force \\( -m\\vec a \\) on every body so Newton’s laws can be used there. It has <span style=\"color:#e5484d\">no reaction</span> partner",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "NEET/JEE addition: a pendulum hangs in a car accelerating at a. Angle of the string with the vertical?",
+      "definition": "\\( \\tan\\theta = \\dfrac{a}{g} \\), bob tilting <span style=\"color:#3b82f6\">backward</span> (opposite to a)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "lifts-and-pulleys"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Net force in uniform motion or rest (Exercise 4.1)",
+      "definition": "Raindrop falling at constant speed: zero; 10 g cork floating on water: zero; Kite held stationary: zero; Car at a constant 30 km/h on a rough road: zero; Fast electron far from all matter and fields: zero",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 4.1</p><h2>Net force?</h2><table><tr><td>Raindrop falling at constant speed</td><td class=\"q\">?</td></tr><tr><td>10 g cork floating on water</td><td class=\"q\">?</td></tr><tr><td>Kite held stationary</td><td class=\"q\">?</td></tr><tr><td>Car at a constant 30 km/h on a rough road</td><td class=\"q\">?</td></tr><tr><td>Fast electron far from all matter and fields</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 4.1</p><h2>Net force?</h2><table><tr><td>Raindrop falling at constant speed</td><td class=\"a\">zero</td></tr><tr><td>10 g cork floating on water</td><td class=\"a\">zero</td></tr><tr><td>Kite held stationary</td><td class=\"a\">zero</td></tr><tr><td>Car at a constant 30 km/h on a rough road</td><td class=\"a\">zero</td></tr><tr><td>Fast electron far from all matter and fields</td><td class=\"a\">zero</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.2: a 0.05 kg pebble is thrown up. Net force going up, coming down, and at the top? (g = 10)",
+      "definition": "<span style=\"color:#f08c00\">0.5 N vertically down</span> in all three; the same if thrown at 45° (air resistance ignored)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.3: a 0.1 kg stone is dropped from the window of a train that is (a) stationary, (b) moving at a constant 36 km/h, (c) accelerating at 1 m/s². Net force just after release?",
+      "definition": "<span style=\"color:#f08c00\">1 N vertically down</span> in all three: once released, only gravity acts",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.5: a 50 N retarding force acts on a 20 kg body at 15 m/s. Time to stop?",
+      "definition": "a = −2.5 m/s² → t = 15/2.5 = <span style=\"color:#f08c00\">6.0 s</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.6: a constant force takes a 3.0 kg body from 2.0 to 3.5 m/s in 25 s, same direction. Force?",
+      "definition": "a = 1.5/25 = 0.06 m/s² → F = <span style=\"color:#f08c00\">0.18 N</span> along the motion",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.7: perpendicular forces 8 N and 6 N act on 5 kg. Acceleration?",
+      "definition": "Resultant <span style=\"color:#f08c00\">10 N</span> → a = <span style=\"color:#f08c00\">2 m/s²</span> at tan⁻¹(3/4) = 37° to the 8 N force",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.8: a 400 kg three-wheeler with a 65 kg driver stops from 36 km/h in 4.0 s. Average retarding force?",
+      "definition": "a = 10/4 = 2.5 m/s²; F = 465 × 2.5 ≈ <span style=\"color:#f08c00\">1.2 × 10³ N</span> (use the total mass)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.10: a 0.40 kg body moves north at 10 m/s; 8.0 N acts south for 30 s from t = 0 at x = 0. Position at t = −5 s, 25 s, 100 s?",
+      "definition": "a = −20 m/s². <span style=\"color:#f08c00\">−50 m</span>, <span style=\"color:#f08c00\">−6 km</span>, <span style=\"color:#f08c00\">−50 km</span> (after 30 s it coasts at −590 m/s)",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.11: a truck accelerates from rest at 2 m/s²; at t = 10 s a stone is dropped from its top (6 m). Velocity and acceleration of the stone at t = 11 s?",
+      "definition": "vₓ = 20 m/s (kept), v_y = 10 m/s → <span style=\"color:#f08c00\">22.4 m/s</span> at tan⁻¹(½) below the horizontal; a = <span style=\"color:#f08c00\">10 m/s² down</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.12: a pendulum’s string is cut (a) at an extreme position, (b) at the mean position. Path?",
+      "definition": "(a) v = 0 → falls <span style=\"color:#3b82f6\">vertically</span>. (b) horizontal velocity → <span style=\"color:#3b82f6\">parabola</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.14: a 4 kg particle is at rest at x = 0 until t = 0, moves uniformly to x = 3 m at t = 4 s, then stays at rest. Force in each interval? Impulses?",
+      "definition": "Force <span style=\"color:#f08c00\">zero</span> in all three intervals (uniform motion). Impulse at t = 0: <span style=\"color:#f08c00\">+3 kg m s⁻¹</span>; at t = 4 s: <span style=\"color:#f08c00\">−3 kg m s⁻¹</span>",
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 4 formula sheet",
+      "definition": "Second law: F = dp/dt = ma; Impulse: F Δt = Δp; Static friction: fₛ ≤ μₛN; Angle of repose: tan θ = μₛ; Level curve: vₘₐₓ = √(μₛRg); Banked, no friction: v₀ = √(Rg tan θ); Lift, a up / down: N = m(g ± a)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Second law</td><td class=\"q\">?</td></tr><tr><td>Impulse</td><td class=\"q\">?</td></tr><tr><td>Static friction</td><td class=\"q\">?</td></tr><tr><td>Angle of repose</td><td class=\"q\">?</td></tr><tr><td>Level curve</td><td class=\"q\">?</td></tr><tr><td>Banked, no friction</td><td class=\"q\">?</td></tr><tr><td>Lift, a up / down</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Second law</td><td class=\"a\">F = dp/dt = ma</td></tr><tr><td>Impulse</td><td class=\"a\">F Δt = Δp</td></tr><tr><td>Static friction</td><td class=\"a\">fₛ ≤ μₛN</td></tr><tr><td>Angle of repose</td><td class=\"a\">tan θ = μₛ</td></tr><tr><td>Level curve</td><td class=\"a\">vₘₐₓ = √(μₛRg)</td></tr><tr><td>Banked, no friction</td><td class=\"a\">v₀ = √(Rg tan θ)</td></tr><tr><td>Lift, a up / down</td><td class=\"a\">N = m(g ± a)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Third law concept check",
+      "definition": "Action and reaction act on the same body: false: different bodies; Action comes before reaction: false: simultaneous; They are equal and opposite: true; Weight and normal force form a pair: false: both on one body",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary · third law</p><h2>True or false?</h2><table><tr><td>Action and reaction act on the same body</td><td class=\"q\">?</td></tr><tr><td>Action comes before reaction</td><td class=\"q\">?</td></tr><tr><td>They are equal and opposite</td><td class=\"q\">?</td></tr><tr><td>Weight and normal force form a pair</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary · third law</p><h2>True or false?</h2><table><tr><td>Action and reaction act on the same body</td><td class=\"a no\">false: different bodies</td></tr><tr><td>Action comes before reaction</td><td class=\"a no\">false: simultaneous</td></tr><tr><td>They are equal and opposite</td><td class=\"a\">true</td></tr><tr><td>Weight and normal force form a pair</td><td class=\"a no\">false: both on one body</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "physics",
+        "ch-4",
+        "summary"
       ]
     }
   ]
