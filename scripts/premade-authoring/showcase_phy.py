@@ -660,3 +660,100 @@ def em_wave_travelling(deck):
          'Plane EM wave: E, B and propagation',
          'E and B are perpendicular to each other and to the direction of propagation, in phase, with E0/B0 = c; E × B gives the direction of travel',
          css, hint='Watch the crests move along z.', vb='0 0 300 190')
+
+
+# ---------------------------------------------------------------- Physics 12 Ch 9 Ray optics
+def _stage_css(prefix, n, dur):
+    """CSS so element `.{prefix}{k}` is visible only during stage k of n (looping with total time dur)."""
+    css = ''
+    for k in range(n):
+        a, b = 100 * k / n, 100 * (k + 1) / n
+        css += f'.bp .{prefix}{k}{{opacity:0;animation:{prefix}{k} {dur}s linear infinite .2s}}'
+        css += f'@keyframes {prefix}{k}{{0%{{opacity:{1 if k == 0 else 0}}}'
+        if k:
+            css += f'{max(a - 0.5, 0):.2f}%{{opacity:0}}{a:.2f}%{{opacity:1}}'
+        css += f'{max(b - 0.5, 0):.2f}%{{opacity:1}}{b:.2f}%{{opacity:0}}100%{{opacity:0}}}}'
+    return css
+
+
+def concave_mirror_walk(deck):
+    f, px, cy, h = 40, 250, 100, 30
+    us = [150, 100, 80, 60, 50, 20]
+    T = 8.4
+    rows = []
+    for u in us:
+        v = 1 / (1 / -f - 1 / -u)   # signed: 1/v + 1/u_s = 1/f_s with u_s = -u, f_s = -f  ->  1/v = 1/f_s - 1/u_s
+        m = -v / -u
+        rows.append((u, v, m))
+    n = len(rows)
+
+    def kf(name, fn):
+        return f'@keyframes {name}{{' + ''.join(f'{100 * i / (n - 1):.2f}%{{transform:{fn(r)}}}' for i, r in enumerate(rows)) + '}'
+    css = (f'.bp .ob{{transform-origin:0 {cy}px;animation:ob {T}s ease-in-out infinite .2s}}'
+           f'.bp .im{{transform-origin:0 {cy}px;animation:im {T}s ease-in-out infinite .2s}}'
+           + kf('ob', lambda r: f'translate({px - r[0]:.1f}px,0)')
+           + kf('im', lambda r: f'translate({px + r[1]:.1f}px,0) scale(1,{r[2]:.3f})')
+           + _stage_css('sg', n, T))
+    base = (f'<line class="ax" x1="10" y1="{cy}" x2="345" y2="{cy}"></line>'
+            f'<path class="c2" d="M {px - 14} 40 Q {px + 16} {cy} {px - 14} 160"></path>'
+            f'<circle class="dot3" cx="{px - f}" cy="{cy}" r="3.5"></circle><text class="rd" x="{px - f}" y="{cy + 16}" text-anchor="middle">F</text>'
+            f'<circle class="dot" cx="{px - 2 * f}" cy="{cy}" r="3.5"></circle><text class="yl" x="{px - 2 * f}" y="{cy + 16}" text-anchor="middle">C</text>'
+            f'<text class="sm" x="{px}" y="{cy + 16}" text-anchor="middle">P</text>')
+    labels = ['u > 2f: real, inverted, diminished, between F and C',
+              'u > 2f (closer): real, inverted, still diminished',
+              'u = 2f (at C): real, inverted, same size, at C',
+              'f < u < 2f: real, inverted, magnified, beyond C',
+              'u just beyond f: real, inverted, hugely magnified, far away',
+              'u < f: virtual, erect, magnified, behind the mirror']
+    txt = ''.join(f'<text class="gr sg{k}" x="180" y="22" text-anchor="middle">{labels[k]}</text>' for k in range(n))
+    arrow = lambda cls, mk, col: (f'<g class="{cls}"><line x1="0" y1="{cy}" x2="0" y2="{cy - h + 5}" marker-end="url(#{mk})" '
+                                  f'stroke="{col}" stroke-width="3"></line></g>')
+    back = (arrow('ob', 'af', '#ffd166') + arrow('im', 'am', '#ff8a80') + txt +
+            '<text class="yl" x="20" y="190">object (yellow)</text><text class="rd" x="200" y="190">image (red)</text>')
+    anim(deck, 'Concave mirror · image walk',
+         'An object walks towards a concave mirror from far away to inside F. How do the image’s position, size and nature change?',
+         base, back,
+         '<p>Far away: small real image just beyond F. As the object approaches <b>C</b> the image grows and moves out to C (same size).</p>'
+         '<p>Between C and F: image real, inverted, magnified, beyond C. At <b>F</b> it goes to infinity; inside F it flips to a <b>virtual, erect, magnified</b> image behind the mirror.</p>',
+         'Image formation by a concave mirror as u decreases',
+         'u > 2f: real, inverted, diminished, between F and C; u = 2f: same size at C; f < u < 2f: magnified, beyond C; u = f: at infinity; u < f: virtual, erect, magnified',
+         css, hint='Watch the red image as the yellow object moves.', vb='0 0 360 200')
+
+
+def tir_angle_sweep(deck):
+    import math
+    n, ox, oy, L = 1.33, 150, 100, 80
+    ic = math.degrees(math.asin(1 / n))
+    stages = [15, 30, 40, ic, 56, 70]
+    T = 8.4
+    N = len(stages)
+
+    def fr(fn):
+        return ''.join(f'{100 * k / (N - 1):.2f}%{{{fn(i)}}}' for k, i in enumerate(stages))
+
+    def rr(i):
+        return math.degrees(math.asin(min(n * math.sin(math.radians(i)), 1)))
+    css = (f'.bp .ri{{transform-origin:{ox}px {oy}px;animation:ri {T}s linear infinite .2s}}'
+           f'.bp .rr{{transform-origin:{ox}px {oy}px;animation:rr {T}s linear infinite .2s}}'
+           f'.bp .rt{{transform-origin:{ox}px {oy}px;animation:rt {T}s linear infinite .2s}}'
+           f'@keyframes ri{{{fr(lambda i: f"transform:rotate({180 + i:.2f}deg)")}}}'
+           f'@keyframes rr{{{fr(lambda i: f"transform:rotate({180 - i:.2f}deg);opacity:{0.3 if i < ic - 1 else 1}")}}}'
+           f'@keyframes rt{{{fr(lambda i: f"transform:rotate({rr(i):.2f}deg);opacity:{1 if i <= ic + 0.01 else 0}")}}}'
+           + _stage_css('sg', N, T))
+    base = (f'<rect class="zone2" x="10" y="{oy}" width="280" height="90"></rect><text class="sm" x="16" y="{oy + 16}">denser: water (n = 1.33)</text>'
+            f'<text class="sm" x="16" y="{oy - 8}">rarer: air (n = 1)</text>'
+            f'<line class="road" x1="10" y1="{oy}" x2="290" y2="{oy}"></line>'
+            f'<line class="guide" x1="{ox}" y1="{oy - 85}" x2="{ox}" y2="{oy + 85}"></line><text class="sm" x="{ox + 4}" y="{oy + 82}">normal</text>')
+    ray = lambda cls, col: f'<line class="{cls}" x1="{ox}" y1="{oy}" x2="{ox}" y2="{oy - L}" stroke="{col}" stroke-width="3"></line>'
+    labels = ['i = 15°: mostly refracts, faint reflection', 'i = 30°: refracted ray bends away from the normal', 'i = 40°: bending grows, r = 59°',
+              'i = i_c = 48.75°: r = 90°, ray grazes the surface', 'i > i_c: no refraction, total internal reflection', 'i = 70°: all the light is reflected']
+    txt = ''.join(f'<text class="gr sg{k}" x="150" y="20" text-anchor="middle">{labels[k]}</text>' for k in range(N))
+    back = ray('ri', '#ffd166') + ray('rr', '#80e8a8') + ray('rt', '#ff8a80') + txt
+    anim(deck, 'Total internal reflection · sweep',
+         'A ray goes from water to air and its angle of incidence is slowly increased. What happens to the refracted and reflected rays?',
+         base, back,
+         '<p>Water → air: the refracted ray bends <b>away</b> from the normal. At the <b>critical angle</b> i_c (sin i_c = 1/n = 0.75, i_c = 48.75°) it skims along the surface (r = 90°).</p>'
+         '<p>For i &gt; i_c there is <b>no refracted ray</b>: all the light is reflected. Only possible from a denser to a rarer medium.</p>',
+         'Refraction to total internal reflection as i increases',
+         'Denser to rarer: refracted ray bends away from normal; at i = ic, r = 90°; for i > ic total internal reflection; sin ic = 1/n',
+         css, hint='Watch the red refracted ray.', vb='0 0 300 200')
