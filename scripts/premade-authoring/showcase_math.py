@@ -1305,3 +1305,64 @@ def ladder_ellipse(deck):
           '<p>Only when P is the midpoint (AP = PB) does it become a circle. Each end of the rod traces a line; an interior point traces an ellipse.</p>',
           'Sliding ladder: an interior point traces an ellipse', 'Rod of length 15 with AP=6, PB=9 sliding on the axes: P=(9cosθ, 6sinθ), so x²/81 + y²/36 = 1, an ellipse',
           vb=f'0 0 300 {h}', hint='Express x and y using the angle the rod makes with the axis.')
+
+
+# ================================================================ Maths 11 Ch 11 Three-dimensional geometry
+class Axes3D:
+    """Oblique projection: y to the right, z up, x towards the viewer (down-left)."""
+    def __init__(s, ox=110, oy=170, u=30, kx=0.55):
+        s.ox, s.oy, s.u, s.kx = ox, oy, u, kx
+
+    def pt(s, x, y, z):
+        return (s.ox + s.u * (y - s.kx * x), s.oy - s.u * (z - s.kx * x * 0.75))
+
+    def line(s, a, b, cls='c0', extra=''):
+        (x1, y1), (x2, y2) = s.pt(*a), s.pt(*b)
+        return f'<line class="{cls} {extra}" x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}"></line>'
+
+    def dot(s, p, cls='d1s', r=4.5, extra=''):
+        x, y = s.pt(*p)
+        return f'<circle class="{cls} {extra}" cx="{x:.1f}" cy="{y:.1f}" r="{r}"></circle>'
+
+    def text(s, p, t, cls='lbl', dx=0, dy=0, anchor='start', extra=''):
+        x, y = s.pt(*p)
+        return f'<text class="{cls} {extra}" x="{x + dx:.1f}" y="{y + dy:.1f}" text-anchor="{anchor}">{t}</text>'
+
+    def axes(s, lx=3.8, ly=6.4, lz=4.6):
+        return (s.line((0, 0, 0), (lx, 0, 0), 'ax') + s.line((0, 0, 0), (0, ly, 0), 'ax') + s.line((0, 0, 0), (0, 0, lz), 'ax') +
+                s.text((lx, 0, 0), 'x', 'lbi', dx=-12, dy=8) + s.text((0, ly, 0), 'y', 'lbi', dx=6, dy=4) + s.text((0, 0, lz), 'z', 'lbi', dx=6, dy=4) +
+                s.text((0, 0, 0), 'O', 'lbl', dx=-10, dy=12))
+
+    def box(s, p, cls='guide', extra=''):
+        x, y, z = p
+        edges = [((0, 0, 0), (x, 0, 0)), ((0, 0, 0), (0, y, 0)), ((0, 0, 0), (0, 0, z)), ((x, 0, 0), (x, y, 0)), ((x, 0, 0), (x, 0, z)),
+                 ((0, y, 0), (x, y, 0)), ((0, y, 0), (0, y, z)), ((0, 0, z), (x, 0, z)), ((0, 0, z), (0, y, z)), ((x, y, 0), (x, y, z)), ((x, 0, z), (x, y, z)), ((0, y, z), (x, y, z))]
+        return ''.join(s.line(a, b, cls, extra) for a, b in edges)
+
+
+def point_in_space(deck):
+    A = Axes3D()
+    P = (3, 4, 2)
+    base = A.axes() + A.dot(P, 'd1s', 5) + A.text(P, 'P(3, 4, 2)', 't1', dx=8, dy=-6)
+    back = (A.box(P, 'guide fx d2') + A.dot((3, 0, 0), 'd3s', 4, 'fx d2') + A.text((3, 0, 0), 'A(3,0,0)', 'sm fx d2', dx=-8, dy=4, anchor='end') +
+            A.dot((3, 4, 0), 'd2s', 4, 'fx d3') + A.text((3, 4, 0), 'M(3,4,0)', 'sm fx d3', dx=6, dy=14) +
+            A.line((3, 4, 0), P, 'c2 fx d3') + A.text((3, 4, 1), 'z = 2', 't2 fx d3', dx=8, dy=20) + A.text((1.5, 0, 0), 'x = 3', 't3 fx d2', dx=-8, dy=14, anchor='end') +
+            A.text((0, 2, 0), 'y = 4', 't4 fx d2', dy=14, dx=8))
+    mcard(deck, 'Coordinates in space', 'Locate P(3, 4, 2). Which foot points does the box create, and what are the octant and distances from the planes?', base, back,
+          '<p>Go 3 along the x-axis, 4 parallel to the y-axis (reaching M in the XY-plane), then 2 up: P(3, 4, 2) in octant <b>I</b>.</p>'
+          '<p>Distances: from the <b>YZ-plane = |x| = 3</b>, ZX-plane = |y| = 4, XY-plane = |z| = 2. Foot on the XY-plane is (3, 4, 0); on the x-axis (3, 0, 0).</p>',
+          'Locating a point in 3-D: the coordinate box', 'P(x,y,z): x,y,z are distances from YZ, ZX, XY planes; drop a perpendicular to XY-plane at M(x,y,0) then go z up; P(3,4,2) lies in octant I',
+          vb='0 0 300 240', hint='Build the box from the origin.')
+
+
+def space_diagonal(deck):
+    A = Axes3D(ox=90, oy=178, u=26)
+    P = (2, 3, 6)
+    base = A.axes(lx=2.6, ly=5.4, lz=6.8) + A.dot(P, 'd1s', 5) + A.text(P, 'Q(2, 3, 6)', 't1', dx=8, dy=-4)
+    back = (A.box(P, 'guide fx d2') + A.line((0, 0, 0), (2, 3, 0), 'c3 fx d2') + A.text((1, 1.5, 0), '√13', 't3 fx d2', dx=6, dy=16) +
+            A.line((0, 0, 0), P, 'c2 fx d3') + A.text((1, 1.5, 3), 'OQ = 7', 't2 fx d3', dx=-10, dy=-4, anchor='end'))
+    mcard(deck, 'Distance formula in 3-D', 'Find the distance from the origin to Q(2, 3, 6). Explain with a box.', base, back,
+          '<p>Floor diagonal: √(2² + 3²) = √13. Then the vertical side 6: OQ² = (√13)² + 6² = 13 + 36 = 49 ⇒ <b>OQ = 7</b>.</p>'
+          '<p>Two Pythagoras steps give <b>PQ = √((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²)</b>, the space diagonal of the cuboid on PQ.</p>',
+          'Distance in space as a cuboid diagonal', 'PQ = √((x2−x1)²+(y2−y1)²+(z2−z1)²): floor diagonal then Pythagoras again; origin to (2,3,6) is 7',
+          vb='0 0 300 230', hint='Do Pythagoras twice.')
