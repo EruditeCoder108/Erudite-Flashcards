@@ -2,6 +2,7 @@
   "version": 1,
   "name": "Chapter 3: Trigonometric Functions",
   "className": "Class 11",
+  "description": "Radian measure, trig functions and graphs, identities, compound and multiple angles, trig equations, and exam-style problems.",
   "cards": [
     {
       "noteType": "basic",
@@ -967,6 +968,481 @@
         "mathematics",
         "ch-3",
         "exam-extra"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Unit circle coordinates at special angles",
+      "definition": "Point at angle θ on the unit circle is (cos θ, sin θ); 30°: (√3/2, 1/2); 45°: (1/√2, 1/√2); 60°: (1/2, √3/2); sin values √0/2 .. √4/2",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Unit circle · special angles</p><h2>A point at angle θ on the unit circle is (cos θ, sin θ). Give the coordinates at 0°, 30°, 45°, 60°, 90°.</h2><svg viewBox=\"0 0 300 252\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"125.8\" x2=\"292.0\" y2=\"125.8\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"245.6\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><circle class=\"ghost\" cx=\"150.0\" cy=\"125.8\" r=\"88.8\"></circle></svg><p class=\"hint\">Read cos as the x-coordinate and sin as the y-coordinate.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Unit circle · special angles</p><h2>A point at angle θ on the unit circle is (cos θ, sin θ). Give the coordinates at 0°, 30°, 45°, 60°, 90°.</h2><svg viewBox=\"0 0 300 252\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"125.8\" x2=\"292.0\" y2=\"125.8\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"245.6\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><circle class=\"ghost\" cx=\"150.0\" cy=\"125.8\" r=\"88.8\"></circle><circle class=\"d2s fx d1\" cx=\"238.8\" cy=\"125.8\" r=\"4.5\"></circle><text class=\"t2 fx d1 \" x=\"246.8\" y=\"139.8\" text-anchor=\"start\">(1, 0)</text><circle class=\"d2s fx d2\" cx=\"226.9\" cy=\"81.4\" r=\"4.5\"></circle><text class=\"t2 fx d2 \" x=\"234.9\" y=\"73.4\" text-anchor=\"start\">(√3/2, ½)</text><line class=\"guide fx d2\" x1=\"150.0\" y1=\"125.8\" x2=\"226.9\" y2=\"81.4\"></line><circle class=\"d2s fx d3\" cx=\"212.8\" cy=\"63.1\" r=\"4.5\"></circle><text class=\"t2 fx d3 \" x=\"220.8\" y=\"55.1\" text-anchor=\"start\">(1/√2, 1/√2)</text><line class=\"guide fx d3\" x1=\"150.0\" y1=\"125.8\" x2=\"212.8\" y2=\"63.1\"></line><circle class=\"d2s fx d4\" cx=\"194.4\" cy=\"49.0\" r=\"4.5\"></circle><text class=\"t2 fx d4 \" x=\"202.4\" y=\"41.0\" text-anchor=\"start\">(½, √3/2)</text><line class=\"guide fx d4\" x1=\"150.0\" y1=\"125.8\" x2=\"194.4\" y2=\"49.0\"></line><circle class=\"d2s fx d5\" cx=\"150.0\" cy=\"37.1\" r=\"4.5\"></circle><text class=\"t2 fx d5 \" x=\"150.0\" y=\"29.1\" text-anchor=\"middle\">(0, 1)</text><line class=\"guide fx d5\" x1=\"150.0\" y1=\"125.8\" x2=\"150.0\" y2=\"37.1\"></line><g class=\"spin\"><line class=\"c1\" x1=\"150.0\" y1=\"125.8\" x2=\"238.8\" y2=\"125.8\"></line><circle class=\"d1s\" cx=\"238.8\" cy=\"125.8\" r=\"4.5\"></circle></g></svg><div class=\"eq fx d5\"><p>x-coordinate = <b>cos θ</b>, y-coordinate = <b>sin θ</b>. Values: 30° → (√3/2, ½); 45° → (1/√2, 1/√2); 60° → (½, √3/2).</p><p>Memory: sin goes 0, ½, 1/√2, √3/2, 1 (write as √0/2, √1/2, √2/2, √3/2, √4/2); cos runs the same list backwards.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .spin{transform-box:view-box;transform-origin:150.0px 125.8px;animation:sp 8s linear infinite}@keyframes sp{from{transform:rotate(0)}to{transform:rotate(-360deg)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .spin{transform-box:view-box;transform-origin:150.0px 125.8px;animation:sp 8s linear infinite}@keyframes sp{from{transform:rotate(0)}to{transform:rotate(-360deg)}}"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3-unit-circle-animations"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "The sine wave is the height of a point moving round the unit circle",
+      "definition": "sin θ is the height of the point at angle θ on the unit circle; plotting height against θ gives the sine wave with period 2π, range [−1,1]",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Sine graph from the unit circle</p><h2>How does the sine curve come from the unit circle? Follow the height of a point as θ goes from 0 to 2π.</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"ghost\" cx=\"62\" cy=\"100\" r=\"44\"></circle><line class=\"ax\" x1=\"6\" y1=\"100\" x2=\"118\" y2=\"100\"></line><line class=\"ax\" x1=\"62\" y1=\"44\" x2=\"62\" y2=\"156\"></line><line class=\"ax\" x1=\"126\" y1=\"100\" x2=\"296\" y2=\"100\"></line><line class=\"ax\" x1=\"130\" y1=\"44\" x2=\"130\" y2=\"156\"></line></svg><p class=\"hint\">Track only the vertical position.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Sine graph from the unit circle</p><h2>How does the sine curve come from the unit circle? Follow the height of a point as θ goes from 0 to 2π.</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"ghost\" cx=\"62\" cy=\"100\" r=\"44\"></circle><line class=\"ax\" x1=\"6\" y1=\"100\" x2=\"118\" y2=\"100\"></line><line class=\"ax\" x1=\"62\" y1=\"44\" x2=\"62\" y2=\"156\"></line><line class=\"ax\" x1=\"126\" y1=\"100\" x2=\"296\" y2=\"100\"></line><line class=\"ax\" x1=\"130\" y1=\"44\" x2=\"130\" y2=\"156\"></line><polyline class=\"c1 draw\" pathLength=\"100\" points=\"130.0,100.0 132.8,95.4 135.7,90.9 138.5,86.4 141.3,82.1 144.1,78.0 147.0,74.1 149.8,70.6 152.6,67.3 155.4,64.4 158.3,61.9 161.1,59.8 163.9,58.2 166.8,57.0 169.6,56.2 172.4,56.0 175.2,56.2 178.1,57.0 180.9,58.2 183.7,59.8 186.5,61.9 189.4,64.4 192.2,67.3 195.0,70.6 197.9,74.1 200.7,78.0 203.5,82.1 206.3,86.4 209.2,90.9 212.0,95.4 214.8,100.0 217.7,104.6 220.5,109.1 223.3,113.6 226.1,117.9 229.0,122.0 231.8,125.9 234.6,129.4 237.4,132.7 240.3,135.6 243.1,138.1 245.9,140.2 248.8,141.8 251.6,143.0 254.4,143.8 257.2,144.0 260.1,143.8 262.9,143.0 265.7,141.8 268.5,140.2 271.4,138.1 274.2,135.6 277.0,132.7 279.9,129.4 282.7,125.9 285.5,122.0 288.3,117.9 291.2,113.6 294.0,109.1 296.8,104.6 299.6,100.0\"></polyline><circle class=\"d2s fx d2\" cx=\"100.1\" cy=\"78.0\" r=\"3.5\"></circle><line class=\"guide fx d2\" x1=\"100.1\" y1=\"78.0\" x2=\"144.1\" y2=\"78.0\"></line><circle class=\"d1s fx d2\" cx=\"144.1\" cy=\"78.0\" r=\"3.5\"></circle><circle class=\"d2s fx d2\" cx=\"62.0\" cy=\"56.0\" r=\"3.5\"></circle><line class=\"guide fx d2\" x1=\"62.0\" y1=\"56.0\" x2=\"172.4\" y2=\"56.0\"></line><circle class=\"d1s fx d2\" cx=\"172.4\" cy=\"56.0\" r=\"3.5\"></circle><circle class=\"d2s fx d3\" cx=\"23.9\" cy=\"78.0\" r=\"3.5\"></circle><line class=\"guide fx d3\" x1=\"23.9\" y1=\"78.0\" x2=\"200.7\" y2=\"78.0\"></line><circle class=\"d1s fx d3\" cx=\"200.7\" cy=\"78.0\" r=\"3.5\"></circle><circle class=\"d2s fx d3\" cx=\"23.9\" cy=\"122.0\" r=\"3.5\"></circle><line class=\"guide fx d3\" x1=\"23.9\" y1=\"122.0\" x2=\"229.0\" y2=\"122.0\"></line><circle class=\"d1s fx d3\" cx=\"229.0\" cy=\"122.0\" r=\"3.5\"></circle><circle class=\"d2s fx d4\" cx=\"62.0\" cy=\"144.0\" r=\"3.5\"></circle><line class=\"guide fx d4\" x1=\"62.0\" y1=\"144.0\" x2=\"257.2\" y2=\"144.0\"></line><circle class=\"d1s fx d4\" cx=\"257.2\" cy=\"144.0\" r=\"3.5\"></circle><circle class=\"d2s fx d4\" cx=\"100.1\" cy=\"122.0\" r=\"3.5\"></circle><line class=\"guide fx d4\" x1=\"100.1\" y1=\"122.0\" x2=\"285.5\" y2=\"122.0\"></line><circle class=\"d1s fx d4\" cx=\"285.5\" cy=\"122.0\" r=\"3.5\"></circle><text class=\"num\" x=\"214.8\" y=\"126\">π</text><text class=\"num\" x=\"299.6\" y=\"126\">2π</text></svg><div class=\"eq fx d5\"><p>The <b>height</b> of the point at angle θ is sin θ. Carry each height across to the matching θ on the horizontal axis and join the dots: the sine wave.</p><p>One turn of the circle = one period <b>2π</b>; max 1 at π/2, min −1 at 3π/2; zeros at 0, π, 2π. Cosine is the same wave started a quarter-turn earlier.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3-unit-circle-animations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trig ratios of 15° and 75°: sin, cos, tan?",
+      "definition": "\\(\\sin 75^\\circ = \\cos 15^\\circ = \\dfrac{\\sqrt6 + \\sqrt2}{4},\\ \\sin 15^\\circ = \\cos 75^\\circ = \\dfrac{\\sqrt6 - \\sqrt2}{4},\\ \\tan 75^\\circ = 2 + \\sqrt3\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3-unit-circle-animations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Quick check of sin 15° = (√6 − √2)/4.",
+      "definition": "(√3 − 1)/(2√2) rationalised: (√3 − 1)√2/4 = (√6 − √2)/4 ≈ <span style=\"color:#f08c00\">0.2588</span> ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3-unit-circle-animations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Degree to radian: 1° = ? and convert 225° and 15° to radians.",
+      "definition": "\\(1^\\circ = \\dfrac{\\pi}{180}\\) rad; 225° = <span style=\"color:#f08c00\">5π/4</span>, 15° = <span style=\"color:#f08c00\">π/12</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3-unit-circle-animations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: is sin(A + B) = sin A + sin B?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. sin 90° = 1 but sin 45° + sin 45° = √2. Sine is not linear: use sin A cos B + cos A sin B",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3-unit-circle-animations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: sin²x is (sin x)², but sin x² means?",
+      "definition": "<span style=\"color:#3b82f6\">sin(x²)</span>. Also sin⁻¹x is the inverse function, not 1/sin x (that is cosec x)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.3-unit-circle-animations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If A + B + C = π, then tan A + tan B + tan C = ?",
+      "definition": "<span style=\"color:#3b82f6\">tan A tan B tan C</span>. Because tan(A + B) = −tan C. Also cot A cot B + cot B cot C + cot C cot A = 1",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-triangle-identities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If A + B + C = π: sin 2A + sin 2B + sin 2C = ? and cos A + cos B + cos C = ?",
+      "definition": "<span style=\"color:#3b82f6\">4 sin A sin B sin C</span> and <span style=\"color:#3b82f6\">1 + 4 sin(A/2) sin(B/2) sin(C/2)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-triangle-identities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Product of cosines: cos 20° cos 40° cos 60° cos 80° = ?",
+      "definition": "cos 20° cos 40° cos 80° = 1/8 (using cos x cos(60° − x) cos(60° + x) = ¼ cos 3x with x = 20°: ¼ · ½ = 1/8); × cos 60° = <span style=\"color:#f08c00\">1/16</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-triangle-identities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "sin 10° sin 30° sin 50° sin 70° = ?",
+      "definition": "sin 10° sin 50° sin 70° = ¼ sin 30° = 1/8; × sin 30° = <span style=\"color:#f08c00\">1/16</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-triangle-identities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Prove tan 20° + tan 40° + √3 tan 20° tan 40° = √3.",
+      "definition": "tan 60° = (tan 20° + tan 40°)/(1 − tan 20° tan 40°) = √3 → tan 20° + tan 40° = √3(1 − tan 20° tan 40°) ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-triangle-identities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sum of a series of cosines: cos x + cos 2x + … + cos nx (idea)?",
+      "definition": "Multiply by 2 sin(x/2) and use 2 sin(x/2) cos kx = sin((k + ½)x) − sin((k − ½)x): the terms telescope to <span style=\"color:#3b82f6\">sin(nx/2) cos((n + 1)x/2) / sin(x/2)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-triangle-identities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Express sin x + cos x as a single sine. Range?",
+      "definition": "\\(\\sqrt2\\sin\\!\\left(x + \\dfrac{\\pi}{4}\\right)\\), range <span style=\"color:#f08c00\">[−√2, √2]</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-triangle-identities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Range of 3 sin x + 4 cos x? Of sin²x + cos⁴x?",
+      "definition": "<span style=\"color:#f08c00\">[−5, 5]</span> and <span style=\"color:#f08c00\">[3/4, 1]</span> (sin²x + cos⁴x = 1 − cos²x + cos⁴x = (cos²x − ½)² + ¾)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-triangle-identities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Minimum of sec²x + cosec²x?",
+      "definition": "sec²x + cosec²x = 4/sin²2x ≥ <span style=\"color:#f08c00\">4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-triangle-identities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Value of sin 18° via a quick derivation (idea).",
+      "definition": "Let θ = 18°: 5θ = 90° so sin 2θ = cos 3θ → 2 sin θ cos θ = 4cos³θ − 3 cos θ → 4 sin²θ + 2 sin θ − 1 = 0 → <span style=\"color:#f08c00\">sin 18° = (√5 − 1)/4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-triangle-identities"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "General solution of sin x = 1/2 from the unit circle",
+      "definition": "sin x = 1/2 has solutions 30° and 150° in one turn; general solution x = nπ + (−1)^n π/6",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Solving sin x = ½</p><h2>Solve sin x = ½ on the unit circle. What is the general solution?</h2><svg viewBox=\"0 0 300 252\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"125.8\" x2=\"292.0\" y2=\"125.8\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"245.6\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><circle class=\"ghost\" cx=\"150.0\" cy=\"125.8\" r=\"88.8\"></circle><line class=\"c2\" x1=\"16.9\" y1=\"81.4\" x2=\"283.1\" y2=\"81.4\"></line></svg><p class=\"hint\">Where is the y-coordinate equal to ½?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Solving sin x = ½</p><h2>Solve sin x = ½ on the unit circle. What is the general solution?</h2><svg viewBox=\"0 0 300 252\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"125.8\" x2=\"292.0\" y2=\"125.8\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"245.6\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><circle class=\"ghost\" cx=\"150.0\" cy=\"125.8\" r=\"88.8\"></circle><line class=\"c2\" x1=\"16.9\" y1=\"81.4\" x2=\"283.1\" y2=\"81.4\"></line><circle class=\"d1s fx d2\" cx=\"226.9\" cy=\"81.4\" r=\"5\"></circle><circle class=\"d1s fx d3\" cx=\"73.1\" cy=\"81.4\" r=\"5\"></circle><line class=\"guide fx d2\" x1=\"150.0\" y1=\"125.8\" x2=\"226.9\" y2=\"81.4\"></line><line class=\"guide fx d3\" x1=\"150.0\" y1=\"125.8\" x2=\"73.1\" y2=\"81.4\"></line><text class=\"t1 fx d2 \" x=\"234.9\" y=\"73.4\" text-anchor=\"start\">30°</text><text class=\"t1 fx d3 \" x=\"65.1\" y=\"73.4\" text-anchor=\"end\">150°</text></svg><div class=\"eq fx d5\"><p>sin x = y-coordinate = ½: the horizontal line y = ½ meets the circle at <b>30°</b> and <b>150°</b> (π − π/6).</p><p>Adding full turns: x = 2nπ + π/6 or 2nπ + 5π/6, combined as <b>x = nπ + (−1)ⁿ π/6</b> (n ∈ Z).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-trig-equations"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "General solutions of trig equations",
+      "definition": "sin x = 0: x = nπ; cos x = 0: x = (2n + 1)π/2; tan x = 0: x = nπ; sin x = sin α: x = nπ + (−1)ⁿ α; cos x = cos α: x = 2nπ ± α; tan x = tan α: x = nπ + α; sin²x = sin²α: x = nπ ± α",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">General solutions</p><h2>Write the general solution (n ∈ Z).</h2><table><tr><td>sin x = 0</td><td class=\"q\">?</td></tr><tr><td>cos x = 0</td><td class=\"q\">?</td></tr><tr><td>tan x = 0</td><td class=\"q\">?</td></tr><tr><td>sin x = sin α</td><td class=\"q\">?</td></tr><tr><td>cos x = cos α</td><td class=\"q\">?</td></tr><tr><td>tan x = tan α</td><td class=\"q\">?</td></tr><tr><td>sin²x = sin²α</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">General solutions</p><h2>Write the general solution (n ∈ Z).</h2><table><tr><td>sin x = 0</td><td class=\"a\">x = nπ</td></tr><tr><td>cos x = 0</td><td class=\"a\">x = (2n + 1)π/2</td></tr><tr><td>tan x = 0</td><td class=\"a\">x = nπ</td></tr><tr><td>sin x = sin α</td><td class=\"a\">x = nπ + (−1)ⁿ α</td></tr><tr><td>cos x = cos α</td><td class=\"a\">x = 2nπ ± α</td></tr><tr><td>tan x = tan α</td><td class=\"a\">x = nπ + α</td></tr><tr><td>sin²x = sin²α</td><td class=\"a\">x = nπ ± α</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-trig-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve 2 sin²x + sin x − 1 = 0.",
+      "definition": "(2 sin x − 1)(sin x + 1) = 0 → sin x = ½ → <span style=\"color:#f08c00\">x = nπ + (−1)ⁿπ/6</span>; or sin x = −1 → <span style=\"color:#f08c00\">x = 2nπ − π/2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-trig-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve cos 2x = cos x.",
+      "definition": "2x = 2nπ ± x → <span style=\"color:#f08c00\">x = 2nπ/3</span> (n ∈ Z) (from + : x = 2nπ; from − : 3x = 2nπ)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-trig-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve tan x = √3 and sin x = −1/2 in [0, 2π).",
+      "definition": "<span style=\"color:#f08c00\">x = π/3, 4π/3</span> and <span style=\"color:#f08c00\">x = 7π/6, 11π/6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-trig-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve sin x + cos x = 1.",
+      "definition": "Divide by √2: sin(x + π/4) = 1/√2 → x + π/4 = nπ + (−1)ⁿπ/4 → <span style=\"color:#f08c00\">x = 2nπ or x = 2nπ + π/2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-trig-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: solving sin x cos x = sin x by dividing by sin x.",
+      "definition": "<span style=\"color:#e5484d\">You lose the roots of sin x = 0</span>. Factorise instead: sin x (cos x − 1) = 0 → x = nπ or x = 2nπ (so x = nπ overall)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-trig-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: solving trig equations.",
+      "definition": "1) Reduce to one function (identities). 2) Factorise (never cancel a factor that can be 0). 3) Use the general solution formulas. 4) Restrict to the required interval by choosing integer n",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-trig-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of real solutions of sin x = x/10?",
+      "definition": "The graphs y = sin x and y = x/10 can meet only for |x| ≤ 10: 3 crossings for x > 0, 3 for x < 0 and x = 0, so <span style=\"color:#f08c00\">7</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-trig-equations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The value of sin 105° is<br>(a) (√3 + 1)/(2√2) (b) (√3 − 1)/(2√2) (c) 1/2 (d) √3/2",
+      "definition": "sin 105° = cos 15° = <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The value of cos 15° cos 75° is<br>(a) 1/2 (b) 1/4 (c) √3/4 (d) 1/8",
+      "definition": "cos 75° = sin 15°: ½ sin 30° = <span style=\"color:#22a35a\">(b) 1/4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: sin²x + cos²x = 1 has the solution set<br>(a) R (b) φ (c) {nπ} (d) {π/2}",
+      "definition": "It is an identity: <span style=\"color:#22a35a\">(a) all real x</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The period of sin x cos x is<br>(a) 2π (b) π (c) π/2 (d) 4π",
+      "definition": "sin x cos x = ½ sin 2x: <span style=\"color:#22a35a\">(b) π</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: If tan θ = 3/4 and θ is in quadrant III, then sin θ =<br>(a) 3/5 (b) −3/5 (c) 4/5 (d) −4/5",
+      "definition": "Both sin and cos are negative in III: <span style=\"color:#22a35a\">(b) −3/5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The value of tan 1° tan 2° … tan 89° is<br>(a) 0 (b) 1 (c) ∞ (d) 2",
+      "definition": "tan k° tan(90° − k°) = 1 pairs up: <span style=\"color:#22a35a\">(b) 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The minimum value of 2 sin x + 3 cos x is<br>(a) −5 (b) −√13 (c) −13 (d) −1",
+      "definition": "−√(4 + 9) = <span style=\"color:#22a35a\">(b) −√13</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The radian measure of 75° is<br>(a) 5π/12 (b) 7π/12 (c) 5π/6 (d) 3π/4",
+      "definition": "75π/180 = <span style=\"color:#22a35a\">(a) 5π/12</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): the value of 16 sin 10° sin 30° sin 50° sin 70° is?",
+      "definition": "16 × 1/16 = <span style=\"color:#f08c00\">1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the number of solutions of sin x = 1/2 in [0, 4π]?",
+      "definition": "Two in each turn: <span style=\"color:#f08c00\">4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> sin 2x = 2 sin x for all x.<br><b>R:</b> sin 2x = 2 sin x cos x.<br>(a) Both true, R explains A (b) Both true, R does not (c) A false, R true (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(c)</span>: true only if cos x = 1",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: tan x is defined for all real x.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: not defined at odd multiples of π/2 (x = (2n + 1)π/2)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: find the value of sin 15° cos 15°.",
+      "definition": "½ sin 30° = <span style=\"color:#f08c00\">1/4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: prove (sin 3x + sin x)/(cos 3x + cos x) = tan 2x.",
+      "definition": "Sum-to-product: 2 sin 2x cos x / (2 cos 2x cos x) = <span style=\"color:#f08c00\">tan 2x</span> (cos x ≠ 0)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a Ferris wheel of radius 20 m turns once per minute; height h(t) = 22 + 20 sin(2πt/60 − π/2). Minimum and maximum heights?",
+      "definition": "sin ∈ [−1, 1]: <span style=\"color:#f08c00\">2 m</span> and <span style=\"color:#f08c00\">42 m</span> (boarding point is at the bottom, t = 0)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
       ]
     }
   ]

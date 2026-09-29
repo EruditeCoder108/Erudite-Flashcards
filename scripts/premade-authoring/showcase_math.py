@@ -1601,3 +1601,63 @@ def prob_venn(deck):
           '<p>P(not both) = 1 − 0.02 = <b>0.98</b>. P(exactly one) = 0.03 + 0.08 = <b>0.11</b>. Regions of the Venn diagram add to 1.</p>',
           'Venn diagram probabilities for two events', 'P(E)=0.05, P(F)=0.10, P(E∩F)=0.02: E only 0.03, F only 0.08, neither 0.87, not both 0.98, exactly one 0.11',
           vb='0 0 300 200', hint='Subtract the overlap from each event.')
+
+
+# ================================================================ Maths 11 Ch 3 Trigonometric functions (upgrade)
+def unit_circle_values(deck):
+    P, h = eqplane(-1.6, 1.6, -1.35, 1.35, pad=(8, 6, 8, 6))
+    ox, oy = P.X(0), P.Y(0)
+    r = P.X(1) - ox
+    base = P.axes(labels=False) + f'<circle class="ghost" cx="{ox:.1f}" cy="{oy:.1f}" r="{r:.1f}"></circle>'
+    css = (f'.pp .spin{{transform-box:view-box;transform-origin:{ox:.1f}px {oy:.1f}px;animation:sp 8s linear infinite}}@keyframes sp{{from{{transform:rotate(0)}}to{{transform:rotate(-360deg)}}}}')
+    pts = [(0, '(1, 0)'), (30, '(√3/2, ½)'), (45, '(1/√2, 1/√2)'), (60, '(½, √3/2)'), (90, '(0, 1)')]
+    back = ''
+    for k, (a, lab) in enumerate(pts):
+        t = math.radians(a)
+        x, y = math.cos(t), math.sin(t)
+        anc = 'start' if x > 0.2 else ('middle' if x <= 0.2 else 'start')
+        back += P.dot(x, y, 'd2s', 4.5, 'fx d' + str(k + 1)) + P.text(x, y, lab, 't2 fx d' + str(k + 1), 'start' if a < 90 else 'middle', dx=8 if a < 90 else 0, dy=-8 if a not in (0,) else 14)
+        if a: back += P.line(0, 0, x, y, 'guide fx d' + str(k + 1))
+    back += f'<g class="spin"><line class="c1" x1="{ox:.1f}" y1="{oy:.1f}" x2="{ox + r:.1f}" y2="{oy:.1f}"></line><circle class="d1s" cx="{ox + r:.1f}" cy="{oy:.1f}" r="4.5"></circle></g>'
+    mcard(deck, 'Unit circle · special angles', 'A point at angle θ on the unit circle is (cos θ, sin θ). Give the coordinates at 0°, 30°, 45°, 60°, 90°.', base, back,
+          '<p>x-coordinate = <b>cos θ</b>, y-coordinate = <b>sin θ</b>. Values: 30° → (√3/2, ½); 45° → (1/√2, 1/√2); 60° → (½, √3/2).</p>'
+          '<p>Memory: sin goes 0, ½, 1/√2, √3/2, 1 (write as √0/2, √1/2, √2/2, √3/2, √4/2); cos runs the same list backwards.</p>',
+          'Unit circle coordinates at special angles', 'Point at angle θ on the unit circle is (cos θ, sin θ); 30°: (√3/2, 1/2); 45°: (1/√2, 1/√2); 60°: (1/2, √3/2); sin values √0/2 .. √4/2',
+          css=css, vb=f'0 0 300 {h}', hint='Read cos as the x-coordinate and sin as the y-coordinate.')
+
+
+def circle_to_wave(deck):
+    cx, cy, R = 62, 100, 44
+    X = lambda t: 130 + t * 27
+    base = (f'<circle class="ghost" cx="{cx}" cy="{cy}" r="{R}"></circle><line class="ax" x1="{cx - 56}" y1="{cy}" x2="{cx + 56}" y2="{cy}"></line><line class="ax" x1="{cx}" y1="{cy - 56}" x2="{cx}" y2="{cy + 56}"></line>'
+            f'<line class="ax" x1="126" y1="{cy}" x2="296" y2="{cy}"></line><line class="ax" x1="130" y1="{cy - 56}" x2="130" y2="{cy + 56}"></line>'
+            + ''.join(f'<text class="num" x="{X(v):.1f}" y="{cy + 14}">{lab}</text>' for v, lab in [(math.pi / 2, 'π/2'), (math.pi, 'π'), (3 * math.pi / 2, '3π/2'), (2 * math.pi, '2π')][:0]))
+    wave = ' '.join(f'{X(t):.1f},{cy - R * math.sin(t):.1f}' for t in [i * math.pi / 30 for i in range(0, 61)])
+    back = f'<polyline class="c1 draw" pathLength="100" points="{wave}"></polyline>'
+    for k, deg in enumerate([30, 90, 150, 210, 270, 330]):
+        t = math.radians(deg)
+        px, py = cx + R * math.cos(t), cy - R * math.sin(t)
+        back += (f'<circle class="d2s fx d{min(k // 2 + 2, 6)}" cx="{px:.1f}" cy="{py:.1f}" r="3.5"></circle>'
+                 f'<line class="guide fx d{min(k // 2 + 2, 6)}" x1="{px:.1f}" y1="{py:.1f}" x2="{X(t):.1f}" y2="{py:.1f}"></line>'
+                 f'<circle class="d1s fx d{min(k // 2 + 2, 6)}" cx="{X(t):.1f}" cy="{py:.1f}" r="3.5"></circle>')
+    back += (f'<text class="num" x="{X(math.pi):.1f}" y="{cy + 26}">π</text><text class="num" x="{X(2 * math.pi):.1f}" y="{cy + 26}">2π</text>')
+    mcard(deck, 'Sine graph from the unit circle', 'How does the sine curve come from the unit circle? Follow the height of a point as θ goes from 0 to 2π.', base, back,
+          '<p>The <b>height</b> of the point at angle θ is sin θ. Carry each height across to the matching θ on the horizontal axis and join the dots: the sine wave.</p>'
+          '<p>One turn of the circle = one period <b>2π</b>; max 1 at π/2, min −1 at 3π/2; zeros at 0, π, 2π. Cosine is the same wave started a quarter-turn earlier.</p>',
+          'The sine wave is the height of a point moving round the unit circle', 'sin θ is the height of the point at angle θ on the unit circle; plotting height against θ gives the sine wave with period 2π, range [−1,1]',
+          vb='0 0 300 190', hint='Track only the vertical position.')
+
+
+def trig_equation_circle(deck):
+    P, h = eqplane(-1.6, 1.6, -1.35, 1.35, pad=(8, 6, 8, 6))
+    ox, oy = P.X(0), P.Y(0)
+    r = P.X(1) - ox
+    base = P.axes(labels=False) + f'<circle class="ghost" cx="{ox:.1f}" cy="{oy:.1f}" r="{r:.1f}"></circle>' + P.line(-1.5, 0.5, 1.5, 0.5, 'c2')
+    s3 = math.sqrt(3) / 2
+    back = (P.dot(s3, 0.5, 'd1s', 5, 'fx d2') + P.dot(-s3, 0.5, 'd1s', 5, 'fx d3') + P.line(0, 0, s3, 0.5, 'guide fx d2') + P.line(0, 0, -s3, 0.5, 'guide fx d3') +
+            P.text(s3, 0.5, '30°', 't1 fx d2', dx=8, dy=-8) + P.text(-s3, 0.5, '150°', 't1 fx d3', dx=-8, dy=-8, anchor='end'))
+    mcard(deck, 'Solving sin x = ½', 'Solve sin x = ½ on the unit circle. What is the general solution?', base, back,
+          '<p>sin x = y-coordinate = ½: the horizontal line y = ½ meets the circle at <b>30°</b> and <b>150°</b> (π − π/6).</p>'
+          '<p>Adding full turns: x = 2nπ + π/6 or 2nπ + 5π/6, combined as <b>x = nπ + (−1)ⁿ π/6</b> (n ∈ Z).</p>',
+          'General solution of sin x = 1/2 from the unit circle', 'sin x = 1/2 has solutions 30° and 150° in one turn; general solution x = nπ + (−1)^n π/6',
+          vb=f'0 0 300 {h}', hint='Where is the y-coordinate equal to ½?')
