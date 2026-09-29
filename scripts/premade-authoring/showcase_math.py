@@ -2004,3 +2004,137 @@ def tan_sum_circle(deck):
           'tan⁻¹ addition formula and the xy > 1 correction',
           'tan^-1 x + tan^-1 y = tan^-1((x+y)/(1-xy)) if xy<1; add pi if xy>1 and x,y>0 (subtract pi if x,y<0); tan^-1 2 + tan^-1 3 = 3pi/4',
           css=_DR, vb=f'0 0 300 {h}', hint='Add the angles geometrically first.')
+
+
+# ================================================================ Maths 12 Ch 3 Matrices
+def _mx(x0, y0, rows, cw=32, ch=26, cls='lbl', pad=4):
+    """Matrix drawn as brackets + centred text cells. Returns (svg, cell_centre(i, j))."""
+    n, m = len(rows), len(rows[0])
+    w, h = m * cw, n * ch
+    o = (f'<path class="c0" d="M{x0 + 6},{y0 - pad} H{x0} V{y0 + h + pad} H{x0 + 6}"></path>'
+         f'<path class="c0" d="M{x0 + w - 6},{y0 - pad} H{x0 + w} V{y0 + h + pad} H{x0 + w - 6}"></path>')
+    for i, r in enumerate(rows):
+        for j, v in enumerate(r):
+            if v is None: continue
+            o += f'<text class="{cls}" x="{x0 + j * cw + cw / 2:.1f}" y="{y0 + i * ch + ch / 2 + 4:.1f}" text-anchor="middle">{str(v).replace("-", "−")}</text>'
+    return o, (lambda i, j: (x0 + j * cw + cw / 2, y0 + i * ch + ch / 2))
+
+
+def matmul_steps(deck):
+    A = [[2, 4], [3, 2]]
+    B = [[1, 3], [-2, 5]]
+    C = [[-6, 26], [-1, 19]]
+    xa, xb, xc, y0, cw, ch = 16, 126, 236, 44, 32, 26
+    ga, _ = _mx(xa, y0, A)
+    gb, _ = _mx(xb, y0, B)
+    gc, cc = _mx(xc, y0, [[None, None], [None, None]])
+    base = ga + gb + gc + f'<text class="lbl" x="98" y="{y0 + 30}" text-anchor="middle">×</text><text class="lbl" x="208" y="{y0 + 30}" text-anchor="middle">=</text>'
+    base += '<text class="sm" x="48" y="24" text-anchor="middle">A (2 × 2)</text><text class="sm" x="158" y="24" text-anchor="middle">B (2 × 2)</text><text class="sm" x="268" y="24" text-anchor="middle">AB</text>'
+    back = ''
+    css = ''
+    steps = [(0, 0), (0, 1), (1, 0), (1, 1)]
+    for k, (i, j) in enumerate(steps):
+        t0, t1 = 20 * k, 20 * k + 19.9
+        css += (f'.pp .h{k}{{opacity:0;animation:hk{k} 12s linear infinite}}'
+                f'@keyframes hk{k}{{0%,{t0}%{{opacity:0}}{t0 + .1}%,{t1}%{{opacity:1}}{t1 + .1}%,100%{{opacity:0}}}}'
+                f'.pp .r{k}{{opacity:0;animation:rk{k} 12s linear infinite}}'
+                f'@keyframes rk{k}{{0%,{t0}%{{opacity:0}}{t0 + .1}%,100%{{opacity:1}}}}')
+        arow = A[i]
+        bcol = [B[0][j], B[1][j]]
+        val = C[i][j]
+        expr = f'{arow[0]}·{bcol[0]} + {arow[1]}·({bcol[1]}) = {val}'.replace('-', '−')
+        back += (f'<rect class="f4 h{k}" x="{xa - 4}" y="{y0 + i * ch}" width="{2 * cw + 8}" height="{ch}" rx="4"></rect>'
+                 f'<rect class="f1 h{k}" x="{xb + j * cw}" y="{y0 - 4}" width="{cw}" height="{2 * ch + 8}" rx="4"></rect>'
+                 f'<rect class="f3 h{k}" x="{xc + j * cw}" y="{y0 + i * ch}" width="{cw}" height="{ch}" rx="4"></rect>'
+                 f'<text class="t4 h{k}" x="150" y="128" text-anchor="middle">c{i + 1}{j + 1} = row {i + 1} · column {j + 1}</text>'
+                 f'<text class="lbl h{k}" x="150" y="148" text-anchor="middle">{expr}</text>'
+                 f'<text class="t3 r{k}" x="{cc(i, j)[0]:.1f}" y="{cc(i, j)[1] + 4:.1f}" text-anchor="middle">{str(val).replace("-", "−")}</text>')
+    mcard(deck, 'Matrix multiplication · row × column', 'Multiply A = [[2, 4], [3, 2]] and B = [[1, 3], [−2, 5]]. How is each entry of AB built?', base, back,
+          '<p>The (i, j) entry of AB is <b>row i of A</b> times <b>column j of B</b>, multiplied term by term and added: <b>cᵢⱼ = Σ aᵢₖ bₖⱼ</b>.</p>'
+          '<p>AB = [[2·1 + 4(−2), 2·3 + 4·5], [3·1 + 2(−2), 3·3 + 2·5]] = <b>[[−6, 26], [−1, 19]]</b> (Ex 3.2 Q1(iv)). Note BA = [[11, 10], [11, 2]] is different.</p>',
+          'Matrix product: row of A times column of B',
+          'Entry (i,j) of AB = sum over k of a_ik b_kj (row i of A dot column j of B); AB for A=[[2,4],[3,2]], B=[[1,3],[-2,5]] is [[-6,26],[-1,19]]',
+          css=css, vb='0 0 300 170', hint='Walk along a row of A and down a column of B.')
+
+
+def matmul_dims(deck):
+    cw = 14
+    def grid(x, y, r, c, cls='f0'):
+        return ''.join(f'<rect class="{cls}" x="{x + j * cw}" y="{y + i * cw}" width="{cw - 1}" height="{cw - 1}" rx="2"></rect>' for i in range(r) for j in range(c))
+    base = (grid(12, 46, 2, 3) + grid(92, 46, 3, 4) + grid(190, 46, 2, 4)
+            + '<text class="lbl" x="68" y="76" text-anchor="middle">×</text><text class="lbl" x="170" y="76" text-anchor="middle">=</text>'
+            + '<text class="lbl" x="33" y="36" text-anchor="middle">A: 2 × 3</text><text class="lbl" x="120" y="36" text-anchor="middle">B: 3 × 4</text>')
+    back = ('<rect class="f4 fx d2" x="44" y="24" width="14" height="16" rx="3"></rect><rect class="f4 fx d2" x="96" y="24" width="14" height="16" rx="3"></rect>'
+            '<path class="c4 fx d2" d="M52,40 V52 H103 V40" fill="none"></path>'
+            + grid(190, 46, 2, 4, 'f3').replace('class="f3"', 'class="f3 fx d3"')
+            + '<text class="t3 fx d3" x="218" y="36" text-anchor="middle">AB: 2 × 4</text>'
+            + '<text class="t4 fx d2" x="150" y="116" text-anchor="middle">inner numbers match (3 = 3): AB is defined</text>'
+            + '<text class="t3 fx d3" x="150" y="134" text-anchor="middle">outer numbers give the order: 2 × 4</text>'
+            + '<text class="t2 fx d4" x="150" y="168" text-anchor="middle">BA: (3 × 4)(2 × 3) → 4 ≠ 2, not defined</text>')
+    mcard(deck, 'Matrix multiplication · orders', 'A has order 2 × 3 and B has order 3 × 4. Is AB defined? Is BA? What is the order of the product?', base, back,
+          '<p><b>(m × n)(n × p) = (m × p)</b>: the inner numbers must match; the outer numbers give the order.</p>'
+          '<p>AB is 2 × 4. BA would need 4 = 2, so <b>BA is not defined</b>. Both AB and BA exist only if A is m × n and B is n × m; then AB is m × m and BA is n × n.</p>',
+          'Order of a matrix product: inner numbers match, outer numbers remain',
+          '(m x n)(n x p) = (m x p): number of columns of A must equal number of rows of B; AB may exist while BA does not',
+          vb='0 0 300 180', hint='Compare the columns of A with the rows of B.')
+
+
+def rotation_powers(deck):
+    P, h = eqplane(-1.5, 1.5, -1.5, 1.5, pad=(8, 8, 8, 8))
+    ox, oy = P.X(0), P.Y(0)
+    r = P.X(1) - ox
+    th = math.radians(30)
+    base = P.axes(labels=False) + f'<circle class="ghost" cx="{ox:.1f}" cy="{oy:.1f}" r="{r:.1f}"></circle>' + vec(P, 0, 0, 1, 0, 'c1') + P.text(1, 0, 'v = (1, 0)', 't1', dx=-2, dy=-8, anchor='end')
+    back = ''
+    cols = [('c2', 'A v'), ('c4', 'A² v'), ('c3', 'A³ v')]
+    for k, (cls, lab) in enumerate(cols):
+        a = -(k + 1) * th
+        back += vec(P, 0, 0, math.cos(a), math.sin(a), cls, f'fx d{k + 2}') + P.text(1.02 * math.cos(a), 1.02 * math.sin(a), lab, {'c2': 't2', 'c4': 't4', 'c3': 't3'}[cls] + f' fx d{k + 2}', dx=6, dy=4 + (8 if k else 0))
+    mcard(deck, 'Powers of a rotation matrix', 'A = [[cos θ, sin θ], [−sin θ, cos θ]] with θ = 30°. What does A do to the vector v = (1, 0)? What are A² and Aⁿ?', base, back,
+          '<p>A v = (cos θ, −sin θ): the vector is <b>rotated clockwise by θ</b>. Applying A twice rotates by 2θ, so <b>Aⁿ = [[cos nθ, sin nθ], [−sin nθ, cos nθ]]</b> (Example 23, proved by induction).</p>'
+          '<p>Check with the product formula: A·Aᵏ has entries cos θ cos kθ − sin θ sin kθ = cos (k + 1)θ and so on.</p>',
+          'Aⁿ for the rotation matrix is rotation by nθ',
+          'A = [[cos t, sin t],[-sin t, cos t]] rotates vectors clockwise by t; A^n = [[cos nt, sin nt],[-sin nt, cos nt]] (induction, Example 23)',
+          vb=f'0 0 300 {h}', hint='Follow the vector after each multiplication by A.')
+
+
+def sym_skew_grid(deck):
+    S = [[1, 7, 3], [7, 4, -5], [3, -5, 6]]
+    K = [[0, 2, -3], [-2, 0, 4], [3, -4, 0]]
+    cw, ch, y0 = 32, 28, 46
+    gs, cs = _mx(20, y0, S, cw, ch)
+    gk, ck = _mx(174, y0, K, cw, ch)
+    base = gs + gk + '<text class="lbl" x="68" y="26" text-anchor="middle">P</text><text class="lbl" x="222" y="26" text-anchor="middle">Q</text>'
+    back = ''
+    pairs = [((0, 1), 'f1'), ((0, 2), 'f2'), ((1, 2), 'f3')]
+    for (i, j), cls in pairs:
+        for (a, b) in [(i, j), (j, i)]:
+            for (x0, name) in [(20, 'S'), (174, 'K')]:
+                back += f'<rect class="{cls} fx d2" x="{x0 + b * cw}" y="{y0 + a * ch}" width="{cw}" height="{ch}" rx="4"></rect>'
+    back += ''.join(f'<rect class="f4 fx d3" x="{174 + i * cw}" y="{y0 + i * ch}" width="{cw}" height="{ch}" rx="4"></rect>' for i in range(3))
+    back += (f'<line class="guide fx d2" x1="20" y1="{y0}" x2="{20 + 3 * cw}" y2="{y0 + 3 * ch}"></line><line class="guide fx d2" x1="174" y1="{y0}" x2="{174 + 3 * cw}" y2="{y0 + 3 * ch}"></line>'
+             '<text class="t1 fx d2" x="68" y="150" text-anchor="middle">P′ = P: mirror equal</text><text class="t2 fx d3" x="222" y="150" text-anchor="middle">Q′ = −Q: mirror opposite</text>'
+             '<text class="t4 fx d3" x="222" y="168" text-anchor="middle">diagonal all 0</text>')
+    mcard(deck, 'Symmetric and skew-symmetric', 'Look at the entries of P and Q. Which one is symmetric and which is skew-symmetric? What pattern defines each?', base, back,
+          '<p><b>Symmetric</b> (P′ = P): aᵢⱼ = aⱼᵢ. Mirror the matrix in the main diagonal and nothing changes.</p>'
+          '<p><b>Skew-symmetric</b> (Q′ = −Q): aⱼᵢ = −aᵢⱼ. Mirrored entries are opposites, and since aᵢᵢ = −aᵢᵢ every <b>diagonal entry is 0</b>.</p>',
+          'Symmetric vs skew-symmetric: mirror in the diagonal',
+          'Symmetric: A^T = A, a_ij = a_ji. Skew-symmetric: A^T = -A, a_ji = -a_ij and the diagonal is zero',
+          vb='0 0 300 180', hint='Reflect each matrix in its main diagonal.')
+
+
+def inverse_2x2(deck):
+    base = (_mx(110, 30, [['a', 'b'], ['c', 'd']], 34, 28)[0] + '<text class="lbl" x="100" y="63" text-anchor="end">A =</text>')
+    res, _ = _mx(150, 128, [['d', '−b'], ['−c', 'a']], 38, 28)
+    back = ('<line class="c3 fx d2" x1="135" y1="54" x2="153" y2="69" marker-end="url(#pg)"></line><line class="c3 fx d2" x1="153" y1="60" x2="135" y2="45" marker-end="url(#pg)"></line>'
+            '<text class="t3 fx d2" x="190" y="52" text-anchor="start">swap a and d</text>'
+            '<text class="t2 fx d3" x="190" y="70" text-anchor="start">flip signs of b, c</text>'
+            + '<text class="lbl fx d4" x="140" y="163" text-anchor="end">A⁻¹ = 1/(ad − bc)</text>'
+            + f'<g class="fx d4">{res}</g>'
+            + '<text class="t4 fx d4" x="150" y="206" text-anchor="middle">needs ad − bc ≠ 0</text>')
+    mcard(deck, '2 × 2 inverse shortcut', 'Find the inverse of A = [[a, b], [c, d]] when ad − bc ≠ 0.', base, back,
+          '<p><b>A⁻¹ = (1/(ad − bc)) [[d, −b], [−c, a]]</b>: swap the diagonal, negate the other two entries, divide by ad − bc.</p>'
+          '<p>Example (the book’s A = [[2, 3], [1, 2]]): ad − bc = 1, so A⁻¹ = [[2, −3], [−1, 2]], and AA⁻¹ = I. If ad − bc = 0 there is no inverse. (The general method uses adjoints and determinants in Chapter 4.)</p>',
+          'Inverse of a 2 × 2 matrix',
+          'A^-1 = 1/(ad-bc) [[d,-b],[-c,a]]: swap diagonal, negate off-diagonal, divide by determinant; needs ad-bc != 0',
+          vb='0 0 300 216', hint='Swap the diagonal, flip the other two signs.')

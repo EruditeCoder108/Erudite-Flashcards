@@ -1,0 +1,1793 @@
+{
+  "version": 1,
+  "name": "Chapter 3: Matrices",
+  "className": "Class 12",
+  "description": "Order and types of matrices, equality, addition and scalar multiplication, matrix multiplication, transpose, symmetric and skew-symmetric matrices, invertible matrices, and exam-style problems.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Define a matrix.",
+      "definition": "An <span style=\"color:#3b82f6\">ordered rectangular array of numbers or functions</span>. The numbers are its elements (entries); horizontal lines are rows, vertical lines are columns",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is the order of a matrix? How many elements?",
+      "definition": "m rows and n columns: order <span style=\"color:#3b82f6\">m × n</span> (“m by n”), with <span style=\"color:#3b82f6\">mn</span> elements. Rows come first, then columns",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does aᵢⱼ mean?",
+      "definition": "The element in the <span style=\"color:#3b82f6\">i-th row and j-th column</span>. So the i-th row is (aᵢ₁, ..., aᵢₙ) and the j-th column is (a₁ⱼ, ..., aₘⱼ)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2: if a matrix has 8 elements, what orders are possible?",
+      "definition": "All pairs of natural numbers with product 8: <span style=\"color:#f08c00\">1 × 8, 8 × 1, 2 × 4, 4 × 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you find all possible orders for a matrix with N elements?",
+      "definition": "List the <span style=\"color:#3b82f6\">ordered factor pairs</span> (m, n) with mn = N. A prime N (like 13 or 5) gives only <span style=\"color:#f08c00\">1 × N and N × 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q1: for A = [[2, 5, 19, −7], [35, −2, 5/2, 12], [√3, 1, −5, 17]] find the order, number of elements, a₁₃, a₂₁, a₃₃, a₂₄, a₂₃.",
+      "definition": "Order <span style=\"color:#f08c00\">3 × 4</span>, <span style=\"color:#f08c00\">12</span> elements. a₁₃ = 19, a₂₁ = 35, a₃₃ = −5, a₂₄ = 12, a₂₃ = 5/2",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q2: possible orders for 24 elements? for 13 elements?",
+      "definition": "24: <span style=\"color:#f08c00\">1×24, 2×12, 3×8, 4×6, 6×4, 8×3, 12×2, 24×1</span>. 13 (prime): <span style=\"color:#f08c00\">1×13, 13×1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q3: possible orders for 18 elements? for 5 elements?",
+      "definition": "18: <span style=\"color:#f08c00\">1×18, 2×9, 3×6, 6×3, 9×2, 18×1</span>. 5: <span style=\"color:#f08c00\">1×5, 5×1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q4(i): build the 2 × 2 matrix with aᵢⱼ = (i + j)²/2.",
+      "definition": "a₁₁ = 2, a₁₂ = 9/2, a₂₁ = 9/2, a₂₂ = 8: <span style=\"color:#f08c00\">[[2, 9/2], [9/2, 8]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q4(ii),(iii): 2 × 2 with aᵢⱼ = i/j, and with aᵢⱼ = (i + 2j)²/2.",
+      "definition": "(ii) <span style=\"color:#f08c00\">[[1, 1/2], [2, 1]]</span>. (iii) a₁₁ = 9/2, a₁₂ = 25/2, a₂₁ = 8, a₂₂ = 18: <span style=\"color:#f08c00\">[[9/2, 25/2], [8, 18]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q5: build the 3 × 4 matrices with (i) aᵢⱼ = ½|−3i + j| and (ii) aᵢⱼ = 2i − j.",
+      "definition": "(i) rows: [1, 1/2, 0, 1/2], [5/2, 2, 3/2, 1], [4, 7/2, 3, 5/2]. (ii) rows: <span style=\"color:#f08c00\">[1, 0, −1, −2], [3, 2, 1, 0], [5, 4, 3, 2]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How are the vertices of a polygon written as a matrix?",
+      "definition": "Each vertex (x, y) is a row [x y] (or a column). ABCD with A(1,0), B(3,2), C(1,3), D(−1,2) is a <span style=\"color:#3b82f6\">4 × 2 matrix</span> with rows [1 0], [3 2], [1 3], [−1 2]. Transformations (rotation, reflection) are then matrix multiplications",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.2-matrix-and-order"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Types of matrices",
+      "definition": "Column matrix: only one column (m × 1); Row matrix: only one row (1 × n); Square matrix: rows = columns (n × n); diagonal a₁₁, a₂₂, …, aₙₙ; Diagonal matrix: square, aᵢⱼ = 0 for i ≠ j; Scalar matrix: diagonal with all diagonal entries equal (k); Identity matrix Iₙ: diagonal with all diagonal entries 1; Zero matrix O: all elements 0 (any order)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Types of matrices</p><h2>Define each type of matrix.</h2><table><tr><td>Column matrix</td><td class=\"q\">?</td></tr><tr><td>Row matrix</td><td class=\"q\">?</td></tr><tr><td>Square matrix</td><td class=\"q\">?</td></tr><tr><td>Diagonal matrix</td><td class=\"q\">?</td></tr><tr><td>Scalar matrix</td><td class=\"q\">?</td></tr><tr><td>Identity matrix Iₙ</td><td class=\"q\">?</td></tr><tr><td>Zero matrix O</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Types of matrices</p><h2>Define each type of matrix.</h2><table><tr><td>Column matrix</td><td class=\"a\">only one column (m × 1)</td></tr><tr><td>Row matrix</td><td class=\"a\">only one row (1 × n)</td></tr><tr><td>Square matrix</td><td class=\"a\">rows = columns (n × n); diagonal a₁₁, a₂₂, …, aₙₙ</td></tr><tr><td>Diagonal matrix</td><td class=\"a\">square, aᵢⱼ = 0 for i ≠ j</td></tr><tr><td>Scalar matrix</td><td class=\"a\">diagonal with all diagonal entries equal (k)</td></tr><tr><td>Identity matrix Iₙ</td><td class=\"a\">diagonal with all diagonal entries 1</td></tr><tr><td>Zero matrix O</td><td class=\"a\">all elements 0 (any order)</td></tr></table><p class=\"note\">Identity ⊂ scalar ⊂ diagonal ⊂ square</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How are identity, scalar and diagonal matrices related?",
+      "definition": "<span style=\"color:#3b82f6\">Identity ⊂ scalar ⊂ diagonal ⊂ square</span>. Every identity matrix is scalar (k = 1), every scalar matrix is diagonal, but a diagonal matrix like diag(1, 2) is not scalar",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is a zero matrix a square matrix? Is it a diagonal matrix?",
+      "definition": "A zero matrix can have any order. If it is square it is also <span style=\"color:#3b82f6\">diagonal and scalar</span> (k = 0), but not an identity matrix",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define equal matrices.",
+      "definition": "Same <span style=\"color:#3b82f6\">order</span> and <span style=\"color:#3b82f6\">aᵢⱼ = bᵢⱼ</span> for every position. [[2, 3], [0, 1]] ≠ [[2, 3, 0]] because the orders differ",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4: two equal 3 × 3 matrices give x + 3 = 0, z + 4 = 6, 2y − 7 = 3y − 2, a − 1 = −3, 0 = 2c + 2, b − 3 = 2b + 4. Solve.",
+      "definition": "Each equation has one unknown: <span style=\"color:#f08c00\">x = −3, z = 2, y = −5, a = −2, c = −1, b = −7</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: [[2a + b, a − 2b], [5c − d, 4c + 3d]] = [[4, −3], [11, 24]]. Find a, b, c, d.",
+      "definition": "Two systems: 2a + b = 4, a − 2b = −3 give <span style=\"color:#f08c00\">a = 1, b = 2</span>; 5c − d = 11, 4c + 3d = 24 give <span style=\"color:#f08c00\">c = 3, d = 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q6(i): [[4, 3], [x, 5]] = [[y, z], [1, 5]].",
+      "definition": "Equal entries: <span style=\"color:#f08c00\">y = 4, z = 3, x = 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q6(ii): [[x + y, 2], [5 + z, xy]] = [[6, 2], [5, 8]].",
+      "definition": "z = 0, x + y = 6, xy = 8: x, y are 2 and 4 in either order: <span style=\"color:#f08c00\">(x, y, z) = (2, 4, 0) or (4, 2, 0)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q6(iii): column (x + y + z, x + z, y + z) = (9, 5, 7).",
+      "definition": "Subtract: y = 9 − 5 = 4, x = 9 − 7 = 2, z = 3: <span style=\"color:#f08c00\">x = 2, y = 4, z = 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q7: [[a − b, 2a + c], [2a − b, 3c + d]] = [[−1, 5], [0, 13]].",
+      "definition": "a − b = −1 and 2a − b = 0 give a = 1, b = 2. Then 2 + c = 5 gives c = 3; 9 + d = 13 gives d = 4: <span style=\"color:#f08c00\">a = 1, b = 2, c = 3, d = 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q8: A = [aᵢⱼ]ₘₓₙ is a square matrix if (A) m < n (B) m > n (C) m = n (D) none",
+      "definition": "<span style=\"color:#22a35a\">(C) m = n</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q9: for which x, y are [[3x + 7, 5], [y + 1, 2 − 3x]] and [[0, y − 2], [8, 4]] equal?",
+      "definition": "x = −7/3 and y = 7 from the first row and first column, but then 2 − 3x = 9 ≠ 4. <span style=\"color:#f08c00\">Not possible</span> (B)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.1 Q10: number of 3 × 3 matrices with each entry 0 or 1?",
+      "definition": "Nine entries, two choices each: <span style=\"color:#f08c00\">2⁹ = 512</span> (D)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.3-types-of-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When can two matrices be added? How?",
+      "definition": "Only when they have the <span style=\"color:#3b82f6\">same order</span>. Add <span style=\"color:#3b82f6\">corresponding entries</span>: (A + B)ᵢⱼ = aᵢⱼ + bᵢⱼ",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Multiplication of a matrix by a scalar k?",
+      "definition": "<span style=\"color:#3b82f6\">kA = [k aᵢⱼ]</span>: multiply every element by k. −A = (−1)A, and A − B = A + (−1)B (same order needed)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Properties of matrix addition?",
+      "definition": "<span style=\"color:#3b82f6\">Commutative</span> A + B = B + A; <span style=\"color:#3b82f6\">associative</span> (A + B) + C = A + (B + C); additive identity <span style=\"color:#3b82f6\">O</span> (A + O = A); additive inverse <span style=\"color:#3b82f6\">−A</span> (A + (−A) = O)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Properties of scalar multiplication?",
+      "definition": "<span style=\"color:#3b82f6\">k(A + B) = kA + kB</span> and <span style=\"color:#3b82f6\">(k + l)A = kA + lA</span> (also k(lA) = (kl)A and 1·A = A)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9: X + Y = [[5, 2], [0, 9]] and X − Y = [[3, 6], [0, −1]]. Find X and Y.",
+      "definition": "Add: 2X = [[8, 8], [0, 8]], so X = <span style=\"color:#f08c00\">[[4, 4], [0, 4]]</span>. Subtract: 2Y = [[2, −4], [0, 10]], so Y = <span style=\"color:#f08c00\">[[1, −2], [0, 5]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: solve 2A + 3X = 5B for X.",
+      "definition": "3X = 5B − 2A, so <span style=\"color:#3b82f6\">X = (1/3)(5B − 2A)</span>. Treat matrix equations like algebra but never divide by a matrix; multiply by scalars only",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q1: A = [[2, 4], [3, 2]], B = [[1, 3], [−2, 5]], C = [[−2, 5], [3, 4]]. Find A + B, A − B, 3A − C.",
+      "definition": "A + B = <span style=\"color:#f08c00\">[[3, 7], [1, 7]]</span>, A − B = <span style=\"color:#f08c00\">[[1, 1], [5, −3]]</span>, 3A − C = [[6 + 2, 12 − 5], [9 − 3, 6 − 4]] = <span style=\"color:#f08c00\">[[8, 7], [6, 2]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q2(i),(ii): [[a, b], [−b, a]] + [[a, b], [b, a]] and [[a² + b², b² + c²], [a² + c², a² + b²]] + [[2ab, 2bc], [−2ac, −2ab]].",
+      "definition": "(i) <span style=\"color:#f08c00\">[[2a, 2b], [0, 2a]]</span>. (ii) <span style=\"color:#f08c00\">[[(a + b)², (b + c)²], [(a − c)², (a − b)²]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q2(iii),(iv): [[−1, 4, −6], [8, 5, 16], [2, 8, 5]] + [[12, 7, 6], [8, 0, 5], [3, 2, 4]] and the cos²/sin² matrices.",
+      "definition": "(iii) <span style=\"color:#f08c00\">[[11, 11, 0], [16, 5, 21], [5, 10, 9]]</span>. (iv) [[cos²x + sin²x, sin²x + cos²x], [same, same]] = <span style=\"color:#f08c00\">[[1, 1], [1, 1]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q4: A = [[1, 2, −3], [5, 0, 2], [1, −1, 1]], B = [[3, −1, 2], [4, 2, 5], [2, 0, 3]], C = [[4, 1, 2], [0, 3, 2], [1, −2, 3]]. Find A + B and B − C.",
+      "definition": "A + B = <span style=\"color:#f08c00\">[[4, 1, −1], [9, 2, 7], [3, −1, 4]]</span>, B − C = <span style=\"color:#f08c00\">[[−1, −2, 0], [4, −1, 3], [1, 2, 0]]</span>. Then A + (B − C) = (A + B) − C by associativity",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q5: A = [[2/3, 1, 5/3], [1/3, 2/3, 4/3], [7/3, 2, 2/3]], B = [[2/5, 3/5, 1], [1/5, 2/5, 4/5], [7/5, 6/5, 2/5]]. Compute 3A − 5B.",
+      "definition": "Each entry: 3aᵢⱼ − 5bᵢⱼ = 0 (for example 3·2/3 − 5·2/5 = 0): <span style=\"color:#f08c00\">the 3 × 3 zero matrix</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q6: simplify cos θ [[cos θ, sin θ], [−sin θ, cos θ]] + sin θ [[sin θ, −cos θ], [cos θ, sin θ]].",
+      "definition": "Top-left cos²θ + sin²θ = 1, top-right cosθ sinθ − sinθ cosθ = 0, and so on: <span style=\"color:#f08c00\">I = [[1, 0], [0, 1]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q7(i): X + Y = [[7, 0], [2, 5]] and X − Y = [[3, 0], [0, 3]]. Find X, Y.",
+      "definition": "X = ½(sum + difference) = <span style=\"color:#f08c00\">[[5, 0], [1, 4]]</span>, Y = ½(sum − difference) = <span style=\"color:#f08c00\">[[2, 0], [1, 1]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q7(ii): 2X + 3Y = [[2, 3], [4, 0]] and 3X + 2Y = [[2, −2], [−1, 5]]. Find X, Y.",
+      "definition": "Eliminate: X = (3Q − 2P)/5 and Y = (3P − 2Q)/5 where P, Q are the two right-hand sides. That gives <span style=\"color:#f08c00\">X = [[2/5, −12/5], [−11/5, 3]]</span> and <span style=\"color:#f08c00\">Y = [[2/5, 13/5], [14/5, −2]]</span>. Check: 2X + 3Y top-left = 4/5 + 6/5 = 2 ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q8: Y = [[3, 2], [1, 4]] and 2X + Y = [[1, 0], [−3, 2]]. Find X.",
+      "definition": "2X = [[1 − 3, 0 − 2], [−3 − 1, 2 − 4]] = [[−2, −2], [−4, −2]]: <span style=\"color:#f08c00\">X = [[−1, −1], [−2, −1]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q9: 2[[1, 3], [0, x]] + [[y, 0], [1, 2]] = [[5, 6], [1, 8]]. Find x, y.",
+      "definition": "LHS = [[2 + y, 6], [1, 2x + 2]]. So y = 3 and 2x + 2 = 8: <span style=\"color:#f08c00\">x = 3, y = 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q10: 2[[x, z], [y, t]] + 3[[1, −1], [0, 2]] = 3[[3, 5], [4, 6]]. Solve.",
+      "definition": "2x + 3 = 9, 2z − 3 = 15, 2y = 12, 2t + 6 = 18: <span style=\"color:#f08c00\">x = 3, y = 6, z = 9, t = 6</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q11: x[2, 3]ᵀ + y[−1, 1]ᵀ = [10, 5]ᵀ.",
+      "definition": "2x − y = 10 and 3x + y = 5. Add: 5x = 15: <span style=\"color:#f08c00\">x = 3, y = −4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q12: 3[[x, y], [z, w]] = [[x, 6], [−1, 2w]] + [[4, x + y], [z + w, 3]].",
+      "definition": "3x = x + 4, 3y = 6 + x + y, 3z = −1 + z + w, 3w = 2w + 3: <span style=\"color:#f08c00\">x = 2, y = 4, w = 3, z = 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-operations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is the product AB defined, and what is its order?",
+      "definition": "When <span style=\"color:#3b82f6\">columns of A = rows of B</span>. For A (m × n) and B (n × p): AB is <span style=\"color:#3b82f6\">m × p</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Order of a matrix product: inner numbers match, outer numbers remain",
+      "definition": "(m x n)(n x p) = (m x p): number of columns of A must equal number of rows of B; AB may exist while BA does not",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Matrix multiplication · orders</p><h2>A has order 2 × 3 and B has order 3 × 4. Is AB defined? Is BA? What is the order of the product?</h2><svg viewBox=\"0 0 300 180\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f0\" x=\"12\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"26\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"40\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"12\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"26\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"40\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"92\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"106\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"120\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"134\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"92\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"106\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"120\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"134\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"92\" y=\"74\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"106\" y=\"74\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"120\" y=\"74\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"134\" y=\"74\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"190\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"204\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"218\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"232\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"190\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"204\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"218\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"232\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><text class=\"lbl\" x=\"68\" y=\"76\" text-anchor=\"middle\">×</text><text class=\"lbl\" x=\"170\" y=\"76\" text-anchor=\"middle\">=</text><text class=\"lbl\" x=\"33\" y=\"36\" text-anchor=\"middle\">A: 2 × 3</text><text class=\"lbl\" x=\"120\" y=\"36\" text-anchor=\"middle\">B: 3 × 4</text></svg><p class=\"hint\">Compare the columns of A with the rows of B.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Matrix multiplication · orders</p><h2>A has order 2 × 3 and B has order 3 × 4. Is AB defined? Is BA? What is the order of the product?</h2><svg viewBox=\"0 0 300 180\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f0\" x=\"12\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"26\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"40\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"12\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"26\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"40\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"92\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"106\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"120\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"134\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"92\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"106\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"120\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"134\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"92\" y=\"74\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"106\" y=\"74\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"120\" y=\"74\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"134\" y=\"74\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"190\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"204\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"218\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"232\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"190\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"204\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"218\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f0\" x=\"232\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><text class=\"lbl\" x=\"68\" y=\"76\" text-anchor=\"middle\">×</text><text class=\"lbl\" x=\"170\" y=\"76\" text-anchor=\"middle\">=</text><text class=\"lbl\" x=\"33\" y=\"36\" text-anchor=\"middle\">A: 2 × 3</text><text class=\"lbl\" x=\"120\" y=\"36\" text-anchor=\"middle\">B: 3 × 4</text><rect class=\"f4 fx d2\" x=\"44\" y=\"24\" width=\"14\" height=\"16\" rx=\"3\"></rect><rect class=\"f4 fx d2\" x=\"96\" y=\"24\" width=\"14\" height=\"16\" rx=\"3\"></rect><path class=\"c4 fx d2\" d=\"M52,40 V52 H103 V40\" fill=\"none\"></path><rect class=\"f3 fx d3\" x=\"190\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f3 fx d3\" x=\"204\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f3 fx d3\" x=\"218\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f3 fx d3\" x=\"232\" y=\"46\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f3 fx d3\" x=\"190\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f3 fx d3\" x=\"204\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f3 fx d3\" x=\"218\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><rect class=\"f3 fx d3\" x=\"232\" y=\"60\" width=\"13\" height=\"13\" rx=\"2\"></rect><text class=\"t3 fx d3\" x=\"218\" y=\"36\" text-anchor=\"middle\">AB: 2 × 4</text><text class=\"t4 fx d2\" x=\"150\" y=\"116\" text-anchor=\"middle\">inner numbers match (3 = 3): AB is defined</text><text class=\"t3 fx d3\" x=\"150\" y=\"134\" text-anchor=\"middle\">outer numbers give the order: 2 × 4</text><text class=\"t2 fx d4\" x=\"150\" y=\"168\" text-anchor=\"middle\">BA: (3 × 4)(2 × 3) → 4 ≠ 2, not defined</text></svg><div class=\"eq fx d5\"><p><b>(m × n)(n × p) = (m × p)</b>: the inner numbers must match; the outer numbers give the order.</p><p>AB is 2 × 4. BA would need 4 = 2, so <b>BA is not defined</b>. Both AB and BA exist only if A is m × n and B is n × m; then AB is m × m and BA is n × n.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Matrix product: row of A times column of B",
+      "definition": "Entry (i,j) of AB = sum over k of a_ik b_kj (row i of A dot column j of B); AB for A=[[2,4],[3,2]], B=[[1,3],[-2,5]] is [[-6,26],[-1,19]]",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Matrix multiplication · row × column</p><h2>Multiply A = [[2, 4], [3, 2]] and B = [[1, 3], [−2, 5]]. How is each entry of AB built?</h2><svg viewBox=\"0 0 300 170\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><path class=\"c0\" d=\"M22,40 H16 V100 H22\"></path><path class=\"c0\" d=\"M74,40 H80 V100 H74\"></path><text class=\"lbl\" x=\"32.0\" y=\"61.0\" text-anchor=\"middle\">2</text><text class=\"lbl\" x=\"64.0\" y=\"61.0\" text-anchor=\"middle\">4</text><text class=\"lbl\" x=\"32.0\" y=\"87.0\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"64.0\" y=\"87.0\" text-anchor=\"middle\">2</text><path class=\"c0\" d=\"M132,40 H126 V100 H132\"></path><path class=\"c0\" d=\"M184,40 H190 V100 H184\"></path><text class=\"lbl\" x=\"142.0\" y=\"61.0\" text-anchor=\"middle\">1</text><text class=\"lbl\" x=\"174.0\" y=\"61.0\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"142.0\" y=\"87.0\" text-anchor=\"middle\">−2</text><text class=\"lbl\" x=\"174.0\" y=\"87.0\" text-anchor=\"middle\">5</text><path class=\"c0\" d=\"M242,40 H236 V100 H242\"></path><path class=\"c0\" d=\"M294,40 H300 V100 H294\"></path><text class=\"lbl\" x=\"98\" y=\"74\" text-anchor=\"middle\">×</text><text class=\"lbl\" x=\"208\" y=\"74\" text-anchor=\"middle\">=</text><text class=\"sm\" x=\"48\" y=\"24\" text-anchor=\"middle\">A (2 × 2)</text><text class=\"sm\" x=\"158\" y=\"24\" text-anchor=\"middle\">B (2 × 2)</text><text class=\"sm\" x=\"268\" y=\"24\" text-anchor=\"middle\">AB</text></svg><p class=\"hint\">Walk along a row of A and down a column of B.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Matrix multiplication · row × column</p><h2>Multiply A = [[2, 4], [3, 2]] and B = [[1, 3], [−2, 5]]. How is each entry of AB built?</h2><svg viewBox=\"0 0 300 170\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><path class=\"c0\" d=\"M22,40 H16 V100 H22\"></path><path class=\"c0\" d=\"M74,40 H80 V100 H74\"></path><text class=\"lbl\" x=\"32.0\" y=\"61.0\" text-anchor=\"middle\">2</text><text class=\"lbl\" x=\"64.0\" y=\"61.0\" text-anchor=\"middle\">4</text><text class=\"lbl\" x=\"32.0\" y=\"87.0\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"64.0\" y=\"87.0\" text-anchor=\"middle\">2</text><path class=\"c0\" d=\"M132,40 H126 V100 H132\"></path><path class=\"c0\" d=\"M184,40 H190 V100 H184\"></path><text class=\"lbl\" x=\"142.0\" y=\"61.0\" text-anchor=\"middle\">1</text><text class=\"lbl\" x=\"174.0\" y=\"61.0\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"142.0\" y=\"87.0\" text-anchor=\"middle\">−2</text><text class=\"lbl\" x=\"174.0\" y=\"87.0\" text-anchor=\"middle\">5</text><path class=\"c0\" d=\"M242,40 H236 V100 H242\"></path><path class=\"c0\" d=\"M294,40 H300 V100 H294\"></path><text class=\"lbl\" x=\"98\" y=\"74\" text-anchor=\"middle\">×</text><text class=\"lbl\" x=\"208\" y=\"74\" text-anchor=\"middle\">=</text><text class=\"sm\" x=\"48\" y=\"24\" text-anchor=\"middle\">A (2 × 2)</text><text class=\"sm\" x=\"158\" y=\"24\" text-anchor=\"middle\">B (2 × 2)</text><text class=\"sm\" x=\"268\" y=\"24\" text-anchor=\"middle\">AB</text><rect class=\"f4 h0\" x=\"12\" y=\"44\" width=\"72\" height=\"26\" rx=\"4\"></rect><rect class=\"f1 h0\" x=\"126\" y=\"40\" width=\"32\" height=\"60\" rx=\"4\"></rect><rect class=\"f3 h0\" x=\"236\" y=\"44\" width=\"32\" height=\"26\" rx=\"4\"></rect><text class=\"t4 h0\" x=\"150\" y=\"128\" text-anchor=\"middle\">c11 = row 1 · column 1</text><text class=\"lbl h0\" x=\"150\" y=\"148\" text-anchor=\"middle\">2·1 + 4·(−2) = −6</text><text class=\"t3 r0\" x=\"252.0\" y=\"61.0\" text-anchor=\"middle\">−6</text><rect class=\"f4 h1\" x=\"12\" y=\"44\" width=\"72\" height=\"26\" rx=\"4\"></rect><rect class=\"f1 h1\" x=\"158\" y=\"40\" width=\"32\" height=\"60\" rx=\"4\"></rect><rect class=\"f3 h1\" x=\"268\" y=\"44\" width=\"32\" height=\"26\" rx=\"4\"></rect><text class=\"t4 h1\" x=\"150\" y=\"128\" text-anchor=\"middle\">c12 = row 1 · column 2</text><text class=\"lbl h1\" x=\"150\" y=\"148\" text-anchor=\"middle\">2·3 + 4·(5) = 26</text><text class=\"t3 r1\" x=\"284.0\" y=\"61.0\" text-anchor=\"middle\">26</text><rect class=\"f4 h2\" x=\"12\" y=\"70\" width=\"72\" height=\"26\" rx=\"4\"></rect><rect class=\"f1 h2\" x=\"126\" y=\"40\" width=\"32\" height=\"60\" rx=\"4\"></rect><rect class=\"f3 h2\" x=\"236\" y=\"70\" width=\"32\" height=\"26\" rx=\"4\"></rect><text class=\"t4 h2\" x=\"150\" y=\"128\" text-anchor=\"middle\">c21 = row 2 · column 1</text><text class=\"lbl h2\" x=\"150\" y=\"148\" text-anchor=\"middle\">3·1 + 2·(−2) = −1</text><text class=\"t3 r2\" x=\"252.0\" y=\"87.0\" text-anchor=\"middle\">−1</text><rect class=\"f4 h3\" x=\"12\" y=\"70\" width=\"72\" height=\"26\" rx=\"4\"></rect><rect class=\"f1 h3\" x=\"158\" y=\"40\" width=\"32\" height=\"60\" rx=\"4\"></rect><rect class=\"f3 h3\" x=\"268\" y=\"70\" width=\"32\" height=\"26\" rx=\"4\"></rect><text class=\"t4 h3\" x=\"150\" y=\"128\" text-anchor=\"middle\">c22 = row 2 · column 2</text><text class=\"lbl h3\" x=\"150\" y=\"148\" text-anchor=\"middle\">3·3 + 2·(5) = 19</text><text class=\"t3 r3\" x=\"284.0\" y=\"87.0\" text-anchor=\"middle\">19</text></svg><div class=\"eq fx d5\"><p>The (i, j) entry of AB is <b>row i of A</b> times <b>column j of B</b>, multiplied term by term and added: <b>cᵢⱼ = Σ aᵢₖ bₖⱼ</b>.</p><p>AB = [[2·1 + 4(−2), 2·3 + 4·5], [3·1 + 2(−2), 3·3 + 2·5]] = <b>[[−6, 26], [−1, 19]]</b> (Ex 3.2 Q1(iv)). Note BA = [[11, 10], [11, 2]] is different.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .h0{opacity:0;animation:hk0 12s linear infinite}@keyframes hk0{0%,0%{opacity:0}0.1%,19.9%{opacity:1}20.0%,100%{opacity:0}}.pp .r0{opacity:0;animation:rk0 12s linear infinite}@keyframes rk0{0%,0%{opacity:0}0.1%,100%{opacity:1}}.pp .h1{opacity:0;animation:hk1 12s linear infinite}@keyframes hk1{0%,20%{opacity:0}20.1%,39.9%{opacity:1}40.0%,100%{opacity:0}}.pp .r1{opacity:0;animation:rk1 12s linear infinite}@keyframes rk1{0%,20%{opacity:0}20.1%,100%{opacity:1}}.pp .h2{opacity:0;animation:hk2 12s linear infinite}@keyframes hk2{0%,40%{opacity:0}40.1%,59.9%{opacity:1}60.0%,100%{opacity:0}}.pp .r2{opacity:0;animation:rk2 12s linear infinite}@keyframes rk2{0%,40%{opacity:0}40.1%,100%{opacity:1}}.pp .h3{opacity:0;animation:hk3 12s linear infinite}@keyframes hk3{0%,60%{opacity:0}60.1%,79.9%{opacity:1}80.0%,100%{opacity:0}}.pp .r3{opacity:0;animation:rk3 12s linear infinite}@keyframes rk3{0%,60%{opacity:0}60.1%,100%{opacity:1}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .h0{opacity:0;animation:hk0 12s linear infinite}@keyframes hk0{0%,0%{opacity:0}0.1%,19.9%{opacity:1}20.0%,100%{opacity:0}}.pp .r0{opacity:0;animation:rk0 12s linear infinite}@keyframes rk0{0%,0%{opacity:0}0.1%,100%{opacity:1}}.pp .h1{opacity:0;animation:hk1 12s linear infinite}@keyframes hk1{0%,20%{opacity:0}20.1%,39.9%{opacity:1}40.0%,100%{opacity:0}}.pp .r1{opacity:0;animation:rk1 12s linear infinite}@keyframes rk1{0%,20%{opacity:0}20.1%,100%{opacity:1}}.pp .h2{opacity:0;animation:hk2 12s linear infinite}@keyframes hk2{0%,40%{opacity:0}40.1%,59.9%{opacity:1}60.0%,100%{opacity:0}}.pp .r2{opacity:0;animation:rk2 12s linear infinite}@keyframes rk2{0%,40%{opacity:0}40.1%,100%{opacity:1}}.pp .h3{opacity:0;animation:hk3 12s linear infinite}@keyframes hk3{0%,60%{opacity:0}60.1%,79.9%{opacity:1}80.0%,100%{opacity:0}}.pp .r3{opacity:0;animation:rk3 12s linear infinite}@keyframes rk3{0%,60%{opacity:0}60.1%,100%{opacity:1}}"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Formula for the (i, k) entry of AB?",
+      "definition": "<span style=\"color:#3b82f6\">cᵢₖ = aᵢ₁b₁ₖ + aᵢ₂b₂ₖ + ... + aᵢₙbₙₖ = Σⱼ aᵢⱼ bⱼₖ</span>: row i of A dotted with column k of B",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12: A = [[6, 9], [2, 3]], B = [[2, 6, 0], [7, 9, 8]]. Find AB. Is BA defined?",
+      "definition": "AB is 2 × 3: <span style=\"color:#f08c00\">[[75, 117, 72], [25, 39, 24]]</span>. BA: B has 3 columns but A has 2 rows: <span style=\"color:#e5484d\">not defined</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If AB is defined, is BA defined? When are both defined?",
+      "definition": "<span style=\"color:#e5484d\">Not necessarily</span>. For A (m × n), B (k × l): both AB and BA exist iff n = k and l = m. For square matrices of the same order both always exist",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is matrix multiplication commutative?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: AB ≠ BA in general (they may even have different orders). Example 14: A = [[1, 0], [0, −1]], B = [[0, 1], [1, 0]] give AB = [[0, 1], [−1, 0]] but BA = [[0, −1], [1, 0]]",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is AB = BA guaranteed?",
+      "definition": "Diagonal matrices of the same order commute. Also A commutes with <span style=\"color:#3b82f6\">I, O, and any scalar matrix kI</span>, with itself and its powers, and with polynomials in A",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 15: A = [[0, −1], [0, 2]], B = [[3, 5], [0, 0]]. Find AB. What does it show?",
+      "definition": "AB = <span style=\"color:#f08c00\">O</span>. So <span style=\"color:#e5484d\">AB = O does not imply A = O or B = O</span> (real numbers behave differently)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: does AB = AC imply B = C?",
+      "definition": "<span style=\"color:#e5484d\">No</span> (no cancellation law). A(B − C) = O does not force B = C when A ≠ O. Example: A = [[1, 1], [1, 1]], B = [[1, 0], [0, 1]], C = [[0, 1], [1, 0]] give AB = AC",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Properties of matrix multiplication?",
+      "definition": "<span style=\"color:#3b82f6\">Associative</span> (AB)C = A(BC); <span style=\"color:#3b82f6\">distributive</span> A(B + C) = AB + AC and (A + B)C = AC + BC; <span style=\"color:#3b82f6\">identity</span> IA = AI = A; but <span style=\"color:#e5484d\">not commutative</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: (A + B)² = A² + 2AB + B²?",
+      "definition": "<span style=\"color:#e5484d\">Not in general</span>. (A + B)² = A² + AB + BA + B², and AB ≠ BA. True only when AB = BA. Likewise (AB)² ≠ A²B² in general and A² − B² ≠ (A − B)(A + B)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 19: cost per contact A = [40, 100, 50]ᵀ paise; contacts X: [1000, 500, 5000], Y: [3000, 1000, 10000]. Total cost for each city?",
+      "definition": "BA = X: 40 000 + 50 000 + 250 000 = <span style=\"color:#f08c00\">340 000</span> paise; Y: 120 000 + 100 000 + 500 000 = <span style=\"color:#f08c00\">720 000</span> paise, that is <span style=\"color:#f08c00\">₹3400 and ₹7200</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 18: A = [[1, 2, 3], [3, −2, 1], [4, 2, 1]]. Show A³ − 23A − 40I = O.",
+      "definition": "A² = [[19, 4, 8], [1, 12, 8], [14, 6, 15]], A³ = [[63, 46, 69], [69, −6, 23], [92, 46, 63]]. Then A³ − 23A − 40I = O entry by entry. (Cayley–Hamilton: a matrix satisfies its own characteristic equation)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q1(iv),(v): AB and BA for A = [[2, 4], [3, 2]], B = [[1, 3], [−2, 5]].",
+      "definition": "AB = <span style=\"color:#f08c00\">[[−6, 26], [−1, 19]]</span> and BA = <span style=\"color:#f08c00\">[[11, 10], [11, 2]]</span>. Different, so AB ≠ BA",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q3(i): [[a, b], [−b, a]] [[a, −b], [b, a]].",
+      "definition": "Top-left a² + b², top-right −ab + ab = 0, bottom-left −ab + ab = 0, bottom-right b² + a²: <span style=\"color:#f08c00\">(a² + b²) I</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q3(ii): the column [1, 2, 3]ᵀ times the row [2, 3, 4].",
+      "definition": "A 3 × 1 times a 1 × 3 gives a 3 × 3 (outer product): <span style=\"color:#f08c00\">[[2, 3, 4], [4, 6, 8], [6, 9, 12]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q3(iii): [[1, −2], [2, 3]] [[1, 2, 3], [2, 3, 1]].",
+      "definition": "2 × 2 by 2 × 3 is 2 × 3: <span style=\"color:#f08c00\">[[−3, −4, 1], [8, 13, 9]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q3(iv): [[2, 3, 4], [3, 4, 5], [4, 5, 6]] [[1, −3, 5], [0, 2, 4], [3, 0, 5]].",
+      "definition": "<span style=\"color:#f08c00\">[[14, 0, 42], [18, −1, 56], [22, −2, 70]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q3(v): [[2, 1], [3, 2], [−1, 1]] [[1, 0, 1], [−1, 2, 1]].",
+      "definition": "3 × 2 by 2 × 3 is 3 × 3: <span style=\"color:#f08c00\">[[1, 2, 3], [1, 4, 5], [−2, 2, 0]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q3(vi): [[3, −1, 3], [−1, 0, 2]] [[2, −3], [1, 0], [3, 1]].",
+      "definition": "2 × 3 by 3 × 2 is 2 × 2: <span style=\"color:#f08c00\">[[14, −6], [4, 5]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q13: F(x) = [[cos x, −sin x, 0], [sin x, cos x, 0], [0, 0, 1]]. Show F(x)F(y) = F(x + y).",
+      "definition": "Top-left: cos x cos y − sin x sin y = cos(x + y); top-right: −cos x sin y − sin x cos y = −sin(x + y); and so on. <span style=\"color:#22a35a\">Rotations about the z-axis compose by adding angles</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q14(i): show [[5, −1], [6, 7]][[2, 1], [3, 4]] ≠ [[2, 1], [3, 4]][[5, −1], [6, 7]].",
+      "definition": "Left: [[7, 1], [33, 34]]. Right: [[16, 5], [39, 25]]. <span style=\"color:#e5484d\">Different</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q14(ii): the 3 × 3 non-commutativity example.",
+      "definition": "One order gives [[5, 8, 14], [0, −1, 1], [−1, 0, 1]], the other [[−1, −1, −3], [1, 0, 0], [6, 11, 6]]: <span style=\"color:#e5484d\">not equal</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q15: A = [[2, 0, 1], [2, 1, 3], [1, −1, 0]]. Find A² − 5A + 6I.",
+      "definition": "A² = [[5, −1, 2], [9, −2, 5], [0, −1, −2]]. Then A² − 5A + 6I = <span style=\"color:#f08c00\">[[1, −1, −3], [−1, −1, −10], [−5, 4, 4]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q16: A = [[1, 0, 2], [0, 2, 1], [2, 0, 3]]. Prove A³ − 6A² + 7A + 2I = O.",
+      "definition": "Compute A² and A³, then combine entry by entry: every entry cancels to 0. <span style=\"color:#22a35a\">✓</span> (Cayley–Hamilton again)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q17: A = [[3, −2], [4, −2]]. Find k with A² = kA − 2I.",
+      "definition": "A² = [[1, −2], [4, −4]] and kA − 2I = [[3k − 2, −2k], [4k, −2k − 2]]. Then k = 1 fits every entry: <span style=\"color:#f08c00\">k = 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q18: A = [[0, −tan(α/2)], [tan(α/2), 0]]. Show I + A = (I − A)[[cos α, −sin α], [sin α, cos α]].",
+      "definition": "With t = tan(α/2): cos α = (1 − t²)/(1 + t²), sin α = 2t/(1 + t²). Multiply out (I − A)(rotation) = [[1, t], [−t, 1]] · [[cos α, −sin α], [sin α, cos α]] and simplify to [[1, −t], [t, 1]] = I + A. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q19: ₹30 000 is split between bonds paying 5% and 7%. How much in each to earn (a) ₹1800 (b) ₹2000?",
+      "definition": "Let x and 30 000 − x: 0.05x + 0.07(30 000 − x) = interest. (a) 2100 − 0.02x = 1800 gives <span style=\"color:#f08c00\">₹15 000 and ₹15 000</span>. (b) 2100 − 0.02x = 2000 gives <span style=\"color:#f08c00\">₹5 000 and ₹25 000</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q20: 10 dozen chemistry books at ₹80, 8 dozen physics at ₹60, 10 dozen economics at ₹40. Total receipts?",
+      "definition": "Quantities (120, 96, 120) times prices (80, 60, 40): 9600 + 5760 + 4800 = <span style=\"color:#f08c00\">₹20 160</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q21: X is 2 × n, Y is 3 × k, Z is 2 × p, W is n × 3, P is p × k. When is PY + WY defined?",
+      "definition": "PY = (p × k)(3 × k) needs k = 3 and then has order p × 3. WY = (n × 3)(3 × k) has order n × 3. To add them the orders must agree: p = n. <span style=\"color:#22a35a\">(A) k = 3, p = n</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.2 Q22: if n = p, the order of 7X − 5Z is (A) p × 2 (B) 2 × n (C) n × 3 (D) p × n",
+      "definition": "X is 2 × n and Z is 2 × p = 2 × n, so the combination is <span style=\"color:#22a35a\">(B) 2 × n</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.4-exercise-3-2-products"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the transpose of a matrix.",
+      "definition": "<span style=\"color:#3b82f6\">A′ (or Aᵀ)</span>: swap rows and columns. If A is m × n then A′ is n × m and (A′)ᵢⱼ = aⱼᵢ",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.5-transpose"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Properties of the transpose?",
+      "definition": "<span style=\"color:#3b82f6\">(A′)′ = A</span>, <span style=\"color:#3b82f6\">(kA)′ = kA′</span>, <span style=\"color:#3b82f6\">(A + B)′ = A′ + B′</span>, <span style=\"color:#3b82f6\">(AB)′ = B′A′</span> (order reverses, like socks and shoes)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.5-transpose"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: (AB)′ = A′B′?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. It is <span style=\"color:#3b82f6\">B′A′</span>. A′B′ may not even be defined: A (2 × 3), B (3 × 4): AB′s transpose is 4 × 2 = (4 × 3)(3 × 2) = B′A′",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.5-transpose"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q1: transposes of the column [5, 1/2, −1]ᵀ, of [[1, −1], [2, 3]] and of [[−1, 5, 6], [√3, 5, 6], [2, 3, −1]].",
+      "definition": "(i) the row <span style=\"color:#f08c00\">[5, 1/2, −1]</span>. (ii) <span style=\"color:#f08c00\">[[1, 2], [−1, 3]]</span>. (iii) <span style=\"color:#f08c00\">[[−1, √3, 2], [5, 5, 3], [6, 6, −1]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.5-transpose"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q4: A′ = [[−2, 3], [1, 2]] and B = [[−1, 0], [1, 2]]. Find (A + 2B)′.",
+      "definition": "A = [[−2, 1], [3, 2]]; A + 2B = [[−4, 1], [5, 6]]; transpose <span style=\"color:#f08c00\">[[−4, 5], [1, 6]]</span>. Or use (A + 2B)′ = A′ + 2B′",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.5-transpose"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q5(i): A = [1, −4, 3]ᵀ, B = [−1, 2, 1]. Verify (AB)′ = B′A′.",
+      "definition": "AB = [[−1, 2, 1], [4, −8, −4], [−3, 6, 3]] (3 × 3); its transpose equals B′A′ = the column [−1, 2, 1]ᵀ times the row [1, −4, 3]. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.5-transpose"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q6: A = [[cos α, sin α], [−sin α, cos α]]. Verify A′A = I.",
+      "definition": "A′A = [[cos²α + sin²α, 0], [0, sin²α + cos²α]] = <span style=\"color:#f08c00\">I</span> (A is an orthogonal / rotation matrix: A′ = A⁻¹)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.5-transpose"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define symmetric and skew-symmetric matrices.",
+      "definition": "<span style=\"color:#3b82f6\">Symmetric</span>: A′ = A (aᵢⱼ = aⱼᵢ). <span style=\"color:#3b82f6\">Skew-symmetric</span>: A′ = −A (aⱼᵢ = −aᵢⱼ). Both must be square",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Symmetric vs skew-symmetric: mirror in the diagonal",
+      "definition": "Symmetric: A^T = A, a_ij = a_ji. Skew-symmetric: A^T = -A, a_ji = -a_ij and the diagonal is zero",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Symmetric and skew-symmetric</p><h2>Look at the entries of P and Q. Which one is symmetric and which is skew-symmetric? What pattern defines each?</h2><svg viewBox=\"0 0 300 180\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><path class=\"c0\" d=\"M26,42 H20 V134 H26\"></path><path class=\"c0\" d=\"M110,42 H116 V134 H110\"></path><text class=\"lbl\" x=\"36.0\" y=\"64.0\" text-anchor=\"middle\">1</text><text class=\"lbl\" x=\"68.0\" y=\"64.0\" text-anchor=\"middle\">7</text><text class=\"lbl\" x=\"100.0\" y=\"64.0\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"36.0\" y=\"92.0\" text-anchor=\"middle\">7</text><text class=\"lbl\" x=\"68.0\" y=\"92.0\" text-anchor=\"middle\">4</text><text class=\"lbl\" x=\"100.0\" y=\"92.0\" text-anchor=\"middle\">−5</text><text class=\"lbl\" x=\"36.0\" y=\"120.0\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"68.0\" y=\"120.0\" text-anchor=\"middle\">−5</text><text class=\"lbl\" x=\"100.0\" y=\"120.0\" text-anchor=\"middle\">6</text><path class=\"c0\" d=\"M180,42 H174 V134 H180\"></path><path class=\"c0\" d=\"M264,42 H270 V134 H264\"></path><text class=\"lbl\" x=\"190.0\" y=\"64.0\" text-anchor=\"middle\">0</text><text class=\"lbl\" x=\"222.0\" y=\"64.0\" text-anchor=\"middle\">2</text><text class=\"lbl\" x=\"254.0\" y=\"64.0\" text-anchor=\"middle\">−3</text><text class=\"lbl\" x=\"190.0\" y=\"92.0\" text-anchor=\"middle\">−2</text><text class=\"lbl\" x=\"222.0\" y=\"92.0\" text-anchor=\"middle\">0</text><text class=\"lbl\" x=\"254.0\" y=\"92.0\" text-anchor=\"middle\">4</text><text class=\"lbl\" x=\"190.0\" y=\"120.0\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"222.0\" y=\"120.0\" text-anchor=\"middle\">−4</text><text class=\"lbl\" x=\"254.0\" y=\"120.0\" text-anchor=\"middle\">0</text><text class=\"lbl\" x=\"68\" y=\"26\" text-anchor=\"middle\">P</text><text class=\"lbl\" x=\"222\" y=\"26\" text-anchor=\"middle\">Q</text></svg><p class=\"hint\">Reflect each matrix in its main diagonal.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Symmetric and skew-symmetric</p><h2>Look at the entries of P and Q. Which one is symmetric and which is skew-symmetric? What pattern defines each?</h2><svg viewBox=\"0 0 300 180\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><path class=\"c0\" d=\"M26,42 H20 V134 H26\"></path><path class=\"c0\" d=\"M110,42 H116 V134 H110\"></path><text class=\"lbl\" x=\"36.0\" y=\"64.0\" text-anchor=\"middle\">1</text><text class=\"lbl\" x=\"68.0\" y=\"64.0\" text-anchor=\"middle\">7</text><text class=\"lbl\" x=\"100.0\" y=\"64.0\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"36.0\" y=\"92.0\" text-anchor=\"middle\">7</text><text class=\"lbl\" x=\"68.0\" y=\"92.0\" text-anchor=\"middle\">4</text><text class=\"lbl\" x=\"100.0\" y=\"92.0\" text-anchor=\"middle\">−5</text><text class=\"lbl\" x=\"36.0\" y=\"120.0\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"68.0\" y=\"120.0\" text-anchor=\"middle\">−5</text><text class=\"lbl\" x=\"100.0\" y=\"120.0\" text-anchor=\"middle\">6</text><path class=\"c0\" d=\"M180,42 H174 V134 H180\"></path><path class=\"c0\" d=\"M264,42 H270 V134 H264\"></path><text class=\"lbl\" x=\"190.0\" y=\"64.0\" text-anchor=\"middle\">0</text><text class=\"lbl\" x=\"222.0\" y=\"64.0\" text-anchor=\"middle\">2</text><text class=\"lbl\" x=\"254.0\" y=\"64.0\" text-anchor=\"middle\">−3</text><text class=\"lbl\" x=\"190.0\" y=\"92.0\" text-anchor=\"middle\">−2</text><text class=\"lbl\" x=\"222.0\" y=\"92.0\" text-anchor=\"middle\">0</text><text class=\"lbl\" x=\"254.0\" y=\"92.0\" text-anchor=\"middle\">4</text><text class=\"lbl\" x=\"190.0\" y=\"120.0\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"222.0\" y=\"120.0\" text-anchor=\"middle\">−4</text><text class=\"lbl\" x=\"254.0\" y=\"120.0\" text-anchor=\"middle\">0</text><text class=\"lbl\" x=\"68\" y=\"26\" text-anchor=\"middle\">P</text><text class=\"lbl\" x=\"222\" y=\"26\" text-anchor=\"middle\">Q</text><rect class=\"f1 fx d2\" x=\"52\" y=\"46\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f1 fx d2\" x=\"206\" y=\"46\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f1 fx d2\" x=\"20\" y=\"74\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f1 fx d2\" x=\"174\" y=\"74\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f2 fx d2\" x=\"84\" y=\"46\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f2 fx d2\" x=\"238\" y=\"46\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f2 fx d2\" x=\"20\" y=\"102\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f2 fx d2\" x=\"174\" y=\"102\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f3 fx d2\" x=\"84\" y=\"74\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f3 fx d2\" x=\"238\" y=\"74\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f3 fx d2\" x=\"52\" y=\"102\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f3 fx d2\" x=\"206\" y=\"102\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f4 fx d3\" x=\"174\" y=\"46\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f4 fx d3\" x=\"206\" y=\"74\" width=\"32\" height=\"28\" rx=\"4\"></rect><rect class=\"f4 fx d3\" x=\"238\" y=\"102\" width=\"32\" height=\"28\" rx=\"4\"></rect><line class=\"guide fx d2\" x1=\"20\" y1=\"46\" x2=\"116\" y2=\"130\"></line><line class=\"guide fx d2\" x1=\"174\" y1=\"46\" x2=\"270\" y2=\"130\"></line><text class=\"t1 fx d2\" x=\"68\" y=\"150\" text-anchor=\"middle\">P′ = P: mirror equal</text><text class=\"t2 fx d3\" x=\"222\" y=\"150\" text-anchor=\"middle\">Q′ = −Q: mirror opposite</text><text class=\"t4 fx d3\" x=\"222\" y=\"168\" text-anchor=\"middle\">diagonal all 0</text></svg><div class=\"eq fx d5\"><p><b>Symmetric</b> (P′ = P): aᵢⱼ = aⱼᵢ. Mirror the matrix in the main diagonal and nothing changes.</p><p><b>Skew-symmetric</b> (Q′ = −Q): aⱼᵢ = −aᵢⱼ. Mirrored entries are opposites, and since aᵢᵢ = −aᵢᵢ every <b>diagonal entry is 0</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is every diagonal entry of a skew-symmetric matrix 0?",
+      "definition": "aᵢᵢ = −aᵢᵢ ⇒ 2aᵢᵢ = 0 ⇒ <span style=\"color:#f08c00\">aᵢᵢ = 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 1: what do you know about A + A′ and A − A′ for a square matrix A?",
+      "definition": "<span style=\"color:#3b82f6\">A + A′ is symmetric</span> and <span style=\"color:#3b82f6\">A − A′ is skew-symmetric</span> ((A + A′)′ = A′ + A; (A − A′)′ = A′ − A = −(A − A′))",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 2: express any square matrix as symmetric + skew-symmetric.",
+      "definition": "<span style=\"color:#3b82f6\">A = ½(A + A′) + ½(A − A′)</span>. The decomposition is unique",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can a matrix be both symmetric and skew-symmetric?",
+      "definition": "Only the <span style=\"color:#3b82f6\">zero matrix</span> (A′ = A = −A ⇒ A = O). That is Misc Q10: answer (B) zero matrix",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q7: show [[1, −1, 5], [−1, 2, 1], [5, 1, 3]] is symmetric and [[0, 1, −1], [−1, 0, 1], [1, −1, 0]] is skew-symmetric.",
+      "definition": "First: equals its transpose (mirror entries match: −1, 5, 1). Second: zero diagonal and mirror entries are opposites: 1 vs −1, −1 vs 1, 1 vs −1. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q8: A = [[1, 5], [6, 7]]. Verify A + A′ is symmetric and A − A′ is skew-symmetric.",
+      "definition": "A + A′ = [[2, 11], [11, 14]] (symmetric); A − A′ = [[0, −1], [1, 0]] (skew-symmetric). <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q9: find ½(A + A′) and ½(A − A′) for A = [[0, a, b], [−a, 0, c], [−b, −c, 0]].",
+      "definition": "A is already skew-symmetric: ½(A + A′) = <span style=\"color:#f08c00\">O (zero matrix)</span> and ½(A − A′) = <span style=\"color:#f08c00\">A itself</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q10(i): write [[3, 5], [1, −1]] as symmetric + skew-symmetric.",
+      "definition": "Symmetric part [[3, 3], [3, −1]], skew part [[0, 2], [−2, 0]]: <span style=\"color:#f08c00\">[[3, 3], [3, −1]] + [[0, 2], [−2, 0]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q10(ii): [[6, −2, 2], [−2, 3, −1], [2, −1, 3]].",
+      "definition": "It is already symmetric: <span style=\"color:#f08c00\">symmetric part = A, skew part = O</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q10(iii): [[3, 3, −1], [−2, −2, 1], [−4, −5, 2]].",
+      "definition": "Symmetric ½(A + A′) = [[3, 1/2, −5/2], [1/2, −2, −2], [−5/2, −2, 2]]; skew ½(A − A′) = <span style=\"color:#f08c00\">[[0, 5/2, 3/2], [−5/2, 0, 3], [−3/2, −3, 0]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q10(iv): [[1, 5], [−1, 2]].",
+      "definition": "Symmetric [[1, 2], [2, 2]], skew [[0, 3], [−3, 0]]: <span style=\"color:#f08c00\">[[1, 2], [2, 2]] + [[0, 3], [−3, 0]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q11: if A, B are symmetric of the same order, AB − BA is (A) skew-symmetric (B) symmetric (C) zero (D) identity",
+      "definition": "(AB − BA)′ = B′A′ − A′B′ = BA − AB = −(AB − BA): <span style=\"color:#22a35a\">(A) skew-symmetric</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.3 Q12: A = [[cos α, −sin α], [sin α, cos α]] and A + A′ = I. Then α = ?",
+      "definition": "A + A′ = 2 cos α · I = I so cos α = ½: <span style=\"color:#22a35a\">(B) π/3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 24: A, B symmetric. When is AB symmetric?",
+      "definition": "Exactly when <span style=\"color:#3b82f6\">AB = BA</span>. (AB)′ = B′A′ = BA, which equals AB iff they commute",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which of A + A′, A·A′, A′A are always symmetric for a square matrix A?",
+      "definition": "<span style=\"color:#3b82f6\">All three</span>. (A + A′)′ = A + A′; (AA′)′ = (A′)′A′ = AA′; (A′A)′ = A′A. But AB for two symmetric matrices is not symmetric in general",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: A, B symmetric, prove AB − BA is skew-symmetric.",
+      "definition": "(AB − BA)′ = B′A′ − A′B′ = BA − AB = −(AB − BA). <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: show B′AB is symmetric if A is symmetric and skew-symmetric if A is skew-symmetric.",
+      "definition": "(B′AB)′ = B′A′(B′)′ = B′A′B. If A′ = A it equals B′AB (symmetric); if A′ = −A it equals −B′AB (skew). <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.6-symmetric-skew"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define an invertible matrix and its inverse.",
+      "definition": "A square matrix A of order n is invertible if ∃ a square matrix B of the same order with <span style=\"color:#3b82f6\">AB = BA = I</span>. Then B = A⁻¹",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can a non-square matrix have an inverse?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. AB and BA would need to be equal identities of the same order, which forces A and B to be square of the same order",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "The book’s example: A = [[2, 3], [1, 2]] and B = [[2, −3], [−1, 2]]. Are they inverses?",
+      "definition": "AB = [[4 − 3, −6 + 6], [2 − 2, −3 + 4]] = <span style=\"color:#f08c00\">I</span> and BA = I. So B = A⁻¹",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Inverse of a 2 × 2 matrix",
+      "definition": "A^-1 = 1/(ad-bc) [[d,-b],[-c,a]]: swap diagonal, negate off-diagonal, divide by determinant; needs ad-bc != 0",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">2 × 2 inverse shortcut</p><h2>Find the inverse of A = [[a, b], [c, d]] when ad − bc ≠ 0.</h2><svg viewBox=\"0 0 300 216\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><path class=\"c0\" d=\"M116,26 H110 V90 H116\"></path><path class=\"c0\" d=\"M172,26 H178 V90 H172\"></path><text class=\"lbl\" x=\"127.0\" y=\"48.0\" text-anchor=\"middle\">a</text><text class=\"lbl\" x=\"161.0\" y=\"48.0\" text-anchor=\"middle\">b</text><text class=\"lbl\" x=\"127.0\" y=\"76.0\" text-anchor=\"middle\">c</text><text class=\"lbl\" x=\"161.0\" y=\"76.0\" text-anchor=\"middle\">d</text><text class=\"lbl\" x=\"100\" y=\"63\" text-anchor=\"end\">A =</text></svg><p class=\"hint\">Swap the diagonal, flip the other two signs.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">2 × 2 inverse shortcut</p><h2>Find the inverse of A = [[a, b], [c, d]] when ad − bc ≠ 0.</h2><svg viewBox=\"0 0 300 216\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><path class=\"c0\" d=\"M116,26 H110 V90 H116\"></path><path class=\"c0\" d=\"M172,26 H178 V90 H172\"></path><text class=\"lbl\" x=\"127.0\" y=\"48.0\" text-anchor=\"middle\">a</text><text class=\"lbl\" x=\"161.0\" y=\"48.0\" text-anchor=\"middle\">b</text><text class=\"lbl\" x=\"127.0\" y=\"76.0\" text-anchor=\"middle\">c</text><text class=\"lbl\" x=\"161.0\" y=\"76.0\" text-anchor=\"middle\">d</text><text class=\"lbl\" x=\"100\" y=\"63\" text-anchor=\"end\">A =</text><line class=\"c3 fx d2\" x1=\"135\" y1=\"54\" x2=\"153\" y2=\"69\" marker-end=\"url(#pg)\"></line><line class=\"c3 fx d2\" x1=\"153\" y1=\"60\" x2=\"135\" y2=\"45\" marker-end=\"url(#pg)\"></line><text class=\"t3 fx d2\" x=\"190\" y=\"52\" text-anchor=\"start\">swap a and d</text><text class=\"t2 fx d3\" x=\"190\" y=\"70\" text-anchor=\"start\">flip signs of b, c</text><text class=\"lbl fx d4\" x=\"140\" y=\"163\" text-anchor=\"end\">A⁻¹ = 1/(ad − bc)</text><g class=\"fx d4\"><path class=\"c0\" d=\"M156,124 H150 V188 H156\"></path><path class=\"c0\" d=\"M220,124 H226 V188 H220\"></path><text class=\"lbl\" x=\"169.0\" y=\"146.0\" text-anchor=\"middle\">d</text><text class=\"lbl\" x=\"207.0\" y=\"146.0\" text-anchor=\"middle\">−b</text><text class=\"lbl\" x=\"169.0\" y=\"174.0\" text-anchor=\"middle\">−c</text><text class=\"lbl\" x=\"207.0\" y=\"174.0\" text-anchor=\"middle\">a</text></g><text class=\"t4 fx d4\" x=\"150\" y=\"206\" text-anchor=\"middle\">needs ad − bc ≠ 0</text></svg><div class=\"eq fx d5\"><p><b>A⁻¹ = (1/(ad − bc)) [[d, −b], [−c, a]]</b>: swap the diagonal, negate the other two entries, divide by ad − bc.</p><p>Example (the book’s A = [[2, 3], [1, 2]]): ad − bc = 1, so A⁻¹ = [[2, −3], [−1, 2]], and AA⁻¹ = I. If ad − bc = 0 there is no inverse. (The general method uses adjoints and determinants in Chapter 4.)</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 3: is the inverse of a matrix unique?",
+      "definition": "<span style=\"color:#22a35a\">Yes</span>. If B and C are inverses, B = BI = B(AC) = (BA)C = IC = C",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 4: (AB)⁻¹ = ?",
+      "definition": "<span style=\"color:#3b82f6\">B⁻¹A⁻¹</span>: undo the last operation first. Proof: (AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹ = AA⁻¹ = I. Similarly (ABC)⁻¹ = C⁻¹B⁻¹A⁻¹",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between transpose and inverse: (A′)⁻¹ = ?",
+      "definition": "<span style=\"color:#3b82f6\">(A⁻¹)′</span>, and (A⁻¹)⁻¹ = A, (kA)⁻¹ = (1/k)A⁻¹ (k ≠ 0)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 3.4 Q1: matrices A and B are inverses of each other only if (A) AB = BA (B) AB = BA = O (C) AB = O, BA = I (D) AB = BA = I",
+      "definition": "<span style=\"color:#22a35a\">(D) AB = BA = I</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which is true: AB = I ⇒ BA = I?",
+      "definition": "For <span style=\"color:#3b82f6\">square</span> matrices of the same order, yes (a one-sided inverse is two-sided). This can fail for non-square matrices",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If A is invertible and AB = AC, what follows?",
+      "definition": "Multiply by A⁻¹: <span style=\"color:#3b82f6\">B = C</span>. Invertibility restores the cancellation law that fails for singular matrices",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If AB = O and A is invertible, what is B?",
+      "definition": "B = A⁻¹(AB) = A⁻¹O = <span style=\"color:#f08c00\">O</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.7-invertible-matrices"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Aⁿ for the rotation matrix is rotation by nθ",
+      "definition": "A = [[cos t, sin t],[-sin t, cos t]] rotates vectors clockwise by t; A^n = [[cos nt, sin nt],[-sin nt, cos nt]] (induction, Example 23)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Powers of a rotation matrix</p><h2>A = [[cos θ, sin θ], [−sin θ, cos θ]] with θ = 30°. What does A do to the vector v = (1, 0)? What are A² and Aⁿ?</h2><svg viewBox=\"0 0 300 300\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"150.0\" x2=\"292.0\" y2=\"150.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"292.0\" x2=\"150.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><circle class=\"ghost\" cx=\"150.0\" cy=\"150.0\" r=\"94.7\"></circle><line class=\"c1 \" x1=\"150.0\" y1=\"150.0\" x2=\"244.7\" y2=\"150.0\" marker-end=\"url(#pb)\"></line><text class=\"t1 \" x=\"242.7\" y=\"142.0\" text-anchor=\"end\">v = (1, 0)</text></svg><p class=\"hint\">Follow the vector after each multiplication by A.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Powers of a rotation matrix</p><h2>A = [[cos θ, sin θ], [−sin θ, cos θ]] with θ = 30°. What does A do to the vector v = (1, 0)? What are A² and Aⁿ?</h2><svg viewBox=\"0 0 300 300\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"150.0\" x2=\"292.0\" y2=\"150.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"292.0\" x2=\"150.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><circle class=\"ghost\" cx=\"150.0\" cy=\"150.0\" r=\"94.7\"></circle><line class=\"c1 \" x1=\"150.0\" y1=\"150.0\" x2=\"244.7\" y2=\"150.0\" marker-end=\"url(#pb)\"></line><text class=\"t1 \" x=\"242.7\" y=\"142.0\" text-anchor=\"end\">v = (1, 0)</text><line class=\"c2 fx d2\" x1=\"150.0\" y1=\"150.0\" x2=\"232.0\" y2=\"197.3\" marker-end=\"url(#pr)\"></line><text class=\"t2 fx d2 \" x=\"239.6\" y=\"202.3\" text-anchor=\"start\">A v</text><line class=\"c4 fx d3\" x1=\"150.0\" y1=\"150.0\" x2=\"197.3\" y2=\"232.0\" marker-end=\"url(#po)\"></line><text class=\"t4 fx d3 \" x=\"204.3\" y=\"245.6\" text-anchor=\"start\">A² v</text><line class=\"c3 fx d4\" x1=\"150.0\" y1=\"150.0\" x2=\"150.0\" y2=\"244.7\" marker-end=\"url(#pg)\"></line><text class=\"t3 fx d4 \" x=\"156.0\" y=\"258.6\" text-anchor=\"start\">A³ v</text></svg><div class=\"eq fx d5\"><p>A v = (cos θ, −sin θ): the vector is <b>rotated clockwise by θ</b>. Applying A twice rotates by 2θ, so <b>Aⁿ = [[cos nθ, sin nθ], [−sin nθ, cos nθ]]</b> (Example 23, proved by induction).</p><p>Check with the product formula: A·Aᵏ has entries cos θ cos kθ − sin θ sin kθ = cos (k + 1)θ and so on.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 23: A = [[cos θ, sin θ], [−sin θ, cos θ]]. Prove Aⁿ = [[cos nθ, sin nθ], [−sin nθ, cos nθ]] for n ∈ N.",
+      "definition": "Induction: true for n = 1. If it holds for k, A^(k+1) = A·Aᵏ has top-left cos θ cos kθ − sin θ sin kθ = cos(k + 1)θ and top-right cos θ sin kθ + sin θ cos kθ = sin(k + 1)θ, etc. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: A = [[0, 2y, z], [x, y, −z], [x, −y, z]] satisfies A′A = I. Find x, y, z.",
+      "definition": "Columns must be orthonormal: 2x² = 1, 6y² = 1, 3z² = 1 (and the cross terms vanish): <span style=\"color:#f08c00\">x = ±1/√2, y = ±1/√6, z = ±1/√3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: for what x is [1 2 1] [[1, 2, 0], [2, 0, 1], [1, 0, 2]] [0, 2, x]ᵀ = O?",
+      "definition": "Middle product = [4, x, 2x]ᵀ; then 4 + 2x + 2x = 0: <span style=\"color:#f08c00\">x = −1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: A = [[3, 1], [−1, 2]]. Show A² − 5A + 7I = O.",
+      "definition": "A² = [[8, 5], [−5, 3]], 5A = [[15, 5], [−5, 10]]: 8 − 15 + 7 = 0, 5 − 5 = 0, −5 + 5 = 0, 3 − 10 + 7 = 0. <span style=\"color:#22a35a\">✓</span> (Here tr A = 5 and det A = 7: A² − (tr A)A + (det A)I = O)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q6: find x if [x, −5, −1] [[1, 0, 2], [0, 2, 1], [2, 0, 3]] [x, 4, 1]ᵀ = O.",
+      "definition": "Middle product = [x + 2, 9, 2x + 3]ᵀ, then x(x + 2) − 45 − (2x + 3) = x² − 48 = 0: <span style=\"color:#f08c00\">x = ±4√3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: sales matrix: market I sells x, y, z as 10 000, 2 000, 18 000; market II as 6 000, 20 000, 8 000. Unit sale prices ₹2.50, ₹1.50, ₹1.00. Revenue in each market?",
+      "definition": "Multiply by the price column: I: 25 000 + 3 000 + 18 000 = <span style=\"color:#f08c00\">₹46 000</span>; II: 15 000 + 30 000 + 8 000 = <span style=\"color:#f08c00\">₹53 000</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7(b): unit costs ₹2.00, ₹1.00, ₹0.50. Gross profit?",
+      "definition": "Costs: I: 20 000 + 2 000 + 9 000 = 31 000; II: 12 000 + 20 000 + 4 000 = 36 000. Profit: I <span style=\"color:#f08c00\">₹15 000</span>, II <span style=\"color:#f08c00\">₹17 000</span>, total ₹32 000",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q8: find X with X [[1, 2, 3], [4, 5, 6]] = [[−7, −8, −9], [2, 4, 6]].",
+      "definition": "X is 2 × 2. Row 1: a + 4b = −7, 2a + 5b = −8, so a = 1, b = −2. Row 2: c + 4d = 2, 2c + 5d = 4, so c = 2, d = 0: <span style=\"color:#f08c00\">X = [[1, −2], [2, 0]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q9: A = [[α, β], [γ, −α]] with A² = I. Then (A) 1 + α² + βγ = 0 (B) 1 − α² + βγ = 0 (C) 1 − α² − βγ = 0 (D) 1 + α² − βγ = 0",
+      "definition": "A² = (α² + βγ) I, so α² + βγ = 1: <span style=\"color:#22a35a\">(C)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q10: if A is both symmetric and skew-symmetric, then A is (A) diagonal (B) zero matrix (C) square (D) none",
+      "definition": "<span style=\"color:#22a35a\">(B) zero matrix</span> (it is square and diagonal too, but zero is the precise answer)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q11: A² = A, then (I + A)³ − 7A = (A) A (B) I − A (C) I (D) 3A",
+      "definition": "Aⁿ = A for all n ≥ 1: (I + A)³ = I + 3A + 3A² + A³ = I + 7A, so the expression is <span style=\"color:#22a35a\">(C) I</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Idempotent, involutory and nilpotent matrices?",
+      "definition": "<span style=\"color:#3b82f6\">Idempotent</span>: A² = A. <span style=\"color:#3b82f6\">Involutory</span>: A² = I. <span style=\"color:#3b82f6\">Nilpotent</span>: Aᵏ = O for some k. Example: [[0, 1], [0, 0]] is nilpotent (A² = O)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Find [[1, 1], [0, 1]]ⁿ.",
+      "definition": "Compute A², A³: [[1, 2], [0, 1]], [[1, 3], [0, 1]]. Pattern (by induction): <span style=\"color:#f08c00\">[[1, n], [0, 1]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Powers of a diagonal matrix diag(a, b)?",
+      "definition": "<span style=\"color:#f08c00\">diag(aⁿ, bⁿ)</span>: multiply the diagonal entries separately (diagonal matrices multiply entrywise on the diagonal)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Find A⁻¹ for A = [[1, 2], [3, 4]] with the shortcut.",
+      "definition": "ad − bc = 4 − 6 = −2. A⁻¹ = (1/−2)[[4, −2], [−3, 1]] = <span style=\"color:#f08c00\">[[−2, 1], [3/2, −1/2]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of 3 × 3 symmetric matrices with entries in {0, 1}?",
+      "definition": "Six free entries (diagonal 3 and above-diagonal 3): <span style=\"color:#f08c00\">2⁶ = 64</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of 3 × 3 skew-symmetric matrices with entries in {−1, 0, 1}?",
+      "definition": "Diagonal is 0; three free entries above it, each with 3 choices: <span style=\"color:#f08c00\">3³ = 27</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trace of a square matrix: tr(A + B), tr(kA), tr(AB) vs tr(BA)?",
+      "definition": "<span style=\"color:#3b82f6\">tr A = sum of diagonal entries</span>. tr(A + B) = tr A + tr B, tr(kA) = k tr A, and <span style=\"color:#3b82f6\">tr(AB) = tr(BA)</span> (even if AB ≠ BA)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If A and B are 3 × 3 with AB = BA, expand (A + B)³.",
+      "definition": "Only because they commute: A³ + 3A²B + 3AB² + B³. Same for (A + B)² = A² + 2AB + B² and A² − B² = (A − B)(A + B)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If A² − A + I = O, what is A⁻¹?",
+      "definition": "Multiply A² − A + I = O by A⁻¹ (A is invertible, since A(A − I) = −I): <span style=\"color:#f08c00\">A⁻¹ = I − A</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If A is a 3 × 3 matrix with A² = O, what is (I + A)⁻¹?",
+      "definition": "(I + A)(I − A) = I − A² = I, so <span style=\"color:#f08c00\">(I + A)⁻¹ = I − A</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if a matrix has 12 elements, the number of possible orders is<br>(a) 4 (b) 6 (c) 8 (d) 12",
+      "definition": "Divisor pairs of 12: 1, 2, 3, 4, 6, 12 → <span style=\"color:#22a35a\">(b) 6</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if A is 3 × 4 and B is 4 × 2, the order of AB is<br>(a) 3 × 2 (b) 4 × 4 (c) 2 × 3 (d) not defined",
+      "definition": "<span style=\"color:#22a35a\">(a) 3 × 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if A = [[1, 2], [3, 4]] and B = [[0, 1], [1, 0]], AB =<br>(a) [[2, 1], [4, 3]] (b) [[3, 4], [1, 2]] (c) [[0, 2], [3, 0]] (d) [[1, 3], [2, 4]]",
+      "definition": "Multiplying by B on the right swaps the columns: <span style=\"color:#22a35a\">(a) [[2, 1], [4, 3]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if A is a square matrix with A² = A, then (I + A)² =<br>(a) I + A (b) I + 2A (c) I + 3A (d) I − A",
+      "definition": "I + 2A + A² = I + 3A: <span style=\"color:#22a35a\">(c)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if A = [[cos θ, −sin θ], [sin θ, cos θ]], then A² =<br>(a) [[cos 2θ, −sin 2θ], [sin 2θ, cos 2θ]] (b) [[cos²θ, −sin²θ], [sin²θ, cos²θ]] (c) I (d) 2A",
+      "definition": "Rotation by θ twice is rotation by 2θ: <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the matrix [[0, 5, −7], [−5, 0, 11], [7, −11, 0]] is<br>(a) symmetric (b) skew-symmetric (c) diagonal (d) scalar",
+      "definition": "Zero diagonal and aⱼᵢ = −aᵢⱼ: <span style=\"color:#22a35a\">(b) skew-symmetric</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: for a square matrix A, A + A′ is always<br>(a) skew-symmetric (b) symmetric (c) diagonal (d) identity",
+      "definition": "<span style=\"color:#22a35a\">(b) symmetric</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if A is invertible, (A′)⁻¹ =<br>(a) A′ (b) (A⁻¹)′ (c) A (d) −A′",
+      "definition": "<span style=\"color:#22a35a\">(b) (A⁻¹)′</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if A = [[1, 0], [0, −1]], then A² =<br>(a) A (b) −A (c) I (d) O",
+      "definition": "<span style=\"color:#22a35a\">(c) I</span>. A is involutory",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the number of 2 × 2 matrices with entries from {0, 1} is<br>(a) 4 (b) 8 (c) 16 (d) 2",
+      "definition": "2⁴ = <span style=\"color:#22a35a\">(c) 16</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): if A = [[1, 1], [0, 1]], the (1, 2) entry of A¹⁰⁰ is?",
+      "definition": "Aⁿ = [[1, n], [0, 1]], so <span style=\"color:#f08c00\">100</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: if A = [[2, 3], [1, 2]], the sum of the entries of A⁻¹ is?",
+      "definition": "ad − bc = 1, so A⁻¹ = [[2, −3], [−1, 2]]. Sum = 2 − 3 − 1 + 2 = <span style=\"color:#f08c00\">0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: how many 3 × 3 matrices with entries 0 or 1 are there with exactly two 1s?",
+      "definition": "Choose which 2 of 9 positions: <span style=\"color:#f08c00\">⁹C₂ = 36</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> if AB = O then A = O or B = O.<br><b>R:</b> the product of two non-zero real numbers is non-zero.<br>(a) Both true, R explains A (b) Both true, R does not (c) A false, R true (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(c)</span>: R is true for numbers, but matrices can be zero divisors: A = [[0, −1], [0, 2]], B = [[3, 5], [0, 0]] have AB = O",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> (AB)′ = A′B′ for all conformable A, B.<br><b>R:</b> (AB)′ = B′A′.<br>(a) Both true, R explains A (b) A false, R true (c) A true, R false (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(b)</span>: the correct rule reverses the order, so A is false",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: every diagonal matrix commutes with every square matrix of the same order.",
+      "definition": "<span style=\"color:#e5484d\">False</span>. Only <span style=\"color:#3b82f6\">scalar matrices</span> commute with all matrices. diag(1, 2) does not commute with [[0, 1], [1, 0]]",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: the product of two symmetric matrices is symmetric.",
+      "definition": "<span style=\"color:#e5484d\">False</span> in general; it is symmetric iff they commute",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: if A = [[1, 2], [−1, 3]] find A′ and check (A′)′ = A.",
+      "definition": "A′ = [[1, −1], [2, 3]] and (A′)′ = [[1, 2], [−1, 3]] = A. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: express [[2, 4], [1, 3]] as the sum of a symmetric and a skew-symmetric matrix.",
+      "definition": "P = ½(A + A′) = [[2, 5/2], [5/2, 3]]; Q = ½(A − A′) = [[0, 3/2], [−3/2, 0]]. <span style=\"color:#f08c00\">A = P + Q</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: A = [[1, 2], [2, 1]]. Show A² − 2A − 3I = O and hence find A⁻¹.",
+      "definition": "A² = [[5, 4], [4, 5]], so A² − 2A − 3I = O. Then A(A − 2I) = 3I, so <span style=\"color:#f08c00\">A⁻¹ = (1/3)(A − 2I) = (1/3)[[−1, 2], [2, −1]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: if A = [[1, 2], [3, 4]] and f(x) = x² − 5x − 2, find f(A).",
+      "definition": "A² = [[7, 10], [15, 22]]; A² − 5A − 2I = [[7 − 5 − 2, 10 − 10], [15 − 15, 22 − 20 − 2]] = <span style=\"color:#f08c00\">O</span> (this is Cayley–Hamilton: tr A = 5, det A = −2)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: A = [[1, −1], [2, −1]], B = [[a, 1], [b, −1]] and (A + B)² = A² + B². Find a and b.",
+      "definition": "(A + B)² = A² + AB + BA + B², so we need AB + BA = O. AB = [[a − b, 2], [2a − b, 3]] and BA = [[a + 2, −a − 1], [b − 2, 1 − b]]. Entry (1, 2): 2 − a − 1 = 0 gives a = 1; entry (1, 1): 2a − b + 2 = 0 gives b = 4. <span style=\"color:#f08c00\">a = 1, b = 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a shop sells pens, notebooks and files. Monday sales [30, 20, 10], price per item [₹5, ₹25, ₹40]. Write the revenue as a matrix product and compute it.",
+      "definition": "Row [30 20 10] times the column [5, 25, 40]ᵀ: 150 + 500 + 400 = <span style=\"color:#f08c00\">₹1050</span>. A 1 × 3 times a 3 × 1 is 1 × 1",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: coordinates of triangle vertices are the columns of [[0, 4, 2], [0, 0, 3]]. Multiplying on the left by [[1, 0], [0, −1]] does what?",
+      "definition": "It changes the sign of every y-coordinate: <span style=\"color:#f08c00\">reflection in the x-axis</span>. New vertices (0, 0), (4, 0), (2, −3)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-3",
+        "3.z-how-its-asked"
+      ]
+    }
+  ]
+}
