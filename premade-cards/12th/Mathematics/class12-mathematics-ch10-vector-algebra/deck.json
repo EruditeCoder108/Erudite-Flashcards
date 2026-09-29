@@ -1,0 +1,1589 @@
+{
+  "version": 1,
+  "name": "Chapter 10: Vector Algebra",
+  "className": "Class 12",
+  "description": "Vectors and scalars, types of vectors, addition, components, direction cosines, section formula, dot and cross products with projections and areas, and exam-style problems.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is a vector? A scalar?",
+      "definition": "<span style=\"color:#3b82f6\">Vector</span>: a quantity with both magnitude and direction (displacement, velocity, force). <span style=\"color:#3b82f6\">Scalar</span>: magnitude only (time, mass, speed, work, temperature)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How are vectors represented and written?",
+      "definition": "A directed line segment (arrow) from A to B: AB, or a single letter a. Magnitude |a|. Its tail is the <span style=\"color:#3b82f6\">initial point</span>, its tip the <span style=\"color:#3b82f6\">terminal point</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Position vector of a point P(x, y, z)?",
+      "definition": "<span style=\"color:#3b82f6\">OP = xî + yĵ + zk̂</span> from the origin O; magnitude <span style=\"color:#3b82f6\">√(x² + y² + z²)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Types of vectors: zero, unit, coinitial, collinear, equal, negative.",
+      "definition": "<span style=\"color:#3b82f6\">Zero</span> 0 (magnitude 0). <span style=\"color:#3b82f6\">Unit</span> (magnitude 1). <span style=\"color:#3b82f6\">Coinitial</span> (same initial point). <span style=\"color:#3b82f6\">Collinear</span> (parallel to the same line). <span style=\"color:#3b82f6\">Equal</span> (same magnitude AND direction). <span style=\"color:#3b82f6\">Negative</span> −a (same magnitude, opposite direction)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q1: represent graphically a displacement of 40 km, 30° east of north.",
+      "definition": "Draw an arrow of length 4 units (scale 1 unit = 10 km) that makes 30° with the north direction, tilted towards the east",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q2: classify (i) 10 kg (ii) 2 m north-west (iii) 40° (iv) 40 watt (v) 10⁻¹⁹ coulomb (vi) 20 m/s²",
+      "definition": "Scalars: <span style=\"color:#f08c00\">10 kg, 40°, 40 watt, 10⁻¹⁹ C</span>. Vectors: <span style=\"color:#f08c00\">2 m north-west, 20 m/s² (acceleration has direction)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q3: classify (i) time period (ii) distance (iii) force (iv) velocity (v) work done",
+      "definition": "Scalars: <span style=\"color:#f08c00\">time period, distance, work done</span>. Vectors: <span style=\"color:#f08c00\">force, velocity</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q4: in the square of Fig 10.6 (sides a, b, c, d), identify (i) coinitial (ii) equal (iii) collinear but not equal vectors.",
+      "definition": "(i) Coinitial: <span style=\"color:#f08c00\">a and b</span>. (ii) Equal: <span style=\"color:#f08c00\">b and d</span>. (iii) Collinear but not equal: <span style=\"color:#f08c00\">a and c</span> (parallel sides that point opposite ways)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q5: true or false: (i) a and −a are collinear (ii) two collinear vectors are always equal in magnitude (iii) two vectors of the same magnitude are collinear (iv) two collinear vectors of the same magnitude are equal",
+      "definition": "(i) <span style=\"color:#22a35a\">True</span> (ii) <span style=\"color:#e5484d\">False</span> (iii) <span style=\"color:#e5484d\">False</span> (iv) <span style=\"color:#e5484d\">False</span> (they could point in opposite directions)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Triangle and parallelogram laws of vector addition",
+      "definition": "Triangle law: tail of b at head of a, a+b joins the start to the end; parallelogram law: diagonal of the parallelogram on a and b; vector addition is commutative and associative; componentwise addition",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Addition of vectors</p><h2>Add the vectors a and b by the triangle law. What is the parallelogram law, and is a + b = b + a?</h2><svg viewBox=\"0 0 300 214\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"180.3\" x2=\"292.0\" y2=\"180.3\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"41.3\" y1=\"203.8\" x2=\"41.3\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"c1 \" x1=\"41.3\" y1=\"180.3\" x2=\"182.3\" y2=\"141.2\" marker-end=\"url(#pb)\"></line><text class=\"t1 \" x=\"115.8\" y=\"174.7\" text-anchor=\"start\">a</text><line class=\"c3 \" x1=\"41.3\" y1=\"180.3\" x2=\"104.0\" y2=\"78.5\" marker-end=\"url(#pg)\"></line><text class=\"t3 \" x=\"60.7\" y=\"127.4\" text-anchor=\"start\">b</text></svg><p class=\"hint\">Place b at the head of a.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Addition of vectors</p><h2>Add the vectors a and b by the triangle law. What is the parallelogram law, and is a + b = b + a?</h2><svg viewBox=\"0 0 300 214\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"180.3\" x2=\"292.0\" y2=\"180.3\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"41.3\" y1=\"203.8\" x2=\"41.3\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"c1 \" x1=\"41.3\" y1=\"180.3\" x2=\"182.3\" y2=\"141.2\" marker-end=\"url(#pb)\"></line><text class=\"t1 \" x=\"115.8\" y=\"174.7\" text-anchor=\"start\">a</text><line class=\"c3 \" x1=\"41.3\" y1=\"180.3\" x2=\"104.0\" y2=\"78.5\" marker-end=\"url(#pg)\"></line><text class=\"t3 \" x=\"60.7\" y=\"127.4\" text-anchor=\"start\">b</text><line class=\"c3 fx d2\" x1=\"182.3\" y1=\"141.2\" x2=\"245.0\" y2=\"39.3\" marker-end=\"url(#pg)\"></line><line class=\"c2 fx d3\" x1=\"41.3\" y1=\"180.3\" x2=\"245.0\" y2=\"39.3\" marker-end=\"url(#pr)\"></line><text class=\"t2 fx d3 \" x=\"137.2\" y=\"99.8\" text-anchor=\"end\">a + b</text><line class=\"guide fx d4\" x1=\"104.0\" y1=\"78.5\" x2=\"245.0\" y2=\"39.3\"></line><text class=\"t4 fx d4 \" x=\"241.0\" y=\"31.3\" text-anchor=\"end\">a + b = b + a</text></svg><div class=\"eq fx d5\"><p><b>Triangle law:</b> place the tail of b at the head of a; the vector from the start of a to the end of b is <b>a + b</b>. <b>Parallelogram law:</b> if a and b are adjacent sides from a point, a + b is the diagonal from that point.</p><p>Both routes reach the same point, so <b>a + b = b + a</b> (commutative), also associative: (a + b) + c = a + (b + c). In components: (a₁ + b₁, a₂ + b₂, a₃ + b₃). Subtraction: a − b = a + (−b).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Properties of vector addition.",
+      "definition": "<span style=\"color:#3b82f6\">a + b = b + a</span>, <span style=\"color:#3b82f6\">(a + b) + c = a + (b + c)</span>, a + 0 = a, a + (−a) = 0. Triangle inequality: <span style=\"color:#3b82f6\">|a + b| ≤ |a| + |b|</span>, with equality when a and b have the same direction",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Multiplication of a vector by a scalar λ.",
+      "definition": "<span style=\"color:#3b82f6\">λa</span> has magnitude |λ||a| and the direction of a if λ > 0, opposite if λ < 0. Components: λ(a₁î + a₂ĵ + a₃k̂) = λa₁î + λa₂ĵ + λa₃k̂",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Unit vector in the direction of a; vector of magnitude m in the direction of a?",
+      "definition": "<span style=\"color:#3b82f6\">â = a/|a|</span> and <span style=\"color:#3b82f6\">m â = m a/|a|</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Components and magnitude: a = a₁î + a₂ĵ + a₃k̂.",
+      "definition": "Magnitude <span style=\"color:#3b82f6\">|a| = √(a₁² + a₂² + a₃²)</span>. a₁, a₂, a₃ are the scalar components (direction ratios)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction ratios and direction cosines of a = a₁î + a₂ĵ + a₃k̂.",
+      "definition": "Direction ratios a₁, a₂, a₃. Direction cosines <span style=\"color:#3b82f6\">l = a₁/|a|, m = a₂/|a|, n = a₃/|a|</span> with <span style=\"color:#3b82f6\">l² + m² + n² = 1</span>. So â = lî + mĵ + nk̂",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Vector joining P(x₁, y₁, z₁) to Q(x₂, y₂, z₂)?",
+      "definition": "<span style=\"color:#3b82f6\">PQ = (x₂ − x₁)î + (y₂ − y₁)ĵ + (z₂ − z₁)k̂</span> (head minus tail); |PQ| = √(Σ(differences)²)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Section formula for internal and external division",
+      "definition": "Internal division m:n: (m b + n a)/(m+n); external: (m b - n a)/(m-n); midpoint (a+b)/2; Ex 10.2 Q15 gives (-i+4j+k)/3 and -3i+3k",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Section formula</p><h2>P and Q have position vectors a and b. Find the position vector of the point R dividing PQ in the ratio 2 : 1 (i) internally (ii) externally.</h2><svg viewBox=\"0 0 300 170\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"c0\" x1=\"10\" y1=\"90\" x2=\"270\" y2=\"90\"></line><circle class=\"d1s\" cx=\"30\" cy=\"90\" r=\"5\"></circle><circle class=\"d1s\" cx=\"120\" cy=\"90\" r=\"5\"></circle><text class=\"lbl\" x=\"30\" y=\"112\" text-anchor=\"middle\">P (a)</text><text class=\"lbl\" x=\"120\" y=\"112\" text-anchor=\"middle\">Q (b)</text></svg><p class=\"hint\">Weight each end by the opposite part of the ratio.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Section formula</p><h2>P and Q have position vectors a and b. Find the position vector of the point R dividing PQ in the ratio 2 : 1 (i) internally (ii) externally.</h2><svg viewBox=\"0 0 300 170\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"c0\" x1=\"10\" y1=\"90\" x2=\"270\" y2=\"90\"></line><circle class=\"d1s\" cx=\"30\" cy=\"90\" r=\"5\"></circle><circle class=\"d1s\" cx=\"120\" cy=\"90\" r=\"5\"></circle><text class=\"lbl\" x=\"30\" y=\"112\" text-anchor=\"middle\">P (a)</text><text class=\"lbl\" x=\"120\" y=\"112\" text-anchor=\"middle\">Q (b)</text><circle class=\"d2s fx d2\" cx=\"90\" cy=\"90\" r=\"5.5\"></circle><text class=\"t2 fx d2\" x=\"90\" y=\"72\" text-anchor=\"middle\">R (2 : 1)</text><text class=\"sm fx d2\" x=\"140\" y=\"140\" text-anchor=\"middle\">internal: R = (m b + n a)/(m + n) = (2b + a)/3</text><circle class=\"d3s fx d4\" cx=\"210\" cy=\"90\" r=\"5.5\"></circle><text class=\"t3 fx d4\" x=\"210\" y=\"72\" text-anchor=\"middle\">R′ (external)</text><text class=\"sm fx d4\" x=\"140\" y=\"158\" text-anchor=\"middle\">external: R′ = (m b − n a)/(m − n) = 2b − a</text></svg><div class=\"eq fx d5\"><p><b>Internally</b> m : n: <b>r = (m b + n a)/(m + n)</b>. For 2 : 1: (2b + a)/3. <b>Externally</b>: <b>r = (m b − n a)/(m − n)</b>, here 2b − a: R′ lies beyond Q with QR′ = PQ.</p><p>Ex 10.2 Q15: a = î + 2ĵ − k̂, b = −î + ĵ + k̂: internal (−î + 4ĵ + k̂)/3, external −3î + 3k̂. The midpoint (m = n = 1) is (a + b)/2 (Q16: (3, 2, 1)).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When are two vectors collinear? Test with components.",
+      "definition": "a = λb for some scalar λ, i.e. <span style=\"color:#3b82f6\">a₁/b₁ = a₂/b₂ = a₃/b₃</span>. Three points A, B, C are collinear iff AB ∥ BC (or |AC| = |AB| + |BC| in the right order)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 21: show A(−2î + 3ĵ + 5k̂), B(î + 2ĵ + 3k̂), C(7î − k̂) are collinear.",
+      "definition": "AB = 3î − ĵ − 2k̂, BC = 6î − 2ĵ − 4k̂, AC = 9î − 3ĵ − 6k̂. |AB| = √14, |BC| = 2√14, |AC| = 3√14: |AC| = |AB| + |BC|. <span style=\"color:#22a35a\">Collinear</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example (right-angled triangle test).",
+      "definition": "If |AB|² = |BC|² + |CA|² then the angle at C is a right angle (Pythagoras). Compare squared lengths, or check that a dot product of two side vectors is 0",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.4-addition-and-scalar-multiplication"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q1: magnitudes of a = î + ĵ + k̂, b = 2î − 7ĵ − 3k̂, c = (1/√3)î + (1/√3)ĵ − (1/√3)k̂.",
+      "definition": "|a| = <span style=\"color:#f08c00\">√3</span>, |b| = <span style=\"color:#f08c00\">√62</span>, |c| = <span style=\"color:#f08c00\">1</span> (a unit vector: 3 × 1/3 = 1)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q2: write two different vectors having the same magnitude.",
+      "definition": "For example î + 2ĵ and 2î + ĵ (both magnitude √5), or î + ĵ + k̂ and î − ĵ + k̂ (both √3)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q3: write two different vectors having the same direction.",
+      "definition": "Any positive multiples: î + ĵ and 2î + 2ĵ",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q4: find x and y so that 2î + 3ĵ and xî + yĵ are equal.",
+      "definition": "Equal vectors have equal components: <span style=\"color:#f08c00\">x = 2, y = 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q5: scalar and vector components of the vector with initial point (2, 1) and terminal point (−5, 7).",
+      "definition": "Vector = (−5 − 2, 7 − 1) = <span style=\"color:#f08c00\">−7î + 6ĵ</span>. Scalar components <span style=\"color:#f08c00\">-7, 6</span>; vector components <span style=\"color:#f08c00\">-7î and 6ĵ</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q6: sum of a = î − 2ĵ + k̂, b = −2î + 4ĵ + 5k̂, c = î − 6ĵ − 7k̂.",
+      "definition": "Add components: <span style=\"color:#f08c00\">−4ĵ − k̂</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q7: unit vector in the direction of a = î + ĵ + 2k̂.",
+      "definition": "|a| = √6: <span style=\"color:#f08c00\">(î + ĵ + 2k̂)/√6</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q8: unit vector in the direction of PQ, P(1, 2, 3), Q(4, 5, 6).",
+      "definition": "PQ = 3î + 3ĵ + 3k̂, |PQ| = 3√3: <span style=\"color:#f08c00\">(î + ĵ + k̂)/√3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q9: unit vector in the direction of a + b for a = 2î − ĵ + 2k̂, b = −î + ĵ − k̂.",
+      "definition": "a + b = î + k̂, magnitude √2: <span style=\"color:#f08c00\">(î + k̂)/√2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q10: a vector in the direction of 5î − ĵ + 2k̂ with magnitude 8.",
+      "definition": "|v| = √30: <span style=\"color:#f08c00\">(8/√30)(5î − ĵ + 2k̂)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q11: show 2î − 3ĵ + 4k̂ and −4î + 6ĵ − 8k̂ are collinear.",
+      "definition": "The second equals −2 times the first: <span style=\"color:#22a35a\">collinear (opposite directions)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q12: direction cosines of î + 2ĵ + 3k̂.",
+      "definition": "Magnitude √14: <span style=\"color:#f08c00\">1/√14, 2/√14, 3/√14</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q13: direction cosines of the vector joining A(1, 2, −3) to B(−1, −2, 1).",
+      "definition": "AB = −2î − 4ĵ + 4k̂, |AB| = 6: <span style=\"color:#f08c00\">−1/3, −2/3, 2/3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q14: show î + ĵ + k̂ is equally inclined to the axes.",
+      "definition": "Direction cosines are all 1/√3 = cos α = cos β = cos γ, so α = β = γ = cos⁻¹(1/√3). <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q15: position vector of the point R dividing PQ in the ratio 2 : 1, P = î + 2ĵ − k̂, Q = −î + ĵ + k̂: (i) internally (ii) externally.",
+      "definition": "(i) (2Q + P)/3 = <span style=\"color:#f08c00\">−(1/3)î + (4/3)ĵ + (1/3)k̂</span>. (ii) (2Q − P)/(2 − 1) = <span style=\"color:#f08c00\">−3î + 3k̂</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q16: position vector of the midpoint of P(2, 3, 4) and Q(4, 1, −2).",
+      "definition": "<span style=\"color:#f08c00\">3î + 2ĵ + k̂</span>, that is the point (3, 2, 1)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q17: a = 3î − 4ĵ − 4k̂, b = 2î − ĵ + k̂, c = î − 3ĵ − 5k̂ are the vertices of a right-angled triangle. Show it.",
+      "definition": "AB = −î + 3ĵ + 5k̂ (|AB|² = 35), BC = −î − 2ĵ − 6k̂ (41), CA = 2î − ĵ + k̂ (6). Since 35 + 6 = 41, the right angle is at A. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q18: in triangle ABC which is not true? (A) AB + BC + CA = 0 (B) AB + BC − AC = 0 (C) AB + BC − CA = 0 (D) AB − CB + CA = 0",
+      "definition": "AB + BC = AC, so AB + BC − CA = 2AC ≠ 0: <span style=\"color:#22a35a\">(C)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q19: if a and b are collinear, which of these are incorrect? (A) b = λa for some λ (B) a = ±b (C) the components of a and b are not proportional (D) a and b have the same direction but different magnitudes",
+      "definition": "Collinear ⇒ b = λa and proportional components, so (A) is correct. (B) fails when magnitudes differ; (C) is the opposite of the true statement; (D) ignores that the direction may be reversed. <span style=\"color:#22a35a\">Incorrect: (B), (C), (D)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.5-exercise-10-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Scalar (dot) product: definition.",
+      "definition": "<span style=\"color:#3b82f6\">a · b = |a||b| cos θ</span> (0 ≤ θ ≤ π). The result is a scalar. In components: <span style=\"color:#3b82f6\">a₁b₁ + a₂b₂ + a₃b₃</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-scalar-product"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Dot product and projection",
+      "definition": "a.b = |a||b|cos(theta); projection of a on b = a.b/|b|; a.b = 0 iff perpendicular; a.b = a1b1+a2b2+a3b3",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Scalar product as a projection</p><h2>How is a · b related to the projection of a on b? Find the projection of a = 4î + 3ĵ on b = 5.5î.</h2><svg viewBox=\"0 0 300 227\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"185.3\" x2=\"292.0\" y2=\"185.3\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"34.2\" y1=\"217.5\" x2=\"34.2\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"c1 \" x1=\"34.2\" y1=\"185.3\" x2=\"195.3\" y2=\"64.4\" marker-end=\"url(#pb)\"></line><text class=\"t1 \" x=\"201.3\" y=\"62.4\" text-anchor=\"start\">a</text><line class=\"c3 \" x1=\"34.2\" y1=\"185.3\" x2=\"255.7\" y2=\"185.3\" marker-end=\"url(#pg)\"></line><text class=\"t3 \" x=\"259.7\" y=\"199.3\" text-anchor=\"start\">b</text></svg><p class=\"hint\">Drop a perpendicular from the tip of a onto the line of b.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Scalar product as a projection</p><h2>How is a · b related to the projection of a on b? Find the projection of a = 4î + 3ĵ on b = 5.5î.</h2><svg viewBox=\"0 0 300 227\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"185.3\" x2=\"292.0\" y2=\"185.3\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"34.2\" y1=\"217.5\" x2=\"34.2\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"c1 \" x1=\"34.2\" y1=\"185.3\" x2=\"195.3\" y2=\"64.4\" marker-end=\"url(#pb)\"></line><text class=\"t1 \" x=\"201.3\" y=\"62.4\" text-anchor=\"start\">a</text><line class=\"c3 \" x1=\"34.2\" y1=\"185.3\" x2=\"255.7\" y2=\"185.3\" marker-end=\"url(#pg)\"></line><text class=\"t3 \" x=\"259.7\" y=\"199.3\" text-anchor=\"start\">b</text><line class=\"guide fx d2\" x1=\"195.3\" y1=\"64.4\" x2=\"195.3\" y2=\"185.3\"></line><line class=\"c2 fx d3\" x1=\"34.2\" y1=\"185.3\" x2=\"195.3\" y2=\"185.3\"></line><circle class=\"d2s fx d3\" cx=\"195.3\" cy=\"185.3\" r=\"4.5\"></circle><text class=\"t2 fx d3 \" x=\"114.7\" y=\"201.3\" text-anchor=\"middle\">|a| cos θ = 4</text><text class=\"t4 fx d4 \" x=\"66.4\" y=\"165.1\" text-anchor=\"start\">θ</text></svg><div class=\"eq fx d5\"><p><b>a · b = |a||b| cos θ</b> = (projection of a on b) × |b|. Projection of a on b = <b>a · b / |b|</b> = |a| cos θ: the length of the shadow of a on the line of b.</p><p>Here a · b = 22, |b| = 5.5, so the projection is 4. The dot product is 0 exactly when the vectors are perpendicular (Ex 10.3 Q3: (î − ĵ) on (î + ĵ) has projection 0). In components a · b = a₁b₁ + a₂b₂ + a₃b₃.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Properties of the dot product.",
+      "definition": "Commutative a · b = b · a; distributive a · (b + c) = a · b + a · c; <span style=\"color:#3b82f6\">a · a = |a|²</span>; (λa) · b = λ(a · b); î · î = ĵ · ĵ = k̂ · k̂ = 1 and î · ĵ = ĵ · k̂ = k̂ · î = 0",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angle between a and b?",
+      "definition": "<span style=\"color:#3b82f6\">cos θ = a · b/(|a||b|)</span>. Perpendicular ⇔ a · b = 0; acute ⇔ a · b > 0; obtuse ⇔ a · b < 0",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Projection of a on b, and the vector projection?",
+      "definition": "Scalar projection <span style=\"color:#3b82f6\">a · b/|b|</span>, vector projection <span style=\"color:#3b82f6\">(a · b/|b|²) b</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Expand |a + b|² and |a − b|².",
+      "definition": "<span style=\"color:#3b82f6\">|a ± b|² = |a|² ± 2 a · b + |b|²</span>. So |a + b| = |a − b| ⇔ a ⟂ b, and (a + b) · (a − b) = |a|² − |b|²",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cauchy–Schwarz and triangle inequality for vectors.",
+      "definition": "<span style=\"color:#3b82f6\">|a · b| ≤ |a||b|</span> and <span style=\"color:#3b82f6\">|a + b| ≤ |a| + |b|</span> (Example 19, 20)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: a · b = 0 implies a = 0 or b = 0?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: î · ĵ = 0 with both non-zero. They can also be perpendicular (Ex 10.3 Q14)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-scalar-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q1: find the angle between a and b with |a| = √3, |b| = 2 and a · b = √6.",
+      "definition": "cos θ = √6/(2√3) = √2/2: <span style=\"color:#f08c00\">θ = π/4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q2: angle between î − 2ĵ + 3k̂ and 3î − 2ĵ + k̂.",
+      "definition": "a · b = 10, |a|² = |b|² = 14: cos θ = 5/7. <span style=\"color:#f08c00\">θ = cos⁻¹(5/7)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q3: projection of î − ĵ on î + ĵ.",
+      "definition": "(1 − 1)/√2 = <span style=\"color:#f08c00\">0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q4: projection of î + 3ĵ + 7k̂ on 7î − ĵ + 8k̂.",
+      "definition": "a · b = 60, |b| = √114: <span style=\"color:#f08c00\">60/√114</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q5: show (1/7)(2î + 3ĵ + 6k̂), (1/7)(3î − 6ĵ + 2k̂), (1/7)(6î + 2ĵ − 3k̂) are unit vectors and mutually perpendicular.",
+      "definition": "Squares: 49, 49, 49 (all 49, so unit after dividing by 7). Dot products: 0, 0, 0 (all 0). <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q6: find |a| and |b| if (a + b) · (a − b) = 8 and |a| = 8|b|.",
+      "definition": "(a + b) · (a − b) = |a|² − |b|² = 63|b|² = 8 → |b|² = 8/63. <span style=\"color:#f08c00\">|b| = 2√14/21</span>, <span style=\"color:#f08c00\">|a| = 16√14/21</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q7: evaluate (3a − 5b) · (2a + 7b).",
+      "definition": "6|a|² + 21 a·b − 10 a·b − 35|b|² = <span style=\"color:#f08c00\">6|a|² + 11 a·b − 35|b|²</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q8: two vectors of equal magnitude, angle 60° and scalar product ½. Find their magnitudes.",
+      "definition": "|a|² cos 60° = ½ → |a|² = 1: <span style=\"color:#f08c00\">|a| = |b| = 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q9: find |x| if for a unit vector a, (x − a) · (x + a) = 12.",
+      "definition": "|x|² − |a|² = 12 → |x|² = 13: <span style=\"color:#f08c00\">|x| = √13</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q10: a = 2î + 2ĵ + 3k̂, b = −î + 2ĵ + k̂, c = 3î + ĵ. If a + λb ⟂ c, find λ.",
+      "definition": "a + λb = (2 − λ, 2 + 2λ, 3 + λ). Dot with c = (3, 1, 0): 6 − 3λ + 2 + 2λ = 8 − λ = 0: <span style=\"color:#f08c00\">λ = 8</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q11: show |a|b + |b|a is perpendicular to |a|b − |b|a.",
+      "definition": "Dot product = |a|²|b|² − |b|²|a|² + (|a||b| − |a||b|)(a · b) = <span style=\"color:#f08c00\">0</span>. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q12: if a · a = 0 and a · b = 0, what can you say about b?",
+      "definition": "a · a = |a|² = 0 forces a = 0, and then a · b = 0 holds for any b: <span style=\"color:#f08c00\">b can be any vector</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q13: a, b, c are unit vectors with a + b + c = 0. Find a·b + b·c + c·a.",
+      "definition": "0 = |a + b + c|² = 3 + 2(a·b + b·c + c·a): <span style=\"color:#f08c00\">−3/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q14: if a = 0 or b = 0 then a · b = 0. Is the converse true? Example.",
+      "definition": "No: î · ĵ = 0 although î ≠ 0 and ĵ ≠ 0 (perpendicular vectors)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q15: vertices A(1, 2, 3), B(−1, 0, 0), C(0, 1, 2). Find ∠ABC.",
+      "definition": "BA = 2î + 2ĵ + 3k̂, BC = î + ĵ + 2k̂, BA · BC = 10, |BA| = √17, |BC| = √6: <span style=\"color:#f08c00\">∠ABC = cos⁻¹(10/√102)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q16: show A(1, 2, 7), B(2, 6, 3), C(3, 10, −1) are collinear.",
+      "definition": "AB = î + 4ĵ − 4k̂ and BC = î + 4ĵ − 4k̂ are equal: <span style=\"color:#22a35a\">collinear</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q17: show 2î − ĵ + k̂, î − 3ĵ − 5k̂, 3î − 4ĵ − 4k̂ form a right-angled triangle.",
+      "definition": "Same set as Ex 10.2 Q17 in a different order: squared sides 6, 35, 41 with 6 + 35 = 41. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q18: λa is a unit vector if (A) λ = 1 (B) λ = −1 (C) a = |λ| (D) a = 1/|λ|",
+      "definition": "|λa| = |λ||a| = 1 → |a| = 1/|λ|: <span style=\"color:#22a35a\">(D)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.6-exercise-10-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Vector (cross) product: definition.",
+      "definition": "<span style=\"color:#3b82f6\">a × b = |a||b| sin θ n̂</span>, where n̂ is the unit vector perpendicular to both, chosen by the right-hand rule. In components a × b = |î ĵ k̂; a₁ a₂ a₃; b₁ b₂ b₃|",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-vector-product"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Cross product: area of parallelogram and perpendicular direction",
+      "definition": "a x b has magnitude |a||b|sin(theta) = area of parallelogram, direction perpendicular to a and b by the right-hand rule; a x b = -(b x a); zero iff parallel; area of triangle = half of |a x b|",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Cross product</p><h2>What does |a × b| measure, and what is the direction of a × b?</h2><svg viewBox=\"0 0 300 206\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"172.5\" x2=\"292.0\" y2=\"172.5\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"33.5\" y1=\"196.0\" x2=\"33.5\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"c1 \" x1=\"33.5\" y1=\"172.5\" x2=\"190.2\" y2=\"156.8\" marker-end=\"url(#pb)\"></line><line class=\"c3 \" x1=\"33.5\" y1=\"172.5\" x2=\"88.3\" y2=\"70.7\" marker-end=\"url(#pg)\"></line><text class=\"t1 \" x=\"196.2\" y=\"160.8\" text-anchor=\"start\">a</text><text class=\"t3 \" x=\"78.3\" y=\"66.7\" text-anchor=\"start\">b</text></svg><p class=\"hint\">Think of the parallelogram spanned by a and b.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Cross product</p><h2>What does |a × b| measure, and what is the direction of a × b?</h2><svg viewBox=\"0 0 300 206\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"172.5\" x2=\"292.0\" y2=\"172.5\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"33.5\" y1=\"196.0\" x2=\"33.5\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"c1 \" x1=\"33.5\" y1=\"172.5\" x2=\"190.2\" y2=\"156.8\" marker-end=\"url(#pb)\"></line><line class=\"c3 \" x1=\"33.5\" y1=\"172.5\" x2=\"88.3\" y2=\"70.7\" marker-end=\"url(#pg)\"></line><text class=\"t1 \" x=\"196.2\" y=\"160.8\" text-anchor=\"start\">a</text><text class=\"t3 \" x=\"78.3\" y=\"66.7\" text-anchor=\"start\">b</text><polygon class=\"f4 fx d2 \" points=\"33.5,172.5 190.2,156.8 245.0,55.0 88.3,70.7\"></polygon><text class=\"t4 fx d3 \" x=\"162.8\" y=\"184.3\" text-anchor=\"middle\">area = |a × b| = |a||b| sin θ</text></svg><div class=\"eq fx d5\"><p><b>|a × b| = |a||b| sin θ</b> is the <b>area of the parallelogram</b> with adjacent sides a and b; the triangle has area ½|a × b|. The vector a × b is <b>perpendicular to both a and b</b>, with direction given by the right-hand rule (turn a into b).</p><p>a × b = −(b × a) (not commutative); a × b = 0 iff a ∥ b. Example 25: a = 3î + ĵ + 4k̂, b = î − ĵ + k̂ gives a × b = 5î + ĵ − 4k̂, area √42.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Properties of the cross product.",
+      "definition": "<span style=\"color:#3b82f6\">a × b = −(b × a)</span> (anticommutative); a × a = 0; a × b = 0 ⇔ a ∥ b (for non-zero); a × (b + c) = a × b + a × c; î × ĵ = k̂, ĵ × k̂ = î, k̂ × î = ĵ (cyclic), and reversed order gives a minus sign",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Area formulas using the cross product.",
+      "definition": "<span style=\"color:#3b82f6\">Parallelogram: |a × b|</span>; <span style=\"color:#3b82f6\">triangle with sides a, b: ½|a × b|</span>; triangle ABC: ½|AB × AC|",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Lagrange’s identity: |a × b|² + (a · b)² = ?",
+      "definition": "<span style=\"color:#3b82f6\">|a|²|b|²</span>. It follows from sin²θ + cos²θ = 1",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How to find a unit vector perpendicular to two vectors a and b?",
+      "definition": "Compute <span style=\"color:#3b82f6\">n = a × b</span> and divide by |a × b|. The other perpendicular unit vector is −n̂",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 22–25 type: Example 25, area of the parallelogram with a = 3î + ĵ + 4k̂, b = î − ĵ + k̂.",
+      "definition": "a × b = <span style=\"color:#f08c00\">5î + ĵ − 4k̂</span>, area = |a × b| = <span style=\"color:#f08c00\">√42</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-vector-product"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q1: |a × b| for a = î − 7ĵ + 7k̂, b = 3î − 2ĵ + 2k̂.",
+      "definition": "a × b = 19ĵ + 19k̂: <span style=\"color:#f08c00\">|a × b| = 19√2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q2: a unit vector perpendicular to a + b and a − b, where a = 3î + 2ĵ + 2k̂, b = î + 2ĵ − 2k̂.",
+      "definition": "a + b = (4, 4, 0), a − b = (2, 0, 4). Cross = 16î − 16ĵ − 8k̂ = 8(2, −2, −1), magnitude 24: <span style=\"color:#f08c00\">(2î − 2ĵ − k̂)/3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q3: a unit vector makes π/3 with î, π/4 with ĵ, and an acute angle θ with k̂. Find θ and the components.",
+      "definition": "cos²(π/3) + cos²(π/4) + cos²θ = 1: 1/4 + 1/2 + cos²θ = 1, so cos θ = 1/2: <span style=\"color:#f08c00\">θ = π/3</span>. Components <span style=\"color:#f08c00\">½î + (1/√2)ĵ + ½k̂</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q4: show (a − b) × (a + b) = 2(a × b).",
+      "definition": "Expand: a × a + a × b − b × a − b × b = 0 + a × b + a × b − 0 = <span style=\"color:#f08c00\">2(a × b)</span>. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q5: find λ and μ if (2î + 6ĵ + 27k̂) × (î + λĵ + μk̂) = 0.",
+      "definition": "Parallel vectors have proportional components: 1/2 = λ/6 = μ/27: <span style=\"color:#f08c00\">λ = 3, μ = 27/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q6: a · b = 0 and a × b = 0. What can you say about a and b?",
+      "definition": "a · b = 0 means a = 0, b = 0 or a ⟂ b; a × b = 0 means a = 0, b = 0 or a ∥ b. Both hold only if <span style=\"color:#f08c00\">a = 0 or b = 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q7: prove a × (b + c) = a × b + a × c using components.",
+      "definition": "Each component of a × (b + c) is aᵢ(bⱼ + cⱼ) − aⱼ(bᵢ + cᵢ) = (aᵢbⱼ − aⱼbᵢ) + (aᵢcⱼ − aⱼcᵢ). <span style=\"color:#22a35a\">✓</span> (distributive)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q8: if a = 0 or b = 0 then a × b = 0. Is the converse true? Example.",
+      "definition": "No: î × 2î = 0 with both non-zero (parallel vectors)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q9: area of the triangle with vertices A(1, 1, 2), B(2, 3, 5), C(1, 5, 5).",
+      "definition": "AB = î + 2ĵ + 3k̂, AC = 4ĵ + 3k̂, AB × AC = −6î − 3ĵ + 4k̂, magnitude √61: <span style=\"color:#f08c00\">area = √61/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q10: area of the parallelogram with adjacent sides a = î − ĵ + 3k̂ and b = 2î − 7ĵ + k̂.",
+      "definition": "a × b = 20î + 5ĵ − 5k̂, |a × b| = 15√2: <span style=\"color:#f08c00\">15√2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q11: |a| = 3, |b| = √2/3. a × b is a unit vector if the angle between them is (A) π/6 (B) π/4 (C) π/3 (D) π/2",
+      "definition": "|a||b| sin θ = 1 → sin θ = 1/√2: <span style=\"color:#22a35a\">(B) π/4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q12: area of the rectangle with vertices A(−î + ½ĵ + 4k̂), B(î + ½ĵ + 4k̂), C(î − ½ĵ + 4k̂), D(−î − ½ĵ + 4k̂) is (A) ½ (B) 1 (C) 2 (D) 4",
+      "definition": "Sides |AB| = 2 and |BC| = 1: <span style=\"color:#22a35a\">(C) 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.7-exercise-10-4"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Unit vectors in the XY-plane are cos θ î + sin θ ĵ",
+      "definition": "Unit vectors in the xy-plane: cos(theta) i + sin(theta) j; 30 degrees gives (sqrt3/2) i + (1/2) j; direction cosines satisfy l^2+m^2+n^2 = 1",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Unit vectors in the XY-plane</p><h2>Write every unit vector in the XY-plane. Which one makes 30° with the positive x-axis?</h2><svg viewBox=\"0 0 300 262\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"131.1\" x2=\"292.0\" y2=\"131.1\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"254.1\" x2=\"150.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><circle class=\"ghost\" cx=\"150.0\" cy=\"131.1\" r=\"94.7\"></circle><line class=\"c0 \" x1=\"150.0\" y1=\"131.1\" x2=\"244.7\" y2=\"131.1\" marker-end=\"url(#pk)\"></line><text class=\"lbi \" x=\"246.7\" y=\"145.1\" text-anchor=\"start\">î</text></svg><p class=\"hint\">Points on the unit circle.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Unit vectors in the XY-plane</p><h2>Write every unit vector in the XY-plane. Which one makes 30° with the positive x-axis?</h2><svg viewBox=\"0 0 300 262\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"131.1\" x2=\"292.0\" y2=\"131.1\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"254.1\" x2=\"150.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><circle class=\"ghost\" cx=\"150.0\" cy=\"131.1\" r=\"94.7\"></circle><line class=\"c0 \" x1=\"150.0\" y1=\"131.1\" x2=\"244.7\" y2=\"131.1\" marker-end=\"url(#pk)\"></line><text class=\"lbi \" x=\"246.7\" y=\"145.1\" text-anchor=\"start\">î</text><line class=\"c2 fx d2\" x1=\"150.0\" y1=\"131.1\" x2=\"232.0\" y2=\"83.7\" marker-end=\"url(#pr)\"></line><line class=\"guide fx d3\" x1=\"232.0\" y1=\"131.1\" x2=\"232.0\" y2=\"83.7\"></line><line class=\"c1 fx d3\" x1=\"150.0\" y1=\"131.1\" x2=\"232.0\" y2=\"131.1\"></line><line class=\"c3 fx d3\" x1=\"232.0\" y1=\"131.1\" x2=\"232.0\" y2=\"83.7\"></line><text class=\"t2 fx d3 \" x=\"198.1\" y=\"77.0\" text-anchor=\"end\">r̂ = cos θ î + sin θ ĵ</text><text class=\"t4 fx d4 \" x=\"232.5\" y=\"125.6\" text-anchor=\"start\">θ = 30°</text></svg><div class=\"eq fx d5\"><p>A unit vector r = xî + yĵ has x² + y² = 1, so x = cos θ, y = sin θ: <b>r = cos θ î + sin θ ĵ</b> with θ from 0 to 2π (the whole unit circle). Its direction cosines are (cos θ, sin θ).</p><p>For θ = 30°: <b>(√3/2) î + ½ ĵ</b> (Misc Ex Q1). In 3-D the direction cosines l, m, n satisfy l² + m² + n² = 1.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: a unit vector in the XY-plane making 30° with the positive x-axis.",
+      "definition": "<span style=\"color:#f08c00\">(√3/2)î + ½ĵ</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: scalar components and magnitude of the vector joining P(x₁, y₁, z₁) to Q(x₂, y₂, z₂).",
+      "definition": "Components <span style=\"color:#f08c00\">x₂ − x₁, y₂ − y₁, z₂ − z₁</span>; magnitude <span style=\"color:#f08c00\">√((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: a girl walks 4 km west, then 3 km in a direction 30° east of north. Find her displacement from the start.",
+      "definition": "Take î east, ĵ north. Total = −4î + 3(sin 30° î + cos 30° ĵ) = <span style=\"color:#f08c00\">(−5/2)î + (3√3/2)ĵ</span>, magnitude √(25/4 + 27/4) = <span style=\"color:#f08c00\">√13 km</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: if a = b + c, is |a| = |b| + |c|?",
+      "definition": "<span style=\"color:#e5484d\">No in general</span>: by the triangle inequality |a| ≤ |b| + |c|, with equality only when b and c have the same direction",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: find x for which x(î + ĵ + k̂) is a unit vector.",
+      "definition": "|x|√3 = 1: <span style=\"color:#f08c00\">x = ±1/√3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q6: a vector of magnitude 5 parallel to the resultant of a = 2î + 3ĵ − k̂ and b = î − 2ĵ + k̂.",
+      "definition": "a + b = 3î + ĵ, magnitude √10: <span style=\"color:#f08c00\">(5/√10)(3î + ĵ) = (3√10/2)î + (√10/2)ĵ</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: unit vector parallel to 2a − b + 3c for a = î + ĵ + k̂, b = 2î − ĵ + 3k̂, c = î − 2ĵ + k̂.",
+      "definition": "2a − b + 3c = 3î − 3ĵ + 2k̂, magnitude √22: <span style=\"color:#f08c00\">(3î − 3ĵ + 2k̂)/√22</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q8: show A(1, −2, −8), B(5, 0, −2), C(11, 3, 7) are collinear and find the ratio in which B divides AC.",
+      "definition": "AB = 4î + 2ĵ + 6k̂, BC = 6î + 3ĵ + 9k̂ = 3/2 · AB: collinear. <span style=\"color:#f08c00\">AB : BC = 2 : 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q9: R divides P = 2a + b and Q = a − 3b externally in the ratio 1 : 2. Show P is the midpoint of RQ.",
+      "definition": "R = (1·Q − 2·P)/(1 − 2) = 2P − Q = 4a + 2b − a + 3b = <span style=\"color:#f08c00\">3a + 5b</span>. Midpoint of RQ = (3a + 5b + a − 3b)/2 = 2a + b = P ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q10: adjacent sides 2î − 4ĵ + 5k̂ and î − 2ĵ − 3k̂. Find the unit vector parallel to its diagonal, and the area.",
+      "definition": "Diagonal = sum = 3î − 6ĵ + 2k̂, magnitude 7: <span style=\"color:#f08c00\">(3î − 6ĵ + 2k̂)/7</span>. Area = |a × b| = |22î + 11ĵ| = <span style=\"color:#f08c00\">11√5 = 11√5</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q11: show that the direction cosines of a vector equally inclined to OX, OY, OZ are ±(1/√3, 1/√3, 1/√3).",
+      "definition": "Equal angles give l = m = n and l² + m² + n² = 1: 3l² = 1. <span style=\"color:#f08c00\">l = m = n = ±1/√3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q12: find a vector d perpendicular to a = î + 4ĵ + 2k̂ and b = 3î − 2ĵ + 7k̂ with c · d = 15, c = 2î − ĵ + 4k̂.",
+      "definition": "d = t(a × b) = t32î − ĵ − 14k̂. c · d = t · 9 = 15 → t = 5/3: <span style=\"color:#f08c00\">d = (160/3)î − (5/3)ĵ − (70/3)k̂</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q13: the scalar product of î + ĵ + k̂ with the unit vector along the sum of 2î + 4ĵ − 5k̂ and λî + 2ĵ + 3k̂ equals 1. Find λ.",
+      "definition": "Sum = (2 + λ, 6, −2). Dot with (1, 1, 1): λ + 6. So (λ + 6)² = (λ + 2)² + 40 → 8λ + 32 = 40: <span style=\"color:#f08c00\">λ = 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q14: a, b, c mutually perpendicular with equal magnitudes. Show a + b + c is equally inclined to a, b and c.",
+      "definition": "(a + b + c) · a = |a|² and similarly for b, c; |a + b + c| = √3|a|. So cos θ = 1/√3 for each. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q15: prove (a + b) · (a + b) = |a|² + |b|² iff a ⟂ b (a, b ≠ 0).",
+      "definition": "Expand: |a|² + 2a·b + |b|² = |a|² + |b|² ⇔ a · b = 0 ⇔ <span style=\"color:#22a35a\">perpendicular ✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q16: if θ is the angle between a and b, then a · b ≥ 0 only when (A) 0 < θ < π/2 (B) 0 ≤ θ ≤ π/2 (C) 0 < θ < π (D) 0 ≤ θ ≤ π",
+      "definition": "cos θ ≥ 0 exactly for 0 ≤ θ ≤ π/2: <span style=\"color:#22a35a\">(B)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q17: a, b are unit vectors at angle θ. a + b is a unit vector if (A) θ = π/4 (B) π/3 (C) π/2 (D) 2π/3",
+      "definition": "|a + b|² = 2 + 2cos θ = 1 → cos θ = −½: <span style=\"color:#22a35a\">(D) θ = 2π/3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q18: î · (ĵ × k̂) + ĵ · (î × k̂) + k̂ · (î × ĵ) is (A) 0 (B) −1 (C) 1 (D) 3",
+      "definition": "1 + ĵ · (−ĵ) + 1 = 1 − 1 + 1 = <span style=\"color:#22a35a\">(C) 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q19: |a · b| = |a × b| when θ equals (A) 0 (B) π/4 (C) π/2 (D) π",
+      "definition": "|cos θ| = |sin θ| → tan θ = ±1: <span style=\"color:#22a35a\">(B) π/4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.8-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Scalar triple product (JEE): a · (b × c) and its meaning.",
+      "definition": "<span style=\"color:#3b82f6\">[a b c] = a · (b × c)</span> = the determinant of the components. Its absolute value is the <span style=\"color:#3b82f6\">volume of the parallelepiped</span> on a, b, c; it is 0 iff the three vectors are coplanar",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Are vectors a = î + 2ĵ + 3k̂, b = 2î + 3ĵ + 4k̂, c = 3î + 4ĵ + 5k̂ coplanar?",
+      "definition": "The determinant |1 2 3; 2 3 4; 3 4 5| = 0 (rows in AP): <span style=\"color:#22a35a\">coplanar</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Vector triple product identity.",
+      "definition": "<span style=\"color:#3b82f6\">a × (b × c) = (a · c)b − (a · b)c</span> (BAC − CAB rule)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Component of a vector perpendicular to b?",
+      "definition": "a − (a · b/|b|²) b: the vector minus its projection along b",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is |a + b| = |a − b|?",
+      "definition": "When <span style=\"color:#3b82f6\">a ⟂ b</span> (a · b = 0)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If |a| = 3, |b| = 4 and a · b = 6, find |a × b|.",
+      "definition": "cos θ = 6/12 = ½, sin θ = √3/2: |a × b| = 12 · √3/2 = <span style=\"color:#f08c00\">6√3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If |a| = 2, |b| = 3, angle 60°, find |a + b| and |a − b|.",
+      "definition": "|a ± b|² = 4 + 9 ± 2 · 6 · ½ = 13 ± 6: <span style=\"color:#f08c00\">|a + b| = √19</span>, <span style=\"color:#f08c00\">|a − b| = √7</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Find the angle between a = î + ĵ and b = ĵ + k̂.",
+      "definition": "cos θ = 1/(√2 · √2) = ½: <span style=\"color:#f08c00\">60° = π/3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Area of the triangle with vertices O, A(1, 2, 3), B(3, 2, 1)?",
+      "definition": "OA × OB = (2 − 6, 9 − 1, 2 − 6) = (−4, 8, −4), magnitude 4√6: area = <span style=\"color:#f08c00\">2√6</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Work done by a force F along a displacement d.",
+      "definition": "<span style=\"color:#3b82f6\">W = F · d</span> (a scalar). Example: F = 3î + 2ĵ − k̂, d = 2î + ĵ + 3k̂ gives 6 + 2 − 3 = 5 units",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Moment (torque) of a force F about a point: r × F.",
+      "definition": "<span style=\"color:#3b82f6\">τ = r × F</span>: a vector whose magnitude is force × perpendicular distance from the pivot",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If a, b, c are vectors with a + b + c = 0, what do a × b, b × c, c × a satisfy?",
+      "definition": "<span style=\"color:#f08c00\">a × b = b × c = c × a</span>. From a × (a + b + c) = 0 we get a × b = c × a, and similarly for the others",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the magnitude of the vector 3î − 4ĵ + 12k̂ is<br>(a) 5 (b) 13 (c) 19 (d) 7",
+      "definition": "√(9 + 16 + 144) = <span style=\"color:#22a35a\">(b) 13</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the unit vector in the direction of 3î + 4ĵ is<br>(a) (3î + 4ĵ)/5 (b) 3î + 4ĵ (c) (3î + 4ĵ)/7 (d) (3î + 4ĵ)/25",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if a = î + ĵ and b = î − ĵ then a · b =<br>(a) 0 (b) 2 (c) −2 (d) 1",
+      "definition": "1 − 1 = <span style=\"color:#22a35a\">(a) 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: î × ĵ · k̂ =<br>(a) 1 (b) 0 (c) −1 (d) 3",
+      "definition": "(î × ĵ) · k̂ = k̂ · k̂ = <span style=\"color:#22a35a\">(a) 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the area of the parallelogram whose adjacent sides are î and ĵ + k̂ is<br>(a) √2 (b) 1 (c) 2 (d) 0",
+      "definition": "|î × (ĵ + k̂)| = |k̂ − ĵ| = <span style=\"color:#22a35a\">(a) √2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the projection of î + ĵ on î is<br>(a) 1 (b) 2 (c) 0 (d) √2",
+      "definition": "<span style=\"color:#22a35a\">(a) 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the vectors 2î + 3ĵ and λî + 6ĵ are parallel if λ =<br>(a) 4 (b) 3 (c) 6 (d) 9",
+      "definition": "2/λ = 3/6: <span style=\"color:#22a35a\">(a) 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the angle between î + ĵ and ĵ + k̂ is<br>(a) π/3 (b) π/4 (c) π/2 (d) π/6",
+      "definition": "<span style=\"color:#22a35a\">(a) π/3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if |a × b| = |a · b| then the angle between a and b is<br>(a) 0 (b) π/4 (c) π/2 (d) π",
+      "definition": "<span style=\"color:#22a35a\">(b) π/4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: for a unit vector a, |a × î|² + |a × ĵ|² + |a × k̂|² =<br>(a) 1 (b) 2 (c) 3 (d) 0",
+      "definition": "Each |a × î|² = 1 − a₁², so the sum is 3 − 1 = <span style=\"color:#22a35a\">(b) 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): if a = î + ĵ + k̂ and b = 2î − ĵ + 3k̂, find a · b.",
+      "definition": "2 − 1 + 3 = <span style=\"color:#f08c00\">4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: |a × b|² + (a · b)² when |a| = 2 and |b| = 3?",
+      "definition": "<span style=\"color:#f08c00\">36</span> (= |a|²|b|²)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: 2î + λĵ + k̂ is perpendicular to î − 2ĵ − 3k̂. Find 2λ.",
+      "definition": "Dot product: 2 − 2λ − 3 = 0, so λ = −½ and <span style=\"color:#f08c00\">2λ = −1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> a × b = b × a.<br><b>R:</b> the cross product is anticommutative.<br>(a) Both true, R explains A (b) A false, R true (c) A true, R false (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(b)</span>: a × b = −(b × a)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> if a · b = 0 then a ⟂ b.<br><b>R:</b> a · b = |a||b| cos θ.<br>(a) Both true, R explains A (b) Both true, R does not (c) A false, R true (d) A true, R false",
+      "definition": "<span style=\"color:#22a35a\">(c)</span>: A fails when a or b is the zero vector (the zero vector has no defined direction)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: the cross product of two parallel vectors is the zero vector.",
+      "definition": "<span style=\"color:#22a35a\">True</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: the dot product of two vectors is a vector.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: it is a scalar",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: find a unit vector along a = 2î − ĵ + 2k̂.",
+      "definition": "|a| = 3: <span style=\"color:#f08c00\">(2î − ĵ + 2k̂)/3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: find the projection of a = 2î + 3ĵ on b = î + ĵ.",
+      "definition": "5/√2 = <span style=\"color:#f08c00\">5/√2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find the angle between a = î + 2ĵ + 3k̂ and b = 3î + 2ĵ + k̂.",
+      "definition": "a · b = 3 + 4 + 3 = 10; |a| = |b| = √14: cos θ = 5/7. <span style=\"color:#f08c00\">θ = cos⁻¹(5/7)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find the area of the triangle with vertices (0, 0, 0), (1, 2, 3), (2, 1, 0).",
+      "definition": "a × b = (2·0 − 3·1, 3·2 − 1·0, 1·1 − 2·2) = (−3, 6, −3): magnitude 3√6. Area = <span style=\"color:#f08c00\">3√6/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: show that î − 2ĵ + 3k̂, −2î + 3ĵ − 4k̂, −ĵ + 2k̂ are coplanar.",
+      "definition": "Determinant |1 −2 3; −2 3 −4; 0 −1 2| = 1(6 − 4) + 2(−4 − 0) + 3(2 − 0) = 2 − 8 + 6 = <span style=\"color:#f08c00\">0</span>: <span style=\"color:#22a35a\">coplanar</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: if a + b + c = 0, |a| = 3, |b| = 5, |c| = 7, find the angle between a and b.",
+      "definition": "|c|² = |a|² + |b|² + 2a·b: 49 = 9 + 25 + 30 cos θ → cos θ = ½: <span style=\"color:#f08c00\">θ = 60°</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a force F = 4î + 3ĵ newtons moves an object from (1, 1) to (5, 4) metres. Find the work done.",
+      "definition": "d = (4, 3): W = F · d = 16 + 9 = <span style=\"color:#f08c00\">25 J</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: the position vectors of the ends of a rod are 2î + ĵ and 6î + 4ĵ. Find its length and midpoint.",
+      "definition": "Vector = (4, 3): length <span style=\"color:#f08c00\">5</span>; midpoint (a + b)/2 = <span style=\"color:#f08c00\">4î + (5/2)ĵ</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    }
+  ]
+}

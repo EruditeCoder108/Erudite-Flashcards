@@ -2737,3 +2737,80 @@ def growth_doubling(deck):
           'Exponential growth: dP/dt = kP gives P = P₀ e^(kt)',
           'dP/dt = kP gives P = P0 e^(kt); 5% continuous interest: P = 1000 e^(t/20), doubling time 20 log 2 = 13.9 years; rate for doubling in 10 years is 10 log 2 = 6.93%',
           vb='0 0 300 190', hint='Separate the variables and integrate.')
+
+
+# ================================================================ Maths 12 Ch 10 Vector algebra
+def vector_addition_laws(deck):
+    P, h = eqplane(-0.8, 6.4, -0.6, 4.4, pad=(10, 8, 8, 10))
+    a, b = (3.6, 1.0), (1.6, 2.6)
+    s = (a[0] + b[0], a[1] + b[1])
+    base = P.axes(labels=False) + vec(P, 0, 0, a[0], a[1], 'c1') + P.text(a[0] / 2, a[1] / 2, 'a', 't1', dx=4, dy=14) + vec(P, 0, 0, b[0], b[1], 'c3') + P.text(b[0] / 2, b[1] / 2, 'b', 't3', dx=-12, dy=-2)
+    back = (vec(P, a[0], a[1], s[0], s[1], 'c3', 'fx d2') + vec(P, 0, 0, s[0], s[1], 'c2', 'fx d3') + P.text(s[0] / 2, s[1] / 2, 'a + b', 't2 fx d3', dx=-6, dy=-10, anchor='end')
+            + P.line(b[0], b[1], s[0], s[1], 'guide fx d4') + P.text(s[0], s[1], 'a + b = b + a', 't4 fx d4', dx=-4, dy=-8, anchor='end'))
+    mcard(deck, 'Addition of vectors', 'Add the vectors a and b by the triangle law. What is the parallelogram law, and is a + b = b + a?', base, back,
+          '<p><b>Triangle law:</b> place the tail of b at the head of a; the vector from the start of a to the end of b is <b>a + b</b>. <b>Parallelogram law:</b> if a and b are adjacent sides from a point, a + b is the diagonal from that point.</p>'
+          '<p>Both routes reach the same point, so <b>a + b = b + a</b> (commutative), also associative: (a + b) + c = a + (b + c). In components: (a₁ + b₁, a₂ + b₂, a₃ + b₃). Subtraction: a − b = a + (−b).</p>',
+          'Triangle and parallelogram laws of vector addition',
+          'Triangle law: tail of b at head of a, a+b joins the start to the end; parallelogram law: diagonal of the parallelogram on a and b; vector addition is commutative and associative; componentwise addition',
+          vb=f'0 0 300 {h}', hint='Place b at the head of a.')
+
+
+def section_formula_line(deck):
+    base = ('<line class="c0" x1="10" y1="90" x2="270" y2="90"></line>'
+            '<circle class="d1s" cx="30" cy="90" r="5"></circle><circle class="d1s" cx="120" cy="90" r="5"></circle>'
+            '<text class="lbl" x="30" y="112" text-anchor="middle">P (a)</text><text class="lbl" x="120" y="112" text-anchor="middle">Q (b)</text>')
+    back = ('<circle class="d2s fx d2" cx="90" cy="90" r="5.5"></circle><text class="t2 fx d2" x="90" y="72" text-anchor="middle">R (2 : 1)</text>'
+            '<text class="sm fx d2" x="140" y="140" text-anchor="middle">internal: R = (m b + n a)/(m + n) = (2b + a)/3</text>'
+            '<circle class="d3s fx d4" cx="210" cy="90" r="5.5"></circle><text class="t3 fx d4" x="210" y="72" text-anchor="middle">R′ (external)</text>'
+            '<text class="sm fx d4" x="140" y="158" text-anchor="middle">external: R′ = (m b − n a)/(m − n) = 2b − a</text>')
+    mcard(deck, 'Section formula', 'P and Q have position vectors a and b. Find the position vector of the point R dividing PQ in the ratio 2 : 1 (i) internally (ii) externally.', base, back,
+          '<p><b>Internally</b> m : n: <b>r = (m b + n a)/(m + n)</b>. For 2 : 1: (2b + a)/3. <b>Externally</b>: <b>r = (m b − n a)/(m − n)</b>, here 2b − a: R′ lies beyond Q with QR′ = PQ.</p>'
+          '<p>Ex 10.2 Q15: a = î + 2ĵ − k̂, b = −î + ĵ + k̂: internal (−î + 4ĵ + k̂)/3, external −3î + 3k̂. The midpoint (m = n = 1) is (a + b)/2 (Q16: (3, 2, 1)).</p>',
+          'Section formula for internal and external division',
+          'Internal division m:n: (m b + n a)/(m+n); external: (m b - n a)/(m-n); midpoint (a+b)/2; Ex 10.2 Q15 gives (-i+4j+k)/3 and -3i+3k',
+          vb='0 0 300 170', hint='Weight each end by the opposite part of the ratio.')
+
+
+def dot_projection(deck):
+    P, h = eqplane(-0.6, 6.4, -0.8, 4.4, pad=(10, 8, 8, 10))
+    a, b = (4.0, 3.0), (5.5, 0.0)
+    base = P.axes(labels=False) + vec(P, 0, 0, a[0], a[1], 'c1') + P.text(a[0], a[1], 'a', 't1', dx=6, dy=-2) + vec(P, 0, 0, b[0], b[1], 'c3') + P.text(b[0], 0, 'b', 't3', dx=4, dy=14)
+    back = (P.line(a[0], a[1], a[0], 0, 'guide fx d2') + P.line(0, 0, a[0], 0, 'c2 fx d3') + P.dot(a[0], 0, 'd2s', 4.5, 'fx d3')
+            + P.text(2.0, 0, '|a| cos θ = 4', 't2 fx d3', anchor='middle', dy=16) + P.text(0.7, 0.5, 'θ', 't4 fx d4', dx=4))
+    mcard(deck, 'Scalar product as a projection', 'How is a · b related to the projection of a on b? Find the projection of a = 4î + 3ĵ on b = 5.5î.', base, back,
+          '<p><b>a · b = |a||b| cos θ</b> = (projection of a on b) × |b|. Projection of a on b = <b>a · b / |b|</b> = |a| cos θ: the length of the shadow of a on the line of b.</p>'
+          '<p>Here a · b = 22, |b| = 5.5, so the projection is 4. The dot product is 0 exactly when the vectors are perpendicular (Ex 10.3 Q3: (î − ĵ) on (î + ĵ) has projection 0). In components a · b = a₁b₁ + a₂b₂ + a₃b₃.</p>',
+          'Dot product and projection',
+          'a.b = |a||b|cos(theta); projection of a on b = a.b/|b|; a.b = 0 iff perpendicular; a.b = a1b1+a2b2+a3b3',
+          vb=f'0 0 300 {h}', hint='Drop a perpendicular from the tip of a onto the line of b.')
+
+
+def cross_parallelogram(deck):
+    P, h = eqplane(-0.6, 6.6, -0.6, 4.2, pad=(10, 8, 8, 10))
+    a, b = (4.0, 0.4), (1.4, 2.6)
+    s = (a[0] + b[0], a[1] + b[1])
+    base = P.axes(labels=False) + vec(P, 0, 0, a[0], a[1], 'c1') + vec(P, 0, 0, b[0], b[1], 'c3') + P.text(a[0], a[1], 'a', 't1', dx=6, dy=4) + P.text(b[0], b[1], 'b', 't3', dx=-10, dy=-4)
+    back = (P.poly([(0, 0), a, s, b], 'f4 fx d2')
+            + P.text(3.3, -0.3, 'area = |a × b| = |a||b| sin θ', 't4 fx d3', anchor='middle') )
+    mcard(deck, 'Cross product', 'What does |a × b| measure, and what is the direction of a × b?', base, back,
+          '<p><b>|a × b| = |a||b| sin θ</b> is the <b>area of the parallelogram</b> with adjacent sides a and b; the triangle has area ½|a × b|. The vector a × b is <b>perpendicular to both a and b</b>, with direction given by the right-hand rule (turn a into b).</p>'
+          '<p>a × b = −(b × a) (not commutative); a × b = 0 iff a ∥ b. Example 25: a = 3î + ĵ + 4k̂, b = î − ĵ + k̂ gives a × b = 5î + ĵ − 4k̂, area √42.</p>',
+          'Cross product: area of parallelogram and perpendicular direction',
+          'a x b has magnitude |a||b|sin(theta) = area of parallelogram, direction perpendicular to a and b by the right-hand rule; a x b = -(b x a); zero iff parallel; area of triangle = half of |a x b|',
+          vb=f'0 0 300 {h}', hint='Think of the parallelogram spanned by a and b.')
+
+
+def unit_vector_plane(deck):
+    P, h = eqplane(-1.5, 1.5, -1.3, 1.3, pad=(8, 8, 8, 8))
+    ox, oy = P.X(0), P.Y(0)
+    u = P.X(1) - ox
+    base = P.axes(labels=False) + f'<circle class="ghost" cx="{ox:.1f}" cy="{oy:.1f}" r="{u:.1f}"></circle>' + vec(P, 0, 0, 1, 0, 'c0') + P.text(1, 0, 'î', 'lbi', dy=14, dx=2)
+    t = math.radians(30)
+    back = (vec(P, 0, 0, math.cos(t), math.sin(t), 'c2', 'fx d2') + P.line(math.cos(t), 0, math.cos(t), math.sin(t), 'guide fx d3') + P.line(0, 0, math.cos(t), 0, 'c1 fx d3') + P.line(math.cos(t), 0, math.cos(t), math.sin(t), 'c3 fx d3')
+            + P.text(0.55, 0.55, 'r̂ = cos θ î + sin θ ĵ', 't2 fx d3', anchor='end', dx=-4, dy=-2) + P.text(0.85, 0.1, 'θ = 30°', 't4 fx d4', dx=2, dy=4))
+    mcard(deck, 'Unit vectors in the XY-plane', 'Write every unit vector in the XY-plane. Which one makes 30° with the positive x-axis?', base, back,
+          '<p>A unit vector r = xî + yĵ has x² + y² = 1, so x = cos θ, y = sin θ: <b>r = cos θ î + sin θ ĵ</b> with θ from 0 to 2π (the whole unit circle). Its direction cosines are (cos θ, sin θ).</p>'
+          '<p>For θ = 30°: <b>(√3/2) î + ½ ĵ</b> (Misc Ex Q1). In 3-D the direction cosines l, m, n satisfy l² + m² + n² = 1.</p>',
+          'Unit vectors in the XY-plane are cos θ î + sin θ ĵ',
+          'Unit vectors in the xy-plane: cos(theta) i + sin(theta) j; 30 degrees gives (sqrt3/2) i + (1/2) j; direction cosines satisfy l^2+m^2+n^2 = 1',
+          vb=f'0 0 300 {h}', hint='Points on the unit circle.')
