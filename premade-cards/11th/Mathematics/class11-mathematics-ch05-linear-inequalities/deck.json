@@ -1,0 +1,1124 @@
+{
+  "version": 1,
+  "name": "Chapter 5: Linear Inequalities",
+  "className": "Class 11",
+  "description": "Inequalities, rules for solving, number-line graphs, double inequalities, systems, word problems, modulus and quadratic inequalities, half-planes.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Define an inequality.",
+      "definition": "Two real numbers or algebraic expressions related by <span style=\"color:#3b82f6\"><, >, ≤ or ≥</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.2-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Numerical, literal and double inequalities: one example each?",
+      "definition": "Numerical: 3 < 5. Literal: x ≥ 3. Double: <span style=\"color:#3b82f6\">3 < x < 5</span> (x is between 3 and 5)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.2-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Strict vs slack inequalities?",
+      "definition": "<span style=\"color:#3b82f6\">Strict</span>: < and > (endpoint excluded). <span style=\"color:#3b82f6\">Slack</span> (non-strict): ≤ and ≥ (endpoint included)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.2-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is ax + b < 0 a linear inequality in one variable?",
+      "definition": "When <span style=\"color:#3b82f6\">a ≠ 0</span>. In two variables, ax + by < c with a ≠ 0, b ≠ 0",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.2-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is ax² + bx + c ≤ 0 linear?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: it is a quadratic inequality in one variable (a ≠ 0)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.2-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ravi has ₹200 and buys x packets of rice at ₹30 each (whole packets only). Write the inequality.",
+      "definition": "<span style=\"color:#3b82f6\">30x < 200</span>: he cannot spend exactly ₹200 with whole packets, so the spending is strictly less",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.2-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Reshma has ₹120; registers cost ₹40, pens ₹20. Write the inequality for x registers and y pens.",
+      "definition": "<span style=\"color:#3b82f6\">40x + 20y ≤ 120</span>, which combines 40x + 20y < 120 (inequality) and 40x + 20y = 120 (equation)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.2-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a solution and a solution set of an inequality?",
+      "definition": "A value of the variable that makes it a <span style=\"color:#3b82f6\">true statement</span>; the solution set is all such values. E.g. 30x < 200 (whole numbers): {0, 1, 2, 3, 4, 5, 6}",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.2-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rule 1 for solving inequalities?",
+      "definition": "<span style=\"color:#3b82f6\">Add or subtract the same number</span> on both sides: the sign is unchanged",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rule 2 for solving inequalities?",
+      "definition": "Multiply or divide both sides by the same <span style=\"color:#3b82f6\">positive</span> number: sign unchanged. By a <span style=\"color:#e5484d\">negative</span> number: <span style=\"color:#e5484d\">reverse the sign</span> (< ↔ >, ≤ ↔ ≥)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does multiplying by a negative reverse the inequality? Examples?",
+      "definition": "3 > 2 but −3 < −2; −8 < −7 but (−8)(−2) = 16 > 14 = (−7)(−2)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Multiplying by a negative number reverses the inequality",
+      "definition": "Multiplying or dividing an inequality by a negative number mirrors the number line, so the inequality sign reverses: 2<3 gives −2>−3",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Reversing the sign · intuition</p><h2>Multiply both sides of 2 < 3 by −1. Which way does the inequality go, and why?</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"52.5\" y1=\"71\" x2=\"52.5\" y2=\"79\"></line><text class=\"num\" x=\"52.5\" y=\"95\">−3</text><line class=\"ax\" x1=\"85.0\" y1=\"71\" x2=\"85.0\" y2=\"79\"></line><text class=\"num\" x=\"85.0\" y=\"95\">−2</text><line class=\"ax\" x1=\"117.5\" y1=\"71\" x2=\"117.5\" y2=\"79\"></line><text class=\"num\" x=\"117.5\" y=\"95\">−1</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">0</text><line class=\"ax\" x1=\"182.5\" y1=\"71\" x2=\"182.5\" y2=\"79\"></line><text class=\"num\" x=\"182.5\" y=\"95\">1</text><line class=\"ax\" x1=\"215.0\" y1=\"71\" x2=\"215.0\" y2=\"79\"></line><text class=\"num\" x=\"215.0\" y=\"95\">2</text><line class=\"ax\" x1=\"247.5\" y1=\"71\" x2=\"247.5\" y2=\"79\"></line><text class=\"num\" x=\"247.5\" y=\"95\">3</text><circle class=\"d1s\" cx=\"215.0\" cy=\"75\" r=\"6\"></circle><text class=\"t1\" x=\"215.0\" y=\"58\" text-anchor=\"middle\">2</text><circle class=\"d2s\" cx=\"247.5\" cy=\"75\" r=\"6\"></circle><text class=\"t2\" x=\"247.5\" y=\"58\" text-anchor=\"middle\">3</text><text class=\"lbl\" x=\"150\" y=\"28\" text-anchor=\"middle\">2 &lt; 3</text></svg><p class=\"hint\">Where do 2 and 3 land after the mirror?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Reversing the sign · intuition</p><h2>Multiply both sides of 2 < 3 by −1. Which way does the inequality go, and why?</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"52.5\" y1=\"71\" x2=\"52.5\" y2=\"79\"></line><text class=\"num\" x=\"52.5\" y=\"95\">−3</text><line class=\"ax\" x1=\"85.0\" y1=\"71\" x2=\"85.0\" y2=\"79\"></line><text class=\"num\" x=\"85.0\" y=\"95\">−2</text><line class=\"ax\" x1=\"117.5\" y1=\"71\" x2=\"117.5\" y2=\"79\"></line><text class=\"num\" x=\"117.5\" y=\"95\">−1</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">0</text><line class=\"ax\" x1=\"182.5\" y1=\"71\" x2=\"182.5\" y2=\"79\"></line><text class=\"num\" x=\"182.5\" y=\"95\">1</text><line class=\"ax\" x1=\"215.0\" y1=\"71\" x2=\"215.0\" y2=\"79\"></line><text class=\"num\" x=\"215.0\" y=\"95\">2</text><line class=\"ax\" x1=\"247.5\" y1=\"71\" x2=\"247.5\" y2=\"79\"></line><text class=\"num\" x=\"247.5\" y=\"95\">3</text><g class=\"mv1\"><circle class=\"d1s\" cx=\"215.0\" cy=\"75\" r=\"6\"></circle></g><g class=\"mv2\"><circle class=\"d2s\" cx=\"247.5\" cy=\"75\" r=\"6\"></circle></g><text class=\"t1 fx d5\" x=\"85.0\" y=\"58\" text-anchor=\"middle\">−2</text><text class=\"t2 fx d5\" x=\"52.5\" y=\"58\" text-anchor=\"middle\">−3</text><text class=\"t3 fx d5\" x=\"150\" y=\"28\" text-anchor=\"middle\">−3 &lt; −2 : order reversed</text></svg><div class=\"eq fx d5\"><p>Multiplying by −1 <b>mirrors the number line</b> about 0: 2 → −2 and 3 → −3. The larger number is now on the left, so <b>&lt; becomes &gt;</b>: −2 &gt; −3.</p><p>Rule: multiply or divide by a <b>negative</b> → flip the sign. By a positive → no change.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .mv1{animation:m1 2.2s ease-in-out .6s both}@keyframes m1{from{transform:translateX(0)}to{transform:translateX(-130.0px)}}.pp .mv2{animation:m2 2.2s ease-in-out .6s both}@keyframes m2{from{transform:translateX(0)}to{transform:translateX(-195.0px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .mv1{animation:m1 2.2s ease-in-out .6s both}@keyframes m1{from{transform:translateX(0)}to{transform:translateX(-130.0px)}}.pp .mv2{animation:m2 2.2s ease-in-out .6s both}@keyframes m2{from{transform:translateX(0)}to{transform:translateX(-195.0px)}}"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: solve −2x < 4.",
+      "definition": "Divide by −2 and <span style=\"color:#e5484d\">flip</span>: <span style=\"color:#f08c00\">x > −2</span>. Forgetting the flip is the most common mistake",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: if 0 < a < b, compare 1/a and 1/b.",
+      "definition": "<span style=\"color:#f08c00\">1/a > 1/b</span>. Taking reciprocals of positive numbers reverses the order (1/2 > 1/3). If a < 0 < b, then 1/a < 1/b",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can you square both sides of an inequality?",
+      "definition": "Only when both sides are <span style=\"color:#3b82f6\">non-negative</span>. −3 < 2 but (−3)² = 9 > 4. Safe form: a² < b² ⟺ |a| < |b|",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: solve (x + 1)/(x − 2) ≥ 0 by cross-multiplying?",
+      "definition": "<span style=\"color:#e5484d\">Never multiply by an expression of unknown sign</span>. Use signs instead: the answer is x ≤ −1 or x > 2 (the point 2 is excluded because it makes the denominator 0)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: solve 30x < 200 for (i) natural x, (ii) integer x.",
+      "definition": "x < 20/3 ≈ 6.67. (i) <span style=\"color:#f08c00\">{1, 2, 3, 4, 5, 6}</span> (ii) <span style=\"color:#f08c00\">{…, −2, −1, 0, 1, 2, 3, 4, 5, 6}</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q1: solve 24x < 100 for natural and integer x.",
+      "definition": "x < 25/6 ≈ 4.17: natural <span style=\"color:#f08c00\">{1, 2, 3, 4}</span>; integers <span style=\"color:#f08c00\">{…, −1, 0, 1, 2, 3, 4}</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q2: solve −12x > 30 for natural and integer x.",
+      "definition": "Divide by −12 and flip: x < −5/2. Natural: <span style=\"color:#f08c00\">no solution (φ)</span>; integers: <span style=\"color:#f08c00\">{…, −4, −3}</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2: solve 5x − 3 < 3x + 1 for (i) integer x, (ii) real x.",
+      "definition": "2x < 4 → x < 2. (i) <span style=\"color:#f08c00\">{…, −1, 0, 1}</span> (ii) <span style=\"color:#f08c00\">(−∞, 2)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3: solve 4x + 3 < 6x + 7.",
+      "definition": "−2x < 4 → x > −2: <span style=\"color:#f08c00\">(−2, ∞)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4: solve (5 − 2x)/3 ≤ x/6 − 5.",
+      "definition": "Multiply by 6: 2(5 − 2x) ≤ x − 30 → 10 − 4x ≤ x − 30 → −5x ≤ −40 → <span style=\"color:#f08c00\">x ≥ 8</span>, i.e. [8, ∞)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: solving a linear inequality with fractions.",
+      "definition": "1) Multiply by the <span style=\"color:#3b82f6\">LCD (positive)</span> to clear fractions. 2) Expand brackets. 3) Collect x on one side. 4) Divide by its coefficient, <span style=\"color:#e5484d\">flipping if negative</span>. 5) Write the answer as an interval",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q5–8: solve 4x + 3 < 5x + 7; 3x − 7 > 5x − 1; 3(x − 1) ≤ 2(x − 3); 3(2 − x) ≥ 2(1 − x).",
+      "definition": "<span style=\"color:#f08c00\">x > −4</span>;  <span style=\"color:#f08c00\">x < −3</span>;  <span style=\"color:#f08c00\">x ≤ −3</span>;  <span style=\"color:#f08c00\">x ≤ 4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q13: solve 2(2x + 3) − 10 < 6(x − 2).",
+      "definition": "4x + 6 − 10 < 6x − 12 → −4 + 12 < 2x → <span style=\"color:#f08c00\">x > 4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q14: solve 37 − (3x + 5) > 9x − 8(x − 3).",
+      "definition": "32 − 3x > x + 24 → 8 > 4x → <span style=\"color:#f08c00\">x < 2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number line: how do you graph x < a and x > a?",
+      "definition": "<span style=\"color:#3b82f6\">Open circle</span> at a (a excluded), thick line to the left for x < a, to the right for x > a",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-graphs"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number line: how do you graph x ≤ a and x ≥ a?",
+      "definition": "<span style=\"color:#3b82f6\">Filled circle</span> at a (a included), thick line to the left (≤) or right (≥)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-graphs"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Example 5: graph of x < 3",
+      "definition": "7x+3<5x+9 gives x<3; open circle at 3 with the ray to the left",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Inequalities · number line</p><h2>Example 5: solve 7x + 3 < 5x + 9 and graph the solution.</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"14\" y2=\"75\"></line><line class=\"ax\" x1=\"41.7\" y1=\"71\" x2=\"41.7\" y2=\"79\"></line><text class=\"num\" x=\"41.7\" y=\"95\">−3</text><line class=\"ax\" x1=\"63.3\" y1=\"71\" x2=\"63.3\" y2=\"79\"></line><text class=\"num\" x=\"63.3\" y=\"95\">−2</text><line class=\"ax\" x1=\"85.0\" y1=\"71\" x2=\"85.0\" y2=\"79\"></line><text class=\"num\" x=\"85.0\" y=\"95\">−1</text><line class=\"ax\" x1=\"106.7\" y1=\"71\" x2=\"106.7\" y2=\"79\"></line><text class=\"num\" x=\"106.7\" y=\"95\">0</text><line class=\"ax\" x1=\"128.3\" y1=\"71\" x2=\"128.3\" y2=\"79\"></line><text class=\"num\" x=\"128.3\" y=\"95\">1</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">2</text><line class=\"ax\" x1=\"171.7\" y1=\"71\" x2=\"171.7\" y2=\"79\"></line><text class=\"num\" x=\"171.7\" y=\"95\">3</text><line class=\"ax\" x1=\"193.3\" y1=\"71\" x2=\"193.3\" y2=\"79\"></line><text class=\"num\" x=\"193.3\" y=\"95\">4</text><line class=\"ax\" x1=\"215.0\" y1=\"71\" x2=\"215.0\" y2=\"79\"></line><text class=\"num\" x=\"215.0\" y=\"95\">5</text><line class=\"ax\" x1=\"236.7\" y1=\"71\" x2=\"236.7\" y2=\"79\"></line><text class=\"num\" x=\"236.7\" y=\"95\">6</text><line class=\"ax\" x1=\"258.3\" y1=\"71\" x2=\"258.3\" y2=\"79\"></line><text class=\"num\" x=\"258.3\" y=\"95\">7</text></svg><p class=\"hint\">Solve first, then mark the endpoints.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Inequalities · number line</p><h2>Example 5: solve 7x + 3 < 5x + 9 and graph the solution.</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"14\" y2=\"75\"></line><line class=\"ax\" x1=\"41.7\" y1=\"71\" x2=\"41.7\" y2=\"79\"></line><text class=\"num\" x=\"41.7\" y=\"95\">−3</text><line class=\"ax\" x1=\"63.3\" y1=\"71\" x2=\"63.3\" y2=\"79\"></line><text class=\"num\" x=\"63.3\" y=\"95\">−2</text><line class=\"ax\" x1=\"85.0\" y1=\"71\" x2=\"85.0\" y2=\"79\"></line><text class=\"num\" x=\"85.0\" y=\"95\">−1</text><line class=\"ax\" x1=\"106.7\" y1=\"71\" x2=\"106.7\" y2=\"79\"></line><text class=\"num\" x=\"106.7\" y=\"95\">0</text><line class=\"ax\" x1=\"128.3\" y1=\"71\" x2=\"128.3\" y2=\"79\"></line><text class=\"num\" x=\"128.3\" y=\"95\">1</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">2</text><line class=\"ax\" x1=\"171.7\" y1=\"71\" x2=\"171.7\" y2=\"79\"></line><text class=\"num\" x=\"171.7\" y=\"95\">3</text><line class=\"ax\" x1=\"193.3\" y1=\"71\" x2=\"193.3\" y2=\"79\"></line><text class=\"num\" x=\"193.3\" y=\"95\">4</text><line class=\"ax\" x1=\"215.0\" y1=\"71\" x2=\"215.0\" y2=\"79\"></line><text class=\"num\" x=\"215.0\" y=\"95\">5</text><line class=\"ax\" x1=\"236.7\" y1=\"71\" x2=\"236.7\" y2=\"79\"></line><text class=\"num\" x=\"236.7\" y=\"95\">6</text><line class=\"ax\" x1=\"258.3\" y1=\"71\" x2=\"258.3\" y2=\"79\"></line><text class=\"num\" x=\"258.3\" y=\"95\">7</text><line class=\"c1 fx d2\" x1=\"10.0\" y1=\"75\" x2=\"171.7\" y2=\"75\"></line><path class=\"d1s fx d2\" d=\"M 10 75 l 9 -5 v 10 Z\"></path><circle class=\"f0 c1 fx d2\" cx=\"171.7\" cy=\"75\" r=\"5.5\"></circle></svg><div class=\"eq fx d5\"><p>2x &lt; 6 → <b>x &lt; 3</b>, i.e. (−∞, 3). Open circle at 3, ray to the left.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-graphs"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Example 6: graph of x ≥ 1",
+      "definition": "(3x−4)/2 ≥ (x+1)/4 − 1 gives x ≥ 1; filled circle at 1 with the ray to the right",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Inequalities · number line</p><h2>Example 6: solve (3x − 4)/2 ≥ (x + 1)/4 − 1 and graph the solution.</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"14\" y2=\"75\"></line><line class=\"ax\" x1=\"41.7\" y1=\"71\" x2=\"41.7\" y2=\"79\"></line><text class=\"num\" x=\"41.7\" y=\"95\">−3</text><line class=\"ax\" x1=\"63.3\" y1=\"71\" x2=\"63.3\" y2=\"79\"></line><text class=\"num\" x=\"63.3\" y=\"95\">−2</text><line class=\"ax\" x1=\"85.0\" y1=\"71\" x2=\"85.0\" y2=\"79\"></line><text class=\"num\" x=\"85.0\" y=\"95\">−1</text><line class=\"ax\" x1=\"106.7\" y1=\"71\" x2=\"106.7\" y2=\"79\"></line><text class=\"num\" x=\"106.7\" y=\"95\">0</text><line class=\"ax\" x1=\"128.3\" y1=\"71\" x2=\"128.3\" y2=\"79\"></line><text class=\"num\" x=\"128.3\" y=\"95\">1</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">2</text><line class=\"ax\" x1=\"171.7\" y1=\"71\" x2=\"171.7\" y2=\"79\"></line><text class=\"num\" x=\"171.7\" y=\"95\">3</text><line class=\"ax\" x1=\"193.3\" y1=\"71\" x2=\"193.3\" y2=\"79\"></line><text class=\"num\" x=\"193.3\" y=\"95\">4</text><line class=\"ax\" x1=\"215.0\" y1=\"71\" x2=\"215.0\" y2=\"79\"></line><text class=\"num\" x=\"215.0\" y=\"95\">5</text><line class=\"ax\" x1=\"236.7\" y1=\"71\" x2=\"236.7\" y2=\"79\"></line><text class=\"num\" x=\"236.7\" y=\"95\">6</text><line class=\"ax\" x1=\"258.3\" y1=\"71\" x2=\"258.3\" y2=\"79\"></line><text class=\"num\" x=\"258.3\" y=\"95\">7</text></svg><p class=\"hint\">Solve first, then mark the endpoints.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Inequalities · number line</p><h2>Example 6: solve (3x − 4)/2 ≥ (x + 1)/4 − 1 and graph the solution.</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"14\" y2=\"75\"></line><line class=\"ax\" x1=\"41.7\" y1=\"71\" x2=\"41.7\" y2=\"79\"></line><text class=\"num\" x=\"41.7\" y=\"95\">−3</text><line class=\"ax\" x1=\"63.3\" y1=\"71\" x2=\"63.3\" y2=\"79\"></line><text class=\"num\" x=\"63.3\" y=\"95\">−2</text><line class=\"ax\" x1=\"85.0\" y1=\"71\" x2=\"85.0\" y2=\"79\"></line><text class=\"num\" x=\"85.0\" y=\"95\">−1</text><line class=\"ax\" x1=\"106.7\" y1=\"71\" x2=\"106.7\" y2=\"79\"></line><text class=\"num\" x=\"106.7\" y=\"95\">0</text><line class=\"ax\" x1=\"128.3\" y1=\"71\" x2=\"128.3\" y2=\"79\"></line><text class=\"num\" x=\"128.3\" y=\"95\">1</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">2</text><line class=\"ax\" x1=\"171.7\" y1=\"71\" x2=\"171.7\" y2=\"79\"></line><text class=\"num\" x=\"171.7\" y=\"95\">3</text><line class=\"ax\" x1=\"193.3\" y1=\"71\" x2=\"193.3\" y2=\"79\"></line><text class=\"num\" x=\"193.3\" y=\"95\">4</text><line class=\"ax\" x1=\"215.0\" y1=\"71\" x2=\"215.0\" y2=\"79\"></line><text class=\"num\" x=\"215.0\" y=\"95\">5</text><line class=\"ax\" x1=\"236.7\" y1=\"71\" x2=\"236.7\" y2=\"79\"></line><text class=\"num\" x=\"236.7\" y=\"95\">6</text><line class=\"ax\" x1=\"258.3\" y1=\"71\" x2=\"258.3\" y2=\"79\"></line><text class=\"num\" x=\"258.3\" y=\"95\">7</text><line class=\"c1 fx d2\" x1=\"128.3\" y1=\"75\" x2=\"290.0\" y2=\"75\"></line><circle class=\"d1s fx d2\" cx=\"128.3\" cy=\"75\" r=\"5.5\"></circle><path class=\"d1s fx d2\" d=\"M 290 75 l -9 -5 v 10 Z\"></path></svg><div class=\"eq fx d5\"><p>Multiply by 4: 2(3x − 4) ≥ x − 3 → 6x − 8 ≥ x − 3 → 5x ≥ 5 → <b>x ≥ 1</b>, i.e. [1, ∞). Filled circle at 1, ray to the right.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-graphs"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q17–19: solve 3x − 2 < 2x + 1; 5x − 3 > 3x − 5; 3(1 − x) < 2(x + 4).",
+      "definition": "<span style=\"color:#f08c00\">x < 3</span>;  <span style=\"color:#f08c00\">x > −1</span>;  3 − 3x < 2x + 8 → <span style=\"color:#f08c00\">x > −1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-graphs"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: translating a word problem into an inequality.",
+      "definition": "Let x be the unknown. Translate: “at least” → <span style=\"color:#3b82f6\">≥</span>, “at most / not more than” → <span style=\"color:#3b82f6\">≤</span>, “more than” → >, “less than” → <. Solve, then interpret (integers? natural numbers?)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7: marks 62 and 48 in two terms. Minimum marks in the annual exam for an average of at least 60?",
+      "definition": "(62 + 48 + x)/3 ≥ 60 → 110 + x ≥ 180 → <span style=\"color:#f08c00\">x ≥ 70</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q21: Ravi scored 70 and 75. Minimum in the third test for an average of at least 60?",
+      "definition": "(145 + x)/3 ≥ 60 → x ≥ <span style=\"color:#f08c00\">35</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q22: Sunita has 87, 92, 94, 95. Minimum in the fifth exam to average at least 90?",
+      "definition": "(368 + x)/5 ≥ 90 → 368 + x ≥ 450 → x ≥ <span style=\"color:#f08c00\">82</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8: pairs of consecutive odd naturals, both larger than 10, sum less than 40?",
+      "definition": "x > 10 and 2x + 2 < 40 → 10 < x < 19, x odd → <span style=\"color:#f08c00\">(11,13), (13,15), (15,17), (17,19)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q23: consecutive odd positive integers, both smaller than 10, sum more than 11?",
+      "definition": "x + 2 < 10 and 2x + 2 > 11 → 4.5 < x < 8, x odd: <span style=\"color:#f08c00\">(5, 7) and (7, 9)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q24: consecutive even positive integers, both larger than 5, sum less than 23?",
+      "definition": "x > 5 and 2x + 2 < 23 → 5 < x < 10.5, x even: <span style=\"color:#f08c00\">(6, 8), (8, 10), (10, 12)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q25: longest side = 3 × shortest, third side = longest − 2. Perimeter ≥ 61. Minimum shortest side?",
+      "definition": "x + 3x + (3x − 2) ≥ 61 → 7x ≥ 63 → x ≥ <span style=\"color:#f08c00\">9 cm</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 5.1 Q26: board of 91 cm cut into x, x + 3, 2x; the third must be at least 5 cm longer than the second. Range of x?",
+      "definition": "x + (x + 3) + 2x ≤ 91 → x ≤ 22; 2x ≥ (x + 3) + 5 → x ≥ 8. So <span style=\"color:#f08c00\">8 ≤ x ≤ 22</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.3-word-problems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: solve a double inequality like a ≤ f(x) < b.",
+      "definition": "Apply every operation to <span style=\"color:#3b82f6\">all three parts</span> at once (add, multiply, flip if negative), leaving x alone in the middle",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9: solve −8 ≤ 5x − 3 < 7.",
+      "definition": "−5 ≤ 5x < 10 → <span style=\"color:#f08c00\">−1 ≤ x < 2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10: solve −5 ≤ (5 − 3x)/2 ≤ 8.",
+      "definition": "−10 ≤ 5 − 3x ≤ 16 → −15 ≤ −3x ≤ 11 → divide by −3 (flip both): <span style=\"color:#f08c00\">−11/3 ≤ x ≤ 5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: after dividing a double inequality by a negative number, what changes?",
+      "definition": "<span style=\"color:#e5484d\">Both signs flip and the two end values swap places</span>: −15 ≤ −3x ≤ 11 becomes 5 ≥ x ≥ −11/3, written −11/3 ≤ x ≤ 5",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1 and Q2: solve 2 ≤ 3x − 4 ≤ 5 and 6 ≤ −3(2x − 4) < 12.",
+      "definition": "6 ≤ 3x ≤ 9 → <span style=\"color:#f08c00\">[2, 3]</span>. Second: 6 ≤ −6x + 12 < 12 → −6 ≤ −6x < 0 → <span style=\"color:#f08c00\">0 < x ≤ 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: solving a system of inequalities in one variable.",
+      "definition": "Solve each inequality separately, graph both on one number line, and take the <span style=\"color:#3b82f6\">overlap (intersection)</span> of the solution sets",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 11: solve 3x − 7 < 5 + x and 11 − 5x ≤ 1.",
+      "definition": "x < 6 and x ≥ 2 → common part <span style=\"color:#f08c00\">[2, 6)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Example 11: system solution on the number line",
+      "definition": "3x−7<5+x gives x<6; 11−5x≤1 gives x≥2; the common part is 2≤x<6",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Inequalities · number line</p><h2>Example 11: show the solution of {3x − 7 < 5 + x, 11 − 5x ≤ 1} on the number line.</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"14\" y2=\"75\"></line><line class=\"ax\" x1=\"41.7\" y1=\"71\" x2=\"41.7\" y2=\"79\"></line><text class=\"num\" x=\"41.7\" y=\"95\">−3</text><line class=\"ax\" x1=\"63.3\" y1=\"71\" x2=\"63.3\" y2=\"79\"></line><text class=\"num\" x=\"63.3\" y=\"95\">−2</text><line class=\"ax\" x1=\"85.0\" y1=\"71\" x2=\"85.0\" y2=\"79\"></line><text class=\"num\" x=\"85.0\" y=\"95\">−1</text><line class=\"ax\" x1=\"106.7\" y1=\"71\" x2=\"106.7\" y2=\"79\"></line><text class=\"num\" x=\"106.7\" y=\"95\">0</text><line class=\"ax\" x1=\"128.3\" y1=\"71\" x2=\"128.3\" y2=\"79\"></line><text class=\"num\" x=\"128.3\" y=\"95\">1</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">2</text><line class=\"ax\" x1=\"171.7\" y1=\"71\" x2=\"171.7\" y2=\"79\"></line><text class=\"num\" x=\"171.7\" y=\"95\">3</text><line class=\"ax\" x1=\"193.3\" y1=\"71\" x2=\"193.3\" y2=\"79\"></line><text class=\"num\" x=\"193.3\" y=\"95\">4</text><line class=\"ax\" x1=\"215.0\" y1=\"71\" x2=\"215.0\" y2=\"79\"></line><text class=\"num\" x=\"215.0\" y=\"95\">5</text><line class=\"ax\" x1=\"236.7\" y1=\"71\" x2=\"236.7\" y2=\"79\"></line><text class=\"num\" x=\"236.7\" y=\"95\">6</text><line class=\"ax\" x1=\"258.3\" y1=\"71\" x2=\"258.3\" y2=\"79\"></line><text class=\"num\" x=\"258.3\" y=\"95\">7</text></svg><p class=\"hint\">Solve first, then mark the endpoints.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Inequalities · number line</p><h2>Example 11: show the solution of {3x − 7 < 5 + x, 11 − 5x ≤ 1} on the number line.</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"14\" y2=\"75\"></line><line class=\"ax\" x1=\"41.7\" y1=\"71\" x2=\"41.7\" y2=\"79\"></line><text class=\"num\" x=\"41.7\" y=\"95\">−3</text><line class=\"ax\" x1=\"63.3\" y1=\"71\" x2=\"63.3\" y2=\"79\"></line><text class=\"num\" x=\"63.3\" y=\"95\">−2</text><line class=\"ax\" x1=\"85.0\" y1=\"71\" x2=\"85.0\" y2=\"79\"></line><text class=\"num\" x=\"85.0\" y=\"95\">−1</text><line class=\"ax\" x1=\"106.7\" y1=\"71\" x2=\"106.7\" y2=\"79\"></line><text class=\"num\" x=\"106.7\" y=\"95\">0</text><line class=\"ax\" x1=\"128.3\" y1=\"71\" x2=\"128.3\" y2=\"79\"></line><text class=\"num\" x=\"128.3\" y=\"95\">1</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">2</text><line class=\"ax\" x1=\"171.7\" y1=\"71\" x2=\"171.7\" y2=\"79\"></line><text class=\"num\" x=\"171.7\" y=\"95\">3</text><line class=\"ax\" x1=\"193.3\" y1=\"71\" x2=\"193.3\" y2=\"79\"></line><text class=\"num\" x=\"193.3\" y=\"95\">4</text><line class=\"ax\" x1=\"215.0\" y1=\"71\" x2=\"215.0\" y2=\"79\"></line><text class=\"num\" x=\"215.0\" y=\"95\">5</text><line class=\"ax\" x1=\"236.7\" y1=\"71\" x2=\"236.7\" y2=\"79\"></line><text class=\"num\" x=\"236.7\" y=\"95\">6</text><line class=\"ax\" x1=\"258.3\" y1=\"71\" x2=\"258.3\" y2=\"79\"></line><text class=\"num\" x=\"258.3\" y=\"95\">7</text><line class=\"c3 fx d2\" x1=\"150.0\" y1=\"75\" x2=\"236.7\" y2=\"75\"></line><circle class=\"d3s fx d2\" cx=\"150.0\" cy=\"75\" r=\"5.5\"></circle><circle class=\"f0 c3 fx d2\" cx=\"236.7\" cy=\"75\" r=\"5.5\"></circle></svg><div class=\"eq fx d5\"><p>x &lt; 6 and x ≥ 2. The bold stretch where both hold: <b>2 ≤ x &lt; 6</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: solve 5x + 1 > −24 and 5x − 1 < 24.",
+      "definition": "x > −5 and x < 5 → <span style=\"color:#f08c00\">(−5, 5)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q8: solve 2(x − 1) < x + 5 and 3(x + 2) > 2 − x.",
+      "definition": "x < 7 and x > −1 → <span style=\"color:#f08c00\">(−1, 7)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q9: solve 3x − 7 > 2(x − 6) and 6 − x > 11 − 2x.",
+      "definition": "x > −5 and x > 5 → the overlap is <span style=\"color:#f08c00\">(5, ∞)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q10: solve 5(2x − 7) − 3(2x + 3) ≤ 0 and 2x + 19 ≤ 6x + 47.",
+      "definition": "4x ≤ 44 → x ≤ 11; −28 ≤ 4x → x ≥ −7: <span style=\"color:#f08c00\">[−7, 11]</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is the solution of a system empty?",
+      "definition": "When the individual solution sets <span style=\"color:#3b82f6\">do not overlap</span>, e.g. x > 5 and x < 2",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-double-and-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12: acid to be kept between 30°C and 35°C. Range in °F using C = (5/9)(F − 32)?",
+      "definition": "30 < (5/9)(F − 32) < 35 → 54 < F − 32 < 63 → <span style=\"color:#f08c00\">86 < F < 95</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q11: solution between 68°F and 77°F. Range in °C (F = 9C/5 + 32)?",
+      "definition": "68 ≤ 9C/5 + 32 ≤ 77 → 36 ≤ 9C/5 ≤ 45 → <span style=\"color:#f08c00\">20 ≤ C ≤ 25</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13: 600 L of 12% acid; how much 30% acid to add so the mixture is between 15% and 18%?",
+      "definition": "Acid: 0.30x + 72. Need 0.15(x + 600) < 0.30x + 72 < 0.18(x + 600) → x > 120 and x < 300: <span style=\"color:#f08c00\">120 < x < 300 litres</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: mixture problems with percentages.",
+      "definition": "Write “acid in mixture = acid from each part”, and “total acid ÷ total volume” between the two limits; clear the decimals with the LCD; solve the double inequality",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q12: 640 L of 8% boric acid; add x L of 2% so that the mixture is between 4% and 6%. Range of x?",
+      "definition": "51.2 + 0.02x > 0.04(640 + x) → x < 1280; 51.2 + 0.02x < 0.06(640 + x) → x > 320. So <span style=\"color:#f08c00\">320 < x < 1280</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q13: 1125 L of 45% acid; how much water must be added for between 25% and 30% acid?",
+      "definition": "Acid = 506.25 L. 0.25 < 506.25/(1125 + x) < 0.30 → 562.5 < x < 900 litres: <span style=\"color:#f08c00\">562.5 < x < 900</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-applications"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q14: IQ = (MA/CA) × 100, children of age 12, 80 ≤ IQ ≤ 140. Range of MA?",
+      "definition": "80 ≤ (MA/12)·100 ≤ 140 → <span style=\"color:#f08c00\">9.6 ≤ MA ≤ 16.8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.x-applications"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "|x − a| < r as a distance band",
+      "definition": "|x−a|<r means a−r<x<a+r (within distance r of a); |x−a|>r means x<a−r or x>a+r; |x−3|<2 gives (1,5)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Modulus inequalities · intuition</p><h2>Solve |x − 3| < 2 by reading it as a distance.</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"46.0\" y1=\"71\" x2=\"46.0\" y2=\"79\"></line><text class=\"num\" x=\"46.0\" y=\"95\">−1</text><line class=\"ax\" x1=\"72.0\" y1=\"71\" x2=\"72.0\" y2=\"79\"></line><text class=\"num\" x=\"72.0\" y=\"95\">0</text><line class=\"ax\" x1=\"98.0\" y1=\"71\" x2=\"98.0\" y2=\"79\"></line><text class=\"num\" x=\"98.0\" y=\"95\">1</text><line class=\"ax\" x1=\"124.0\" y1=\"71\" x2=\"124.0\" y2=\"79\"></line><text class=\"num\" x=\"124.0\" y=\"95\">2</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">3</text><line class=\"ax\" x1=\"176.0\" y1=\"71\" x2=\"176.0\" y2=\"79\"></line><text class=\"num\" x=\"176.0\" y=\"95\">4</text><line class=\"ax\" x1=\"202.0\" y1=\"71\" x2=\"202.0\" y2=\"79\"></line><text class=\"num\" x=\"202.0\" y=\"95\">5</text><line class=\"ax\" x1=\"228.0\" y1=\"71\" x2=\"228.0\" y2=\"79\"></line><text class=\"num\" x=\"228.0\" y=\"95\">6</text><line class=\"ax\" x1=\"254.0\" y1=\"71\" x2=\"254.0\" y2=\"79\"></line><text class=\"num\" x=\"254.0\" y=\"95\">7</text><circle class=\"d0s\" cx=\"150.0\" cy=\"75\" r=\"5\"></circle><text class=\"lbl\" x=\"150.0\" y=\"58\" text-anchor=\"middle\">3</text></svg><p class=\"hint\">Read |x − a| as the distance between x and a.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Modulus inequalities · intuition</p><h2>Solve |x − 3| < 2 by reading it as a distance.</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"46.0\" y1=\"71\" x2=\"46.0\" y2=\"79\"></line><text class=\"num\" x=\"46.0\" y=\"95\">−1</text><line class=\"ax\" x1=\"72.0\" y1=\"71\" x2=\"72.0\" y2=\"79\"></line><text class=\"num\" x=\"72.0\" y=\"95\">0</text><line class=\"ax\" x1=\"98.0\" y1=\"71\" x2=\"98.0\" y2=\"79\"></line><text class=\"num\" x=\"98.0\" y=\"95\">1</text><line class=\"ax\" x1=\"124.0\" y1=\"71\" x2=\"124.0\" y2=\"79\"></line><text class=\"num\" x=\"124.0\" y=\"95\">2</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">3</text><line class=\"ax\" x1=\"176.0\" y1=\"71\" x2=\"176.0\" y2=\"79\"></line><text class=\"num\" x=\"176.0\" y=\"95\">4</text><line class=\"ax\" x1=\"202.0\" y1=\"71\" x2=\"202.0\" y2=\"79\"></line><text class=\"num\" x=\"202.0\" y=\"95\">5</text><line class=\"ax\" x1=\"228.0\" y1=\"71\" x2=\"228.0\" y2=\"79\"></line><text class=\"num\" x=\"228.0\" y=\"95\">6</text><line class=\"ax\" x1=\"254.0\" y1=\"71\" x2=\"254.0\" y2=\"79\"></line><text class=\"num\" x=\"254.0\" y=\"95\">7</text><line class=\"c1 fx d2\" x1=\"98.0\" y1=\"75\" x2=\"202.0\" y2=\"75\"></line><circle class=\"f0 c1 fx d2\" cx=\"98.0\" cy=\"75\" r=\"5.5\"></circle><circle class=\"f0 c1 fx d2\" cx=\"202.0\" cy=\"75\" r=\"5.5\"></circle><path class=\"guide fx d3\" d=\"M 150.0 42 L 202.0 42\"></path><text class=\"t2 fx d3\" x=\"176.0\" y=\"36\" text-anchor=\"middle\">distance &lt; 2</text><path class=\"guide fx d3\" d=\"M 150.0 42 L 98.0 42\"></path></svg><div class=\"eq fx d5\"><p>|x − 3| is the <b>distance from x to 3</b>. “Distance &lt; 2” means x lies within 2 of 3: <b>1 &lt; x &lt; 5</b>.</p><p><b>|x − a| &lt; r ⟺ a − r &lt; x &lt; a + r</b> (one band, AND).<br><b>|x − a| &gt; r ⟺ x &lt; a − r or x &gt; a + r</b> (two outer rays, OR).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-modulus-inequalities"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Modulus inequalities",
+      "definition": "|x| < r: −r < x < r; |x| ≤ r: −r ≤ x ≤ r; |x| > r: x  r; |x| ≥ r: x ≤ −r or x ≥ r; |x − a| < r: a − r < x < a + r; |x| < negative number: no solution",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Modulus inequalities · JEE/board</p><h2>Rewrite (r > 0).</h2><table><tr><td>|x| < r</td><td class=\"q\">?</td></tr><tr><td>|x| ≤ r</td><td class=\"q\">?</td></tr><tr><td>|x| > r</td><td class=\"q\">?</td></tr><tr><td>|x| ≥ r</td><td class=\"q\">?</td></tr><tr><td>|x − a| < r</td><td class=\"q\">?</td></tr><tr><td>|x| < negative number</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Modulus inequalities · JEE/board</p><h2>Rewrite (r > 0).</h2><table><tr><td>|x| < r</td><td class=\"a\">−r < x < r</td></tr><tr><td>|x| ≤ r</td><td class=\"a\">−r ≤ x ≤ r</td></tr><tr><td>|x| > r</td><td class=\"a\">x < −r or x > r</td></tr><tr><td>|x| ≥ r</td><td class=\"a\">x ≤ −r or x ≥ r</td></tr><tr><td>|x − a| < r</td><td class=\"a\">a − r < x < a + r</td></tr><tr><td>|x| < negative number</td><td class=\"a no\">no solution</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-modulus-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve |2x − 3| ≤ 5.",
+      "definition": "−5 ≤ 2x − 3 ≤ 5 → −2 ≤ 2x ≤ 8 → <span style=\"color:#f08c00\">−1 ≤ x ≤ 4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-modulus-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve |x + 1| ≥ 3.",
+      "definition": "x + 1 ≤ −3 or x + 1 ≥ 3 → <span style=\"color:#f08c00\">x ≤ −4 or x ≥ 2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-modulus-inequalities"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Number line for |x − 1| ≥ 2",
+      "definition": "|x−1|≥2 gives x≤−1 or x≥3: two rays, endpoints included",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Modulus · number line</p><h2>Show the solution of |x − 1| ≥ 2 on the number line.</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"14\" y2=\"75\"></line><line class=\"ax\" x1=\"41.7\" y1=\"71\" x2=\"41.7\" y2=\"79\"></line><text class=\"num\" x=\"41.7\" y=\"95\">−3</text><line class=\"ax\" x1=\"63.3\" y1=\"71\" x2=\"63.3\" y2=\"79\"></line><text class=\"num\" x=\"63.3\" y=\"95\">−2</text><line class=\"ax\" x1=\"85.0\" y1=\"71\" x2=\"85.0\" y2=\"79\"></line><text class=\"num\" x=\"85.0\" y=\"95\">−1</text><line class=\"ax\" x1=\"106.7\" y1=\"71\" x2=\"106.7\" y2=\"79\"></line><text class=\"num\" x=\"106.7\" y=\"95\">0</text><line class=\"ax\" x1=\"128.3\" y1=\"71\" x2=\"128.3\" y2=\"79\"></line><text class=\"num\" x=\"128.3\" y=\"95\">1</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">2</text><line class=\"ax\" x1=\"171.7\" y1=\"71\" x2=\"171.7\" y2=\"79\"></line><text class=\"num\" x=\"171.7\" y=\"95\">3</text><line class=\"ax\" x1=\"193.3\" y1=\"71\" x2=\"193.3\" y2=\"79\"></line><text class=\"num\" x=\"193.3\" y=\"95\">4</text><line class=\"ax\" x1=\"215.0\" y1=\"71\" x2=\"215.0\" y2=\"79\"></line><text class=\"num\" x=\"215.0\" y=\"95\">5</text><line class=\"ax\" x1=\"236.7\" y1=\"71\" x2=\"236.7\" y2=\"79\"></line><text class=\"num\" x=\"236.7\" y=\"95\">6</text><line class=\"ax\" x1=\"258.3\" y1=\"71\" x2=\"258.3\" y2=\"79\"></line><text class=\"num\" x=\"258.3\" y=\"95\">7</text></svg><p class=\"hint\">Solve first, then mark the endpoints.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Modulus · number line</p><h2>Show the solution of |x − 1| ≥ 2 on the number line.</h2><svg viewBox=\"0 0 300 110\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"292\" y2=\"75\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"8\" y1=\"75\" x2=\"14\" y2=\"75\"></line><line class=\"ax\" x1=\"41.7\" y1=\"71\" x2=\"41.7\" y2=\"79\"></line><text class=\"num\" x=\"41.7\" y=\"95\">−3</text><line class=\"ax\" x1=\"63.3\" y1=\"71\" x2=\"63.3\" y2=\"79\"></line><text class=\"num\" x=\"63.3\" y=\"95\">−2</text><line class=\"ax\" x1=\"85.0\" y1=\"71\" x2=\"85.0\" y2=\"79\"></line><text class=\"num\" x=\"85.0\" y=\"95\">−1</text><line class=\"ax\" x1=\"106.7\" y1=\"71\" x2=\"106.7\" y2=\"79\"></line><text class=\"num\" x=\"106.7\" y=\"95\">0</text><line class=\"ax\" x1=\"128.3\" y1=\"71\" x2=\"128.3\" y2=\"79\"></line><text class=\"num\" x=\"128.3\" y=\"95\">1</text><line class=\"ax\" x1=\"150.0\" y1=\"71\" x2=\"150.0\" y2=\"79\"></line><text class=\"num\" x=\"150.0\" y=\"95\">2</text><line class=\"ax\" x1=\"171.7\" y1=\"71\" x2=\"171.7\" y2=\"79\"></line><text class=\"num\" x=\"171.7\" y=\"95\">3</text><line class=\"ax\" x1=\"193.3\" y1=\"71\" x2=\"193.3\" y2=\"79\"></line><text class=\"num\" x=\"193.3\" y=\"95\">4</text><line class=\"ax\" x1=\"215.0\" y1=\"71\" x2=\"215.0\" y2=\"79\"></line><text class=\"num\" x=\"215.0\" y=\"95\">5</text><line class=\"ax\" x1=\"236.7\" y1=\"71\" x2=\"236.7\" y2=\"79\"></line><text class=\"num\" x=\"236.7\" y=\"95\">6</text><line class=\"ax\" x1=\"258.3\" y1=\"71\" x2=\"258.3\" y2=\"79\"></line><text class=\"num\" x=\"258.3\" y=\"95\">7</text><line class=\"c2 fx d2\" x1=\"10.0\" y1=\"75\" x2=\"85.0\" y2=\"75\"></line><path class=\"d2s fx d2\" d=\"M 10 75 l 9 -5 v 10 Z\"></path><circle class=\"d2s fx d2\" cx=\"85.0\" cy=\"75\" r=\"5.5\"></circle><line class=\"c2 fx d3\" x1=\"171.7\" y1=\"75\" x2=\"290.0\" y2=\"75\"></line><circle class=\"d2s fx d3\" cx=\"171.7\" cy=\"75\" r=\"5.5\"></circle><path class=\"d2s fx d3\" d=\"M 290 75 l -9 -5 v 10 Z\"></path></svg><div class=\"eq fx d5\"><p>|x − 1| ≥ 2 → x − 1 ≤ −2 or x − 1 ≥ 2 → <b>x ≤ −1 or x ≥ 3</b>: two outer rays (a union).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-modulus-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Triangle inequality for real numbers?",
+      "definition": "<span style=\"color:#3b82f6\">|a + b| ≤ |a| + |b|</span>; equality iff ab ≥ 0. Also |a − b| ≥ ||a| − |b||",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-modulus-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: solving |x| < 3 as x < 3 only, or |x| > 3 as −3 < x?",
+      "definition": "<span style=\"color:#e5484d\">Both wrong</span>. |x| < 3 is a band (AND): −3 < x < 3. |x| > 3 is two rays (OR): x < −3 or x > 3",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-modulus-inequalities"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "(x − a)(x − b) < 0 with a < b: solution?",
+      "definition": "<span style=\"color:#3b82f6\">a < x < b</span> (between the roots). And (x − a)(x − b) > 0: x < a or x > b (outside the roots)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-quadratic-rational"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve x² − 5x + 6 < 0.",
+      "definition": "(x − 2)(x − 3) < 0 → <span style=\"color:#f08c00\">2 < x < 3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-quadratic-rational"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve x² − 5x + 6 > 0.",
+      "definition": "<span style=\"color:#f08c00\">x < 2 or x > 3</span> (outside the roots)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-quadratic-rational"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve x² − 4 ≥ 0 and x² ≤ 9.",
+      "definition": "x² ≥ 4 → <span style=\"color:#f08c00\">x ≤ −2 or x ≥ 2</span>. x² ≤ 9 → <span style=\"color:#f08c00\">−3 ≤ x ≤ 3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-quadratic-rational"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve x² + x + 1 > 0.",
+      "definition": "D = 1 − 4 < 0 and a > 0, so the parabola is always above the axis: <span style=\"color:#f08c00\">all real x</span>. If D < 0: ax² + bx + c has the sign of a for every x",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-quadratic-rational"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Solve a polynomial inequality by the wavy-curve method",
+      "definition": "(x−1)(x−2)(x−4) ≤ 0: signs alternate +,−,+,− from the right across simple roots; solution (−∞,1] ∪ [2,4]; repeated roots do not flip the sign",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Wavy-curve method · beyond the textbook</p><h2>Solve (x − 1)(x − 2)(x − 4) ≤ 0 using signs.</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"20.0\" y1=\"90.0\" x2=\"288.0\" y2=\"90.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"55.7\" y1=\"170.0\" x2=\"55.7\" y2=\"10.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"100.4\" y1=\"87.0\" x2=\"100.4\" y2=\"93.0\"></line><text class=\"num\" x=\"100.4\" y=\"104.0\">1</text><line class=\"ax\" x1=\"145.1\" y1=\"87.0\" x2=\"145.1\" y2=\"93.0\"></line><text class=\"num\" x=\"145.1\" y=\"104.0\">2</text><line class=\"ax\" x1=\"234.4\" y1=\"87.0\" x2=\"234.4\" y2=\"93.0\"></line><text class=\"num\" x=\"234.4\" y=\"104.0\">4</text><polyline class=\"c1\"  points=\"58.5,166.5 60.1,161.5 61.7,156.7 63.3,152.1 64.9,147.6 66.6,143.4 68.2,139.3 69.8,135.4 71.4,131.6 73.0,128.1 74.7,124.6 76.3,121.4 77.9,118.3 79.5,115.4 81.1,112.6 82.8,110.0 84.4,107.5 86.0,105.1 87.6,102.9 89.2,100.8 90.9,98.9 92.5,97.1 94.1,95.4 95.7,93.8 97.3,92.4 98.9,91.1 100.6,89.9 102.2,88.8 103.8,87.8 105.4,86.9 107.0,86.1 108.7,85.5 110.3,84.9 111.9,84.4 113.5,84.0 115.1,83.7 116.8,83.5 118.4,83.3 120.0,83.3 121.6,83.3 123.2,83.4 124.9,83.5 126.5,83.7 128.1,84.0 129.7,84.4 131.3,84.8 133.0,85.2 134.6,85.7 136.2,86.3 137.8,86.9 139.4,87.5 141.0,88.2 142.7,88.9 144.3,89.6 145.9,90.4 147.5,91.2 149.1,92.0 150.8,92.9 152.4,93.7 154.0,94.6 155.6,95.5 157.2,96.4 158.9,97.3 160.5,98.2 162.1,99.1 163.7,100.0 165.3,100.9 167.0,101.8 168.6,102.6 170.2,103.5 171.8,104.3 173.4,105.1 175.0,105.9 176.7,106.7 178.3,107.4 179.9,108.1 181.5,108.7 183.1,109.3 184.8,109.9 186.4,110.4 188.0,110.9 189.6,111.3 191.2,111.7 192.9,112.0 194.5,112.2 196.1,112.4 197.7,112.5 199.3,112.5 201.0,112.5 202.6,112.4 204.2,112.2 205.8,111.9 207.4,111.5 209.1,111.1 210.7,110.5 212.3,109.9 213.9,109.2 215.5,108.3 217.1,107.4 218.8,106.3 220.4,105.2 222.0,103.9 223.6,102.5 225.2,101.0 226.9,99.3 228.5,97.6 230.1,95.7 231.7,93.7 233.3,91.5 235.0,89.2 236.6,86.8 238.2,84.2 239.8,81.4 241.4,78.6 243.1,75.5 244.7,72.3 246.3,69.0 247.9,65.5 249.5,61.8 251.1,57.9 252.8,53.9 254.4,49.7 256.0,45.4 257.6,40.8 259.2,36.1 260.9,31.1 262.5,26.0 264.1,20.7 265.7,15.2\"></polyline></svg><p class=\"hint\">Mark roots, start + on the right, alternate.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Wavy-curve method · beyond the textbook</p><h2>Solve (x − 1)(x − 2)(x − 4) ≤ 0 using signs.</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"20.0\" y1=\"90.0\" x2=\"288.0\" y2=\"90.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"55.7\" y1=\"170.0\" x2=\"55.7\" y2=\"10.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"100.4\" y1=\"87.0\" x2=\"100.4\" y2=\"93.0\"></line><text class=\"num\" x=\"100.4\" y=\"104.0\">1</text><line class=\"ax\" x1=\"145.1\" y1=\"87.0\" x2=\"145.1\" y2=\"93.0\"></line><text class=\"num\" x=\"145.1\" y=\"104.0\">2</text><line class=\"ax\" x1=\"234.4\" y1=\"87.0\" x2=\"234.4\" y2=\"93.0\"></line><text class=\"num\" x=\"234.4\" y=\"104.0\">4</text><polyline class=\"c1\"  points=\"58.5,166.5 60.1,161.5 61.7,156.7 63.3,152.1 64.9,147.6 66.6,143.4 68.2,139.3 69.8,135.4 71.4,131.6 73.0,128.1 74.7,124.6 76.3,121.4 77.9,118.3 79.5,115.4 81.1,112.6 82.8,110.0 84.4,107.5 86.0,105.1 87.6,102.9 89.2,100.8 90.9,98.9 92.5,97.1 94.1,95.4 95.7,93.8 97.3,92.4 98.9,91.1 100.6,89.9 102.2,88.8 103.8,87.8 105.4,86.9 107.0,86.1 108.7,85.5 110.3,84.9 111.9,84.4 113.5,84.0 115.1,83.7 116.8,83.5 118.4,83.3 120.0,83.3 121.6,83.3 123.2,83.4 124.9,83.5 126.5,83.7 128.1,84.0 129.7,84.4 131.3,84.8 133.0,85.2 134.6,85.7 136.2,86.3 137.8,86.9 139.4,87.5 141.0,88.2 142.7,88.9 144.3,89.6 145.9,90.4 147.5,91.2 149.1,92.0 150.8,92.9 152.4,93.7 154.0,94.6 155.6,95.5 157.2,96.4 158.9,97.3 160.5,98.2 162.1,99.1 163.7,100.0 165.3,100.9 167.0,101.8 168.6,102.6 170.2,103.5 171.8,104.3 173.4,105.1 175.0,105.9 176.7,106.7 178.3,107.4 179.9,108.1 181.5,108.7 183.1,109.3 184.8,109.9 186.4,110.4 188.0,110.9 189.6,111.3 191.2,111.7 192.9,112.0 194.5,112.2 196.1,112.4 197.7,112.5 199.3,112.5 201.0,112.5 202.6,112.4 204.2,112.2 205.8,111.9 207.4,111.5 209.1,111.1 210.7,110.5 212.3,109.9 213.9,109.2 215.5,108.3 217.1,107.4 218.8,106.3 220.4,105.2 222.0,103.9 223.6,102.5 225.2,101.0 226.9,99.3 228.5,97.6 230.1,95.7 231.7,93.7 233.3,91.5 235.0,89.2 236.6,86.8 238.2,84.2 239.8,81.4 241.4,78.6 243.1,75.5 244.7,72.3 246.3,69.0 247.9,65.5 249.5,61.8 251.1,57.9 252.8,53.9 254.4,49.7 256.0,45.4 257.6,40.8 259.2,36.1 260.9,31.1 262.5,26.0 264.1,20.7 265.7,15.2\"></polyline><text class=\"t3 bigs fx d2\" x=\"64.7\" y=\"166.8\" text-anchor=\"middle\">−</text><text class=\"t2 bigs fx d2\" x=\"122.7\" y=\"166.8\" text-anchor=\"middle\">+</text><text class=\"t3 bigs fx d2\" x=\"189.7\" y=\"166.8\" text-anchor=\"middle\">−</text><text class=\"t2 bigs fx d2\" x=\"265.7\" y=\"166.8\" text-anchor=\"middle\">+</text><line class=\"c3 fx d3\" x1=\"24.5\" y1=\"108.0\" x2=\"100.4\" y2=\"108.0\"></line><line class=\"c3 fx d3\" x1=\"145.1\" y1=\"108.0\" x2=\"234.4\" y2=\"108.0\"></line><circle class=\"d3s fx d3\" cx=\"100.4\" cy=\"90.0\" r=\"4.5\"></circle><circle class=\"d3s fx d3\" cx=\"145.1\" cy=\"90.0\" r=\"4.5\"></circle><circle class=\"d3s fx d3\" cx=\"234.4\" cy=\"90.0\" r=\"4.5\"></circle></svg><div class=\"eq fx d5\"><p>Roots 1, 2, 4 split the line into 4 pieces. Start with <b>+ on the far right</b> (leading coefficient positive) and <b>alternate at every simple root</b>: + − + −.</p><p>Want ≤ 0 → the “−” pieces with roots included: <b>(−∞, 1] ∪ [2, 4]</b>.</p><p class=\"no\">A repeated root (x − 2)² does not change the sign.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .bigs{font-size:22px}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .bigs{font-size:22px}"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-quadratic-rational"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: solve a rational inequality such as (x + 1)/(x − 2) ≥ 0.",
+      "definition": "Critical points = zeros of numerator and denominator (−1, 2). Sign chart: + on the far right, alternate. Include numerator zeros only if ≥ or ≤; <span style=\"color:#e5484d\">always exclude denominator zeros</span>. Answer: (−∞, −1] ∪ (2, ∞)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-quadratic-rational"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve (x − 3)/(x + 2) < 0.",
+      "definition": "Critical points −2, 3; the quotient is negative between them: <span style=\"color:#f08c00\">−2 < x < 3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-quadratic-rational"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "AM–GM for positive numbers: x + 1/x ≥ ?",
+      "definition": "<span style=\"color:#f08c00\">2</span> for x > 0, with equality at x = 1. For x < 0, x + 1/x ≤ −2",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-quadratic-rational"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "a > 0, b > 0: compare (a + b)/2 and √(ab).",
+      "definition": "<span style=\"color:#3b82f6\">(a + b)/2 ≥ √(ab)</span> (AM ≥ GM), equality iff a = b. Proof: (√a − √b)² ≥ 0",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-quadratic-rational"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Beyond the textbook text: how do you graph ax + by ≤ c?",
+      "definition": "1) Draw the line ax + by = c (<span style=\"color:#3b82f6\">solid for ≤ ≥</span>, <span style=\"color:#3b82f6\">dashed for < ></span>). 2) Test a point, usually the origin. 3) Shade the side that satisfies it",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-two-variables"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Graph a linear inequality in two variables (test-point method)",
+      "definition": "Draw the boundary line (solid for ≤ ≥, dashed for < >), then shade the side containing a test point that satisfies the inequality, e.g. origin for 2x+3y≤6",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Two variables · half-plane · beyond the textbook</p><h2>Represent 2x + 3y ≤ 6 on the plane. How do you decide which side to shade?</h2><svg viewBox=\"0 0 300 241\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"40.6\" y1=\"224.5\" x2=\"40.6\" y2=\"6.0\"></line><line class=\"gd\" x1=\"123.1\" y1=\"224.5\" x2=\"123.1\" y2=\"6.0\"></line><line class=\"gd\" x1=\"164.3\" y1=\"224.5\" x2=\"164.3\" y2=\"6.0\"></line><line class=\"gd\" x1=\"205.5\" y1=\"224.5\" x2=\"205.5\" y2=\"6.0\"></line><line class=\"gd\" x1=\"246.8\" y1=\"224.5\" x2=\"246.8\" y2=\"6.0\"></line><line class=\"gd\" x1=\"20.0\" y1=\"203.9\" x2=\"288.0\" y2=\"203.9\"></line><line class=\"gd\" x1=\"20.0\" y1=\"121.4\" x2=\"288.0\" y2=\"121.4\"></line><line class=\"gd\" x1=\"20.0\" y1=\"80.2\" x2=\"288.0\" y2=\"80.2\"></line><line class=\"gd\" x1=\"20.0\" y1=\"39.0\" x2=\"288.0\" y2=\"39.0\"></line><line class=\"ax\" x1=\"20.0\" y1=\"162.7\" x2=\"288.0\" y2=\"162.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"81.8\" y1=\"224.5\" x2=\"81.8\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"40.6\" y1=\"159.7\" x2=\"40.6\" y2=\"165.7\"></line><text class=\"num\" x=\"40.6\" y=\"176.7\">−1</text><line class=\"ax\" x1=\"123.1\" y1=\"159.7\" x2=\"123.1\" y2=\"165.7\"></line><text class=\"num\" x=\"123.1\" y=\"176.7\">1</text><line class=\"ax\" x1=\"164.3\" y1=\"159.7\" x2=\"164.3\" y2=\"165.7\"></line><text class=\"num\" x=\"164.3\" y=\"176.7\">2</text><line class=\"ax\" x1=\"205.5\" y1=\"159.7\" x2=\"205.5\" y2=\"165.7\"></line><text class=\"num\" x=\"205.5\" y=\"176.7\">3</text><line class=\"ax\" x1=\"246.8\" y1=\"159.7\" x2=\"246.8\" y2=\"165.7\"></line><text class=\"num\" x=\"246.8\" y=\"176.7\">4</text><line class=\"ax\" x1=\"78.8\" y1=\"203.9\" x2=\"84.8\" y2=\"203.9\"></line><text class=\"num\" x=\"75.8\" y=\"207.4\" text-anchor=\"end\">−1</text><line class=\"ax\" x1=\"78.8\" y1=\"121.4\" x2=\"84.8\" y2=\"121.4\"></line><text class=\"num\" x=\"75.8\" y=\"124.9\" text-anchor=\"end\">1</text><line class=\"ax\" x1=\"78.8\" y1=\"80.2\" x2=\"84.8\" y2=\"80.2\"></line><text class=\"num\" x=\"75.8\" y=\"83.7\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"78.8\" y1=\"39.0\" x2=\"84.8\" y2=\"39.0\"></line><text class=\"num\" x=\"75.8\" y=\"42.5\" text-anchor=\"end\">3</text><text class=\"lbi\" x=\"286.0\" y=\"156.7\" text-anchor=\"end\">x</text><text class=\"lbi\" x=\"87.8\" y=\"14.0\">y</text><line class=\"c1\" x1=\"32.4\" y1=\"47.2\" x2=\"279.8\" y2=\"212.2\"></line></svg><p class=\"hint\">Find where the boundary line cuts the axes.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Two variables · half-plane · beyond the textbook</p><h2>Represent 2x + 3y ≤ 6 on the plane. How do you decide which side to shade?</h2><svg viewBox=\"0 0 300 241\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"40.6\" y1=\"224.5\" x2=\"40.6\" y2=\"6.0\"></line><line class=\"gd\" x1=\"123.1\" y1=\"224.5\" x2=\"123.1\" y2=\"6.0\"></line><line class=\"gd\" x1=\"164.3\" y1=\"224.5\" x2=\"164.3\" y2=\"6.0\"></line><line class=\"gd\" x1=\"205.5\" y1=\"224.5\" x2=\"205.5\" y2=\"6.0\"></line><line class=\"gd\" x1=\"246.8\" y1=\"224.5\" x2=\"246.8\" y2=\"6.0\"></line><line class=\"gd\" x1=\"20.0\" y1=\"203.9\" x2=\"288.0\" y2=\"203.9\"></line><line class=\"gd\" x1=\"20.0\" y1=\"121.4\" x2=\"288.0\" y2=\"121.4\"></line><line class=\"gd\" x1=\"20.0\" y1=\"80.2\" x2=\"288.0\" y2=\"80.2\"></line><line class=\"gd\" x1=\"20.0\" y1=\"39.0\" x2=\"288.0\" y2=\"39.0\"></line><line class=\"ax\" x1=\"20.0\" y1=\"162.7\" x2=\"288.0\" y2=\"162.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"81.8\" y1=\"224.5\" x2=\"81.8\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"40.6\" y1=\"159.7\" x2=\"40.6\" y2=\"165.7\"></line><text class=\"num\" x=\"40.6\" y=\"176.7\">−1</text><line class=\"ax\" x1=\"123.1\" y1=\"159.7\" x2=\"123.1\" y2=\"165.7\"></line><text class=\"num\" x=\"123.1\" y=\"176.7\">1</text><line class=\"ax\" x1=\"164.3\" y1=\"159.7\" x2=\"164.3\" y2=\"165.7\"></line><text class=\"num\" x=\"164.3\" y=\"176.7\">2</text><line class=\"ax\" x1=\"205.5\" y1=\"159.7\" x2=\"205.5\" y2=\"165.7\"></line><text class=\"num\" x=\"205.5\" y=\"176.7\">3</text><line class=\"ax\" x1=\"246.8\" y1=\"159.7\" x2=\"246.8\" y2=\"165.7\"></line><text class=\"num\" x=\"246.8\" y=\"176.7\">4</text><line class=\"ax\" x1=\"78.8\" y1=\"203.9\" x2=\"84.8\" y2=\"203.9\"></line><text class=\"num\" x=\"75.8\" y=\"207.4\" text-anchor=\"end\">−1</text><line class=\"ax\" x1=\"78.8\" y1=\"121.4\" x2=\"84.8\" y2=\"121.4\"></line><text class=\"num\" x=\"75.8\" y=\"124.9\" text-anchor=\"end\">1</text><line class=\"ax\" x1=\"78.8\" y1=\"80.2\" x2=\"84.8\" y2=\"80.2\"></line><text class=\"num\" x=\"75.8\" y=\"83.7\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"78.8\" y1=\"39.0\" x2=\"84.8\" y2=\"39.0\"></line><text class=\"num\" x=\"75.8\" y=\"42.5\" text-anchor=\"end\">3</text><text class=\"lbi\" x=\"286.0\" y=\"156.7\" text-anchor=\"end\">x</text><text class=\"lbi\" x=\"87.8\" y=\"14.0\">y</text><line class=\"c1\" x1=\"32.4\" y1=\"47.2\" x2=\"279.8\" y2=\"212.2\"></line><polygon class=\"ns1 fx d3 \" points=\"20.0,39.0 288.0,217.7 288.0,224.5 20.0,224.5\"></polygon><circle class=\"d2s fx d2\" cx=\"81.8\" cy=\"162.7\" r=\"4.5\"></circle><text class=\"t2 fx d2 \" x=\"89.8\" y=\"154.7\" text-anchor=\"start\">(0,0): 0 ≤ 6 ✓</text><text class=\"t1 fx d3 \" x=\"203.3\" y=\"94.7\" text-anchor=\"start\">2x + 3y ≤ 6</text></svg><div class=\"eq fx d5\"><p>1) Draw the line 2x + 3y = 6 through (3, 0) and (0, 2). <b>Solid</b> for ≤ or ≥; <b>dashed</b> for &lt; or &gt;.</p><p>2) Test the origin: 0 ≤ 6 is true → shade the side <b>containing (0, 0)</b>. (If the line passes through the origin, test another point.)</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-two-variables"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Solution region of a system of linear inequalities",
+      "definition": "The solution of a system is the common part of the half-planes; x+y≤4, x≥1, y≥0 gives the triangle (1,0),(4,0),(1,3) (feasible region)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">System of inequalities · beyond the textbook</p><h2>Show the solution region of x + y ≤ 4, x ≥ 1 and y ≥ 0.</h2><svg viewBox=\"0 0 300 245\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"100.4\" y1=\"229.3\" x2=\"100.4\" y2=\"6.0\"></line><line class=\"gd\" x1=\"145.1\" y1=\"229.3\" x2=\"145.1\" y2=\"6.0\"></line><line class=\"gd\" x1=\"189.7\" y1=\"229.3\" x2=\"189.7\" y2=\"6.0\"></line><line class=\"gd\" x1=\"234.4\" y1=\"229.3\" x2=\"234.4\" y2=\"6.0\"></line><line class=\"gd\" x1=\"20.0\" y1=\"148.9\" x2=\"288.0\" y2=\"148.9\"></line><line class=\"gd\" x1=\"20.0\" y1=\"104.3\" x2=\"288.0\" y2=\"104.3\"></line><line class=\"gd\" x1=\"20.0\" y1=\"59.6\" x2=\"288.0\" y2=\"59.6\"></line><line class=\"ax\" x1=\"20.0\" y1=\"193.6\" x2=\"288.0\" y2=\"193.6\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"55.7\" y1=\"229.3\" x2=\"55.7\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"100.4\" y1=\"190.6\" x2=\"100.4\" y2=\"196.6\"></line><text class=\"num\" x=\"100.4\" y=\"207.6\">1</text><line class=\"ax\" x1=\"145.1\" y1=\"190.6\" x2=\"145.1\" y2=\"196.6\"></line><text class=\"num\" x=\"145.1\" y=\"207.6\">2</text><line class=\"ax\" x1=\"189.7\" y1=\"190.6\" x2=\"189.7\" y2=\"196.6\"></line><text class=\"num\" x=\"189.7\" y=\"207.6\">3</text><line class=\"ax\" x1=\"234.4\" y1=\"190.6\" x2=\"234.4\" y2=\"196.6\"></line><text class=\"num\" x=\"234.4\" y=\"207.6\">4</text><line class=\"ax\" x1=\"52.7\" y1=\"148.9\" x2=\"58.7\" y2=\"148.9\"></line><text class=\"num\" x=\"49.7\" y=\"152.4\" text-anchor=\"end\">1</text><line class=\"ax\" x1=\"52.7\" y1=\"104.3\" x2=\"58.7\" y2=\"104.3\"></line><text class=\"num\" x=\"49.7\" y=\"107.8\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"52.7\" y1=\"59.6\" x2=\"58.7\" y2=\"59.6\"></line><text class=\"num\" x=\"49.7\" y=\"63.1\" text-anchor=\"end\">3</text><text class=\"lbi\" x=\"286.0\" y=\"187.6\" text-anchor=\"end\">x</text><text class=\"lbi\" x=\"61.7\" y=\"14.0\">y</text><line class=\"c2\" x1=\"100.4\" y1=\"220.4\" x2=\"100.4\" y2=\"19.4\"></line><line class=\"c1\" x1=\"46.8\" y1=\"6.0\" x2=\"270.1\" y2=\"229.3\"></line></svg><p class=\"hint\">Shade each half-plane; keep the overlap.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">System of inequalities · beyond the textbook</p><h2>Show the solution region of x + y ≤ 4, x ≥ 1 and y ≥ 0.</h2><svg viewBox=\"0 0 300 245\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"100.4\" y1=\"229.3\" x2=\"100.4\" y2=\"6.0\"></line><line class=\"gd\" x1=\"145.1\" y1=\"229.3\" x2=\"145.1\" y2=\"6.0\"></line><line class=\"gd\" x1=\"189.7\" y1=\"229.3\" x2=\"189.7\" y2=\"6.0\"></line><line class=\"gd\" x1=\"234.4\" y1=\"229.3\" x2=\"234.4\" y2=\"6.0\"></line><line class=\"gd\" x1=\"20.0\" y1=\"148.9\" x2=\"288.0\" y2=\"148.9\"></line><line class=\"gd\" x1=\"20.0\" y1=\"104.3\" x2=\"288.0\" y2=\"104.3\"></line><line class=\"gd\" x1=\"20.0\" y1=\"59.6\" x2=\"288.0\" y2=\"59.6\"></line><line class=\"ax\" x1=\"20.0\" y1=\"193.6\" x2=\"288.0\" y2=\"193.6\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"55.7\" y1=\"229.3\" x2=\"55.7\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"100.4\" y1=\"190.6\" x2=\"100.4\" y2=\"196.6\"></line><text class=\"num\" x=\"100.4\" y=\"207.6\">1</text><line class=\"ax\" x1=\"145.1\" y1=\"190.6\" x2=\"145.1\" y2=\"196.6\"></line><text class=\"num\" x=\"145.1\" y=\"207.6\">2</text><line class=\"ax\" x1=\"189.7\" y1=\"190.6\" x2=\"189.7\" y2=\"196.6\"></line><text class=\"num\" x=\"189.7\" y=\"207.6\">3</text><line class=\"ax\" x1=\"234.4\" y1=\"190.6\" x2=\"234.4\" y2=\"196.6\"></line><text class=\"num\" x=\"234.4\" y=\"207.6\">4</text><line class=\"ax\" x1=\"52.7\" y1=\"148.9\" x2=\"58.7\" y2=\"148.9\"></line><text class=\"num\" x=\"49.7\" y=\"152.4\" text-anchor=\"end\">1</text><line class=\"ax\" x1=\"52.7\" y1=\"104.3\" x2=\"58.7\" y2=\"104.3\"></line><text class=\"num\" x=\"49.7\" y=\"107.8\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"52.7\" y1=\"59.6\" x2=\"58.7\" y2=\"59.6\"></line><text class=\"num\" x=\"49.7\" y=\"63.1\" text-anchor=\"end\">3</text><text class=\"lbi\" x=\"286.0\" y=\"187.6\" text-anchor=\"end\">x</text><text class=\"lbi\" x=\"61.7\" y=\"14.0\">y</text><line class=\"c2\" x1=\"100.4\" y1=\"220.4\" x2=\"100.4\" y2=\"19.4\"></line><line class=\"c1\" x1=\"46.8\" y1=\"6.0\" x2=\"270.1\" y2=\"229.3\"></line><polygon class=\"ns3 fx d3 \" points=\"100.4,193.6 234.4,193.6 100.4,59.6\"></polygon><circle class=\"d3s fx d4\" cx=\"100.4\" cy=\"193.6\" r=\"4.5\"></circle><circle class=\"d3s fx d4\" cx=\"234.4\" cy=\"193.6\" r=\"4.5\"></circle><circle class=\"d3s fx d4\" cx=\"100.4\" cy=\"59.6\" r=\"4.5\"></circle><text class=\"lbl fx d4 \" x=\"96.4\" y=\"209.6\" text-anchor=\"middle\">(1, 0)</text><text class=\"lbl fx d4 \" x=\"238.4\" y=\"209.6\" text-anchor=\"middle\">(4, 0)</text><text class=\"lbl fx d4 \" x=\"110.4\" y=\"53.6\" text-anchor=\"start\">(1, 3)</text></svg><div class=\"eq fx d5\"><p>The solution of a system is the <b>overlap</b> of all the half-planes: here the triangle with corners (1, 0), (4, 0), (1, 3).</p><p>Corner points come from pairs of boundary lines. (This is exactly the <b>feasible region</b> of linear programming in Class 12.)</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-two-variables"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which half-plane is x + y > 5 (test the origin)?",
+      "definition": "0 + 0 > 5 is false, so shade the side <span style=\"color:#e5484d\">not</span> containing the origin, with a dashed line",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-two-variables"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does x ≥ 0, y ≥ 0 mean geometrically?",
+      "definition": "The <span style=\"color:#3b82f6\">first quadrant</span> (including both axes)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-two-variables"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Vertices of the region 2x + y ≤ 8, x ≥ 0, y ≥ 0?",
+      "definition": "<span style=\"color:#3b82f6\">(0, 0), (4, 0), (0, 8)</span>: intercepts of 2x + y = 8 and the axes",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-two-variables"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The solution of 3x − 7 > 5x − 1 is<br>(a) x > −3 (b) x < −3 (c) x > 3 (d) x < 3",
+      "definition": "<span style=\"color:#22a35a\">(b)</span>: −6 > 2x → x < −3",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: If −3x + 17 < −13, then x ∈<br>(a) (10, ∞) (b) [10, ∞) (c) (−∞, 10] (d) [−10, 10)",
+      "definition": "−3x < −30 → x > 10: <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The solution set of |x − 2| < 3 is<br>(a) (−1, 5) (b) [−1, 5] (c) (−5, 1) (d) (5, ∞)",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>: −3 < x − 2 < 3",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): the number of integers x with −5 < 2x + 1 < 9?",
+      "definition": "−6 < 2x < 8 → −3 < x < 4 → x = −2, …, 3: <span style=\"color:#f08c00\">6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The number of positive integers satisfying x² − 5x + 6 ≤ 0 is<br>(a) 1 (b) 2 (c) 3 (d) 0",
+      "definition": "2 ≤ x ≤ 3 → 2 and 3: <span style=\"color:#22a35a\">(b) 2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The solution of (x + 2)/(x − 1) > 0 is<br>(a) (−2, 1) (b) (−∞, −2) ∪ (1, ∞) (c) [−2, 1) (d) (1, ∞)",
+      "definition": "Positive outside the roots −2 and 1 (both excluded): <span style=\"color:#22a35a\">(b)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> If a > b then ac > bc.<br><b>R:</b> Multiplying an inequality by a negative number reverses it.<br>(a) Both true, R explains A (b) Both true, R does not explain A (c) A false, R true (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(c)</span>: A is false when c < 0 (or 0); R is the correct rule",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> The solution of x² + 1 < 0 is φ.<br><b>R:</b> x² + 1 ≥ 1 for all real x.<br>(a) Both true, R explains A (b) Both true, R does not explain A (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False (2 marks): if x < y and z < 0 then xz < yz.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: multiplying by a negative z reverses it, so xz > yz",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: solve 2(x − 1) < x + 5 and represent the solution on the number line.",
+      "definition": "x < 7: <span style=\"color:#f08c00\">(−∞, 7)</span>, open circle at 7 with the ray to the left",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: solve −4 ≤ (3 − 2x)/5 < 1 and list the integral solutions.",
+      "definition": "−20 ≤ 3 − 2x < 5 → −23 ≤ −2x < 2 → −1 < x ≤ 11.5. Integers: <span style=\"color:#f08c00\">0, 1, 2, …, 11</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a phone plan costs ₹200 + ₹1.5 per minute. Budget is at most ₹500. How many whole minutes can be used?",
+      "definition": "200 + 1.5x ≤ 500 → x ≤ 200: <span style=\"color:#f08c00\">at most 200 minutes</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a fence needs a perimeter of at least 60 m for a rectangle whose length is 2 m more than its width w. Find w.",
+      "definition": "2(w + w + 2) ≥ 60 → 4w + 4 ≥ 60 → <span style=\"color:#f08c00\">w ≥ 14 m</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-5",
+        "5.z-how-its-asked"
+      ]
+    }
+  ]
+}

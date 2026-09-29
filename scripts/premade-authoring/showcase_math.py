@@ -693,3 +693,119 @@ def locus_cards(deck):
           '<p>Algebra: x² + (y − 1)² = (x − 1)² + y² ⟹ −2y = −2x ⟹ y = x.</p>',
           'Locus |z − a| = |z − b| is a perpendicular bisector', '|z−a|=|z−b| is the perpendicular bisector of the segment joining a and b; |z−i|=|z−1| is the line y=x',
           vb=f'0 0 300 {h}', hint='Equal distances from two fixed points.')
+
+
+# ================================================================ Maths 11 Ch 5 Linear inequalities
+def nl_answer(deck, q, segs, note, term, definition, lo=-4, hi=8, tag='Inequalities · number line', hint='Solve first, then mark the endpoints.', extra_marks=''):
+    """Number-line answer card. segs = [(a, b, a_closed, b_closed, cls)]; a/b None = infinite."""
+    X = _nl(lo, hi)
+    ticks = ''.join(f'<line class="ax" x1="{X(v):.1f}" y1="71" x2="{X(v):.1f}" y2="79"></line>'
+                    f'<text class="num" x="{X(v):.1f}" y="95">{str(v).replace("-", "−")}</text>' for v in range(lo + 1, hi))
+    axis = '<line class="ax" x1="8" y1="75" x2="292" y2="75" marker-end="url(#pk)"></line><line class="ax" x1="8" y1="75" x2="14" y2="75"></line>' + ticks
+    back = ''
+    for k, (a, b, ac, bc, cls) in enumerate(segs):
+        xa = X(a) if a is not None else 10
+        xb = X(b) if b is not None else 290
+        fx = f'fx d{min(k + 2, 5)}'
+        d0 = DOT[cls]
+        back += f'<line class="{cls} {fx}" x1="{xa:.1f}" y1="75" x2="{xb:.1f}" y2="75"></line>'
+        if a is not None:
+            back += (f'<circle class="{d0} {fx}" cx="{xa:.1f}" cy="75" r="5.5"></circle>' if ac else f'<circle class="f0 {cls} {fx}" cx="{xa:.1f}" cy="75" r="5.5"></circle>')
+        else:
+            back += f'<path class="{d0} {fx}" d="M 10 75 l 9 -5 v 10 Z"></path>'
+        if b is not None:
+            back += (f'<circle class="{d0} {fx}" cx="{xb:.1f}" cy="75" r="5.5"></circle>' if bc else f'<circle class="f0 {cls} {fx}" cx="{xb:.1f}" cy="75" r="5.5"></circle>')
+        else:
+            back += f'<path class="{d0} {fx}" d="M 290 75 l -9 -5 v 10 Z"></path>'
+    mcard(deck, tag, q, axis, back + extra_marks, note, term, definition, vb='0 0 300 110', hint=hint)
+
+
+def sign_flip(deck):
+    lo, hi = -4, 4
+    X = _nl(lo, hi)
+    ticks = ''.join(f'<line class="ax" x1="{X(v):.1f}" y1="71" x2="{X(v):.1f}" y2="79"></line><text class="num" x="{X(v):.1f}" y="95">{str(v).replace("-", "−")}</text>' for v in range(lo + 1, hi))
+    axis = '<line class="ax" x1="8" y1="75" x2="292" y2="75" marker-end="url(#pk)"></line>' + ticks
+    a0, b0 = X(2), X(3)
+    front = (f'<circle class="d1s" cx="{a0:.1f}" cy="75" r="6"></circle><text class="t1" x="{a0:.1f}" y="58" text-anchor="middle">2</text>'
+             f'<circle class="d2s" cx="{b0:.1f}" cy="75" r="6"></circle><text class="t2" x="{b0:.1f}" y="58" text-anchor="middle">3</text>'
+             '<text class="lbl" x="150" y="28" text-anchor="middle">2 &lt; 3</text>')
+    da, db = X(-2) - a0, X(-3) - b0
+    css = (f'.pp .mv1{{animation:m1 2.2s ease-in-out .6s both}}@keyframes m1{{from{{transform:translateX(0)}}to{{transform:translateX({da:.1f}px)}}}}'
+           f'.pp .mv2{{animation:m2 2.2s ease-in-out .6s both}}@keyframes m2{{from{{transform:translateX(0)}}to{{transform:translateX({db:.1f}px)}}}}')
+    back = (f'<g class="mv1"><circle class="d1s" cx="{a0:.1f}" cy="75" r="6"></circle></g><g class="mv2"><circle class="d2s" cx="{b0:.1f}" cy="75" r="6"></circle></g>'
+            f'<text class="t1 fx d5" x="{X(-2):.1f}" y="58" text-anchor="middle">−2</text><text class="t2 fx d5" x="{X(-3):.1f}" y="58" text-anchor="middle">−3</text>'
+            '<text class="t3 fx d5" x="150" y="28" text-anchor="middle">−3 &lt; −2 : order reversed</text>')
+    mcard(deck, 'Reversing the sign · intuition', 'Multiply both sides of 2 < 3 by −1. Which way does the inequality go, and why?', axis, back,
+          '<p>Multiplying by −1 <b>mirrors the number line</b> about 0: 2 → −2 and 3 → −3. The larger number is now on the left, so <b>&lt; becomes &gt;</b>: −2 &gt; −3.</p>'
+          '<p>Rule: multiply or divide by a <b>negative</b> → flip the sign. By a positive → no change.</p>',
+          'Multiplying by a negative number reverses the inequality', 'Multiplying or dividing an inequality by a negative number mirrors the number line, so the inequality sign reverses: 2<3 gives −2>−3',
+          css=css, vb='0 0 300 110', front_only=front, hint='Where do 2 and 3 land after the mirror?')
+
+
+def wavy_curve(deck):
+    P = Plane(-0.8, 5.2, -5, 5, 300, 200, (20, 10, 12, 30))
+    f = lambda x: (x - 1) * (x - 2) * (x - 4) / 1.5
+    xt = [(v, str(v)) for v in (1, 2, 4)]
+    base = P.axes(xt, [], labels=False) + P.curve(f, 'c1', -0.7, 5.1, clip=(-4.9, 4.9))
+    y0 = P.Y(0)
+    y1 = P.Y(-4.8)
+    signs = (f'<text class="t3 bigs fx d2" x="{P.X(0.2):.1f}" y="{y1:.1f}" text-anchor="middle">−</text>'
+             f'<text class="t2 bigs fx d2" x="{P.X(1.5):.1f}" y="{y1:.1f}" text-anchor="middle">+</text>'
+             f'<text class="t3 bigs fx d2" x="{P.X(3):.1f}" y="{y1:.1f}" text-anchor="middle">−</text>'
+             f'<text class="t2 bigs fx d2" x="{P.X(4.7):.1f}" y="{y1:.1f}" text-anchor="middle">+</text>')
+    band = (f'<line class="c3 fx d3" x1="{P.X(-0.7):.1f}" y1="{y0 + 18:.1f}" x2="{P.X(1):.1f}" y2="{y0 + 18:.1f}"></line>'
+            f'<line class="c3 fx d3" x1="{P.X(2):.1f}" y1="{y0 + 18:.1f}" x2="{P.X(4):.1f}" y2="{y0 + 18:.1f}"></line>'
+            + P.dot(1, 0, 'd3s', 4.5, 'fx d3') + P.dot(2, 0, 'd3s', 4.5, 'fx d3') + P.dot(4, 0, 'd3s', 4.5, 'fx d3'))
+    mcard(deck, 'Wavy-curve method · beyond the textbook', 'Solve (x − 1)(x − 2)(x − 4) ≤ 0 using signs.', base, signs + band,
+          '<p>Roots 1, 2, 4 split the line into 4 pieces. Start with <b>+ on the far right</b> (leading coefficient positive) and <b>alternate at every simple root</b>: + − + −.</p>'
+          '<p>Want ≤ 0 → the “−” pieces with roots included: <b>(−∞, 1] ∪ [2, 4]</b>.</p>'
+          '<p class="no">A repeated root (x − 2)² does not change the sign.</p>',
+          'Solve a polynomial inequality by the wavy-curve method',
+          '(x−1)(x−2)(x−4) ≤ 0: signs alternate +,−,+,− from the right across simple roots; solution (−∞,1] ∪ [2,4]; repeated roots do not flip the sign',
+          hint='Mark roots, start + on the right, alternate.', css='.pp .bigs{font-size:22px}')
+
+
+def modulus_band(deck):
+    lo, hi = -2, 8
+    X = _nl(lo, hi)
+    ticks = ''.join(f'<line class="ax" x1="{X(v):.1f}" y1="71" x2="{X(v):.1f}" y2="79"></line><text class="num" x="{X(v):.1f}" y="95">{str(v).replace("-", "−")}</text>' for v in range(lo + 1, hi))
+    axis = '<line class="ax" x1="8" y1="75" x2="292" y2="75" marker-end="url(#pk)"></line>' + ticks
+    front = f'<circle class="d0s" cx="{X(3):.1f}" cy="75" r="5"></circle><text class="lbl" x="{X(3):.1f}" y="58" text-anchor="middle">3</text>'
+    back = (f'<line class="c1 fx d2" x1="{X(1):.1f}" y1="75" x2="{X(5):.1f}" y2="75"></line>'
+            f'<circle class="f0 c1 fx d2" cx="{X(1):.1f}" cy="75" r="5.5"></circle><circle class="f0 c1 fx d2" cx="{X(5):.1f}" cy="75" r="5.5"></circle>'
+            f'<path class="guide fx d3" d="M {X(3):.1f} 42 L {X(5):.1f} 42"></path><text class="t2 fx d3" x="{X(4):.1f}" y="36" text-anchor="middle">distance &lt; 2</text>'
+            f'<path class="guide fx d3" d="M {X(3):.1f} 42 L {X(1):.1f} 42"></path>')
+    mcard(deck, 'Modulus inequalities · intuition', 'Solve |x − 3| < 2 by reading it as a distance.', axis, back,
+          '<p>|x − 3| is the <b>distance from x to 3</b>. “Distance &lt; 2” means x lies within 2 of 3: <b>1 &lt; x &lt; 5</b>.</p>'
+          '<p><b>|x − a| &lt; r ⟺ a − r &lt; x &lt; a + r</b> (one band, AND).<br><b>|x − a| &gt; r ⟺ x &lt; a − r or x &gt; a + r</b> (two outer rays, OR).</p>',
+          '|x − a| < r as a distance band', '|x−a|<r means a−r<x<a+r (within distance r of a); |x−a|>r means x<a−r or x>a+r; |x−3|<2 gives (1,5)',
+          vb='0 0 300 110', front_only=front, hint='Read |x − a| as the distance between x and a.')
+
+
+def half_plane(deck):
+    P, h = eqplane(-1.5, 5, -1.5, 3.8, pad=(20, 6, 12, 16))
+    # line 2x + 3y = 6 : y = 2 - 2x/3
+    line = lambda x: 2 - 2 * x / 3
+    base = P.axes(_xy_ticks(-1, 4), _xy_ticks(-1, 3), grid=True, xl='x', yl='y') + P.line(-1.2, line(-1.2), 4.8, line(4.8), 'c1')
+    poly = [(-1.5, line(-1.5)), (5, line(5)), (5, -1.5), (-1.5, -1.5)]
+    back = (P.poly(poly, 'ns1 fx d3') + P.dot(0, 0, 'd2s', 4.5, 'fx d2') + P.text(0, 0, '(0,0): 0 ≤ 6 ✓', 't2 fx d2', dx=8, dy=-8) +
+            P.text(2.8, 1.6, '2x + 3y ≤ 6', 't1 fx d3', dx=6, dy=-2))
+    mcard(deck, 'Two variables · half-plane · beyond the textbook', 'Represent 2x + 3y ≤ 6 on the plane. How do you decide which side to shade?', base, back,
+          '<p>1) Draw the line 2x + 3y = 6 through (3, 0) and (0, 2). <b>Solid</b> for ≤ or ≥; <b>dashed</b> for &lt; or &gt;.</p>'
+          '<p>2) Test the origin: 0 ≤ 6 is true → shade the side <b>containing (0, 0)</b>. (If the line passes through the origin, test another point.)</p>',
+          'Graph a linear inequality in two variables (test-point method)', 'Draw the boundary line (solid for ≤ ≥, dashed for < >), then shade the side containing a test point that satisfies the inequality, e.g. origin for 2x+3y≤6',
+          vb=f'0 0 300 {h}', hint='Find where the boundary line cuts the axes.')
+
+
+def feasible_region(deck):
+    P, h = eqplane(-0.8, 5.2, -0.8, 4.2, pad=(20, 6, 12, 16))
+    base = (P.axes(_xy_ticks(1, 4), _xy_ticks(1, 3), grid=True, xl='x', yl='y') + P.line(1, -0.6, 1, 3.9, 'c2') + P.line(-0.2, 4.2, 4.8, -0.8, 'c1'))
+    back = (P.poly([(1, 0), (4, 0), (1, 3)], 'ns3 fx d3') +
+            P.dot(1, 0, 'd3s', 4.5, 'fx d4') + P.dot(4, 0, 'd3s', 4.5, 'fx d4') + P.dot(1, 3, 'd3s', 4.5, 'fx d4') +
+            P.text(1, 0, '(1, 0)', 'lbl fx d4', dx=-4, dy=16, anchor='middle') + P.text(4, 0, '(4, 0)', 'lbl fx d4', dx=4, dy=16, anchor='middle') +
+            P.text(1, 3, '(1, 3)', 'lbl fx d4', dx=10, dy=-6))
+    mcard(deck, 'System of inequalities · beyond the textbook', 'Show the solution region of x + y ≤ 4, x ≥ 1 and y ≥ 0.', base, back,
+          '<p>The solution of a system is the <b>overlap</b> of all the half-planes: here the triangle with corners (1, 0), (4, 0), (1, 3).</p>'
+          '<p>Corner points come from pairs of boundary lines. (This is exactly the <b>feasible region</b> of linear programming in Class 12.)</p>',
+          'Solution region of a system of linear inequalities', 'The solution of a system is the common part of the half-planes; x+y≤4, x≥1, y≥0 gives the triangle (1,0),(4,0),(1,3) (feasible region)',
+          vb=f'0 0 300 {h}', hint='Shade each half-plane; keep the overlap.')
