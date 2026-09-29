@@ -153,6 +153,7 @@
           period: periodLabel(item),
           type: String(item.packageType || '').toUpperCase(),
           price: item.product?.priceString || '',
+          amount: Number(item.product?.price) || 0,
           title: item.product?.title || '',
           raw: item
         }))

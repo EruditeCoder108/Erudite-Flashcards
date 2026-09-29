@@ -6470,11 +6470,15 @@
     if (!plans) return;
     const labels = { year: 'Yearly', month: 'Monthly', lifetime: 'Lifetime' };
     const perLabel = { year: '/ year', month: '/ month', lifetime: 'once' };
+    const monthly = proPackages.find(item => item.period === 'month')?.amount || 0;
+    const yearly = proPackages.find(item => item.period === 'year')?.amount || 0;
+    const savePct = monthly > 0 && yearly > 0 ? Math.round((1 - yearly / (monthly * 12)) * 100) : 0;
+    const yearBadge = savePct >= 5 ? `Save ${savePct}%` : 'Best value';
     plans.innerHTML = proPackages.map(item => `
       <button type="button" class="pro-plan ${item === selectedProPackage ? 'selected' : ''}" data-action="select-pro-plan" data-plan-id="${escapeAttr(item.id)}" aria-pressed="${item === selectedProPackage}">
         <span class="pro-plan-name">${escapeHtml(labels[item.period] || item.title || 'Pro')}</span>
         <span class="pro-plan-price">${escapeHtml(item.price)} <small>${escapeHtml(perLabel[item.period] || '')}</small></span>
-        ${item.period === 'year' ? '<span class="pro-plan-badge">Best value</span>' : ''}
+        ${item.period === 'year' ? `<span class="pro-plan-badge">${escapeHtml(yearBadge)}</span>` : ''}
       </button>
     `).join('');
   }
