@@ -1,0 +1,1033 @@
+{
+  "version": 1,
+  "name": "Chapter 11: Three Dimensional Geometry",
+  "className": "Class 12",
+  "description": "Direction cosines and ratios, equations of a line in vector and Cartesian form, angle between lines, shortest distance between skew and parallel lines, with exam-style problems.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Direction cosines of a line?",
+      "definition": "The cosines of the angles α, β, γ the line makes with the positive x, y, z axes: <span style=\"color:#3b82f6\">l = cos α, m = cos β, n = cos γ</span>, with <span style=\"color:#3b82f6\">l² + m² + n² = 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction cosines of the three coordinate axes?",
+      "definition": "<span style=\"color:#3b82f6\">x-axis (1, 0, 0), y-axis (0, 1, 0), z-axis (0, 0, 1)</span> (Example 4: angles 0°, 90°, 90°)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Reversed direction: what happens to the direction cosines?",
+      "definition": "All three change sign: <span style=\"color:#3b82f6\">(−l, −m, −n)</span> (angles become π − α, π − β, π − γ). So a line has two sets of direction cosines",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction ratios: definition and link to direction cosines.",
+      "definition": "Any numbers a, b, c proportional to (l, m, n). Then <span style=\"color:#3b82f6\">l = a/√(a² + b² + c²), m = b/√(...), n = c/√(...)</span> (with ± for the two directions)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Direction cosines and direction ratios of a line",
+      "definition": "Direction cosines l,m,n = cosines of angles with the axes; l^2+m^2+n^2 = 1; direction ratios a,b,c proportional to l,m,n: l = a/sqrt(a^2+b^2+c^2); axes have (1,0,0),(0,1,0),(0,0,1)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Direction cosines</p><h2>A line makes angles α, β, γ with the positive x, y, z axes. For the line through O and P(2, 3, 4) find its direction cosines and show l² + m² + n² = 1.</h2><svg viewBox=\"0 0 300 220\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax \" x1=\"100.0\" y1=\"170.0\" x2=\"40.6\" y2=\"214.6\"></line><line class=\"ax \" x1=\"100.0\" y1=\"170.0\" x2=\"292.0\" y2=\"170.0\"></line><line class=\"ax \" x1=\"100.0\" y1=\"170.0\" x2=\"100.0\" y2=\"8.0\"></line><text class=\"lbi \" x=\"28.6\" y=\"222.6\" text-anchor=\"start\">x</text><text class=\"lbi \" x=\"298.0\" y=\"174.0\" text-anchor=\"start\">y</text><text class=\"lbi \" x=\"106.0\" y=\"12.0\" text-anchor=\"start\">z</text><text class=\"lbl \" x=\"90.0\" y=\"182.0\" text-anchor=\"start\">O</text><line class=\"c1 \" x1=\"100.0\" y1=\"170.0\" x2=\"157.0\" y2=\"74.8\"></line><circle class=\"d1s \" cx=\"157.0\" cy=\"74.8\" r=\"4.5\"></circle><text class=\"t1 \" x=\"165.0\" y=\"68.8\" text-anchor=\"start\">line OP</text></svg><p class=\"hint\">Divide the coordinates of P by |OP|.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Direction cosines</p><h2>A line makes angles α, β, γ with the positive x, y, z axes. For the line through O and P(2, 3, 4) find its direction cosines and show l² + m² + n² = 1.</h2><svg viewBox=\"0 0 300 220\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax \" x1=\"100.0\" y1=\"170.0\" x2=\"40.6\" y2=\"214.6\"></line><line class=\"ax \" x1=\"100.0\" y1=\"170.0\" x2=\"292.0\" y2=\"170.0\"></line><line class=\"ax \" x1=\"100.0\" y1=\"170.0\" x2=\"100.0\" y2=\"8.0\"></line><text class=\"lbi \" x=\"28.6\" y=\"222.6\" text-anchor=\"start\">x</text><text class=\"lbi \" x=\"298.0\" y=\"174.0\" text-anchor=\"start\">y</text><text class=\"lbi \" x=\"106.0\" y=\"12.0\" text-anchor=\"start\">z</text><text class=\"lbl \" x=\"90.0\" y=\"182.0\" text-anchor=\"start\">O</text><line class=\"c1 \" x1=\"100.0\" y1=\"170.0\" x2=\"157.0\" y2=\"74.8\"></line><circle class=\"d1s \" cx=\"157.0\" cy=\"74.8\" r=\"4.5\"></circle><text class=\"t1 \" x=\"165.0\" y=\"68.8\" text-anchor=\"start\">line OP</text><line class=\"guide fx d2 \" x1=\"100.0\" y1=\"170.0\" x2=\"67.0\" y2=\"194.8\"></line><line class=\"guide fx d2 \" x1=\"100.0\" y1=\"170.0\" x2=\"190.0\" y2=\"170.0\"></line><line class=\"guide fx d2 \" x1=\"100.0\" y1=\"170.0\" x2=\"100.0\" y2=\"50.0\"></line><line class=\"guide fx d2 \" x1=\"67.0\" y1=\"194.8\" x2=\"157.0\" y2=\"194.8\"></line><line class=\"guide fx d2 \" x1=\"67.0\" y1=\"194.8\" x2=\"67.0\" y2=\"74.8\"></line><line class=\"guide fx d2 \" x1=\"190.0\" y1=\"170.0\" x2=\"157.0\" y2=\"194.8\"></line><line class=\"guide fx d2 \" x1=\"190.0\" y1=\"170.0\" x2=\"190.0\" y2=\"50.0\"></line><line class=\"guide fx d2 \" x1=\"100.0\" y1=\"50.0\" x2=\"67.0\" y2=\"74.8\"></line><line class=\"guide fx d2 \" x1=\"100.0\" y1=\"50.0\" x2=\"190.0\" y2=\"50.0\"></line><line class=\"guide fx d2 \" x1=\"157.0\" y1=\"194.8\" x2=\"157.0\" y2=\"74.8\"></line><line class=\"guide fx d2 \" x1=\"67.0\" y1=\"74.8\" x2=\"157.0\" y2=\"74.8\"></line><line class=\"guide fx d2 \" x1=\"190.0\" y1=\"50.0\" x2=\"157.0\" y2=\"74.8\"></line><text class=\"t2 fx d2\" x=\"170\" y=\"60\">l = cos α = 2/√29</text><text class=\"t3 fx d3\" x=\"170\" y=\"80\">m = cos β = 3/√29</text><text class=\"t4 fx d4\" x=\"170\" y=\"100\">n = cos γ = 4/√29</text></svg><div class=\"eq fx d5\"><p><b>Direction cosines</b> l = cos α, m = cos β, n = cos γ. For OP: l = x/|OP| = 2/√29, m = 3/√29, n = 4/√29. They are the components of the unit vector along the line, so <b>l² + m² + n² = 1</b> (4 + 9 + 16 = 29).</p><p><b>Direction ratios</b> a, b, c are any numbers proportional to (l, m, n): l = a/√(a² + b² + c²), etc. The axes have direction cosines (1, 0, 0), (0, 1, 0), (0, 0, 1) (Example 4). Reversing the direction changes all three signs.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Direction ratios of the line through P(x₁, y₁, z₁) and Q(x₂, y₂, z₂)?",
+      "definition": "<span style=\"color:#3b82f6\">x₂ − x₁, y₂ − y₁, z₂ − z₁</span> (and dividing by PQ gives the direction cosines)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: a line makes 90°, 60°, 30° with the x, y, z axes. Its direction cosines?",
+      "definition": "cos 90° = 0, cos 60° = ½, cos 30° = √3/2: <span style=\"color:#f08c00\">(0, 1/2, √3/2)</span>. Check: 0 + 1/4 + 3/4 = 1 ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2: direction ratios 2, −1, −2. Direction cosines?",
+      "definition": "Magnitude √(4 + 1 + 4) = 3: <span style=\"color:#f08c00\">(2/3, −1/3, −2/3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: A(2, 3, −4), B(1, −2, 3), C(3, 8, −11): show they are collinear.",
+      "definition": "AB has ratios (−1, −5, 7) and BC has (2, 10, −14) = −2 × (−1, −5, 7). Proportional and B is common: <span style=\"color:#22a35a\">collinear</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: are the direction cosines of a line unique?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: (l, m, n) and (−l, −m, −n) both describe the line (opposite directions), and direction ratios can be scaled by any non-zero factor",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If a line makes equal angles with the axes, its direction cosines are?",
+      "definition": "l = m = n with 3l² = 1: <span style=\"color:#f08c00\">±(1/√3, 1/√3, 1/√3)</span> (angle cos⁻¹(1/√3) ≈ 54.7°)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can a line make angles 30°, 45°, 60° with the three axes?",
+      "definition": "cos²30° + cos²45° + cos²60° = 3/4 + 1/2 + 1/4 = 3/2 ≠ 1: <span style=\"color:#e5484d\">No</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-direction-cosines-and-ratios"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.1 Q1: a line makes 90°, 135°, 45° with the x, y, z axes. Find its direction cosines.",
+      "definition": "cos 90° = 0, cos 135° = −1/√2, cos 45° = 1/√2: <span style=\"color:#f08c00\">(0, −1/√2, 1/√2)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-exercise-11-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.1 Q2: direction cosines of a line making equal angles with the axes.",
+      "definition": "<span style=\"color:#f08c00\">±(1/√3, 1/√3, 1/√3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-exercise-11-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.1 Q3: direction ratios −18, 12, −4. Direction cosines?",
+      "definition": "√(324 + 144 + 16) = 22: <span style=\"color:#f08c00\">(−9/11, 6/11, −2/11)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-exercise-11-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.1 Q4: show (2, 3, 4), (−1, −2, 1), (5, 8, 7) are collinear.",
+      "definition": "Ratios of the first two: (−3, −5, −3). Of the last two: (6, 10, 6) = −2(−3, −5, −3). <span style=\"color:#22a35a\">Collinear</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-exercise-11-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.1 Q5: direction cosines of the sides of the triangle with vertices (3, 5, −4), (−1, 1, 2), (−5, −5, −2).",
+      "definition": "AB = (-4, -4, 6): <span style=\"color:#f08c00\">(−2/√17, −2/√17, 3/√17)</span>. BC = (-4, -6, -4): <span style=\"color:#f08c00\">(−2/√17, −3/√17, −2/√17)</span>. CA = (8, 10, -2): <span style=\"color:#f08c00\">(4/√42, 5/√42, −1/√42)</span> (each up to an overall sign)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.2-exercise-11-1"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Vector and Cartesian equations of a line",
+      "definition": "Line through a parallel to b: r = a + lambda b; Cartesian (x-x1)/a = (y-y1)/b = (z-z1)/c; through two points use b = a2 - a1",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Equation of a line in space</p><h2>Write the vector equation of the line through the point A (position vector a) parallel to the vector b. What is its Cartesian form?</h2><svg viewBox=\"0 0 300 220\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax \" x1=\"90.0\" y1=\"178.0\" x2=\"38.5\" y2=\"216.6\"></line><line class=\"ax \" x1=\"90.0\" y1=\"178.0\" x2=\"246.0\" y2=\"178.0\"></line><line class=\"ax \" x1=\"90.0\" y1=\"178.0\" x2=\"90.0\" y2=\"53.2\"></line><text class=\"lbi \" x=\"26.5\" y=\"224.6\" text-anchor=\"start\">x</text><text class=\"lbi \" x=\"252.0\" y=\"182.0\" text-anchor=\"start\">y</text><text class=\"lbi \" x=\"96.0\" y=\"57.2\" text-anchor=\"start\">z</text><text class=\"lbl \" x=\"80.0\" y=\"190.0\" text-anchor=\"start\">O</text><circle class=\"d1s \" cx=\"98.5\" cy=\"170.4\" r=\"5\"></circle><text class=\"t1 \" x=\"90.5\" y=\"186.4\" text-anchor=\"end\">A (a)</text><line class=\"c3 \" x1=\"98.5\" y1=\"170.4\" x2=\"130.9\" y2=\"148.1\"></line><text class=\"t3 \" x=\"138.9\" y=\"144.1\" text-anchor=\"start\">b</text></svg><p class=\"hint\">Move from A along b by any multiple λ.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Equation of a line in space</p><h2>Write the vector equation of the line through the point A (position vector a) parallel to the vector b. What is its Cartesian form?</h2><svg viewBox=\"0 0 300 220\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax \" x1=\"90.0\" y1=\"178.0\" x2=\"38.5\" y2=\"216.6\"></line><line class=\"ax \" x1=\"90.0\" y1=\"178.0\" x2=\"246.0\" y2=\"178.0\"></line><line class=\"ax \" x1=\"90.0\" y1=\"178.0\" x2=\"90.0\" y2=\"53.2\"></line><text class=\"lbi \" x=\"26.5\" y=\"224.6\" text-anchor=\"start\">x</text><text class=\"lbi \" x=\"252.0\" y=\"182.0\" text-anchor=\"start\">y</text><text class=\"lbi \" x=\"96.0\" y=\"57.2\" text-anchor=\"start\">z</text><text class=\"lbl \" x=\"80.0\" y=\"190.0\" text-anchor=\"start\">O</text><circle class=\"d1s \" cx=\"98.5\" cy=\"170.4\" r=\"5\"></circle><text class=\"t1 \" x=\"90.5\" y=\"186.4\" text-anchor=\"end\">A (a)</text><line class=\"c3 \" x1=\"98.5\" y1=\"170.4\" x2=\"130.9\" y2=\"148.1\"></line><text class=\"t3 \" x=\"138.9\" y=\"144.1\" text-anchor=\"start\">b</text><line class=\"c1 fx d2 \" x1=\"86.3\" y1=\"178.7\" x2=\"175.5\" y2=\"117.5\"></line><circle class=\"d2s fx d3\" cx=\"159.3\" cy=\"128.6\" r=\"5\"></circle><text class=\"t2 fx d3 \" x=\"167.3\" y=\"124.6\" text-anchor=\"start\">P (r)</text><line class=\"guide fx d3 \" x1=\"90.0\" y1=\"178.0\" x2=\"98.5\" y2=\"170.4\"></line><line class=\"guide fx d3 \" x1=\"90.0\" y1=\"178.0\" x2=\"159.3\" y2=\"128.6\"></line><text class=\"t4 fx d4\" x=\"150\" y=\"30\">r = a + λ b</text></svg><div class=\"eq fx d5\"><p>A point P on the line satisfies AP = λb for some real λ, so <b>r = a + λ b</b> (λ ∈ R). If a = (x₁, y₁, z₁) and b = (a, b, c) then x = x₁ + λa, y = y₁ + λb, z = z₁ + λc; eliminating λ gives <b>(x − x₁)/a = (y − y₁)/b = (z − z₁)/c</b>.</p><p>Through two points a, a′: direction b = a′ − a. If the direction cosines l, m, n are used, write l, m, n in place of a, b, c. (Example 6: through (5, 2, −4) parallel to 3î + 2ĵ − 8k̂.)</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-equation-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Vector equation of the line through the point a parallel to b?",
+      "definition": "<span style=\"color:#3b82f6\">r = a + λ b</span> (λ ∈ R). Here r is the position vector of a general point of the line",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-equation-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cartesian equation of the line through (x₁, y₁, z₁) with direction ratios a, b, c?",
+      "definition": "<span style=\"color:#3b82f6\">(x − x₁)/a = (y − y₁)/b = (z − z₁)/c</span>. If a denominator is 0, that numerator is 0 (e.g. x/1 = y/0 = z/0 is the x-axis)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-equation-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Line through two points a and a′?",
+      "definition": "Direction is a′ − a: <span style=\"color:#3b82f6\">r = a + λ(a′ − a)</span>; Cartesian <span style=\"color:#3b82f6\">(x − x₁)/(x₂ − x₁) = (y − y₁)/(y₂ − y₁) = (z − z₁)/(z₂ − z₁)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-equation-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conversion between vector and Cartesian forms.",
+      "definition": "r = (x₁î + y₁ĵ + z₁k̂) + λ(aî + bĵ + ck̂) ⇔ (x − x₁)/a = (y − y₁)/b = (z − z₁)/c. Read a point and the direction ratios off either form",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-equation-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6: line through (5, 2, −4) parallel to 3î + 2ĵ − 8k̂. Vector and Cartesian equations.",
+      "definition": "<span style=\"color:#f08c00\">r = 5î + 2ĵ − 4k̂ + λ(3î + 2ĵ − 8k̂)</span> and <span style=\"color:#f08c00\">(x − 5)/3 = (y − 2)/2 = (z + 4)/(−8)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-equation-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Parametric equations of a line: what are they?",
+      "definition": "<span style=\"color:#3b82f6\">x = x₁ + λa, y = y₁ + λb, z = z₁ + λc</span>: every value of λ gives a point of the line. They are handy for finding intersections and distances",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-equation-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: is the direction of the line (x − 1)/2 = (y + 3)/(−1) = (z − 4)/5 the vector (1, −3, 4)?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: (1, −3, 4) is a point on the line. The direction ratios are the denominators: <span style=\"color:#3b82f6\">(2, −1, 5)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-equation-of-a-line"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q4: the line through (1, 2, 3) parallel to 3î + 2ĵ − 2k̂.",
+      "definition": "<span style=\"color:#f08c00\">r = î + 2ĵ + 3k̂ + λ(3î + 2ĵ − 2k̂)</span> or <span style=\"color:#f08c00\">(x − 1)/3 = (y − 2)/2 = (z − 3)/(−2)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-exercise-11-2-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q5: the line (vector and Cartesian) through the point 2î − ĵ + 4k̂ in the direction î + 2ĵ − k̂.",
+      "definition": "<span style=\"color:#f08c00\">r = 2î − ĵ + 4k̂ + λ(î + 2ĵ − k̂)</span> and <span style=\"color:#f08c00\">(x − 2)/1 = (y + 1)/2 = (z − 4)/(−1)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-exercise-11-2-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q6: the Cartesian equation of the line through (−2, 4, −5) parallel to (x + 3)/3 = (y − 4)/5 = (z + 8)/6.",
+      "definition": "Parallel lines share direction ratios (3, 5, 6): <span style=\"color:#f08c00\">(x + 2)/3 = (y − 4)/5 = (z + 5)/6</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-exercise-11-2-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q7: the Cartesian equation (x − 5)/3 = (y + 4)/7 = (z − 6)/2. Write its vector form.",
+      "definition": "Point (5, −4, 6), direction (3, 7, 2): <span style=\"color:#f08c00\">r = 5î − 4ĵ + 6k̂ + λ(3î + 7ĵ + 2k̂)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-exercise-11-2-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q1: show the three lines with direction cosines (12/13, −3/13, −4/13), (4/13, 12/13, 3/13), (3/13, −4/13, 12/13) are mutually perpendicular.",
+      "definition": "Dot products: 12·4 − 3·12 − 4·3 = 0, 4·3 + 12(−4) + 3·12 = 0, 12·3 + (−3)(−4) + (−4)(12) = 0 (each over 169). <span style=\"color:#22a35a\">Mutually perpendicular</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-exercise-11-2-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q2: show the line through (1, −1, 2), (3, 4, −2) is perpendicular to the line through (0, 3, 2), (3, 5, 6).",
+      "definition": "Directions (2, 5, −4) and (3, 2, 4): 6 + 10 − 16 = <span style=\"color:#f08c00\">0</span>. <span style=\"color:#22a35a\">Perpendicular</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-exercise-11-2-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q3: show the line through (4, 7, 8), (2, 3, 4) is parallel to the line through (−1, −2, 1), (1, 2, 5).",
+      "definition": "Directions (−2, −4, −4) and (2, 4, 4): proportional (ratio −1). <span style=\"color:#22a35a\">Parallel</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.3-exercise-11-2-lines"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Angle between two lines from direction ratios",
+      "definition": "cos(theta) = |a1a2+b1b2+c1c2| / (sqrt(a1^2+b1^2+c1^2) sqrt(a2^2+b2^2+c2^2)); perpendicular when the dot product is zero; parallel when ratios are proportional",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Angle between two lines</p><h2>How do you find the angle between two lines from their direction ratios (a₁, b₁, c₁) and (a₂, b₂, c₂)?</h2><svg viewBox=\"0 0 300 217\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"190.5\" x2=\"292.0\" y2=\"190.5\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"26.6\" y1=\"207.1\" x2=\"26.6\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"c1\" x1=\"14.1\" y1=\"194.8\" x2=\"267.1\" y2=\"106.3\"></line><line class=\"c3\" x1=\"20.4\" y1=\"202.9\" x2=\"130.3\" y2=\"-16.9\"></line><text class=\"t1 \" x=\"258.8\" y=\"93.4\" text-anchor=\"end\">l₁ (direction b₁)</text><text class=\"t3 \" x=\"132.1\" y=\"24.6\" text-anchor=\"start\">l₂ (b₂)</text></svg><p class=\"hint\">Use the direction vectors of the lines.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Angle between two lines</p><h2>How do you find the angle between two lines from their direction ratios (a₁, b₁, c₁) and (a₂, b₂, c₂)?</h2><svg viewBox=\"0 0 300 217\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"190.5\" x2=\"292.0\" y2=\"190.5\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"26.6\" y1=\"207.1\" x2=\"26.6\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"c1\" x1=\"14.1\" y1=\"194.8\" x2=\"267.1\" y2=\"106.3\"></line><line class=\"c3\" x1=\"20.4\" y1=\"202.9\" x2=\"130.3\" y2=\"-16.9\"></line><text class=\"t1 \" x=\"258.8\" y=\"93.4\" text-anchor=\"end\">l₁ (direction b₁)</text><text class=\"t3 \" x=\"132.1\" y=\"24.6\" text-anchor=\"start\">l₂ (b₂)</text><text class=\"t4 fx d2 \" x=\"111.5\" y=\"167.7\" text-anchor=\"start\">θ</text><line class=\"c2 fx d2\" x1=\"26.6\" y1=\"190.5\" x2=\"167.6\" y2=\"141.1\" marker-end=\"url(#pr)\"></line><line class=\"c2 fx d2\" x1=\"26.6\" y1=\"190.5\" x2=\"82.6\" y2=\"78.5\" marker-end=\"url(#pr)\"></line><text class=\"t2 fx d3 \" x=\"138.6\" y=\"18.4\" text-anchor=\"start\">cos θ = |b₁·b₂|/(|b₁||b₂|)</text></svg><div class=\"eq fx d5\"><p>The angle between two lines (even skew ones) is the angle between their <b>direction vectors</b>: <b>cos θ = |a₁a₂ + b₁b₂ + c₁c₂| / (√(a₁² + b₁² + c₁²) √(a₂² + b₂² + c₂²))</b>, with θ acute. With direction cosines: cos θ = |l₁l₂ + m₁m₂ + n₁n₂|.</p><p><b>Perpendicular</b> ⇔ a₁a₂ + b₁b₂ + c₁c₂ = 0; <b>parallel</b> ⇔ a₁/a₂ = b₁/b₂ = c₁/c₂. (Ex 11.2 Q8(i): directions (3, 2, 6) and (1, 2, 2) give cos θ = 19/21.)</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-angle-between-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angle between two lines with direction cosines (l₁, m₁, n₁) and (l₂, m₂, n₂)?",
+      "definition": "<span style=\"color:#3b82f6\">cos θ = |l₁l₂ + m₁m₂ + n₁n₂|</span> (θ acute). With direction ratios divide by both magnitudes",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-angle-between-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conditions for two lines to be perpendicular / parallel?",
+      "definition": "<span style=\"color:#3b82f6\">Perpendicular</span>: a₁a₂ + b₁b₂ + c₁c₂ = 0. <span style=\"color:#3b82f6\">Parallel</span>: a₁/a₂ = b₁/b₂ = c₁/c₂",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-angle-between-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angle between lines r = a₁ + λb₁ and r = a₂ + μb₂ in vector form?",
+      "definition": "<span style=\"color:#3b82f6\">cos θ = |b₁ · b₂|/(|b₁||b₂|)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-angle-between-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angle between lines with direction ratios (1, 1, 2) and (1, 1, 0)?",
+      "definition": "dot = 2, magnitudes √6 and √2: cos θ = 2/√12 = 1/√3, so <span style=\"color:#f08c00\">θ = cos⁻¹(1/√3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-angle-between-lines"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q8(i): angle between r = 2î − 5ĵ + k̂ + λ(3î + 2ĵ + 6k̂) and r = 7î − 6k̂ + μ(î + 2ĵ + 2k̂).",
+      "definition": "b₁ · b₂ = 19, |b₁| = 7, |b₂| = 3: cos θ = 19/21. <span style=\"color:#f08c00\">θ = cos⁻¹(19/21)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-exercise-11-2-angles"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q8(ii): angle between r = 3î + ĵ − 2k̂ + λ(î − ĵ − 2k̂) and r = 2î − ĵ − 56k̂ + μ(3î − 5ĵ − 4k̂).",
+      "definition": "b₁ · b₂ = 16, |b₁| = √6, |b₂| = 5√2: cos θ = 16/(√6 · 5√2) = 8/(5√3). <span style=\"color:#f08c00\">θ = cos⁻¹(8/(5√3))</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-exercise-11-2-angles"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q9(i): angle between (x − 2)/2 = (y − 1)/5 = (z + 3)/(−3) and (x + 2)/(−1) = (y − 4)/8 = (z − 5)/4.",
+      "definition": "Directions (2, 5, −3), (−1, 8, 4): dot = 26, magnitudes √38 and 9: <span style=\"color:#f08c00\">θ = cos⁻¹(26/(9√38))</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-exercise-11-2-angles"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q9(ii): angle between x/2 = y/2 = z/1 and (x − 5)/4 = (y − 2)/1 = (z − 3)/8.",
+      "definition": "Directions (2, 2, 1), (4, 1, 8): dot = 18, magnitudes 3 and 9: <span style=\"color:#f08c00\">θ = cos⁻¹(2/3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-exercise-11-2-angles"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q10: find p so the lines (1 − x)/3 = (7y − 14)/(2p) = (z − 3)/2 and (7 − 7x)/(3p) = (y − 5)/1 = (6 − z)/5 are perpendicular.",
+      "definition": "Rewrite to standard form: direction ratios (−3, 2p/7, 2) and (−3p/7, 1, −5). Dot = 9p/7 + 2p/7 − 10 = 0: <span style=\"color:#f08c00\">p = 70/11</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-exercise-11-2-angles"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q11: show (x − 5)/7 = (y + 2)/(−5) = z/1 and x/1 = y/2 = z/3 are perpendicular.",
+      "definition": "Directions (7, −5, 1) and (1, 2, 3): 7 − 10 + 3 = <span style=\"color:#f08c00\">0</span> ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.4-exercise-11-2-angles"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What are skew lines?",
+      "definition": "Two lines in space that are <span style=\"color:#3b82f6\">neither parallel nor intersecting</span> (they do not lie in one plane)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-shortest-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angle between skew lines?",
+      "definition": "The angle between two intersecting lines drawn through any point (often the origin) parallel to each. It equals the angle between the direction vectors",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-shortest-distance"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Shortest distance between two skew lines",
+      "definition": "Skew lines: d = |(a2-a1).(b1 x b2)|/|b1 x b2|; parallel lines: |b x (a2-a1)|/|b|; d = 0 means the lines are coplanar/intersect; common perpendicular parallel to b1 x b2",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Shortest distance between skew lines</p><h2>Two lines are neither parallel nor intersecting (skew lines). What is the shortest distance between them?</h2><svg viewBox=\"0 0 300 230\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax \" x1=\"80.0\" y1=\"190.0\" x2=\"28.5\" y2=\"228.6\"></line><line class=\"ax \" x1=\"80.0\" y1=\"190.0\" x2=\"256.8\" y2=\"190.0\"></line><line class=\"ax \" x1=\"80.0\" y1=\"190.0\" x2=\"80.0\" y2=\"70.4\"></line><text class=\"lbi \" x=\"16.5\" y=\"236.6\" text-anchor=\"start\">x</text><text class=\"lbi \" x=\"262.8\" y=\"194.0\" text-anchor=\"start\">y</text><text class=\"lbi \" x=\"86.0\" y=\"74.4\" text-anchor=\"start\">z</text><text class=\"lbl \" x=\"70.0\" y=\"202.0\" text-anchor=\"start\">O</text><line class=\"c1 \" x1=\"55.3\" y1=\"200.7\" x2=\"226.9\" y2=\"200.7\"></line><text class=\"t1 \" x=\"234.9\" y=\"204.7\" text-anchor=\"start\">l₁</text><line class=\"c3 \" x1=\"163.7\" y1=\"133.7\" x2=\"109.4\" y2=\"174.5\"></line><text class=\"t3 \" x=\"105.4\" y=\"188.5\" text-anchor=\"end\">l₂</text></svg><p class=\"hint\">Project a₂ − a₁ onto the direction perpendicular to both lines.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Shortest distance between skew lines</p><h2>Two lines are neither parallel nor intersecting (skew lines). What is the shortest distance between them?</h2><svg viewBox=\"0 0 300 230\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax \" x1=\"80.0\" y1=\"190.0\" x2=\"28.5\" y2=\"228.6\"></line><line class=\"ax \" x1=\"80.0\" y1=\"190.0\" x2=\"256.8\" y2=\"190.0\"></line><line class=\"ax \" x1=\"80.0\" y1=\"190.0\" x2=\"80.0\" y2=\"70.4\"></line><text class=\"lbi \" x=\"16.5\" y=\"236.6\" text-anchor=\"start\">x</text><text class=\"lbi \" x=\"262.8\" y=\"194.0\" text-anchor=\"start\">y</text><text class=\"lbi \" x=\"86.0\" y=\"74.4\" text-anchor=\"start\">z</text><text class=\"lbl \" x=\"70.0\" y=\"202.0\" text-anchor=\"start\">O</text><line class=\"c1 \" x1=\"55.3\" y1=\"200.7\" x2=\"226.9\" y2=\"200.7\"></line><text class=\"t1 \" x=\"234.9\" y=\"204.7\" text-anchor=\"start\">l₁</text><line class=\"c3 \" x1=\"163.7\" y1=\"133.7\" x2=\"109.4\" y2=\"174.5\"></line><text class=\"t3 \" x=\"105.4\" y=\"188.5\" text-anchor=\"end\">l₂</text><line class=\"c2 fx d2 \" x1=\"143.7\" y1=\"200.7\" x2=\"143.7\" y2=\"148.7\"></line><circle class=\"d2s fx d2\" cx=\"143.7\" cy=\"200.7\" r=\"4.5\"></circle><circle class=\"d2s fx d2\" cx=\"143.7\" cy=\"148.7\" r=\"4.5\"></circle><text class=\"t2 fx d3 \" x=\"151.7\" y=\"178.7\" text-anchor=\"start\">d</text></svg><div class=\"eq fx d5\"><p>The shortest distance is along the <b>common perpendicular</b>, which is parallel to <b>b₁ × b₂</b>. For l₁: r = a₁ + λb₁ and l₂: r = a₂ + μb₂: <b>d = |(a₂ − a₁) · (b₁ × b₂)| / |b₁ × b₂|</b> (the projection of a₂ − a₁ on the common perpendicular).</p><p>If l₁ ∥ l₂ (b₁ ∥ b₂), the distance is instead <b>|b × (a₂ − a₁)|/|b|</b> (Example 10). d = 0 means the lines intersect (coplanar).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-shortest-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Distance between skew lines r = a₁ + λb₁ and r = a₂ + μb₂?",
+      "definition": "<span style=\"color:#3b82f6\">d = |(a₂ − a₁) · (b₁ × b₂)| / |b₁ × b₂|</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-shortest-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Distance between parallel lines r = a₁ + λb and r = a₂ + μb?",
+      "definition": "<span style=\"color:#3b82f6\">d = |b × (a₂ − a₁)| / |b|</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-shortest-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cartesian form of the skew-lines distance.",
+      "definition": "For (x − x₁)/a₁ = (y − y₁)/b₁ = (z − z₁)/c₁ and (x − x₂)/a₂ = ...: d = |det[x₂ − x₁, y₂ − y₁, z₂ − z₁; a₁ b₁ c₁; a₂ b₂ c₂]| / √((b₁c₂ − b₂c₁)² + (c₁a₂ − c₂a₁)² + (a₁b₂ − a₂b₁)²)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-shortest-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How can you tell whether two lines are coplanar (intersect or are parallel)?",
+      "definition": "The shortest distance is <span style=\"color:#3b82f6\">0</span> (scalar triple product (a₂ − a₁) · (b₁ × b₂) = 0)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-shortest-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10: distance between the parallel lines through a₁ = î + 2ĵ − 4k̂ and a₂ = 3î + 3ĵ − 5k̂, both with b = 2î + 3ĵ + 6k̂.",
+      "definition": "a₂ − a₁ = (2, 1, −1); b × (a₂ − a₁) = (−9, 14, −4), magnitude √293; |b| = 7: <span style=\"color:#f08c00\">d = √293/7</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-shortest-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q12: shortest distance between r = (î + 2ĵ + k̂) + λ(î − ĵ + k̂) and r = 2î − ĵ − k̂ + μ(2î + ĵ + 2k̂).",
+      "definition": "b₁ × b₂ = (-3, 0, 3), |b₁ × b₂| = 3√2; (a₂ − a₁) · (b₁ × b₂) = -9: <span style=\"color:#f08c00\">d = 9/(3√2) = 3√2/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-exercise-11-2-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q13: shortest distance between (x + 1)/7 = (y + 1)/(−6) = (z + 1)/1 and (x − 3)/1 = (y − 5)/(−2) = (z − 7)/1.",
+      "definition": "b₁ × b₂ = (−4, −6, −8), |b₁ × b₂| = 2√29. a₂ − a₁ = (4, 6, 8), so |(a₂ − a₁) · (b₁ × b₂)| = 116. <span style=\"color:#f08c00\">d = 116/(2√29) = 2√29</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-exercise-11-2-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q14: shortest distance between r = (î + 2ĵ + 3k̂) + λ(î − 3ĵ + 2k̂) and r = 4î + 5ĵ + 6k̂ + μ(2î + 3ĵ + k̂).",
+      "definition": "b₁ × b₂ = (-9, 3, 9), |b₁ × b₂| = 3√19, numerator 9: <span style=\"color:#f08c00\">d = 3/√19</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-exercise-11-2-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 11.2 Q15: shortest distance between r = (1 − t)î + (t − 2)ĵ + (3 − 2t)k̂ and r = (s + 1)î + (2s − 1)ĵ − (2s + 1)k̂.",
+      "definition": "Line 1: a₁ = î − 2ĵ + 3k̂, b₁ = −î + ĵ − 2k̂. Line 2: a₂ = î − ĵ − k̂, b₂ = î + 2ĵ − 2k̂. b₁ × b₂ = (2, −4, −3), |b₁ × b₂| = √29, and (a₂ − a₁) = (0, 1, −4) gives (a₂ − a₁) · (b₁ × b₂) = 8. <span style=\"color:#f08c00\">d = 8/√29</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.5-exercise-11-2-distance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: the angle between lines with direction ratios a, b, c and b − c, c − a, a − b.",
+      "definition": "Dot product: a(b − c) + b(c − a) + c(a − b) = ab − ac + bc − ab + ac − bc = <span style=\"color:#f08c00\">0</span>: <span style=\"color:#22a35a\">90°</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.6-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: the equation of the line through the origin parallel to the x-axis.",
+      "definition": "Direction ratios of the x-axis: (1, 0, 0). <span style=\"color:#f08c00\">x/1 = y/0 = z/0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.6-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: if (x − 1)/(−3) = (y − 2)/(2k) = (z − 3)/2 and (x − 1)/(3k) = (y − 1)/1 = (z − 6)/(−5) are perpendicular, find k.",
+      "definition": "Directions (−3, 2k, 2) and (3k, 1, −5): −9k + 2k − 10 = 0: <span style=\"color:#f08c00\">k = −10/7</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.6-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: shortest distance between r = 6î + 2ĵ + 2k̂ + λ(î − 2ĵ + 2k̂) and r = −4î − k̂ + μ(3î − 2ĵ − 2k̂).",
+      "definition": "a₂ − a₁ = (−10, −2, −3); b₁ × b₂ = (8, 8, 4) after computing (−2·(−2) − 2·(−2), 2·3 − 1·(−2), 1·(−2) − (−2)·3) = (8, 8, 4); |b₁ × b₂| = 12; numerator |−80 − 16 − 12| = 108: <span style=\"color:#f08c00\">d = 9</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.6-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: the vector equation of the line through (1, 2, −4) perpendicular to (x − 8)/3 = (y + 19)/(−16) = (z − 10)/7 and (x − 15)/3 = (y − 29)/8 = (z − 5)/(−5).",
+      "definition": "Direction = cross product of (3, −16, 7) and (3, 8, −5) = (24, 36, 72) = 12(2, 3, 6). <span style=\"color:#f08c00\">r = î + 2ĵ − 4k̂ + λ(2î + 3ĵ + 6k̂)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.6-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Do the lines (x − 1)/2 = (y − 2)/3 = (z − 3)/4 and (x − 4)/5 = (y − 1)/2 = z intersect?",
+      "definition": "Points: (1 + 2λ, 2 + 3λ, 3 + 4λ) and (4 + 5μ, 1 + 2μ, μ). From z: μ = 3 + 4λ. From y: 2 + 3λ = 1 + 2μ = 7 + 8λ, so λ = −1 and μ = −1. Check x: 1 − 2 = −1 and 4 − 5 = −1 ✓. <span style=\"color:#22a35a\">They intersect at (−1, −1, −1)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Foot of the perpendicular from a point to a line: method.",
+      "definition": "Take a general point on the line (from the parametric form), form the vector to the given point, and set its dot product with the direction to 0 to find λ. The distance is the length of that vector",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Distance of the point (x₀, y₀, z₀) from the line r = a + λb?",
+      "definition": "<span style=\"color:#3b82f6\">|b × (p − a)| / |b|</span> where p is the position vector of the point",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Distance of the point (1, 2, 3) from the line through the origin with direction (1, 1, 1)?",
+      "definition": "p × b = (2 − 3, 3 − 1, 1 − 2) = (−1, 2, −1), magnitude √6; |b| = √3: <span style=\"color:#f08c00\">√2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Reflection of a point in a line: idea.",
+      "definition": "Find the foot F of the perpendicular; the image P′ satisfies F = midpoint of P and P′, so <span style=\"color:#3b82f6\">P′ = 2F − P</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "The line joining (2, 3, 4) and (5, 6, 7): direction cosines?",
+      "definition": "Ratios (3, 3, 3): <span style=\"color:#f08c00\">(1/√3, 1/√3, 1/√3)</span> (the line is equally inclined to the axes)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equation of the z-axis in Cartesian form?",
+      "definition": "<span style=\"color:#f08c00\">x/0 = y/0 = z/1</span> (direction ratios 0, 0, 1 through the origin)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equation of the line through (1, 2, 3) and (4, 6, 3)?",
+      "definition": "Direction (3, 4, 0): <span style=\"color:#f08c00\">(x − 1)/3 = (y − 2)/4 = (z − 3)/0</span> (the line lies in the plane z = 3)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When are two lines with equations in parametric form the same line?",
+      "definition": "When they share a point and their direction ratios are proportional",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: direction cosines of the line joining (1, 2, 3) and (3, 4, 4)?<br>(a) (2/3, 2/3, 1/3) (b) (1/3, 1/3, 1/3) (c) (2, 2, 1) (d) (1/√3, 1/√3, 1/√3)",
+      "definition": "Ratios (2, 2, 1), magnitude 3: <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the direction ratios of the line (x − 1)/2 = (y + 2)/3 = (z − 5)/(−1) are<br>(a) 2, 3, −1 (b) 1, −2, 5 (c) 2, 3, 1 (d) −1, 2, −5",
+      "definition": "<span style=\"color:#22a35a\">(a) 2, 3, −1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if a line has direction cosines (l, m, n) with l = m = n, then l =<br>(a) ±1/√3 (b) ±1/3 (c) ±1/2 (d) 1",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the angle between the lines with directions (1, 1, 0) and (0, 1, 1) is<br>(a) 60° (b) 30° (c) 90° (d) 45°",
+      "definition": "cos θ = 1/2: <span style=\"color:#22a35a\">(a) 60°</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the lines with direction ratios (1, 2, 3) and (2, 4, 6) are<br>(a) parallel (b) perpendicular (c) skew (d) intersecting at 60°",
+      "definition": "<span style=\"color:#22a35a\">(a) parallel</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the shortest distance between r = t(î + ĵ + k̂) and r = î + s(ĵ + k̂) is<br>(a) 1/√2 (b) 1 (c) 1/√3 (d) 0",
+      "definition": "Both lines pass through (1, 1, 1) (t = 1, s = 1), so they intersect: <span style=\"color:#22a35a\">(d) 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the line r = î + λ(î + ĵ + k̂) passes through the point<br>(a) (2, 1, 1) (b) (2, 1, 0) (c) (1, 1, 1) (d) (0, 0, 0)",
+      "definition": "λ = 1 gives (2, 1, 1): <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the distance between the parallel lines r = a + λb with a = (0, 0, 0) and a′ = (1, 0, 0), b = (0, 0, 1) is<br>(a) 1 (b) 0 (c) 2 (d) √2",
+      "definition": "|b × (a′ − a)|/|b| = |(0, 1, 0)|/1 = <span style=\"color:#22a35a\">(a) 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): the square of the shortest distance between the lines r = (1, 2, 3) + λ(1, 0, 0) and r = (0, 0, 0) + μ(0, 1, 0) is?",
+      "definition": "b₁ × b₂ = (0, 0, 1); (a₂ − a₁) · (0, 0, 1) = −3: d = 3, so d² = <span style=\"color:#f08c00\">9</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the direction ratios of a line are 2, −1, −2. What is 3l, where l is the first direction cosine (positive direction)?",
+      "definition": "Magnitude 3: l = 2/3, so 3l = <span style=\"color:#f08c00\">2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> the direction cosines of a line satisfy l² + m² + n² = 1.<br><b>R:</b> they are the components of a unit vector along the line.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> two skew lines have a unique common perpendicular.<br><b>R:</b> a line perpendicular to b₁ and b₂ is parallel to b₁ × b₂.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>: the direction of the common perpendicular is fixed by b₁ × b₂",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: two distinct lines with the same direction cosines must be parallel.",
+      "definition": "<span style=\"color:#22a35a\">True</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: direction ratios of a line are unique.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: any non-zero multiple works",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: find the direction cosines of the line joining (0, 0, 0) and (1, 2, 2).",
+      "definition": "Magnitude 3: <span style=\"color:#f08c00\">(1/3, 2/3, 2/3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: find the vector equation of the line through (1, 2, 3) with direction 2î − ĵ + k̂.",
+      "definition": "<span style=\"color:#f08c00\">r = î + 2ĵ + 3k̂ + λ(2î − ĵ + k̂)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find the angle between the lines (x − 1)/1 = (y − 2)/2 = (z − 3)/2 and x/2 = y/1 = z/2.",
+      "definition": "Directions (1, 2, 2), (2, 1, 2): dot = 8, magnitudes 3 and 3: cos θ = 8/9. <span style=\"color:#f08c00\">θ = cos⁻¹(8/9)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find the shortest distance between r = (î + ĵ) + λ(2î − ĵ + k̂) and r = (2î + ĵ − k̂) + μ(3î − 5ĵ + 2k̂).",
+      "definition": "b₁ × b₂ = (−2 + 5, 3 − 4, −10 + 3) = (3, −1, −7), magnitude √59. (a₂ − a₁) = (1, 0, −1): dot = 3 + 7 = 10: <span style=\"color:#f08c00\">d = 10/√59</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: show that the lines (x − 1)/2 = (y − 2)/3 = (z − 3)/4 and (x − 4)/5 = (y − 1)/2 = z intersect and find the point.",
+      "definition": "Equate parametric values: λ = μ = −1 satisfies all three equations. <span style=\"color:#f08c00\">Point (−1, −1, −1)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: find the foot of the perpendicular from (1, 2, 3) to the line through the origin with direction (1, 1, 1).",
+      "definition": "Foot F = t(1, 1, 1) with (1 − t, 2 − t, 3 − t) · (1, 1, 1) = 6 − 3t = 0 → t = 2: <span style=\"color:#f08c00\">F = (2, 2, 2)</span> and the distance = |(−1, 0, 1)| = √2",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: two aircraft fly along the lines r = (0, 0, 10) + t(1, 0, 0) and r = (0, 0, 0) + s(0, 1, 0) (positions in km). What is their minimum separation?",
+      "definition": "The common perpendicular direction is (0, 0, 1); the offset is (0, 0, 10): <span style=\"color:#f08c00\">10 km</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a laser beam travels from A(0, 0, 0) along direction (1, 2, 2). How far from the beam is the point P(3, 0, 0)?",
+      "definition": "AP × b = (3, 0, 0) × (1, 2, 2) = (0, −6, 6), magnitude 6√2; |b| = 3: distance <span style=\"color:#f08c00\">2√2 units</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-11",
+        "11.z-how-its-asked"
+      ]
+    }
+  ]
+}

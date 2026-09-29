@@ -2814,3 +2814,62 @@ def unit_vector_plane(deck):
           'Unit vectors in the XY-plane are cos θ î + sin θ ĵ',
           'Unit vectors in the xy-plane: cos(theta) i + sin(theta) j; 30 degrees gives (sqrt3/2) i + (1/2) j; direction cosines satisfy l^2+m^2+n^2 = 1',
           vb=f'0 0 300 {h}', hint='Points on the unit circle.')
+
+
+# ================================================================ Maths 12 Ch 11 Three dimensional geometry
+def direction_cosines_axes(deck):
+    A = Axes3D(ox=100, oy=170, u=30)
+    Pt = (2, 3, 4)
+    n = math.sqrt(4 + 9 + 16)
+    base = A.axes(3.6, 6.4, 5.4) + A.line((0, 0, 0), Pt, 'c1') + A.dot(Pt, 'd1s', 4.5) + A.text(Pt, 'line OP', 't1', dx=8, dy=-6)
+    back = (A.box(Pt, 'guide fx d2') + '<text class="t2 fx d2" x="170" y="60">l = cos α = 2/√29</text><text class="t3 fx d3" x="170" y="80">m = cos β = 3/√29</text><text class="t4 fx d4" x="170" y="100">n = cos γ = 4/√29</text>')
+    mcard(deck, 'Direction cosines', 'A line makes angles α, β, γ with the positive x, y, z axes. For the line through O and P(2, 3, 4) find its direction cosines and show l² + m² + n² = 1.', base, back,
+          '<p><b>Direction cosines</b> l = cos α, m = cos β, n = cos γ. For OP: l = x/|OP| = 2/√29, m = 3/√29, n = 4/√29. They are the components of the unit vector along the line, so <b>l² + m² + n² = 1</b> (4 + 9 + 16 = 29).</p>'
+          '<p><b>Direction ratios</b> a, b, c are any numbers proportional to (l, m, n): l = a/√(a² + b² + c²), etc. The axes have direction cosines (1, 0, 0), (0, 1, 0), (0, 0, 1) (Example 4). Reversing the direction changes all three signs.</p>',
+          'Direction cosines and direction ratios of a line',
+          'Direction cosines l,m,n = cosines of angles with the axes; l^2+m^2+n^2 = 1; direction ratios a,b,c proportional to l,m,n: l = a/sqrt(a^2+b^2+c^2); axes have (1,0,0),(0,1,0),(0,0,1)',
+          vb='0 0 300 220', hint='Divide the coordinates of P by |OP|.')
+
+
+def line_param_3d(deck):
+    A = Axes3D(ox=90, oy=178, u=26)
+    Pa = (0.5, 0.6, 0.5)
+    b = (0.8, 2.0, 1.4)
+    q = lambda t: (Pa[0] + t * b[0], Pa[1] + t * b[1], Pa[2] + t * b[2])
+    base = A.axes(3.6, 6.0, 4.8) + A.dot(Pa, 'd1s', 5) + A.text(Pa, 'A (a)', 't1', dx=-8, dy=16, anchor='end') + A.line(Pa, q(0.8), 'c3') + A.text(q(0.8), 'b', 't3', dx=8, dy=-4)
+    back = (A.line(q(-0.3), q(1.9), 'c1 fx d2') + A.dot(q(1.5), 'd2s', 5, 'fx d3') + A.text(q(1.5), 'P (r)', 't2 fx d3', dx=8, dy=-4)
+            + A.line((0, 0, 0), Pa, 'guide fx d3') + A.line((0, 0, 0), q(1.5), 'guide fx d3') + '<text class="t4 fx d4" x="150" y="30">r = a + λ b</text>')
+    mcard(deck, 'Equation of a line in space', 'Write the vector equation of the line through the point A (position vector a) parallel to the vector b. What is its Cartesian form?', base, back,
+          '<p>A point P on the line satisfies AP = λb for some real λ, so <b>r = a + λ b</b> (λ ∈ R). If a = (x₁, y₁, z₁) and b = (a, b, c) then x = x₁ + λa, y = y₁ + λb, z = z₁ + λc; eliminating λ gives <b>(x − x₁)/a = (y − y₁)/b = (z − z₁)/c</b>.</p>'
+          '<p>Through two points a, a′: direction b = a′ − a. If the direction cosines l, m, n are used, write l, m, n in place of a, b, c. (Example 6: through (5, 2, −4) parallel to 3î + 2ĵ − 8k̂.)</p>',
+          'Vector and Cartesian equations of a line',
+          'Line through a parallel to b: r = a + lambda b; Cartesian (x-x1)/a = (y-y1)/b = (z-z1)/c; through two points use b = a2 - a1',
+          vb='0 0 300 220', hint='Move from A along b by any multiple λ.')
+
+
+def skew_lines_distance(deck):
+    A = Axes3D(ox=80, oy=190, u=26)
+    base = (A.axes(3.6, 6.8, 4.6) + A.line((1, -0.4, 0), (1, 6.2, 0), 'c1') + A.text((1, 6.2, 0), 'l₁', 't1', dx=8, dy=4)
+            + A.line((-0.4, 3, 2), (3.4, 3, 2), 'c3') + A.text((3.4, 3, 2), 'l₂', 't3', dx=-4, dy=14, anchor='end'))
+    back = (A.line((1, 3, 0), (1, 3, 2), 'c2 fx d2') + A.dot((1, 3, 0), 'd2s', 4.5, 'fx d2') + A.dot((1, 3, 2), 'd2s', 4.5, 'fx d2')
+            + A.text((1, 3, 1), 'd', 't2 fx d3', dx=8, dy=4))
+    mcard(deck, 'Shortest distance between skew lines', 'Two lines are neither parallel nor intersecting (skew lines). What is the shortest distance between them?', base, back,
+          '<p>The shortest distance is along the <b>common perpendicular</b>, which is parallel to <b>b₁ × b₂</b>. For l₁: r = a₁ + λb₁ and l₂: r = a₂ + μb₂: <b>d = |(a₂ − a₁) · (b₁ × b₂)| / |b₁ × b₂|</b> (the projection of a₂ − a₁ on the common perpendicular).</p>'
+          '<p>If l₁ ∥ l₂ (b₁ ∥ b₂), the distance is instead <b>|b × (a₂ − a₁)|/|b|</b> (Example 10). d = 0 means the lines intersect (coplanar).</p>',
+          'Shortest distance between two skew lines',
+          'Skew lines: d = |(a2-a1).(b1 x b2)|/|b1 x b2|; parallel lines: |b x (a2-a1)|/|b|; d = 0 means the lines are coplanar/intersect; common perpendicular parallel to b1 x b2',
+          vb='0 0 300 230', hint='Project a₂ − a₁ onto the direction perpendicular to both lines.')
+
+
+def angle_between_lines(deck):
+    P, h = eqplane(-0.4, 6.4, -0.4, 4.4, pad=(10, 8, 8, 10))
+    d1, d2 = (4.0, 1.4), (1.6, 3.2)
+    o = (0.0, 0.0)
+    base = (P.axes(labels=False) + P.line(-0.3, -0.105, 5.8, 2.03, 'c1') + P.line(-0.15, -0.3, 2.5, 5.0, 'c3').replace('y2="', 'y2="') + P.text(5.6, 2.1, 'l₁ (direction b₁)', 't1', anchor='end', dy=-10) + P.text(2.4, 4.0, 'l₂ (b₂)', 't3', dx=6))
+    back = (P.text(2.0, 0.55, 'θ', 't4 fx d2', dx=2) + vec(P, 0, 0, 3.4, 1.19, 'c2', 'fx d2') + vec(P, 0, 0, 1.35, 2.7, 'c2', 'fx d2') + P.text(2.7, 4.15, 'cos θ = |b₁·b₂|/(|b₁||b₂|)', 't2 fx d3'))
+    mcard(deck, 'Angle between two lines', 'How do you find the angle between two lines from their direction ratios (a₁, b₁, c₁) and (a₂, b₂, c₂)?', base, back,
+          '<p>The angle between two lines (even skew ones) is the angle between their <b>direction vectors</b>: <b>cos θ = |a₁a₂ + b₁b₂ + c₁c₂| / (√(a₁² + b₁² + c₁²) √(a₂² + b₂² + c₂²))</b>, with θ acute. With direction cosines: cos θ = |l₁l₂ + m₁m₂ + n₁n₂|.</p>'
+          '<p><b>Perpendicular</b> ⇔ a₁a₂ + b₁b₂ + c₁c₂ = 0; <b>parallel</b> ⇔ a₁/a₂ = b₁/b₂ = c₁/c₂. (Ex 11.2 Q8(i): directions (3, 2, 6) and (1, 2, 2) give cos θ = 19/21.)</p>',
+          'Angle between two lines from direction ratios',
+          'cos(theta) = |a1a2+b1b2+c1c2| / (sqrt(a1^2+b1^2+c1^2) sqrt(a2^2+b2^2+c2^2)); perpendicular when the dot product is zero; parallel when ratios are proportional',
+          vb=f'0 0 300 {h}', hint='Use the direction vectors of the lines.')
