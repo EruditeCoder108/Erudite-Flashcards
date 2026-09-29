@@ -13,6 +13,11 @@ name: Android build
 on:
   push:
     branches: [main, master, 'claude/**']
+    # Deck content and authoring scripts do not change the app build.
+    paths-ignore:
+      - 'premade-cards/**'
+      - 'scripts/premade-authoring/**'
+      - '**/*.md'
   workflow_dispatch:
 
 jobs:
