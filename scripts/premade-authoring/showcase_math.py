@@ -984,3 +984,86 @@ def small_x_approx(deck):
           '<p>Example (Misc Q4): (0.99)⁵ = (1 − 0.01)⁵ ≈ 1 − 0.05 + 0.001 = <b>0.951</b> (true value 0.95099…).</p>',
           '(1 + x)ⁿ ≈ 1 + nx for small x', 'For small x, (1+x)^n ≈ 1 + nx (tangent) and ≈ 1 + nx + n(n−1)x²/2 (better); (0.99)^5 ≈ 1 − 0.05 + 0.001 = 0.951',
           vb='0 0 300 200', hint='Which powers of x matter near 0?')
+
+
+# ================================================================ Maths 11 Ch 8 Sequences and series
+def infinite_gp_strip(deck):
+    x0, w, y = 20, 130, 70          # 1 unit = 130 px, so 2 units = 260
+    segs, labs = '', ''
+    pos, ln = 0.0, 1.0
+    for k in range(9):
+        xa, xb = x0 + pos * w, x0 + (pos + ln) * w
+        cls = 'f1' if k % 2 == 0 else 'f4'
+        segs += f'<rect class="{cls} fx d{min(k // 2 + 1, 6)}" x="{xa:.1f}" y="{y}" width="{max(xb - xa - 1, 1):.1f}" height="34" rx="2"></rect>'
+        if k < 5:
+            labs += f'<text class="lbl fx d{min(k // 2 + 1, 6)}" x="{(xa + xb) / 2:.1f}" y="{y + 22}" text-anchor="middle">{["1", "½", "¼", "⅛", "1/16"][k]}</text>'
+        pos += ln
+        ln /= 2
+    axis = (f'<line class="ax" x1="{x0}" y1="122" x2="{x0 + 2 * w + 10}" y2="122"></line>'
+            + ''.join(f'<line class="ax" x1="{x0 + v * w / 2:.1f}" y1="118" x2="{x0 + v * w / 2:.1f}" y2="126"></line><text class="num" x="{x0 + v * w / 2:.1f}" y="140">{v / 2:g}</text>' for v in range(5)))
+    limit = (f'<line class="guide fx d5" x1="{x0 + 2 * w}" y1="52" x2="{x0 + 2 * w}" y2="122"></line>'
+             f'<text class="t2 fx d5" x="{x0 + 2 * w}" y="44" text-anchor="middle">limit 2</text>')
+    mcard(deck, 'Infinite G.P. · intuition', 'Add 1 + ½ + ¼ + ⅛ + … forever. Does the sum grow without bound? What does it approach?', axis, segs + labs + limit,
+          '<p>Each new piece is half of the gap left, so the running total creeps up to <b>2</b> but never passes it.</p>'
+          '<p>Formula: a G.P. with |r| &lt; 1 has infinite sum <b>S∞ = a/(1 − r)</b> = 1/(1 − ½) = 2.</p>'
+          '<p class="no">If |r| ≥ 1 the terms do not shrink and the sum does not settle.</p>',
+          'Infinite G.P. sum: 1 + 1/2 + 1/4 + … = 2', 'Infinite G.P. with |r|<1 sums to a/(1−r); 1+1/2+1/4+… approaches 2; no finite sum if |r| ≥ 1',
+          vb='0 0 300 150', hint='How much of the remaining gap does each term fill?')
+
+
+def ap_vs_gp(deck):
+    P = Plane(0, 6.8, 0, 8.2, 300, 200, (26, 10, 12, 22))
+    xt = [(v, str(v)) for v in range(1, 7)]
+    yt = [(v, str(v)) for v in (2, 4, 6, 8)]
+    ap = [1 + 1.2 * (n - 1) for n in range(1, 7)]
+    gp = [1.5 ** (n - 1) for n in range(1, 7)]
+    base = P.axes(xt, yt, grid=True, xl='n', yl='aₙ')
+    pts_ap = ''.join(P.dot(n, v, 'd1s', 4.5, f'fx d{min(n // 2 + 1, 4)}') for n, v in zip(range(1, 7), ap))
+    pts_gp = ''.join(P.dot(n, v, 'd2s', 4.5, f'fx d{min(n // 2 + 1, 4)}') for n, v in zip(range(1, 7), gp))
+    lines = (P.curve(lambda x: 1 + 1.2 * (x - 1), 'c1 fx d5', 1, 6.3, extra='') + P.curve(lambda x: 1.5 ** (x - 1), 'c2 fx d5', 1, 6.3))
+    lines = lines.replace('class="c1 fx d5"', 'class="c1 fx d5 thin"').replace('class="c2 fx d5"', 'class="c2 fx d5 thin"')
+    back = pts_ap + pts_gp + lines + P.text(1.1, 7.6, 'AP: d = 1.2  (straight line)', 't1 fx d2') + P.text(1.1, 6.9, 'GP: r = 1.5  (curves upward)', 't2 fx d2')
+    mcard(deck, 'Sequences as functions · AP vs GP', 'Plot the terms (n, aₙ) of an A.P. (a = 1, d = 1.2) and a G.P. (a = 1, r = 1.5). What shapes do they lie on?', base, back,
+          '<p>A sequence is a function on the natural numbers. <b>A.P.</b>: aₙ = a + (n − 1)d is <b>linear</b> in n (constant <b>difference</b>): points on a straight line.</p>'
+          '<p><b>G.P.</b>: aₙ = a·rⁿ⁻¹ is <b>exponential</b> in n (constant <b>ratio</b>): points on a curve that bends upward (for r &gt; 1).</p>',
+          'AP is linear, GP is exponential', 'AP: a_n = a+(n−1)d is linear in n (constant difference); GP: a_n = a r^(n−1) is exponential in n (constant ratio)',
+          css='.pp .thin{stroke-width:1.5;stroke-dasharray:4 3;opacity:.7}', vb='0 0 300 200', hint='Constant difference or constant ratio?')
+
+
+def gauss_staircase(deck):
+    n = 6
+    cs = 28
+    x0, y0 = 60, 20
+    def cell(col, row, cls, fx=''):
+        return f'<rect class="{cls} {fx}" x="{x0 + col * cs}" y="{y0 + row * cs}" width="{cs - 2}" height="{cs - 2}" rx="3"></rect>'
+    blue = ''.join(cell(c, (n + 1) - 1 - i, 'f1') for c in range(n) for i in range(c + 1))
+    red = ''.join(cell(c, i, 'f2', 'fx d3') for c in range(n) for i in range(n - c))
+    base = blue
+    labels = (f'<text class="t1" x="{x0 + 40}" y="{y0 + (n + 1) * cs - 10}" >1+2+…+{n}</text>')
+    back = (red + f'<text class="lbl fx d4" x="{x0 - 8}" y="{y0 + (n + 1) * cs / 2 + 4}" text-anchor="end">{n + 1}</text>'
+            f'<text class="lbl fx d4" x="{x0 + n * cs / 2}" y="{y0 + (n + 1) * cs + 16}" text-anchor="middle">{n}</text>')
+    mcard(deck, 'Sum of the first n natural numbers · picture', 'Why is 1 + 2 + 3 + … + n = n(n + 1)/2? Use a staircase of squares (n = 6).', base, back +
+          f'<text class="t3 fx d5" x="{x0 + n * cs / 2}" y="{y0 + (n + 1) * cs + 34}" text-anchor="middle">2 × (1+…+6) = 6 × 7 = 42 → sum = 21</text>',
+          '<p>Two identical staircases (blue and a rotated red copy) fit into an <b>n × (n + 1) rectangle</b>: 2S = n(n + 1).</p>'
+          '<p><b>S = n(n + 1)/2</b>. This is Gauss’s pairing trick: (1 + n) + (2 + n − 1) + … has n/2 pairs each summing to n + 1.</p>',
+          'Sum of first n natural numbers via a staircase', '1+2+…+n = n(n+1)/2: two staircases make an n×(n+1) rectangle, so 2S = n(n+1); e.g. n=6 gives 21',
+          vb='0 0 300 246', hint='What shape do two copies make?')
+
+
+def am_gm_semicircle(deck):
+    cx, cy, R = 150, 150, 120
+    a_len, b_len = 48, 192           # a = 1, b = 4 at 48 px per unit -> diameter 240 = 5 units
+    xs = cx - R + a_len
+    h = math.sqrt(R * R - (xs - cx) ** 2)
+    base = (f'<path class="c0" d="M {cx - R} {cy} A {R} {R} 0 0 1 {cx + R} {cy} Z" fill="none"></path>'
+            f'<text class="t1" x="{cx - R + a_len / 2}" y="{cy + 18}" text-anchor="middle">a = 1</text><text class="t1" x="{xs + b_len / 2}" y="{cy + 18}" text-anchor="middle">b = 4</text>'
+            f'<line class="c1" x1="{xs}" y1="{cy}" x2="{xs}" y2="{cy - h:.1f}"></line>')
+    back = (f'<line class="c2 fx d2" x1="{cx}" y1="{cy}" x2="{cx}" y2="{cy - R}"></line>'
+            + f'<text class="t2 fx d3" x="{cx + 8}" y="{cy - R / 2}">AM = 2.5</text>'
+            f'<text class="t1 fx d2" x="{xs + 6}" y="{cy - h / 2:.1f}">GM = 2</text>'
+            f'<line class="guide fx d4" x1="{xs}" y1="{cy - h:.1f}" x2="{cx}" y2="{cy - h:.1f}"></line>')
+    mcard(deck, 'AM ≥ GM · geometric proof', 'Take a semicircle on diameter a + b (a = 1, b = 4). Show where AM and GM appear, and why AM ≥ GM.', base, back,
+          '<p>Radius = (a + b)/2 = <b>AM</b>. The perpendicular at the join point has height √(ab) = <b>GM</b> (geometric mean theorem).</p>'
+          '<p>A chord’s perpendicular can never exceed the radius: <b>GM ≤ AM</b>, with equality only when a = b (the join is the centre).</p>',
+          'AM ≥ GM from a semicircle', 'On a semicircle of diameter a+b, the radius is AM=(a+b)/2 and the perpendicular at the join is GM=√(ab), never longer than the radius, so AM ≥ GM with equality iff a=b',
+          vb='0 0 300 190', hint='Which segment is the radius, which is the height?')

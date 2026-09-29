@@ -1,0 +1,1473 @@
+{
+  "version": 1,
+  "name": "Chapter 8: Sequences and Series",
+  "className": "Class 11",
+  "description": "Sequences and series, G.P., geometric mean, AM–GM, plus A.P., infinite G.P. and special sums for exams.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is a sequence?",
+      "definition": "A list of numbers in a <span style=\"color:#3b82f6\">definite order</span> following a rule: first term a₁, second a₂, …. The n-th term aₙ is the general term",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A sequence is a function. Domain?",
+      "definition": "A function whose domain is the <span style=\"color:#3b82f6\">set of natural numbers</span> (or {1, 2, …, k}); aₙ = a(n)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Finite vs infinite sequence?",
+      "definition": "<span style=\"color:#3b82f6\">Finite</span>: a fixed number of terms (ancestors over 10 generations: 2, 4, …, 1024). <span style=\"color:#3b82f6\">Infinite</span>: never ends (3, 3.3, 3.33, …)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "nth term of the even naturals and of the odd naturals?",
+      "definition": "<span style=\"color:#f08c00\">aₙ = 2n</span> and <span style=\"color:#f08c00\">aₙ = 2n − 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Recurrence relation: Fibonacci sequence?",
+      "definition": "<span style=\"color:#f08c00\">a₁ = a₂ = 1, aₙ = aₙ₋₂ + aₙ₋₁ (n > 2)</span> → 1, 1, 2, 3, 5, 8, 13, …",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can every sequence be given by a formula?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. E.g. the primes 2, 3, 5, 7, … have no formula for the nth prime; only a rule or a verbal description",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: first three terms of aₙ = 2n + 5 and aₙ = (n − 3)/4.",
+      "definition": "<span style=\"color:#f08c00\">7, 9, 11</span> and <span style=\"color:#f08c00\">−1/2, −1/4, 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2: the 20th term of aₙ = (n − 1)(2 − n)(3 + n).",
+      "definition": "19 × (−18) × 23 = <span style=\"color:#f08c00\">−7866</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3: a₁ = 1, aₙ = aₙ₋₁ + 2. Terms and series?",
+      "definition": "<span style=\"color:#f08c00\">1, 3, 5, 7, 9</span>; series 1 + 3 + 5 + 7 + 9 + …",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.1 Q1–3: first five terms of n(n + 2), n/(n + 1), 2ⁿ.",
+      "definition": "<span style=\"color:#f08c00\">3, 8, 15, 24, 35</span>;  <span style=\"color:#f08c00\">1/2, 2/3, 3/4, 4/5, 5/6</span>;  <span style=\"color:#f08c00\">2, 4, 8, 16, 32</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.1 Q4–5: first five terms of (2n − 3)/6 and (−1)ⁿ⁻¹5ⁿ⁺¹.",
+      "definition": "<span style=\"color:#f08c00\">−1/6, 1/6, 1/2, 5/6, 7/6</span>;  <span style=\"color:#f08c00\">25, −125, 625, −3125, 15625</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.1 Q7, 9, 10: a₁₇ and a₂₄ of 4n − 3; a₉ of (−1)ⁿ⁻¹n³; a₂₀ of n(n − 2)/(n + 3).",
+      "definition": "<span style=\"color:#f08c00\">65, 93</span>;  <span style=\"color:#f08c00\">729</span>;  <span style=\"color:#f08c00\">360/23</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.1 Q11: a₁ = 3, aₙ = 3aₙ₋₁ + 2. Five terms and the series.",
+      "definition": "<span style=\"color:#f08c00\">3, 11, 35, 107, 323</span>;  series 3 + 11 + 35 + 107 + 323 + …",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.1 Q12–13: a₁ = −1, aₙ = aₙ₋₁/n; and a₁ = a₂ = 2, aₙ = aₙ₋₁ − 1.",
+      "definition": "<span style=\"color:#f08c00\">−1, −1/2, −1/6, −1/24, −1/120</span>;  <span style=\"color:#f08c00\">2, 2, 1, 0, −1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.1 Q14: Fibonacci. Find aₙ₊₁/aₙ for n = 1 to 5. What do you notice?",
+      "definition": "<span style=\"color:#f08c00\">1, 2, 3/2, 5/3, 8/5</span>: the ratios oscillate and settle near the golden ratio <span style=\"color:#f08c00\">φ = (1 + √5)/2 ≈ 1.618</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Series vs sum of a series?",
+      "definition": "The <span style=\"color:#3b82f6\">series</span> is the indicated sum a₁ + a₂ + … (an expression); the <span style=\"color:#3b82f6\">sum</span> is the number it evaluates to. 1 + 3 + 5 + 7 is a series; its sum is 16",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sigma notation: what does Σₖ₌₁ⁿ aₖ mean?",
+      "definition": "a₁ + a₂ + … + aₙ. Useful rules: Σ(aₖ + bₖ) = Σaₖ + Σbₖ; Σ c·aₖ = c·Σaₖ; Σ c (n times) = nc",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.2-sequences"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define a geometric progression (G.P.).",
+      "definition": "A sequence of non-zero terms in which <span style=\"color:#3b82f6\">each term bears a constant ratio r to the previous one</span>: aₖ₊₁/aₖ = r. Written a, ar, ar², ar³, …",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Common ratios of 2, 4, 8, …; 1, −1/3, 1/9, …; 0.01, 0.0001, …?",
+      "definition": "<span style=\"color:#f08c00\">2</span>, <span style=\"color:#f08c00\">−1/3</span>, <span style=\"color:#f08c00\">0.01</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "General term of a G.P.?",
+      "definition": "\\(a_n = a\\,r^{\\,n-1}\\) (a = first term, r = common ratio)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sum of the first n terms of a G.P.?",
+      "definition": "\\(S_n = \\dfrac{a(r^n - 1)}{r - 1} = \\dfrac{a(1 - r^n)}{1 - r}\\) for r ≠ 1; and <span style=\"color:#f08c00\">Sₙ = na</span> for r = 1",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive Sₙ of a G.P. in two lines.",
+      "definition": "Sₙ = a + ar + … + arⁿ⁻¹ and rSₙ = ar + … + arⁿ. Subtract: <span style=\"color:#3b82f6\">(1 − r)Sₙ = a(1 − rⁿ)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which form of Sₙ should you use?",
+      "definition": "Use a(rⁿ − 1)/(r − 1) when r > 1 and a(1 − rⁿ)/(1 − r) when r < 1 (both are identical; it just avoids negative signs)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "AP is linear, GP is exponential",
+      "definition": "AP: a_n = a+(n−1)d is linear in n (constant difference); GP: a_n = a r^(n−1) is exponential in n (constant ratio)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Sequences as functions · AP vs GP</p><h2>Plot the terms (n, aₙ) of an A.P. (a = 1, d = 1.2) and a G.P. (a = 1, r = 1.5). What shapes do they lie on?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"64.5\" y1=\"178.0\" x2=\"64.5\" y2=\"10.0\"></line><line class=\"gd\" x1=\"103.1\" y1=\"178.0\" x2=\"103.1\" y2=\"10.0\"></line><line class=\"gd\" x1=\"141.6\" y1=\"178.0\" x2=\"141.6\" y2=\"10.0\"></line><line class=\"gd\" x1=\"180.1\" y1=\"178.0\" x2=\"180.1\" y2=\"10.0\"></line><line class=\"gd\" x1=\"218.6\" y1=\"178.0\" x2=\"218.6\" y2=\"10.0\"></line><line class=\"gd\" x1=\"257.2\" y1=\"178.0\" x2=\"257.2\" y2=\"10.0\"></line><line class=\"gd\" x1=\"26.0\" y1=\"137.0\" x2=\"288.0\" y2=\"137.0\"></line><line class=\"gd\" x1=\"26.0\" y1=\"96.0\" x2=\"288.0\" y2=\"96.0\"></line><line class=\"gd\" x1=\"26.0\" y1=\"55.1\" x2=\"288.0\" y2=\"55.1\"></line><line class=\"gd\" x1=\"26.0\" y1=\"14.1\" x2=\"288.0\" y2=\"14.1\"></line><line class=\"ax\" x1=\"26.0\" y1=\"178.0\" x2=\"288.0\" y2=\"178.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"26.0\" y1=\"178.0\" x2=\"26.0\" y2=\"10.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"64.5\" y1=\"175.0\" x2=\"64.5\" y2=\"181.0\"></line><text class=\"num\" x=\"64.5\" y=\"192.0\">1</text><line class=\"ax\" x1=\"103.1\" y1=\"175.0\" x2=\"103.1\" y2=\"181.0\"></line><text class=\"num\" x=\"103.1\" y=\"192.0\">2</text><line class=\"ax\" x1=\"141.6\" y1=\"175.0\" x2=\"141.6\" y2=\"181.0\"></line><text class=\"num\" x=\"141.6\" y=\"192.0\">3</text><line class=\"ax\" x1=\"180.1\" y1=\"175.0\" x2=\"180.1\" y2=\"181.0\"></line><text class=\"num\" x=\"180.1\" y=\"192.0\">4</text><line class=\"ax\" x1=\"218.6\" y1=\"175.0\" x2=\"218.6\" y2=\"181.0\"></line><text class=\"num\" x=\"218.6\" y=\"192.0\">5</text><line class=\"ax\" x1=\"257.2\" y1=\"175.0\" x2=\"257.2\" y2=\"181.0\"></line><text class=\"num\" x=\"257.2\" y=\"192.0\">6</text><line class=\"ax\" x1=\"23.0\" y1=\"137.0\" x2=\"29.0\" y2=\"137.0\"></line><text class=\"num\" x=\"20.0\" y=\"140.5\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"23.0\" y1=\"96.0\" x2=\"29.0\" y2=\"96.0\"></line><text class=\"num\" x=\"20.0\" y=\"99.5\" text-anchor=\"end\">4</text><line class=\"ax\" x1=\"23.0\" y1=\"55.1\" x2=\"29.0\" y2=\"55.1\"></line><text class=\"num\" x=\"20.0\" y=\"58.6\" text-anchor=\"end\">6</text><line class=\"ax\" x1=\"23.0\" y1=\"14.1\" x2=\"29.0\" y2=\"14.1\"></line><text class=\"num\" x=\"20.0\" y=\"17.6\" text-anchor=\"end\">8</text><text class=\"lbi\" x=\"286.0\" y=\"172.0\" text-anchor=\"end\">n</text><text class=\"lbi\" x=\"32.0\" y=\"18.0\">aₙ</text></svg><p class=\"hint\">Constant difference or constant ratio?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Sequences as functions · AP vs GP</p><h2>Plot the terms (n, aₙ) of an A.P. (a = 1, d = 1.2) and a G.P. (a = 1, r = 1.5). What shapes do they lie on?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"64.5\" y1=\"178.0\" x2=\"64.5\" y2=\"10.0\"></line><line class=\"gd\" x1=\"103.1\" y1=\"178.0\" x2=\"103.1\" y2=\"10.0\"></line><line class=\"gd\" x1=\"141.6\" y1=\"178.0\" x2=\"141.6\" y2=\"10.0\"></line><line class=\"gd\" x1=\"180.1\" y1=\"178.0\" x2=\"180.1\" y2=\"10.0\"></line><line class=\"gd\" x1=\"218.6\" y1=\"178.0\" x2=\"218.6\" y2=\"10.0\"></line><line class=\"gd\" x1=\"257.2\" y1=\"178.0\" x2=\"257.2\" y2=\"10.0\"></line><line class=\"gd\" x1=\"26.0\" y1=\"137.0\" x2=\"288.0\" y2=\"137.0\"></line><line class=\"gd\" x1=\"26.0\" y1=\"96.0\" x2=\"288.0\" y2=\"96.0\"></line><line class=\"gd\" x1=\"26.0\" y1=\"55.1\" x2=\"288.0\" y2=\"55.1\"></line><line class=\"gd\" x1=\"26.0\" y1=\"14.1\" x2=\"288.0\" y2=\"14.1\"></line><line class=\"ax\" x1=\"26.0\" y1=\"178.0\" x2=\"288.0\" y2=\"178.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"26.0\" y1=\"178.0\" x2=\"26.0\" y2=\"10.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"64.5\" y1=\"175.0\" x2=\"64.5\" y2=\"181.0\"></line><text class=\"num\" x=\"64.5\" y=\"192.0\">1</text><line class=\"ax\" x1=\"103.1\" y1=\"175.0\" x2=\"103.1\" y2=\"181.0\"></line><text class=\"num\" x=\"103.1\" y=\"192.0\">2</text><line class=\"ax\" x1=\"141.6\" y1=\"175.0\" x2=\"141.6\" y2=\"181.0\"></line><text class=\"num\" x=\"141.6\" y=\"192.0\">3</text><line class=\"ax\" x1=\"180.1\" y1=\"175.0\" x2=\"180.1\" y2=\"181.0\"></line><text class=\"num\" x=\"180.1\" y=\"192.0\">4</text><line class=\"ax\" x1=\"218.6\" y1=\"175.0\" x2=\"218.6\" y2=\"181.0\"></line><text class=\"num\" x=\"218.6\" y=\"192.0\">5</text><line class=\"ax\" x1=\"257.2\" y1=\"175.0\" x2=\"257.2\" y2=\"181.0\"></line><text class=\"num\" x=\"257.2\" y=\"192.0\">6</text><line class=\"ax\" x1=\"23.0\" y1=\"137.0\" x2=\"29.0\" y2=\"137.0\"></line><text class=\"num\" x=\"20.0\" y=\"140.5\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"23.0\" y1=\"96.0\" x2=\"29.0\" y2=\"96.0\"></line><text class=\"num\" x=\"20.0\" y=\"99.5\" text-anchor=\"end\">4</text><line class=\"ax\" x1=\"23.0\" y1=\"55.1\" x2=\"29.0\" y2=\"55.1\"></line><text class=\"num\" x=\"20.0\" y=\"58.6\" text-anchor=\"end\">6</text><line class=\"ax\" x1=\"23.0\" y1=\"14.1\" x2=\"29.0\" y2=\"14.1\"></line><text class=\"num\" x=\"20.0\" y=\"17.6\" text-anchor=\"end\">8</text><text class=\"lbi\" x=\"286.0\" y=\"172.0\" text-anchor=\"end\">n</text><text class=\"lbi\" x=\"32.0\" y=\"18.0\">aₙ</text><circle class=\"d1s fx d1\" cx=\"64.5\" cy=\"157.5\" r=\"4.5\"></circle><circle class=\"d1s fx d2\" cx=\"103.1\" cy=\"132.9\" r=\"4.5\"></circle><circle class=\"d1s fx d2\" cx=\"141.6\" cy=\"108.3\" r=\"4.5\"></circle><circle class=\"d1s fx d3\" cx=\"180.1\" cy=\"83.8\" r=\"4.5\"></circle><circle class=\"d1s fx d3\" cx=\"218.6\" cy=\"59.2\" r=\"4.5\"></circle><circle class=\"d1s fx d4\" cx=\"257.2\" cy=\"34.6\" r=\"4.5\"></circle><circle class=\"d2s fx d1\" cx=\"64.5\" cy=\"157.5\" r=\"4.5\"></circle><circle class=\"d2s fx d2\" cx=\"103.1\" cy=\"147.3\" r=\"4.5\"></circle><circle class=\"d2s fx d2\" cx=\"141.6\" cy=\"131.9\" r=\"4.5\"></circle><circle class=\"d2s fx d3\" cx=\"180.1\" cy=\"108.9\" r=\"4.5\"></circle><circle class=\"d2s fx d3\" cx=\"218.6\" cy=\"74.3\" r=\"4.5\"></circle><circle class=\"d2s fx d4\" cx=\"257.2\" cy=\"22.4\" r=\"4.5\"></circle><polyline class=\"c1 fx d5 thin\"  points=\"64.5,157.5 65.8,156.7 67.1,155.9 68.4,155.1 69.6,154.3 70.9,153.4 72.2,152.6 73.5,151.8 74.7,151.0 76.0,150.2 77.3,149.4 78.6,148.6 79.8,147.7 81.1,146.9 82.4,146.1 83.7,145.3 85.0,144.5 86.2,143.7 87.5,142.9 88.8,142.0 90.1,141.2 91.3,140.4 92.6,139.6 93.9,138.8 95.2,138.0 96.4,137.2 97.7,136.3 99.0,135.5 100.3,134.7 101.5,133.9 102.8,133.1 104.1,132.3 105.4,131.5 106.6,130.6 107.9,129.8 109.2,129.0 110.5,128.2 111.8,127.4 113.0,126.6 114.3,125.8 115.6,124.9 116.9,124.1 118.1,123.3 119.4,122.5 120.7,121.7 122.0,120.9 123.2,120.1 124.5,119.2 125.8,118.4 127.1,117.6 128.3,116.8 129.6,116.0 130.9,115.2 132.2,114.3 133.4,113.5 134.7,112.7 136.0,111.9 137.3,111.1 138.6,110.3 139.8,109.5 141.1,108.6 142.4,107.8 143.7,107.0 144.9,106.2 146.2,105.4 147.5,104.6 148.8,103.8 150.0,102.9 151.3,102.1 152.6,101.3 153.9,100.5 155.1,99.7 156.4,98.9 157.7,98.1 159.0,97.2 160.3,96.4 161.5,95.6 162.8,94.8 164.1,94.0 165.4,93.2 166.6,92.4 167.9,91.5 169.2,90.7 170.5,89.9 171.7,89.1 173.0,88.3 174.3,87.5 175.6,86.7 176.8,85.8 178.1,85.0 179.4,84.2 180.7,83.4 181.9,82.6 183.2,81.8 184.5,81.0 185.8,80.1 187.1,79.3 188.3,78.5 189.6,77.7 190.9,76.9 192.2,76.1 193.4,75.3 194.7,74.4 196.0,73.6 197.3,72.8 198.5,72.0 199.8,71.2 201.1,70.4 202.4,69.6 203.6,68.7 204.9,67.9 206.2,67.1 207.5,66.3 208.7,65.5 210.0,64.7 211.3,63.9 212.6,63.0 213.9,62.2 215.1,61.4 216.4,60.6 217.7,59.8 219.0,59.0 220.2,58.2 221.5,57.3 222.8,56.5 224.1,55.7 225.3,54.9 226.6,54.1 227.9,53.3 229.2,52.5 230.4,51.6 231.7,50.8 233.0,50.0 234.3,49.2 235.6,48.4 236.8,47.6 238.1,46.8 239.4,45.9 240.7,45.1 241.9,44.3 243.2,43.5 244.5,42.7 245.8,41.9 247.0,41.1 248.3,40.2 249.6,39.4 250.9,38.6 252.1,37.8 253.4,37.0 254.7,36.2 256.0,35.4 257.2,34.5 258.5,33.7 259.8,32.9 261.1,32.1 262.4,31.3 263.6,30.5 264.9,29.7 266.2,28.8 267.5,28.0 268.7,27.2\"></polyline><polyline class=\"c2 fx d5 thin\"  points=\"64.5,157.5 65.8,157.2 67.1,157.0 68.4,156.7 69.6,156.4 70.9,156.1 72.2,155.8 73.5,155.5 74.7,155.2 76.0,154.9 77.3,154.6 78.6,154.3 79.8,153.9 81.1,153.6 82.4,153.3 83.7,152.9 85.0,152.6 86.2,152.3 87.5,151.9 88.8,151.6 90.1,151.2 91.3,150.8 92.6,150.5 93.9,150.1 95.2,149.7 96.4,149.3 97.7,148.9 99.0,148.6 100.3,148.2 101.5,147.8 102.8,147.3 104.1,146.9 105.4,146.5 106.6,146.1 107.9,145.7 109.2,145.2 110.5,144.8 111.8,144.3 113.0,143.9 114.3,143.4 115.6,142.9 116.9,142.5 118.1,142.0 119.4,141.5 120.7,141.0 122.0,140.5 123.2,140.0 124.5,139.5 125.8,139.0 127.1,138.4 128.3,137.9 129.6,137.4 130.9,136.8 132.2,136.3 133.4,135.7 134.7,135.1 136.0,134.5 137.3,133.9 138.6,133.4 139.8,132.7 141.1,132.1 142.4,131.5 143.7,130.9 144.9,130.2 146.2,129.6 147.5,128.9 148.8,128.3 150.0,127.6 151.3,126.9 152.6,126.2 153.9,125.5 155.1,124.8 156.4,124.1 157.7,123.4 159.0,122.6 160.3,121.9 161.5,121.1 162.8,120.4 164.1,119.6 165.4,118.8 166.6,118.0 167.9,117.2 169.2,116.4 170.5,115.5 171.7,114.7 173.0,113.8 174.3,113.0 175.6,112.1 176.8,111.2 178.1,110.3 179.4,109.4 180.7,108.4 181.9,107.5 183.2,106.6 184.5,105.6 185.8,104.6 187.1,103.6 188.3,102.6 189.6,101.6 190.9,100.6 192.2,99.5 193.4,98.5 194.7,97.4 196.0,96.3 197.3,95.2 198.5,94.1 199.8,92.9 201.1,91.8 202.4,90.6 203.6,89.4 204.9,88.2 206.2,87.0 207.5,85.8 208.7,84.5 210.0,83.3 211.3,82.0 212.6,80.7 213.9,79.4 215.1,78.0 216.4,76.7 217.7,75.3 219.0,73.9 220.2,72.5 221.5,71.1 222.8,69.7 224.1,68.2 225.3,66.7 226.6,65.2 227.9,63.7 229.2,62.1 230.4,60.6 231.7,59.0 233.0,57.4 234.3,55.7 235.6,54.1 236.8,52.4 238.1,50.7 239.4,49.0 240.7,47.2 241.9,45.5 243.2,43.7 244.5,41.9 245.8,40.0 247.0,38.2 248.3,36.3 249.6,34.4 250.9,32.4 252.1,30.4 253.4,28.5 254.7,26.4 256.0,24.4 257.2,22.3 258.5,20.2 259.8,18.1 261.1,15.9 262.4,13.7 263.6,11.5\"></polyline><text class=\"t1 fx d2 \" x=\"68.4\" y=\"22.3\" text-anchor=\"start\">AP: d = 1.2  (straight line)</text><text class=\"t2 fx d2 \" x=\"68.4\" y=\"36.6\" text-anchor=\"start\">GP: r = 1.5  (curves upward)</text></svg><div class=\"eq fx d5\"><p>A sequence is a function on the natural numbers. <b>A.P.</b>: aₙ = a + (n − 1)d is <b>linear</b> in n (constant <b>difference</b>): points on a straight line.</p><p><b>G.P.</b>: aₙ = a·rⁿ⁻¹ is <b>exponential</b> in n (constant <b>ratio</b>): points on a curve that bends upward (for r &gt; 1).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .thin{stroke-width:1.5;stroke-dasharray:4 3;opacity:.7}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .thin{stroke-width:1.5;stroke-dasharray:4 3;opacity:.7}"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4: the 10th and nth terms of 5, 25, 125, ….",
+      "definition": "a = 5, r = 5: a₁₀ = 5·5⁹ = <span style=\"color:#f08c00\">5¹⁰</span>, aₙ = 5·5ⁿ⁻¹ = <span style=\"color:#f08c00\">5ⁿ</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: which term of 2, 8, 32, … is 131072?",
+      "definition": "2·4ⁿ⁻¹ = 131072 → 4ⁿ⁻¹ = 65536 = 4⁸ → n = <span style=\"color:#f08c00\">9</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6: a G.P. has 3rd term 24 and 6th term 192. Find the 10th term.",
+      "definition": "Divide: ar⁵/ar² = r³ = 8 → r = 2, a = 6. <span style=\"color:#f08c00\">a₁₀ = 6·2⁹ = 3072</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: two terms of a G.P. are given (a₃ and a₆, say).",
+      "definition": "<span style=\"color:#3b82f6\">Divide</span> one equation by the other so a cancels and rᵏ appears; solve for r; then find a",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7: sum of n terms and of 5 terms of 1 + 2/3 + 4/9 + ….",
+      "definition": "a = 1, r = 2/3: Sₙ = 3[1 − (2/3)ⁿ]; S₅ = <span style=\"color:#f08c00\">211/81</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8: how many terms of 3, 3/2, 3/4, … give the sum 3069/512?",
+      "definition": "6[1 − (1/2)ⁿ] = 3069/512 → (1/2)ⁿ = 1/1024 → n = <span style=\"color:#f08c00\">10</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9: sum of three terms of a G.P. is 13/12, product −1. Find them.",
+      "definition": "Take a/r, a, ar: product a³ = −1 → a = −1; then −1/r − 1 − r = 13/12 → 12r² + 25r + 12 = 0 → r = −3/4 or −4/3. Terms: <span style=\"color:#f08c00\">4/3, −1, 3/4</span> (or reversed)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: three numbers in G.P. with a given product.",
+      "definition": "Take <span style=\"color:#3b82f6\">a/r, a, ar</span> so the product is a³ (a clean value). For four numbers use a/r³, a/r, ar, ar³",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10: sum of 7 + 77 + 777 + … to n terms.",
+      "definition": "7(9 + 99 + 999 + …)/9 = (7/9)Σ(10ᵏ − 1) = <span style=\"color:#f08c00\">(7/81)(10ⁿ⁺¹ − 9n − 10)</span><br><small>Trick: write each term as (repunit-like) 10ᵏ − 1</small>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q18 and Misc Q11(i): 8 + 88 + 888 + … and 5 + 55 + 555 + …",
+      "definition": "<span style=\"color:#f08c00\">(8/81)(10ⁿ⁺¹ − 9n − 10)</span> and <span style=\"color:#f08c00\">(5/81)(10ⁿ⁺¹ − 9n − 10)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q11(ii): 0.6 + 0.66 + 0.666 + … to n terms.",
+      "definition": "6(0.1 + 0.11 + 0.111 + …) = (2/3)[n − (1/9)(1 − 10⁻ⁿ)]",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 11: ancestors over ten generations (2, 4, 8, …)?",
+      "definition": "a = 2, r = 2, n = 10: S₁₀ = 2(2¹⁰ − 1) = <span style=\"color:#f08c00\">2046</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q1: the 20th and nth terms of 5/2, 5/4, 5/8, ….",
+      "definition": "a = 5/2, r = 1/2: a₂₀ = <span style=\"color:#f08c00\">5/2²⁰</span>, aₙ = <span style=\"color:#f08c00\">5/2ⁿ</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q2: the 8th term of a G.P. is 192 and r = 2. Find the 12th.",
+      "definition": "192 × 2⁴ = <span style=\"color:#f08c00\">3072</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q3: the 5th, 8th and 11th terms are p, q, s. Show q² = ps.",
+      "definition": "q = ar⁷, p = ar⁴, s = ar¹⁰ → ps = a²r¹⁴ = q² ✓. Terms equally spaced apart in a G.P. are in G.P.",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q4: the 4th term is the square of the 2nd, first term −3. Find the 7th term.",
+      "definition": "ar³ = (ar)² → r = a = −3, so a₇ = ar⁶ = <span style=\"color:#f08c00\">−2187</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q5: which term is 128 in √2, 2, 2√2, …; 729 in √3, 3, 3√3, …; 1/19683 in 1/3, 1/9, 1/27, …?",
+      "definition": "(√2)ⁿ = 2⁷ → <span style=\"color:#f08c00\">n = 14</span>;  (√3)ⁿ = 3⁶ → <span style=\"color:#f08c00\">n = 12</span>;  (1/3)ⁿ = 3⁻⁹ → <span style=\"color:#f08c00\">n = 9</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q7: sum of 0.15 + 0.015 + 0.0015 + … (20 terms).",
+      "definition": "a = 0.15, r = 0.1: <span style=\"color:#f08c00\">(1/6)(1 − 10⁻²⁰)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q9–10: sums of 1, −a, a², −a³, … (n terms) and x³, x⁵, x⁷, … (n terms).",
+      "definition": "<span style=\"color:#f08c00\">(1 − (−a)ⁿ)/(1 + a)</span> (r = −a) and <span style=\"color:#f08c00\">x³(1 − x²ⁿ)/(1 − x²)</span> (r = x²)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q11: evaluate Σₖ₌₁¹¹ (2 + 3ᵏ).",
+      "definition": "22 + 3(3¹¹ − 1)/2 = 22 + 265719 = <span style=\"color:#f08c00\">265741</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q12: sum of first three terms of a G.P. is 39/10 and their product is 1. Find r and the terms.",
+      "definition": "a = 1: 1/r + 1 + r = 39/10 → 10r² − 29r + 10 = 0 → r = 5/2 or 2/5. Terms <span style=\"color:#f08c00\">2/5, 1, 5/2</span> (or reversed)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q13: how many terms of 3, 3², 3³, … give the sum 120?",
+      "definition": "3(3ⁿ − 1)/2 = 120 → 3ⁿ = 81 → n = <span style=\"color:#f08c00\">4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q14: first three terms sum to 16, next three to 128. Find a, r, Sₙ.",
+      "definition": "Next three = r³ × first three → r³ = 8 → r = 2; a·7 = 16 → <span style=\"color:#f08c00\">a = 16/7</span>, Sₙ = <span style=\"color:#f08c00\">(16/7)(2ⁿ − 1)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q15: a = 729 and the 7th term is 64. Find S₇.",
+      "definition": "r⁶ = 64/729 → r = 2/3: S₇ = 729[1 − (2/3)⁷]/(1/3) = 2187 − 128 = <span style=\"color:#f08c00\">2059</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q16: sum of the first two terms is −4 and the 5th term is 4 times the 3rd. Find the G.P.",
+      "definition": "r² = 4. r = 2: a = −4/3 → −4/3, −8/3, …; r = −2: a = 4 → <span style=\"color:#f08c00\">4, −8, 16, …</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q17: the 4th, 10th and 16th terms are x, y, z. Prove x, y, z are in G.P.",
+      "definition": "y² = (ar⁹)² = a²r¹⁸ = (ar³)(ar¹⁵) = xz ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q19: sum of products of corresponding terms of 2, 4, 8, 16, 32 and 128, 32, 8, 2, 1/2.",
+      "definition": "Products 256, 128, 64, 32, 16 (a G.P.): sum = <span style=\"color:#f08c00\">496</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q20: products of corresponding terms of a, ar, ar², … and A, AR, AR², …",
+      "definition": "They form a G.P. with common ratio <span style=\"color:#f08c00\">rR</span> (the first term is aA)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q21: four numbers in G.P.: 3rd = 1st + 9 and 2nd = 4th + 18.",
+      "definition": "a(r² − 1) = 9 and −ar(r² − 1) = 18 → r = −2, a = 3: <span style=\"color:#f08c00\">3, −6, 12, −24</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q22: pth, qth, rth terms are a, b, c. Prove a^(q−r) b^(r−p) c^(p−q) = 1.",
+      "definition": "Put A·R^(p−1) = a etc.; the exponents on A sum to (q − r) + (r − p) + (p − q) = 0 and on R to 0, so the product is 1",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q23: first term a, nth term b, P the product of n terms. Prove P² = (ab)ⁿ.",
+      "definition": "Pair the k-th term from the start with the k-th from the end: each pair multiplies to ab. There are n pairs in P², so P² = (ab)ⁿ",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q24: ratio of the sum of the first n terms to the sum of the (n + 1)th to (2n)th terms?",
+      "definition": "The second block is rⁿ × the first: ratio <span style=\"color:#f08c00\">1/rⁿ</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q25: a, b, c, d in G.P. Show (a² + b² + c²)(b² + c² + d²) = (ab + bc + cd)².",
+      "definition": "Put b = ar, c = ar², d = ar³: both sides equal a⁴r²(1 + r² + r⁴)² ✓ (or use Cauchy–Schwarz equality)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4-geometric-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Geometric mean of two positive numbers a and b?",
+      "definition": "\\(G = \\sqrt{ab}\\); a, G, b are in G.P. Example: G.M. of 2 and 8 is 4",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4.3-geometric-mean"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Insert n geometric means between a and b: common ratio and the means?",
+      "definition": "a, G₁, …, Gₙ, b is a G.P. with n + 2 terms: <span style=\"color:#3b82f6\">r = (b/a)^(1/(n + 1))</span>,  Gₖ = a·rᵏ",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4.3-geometric-mean"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12: insert three numbers between 1 and 256 to form a G.P.",
+      "definition": "r⁴ = 256 → r = ±4. <span style=\"color:#f08c00\">4, 16, 64</span> (or −4, 16, −64)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4.3-geometric-mean"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q26: insert two numbers between 3 and 81 to form a G.P.",
+      "definition": "r³ = 27 → r = 3: <span style=\"color:#f08c00\">9, 27</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4.3-geometric-mean"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Product of n geometric means between a and b?",
+      "definition": "<span style=\"color:#f08c00\">(ab)^(n/2)</span> (each pair equidistant from the ends multiplies to ab)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4.3-geometric-mean"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q27: for what n is (aⁿ⁺¹ + bⁿ⁺¹)/(aⁿ + bⁿ) the G.M. of a and b?",
+      "definition": "Set it equal to √(ab) and cross-multiply: <span style=\"color:#f08c00\">n = −1/2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4.3-geometric-mean"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q28: the sum of two numbers is 6 times their G.M. Show the ratio (3 + 2√2) : (3 − 2√2).",
+      "definition": "Let t = a/b: t + 1 = 6√t → (√t)² − 6√t + 1 = 0 → √t = 3 ± 2√2 → t = (3 ± 2√2)². Since (3 + 2√2)(3 − 2√2) = 1, the ratio a : b = (3 + 2√2) : (3 − 2√2)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4.3-geometric-mean"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q30–31: bacteria double every hour, 30 at the start. And ₹500 for 10 years at 10% compounded annually?",
+      "definition": "30·2ⁿ: after 2, 4, n hours <span style=\"color:#f08c00\">120, 480, 30·2ⁿ</span>. Compound interest: 500(1.1)¹⁰ ≈ <span style=\"color:#f08c00\">₹1296.87</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.4.3-geometric-mean"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define A.M. of two numbers. What is the relation between A.M. and G.M.?",
+      "definition": "A = (a + b)/2 and G = √(ab). For positive a, b: <span style=\"color:#3b82f6\">A ≥ G</span>, equality iff a = b",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.5-am-gm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Prove A ≥ G in one line.",
+      "definition": "A − G = (a + b − 2√(ab))/2 = <span style=\"color:#3b82f6\">(√a − √b)²/2 ≥ 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.5-am-gm"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "AM ≥ GM from a semicircle",
+      "definition": "On a semicircle of diameter a+b, the radius is AM=(a+b)/2 and the perpendicular at the join is GM=√(ab), never longer than the radius, so AM ≥ GM with equality iff a=b",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">AM ≥ GM · geometric proof</p><h2>Take a semicircle on diameter a + b (a = 1, b = 4). Show where AM and GM appear, and why AM ≥ GM.</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><path class=\"c0\" d=\"M 30 150 A 120 120 0 0 1 270 150 Z\" fill=\"none\"></path><text class=\"t1\" x=\"54.0\" y=\"168\" text-anchor=\"middle\">a = 1</text><text class=\"t1\" x=\"174.0\" y=\"168\" text-anchor=\"middle\">b = 4</text><line class=\"c1\" x1=\"78\" y1=\"150\" x2=\"78\" y2=\"54.0\"></line></svg><p class=\"hint\">Which segment is the radius, which is the height?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">AM ≥ GM · geometric proof</p><h2>Take a semicircle on diameter a + b (a = 1, b = 4). Show where AM and GM appear, and why AM ≥ GM.</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><path class=\"c0\" d=\"M 30 150 A 120 120 0 0 1 270 150 Z\" fill=\"none\"></path><text class=\"t1\" x=\"54.0\" y=\"168\" text-anchor=\"middle\">a = 1</text><text class=\"t1\" x=\"174.0\" y=\"168\" text-anchor=\"middle\">b = 4</text><line class=\"c1\" x1=\"78\" y1=\"150\" x2=\"78\" y2=\"54.0\"></line><line class=\"c2 fx d2\" x1=\"150\" y1=\"150\" x2=\"150\" y2=\"30\"></line><text class=\"t2 fx d3\" x=\"158\" y=\"90.0\">AM = 2.5</text><text class=\"t1 fx d2\" x=\"84\" y=\"102.0\">GM = 2</text><line class=\"guide fx d4\" x1=\"78\" y1=\"54.0\" x2=\"150\" y2=\"54.0\"></line></svg><div class=\"eq fx d5\"><p>Radius = (a + b)/2 = <b>AM</b>. The perpendicular at the join point has height √(ab) = <b>GM</b> (geometric mean theorem).</p><p>A chord’s perpendicular can never exceed the radius: <b>GM ≤ AM</b>, with equality only when a = b (the join is the centre).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.5-am-gm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13: A.M. = 10 and G.M. = 8. Find the numbers.",
+      "definition": "a + b = 20, ab = 64; (a − b)² = 400 − 256 = 144 → a − b = ±12 → <span style=\"color:#f08c00\">4 and 16</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.5-am-gm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q29: given A and G, the numbers are?",
+      "definition": "<span style=\"color:#f08c00\">A ± √((A + G)(A − G))</span> (from (a − b)² = 4A² − 4G²)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.5-am-gm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 8.2 Q32: A.M. and G.M. of the roots of a quadratic are 8 and 5. Find the equation.",
+      "definition": "Sum = 16, product = 25: <span style=\"color:#f08c00\">x² − 16x + 25 = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.5-am-gm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Application of AM–GM: minimum of x + 1/x (x > 0)?",
+      "definition": "<span style=\"color:#3b82f6\">2</span> at x = 1, since (x + 1/x)/2 ≥ √(x · 1/x) = 1. For a product fixed, the sum is least when the numbers are equal",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.5-am-gm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Maximise the product xy given x + y = 10 (x, y > 0).",
+      "definition": "AM ≥ GM: √(xy) ≤ 5 → <span style=\"color:#f08c00\">xy ≤ 25</span> with equality at x = y = 5",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.5-am-gm"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 14: (a² + b² + c²)p² − 2(ab + bc + cd)p + (b² + c² + d²) ≤ 0. Show a, b, c, d are in G.P.",
+      "definition": "The left side = (ap − b)² + (bp − c)² + (cp − d)² ≥ 0. So it equals 0: ap = b, bp = c, cp = d, i.e. b/a = c/b = d/c = <span style=\"color:#f08c00\">p</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: f(x + y) = f(x)f(y) on N, f(1) = 3, Σₓ₌₁ⁿ f(x) = 120. Find n.",
+      "definition": "f(x) = 3ˣ (G.P. with r = 3): 3(3ⁿ − 1)/2 = 120 → 3ⁿ = 81 → <span style=\"color:#f08c00\">n = 4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: a G.P. with a = 5, r = 2 has sum 315. Last term and number of terms?",
+      "definition": "5(2ⁿ − 1) = 315 → 2ⁿ = 64 → <span style=\"color:#f08c00\">n = 6</span>, last term 5·2⁵ = <span style=\"color:#f08c00\">160</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: first term 1; the sum of the 3rd and 5th terms is 90. Find r.",
+      "definition": "r² + r⁴ = 90 → (r² − 9)(r² + 10) = 0 → <span style=\"color:#f08c00\">r = ±3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: three numbers in G.P. sum to 56; subtracting 1, 7, 21 gives an A.P. Find them.",
+      "definition": "a(1 + r + r²) = 56 and a(r − 1)² = 8 → 2r² − 5r + 2 = 0 → r = 2 or ½: <span style=\"color:#f08c00\">8, 16, 32</span> (or 32, 16, 8)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: a G.P. with an even number of terms has sum 5 times the sum of terms in odd places. Find r.",
+      "definition": "S = a(1 − r²ⁿ)/(1 − r) and S_odd = a(1 − r²ⁿ)/(1 − r²). Ratio S/S_odd = 1 + r = 5 → <span style=\"color:#f08c00\">r = 4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: S = sum, P = product, R = sum of reciprocals of n terms of a G.P. Prove P²Rⁿ = Sⁿ.",
+      "definition": "The reciprocals form a G.P. (first term 1/a, ratio 1/r), so R = S/(a²rⁿ⁻¹). Also P = aⁿ·rⁿ⁽ⁿ⁻¹⁾ᐟ² so P² = a²ⁿ rⁿ⁽ⁿ⁻¹⁾. Then P²Rⁿ = Sⁿ ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q8: a, b, c, d in G.P. Prove (aⁿ + bⁿ), (bⁿ + cⁿ), (cⁿ + dⁿ) are in G.P.",
+      "definition": "With ratio r: bⁿ + cⁿ = rⁿ(aⁿ + bⁿ) and cⁿ + dⁿ = rⁿ(bⁿ + cⁿ): a constant ratio rⁿ ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q9: a, b roots of x² − 3x + p = 0; c, d roots of x² − 12x + q = 0; a, b, c, d in G.P. Show (q + p) : (q − p) = 17 : 15.",
+      "definition": "a(1 + r) = 3 and ar²(1 + r) = 12 → r² = 4. For r = 2: a = 1, p = 2, q = 32 → 34 : 30 = 17 : 15 ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q10: A.M. : G.M. = m : n. Show a : b = (m + √(m² − n²)) : (m − √(m² − n²)).",
+      "definition": "a + b = 2mk and √(ab) = nk → (a − b)² = 4k²(m² − n²); solving gives the ratio (m + √(m² − n²)) : (m − √(m² − n²))",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q12: the 20th term of 2·4 + 4·6 + 6·8 + … ?",
+      "definition": "The nth term is 2n(2n + 2) = 4n(n + 1): a₂₀ = <span style=\"color:#f08c00\">1680</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q13: tractor ₹12000; ₹6000 cash, balance in annual instalments of ₹500 plus 12% interest on the unpaid amount. Total cost?",
+      "definition": "12 instalments; interest 720, 660, …, 60 (an A.P.): sum = 12/2·(720 + 60) = 4680. Total <span style=\"color:#f08c00\">₹16680</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q14: scooter ₹22000; ₹4000 cash, balance in instalments of ₹1000 plus 10% interest on the unpaid amount. Total cost?",
+      "definition": "18 instalments; interest 1800, 1700, …, 100: sum = 9·1900 = 17100. Total <span style=\"color:#f08c00\">₹39100</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q15: a letter is sent to 4 friends, each copies and sends to 4 new persons, at 50 paise a letter. Postage when the 8th set is mailed?",
+      "definition": "Letters: 4 + 4² + … + 4⁸ = 4(4⁸ − 1)/3 = 87380; × ₹0.50 = <span style=\"color:#f08c00\">₹43690</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q16: ₹10000 at 5% simple interest. Amount in the 15th year and after 20 years?",
+      "definition": "Amounts form an A.P. with d = 500: 15th year <span style=\"color:#f08c00\">₹17500</span>, after 20 years <span style=\"color:#f08c00\">₹20000</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q17: a machine of ₹15625 depreciates 20% a year. Value after 5 years?",
+      "definition": "15625 × (0.8)⁵ = <span style=\"color:#f08c00\">₹5120</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q18: 150 workers; 4 leave on day 2, 4 more each day; the job takes 8 extra days. How many days?",
+      "definition": "Work = 150(n − 8) = 150n − 4(1 + 2 + … + (n − 1)) → n² − n − 600 = 0 → <span style=\"color:#f08c00\">n = 25 days</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Beyond the textbook text (studied in Class 10, examined in JEE): define an A.P. and its nth term.",
+      "definition": "A sequence with a constant <span style=\"color:#3b82f6\">difference d</span>: aₙ₊₁ − aₙ = d. <span style=\"color:#3b82f6\">aₙ = a + (n − 1)d</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sum of the first n terms of an A.P.?",
+      "definition": "\\(S_n = \\dfrac{n}{2}\\,[\\,2a + (n-1)d\\,] = \\dfrac{n}{2}(a + l)\\) (l = last term)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is aₙ = Sₙ − Sₙ₋₁ always true?",
+      "definition": "<span style=\"color:#22a35a\">Yes</span> for n ≥ 2, for any sequence. Handy to recover the nth term from a given formula for the sum; a₁ = S₁",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Arithmetic mean of a and b; inserting n arithmetic means?",
+      "definition": "A = (a + b)/2 and a, A, b in A.P. ⟺ <span style=\"color:#3b82f6\">2A = a + b</span>. For n A.M.s: d = (b − a)/(n + 1); their sum is n · (a + b)/2",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Three numbers in A.P. with a given sum: how to choose them?",
+      "definition": "Take <span style=\"color:#3b82f6\">a − d, a, a + d</span> (sum 3a). For four numbers take a − 3d, a − d, a + d, a + 3d",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex: sum of the first 20 terms of 3, 7, 11, ….",
+      "definition": "a = 3, d = 4: 20/2 · [6 + 19·4] = <span style=\"color:#f08c00\">820</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Find the number of terms in 5, 9, 13, …, 81.",
+      "definition": "81 = 5 + (n − 1)4 → n = <span style=\"color:#f08c00\">20</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If Sₙ = 3n² + 2n, find aₙ and the common difference.",
+      "definition": "aₙ = Sₙ − Sₙ₋₁ = <span style=\"color:#f08c00\">6n − 1</span>, so d = <span style=\"color:#f08c00\">6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Properties: a, b, c in A.P. / in G.P. / in H.P.?",
+      "definition": "A.P.: <span style=\"color:#3b82f6\">2b = a + c</span>. G.P.: <span style=\"color:#3b82f6\">b² = ac</span>. H.P. (reciprocals in A.P.): <span style=\"color:#3b82f6\">b = 2ac/(a + c)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Harmonic mean H of a and b; relations among A, G, H?",
+      "definition": "<span style=\"color:#3b82f6\">H = 2ab/(a + b)</span>. For positive a, b: <span style=\"color:#3b82f6\">A ≥ G ≥ H</span> and <span style=\"color:#3b82f6\">G² = A·H</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sum of an A.P. with a = 5, l = 45, n = 11?",
+      "definition": "11/2 (5 + 45) = <span style=\"color:#f08c00\">275</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mean of an A.P. and the middle term?",
+      "definition": "The average of an A.P. equals its middle term (odd n) or the average of the two middle terms (even n): <span style=\"color:#3b82f6\">Sₙ = n × average</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-arithmetic-progression"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sum of the first n natural numbers, of their squares, of their cubes?",
+      "definition": "\\(\\sum k = \\dfrac{n(n+1)}{2},\\quad \\sum k^2 = \\dfrac{n(n+1)(2n+1)}{6},\\quad \\sum k^3 = \\left[\\dfrac{n(n+1)}{2}\\right]^2\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-special-series"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Sum of first n natural numbers via a staircase",
+      "definition": "1+2+…+n = n(n+1)/2: two staircases make an n×(n+1) rectangle, so 2S = n(n+1); e.g. n=6 gives 21",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Sum of the first n natural numbers · picture</p><h2>Why is 1 + 2 + 3 + … + n = n(n + 1)/2? Use a staircase of squares (n = 6).</h2><svg viewBox=\"0 0 300 246\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f1 \" x=\"60\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"88\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"88\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"116\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"116\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"116\" y=\"132\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"144\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"144\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"144\" y=\"132\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"144\" y=\"104\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"172\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"172\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"172\" y=\"132\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"172\" y=\"104\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"172\" y=\"76\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"132\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"104\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"76\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"48\" width=\"26\" height=\"26\" rx=\"3\"></rect></svg><p class=\"hint\">What shape do two copies make?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Sum of the first n natural numbers · picture</p><h2>Why is 1 + 2 + 3 + … + n = n(n + 1)/2? Use a staircase of squares (n = 6).</h2><svg viewBox=\"0 0 300 246\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f1 \" x=\"60\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"88\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"88\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"116\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"116\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"116\" y=\"132\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"144\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"144\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"144\" y=\"132\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"144\" y=\"104\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"172\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"172\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"172\" y=\"132\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"172\" y=\"104\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"172\" y=\"76\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"188\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"132\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"104\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"76\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f1 \" x=\"200\" y=\"48\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"60\" y=\"20\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"60\" y=\"48\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"60\" y=\"76\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"60\" y=\"104\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"60\" y=\"132\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"60\" y=\"160\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"88\" y=\"20\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"88\" y=\"48\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"88\" y=\"76\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"88\" y=\"104\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"88\" y=\"132\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"116\" y=\"20\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"116\" y=\"48\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"116\" y=\"76\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"116\" y=\"104\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"144\" y=\"20\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"144\" y=\"48\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"144\" y=\"76\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"172\" y=\"20\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"172\" y=\"48\" width=\"26\" height=\"26\" rx=\"3\"></rect><rect class=\"f2 fx d3\" x=\"200\" y=\"20\" width=\"26\" height=\"26\" rx=\"3\"></rect><text class=\"lbl fx d4\" x=\"52\" y=\"122.0\" text-anchor=\"end\">7</text><text class=\"lbl fx d4\" x=\"144.0\" y=\"232\" text-anchor=\"middle\">6</text><text class=\"t3 fx d5\" x=\"144.0\" y=\"250\" text-anchor=\"middle\">2 × (1+…+6) = 6 × 7 = 42 → sum = 21</text></svg><div class=\"eq fx d5\"><p>Two identical staircases (blue and a rotated red copy) fit into an <b>n × (n + 1) rectangle</b>: 2S = n(n + 1).</p><p><b>S = n(n + 1)/2</b>. This is Gauss’s pairing trick: (1 + n) + (2 + n − 1) + … has n/2 pairs each summing to n + 1.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-special-series"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sum of the first n odd numbers and of the first n even numbers?",
+      "definition": "<span style=\"color:#3b82f6\">1 + 3 + … + (2n − 1) = n²</span> and <span style=\"color:#3b82f6\">2 + 4 + … + 2n = n(n + 1)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-special-series"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Evaluate 1² + 2² + … + 10² and 1³ + 2³ + … + 10³.",
+      "definition": "10·11·21/6 = <span style=\"color:#f08c00\">385</span>;  (55)² = <span style=\"color:#f08c00\">3025</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-special-series"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Find the sum 1·2 + 2·3 + … + n(n + 1).",
+      "definition": "Σk(k + 1) = Σk² + Σk = <span style=\"color:#f08c00\">n(n + 1)(n + 2)/3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-special-series"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Telescoping: sum of 1/(k(k + 1)) for k = 1 to n?",
+      "definition": "1/(k(k + 1)) = 1/k − 1/(k + 1), so the sum is <span style=\"color:#f08c00\">1 − 1/(n + 1) = n/(n + 1)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-special-series"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method of differences: how do you sum a series like 3 + 7 + 13 + 21 + …?",
+      "definition": "Differences 4, 6, 8, … are in A.P., so the nth term is a quadratic in n: fit aₙ = n² + n + 1 and use the Σ formulas",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-special-series"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Shortcut: nth term of a series whose differences form an A.P.?",
+      "definition": "Quadratic in n: aₙ = An² + Bn + C. Use three known terms to find A, B, C, then sum with Σn² and Σn",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-special-series"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Infinite G.P. sum: 1 + 1/2 + 1/4 + … = 2",
+      "definition": "Infinite G.P. with |r|<1 sums to a/(1−r); 1+1/2+1/4+… approaches 2; no finite sum if |r| ≥ 1",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Infinite G.P. · intuition</p><h2>Add 1 + ½ + ¼ + ⅛ + … forever. Does the sum grow without bound? What does it approach?</h2><svg viewBox=\"0 0 300 150\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"20\" y1=\"122\" x2=\"290\" y2=\"122\"></line><line class=\"ax\" x1=\"20.0\" y1=\"118\" x2=\"20.0\" y2=\"126\"></line><text class=\"num\" x=\"20.0\" y=\"140\">0</text><line class=\"ax\" x1=\"85.0\" y1=\"118\" x2=\"85.0\" y2=\"126\"></line><text class=\"num\" x=\"85.0\" y=\"140\">0.5</text><line class=\"ax\" x1=\"150.0\" y1=\"118\" x2=\"150.0\" y2=\"126\"></line><text class=\"num\" x=\"150.0\" y=\"140\">1</text><line class=\"ax\" x1=\"215.0\" y1=\"118\" x2=\"215.0\" y2=\"126\"></line><text class=\"num\" x=\"215.0\" y=\"140\">1.5</text><line class=\"ax\" x1=\"280.0\" y1=\"118\" x2=\"280.0\" y2=\"126\"></line><text class=\"num\" x=\"280.0\" y=\"140\">2</text></svg><p class=\"hint\">How much of the remaining gap does each term fill?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Infinite G.P. · intuition</p><h2>Add 1 + ½ + ¼ + ⅛ + … forever. Does the sum grow without bound? What does it approach?</h2><svg viewBox=\"0 0 300 150\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"20\" y1=\"122\" x2=\"290\" y2=\"122\"></line><line class=\"ax\" x1=\"20.0\" y1=\"118\" x2=\"20.0\" y2=\"126\"></line><text class=\"num\" x=\"20.0\" y=\"140\">0</text><line class=\"ax\" x1=\"85.0\" y1=\"118\" x2=\"85.0\" y2=\"126\"></line><text class=\"num\" x=\"85.0\" y=\"140\">0.5</text><line class=\"ax\" x1=\"150.0\" y1=\"118\" x2=\"150.0\" y2=\"126\"></line><text class=\"num\" x=\"150.0\" y=\"140\">1</text><line class=\"ax\" x1=\"215.0\" y1=\"118\" x2=\"215.0\" y2=\"126\"></line><text class=\"num\" x=\"215.0\" y=\"140\">1.5</text><line class=\"ax\" x1=\"280.0\" y1=\"118\" x2=\"280.0\" y2=\"126\"></line><text class=\"num\" x=\"280.0\" y=\"140\">2</text><rect class=\"f1 fx d1\" x=\"20.0\" y=\"70\" width=\"129.0\" height=\"34\" rx=\"2\"></rect><rect class=\"f4 fx d1\" x=\"150.0\" y=\"70\" width=\"64.0\" height=\"34\" rx=\"2\"></rect><rect class=\"f1 fx d2\" x=\"215.0\" y=\"70\" width=\"31.5\" height=\"34\" rx=\"2\"></rect><rect class=\"f4 fx d2\" x=\"247.5\" y=\"70\" width=\"15.2\" height=\"34\" rx=\"2\"></rect><rect class=\"f1 fx d3\" x=\"263.8\" y=\"70\" width=\"7.1\" height=\"34\" rx=\"2\"></rect><rect class=\"f4 fx d3\" x=\"271.9\" y=\"70\" width=\"3.1\" height=\"34\" rx=\"2\"></rect><rect class=\"f1 fx d4\" x=\"275.9\" y=\"70\" width=\"1.0\" height=\"34\" rx=\"2\"></rect><rect class=\"f4 fx d4\" x=\"278.0\" y=\"70\" width=\"1.0\" height=\"34\" rx=\"2\"></rect><rect class=\"f1 fx d5\" x=\"279.0\" y=\"70\" width=\"1.0\" height=\"34\" rx=\"2\"></rect><text class=\"lbl fx d1\" x=\"85.0\" y=\"92\" text-anchor=\"middle\">1</text><text class=\"lbl fx d1\" x=\"182.5\" y=\"92\" text-anchor=\"middle\">½</text><text class=\"lbl fx d2\" x=\"231.2\" y=\"92\" text-anchor=\"middle\">¼</text><text class=\"lbl fx d2\" x=\"255.6\" y=\"92\" text-anchor=\"middle\">⅛</text><text class=\"lbl fx d3\" x=\"267.8\" y=\"92\" text-anchor=\"middle\">1/16</text><line class=\"guide fx d5\" x1=\"280\" y1=\"52\" x2=\"280\" y2=\"122\"></line><text class=\"t2 fx d5\" x=\"280\" y=\"44\" text-anchor=\"middle\">limit 2</text></svg><div class=\"eq fx d5\"><p>Each new piece is half of the gap left, so the running total creeps up to <b>2</b> but never passes it.</p><p>Formula: a G.P. with |r| &lt; 1 has infinite sum <b>S∞ = a/(1 − r)</b> = 1/(1 − ½) = 2.</p><p class=\"no\">If |r| ≥ 1 the terms do not shrink and the sum does not settle.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-infinite-gp"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sum to infinity of a G.P.: formula and condition?",
+      "definition": "\\(S_\\infty = \\dfrac{a}{1 - r}\\), valid only for <span style=\"color:#3b82f6\">|r| < 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-infinite-gp"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Write 0.333… and 0.272727… as fractions.",
+      "definition": "0.333… = 0.3/(1 − 0.1) = <span style=\"color:#f08c00\">1/3</span>;  0.27 + 0.0027 + … = 0.27/(1 − 0.01) = <span style=\"color:#f08c00\">3/11</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-infinite-gp"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Find 1 + 1/3 + 1/9 + … and 1 − 1/2 + 1/4 − 1/8 + ….",
+      "definition": "<span style=\"color:#f08c00\">3/2</span> and <span style=\"color:#f08c00\">2/3</span> (r = −1/2)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-infinite-gp"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Arithmetico-geometric series 1 + 2x + 3x² + … (|x| < 1)?",
+      "definition": "<span style=\"color:#f08c00\">1/(1 − x)²</span> (differentiate 1/(1 − x), or use S − xS)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-infinite-gp"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fibonacci and the golden ratio: what does aₙ₊₁/aₙ tend to?",
+      "definition": "<span style=\"color:#f08c00\">φ = (1 + √5)/2 ≈ 1.618</span>, the positive root of x² = x + 1",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-infinite-gp"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The 10th term of the G.P. 3, 6, 12, … is<br>(a) 1536 (b) 3072 (c) 768 (d) 1024",
+      "definition": "3 × 2⁹ = <span style=\"color:#22a35a\">(a) 1536</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The sum of the first 6 terms of 1 + 2 + 4 + … is<br>(a) 63 (b) 64 (c) 31 (d) 127",
+      "definition": "2⁶ − 1 = <span style=\"color:#22a35a\">(a) 63</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: If a, b, c are in G.P., then<br>(a) 2b = a + c (b) b² = ac (c) b = 2ac/(a + c) (d) c² = ab",
+      "definition": "<span style=\"color:#22a35a\">(b)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: G.M. of 4 and 9 is<br>(a) 6.5 (b) 6 (c) 36 (d) 5",
+      "definition": "√36 = <span style=\"color:#22a35a\">(b) 6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The sum to infinity of 1 + 1/2 + 1/4 + … is<br>(a) 1 (b) 3/2 (c) 2 (d) ∞",
+      "definition": "<span style=\"color:#22a35a\">(c) 2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The sum of the first 20 natural numbers is<br>(a) 190 (b) 210 (c) 200 (d) 420",
+      "definition": "20·21/2 = <span style=\"color:#22a35a\">(b) 210</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: If the A.M. and G.M. of two positive numbers are 5 and 4, the numbers are<br>(a) 2, 8 (b) 1, 9 (c) 3, 7 (d) 4, 6",
+      "definition": "a + b = 10, ab = 16 → <span style=\"color:#22a35a\">(a) 2, 8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): the sum of the series 1 + 2 + 4 + … + 512 is?",
+      "definition": "a = 1, r = 2, 10 terms: 2¹⁰ − 1 = <span style=\"color:#f08c00\">1023</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the number of terms in the G.P. 2, 6, 18, … 4374 is?",
+      "definition": "3ⁿ⁻¹ = 2187 = 3⁷ → n = <span style=\"color:#f08c00\">8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> 2, 6, 18, 54 is a G.P.<br><b>R:</b> The ratio of consecutive terms is constant.<br>(a) Both true, R explains A (b) Both true, R does not explain A (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>: common ratio 3",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> For positive a, b: (a + b)/2 ≥ √(ab).<br><b>R:</b> (√a − √b)² ≥ 0.<br>(a) Both true, R explains A (b) Both true, R does not explain A (c) A false, R true (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: the sequence 1, 1/2, 1/3, 1/4, … is a G.P.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: ratios 1/2, 2/3, 3/4, … are not constant (it is an H.P.)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: the third term of a G.P. is 4. Find the product of its first five terms.",
+      "definition": "a·ar·ar²·ar³·ar⁴ = a⁵r¹⁰ = (ar²)⁵ = (third term)⁵ = <span style=\"color:#f08c00\">4⁵ = 1024</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: a ball drops from 8 m and rebounds to 3/4 of its previous height each time. Total vertical distance travelled until it stops?",
+      "definition": "Down 8; then up-and-down 2 × 8(3/4) + 2 × 8(3/4)² + …: total = 8 + 2 · 6/(1 − 3/4) = 8 + 48 = <span style=\"color:#f08c00\">56 m</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a person saves ₹100 in month 1 and ₹20 more each month than the previous month. Total saved in 12 months?",
+      "definition": "A.P. a = 100, d = 20: S₁₂ = 6[200 + 11·20] = <span style=\"color:#f08c00\">₹2520</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-8",
+        "8.z-how-its-asked"
+      ]
+    }
+  ]
+}
