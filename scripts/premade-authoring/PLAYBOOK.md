@@ -308,8 +308,7 @@ Don't polish endlessly: move on to the next chapter.
 |---|---|---|
 | Biology 11 | 1–19 | Done (2 = pilot) — complete |
 | Biology 12 | 1–13 — complete | Done (PDFs unzipped to `NCERT-pdfs/bio12/`) |
-| Chemistry 11 | 1–3, 5–9 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
-| Chemistry 11 | 4 | Pilot |
+| Chemistry 11 | 1–9 — complete | Done (Ch 4 rebuilt from the pilot: all exercises, Kössel/VSEPR/MO tables, two verified NCERT corrections (H₂ 438 vs 435.8, C₂ missing σ2s²); PDFs unzipped to `NCERT-pdfs/chem11/`: Ch 1–6 = `kech101–106`, Ch 7–9 = `kech201–203`) |
 | Chemistry 12 | 1–10 — complete | Done (PDFs unzipped to `NCERT-pdfs/chem12/`: Ch 1–5 = `lech101–105`, Ch 6–10 = `lech201–205`; decks go in `premade-cards/12th/Chemistry/`, scripts `chem12_chNN.py`) |
 | Physics 11 | 1–14 — complete | Done (Ch 4 rebuilt from the pilot: drawn FBD/friction/banking/lift/Atwood figures in `figures_phy_ch04.py`, `train_drop` animation; PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; answer keys `keph1an.pdf`, `keph2an.pdf`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py` + `figures_phy_chNN.py`, animations in `showcase_phy.py`, drawn figures via `draw.py`) |
 | Physics 12 | 1–14 | Done: **the whole book is complete** (PDFs unzipped to `NCERT-pdfs/phy12/`: Ch 1–8 = `leph101–108`, Ch 9–14 = `leph201–206`; answer keys `leph1an.pdf`, `leph2an.pdf`; decks in `premade-cards/12th/Physics/` (manifest exists, so use `replace_deck.py premade-cards/12th/Physics none.zip <deck-id>`), scripts `phy12_chNN.py` + `figures_phy12_chNN.py`; animations in `showcase_phy.py` under the `# Physics 12 Ch N` headers) |
@@ -318,4 +317,4 @@ Don't polish endlessly: move on to the next chapter.
 
 Suggested order: Biology 11, Biology 12, Chemistry 11 and 12, Physics 11 and 12, Maths 11 and 12.
 
-**Status: every book in the table is now built.** What is left is optional: (1) animated cards for Physics 12 Ch 6 and Ch 7 (helpers in `showcase_phy.py`), (2) rebuilding the last pilot, Chemistry 11 Ch 4 (next).
+**Status: every book in the table is now built.** What is left is optional: (1) animated cards for Physics 12 Ch 6 and Ch 7 (helpers in `showcase_phy.py`), (2) both old pilots (Chemistry 11 Ch 4, Physics 11 Ch 4) are now rebuilt; only the Biology 11 Ch 2 pilot remains, kept as is.

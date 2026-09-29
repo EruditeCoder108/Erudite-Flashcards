@@ -2,11 +2,12 @@
   "version": 1,
   "name": "Chapter 4: Chemical Bonding and Molecular Structure",
   "className": "Class 11",
+  "description": "Lewis structures, formal charge, ionic bonds, bond parameters, resonance, dipole moment, VSEPR, hybridisation, MO theory, hydrogen bonds",
   "cards": [
     {
       "noteType": "basic",
       "term": "What is a chemical bond?",
-      "definition": "The <span style=\"color:#3b82f6\">attractive force</span> that holds atoms or ions together in a chemical species",
+      "definition": "The <span style=\"color:#3b82f6\">attractive force</span> that holds the constituents (atoms, ions, etc.) together in a chemical species",
       "tags": [
         "class-11",
         "chemistry",
@@ -17,7 +18,7 @@
     {
       "noteType": "basic",
       "term": "Why do atoms form bonds at all?",
-      "definition": "To <span style=\"color:#3b82f6\">lower the energy</span> of the system and become more stable",
+      "definition": "Bonding is nature’s way of <span style=\"color:#3b82f6\">lowering the energy</span> of the system to attain stability",
       "tags": [
         "class-11",
         "chemistry",
@@ -27,7 +28,29 @@
     },
     {
       "noteType": "basic",
-      "term": "What was the Lewis 'kernel'?",
+      "term": "Name the four theories of bonding in this unit.",
+      "definition": "<span style=\"color:#3b82f6\">Kössel–Lewis</span> approach, <span style=\"color:#3b82f6\">VSEPR</span> theory, <span style=\"color:#3b82f6\">valence bond (VB)</span> theory and <span style=\"color:#3b82f6\">molecular orbital (MO)</span> theory",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who first explained valence in terms of electrons, and when?",
+      "definition": "<span style=\"color:#3b82f6\">Kössel and Lewis</span> independently, in <span style=\"color:#f08c00\">1916</span>, based on the inertness of noble gases",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.1-kossel-lewis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What was the Lewis \"kernel\"?",
       "definition": "The <span style=\"color:#3b82f6\">nucleus + inner electrons</span> of an atom (positively charged)",
       "tags": [
         "class-11",
@@ -38,8 +61,19 @@
     },
     {
       "noteType": "basic",
+      "term": "How did Lewis picture the octet?",
+      "definition": "Eight outer electrons at the <span style=\"color:#3b82f6\">corners of a cube</span> around the kernel (Na: one corner filled; a noble gas: all eight)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.1-kossel-lewis"
+      ]
+    },
+    {
+      "noteType": "basic",
       "term": "What do the dots in a Lewis symbol stand for?",
-      "definition": "The <span style=\"color:#3b82f6\">valence electrons</span>",
+      "definition": "The <span style=\"color:#3b82f6\">valence electrons</span> (inner electrons are well protected and do not take part)",
       "tags": [
         "class-11",
         "chemistry",
@@ -59,9 +93,37 @@
       ]
     },
     {
+      "noteType": "advanced-html",
+      "term": "Kössel’s postulates on ionic bonding",
+      "definition": "Periodic table: halogens and alkali metals are separated by the noble gases; Ion formation: halogen gains an e⁻ (anion); alkali metal loses one (cation); Ions formed: attain the stable noble-gas configuration ns²np⁶ (He: duplet); Stability: the ions are held by electrostatic attraction",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.1 · Kössel’s postulates</p><h2>Complete the point.</h2><table><tr><td>Periodic table</td><td class=\"q\">?</td></tr><tr><td>Ion formation</td><td class=\"q\">?</td></tr><tr><td>Ions formed</td><td class=\"q\">?</td></tr><tr><td>Stability</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.1 · Kössel’s postulates</p><h2>Complete the point.</h2><table><tr><td>Periodic table</td><td class=\"a\">halogens and alkali metals are separated by the noble gases</td></tr><tr><td>Ion formation</td><td class=\"a\">halogen gains an e⁻ (anion); alkali metal loses one (cation)</td></tr><tr><td>Ions formed</td><td class=\"a\">attain the stable noble-gas configuration ns²np⁶ (He: duplet)</td></tr><tr><td>Stability</td><td class=\"a\">the ions are held by electrostatic attraction</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.1-kossel-lewis"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Kössel: how does NaCl form?",
+      "definition": "Na [Ne]3s¹ → Na⁺ [Ne] + e⁻; Cl [Ne]3s²3p⁵ + e⁻ → Cl⁻ [Ar]; Na⁺ + Cl⁻ → <span style=\"color:#3b82f6\">Na⁺Cl⁻</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.1-kossel-lewis"
+      ]
+    },
+    {
       "noteType": "basic",
       "term": "What is electrovalence?",
-      "definition": "The number of <span style=\"color:#3b82f6\">unit charges</span> on the ion (e.g. Ca²⁺ → <span style=\"color:#f08c00\">2</span>)",
+      "definition": "The number of <span style=\"color:#3b82f6\">unit charges</span> on the ion (Ca²⁺: +2, Cl⁻: −1)",
       "tags": [
         "class-11",
         "chemistry",
@@ -71,7 +133,7 @@
     },
     {
       "noteType": "cloze",
-      "text": "Octet rule: atoms combine by {{c1::transfer}} or {{c2::sharing}} of valence electrons so as to have an {{c3::octet}} in their valence shells.",
+      "text": "Octet rule (Kössel and Lewis, 1916): atoms combine by {{c1::transfer}} or {{c2::sharing}} of valence electrons so as to have an {{c3::octet}} in their valence shells.",
       "tags": [
         "class-11",
         "chemistry",
@@ -81,8 +143,25 @@
     },
     {
       "noteType": "basic",
-      "term": "Who introduced the term 'covalent bond'?",
-      "definition": "<span style=\"color:#3b82f6\">Langmuir</span>",
+      "term": "Who introduced the term \"covalent bond\", and what did he drop from Lewis’s model?",
+      "definition": "<span style=\"color:#3b82f6\">Langmuir</span> (<span style=\"color:#f08c00\">1919</span>); he abandoned the idea of a <span style=\"color:#e5484d\">stationary cubical</span> octet",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.1-kossel-lewis"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Conditions for a covalent bond (Lewis–Langmuir)",
+      "definition": "1: each bond = sharing of an electron pair; 2: each atom contributes at least one electron to the pair; 3: atoms attain noble-gas configurations by sharing",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.1.2 · Lewis–Langmuir conditions</p><h2>Condition?</h2><table><tr><td>1</td><td class=\"q\">?</td></tr><tr><td>2</td><td class=\"q\">?</td></tr><tr><td>3</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.1.2 · Lewis–Langmuir conditions</p><h2>Condition?</h2><table><tr><td>1</td><td class=\"a\">each bond = sharing of an electron pair</td></tr><tr><td>2</td><td class=\"a\">each atom contributes at least one electron to the pair</td></tr><tr><td>3</td><td class=\"a\">atoms attain noble-gas configurations by sharing</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
       "tags": [
         "class-11",
         "chemistry",
@@ -92,8 +171,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Name a molecule with two double bonds and one with a triple bond.",
-      "definition": "<span style=\"color:#22a35a\">CO₂</span> (two C=O); <span style=\"color:#22a35a\">N₂</span> or <span style=\"color:#22a35a\">C₂H₂</span> (triple)",
+      "term": "Name molecules with a double bond and with a triple bond.",
+      "definition": "Double: <span style=\"color:#22a35a\">CO₂</span> (two C=O), <span style=\"color:#22a35a\">C₂H₄</span>. Triple: <span style=\"color:#22a35a\">N₂</span>, <span style=\"color:#22a35a\">C₂H₂</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -102,90 +181,140 @@
       ]
     },
     {
-      "noteType": "basic",
-      "term": "In a Lewis structure, which atom usually goes in the centre?",
-      "definition": "The <span style=\"color:#3b82f6\">least electronegative</span> atom",
+      "noteType": "advanced-html",
+      "term": "Steps for writing a Lewis structure",
+      "definition": "1: add the valence electrons of all atoms; 2: add 1 e⁻ per negative charge; subtract 1 per positive charge; 3: put the least electronegative atom in the centre; 4: single bonds first, then complete octets on terminal atoms; 5: leftover pairs → multiple bonds or lone pairs",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.1.3 · writing Lewis structures</p><h2>Step?</h2><table><tr><td>1</td><td class=\"q\">?</td></tr><tr><td>2</td><td class=\"q\">?</td></tr><tr><td>3</td><td class=\"q\">?</td></tr><tr><td>4</td><td class=\"q\">?</td></tr><tr><td>5</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.1.3 · writing Lewis structures</p><h2>Step?</h2><table><tr><td>1</td><td class=\"a\">add the valence electrons of all atoms</td></tr><tr><td>2</td><td class=\"a\">add 1 e⁻ per negative charge; subtract 1 per positive charge</td></tr><tr><td>3</td><td class=\"a\">put the least electronegative atom in the centre</td></tr><tr><td>4</td><td class=\"a\">single bonds first, then complete octets on terminal atoms</td></tr><tr><td>5</td><td class=\"a\">leftover pairs → multiple bonds or lone pairs</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.1-kossel-lewis"
+        "4.1.3-lewis-structures"
       ]
     },
     {
       "noteType": "basic",
-      "term": "How do charges change the electron count for a Lewis structure?",
-      "definition": "Add <span style=\"color:#f08c00\">1</span> e⁻ per negative charge; subtract <span style=\"color:#f08c00\">1</span> e⁻ per positive charge",
+      "term": "Which atom usually goes in the centre of a Lewis structure? Give examples.",
+      "definition": "The <span style=\"color:#3b82f6\">least electronegative</span>: N in NF₃, C in CO₃²⁻",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.1-kossel-lewis"
+        "4.1.3-lewis-structures"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Draw the Lewis structure of O₃.",
+      "term": "How many valence electrons for CO₃²⁻, and for NH₄⁺?",
+      "definition": "CO₃²⁻: 4 + 18 + 2 = <span style=\"color:#f08c00\">24</span>. NH₄⁺: 5 + 4 − 1 = <span style=\"color:#f08c00\">8</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.1.3-lewis-structures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Problem 4.1: Lewis structure of CO?",
+      "definition": "10 valence e⁻; a single bond leaves C short of an octet, so <span style=\"color:#3b82f6\">C≡O</span> with one lone pair on each atom",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.1.3-lewis-structures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Problem 4.2: Lewis structure of NO₂⁻?",
+      "definition": "18 e⁻; one <span style=\"color:#3b82f6\">N=O</span>, one N–O⁻, one lone pair on N; the double bond can be on either O (two structures)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.1.3-lewis-structures"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Lewis structure of O₃?",
       "definition": "Central O: one O=O and one O–O; formal charges +1 (centre), 0, −1",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.1-kossel-lewis"
+        "4.1.3-lewis-structures"
       ],
       "definitionImage": "media/tab_4_1_lewis_o3.webp"
     },
     {
       "noteType": "basic",
-      "term": "Draw the Lewis structure of NF₃.",
+      "term": "Lewis structure of NF₃?",
       "definition": "N with three N–F single bonds and <span style=\"color:#3b82f6\">one lone pair</span>",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.1-kossel-lewis"
+        "4.1.3-lewis-structures"
       ],
       "definitionImage": "media/tab_4_1_lewis_nf3.webp"
     },
     {
       "noteType": "basic",
-      "term": "Draw the Lewis structure of CO₃²⁻.",
+      "term": "Lewis structure of CO₃²⁻?",
       "definition": "C with one C=O and two C–O⁻; overall charge <span style=\"color:#f08c00\">2−</span>",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.1-kossel-lewis"
+        "4.1.3-lewis-structures"
       ],
       "definitionImage": "media/tab_4_1_lewis_co3.webp"
     },
     {
       "noteType": "basic",
-      "term": "Draw the Lewis structure of HNO₃.",
+      "term": "Lewis structure of HNO₃?",
       "definition": "N⁺ bonded to one =O, one –O⁻ and one –OH",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.1-kossel-lewis"
+        "4.1.3-lewis-structures"
       ],
       "definitionImage": "media/tab_4_1_lewis_hno3.webp"
     },
     {
       "noteType": "basic",
-      "term": "Lewis structure of CO: what bond joins C and O?",
-      "definition": "A <span style=\"color:#3b82f6\">triple bond</span>, with one lone pair on each atom",
+      "term": "Exercise 4.20: correct Lewis structure of acetic acid, CH₃COOH?",
+      "definition": "H₃C–C(=O)–O–H: the carboxyl C has one <span style=\"color:#3b82f6\">C=O</span> and one C–OH; each O keeps <span style=\"color:#f08c00\">two</span> lone pairs",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.1-kossel-lewis"
+        "4.1.3-lewis-structures"
       ]
     },
     {
       "noteType": "basic",
       "term": "Formula for formal charge on an atom in a Lewis structure?",
-      "definition": "Formal charge \\(= V - L - \\tfrac{1}{2}S\\)<br><small>V = valence e⁻ of free atom, L = lone-pair e⁻, S = shared (bonding) e⁻</small>",
+      "definition": "\\( FC = V - L - \\tfrac12 S \\)<br><small>V = valence e⁻ of the free atom, L = lone-pair e⁻, S = shared e⁻</small>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.1.4-formal-charge"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What assumption lies behind counting formal charge?",
+      "definition": "The atom owns <span style=\"color:#3b82f6\">one electron of each shared pair</span> and <span style=\"color:#3b82f6\">both</span> electrons of its lone pairs",
       "tags": [
         "class-11",
         "chemistry",
@@ -196,7 +325,7 @@
     {
       "noteType": "basic",
       "term": "Formal charges on the three O atoms of O₃?",
-      "definition": "Central O: <span style=\"color:#f08c00\">+1</span>; double-bonded end O: <span style=\"color:#f08c00\">0</span>; single-bonded end O: <span style=\"color:#f08c00\">−1</span>",
+      "definition": "Central O: 6 − 2 − 3 = <span style=\"color:#f08c00\">+1</span>; double-bonded end O: <span style=\"color:#f08c00\">0</span>; single-bonded end O: 6 − 6 − 1 = <span style=\"color:#f08c00\">−1</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -207,7 +336,7 @@
     {
       "noteType": "basic",
       "term": "Which Lewis structure is usually the lowest-energy one?",
-      "definition": "The one with the <span style=\"color:#3b82f6\">smallest formal charges</span>",
+      "definition": "The one with the <span style=\"color:#3b82f6\">smallest formal charges</span> on the atoms",
       "tags": [
         "class-11",
         "chemistry",
@@ -218,7 +347,7 @@
     {
       "noteType": "basic",
       "term": "Do formal charges show real charge separation?",
-      "definition": "<span style=\"color:#e5484d\">No</span>. They only help track valence electrons",
+      "definition": "<span style=\"color:#e5484d\">No</span>. They only keep track of valence electrons, on a purely covalent (equal-sharing) view",
       "tags": [
         "class-11",
         "chemistry",
@@ -228,8 +357,19 @@
     },
     {
       "noteType": "basic",
-      "term": "Give three molecules with an incomplete octet on the central atom.",
-      "definition": "<span style=\"color:#22a35a\">LiCl, BeH₂, BCl₃</span> (also AlCl₃, BF₃)",
+      "term": "Three types of exceptions to the octet rule?",
+      "definition": "<span style=\"color:#3b82f6\">Incomplete octet</span> of the central atom, <span style=\"color:#3b82f6\">odd-electron</span> molecules, <span style=\"color:#3b82f6\">expanded octet</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.1.5-octet-limitations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Incomplete octet: examples and reason?",
+      "definition": "<span style=\"color:#22a35a\">LiCl, BeH₂, BCl₃</span> (also AlCl₃, BF₃): Li, Be and B have fewer than four valence electrons (1, 2, 3)",
       "tags": [
         "class-11",
         "chemistry",
@@ -250,8 +390,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Why can third-period elements have an expanded octet?",
-      "definition": "They have <span style=\"color:#3b82f6\">d orbitals</span> available for bonding",
+      "term": "Why can elements of the third period and beyond have an expanded octet?",
+      "definition": "They have <span style=\"color:#3b82f6\">d orbitals</span> available for bonding besides s and p",
       "tags": [
         "class-11",
         "chemistry",
@@ -262,7 +402,7 @@
     {
       "noteType": "basic",
       "term": "Give three examples of an expanded octet.",
-      "definition": "<span style=\"color:#22a35a\">PF₅, SF₆, H₂SO₄</span>",
+      "definition": "<span style=\"color:#22a35a\">PF₅</span> (10 e⁻), <span style=\"color:#22a35a\">SF₆</span> (12 e⁻), <span style=\"color:#22a35a\">H₂SO₄</span> (12 e⁻ around S), plus many coordination compounds",
       "tags": [
         "class-11",
         "chemistry",
@@ -272,8 +412,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Name a sulphur compound where S obeys the octet rule.",
-      "definition": "<span style=\"color:#22a35a\">SCl₂</span>",
+      "term": "Name a sulphur compound in which S obeys the octet rule.",
+      "definition": "<span style=\"color:#22a35a\">SCl₂</span> (sulphur dichloride)",
       "tags": [
         "class-11",
         "chemistry",
@@ -283,8 +423,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Which noble gas compounds challenge the octet rule?",
-      "definition": "<span style=\"color:#22a35a\">XeF₂, KrF₂, XeOF₂</span>",
+      "term": "Which compounds challenge the octet rule’s basis (noble-gas inertness)?",
+      "definition": "<span style=\"color:#22a35a\">XeF₂, KrF₂, XeOF₂</span>: xenon and krypton do combine with O and F",
       "tags": [
         "class-11",
         "chemistry",
@@ -295,7 +435,7 @@
     {
       "noteType": "basic",
       "term": "Two more drawbacks of the octet theory?",
-      "definition": "It does not explain <span style=\"color:#3b82f6\">shapes</span> of molecules, or their <span style=\"color:#3b82f6\">relative stability</span> (energy)",
+      "definition": "It does not explain <span style=\"color:#3b82f6\">shapes</span> of molecules, and says nothing about their <span style=\"color:#3b82f6\">energy</span> (relative stability)",
       "tags": [
         "class-11",
         "chemistry",
@@ -305,8 +445,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Which elements form ionic bonds most easily?",
-      "definition": "Low <span style=\"color:#3b82f6\">ionisation enthalpy</span> (metal) + highly negative <span style=\"color:#3b82f6\">electron gain enthalpy</span> (non-metal)",
+      "term": "Formation of an ionic compound depends mainly on which two things?",
+      "definition": "The <span style=\"color:#3b82f6\">ease of forming the ions</span> from neutral atoms, and the <span style=\"color:#3b82f6\">arrangement of ions</span> in the crystal lattice",
       "tags": [
         "class-11",
         "chemistry",
@@ -316,7 +456,40 @@
     },
     {
       "noteType": "basic",
-      "term": "Which common cation is made only of non-metals?",
+      "term": "Exercise 4.6: favourable factors for an ionic bond?",
+      "definition": "Low <span style=\"color:#3b82f6\">ionisation enthalpy</span> of the metal, highly negative <span style=\"color:#3b82f6\">electron gain enthalpy</span> of the non-metal, and high <span style=\"color:#3b82f6\">lattice enthalpy</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.2-ionic-bond"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is ionisation always endothermic? Electron gain?",
+      "definition": "Ionisation: <span style=\"color:#3b82f6\">always endothermic</span>. Electron gain: <span style=\"color:#e5484d\">can be exothermic or endothermic</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.2-ionic-bond"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Electron affinity vs electron gain enthalpy?",
+      "definition": "Electron affinity is the <span style=\"color:#3b82f6\">negative</span> of the energy change on electron gain",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.2-ionic-bond"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which common cation contains only non-metals?",
       "definition": "<span style=\"color:#22a35a\">NH₄⁺</span> (ammonium)",
       "tags": [
         "class-11",
@@ -327,52 +500,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Is ionisation always endothermic?",
-      "definition": "Yes. <span style=\"color:#e5484d\">Electron gain</span> can be exothermic or endothermic",
-      "tags": [
-        "class-11",
-        "chemistry",
-        "ch-4",
-        "4.2-ionic-bond"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "What truly decides the stability of an ionic compound?",
-      "definition": "Its <span style=\"color:#3b82f6\">lattice enthalpy</span>, not just reaching an octet",
-      "tags": [
-        "class-11",
-        "chemistry",
-        "ch-4",
-        "4.2-ionic-bond"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Define lattice enthalpy.",
-      "definition": "Energy needed to completely separate <span style=\"color:#f08c00\">1 mol</span> of a solid ionic compound into gaseous ions",
-      "tags": [
-        "class-11",
-        "chemistry",
-        "ch-4",
-        "4.2-ionic-bond"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Lattice enthalpy of NaCl?",
-      "definition": "<span style=\"color:#f08c00\">788 kJ mol⁻¹</span>",
-      "tags": [
-        "class-11",
-        "chemistry",
-        "ch-4",
-        "4.2-ionic-bond"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "What is the crystal structure of NaCl called?",
-      "definition": "<span style=\"color:#3b82f6\">Rock salt</span> structure: Na⁺ and Cl⁻ alternate in a cube",
+      "term": "Name the crystal structure of NaCl.",
+      "definition": "<span style=\"color:#3b82f6\">Rock salt</span> structure: Na⁺ and Cl⁻ alternate in three dimensions",
       "tags": [
         "class-11",
         "chemistry",
@@ -384,7 +513,62 @@
     {
       "noteType": "basic",
       "term": "Na → Na⁺ costs 495.8 kJ/mol and Cl → Cl⁻ releases only 348.7 kJ/mol. Why does NaCl still form?",
-      "definition": "The <span style=\"color:#3b82f6\">lattice enthalpy</span> released (<span style=\"color:#f08c00\">788 kJ mol⁻¹</span>) more than compensates",
+      "definition": "The <span style=\"color:#3b82f6\">lattice enthalpy</span> (<span style=\"color:#f08c00\">788 kJ mol⁻¹</span>) more than makes up the net <span style=\"color:#f08c00\">147.1 kJ mol⁻¹</span> absorbed",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.2-ionic-bond"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What truly measures the stability of an ionic compound?",
+      "definition": "Its <span style=\"color:#3b82f6\">enthalpy of lattice formation</span>, <span style=\"color:#e5484d\">not</span> simply reaching an octet in the gaseous ions",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.2-ionic-bond"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define lattice enthalpy.",
+      "definition": "Energy needed to <span style=\"color:#3b82f6\">completely separate 1 mol</span> of a solid ionic compound into its gaseous ions (to infinite distance)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.2-ionic-bond"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can lattice enthalpy not be found just from attractions and repulsions between ion pairs?",
+      "definition": "The crystal is <span style=\"color:#3b82f6\">three-dimensional</span>; factors of the crystal geometry must be included",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.2-ionic-bond"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.14: show electron transfer to form ions for (a) K and S, (b) Ca and O, (c) Al and N.",
+      "definition": "(a) 2K → 2K⁺ + 2e⁻; S + 2e⁻ → S²⁻ → <span style=\"color:#22a35a\">K₂S</span>. (b) Ca²⁺ + O²⁻ → <span style=\"color:#22a35a\">CaO</span>. (c) Al³⁺ + N³⁻ → <span style=\"color:#22a35a\">AlN</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.2-ionic-bond"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.3: Lewis symbols for S and S²⁻, Al and Al³⁺, H and H⁻?",
+      "definition": "S: 6 dots; S²⁻: 8 dots. Al: 3 dots; Al³⁺: <span style=\"color:#f08c00\">no dots</span>. H: 1 dot; H⁻: 2 dots",
       "tags": [
         "class-11",
         "chemistry",
@@ -395,33 +579,44 @@
     {
       "noteType": "basic",
       "term": "Define bond length.",
-      "definition": "Equilibrium distance between the <span style=\"color:#3b82f6\">nuclei</span> of two bonded atoms",
+      "definition": "The equilibrium distance between the <span style=\"color:#3b82f6\">nuclei</span> of two bonded atoms in a molecule; measured by spectroscopy, X-ray and electron diffraction",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.1-bond-length"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Bond length R of molecule AB in terms of covalent radii?",
-      "definition": "\\(R = r_A + r_B\\)",
+      "term": "Bond length R of AB in terms of covalent radii?",
+      "definition": "\\( R = r_A + r_B \\)",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.1-bond-length"
       ]
     },
     {
       "noteType": "cloze",
-      "text": "Covalent radius is half the distance between two similar atoms bonded {{c1::in the same molecule}}; van der Waals radius is half the distance between two similar atoms {{c2::in separate molecules}} in a solid.",
+      "text": "Covalent radius is half the distance between two similar atoms joined by a covalent bond {{c1::in the same molecule}}; van der Waals radius is half the distance between two similar atoms {{c2::in separate molecules}} in a solid.",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.1-bond-length"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the van der Waals radius represent?",
+      "definition": "The <span style=\"color:#3b82f6\">overall size</span> of the atom, including its valence shell, in a <span style=\"color:#3b82f6\">non-bonded</span> situation",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.1-bond-length"
       ]
     },
     {
@@ -486,7 +681,7 @@
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.1-bond-length"
       ]
     },
     {
@@ -497,18 +692,85 @@
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.1-bond-length"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Average bond lengths (Table 4.2)",
+      "definition": "O–H: 96; C–H: 107; C–C: 154; C=C: 133; C≡C: 120; C–O / C=O: 143 / 121; C≡N: 116",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.2 · average bond lengths</p><h2>Length (pm)?</h2><table><tr><td>O–H</td><td class=\"q\">?</td></tr><tr><td>C–H</td><td class=\"q\">?</td></tr><tr><td>C–C</td><td class=\"q\">?</td></tr><tr><td>C=C</td><td class=\"q\">?</td></tr><tr><td>C≡C</td><td class=\"q\">?</td></tr><tr><td>C–O / C=O</td><td class=\"q\">?</td></tr><tr><td>C≡N</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.2 · average bond lengths</p><h2>Length (pm)?</h2><table><tr><td>O–H</td><td class=\"a\">96</td></tr><tr><td>C–H</td><td class=\"a\">107</td></tr><tr><td>C–C</td><td class=\"a\">154</td></tr><tr><td>C=C</td><td class=\"a\">133</td></tr><tr><td>C≡C</td><td class=\"a\">120</td></tr><tr><td>C–O / C=O</td><td class=\"a\">143 / 121</td></tr><tr><td>C≡N</td><td class=\"a\">116</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.1-bond-length"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Bond lengths in common molecules (Table 4.3)",
+      "definition": "H₂: 74; F₂: 144; Cl₂: 199; N₂ (N≡N): 109; O₂ (O=O): 121; HF → HI: 92, 127, 141, 160",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.3 · bond lengths</p><h2>Length (pm)?</h2><table><tr><td>H₂</td><td class=\"q\">?</td></tr><tr><td>F₂</td><td class=\"q\">?</td></tr><tr><td>Cl₂</td><td class=\"q\">?</td></tr><tr><td>N₂ (N≡N)</td><td class=\"q\">?</td></tr><tr><td>O₂ (O=O)</td><td class=\"q\">?</td></tr><tr><td>HF → HI</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.3 · bond lengths</p><h2>Length (pm)?</h2><table><tr><td>H₂</td><td class=\"a\">74</td></tr><tr><td>F₂</td><td class=\"a\">144</td></tr><tr><td>Cl₂</td><td class=\"a\">199</td></tr><tr><td>N₂ (N≡N)</td><td class=\"a\">109</td></tr><tr><td>O₂ (O=O)</td><td class=\"a\">121</td></tr><tr><td>HF → HI</td><td class=\"a\">92, 127, 141, 160</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.1-bond-length"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trend: why does the H–X bond length rise from HF to HI?",
+      "definition": "The halogen atom gets <span style=\"color:#3b82f6\">bigger</span> down the group (larger covalent radius)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.1-bond-length"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define bond angle.",
+      "definition": "The angle between the <span style=\"color:#3b82f6\">orbitals containing bonding electron pairs</span> around the central atom; found by spectroscopy",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.2-bond-angle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "H–O–H bond angle in water?",
+      "definition": "<span style=\"color:#f08c00\">104.5°</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.2-bond-angle"
       ]
     },
     {
       "noteType": "basic",
       "term": "Define bond enthalpy.",
-      "definition": "Energy to break <span style=\"color:#f08c00\">1 mol</span> of bonds of a type between two atoms in the <span style=\"color:#3b82f6\">gaseous</span> state",
+      "definition": "Energy needed to break <span style=\"color:#f08c00\">1 mol</span> of bonds of a particular type between two atoms in the <span style=\"color:#3b82f6\">gaseous</span> state (kJ mol⁻¹)",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.3-bond-enthalpy"
       ]
     },
     {
@@ -516,8 +778,8 @@
       "term": "Bond enthalpies: H2, O2, N2, HCl",
       "definition": "H–H: 435.8; O=O: 498; N≡N: 946; H–Cl: 431",
       "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.3.3 · Bond enthalpy</p><h2>Bond enthalpy (kJ mol⁻¹)?</h2><table><tr><td>H–H</td><td class=\"q\">?</td></tr><tr><td>O=O</td><td class=\"q\">?</td></tr><tr><td>N≡N</td><td class=\"q\">?</td></tr><tr><td>H–Cl</td><td class=\"q\">?</td></tr></table></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.3.3 · Bond enthalpy</p><h2>Bond enthalpy (kJ mol⁻¹)?</h2><table><tr><td>H–H</td><td class=\"a\">435.8</td></tr><tr><td>O=O</td><td class=\"a\">498</td></tr><tr><td>N≡N</td><td class=\"a\">946</td></tr><tr><td>H–Cl</td><td class=\"a\">431</td></tr></table></div>",
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.3.3 · bond enthalpy</p><h2>Bond enthalpy (kJ mol⁻¹)?</h2><table><tr><td>H–H</td><td class=\"q\">?</td></tr><tr><td>O=O</td><td class=\"q\">?</td></tr><tr><td>N≡N</td><td class=\"q\">?</td></tr><tr><td>H–Cl</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.3.3 · bond enthalpy</p><h2>Bond enthalpy (kJ mol⁻¹)?</h2><table><tr><td>H–H</td><td class=\"a\">435.8</td></tr><tr><td>O=O</td><td class=\"a\">498</td></tr><tr><td>N≡N</td><td class=\"a\">946</td></tr><tr><td>H–Cl</td><td class=\"a\">431</td></tr></table></div>",
         "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
         "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
       },
@@ -525,57 +787,51 @@
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.3-bond-enthalpy"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Why is average bond enthalpy used for polyatomic molecules like H₂O?",
-      "definition": "Breaking successive O–H bonds needs <span style=\"color:#3b82f6\">different energies</span> (<span style=\"color:#f08c00\">502</span> vs <span style=\"color:#f08c00\">427 kJ mol⁻¹</span>)",
+      "term": "Larger bond dissociation enthalpy means…?",
+      "definition": "A <span style=\"color:#3b82f6\">stronger</span> bond",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.3-bond-enthalpy"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the second O–H bond of water broken with a different energy from the first (502 vs 427 kJ/mol)?",
+      "definition": "After the first break, the <span style=\"color:#3b82f6\">chemical environment</span> of the remaining O–H has changed",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.3-bond-enthalpy"
       ]
     },
     {
       "noteType": "basic",
       "term": "Average O–H bond enthalpy in water?",
-      "definition": "\\(\\frac{502 + 427}{2} = \\) <span style=\"color:#f08c00\">464.5 kJ mol⁻¹</span>",
+      "definition": "\\( \\dfrac{502 + 427}{2} = \\) <span style=\"color:#f08c00\">464.5 kJ mol⁻¹</span>: total dissociation enthalpy ÷ number of bonds broken",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
-      ]
-    },
-    {
-      "noteType": "advanced-html",
-      "term": "C–C, C=C, C≡C bond lengths",
-      "definition": "C–C: 154; C=C: 133; C≡C: 120",
-      "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.2 · Bond lengths</p><h2>Carbon–carbon bond length (pm)?</h2><table><tr><td>C–C</td><td class=\"q\">?</td></tr><tr><td>C=C</td><td class=\"q\">?</td></tr><tr><td>C≡C</td><td class=\"q\">?</td></tr></table></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.2 · Bond lengths</p><h2>Carbon–carbon bond length (pm)?</h2><table><tr><td>C–C</td><td class=\"a\">154</td></tr><tr><td>C=C</td><td class=\"a\">133</td></tr><tr><td>C≡C</td><td class=\"a\">120</td></tr></table></div>",
-        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
-        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
-      },
-      "tags": [
-        "class-11",
-        "chemistry",
-        "ch-4",
-        "4.3-bond-parameters"
+        "4.3.3-bond-enthalpy"
       ]
     },
     {
       "noteType": "basic",
       "term": "Bond order in the Lewis picture?",
-      "definition": "The <span style=\"color:#3b82f6\">number of bonds</span> between the two atoms",
+      "definition": "The <span style=\"color:#3b82f6\">number of bonds</span> (shared pairs) between the two atoms: H₂ 1, O₂ 2, N₂ 3, CO 3",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.4-bond-order"
       ]
     },
     {
@@ -586,7 +842,7 @@
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.4-bond-order"
       ]
     },
     {
@@ -597,7 +853,18 @@
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.4-bond-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is special about N₂’s bond enthalpy?",
+      "definition": "<span style=\"color:#f08c00\">946 kJ mol⁻¹</span>: one of the <span style=\"color:#3b82f6\">highest</span> for a diatomic molecule (triple bond)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.4-bond-order"
       ]
     },
     {
@@ -607,13 +874,24 @@
         "class-11",
         "chemistry",
         "ch-4",
-        "4.3-bond-parameters"
+        "4.3.4-bond-order"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.9: express bond strength in terms of bond order.",
+      "definition": "Higher bond order → <span style=\"color:#3b82f6\">stronger bond</span> (higher bond enthalpy) and <span style=\"color:#3b82f6\">shorter</span> bond",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.4-bond-order"
       ]
     },
     {
       "noteType": "basic",
       "term": "Both O–O bonds in O₃ are 128 pm. How does this compare with single and double bonds?",
-      "definition": "Between O–O (<span style=\"color:#f08c00\">148 pm</span>) and O=O (<span style=\"color:#f08c00\">121 pm</span>)",
+      "definition": "Between O–O (<span style=\"color:#f08c00\">148 pm</span>) and O=O (<span style=\"color:#f08c00\">121 pm</span>): neither Lewis structure fits alone",
       "tags": [
         "class-11",
         "chemistry",
@@ -624,8 +902,8 @@
     },
     {
       "noteType": "basic",
-      "term": "What is a resonance hybrid?",
-      "definition": "The single real structure that the <span style=\"color:#3b82f6\">canonical forms</span> together describe",
+      "term": "State the concept of resonance.",
+      "definition": "When one Lewis structure cannot describe a molecule, several <span style=\"color:#3b82f6\">canonical structures</span> with similar energy, the same positions of nuclei and the same bonding/non-bonding pairs are written; their <span style=\"color:#3b82f6\">hybrid</span> is the real molecule",
       "tags": [
         "class-11",
         "chemistry",
@@ -646,8 +924,8 @@
     },
     {
       "noteType": "basic",
-      "term": "How does resonance affect energy?",
-      "definition": "It <span style=\"color:#3b82f6\">stabilises</span> the molecule: the hybrid has <span style=\"color:#3b82f6\">lower energy</span> than any canonical form",
+      "term": "Resonance energy?",
+      "definition": "Energy of the most stable canonical structure − energy of the <span style=\"color:#3b82f6\">resonance hybrid</span>: resonance <span style=\"color:#3b82f6\">stabilises</span> the molecule",
       "tags": [
         "class-11",
         "chemistry",
@@ -658,7 +936,7 @@
     {
       "noteType": "basic",
       "term": "Do canonical forms really exist?",
-      "definition": "<span style=\"color:#e5484d\">No</span>. The molecule does not switch between them, and they are not in equilibrium",
+      "definition": "<span style=\"color:#e5484d\">No</span>. The molecule does not flip between them, they have no real existence, and there is no equilibrium between them",
       "tags": [
         "class-11",
         "chemistry",
@@ -668,8 +946,8 @@
     },
     {
       "noteType": "basic",
-      "term": "How many canonical forms does CO₃²⁻ have, and how do its C–O bonds compare?",
-      "definition": "<span style=\"color:#f08c00\">Three</span>; all C–O bonds are <span style=\"color:#3b82f6\">equivalent</span>",
+      "term": "Problem 4.3: why is CO₃²⁻ a resonance hybrid?",
+      "definition": "One Lewis structure shows unequal bonds, but all C–O bonds are found <span style=\"color:#3b82f6\">equivalent</span>: three canonical forms",
       "tags": [
         "class-11",
         "chemistry",
@@ -680,8 +958,8 @@
     },
     {
       "noteType": "basic",
-      "term": "C–O bond length in CO₂ (115 pm) lies between which two values?",
-      "definition": "C=O <span style=\"color:#f08c00\">121 pm</span> and C≡O <span style=\"color:#f08c00\">110 pm</span>",
+      "term": "Problem 4.4: C–O length in CO₂ (115 pm) lies between which values?",
+      "definition": "C=O <span style=\"color:#f08c00\">121 pm</span> and C≡O <span style=\"color:#f08c00\">110 pm</span>: CO₂ is a hybrid of three forms",
       "tags": [
         "class-11",
         "chemistry",
@@ -692,8 +970,30 @@
     },
     {
       "noteType": "basic",
+      "term": "Exercise 4.12: two structures of H₃PO₃ differ in where an H sits (on P or on O). Are they canonical forms?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: canonical forms must have the <span style=\"color:#3b82f6\">same positions of nuclei</span> and differ only in electrons",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.5-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.13: how many resonance structures for SO₃, NO₂ and NO₃⁻?",
+      "definition": "SO₃: <span style=\"color:#f08c00\">3</span> (one S=O moving); NO₂: <span style=\"color:#f08c00\">2</span>; NO₃⁻: <span style=\"color:#f08c00\">3</span> (one N=O moving)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.5-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
       "term": "Which is a non-polar covalent bond: H–H or H–F?",
-      "definition": "<span style=\"color:#3b82f6\">H–H</span> (identical atoms share equally)",
+      "definition": "<span style=\"color:#3b82f6\">H–H</span> (identical atoms share equally); H–F is <span style=\"color:#3b82f6\">polar</span> (Exercise 4.18)",
       "tags": [
         "class-11",
         "chemistry",
@@ -704,7 +1004,7 @@
     {
       "noteType": "basic",
       "term": "Formula and unit of dipole moment?",
-      "definition": "\\(\\mu = Q \\times r\\)<br>Unit: <span style=\"color:#3b82f6\">debye (D)</span>, <span style=\"color:#f08c00\">1 D = 3.33564 × 10⁻³⁰ C m</span>",
+      "definition": "\\( \\mu = Q \\times r \\)<br>Unit: <span style=\"color:#3b82f6\">debye (D)</span>, <span style=\"color:#f08c00\">1 D = 3.33564 × 10⁻³⁰ C m</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -715,7 +1015,7 @@
     {
       "noteType": "basic",
       "term": "Is dipole moment a scalar or a vector?",
-      "definition": "<span style=\"color:#3b82f6\">Vector</span>",
+      "definition": "<span style=\"color:#3b82f6\">Vector</span>: for a polyatomic molecule it is the vector sum of bond dipoles",
       "tags": [
         "class-11",
         "chemistry",
@@ -725,7 +1025,7 @@
     },
     {
       "noteType": "basic",
-      "term": "In the chemist's crossed arrow for a dipole, where are the cross and the head?",
+      "term": "The chemist’s crossed arrow for a dipole: where are the cross and the head?",
       "definition": "Cross on the <span style=\"color:#3b82f6\">positive</span> end, head on the <span style=\"color:#3b82f6\">negative</span> end",
       "tags": [
         "class-11",
@@ -748,8 +1048,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Why is the dipole moment of BeF₂ zero?",
-      "definition": "Linear: two equal bond dipoles <span style=\"color:#3b82f6\">cancel</span>",
+      "term": "Exercise 4.22: why is μ of BeH₂ (or BeF₂) zero though the bonds are polar?",
+      "definition": "The molecule is <span style=\"color:#3b82f6\">linear</span>: two equal bond dipoles point opposite and cancel",
       "tags": [
         "class-11",
         "chemistry",
@@ -759,7 +1059,18 @@
     },
     {
       "noteType": "basic",
-      "term": "Why is the dipole moment of BF₃ zero though B–F bonds are polar?",
+      "term": "Exercise 4.15: CO₂ and H₂O are both triatomic. Why is μ(CO₂) = 0 but μ(H₂O) = 1.85 D?",
+      "definition": "CO₂ is <span style=\"color:#3b82f6\">linear</span> (bond dipoles cancel); H₂O is <span style=\"color:#3b82f6\">bent</span> (they add)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.6-polarity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is μ of BF₃ zero though B–F bonds are polar?",
       "definition": "Trigonal planar at <span style=\"color:#f08c00\">120°</span>: the three bond moments sum to <span style=\"color:#3b82f6\">zero</span>",
       "tags": [
         "class-11",
@@ -771,7 +1082,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Why is μ(NH₃) greater than μ(NF₃)?",
+      "term": "Exercise 4.23: why is μ(NH₃) greater than μ(NF₃)?",
       "definition": "In NH₃ the lone-pair dipole points the <span style=\"color:#3b82f6\">same way</span> as the N–H bond moments; in NF₃ it points <span style=\"color:#e5484d\">opposite</span> to the N–F moments",
       "tags": [
         "class-11",
@@ -782,9 +1093,15 @@
       "definitionImage": "media/nh3_nf3_dipole.webp"
     },
     {
-      "noteType": "basic",
-      "term": "Dipole moments of NH₃ and NF₃?",
-      "definition": "NH₃: <span style=\"color:#f08c00\">1.47 D</span>; NF₃: <span style=\"color:#f08c00\">0.23 D</span>",
+      "noteType": "advanced-html",
+      "term": "Dipole moments of selected molecules (Table 4.5)",
+      "definition": "HF / HCl / HBr / HI: 1.78 / 1.07 / 0.79 / 0.38; H₂O / H₂S / CO₂: 1.85 / 0.95 / 0; NH₃ / NF₃ / BF₃: 1.47 / 0.23 / 0; CH₄ / CHCl₃ / CCl₄: 0 / 1.04 / 0",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.5 · dipole moments</p><h2>μ (D)?</h2><table><tr><td>HF / HCl / HBr / HI</td><td class=\"q\">?</td></tr><tr><td>H₂O / H₂S / CO₂</td><td class=\"q\">?</td></tr><tr><td>NH₃ / NF₃ / BF₃</td><td class=\"q\">?</td></tr><tr><td>CH₄ / CHCl₃ / CCl₄</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.5 · dipole moments</p><h2>μ (D)?</h2><table><tr><td>HF / HCl / HBr / HI</td><td class=\"a\">1.78 / 1.07 / 0.79 / 0.38</td></tr><tr><td>H₂O / H₂S / CO₂</td><td class=\"a\">1.85 / 0.95 / 0</td></tr><tr><td>NH₃ / NF₃ / BF₃</td><td class=\"a\">1.47 / 0.23 / 0</td></tr><tr><td>CH₄ / CHCl₃ / CCl₄</td><td class=\"a\">0 / 1.04 / 0</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
       "tags": [
         "class-11",
         "chemistry",
@@ -794,8 +1111,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Order of dipole moments: HF, HCl, HBr, HI?",
-      "definition": "HF > HCl > HBr > HI (<span style=\"color:#f08c00\">1.78 > 1.07 > 0.79 > 0.38 D</span>)",
+      "term": "Exercise 4.16: uses of dipole moment?",
+      "definition": "To tell <span style=\"color:#3b82f6\">polar from non-polar</span> molecules, to predict <span style=\"color:#3b82f6\">shape</span> (e.g. linear CO₂ vs bent H₂O), and to estimate the <span style=\"color:#3b82f6\">% ionic character</span> of a bond",
       "tags": [
         "class-11",
         "chemistry",
@@ -805,34 +1122,67 @@
     },
     {
       "noteType": "basic",
-      "term": "CH₄ and CCl₄ have μ = 0. What is μ of CHCl₃?",
-      "definition": "<span style=\"color:#f08c00\">1.04 D</span>",
+      "term": "Exercise 4.17: electronegativity vs electron gain enthalpy?",
+      "definition": "Electronegativity: tendency of an atom <span style=\"color:#3b82f6\">in a molecule</span> to attract the shared pair; relative, no unit. Electron gain enthalpy: energy change when an <span style=\"color:#3b82f6\">isolated gaseous atom</span> gains an electron; measurable, kJ mol⁻¹",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
         "4.3.6-polarity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.19: arrange in increasing ionic character: LiF, K₂O, N₂, SO₂, ClF.",
+      "definition": "<span style=\"color:#f08c00\">N₂ < SO₂ < ClF < K₂O < LiF</span> (by electronegativity difference: 0, 1.0, 1.0, 2.7, 3.0)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.6-polarity"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Do ionic bonds have covalent character?",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>: just as covalent bonds have partial ionic character, ionic bonds have partial covalent character (the cation <span style=\"color:#3b82f6\">polarises</span> the anion)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.6-fajans-rules"
       ]
     },
     {
       "noteType": "cloze",
-      "text": "Fajans' rules: covalent character of an ionic bond increases with a {{c1::smaller}} cation, a {{c2::larger}} anion, and a {{c3::greater charge}} on the cation.",
+      "text": "Fajans’ rules: covalent character of an ionic bond increases with a {{c1::smaller}} cation, a {{c2::larger}} anion, and a {{c3::greater charge}} on the cation.",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "fajans-rules"
+        "4.3.6-fajans-rules"
       ]
     },
     {
       "noteType": "basic",
-      "term": "Which is more polarising for the same size and charge: a transition-metal cation or an alkali metal cation?",
-      "definition": "<span style=\"color:#3b82f6\">Transition-metal</span> type, (n−1)dⁿns⁰",
+      "term": "For the same size and charge, which cation polarises more: (n−1)dⁿns⁰ (transition metal) or ns²np⁶ (noble-gas core)?",
+      "definition": "<span style=\"color:#3b82f6\">(n−1)dⁿns⁰</span>: d electrons shield the nucleus poorly",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "fajans-rules"
+        "4.3.6-fajans-rules"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why does a small, highly charged cation make a bond covalent?",
+      "definition": "Its concentrated positive charge <span style=\"color:#3b82f6\">pulls the anion’s electron cloud</span> towards itself; electron density builds up between the nuclei, like a shared pair",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.3.6-fajans-rules"
       ]
     },
     {
@@ -847,20 +1197,15 @@
       ]
     },
     {
-      "noteType": "basic",
-      "term": "According to VSEPR, what decides the shape of a molecule?",
-      "definition": "The number of <span style=\"color:#3b82f6\">valence shell electron pairs</span> (bonded + lone) around the central atom",
-      "tags": [
-        "class-11",
-        "chemistry",
-        "ch-4",
-        "4.4-vsepr"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "How does VSEPR treat a double or triple bond?",
-      "definition": "As a <span style=\"color:#3b82f6\">single super pair</span>",
+      "noteType": "advanced-html",
+      "term": "Postulates of VSEPR theory",
+      "definition": "Shape depends on: the number of valence-shell electron pairs (bonded or not) around the central atom; Electron pairs: repel one another (their clouds are negative); They take positions that: minimise repulsion (maximise distance); Valence shell is taken as: a sphere, pairs on its surface far apart; A multiple bond counts as: one \"super pair\"; With resonance: VSEPR applies to any canonical structure",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.4 · VSEPR postulates</p><h2>Complete the postulate.</h2><table><tr><td>Shape depends on</td><td class=\"q\">?</td></tr><tr><td>Electron pairs</td><td class=\"q\">?</td></tr><tr><td>They take positions that</td><td class=\"q\">?</td></tr><tr><td>Valence shell is taken as</td><td class=\"q\">?</td></tr><tr><td>A multiple bond counts as</td><td class=\"q\">?</td></tr><tr><td>With resonance</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.4 · VSEPR postulates</p><h2>Complete the postulate.</h2><table><tr><td>Shape depends on</td><td class=\"a\">the number of valence-shell electron pairs (bonded or not) around the central atom</td></tr><tr><td>Electron pairs</td><td class=\"a\">repel one another (their clouds are negative)</td></tr><tr><td>They take positions that</td><td class=\"a\">minimise repulsion (maximise distance)</td></tr><tr><td>Valence shell is taken as</td><td class=\"a\">a sphere, pairs on its surface far apart</td></tr><tr><td>A multiple bond counts as</td><td class=\"a\">one \"super pair\"</td></tr><tr><td>With resonance</td><td class=\"a\">VSEPR applies to any canonical structure</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
       "tags": [
         "class-11",
         "chemistry",
@@ -871,7 +1216,7 @@
     {
       "noteType": "basic",
       "term": "Order of electron-pair repulsions?",
-      "definition": "lp–lp > lp–bp > bp–bp",
+      "definition": "<span style=\"color:#3b82f6\">lp–lp > lp–bp > bp–bp</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -881,8 +1226,19 @@
     },
     {
       "noteType": "basic",
-      "term": "Why do lone pairs repel more than bond pairs?",
-      "definition": "A lone pair is held by <span style=\"color:#3b82f6\">one nucleus only</span>, so it spreads out and takes more space",
+      "term": "Why do lone pairs repel more than bond pairs (Nyholm and Gillespie)?",
+      "definition": "A lone pair is localised on <span style=\"color:#3b82f6\">one atom</span> only; a bond pair is shared between two, so the lone pair occupies more space",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.4-vsepr"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What do extra lone-pair repulsions do to shapes?",
+      "definition": "They cause <span style=\"color:#3b82f6\">deviations from idealised shapes</span> and alter bond angles",
       "tags": [
         "class-11",
         "chemistry",
@@ -958,6 +1314,23 @@
             "labelInImage": true
           }
         ]
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.4-vsepr"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "VSEPR shapes with no lone pair (Table 4.6)",
+      "definition": "AB₂: linear · BeCl₂; AB₃: trigonal planar · BF₃; AB₄: tetrahedral · CH₄; AB₅: trigonal bipyramidal · PCl₅; AB₆: octahedral · SF₆",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.6 · no lone pair</p><h2>Shape and example?</h2><table><tr><td>AB₂</td><td class=\"q\">?</td></tr><tr><td>AB₃</td><td class=\"q\">?</td></tr><tr><td>AB₄</td><td class=\"q\">?</td></tr><tr><td>AB₅</td><td class=\"q\">?</td></tr><tr><td>AB₆</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.6 · no lone pair</p><h2>Shape and example?</h2><table><tr><td>AB₂</td><td class=\"a\">linear · BeCl₂</td></tr><tr><td>AB₃</td><td class=\"a\">trigonal planar · BF₃</td></tr><tr><td>AB₄</td><td class=\"a\">tetrahedral · CH₄</td></tr><tr><td>AB₅</td><td class=\"a\">trigonal bipyramidal · PCl₅</td></tr><tr><td>AB₆</td><td class=\"a\">octahedral · SF₆</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
       },
       "tags": [
         "class-11",
@@ -1065,9 +1438,15 @@
       ]
     },
     {
-      "noteType": "basic",
-      "term": "H–N–H angle in NH₃ and why?",
-      "definition": "<span style=\"color:#f08c00\">107°</span> (from 109.5°): lp–bp repulsion > bp–bp",
+      "noteType": "advanced-html",
+      "term": "VSEPR shapes with lone pairs (Table 4.7)",
+      "definition": "AB₂E: bent · SO₂, O₃; AB₃E: trigonal pyramidal · NH₃; AB₂E₂: bent · H₂O; AB₄E: see-saw · SF₄; AB₃E₂: T-shape · ClF₃; AB₅E: square pyramid · BrF₅; AB₄E₂: square planar · XeF₄",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.7 · with lone pairs</p><h2>Shape and example?</h2><table><tr><td>AB₂E</td><td class=\"q\">?</td></tr><tr><td>AB₃E</td><td class=\"q\">?</td></tr><tr><td>AB₂E₂</td><td class=\"q\">?</td></tr><tr><td>AB₄E</td><td class=\"q\">?</td></tr><tr><td>AB₃E₂</td><td class=\"q\">?</td></tr><tr><td>AB₅E</td><td class=\"q\">?</td></tr><tr><td>AB₄E₂</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Table 4.7 · with lone pairs</p><h2>Shape and example?</h2><table><tr><td>AB₂E</td><td class=\"a\">bent · SO₂, O₃</td></tr><tr><td>AB₃E</td><td class=\"a\">trigonal pyramidal · NH₃</td></tr><tr><td>AB₂E₂</td><td class=\"a\">bent · H₂O</td></tr><tr><td>AB₄E</td><td class=\"a\">see-saw · SF₄</td></tr><tr><td>AB₃E₂</td><td class=\"a\">T-shape · ClF₃</td></tr><tr><td>AB₅E</td><td class=\"a\">square pyramid · BrF₅</td></tr><tr><td>AB₄E₂</td><td class=\"a\">square planar · XeF₄</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
       "tags": [
         "class-11",
         "chemistry",
@@ -1077,8 +1456,30 @@
     },
     {
       "noteType": "basic",
-      "term": "Why is the bond angle in H₂O (104.5°) less than in NH₃ (107°)?",
-      "definition": "H₂O has <span style=\"color:#f08c00\">two</span> lone pairs, and lp–lp repulsion is strongest",
+      "term": "Exercise 4.7: shapes by VSEPR of BeCl₂, BCl₃, SiCl₄, AsF₅, H₂S, PH₃?",
+      "definition": "Linear, trigonal planar, tetrahedral, trigonal bipyramidal, <span style=\"color:#3b82f6\">bent</span>, <span style=\"color:#3b82f6\">trigonal pyramidal</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.4-vsepr"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "H–N–H angle in NH₃, and why not 109.5°?",
+      "definition": "<span style=\"color:#f08c00\">107°</span>: lp–bp repulsion > bp–bp squeezes the bond pairs",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.4-vsepr"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.8: both NH₃ and H₂O are distorted tetrahedral. Why is the angle smaller in water (104.5° vs 107°)?",
+      "definition": "H₂O has <span style=\"color:#f08c00\">two</span> lone pairs; the extra lp–lp repulsion (strongest) squeezes the O–H bonds more",
       "tags": [
         "class-11",
         "chemistry",
@@ -1089,7 +1490,7 @@
     {
       "noteType": "basic",
       "term": "In SF₄, is the lone pair axial or equatorial, and why?",
-      "definition": "<span style=\"color:#3b82f6\">Equatorial</span>: only two lp–bp repulsions at 90° (vs three if axial)",
+      "definition": "<span style=\"color:#3b82f6\">Equatorial</span>: only <span style=\"color:#f08c00\">two</span> lp–bp repulsions at 90° (vs three if axial) → see-saw",
       "tags": [
         "class-11",
         "chemistry",
@@ -1110,8 +1511,30 @@
     },
     {
       "noteType": "basic",
-      "term": "For which elements does VSEPR predict shapes especially well?",
-      "definition": "<span style=\"color:#3b82f6\">p-block</span> compounds",
+      "term": "In XeF₄, where are the two lone pairs?",
+      "definition": "Opposite each other (<span style=\"color:#f08c00\">180°</span>) → <span style=\"color:#3b82f6\">square planar</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.4-vsepr"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For which compounds does VSEPR predict shapes especially well?",
+      "definition": "<span style=\"color:#3b82f6\">p-block</span> compounds; its theoretical basis is still debated",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.4-vsepr"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: shape vs electron geometry of NH₃?",
+      "definition": "Electron-pair geometry: <span style=\"color:#3b82f6\">tetrahedral</span>. Shape (atoms only): <span style=\"color:#3b82f6\">trigonal pyramidal</span>. Lone pairs are invisible in the shape",
       "tags": [
         "class-11",
         "chemistry",
@@ -1132,8 +1555,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Why does H₂ form when two H atoms approach?",
-      "definition": "New <span style=\"color:#3b82f6\">attractive</span> forces exceed the new repulsive ones, so energy falls to a minimum",
+      "term": "Exercise 4.33: why does H₂ form as two H atoms approach (VB theory)?",
+      "definition": "New attractions (nucleus–other electron) and repulsions arise; <span style=\"color:#3b82f6\">attraction wins</span>, energy falls to a minimum at the bond length",
       "tags": [
         "class-11",
         "chemistry",
@@ -1143,8 +1566,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Bond length and bond enthalpy of H₂?",
-      "definition": "<span style=\"color:#f08c00\">74 pm</span>; <span style=\"color:#f08c00\">435.8 kJ mol⁻¹</span>",
+      "term": "Bond length and bond enthalpy of H₂ (VB section)?",
+      "definition": "<span style=\"color:#f08c00\">74 pm</span>; <span style=\"color:#f08c00\">435.8 kJ mol⁻¹</span> released on forming 1 mol",
       "tags": [
         "class-11",
         "chemistry",
@@ -1155,8 +1578,8 @@
     },
     {
       "noteType": "basic",
-      "term": "What decides the strength of a covalent bond in VB theory?",
-      "definition": "The <span style=\"color:#3b82f6\">extent of overlap</span>: greater overlap, stronger bond",
+      "term": "Intuition: why does the energy curve for H₂ rise again at very short distance?",
+      "definition": "Nucleus–nucleus and electron–electron <span style=\"color:#3b82f6\">repulsions</span> grow faster than attraction; the minimum is the bond length",
       "tags": [
         "class-11",
         "chemistry",
@@ -1166,8 +1589,19 @@
     },
     {
       "noteType": "basic",
-      "term": "When is an overlap positive (bond-forming)?",
-      "definition": "The orbitals have the <span style=\"color:#3b82f6\">same sign (phase)</span> and orientation",
+      "term": "Orbital overlap concept?",
+      "definition": "A covalent bond forms by <span style=\"color:#3b82f6\">partial merging (overlap)</span> of half-filled valence orbitals with opposite spins; the greater the overlap, the <span style=\"color:#3b82f6\">stronger</span> the bond",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.5-valence-bond"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.37: significance of the + and − signs on orbital lobes?",
+      "definition": "They are the <span style=\"color:#3b82f6\">phase (sign) of the wave function</span>, not charge. Same-sign overlap → bond; opposite sign → no bond",
       "tags": [
         "class-11",
         "chemistry",
@@ -1179,7 +1613,7 @@
     {
       "noteType": "basic",
       "term": "What H–C–H angle would simple (unhybridised) overlap predict for CH₄?",
-      "definition": "<span style=\"color:#f08c00\">90°</span> (but the real angle is <span style=\"color:#f08c00\">109.5°</span>)",
+      "definition": "<span style=\"color:#f08c00\">90°</span> (real: <span style=\"color:#f08c00\">109.5°</span>); simple overlap cannot explain directional shapes, so hybridisation is needed",
       "tags": [
         "class-11",
         "chemistry",
@@ -1213,7 +1647,7 @@
     {
       "noteType": "basic",
       "term": "How is a π bond formed?",
-      "definition": "<span style=\"color:#3b82f6\">Sidewise overlap</span>: orbital axes parallel, perpendicular to the internuclear axis",
+      "definition": "<span style=\"color:#3b82f6\">Sidewise overlap</span>: orbital axes parallel, perpendicular to the internuclear axis; two lobes, above and below",
       "tags": [
         "class-11",
         "chemistry",
@@ -1225,7 +1659,7 @@
     {
       "noteType": "basic",
       "term": "Which is stronger, σ or π, and why?",
-      "definition": "<span style=\"color:#3b82f6\">σ</span>. Its orbitals overlap to a larger extent",
+      "definition": "<span style=\"color:#3b82f6\">σ</span>: larger extent of overlap",
       "tags": [
         "class-11",
         "chemistry",
@@ -1236,7 +1670,7 @@
     {
       "noteType": "basic",
       "term": "Can a π bond exist without a σ bond between two atoms?",
-      "definition": "<span style=\"color:#e5484d\">No</span>. π bonds form in addition to a σ bond",
+      "definition": "<span style=\"color:#e5484d\">No</span>. π bonds form in addition to a σ bond (NCERT’s rule; C₂ in MO theory is the exception)",
       "tags": [
         "class-11",
         "chemistry",
@@ -1246,7 +1680,7 @@
     },
     {
       "noteType": "basic",
-      "term": "With x as the internuclear axis, which pair cannot form a σ bond: 1s+1s, 1s+2pₓ, 2p_y+2p_y, 1s+2s?",
+      "term": "Exercise 4.29: with x as the internuclear axis, which will not form a σ bond: 1s+1s, 1s+2pₓ, 2p_y+2p_y, 1s+2s?",
       "definition": "<span style=\"color:#3b82f6\">2p_y + 2p_y</span> (sidewise → π)",
       "tags": [
         "class-11",
@@ -1257,7 +1691,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Number of σ and π bonds in C₂H₂ and C₂H₄?",
+      "term": "Exercise 4.28: σ and π bonds in C₂H₂ and C₂H₄?",
       "definition": "C₂H₂: <span style=\"color:#f08c00\">3σ, 2π</span>; C₂H₄: <span style=\"color:#f08c00\">5σ, 1π</span>",
       "tags": [
         "class-11",
@@ -1268,8 +1702,19 @@
     },
     {
       "noteType": "basic",
-      "term": "Who introduced hybridisation?",
-      "definition": "<span style=\"color:#3b82f6\">Pauling</span>",
+      "term": "Exercise 4.31: bond pairs and lone pairs in H₂O?",
+      "definition": "<span style=\"color:#f08c00\">2</span> bond pairs (O–H) and <span style=\"color:#f08c00\">2</span> lone pairs on O",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.5.4-sigma-pi"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who introduced hybridisation, and why?",
+      "definition": "<span style=\"color:#3b82f6\">Pauling</span>, to explain the characteristic <span style=\"color:#3b82f6\">shapes</span> of polyatomic molecules (e.g. CH₄, NH₃, H₂O)",
       "tags": [
         "class-11",
         "chemistry",
@@ -1301,6 +1746,16 @@
     },
     {
       "noteType": "cloze",
+      "text": "Features: hybrid orbitals are always {{c1::equivalent in energy and shape}}; they form {{c2::more effective}} bonds than pure orbitals; they point so that {{c3::repulsion is minimum}}.",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.6-hybridisation"
+      ]
+    },
+    {
+      "noteType": "cloze",
       "text": "Conditions for hybridisation: only {{c1::valence shell}} orbitals mix; they must have {{c2::almost equal energy}}; promotion of electrons is {{c3::not essential}}.",
       "tags": [
         "class-11",
@@ -1312,7 +1767,7 @@
     {
       "noteType": "basic",
       "term": "Can filled orbitals take part in hybridisation?",
-      "definition": "Yes. Not only half-filled ones",
+      "definition": "<span style=\"color:#3b82f6\">Yes</span>; not only half-filled ones",
       "tags": [
         "class-11",
         "chemistry",
@@ -1403,6 +1858,17 @@
     },
     {
       "noteType": "basic",
+      "term": "Exercise 4.21: why is CH₄ tetrahedral and not square planar?",
+      "definition": "sp³ orbitals point to the corners of a <span style=\"color:#3b82f6\">tetrahedron</span> (109.5°, least repulsion). Square planar needs 90° angles (more repulsion) and dsp² orbitals, which C (no d orbitals) cannot form",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.6-hybridisation"
+      ]
+    },
+    {
+      "noteType": "basic",
       "term": "Hybridisation and shape of NH₃?",
       "definition": "<span style=\"color:#3b82f6\">sp³</span> N with one lone pair: trigonal pyramidal, <span style=\"color:#f08c00\">107°</span>",
       "tags": [
@@ -1427,8 +1893,19 @@
     },
     {
       "noteType": "basic",
+      "term": "Intuition: more s-character in a hybrid means…?",
+      "definition": "A <span style=\"color:#3b82f6\">shorter, stronger</span> bond and a <span style=\"color:#3b82f6\">wider</span> angle (sp 180° > sp² 120° > sp³ 109.5°), and a more electronegative carbon",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.6-hybridisation"
+      ]
+    },
+    {
+      "noteType": "basic",
       "term": "Ethane: C–C and C–H bond lengths?",
-      "definition": "C–C <span style=\"color:#f08c00\">154 pm</span> (sp³–sp³); C–H <span style=\"color:#f08c00\">109 pm</span>",
+      "definition": "C–C <span style=\"color:#f08c00\">154 pm</span> (sp³–sp³ σ); C–H <span style=\"color:#f08c00\">109 pm</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -1439,7 +1916,7 @@
     {
       "noteType": "basic",
       "term": "Ethene: what makes up the C=C bond?",
-      "definition": "One <span style=\"color:#3b82f6\">sp²–sp² σ</span> + one <span style=\"color:#3b82f6\">π</span> (from unhybridised 2p orbitals)",
+      "definition": "One <span style=\"color:#3b82f6\">sp²–sp² σ</span> + one <span style=\"color:#3b82f6\">π</span> (from the unhybridised 2p orbitals); C=C <span style=\"color:#f08c00\">134 pm</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -1462,7 +1939,7 @@
     {
       "noteType": "basic",
       "term": "What makes up the C≡C bond in ethyne?",
-      "definition": "<span style=\"color:#f08c00\">1 σ</span> (sp–sp) + <span style=\"color:#f08c00\">2 π</span>",
+      "definition": "<span style=\"color:#f08c00\">1 σ</span> (sp–sp) + <span style=\"color:#f08c00\">2 π</span>; molecule linear",
       "tags": [
         "class-11",
         "chemistry",
@@ -1473,8 +1950,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Why is no hybridisation of 3p, 3d and 4s possible?",
-      "definition": "The energy gap between <span style=\"color:#3b82f6\">3p and 4s</span> is significant",
+      "term": "Exercise 4.30: hybrid orbitals used by carbon in CH₃–CH=CH₂, CH₃–CH₂–OH, CH₃CHO, CH₃COOH?",
+      "definition": "CH₃–CH=CH₂: sp³, <span style=\"color:#3b82f6\">sp², sp²</span>. Ethanol: sp³, sp³. CH₃CHO: sp³, <span style=\"color:#3b82f6\">sp²</span>. CH₃COOH: sp³, <span style=\"color:#3b82f6\">sp²</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -1483,12 +1960,34 @@
       ]
     },
     {
+      "noteType": "basic",
+      "term": "Shortcut: hybridisation of carbon from its bonds?",
+      "definition": "Four single bonds → <span style=\"color:#3b82f6\">sp³</span>; one double bond → <span style=\"color:#3b82f6\">sp²</span>; a triple bond or two double bonds → <span style=\"color:#3b82f6\">sp</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.6-hybridisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can third-period atoms use d orbitals but 3p–3d–4s hybridisation of nitrogen is impossible?",
+      "definition": "Second-period atoms have <span style=\"color:#e5484d\">no d orbitals</span>; in the third period, 3s, 3p and 3d are close in energy (while 3p and 4s differ a lot)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.6.3-d-orbital-hybrids"
+      ]
+    },
+    {
       "noteType": "advanced-html",
       "term": "d-orbital hybridisation: shapes and examples",
-      "definition": "dsp²: Square planar · [Ni(CN)₄]²⁻; sp³d: Trigonal bipyramidal · PCl₅; sp³d²: Square pyramidal · BrF₅ / octahedral · SF₆; d²sp³: Octahedral · [Co(NH₃)₆]³⁺",
+      "definition": "sp³d: trigonal bipyramidal · PCl₅; sp³d²: octahedral · SF₆ (square pyramidal BrF₅); dsp²: square planar · [Ni(CN)₄]²⁻; d²sp³: octahedral · [Co(NH₃)₆]³⁺",
       "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.6.3 · Hybrids with d orbitals</p><h2>Shape and example?</h2><table><tr><td>dsp²</td><td class=\"q\">?</td></tr><tr><td>sp³d</td><td class=\"q\">?</td></tr><tr><td>sp³d²</td><td class=\"q\">?</td></tr><tr><td>d²sp³</td><td class=\"q\">?</td></tr></table></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.6.3 · Hybrids with d orbitals</p><h2>Shape and example?</h2><table><tr><td>dsp²</td><td class=\"a\">Square planar · [Ni(CN)₄]²⁻</td></tr><tr><td>sp³d</td><td class=\"a\">Trigonal bipyramidal · PCl₅</td></tr><tr><td>sp³d²</td><td class=\"a\">Square pyramidal · BrF₅ / octahedral · SF₆</td></tr><tr><td>d²sp³</td><td class=\"a\">Octahedral · [Co(NH₃)₆]³⁺</td></tr></table></div>",
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.6.3 · hybrids with d orbitals</p><h2>Shape and example?</h2><table><tr><td>sp³d</td><td class=\"q\">?</td></tr><tr><td>sp³d²</td><td class=\"q\">?</td></tr><tr><td>dsp²</td><td class=\"q\">?</td></tr><tr><td>d²sp³</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.6.3 · hybrids with d orbitals</p><h2>Shape and example?</h2><table><tr><td>sp³d</td><td class=\"a\">trigonal bipyramidal · PCl₅</td></tr><tr><td>sp³d²</td><td class=\"a\">octahedral · SF₆ (square pyramidal BrF₅)</td></tr><tr><td>dsp²</td><td class=\"a\">square planar · [Ni(CN)₄]²⁻</td></tr><tr><td>d²sp³</td><td class=\"a\">octahedral · [Co(NH₃)₆]³⁺</td></tr></table></div>",
         "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
         "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
       },
@@ -1496,64 +1995,64 @@
         "class-11",
         "chemistry",
         "ch-4",
-        "4.6-hybridisation"
+        "4.6.3-d-orbital-hybrids"
       ]
     },
     {
       "noteType": "basic",
-      "term": "In PCl₅, how do equatorial and axial bonds differ?",
-      "definition": "Equatorial: three at <span style=\"color:#f08c00\">120°</span>. Axial: two at <span style=\"color:#f08c00\">90°</span> to that plane, <span style=\"color:#3b82f6\">longer and weaker</span>",
+      "term": "Exercise 4.38: hybridisation of PCl₅, and why are the axial bonds longer?",
+      "definition": "<span style=\"color:#3b82f6\">sp³d</span>. The two axial bond pairs suffer <span style=\"color:#3b82f6\">more repulsion</span> (three equatorial pairs at 90°), so they are longer and weaker",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.6-hybridisation"
+        "4.6.3-d-orbital-hybrids"
       ],
       "definitionImage": "media/fig_4_17_pcl5.webp"
     },
     {
       "noteType": "basic",
-      "term": "Why are axial bonds in PCl₅ longer than equatorial ones?",
-      "definition": "Axial bond pairs suffer <span style=\"color:#3b82f6\">more repulsion</span> from equatorial bond pairs",
+      "term": "Why is PCl₅ reactive?",
+      "definition": "Its axial bonds are longer and <span style=\"color:#3b82f6\">weaker</span>; a Cl is easily lost (PCl₅ → PCl₃ + Cl₂)",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.6-hybridisation"
+        "4.6.3-d-orbital-hybrids"
       ]
     },
     {
       "noteType": "basic",
       "term": "Hybridisation and geometry of SF₆?",
-      "definition": "<span style=\"color:#3b82f6\">sp³d²</span>, regular octahedral",
+      "definition": "<span style=\"color:#3b82f6\">sp³d²</span>, regular octahedral; six S–F bonds at 90°",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.6-hybridisation"
+        "4.6.3-d-orbital-hybrids"
       ],
       "definitionImage": "media/fig_4_18_sf6.webp"
     },
     {
       "noteType": "basic",
-      "term": "AlCl₃ + Cl⁻ → AlCl₄⁻: change in hybridisation of Al?",
-      "definition": "<span style=\"color:#3b82f6\">sp²</span> → <span style=\"color:#3b82f6\">sp³</span>",
+      "term": "Exercise 4.25: AlCl₃ + Cl⁻ → AlCl₄⁻. Change in the hybridisation of Al?",
+      "definition": "<span style=\"color:#3b82f6\">sp²</span> (trigonal planar) → <span style=\"color:#3b82f6\">sp³</span> (tetrahedral)",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.6-hybridisation"
+        "4.6.3-d-orbital-hybrids"
       ]
     },
     {
       "noteType": "basic",
-      "term": "BF₃ + NH₃ → F₃B–NH₃: change in hybridisation of B and N?",
-      "definition": "B: <span style=\"color:#3b82f6\">sp² → sp³</span>; N: stays <span style=\"color:#3b82f6\">sp³</span>",
+      "term": "Exercise 4.26: BF₃ + NH₃ → F₃B←NH₃. Change in hybridisation of B and N?",
+      "definition": "B: <span style=\"color:#3b82f6\">sp² → sp³</span>; N: stays <span style=\"color:#3b82f6\">sp³</span> (its lone pair becomes a bond pair)",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.6-hybridisation"
+        "4.6.3-d-orbital-hybrids"
       ]
     },
     {
@@ -1568,20 +2067,15 @@
       ]
     },
     {
-      "noteType": "basic",
-      "term": "Atomic orbital vs molecular orbital: how many nuclei influence the electron?",
-      "definition": "AO: <span style=\"color:#3b82f6\">monocentric</span> (one nucleus). MO: <span style=\"color:#3b82f6\">polycentric</span>",
-      "tags": [
-        "class-11",
-        "chemistry",
-        "ch-4",
-        "4.7-mo-theory"
-      ]
-    },
-    {
-      "noteType": "basic",
-      "term": "Two atomic orbitals combine. How many MOs form?",
-      "definition": "<span style=\"color:#f08c00\">Two</span>: one <span style=\"color:#3b82f6\">bonding</span>, one <span style=\"color:#3b82f6\">antibonding</span>",
+      "noteType": "advanced-html",
+      "term": "Salient features of MO theory",
+      "definition": "Electrons in a molecule are in: molecular orbitals; AOs combined must have: comparable energy and proper symmetry; An AO is influenced by: one nucleus (monocentric); An MO is influenced by: two or more nuclei (polycentric); Number of MOs formed: equals number of AOs combined; Bonding MO vs antibonding: lower energy, more stable; Filling order: aufbau, Pauli, Hund",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.7 · MO theory</p><h2>Complete the feature.</h2><table><tr><td>Electrons in a molecule are in</td><td class=\"q\">?</td></tr><tr><td>AOs combined must have</td><td class=\"q\">?</td></tr><tr><td>An AO is influenced by</td><td class=\"q\">?</td></tr><tr><td>An MO is influenced by</td><td class=\"q\">?</td></tr><tr><td>Number of MOs formed</td><td class=\"q\">?</td></tr><tr><td>Bonding MO vs antibonding</td><td class=\"q\">?</td></tr><tr><td>Filling order</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.7 · MO theory</p><h2>Complete the feature.</h2><table><tr><td>Electrons in a molecule are in</td><td class=\"a\">molecular orbitals</td></tr><tr><td>AOs combined must have</td><td class=\"a\">comparable energy and proper symmetry</td></tr><tr><td>An AO is influenced by</td><td class=\"a\">one nucleus (monocentric)</td></tr><tr><td>An MO is influenced by</td><td class=\"a\">two or more nuclei (polycentric)</td></tr><tr><td>Number of MOs formed</td><td class=\"a\">equals number of AOs combined</td></tr><tr><td>Bonding MO vs antibonding</td><td class=\"a\">lower energy, more stable</td></tr><tr><td>Filling order</td><td class=\"a\">aufbau, Pauli, Hund</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
       "tags": [
         "class-11",
         "chemistry",
@@ -1592,7 +2086,7 @@
     {
       "noteType": "basic",
       "term": "LCAO expressions for σ and σ*?",
-      "definition": "\\(\\sigma = \\psi_A + \\psi_B\\)<br>\\(\\sigma^* = \\psi_A - \\psi_B\\)",
+      "definition": "\\( \\sigma = \\psi_A + \\psi_B,\\quad \\sigma^* = \\psi_A - \\psi_B \\)",
       "tags": [
         "class-11",
         "chemistry",
@@ -1603,7 +2097,7 @@
     },
     {
       "noteType": "cloze",
-      "text": "A bonding MO forms by {{c1::constructive}} interference; an antibonding MO by {{c2::destructive}} interference.",
+      "text": "A bonding MO forms by {{c1::constructive}} interference (addition) of electron waves; an antibonding MO by {{c2::destructive}} interference (subtraction).",
       "tags": [
         "class-11",
         "chemistry",
@@ -1613,8 +2107,8 @@
     },
     {
       "noteType": "basic",
-      "term": "What lies between the nuclei in an antibonding MO?",
-      "definition": "A <span style=\"color:#3b82f6\">nodal plane</span> (zero electron density)",
+      "term": "Why is a bonding MO lower in energy than the AOs, and antibonding higher?",
+      "definition": "Bonding: electron density <span style=\"color:#3b82f6\">builds between the nuclei</span> and holds them. Antibonding: density is pushed <span style=\"color:#e5484d\">away</span>, leaving a nodal plane; the nuclei repel",
       "tags": [
         "class-11",
         "chemistry",
@@ -1624,7 +2118,7 @@
     },
     {
       "noteType": "cloze",
-      "text": "Conditions for LCAO: combining AOs must have {{c1::the same or nearly the same energy}}, {{c2::the same symmetry about the molecular axis}}, and {{c3::maximum overlap}}.",
+      "text": "Exercise 4.34: conditions for LCAO: combining AOs must have {{c1::the same or nearly the same energy}}, {{c2::the same symmetry about the molecular axis}}, and {{c3::maximum overlap}}.",
       "tags": [
         "class-11",
         "chemistry",
@@ -1634,8 +2128,19 @@
     },
     {
       "noteType": "basic",
-      "term": "Can 2p_z of one atom combine with 2pₓ of the other (z = molecular axis)?",
-      "definition": "<span style=\"color:#e5484d\">No</span>. Different <span style=\"color:#3b82f6\">symmetry</span>",
+      "term": "Can 1s combine with 2s? Can 2p_z of one atom combine with 2pₓ of the other (z = molecular axis)?",
+      "definition": "<span style=\"color:#e5484d\">No</span> to both: 1s and 2s differ in <span style=\"color:#3b82f6\">energy</span>; 2p_z and 2pₓ differ in <span style=\"color:#3b82f6\">symmetry</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.7-mo-theory"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which MOs are symmetrical about the bond axis: σ or π?",
+      "definition": "<span style=\"color:#3b82f6\">σ</span> (π are not)",
       "tags": [
         "class-11",
         "chemistry",
@@ -1731,9 +2236,8 @@
       ]
     },
     {
-      "noteType": "basic",
-      "term": "Which MOs are symmetrical about the bond axis: σ or π?",
-      "definition": "<span style=\"color:#3b82f6\">σ</span> (π are not)",
+      "noteType": "cloze",
+      "text": "For {{c1::B₂, C₂ and N₂}}, the π2pₓ and π2p_y MOs lie {{c2::below}} σ2p_z; for O₂ and F₂, σ2p_z lies below π2p.",
       "tags": [
         "class-11",
         "chemistry",
@@ -1742,8 +2246,9 @@
       ]
     },
     {
-      "noteType": "cloze",
-      "text": "For {{c1::B₂, C₂ and N₂}}, the π2p MOs lie {{c2::below}} σ2p_z; for O₂ and F₂, σ2p_z lies below π2p.",
+      "noteType": "basic",
+      "term": "Mnemonic: when does σ2p_z drop below π2p?",
+      "definition": "From <span style=\"color:#3b82f6\">O₂ onwards</span> (O₂, F₂, Ne₂). Up to N₂, s–p mixing pushes σ2p_z above π2p",
       "tags": [
         "class-11",
         "chemistry",
@@ -1754,7 +2259,24 @@
     {
       "noteType": "basic",
       "term": "Bond order formula in MO theory?",
-      "definition": "Bond order \\(= \\tfrac{1}{2}(N_b - N_a)\\)",
+      "definition": "B.O. = \\( \\tfrac12 (N_b - N_a) \\) (N_b, N_a = electrons in bonding and antibonding MOs)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.7-mo-theory"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Interpreting MO electronic configurations",
+      "definition": "N_b > N_a (positive B.O.): stable molecule; N_b ≤ N_a (zero or negative): unstable, does not exist; B.O. 1, 2, 3: single, double, triple bond; Higher B.O.: shorter bond; All MOs doubly filled: diamagnetic; Any MO singly filled: paramagnetic",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">4.7.5 · what bond order tells you</p><h2>Meaning?</h2><table><tr><td>N_b > N_a (positive B.O.)</td><td class=\"q\">?</td></tr><tr><td>N_b ≤ N_a (zero or negative)</td><td class=\"q\">?</td></tr><tr><td>B.O. 1, 2, 3</td><td class=\"q\">?</td></tr><tr><td>Higher B.O.</td><td class=\"q\">?</td></tr><tr><td>All MOs doubly filled</td><td class=\"q\">?</td></tr><tr><td>Any MO singly filled</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">4.7.5 · what bond order tells you</p><h2>Meaning?</h2><table><tr><td>N_b > N_a (positive B.O.)</td><td class=\"a\">stable molecule</td></tr><tr><td>N_b ≤ N_a (zero or negative)</td><td class=\"a no\">unstable, does not exist</td></tr><tr><td>B.O. 1, 2, 3</td><td class=\"a\">single, double, triple bond</td></tr><tr><td>Higher B.O.</td><td class=\"a\">shorter bond</td></tr><tr><td>All MOs doubly filled</td><td class=\"a\">diamagnetic</td></tr><tr><td>Any MO singly filled</td><td class=\"a\">paramagnetic</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
       "tags": [
         "class-11",
         "chemistry",
@@ -1764,30 +2286,30 @@
     },
     {
       "noteType": "basic",
-      "term": "What bond order means a molecule cannot exist?",
-      "definition": "<span style=\"color:#3b82f6\">Zero or negative</span> (N_b ≤ N_a)",
+      "term": "H₂ in MO terms: configuration, bond order, magnetism?",
+      "definition": "\\( (\\sigma 1s)^2 \\); B.O. = (2 − 0)/2 = <span style=\"color:#f08c00\">1</span>; <span style=\"color:#3b82f6\">diamagnetic</span>",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.7-mo-theory"
+        "4.8-homonuclear-diatomics"
       ]
     },
     {
       "noteType": "basic",
-      "term": "When is a molecule paramagnetic in MO terms?",
-      "definition": "When one or more MOs are <span style=\"color:#3b82f6\">singly occupied</span> (unpaired electrons)",
+      "term": "Correction: NCERT gives H₂’s bond energy as 435.8 kJ/mol in 4.3.3 but 438 kJ/mol in 4.8. Which to use?",
+      "definition": "Two slightly different quoted values for the same quantity. For bond-enthalpy questions use <span style=\"color:#3b82f6\">435.8 kJ mol⁻¹</span> (4.3.3); the bond length 74 pm is the same in both",
       "tags": [
         "class-11",
         "chemistry",
         "ch-4",
-        "4.7-mo-theory"
+        "4.8-homonuclear-diatomics"
       ]
     },
     {
       "noteType": "basic",
       "term": "Bond order of He₂, and does it exist?",
-      "definition": "<span style=\"color:#f08c00\">0</span>, so it <span style=\"color:#e5484d\">does not exist</span>",
+      "definition": "σ1s² σ*1s² → ½(2 − 2) = <span style=\"color:#f08c00\">0</span>, so it <span style=\"color:#e5484d\">does not exist</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -1797,8 +2319,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Does Be₂ exist?",
-      "definition": "<span style=\"color:#e5484d\">No</span>. Bond order <span style=\"color:#f08c00\">0</span>",
+      "term": "Exercise 4.35: use MO theory to show why Be₂ does not exist.",
+      "definition": "Be₂: σ1s² σ*1s² σ2s² σ*2s² → N_b = N_a = 4, B.O. = <span style=\"color:#f08c00\">0</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -1808,8 +2330,19 @@
     },
     {
       "noteType": "basic",
-      "term": "Bond order and magnetism of Li₂?",
-      "definition": "<span style=\"color:#f08c00\">1</span>; <span style=\"color:#3b82f6\">diamagnetic</span> (exists in the vapour phase)",
+      "term": "Li₂: configuration, bond order, magnetism?",
+      "definition": "KK(σ2s)² → B.O. <span style=\"color:#f08c00\">1</span>; <span style=\"color:#3b82f6\">diamagnetic</span> (known in the vapour phase)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.8-homonuclear-diatomics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does \"KK\" mean in KK(σ2s)²?",
+      "definition": "The closed K-shell part <span style=\"color:#3b82f6\">(σ1s)² (σ*1s)²</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -1820,7 +2353,18 @@
     {
       "noteType": "basic",
       "term": "What is unusual about the double bond in C₂?",
-      "definition": "Both bonds are <span style=\"color:#3b82f6\">π bonds</span> (no σ)",
+      "definition": "Both bonds are <span style=\"color:#3b82f6\">π bonds</span> (four electrons in π2pₓ and π2p_y), not σ + π; C₂ is diamagnetic",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.8-homonuclear-diatomics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT writes C₂ as (σ1s)²(σ*1s)²(σ*2s)²(π2pₓ² = π2p_y²). What is missing?",
+      "definition": "The <span style=\"color:#3b82f6\">(σ2s)²</span> term: only 10 of the 12 electrons are shown. Correct: σ1s² σ*1s² <span style=\"color:#3b82f6\">σ2s²</span> σ*2s² π2pₓ² π2p_y² (as in the KK form on the next line)",
       "tags": [
         "class-11",
         "chemistry",
@@ -1838,6 +2382,17 @@
         "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .mo{display:flex;flex-direction:column;gap:5px;margin:4px 0 10px}\n.k .lv{display:flex;align-items:center;gap:8px}\n.k .lv .nm{width:74px;text-align:right;font-size:13px;color:#4a4538}\n.k .lv .bx{display:flex;gap:6px}\n.k .lv .o{width:40px;height:26px;border:1.5px solid #cfc5ae;border-radius:7px;background:#fff;\n  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#1d5fd6;letter-spacing:-1px}\n.k .lv.anti .o{border-color:#e7b8b9}\n.k .lv.anti .nm{color:#b0474a}\n.k .res{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:14px}\n.k .res b{color:#1d5fd6}.k .res .no{color:#c93b3f;font-weight:700}\n.k .res .n{color:#c77700;font-weight:700}\n.k .o.f{animation:pop .4s ease both}\n",
         "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .mo{display:flex;flex-direction:column;gap:5px;margin:4px 0 10px}\n.k .lv{display:flex;align-items:center;gap:8px}\n.k .lv .nm{width:74px;text-align:right;font-size:13px;color:#4a4538}\n.k .lv .bx{display:flex;gap:6px}\n.k .lv .o{width:40px;height:26px;border:1.5px solid #cfc5ae;border-radius:7px;background:#fff;\n  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#1d5fd6;letter-spacing:-1px}\n.k .lv.anti .o{border-color:#e7b8b9}\n.k .lv.anti .nm{color:#b0474a}\n.k .res{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:14px}\n.k .res b{color:#1d5fd6}.k .res .no{color:#c93b3f;font-weight:700}\n.k .res .n{color:#c77700;font-weight:700}\n.k .o.f{animation:pop .4s ease both}\n"
       },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.8-homonuclear-diatomics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why was the paramagnetism of O₂ a triumph for MO theory?",
+      "definition": "The Lewis structure O=O shows all electrons <span style=\"color:#e5484d\">paired</span>; MO theory puts two unpaired electrons in π*2pₓ and π*2p_y, matching experiment",
       "tags": [
         "class-11",
         "chemistry",
@@ -1901,11 +2456,44 @@
       "term": "O2+, O2, O2-, O2 2-: bond order and magnetism",
       "definition": "O₂⁺: 2.5 · paramagnetic; O₂: 2 · paramagnetic; O₂⁻ (superoxide): 1.5 · paramagnetic; O₂²⁻ (peroxide): 1 · diamagnetic",
       "advancedHtml": {
-        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Oxygen species</p><h2>Bond order and magnetism?</h2><table><tr><td>O₂⁺</td><td class=\"q\">?</td></tr><tr><td>O₂</td><td class=\"q\">?</td></tr><tr><td>O₂⁻ (superoxide)</td><td class=\"q\">?</td></tr><tr><td>O₂²⁻ (peroxide)</td><td class=\"q\">?</td></tr></table></div>",
-        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Oxygen species</p><h2>Bond order and magnetism?</h2><table><tr><td>O₂⁺</td><td class=\"a\">2.5 · paramagnetic</td></tr><tr><td>O₂</td><td class=\"a\">2 · paramagnetic</td></tr><tr><td>O₂⁻ (superoxide)</td><td class=\"a\">1.5 · paramagnetic</td></tr><tr><td>O₂²⁻ (peroxide)</td><td class=\"a\">1 · diamagnetic</td></tr></table><p class=\"note\">Stability: O₂⁺ > O₂ > O₂⁻ > O₂²⁻</p></div>",
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 4.36 · oxygen species</p><h2>Bond order and magnetism?</h2><table><tr><td>O₂⁺</td><td class=\"q\">?</td></tr><tr><td>O₂</td><td class=\"q\">?</td></tr><tr><td>O₂⁻ (superoxide)</td><td class=\"q\">?</td></tr><tr><td>O₂²⁻ (peroxide)</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 4.36 · oxygen species</p><h2>Bond order and magnetism?</h2><table><tr><td>O₂⁺</td><td class=\"a\">2.5 · paramagnetic</td></tr><tr><td>O₂</td><td class=\"a\">2 · paramagnetic</td></tr><tr><td>O₂⁻ (superoxide)</td><td class=\"a\">1.5 · paramagnetic</td></tr><tr><td>O₂²⁻ (peroxide)</td><td class=\"a\">1 · diamagnetic</td></tr></table><p class=\"note\">Stability: O₂⁺ > O₂ > O₂⁻ > O₂²⁻</p></div>",
         "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
         "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
       },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.8-homonuclear-diatomics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 4.40: bond order of N₂, O₂, O₂⁺, O₂⁻?",
+      "definition": "<span style=\"color:#f08c00\">3, 2, 2.5, 1.5</span>",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.8-homonuclear-diatomics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Shortcut: bond order of 2nd-period diatomic species from the electron count?",
+      "definition": "It peaks at <span style=\"color:#f08c00\">3 for 10 electrons</span> (N₂, CO, NO⁺) and falls by 0.5 per electron either side: 8 → 2 (C₂), 12 → 2 (O₂), 14 → 1 (F₂), 6 → 1 (B₂)",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.8-homonuclear-diatomics"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Removing an electron from O₂ raises the bond order but from N₂ lowers it. Why?",
+      "definition": "O₂ loses an <span style=\"color:#3b82f6\">antibonding</span> (π*) electron → B.O. 2.5. N₂ loses a <span style=\"color:#3b82f6\">bonding</span> electron → B.O. 2.5 from 3",
       "tags": [
         "class-11",
         "chemistry",
@@ -1943,8 +2531,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Define hydrogen bond.",
-      "definition": "The attractive force binding the <span style=\"color:#3b82f6\">H atom</span> of one molecule to an <span style=\"color:#3b82f6\">electronegative atom (F, O, N)</span> of another",
+      "term": "Exercise 4.39: define hydrogen bond. Weaker or stronger than van der Waals forces?",
+      "definition": "The attractive force binding the <span style=\"color:#3b82f6\">H atom</span> of one molecule to an electronegative atom (F, O, N) of another. <span style=\"color:#3b82f6\">Stronger</span> than van der Waals forces, weaker than covalent bonds",
       "tags": [
         "class-11",
         "chemistry",
@@ -1954,8 +2542,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Is a hydrogen bond weaker or stronger than a covalent bond?",
-      "definition": "<span style=\"color:#3b82f6\">Weaker</span>",
+      "term": "Cause of hydrogen bonding?",
+      "definition": "The shared pair shifts towards the electronegative X, leaving H with δ+; this H is attracted by the δ− X of a neighbour: H<sup>δ+</sup>–X<sup>δ−</sup> ··· H<sup>δ+</sup>–X<sup>δ−</sup>",
       "tags": [
         "class-11",
         "chemistry",
@@ -1965,8 +2553,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Is a hydrogen bond weaker or stronger than van der Waals forces?",
-      "definition": "<span style=\"color:#3b82f6\">Stronger</span>",
+      "term": "How is a hydrogen bond drawn?",
+      "definition": "With a <span style=\"color:#3b82f6\">dotted line</span> (···); the covalent bond is a solid line. H acts as a <span style=\"color:#3b82f6\">bridge</span> between two atoms",
       "tags": [
         "class-11",
         "chemistry",
@@ -1977,7 +2565,18 @@
     {
       "noteType": "basic",
       "term": "In which physical state is hydrogen bonding strongest?",
-      "definition": "<span style=\"color:#3b82f6\">Solid</span> (weakest in gas)",
+      "definition": "<span style=\"color:#3b82f6\">Solid</span> (maximum); weakest in the gas",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.9-hydrogen-bonding"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Types of hydrogen bond?",
+      "definition": "<span style=\"color:#3b82f6\">Intermolecular</span> (between molecules) and <span style=\"color:#3b82f6\">intramolecular</span> (within one molecule)",
       "tags": [
         "class-11",
         "chemistry",
@@ -1988,7 +2587,7 @@
     {
       "noteType": "basic",
       "term": "Give examples of intermolecular hydrogen bonding.",
-      "definition": "<span style=\"color:#22a35a\">HF, water, alcohols</span>",
+      "definition": "<span style=\"color:#22a35a\">HF</span> (zig-zag chains), <span style=\"color:#22a35a\">water</span>, <span style=\"color:#22a35a\">alcohols</span>",
       "tags": [
         "class-11",
         "chemistry",
@@ -1999,7 +2598,7 @@
     {
       "noteType": "basic",
       "term": "Give an example of intramolecular hydrogen bonding.",
-      "definition": "<span style=\"color:#22a35a\">o-Nitrophenol</span> (H between two O atoms)",
+      "definition": "<span style=\"color:#22a35a\">o-Nitrophenol</span> (H between the two O atoms)",
       "tags": [
         "class-11",
         "chemistry",
@@ -2007,6 +2606,62 @@
         "4.9-hydrogen-bonding"
       ],
       "definitionImage": "media/fig_4_22_o_nitrophenol.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Intuition: why does o-nitrophenol boil lower than p-nitrophenol?",
+      "definition": "Its H-bond is <span style=\"color:#3b82f6\">intramolecular</span> (inside one molecule), so molecules do not stick together; p-nitrophenol forms intermolecular H-bonds",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.9-hydrogen-bonding"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is water a liquid while H₂S is a gas at room temperature?",
+      "definition": "Water molecules are held by <span style=\"color:#3b82f6\">hydrogen bonds</span>; S is not electronegative enough for strong H-bonding",
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "4.9-hydrogen-bonding"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Bonding theories and what they explain",
+      "definition": "Kössel: ionic bonds via noble-gas ions; Lewis–Langmuir: covalent bonds by electron sharing; VSEPR: shapes from electron-pair repulsion; VB + hybridisation: directional bonds, σ and π; MO theory: bond order, magnetism (O₂ paramagnetic)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary · theories</p><h2>What does each explain?</h2><table><tr><td>Kössel</td><td class=\"q\">?</td></tr><tr><td>Lewis–Langmuir</td><td class=\"q\">?</td></tr><tr><td>VSEPR</td><td class=\"q\">?</td></tr><tr><td>VB + hybridisation</td><td class=\"q\">?</td></tr><tr><td>MO theory</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary · theories</p><h2>What does each explain?</h2><table><tr><td>Kössel</td><td class=\"a\">ionic bonds via noble-gas ions</td></tr><tr><td>Lewis–Langmuir</td><td class=\"a\">covalent bonds by electron sharing</td></tr><tr><td>VSEPR</td><td class=\"a\">shapes from electron-pair repulsion</td></tr><tr><td>VB + hybridisation</td><td class=\"a\">directional bonds, σ and π</td></tr><tr><td>MO theory</td><td class=\"a\">bond order, magnetism (O₂ paramagnetic)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Hybridisation and shape",
+      "definition": "sp: linear; sp²: trigonal planar; sp³: tetrahedral; sp³d: trigonal bipyramidal; sp³d²: octahedral",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary · shapes</p><h2>Hybridisation → shape?</h2><table><tr><td>sp</td><td class=\"q\">?</td></tr><tr><td>sp²</td><td class=\"q\">?</td></tr><tr><td>sp³</td><td class=\"q\">?</td></tr><tr><td>sp³d</td><td class=\"q\">?</td></tr><tr><td>sp³d²</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary · shapes</p><h2>Hybridisation → shape?</h2><table><tr><td>sp</td><td class=\"a\">linear</td></tr><tr><td>sp²</td><td class=\"a\">trigonal planar</td></tr><tr><td>sp³</td><td class=\"a\">tetrahedral</td></tr><tr><td>sp³d</td><td class=\"a\">trigonal bipyramidal</td></tr><tr><td>sp³d²</td><td class=\"a\">octahedral</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "chemistry",
+        "ch-4",
+        "summary"
+      ]
     }
   ]
 }
