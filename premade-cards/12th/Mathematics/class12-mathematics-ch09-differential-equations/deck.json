@@ -1,0 +1,1838 @@
+{
+  "version": 1,
+  "name": "Chapter 9: Differential Equations",
+  "className": "Class 12",
+  "description": "Order and degree, general and particular solutions, variables separable, homogeneous and linear equations, growth and decay models, with every solved exercise checked numerically.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is a differential equation?",
+      "definition": "An equation involving <span style=\"color:#3b82f6\">derivatives of the dependent variable with respect to the independent variable(s)</span>. Example: dy/dx + y = eˣ. If only one independent variable it is an ordinary differential equation",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Order of a differential equation?",
+      "definition": "The order of the <span style=\"color:#3b82f6\">highest order derivative</span> present. d²y/dx² + y = 0 has order 2",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Degree of a differential equation?",
+      "definition": "The power of the highest-order derivative, <span style=\"color:#3b82f6\">when the equation is a polynomial in its derivatives</span>. If it is not a polynomial in the derivatives (e.g. contains sin(y′) or e^(y′)), the degree is <span style=\"color:#3b82f6\">not defined</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: is the degree the power of y or of the first derivative?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. Only the <span style=\"color:#3b82f6\">highest-order derivative</span> power counts, and only after the equation is a polynomial in derivatives (remove radicals and fractions of derivatives first)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example: (y″)² + (y′)³ + y = 0. Order and degree?",
+      "definition": "Highest derivative y″, its power 2: order <span style=\"color:#f08c00\">2</span>, degree <span style=\"color:#f08c00\">2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Order and degree of (dy/dx) + 1/(dy/dx) = 3?",
+      "definition": "Multiply: (dy/dx)² + 1 = 3 dy/dx, a polynomial: order <span style=\"color:#f08c00\">1</span>, degree <span style=\"color:#f08c00\">2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Order and degree of y = x (dy/dx) + √(1 + (dy/dx)²)?",
+      "definition": "Isolate the radical and square: (y − xy′)² = 1 + y′²: order <span style=\"color:#f08c00\">1</span>, degree <span style=\"color:#f08c00\">2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of arbitrary constants in the general solution of an nth-order equation?",
+      "definition": "<span style=\"color:#3b82f6\">n</span> (one for each integration). A particular solution has none",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you form a differential equation from a family of curves?",
+      "definition": "Differentiate as many times as there are arbitrary constants, then <span style=\"color:#3b82f6\">eliminate the constants</span>. Example: y = Ax + B → y′ = A, y″ = 0. And y = Ae^(2x): y′ = 2y",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Form the differential equation of y = a sin(x + b) (2 constants).",
+      "definition": "y′ = a cos(x + b), y″ = −a sin(x + b) = −y: <span style=\"color:#f08c00\">y″ + y = 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Form the differential equation of the family of circles x² + y² = r².",
+      "definition": "Differentiate: 2x + 2y y′ = 0 → <span style=\"color:#f08c00\">x + y dy/dx = 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Form the differential equation of y² = 4ax (parabolas, a arbitrary).",
+      "definition": "2y y′ = 4a = y²/x: <span style=\"color:#f08c00\">2xy y′ = y²  i.e. y = 2x dy/dx</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "General solution is a family of curves; the condition selects one",
+      "definition": "General solution of an nth order ODE has n arbitrary constants (family of curves); a particular solution has none; dy/dx = y gives y = Ce^x, y(0)=1 gives y = e^x",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">General and particular solutions</p><h2>The slope at every point of the plane is dy/dx = y (short segments). What do the solution curves look like, and what does the condition y(0) = 1 do?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"12.0\" y1=\"96.4\" x2=\"292.0\" y2=\"96.4\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"152.0\" y1=\"178.0\" x2=\"152.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"44.3\" y1=\"93.4\" x2=\"44.3\" y2=\"99.4\"></line><text class=\"num\" x=\"44.3\" y=\"110.4\">−2</text><line class=\"ax\" x1=\"98.2\" y1=\"93.4\" x2=\"98.2\" y2=\"99.4\"></line><text class=\"num\" x=\"98.2\" y=\"110.4\">−1</text><line class=\"ax\" x1=\"205.8\" y1=\"93.4\" x2=\"205.8\" y2=\"99.4\"></line><text class=\"num\" x=\"205.8\" y=\"110.4\">1</text><line class=\"ax\" x1=\"259.7\" y1=\"93.4\" x2=\"259.7\" y2=\"99.4\"></line><text class=\"num\" x=\"259.7\" y=\"110.4\">2</text><line class=\"ax\" x1=\"149.0\" y1=\"164.4\" x2=\"155.0\" y2=\"164.4\"></line><text class=\"num\" x=\"146.0\" y=\"167.9\" text-anchor=\"end\">−2</text><line class=\"ax\" x1=\"149.0\" y1=\"130.4\" x2=\"155.0\" y2=\"130.4\"></line><text class=\"num\" x=\"146.0\" y=\"133.9\" text-anchor=\"end\">−1</text><line class=\"ax\" x1=\"149.0\" y1=\"62.4\" x2=\"155.0\" y2=\"62.4\"></line><text class=\"num\" x=\"146.0\" y=\"65.9\" text-anchor=\"end\">1</text><line class=\"ax\" x1=\"149.0\" y1=\"28.4\" x2=\"155.0\" y2=\"28.4\"></line><text class=\"num\" x=\"146.0\" y=\"31.9\" text-anchor=\"end\">2</text><line class=\"gd\" x1=\"13.5\" y1=\"159.5\" x2=\"21.2\" y2=\"169.3\"></line><line class=\"gd\" x1=\"12.6\" y1=\"142.9\" x2=\"22.2\" y2=\"151.9\"></line><line class=\"gd\" x1=\"11.3\" y1=\"126.6\" x2=\"23.5\" y2=\"134.2\"></line><line class=\"gd\" x1=\"9.7\" y1=\"111.0\" x2=\"25.1\" y2=\"115.8\"></line><line class=\"gd\" x1=\"8.8\" y1=\"96.4\" x2=\"26.0\" y2=\"96.4\"></line><line class=\"gd\" x1=\"9.7\" y1=\"81.8\" x2=\"25.1\" y2=\"77.0\"></line><line class=\"gd\" x1=\"11.3\" y1=\"66.2\" x2=\"23.5\" y2=\"58.6\"></line><line class=\"gd\" x1=\"12.6\" y1=\"49.9\" x2=\"22.2\" y2=\"40.9\"></line><line class=\"gd\" x1=\"13.5\" y1=\"33.3\" x2=\"21.2\" y2=\"23.5\"></line><line class=\"gd\" x1=\"40.5\" y1=\"159.5\" x2=\"48.2\" y2=\"169.3\"></line><line class=\"gd\" x1=\"39.5\" y1=\"142.9\" x2=\"49.1\" y2=\"151.9\"></line><line class=\"gd\" x1=\"38.2\" y1=\"126.6\" x2=\"50.4\" y2=\"134.2\"></line><line class=\"gd\" x1=\"36.6\" y1=\"111.0\" x2=\"52.0\" y2=\"115.8\"></line><line class=\"gd\" x1=\"35.7\" y1=\"96.4\" x2=\"52.9\" y2=\"96.4\"></line><line class=\"gd\" x1=\"36.6\" y1=\"81.8\" x2=\"52.0\" y2=\"77.0\"></line><line class=\"gd\" x1=\"38.2\" y1=\"66.2\" x2=\"50.4\" y2=\"58.6\"></line><line class=\"gd\" x1=\"39.5\" y1=\"49.9\" x2=\"49.1\" y2=\"40.9\"></line><line class=\"gd\" x1=\"40.5\" y1=\"33.3\" x2=\"48.2\" y2=\"23.5\"></line><line class=\"gd\" x1=\"67.4\" y1=\"159.5\" x2=\"75.1\" y2=\"169.3\"></line><line class=\"gd\" x1=\"66.5\" y1=\"142.9\" x2=\"76.0\" y2=\"151.9\"></line><line class=\"gd\" x1=\"65.1\" y1=\"126.6\" x2=\"77.3\" y2=\"134.2\"></line><line class=\"gd\" x1=\"63.5\" y1=\"111.0\" x2=\"78.9\" y2=\"115.8\"></line><line class=\"gd\" x1=\"62.6\" y1=\"96.4\" x2=\"79.8\" y2=\"96.4\"></line><line class=\"gd\" x1=\"63.5\" y1=\"81.8\" x2=\"78.9\" y2=\"77.0\"></line><line class=\"gd\" x1=\"65.1\" y1=\"66.2\" x2=\"77.3\" y2=\"58.6\"></line><line class=\"gd\" x1=\"66.5\" y1=\"49.9\" x2=\"76.0\" y2=\"40.9\"></line><line class=\"gd\" x1=\"67.4\" y1=\"33.3\" x2=\"75.1\" y2=\"23.5\"></line><line class=\"gd\" x1=\"94.3\" y1=\"159.5\" x2=\"102.0\" y2=\"169.3\"></line><line class=\"gd\" x1=\"93.4\" y1=\"142.9\" x2=\"102.9\" y2=\"151.9\"></line><line class=\"gd\" x1=\"92.1\" y1=\"126.6\" x2=\"104.2\" y2=\"134.2\"></line><line class=\"gd\" x1=\"90.4\" y1=\"111.0\" x2=\"105.9\" y2=\"115.8\"></line><line class=\"gd\" x1=\"89.5\" y1=\"96.4\" x2=\"106.8\" y2=\"96.4\"></line><line class=\"gd\" x1=\"90.4\" y1=\"81.8\" x2=\"105.9\" y2=\"77.0\"></line><line class=\"gd\" x1=\"92.1\" y1=\"66.2\" x2=\"104.2\" y2=\"58.6\"></line><line class=\"gd\" x1=\"93.4\" y1=\"49.9\" x2=\"102.9\" y2=\"40.9\"></line><line class=\"gd\" x1=\"94.3\" y1=\"33.3\" x2=\"102.0\" y2=\"23.5\"></line><line class=\"gd\" x1=\"121.2\" y1=\"159.5\" x2=\"128.9\" y2=\"169.3\"></line><line class=\"gd\" x1=\"120.3\" y1=\"142.9\" x2=\"129.9\" y2=\"151.9\"></line><line class=\"gd\" x1=\"119.0\" y1=\"126.6\" x2=\"131.2\" y2=\"134.2\"></line><line class=\"gd\" x1=\"117.4\" y1=\"111.0\" x2=\"132.8\" y2=\"115.8\"></line><line class=\"gd\" x1=\"116.5\" y1=\"96.4\" x2=\"133.7\" y2=\"96.4\"></line><line class=\"gd\" x1=\"117.4\" y1=\"81.8\" x2=\"132.8\" y2=\"77.0\"></line><line class=\"gd\" x1=\"119.0\" y1=\"66.2\" x2=\"131.2\" y2=\"58.6\"></line><line class=\"gd\" x1=\"120.3\" y1=\"49.9\" x2=\"129.9\" y2=\"40.9\"></line><line class=\"gd\" x1=\"121.2\" y1=\"33.3\" x2=\"128.9\" y2=\"23.5\"></line><line class=\"gd\" x1=\"148.1\" y1=\"159.5\" x2=\"155.9\" y2=\"169.3\"></line><line class=\"gd\" x1=\"147.2\" y1=\"142.9\" x2=\"156.8\" y2=\"151.9\"></line><line class=\"gd\" x1=\"145.9\" y1=\"126.6\" x2=\"158.1\" y2=\"134.2\"></line><line class=\"gd\" x1=\"144.3\" y1=\"111.0\" x2=\"159.7\" y2=\"115.8\"></line><line class=\"gd\" x1=\"143.4\" y1=\"96.4\" x2=\"160.6\" y2=\"96.4\"></line><line class=\"gd\" x1=\"144.3\" y1=\"81.8\" x2=\"159.7\" y2=\"77.0\"></line><line class=\"gd\" x1=\"145.9\" y1=\"66.2\" x2=\"158.1\" y2=\"58.6\"></line><line class=\"gd\" x1=\"147.2\" y1=\"49.9\" x2=\"156.8\" y2=\"40.9\"></line><line class=\"gd\" x1=\"148.1\" y1=\"33.3\" x2=\"155.9\" y2=\"23.5\"></line><line class=\"gd\" x1=\"175.1\" y1=\"159.5\" x2=\"182.8\" y2=\"169.3\"></line><line class=\"gd\" x1=\"174.1\" y1=\"142.9\" x2=\"183.7\" y2=\"151.9\"></line><line class=\"gd\" x1=\"172.8\" y1=\"126.6\" x2=\"185.0\" y2=\"134.2\"></line><line class=\"gd\" x1=\"171.2\" y1=\"111.0\" x2=\"186.6\" y2=\"115.8\"></line><line class=\"gd\" x1=\"170.3\" y1=\"96.4\" x2=\"187.5\" y2=\"96.4\"></line><line class=\"gd\" x1=\"171.2\" y1=\"81.8\" x2=\"186.6\" y2=\"77.0\"></line><line class=\"gd\" x1=\"172.8\" y1=\"66.2\" x2=\"185.0\" y2=\"58.6\"></line><line class=\"gd\" x1=\"174.1\" y1=\"49.9\" x2=\"183.7\" y2=\"40.9\"></line><line class=\"gd\" x1=\"175.1\" y1=\"33.3\" x2=\"182.8\" y2=\"23.5\"></line><line class=\"gd\" x1=\"202.0\" y1=\"159.5\" x2=\"209.7\" y2=\"169.3\"></line><line class=\"gd\" x1=\"201.1\" y1=\"142.9\" x2=\"210.6\" y2=\"151.9\"></line><line class=\"gd\" x1=\"199.8\" y1=\"126.6\" x2=\"211.9\" y2=\"134.2\"></line><line class=\"gd\" x1=\"198.1\" y1=\"111.0\" x2=\"213.6\" y2=\"115.8\"></line><line class=\"gd\" x1=\"197.2\" y1=\"96.4\" x2=\"214.5\" y2=\"96.4\"></line><line class=\"gd\" x1=\"198.1\" y1=\"81.8\" x2=\"213.6\" y2=\"77.0\"></line><line class=\"gd\" x1=\"199.8\" y1=\"66.2\" x2=\"211.9\" y2=\"58.6\"></line><line class=\"gd\" x1=\"201.1\" y1=\"49.9\" x2=\"210.6\" y2=\"40.9\"></line><line class=\"gd\" x1=\"202.0\" y1=\"33.3\" x2=\"209.7\" y2=\"23.5\"></line><line class=\"gd\" x1=\"228.9\" y1=\"159.5\" x2=\"236.6\" y2=\"169.3\"></line><line class=\"gd\" x1=\"228.0\" y1=\"142.9\" x2=\"237.5\" y2=\"151.9\"></line><line class=\"gd\" x1=\"226.7\" y1=\"126.6\" x2=\"238.9\" y2=\"134.2\"></line><line class=\"gd\" x1=\"225.1\" y1=\"111.0\" x2=\"240.5\" y2=\"115.8\"></line><line class=\"gd\" x1=\"224.2\" y1=\"96.4\" x2=\"241.4\" y2=\"96.4\"></line><line class=\"gd\" x1=\"225.1\" y1=\"81.8\" x2=\"240.5\" y2=\"77.0\"></line><line class=\"gd\" x1=\"226.7\" y1=\"66.2\" x2=\"238.9\" y2=\"58.6\"></line><line class=\"gd\" x1=\"228.0\" y1=\"49.9\" x2=\"237.5\" y2=\"40.9\"></line><line class=\"gd\" x1=\"228.9\" y1=\"33.3\" x2=\"236.6\" y2=\"23.5\"></line><line class=\"gd\" x1=\"255.8\" y1=\"159.5\" x2=\"263.5\" y2=\"169.3\"></line><line class=\"gd\" x1=\"254.9\" y1=\"142.9\" x2=\"264.5\" y2=\"151.9\"></line><line class=\"gd\" x1=\"253.6\" y1=\"126.6\" x2=\"265.8\" y2=\"134.2\"></line><line class=\"gd\" x1=\"252.0\" y1=\"111.0\" x2=\"267.4\" y2=\"115.8\"></line><line class=\"gd\" x1=\"251.1\" y1=\"96.4\" x2=\"268.3\" y2=\"96.4\"></line><line class=\"gd\" x1=\"252.0\" y1=\"81.8\" x2=\"267.4\" y2=\"77.0\"></line><line class=\"gd\" x1=\"253.6\" y1=\"66.2\" x2=\"265.8\" y2=\"58.6\"></line><line class=\"gd\" x1=\"254.9\" y1=\"49.9\" x2=\"264.5\" y2=\"40.9\"></line><line class=\"gd\" x1=\"255.8\" y1=\"33.3\" x2=\"263.5\" y2=\"23.5\"></line><line class=\"gd\" x1=\"282.8\" y1=\"159.5\" x2=\"290.5\" y2=\"169.3\"></line><line class=\"gd\" x1=\"281.8\" y1=\"142.9\" x2=\"291.4\" y2=\"151.9\"></line><line class=\"gd\" x1=\"280.5\" y1=\"126.6\" x2=\"292.7\" y2=\"134.2\"></line><line class=\"gd\" x1=\"278.9\" y1=\"111.0\" x2=\"294.3\" y2=\"115.8\"></line><line class=\"gd\" x1=\"278.0\" y1=\"96.4\" x2=\"295.2\" y2=\"96.4\"></line><line class=\"gd\" x1=\"278.9\" y1=\"81.8\" x2=\"294.3\" y2=\"77.0\"></line><line class=\"gd\" x1=\"280.5\" y1=\"66.2\" x2=\"292.7\" y2=\"58.6\"></line><line class=\"gd\" x1=\"281.8\" y1=\"49.9\" x2=\"291.4\" y2=\"40.9\"></line><line class=\"gd\" x1=\"282.8\" y1=\"33.3\" x2=\"290.5\" y2=\"23.5\"></line></svg><p class=\"hint\">Follow the slope segments.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">General and particular solutions</p><h2>The slope at every point of the plane is dy/dx = y (short segments). What do the solution curves look like, and what does the condition y(0) = 1 do?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"12.0\" y1=\"96.4\" x2=\"292.0\" y2=\"96.4\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"152.0\" y1=\"178.0\" x2=\"152.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"44.3\" y1=\"93.4\" x2=\"44.3\" y2=\"99.4\"></line><text class=\"num\" x=\"44.3\" y=\"110.4\">−2</text><line class=\"ax\" x1=\"98.2\" y1=\"93.4\" x2=\"98.2\" y2=\"99.4\"></line><text class=\"num\" x=\"98.2\" y=\"110.4\">−1</text><line class=\"ax\" x1=\"205.8\" y1=\"93.4\" x2=\"205.8\" y2=\"99.4\"></line><text class=\"num\" x=\"205.8\" y=\"110.4\">1</text><line class=\"ax\" x1=\"259.7\" y1=\"93.4\" x2=\"259.7\" y2=\"99.4\"></line><text class=\"num\" x=\"259.7\" y=\"110.4\">2</text><line class=\"ax\" x1=\"149.0\" y1=\"164.4\" x2=\"155.0\" y2=\"164.4\"></line><text class=\"num\" x=\"146.0\" y=\"167.9\" text-anchor=\"end\">−2</text><line class=\"ax\" x1=\"149.0\" y1=\"130.4\" x2=\"155.0\" y2=\"130.4\"></line><text class=\"num\" x=\"146.0\" y=\"133.9\" text-anchor=\"end\">−1</text><line class=\"ax\" x1=\"149.0\" y1=\"62.4\" x2=\"155.0\" y2=\"62.4\"></line><text class=\"num\" x=\"146.0\" y=\"65.9\" text-anchor=\"end\">1</text><line class=\"ax\" x1=\"149.0\" y1=\"28.4\" x2=\"155.0\" y2=\"28.4\"></line><text class=\"num\" x=\"146.0\" y=\"31.9\" text-anchor=\"end\">2</text><line class=\"gd\" x1=\"13.5\" y1=\"159.5\" x2=\"21.2\" y2=\"169.3\"></line><line class=\"gd\" x1=\"12.6\" y1=\"142.9\" x2=\"22.2\" y2=\"151.9\"></line><line class=\"gd\" x1=\"11.3\" y1=\"126.6\" x2=\"23.5\" y2=\"134.2\"></line><line class=\"gd\" x1=\"9.7\" y1=\"111.0\" x2=\"25.1\" y2=\"115.8\"></line><line class=\"gd\" x1=\"8.8\" y1=\"96.4\" x2=\"26.0\" y2=\"96.4\"></line><line class=\"gd\" x1=\"9.7\" y1=\"81.8\" x2=\"25.1\" y2=\"77.0\"></line><line class=\"gd\" x1=\"11.3\" y1=\"66.2\" x2=\"23.5\" y2=\"58.6\"></line><line class=\"gd\" x1=\"12.6\" y1=\"49.9\" x2=\"22.2\" y2=\"40.9\"></line><line class=\"gd\" x1=\"13.5\" y1=\"33.3\" x2=\"21.2\" y2=\"23.5\"></line><line class=\"gd\" x1=\"40.5\" y1=\"159.5\" x2=\"48.2\" y2=\"169.3\"></line><line class=\"gd\" x1=\"39.5\" y1=\"142.9\" x2=\"49.1\" y2=\"151.9\"></line><line class=\"gd\" x1=\"38.2\" y1=\"126.6\" x2=\"50.4\" y2=\"134.2\"></line><line class=\"gd\" x1=\"36.6\" y1=\"111.0\" x2=\"52.0\" y2=\"115.8\"></line><line class=\"gd\" x1=\"35.7\" y1=\"96.4\" x2=\"52.9\" y2=\"96.4\"></line><line class=\"gd\" x1=\"36.6\" y1=\"81.8\" x2=\"52.0\" y2=\"77.0\"></line><line class=\"gd\" x1=\"38.2\" y1=\"66.2\" x2=\"50.4\" y2=\"58.6\"></line><line class=\"gd\" x1=\"39.5\" y1=\"49.9\" x2=\"49.1\" y2=\"40.9\"></line><line class=\"gd\" x1=\"40.5\" y1=\"33.3\" x2=\"48.2\" y2=\"23.5\"></line><line class=\"gd\" x1=\"67.4\" y1=\"159.5\" x2=\"75.1\" y2=\"169.3\"></line><line class=\"gd\" x1=\"66.5\" y1=\"142.9\" x2=\"76.0\" y2=\"151.9\"></line><line class=\"gd\" x1=\"65.1\" y1=\"126.6\" x2=\"77.3\" y2=\"134.2\"></line><line class=\"gd\" x1=\"63.5\" y1=\"111.0\" x2=\"78.9\" y2=\"115.8\"></line><line class=\"gd\" x1=\"62.6\" y1=\"96.4\" x2=\"79.8\" y2=\"96.4\"></line><line class=\"gd\" x1=\"63.5\" y1=\"81.8\" x2=\"78.9\" y2=\"77.0\"></line><line class=\"gd\" x1=\"65.1\" y1=\"66.2\" x2=\"77.3\" y2=\"58.6\"></line><line class=\"gd\" x1=\"66.5\" y1=\"49.9\" x2=\"76.0\" y2=\"40.9\"></line><line class=\"gd\" x1=\"67.4\" y1=\"33.3\" x2=\"75.1\" y2=\"23.5\"></line><line class=\"gd\" x1=\"94.3\" y1=\"159.5\" x2=\"102.0\" y2=\"169.3\"></line><line class=\"gd\" x1=\"93.4\" y1=\"142.9\" x2=\"102.9\" y2=\"151.9\"></line><line class=\"gd\" x1=\"92.1\" y1=\"126.6\" x2=\"104.2\" y2=\"134.2\"></line><line class=\"gd\" x1=\"90.4\" y1=\"111.0\" x2=\"105.9\" y2=\"115.8\"></line><line class=\"gd\" x1=\"89.5\" y1=\"96.4\" x2=\"106.8\" y2=\"96.4\"></line><line class=\"gd\" x1=\"90.4\" y1=\"81.8\" x2=\"105.9\" y2=\"77.0\"></line><line class=\"gd\" x1=\"92.1\" y1=\"66.2\" x2=\"104.2\" y2=\"58.6\"></line><line class=\"gd\" x1=\"93.4\" y1=\"49.9\" x2=\"102.9\" y2=\"40.9\"></line><line class=\"gd\" x1=\"94.3\" y1=\"33.3\" x2=\"102.0\" y2=\"23.5\"></line><line class=\"gd\" x1=\"121.2\" y1=\"159.5\" x2=\"128.9\" y2=\"169.3\"></line><line class=\"gd\" x1=\"120.3\" y1=\"142.9\" x2=\"129.9\" y2=\"151.9\"></line><line class=\"gd\" x1=\"119.0\" y1=\"126.6\" x2=\"131.2\" y2=\"134.2\"></line><line class=\"gd\" x1=\"117.4\" y1=\"111.0\" x2=\"132.8\" y2=\"115.8\"></line><line class=\"gd\" x1=\"116.5\" y1=\"96.4\" x2=\"133.7\" y2=\"96.4\"></line><line class=\"gd\" x1=\"117.4\" y1=\"81.8\" x2=\"132.8\" y2=\"77.0\"></line><line class=\"gd\" x1=\"119.0\" y1=\"66.2\" x2=\"131.2\" y2=\"58.6\"></line><line class=\"gd\" x1=\"120.3\" y1=\"49.9\" x2=\"129.9\" y2=\"40.9\"></line><line class=\"gd\" x1=\"121.2\" y1=\"33.3\" x2=\"128.9\" y2=\"23.5\"></line><line class=\"gd\" x1=\"148.1\" y1=\"159.5\" x2=\"155.9\" y2=\"169.3\"></line><line class=\"gd\" x1=\"147.2\" y1=\"142.9\" x2=\"156.8\" y2=\"151.9\"></line><line class=\"gd\" x1=\"145.9\" y1=\"126.6\" x2=\"158.1\" y2=\"134.2\"></line><line class=\"gd\" x1=\"144.3\" y1=\"111.0\" x2=\"159.7\" y2=\"115.8\"></line><line class=\"gd\" x1=\"143.4\" y1=\"96.4\" x2=\"160.6\" y2=\"96.4\"></line><line class=\"gd\" x1=\"144.3\" y1=\"81.8\" x2=\"159.7\" y2=\"77.0\"></line><line class=\"gd\" x1=\"145.9\" y1=\"66.2\" x2=\"158.1\" y2=\"58.6\"></line><line class=\"gd\" x1=\"147.2\" y1=\"49.9\" x2=\"156.8\" y2=\"40.9\"></line><line class=\"gd\" x1=\"148.1\" y1=\"33.3\" x2=\"155.9\" y2=\"23.5\"></line><line class=\"gd\" x1=\"175.1\" y1=\"159.5\" x2=\"182.8\" y2=\"169.3\"></line><line class=\"gd\" x1=\"174.1\" y1=\"142.9\" x2=\"183.7\" y2=\"151.9\"></line><line class=\"gd\" x1=\"172.8\" y1=\"126.6\" x2=\"185.0\" y2=\"134.2\"></line><line class=\"gd\" x1=\"171.2\" y1=\"111.0\" x2=\"186.6\" y2=\"115.8\"></line><line class=\"gd\" x1=\"170.3\" y1=\"96.4\" x2=\"187.5\" y2=\"96.4\"></line><line class=\"gd\" x1=\"171.2\" y1=\"81.8\" x2=\"186.6\" y2=\"77.0\"></line><line class=\"gd\" x1=\"172.8\" y1=\"66.2\" x2=\"185.0\" y2=\"58.6\"></line><line class=\"gd\" x1=\"174.1\" y1=\"49.9\" x2=\"183.7\" y2=\"40.9\"></line><line class=\"gd\" x1=\"175.1\" y1=\"33.3\" x2=\"182.8\" y2=\"23.5\"></line><line class=\"gd\" x1=\"202.0\" y1=\"159.5\" x2=\"209.7\" y2=\"169.3\"></line><line class=\"gd\" x1=\"201.1\" y1=\"142.9\" x2=\"210.6\" y2=\"151.9\"></line><line class=\"gd\" x1=\"199.8\" y1=\"126.6\" x2=\"211.9\" y2=\"134.2\"></line><line class=\"gd\" x1=\"198.1\" y1=\"111.0\" x2=\"213.6\" y2=\"115.8\"></line><line class=\"gd\" x1=\"197.2\" y1=\"96.4\" x2=\"214.5\" y2=\"96.4\"></line><line class=\"gd\" x1=\"198.1\" y1=\"81.8\" x2=\"213.6\" y2=\"77.0\"></line><line class=\"gd\" x1=\"199.8\" y1=\"66.2\" x2=\"211.9\" y2=\"58.6\"></line><line class=\"gd\" x1=\"201.1\" y1=\"49.9\" x2=\"210.6\" y2=\"40.9\"></line><line class=\"gd\" x1=\"202.0\" y1=\"33.3\" x2=\"209.7\" y2=\"23.5\"></line><line class=\"gd\" x1=\"228.9\" y1=\"159.5\" x2=\"236.6\" y2=\"169.3\"></line><line class=\"gd\" x1=\"228.0\" y1=\"142.9\" x2=\"237.5\" y2=\"151.9\"></line><line class=\"gd\" x1=\"226.7\" y1=\"126.6\" x2=\"238.9\" y2=\"134.2\"></line><line class=\"gd\" x1=\"225.1\" y1=\"111.0\" x2=\"240.5\" y2=\"115.8\"></line><line class=\"gd\" x1=\"224.2\" y1=\"96.4\" x2=\"241.4\" y2=\"96.4\"></line><line class=\"gd\" x1=\"225.1\" y1=\"81.8\" x2=\"240.5\" y2=\"77.0\"></line><line class=\"gd\" x1=\"226.7\" y1=\"66.2\" x2=\"238.9\" y2=\"58.6\"></line><line class=\"gd\" x1=\"228.0\" y1=\"49.9\" x2=\"237.5\" y2=\"40.9\"></line><line class=\"gd\" x1=\"228.9\" y1=\"33.3\" x2=\"236.6\" y2=\"23.5\"></line><line class=\"gd\" x1=\"255.8\" y1=\"159.5\" x2=\"263.5\" y2=\"169.3\"></line><line class=\"gd\" x1=\"254.9\" y1=\"142.9\" x2=\"264.5\" y2=\"151.9\"></line><line class=\"gd\" x1=\"253.6\" y1=\"126.6\" x2=\"265.8\" y2=\"134.2\"></line><line class=\"gd\" x1=\"252.0\" y1=\"111.0\" x2=\"267.4\" y2=\"115.8\"></line><line class=\"gd\" x1=\"251.1\" y1=\"96.4\" x2=\"268.3\" y2=\"96.4\"></line><line class=\"gd\" x1=\"252.0\" y1=\"81.8\" x2=\"267.4\" y2=\"77.0\"></line><line class=\"gd\" x1=\"253.6\" y1=\"66.2\" x2=\"265.8\" y2=\"58.6\"></line><line class=\"gd\" x1=\"254.9\" y1=\"49.9\" x2=\"264.5\" y2=\"40.9\"></line><line class=\"gd\" x1=\"255.8\" y1=\"33.3\" x2=\"263.5\" y2=\"23.5\"></line><line class=\"gd\" x1=\"282.8\" y1=\"159.5\" x2=\"290.5\" y2=\"169.3\"></line><line class=\"gd\" x1=\"281.8\" y1=\"142.9\" x2=\"291.4\" y2=\"151.9\"></line><line class=\"gd\" x1=\"280.5\" y1=\"126.6\" x2=\"292.7\" y2=\"134.2\"></line><line class=\"gd\" x1=\"278.9\" y1=\"111.0\" x2=\"294.3\" y2=\"115.8\"></line><line class=\"gd\" x1=\"278.0\" y1=\"96.4\" x2=\"295.2\" y2=\"96.4\"></line><line class=\"gd\" x1=\"278.9\" y1=\"81.8\" x2=\"294.3\" y2=\"77.0\"></line><line class=\"gd\" x1=\"280.5\" y1=\"66.2\" x2=\"292.7\" y2=\"58.6\"></line><line class=\"gd\" x1=\"281.8\" y1=\"49.9\" x2=\"291.4\" y2=\"40.9\"></line><line class=\"gd\" x1=\"282.8\" y1=\"33.3\" x2=\"290.5\" y2=\"23.5\"></line><polyline class=\"c0 fx d2\"  points=\"17.4,99.7 19.1,99.9 20.8,100.0 22.4,100.1 24.1,100.2 25.8,100.3 27.5,100.4 29.2,100.6 30.8,100.7 32.5,100.8 34.2,101.0 35.9,101.1 37.6,101.3 39.3,101.4 40.9,101.6 42.6,101.8 44.3,101.9 46.0,102.1 47.7,102.3 49.4,102.5 51.0,102.7 52.7,102.9 54.4,103.1 56.1,103.3 57.8,103.5 59.5,103.7 61.1,103.9 62.8,104.2 64.5,104.4 66.2,104.7 67.9,105.0 69.5,105.2 71.2,105.5 72.9,105.8 74.6,106.1 76.3,106.4 78.0,106.7 79.6,107.0 81.3,107.4 83.0,107.7 84.7,108.1 86.4,108.5 88.1,108.8 89.7,109.2 91.4,109.6 93.1,110.1 94.8,110.5 96.5,110.9 98.2,111.4 99.8,111.9 101.5,112.4 103.2,112.9 104.9,113.4 106.6,113.9 108.2,114.5 109.9,115.1 111.6,115.7 113.3,116.3 115.0,116.9 116.7,117.6 118.3,118.2 120.0,118.9 121.7,119.6 123.4,120.4 125.1,121.1 126.8,121.9 128.4,122.7 130.1,123.6 131.8,124.4 133.5,125.3 135.2,126.2 136.9,127.2 138.5,128.2 140.2,129.2 141.9,130.2 143.6,131.3 145.3,132.4 147.0,133.5 148.6,134.7 150.3,135.9 152.0,137.2 153.7,138.5 155.4,139.8 157.0,141.2 158.7,142.6 160.4,144.1 162.1,145.6 163.8,147.2 165.5,148.8 167.1,150.5 168.8,152.2 170.5,153.9 172.2,155.8 173.9,157.6 175.6,159.6 177.2,161.6 178.9,163.7 180.6,165.8 182.3,168.0 184.0,170.3 185.7,172.6 187.3,175.0 189.0,177.5\"></polyline><polyline class=\"c0 fx d2\"  points=\"17.4,97.8 19.1,97.8 20.8,97.9 22.4,97.9 24.1,98.0 25.8,98.0 27.5,98.1 29.2,98.1 30.8,98.2 32.5,98.2 34.2,98.3 35.9,98.4 37.6,98.4 39.3,98.5 40.9,98.6 42.6,98.6 44.3,98.7 46.0,98.8 47.7,98.8 49.4,98.9 51.0,99.0 52.7,99.1 54.4,99.2 56.1,99.3 57.8,99.4 59.5,99.4 61.1,99.5 62.8,99.6 64.5,99.7 66.2,99.9 67.9,100.0 69.5,100.1 71.2,100.2 72.9,100.3 74.6,100.4 76.3,100.6 78.0,100.7 79.6,100.8 81.3,101.0 83.0,101.1 84.7,101.3 86.4,101.4 88.1,101.6 89.7,101.7 91.4,101.9 93.1,102.1 94.8,102.3 96.5,102.5 98.2,102.7 99.8,102.9 101.5,103.1 103.2,103.3 104.9,103.5 106.6,103.7 108.2,103.9 109.9,104.2 111.6,104.4 113.3,104.7 115.0,104.9 116.7,105.2 118.3,105.5 120.0,105.8 121.7,106.1 123.4,106.4 125.1,106.7 126.8,107.0 128.4,107.4 130.1,107.7 131.8,108.1 133.5,108.5 135.2,108.8 136.9,109.2 138.5,109.6 140.2,110.1 141.9,110.5 143.6,110.9 145.3,111.4 147.0,111.9 148.6,112.4 150.3,112.9 152.0,113.4 153.7,113.9 155.4,114.5 157.0,115.1 158.7,115.7 160.4,116.3 162.1,116.9 163.8,117.6 165.5,118.2 167.1,118.9 168.8,119.6 170.5,120.4 172.2,121.1 173.9,121.9 175.6,122.7 177.2,123.6 178.9,124.4 180.6,125.3 182.3,126.2 184.0,127.2 185.7,128.2 187.3,129.2 189.0,130.2 190.7,131.3 192.4,132.4 194.1,133.5 195.8,134.7 197.4,135.9 199.1,137.2 200.8,138.5 202.5,139.8 204.2,141.2 205.8,142.6 207.5,144.1 209.2,145.6 210.9,147.2 212.6,148.8 214.3,150.4 215.9,152.1 217.6,153.9 219.3,155.7 221.0,157.6 222.7,159.6 224.4,161.6 226.0,163.6 227.7,165.8 229.4,168.0 231.1,170.2 232.8,172.6 234.5,175.0 236.1,177.5\"></polyline><polyline class=\"c0 fx d2\"  points=\"17.4,95.0 19.1,95.0 20.8,94.9 22.4,94.9 24.1,94.8 25.8,94.8 27.5,94.7 29.2,94.7 30.8,94.6 32.5,94.6 34.2,94.5 35.9,94.4 37.6,94.4 39.3,94.3 40.9,94.2 42.6,94.2 44.3,94.1 46.0,94.0 47.7,94.0 49.4,93.9 51.0,93.8 52.7,93.7 54.4,93.6 56.1,93.5 57.8,93.4 59.5,93.4 61.1,93.3 62.8,93.2 64.5,93.1 66.2,92.9 67.9,92.8 69.5,92.7 71.2,92.6 72.9,92.5 74.6,92.4 76.3,92.2 78.0,92.1 79.6,92.0 81.3,91.8 83.0,91.7 84.7,91.5 86.4,91.4 88.1,91.2 89.7,91.1 91.4,90.9 93.1,90.7 94.8,90.5 96.5,90.3 98.2,90.1 99.8,89.9 101.5,89.7 103.2,89.5 104.9,89.3 106.6,89.1 108.2,88.9 109.9,88.6 111.6,88.4 113.3,88.1 115.0,87.9 116.7,87.6 118.3,87.3 120.0,87.0 121.7,86.7 123.4,86.4 125.1,86.1 126.8,85.8 128.4,85.4 130.1,85.1 131.8,84.7 133.5,84.3 135.2,84.0 136.9,83.6 138.5,83.2 140.2,82.7 141.9,82.3 143.6,81.9 145.3,81.4 147.0,80.9 148.6,80.4 150.3,79.9 152.0,79.4 153.7,78.9 155.4,78.3 157.0,77.7 158.7,77.1 160.4,76.5 162.1,75.9 163.8,75.2 165.5,74.6 167.1,73.9 168.8,73.2 170.5,72.4 172.2,71.7 173.9,70.9 175.6,70.1 177.2,69.2 178.9,68.4 180.6,67.5 182.3,66.6 184.0,65.6 185.7,64.6 187.3,63.6 189.0,62.6 190.7,61.5 192.4,60.4 194.1,59.3 195.8,58.1 197.4,56.9 199.1,55.6 200.8,54.3 202.5,53.0 204.2,51.6 205.8,50.2 207.5,48.7 209.2,47.2 210.9,45.6 212.6,44.0 214.3,42.4 215.9,40.7 217.6,38.9 219.3,37.1 221.0,35.2 222.7,33.2 224.4,31.2 226.0,29.2 227.7,27.0 229.4,24.8 231.1,22.6 232.8,20.2 234.5,17.8 236.1,15.3 237.8,12.7 239.5,10.1\"></polyline><polyline class=\"c0 fx d2\"  points=\"17.4,93.1 19.1,92.9 20.8,92.8 22.4,92.7 24.1,92.6 25.8,92.5 27.5,92.4 29.2,92.2 30.8,92.1 32.5,92.0 34.2,91.8 35.9,91.7 37.6,91.5 39.3,91.4 40.9,91.2 42.6,91.0 44.3,90.9 46.0,90.7 47.7,90.5 49.4,90.3 51.0,90.1 52.7,89.9 54.4,89.7 56.1,89.5 57.8,89.3 59.5,89.1 61.1,88.9 62.8,88.6 64.5,88.4 66.2,88.1 67.9,87.8 69.5,87.6 71.2,87.3 72.9,87.0 74.6,86.7 76.3,86.4 78.0,86.1 79.6,85.8 81.3,85.4 83.0,85.1 84.7,84.7 86.4,84.3 88.1,84.0 89.7,83.6 91.4,83.2 93.1,82.7 94.8,82.3 96.5,81.9 98.2,81.4 99.8,80.9 101.5,80.4 103.2,79.9 104.9,79.4 106.6,78.9 108.2,78.3 109.9,77.7 111.6,77.1 113.3,76.5 115.0,75.9 116.7,75.2 118.3,74.6 120.0,73.9 121.7,73.2 123.4,72.4 125.1,71.7 126.8,70.9 128.4,70.1 130.1,69.2 131.8,68.4 133.5,67.5 135.2,66.6 136.9,65.6 138.5,64.6 140.2,63.6 141.9,62.6 143.6,61.5 145.3,60.4 147.0,59.3 148.6,58.1 150.3,56.9 152.0,55.6 153.7,54.3 155.4,53.0 157.0,51.6 158.7,50.2 160.4,48.7 162.1,47.2 163.8,45.6 165.5,44.0 167.1,42.3 168.8,40.6 170.5,38.9 172.2,37.0 173.9,35.2 175.6,33.2 177.2,31.2 178.9,29.1 180.6,27.0 182.3,24.8 184.0,22.5 185.7,20.2 187.3,17.8 189.0,15.3 190.7,12.7 192.4,10.0\"></polyline><polyline class=\"c2 fx d3\"  points=\"17.4,93.6 19.1,93.5 20.8,93.4 22.4,93.3 24.1,93.2 25.8,93.1 27.5,93.0 29.2,92.9 30.8,92.8 32.5,92.7 34.2,92.6 35.9,92.5 37.6,92.3 39.3,92.2 40.9,92.1 42.6,91.9 44.3,91.8 46.0,91.7 47.7,91.5 49.4,91.3 51.0,91.2 52.7,91.0 54.4,90.8 56.1,90.7 57.8,90.5 59.5,90.3 61.1,90.1 62.8,89.9 64.5,89.7 66.2,89.5 67.9,89.3 69.5,89.0 71.2,88.8 72.9,88.6 74.6,88.3 76.3,88.1 78.0,87.8 79.6,87.5 81.3,87.2 83.0,87.0 84.7,86.7 86.4,86.3 88.1,86.0 89.7,85.7 91.4,85.4 93.1,85.0 94.8,84.6 96.5,84.3 98.2,83.9 99.8,83.5 101.5,83.1 103.2,82.7 104.9,82.2 106.6,81.8 108.2,81.3 109.9,80.8 111.6,80.3 113.3,79.8 115.0,79.3 116.7,78.8 118.3,78.2 120.0,77.6 121.7,77.0 123.4,76.4 125.1,75.8 126.8,75.1 128.4,74.4 130.1,73.8 131.8,73.0 133.5,72.3 135.2,71.5 136.9,70.7 138.5,69.9 140.2,69.1 141.9,68.2 143.6,67.3 145.3,66.4 147.0,65.4 148.6,64.5 150.3,63.4 152.0,62.4 153.7,61.3 155.4,60.2 157.0,59.1 158.7,57.9 160.4,56.6 162.1,55.4 163.8,54.1 165.5,52.7 167.1,51.4 168.8,49.9 170.5,48.5 172.2,46.9 173.9,45.4 175.6,43.7 177.2,42.1 178.9,40.3 180.6,38.6 182.3,36.7 184.0,34.8 185.7,32.9 187.3,30.9 189.0,28.8 190.7,26.6 192.4,24.4 194.1,22.1 195.8,19.8 197.4,17.3 199.1,14.8 200.8,12.2 202.5,9.6\"></polyline><circle class=\"d2s fx d3\" cx=\"152.0\" cy=\"62.4\" r=\"5\"></circle><text class=\"t2 fx d3 \" x=\"166.1\" y=\"57.3\" text-anchor=\"start\">(0, 1)</text><text class=\"t2 fx d3 \" x=\"224.7\" y=\"25.0\" text-anchor=\"end\">y = eˣ</text><text class=\"lbl fx d2 \" x=\"17.4\" y=\"16.5\" text-anchor=\"start\">y = Ceˣ</text></svg><div class=\"eq fx d5\"><p>Solving dy/dx = y gives the <b>general solution y = Ceˣ</b>: a whole family of curves, one for each constant C, and each is tangent to the little slope segments everywhere. The solution has <b>one arbitrary constant</b>, as many as the order of the equation.</p><p>The condition y = 1 at x = 0 picks the single curve through (0, 1): C = 1, the <b>particular solution y = eˣ</b>. (Ex 9.2 Q11, Q12: a 4th-order equation has 4 arbitrary constants; a particular solution has none.)</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-basic-concepts"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Ex 9.1 Q1 to Q5: order and degree",
+      "definition": "Q1: d⁴y/dx⁴ + sin(y‴) = 0: order 4; degree not defined (sine of a derivative); Q2: y′ + 5y = 0: order 1, degree 1; Q3: (ds/dt)⁴ + 3s d²s/dt² = 0: order 2, degree 1; Q4: (d²y/dx²)² + cos(dy/dx) = 0: order 2; degree not defined (cos of a derivative); Q5: d²y/dx² = cos 3x + sin 3x: order 2, degree 1",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Ex 9.1 Q1–Q5</p><h2>Order and degree (if defined).</h2><table><tr><td>Q1: d⁴y/dx⁴ + sin(y‴) = 0</td><td class=\"q\">?</td></tr><tr><td>Q2: y′ + 5y = 0</td><td class=\"q\">?</td></tr><tr><td>Q3: (ds/dt)⁴ + 3s d²s/dt² = 0</td><td class=\"q\">?</td></tr><tr><td>Q4: (d²y/dx²)² + cos(dy/dx) = 0</td><td class=\"q\">?</td></tr><tr><td>Q5: d²y/dx² = cos 3x + sin 3x</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Ex 9.1 Q1–Q5</p><h2>Order and degree (if defined).</h2><table><tr><td>Q1: d⁴y/dx⁴ + sin(y‴) = 0</td><td class=\"a\">order 4; degree not defined (sine of a derivative)</td></tr><tr><td>Q2: y′ + 5y = 0</td><td class=\"a\">order 1, degree 1</td></tr><tr><td>Q3: (ds/dt)⁴ + 3s d²s/dt² = 0</td><td class=\"a\">order 2, degree 1</td></tr><tr><td>Q4: (d²y/dx²)² + cos(dy/dx) = 0</td><td class=\"a\">order 2; degree not defined (cos of a derivative)</td></tr><tr><td>Q5: d²y/dx² = cos 3x + sin 3x</td><td class=\"a\">order 2, degree 1</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-exercise-9-1"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Ex 9.1 Q6 to Q10: order and degree",
+      "definition": "Q6: (y‴)² + (y″)³ + (y′)⁴ + y⁵ = 0: order 3, degree 2; Q7: y‴ + 2y″ + y′ = 0: order 3, degree 1; Q8: y′ + y = eˣ: order 1, degree 1; Q9: y″ + (y′)² + 2y = 0: order 2, degree 1; Q10: y″ + 2y′ + sin y = 0: order 2, degree 1 (sin y is not a derivative)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Ex 9.1 Q6–Q10</p><h2>Order and degree (if defined).</h2><table><tr><td>Q6: (y‴)² + (y″)³ + (y′)⁴ + y⁵ = 0</td><td class=\"q\">?</td></tr><tr><td>Q7: y‴ + 2y″ + y′ = 0</td><td class=\"q\">?</td></tr><tr><td>Q8: y′ + y = eˣ</td><td class=\"q\">?</td></tr><tr><td>Q9: y″ + (y′)² + 2y = 0</td><td class=\"q\">?</td></tr><tr><td>Q10: y″ + 2y′ + sin y = 0</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Ex 9.1 Q6–Q10</p><h2>Order and degree (if defined).</h2><table><tr><td>Q6: (y‴)² + (y″)³ + (y′)⁴ + y⁵ = 0</td><td class=\"a\">order 3, degree 2</td></tr><tr><td>Q7: y‴ + 2y″ + y′ = 0</td><td class=\"a\">order 3, degree 1</td></tr><tr><td>Q8: y′ + y = eˣ</td><td class=\"a\">order 1, degree 1</td></tr><tr><td>Q9: y″ + (y′)² + 2y = 0</td><td class=\"a\">order 2, degree 1</td></tr><tr><td>Q10: y″ + 2y′ + sin y = 0</td><td class=\"a\">order 2, degree 1 (sin y is not a derivative)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-exercise-9-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q11: the degree of (d²y/dx²)³ + (dy/dx)² + sin(dy/dx) + 1 = 0 is (A) 3 (B) 2 (C) 1 (D) not defined",
+      "definition": "It contains sin(dy/dx), so it is not a polynomial in the derivatives: <span style=\"color:#22a35a\">(D) not defined</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-exercise-9-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.1 Q12: the order of 2x² d²y/dx² − 3 dy/dx + y = 0 is (A) 2 (B) 1 (C) 0 (D) not defined",
+      "definition": "<span style=\"color:#22a35a\">(A) 2</span> (highest derivative is d²y/dx²)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-exercise-9-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1(iii): order and degree of y‴ + y² + e^(y′) = 0.",
+      "definition": "Order 3. Because of e^(y′) it is not a polynomial in the derivatives: <span style=\"color:#f08c00\">degree not defined</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.2-exercise-9-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you verify that a function is a solution?",
+      "definition": "Differentiate it as many times as needed, substitute the derivatives and the function into the equation, and check that <span style=\"color:#3b82f6\">LHS = RHS</span> (for an implicit relation, differentiate implicitly)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q1: verify y = eˣ + 1 solves y″ − y′ = 0.",
+      "definition": "y′ = eˣ, y″ = eˣ: y″ − y′ = <span style=\"color:#f08c00\">0</span> ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q2: verify y = x² + 2x + C solves y′ − 2x − 2 = 0.",
+      "definition": "y′ = 2x + 2: <span style=\"color:#f08c00\">0</span> ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q3: verify y = cos x + C solves y′ + sin x = 0.",
+      "definition": "y′ = −sin x: <span style=\"color:#f08c00\">0</span> ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q4: verify y = √(1 + x²) solves y′ = xy/(1 + x²).",
+      "definition": "y′ = x/√(1 + x²) = x y/(1 + x²) since y = √(1 + x²) ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q5: verify y = Ax solves xy′ = y (x ≠ 0).",
+      "definition": "y′ = A: x y′ = Ax = y ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q6: verify y = x sin x solves xy′ = y + x√(x² − y²).",
+      "definition": "y′ = sin x + x cos x. xy′ = x sin x + x² cos x = y + x²cos x. And x²cos x = x√(x² − x² sin² x) = x√(x² − y²) (for cos x ≥ 0). ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q7: verify xy = log y + C solves y′ = y²/(1 − xy) (xy ≠ 1).",
+      "definition": "Differentiate: y + xy′ = y′/y → y′(1/y − x) = y → y′ = y²/(1 − xy) ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q8: verify y − cos y = x solves (y sin y + cos y + x) y′ = y.",
+      "definition": "y′(1 + sin y) = 1. With x = y − cos y: y sin y + cos y + x = y(1 + sin y). So LHS = y(1 + sin y)y′ = y ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q9: verify x + y = tan⁻¹y solves y²y′ + y² + 1 = 0.",
+      "definition": "Differentiate: 1 + y′ = y′/(1 + y²) → y′(1/(1 + y²) − 1) = 1 → y′ = −(1 + y²)/y² ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q10: verify y = √(a² − x²), x ∈ (−a, a), solves x + y dy/dx = 0 (y ≠ 0).",
+      "definition": "y′ = −x/√(a² − x²) = −x/y, so x + y y′ = 0 ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q11: the number of arbitrary constants in the general solution of a fourth-order equation is (A) 0 (B) 2 (C) 3 (D) 4",
+      "definition": "<span style=\"color:#22a35a\">(D) 4</span> (equal to the order)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.2 Q12: the number of arbitrary constants in a particular solution of a third-order equation is (A) 3 (B) 2 (C) 1 (D) 0",
+      "definition": "<span style=\"color:#22a35a\">(D) 0</span> (constants have been fixed)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.3-solutions-exercise-9-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Variables separable: what does it mean and how do you solve it?",
+      "definition": "dy/dx = f(x) g(y) can be rearranged as <span style=\"color:#3b82f6\">dy/g(y) = f(x) dx</span>. Integrate both sides and add ONE constant. (Check any g(y) = 0 root as a separate solution.)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-variables-separable"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Separable equation dy/dx = e^(x + y)",
+      "definition": "e^(-y) dy = e^x dx gives e^x + e^(-y) = C",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Variables separable</p><h2>Solve dy/dx = e^(x + y).</h2><div class=\"prob\">dy/dx = e^(x + y), y(0) = 0</div><ol><li>Split the exponent: dy/dx = eˣ · e^y</li><li>Separate: e^(−y) dy = eˣ dx</li><li class=\"h\">?</li><li>General solution: eˣ + e^(−y) = C′ (this is option A in Ex 9.3 Q23)</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Variables separable</p><h2>Solve dy/dx = e^(x + y).</h2><div class=\"prob\">dy/dx = e^(x + y), y(0) = 0</div><ol><li>Split the exponent: dy/dx = eˣ · e^y</li><li>Separate: e^(−y) dy = eˣ dx</li><li class=\"r\">Integrate: −e^(−y) = eˣ + C</li><li>General solution: eˣ + e^(−y) = C′ (this is option A in Ex 9.3 Q23)</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-variables-separable"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4/5 type: solve dy/dx = −4xy² (y ≠ 0).",
+      "definition": "dy/y² = −4x dx → −1/y = −2x² + C → <span style=\"color:#f08c00\">1/y = 2x² + C′</span> (also y = 0 is a solution)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-variables-separable"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is a first-order equation separable?",
+      "definition": "When the right side factorises as f(x)·g(y). Then move all y’s to one side and all x’s to the other and integrate both sides",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-variables-separable"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q1: dy/dx = (1 − cos x)/(1 + cos x)",
+      "definition": "<span style=\"color:#f08c00\">y = 2 tan(x/2) − x + C</span><br><small>(1 − cos x)/(1 + cos x) = tan²(x/2) = sec²(x/2) − 1</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q2: dy/dx = √(4 − y²)  (−2 < y < 2)",
+      "definition": "<span style=\"color:#f08c00\">y = 2 sin(x + C)</span><br><small>separate: dy/√(4 − y²) = dx, sin⁻¹(y/2) = x + C</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q3: dy/dx + y = 1  (y ≠ 1)",
+      "definition": "<span style=\"color:#f08c00\">y = 1 + A e^(−x)</span><br><small>dy/(1 − y) = dx, −log|1 − y| = x + C</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q4: sec²x tan y dx + sec²y tan x dy = 0",
+      "definition": "<span style=\"color:#f08c00\">tan x tan y = C</span><br><small>divide by tan x tan y: sec²x/tan x dx + sec²y/tan y dy = 0</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q5: (eˣ + e^(−x)) dy − (eˣ − e^(−x)) dx = 0",
+      "definition": "<span style=\"color:#f08c00\">y = log(eˣ + e^(−x)) + C</span><br><small>dy = (eˣ − e^(−x))/(eˣ + e^(−x)) dx</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q6: dy/dx = (1 + x²)(1 + y²)",
+      "definition": "<span style=\"color:#f08c00\">tan⁻¹y = x + x³/3 + C</span><br><small>dy/(1 + y²) = (1 + x²) dx</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q7: y log y dx − x dy = 0",
+      "definition": "<span style=\"color:#f08c00\">y = e^(Cx)</span><br><small>dy/(y log y) = dx/x, log|log y| = log|x| + C</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q8: x⁵ dy/dx = −y⁵",
+      "definition": "<span style=\"color:#f08c00\">x⁻⁴ + y⁻⁴ = C</span><br><small>dy/y⁵ = −dx/x⁵</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q9: dy/dx = sin⁻¹x",
+      "definition": "<span style=\"color:#f08c00\">y = x sin⁻¹x + √(1 − x²) + C</span><br><small>integrate sin⁻¹x by parts</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q10: eˣ tan y dx + (1 − eˣ) sec²y dy = 0",
+      "definition": "<span style=\"color:#f08c00\">tan y = C(1 − eˣ)</span><br><small>separate: eˣ/(1 − eˣ) dx + sec²y/tan y dy = 0</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Particular solution: method.",
+      "definition": "Find the general solution with its constant C, then <span style=\"color:#3b82f6\">substitute the given point (x₀, y₀)</span> to find C. The answer must not contain C",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q11: (x³ + x² + x + 1) dy/dx = 2x² + x; y = 1 when x = 0",
+      "definition": "<span style=\"color:#f08c00\">y = ¼ log[(x + 1)²(x² + 1)³] − ½ tan⁻¹x + 1</span><br><small>(2x² + x)/((x + 1)(x² + 1)) = 1/(2(x + 1)) + (3x + 1)/(2(x² + 1)) after splitting</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q12: x(x² − 1) dy/dx = 1; y = 0 when x = 2",
+      "definition": "<span style=\"color:#f08c00\">y = ½ log|(x² − 1)/x²| − ½ log(3/4)</span><br><small>1/(x(x² − 1)) = −1/x + ½/(x − 1) + ½/(x + 1)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q13: cos(dy/dx) = a (a ∈ R); y = 1 when x = 0",
+      "definition": "<span style=\"color:#f08c00\">cos((y − 1)/x) = a</span><br><small>dy/dx = cos⁻¹a is constant, so y = x cos⁻¹a + 1</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q14: dy/dx = y tan x; y = 1 when x = 0",
+      "definition": "<span style=\"color:#f08c00\">y = sec x</span><br><small>dy/y = tan x dx, log y = log sec x + C</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q15: y′ = eˣ sin x; the curve passes through (0, 0)",
+      "definition": "<span style=\"color:#f08c00\">2y − 1 = eˣ(sin x − cos x)</span><br><small>y = ∫eˣ sin x dx = eˣ(sin x − cos x)/2 + C, C = ½</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q16: xy dy/dx = (x + 2)(y + 2); curve through (1, −1)",
+      "definition": "<span style=\"color:#f08c00\">y − x + 2 = log(x²(y + 2)²)</span><br><small>y/(y + 2) dy = (x + 2)/x dx</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q17: the product of the slope of the tangent and the y-coordinate equals the x-coordinate; curve through (0, −2)",
+      "definition": "<span style=\"color:#f08c00\">y² − x² = 4</span><br><small>y dy/dx = x → y dy = x dx</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q18: the slope at (x, y) is twice the slope of the segment joining it to (−4, −3); curve through (−2, 1)",
+      "definition": "<span style=\"color:#f08c00\">(x + 4)² = y + 3</span><br><small>dy/dx = 2(y + 3)/(x + 4) → dy/(y + 3) = 2dx/(x + 4)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q19: a balloon’s volume changes at a constant rate; radius 3 initially, 6 after 3 s. Find the radius after t seconds.",
+      "definition": "dV/dt = k with V = (4/3)πr³, so r³ = r₀³ + Kt: 27 + 3K = 216 → K = 63. <span style=\"color:#f08c00\">r = (63t + 27)^(1/3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Exponential growth: dP/dt = kP gives P = P₀ e^(kt)",
+      "definition": "dP/dt = kP gives P = P0 e^(kt); 5% continuous interest: P = 1000 e^(t/20), doubling time 20 log 2 = 13.9 years; rate for doubling in 10 years is 10 log 2 = 6.93%",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Example 9 · continuous growth</p><h2>A bank adds interest continuously at 5% per year: dP/dt = P/20. In how many years does ₹1000 double?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"132.1\" y1=\"170.0\" x2=\"132.1\" y2=\"8.0\"></line><line class=\"gd\" x1=\"225.0\" y1=\"170.0\" x2=\"225.0\" y2=\"8.0\"></line><line class=\"gd\" x1=\"30.0\" y1=\"127.2\" x2=\"290.0\" y2=\"127.2\"></line><line class=\"gd\" x1=\"30.0\" y1=\"89.9\" x2=\"290.0\" y2=\"89.9\"></line><line class=\"gd\" x1=\"30.0\" y1=\"15.4\" x2=\"290.0\" y2=\"15.4\"></line><line class=\"ax\" x1=\"30.0\" y1=\"164.4\" x2=\"290.0\" y2=\"164.4\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"39.3\" y1=\"170.0\" x2=\"39.3\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"132.1\" y1=\"161.4\" x2=\"132.1\" y2=\"167.4\"></line><text class=\"num\" x=\"132.1\" y=\"178.4\">10</text><line class=\"ax\" x1=\"225.0\" y1=\"161.4\" x2=\"225.0\" y2=\"167.4\"></line><text class=\"num\" x=\"225.0\" y=\"178.4\">20</text><line class=\"ax\" x1=\"36.3\" y1=\"127.2\" x2=\"42.3\" y2=\"127.2\"></line><text class=\"num\" x=\"33.3\" y=\"130.7\" text-anchor=\"end\">1000</text><line class=\"ax\" x1=\"36.3\" y1=\"89.9\" x2=\"42.3\" y2=\"89.9\"></line><text class=\"num\" x=\"33.3\" y=\"93.4\" text-anchor=\"end\">2000</text><line class=\"ax\" x1=\"36.3\" y1=\"15.4\" x2=\"42.3\" y2=\"15.4\"></line><text class=\"num\" x=\"33.3\" y=\"18.9\" text-anchor=\"end\">4000</text><polyline class=\"c1\"  points=\"39.3,127.2 40.8,126.9 42.3,126.6 43.8,126.3 45.3,125.9 46.8,125.6 48.3,125.3 49.8,125.0 51.4,124.7 52.9,124.3 54.4,124.0 55.9,123.7 57.4,123.4 58.9,123.0 60.4,122.7 61.9,122.3 63.4,122.0 64.9,121.7 66.4,121.3 68.0,121.0 69.5,120.6 71.0,120.2 72.5,119.9 74.0,119.5 75.5,119.2 77.0,118.8 78.5,118.4 80.0,118.0 81.5,117.7 83.0,117.3 84.6,116.9 86.1,116.5 87.6,116.1 89.1,115.7 90.6,115.3 92.1,114.9 93.6,114.5 95.1,114.1 96.6,113.7 98.1,113.3 99.6,112.9 101.2,112.5 102.7,112.0 104.2,111.6 105.7,111.2 107.2,110.7 108.7,110.3 110.2,109.9 111.7,109.4 113.2,109.0 114.7,108.5 116.2,108.1 117.7,107.6 119.3,107.1 120.8,106.7 122.3,106.2 123.8,105.7 125.3,105.2 126.8,104.8 128.3,104.3 129.8,103.8 131.3,103.3 132.8,102.8 134.3,102.3 135.9,101.8 137.4,101.3 138.9,100.7 140.4,100.2 141.9,99.7 143.4,99.2 144.9,98.6 146.4,98.1 147.9,97.6 149.4,97.0 150.9,96.5 152.5,95.9 154.0,95.4 155.5,94.8 157.0,94.2 158.5,93.7 160.0,93.1 161.5,92.5 163.0,91.9 164.5,91.3 166.0,90.7 167.5,90.1 169.1,89.5 170.6,88.9 172.1,88.3 173.6,87.7 175.1,87.0 176.6,86.4 178.1,85.8 179.6,85.1 181.1,84.5 182.6,83.8 184.1,83.2 185.7,82.5 187.2,81.8 188.7,81.2 190.2,80.5 191.7,79.8 193.2,79.1 194.7,78.4 196.2,77.7 197.7,77.0 199.2,76.3 200.7,75.6 202.2,74.9 203.8,74.1 205.3,73.4 206.8,72.6 208.3,71.9 209.8,71.1 211.3,70.4 212.8,69.6 214.3,68.8 215.8,68.1 217.3,67.3 218.8,66.5 220.4,65.7 221.9,64.9 223.4,64.1 224.9,63.2 226.4,62.4 227.9,61.6 229.4,60.7 230.9,59.9 232.4,59.0 233.9,58.2 235.4,57.3 237.0,56.5 238.5,55.6 240.0,54.7 241.5,53.8 243.0,52.9 244.5,52.0 246.0,51.1 247.5,50.1 249.0,49.2 250.5,48.3 252.0,47.3 253.6,46.4 255.1,45.4 256.6,44.4 258.1,43.4 259.6,42.5 261.1,41.5 262.6,40.5 264.1,39.4 265.6,38.4 267.1,37.4 268.6,36.4 270.2,35.3 271.7,34.3 273.2,33.2 274.7,32.1 276.2,31.1 277.7,30.0 279.2,28.9 280.7,27.8\"></polyline></svg><p class=\"hint\">Separate the variables and integrate.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Example 9 · continuous growth</p><h2>A bank adds interest continuously at 5% per year: dP/dt = P/20. In how many years does ₹1000 double?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"132.1\" y1=\"170.0\" x2=\"132.1\" y2=\"8.0\"></line><line class=\"gd\" x1=\"225.0\" y1=\"170.0\" x2=\"225.0\" y2=\"8.0\"></line><line class=\"gd\" x1=\"30.0\" y1=\"127.2\" x2=\"290.0\" y2=\"127.2\"></line><line class=\"gd\" x1=\"30.0\" y1=\"89.9\" x2=\"290.0\" y2=\"89.9\"></line><line class=\"gd\" x1=\"30.0\" y1=\"15.4\" x2=\"290.0\" y2=\"15.4\"></line><line class=\"ax\" x1=\"30.0\" y1=\"164.4\" x2=\"290.0\" y2=\"164.4\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"39.3\" y1=\"170.0\" x2=\"39.3\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"132.1\" y1=\"161.4\" x2=\"132.1\" y2=\"167.4\"></line><text class=\"num\" x=\"132.1\" y=\"178.4\">10</text><line class=\"ax\" x1=\"225.0\" y1=\"161.4\" x2=\"225.0\" y2=\"167.4\"></line><text class=\"num\" x=\"225.0\" y=\"178.4\">20</text><line class=\"ax\" x1=\"36.3\" y1=\"127.2\" x2=\"42.3\" y2=\"127.2\"></line><text class=\"num\" x=\"33.3\" y=\"130.7\" text-anchor=\"end\">1000</text><line class=\"ax\" x1=\"36.3\" y1=\"89.9\" x2=\"42.3\" y2=\"89.9\"></line><text class=\"num\" x=\"33.3\" y=\"93.4\" text-anchor=\"end\">2000</text><line class=\"ax\" x1=\"36.3\" y1=\"15.4\" x2=\"42.3\" y2=\"15.4\"></line><text class=\"num\" x=\"33.3\" y=\"18.9\" text-anchor=\"end\">4000</text><polyline class=\"c1\"  points=\"39.3,127.2 40.8,126.9 42.3,126.6 43.8,126.3 45.3,125.9 46.8,125.6 48.3,125.3 49.8,125.0 51.4,124.7 52.9,124.3 54.4,124.0 55.9,123.7 57.4,123.4 58.9,123.0 60.4,122.7 61.9,122.3 63.4,122.0 64.9,121.7 66.4,121.3 68.0,121.0 69.5,120.6 71.0,120.2 72.5,119.9 74.0,119.5 75.5,119.2 77.0,118.8 78.5,118.4 80.0,118.0 81.5,117.7 83.0,117.3 84.6,116.9 86.1,116.5 87.6,116.1 89.1,115.7 90.6,115.3 92.1,114.9 93.6,114.5 95.1,114.1 96.6,113.7 98.1,113.3 99.6,112.9 101.2,112.5 102.7,112.0 104.2,111.6 105.7,111.2 107.2,110.7 108.7,110.3 110.2,109.9 111.7,109.4 113.2,109.0 114.7,108.5 116.2,108.1 117.7,107.6 119.3,107.1 120.8,106.7 122.3,106.2 123.8,105.7 125.3,105.2 126.8,104.8 128.3,104.3 129.8,103.8 131.3,103.3 132.8,102.8 134.3,102.3 135.9,101.8 137.4,101.3 138.9,100.7 140.4,100.2 141.9,99.7 143.4,99.2 144.9,98.6 146.4,98.1 147.9,97.6 149.4,97.0 150.9,96.5 152.5,95.9 154.0,95.4 155.5,94.8 157.0,94.2 158.5,93.7 160.0,93.1 161.5,92.5 163.0,91.9 164.5,91.3 166.0,90.7 167.5,90.1 169.1,89.5 170.6,88.9 172.1,88.3 173.6,87.7 175.1,87.0 176.6,86.4 178.1,85.8 179.6,85.1 181.1,84.5 182.6,83.8 184.1,83.2 185.7,82.5 187.2,81.8 188.7,81.2 190.2,80.5 191.7,79.8 193.2,79.1 194.7,78.4 196.2,77.7 197.7,77.0 199.2,76.3 200.7,75.6 202.2,74.9 203.8,74.1 205.3,73.4 206.8,72.6 208.3,71.9 209.8,71.1 211.3,70.4 212.8,69.6 214.3,68.8 215.8,68.1 217.3,67.3 218.8,66.5 220.4,65.7 221.9,64.9 223.4,64.1 224.9,63.2 226.4,62.4 227.9,61.6 229.4,60.7 230.9,59.9 232.4,59.0 233.9,58.2 235.4,57.3 237.0,56.5 238.5,55.6 240.0,54.7 241.5,53.8 243.0,52.9 244.5,52.0 246.0,51.1 247.5,50.1 249.0,49.2 250.5,48.3 252.0,47.3 253.6,46.4 255.1,45.4 256.6,44.4 258.1,43.4 259.6,42.5 261.1,41.5 262.6,40.5 264.1,39.4 265.6,38.4 267.1,37.4 268.6,36.4 270.2,35.3 271.7,34.3 273.2,33.2 274.7,32.1 276.2,31.1 277.7,30.0 279.2,28.9 280.7,27.8\"></polyline><circle class=\"d1s fx d2\" cx=\"39.3\" cy=\"127.2\" r=\"4.5\"></circle><circle class=\"d2s fx d3\" cx=\"168.0\" cy=\"89.9\" r=\"5.5\"></circle><line class=\"guide fx d3\" x1=\"39.3\" y1=\"89.9\" x2=\"168.0\" y2=\"89.9\"></line><line class=\"guide fx d3\" x1=\"168.0\" y1=\"164.4\" x2=\"168.0\" y2=\"89.9\"></line><text class=\"t2 fx d4 \" x=\"176.0\" y=\"158.4\" text-anchor=\"start\">20 log 2 ≈ 13.9 yr</text><text class=\"t1 fx d2 \" x=\"48.6\" y=\"22.9\" text-anchor=\"start\">P = 1000 e^(t/20)</text></svg><div class=\"eq fx d5\"><p>Separate: dP/P = dt/20, so log P = t/20 + C and <b>P = 1000 e^(t/20)</b> (using P(0) = 1000).</p><p>Doubling: 2000 = 1000 e^(t/20) gives <b>t = 20 log 2 ≈ 13.9 years</b>. General law: <b>dP/dt = kP ⇒ P = P₀ e^(kt)</b>; growth (k > 0), decay (k < 0). (Ex 9.3 Q20: r = 10 log 2 ≈ 6.93%; Q21: 1000 e^(0.5) ≈ ₹1648.)</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q20: principal grows continuously at r% per year. Find r if ₹100 doubles in 10 years (log 2 = 0.6931).",
+      "definition": "P = P₀ e^(rt/100): 2 = e^(r/10) → r = 10 log 2 = <span style=\"color:#f08c00\">6.93%</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q21: ₹1000 at 5% continuously compounded: worth after 10 years (e^0.5 = 1.648)?",
+      "definition": "P = 1000 e^(0.05 × 10) = 1000 e^0.5 = <span style=\"color:#f08c00\">₹1648</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q22: a culture of 1,00,000 bacteria grows 10% in 2 hours. In how many hours does it reach 2,00,000?",
+      "definition": "dp/dt = kp, p = p₀e^(kt): 1.1 = e^(2k) → k = ½ log(11/10). Doubling: t = log 2/k = <span style=\"color:#f08c00\">2 log 2 / log(11/10) hours</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.3 Q23: the general solution of dy/dx = e^(x + y) is (A) eˣ + e^(−y) = C (B) eˣ + e^y = C (C) e^(−x) + e^y = C (D) e^(−x) + e^(−y) = C",
+      "definition": "e^(−y) dy = eˣ dx → −e^(−y) = eˣ + C. <span style=\"color:#22a35a\">(A)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Newton’s law of cooling (JEE): the model and its solution.",
+      "definition": "dT/dt = −k(T − Tₛ): the rate of cooling is proportional to the temperature difference. Solution: <span style=\"color:#3b82f6\">T − Tₛ = (T₀ − Tₛ) e^(−kt)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Radioactive decay: model and half-life?",
+      "definition": "dN/dt = −λN gives N = N₀ e^(−λt). Half-life T = <span style=\"color:#3b82f6\">(log 2)/λ</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.4-exercise-9-3-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Homogeneous function of degree n.",
+      "definition": "F(λx, λy) = <span style=\"color:#3b82f6\">λⁿ F(x, y)</span> for every λ ≠ 0. Examples: y² + 2xy (degree 2), 2x − 3y (degree 1), cos(y/x) (degree 0), but sin x + cos y is not homogeneous",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-homogeneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Homogeneous differential equation: definition.",
+      "definition": "dy/dx = F(x, y) with F homogeneous of <span style=\"color:#3b82f6\">degree 0</span>, i.e. F(x, y) = g(y/x). Equivalently P dx + Q dy = 0 where P and Q are homogeneous of the same degree",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-homogeneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method for a homogeneous equation dy/dx = g(y/x).",
+      "definition": "Put <span style=\"color:#3b82f6\">y = vx</span>, dy/dx = v + x dv/dx. Then x dv/dx = g(v) − v: separate variables. Replace v by y/x at the end. If the equation is written as dx/dy = h(x/y), use x = vy",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-homogeneous"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Homogeneous equations: slope constant along rays; substitute y = vx",
+      "definition": "Homogeneous ODE dy/dx = F(y/x): slope depends only on y/x, constant along rays from the origin; substitute y = vx, dy/dx = v + x dv/dx, then separate variables",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Why y = vx works</p><h2>For (x² + xy) dy = (x² + y²) dx the slope at (x, y) is (x² + y²)/(x² + xy). Look at the slope segments: what pattern do they show?</h2><svg viewBox=\"0 0 300 229\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"114.5\" x2=\"292.0\" y2=\"114.5\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"221.0\" x2=\"150.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"c1\" x1=\"174.2\" y1=\"121.4\" x2=\"188.0\" y2=\"107.6\"></line><line class=\"c1\" x1=\"205.2\" y1=\"121.4\" x2=\"219.0\" y2=\"107.6\"></line><line class=\"c1\" x1=\"236.3\" y1=\"121.4\" x2=\"250.1\" y2=\"107.6\"></line><line class=\"c1\" x1=\"267.3\" y1=\"121.4\" x2=\"281.2\" y2=\"107.6\"></line><line class=\"c1\" x1=\"169.4\" y1=\"105.3\" x2=\"184.4\" y2=\"92.7\"></line><line class=\"c1\" x1=\"196.3\" y1=\"89.7\" x2=\"211.3\" y2=\"77.1\"></line><line class=\"c1\" x1=\"223.2\" y1=\"74.2\" x2=\"238.2\" y2=\"61.6\"></line><line class=\"c1\" x1=\"250.1\" y1=\"58.7\" x2=\"265.1\" y2=\"46.1\"></line><line class=\"c1\" x1=\"160.0\" y1=\"95.7\" x2=\"171.0\" y2=\"79.5\"></line><line class=\"c1\" x1=\"175.6\" y1=\"68.8\" x2=\"186.6\" y2=\"52.6\"></line><line class=\"c1\" x1=\"191.1\" y1=\"41.9\" x2=\"202.1\" y2=\"25.7\"></line><line class=\"c1\" x1=\"132.7\" y1=\"78.0\" x2=\"136.2\" y2=\"97.2\"></line><line class=\"c1\" x1=\"117.2\" y1=\"51.1\" x2=\"120.7\" y2=\"70.3\"></line><line class=\"c1\" x1=\"101.6\" y1=\"24.2\" x2=\"105.2\" y2=\"43.4\"></line><line class=\"c1\" x1=\"120.1\" y1=\"108.3\" x2=\"126.0\" y2=\"89.7\"></line><line class=\"c1\" x1=\"93.2\" y1=\"92.7\" x2=\"99.1\" y2=\"74.1\"></line><line class=\"c1\" x1=\"66.3\" y1=\"77.2\" x2=\"72.2\" y2=\"58.6\"></line><line class=\"c1\" x1=\"39.4\" y1=\"61.7\" x2=\"45.3\" y2=\"43.1\"></line><line class=\"c1\" x1=\"112.0\" y1=\"121.4\" x2=\"125.8\" y2=\"107.6\"></line><line class=\"c1\" x1=\"81.0\" y1=\"121.4\" x2=\"94.8\" y2=\"107.6\"></line><line class=\"c1\" x1=\"49.9\" y1=\"121.4\" x2=\"63.7\" y2=\"107.6\"></line><line class=\"c1\" x1=\"18.8\" y1=\"121.4\" x2=\"32.7\" y2=\"107.6\"></line><line class=\"c1\" x1=\"115.6\" y1=\"136.3\" x2=\"130.6\" y2=\"123.7\"></line><line class=\"c1\" x1=\"88.7\" y1=\"151.9\" x2=\"103.7\" y2=\"139.3\"></line><line class=\"c1\" x1=\"61.8\" y1=\"167.4\" x2=\"76.8\" y2=\"154.8\"></line><line class=\"c1\" x1=\"34.9\" y1=\"182.9\" x2=\"49.9\" y2=\"170.3\"></line><line class=\"c1\" x1=\"129.0\" y1=\"149.5\" x2=\"140.0\" y2=\"133.3\"></line><line class=\"c1\" x1=\"113.4\" y1=\"176.4\" x2=\"124.4\" y2=\"160.2\"></line><line class=\"c1\" x1=\"97.9\" y1=\"203.3\" x2=\"108.9\" y2=\"187.1\"></line><line class=\"c1\" x1=\"163.8\" y1=\"131.8\" x2=\"167.3\" y2=\"151.0\"></line><line class=\"c1\" x1=\"179.3\" y1=\"158.7\" x2=\"182.8\" y2=\"177.9\"></line><line class=\"c1\" x1=\"194.8\" y1=\"185.6\" x2=\"198.4\" y2=\"204.8\"></line><line class=\"c1\" x1=\"174.0\" y1=\"139.3\" x2=\"179.9\" y2=\"120.7\"></line><line class=\"c1\" x1=\"200.9\" y1=\"154.9\" x2=\"206.8\" y2=\"136.3\"></line><line class=\"c1\" x1=\"227.8\" y1=\"170.4\" x2=\"233.7\" y2=\"151.8\"></line><line class=\"c1\" x1=\"254.7\" y1=\"185.9\" x2=\"260.6\" y2=\"167.3\"></line></svg><p class=\"hint\">Compare slopes on the same line through the origin.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Why y = vx works</p><h2>For (x² + xy) dy = (x² + y²) dx the slope at (x, y) is (x² + y²)/(x² + xy). Look at the slope segments: what pattern do they show?</h2><svg viewBox=\"0 0 300 229\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"114.5\" x2=\"292.0\" y2=\"114.5\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"221.0\" x2=\"150.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"c1\" x1=\"174.2\" y1=\"121.4\" x2=\"188.0\" y2=\"107.6\"></line><line class=\"c1\" x1=\"205.2\" y1=\"121.4\" x2=\"219.0\" y2=\"107.6\"></line><line class=\"c1\" x1=\"236.3\" y1=\"121.4\" x2=\"250.1\" y2=\"107.6\"></line><line class=\"c1\" x1=\"267.3\" y1=\"121.4\" x2=\"281.2\" y2=\"107.6\"></line><line class=\"c1\" x1=\"169.4\" y1=\"105.3\" x2=\"184.4\" y2=\"92.7\"></line><line class=\"c1\" x1=\"196.3\" y1=\"89.7\" x2=\"211.3\" y2=\"77.1\"></line><line class=\"c1\" x1=\"223.2\" y1=\"74.2\" x2=\"238.2\" y2=\"61.6\"></line><line class=\"c1\" x1=\"250.1\" y1=\"58.7\" x2=\"265.1\" y2=\"46.1\"></line><line class=\"c1\" x1=\"160.0\" y1=\"95.7\" x2=\"171.0\" y2=\"79.5\"></line><line class=\"c1\" x1=\"175.6\" y1=\"68.8\" x2=\"186.6\" y2=\"52.6\"></line><line class=\"c1\" x1=\"191.1\" y1=\"41.9\" x2=\"202.1\" y2=\"25.7\"></line><line class=\"c1\" x1=\"132.7\" y1=\"78.0\" x2=\"136.2\" y2=\"97.2\"></line><line class=\"c1\" x1=\"117.2\" y1=\"51.1\" x2=\"120.7\" y2=\"70.3\"></line><line class=\"c1\" x1=\"101.6\" y1=\"24.2\" x2=\"105.2\" y2=\"43.4\"></line><line class=\"c1\" x1=\"120.1\" y1=\"108.3\" x2=\"126.0\" y2=\"89.7\"></line><line class=\"c1\" x1=\"93.2\" y1=\"92.7\" x2=\"99.1\" y2=\"74.1\"></line><line class=\"c1\" x1=\"66.3\" y1=\"77.2\" x2=\"72.2\" y2=\"58.6\"></line><line class=\"c1\" x1=\"39.4\" y1=\"61.7\" x2=\"45.3\" y2=\"43.1\"></line><line class=\"c1\" x1=\"112.0\" y1=\"121.4\" x2=\"125.8\" y2=\"107.6\"></line><line class=\"c1\" x1=\"81.0\" y1=\"121.4\" x2=\"94.8\" y2=\"107.6\"></line><line class=\"c1\" x1=\"49.9\" y1=\"121.4\" x2=\"63.7\" y2=\"107.6\"></line><line class=\"c1\" x1=\"18.8\" y1=\"121.4\" x2=\"32.7\" y2=\"107.6\"></line><line class=\"c1\" x1=\"115.6\" y1=\"136.3\" x2=\"130.6\" y2=\"123.7\"></line><line class=\"c1\" x1=\"88.7\" y1=\"151.9\" x2=\"103.7\" y2=\"139.3\"></line><line class=\"c1\" x1=\"61.8\" y1=\"167.4\" x2=\"76.8\" y2=\"154.8\"></line><line class=\"c1\" x1=\"34.9\" y1=\"182.9\" x2=\"49.9\" y2=\"170.3\"></line><line class=\"c1\" x1=\"129.0\" y1=\"149.5\" x2=\"140.0\" y2=\"133.3\"></line><line class=\"c1\" x1=\"113.4\" y1=\"176.4\" x2=\"124.4\" y2=\"160.2\"></line><line class=\"c1\" x1=\"97.9\" y1=\"203.3\" x2=\"108.9\" y2=\"187.1\"></line><line class=\"c1\" x1=\"163.8\" y1=\"131.8\" x2=\"167.3\" y2=\"151.0\"></line><line class=\"c1\" x1=\"179.3\" y1=\"158.7\" x2=\"182.8\" y2=\"177.9\"></line><line class=\"c1\" x1=\"194.8\" y1=\"185.6\" x2=\"198.4\" y2=\"204.8\"></line><line class=\"c1\" x1=\"174.0\" y1=\"139.3\" x2=\"179.9\" y2=\"120.7\"></line><line class=\"c1\" x1=\"200.9\" y1=\"154.9\" x2=\"206.8\" y2=\"136.3\"></line><line class=\"c1\" x1=\"227.8\" y1=\"170.4\" x2=\"233.7\" y2=\"151.8\"></line><line class=\"c1\" x1=\"254.7\" y1=\"185.9\" x2=\"260.6\" y2=\"167.3\"></line><line class=\"guide fx d2\" x1=\"150.0\" y1=\"114.5\" x2=\"300.1\" y2=\"59.9\"></line><line class=\"guide fx d2\" x1=\"150.0\" y1=\"114.5\" x2=\"263.0\" y2=\"1.5\"></line><line class=\"guide fx d3\" x1=\"150.0\" y1=\"114.5\" x2=\"204.6\" y2=\"-35.6\"></line><line class=\"guide fx d3\" x1=\"150.0\" y1=\"114.5\" x2=\"95.4\" y2=\"-35.6\"></line><line class=\"guide fx d4\" x1=\"150.0\" y1=\"114.5\" x2=\"-0.1\" y2=\"169.1\"></line><text class=\"t4 fx d3 \" x=\"16.9\" y=\"198.8\" text-anchor=\"start\">slope depends only on y/x</text><text class=\"t2 fx d4 \" x=\"16.9\" y=\"212.1\" text-anchor=\"start\">same slope along each ray</text></svg><div class=\"eq fx d5\"><p>The right side (x² + y²)/(x² + xy) = (1 + v²)/(1 + v) with v = y/x depends <b>only on the ratio y/x</b>. So all points on the same ray from the origin have the <b>same slope</b> (parallel segments along each ray). Such an equation is <b>homogeneous</b>.</p><p>Substitute <b>y = vx</b> (dy/dx = v + x dv/dx) and the variables separate: x dv/dx = (1 − v)/(1 + v). Solve, then put v = y/x (Ex 9.4 Q1: (x − y)² = C x e^(−y/x)).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-homogeneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q16: dx/dy = h(x/y) is solved by the substitution (A) y = vx (B) v = yx (C) x = vy (D) x = v",
+      "definition": "Because h depends on x/y: <span style=\"color:#22a35a\">(C) x = vy</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-homogeneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q17: which is homogeneous? (A) (4x + 6y + 5)dy − (3y + 2x + 4)dx = 0 (B) (xy)dx − (x³ + y³)dy = 0 (C) (x³ + 2y²)dx + 2xy dy = 0 (D) y²dx + (x² − xy − y²)dy = 0",
+      "definition": "Only (D) has coefficients of the same degree (2) in both terms. <span style=\"color:#22a35a\">(D)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-homogeneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q1: (x² + xy) dy = (x² + y²) dx",
+      "definition": "<span style=\"color:#f08c00\">(x − y)² = C x e^(−y/x)</span><br><small>y = vx: x dv/dx = (1 − v)/(1 + v)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q2: y′ = (x + y)/x",
+      "definition": "<span style=\"color:#f08c00\">y = x log|x| + Cx</span><br><small>y = vx: x dv/dx = 1</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q3: (x − y) dy − (x + y) dx = 0",
+      "definition": "<span style=\"color:#f08c00\">tan⁻¹(y/x) = ½ log(x² + y²) + C</span><br><small>y = vx: (1 − v)/(1 + v²) dv = dx/x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q4: (x² − y²) dx + 2xy dy = 0",
+      "definition": "<span style=\"color:#f08c00\">x² + y² = Cx</span><br><small>y = vx: 2v/(1 + v²) dv = −dx/x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q5: x² dy/dx = x² − 2y² + xy",
+      "definition": "<span style=\"color:#f08c00\">(1/(2√2)) log|(x + √2 y)/(x − √2 y)| = log|x| + C</span><br><small>y = vx: x dv/dx = 1 − 2v²</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q6: x dy − y dx = √(x² + y²) dx",
+      "definition": "<span style=\"color:#f08c00\">y + √(x² + y²) = Cx²</span><br><small>y = vx: dv/√(1 + v²) = dx/x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q7: {x cos(y/x) + y sin(y/x)} y dx = {y sin(y/x) − x cos(y/x)} x dy",
+      "definition": "<span style=\"color:#f08c00\">xy cos(y/x) = C</span><br><small>y = vx: separate (v sin v − cos v)/(v cos v) dv</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q8: x dy/dx − y + x sin(y/x) = 0",
+      "definition": "<span style=\"color:#f08c00\">x[1 − cos(y/x)] = C sin(y/x)</span><br><small>y = vx: x dv/dx = −sin v, so dv/sin v = −dx/x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q9: y dx + x log(y/x) dy − 2x dy = 0",
+      "definition": "<span style=\"color:#f08c00\">c y = log|y/x| − 1</span><br><small>y = vx: (2 − log v)/(v(log v − 1)) dv = dx/x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q10: (1 + e^(x/y)) dx + e^(x/y)(1 − x/y) dy = 0",
+      "definition": "<span style=\"color:#f08c00\">x + y e^(x/y) = C</span><br><small>x = vy: dx/dy = v + y dv/dy</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q11: (x + y) dy + (x − y) dx = 0; y = 1 when x = 1",
+      "definition": "<span style=\"color:#f08c00\">log(x² + y²) + 2 tan⁻¹(y/x) = π/2 + log 2</span><br><small>y = vx: (1 + v)/(1 + v²) dv = −dx/x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q12: x² dy + (xy + y²) dx = 0; y = 1 when x = 1",
+      "definition": "<span style=\"color:#f08c00\">y + 2x = 3x²y</span><br><small>y = vx: dv/(v(v + 2)) = −dx/x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q13: [x sin²(y/x) − y] dx + x dy = 0; y = π/4 when x = 1",
+      "definition": "<span style=\"color:#f08c00\">cot(y/x) = log|ex|</span><br><small>y = vx: dv/sin²v = −dx/x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q14: dy/dx − y/x + cosec(y/x) = 0; y = 0 when x = 1",
+      "definition": "<span style=\"color:#f08c00\">cos(y/x) = log|ex|</span><br><small>y = vx: x dv/dx = −cosec v</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.4 Q15: 2xy + y² − 2x² dy/dx = 0; y = 2 when x = 1",
+      "definition": "<span style=\"color:#f08c00\">y = 2x/(1 − log|x|)</span><br><small>y = vx: 2v + v² − 2(v + x dv/dx) = 0 → dv/v² = dx/(2x)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.5-exercise-9-4-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "First-order linear differential equation: standard forms.",
+      "definition": "<span style=\"color:#3b82f6\">dy/dx + P y = Q</span> (P, Q functions of x) or <span style=\"color:#3b82f6\">dx/dy + P₁ x = Q₁</span> (P₁, Q₁ functions of y)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-linear"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integrating factor and solution of dy/dx + P y = Q.",
+      "definition": "<span style=\"color:#3b82f6\">IF = e^(∫P dx)</span>. Multiply through: d/dx(y · IF) = Q · IF, so <span style=\"color:#3b82f6\">y · IF = ∫ Q · IF dx + C</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-linear"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Solving a linear equation with an integrating factor",
+      "definition": "dy/dx + P y = Q: IF = e^(integral of P); y IF = integral Q IF dx + C; example y' + y/x = x^2 gives xy = x^4/4 + C",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Linear equation · Example 15</p><h2>Solve dy/dx + y/x = x² (x > 0).</h2><div class=\"prob\">P = 1/x, Q = x²</div><ol><li>IF = e^(∫1/x dx) = e^(log x) = x</li><li class=\"h\">?</li><li>Integrate: xy = x⁴/4 + C</li><li>Solution: y = x³/4 + C/x</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Linear equation · Example 15</p><h2>Solve dy/dx + y/x = x² (x > 0).</h2><div class=\"prob\">P = 1/x, Q = x²</div><ol><li>IF = e^(∫1/x dx) = e^(log x) = x</li><li class=\"r\">Multiply: d/dx (xy) = x · x² = x³</li><li>Integrate: xy = x⁴/4 + C</li><li>Solution: y = x³/4 + C/x</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-linear"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When should you use dx/dy + P₁x = Q₁ instead?",
+      "definition": "When the equation is linear in x but not in y, e.g. y dx + (x − y²) dy = 0 or (x + y) dy/dx = 1. Then IF = e^(∫P₁ dy)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-linear"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: dropping the constant of integration in the IF exponent, or forgetting to divide the final answer by the IF.",
+      "definition": "The IF needs no constant, but after ∫Q·IF dx + C you must <span style=\"color:#3b82f6\">divide by the IF</span> to get y. Also make the coefficient of dy/dx equal to 1 first (divide by cos²x, x, etc.)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-linear"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q1: dy/dx + 2y = sin x",
+      "definition": "<span style=\"color:#f08c00\">y = (2 sin x − cos x)/5 + C e^(−2x)</span><br><small>IF = e^(2x)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q2: dy/dx + 3y = e^(−2x)",
+      "definition": "<span style=\"color:#f08c00\">y = e^(−2x) + C e^(−3x)</span><br><small>IF = e^(3x)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q3: dy/dx + y/x = x²",
+      "definition": "<span style=\"color:#f08c00\">xy = x⁴/4 + C</span><br><small>IF = x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q4: dy/dx + (sec x) y = tan x  (0 ≤ x < π/2)",
+      "definition": "<span style=\"color:#f08c00\">y(sec x + tan x) = sec x + tan x − x + C</span><br><small>IF = sec x + tan x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q5: cos²x dy/dx + y = tan x  (0 ≤ x < π/2)",
+      "definition": "<span style=\"color:#f08c00\">y = tan x − 1 + C e^(−tan x)</span><br><small>divide: dy/dx + sec²x y = tan x sec²x; IF = e^(tan x)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q6: x dy/dx + 2y = x² log x",
+      "definition": "<span style=\"color:#f08c00\">y = (x²/16)(4 log x − 1) + C x⁻²</span><br><small>IF = x²</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q7: x log x dy/dx + y = (2/x) log x",
+      "definition": "<span style=\"color:#f08c00\">y log x = −(2/x)(1 + log x) + C</span><br><small>IF = log x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q8: (1 + x²) dy + 2xy dx = cot x dx  (x ≠ 0)",
+      "definition": "<span style=\"color:#f08c00\">y = (log|sin x| + C)/(1 + x²)</span><br><small>IF = 1 + x²</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q9: x dy/dx + y − x + xy cot x = 0  (x ≠ 0)",
+      "definition": "<span style=\"color:#f08c00\">y = 1/x − cot x + C/(x sin x)</span><br><small>y′ + (1/x + cot x)y = 1, IF = x sin x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q10: (x + y) dy/dx = 1",
+      "definition": "<span style=\"color:#f08c00\">x + y + 1 = C e^y</span><br><small>dx/dy − x = y: IF = e^(−y)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q11: y dx + (x − y²) dy = 0",
+      "definition": "<span style=\"color:#f08c00\">x = y²/3 + C/y</span><br><small>dx/dy + x/y = y: IF = y</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q12: (x + 3y²) dy/dx = y",
+      "definition": "<span style=\"color:#f08c00\">x = 3y² + Cy</span><br><small>dx/dy − x/y = 3y: IF = 1/y</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q13: dy/dx + 2y tan x = sin x; y = 0 when x = π/3",
+      "definition": "<span style=\"color:#f08c00\">y = cos x − 2cos²x</span><br><small>IF = sec²x; y sec²x = sec x + C</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q14: (1 + x²) dy/dx + 2xy = 1/(1 + x²); y = 0 when x = 1",
+      "definition": "<span style=\"color:#f08c00\">y(1 + x²) = tan⁻¹x − π/4</span><br><small>d/dx[(1 + x²) y] = 1/(1 + x²)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q15: dy/dx − 3y cot x = sin 2x; y = 2 when x = π/2",
+      "definition": "<span style=\"color:#f08c00\">y = 4 sin³x − 2 sin²x</span><br><small>IF = 1/sin³x; y/sin³x = ∫2 cos x/sin²x dx</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q16: the slope of the tangent at (x, y) equals the sum of the coordinates; curve through the origin",
+      "definition": "<span style=\"color:#f08c00\">x + y + 1 = eˣ</span><br><small>dy/dx − y = x: IF = e^(−x)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q17: x + y exceeds the magnitude of the slope by 5; curve through (0, 2)",
+      "definition": "<span style=\"color:#f08c00\">y = 4 − x − 2eˣ</span><br><small>y′ = x + y − 5: y′ − y = x − 5</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q18: the integrating factor of x dy/dx − y = 2x² is (A) e^(−x) (B) e^(−y) (C) 1/x (D) x",
+      "definition": "Divide by x: y′ − y/x = 2x, P = −1/x: IF = e^(−log x) = <span style=\"color:#22a35a\">(C) 1/x</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5-particular"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 9.5 Q19: the integrating factor of (1 − y²) dx/dy + yx = ay (−1 < y < 1) is (A) 1/(y² − 1) (B) 1/√(y² − 1) (C) 1/(1 − y²) (D) 1/√(1 − y²)",
+      "definition": "dx/dy + y/(1 − y²) x = ay/(1 − y²): IF = e^(∫ y/(1 − y²) dy) = e^(−½ log(1 − y²)) = <span style=\"color:#22a35a\">(D) 1/√(1 − y²)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.6-exercise-9-5-particular"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Misc Ex 9 Q1: order and degree",
+      "definition": "(i) d²y/dx² + 5x (dy/dx)² − 6y = log x: order 2, degree 1; (ii) (dy/dx)³ − 4 (dy/dx)² + 7y = sin x: order 1, degree 3; (iii) d⁴y/dx⁴ − sin(d³y/dx³) = 0: order 4, degree not defined",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Misc Q1: order and degree</p><h2>Find the order and degree.</h2><table><tr><td>(i) d²y/dx² + 5x (dy/dx)² − 6y = log x</td><td class=\"q\">?</td></tr><tr><td>(ii) (dy/dx)³ − 4 (dy/dx)² + 7y = sin x</td><td class=\"q\">?</td></tr><tr><td>(iii) d⁴y/dx⁴ − sin(d³y/dx³) = 0</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Misc Q1: order and degree</p><h2>Find the order and degree.</h2><table><tr><td>(i) d²y/dx² + 5x (dy/dx)² − 6y = log x</td><td class=\"a\">order 2, degree 1</td></tr><tr><td>(ii) (dy/dx)³ − 4 (dy/dx)² + 7y = sin x</td><td class=\"a\">order 1, degree 3</td></tr><tr><td>(iii) d⁴y/dx⁴ − sin(d³y/dx³) = 0</td><td class=\"a\">order 4, degree not defined</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2(i): verify xy = a eˣ + b e^(−x) + x² solves x d²y/dx² + 2 dy/dx − xy + x² − 2 = 0.",
+      "definition": "Differentiate xy: y + xy′ = aeˣ − be^(−x) + 2x; again: 2y′ + xy″ = aeˣ + be^(−x) + 2 = (xy − x²) + 2. So xy″ + 2y′ − xy + x² − 2 = 0 ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2(ii): verify y = eˣ(a cos x + b sin x) solves y″ − 2y′ + 2y = 0.",
+      "definition": "y′ = eˣ[(a + b)cos x + (b − a)sin x], y″ = eˣ[2b cos x − 2a sin x] = 2eˣ(b cos x − a sin x). Then y″ − 2y′ + 2y = 0 ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2(iii): verify y = x sin 3x solves y″ + 9y − 6 cos 3x = 0.",
+      "definition": "y′ = sin 3x + 3x cos 3x; y″ = 6 cos 3x − 9x sin 3x. So y″ + 9y = 6 cos 3x ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2(iv): verify x² = 2y² log y solves (x² + y²) dy/dx − xy = 0.",
+      "definition": "Differentiate: 2x = 4y y′ log y + 2y y′ = 2y y′(2 log y + 1). Using 2 log y = x²/y²: y′ = x y/(x² + y²) ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: prove x² − y² = c(x² + y²)² is the general solution of (x³ − 3xy²) dx = (y³ − 3x²y) dy.",
+      "definition": "Let u = x² − y², w = x² + y²: c = u/w². Differentiate: (2x − 2y y′)w² − u · 2w(2x + 2y y′) = 0 → (x − y y′)(x² + y²) − 2(x² − y²)(x + y y′) = 0 → y′(y³ − 3x²y) = x³ − 3xy². <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: dy/dx + √((1 − y²)/(1 − x²)) = 0",
+      "definition": "<span style=\"color:#f08c00\">sin⁻¹x + sin⁻¹y = C</span><br><small>dy/√(1 − y²) + dx/√(1 − x²) = 0</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: dy/dx + (y² + y + 1)/(x² + x + 1) = 0",
+      "definition": "<span style=\"color:#f08c00\">(x + y + 1) = A(1 − x − y − 2xy)</span><br><small>dy/(y² + y + 1) + dx/(x² + x + 1) = 0; tan⁻¹ addition formula</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q6: sin x cos y dx + cos x sin y dy = 0; curve through (0, π/4)",
+      "definition": "<span style=\"color:#f08c00\">cos y = sec x/√2</span><br><small>the left side is −d(cos x cos y)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: (1 + e^(2x)) dy + (1 + y²) eˣ dx = 0; y = 1 when x = 0",
+      "definition": "<span style=\"color:#f08c00\">tan⁻¹y + tan⁻¹(eˣ) = π/2</span><br><small>dy/(1 + y²) = −eˣ dx/(1 + e^(2x))</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q8: y e^(x/y) dx = (x e^(x/y) + y²) dy  (y ≠ 0)",
+      "definition": "<span style=\"color:#f08c00\">e^(x/y) = y + C</span><br><small>x = vy: e^v dv = dy</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q9: (x − y)(dx + dy) = dx − dy; y = −1 when x = 0",
+      "definition": "<span style=\"color:#f08c00\">log|x − y| = x + y + 1</span><br><small>with t = x − y the equation becomes dy/dx = (1 − t)/(1 + t); integrate in t</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q10: [e^(−2√x)/√x − y/√x] dx/dy = 1  (x ≠ 0)",
+      "definition": "<span style=\"color:#f08c00\">y e^(2√x) = 2√x + C</span><br><small>dy/dx + y/√x = e^(−2√x)/√x; IF = e^(2√x)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q11: dy/dx + y cot x = 4x cosec x; y = 0 when x = π/2",
+      "definition": "<span style=\"color:#f08c00\">y sin x = 2x² − π²/2</span><br><small>IF = sin x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q12: (x + 1) dy/dx = 2e^(−y) − 1; y = 0 when x = 0",
+      "definition": "<span style=\"color:#f08c00\">y = log|(2x + 1)/(x + 1)|</span><br><small>e^y dy/(2 − e^y) = dx/(x + 1)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q13: y dx − x dy = 0",
+      "definition": "<span style=\"color:#f08c00\">y = Cx  (equivalently x = C₁y)</span><br><small>dy/y = dx/x</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q13: the general solution of y dx − x dy = 0 is (A) xy = C (B) x = Cy² (C) y = Cx (D) y = Cx²",
+      "definition": "dy/y = dx/x → y = Cx: <span style=\"color:#22a35a\">(C)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q14: the general solution of dx/dy + P₁x = Q₁ is (A) y e^(∫P₁ dy) = ∫(Q₁e^(∫P₁ dy)) dy + C (B) y e^(∫P₁ dx) = ∫(Q₁e^(∫P₁ dx)) dx + C (C) x e^(∫P₁ dy) = ∫(Q₁e^(∫P₁ dy)) dy + C (D) x e^(∫P₁ dx) = ∫(Q₁e^(∫P₁ dx)) dx + C",
+      "definition": "The unknown is x and the variable is y, so IF = e^(∫P₁ dy): <span style=\"color:#22a35a\">(C)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q15: eˣ dy + (y eˣ + 2x) dx = 0",
+      "definition": "<span style=\"color:#f08c00\">y eˣ + x² = C</span><br><small>the left side is d(y eˣ + x²)</small>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q15: the general solution of eˣ dy + (y eˣ + 2x) dx = 0 is (A) x eʸ + x² = C (B) x eʸ + y² = C (C) y eˣ + x² = C (D) y eʸ + x² = C",
+      "definition": "<span style=\"color:#22a35a\">(C) y eˣ + x² = C</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which method for which type? (decision table)",
+      "definition": "<span style=\"color:#3b82f6\">Separable</span>: dy/dx = f(x)g(y). <span style=\"color:#3b82f6\">Homogeneous</span>: dy/dx = F(y/x) (put y = vx). <span style=\"color:#3b82f6\">Linear</span>: dy/dx + Py = Q (IF = e^(∫P)). <span style=\"color:#3b82f6\">Linear in x</span>: dx/dy + P₁x = Q₁. Also try a substitution t = x + y, t = x − y, t = ax + by + c when those combinations recur",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Substitution for dy/dx = f(ax + by + c)?",
+      "definition": "Put <span style=\"color:#3b82f6\">t = ax + by + c</span>: dt/dx = a + b f(t), which is separable",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve dy/dx = (x + y + 1)² (idea).",
+      "definition": "t = x + y + 1: dt/dx = 1 + t². So tan⁻¹t = x + C and <span style=\"color:#f08c00\">x + y + 1 = tan(x + C)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve dy/dx = sin²(x − y + 1).",
+      "definition": "Put t = x − y + 1: dt/dx = 1 − sin²t = cos²t, so sec²t dt = dx: <span style=\"color:#f08c00\">tan(x − y + 1) = x + C</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Orthogonal trajectories (idea).",
+      "definition": "For a family F(x, y, c) = 0 with slope dy/dx = m(x, y), the orthogonal family has slope −1/m. Example: y = cx has slope y/x; orthogonal slope −x/y: x² + y² = k",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Differential equation of all lines through the origin, and of all circles centred at the origin?",
+      "definition": "Lines y = cx: <span style=\"color:#f08c00\">y′ = y/x</span>. Circles x² + y² = r²: <span style=\"color:#f08c00\">x + y y′ = 0</span> (they are orthogonal families)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve dy/dx = y/x + tan(y/x).",
+      "definition": "y = vx: x dv/dx = tan v, so cot v dv = dx/x: <span style=\"color:#f08c00\">sin(y/x) = Cx</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "The equation of the curve through (1, 1) whose slope at (x, y) is y/x?",
+      "definition": "dy/y = dx/x: y = Cx with C = 1: <span style=\"color:#f08c00\">y = x</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A tank problem: dV/dt = −k√V. Solution?",
+      "definition": "√V = √V₀ − kt/2: <span style=\"color:#f08c00\">the tank empties in t = 2√V₀/k</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How many independent arbitrary constants are in y = A e^(x + B)?",
+      "definition": "A e^(x + B) = (A e^B) eˣ: only <span style=\"color:#f08c00\">1</span> independent constant (A and B combine)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the order and degree of (d²y/dx²)³ + (dy/dx)⁴ + y = 0 are<br>(a) 2, 3 (b) 3, 2 (c) 2, 4 (d) 4, 2",
+      "definition": "<span style=\"color:#22a35a\">(a) order 2, degree 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the degree of y′ + (y″)^(1/2) = x is<br>(a) 1 (b) 2 (c) 1/2 (d) not defined",
+      "definition": "Isolate and square: y″ = (x − y′)², a polynomial in the derivatives where the highest derivative y″ has power 1: <span style=\"color:#22a35a\">(a) 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the general solution of dy/dx = y is<br>(a) y = Ceˣ (b) y = x + C (c) y = C/x (d) y = ln x + C",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the solution of dy/dx = 2x with y(0) = 3 is<br>(a) y = x² + 3 (b) y = x² (c) y = 2x + 3 (d) y = x² − 3",
+      "definition": "<span style=\"color:#22a35a\">(a) y = x² + 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the integrating factor of dy/dx + y = e^(2x) is<br>(a) eˣ (b) e^(−x) (c) e^(2x) (d) x",
+      "definition": "e^(∫1 dx) = <span style=\"color:#22a35a\">(a) eˣ</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the integrating factor of dy/dx + (2/x) y = x is<br>(a) x² (b) 2x (c) e^x (d) 1/x²",
+      "definition": "e^(2 log x) = <span style=\"color:#22a35a\">(a) x²</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: y = vx substitution is used for<br>(a) homogeneous equations (b) linear equations (c) exact equations (d) all",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the number of arbitrary constants in y = a + b x + c x² is<br>(a) 1 (b) 2 (c) 3 (d) 0",
+      "definition": "<span style=\"color:#22a35a\">(c) 3</span> (the ODE eliminating them is y‴ = 0, order 3)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the differential equation of the family y = mx + c (m, c arbitrary) is<br>(a) y″ = 0 (b) y′ = 0 (c) y″ = y (d) y′ = m",
+      "definition": "<span style=\"color:#22a35a\">(a) y″ = 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the solution of dy/dx = x/y is<br>(a) y² − x² = C (b) y − x = C (c) xy = C (d) y = Cx",
+      "definition": "y dy = x dx: <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): if the order of the differential equation of the family y = a sin x + b cos x is m and its degree is n, then m + n =?",
+      "definition": "y″ + y = 0: order 2, degree 1: <span style=\"color:#f08c00\">3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the number of arbitrary constants in the general solution of y‴ − y = 0 is?",
+      "definition": "<span style=\"color:#f08c00\">3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the solution of dy/dx = 3x²y with y(0) = 1 gives y(1) = e^k. Find k.",
+      "definition": "y = e^(x³): k = <span style=\"color:#f08c00\">1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> the degree of sin(y′) + y″ = 0 is not defined.<br><b>R:</b> the equation is not a polynomial in the derivatives.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> a particular solution of a differential equation contains no arbitrary constant.<br><b>R:</b> it is obtained by giving specific values to the constants of the general solution.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: y = x is a solution of x dy/dx = y.",
+      "definition": "<span style=\"color:#22a35a\">True</span>: x · 1 = x",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: every first-order equation can be solved by separating variables.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: only when the right side factorises as f(x)g(y); otherwise use homogeneous or linear methods",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: find the order and degree of y″ + (y′)³ + y = 0.",
+      "definition": "<span style=\"color:#f08c00\">order 2, degree 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: solve dy/dx = e^x.",
+      "definition": "<span style=\"color:#f08c00\">y = eˣ + C</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: solve dy/dx = (1 + y²)/(1 + x²).",
+      "definition": "tan⁻¹y = tan⁻¹x + C: <span style=\"color:#f08c00\">(y − x)/(1 + xy) = C′</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find the particular solution of dy/dx = 2xy with y(0) = 1.",
+      "definition": "dy/y = 2x dx: log y = x² + C, C = 0: <span style=\"color:#f08c00\">y = e^(x²)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: solve x dy/dx = y + x², given y(1) = 0.",
+      "definition": "Linear: y′ − y/x = x, IF = 1/x: y/x = x + C; y(1) = 0 gives C = −1: <span style=\"color:#f08c00\">y = x² − x</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: show that (x² + y²) dx − 2xy dy = 0 is homogeneous and solve it.",
+      "definition": "y = vx: x dv/dx = (1 + v²)/(2v) − v = (1 − v²)/(2v). 2v/(1 − v²) dv = dx/x: −log|1 − v²| = log x + c. <span style=\"color:#f08c00\">x² − y² = Cx</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a culture has 500 bacteria, and its growth rate is proportional to its size. It doubles in 3 hours. Find the number after 9 hours.",
+      "definition": "P = P₀e^(kt) with e^(3k) = 2: after 9 h the population has doubled three times: 500 × 2³ = <span style=\"color:#f08c00\">4000</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a body at 100°C is placed in a room at 20°C and cools to 60°C in 10 minutes. What is its temperature after another 10 minutes (Newton’s law)?",
+      "definition": "T − 20 = 80e^(−kt); at t = 10: 40 = 80e^(−10k), so e^(−10k) = ½. At t = 20: T − 20 = 80 × ¼ = 20, so <span style=\"color:#f08c00\">T = 40°C</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-9",
+        "9.z-how-its-asked"
+      ]
+    }
+  ]
+}

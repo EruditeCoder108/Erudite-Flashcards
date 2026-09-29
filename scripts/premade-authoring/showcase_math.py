@@ -2666,3 +2666,74 @@ def cubic_negative_area(deck):
           'Signed integral versus area for y = x³',
           'y = x^3 between x = -2 and 1: integral = -15/4 but area = |-4| + 1/4 = 17/4; split at the zero x = 0',
           vb='0 0 300 190', hint='Which part lies below the axis?')
+
+
+# ================================================================ Maths 12 Ch 9 Differential equations
+def slope_field_family(deck):
+    P = Plane(-2.6, 2.6, -2.4, 2.6, 300, 190, (12, 8, 8, 12))
+    segs = ''
+    for i in range(-5, 6):
+        for j in range(-4, 5):
+            x, y = i * 0.5, j * 0.5
+            m = y                     # dy/dx = y
+            dx = 0.16 / math.sqrt(1 + m * m)
+            segs += P.line(x - dx, y - m * dx, x + dx, y + m * dx, 'gd')
+    base = P.axes([(-2, '−2'), (-1, '−1'), (1, '1'), (2, '2')], [(-2, '−2'), (-1, '−1'), (1, '1'), (2, '2')], grid=False, labels=False) + segs
+    fam = ''
+    for k, C in enumerate([-1.2, -0.5, 0.5, 1.2]):
+        fam += P.curve(lambda x, C=C: C * math.exp(x), 'c1 fx d2', -2.5, 2.5, clip=(-2.4, 2.6)).replace('class="c1', 'class="c0')
+    back = (fam + P.curve(math.exp, 'c2 fx d3', -2.5, 2.5, clip=(-2.4, 2.6)) + P.dot(0, 1, 'd2s', 5, 'fx d3')
+            + P.text(0.15, 1.15, '(0, 1)', 't2 fx d3', dx=6) + P.text(1.35, 2.1, 'y = eˣ', 't2 fx d3', anchor='end') + P.text(-2.5, 2.35, 'y = Ceˣ', 'lbl fx d2'))
+    mcard(deck, 'General and particular solutions', 'The slope at every point of the plane is dy/dx = y (short segments). What do the solution curves look like, and what does the condition y(0) = 1 do?', base, back,
+          '<p>Solving dy/dx = y gives the <b>general solution y = Ceˣ</b>: a whole family of curves, one for each constant C, and each is tangent to the little slope segments everywhere. The solution has <b>one arbitrary constant</b>, as many as the order of the equation.</p>'
+          '<p>The condition y = 1 at x = 0 picks the single curve through (0, 1): C = 1, the <b>particular solution y = eˣ</b>. (Ex 9.2 Q11, Q12: a 4th-order equation has 4 arbitrary constants; a particular solution has none.)</p>',
+          'General solution is a family of curves; the condition selects one',
+          'General solution of an nth order ODE has n arbitrary constants (family of curves); a particular solution has none; dy/dx = y gives y = Ce^x, y(0)=1 gives y = e^x',
+          vb='0 0 300 190', hint='Follow the slope segments.')
+
+
+def homogeneous_rays(deck):
+    P, h = eqplane(-3.2, 3.2, -2.4, 2.4, pad=(8, 8, 8, 8))
+    segs = ''
+    for ang in range(0, 360, 30):
+        t = math.radians(ang)
+        c, s = math.cos(t), math.sin(t)
+        if abs(c) < 1e-9:
+            continue
+        m = (1 + math.tan(t)) if False else 0   # placeholder overwritten below
+        v = s / c
+        m = (1 + v * v) / (1 + v)               # slope of dy/dx = (x^2 + y^2)/(x^2 + x y) at y/x = v
+        if abs(1 + v) < 1e-6 or abs(m) > 6:
+            continue
+        for r in (0.7, 1.4, 2.1, 2.8):
+            x, y = r * c, r * s
+            if abs(x) > 3 or abs(y) > 2.3:
+                continue
+            dx = 0.22 / math.sqrt(1 + m * m)
+            segs += P.line(x - dx, y - m * dx, x + dx, y + m * dx, 'c1')
+    base = P.axes(labels=False) + segs
+    back = ''
+    for k, ang in enumerate([20, 45, 70, 110, 200]):
+        t = math.radians(ang)
+        back += P.line(0, 0, 3.6 * math.cos(t), 3.6 * math.sin(t), 'guide fx d' + str(min(k // 2 + 2, 5)))
+    back += P.text(-3.0, -1.9, 'slope depends only on y/x', 't4 fx d3') + P.text(-3.0, -2.2, 'same slope along each ray', 't2 fx d4')
+    mcard(deck, 'Why y = vx works', 'For (x² + xy) dy = (x² + y²) dx the slope at (x, y) is (x² + y²)/(x² + xy). Look at the slope segments: what pattern do they show?', base, back,
+          '<p>The right side (x² + y²)/(x² + xy) = (1 + v²)/(1 + v) with v = y/x depends <b>only on the ratio y/x</b>. So all points on the same ray from the origin have the <b>same slope</b> (parallel segments along each ray). Such an equation is <b>homogeneous</b>.</p>'
+          '<p>Substitute <b>y = vx</b> (dy/dx = v + x dv/dx) and the variables separate: x dv/dx = (1 − v)/(1 + v). Solve, then put v = y/x (Ex 9.4 Q1: (x − y)² = C x e^(−y/x)).</p>',
+          'Homogeneous equations: slope constant along rays; substitute y = vx',
+          'Homogeneous ODE dy/dx = F(y/x): slope depends only on y/x, constant along rays from the origin; substitute y = vx, dy/dx = v + x dv/dx, then separate variables',
+          vb=f'0 0 300 {h}', hint='Compare slopes on the same line through the origin.')
+
+
+def growth_doubling(deck):
+    P = Plane(-1, 27, -150, 4200, 300, 190, (30, 8, 10, 20))
+    f = lambda t: 1000 * math.exp(t / 20)
+    base = P.axes([(10, '10'), (20, '20')], [(1000, '1000'), (2000, '2000'), (4000, '4000')], grid=True, labels=False) + P.curve(f, 'c1', 0, 26, clip=(-150, 4200))
+    back = (P.dot(0, 1000, 'd1s', 4.5, 'fx d2') + P.dot(20 * math.log(2), 2000, 'd2s', 5.5, 'fx d3') + P.line(0, 2000, 20 * math.log(2), 2000, 'guide fx d3') + P.line(20 * math.log(2), 0, 20 * math.log(2), 2000, 'guide fx d3')
+            + P.text(20 * math.log(2), 0, '20 log 2 ≈ 13.9 yr', 't2 fx d4', dy=-6, dx=8) + P.text(1, 3800, 'P = 1000 e^(t/20)', 't1 fx d2'))
+    mcard(deck, 'Example 9 · continuous growth', 'A bank adds interest continuously at 5% per year: dP/dt = P/20. In how many years does ₹1000 double?', base, back,
+          '<p>Separate: dP/P = dt/20, so log P = t/20 + C and <b>P = 1000 e^(t/20)</b> (using P(0) = 1000).</p>'
+          '<p>Doubling: 2000 = 1000 e^(t/20) gives <b>t = 20 log 2 ≈ 13.9 years</b>. General law: <b>dP/dt = kP ⇒ P = P₀ e^(kt)</b>; growth (k > 0), decay (k < 0). (Ex 9.3 Q20: r = 10 log 2 ≈ 6.93%; Q21: 1000 e^(0.5) ≈ ₹1648.)</p>',
+          'Exponential growth: dP/dt = kP gives P = P₀ e^(kt)',
+          'dP/dt = kP gives P = P0 e^(kt); 5% continuous interest: P = 1000 e^(t/20), doubling time 20 log 2 = 13.9 years; rate for doubling in 10 years is 10 log 2 = 6.93%',
+          vb='0 0 300 190', hint='Separate the variables and integrate.')
