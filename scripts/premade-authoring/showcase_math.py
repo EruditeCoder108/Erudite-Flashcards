@@ -2583,3 +2583,86 @@ def king_property(deck):
           'King property: ∫f(x) = ∫f(a + b − x)',
           'Property P4: integral of f(x) from a to b equals integral of f(a+b-x); for f = sin x/(sin x+cos x) on [0,pi/2], f(x)+f(pi/2-x)=1 so I = pi/4',
           vb='0 0 300 180', hint='Reflect the curve in x = π/4.')
+
+
+# ================================================================ Maths 12 Ch 8 Application of integrals
+def horizontal_strips_parabola(deck):
+    P = Plane(-0.5, 4.6, -0.5, 4.2, 300, 190, (16, 8, 10, 18))
+    f = lambda y: y * y / 4
+    base = P.axes([(1, '1'), (2, '2'), (3, '3'), (4, '4')], [(1, '1'), (2, '2'), (3, '3')], grid=False, labels=False) + P.curve(lambda x: 2 * math.sqrt(x), 'c1', 0, 4, clip=(-0.5, 4.2)) + P.line(0, 3, 4, 3, 'c2')
+    base += P.text(2.4, 3.05, 'y = 3', 't2', dy=-6) + P.text(2.9, 1.7, 'y² = 4x', 't1')
+    n = 12
+    hh = 3.0 / n
+    css = ''.join(f'.pp .q{k}{{animation-delay:{0.3 + 0.2 * k:.2f}s}}' for k in range(n))
+    strips = ''.join(f'<polygon class="f1 fx q{k}" points="{P.X(0):.1f},{P.Y(k * hh):.1f} {P.X(f(k * hh)):.1f},{P.Y(k * hh):.1f} {P.X(f((k + 1) * hh)):.1f},{P.Y((k + 1) * hh):.1f} {P.X(0):.1f},{P.Y((k + 1) * hh):.1f}"></polygon>' for k in range(n))
+    back = strips + P.text(0.4, 0.4, 'A = ∫₀³ x dy = 9/4', 't1 fx d5')
+    mcard(deck, 'Horizontal strips · Ex 8.1 Q4', 'Find the area bounded by y² = 4x, the y-axis and the line y = 3.', base, back,
+          '<p>The boundary is easier to describe as <b>x in terms of y</b> (x = y²/4), so slice horizontally: A = ∫꜀ᵈ x dy = ∫₀³ (y²/4) dy = [y³/12]₀³ = <b>27/12 = 9/4</b> (option B).</p>'
+          '<p>Rule: use vertical strips (∫ y dx) when the curve is y = f(x), and horizontal strips (∫ x dy) when it is x = g(y). Choosing the right one avoids square roots and splitting the region.</p>',
+          'Area with horizontal strips: A = ∫ x dy',
+          'Area bounded by x = g(y), y-axis and y = c, y = d is integral of g(y) dy; y^2 = 4x with y = 3 gives 9/4 using horizontal strips',
+          css=css, vb='0 0 300 190', hint='Which variable makes the boundary a simple function?')
+
+
+def ellipse_quarter(deck):
+    P, h = eqplane(-4.8, 4.8, -3.6, 3.6, pad=(8, 8, 8, 8))
+    ox, oy = P.X(0), P.Y(0)
+    a, b = 4, 3
+    pts = ' '.join(f'{P.X(a * math.cos(t)):.1f},{P.Y(b * math.sin(t)):.1f}' for t in [i * 2 * math.pi / 120 for i in range(121)])
+    base = P.axes(labels=False) + f'<polyline class="c1" points="{pts}"></polyline>' + P.text(4, 0, 'a = 4', 't1', dy=14, anchor='middle') + P.text(0, 3, 'b = 3', 't1', dx=8, dy=4)
+    q = [(0, 0)] + [(a * math.cos(t), b * math.sin(t)) for t in [i * (math.pi / 2) / 40 for i in range(41)]]
+    back = P.poly(q, 'f4 fx d2') + P.text(1.5, 1.0, '¼ of the area', 't4 fx d2', anchor='middle') + P.text(0, -3.3, 'area = πab = 12π', 't2 fx d4', anchor='middle')
+    mcard(deck, 'Ex 8.1 Q1 · area of an ellipse', 'Find the area bounded by the ellipse x²/16 + y²/9 = 1.', base, back,
+          '<p>By symmetry the area is 4 × (area in the first quadrant). There y = (b/a)√(a² − x²): 4 ∫₀ᵃ (b/a)√(a² − x²) dx = (4b/a)[(x/2)√(a² − x²) + (a²/2) sin⁻¹(x/a)]₀ᵃ = (4b/a)(a²/2)(π/2) = <b>πab</b>.</p>'
+          '<p>Here a = 4, b = 3: <b>12π</b>. (Ex 8.1 Q2, x²/4 + y²/9 = 1: π · 2 · 3 = 6π.) A circle is the case a = b = r: πr².</p>',
+          'Area of an ellipse is πab',
+          'Area of x^2/a^2 + y^2/b^2 = 1 is pi a b: four times the first quadrant integral of (b/a) sqrt(a^2 - x^2); Ex 8.1: 16,9 gives 12 pi; 4,9 gives 6 pi; circle pi r^2',
+          vb=f'0 0 300 {h}', hint='Use symmetry: compute one quadrant.')
+
+
+def cos_area_sign(deck):
+    P = Plane(-0.4, 6.9, -1.5, 1.6, 300, 170, (16, 8, 10, 18))
+    base = P.axes([(math.pi / 2, 'π/2'), (math.pi, 'π'), (3 * math.pi / 2, '3π/2'), (2 * math.pi, '2π')], [(1, '1'), (-1, '−1')], grid=True, labels=False) + P.curve(math.cos, 'c1', 0, 2 * math.pi, n=200)
+    def region(a, bb):
+        return [(a, 0)] + [(a + (bb - a) * i / 30, math.cos(a + (bb - a) * i / 30)) for i in range(31)] + [(bb, 0)]
+    back = (P.poly(region(0, math.pi / 2), 'f3 fx d2') + P.poly(region(math.pi / 2, 3 * math.pi / 2), 'f2 fx d3') + P.poly(region(3 * math.pi / 2, 2 * math.pi), 'f3 fx d4')
+            + P.text(0.7, 0.35, '1', 't3 fx d2', anchor='middle') + P.text(math.pi, -0.5, '|−2| = 2', 't2 fx d3', anchor='middle') + P.text(5.5, 0.35, '1', 't3 fx d4', anchor='middle')
+            + P.text(3.2, 1.3, 'total area 1 + 2 + 1 = 4', 't4 fx d4', anchor='middle'))
+    mcard(deck, 'Example 4 · area of cos x', 'Find the area bounded by y = cos x, the x-axis, x = 0 and x = 2π.', base, back,
+          '<p>cos x changes sign at π/2 and 3π/2, so split: ∫₀^(π/2) cos x = 1; |∫_(π/2)^(3π/2) cos x| = |−2| = 2; ∫_(3π/2)^(2π) cos x = 1. Area = <b>1 + 2 + 1 = 4</b>.</p>'
+          '<p>Never write ∫₀^(2π) cos x dx = 0 as the area: that is the <b>signed</b> integral. For area, integrate |f| by splitting at the zeros.</p>',
+          'Area when the curve crosses the x-axis: split and take absolute values',
+          'Area of cos x from 0 to 2pi is 4 = 1+2+1; split at zeros pi/2, 3pi/2 and add absolute values; the integral alone is 0',
+          vb='0 0 300 170', hint='Where does the curve cross the axis?')
+
+
+def area_between_parabolas(deck):
+    P, h = eqplane(-0.6, 4.8, -0.6, 4.8, pad=(12, 8, 8, 12))
+    up = lambda x: 2 * math.sqrt(x)
+    lo = lambda x: x * x / 4
+    base = P.axes(labels=False) + P.curve(up, 'c1', 0, 4, clip=(-0.6, 4.8)) + P.curve(lo, 'c2', 0, 4, clip=(-0.6, 4.8)) + P.text(1.0, 2.3, 'y² = 4x', 't1', dx=-4, anchor='end') + P.text(3.3, 2.4, 'x² = 4y', 't2')
+    xs = [i * 4 / 60 for i in range(61)]
+    region = [(x, up(x)) for x in xs] + [(x, lo(x)) for x in reversed(xs)]
+    back = P.poly(region, 'f4 fx d2') + P.dot(4, 4, 'd0s', 4, 'fx d3') + P.text(4, 4, '(4, 4)', 'lbl fx d3', dx=-6, dy=-6, anchor='end') + P.text(1.8, 1.3, 'A = 16/3', 't4 fx d4', anchor='middle')
+    mcard(deck, 'Area between two curves', 'Find the area enclosed between the parabolas y² = 4x and x² = 4y.', base, back,
+          '<p>Intersections: y = x²/4 into y² = 4x gives x⁴/16 = 4x, so x = 0 or 4: points (0, 0) and (4, 4).</p>'
+          '<p>Area = ∫₀⁴ (top − bottom) dx = ∫₀⁴ (2√x − x²/4) dx = [(4/3)x^(3/2) − x³/12]₀⁴ = 32/3 − 16/3 = <b>16/3</b>. In general the area between y² = 4ax and x² = 4ay is 16a²/3.</p>',
+          'Area between curves = ∫ (upper − lower) dx',
+          'Area between two curves = integral of (upper - lower) between intersection points; y^2 = 4x and x^2 = 4y meet at (0,0),(4,4) with area 16/3 (16a^2/3 in general)',
+          vb=f'0 0 300 {h}', hint='Find the intersection points, then subtract lower from upper.')
+
+
+def cubic_negative_area(deck):
+    P = Plane(-2.5, 1.6, -9.5, 3.0, 300, 190, (16, 8, 10, 18))
+    f = lambda x: x ** 3
+    base = P.axes([(-2, '−2'), (-1, '−1'), (1, '1')], [(-8, '−8'), (-4, '−4'), (1, '1')], grid=True, labels=False) + P.curve(f, 'c1', -2.2, 1.3, clip=(-9.5, 3.0))
+    def region(a, bb):
+        return [(a, 0)] + [(a + (bb - a) * i / 30, f(a + (bb - a) * i / 30)) for i in range(31)] + [(bb, 0)]
+    back = (P.poly(region(-2, 0), 'f2 fx d2') + P.poly(region(0, 1), 'f3 fx d3') + P.text(-1.4, -2.0, 'area 4', 't2 fx d2', anchor='middle') + P.text(0.55, 0.55, '¼', 't3 fx d3', anchor='middle')
+            + P.text(-0.6, 2.0, '∫ = −15/4, area = 17/4', 't4 fx d4', anchor='middle'))
+    mcard(deck, 'Misc Ex Q4 · y = x³', 'Area bounded by y = x³, the x-axis and the ordinates x = −2 and x = 1. Why is it not −15/4?', base, back,
+          '<p>∫₋₂¹ x³ dx = [x⁴/4]₋₂¹ = 1/4 − 4 = −15/4 is the <b>signed</b> value (negative because most of the region is below the axis).</p>'
+          '<p>Area = |∫₋₂⁰ x³ dx| + ∫₀¹ x³ dx = 4 + 1/4 = <b>17/4</b> (option D).</p>',
+          'Signed integral versus area for y = x³',
+          'y = x^3 between x = -2 and 1: integral = -15/4 but area = |-4| + 1/4 = 17/4; split at the zero x = 0',
+          vb='0 0 300 190', hint='Which part lies below the axis?')
