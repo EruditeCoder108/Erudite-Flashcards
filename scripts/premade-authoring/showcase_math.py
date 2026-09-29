@@ -493,3 +493,203 @@ def relation_arrow(deck):
           'Arrow diagram of y = x + 1 on {1..6}: domain, range, codomain',
           'R={(1,2),(2,3),(3,4),(4,5),(5,6)}: domain {1..5}, range {2..6}, codomain {1..6}; not a function since 6 has no image',
           vb='0 0 300 204', hint='Domain = starts of arrows. Range = ends of arrows.')
+
+
+# ================================================================ Maths 11 Ch 4 Complex numbers and quadratic equations
+def eqplane(xmin, xmax, ymin, ymax, w=300, pad=(22, 10, 12, 20)):
+    """Plane with equal x and y scale (circles stay round); returns (plane, viewBox height)."""
+    s = (w - pad[0] - pad[2]) / (xmax - xmin)
+    h = pad[1] + pad[3] + s * (ymax - ymin)
+    return Plane(xmin, xmax, ymin, ymax, w, h, pad), round(h)
+
+
+_MK = {'c0': 'pk', 'c1': 'pb', 'c2': 'pr', 'c3': 'pg', 'c4': 'po'}
+
+
+def vec(P, x0, y0, x1, y1, cls='c1', extra=''):
+    return (f'<line class="{cls} {extra}" x1="{P.X(x0):.1f}" y1="{P.Y(y0):.1f}" x2="{P.X(x1):.1f}" y2="{P.Y(y1):.1f}" '
+            f'marker-end="url(#{_MK[cls]})"></line>')
+
+
+def _xy_ticks(lo, hi, skip=(0,)):
+    return [(v, str(v).replace('-', '−')) for v in range(lo, hi + 1) if v not in skip]
+
+
+def argand_fig41(deck):
+    P, h = eqplane(-6, 4, -3, 5, pad=(22, 10, 12, 18))
+    pts = {'A': (2, 4), 'B': (-2, 3), 'C': (0, 1), 'D': (2, 0), 'E': (-5, -2), 'F': (1, -2)}
+    base = P.axes(_xy_ticks(-5, 3), _xy_ticks(-2, 4), grid=True, xl='Re', yl='Im')
+    for k, (x, y) in pts.items():
+        base += P.dot(x, y, 'd1s', 4.5) + P.text(x, y, k, 't1', dx=7, dy=-6)
+    back = ''
+    for i, (k, (x, y)) in enumerate(pts.items()):
+        sign = '+' if y >= 0 else '−'
+        lab = f'{x}{sign}{abs(y)}i'.replace('-', '−') if x else f'{sign if y < 0 else ""}{"" if abs(y) == 1 else abs(y)}i'
+        if y == 0: lab = f'{x}'
+        back += P.text(x, y, lab, 't2 fx d' + str(min(i // 2 + 2, 6)), dx=7, dy=14)
+    mcard(deck, 'Argand plane · Fig 4.1', 'Write the complex number represented by each of the points A–F.', base, back,
+          '<p>The point <b>(x, y)</b> is the complex number <b>x + iy</b>:</p>'
+          '<p>A = 2 + 4i, B = −2 + 3i, C = i, D = 2, E = −5 − 2i, F = 1 − 2i.</p>'
+          '<p>Points on the <b>real axis</b> are a + 0i; points on the <b>imaginary axis</b> are 0 + bi.</p>',
+          'Fig 4.1: read complex numbers off the Argand plane',
+          'A=2+4i, B=−2+3i, C=i, D=2, E=−5−2i, F=1−2i: point (x,y) is x+iy; real axis a+0i, imaginary axis 0+bi',
+          vb=f'0 0 300 {h}', hint='x-coordinate → real part, y-coordinate → imaginary part.')
+
+
+def powers_of_i(deck):
+    P, h = eqplane(-2.1, 2.1, -1.7, 1.7, pad=(14, 8, 14, 8))
+    o = (P.axes(labels=False) + f'<circle class="ghost" cx="{P.X(0):.1f}" cy="{P.Y(0):.1f}" r="{P.X(1) - P.X(0):.1f}"></circle>')
+    lab = (P.text(1, 0, '1', 't1', dx=8, dy=-6) + P.text(0, 1, 'i', 't1', dx=8, dy=-2) + P.text(-1, 0, '−1', 't1', dx=-8, dy=-6, anchor='end') +
+           P.text(0, -1, '−i', 't1', dx=8, dy=14))
+    base = o + lab + ''.join(P.dot(x, y, 'd0s', 4) for x, y in [(1, 0), (0, 1), (-1, 0), (0, -1)])
+    x0, y0 = P.X(1), P.Y(0)
+    pts = [(P.X(x) - x0, P.Y(y) - y0) for x, y in [(1, 0), (0, 1), (-1, 0), (0, -1), (1, 0)]]
+    css = mkeyframes('hop', pts, 4, 'ease-in-out', 0.3)
+    back = (f'<g transform="translate({x0:.1f},{y0:.1f})"><circle class="d2s hop" cx="0" cy="0" r="7"></circle></g>'
+            + P.text(1, 0, 'i⁰, i⁴, i⁸…', 't2 fx d2', dx=8, dy=14) + P.text(0, 1, 'i¹, i⁵…', 't2 fx d2', dx=8, dy=12) +
+            P.text(-1, 0, 'i², i⁶…', 't2 fx d2', dx=-8, dy=14, anchor='end') + P.text(0, -1, 'i³, i⁷…', 't2 fx d2', dx=8, dy=-4))
+    mcard(deck, 'Powers of i · intuition', 'Each multiplication by i moves one step. Find i⁴³ and i⁻³⁵.', base, back,
+          '<p>Each step multiplies by i: a <b>quarter-turn anticlockwise</b>. After 4 steps you are home: <b>i⁴ = 1</b>.</p>'
+          '<p>So only the <b>remainder of n ÷ 4</b> matters: 43 = 4·10 + 3 → i⁴³ = i³ = <b>−i</b>. For −35 = 4·(−9) + 1 → i⁻³⁵ = i¹ = <b>i</b>.</p>',
+          'Powers of i cycle every 4 steps', 'i^n depends only on n mod 4: i^0=1, i^1=i, i^2=−1, i^3=−i; i^43 = −i and i^−35 = i',
+          css=css, vb=f'0 0 300 {h}', hint='Where does 4 quarter-turns bring you?')
+
+
+def multiply_by_i(deck):
+    P, h = eqplane(-4, 5, -1, 5, pad=(20, 8, 12, 16))
+    ox, oy = P.X(0), P.Y(0)
+    base = (P.axes(_xy_ticks(-3, 4), _xy_ticks(1, 4), grid=True, xl='Re', yl='Im') + vec(P, 0, 0, 3, 2, 'c1') + P.dot(3, 2, 'd1s', 4) +
+            P.text(3, 2, 'z = 3 + 2i', 't1', dx=6, dy=-6))
+    css = (f'.pp .r90{{transform-box:view-box;transform-origin:{ox:.1f}px {oy:.1f}px;animation:rr 2.2s ease-in-out .5s both}}'
+           '@keyframes rr{from{transform:rotate(0deg)}to{transform:rotate(-90deg)}}')
+    back = (f'<g class="r90">{vec(P, 0, 0, 3, 2, "c2")}</g>' +
+            P.dot(-2, 3, 'd2s', 4, 'fx d4') + P.text(-2, 3, 'iz = −2 + 3i', 't2 fx d4', dx=-6, dy=-8, anchor='middle') +
+            f'<path class="guide fx d3" d="M {P.X(1.5):.1f} {P.Y(1):.1f} A {P.X(1.8) - ox:.1f} {P.X(1.8) - ox:.1f} 0 0 0 {P.X(-0.5):.1f} {P.Y(1.7):.1f}"></path>' +
+            P.text(0.55, 0.45, '90°', 'lbl fx d4', dx=12, dy=-8))
+    mcard(deck, 'Multiplying by i · geometry', 'Compute i(3 + 2i). What does multiplying by i do to a point on the Argand plane?', base, back,
+          '<p>i(3 + 2i) = 3i + 2i² = <b>−2 + 3i</b>: the point (3, 2) → (−2, 3).</p>'
+          '<p><b>× i = rotate 90° anticlockwise</b> about the origin (length unchanged). × i² = rotate 180° = negate.</p>',
+          'Multiplying by i rotates by 90° anticlockwise', 'i(x+iy) = −y + ix: multiplication by i rotates the point 90° anticlockwise about the origin; z=3+2i goes to −2+3i',
+          css=css, vb=f'0 0 300 {h}', hint='Compute it algebraically, then picture where (3, 2) goes.')
+
+
+def conjugate_mirror(deck):
+    P, h = eqplane(-5.6, 5.6, -5.4, 5.4, pad=(12, 6, 12, 6))
+    ox, oy = P.X(0), P.Y(0)
+    r = P.X(5) - ox
+    base = (P.axes(labels=False) + f'<circle class="ghost" cx="{ox:.1f}" cy="{oy:.1f}" r="{r:.1f}"></circle>' +
+            vec(P, 0, 0, 3, 4, 'c1') + P.dot(3, 4, 'd1s', 4.5) + P.text(3, 4, 'z = 3 + 4i', 't1', dx=8, dy=-4) +
+            P.text(0, 0, '|z| = 5', 'sm', dx=24, dy=-14))
+    back = (P.line(3, 4, 3, -4, 'guide fx d2') + P.dot(3, -4, 'd2s', 4.5, 'fx d2') + P.text(3, -4, 'z̄ = 3 − 4i', 't2 fx d2', dx=8, dy=14) +
+            P.dot(-3, 4, 'd3s', 4.5, 'fx d3') + P.text(-3, 4, '−z̄ = −3 + 4i', 't3 fx d3', dx=-8, dy=-4, anchor='end') +
+            P.dot(-3, -4, 'd4s', 4.5, 'fx d4') + P.text(-3, -4, '−z = −3 − 4i', 't4 fx d4', dx=-8, dy=14, anchor='end'))
+    mcard(deck, 'Conjugate and negative · geometry', 'Plot z = 3 + 4i, its conjugate z̄, −z and −z̄. What are their moduli?', base, back,
+          '<p><b>z̄</b> = mirror image of z in the <b>real axis</b>. <b>−z</b> = reflection through the <b>origin</b>. <b>−z̄</b> = mirror image in the <b>imaginary axis</b>.</p>'
+          '<p>All four lie on the same circle: |z| = |z̄| = |−z| = √(3² + 4²) = <b>5</b>.</p>',
+          'Conjugate is the mirror image in the real axis', 'z̄ reflects z in the real axis; −z is the reflection through the origin; z, z̄, −z, −z̄ all have modulus 5 for z=3+4i',
+          vb=f'0 0 300 {h}', hint='Reflect in the real axis, then through the origin.')
+
+
+def parallelogram_add(deck):
+    P, h = eqplane(-1, 6, -1, 4.6, pad=(20, 8, 12, 16))
+    base = (P.axes(_xy_ticks(1, 5), _xy_ticks(1, 4), grid=True, xl='Re', yl='Im') + vec(P, 0, 0, 3, 1, 'c1') + vec(P, 0, 0, 1, 2, 'c2') +
+            P.text(3, 1, 'z₁ = 3 + i', 't1', dx=6, dy=16) + P.text(1, 2, 'z₂ = 1 + 2i', 't2', dx=-6, dy=-8, anchor='middle'))
+    dx, dy = P.X(3) - P.X(0), P.Y(1) - P.Y(0)
+    css = (f'.pp .slide2{{animation:sl2 1.6s ease-in-out .6s both}}@keyframes sl2{{from{{transform:translate(0,0)}}to{{transform:translate({dx:.1f}px,{dy:.1f}px)}}}}')
+    back = (f'<g class="slide2">{vec(P, 0, 0, 1, 2, "c2")}</g>' +
+            P.line(1, 2, 4, 3, 'guide fx d3') + P.line(3, 1, 4, 3, 'guide fx d3') +
+            vec(P, 0, 0, 4, 3, 'c3', 'fx d4') + P.dot(4, 3, 'd3s', 4.5, 'fx d4') + P.text(4, 3, 'z₁ + z₂ = 4 + 3i', 't3 fx d4', dx=-4, dy=-8, anchor='middle'))
+    mcard(deck, 'Addition · vector picture', 'Add z₁ = 3 + i and z₂ = 1 + 2i geometrically.', base, back,
+          '<p>z₁ + z₂ = (3 + 1) + (1 + 2)i = <b>4 + 3i</b>: the diagonal of the parallelogram (place z₂ at the tip of z₁).</p>'
+          '<p>Hence the <b>triangle inequality</b>: |z₁ + z₂| ≤ |z₁| + |z₂|, with equality only when the two point the same way.</p>',
+          'Addition of complex numbers is vector addition (parallelogram)', 'z1+z2 is the diagonal of the parallelogram on z1, z2; |z1+z2| ≤ |z1|+|z2| (triangle inequality)',
+          css=css, vb=f'0 0 300 {h}', hint='Slide z₂ so its tail sits on z₁’s tip.')
+
+
+def roots_of_unity_cards(deck):
+    P, h = eqplane(-1.6, 1.6, -1.35, 1.35, pad=(12, 6, 12, 6))
+    ox, oy = P.X(0), P.Y(0)
+    r = P.X(1) - ox
+    circ = f'<circle class="ghost" cx="{ox:.1f}" cy="{oy:.1f}" r="{r:.1f}"></circle>'
+    c = math.cos(2 * math.pi / 3), math.sin(2 * math.pi / 3)
+    base = P.axes(labels=False) + circ + P.dot(1, 0, 'd1s', 5) + P.text(1, 0, '1', 't1', dx=8, dy=-6)
+    back = (P.poly([(1, 0), (c[0], c[1]), (c[0], -c[1])], 'f3 fx d3') +
+            P.dot(c[0], c[1], 'd2s', 5, 'fx d2') + P.text(c[0], c[1], 'ω = −½ + (√3/2)i', 't2 fx d2', dx=-8, dy=-6, anchor='middle') +
+            P.dot(c[0], -c[1], 'd2s', 5, 'fx d2') + P.text(c[0], -c[1], 'ω² = −½ − (√3/2)i', 't2 fx d2', dx=-8, dy=16, anchor='middle') +
+            P.text(0.2, 0, '120°', 'sm fx d3', dy=-4))
+    mcard(deck, 'Cube roots of unity', 'Solve z³ = 1 and plot the roots.', base, back,
+          '<p>z³ − 1 = (z − 1)(z² + z + 1) = 0 → z = <b>1</b> or z = (−1 ± i√3)/2 = <b>ω, ω²</b>.</p>'
+          '<p>The three roots sit on the unit circle <b>120° apart</b>: an equilateral triangle. Similarly the n-th roots of unity form a regular n-gon.</p>',
+          'Cube roots of unity form an equilateral triangle', 'z^3=1: roots 1, ω, ω² = (−1±i√3)/2, 120° apart on the unit circle (equilateral triangle)',
+          vb=f'0 0 300 {h}', hint='Factorise z³ − 1 first.')
+
+    P2, h2 = eqplane(-0.45, 1.55, -0.35, 1.15, pad=(14, 6, 14, 6))
+    w = (c[0], c[1]); w2 = (c[0], -c[1])
+    base2 = P2.axes(labels=False)
+    back2 = (vec(P2, 0, 0, 1, 0, 'c1', 'fx d1') + P2.text(0.5, 0, '1', 't1 fx d1', dy=-8) +
+             vec(P2, 1, 0, 1 + w[0], w[1], 'c2', 'fx d2') + P2.text(1 + w[0] / 2, w[1] / 2, 'ω', 't2 fx d2', dx=10, dy=-4) +
+             vec(P2, 1 + w[0], w[1], 1 + w[0] + w2[0], w[1] + w2[1], 'c3', 'fx d3') + P2.text(1 + w[0] + w2[0] / 2, w[1] + w2[1] / 2, 'ω²', 't3 fx d3', dx=-14, dy=-2) +
+             P2.dot(0, 0, 'd0s', 4, 'fx d3'))
+    mcard(deck, 'Cube roots of unity · sum', 'Why is 1 + ω + ω² = 0? Add the three roots as vectors head to tail.', base2, back2,
+          '<p>The three unit vectors at 0°, 120° and 240° form a closed triangle, so they sum to <b>zero</b>.</p>'
+          '<p>Algebra: ω satisfies ω² + ω + 1 = 0 and ω³ = 1. So ω² = 1/ω = ω̄ and ω̄ = ω².</p>',
+          '1 + ω + ω² = 0 by vector addition', '1+ω+ω²=0 because the three cube roots are equally spaced unit vectors that close a triangle; ω³=1',
+          vb=f'0 0 300 {h2}', hint='Draw 1, then ω from its tip, then ω².')
+
+
+def quadratic_discriminant(deck):
+    P = Plane(-2.2, 4.2, -4.6, 6.2, 300, 200, (24, 10, 12, 18))
+    xt = _xy_ticks(-1, 3)
+    yt = [(v, str(v).replace('-', '−')) for v in (-4, -2, 2, 4, 6)]
+    f = lambda c: (lambda x: x * x - 2 * x + c)
+    base = P.axes(xt, yt, grid=True) + P.curve(f(-3), 'c2', -1.9, 3.9) + P.curve(f(1), 'c3', -0.5, 2.5) + P.curve(f(2), 'c1', -0.5, 2.5)
+    back = (P.dot(-1, 0, 'd2s', 4.5, 'fx d2') + P.dot(3, 0, 'd2s', 4.5, 'fx d2') + P.dot(1, 0, 'd3s', 4.5, 'fx d3') +
+            '')
+    mcard(deck, 'Quadratics · discriminant picture', 'y = x² − 2x + c for c = −3 (red), 1 (green), 2 (blue). How many x-axis crossings does each have?', base, back,
+          '<p><b>D = b² − 4ac = 4 − 4c</b>. c = −3: D = 16 > 0 → two real roots (−1, 3). c = 1: D = 0 → one repeated root (x = 1). c = 2: D = −4 &lt; 0 → the parabola never meets the axis.</p>'
+          '<p>When D &lt; 0 the roots are still there, just not on the real line: <b>1 ± i</b> (a conjugate pair).</p>',
+          'Discriminant and x-axis crossings', 'D>0: two real roots (parabola cuts x-axis twice); D=0: touches once; D<0: no real roots, a complex conjugate pair, e.g. x²−2x+2 has 1±i',
+          vb='0 0 300 200', hint='Compute b² − 4ac for each c.')
+
+
+def polar_form_card(deck):
+    P, h = eqplane(-2.2, 2.2, -0.6, 2, pad=(14, 6, 14, 10))
+    ox, oy = P.X(0), P.Y(0)
+    base = (P.axes(labels=False) + vec(P, 0, 0, -1, 1, 'c1') + P.dot(-1, 1, 'd1s', 4.5) + P.text(-1, 1, 'z = −1 + i', 't1', dx=-8, dy=-6, anchor='middle'))
+    ra = 0.55 * (P.X(1) - ox)
+    back = (f'<path class="c2 fx d2" d="M {ox + ra:.1f} {oy:.1f} A {ra:.1f} {ra:.1f} 0 0 0 {ox + ra * math.cos(3 * math.pi / 4):.1f} {oy - ra * math.sin(3 * math.pi / 4):.1f}"></path>' +
+            P.text(0.5, 0.4, 'θ = 135°', 't2 fx d2', dx=6, dy=0) +
+            P.line(-1, 0, -1, 1, 'guide fx d3') + P.text(-1, 0, 'reference angle 45°', 'sm fx d3', dx=-4, dy=14, anchor='middle') +
+            P.text(-1, 1, '|z| = √2', 't3 fx d4', dx=14, dy=-22))
+    mcard(deck, 'Polar form · argument', 'Write z = −1 + i in polar form r(cos θ + i sin θ). Which quadrant decides θ?', base, back,
+          '<p>r = |z| = √((−1)² + 1²) = <b>√2</b>. z is in <b>quadrant II</b>, reference angle tan⁻¹(1/1) = π/4, so <b>θ = π − π/4 = 3π/4</b>.</p>'
+          '<p>z = √2 (cos 3π/4 + i sin 3π/4).</p>'
+          '<p class="no">Trap: tan⁻¹(y/x) = tan⁻¹(−1) = −π/4 is the wrong quadrant. Always sketch the point first.</p>',
+          'Polar form of −1 + i: pick the quadrant first', 'For z=−1+i: r=√2, θ=3π/4 (second quadrant); tan⁻¹(y/x) alone gives −π/4 (wrong quadrant)',
+          vb=f'0 0 300 {h}', hint='Sketch the point before computing the angle.')
+
+
+def locus_cards(deck):
+    P, h = eqplane(-2, 4.2, -2, 3.6, pad=(18, 6, 12, 14))
+    ox, oy = P.X(0), P.Y(0)
+    s = P.X(1) - ox
+    cx, cy = P.X(1), P.Y(1)
+    base = (P.axes(_xy_ticks(-1, 3), _xy_ticks(-1, 3), grid=True, xl='Re', yl='Im') + P.dot(1, 1, 'd1s', 4) + P.text(1, 1, 'c = 1 + i', 't1', dx=6, dy=16))
+    back = (f'<circle class="f1 fx d2" cx="{cx:.1f}" cy="{cy:.1f}" r="{2 * s:.1f}"></circle>' + P.dot(1, 1, 'd1s', 4, 'fx d2') + P.line(1, 1, 3, 1, 'c2 fx d3') +
+            P.text(2, 1, 'r = 2', 't2 fx d3', 'middle', dy=-6))
+    mcard(deck, 'Locus · circle', 'Describe the set of z with |z − (1 + i)| = 2.', base, back,
+          '<p>|z − c| is the <b>distance</b> from z to c. So all z at distance 2 from 1 + i: a <b>circle</b>, centre (1, 1), radius 2.</p>'
+          '<p>|z − c| &lt; r is the inside, |z − c| &gt; r the outside. Algebra check: (x − 1)² + (y − 1)² = 4.</p>',
+          'Locus |z − c| = r is a circle', '|z−c|=r is the circle with centre c and radius r; |z−c|<r is its interior; |z−(1+i)|=2 is (x−1)²+(y−1)²=4',
+          vb=f'0 0 300 {h}', hint='Read |z − c| as “distance from z to c”.')
+
+    P, h = eqplane(-2, 3, -2, 3, pad=(18, 6, 12, 14))
+    base = (P.axes(_xy_ticks(-1, 2), _xy_ticks(-1, 2), grid=True, xl='Re', yl='Im') + P.dot(0, 1, 'd1s', 4.5) + P.text(0, 1, 'i', 't1', dx=-10, dy=-4) +
+            P.dot(1, 0, 'd2s', 4.5) + P.text(1, 0, '1', 't2', dx=6, dy=14))
+    back = (P.line(-1.6, -1.6, 2.6, 2.6, 'c3 fx d2') + P.dot(0.5, 0.5, 'd3s', 4, 'fx d3') +
+            P.line(0, 1, 1, 0, 'guide fx d3') + P.text(2.6, 2.4, 'y = x', 't3 fx d2', anchor='end', dx=-8, dy=-8))
+    mcard(deck, 'Locus · perpendicular bisector', 'Describe the set of z with |z − i| = |z − 1|.', base, back,
+          '<p>Points equidistant from i (0, 1) and 1 (1, 0): the <b>perpendicular bisector</b> of the segment joining them, the line <b>y = x</b>.</p>'
+          '<p>Algebra: x² + (y − 1)² = (x − 1)² + y² ⟹ −2y = −2x ⟹ y = x.</p>',
+          'Locus |z − a| = |z − b| is a perpendicular bisector', '|z−a|=|z−b| is the perpendicular bisector of the segment joining a and b; |z−i|=|z−1| is the line y=x',
+          vb=f'0 0 300 {h}', hint='Equal distances from two fixed points.')

@@ -1,0 +1,191 @@
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+from deckkit import *
+import showcase_math as sm
+
+OUT = os.path.join(ROOT, 'premade-cards', '11th', 'Mathematics', 'class11-mathematics-ch04-complex-numbers-and-quadratic-equations')
+d = Deck('Chapter 4: Complex Numbers and Quadratic Equations', 'Class 11', ['class-11', 'mathematics', 'ch-4'])
+d.description = 'Complex numbers, algebra, powers of i, modulus and conjugate, Argand plane, polar form, roots of unity and quadratic equations.'
+b = d.basic
+
+# ---------------------------------------------------------------- 4.1-4.2 Complex numbers
+d.sec('4.2-complex-numbers')
+b('Why were complex numbers invented?', 'x² + 1 = 0 has ' + X('no real solution') + ' (x² = −1 is impossible for real x). We extend R so that ax² + bx + c = 0 with D < 0 also has solutions')
+b('Define i.', T('i = √−1') + ', so ' + N('i² = −1') + '. i is a solution of x² + 1 = 0')
+b('Define a complex number. Real part, imaginary part?', 'A number ' + T('z = a + ib') + ' with a, b real. ' + T('Re z = a') + ', ' + T('Im z = b'))
+b('Trap: for z = 2 + 5i, what is Im z?', N('5') + ', not 5i. The imaginary part is the real coefficient of i')
+b('When are two complex numbers z₁ = a + ib and z₂ = c + id equal?', 'Iff ' + T('a = c') + ' and ' + T('b = d') + ': real parts equal AND imaginary parts equal')
+b('Example 1: 4x + i(3x − y) = 3 + i(−6), x, y real. Find x, y.', 'Real: 4x = 3 → x = 3/4. Imaginary: 3x − y = −6 → y = 3x + 6 = 9/4 + 6 → ' + N('x = 3/4, y = 33/4'))
+b('Purely real, purely imaginary, and zero: conditions?', 'Purely real: ' + T('b = 0') + '. Purely imaginary: ' + T('a = 0, b ≠ 0') + '. Zero: a = b = 0 (0 is both)')
+b('Is R ⊂ C?', E('Yes') + ': every real a is the complex number a + 0i')
+b('Trap: is 3 + i > 2 + i meaningful? Is i > 0?', X('No') + '. Complex numbers are ' + T('not ordered') + ': z₁ < z₂ makes sense only when both are real')
+
+d.sec('4.5-argand-plane')
+b('How is the complex number x + iy shown geometrically?', 'As the point ' + T('P(x, y)') + ' of the plane. The plane is the ' + T('Argand (complex) plane') + '; x-axis = real axis, y-axis = imaginary axis')
+sm.argand_fig41(d)
+b('Which complex numbers lie on the real axis? On the imaginary axis?', 'Real axis: ' + T('a + 0i') + '. Imaginary axis: ' + T('0 + bi'))
+b('Modulus of x + iy geometrically?', 'The ' + T('distance of P(x, y) from the origin') + ': ' + r'\(|z| = \sqrt{x^2 + y^2}\)')
+b('Conjugate of x + iy geometrically?', 'The ' + T('mirror image in the real axis') + ': (x, −y)')
+
+# ---------------------------------------------------------------- 4.3 Algebra
+d.sec('4.3.1-addition')
+b('Add z₁ = a + ib and z₂ = c + id.', T('(a + c) + i(b + d)') + ': add real with real, imaginary with imaginary')
+b('(2 + 3i) + (−6 + 5i) = ?', N('−4 + 8i'))
+table_card(d, '4.3.1 · Laws of addition', 'Name the law.', [
+    ('z₁ + z₂ ∈ C', 'Closure', False), ('z₁ + z₂ = z₂ + z₁', 'Commutative', False), ('(z₁ + z₂) + z₃ = z₁ + (z₂ + z₃)', 'Associative', False),
+    ('z + 0 = z', 'Additive identity: 0 + 0i', False), ('z + (−z) = 0', 'Additive inverse: −a − ib', False)], term='Laws of addition of complex numbers')
+b('Subtraction z₁ − z₂ is defined as?', T('z₁ + (−z₂)') + '. Example: (6 + 3i) − (2 − i) = 4 + 4i, but (2 − i) − (6 + 3i) = −4 − 4i: ' + X('order matters'))
+sm.parallelogram_add(d)
+d.sec('4.3.3-multiplication')
+b('Multiply (a + ib)(c + id).', T('(ac − bd) + i(ad + bc)') + '<br><small>Just expand and use i² = −1</small>')
+b('(3 + 5i)(2 + 6i) = ?', '6 + 18i + 10i + 30i² = ' + N('−24 + 28i'))
+table_card(d, '4.3.3 · Laws of multiplication', 'Name the law.', [
+    ('z₁z₂ ∈ C', 'Closure', False), ('z₁z₂ = z₂z₁', 'Commutative', False), ('(z₁z₂)z₃ = z₁(z₂z₃)', 'Associative', False),
+    ('z · 1 = z', 'Multiplicative identity 1 + 0i', False), ('z · z⁻¹ = 1  (z ≠ 0)', 'Multiplicative inverse', False),
+    ('z₁(z₂ + z₃) = z₁z₂ + z₁z₃', 'Distributive', False)], term='Laws of multiplication of complex numbers')
+b('Multiplicative inverse of z = a + ib?', r'\(z^{-1} = \dfrac{a}{a^2 + b^2} - i\,\dfrac{b}{a^2 + b^2} = \dfrac{\bar z}{|z|^2}\)')
+b('Example 5: multiplicative inverse of 2 − 3i.', 'z̄ = 2 + 3i, |z|² = 4 + 9 = 13 → ' + r'\(z^{-1} = \dfrac{2}{13} + \dfrac{3}{13}i\)')
+b('Ex 4.1: inverses of 4 − 3i, √5 + 3i and −i.', r'\(\dfrac{4 + 3i}{25}\)' + ',  ' + r'\(\dfrac{\sqrt5 - 3i}{14}\)' + ',  ' + N('i') + ' (since 1/(−i) = i)')
+d.sec('4.3.4-division')
+b('Method: how do you divide z₁ by z₂?', 'Multiply top and bottom by the ' + T('conjugate of the denominator') + ': this makes the denominator the real number |z₂|²')
+b('Divide (6 + 3i) by (2 − i).', r'\(\dfrac{(6+3i)(2+i)}{(2-i)(2+i)} = \dfrac{12 + 6i + 6i + 3i^2}{5} = \dfrac{9 + 12i}{5}\)')
+b('Example 6(i): (5 + √2 i)/(1 − √2 i) in the form a + ib.', 'Multiply by (1 + √2 i)/(1 + √2 i): numerator 5 + 5√2 i + √2 i − 2 = 3 + 6√2 i; denominator 1 + 2 = 3. Result: ' + N('1 + 2√2 i'))
+b('Ex 4.1 Q14: simplify (3 + i√5)(3 − i√5) / ((√3 + √2 i) − (√3 − i√2)).', 'Numerator 9 + 5 = 14; denominator 2√2 i. ' + r'\(\dfrac{14}{2\sqrt2\, i} = \dfrac{7}{\sqrt2\, i} = -\dfrac{7}{\sqrt2}\,i\)')
+b('Ex 2 (i): (−5i)(i/8) in the form a + bi. (ii): (−i)(2i)(−i/8)³?', '(i) −5i²/8 = ' + N('5/8 + 0i') + '. (ii) (−i)(2i) = 2 and (−i/8)³ = i/512, so ' + N('i/256'))
+b('Example 3: (5 − 3i)³ = ?', '(5 − 3i)² = 16 − 30i; × (5 − 3i) = 80 − 48i − 150i + 90i² = ' + N('−10 − 198i'))
+b('Example 4: (−√3 + √−2)(2√3 − i) = ?', '√−2 = √2 i. (−√3 + √2 i)(2√3 − i) = −6 + √3 i + 2√6 i − √2 i² = ' + N('(−6 + √2) + √3(1 + 2√2) i'))
+b('Ex 4.1: (1 − i)⁴ = ?', '(1 − i)² = 1 − 2i + i² = −2i; square it: (−2i)² = ' + N('−4'))
+b('Ex 4.1 Q4: 3(7 + 7i) + i(7 + 7i) = ?', '21 + 21i + 7i + 7i² = ' + N('14 + 28i'))
+b('Ex 4.1 Q9: (1/3 + 3i)³ = ?', r'\(\dfrac{1}{27} + 3\cdot\dfrac19\cdot 3i + 3\cdot\dfrac13(3i)^2 + (3i)^3 = \dfrac{1}{27} + i - 9 - 27i = -\dfrac{242}{27} - 26i\)')
+b('Ex 4.1 Q6: (1/5 + 2i/5) − (4 + 5i/2) = ?', r'\(-\dfrac{19}{5} - \dfrac{21}{10}i\)' + '<br><small>Real: 1/5 − 4 = −19/5. Imag: 2/5 − 5/2 = −21/10</small>')
+b('Ex 4.1 Q7: [(1/3 + 7i/3) + (4 + i/3)] − (−4/3 + i) = ?', r'\(\dfrac{17}{3} + \dfrac{5}{3}i\)')
+
+d.sec('4.3.5-powers-of-i')
+b('Values of i, i², i³, i⁴?', N('i, −1, −i, 1'))
+b('General formula for integer k?', T('i⁴ᵏ = 1, i⁴ᵏ⁺¹ = i, i⁴ᵏ⁺² = −1, i⁴ᵏ⁺³ = −i'))
+sm.powers_of_i(d)
+b('Method: how do you evaluate iⁿ for a big or negative n?', 'Divide n by 4 and keep the ' + T('remainder') + ' (0 to 3). For negative n add a multiple of 4: i⁻³⁵ = i⁻³⁶⁺¹ = i')
+b('Evaluate i²⁰²³.', '2023 = 4 × 505 + 3 → i³ = ' + N('−i'))
+b('Evaluate i⁻³⁹ (Ex 4.1 Q3) and i⁹ + i¹⁹ (Q2).', 'i⁻³⁹: −39 = −40 + 1 → ' + N('i') + '. i⁹ + i¹⁹ = i + i³ = i − i = ' + N('0'))
+b('Example 6(ii): i⁻³⁵ = ?', '1/i³⁵ = 1/(−i) = ' + N('i') + ' (because 1/i = −i)')
+b('1/i = ? and 1/i² = ? and 1/i³ = ?', N('−i') + ', ' + N('−1') + ', ' + N('i'))
+b('i + i² + i³ + i⁴ = ? And iⁿ + iⁿ⁺¹ + iⁿ⁺² + iⁿ⁺³?', N('0') + '. Any four consecutive powers of i sum to 0 (they go once around the cycle)')
+b('Sum 1 + i + i² + … + i¹⁰⁰?', '101 terms: the first 100 give 25 blocks of 4, each 0; only the last term i¹⁰⁰ = 1 is left → ' + N('1'))
+b('i^n + (1/i)^n: value?', 'For n = 1: i − i = 0. In general (1/i)ⁿ = (−i)ⁿ, so iⁿ + (−i)ⁿ = 2iⁿ if n even, 0 if n odd')
+d.sec('4.3.6-square-roots-negative')
+b('Square roots of −1? Of −3?', 'i and −i. For −3: ' + N('±i√3') + '. For a > 0, √(−a) = i√a')
+b('Trap: is √(−2) · √(−3) = √6?', X('No') + '. √−2 · √−3 = (i√2)(i√3) = i²√6 = ' + N('−√6') + '. The rule √a·√b = √(ab) fails when both a, b < 0')
+b('When does √a · √b = √(ab)?', 'When ' + T('at least one of a, b is non-negative') + '. If both are negative it fails (i² = √(−1)√(−1) ≠ √1)')
+d.sec('4.3.7-identities')
+b('Do the usual identities hold for complex numbers?', E('Yes') + ': (z₁ ± z₂)² = z₁² ± 2z₁z₂ + z₂², (z₁ ± z₂)³ expansions, and z₁² − z₂² = (z₁ + z₂)(z₁ − z₂)')
+b('Factorise a² + b² over the complex numbers.', T('(a + ib)(a − ib)') + ': a sum of two squares factorises once i is allowed')
+b('(1 + i)² = ? (1 − i)² = ? (1 + i)⁴ = ? (1 + i)⁸ = ?', N('2i') + ', ' + N('−2i') + ', ' + N('−4') + ', ' + N('16') + '<br><small>Learn these; they appear constantly.</small>')
+b('(1 + i)/(1 − i) = ? Then ((1 + i)/(1 − i))ⁿ = ?', N('i') + ', so the n-th power is ' + N('iⁿ') + '. (Misc Q14: iᵐ = 1 → least m = 4)')
+
+# ---------------------------------------------------------------- 4.4 Modulus and conjugate
+d.sec('4.4-modulus-conjugate')
+b('Define modulus and conjugate of z = a + ib.', T('|z| = √(a² + b²)') + ' (a non-negative real). ' + T('z̄ = a − ib'))
+b('|2 + 3i|, |2 − 5i|, conjugates of 3 + i, 2 + 5i, 3i − 5?', '√13 (= √(4+9)), √29; conjugates: ' + N('3 − i') + ', ' + N('2 − 5i') + ', ' + N('−3i − 5'))
+sm.conjugate_mirror(d)
+b('z z̄ = ?', N('|z|²') + ': (a + ib)(a − ib) = a² + b². A real, non-negative number')
+b('Two ways to write z⁻¹?', r'\(z^{-1} = \dfrac{1}{z} = \dfrac{\bar z}{|z|^2}\)')
+table_card(d, '4.4 · Properties of conjugates and moduli', 'Complete the results (z₁, z₂ any complex numbers).', [
+    ('conjugate of z₁ + z₂', 'z̄₁ + z̄₂', False), ('conjugate of z₁z₂', 'z̄₁ z̄₂', False), ('conjugate of z₁/z₂', 'z̄₁ / z̄₂  (z₂ ≠ 0)', False),
+    ('|z₁z₂|', '|z₁||z₂|', False), ('|z₁/z₂|', '|z₁| / |z₂|  (z₂ ≠ 0)', False), ('conjugate of z̄', 'z', False)], term='Rules for conjugate and modulus')
+table_card(d, '4.4 · Real / imaginary tests', 'Which condition means…', [
+    ('z is real', 'z = z̄', False), ('z is purely imaginary', 'z = −z̄  (z ≠ 0)', False),
+    ('Re z', '(z + z̄)/2', False), ('Im z', '(z − z̄)/(2i)', False), ('|z| = 1', 'z z̄ = 1, i.e. z̄ = 1/z', False)], term='z and its conjugate: tests')
+b('Is |z₁ + z₂| = |z₁| + |z₂|? What is true?', X('Not in general') + '. ' + T('|z₁ + z₂| ≤ |z₁| + |z₂|') + ' (triangle inequality) and |z₁ − z₂| ≥ ||z₁| − |z₂||')
+b('Trap: |z|² = z²?', X('No') + '. |z|² = z z̄, a real number. z² is generally complex: for z = i, |z|² = 1 but z² = −1')
+b('Example 7: conjugate of (3 − 2i)(2 + 3i)/((1 + 2i)(2 − i)).', 'Numerator 6 + 9i − 4i + 6 = 12 + 5i; denominator 2 − i + 4i + 2 = 4 + 3i. Divide: ' + r'\(\dfrac{(12+5i)(4-3i)}{25} = \dfrac{63 - 16i}{25}\)' + '. Conjugate: ' + N('63/25 + 16/25 i'))
+b('Example 8: x + iy = (a + ib)/(a − ib). Prove x² + y² = 1.', 'Use moduli: x² + y² = |x + iy|² = |a + ib|² / |a − ib|² = (a² + b²)/(a² + b²) = ' + N('1'))
+b('Misc Q1: [i¹⁸ + (1/i)²⁵]³ = ?', 'i¹⁸ = i² = −1; (1/i)²⁵ = (−i)²⁵ = −i. So (−1 − i)³ = −(1 + i)³ = −(−2 + 2i) = ' + N('2 − 2i'))
+b('Misc Q2: prove Re(z₁z₂) = Re z₁ Re z₂ − Im z₁ Im z₂.', 'With z₁ = a + ib and z₂ = c + id, z₁z₂ = (ac − bd) + i(ad + bc), whose real part is ac − bd ✓')
+b('Misc Q3: reduce (1/(1 − 4i) − 2/(1 + i)) · (3 − 4i)/(5 + i).', N('307/442 + (599/442) i') + '<br><small>Combine the first bracket over (1−4i)(1+i) first</small>')
+b('Misc Q5: z₁ = 2 − i, z₂ = 1 + i. Find |(z₁ + z₂ + 1)/(z₁ − z₂ + 1)|.', 'z₁ + z₂ + 1 = 4, z₁ − z₂ + 1 = 2 − 2i, |2 − 2i| = 2√2. Answer ' + N('4/(2√2) = √2'))
+b('Misc Q7: z₁ = 2 − i, z₂ = −2 + i. Find Re(z₁z₂/z̄₁) and Im(1/(z₁z̄₁)).', 'z₁z₂ = −3 + 4i; divided by 2 + i: (−2 + 11i)/5, so Re = ' + N('−2/5') + '. z₁z̄₁ = 5 (real), so Im(1/5) = ' + N('0'))
+b('Misc Q8: find real x, y if (x − iy)(3 + 5i) = conjugate of (−6 − 24i).', 'RHS = −6 + 24i. x − iy = (−6 + 24i)/(3 + 5i) = 3 + 3i. So ' + N('x = 3, y = −3'))
+b('Misc Q9: modulus of (1 + i)/(1 − i) − (1 − i)/(1 + i).', 'i − (−i) = 2i → modulus ' + N('2'))
+b('Misc Q10: (x + iy)³ = u + iv. Show u/x + v/y = 4(x² − y²).', 'u = x³ − 3xy², v = 3x²y − y³ → u/x = x² − 3y², v/y = 3x² − y²; sum = 4x² − 4y² ✓')
+b('Misc Q11: |β| = 1, α ≠ β. Find |(β − α)/(1 − ᾱβ)|.', 'Since ββ̄ = 1: 1 − ᾱβ = β(β̄ − ᾱ) = β · conj(β − α), so modulus = |β||β − α| = |β − α|. The ratio is ' + N('1'))
+b('Misc Q12: number of non-zero integral solutions of |1 − i|ˣ = 2ˣ?', '|1 − i| = √2, so 2^(x/2) = 2ˣ → x/2 = x → x = 0 only. Non-zero solutions: ' + N('0'))
+b('Misc Q13: (a + ib)(c + id)(e + if)(g + ih) = A + iB. Show the product of (a² + b²) etc. is A² + B².', 'Take moduli: |product| = product of moduli. Squaring: A² + B² = (a² + b²)(c² + d²)(e² + f²)(g² + h²)')
+b('Misc Q14: ((1 + i)/(1 − i))ᵐ = 1. Least positive integer m?', 'The base is i, so iᵐ = 1 → m = ' + N('4'))
+b('Misc Q4 and Q6: what is the common technique?', 'Take ' + T('moduli') + ' of both sides: |x − iy|² = |a − ib|/|c − id| etc. Squaring removes the roots, and |a + ib|² = a² + b²')
+
+# ---------------------------------------------------------------- Beyond NCERT: polar form and friends
+d.sec('4.z-polar-form')
+b('Beyond the textbook text (JEE/board): polar form of z = x + iy?', T('z = r(cos θ + i sin θ)') + ', with r = |z| = √(x² + y²) and θ = arg z: x = r cos θ, y = r sin θ')
+b('Principal argument: range?', T('−π < θ ≤ π') + ' (Arg z). arg z is defined only up to 2π; z = 0 has no argument')
+table_card(d, 'Standard arguments', 'Principal argument of…', [
+    ('1', '0', False), ('i', 'π/2', False), ('−1', 'π', False), ('−i', '−π/2', False), ('1 + i', 'π/4', False), ('1 − i', '−π/4', False),
+    ('−1 + i', '3π/4', False), ('−1 − i', '−3π/4', True), ('1 + i√3', 'π/3', False), ('√3 + i', 'π/6', False)], term='Standard principal arguments')
+sm.polar_form_card(d)
+b('Trap: arg z = tan⁻¹(y/x) always?', X('No') + '. tan⁻¹ returns (−π/2, π/2) only. Find the quadrant from the signs of x, y, then use the reference angle: QI θ = α, QII π − α, QIII α − π, QIV −α')
+b('Multiplication in polar form: |z₁z₂| and arg(z₁z₂)?', T('|z₁z₂| = |z₁||z₂|') + ';  ' + T('arg(z₁z₂) = arg z₁ + arg z₂') + ' (mod 2π). Multiplying rotates and scales')
+b('Division in polar form: |z₁/z₂| and arg(z₁/z₂)?', T('|z₁|/|z₂|') + ' and ' + T('arg z₁ − arg z₂') + ' (mod 2π)')
+b('arg(z̄) and arg(−z) in terms of arg z?', 'arg z̄ = ' + T('−arg z') + ' (mirror in the real axis); arg(−z) = arg z ± π')
+b('De Moivre’s theorem?', r'\((\cos\theta + i\sin\theta)^n = \cos n\theta + i\sin n\theta\)' + ' for integer n. Equivalent: (e^{iθ})ⁿ = e^{inθ}')
+b('Euler’s formula?', r'\(e^{i\theta} = \cos\theta + i\sin\theta\)' + '. Special case: e^{iπ} + 1 = 0')
+b('Use De Moivre: (1 + i)⁸ and (1 + i√3)⁶.', '1 + i = √2 e^{iπ/4} → (√2)⁸ e^{2πi} = ' + N('16') + '. 1 + i√3 = 2e^{iπ/3} → 2⁶ e^{2πi} = ' + N('64'))
+b('Method: raising a complex number to a high power?', '1) Convert to polar r e^{iθ}. 2) Apply rⁿ e^{inθ}. 3) Reduce nθ mod 2π and read off the value')
+b('Cube root of unity ω: definition and value?', r'\(\omega = e^{2\pi i/3} = \dfrac{-1 + i\sqrt3}{2}\)' + ', the non-real root of z³ = 1')
+sm.roots_of_unity_cards(d)
+table_card(d, 'Cube roots of unity', 'Properties of ω (ω³ = 1, ω ≠ 1).', [
+    ('ω³', '1', False), ('1 + ω + ω²', '0', False), ('ω̄', 'ω² = 1/ω', False), ('|ω|', '1', False),
+    ('ω²ⁿ or ω³ⁿ⁺¹', 'reduce the exponent mod 3', False)], term='Properties of cube roots of unity (1)')
+table_card(d, 'Cube roots of unity', 'Simplify.', [
+    ('1 + ω', '−ω²', False), ('1 + ω²', '−ω', False), ('ω + ω²', '−1', False), ('ω · ω²', '1', False), ('(1 − ω)(1 − ω²)', '3', False)],
+    term='Properties of cube roots of unity (2)')
+b('1 + ωⁿ + ω²ⁿ = ?', N('3') + ' if 3 divides n; ' + N('0') + ' otherwise')
+b('Evaluate ω²⁰²³ and (1 + ω²)³.', '2023 = 3·674 + 1 → ω. And (1 + ω²) = −ω, so (−ω)³ = −ω³ = ' + N('−1'))
+b('n-th roots of unity: formula, sum and picture?', T('e^{2πik/n}, k = 0, 1, …, n − 1') + '. Their sum is 0; they are the vertices of a ' + T('regular n-gon') + ' inscribed in the unit circle')
+d.sec('4.z-locus')
+sm.locus_cards(d)
+b('What does |z − a| represent geometrically?', 'The ' + T('distance between z and a') + ' in the Argand plane. |z| is the distance from the origin')
+b('|z − 2| + |z + 2| = 6 is which curve?', 'The sum of distances to two fixed points is constant: an ' + T('ellipse') + ' with foci ±2 (Chapter 10)')
+
+# ---------------------------------------------------------------- Quadratic equations
+d.sec('4.z-quadratic-equations')
+b('Roots of ax² + bx + c = 0 (a ≠ 0)?', r'\(x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)')
+b('Discriminant D: definition and the three cases?', T('D = b² − 4ac') + '. D > 0: two distinct real roots. D = 0: equal real roots. D < 0: ' + T('two complex conjugate roots'))
+b('Roots when D < 0?', r'\(x = \dfrac{-b \pm i\sqrt{4ac - b^2}}{2a}\)' + ': a conjugate pair')
+sm.quadratic_discriminant(d)
+b('Solve x² + 1 = 0 and x² + x + 1 = 0.', N('±i') + ' and ' + N('(−1 ± i√3)/2 = ω, ω²'))
+b('Solve x² − 2x + 2 = 0.', 'D = 4 − 8 = −4 → x = (2 ± 2i)/2 = ' + N('1 ± i'))
+b('Solve x² + 2x + 5 = 0.', 'D = 4 − 20 = −16 → x = (−2 ± 4i)/2 = ' + N('−1 ± 2i'))
+b('Solve x² − 6x + 25 = 0 and find |root|.', 'D = 36 − 100 = −64 → x = (6 ± 8i)/2 = ' + N('3 ± 4i') + '; each has modulus 5')
+b('Sum and product of the roots of ax² + bx + c = 0?', r'\(\alpha + \beta = -\dfrac{b}{a},\qquad \alpha\beta = \dfrac{c}{a}\)' + '. Holds for complex roots too')
+b('Form the quadratic with roots α and β.', T('x² − (α + β)x + αβ = 0'))
+b('A real-coefficient quadratic has root 2 + 3i. Find it.', 'The other root is the conjugate 2 − 3i. Sum 4, product 13 → ' + N('x² − 4x + 13 = 0'))
+b('Do complex roots of a real polynomial come in pairs?', E('Yes') + ': if p(z) = 0 with real coefficients then p(z̄) = 0. Similarly irrational roots a + √b come in pairs when the coefficients are rational')
+b('Fundamental theorem of algebra?', 'A polynomial of degree n has exactly ' + T('n roots in C') + ' (counted with multiplicity)')
+b('Solve z² = −4 and z² = i.', 'z = ' + N('±2i') + '. For i: z = ±(1 + i)/√2 (since ((1 + i)/√2)² = 2i/2 = i)')
+b('Square root of a complex number: method (JEE).', 'Let (x + iy)² = a + ib → x² − y² = a, 2xy = b, and x² + y² = |a + ib|. Solve the pair for x², y² and choose signs so that xy has the sign of b')
+b('√(3 + 4i) = ? and √(−5 + 12i) = ?', N('±(2 + i)') + ' (since (2 + i)² = 3 + 4i) and ' + N('±(2 + 3i)') + ' (since (2 + 3i)² = −5 + 12i)')
+b('Trap: x² = −1 has roots ±i. Is √(−1) = ±i?', X('No') + '. The symbol √−1 means i only (the principal square root); the equation has both ±i')
+
+# ---------------------------------------------------------------- How it's asked
+d.sec('4.z-how-its-asked')
+b('MCQ: The value of i⁵ + i⁶ + i⁷ + i⁸ is<br>(a) 1 (b) −1 (c) 0 (d) i', E('(c) 0') + ': four consecutive powers of i')
+b('MCQ: (1 + i)/(1 − i) equals<br>(a) 1 (b) −1 (c) i (d) −i', E('(c) i') + ': multiply by (1+i)/(1+i): (1+i)²/2 = 2i/2')
+b('MCQ: If z = 1 + i, then z² is<br>(a) 2 (b) 2i (c) −2i (d) 1 + 2i', E('(b) 2i'))
+b('MCQ: The conjugate of (2 + i)/(3 − i) is<br>(a) (1 − i)/2 (b) (1 + i)/2 (c) (5 + 5i)/8 (d) none', 'Compute (2+i)(3+i)/10 = (6+2i+3i−1)/10 = (5+5i)/10 = (1+i)/2. Conjugate: ' + E('(a) (1 − i)/2'))
+b('MCQ: Modulus of (3 + 4i)/(1 − 2i) is<br>(a) 5 (b) √5 (c) 1 (d) 25', '|3+4i| = 5, |1−2i| = √5 → ' + E('(b) √5'))
+b('MCQ: If (2 + 3i)(x + iy) = 7 + 4i, then (x, y) =<br>(a) (2, −1) (b) (1, 2) (c) (−2, 1) (d) (2, 1)', 'x + iy = (7 + 4i)/(2 + 3i) = (7+4i)(2−3i)/13 = (26 − 13i)/13 = 2 − i → ' + E('(a)'))
+b('MCQ: If |z| = 1, then z̄ =<br>(a) z (b) −z (c) 1/z (d) z²', E('(c) 1/z') + ': z z̄ = |z|² = 1')
+b('MCQ: The equation x² + x + 1 = 0 has<br>(a) real roots (b) complex conjugate roots (c) equal roots (d) imaginary roots only', 'D = 1 − 4 = −3 < 0 → ' + E('(b)'))
+b('Integer answer (JEE Main): the least positive integer n with ((1 + i)/(1 − i))ⁿ = 1?', N('4') + ' (the base is i)')
+b('Integer answer: the number of distinct values of iⁿ for integer n?', N('4') + ': i, −1, −i, 1')
+b('Assertion–Reason.<br><b>A:</b> √(−2)·√(−3) = √6.<br><b>R:</b> √a·√b = √(ab) for all real a, b.<br>(a) Both true, R explains A (b) Both true, R does not explain A (c) A true, R false (d) Both false',
+  E('Both false') + ': √(−2)√(−3) = −√6, and the rule requires at least one of a, b ≥ 0')
+b('Assertion–Reason.<br><b>A:</b> The conjugate of a real number is itself.<br><b>R:</b> For z = a + 0i, z̄ = a − 0i = a.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true', E('(a)'))
+b('True/False (2 marks): if z₁ and z₂ are non-real, then z₁ + z₂ is non-real.', X('False') + '. z₁ = 1 + i, z₂ = 1 − i: the sum is 2, which is real')
+b('3-mark: express (1 + 2i)/(1 − 3i) in the form a + ib and hence find its modulus.', '(1+2i)(1+3i)/10 = (1 + 3i + 2i − 6)/10 = ' + N('−1/2 + i/2') + '; modulus = √(1/4 + 1/4) = ' + N('1/√2'))
+b('4-mark: if z = x + iy and |z − 1| = |z + 1|, find the locus.', 'x² − 2x + 1 + y² = x² + 2x + 1 + y² → x = 0: the ' + T('imaginary axis') + ' (perpendicular bisector of −1 and 1)')
+b('Case-based (AC circuits): impedance Z = 3 + 4i ohm. Find |Z|.', '|Z| = √(9 + 16) = ' + N('5 Ω') + '. The real part is resistance, the imaginary part reactance; |Z| is the total opposition (Physics 12 link)')
+
+print('cards', len(d.cards))
+os.makedirs(OUT, exist_ok=True)
+print('notes', d.write(os.path.join(OUT, 'deck.json')))
