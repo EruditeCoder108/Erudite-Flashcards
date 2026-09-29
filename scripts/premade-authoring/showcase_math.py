@@ -809,3 +809,116 @@ def feasible_region(deck):
           '<p>Corner points come from pairs of boundary lines. (This is exactly the <b>feasible region</b> of linear programming in Class 12.)</p>',
           'Solution region of a system of linear inequalities', 'The solution of a system is the common part of the half-planes; x+y≤4, x≥1, y≥0 gives the triangle (1,0),(4,0),(1,3) (feasible region)',
           vb=f'0 0 300 {h}', hint='Shade each half-plane; keep the overlap.')
+
+
+# ================================================================ Maths 11 Ch 6 Permutations and combinations
+def tree_pants_shirts(deck):
+    ys = [38, 112, 186]
+    def node(x, y, t, cls='f0'):
+        return f'<circle class="{cls}" cx="{x}" cy="{y}" r="15"></circle><text class="lbl" x="{x}" y="{y + 4}" text-anchor="middle">{t}</text>'
+    base = f'<circle class="f1" cx="24" cy="112" r="8"></circle><text class="sm" x="24" y="136" text-anchor="middle">start</text>'
+    back = ''
+    k = 0
+    for i, y in enumerate(ys):
+        k += 1
+        back += (f'<line class="c0 fx d{k}" x1="30" y1="112" x2="92" y2="{y}"></line><g class="fx d{k}">{node(107, y, "P" + str(i + 1))}</g>')
+        for j, dy in enumerate((-19, 19)):
+            k2 = min(k + 1 + j, 6)
+            back += (f'<line class="c1 fx d{k2}" x1="122" y1="{y}" x2="196" y2="{y + dy}"></line>'
+                     f'<g class="fx d{k2}"><rect class="f1" x="198" y="{y + dy - 12}" width="64" height="24" rx="8"></rect>'
+                     f'<text class="lbl" x="230" y="{y + dy + 4}" text-anchor="middle">P{i + 1}S{j + 1}</text></g>')
+    front = ''.join(node(107, y, 'P' + str(i + 1)) for i, y in enumerate(ys)) + '<text class="t1" x="150" y="20" text-anchor="middle">3 pants, 2 shirts</text>'
+    back += '<text class="t4 fx d6" x="150" y="230" text-anchor="middle">3 × 2 = 6 outfits</text>'
+    mcard(deck, 'Multiplication principle · tree diagram', 'Mohan has 3 pants and 2 shirts. How many pant–shirt outfits? Draw the tree.', '', back,
+          '<p>Each of the <b>3</b> pants pairs with <b>2</b> shirts → <b>3 × 2 = 6</b> outfits. Choices in <b>stages</b> multiply.</p>'
+          '<p>For three stages (2 bags, 3 tiffin boxes, 2 bottles): 2 × 3 × 2 = <b>12</b>.</p>',
+          'Multiplication principle: tree of 3 pants × 2 shirts', 'If one event can happen in m ways and then another in n ways, the pair can happen in m×n ways; 3 pants × 2 shirts = 6',
+          vb='0 0 300 240', front_only=front, hint='Each pant has how many shirt options?')
+
+
+def slot_method(deck):
+    def boxes(lbl_cls, vals, order):
+        o = ''
+        for i, (name, v, o_) in enumerate(zip(['Hundreds', 'Tens', 'Units'], vals, order)):
+            x = 22 + i * 90
+            o += f'<rect class="f0" x="{x}" y="60" width="76" height="60" rx="10"></rect><text class="sm" x="{x + 38}" y="52" text-anchor="middle">{name}</text>'
+        return o
+    base = boxes('', ['', '', ''], [0, 0, 0])
+    nums = [('3', 't1'), ('4', 't1'), ('2', 't2')]
+    back = ''
+    order = {2: 1, 1: 2, 0: 3}
+    delays = {2: 2, 1: 3, 0: 4}
+    for i, (v, c) in enumerate(nums):
+        x = 22 + i * 90
+        back += (f'<text class="{c} bign fx d{delays[i]}" x="{x + 38}" y="102" text-anchor="middle">{v}</text>'
+                 f'<circle class="f4 fx d{delays[i]}" cx="{x + 12}" cy="72" r="9"></circle><text class="lbl fx d{delays[i]}" x="{x + 12}" y="76" text-anchor="middle">{order[i]}</text>')
+    back += ('<text class="t2 fx d2" x="248" y="146" text-anchor="middle">2 or 4</text>'
+             '<text class="sm fx d3" x="158" y="146" text-anchor="middle">4 left</text>'
+             '<text class="sm fx d4" x="68" y="146" text-anchor="middle">3 left</text>'
+             '<text class="t3 fx d5" x="150" y="182" text-anchor="middle">3 × 4 × 2 = 24</text>')
+    mcard(deck, 'Slot method · restricted place first', 'How many 3-digit even numbers can be made from 1, 2, 3, 4, 5 with no repetition?', base, back,
+          '<p>Fill the <b>restricted place first</b>: the units digit must be 2 or 4 → 2 ways. Then the tens digit: 4 digits left. Then hundreds: 3 left.</p>'
+          '<p><b>2 × 4 × 3 = 24</b>. If you fill hundreds first, the number of choices for the units digit depends on what you used: messy.</p>',
+          'Slot method: fill the restricted position first', 'Even 3-digit numbers from 1..5 without repetition: units digit 2 or 4 (2 ways), then tens (4), then hundreds (3): 24; fill the restricted place first',
+          css='.pp .bign{font-size:30px}', vb='0 0 300 196', hint='Which place has a condition?')
+
+
+def pascal_triangle(deck):
+    rows = [[C_ for C_ in _pascal_row(n)] for n in range(7)]
+    o = ''
+    for n, row in enumerate(rows):
+        y = 26 + n * 30
+        for k, v in enumerate(row):
+            x = 172 + (k - n / 2) * 38
+            cls = 'lbl'
+            if n == 6 and k == 2: cls = 't3'
+            if n == 5 and k in (1, 2): cls = 't4'
+            o += f'<text class="{cls} pt fx d{min(n // 2 + 1, 5)}" x="{x:.1f}" y="{y}" text-anchor="middle">{v}</text>'
+        o += f'<text class="sm fx d{min(n // 2 + 1, 5)}" x="8" y="{y}">n = {n}</text>'
+    back = o + (f'<line class="guide fx d5" x1="{172 + (1 - 5 / 2) * 38:.1f}" y1="{26 + 5 * 30 + 4}" x2="{172 + (2 - 6 / 2) * 38 + 4:.1f}" y2="{26 + 6 * 30 - 14}"></line>'
+                f'<line class="guide fx d5" x1="{172 + (2 - 5 / 2) * 38:.1f}" y1="{26 + 5 * 30 + 4}" x2="{172 + (2 - 6 / 2) * 38 - 4:.1f}" y2="{26 + 6 * 30 - 14}"></line>')
+    front = '<text class="lbl" x="150" y="100" text-anchor="middle">row n lists ⁿC₀, ⁿC₁, …, ⁿCₙ</text><text class="t1" x="150" y="130" text-anchor="middle">1 &#160; 1 1 &#160; 1 2 1 &#160; 1 3 3 1 …</text>'
+    mcard(deck, 'Pascal’s triangle · nCr', 'Build Pascal’s triangle. How does it prove ⁿCᵣ + ⁿCᵣ₋₁ = ⁿ⁺¹Cᵣ?', '', back,
+          '<p>Each entry = the <b>sum of the two above it</b>: 5 + 10 = 15 → ⁵C₁ + ⁵C₂ = ⁶C₂.</p>'
+          '<p>Rows are <b>symmetric</b> (ⁿCᵣ = ⁿCₙ₋ᵣ) and row n sums to <b>2ⁿ</b> (1, 2, 4, 8, 16, 32, 64).</p>',
+          'Pascal’s triangle and Pascal’s rule', 'Each entry of Pascal’s triangle is the sum of the two above: nCr + nC(r−1) = (n+1)Cr; rows are symmetric and sum to 2^n',
+          css='.pp .pt{font-size:15px}', vb='0 0 300 214', front_only=front, hint='Add the two numbers above.')
+
+
+def _pascal_row(n):
+    from math import comb
+    return [comb(n, k) for k in range(n + 1)]
+
+
+def circular_seating(deck):
+    cx, cy, r = 150, 100, 58
+    seats = [(cx, cy - r), (cx + r, cy), (cx, cy + r), (cx - r, cy)]
+    base = (f'<circle class="ghost" cx="{cx}" cy="{cy}" r="{r}"></circle><circle class="f0" cx="{cx}" cy="{cy}" r="30"></circle>'
+            '<text class="sm" x="150" y="104" text-anchor="middle">table</text>')
+    people = ''
+    css = ''
+    for k, name in enumerate('ABCD'):
+        x0, y0 = seats[k]
+        pts = [(seats[(k + s) % 4][0] - x0, seats[(k + s) % 4][1] - y0) for s in range(5)]
+        css += mkeyframes(f'sit{k}', pts, 6, 'steps(1,end)', 0.4)
+        people += (f'<g transform="translate({x0},{y0})"><g class="sit{k}"><circle class="f{k + 1}" cx="0" cy="0" r="14"></circle>'
+                   f'<text class="lbl" x="0" y="4" text-anchor="middle">{name}</text></g></g>')
+    front_people = ''.join(f'<circle class="f{k + 1}" cx="{x}" cy="{y}" r="14"></circle><text class="lbl" x="{x}" y="{y + 4}" text-anchor="middle">{"ABCD"[k]}</text>' for k, (x, y) in enumerate(seats))
+    mcard(deck, 'Circular arrangements · beyond the textbook', 'In how many ways can 4 people sit around a round table?', base, people,
+          '<p>Turning everyone one seat round gives the <b>same</b> arrangement (same neighbours). The 4 rotations count as one.</p>'
+          '<p>So fix one person and arrange the other 3: <b>(4 − 1)! = 6</b>. In general <b>(n − 1)!</b>; for necklaces (which can be flipped) <b>(n − 1)!/2</b>.</p>',
+          'Circular permutations: (n − 1)!', 'n people around a round table: (n−1)! arrangements, since rotations are equal (fix one person); necklace/garland with flipping: (n−1)!/2',
+          css=css, vb='0 0 300 200', front_only=front_people, hint='Do rotations count as different?')
+
+
+def gaps_method(deck):
+    girls = ''.join(f'<circle class="f2" cx="{40 + i * 48}" cy="100" r="14"></circle><text class="lbl" x="{40 + i * 48}" y="104" text-anchor="middle">G</text>' for i in range(5))
+    gaps = ''.join(f'<text class="t1 fx d1" x="{16 + i * 48}" y="104" text-anchor="middle">×</text><text class="sm fx d1" x="{16 + i * 48}" y="124" text-anchor="middle">{i + 1}</text>' for i in range(6))
+    boys = ''.join(f'<circle class="f1 fx d{k + 3}" cx="{16 + g * 48}" cy="60" r="12"></circle><text class="lbl fx d{k + 3}" x="{16 + g * 48}" y="64" text-anchor="middle">B</text>'
+                   f'<line class="guide fx d{k + 3}" x1="{16 + g * 48}" y1="72" x2="{16 + g * 48}" y2="90"></line>' for k, g in enumerate((0, 2, 5)))
+    mcard(deck, 'Gaps method · no two together', '5 girls and 3 boys sit in a row so that no two boys are together. How many arrangements?', girls, gaps + boys +
+          '<text class="t3 fx d5" x="150" y="170" text-anchor="middle">5! × ⁶P₃ = 120 × 120 = 14400</text>',
+          '<p>Seat the <b>girls first</b>: 5! ways. They create <b>6 gaps</b> (×) including both ends. Boys go into 3 different gaps, in order: ⁶P₃ = 120.</p>'
+          '<p>Total 5! × ⁶P₃ = <b>14400</b>. Method for “not together”: arrange the others first, then insert.</p>',
+          'Gaps method: no two boys together (Example 24)', '5 girls in 5! ways create 6 gaps; choose and order 3 gaps for the boys: 6P3; total 5!·6P3 = 14400',
+          vb='0 0 300 184', hint='Seat the girls first. How many gaps do they make?')

@@ -1,0 +1,1606 @@
+{
+  "version": 1,
+  "name": "Chapter 6: Permutations and Combinations",
+  "className": "Class 11",
+  "description": "Counting principles, factorials, permutations with and without repetition, combinations, words, digits, committees, cards and exam techniques.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "State the fundamental (multiplication) principle of counting.",
+      "definition": "If one event can occur in <span style=\"color:#3b82f6\">m</span> ways, and after it another event in <span style=\"color:#3b82f6\">n</span> ways, the two together can occur in <span style=\"color:#f08c00\">m × n</span> ways. It extends to any number of events: m × n × p …",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Addition principle of counting?",
+      "definition": "If two tasks are <span style=\"color:#3b82f6\">mutually exclusive</span> (you do one OR the other) and can be done in m and n ways, the total is <span style=\"color:#f08c00\">m + n</span>. Rule of thumb: <span style=\"color:#3b82f6\">AND → multiply, OR → add</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Multiplication principle: tree of 3 pants × 2 shirts",
+      "definition": "If one event can happen in m ways and then another in n ways, the pair can happen in m×n ways; 3 pants × 2 shirts = 6",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Multiplication principle · tree diagram</p><h2>Mohan has 3 pants and 2 shirts. How many pant–shirt outfits? Draw the tree.</h2><svg viewBox=\"0 0 300 240\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f0\" cx=\"107\" cy=\"38\" r=\"15\"></circle><text class=\"lbl\" x=\"107\" y=\"42\" text-anchor=\"middle\">P1</text><circle class=\"f0\" cx=\"107\" cy=\"112\" r=\"15\"></circle><text class=\"lbl\" x=\"107\" y=\"116\" text-anchor=\"middle\">P2</text><circle class=\"f0\" cx=\"107\" cy=\"186\" r=\"15\"></circle><text class=\"lbl\" x=\"107\" y=\"190\" text-anchor=\"middle\">P3</text><text class=\"t1\" x=\"150\" y=\"20\" text-anchor=\"middle\">3 pants, 2 shirts</text></svg><p class=\"hint\">Each pant has how many shirt options?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Multiplication principle · tree diagram</p><h2>Mohan has 3 pants and 2 shirts. How many pant–shirt outfits? Draw the tree.</h2><svg viewBox=\"0 0 300 240\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"c0 fx d1\" x1=\"30\" y1=\"112\" x2=\"92\" y2=\"38\"></line><g class=\"fx d1\"><circle class=\"f0\" cx=\"107\" cy=\"38\" r=\"15\"></circle><text class=\"lbl\" x=\"107\" y=\"42\" text-anchor=\"middle\">P1</text></g><line class=\"c1 fx d2\" x1=\"122\" y1=\"38\" x2=\"196\" y2=\"19\"></line><g class=\"fx d2\"><rect class=\"f1\" x=\"198\" y=\"7\" width=\"64\" height=\"24\" rx=\"8\"></rect><text class=\"lbl\" x=\"230\" y=\"23\" text-anchor=\"middle\">P1S1</text></g><line class=\"c1 fx d3\" x1=\"122\" y1=\"38\" x2=\"196\" y2=\"57\"></line><g class=\"fx d3\"><rect class=\"f1\" x=\"198\" y=\"45\" width=\"64\" height=\"24\" rx=\"8\"></rect><text class=\"lbl\" x=\"230\" y=\"61\" text-anchor=\"middle\">P1S2</text></g><line class=\"c0 fx d2\" x1=\"30\" y1=\"112\" x2=\"92\" y2=\"112\"></line><g class=\"fx d2\"><circle class=\"f0\" cx=\"107\" cy=\"112\" r=\"15\"></circle><text class=\"lbl\" x=\"107\" y=\"116\" text-anchor=\"middle\">P2</text></g><line class=\"c1 fx d3\" x1=\"122\" y1=\"112\" x2=\"196\" y2=\"93\"></line><g class=\"fx d3\"><rect class=\"f1\" x=\"198\" y=\"81\" width=\"64\" height=\"24\" rx=\"8\"></rect><text class=\"lbl\" x=\"230\" y=\"97\" text-anchor=\"middle\">P2S1</text></g><line class=\"c1 fx d4\" x1=\"122\" y1=\"112\" x2=\"196\" y2=\"131\"></line><g class=\"fx d4\"><rect class=\"f1\" x=\"198\" y=\"119\" width=\"64\" height=\"24\" rx=\"8\"></rect><text class=\"lbl\" x=\"230\" y=\"135\" text-anchor=\"middle\">P2S2</text></g><line class=\"c0 fx d3\" x1=\"30\" y1=\"112\" x2=\"92\" y2=\"186\"></line><g class=\"fx d3\"><circle class=\"f0\" cx=\"107\" cy=\"186\" r=\"15\"></circle><text class=\"lbl\" x=\"107\" y=\"190\" text-anchor=\"middle\">P3</text></g><line class=\"c1 fx d4\" x1=\"122\" y1=\"186\" x2=\"196\" y2=\"167\"></line><g class=\"fx d4\"><rect class=\"f1\" x=\"198\" y=\"155\" width=\"64\" height=\"24\" rx=\"8\"></rect><text class=\"lbl\" x=\"230\" y=\"171\" text-anchor=\"middle\">P3S1</text></g><line class=\"c1 fx d5\" x1=\"122\" y1=\"186\" x2=\"196\" y2=\"205\"></line><g class=\"fx d5\"><rect class=\"f1\" x=\"198\" y=\"193\" width=\"64\" height=\"24\" rx=\"8\"></rect><text class=\"lbl\" x=\"230\" y=\"209\" text-anchor=\"middle\">P3S2</text></g><text class=\"t4 fx d6\" x=\"150\" y=\"230\" text-anchor=\"middle\">3 × 2 = 6 outfits</text></svg><div class=\"eq fx d5\"><p>Each of the <b>3</b> pants pairs with <b>2</b> shirts → <b>3 × 2 = 6</b> outfits. Choices in <b>stages</b> multiply.</p><p>For three stages (2 bags, 3 tiffin boxes, 2 bottles): 2 × 3 × 2 = <b>12</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sabnam has 2 school bags, 3 tiffin boxes and 2 water bottles (one of each). Number of ways?",
+      "definition": "2 × 3 × 2 = <span style=\"color:#f08c00\">12</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: 4-letter words (with or without meaning) from the letters of ROSE, no repetition?",
+      "definition": "4 × 3 × 2 × 1 = <span style=\"color:#f08c00\">24</span>. With repetition allowed: 4 × 4 × 4 × 4 = <span style=\"color:#f08c00\">256</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2: 4 flags of different colours; signals use 2 flags, one below the other. How many?",
+      "definition": "4 × 3 = <span style=\"color:#f08c00\">12</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3: 2-digit even numbers from 1, 2, 3, 4, 5 with repetition allowed?",
+      "definition": "Units: 2 or 4 (2 ways). Tens: any of 5. <span style=\"color:#f08c00\">2 × 5 = 10</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Slot method: fill the restricted position first",
+      "definition": "Even 3-digit numbers from 1..5 without repetition: units digit 2 or 4 (2 ways), then tens (4), then hundreds (3): 24; fill the restricted place first",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Slot method · restricted place first</p><h2>How many 3-digit even numbers can be made from 1, 2, 3, 4, 5 with no repetition?</h2><svg viewBox=\"0 0 300 196\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f0\" x=\"22\" y=\"60\" width=\"76\" height=\"60\" rx=\"10\"></rect><text class=\"sm\" x=\"60\" y=\"52\" text-anchor=\"middle\">Hundreds</text><rect class=\"f0\" x=\"112\" y=\"60\" width=\"76\" height=\"60\" rx=\"10\"></rect><text class=\"sm\" x=\"150\" y=\"52\" text-anchor=\"middle\">Tens</text><rect class=\"f0\" x=\"202\" y=\"60\" width=\"76\" height=\"60\" rx=\"10\"></rect><text class=\"sm\" x=\"240\" y=\"52\" text-anchor=\"middle\">Units</text></svg><p class=\"hint\">Which place has a condition?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Slot method · restricted place first</p><h2>How many 3-digit even numbers can be made from 1, 2, 3, 4, 5 with no repetition?</h2><svg viewBox=\"0 0 300 196\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f0\" x=\"22\" y=\"60\" width=\"76\" height=\"60\" rx=\"10\"></rect><text class=\"sm\" x=\"60\" y=\"52\" text-anchor=\"middle\">Hundreds</text><rect class=\"f0\" x=\"112\" y=\"60\" width=\"76\" height=\"60\" rx=\"10\"></rect><text class=\"sm\" x=\"150\" y=\"52\" text-anchor=\"middle\">Tens</text><rect class=\"f0\" x=\"202\" y=\"60\" width=\"76\" height=\"60\" rx=\"10\"></rect><text class=\"sm\" x=\"240\" y=\"52\" text-anchor=\"middle\">Units</text><text class=\"t1 bign fx d4\" x=\"60\" y=\"102\" text-anchor=\"middle\">3</text><circle class=\"f4 fx d4\" cx=\"34\" cy=\"72\" r=\"9\"></circle><text class=\"lbl fx d4\" x=\"34\" y=\"76\" text-anchor=\"middle\">3</text><text class=\"t1 bign fx d3\" x=\"150\" y=\"102\" text-anchor=\"middle\">4</text><circle class=\"f4 fx d3\" cx=\"124\" cy=\"72\" r=\"9\"></circle><text class=\"lbl fx d3\" x=\"124\" y=\"76\" text-anchor=\"middle\">2</text><text class=\"t2 bign fx d2\" x=\"240\" y=\"102\" text-anchor=\"middle\">2</text><circle class=\"f4 fx d2\" cx=\"214\" cy=\"72\" r=\"9\"></circle><text class=\"lbl fx d2\" x=\"214\" y=\"76\" text-anchor=\"middle\">1</text><text class=\"t2 fx d2\" x=\"248\" y=\"146\" text-anchor=\"middle\">2 or 4</text><text class=\"sm fx d3\" x=\"158\" y=\"146\" text-anchor=\"middle\">4 left</text><text class=\"sm fx d4\" x=\"68\" y=\"146\" text-anchor=\"middle\">3 left</text><text class=\"t3 fx d5\" x=\"150\" y=\"182\" text-anchor=\"middle\">3 × 4 × 2 = 24</text></svg><div class=\"eq fx d5\"><p>Fill the <b>restricted place first</b>: the units digit must be 2 or 4 → 2 ways. Then the tens digit: 4 digits left. Then hundreds: 3 left.</p><p><b>2 × 4 × 3 = 24</b>. If you fill hundreds first, the number of choices for the units digit depends on what you used: messy.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .bign{font-size:30px}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .bign{font-size:30px}"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: the slot (box) method for counting numbers or words.",
+      "definition": "1) Draw one box per place. 2) Fill the boxes with a <span style=\"color:#3b82f6\">condition first</span> (units digit even, first letter a vowel, leading digit ≠ 0). 3) Multiply the choices",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4: signals with at least 2 of 5 different flags on a staff. How many?",
+      "definition": "2 flags: 5·4 = 20; 3 flags: 5·4·3 = 60; 4 flags: 120; 5 flags: 120. Add (“or”): <span style=\"color:#f08c00\">320</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q1: 3-digit numbers from 1, 2, 3, 4, 5 (i) with repetition (ii) without?",
+      "definition": "<span style=\"color:#f08c00\">125</span> (5 × 5 × 5) and <span style=\"color:#f08c00\">60</span> (5 × 4 × 3)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q2: 3-digit even numbers from 1–6 with repetition allowed?",
+      "definition": "Units 2, 4 or 6 (3 ways); tens 6; hundreds 6: <span style=\"color:#f08c00\">6 × 6 × 3 = 108</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q3: 4-letter codes from the first 10 letters, no repetition?",
+      "definition": "10 × 9 × 8 × 7 = <span style=\"color:#f08c00\">5040</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q4: 5-digit phone numbers starting with 67, digits 0–9, no digit repeated?",
+      "definition": "Remaining 3 places from the 8 unused digits: 8 × 7 × 6 = <span style=\"color:#f08c00\">336</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q5: a coin is tossed 3 times. Number of outcomes?",
+      "definition": "2 × 2 × 2 = <span style=\"color:#f08c00\">8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q6: 5 flags of different colours; 2-flag signals?",
+      "definition": "5 × 4 = <span style=\"color:#f08c00\">20</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of ways to answer 10 true/false questions?",
+      "definition": "<span style=\"color:#f08c00\">2¹⁰ = 1024</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of 3-digit numbers (any digits allowed)?",
+      "definition": "Hundreds 1–9 (9 ways), tens 10, units 10: <span style=\"color:#f08c00\">900</span>. A leading 0 is not allowed",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.2-counting-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define a permutation.",
+      "definition": "An <span style=\"color:#3b82f6\">arrangement in a definite order</span> of objects taken some or all at a time: <span style=\"color:#3b82f6\">order matters</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 1: number of permutations of n different objects taken r at a time (no repetition)?",
+      "definition": "\\({}^nP_r = n(n-1)(n-2)\\cdots(n-r+1) = \\dfrac{n!}{(n-r)!}\\), 0 ≤ r ≤ n",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define n! and 0!.",
+      "definition": "<span style=\"color:#3b82f6\">n! = 1 × 2 × 3 × … × n</span>, and <span style=\"color:#f08c00\">0! = 1</span> by definition. Also n! = n·(n − 1)!",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is 0! = 1?",
+      "definition": "ⁿPₙ = n!/0! must equal n! (arrange all n objects). Equivalently there is exactly one way to arrange nothing",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: evaluate 5!, 7!, 7! − 5!.",
+      "definition": "<span style=\"color:#f08c00\">120</span>, <span style=\"color:#f08c00\">5040</span>, <span style=\"color:#f08c00\">4920</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6: 7!/5! and 12!/(10!·2!).",
+      "definition": "7 × 6 = <span style=\"color:#f08c00\">42</span>;  (12 × 11)/2 = <span style=\"color:#f08c00\">66</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2: is 3! + 4! = 7!?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: 6 + 24 = 30 but 7! = 5040. Factorials do not add or multiply term by term",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: is (m + n)! = m! + n!, or (2n)! = 2·n!?",
+      "definition": "<span style=\"color:#e5484d\">Neither</span>. e.g. (2·3)! = 720 but 2·3! = 12",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q3: compute 8!/(6! × 2!).",
+      "definition": "(8 × 7)/2 = <span style=\"color:#f08c00\">28</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7: evaluate n!/(r!(n − r)!) for n = 5, r = 2.",
+      "definition": "5!/(2!·3!) = (5 × 4)/2 = <span style=\"color:#f08c00\">10</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8: 1/8! + 1/9! = x/10!. Find x.",
+      "definition": "10!/8! = 90 and 10!/9! = 10, so x = 90 + 10 = <span style=\"color:#f08c00\">100</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q4: 1/6! + 1/7! = x/8!. Find x.",
+      "definition": "8!/6! = 56, 8!/7! = 8 → x = <span style=\"color:#f08c00\">64</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q5: evaluate n!/(n − r)! for n = 6, r = 2 and n = 9, r = 5.",
+      "definition": "<span style=\"color:#f08c00\">30</span> (6 × 5) and <span style=\"color:#f08c00\">15120</span> (9 × 8 × 7 × 6 × 5)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ⁿP₀, ⁿP₁, ⁿPₙ₋₁ and ⁿPₙ?",
+      "definition": "<span style=\"color:#f08c00\">1</span>,  <span style=\"color:#f08c00\">n</span>,  <span style=\"color:#f08c00\">n!</span>,  <span style=\"color:#f08c00\">n!</span><br><small>ⁿPₙ₋₁ = n!/1! = n!</small>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 2: permutations of n different objects taken r at a time with repetition allowed?",
+      "definition": "<span style=\"color:#f08c00\">nʳ</span> (each of the r places can be filled in n ways)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Chairman and vice-chairman from 12 persons (one person, one post)?",
+      "definition": "¹²P₂ = 12 × 11 = <span style=\"color:#f08c00\">132</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q5: chairman and vice-chairman from a committee of 8?",
+      "definition": "⁸P₂ = 8 × 7 = <span style=\"color:#f08c00\">56</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q1–2: 3-digit numbers from 1–9 with no repetition; 4-digit numbers with no repeated digit?",
+      "definition": "⁹P₃ = <span style=\"color:#f08c00\">504</span>. 4-digit: first digit 9 ways (not 0), then 9, 8, 7: <span style=\"color:#f08c00\">9 × 9 × 8 × 7 = 4536</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: “4-digit numbers with no digit repeated”. Is the answer ¹⁰P₄?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. ¹⁰P₄ = 5040 includes numbers starting with 0. Subtract them: 5040 − ⁹P₃ = 5040 − 504 = 4536",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q3: 3-digit even numbers from 1, 2, 3, 4, 6, 7, no repetition?",
+      "definition": "Units 2, 4 or 6 (3 ways); tens 5; hundreds 4: <span style=\"color:#f08c00\">3 × 5 × 4 = 60</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q4: 4-digit numbers from 1, 2, 3, 4, 5, no repetition. How many are even?",
+      "definition": "⁵P₄ = <span style=\"color:#f08c00\">120</span>. Even: units 2 or 4 (2 ways) then 4 × 3 × 2: <span style=\"color:#f08c00\">48</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10 and 11: 4-digit numbers from 1–9 without repetition; numbers between 100 and 1000 from 0, 1, 2, 3, 4, 5 without repetition?",
+      "definition": "⁹P₄ = <span style=\"color:#f08c00\">3024</span>. Second: ⁶P₃ − ⁵P₂ = 120 − 20 = <span style=\"color:#f08c00\">100</span> (subtract those with 0 in the hundreds place)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q8: words using all letters of EQUATION once each?",
+      "definition": "8! = <span style=\"color:#f08c00\">40320</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q9: words from MONDAY, no repetition: (i) 4 letters (ii) all letters (iii) all letters, first letter a vowel?",
+      "definition": "(i) ⁶P₄ = <span style=\"color:#f08c00\">360</span> (ii) 6! = <span style=\"color:#f08c00\">720</span> (iii) vowels O or A: 2 × 5! = <span style=\"color:#f08c00\">240</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12(i): find n if ⁿP₅ = 42 · ⁿP₃ (n > 4).",
+      "definition": "Divide by n(n − 1)(n − 2): (n − 3)(n − 4) = 42 → n² − 7n − 30 = 0 → (n − 10)(n + 3) = 0 → <span style=\"color:#f08c00\">n = 10</span> (n = −3 rejected)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12(ii): find n if ⁿP₄ / ⁿ⁻¹P₄ = 5/3 (n > 4).",
+      "definition": "ⁿP₄/ⁿ⁻¹P₄ = n/(n − 4) after cancelling (n − 1)(n − 2)(n − 3). So 3n = 5(n − 4) → <span style=\"color:#f08c00\">n = 10</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: solving equations with nPr.",
+      "definition": "Write each ⁿPᵣ as a product (n)(n − 1)…, cancel the common factors <span style=\"color:#3b82f6\">after checking they are non-zero (n > r)</span>, solve the resulting polynomial, then <span style=\"color:#e5484d\">reject values that violate n ≥ r, n, r ∈ N</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q6: find n if ⁿ⁻¹P₃ : ⁿP₄ = 1 : 9.",
+      "definition": "\\(\\dfrac{(n-1)(n-2)(n-3)}{n(n-1)(n-2)(n-3)} = \\dfrac1n = \\dfrac19\\) → <span style=\"color:#f08c00\">n = 9</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13: 5·⁴Pᵣ = 6·⁵Pᵣ₋₁. Find r.",
+      "definition": "Algebra gives (6 − r)(5 − r) = 6 → r² − 11r + 24 = 0 → r = 3 or 8. But ⁴Pᵣ needs r ≤ 4, so <span style=\"color:#f08c00\">r = 3</span> only. Check: 5·24 = 120 = 6·20",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT Example 13 ends with “r = 8, 3”. Is r = 8 valid?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. ⁴P₈ does not exist (r cannot exceed n = 4). Always test roots against the conditions r ≤ n. The correct answer is r = 3",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q7: find r if (i) ⁵Pᵣ = 2·⁶Pᵣ₋₁, (ii) ⁵Pᵣ = ⁶Pᵣ₋₁.",
+      "definition": "(i) (7 − r)(6 − r) = 12 → r² − 13r + 30 = 0 → r = 3 or 10; r ≤ 5 → <span style=\"color:#f08c00\">r = 3</span>. (ii) (7 − r)(6 − r) = 6 → r² − 13r + 36 = 0 → r = 4 or 9 → <span style=\"color:#f08c00\">r = 4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3-permutations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Permutations of n objects when p of them are alike and the rest different?",
+      "definition": "\\(\\dfrac{n!}{p!}\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Permutations of n objects with p₁ alike of one kind, p₂ of another, …, pₖ of the k-th kind?",
+      "definition": "\\(\\dfrac{n!}{p_1!\\,p_2!\\cdots p_k!}\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why divide by p! for identical objects?",
+      "definition": "Treating the p alike objects as different overcounts: every real arrangement is counted <span style=\"color:#3b82f6\">p! times</span> (the alike ones can be shuffled among themselves without any visible change)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Arrangements of the letters of ROOT?",
+      "definition": "4!/2! = <span style=\"color:#f08c00\">12</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Arrangements of the letters of INSTITUTE?",
+      "definition": "9 letters: I twice, T three times → 9!/(2!·3!) = <span style=\"color:#f08c00\">30240</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9: permutations of the letters of ALLAHABAD?",
+      "definition": "9 letters: A four times, L twice → 9!/(4!·2!) = <span style=\"color:#f08c00\">7560</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 15: 4 red, 3 yellow and 2 green discs in a row (same colour identical)?",
+      "definition": "9!/(4!·3!·2!) = <span style=\"color:#f08c00\">1260</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of arrangements of the letters of MISSISSIPPI?",
+      "definition": "11!/(4!·4!·2!) = <span style=\"color:#f08c00\">34650</span> (I ×4, S ×4, P ×2)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q10: in how many of them do the four I’s not come together?",
+      "definition": "Together: treat IIII as one letter: 8!/(4!·2!) = 840. So <span style=\"color:#f08c00\">34650 − 840 = 33810</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: “vowels always together”.",
+      "definition": "Tie the vowels into <span style=\"color:#3b82f6\">one block</span>. Arrange the block with the other letters, then multiply by the arrangements <span style=\"color:#3b82f6\">inside</span> the block",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: “vowels never together”.",
+      "definition": "<span style=\"color:#3b82f6\">Total − (vowels together)</span>. Complement counting is faster than direct counting",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 14: 8-letter arrangements of DAUGHTER with (i) all vowels together (ii) not together?",
+      "definition": "(i) block AUE + 5 letters = 6 objects: 6!·3! = <span style=\"color:#f08c00\">4320</span>. (ii) 8! − 4320 = <span style=\"color:#f08c00\">36000</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 16: INDEPENDENCE has 12 letters (N ×3, E ×4, D ×2). Total, and words starting with P?",
+      "definition": "12!/(3!·4!·2!) = <span style=\"color:#f08c00\">1663200</span>. Start with P: 11!/(3!·4!·2!) = <span style=\"color:#f08c00\">138600</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 16(ii)–(iv): INDEPENDENCE: vowels together; vowels never together; begin with I and end with P?",
+      "definition": "Vowels EEEEI form a block: 8!/(3!·2!) × 5!/4! = <span style=\"color:#f08c00\">16800</span>. Never together: 1663200 − 16800 = <span style=\"color:#f08c00\">1646400</span>. I first, P last: 10!/(3!·2!·4!) = <span style=\"color:#f08c00\">12600</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q11: PERMUTATIONS (12 letters, T twice) with (i) P first and S last (ii) vowels together (iii) exactly 4 letters between P and S?",
+      "definition": "(i) 10!/2! = <span style=\"color:#f08c00\">1814400</span>. (ii) 5 vowels as a block: 8!/2! × 5! = <span style=\"color:#f08c00\">2419200</span>. (iii) P and S can sit in 7 position-pairs (1–6, 2–7, …, 7–12), in 2 orders: 14 × 10!/2! = <span style=\"color:#f08c00\">25401600</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 22: rank of a word. AGAIN in dictionary order: how many words, and what is the 50th?",
+      "definition": "5!/2! = 60 words. Starting with A: 4! = 24; G: 4!/2! = 12; I: 12 → 48. Next letter N: 49th NAAGI, <span style=\"color:#f08c00\">50th NAAIG</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: rank of a word in dictionary order.",
+      "definition": "Sort the letters. For each position count the words that start with every smaller letter (with the correct repeated-letter division), add them up, and add 1",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: EXAMINATION arranged as in a dictionary: how many words come before the first word starting with E?",
+      "definition": "Only words starting with A come before E. Fix A: remaining 10 letters with I ×2, N ×2: 10!/(2!·2!) = <span style=\"color:#f08c00\">907200</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 23: numbers greater than 1000000 using the digits 1, 2, 0, 2, 4, 2, 4?",
+      "definition": "All 7-digit arrangements: 7!/(3!·2!) = 420, minus those starting with 0: 6!/(3!·2!) = 60 → <span style=\"color:#f08c00\">360</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q11: arrangements of ASSASSINATION with all S’s together?",
+      "definition": "13 letters: A ×3, S ×4, I ×2, N ×2. Block SSSS + 9 others = 10 objects: 10!/(3!·2!·2!) = <span style=\"color:#f08c00\">151200</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.3.4-alike-objects"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define a combination. Permutation vs combination?",
+      "definition": "A <span style=\"color:#3b82f6\">selection</span> where order does not matter. Permutation: <span style=\"color:#3b82f6\">arrangement</span> (order matters). Memory: <span style=\"color:#3b82f6\">P = Position, C = Committee</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Permutation or combination?",
+      "definition": "Forming a 3-letter word: P; Choosing a team of 3 players: C; Seating 5 people in a row: P; Handshakes among 12 people: C; A 4-digit PIN: P; Selecting 5 cards from a pack: C; President and secretary from 10: P; Chords joining 7 points on a circle: C",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">6.4 · Order matters?</p><h2>Choose P (permutation) or C (combination).</h2><table><tr><td>Forming a 3-letter word</td><td class=\"q\">?</td></tr><tr><td>Choosing a team of 3 players</td><td class=\"q\">?</td></tr><tr><td>Seating 5 people in a row</td><td class=\"q\">?</td></tr><tr><td>Handshakes among 12 people</td><td class=\"q\">?</td></tr><tr><td>A 4-digit PIN</td><td class=\"q\">?</td></tr><tr><td>Selecting 5 cards from a pack</td><td class=\"q\">?</td></tr><tr><td>President and secretary from 10</td><td class=\"q\">?</td></tr><tr><td>Chords joining 7 points on a circle</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">6.4 · Order matters?</p><h2>Choose P (permutation) or C (combination).</h2><table><tr><td>Forming a 3-letter word</td><td class=\"a\">P</td></tr><tr><td>Choosing a team of 3 players</td><td class=\"a\">C</td></tr><tr><td>Seating 5 people in a row</td><td class=\"a\">P</td></tr><tr><td>Handshakes among 12 people</td><td class=\"a\">C</td></tr><tr><td>A 4-digit PIN</td><td class=\"a\">P</td></tr><tr><td>Selecting 5 cards from a pack</td><td class=\"a\">C</td></tr><tr><td>President and secretary from 10</td><td class=\"a\">P</td></tr><tr><td>Chords joining 7 points on a circle</td><td class=\"a\">C</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Formula for ⁿCᵣ?",
+      "definition": "\\({}^nC_r = \\dfrac{n!}{r!\\,(n-r)!}\\), 0 ≤ r ≤ n",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between ⁿPᵣ and ⁿCᵣ?",
+      "definition": "\\({}^nP_r = {}^nC_r \\times r!\\): choose the r objects, then arrange them in r! ways",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ⁿC₀, ⁿC₁, ⁿCₙ?",
+      "definition": "<span style=\"color:#f08c00\">1</span>, <span style=\"color:#f08c00\">n</span>, <span style=\"color:#f08c00\">1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is ⁿC₀ = 1?",
+      "definition": "Choosing nothing can be done in exactly one way (leave everything behind)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem: ⁿCᵣ = ⁿCₙ₋ᵣ. Meaning?",
+      "definition": "Selecting r objects to take is the same as selecting n − r objects to <span style=\"color:#3b82f6\">leave behind</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "ⁿCₐ = ⁿC_b implies?",
+      "definition": "<span style=\"color:#3b82f6\">a = b</span> or <span style=\"color:#3b82f6\">a + b = n</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 6 (Pascal’s rule): ⁿCᵣ + ⁿCᵣ₋₁ = ?",
+      "definition": "<span style=\"color:#f08c00\">ⁿ⁺¹Cᵣ</span>. Proof by writing both over r!(n − r + 1)! or by “is a particular object chosen or not”",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Pascal’s triangle and Pascal’s rule",
+      "definition": "Each entry of Pascal’s triangle is the sum of the two above: nCr + nC(r−1) = (n+1)Cr; rows are symmetric and sum to 2^n",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Pascal’s triangle · nCr</p><h2>Build Pascal’s triangle. How does it prove ⁿCᵣ + ⁿCᵣ₋₁ = ⁿ⁺¹Cᵣ?</h2><svg viewBox=\"0 0 300 214\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><text class=\"lbl\" x=\"150\" y=\"100\" text-anchor=\"middle\">row n lists ⁿC₀, ⁿC₁, …, ⁿCₙ</text><text class=\"t1\" x=\"150\" y=\"130\" text-anchor=\"middle\">1 &#160; 1 1 &#160; 1 2 1 &#160; 1 3 3 1 …</text></svg><p class=\"hint\">Add the two numbers above.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Pascal’s triangle · nCr</p><h2>Build Pascal’s triangle. How does it prove ⁿCᵣ + ⁿCᵣ₋₁ = ⁿ⁺¹Cᵣ?</h2><svg viewBox=\"0 0 300 214\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><text class=\"lbl pt fx d1\" x=\"172.0\" y=\"26\" text-anchor=\"middle\">1</text><text class=\"sm fx d1\" x=\"8\" y=\"26\">n = 0</text><text class=\"lbl pt fx d1\" x=\"153.0\" y=\"56\" text-anchor=\"middle\">1</text><text class=\"lbl pt fx d1\" x=\"191.0\" y=\"56\" text-anchor=\"middle\">1</text><text class=\"sm fx d1\" x=\"8\" y=\"56\">n = 1</text><text class=\"lbl pt fx d2\" x=\"134.0\" y=\"86\" text-anchor=\"middle\">1</text><text class=\"lbl pt fx d2\" x=\"172.0\" y=\"86\" text-anchor=\"middle\">2</text><text class=\"lbl pt fx d2\" x=\"210.0\" y=\"86\" text-anchor=\"middle\">1</text><text class=\"sm fx d2\" x=\"8\" y=\"86\">n = 2</text><text class=\"lbl pt fx d2\" x=\"115.0\" y=\"116\" text-anchor=\"middle\">1</text><text class=\"lbl pt fx d2\" x=\"153.0\" y=\"116\" text-anchor=\"middle\">3</text><text class=\"lbl pt fx d2\" x=\"191.0\" y=\"116\" text-anchor=\"middle\">3</text><text class=\"lbl pt fx d2\" x=\"229.0\" y=\"116\" text-anchor=\"middle\">1</text><text class=\"sm fx d2\" x=\"8\" y=\"116\">n = 3</text><text class=\"lbl pt fx d3\" x=\"96.0\" y=\"146\" text-anchor=\"middle\">1</text><text class=\"lbl pt fx d3\" x=\"134.0\" y=\"146\" text-anchor=\"middle\">4</text><text class=\"lbl pt fx d3\" x=\"172.0\" y=\"146\" text-anchor=\"middle\">6</text><text class=\"lbl pt fx d3\" x=\"210.0\" y=\"146\" text-anchor=\"middle\">4</text><text class=\"lbl pt fx d3\" x=\"248.0\" y=\"146\" text-anchor=\"middle\">1</text><text class=\"sm fx d3\" x=\"8\" y=\"146\">n = 4</text><text class=\"lbl pt fx d3\" x=\"77.0\" y=\"176\" text-anchor=\"middle\">1</text><text class=\"t4 pt fx d3\" x=\"115.0\" y=\"176\" text-anchor=\"middle\">5</text><text class=\"t4 pt fx d3\" x=\"153.0\" y=\"176\" text-anchor=\"middle\">10</text><text class=\"lbl pt fx d3\" x=\"191.0\" y=\"176\" text-anchor=\"middle\">10</text><text class=\"lbl pt fx d3\" x=\"229.0\" y=\"176\" text-anchor=\"middle\">5</text><text class=\"lbl pt fx d3\" x=\"267.0\" y=\"176\" text-anchor=\"middle\">1</text><text class=\"sm fx d3\" x=\"8\" y=\"176\">n = 5</text><text class=\"lbl pt fx d4\" x=\"58.0\" y=\"206\" text-anchor=\"middle\">1</text><text class=\"lbl pt fx d4\" x=\"96.0\" y=\"206\" text-anchor=\"middle\">6</text><text class=\"t3 pt fx d4\" x=\"134.0\" y=\"206\" text-anchor=\"middle\">15</text><text class=\"lbl pt fx d4\" x=\"172.0\" y=\"206\" text-anchor=\"middle\">20</text><text class=\"lbl pt fx d4\" x=\"210.0\" y=\"206\" text-anchor=\"middle\">15</text><text class=\"lbl pt fx d4\" x=\"248.0\" y=\"206\" text-anchor=\"middle\">6</text><text class=\"lbl pt fx d4\" x=\"286.0\" y=\"206\" text-anchor=\"middle\">1</text><text class=\"sm fx d4\" x=\"8\" y=\"206\">n = 6</text><line class=\"guide fx d5\" x1=\"115.0\" y1=\"180\" x2=\"138.0\" y2=\"192\"></line><line class=\"guide fx d5\" x1=\"153.0\" y1=\"180\" x2=\"130.0\" y2=\"192\"></line></svg><div class=\"eq fx d5\"><p>Each entry = the <b>sum of the two above it</b>: 5 + 10 = 15 → ⁵C₁ + ⁵C₂ = ⁶C₂.</p><p>Rows are <b>symmetric</b> (ⁿCᵣ = ⁿCₙ₋ᵣ) and row n sums to <b>2ⁿ</b> (1, 2, 4, 8, 16, 32, 64).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .pt{font-size:15px}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .pt{font-size:15px}"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 17: if ⁹Cᵣ = ⁹Cᵣ₋₁ … i.e. ⁿC₉ = ⁿC₈, find ⁿC₁₇.",
+      "definition": "Equal values → 9 + 8 = n → n = 17, so ⁿC₁₇ = ¹⁷C₁₇ = <span style=\"color:#f08c00\">1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.4 Q1: if ⁿC₈ = ⁿC₂, find ⁿC₂.",
+      "definition": "n = 8 + 2 = 10 → ¹⁰C₂ = <span style=\"color:#f08c00\">45</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.4 Q2: find n if ²ⁿC₃ : ⁿC₃ = 12 : 1 and = 11 : 1.",
+      "definition": "²ⁿC₃/ⁿC₃ = 4(2n − 1)/(n − 2). For 12: 8n − 4 = 12n − 24 → <span style=\"color:#f08c00\">n = 5</span>. For 11: 8n − 4 = 11n − 22 → <span style=\"color:#f08c00\">n = 6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Chords through 21 points on a circle?",
+      "definition": "²¹C₂ = <span style=\"color:#f08c00\">210</span>. In general n points give ⁿC₂ chords (handshake count)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.4 Q4: team of 3 boys and 3 girls from 5 boys and 4 girls?",
+      "definition": "⁵C₃ × ⁴C₃ = 10 × 4 = <span style=\"color:#f08c00\">40</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.4 Q5: choose 9 balls from 6 red, 5 white, 5 blue with 3 of each colour?",
+      "definition": "⁶C₃ × ⁵C₃ × ⁵C₃ = 20 × 10 × 10 = <span style=\"color:#f08c00\">2000</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.4 Q6 and Misc Q8: 5-card hands with exactly one ace (or exactly one king)?",
+      "definition": "⁴C₁ × ⁴⁸C₄ = 4 × 194580 = <span style=\"color:#f08c00\">778320</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.4 Q7: cricket team of 11 from 17 players (5 can bowl) with exactly 4 bowlers?",
+      "definition": "⁵C₄ × ¹²C₇ = 5 × 792 = <span style=\"color:#f08c00\">3960</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.4 Q8: 2 black and 3 red balls from 5 black and 6 red?",
+      "definition": "⁵C₂ × ⁶C₃ = 10 × 20 = <span style=\"color:#f08c00\">200</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.4 Q9: 5 courses from 9, two specific courses compulsory?",
+      "definition": "Choose the other 3 from 7: ⁷C₃ = <span style=\"color:#f08c00\">35</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 18: committee of 3 from 2 men and 3 women. Total, and with 1 man and 2 women?",
+      "definition": "⁵C₃ = <span style=\"color:#f08c00\">10</span>;  ²C₁ × ³C₂ = <span style=\"color:#f08c00\">6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 19: 4 cards from 52. Total number of hands?",
+      "definition": "⁵²C₄ = <span style=\"color:#f08c00\">270725</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 19: 4 cards (i) same suit (ii) one from each suit (iii) all face cards?",
+      "definition": "(i) 4 × ¹³C₄ = <span style=\"color:#f08c00\">2860</span> (ii) 13⁴ = <span style=\"color:#f08c00\">28561</span> (iii) ¹²C₄ = <span style=\"color:#f08c00\">495</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 19: 4 cards (iv) two red and two black (v) all the same colour?",
+      "definition": "(iv) ²⁶C₂ × ²⁶C₂ = 325² = <span style=\"color:#f08c00\">105625</span> (v) 2 × ²⁶C₄ = <span style=\"color:#f08c00\">29900</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 20: words of 3 vowels and 2 consonants from INVOLUTE (4 vowels, 4 consonants)?",
+      "definition": "Select: ⁴C₃ × ⁴C₂ = 24; arrange each in 5! ways: 24 × 120 = <span style=\"color:#f08c00\">2880</span>. Select first, then arrange",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 21: 5-member team from 4 girls and 7 boys: (i) no girl (ii) at least one boy and one girl (iii) at least 3 girls?",
+      "definition": "(i) ⁷C₅ = <span style=\"color:#f08c00\">21</span>. (ii) 7 + 84 + 210 + 140 = <span style=\"color:#f08c00\">441</span> (or ¹¹C₅ − 21 = 462 − 21 = 441). (iii) ⁴C₃·⁷C₂ + ⁴C₄·⁷C₁ = 84 + 7 = <span style=\"color:#f08c00\">91</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: “at least one boy and one girl”. Fastest method?",
+      "definition": "<span style=\"color:#3b82f6\">Total − (all boys) − (all girls)</span> = ¹¹C₅ − ⁷C₅ − 0 = 462 − 21 = 441 (no all-girl team: only 4 girls)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: “at least” and “at most” selection problems.",
+      "definition": "Either add the separate cases, or use <span style=\"color:#3b82f6\">total − the opposite cases</span> (whichever has fewer cases). For “at least k”, the complement is “fewer than k”",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: words of 2 vowels and 3 consonants from DAUGHTER?",
+      "definition": "Vowels A, U, E; consonants 5: ³C₂ × ⁵C₃ × 5! = 3 × 10 × 120 = <span style=\"color:#f08c00\">3600</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: words using all letters of EQUATION with vowels together and consonants together?",
+      "definition": "Two blocks can be ordered in 2! ways; vowels 5! ; consonants 3!: <span style=\"color:#f08c00\">2 × 120 × 6 = 1440</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: committee of 7 from 9 boys and 4 girls: (i) exactly 3 girls (ii) at least 3 girls (iii) at most 3 girls?",
+      "definition": "(i) ⁴C₃·⁹C₄ = <span style=\"color:#f08c00\">504</span> (ii) 504 + ⁴C₄·⁹C₃ = 504 + 84 = <span style=\"color:#f08c00\">588</span> (iii) ¹³C₇ − 84 = 1716 − 84 = <span style=\"color:#f08c00\">1632</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: 6-digit numbers from 0, 1, 3, 5, 7, 9, divisible by 10, no repetition?",
+      "definition": "Last digit must be 0; arrange the other five: 5! = <span style=\"color:#f08c00\">120</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q6: words with 2 different vowels and 2 different consonants from the English alphabet (5 vowels, 21 consonants)?",
+      "definition": "⁵C₂ × ²¹C₂ × 4! = 10 × 210 × 24 = <span style=\"color:#f08c00\">50400</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: attempt 8 of 12 questions (Part I: 5, Part II: 7) with at least 3 from each part?",
+      "definition": "(3,5): ⁵C₃·⁷C₅ = 210; (4,4): ⁵C₄·⁷C₄ = 175; (5,3): ⁵C₅·⁷C₃ = 35. Total <span style=\"color:#f08c00\">420</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q9: 5 men and 4 women in a row with women in the even places?",
+      "definition": "4 even places (2, 4, 6, 8) for the women: 4!; the 5 other places for the men: 5!. <span style=\"color:#f08c00\">24 × 120 = 2880</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q10: choose 10 of 25 students; 3 of them will all join or all stay out.",
+      "definition": "All three join: ²²C₇; none joins: ²²C₁₀. <span style=\"color:#f08c00\">170544 + 646646 = 817190</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 24: 5 girls and 3 boys in a row, no two boys together?",
+      "definition": "Girls first: 5!; boys into 3 of the 6 gaps: ⁶P₃. <span style=\"color:#f08c00\">120 × 120 = 14400</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Gaps method: no two boys together (Example 24)",
+      "definition": "5 girls in 5! ways create 6 gaps; choose and order 3 gaps for the boys: 6P3; total 5!·6P3 = 14400",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Gaps method · no two together</p><h2>5 girls and 3 boys sit in a row so that no two boys are together. How many arrangements?</h2><svg viewBox=\"0 0 300 184\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f2\" cx=\"40\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"40\" y=\"104\" text-anchor=\"middle\">G</text><circle class=\"f2\" cx=\"88\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"88\" y=\"104\" text-anchor=\"middle\">G</text><circle class=\"f2\" cx=\"136\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"136\" y=\"104\" text-anchor=\"middle\">G</text><circle class=\"f2\" cx=\"184\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"184\" y=\"104\" text-anchor=\"middle\">G</text><circle class=\"f2\" cx=\"232\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"232\" y=\"104\" text-anchor=\"middle\">G</text></svg><p class=\"hint\">Seat the girls first. How many gaps do they make?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Gaps method · no two together</p><h2>5 girls and 3 boys sit in a row so that no two boys are together. How many arrangements?</h2><svg viewBox=\"0 0 300 184\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"f2\" cx=\"40\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"40\" y=\"104\" text-anchor=\"middle\">G</text><circle class=\"f2\" cx=\"88\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"88\" y=\"104\" text-anchor=\"middle\">G</text><circle class=\"f2\" cx=\"136\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"136\" y=\"104\" text-anchor=\"middle\">G</text><circle class=\"f2\" cx=\"184\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"184\" y=\"104\" text-anchor=\"middle\">G</text><circle class=\"f2\" cx=\"232\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"232\" y=\"104\" text-anchor=\"middle\">G</text><text class=\"t1 fx d1\" x=\"16\" y=\"104\" text-anchor=\"middle\">×</text><text class=\"sm fx d1\" x=\"16\" y=\"124\" text-anchor=\"middle\">1</text><text class=\"t1 fx d1\" x=\"64\" y=\"104\" text-anchor=\"middle\">×</text><text class=\"sm fx d1\" x=\"64\" y=\"124\" text-anchor=\"middle\">2</text><text class=\"t1 fx d1\" x=\"112\" y=\"104\" text-anchor=\"middle\">×</text><text class=\"sm fx d1\" x=\"112\" y=\"124\" text-anchor=\"middle\">3</text><text class=\"t1 fx d1\" x=\"160\" y=\"104\" text-anchor=\"middle\">×</text><text class=\"sm fx d1\" x=\"160\" y=\"124\" text-anchor=\"middle\">4</text><text class=\"t1 fx d1\" x=\"208\" y=\"104\" text-anchor=\"middle\">×</text><text class=\"sm fx d1\" x=\"208\" y=\"124\" text-anchor=\"middle\">5</text><text class=\"t1 fx d1\" x=\"256\" y=\"104\" text-anchor=\"middle\">×</text><text class=\"sm fx d1\" x=\"256\" y=\"124\" text-anchor=\"middle\">6</text><circle class=\"f1 fx d3\" cx=\"16\" cy=\"60\" r=\"12\"></circle><text class=\"lbl fx d3\" x=\"16\" y=\"64\" text-anchor=\"middle\">B</text><line class=\"guide fx d3\" x1=\"16\" y1=\"72\" x2=\"16\" y2=\"90\"></line><circle class=\"f1 fx d4\" cx=\"112\" cy=\"60\" r=\"12\"></circle><text class=\"lbl fx d4\" x=\"112\" y=\"64\" text-anchor=\"middle\">B</text><line class=\"guide fx d4\" x1=\"112\" y1=\"72\" x2=\"112\" y2=\"90\"></line><circle class=\"f1 fx d5\" cx=\"256\" cy=\"60\" r=\"12\"></circle><text class=\"lbl fx d5\" x=\"256\" y=\"64\" text-anchor=\"middle\">B</text><line class=\"guide fx d5\" x1=\"256\" y1=\"72\" x2=\"256\" y2=\"90\"></line><text class=\"t3 fx d5\" x=\"150\" y=\"170\" text-anchor=\"middle\">5! × ⁶P₃ = 120 × 120 = 14400</text></svg><div class=\"eq fx d5\"><p>Seat the <b>girls first</b>: 5! ways. They create <b>6 gaps</b> (×) including both ends. Boys go into 3 different gaps, in order: ⁶P₃ = 120.</p><p>Total 5! × ⁶P₃ = <b>14400</b>. Method for “not together”: arrange the others first, then insert.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.4-combinations"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Circular permutations: (n − 1)!",
+      "definition": "n people around a round table: (n−1)! arrangements, since rotations are equal (fix one person); necklace/garland with flipping: (n−1)!/2",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Circular arrangements · beyond the textbook</p><h2>In how many ways can 4 people sit around a round table?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"ghost\" cx=\"150\" cy=\"100\" r=\"58\"></circle><circle class=\"f0\" cx=\"150\" cy=\"100\" r=\"30\"></circle><text class=\"sm\" x=\"150\" y=\"104\" text-anchor=\"middle\">table</text><circle class=\"f1\" cx=\"150\" cy=\"42\" r=\"14\"></circle><text class=\"lbl\" x=\"150\" y=\"46\" text-anchor=\"middle\">A</text><circle class=\"f2\" cx=\"208\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"208\" y=\"104\" text-anchor=\"middle\">B</text><circle class=\"f3\" cx=\"150\" cy=\"158\" r=\"14\"></circle><text class=\"lbl\" x=\"150\" y=\"162\" text-anchor=\"middle\">C</text><circle class=\"f4\" cx=\"92\" cy=\"100\" r=\"14\"></circle><text class=\"lbl\" x=\"92\" y=\"104\" text-anchor=\"middle\">D</text></svg><p class=\"hint\">Do rotations count as different?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Circular arrangements · beyond the textbook</p><h2>In how many ways can 4 people sit around a round table?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><circle class=\"ghost\" cx=\"150\" cy=\"100\" r=\"58\"></circle><circle class=\"f0\" cx=\"150\" cy=\"100\" r=\"30\"></circle><text class=\"sm\" x=\"150\" y=\"104\" text-anchor=\"middle\">table</text><g transform=\"translate(150,42)\"><g class=\"sit0\"><circle class=\"f1\" cx=\"0\" cy=\"0\" r=\"14\"></circle><text class=\"lbl\" x=\"0\" y=\"4\" text-anchor=\"middle\">A</text></g></g><g transform=\"translate(208,100)\"><g class=\"sit1\"><circle class=\"f2\" cx=\"0\" cy=\"0\" r=\"14\"></circle><text class=\"lbl\" x=\"0\" y=\"4\" text-anchor=\"middle\">B</text></g></g><g transform=\"translate(150,158)\"><g class=\"sit2\"><circle class=\"f3\" cx=\"0\" cy=\"0\" r=\"14\"></circle><text class=\"lbl\" x=\"0\" y=\"4\" text-anchor=\"middle\">C</text></g></g><g transform=\"translate(92,100)\"><g class=\"sit3\"><circle class=\"f4\" cx=\"0\" cy=\"0\" r=\"14\"></circle><text class=\"lbl\" x=\"0\" y=\"4\" text-anchor=\"middle\">D</text></g></g></svg><div class=\"eq fx d5\"><p>Turning everyone one seat round gives the <b>same</b> arrangement (same neighbours). The 4 rotations count as one.</p><p>So fix one person and arrange the other 3: <b>(4 − 1)! = 6</b>. In general <b>(n − 1)!</b>; for necklaces (which can be flipped) <b>(n − 1)!/2</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .sit0{animation:sit0 6s steps(1,end) 0.4s infinite both}@keyframes sit0{0.00%{transform:translate(0.0px,0.0px)}25.00%{transform:translate(58.0px,58.0px)}50.00%{transform:translate(0.0px,116.0px)}75.00%{transform:translate(-58.0px,58.0px)}100.00%{transform:translate(0.0px,0.0px)}}.pp .sit1{animation:sit1 6s steps(1,end) 0.4s infinite both}@keyframes sit1{0.00%{transform:translate(0.0px,0.0px)}25.00%{transform:translate(-58.0px,58.0px)}50.00%{transform:translate(-116.0px,0.0px)}75.00%{transform:translate(-58.0px,-58.0px)}100.00%{transform:translate(0.0px,0.0px)}}.pp .sit2{animation:sit2 6s steps(1,end) 0.4s infinite both}@keyframes sit2{0.00%{transform:translate(0.0px,0.0px)}25.00%{transform:translate(-58.0px,-58.0px)}50.00%{transform:translate(0.0px,-116.0px)}75.00%{transform:translate(58.0px,-58.0px)}100.00%{transform:translate(0.0px,0.0px)}}.pp .sit3{animation:sit3 6s steps(1,end) 0.4s infinite both}@keyframes sit3{0.00%{transform:translate(0.0px,0.0px)}25.00%{transform:translate(58.0px,-58.0px)}50.00%{transform:translate(116.0px,0.0px)}75.00%{transform:translate(58.0px,58.0px)}100.00%{transform:translate(0.0px,0.0px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .sit0{animation:sit0 6s steps(1,end) 0.4s infinite both}@keyframes sit0{0.00%{transform:translate(0.0px,0.0px)}25.00%{transform:translate(58.0px,58.0px)}50.00%{transform:translate(0.0px,116.0px)}75.00%{transform:translate(-58.0px,58.0px)}100.00%{transform:translate(0.0px,0.0px)}}.pp .sit1{animation:sit1 6s steps(1,end) 0.4s infinite both}@keyframes sit1{0.00%{transform:translate(0.0px,0.0px)}25.00%{transform:translate(-58.0px,58.0px)}50.00%{transform:translate(-116.0px,0.0px)}75.00%{transform:translate(-58.0px,-58.0px)}100.00%{transform:translate(0.0px,0.0px)}}.pp .sit2{animation:sit2 6s steps(1,end) 0.4s infinite both}@keyframes sit2{0.00%{transform:translate(0.0px,0.0px)}25.00%{transform:translate(-58.0px,-58.0px)}50.00%{transform:translate(0.0px,-116.0px)}75.00%{transform:translate(58.0px,-58.0px)}100.00%{transform:translate(0.0px,0.0px)}}.pp .sit3{animation:sit3 6s steps(1,end) 0.4s infinite both}@keyframes sit3{0.00%{transform:translate(0.0px,0.0px)}25.00%{transform:translate(58.0px,-58.0px)}50.00%{transform:translate(116.0px,0.0px)}75.00%{transform:translate(58.0px,58.0px)}100.00%{transform:translate(0.0px,0.0px)}}"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Necklace or garland of n different beads?",
+      "definition": "\\(\\dfrac{(n-1)!}{2}\\): a necklace can be flipped over, so clockwise and anticlockwise orders coincide",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Selecting any number (≥ 1) of n different objects?",
+      "definition": "<span style=\"color:#f08c00\">2ⁿ − 1</span>: each object is in or out, minus the empty selection",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of selections of r objects when repetition allowed / non-negative integral solutions of x₁ + … + xᵣ = n?",
+      "definition": "\\({}^{n+r-1}C_{r-1}\\) (stars and bars). Example: x + y + z = 10 has ¹²C₂ = 66 solutions",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of positive integral solutions of x₁ + x₂ + … + xᵣ = n?",
+      "definition": "\\({}^{n-1}C_{r-1}\\) (each xᵢ ≥ 1)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of diagonals of a convex n-gon?",
+      "definition": "\\({}^nC_2 - n = \\dfrac{n(n-3)}{2}\\). Hexagon: 9",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of triangles from n points, no three collinear? With p points collinear?",
+      "definition": "<span style=\"color:#3b82f6\">ⁿC₃</span>; with p collinear: <span style=\"color:#3b82f6\">ⁿC₃ − ᵖC₃</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of lines from n points, no three collinear? With p collinear?",
+      "definition": "<span style=\"color:#3b82f6\">ⁿC₂</span>; with p collinear: <span style=\"color:#3b82f6\">ⁿC₂ − ᵖC₂ + 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rectangles in an 8 × 8 chessboard?",
+      "definition": "Choose 2 of 9 horizontal lines and 2 of 9 vertical: ⁹C₂ × ⁹C₂ = 36² = <span style=\"color:#f08c00\">1296</span>. Squares: 1² + 2² + … + 8² = <span style=\"color:#f08c00\">204</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of divisors of N = p^a · q^b · r^c?",
+      "definition": "<span style=\"color:#f08c00\">(a + 1)(b + 1)(c + 1)</span>. Example: 360 = 2³·3²·5 has 4 × 3 × 2 = 24 divisors",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Dividing 8 people into two equal groups of 4 (unlabelled) versus two named teams?",
+      "definition": "Named teams: ⁸C₄ = 70. Unlabelled groups: ⁸C₄/2! = <span style=\"color:#f08c00\">35</span>. Divide by (number of equal groups)! when the groups are indistinguishable",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Derangements (nobody gets their own item): D₃ and D₄?",
+      "definition": "<span style=\"color:#f08c00\">D₃ = 2</span>, <span style=\"color:#f08c00\">D₄ = 9</span> (formula Dₙ = n!(1 − 1/1! + 1/2! − … ± 1/n!))",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identities: r·ⁿCᵣ and ⁿPᵣ in terms of smaller cases?",
+      "definition": "<span style=\"color:#3b82f6\">r · ⁿCᵣ = n · ⁿ⁻¹Cᵣ₋₁</span>;  <span style=\"color:#3b82f6\">ⁿPᵣ = n · ⁿ⁻¹Pᵣ₋₁</span>;  <span style=\"color:#3b82f6\">ⁿCᵣ = (n/r) · ⁿ⁻¹Cᵣ₋₁</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sum of ⁿC₀ + ⁿC₁ + … + ⁿCₙ?",
+      "definition": "<span style=\"color:#f08c00\">2ⁿ</span> (all subsets); alternating sum ⁿC₀ − ⁿC₁ + … = 0 for n ≥ 1; sum of even-indexed = sum of odd-indexed = 2ⁿ⁻¹",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Hockey-stick identity: ʳCᵣ + ʳ⁺¹Cᵣ + … + ⁿCᵣ?",
+      "definition": "<span style=\"color:#f08c00\">ⁿ⁺¹Cᵣ₊₁</span>. e.g. ²C₂ + ³C₂ + ⁴C₂ + ⁵C₂ = 1 + 3 + 6 + 10 = 20 = ⁶C₃",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In how many ways can 10 identical sweets be distributed among 4 children (any child may get none)?",
+      "definition": "\\({}^{13}C_3 = 286\\) (stars and bars with n = 10, r = 4)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of ways to arrange the letters of BANANA so that no two A’s are adjacent?",
+      "definition": "Arrange B, N, N: 3!/2! = 3 ways; they make 4 gaps; choose 3 gaps for the A’s: ⁴C₃ = 4. Total <span style=\"color:#f08c00\">3 × 4 = 12</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of 5-digit numbers divisible by 5 using digits 0–9 (any repetition)?",
+      "definition": "Units 0 or 5 (2 ways), first digit 1–9 (9 ways), middle three 10³: 9 × 10 × 10 × 10 × 2 = <span style=\"color:#f08c00\">18000</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-favourites"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The value of ⁵P₃ is<br>(a) 10 (b) 60 (c) 120 (d) 15",
+      "definition": "<span style=\"color:#22a35a\">(b) 60</span> = 5 × 4 × 3",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: If ⁿC₁₀ = ⁿC₁₂, then n =<br>(a) 22 (b) 2 (c) 12 (d) 10",
+      "definition": "<span style=\"color:#22a35a\">(a) 22</span> since 10 + 12 = n",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The number of ways to arrange the letters of the word LEVEL is<br>(a) 120 (b) 60 (c) 30 (d) 24",
+      "definition": "5!/(2!·2!) = <span style=\"color:#22a35a\">(c) 30</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: A committee of 3 is chosen from 5 people. Number of ways?<br>(a) 60 (b) 10 (c) 20 (d) 15",
+      "definition": "⁵C₃ = <span style=\"color:#22a35a\">(b) 10</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: If ⁿP₂ = 20, then n =<br>(a) 4 (b) 5 (c) 6 (d) 10",
+      "definition": "n(n − 1) = 20 → <span style=\"color:#22a35a\">(b) 5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The number of 3-digit numbers with distinct digits is<br>(a) 720 (b) 648 (c) 900 (d) 504",
+      "definition": "9 × 9 × 8 = <span style=\"color:#22a35a\">(b) 648</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: ⁿCᵣ + ⁿCᵣ₋₁ equals<br>(a) ⁿ⁺¹Cᵣ (b) ⁿCᵣ₊₁ (c) ⁿ⁻¹Cᵣ (d) 2ⁿCᵣ",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>: Pascal’s rule",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): number of 4-letter words (any letters) from the letters of MATH with no letter repeated?",
+      "definition": "<span style=\"color:#f08c00\">24</span> (4!)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the number of straight lines joining 8 points, of which 3 are collinear?",
+      "definition": "⁸C₂ − ³C₂ + 1 = 28 − 3 + 1 = <span style=\"color:#f08c00\">26</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: number of diagonals of a decagon?",
+      "definition": "10 × 7/2 = <span style=\"color:#f08c00\">35</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> ⁿPᵣ ≥ ⁿCᵣ.<br><b>R:</b> ⁿPᵣ = r! · ⁿCᵣ.<br>(a) Both true, R explains A (b) Both true, R does not explain A (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>: r! ≥ 1",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> The number of subsets of a set of 5 elements is 32.<br><b>R:</b> ⁵C₀ + ⁵C₁ + … + ⁵C₅ = 2⁵.<br>(a) Both true, R explains A (b) Both true, R does not explain A (c) A false, R true (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: ⁿCᵣ = ⁿCₛ implies r = s.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: it also holds when r + s = n (e.g. ⁸C₃ = ⁸C₅)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a school has 6 teachers and 8 students for a 5-member panel with exactly 2 teachers. In how many ways?",
+      "definition": "⁶C₂ × ⁸C₃ = 15 × 56 = <span style=\"color:#f08c00\">840</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a PIN has 4 digits (0–9), repetition allowed, and the first digit is not 0. How many PINs?",
+      "definition": "9 × 10 × 10 × 10 = <span style=\"color:#f08c00\">9000</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: how many 4-digit numbers greater than 5000 can be formed from 3, 5, 6, 7, 9 with no repetition?",
+      "definition": "Thousands digit 5, 6, 7 or 9 (4 ways), then 4 × 3 × 2: <span style=\"color:#f08c00\">4 × 24 = 96</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: 5 boys and 4 girls form a team of 5 with at least 2 girls. How many teams?",
+      "definition": "Total ⁹C₅ = 126 minus (0 girls: ⁵C₅ = 1) minus (1 girl: ⁴C₁·⁵C₄ = 20) = <span style=\"color:#f08c00\">105</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    }
+  ]
+}
