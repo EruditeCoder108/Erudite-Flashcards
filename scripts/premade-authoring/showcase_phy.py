@@ -851,3 +851,77 @@ def photoelectric_stages(deck):
          'Photoelectric effect: frequency vs intensity',
          'Below the threshold frequency no photoemission; above it each photon ejects one electron with Kmax = hν − φ0; intensity changes the photocurrent, not Kmax or stopping potential',
          css, hint='Three cases, one after another.', vb='0 0 300 200')
+
+
+# ---------------------------------------------------------------- Physics 12 Ch 12 Atoms
+def rutherford_scattering(deck):
+    import math
+    cx, cy = 150, 100
+    bs = [0.01, 9, 22, 45, 80]
+    k, v0, dt, steps, every = 9.0, 1.6, 0.1, 1800, 20
+    T = 7.0
+    css = ''
+    paths, dots = '', ''
+    for j, b in enumerate(bs):
+        x, y, vx, vy = -145.0, -b, v0, 0.0
+        pts = []
+        for s in range(steps + 1):
+            if s % every == 0:
+                pts.append((x, y))
+            r2 = x * x + y * y
+            r = math.sqrt(r2)
+            a = k / r2
+            vx += a * x / r * dt
+            vy += a * y / r * dt
+            x += vx * dt
+            y += vy * dt
+        ghost = ' '.join(f'{cx + px:.1f},{cy + py:.1f}' for px, py in pts)
+        paths += f'<polyline class="ghost" points="{ghost}"></polyline>'
+        n = len(pts) - 1
+        fr = ''.join(f'{100 * i / n:.2f}%{{transform:translate({px:.1f}px,{py:.1f}px)}}' for i, (px, py) in enumerate(pts))
+        css += f'.bp .al{j}{{animation:al{j} {T}s linear infinite .3s}}@keyframes al{j}{{{fr}}}'
+        dots += f'<g class="al{j}"><circle class="dot" cx="{cx}" cy="{cy}" r="4"></circle></g>'
+    base = (f'<circle class="dot3" cx="{cx}" cy="{cy}" r="6"></circle><text class="rd" x="{cx}" y="{cy + 20}" text-anchor="middle">nucleus (+Ze)</text>'
+            f'<text class="sm" x="10" y="20">α-particle beam →</text>'
+            + ''.join(f'<line class="ax" x1="10" y1="{cy - b:.0f}" x2="50" y2="{cy - b:.0f}" marker-end="url(#ah)" opacity=".5"></line>' for b in bs))
+    back = (paths + dots +
+            '<text class="yl" x="150" y="186" text-anchor="middle">small b → large deflection; large b → almost straight</text>'
+            '<text class="gr" x="290" y="38" text-anchor="end">most pass nearly undeviated</text>'
+            '<text class="rd" x="10" y="168">head-on (b ≈ 0): rebounds (θ ≈ 180°)</text>')
+    anim(deck, 'Rutherford scattering · trajectories',
+         'α-particles with different impact parameters b approach a gold nucleus. How does each one move?',
+         base, back,
+         '<p>The path is a <b>hyperbola</b> under the Coulomb repulsion <b>F = (1/4πε₀)(2e)(Ze)/r²</b>. Small impact parameter b → large scattering angle θ; the head-on particle reverses (θ ≈ π).</p>'
+         '<p>Only about 1 in 8000 is deflected by more than 90°, so the nucleus must be tiny (~10⁻¹⁵–10⁻¹⁴ m) and the atom mostly empty space.</p>',
+         'α-particle trajectories for different impact parameters',
+         'Small impact parameter gives large scattering angle; head-on gives nearly 180°; large b gives almost no deflection; the paths are hyperbolas; only about 1 in 8000 deflects beyond 90 degrees',
+         css, hint='Watch the path of each particle.', vb='0 0 300 200')
+
+
+def bohr_transitions(deck):
+    import math
+    cx, cy = 100, 100
+    radii = {1: 18, 2: 42, 3: 66, 4: 88}
+    T = 12.0
+    trans = [(3, 2, 'H-α, 656 nm, red (Balmer)'), (4, 2, '486 nm, blue-green (Balmer)'), (2, 1, '122 nm, ultraviolet (Lyman)'), (3, 1, '103 nm, ultraviolet (Lyman)')]
+    css = _stage_css('sg', len(trans), T) + '.bp .orb{animation:orb 2.4s linear infinite;transform-origin:100px 100px}@keyframes orb{to{transform:rotate(360deg)}}'
+    base = (f'<circle class="dot3" cx="{cx}" cy="{cy}" r="5"></circle>' +
+            ''.join(f'<circle class="ghost" cx="{cx}" cy="{cy}" r="{r}"></circle><text class="sm" x="{cx + r + 2}" y="{cy - 3}">n={n}</text>' for n, r in radii.items() if n < 4) +
+            f'<circle class="ghost" cx="{cx}" cy="{cy}" r="{radii[4]}"></circle><text class="sm" x="{cx}" y="{cy - radii[4] - 3}" text-anchor="middle">n=4</text>')
+    stages = ''
+    for k, (ni, nf, lab) in enumerate(trans):
+        dE = 13.6 * (1 / nf ** 2 - 1 / ni ** 2)
+        wave = ' '.join(f'{200 + 10 * i:.0f},{100 - 8 * math.sin(i * 1.6):.1f}' for i in range(9))
+        stages += (f'<g class="sg{k}"><circle class="dot2" cx="{cx + radii[ni]}" cy="{cy}" r="4" opacity=".35"></circle>'
+                   f'<g class="orb"><circle class="dot2" cx="{cx + radii[nf]}" cy="{cy}" r="5"></circle></g>'
+                   f'<polyline class="c4" points="{wave}"></polyline>'
+                   f'<text class="yl" x="150" y="20" text-anchor="middle">n = {ni} → {nf}: ΔE = {dE:.2f} eV</text>'
+                   f'<text class="gr" x="150" y="186" text-anchor="middle">{lab}</text></g>')
+    anim(deck, 'Bohr model · transitions',
+         'A hydrogen electron drops from a higher orbit to a lower one. What is emitted, and which series is it?',
+         base, stages,
+         '<p>Emitted photon: <b>hν = E<sub>i</sub> − E<sub>f</sub> = 13.6 (1/n<sub>f</sub>² − 1/n<sub>i</sub>²) eV</b>. Landing on <b>n = 1</b> gives the ultraviolet <b>Lyman</b> series; on <b>n = 2</b> the visible <b>Balmer</b> series; on n = 3 the infrared Paschen series.</p>'
+         '<p>Orbit sizes are not to scale (r ∝ n²).</p>',
+         'Photon emitted in a Bohr transition',
+         'hν = Ei − Ef = 13.6(1/nf² − 1/ni²) eV; transitions to n = 1 are Lyman (UV), to n = 2 Balmer (visible), to n = 3 Paschen (IR)',
+         css, hint='Watch the dashed start orbit.', vb='0 0 300 200')
