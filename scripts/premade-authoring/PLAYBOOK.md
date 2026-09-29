@@ -108,6 +108,7 @@ The helpers are in `deckkit.py`. Colour only the key word, not whole sentences.
 - **Size the deck to the chapter:** about 80–250 cards, which works out to about one card per examinable fact. Short chapters produce short decks; that's fine.
 - **"Identify this" cards:** a figure on the front, with the name or labels on the back. Trim captions off crops when they would give the answer away.
 - **Add a closing summary section** with one or two `table_card` comparisons.
+- **Banned cards (owner):** nothing about the book or chapter itself: no "What is this chapter about?", "What will this chapter teach?", "Name of this chapter?", "What does section X cover?". Also nothing a student could answer without learning the topic. Every card must test physics, chemistry, biology or maths that could be examined. Motivational or historical fluff only when exams ask it (e.g. who discovered what, and when).
 
 ### 2.6 Maths
 
@@ -307,7 +308,7 @@ Don't polish endlessly: move on to the next chapter.
 | Physics 11 | 1–3, 5–14 — complete | Done (PDFs unzipped to `NCERT-pdfs/phy11/`: Ch 1–7 = `keph101–107`, Ch 8–14 = `keph201–207`; answer keys `keph1an.pdf`, `keph2an.pdf`; decks in `premade-cards/11th/Physics/`, scripts `phy_chNN.py` + `figures_phy_chNN.py`, animations in `showcase_phy.py`, drawn figures via `draw.py`) |
 | Physics 11 | 4 | Pilot |
 | Physics 12 | 1–5 | Done (PDFs unzipped to `NCERT-pdfs/phy12/`: Ch 1–8 = `leph101–108`, Ch 9–14 = `leph201–206`; answer keys `leph1an.pdf`, `leph2an.pdf`; decks in `premade-cards/12th/Physics/` (new folder, no old zips: manifest now exists, so use `replace_deck.py premade-cards/12th/Physics none.zip <deck-id>`), scripts `phy12_chNN.py` + `figures_phy12_chNN.py`) |
-| Physics 12 | 6–14 | **Next: Physics 12 Ch 6** (`leph106`, Electromagnetic Induction). Follow `phy12_ch05.py` / `phy12_ch01.py`: teacher-style, `steps_card` numericals, exercises answered on cards, labelled corrections/updates, figures selective (section 2.3: only ones that teach or are examined; drawn when NCERT’s is cluttered); animation/occlusion only where genuinely needed (usually none). |
+| Physics 12 | 6–14 | **Next: Physics 12 Ch 6** (`leph106`, Electromagnetic Induction). **Figures already cropped and montage-checked:** run `decks/figures_phy12_ch06.py` (18 crops incl. one per panel of Fig 6.15 for Exercise 6.1; answer key `leph1an.pdf`), then write `decks/phy12_ch06.py`, package with `none.zip`, commit the figures script too. Follow `phy12_ch05.py` / `phy12_ch01.py`: teacher-style, `steps_card` numericals, exercises answered on cards, labelled corrections/updates, figures selective (section 2.3: only ones that teach or are examined; drawn when NCERT’s is cluttered); animation/occlusion only where genuinely needed (usually none). |
 | Maths 11 | 3 | Pilot |
 | Maths 11 | others | Not started |
 | Maths 12 | all | Not started |
