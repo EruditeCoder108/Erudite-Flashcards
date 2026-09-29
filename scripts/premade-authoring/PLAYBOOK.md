@@ -13,7 +13,7 @@ When the owner says "read the playbook and continue":
    - Biology, inorganic and organic: strictly NCERT. Physics, physical chemistry and maths: teacher-style and exam-weighted (2.3, 2.6).
    - Figures: nearly all in biology/organic, selective elsewhere (2.3).
    - "How fancy" (2.1): intuition cards always where students get confused; animations only 1–2 in chapters that genuinely need them; bespoke cards use warm paper/ink, no neon.
-   - 5–10% intuition, mnemonic and labelled correction cards; recompute before calling NCERT wrong.
+   - 5–10% intuition, mnemonic and labelled correction cards; recompute before calling NCERT wrong, and never "correct" a symbol typo seen only in extracted text (section 4).
    - KaTeX `\( … \)` only outside clozes; never `\text{}` (section 6).
 5. **Git:** if `index.lock` exists, wait a few seconds and retry. After each commit, check the old zip is gone and the push went through.
 6. **Before stopping,** make the progress table say clearly what's next.
@@ -172,6 +172,8 @@ NCERT books are in `NCERT-pdfs/` (gitignored) as zips. Unzip a book into its own
 | `lemh1NN` / `lemh2NN` | Class 12 Maths |
 
 Files ending in `ps` or `an` are prelims and answers. Some PDFs (e.g. `kech202`) extract as Caesar-shifted text (capitals and lowercase swapped, letters shifted by 29): decode each garbled word with lowercase→uppercase and other chars chr(ord+29). Check the chapter title on page 0.
+
+**Symbol-font artifacts (lesson from Physics 12 Ch 7):** extracted text turns Greek symbols into Latin letters: **Ω → W**, **µ → m**, often θ → q, φ → F, ε → e, π → p. So "a 100 W resistor" or "15.0 mF" in `.work/*.txt` is really 100 Ω and 15.0 µF in the book. Before writing any "Correction:" card about a symbol, unit or letter, render that line (`tools/pg.py`, or a `page.get_pixmap(clip=…)`) and confirm the typo is really printed.
 
 Still zipped (maths only): `maths11th.zip` → `maths11/`, `mathspart1 12th.zip` and `mathspart212th.zip` → `maths12/`. (`NCERT-pdfs/kemh103.pdf` is a loose copy of the Maths 11 Ch 3 pilot's PDF.)
 

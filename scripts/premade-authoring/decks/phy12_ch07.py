@@ -26,7 +26,7 @@ d.basic('Define rms current and rms voltage.', r'\( I = \dfrac{i_m}{\sqrt2} = 0.
 d.basic('What does the rms current mean physically?', 'The ' + T('dc that gives the same average heating') + ' in the same resistor')
 d.basic('Average power of ac in a resistor using rms values?', r'\( P = I^2R = IV = \dfrac{V^2}{R} \)' + ': same form as dc')
 d.basic('Household supply “220 V”: is that rms or peak? Peak value?', T('rms') + '. Peak v_m = √2 × 220 ≈ ' + N('311 V'))
-d.basic('Correction: NCERT’s “Points to ponder” quotes 240 V for the room outlet. What do exams use?', 'Use the value given; NCERT’s examples use ' + T('220 V') + ' (India’s nominal supply is now 230 V). Peak of 240 V rms ≈ 340 V')
+d.basic('Note: NCERT’s “Points to ponder” quotes 240 V for the room outlet. What do exams use?', 'Use the value given; NCERT’s examples use ' + T('220 V') + ' (India’s nominal supply is now 230 V). Peak of 240 V rms ≈ 340 V')
 d.basic('Teacher addition: what does an ac ammeter or voltmeter read? A dc moving-coil meter?', 'Ac meters (hot-wire type) read ' + T('rms') + '. A moving-coil dc meter reads the ' + X('average = 0') + ' and would not deflect on ac')
 d.basic('Teacher addition: mean value of ac over a half cycle?', r'\( \dfrac{2i_m}{\pi} = 0.637\,i_m \)' + ' (over a full cycle it is 0)')
 d.basic('Teacher addition: rms value of a general periodic current?', 'Square root of the ' + T('mean of i²') + ' over a period. The 1/√2 factor is only for a ' + T('sinusoid'))
@@ -159,7 +159,6 @@ table_card(d, 'NCERT quantity table', 'Symbol, dimensions?', [
 
 # ---------------------------------------------------------------- Exercises
 d.sec('exercises')
-d.basic('Correction: Exercise 7.1 says “A 100 W resistor”. What is meant?', X('Typo') + ': a ' + T('100 Ω') + ' resistor (W is the unit of power, not resistance)')
 d.basic('Exercise 7.1: 100 Ω resistor on 220 V, 50 Hz. (a) rms current (b) net power over a cycle?', '(a) I = V/R = ' + N('2.20 A') + '. (b) P = V²/R = ' + N('484 W'))
 d.basic('Exercise 7.2: (a) peak 300 V, rms? (b) rms 10 A, peak?', '(a) 300/√2 = ' + N('212.1 V') + '. (b) 10√2 = ' + N('14.1 A'))
 d.basic('Exercise 7.3: 44 mH inductor on 220 V, 50 Hz. rms current?', 'X_L = 2π × 50 × 0.044 = 13.8 Ω; I = 220/13.8 = ' + N('15.9 A'))

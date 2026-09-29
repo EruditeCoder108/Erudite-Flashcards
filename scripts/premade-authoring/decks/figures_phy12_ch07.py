@@ -22,7 +22,6 @@ export(PDF, {
     'fig_7_12_impedance': (11, (79, 102, 221, 232)),
     'fig_7_13_lcr_phasor': (11, (79, 378, 322, 502)),
     'fig_7_14_resonance': (12, (314, 289, 528, 439)),
-    'fig_7_15_power_comp': (15, (232, 100, 515, 278)),
+    'fig_7_15_power_comp': (15, (232, 100, 515, 265)),
     'fig_7_16_transformer': (17, (80, 246, 548, 427)),
-    'fig_7_17_lcr_exercise': (23, (295, 389, 441, 473)),
 }, MEDIA, long_side=1000)

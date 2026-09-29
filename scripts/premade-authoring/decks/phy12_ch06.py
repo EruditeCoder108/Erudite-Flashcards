@@ -25,6 +25,7 @@ d.basic('Experiment 6.2: coil C₂ (with battery) moved towards coil C₁. Resul
 d.basic('Experiment 6.3: coils held fixed, key K pressed or released. What is observed?', T('Momentary') + ' deflection on making and (opposite) on breaking; ' + X('none') + ' while K is held closed', **fig('fig_6_3_two_coils'))
 d.basic('Experiment 6.3: effect of inserting an iron rod along the coils?', 'Deflection increases ' + T('dramatically') + ': iron concentrates the flux')
 d.basic('Key idea of all three experiments?', 'Steady flux, however large, induces ' + X('nothing') + '. Only a ' + T('changing') + ' flux does')
+d.basic('Correction: the Faraday box says he found that light’s plane of polarisation is rotated “in an electric field”. Right?', X('No') + ': it is rotated in a ' + T('magnetic field') + ' along the direction of propagation (the ' + T('Faraday effect') + ', 1845)')
 d.basic('Example 6.1(a): three ways to get a larger deflection in Experiment 6.2?', 'Soft-iron core in C₂; more powerful battery; move the arrangement faster')
 d.basic('Example 6.1(b): show induced current without a galvanometer?', 'Replace it with a small ' + T('torch bulb') + ': it glows during relative motion')
 
@@ -58,7 +59,6 @@ d.basic('Trap in Example 6.3: why does a 180° flip give ΔΦ = 2BA, not zero?',
 # ---------------------------------------------------------------- 6.5 Lenz's law
 d.sec('6.5-lenzs-law-and-conservation-of-energy')
 d.basic('State Lenz’s law.', 'The polarity of the induced emf is such that it tends to produce a current which ' + T('opposes the change in flux') + ' that produced it')
-d.basic('What does the minus sign of Faraday’s law express?', T('Lenz’s law'))
 d.basic('Lenz’s law opposes the ______, not the ______.', 'Opposes the ' + T('change') + ' in flux, not the flux itself (a decreasing flux is supported, not opposed)')
 d.basic('N-pole of a magnet approaches a closed coil. Induced current direction and pole faced?', T('Anticlockwise') + ' as seen from the magnet’s side; the coil face acts as an ' + T('N-pole') + ' (repels the magnet)', **fig('fig_6_6_lenz'))
 d.basic('N-pole withdrawn from a coil. Induced current?', T('Clockwise') + ' (seen from the magnet); near face is a ' + T('S-pole') + ', attracts the receding magnet')
