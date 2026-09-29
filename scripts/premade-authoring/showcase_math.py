@@ -1463,3 +1463,73 @@ def parabola_tangents(deck):
           '<p>First principle: f′(x) = lim (f(x + h) − f(x))/h = lim ((x + h)² − x²)/h = lim (2x + h) = 2x.</p>',
           'f′(x) is the slope of the tangent: (x²)′ = 2x', 'Tangents to y=x² at x=−1,0,1,2 have slopes −2,0,2,4 = 2x; f′(x)=lim (f(x+h)−f(x))/h; (x²)′=2x',
           vb='0 0 300 200', hint='Estimate the slope at each marked point.')
+
+
+# ================================================================ Maths 11 Ch 13 Statistics
+def batsmen_dotplots(deck):
+    A = [30, 91, 0, 64, 42, 80, 30, 5, 117, 71]
+    B = [53, 46, 48, 50, 53, 53, 58, 60, 57, 52]
+    X = lambda v: 20 + v * 2.3
+    def row(y, data, cls, name):
+        o = f'<line class="ax" x1="14" y1="{y}" x2="292" y2="{y}"></line>'
+        o += ''.join(f'<line class="ax" x1="{X(v):.1f}" y1="{y - 3}" x2="{X(v):.1f}" y2="{y + 3}"></line><text class="num" x="{X(v):.1f}" y="{y + 15}">{v}</text>' for v in range(0, 121, 20))
+        seen = {}
+        for v in data:
+            k = seen.get(v, 0)
+            seen[v] = k + 1
+            o += f'<circle class="{cls}" cx="{X(v):.1f}" cy="{y - 9 - 9 * k}" r="4"></circle>'
+        return o + f'<text class="lbl" x="14" y="{y - 40}">{name}</text>'
+    base = row(90, A, 'd1s', 'Batsman A') + row(190, B, 'd2s', 'Batsman B')
+    back = (f'<line class="c3 fx d2" x1="{X(53):.1f}" y1="30" x2="{X(53):.1f}" y2="200"></line><text class="t3 fx d2" x="{X(53) + 4:.1f}" y="24">mean = median = 53</text>'
+            f'<line class="c1 fx d3" x1="{X(0):.1f}" y1="112" x2="{X(117):.1f}" y2="112"></line><text class="t1 fx d3" x="{X(60):.1f}" y="127" text-anchor="middle">range 117, σ ≈ 36</text>'
+            f'<line class="c2 fx d4" x1="{X(46):.1f}" y1="212" x2="{X(60):.1f}" y2="212"></line><text class="t2 fx d4" x="{X(53):.1f}" y="227" text-anchor="middle">range 14, σ ≈ 4.2</text>')
+    mcard(deck, 'Why dispersion matters', 'Two batsmen both average 53 with median 53. Who is more consistent, and what number shows it?', base, back,
+          '<p>Central tendency alone is not enough. B’s scores cluster (46–60); A’s are scattered (0–117).</p>'
+          '<p>A single number for the spread is a <b>measure of dispersion</b>: range 117 vs 14; standard deviation ≈ 36.1 vs 4.2. Smaller = more consistent.</p>',
+          'Same mean, different spread: range and standard deviation', 'Batsmen A and B both have mean=median=53, but range 117 vs 14 and SD about 36.1 vs 4.2, so B is more consistent',
+          vb='0 0 300 240', hint='Compare how the dots are spread around 53.')
+
+
+def shift_and_scale(deck):
+    X = lambda v: 20 + v * 22
+    data = [1, 2, 3]
+    ticks = lambda y: ''.join(f'<line class="ax" x1="{X(v):.1f}" y1="{y - 3}" x2="{X(v):.1f}" y2="{y + 3}"></line><text class="num" x="{X(v):.1f}" y="{y + 14}">{v}</text>' for v in range(0, 13))
+    base = (f'<line class="ax" x1="14" y1="70" x2="292" y2="70"></line>{ticks(70)}<line class="ax" x1="14" y1="170" x2="292" y2="170"></line>{ticks(170)}'
+            '<text class="lbl" x="14" y="30">data 1, 2, 3   (x̄ = 2, σ² = 2/3)</text><text class="lbl" x="14" y="130">data 1, 2, 3   (x̄ = 2, σ² = 2/3)</text>')
+    dots = lambda y, cls: ''.join(f'<circle class="{cls}" cx="{X(v):.1f}" cy="{y - 10}" r="5"></circle>' for v in data)
+    css = (f'.pp .sh{{animation:shf 2.2s ease-in-out .6s both}}@keyframes shf{{from{{transform:translateX(0)}}to{{transform:translateX({4 * 22}px)}}}}'
+           f'.pp .sc{{transform-origin:{X(0):.1f}px 0;animation:scl 2.2s ease-in-out .6s both}}@keyframes scl{{from{{transform:translateX(0)}}to{{transform:translateX(0)}}}}')
+    # scaling about 0: each dot moves from X(v) to X(2v): translate by X(v)-X(0)... use per-dot classes
+    css = (f'.pp .sh{{animation:shf 2.2s ease-in-out .6s both}}@keyframes shf{{from{{transform:translateX(0)}}to{{transform:translateX({4 * 22}px)}}}}'
+           + ''.join(f'.pp .s{v}{{animation:sc{v} 2.2s ease-in-out .6s both}}@keyframes sc{v}{{from{{transform:translateX(0)}}to{{transform:translateX({v * 22}px)}}}}' for v in data))
+    move1 = f'<g class="sh">{dots(70, "d1s")}</g>'
+    move2 = ''.join(f'<g class="s{v}"><circle class="d2s" cx="{X(v):.1f}" cy="160" r="5"></circle></g>' for v in data)
+    back = (move1 + move2 + '<text class="t3 fx d5" x="14" y="52">+4 →  x̄ = 6, σ² = 2/3 (unchanged)</text><text class="t2 fx d5" x="14" y="112">×2 →  x̄ = 4, σ² = 8/3 (×4)</text>')
+    front = f'{dots(70, "d1s")}{dots(170, "d2s")}'.replace('cy="160"', 'cy="160"')
+    mcard(deck, 'Change of origin and scale', 'Add 4 to every observation; separately multiply every observation by 2. What happens to the mean and the variance?', base + '', back,
+          '<p><b>Shift (x + a):</b> mean + a, <b>variance unchanged</b> (spread unaffected). <b>Scale (kx):</b> mean × k, variance × <b>k²</b>, SD × |k|.</p>'
+          '<p>Together: for y = ax + b, ȳ = a x̄ + b, σ_y = |a| σ_x. (Examples 13 and 15.)</p>',
+          'Effect of shift and scale on mean and variance', 'y=x+a: mean shifts by a, variance unchanged; y=kx: mean×k, variance×k², SD×|k|; y=ax+b gives SD |a|σ',
+          css=css, front_only=front.replace('<circle class="d2s" cx="42.0" cy="160"', '<circle class="d2s" cx="42.0" cy="160"'), vb='0 0 300 190', hint='Does the spread change when everything slides?')
+
+
+def histogram_sd(deck):
+    classes = [(30, 3), (40, 7), (50, 12), (60, 15), (70, 8), (80, 3), (90, 2)]
+    X = lambda v: 20 + (v - 30) * 3.9
+    base_y = 150
+    bars = ''
+    for k, (lo, f) in enumerate(classes):
+        hgt = f * 7.5
+        bars += f'<rect class="f1 grow gd{k}" x="{X(lo):.1f}" y="{base_y - hgt:.1f}" width="{10 * 3.9 - 2:.1f}" height="{hgt:.1f}"></rect><text class="num" x="{X(lo) + 19:.1f}" y="{base_y - hgt - 4:.1f}">{f}</text>'
+    css = ('.pp .grow{transform-box:fill-box;transform-origin:50% 100%;animation:gr 1s ease-out both}@keyframes gr{from{transform:scaleY(0)}to{transform:scaleY(1)}}'
+           + ''.join(f'.pp .gd{k}{{animation-delay:{0.2 + 0.1 * k:.1f}s}}' for k in range(7)))
+    axis = (f'<line class="ax" x1="14" y1="{base_y}" x2="296" y2="{base_y}"></line>'
+            + ''.join(f'<line class="ax" x1="{X(v):.1f}" y1="{base_y}" x2="{X(v):.1f}" y2="{base_y + 4}"></line><text class="num" x="{X(v):.1f}" y="{base_y + 16}">{v}</text>' for v in range(30, 101, 10)))
+    back = (f'<rect class="ns3 fx d4" x="{X(62 - 14.18):.1f}" y="30" width="{28.36 * 3.9:.1f}" height="{base_y - 30}"></rect>'
+            f'<line class="c2 fx d4" x1="{X(62):.1f}" y1="24" x2="{X(62):.1f}" y2="{base_y}"></line><text class="t2 fx d4" x="{X(62):.1f}" y="18" text-anchor="middle">x̄ = 62</text>'
+            f'<text class="t3 fx d5" x="{X(62):.1f}" y="46" text-anchor="middle">x̄ ± σ  (47.8 to 76.2)</text>')
+    mcard(deck, 'Example 10 · mean and standard deviation', 'Frequencies 3, 7, 12, 15, 8, 3, 2 on classes 30–40 … 90–100. Find the mean, variance and standard deviation.', axis + bars, back,
+          '<p>Mid-points 35, 45, …, 95. Σfx = 3100, N = 50 → <b>x̄ = 62</b>. Σf(x − x̄)² = 10050 → <b>variance = 201</b>, <b>σ = √201 ≈ 14.18</b>.</p>'
+          '<p>Most of the data lies within x̄ ± σ (the shaded band). σ has the same unit as the data; variance has the square of the unit.</p>',
+          'Grouped data: mean 62, variance 201, SD 14.18', 'Classes 30-100 with f=3,7,12,15,8,3,2: mean 62, variance 201, SD ≈ 14.18',
+          css=css, vb='0 0 300 172', hint='Use class mid-points and the frequencies.')

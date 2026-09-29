@@ -1,0 +1,961 @@
+{
+  "version": 1,
+  "name": "Chapter 13: Statistics",
+  "className": "Class 11",
+  "description": "Measures of dispersion: range, mean deviation, variance and standard deviation for ungrouped and grouped data, shortcut methods.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Name the three measures of central tendency and what they tell you.",
+      "definition": "<span style=\"color:#3b82f6\">Mean, median, mode</span>: a single value around which the data are centred (a “typical” value)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mean and median rule (ungrouped data)?",
+      "definition": "\\(\\bar{x} = \\dfrac{\\sum x_i}{n}\\). Median: sort the data; odd n → the ((n + 1)/2)th value; even n → the mean of the (n/2)th and (n/2 + 1)th values",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.1-introduction"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Same mean, different spread: range and standard deviation",
+      "definition": "Batsmen A and B both have mean=median=53, but range 117 vs 14 and SD about 36.1 vs 4.2, so B is more consistent",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Why dispersion matters</p><h2>Two batsmen both average 53 with median 53. Who is more consistent, and what number shows it?</h2><svg viewBox=\"0 0 300 240\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"14\" y1=\"90\" x2=\"292\" y2=\"90\"></line><line class=\"ax\" x1=\"20.0\" y1=\"87\" x2=\"20.0\" y2=\"93\"></line><text class=\"num\" x=\"20.0\" y=\"105\">0</text><line class=\"ax\" x1=\"66.0\" y1=\"87\" x2=\"66.0\" y2=\"93\"></line><text class=\"num\" x=\"66.0\" y=\"105\">20</text><line class=\"ax\" x1=\"112.0\" y1=\"87\" x2=\"112.0\" y2=\"93\"></line><text class=\"num\" x=\"112.0\" y=\"105\">40</text><line class=\"ax\" x1=\"158.0\" y1=\"87\" x2=\"158.0\" y2=\"93\"></line><text class=\"num\" x=\"158.0\" y=\"105\">60</text><line class=\"ax\" x1=\"204.0\" y1=\"87\" x2=\"204.0\" y2=\"93\"></line><text class=\"num\" x=\"204.0\" y=\"105\">80</text><line class=\"ax\" x1=\"250.0\" y1=\"87\" x2=\"250.0\" y2=\"93\"></line><text class=\"num\" x=\"250.0\" y=\"105\">100</text><line class=\"ax\" x1=\"296.0\" y1=\"87\" x2=\"296.0\" y2=\"93\"></line><text class=\"num\" x=\"296.0\" y=\"105\">120</text><circle class=\"d1s\" cx=\"89.0\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"229.3\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"20.0\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"167.2\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"116.6\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"204.0\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"89.0\" cy=\"72\" r=\"4\"></circle><circle class=\"d1s\" cx=\"31.5\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"289.1\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"183.3\" cy=\"81\" r=\"4\"></circle><text class=\"lbl\" x=\"14\" y=\"50\">Batsman A</text><line class=\"ax\" x1=\"14\" y1=\"190\" x2=\"292\" y2=\"190\"></line><line class=\"ax\" x1=\"20.0\" y1=\"187\" x2=\"20.0\" y2=\"193\"></line><text class=\"num\" x=\"20.0\" y=\"205\">0</text><line class=\"ax\" x1=\"66.0\" y1=\"187\" x2=\"66.0\" y2=\"193\"></line><text class=\"num\" x=\"66.0\" y=\"205\">20</text><line class=\"ax\" x1=\"112.0\" y1=\"187\" x2=\"112.0\" y2=\"193\"></line><text class=\"num\" x=\"112.0\" y=\"205\">40</text><line class=\"ax\" x1=\"158.0\" y1=\"187\" x2=\"158.0\" y2=\"193\"></line><text class=\"num\" x=\"158.0\" y=\"205\">60</text><line class=\"ax\" x1=\"204.0\" y1=\"187\" x2=\"204.0\" y2=\"193\"></line><text class=\"num\" x=\"204.0\" y=\"205\">80</text><line class=\"ax\" x1=\"250.0\" y1=\"187\" x2=\"250.0\" y2=\"193\"></line><text class=\"num\" x=\"250.0\" y=\"205\">100</text><line class=\"ax\" x1=\"296.0\" y1=\"187\" x2=\"296.0\" y2=\"193\"></line><text class=\"num\" x=\"296.0\" y=\"205\">120</text><circle class=\"d2s\" cx=\"141.9\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"125.8\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"130.4\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"135.0\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"141.9\" cy=\"172\" r=\"4\"></circle><circle class=\"d2s\" cx=\"141.9\" cy=\"163\" r=\"4\"></circle><circle class=\"d2s\" cx=\"153.4\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"158.0\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"151.1\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"139.6\" cy=\"181\" r=\"4\"></circle><text class=\"lbl\" x=\"14\" y=\"150\">Batsman B</text></svg><p class=\"hint\">Compare how the dots are spread around 53.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Why dispersion matters</p><h2>Two batsmen both average 53 with median 53. Who is more consistent, and what number shows it?</h2><svg viewBox=\"0 0 300 240\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"14\" y1=\"90\" x2=\"292\" y2=\"90\"></line><line class=\"ax\" x1=\"20.0\" y1=\"87\" x2=\"20.0\" y2=\"93\"></line><text class=\"num\" x=\"20.0\" y=\"105\">0</text><line class=\"ax\" x1=\"66.0\" y1=\"87\" x2=\"66.0\" y2=\"93\"></line><text class=\"num\" x=\"66.0\" y=\"105\">20</text><line class=\"ax\" x1=\"112.0\" y1=\"87\" x2=\"112.0\" y2=\"93\"></line><text class=\"num\" x=\"112.0\" y=\"105\">40</text><line class=\"ax\" x1=\"158.0\" y1=\"87\" x2=\"158.0\" y2=\"93\"></line><text class=\"num\" x=\"158.0\" y=\"105\">60</text><line class=\"ax\" x1=\"204.0\" y1=\"87\" x2=\"204.0\" y2=\"93\"></line><text class=\"num\" x=\"204.0\" y=\"105\">80</text><line class=\"ax\" x1=\"250.0\" y1=\"87\" x2=\"250.0\" y2=\"93\"></line><text class=\"num\" x=\"250.0\" y=\"105\">100</text><line class=\"ax\" x1=\"296.0\" y1=\"87\" x2=\"296.0\" y2=\"93\"></line><text class=\"num\" x=\"296.0\" y=\"105\">120</text><circle class=\"d1s\" cx=\"89.0\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"229.3\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"20.0\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"167.2\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"116.6\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"204.0\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"89.0\" cy=\"72\" r=\"4\"></circle><circle class=\"d1s\" cx=\"31.5\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"289.1\" cy=\"81\" r=\"4\"></circle><circle class=\"d1s\" cx=\"183.3\" cy=\"81\" r=\"4\"></circle><text class=\"lbl\" x=\"14\" y=\"50\">Batsman A</text><line class=\"ax\" x1=\"14\" y1=\"190\" x2=\"292\" y2=\"190\"></line><line class=\"ax\" x1=\"20.0\" y1=\"187\" x2=\"20.0\" y2=\"193\"></line><text class=\"num\" x=\"20.0\" y=\"205\">0</text><line class=\"ax\" x1=\"66.0\" y1=\"187\" x2=\"66.0\" y2=\"193\"></line><text class=\"num\" x=\"66.0\" y=\"205\">20</text><line class=\"ax\" x1=\"112.0\" y1=\"187\" x2=\"112.0\" y2=\"193\"></line><text class=\"num\" x=\"112.0\" y=\"205\">40</text><line class=\"ax\" x1=\"158.0\" y1=\"187\" x2=\"158.0\" y2=\"193\"></line><text class=\"num\" x=\"158.0\" y=\"205\">60</text><line class=\"ax\" x1=\"204.0\" y1=\"187\" x2=\"204.0\" y2=\"193\"></line><text class=\"num\" x=\"204.0\" y=\"205\">80</text><line class=\"ax\" x1=\"250.0\" y1=\"187\" x2=\"250.0\" y2=\"193\"></line><text class=\"num\" x=\"250.0\" y=\"205\">100</text><line class=\"ax\" x1=\"296.0\" y1=\"187\" x2=\"296.0\" y2=\"193\"></line><text class=\"num\" x=\"296.0\" y=\"205\">120</text><circle class=\"d2s\" cx=\"141.9\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"125.8\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"130.4\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"135.0\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"141.9\" cy=\"172\" r=\"4\"></circle><circle class=\"d2s\" cx=\"141.9\" cy=\"163\" r=\"4\"></circle><circle class=\"d2s\" cx=\"153.4\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"158.0\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"151.1\" cy=\"181\" r=\"4\"></circle><circle class=\"d2s\" cx=\"139.6\" cy=\"181\" r=\"4\"></circle><text class=\"lbl\" x=\"14\" y=\"150\">Batsman B</text><line class=\"c3 fx d2\" x1=\"141.9\" y1=\"30\" x2=\"141.9\" y2=\"200\"></line><text class=\"t3 fx d2\" x=\"145.9\" y=\"24\">mean = median = 53</text><line class=\"c1 fx d3\" x1=\"20.0\" y1=\"112\" x2=\"289.1\" y2=\"112\"></line><text class=\"t1 fx d3\" x=\"158.0\" y=\"127\" text-anchor=\"middle\">range 117, σ ≈ 36</text><line class=\"c2 fx d4\" x1=\"125.8\" y1=\"212\" x2=\"158.0\" y2=\"212\"></line><text class=\"t2 fx d4\" x=\"141.9\" y=\"227\" text-anchor=\"middle\">range 14, σ ≈ 4.2</text></svg><div class=\"eq fx d5\"><p>Central tendency alone is not enough. B’s scores cluster (46–60); A’s are scattered (0–117).</p><p>A single number for the spread is a <b>measure of dispersion</b>: range 117 vs 14; standard deviation ≈ 36.1 vs 4.2. Smaller = more consistent.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why are measures of central tendency not enough?",
+      "definition": "Two data sets can have the same mean and median but very different <span style=\"color:#3b82f6\">scatter</span>. We need a number for the spread: a <span style=\"color:#3b82f6\">measure of dispersion</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Measures of dispersion in the syllabus?",
+      "definition": "Range, mean deviation, variance and standard deviation. (Quartile deviation is mentioned but not studied here.)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Range of a data set?",
+      "definition": "<span style=\"color:#3b82f6\">Maximum value − minimum value</span>. Batsman A: 117 − 0 = 117; batsman B: 60 − 46 = 14",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.3-range"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Limitation of the range?",
+      "definition": "It uses only the two extreme values, so one outlier changes it hugely, and it says nothing about how the data spread <span style=\"color:#3b82f6\">around a central value</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.3-range"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Deviation of x from a?",
+      "definition": "<span style=\"color:#3b82f6\">x − a</span> (signed distance). Deviations from the mean add to zero: Σ(xᵢ − x̄) = 0, so their plain average is useless as a spread",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do we take absolute values of the deviations?",
+      "definition": "Positive and negative deviations cancel (Σ(xᵢ − x̄) = 0). |x − a| is the actual <span style=\"color:#3b82f6\">distance</span> on the number line, so it does not cancel",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define mean deviation about a.",
+      "definition": "\\(\\mathrm{M.D.}(a) = \\dfrac{\\sum |x_i - a|}{n}\\): the mean of the absolute deviations from a",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Steps to find the mean deviation about the mean/median (ungrouped)?",
+      "definition": "1) Find the mean (or median) a. 2) Find |xᵢ − a| for each value. 3) Add them and <span style=\"color:#3b82f6\">divide by n</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: mean deviation about the mean of 6, 7, 10, 12, 13, 4, 8, 12.",
+      "definition": "x̄ = 72/8 = 9; |deviations| 3, 2, 1, 3, 4, 5, 1, 3 = 22 → <span style=\"color:#f08c00\">M.D.(x̄) = 2.75</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2: mean deviation about the mean of the 20 data 12, 3, 18, 17, 4, 9, 17, 19, 20, 15, 8, 17, 2, 3, 16, 11, 3, 1, 0, 5.",
+      "definition": "x̄ = 200/20 = 10; Σ|xᵢ − x̄| = 124 → <span style=\"color:#f08c00\">6.2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3: mean deviation about the median of 3, 9, 5, 3, 12, 10, 18, 4, 7, 19, 21.",
+      "definition": "Sorted: 3, 3, 4, 5, 7, 9, 10, 12, 18, 19, 21; median = 6th = 9; Σ|xᵢ − 9| = 58 → <span style=\"color:#f08c00\">58/11 ≈ 5.27</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 13.1 Q1–2: mean deviation about the mean: 4, 7, 8, 9, 10, 12, 13, 17; and 38, 70, 48, 40, 42, 55, 63, 46, 54, 44.",
+      "definition": "Mean 10: |dev| sum 24 → <span style=\"color:#f08c00\">3</span>. Mean 50: |dev| sum 84 → <span style=\"color:#f08c00\">8.4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 13.1 Q3–4: mean deviation about the median: 13, 17, 16, 14, 11, 13, 10, 16, 11, 18, 12, 17; and 36, 72, 46, 42, 60, 45, 53, 46, 51, 49.",
+      "definition": "Median 13.5; |dev| sum 28 → <span style=\"color:#f08c00\">28/12 ≈ 2.33</span>. Median 47.5; |dev| sum 70 → <span style=\"color:#f08c00\">7</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mean deviation about which point is the smallest?",
+      "definition": "About the <span style=\"color:#3b82f6\">median</span>: Σ|xᵢ − a| is minimum at a = median. So M.D. about the median ≤ M.D. about the mean",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mean deviation for a discrete frequency distribution?",
+      "definition": "\\(\\mathrm{M.D.}(\\bar{x}) = \\dfrac{\\sum f_i|x_i - \\bar{x}|}{N},\\quad \\bar{x} = \\dfrac{\\sum f_ix_i}{N},\\quad N = \\sum f_i\\). About the median: replace x̄ by M",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Median of a discrete frequency distribution?",
+      "definition": "Make the cumulative frequencies. The median is the observation whose c.f. is first <span style=\"color:#3b82f6\">≥ N/2</span> (if N is even, average the N/2 th and (N/2 + 1)th observations, which are often the same value)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: mean deviation for a discrete distribution.",
+      "definition": "Build a table: xᵢ, fᵢ, fᵢxᵢ (to get x̄ = Σfx/N), |xᵢ − x̄|, fᵢ|xᵢ − x̄|. Then M.D. = Σf|x − x̄|/N. Check Σf = N and that the mean lies inside the data range",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: N = 30, median = 13, Σf|xᵢ − M| = 149. Find M.D.(M).",
+      "definition": "149/30 = <span style=\"color:#f08c00\">4.97</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mean deviation for a continuous frequency distribution?",
+      "definition": "Replace each class by its <span style=\"color:#3b82f6\">mid-point</span>, then proceed as for a discrete distribution (mean or median)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Median of a continuous distribution: formula?",
+      "definition": "\\(M = l + \\dfrac{\\frac{N}{2} - C}{f}\\times h\\): median class = first class with c.f. ≥ N/2; l = its lower limit, f = its frequency, h = width, C = c.f. of the preceding class",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7: median of a distribution with N = 50, median class 20–30, l = 20, C = 13, f = 15, h = 10.",
+      "definition": "20 + (25 − 13)/15 × 10 = <span style=\"color:#f08c00\">28</span>; then Σf|xᵢ − M| = 508 → M.D.(M) = 508/50 = <span style=\"color:#f08c00\">10.16</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6: how does the mean deviation about the mean for grouped data proceed (data 10–20 … 70–80, N = 40)?",
+      "definition": "x̄ = Σfx/N = 1800/40 = <span style=\"color:#f08c00\">45</span>; M.D. = Σf|xᵢ − x̄|/N = 400/40 = <span style=\"color:#f08c00\">10</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Step-deviation (shortcut) for the mean?",
+      "definition": "Take an assumed mean a and class width h: d = (x − a)/h, then <span style=\"color:#3b82f6\">x̄ = a + h·(Σfd/N)</span>. Only the mean uses it; the M.D. still uses |x − x̄|",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 13.1 Q12: age data is given as 16–20, 21–25, …. What must you do first?",
+      "definition": "Make the classes continuous: subtract 0.5 from each lower limit and add 0.5 to each upper limit (15.5–20.5, 20.5–25.5, …) before using the median formula",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Limitations of the mean deviation?",
+      "definition": "About the median it is unreliable when variability is very high; about the mean it is less “scientific”; and since it uses |·| it <span style=\"color:#3b82f6\">cannot be treated algebraically</span> → we need the standard deviation",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.4-mean-deviation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why not use Σ(xᵢ − x̄)² directly as the dispersion?",
+      "definition": "It grows with the number of observations: set A (6 values, spread 5–55) has sum of squares 1750 while set B (31 values, 15–45) has 2480, even though A is more scattered. So we take the <span style=\"color:#3b82f6\">mean</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the variance σ² of n observations.",
+      "definition": "\\(\\sigma^2 = \\dfrac{1}{n}\\sum_{i=1}^{n}(x_i - \\bar{x})^2\\): the mean of the squared deviations from the mean",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the standard deviation.",
+      "definition": "\\(\\sigma = \\sqrt{\\dfrac{1}{n}\\sum (x_i - \\bar{x})^2}\\): the positive square root of the variance; it has the <span style=\"color:#3b82f6\">same unit as the data</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Set A: 5, 15, 25, 35, 45, 55 versus set B: 15, 16, …, 45. Compare σ².",
+      "definition": "A: 1750/6 ≈ <span style=\"color:#f08c00\">291.67</span>. B: 2480/31 = <span style=\"color:#f08c00\">80</span>. A is far more dispersed (both have mean 30)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Computational formula for variance?",
+      "definition": "\\(\\sigma^2 = \\dfrac{\\sum x_i^2}{n} - \\bar{x}^2\\): mean of squares minus square of the mean. Faster and less error-prone",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8: variance and SD of 6, 8, 10, …, 24.",
+      "definition": "x̄ = 15; Σ(xᵢ − x̄)² = 330; σ² = <span style=\"color:#f08c00\">33</span>, σ = <span style=\"color:#f08c00\">5.74</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Discrete frequency distribution: variance formula?",
+      "definition": "\\(\\sigma^2 = \\dfrac{1}{N}\\sum f_i(x_i - \\bar{x})^2 = \\dfrac{\\sum f_ix_i^2}{N} - \\left(\\dfrac{\\sum f_ix_i}{N}\\right)^2\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9: N = 30, Σfx = 420, Σf(x − x̄)² = 1374. Find the mean, variance, SD.",
+      "definition": "x̄ = <span style=\"color:#f08c00\">14</span>, σ² = 1374/30 = <span style=\"color:#f08c00\">45.8</span>, σ ≈ <span style=\"color:#f08c00\">6.77</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Standard deviation of a continuous distribution?",
+      "definition": "Use the class mid-points xᵢ as in a discrete distribution: <span style=\"color:#3b82f6\">σ = (1/N)√(NΣfx² − (Σfx)²)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10: the table with mid-points 35 … 95: Σfx = 3100, Σf(x − x̄)² = 10050, N = 50.",
+      "definition": "x̄ = <span style=\"color:#f08c00\">62</span>, σ² = <span style=\"color:#f08c00\">201</span>, σ = <span style=\"color:#f08c00\">14.18</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Grouped data: mean 62, variance 201, SD 14.18",
+      "definition": "Classes 30-100 with f=3,7,12,15,8,3,2: mean 62, variance 201, SD ≈ 14.18",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Example 10 · mean and standard deviation</p><h2>Frequencies 3, 7, 12, 15, 8, 3, 2 on classes 30–40 … 90–100. Find the mean, variance and standard deviation.</h2><svg viewBox=\"0 0 300 172\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"14\" y1=\"150\" x2=\"296\" y2=\"150\"></line><line class=\"ax\" x1=\"20.0\" y1=\"150\" x2=\"20.0\" y2=\"154\"></line><text class=\"num\" x=\"20.0\" y=\"166\">30</text><line class=\"ax\" x1=\"59.0\" y1=\"150\" x2=\"59.0\" y2=\"154\"></line><text class=\"num\" x=\"59.0\" y=\"166\">40</text><line class=\"ax\" x1=\"98.0\" y1=\"150\" x2=\"98.0\" y2=\"154\"></line><text class=\"num\" x=\"98.0\" y=\"166\">50</text><line class=\"ax\" x1=\"137.0\" y1=\"150\" x2=\"137.0\" y2=\"154\"></line><text class=\"num\" x=\"137.0\" y=\"166\">60</text><line class=\"ax\" x1=\"176.0\" y1=\"150\" x2=\"176.0\" y2=\"154\"></line><text class=\"num\" x=\"176.0\" y=\"166\">70</text><line class=\"ax\" x1=\"215.0\" y1=\"150\" x2=\"215.0\" y2=\"154\"></line><text class=\"num\" x=\"215.0\" y=\"166\">80</text><line class=\"ax\" x1=\"254.0\" y1=\"150\" x2=\"254.0\" y2=\"154\"></line><text class=\"num\" x=\"254.0\" y=\"166\">90</text><line class=\"ax\" x1=\"293.0\" y1=\"150\" x2=\"293.0\" y2=\"154\"></line><text class=\"num\" x=\"293.0\" y=\"166\">100</text><rect class=\"f1 grow gd0\" x=\"20.0\" y=\"127.5\" width=\"37.0\" height=\"22.5\"></rect><text class=\"num\" x=\"39.0\" y=\"123.5\">3</text><rect class=\"f1 grow gd1\" x=\"59.0\" y=\"97.5\" width=\"37.0\" height=\"52.5\"></rect><text class=\"num\" x=\"78.0\" y=\"93.5\">7</text><rect class=\"f1 grow gd2\" x=\"98.0\" y=\"60.0\" width=\"37.0\" height=\"90.0\"></rect><text class=\"num\" x=\"117.0\" y=\"56.0\">12</text><rect class=\"f1 grow gd3\" x=\"137.0\" y=\"37.5\" width=\"37.0\" height=\"112.5\"></rect><text class=\"num\" x=\"156.0\" y=\"33.5\">15</text><rect class=\"f1 grow gd4\" x=\"176.0\" y=\"90.0\" width=\"37.0\" height=\"60.0\"></rect><text class=\"num\" x=\"195.0\" y=\"86.0\">8</text><rect class=\"f1 grow gd5\" x=\"215.0\" y=\"127.5\" width=\"37.0\" height=\"22.5\"></rect><text class=\"num\" x=\"234.0\" y=\"123.5\">3</text><rect class=\"f1 grow gd6\" x=\"254.0\" y=\"135.0\" width=\"37.0\" height=\"15.0\"></rect><text class=\"num\" x=\"273.0\" y=\"131.0\">2</text></svg><p class=\"hint\">Use class mid-points and the frequencies.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Example 10 · mean and standard deviation</p><h2>Frequencies 3, 7, 12, 15, 8, 3, 2 on classes 30–40 … 90–100. Find the mean, variance and standard deviation.</h2><svg viewBox=\"0 0 300 172\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"14\" y1=\"150\" x2=\"296\" y2=\"150\"></line><line class=\"ax\" x1=\"20.0\" y1=\"150\" x2=\"20.0\" y2=\"154\"></line><text class=\"num\" x=\"20.0\" y=\"166\">30</text><line class=\"ax\" x1=\"59.0\" y1=\"150\" x2=\"59.0\" y2=\"154\"></line><text class=\"num\" x=\"59.0\" y=\"166\">40</text><line class=\"ax\" x1=\"98.0\" y1=\"150\" x2=\"98.0\" y2=\"154\"></line><text class=\"num\" x=\"98.0\" y=\"166\">50</text><line class=\"ax\" x1=\"137.0\" y1=\"150\" x2=\"137.0\" y2=\"154\"></line><text class=\"num\" x=\"137.0\" y=\"166\">60</text><line class=\"ax\" x1=\"176.0\" y1=\"150\" x2=\"176.0\" y2=\"154\"></line><text class=\"num\" x=\"176.0\" y=\"166\">70</text><line class=\"ax\" x1=\"215.0\" y1=\"150\" x2=\"215.0\" y2=\"154\"></line><text class=\"num\" x=\"215.0\" y=\"166\">80</text><line class=\"ax\" x1=\"254.0\" y1=\"150\" x2=\"254.0\" y2=\"154\"></line><text class=\"num\" x=\"254.0\" y=\"166\">90</text><line class=\"ax\" x1=\"293.0\" y1=\"150\" x2=\"293.0\" y2=\"154\"></line><text class=\"num\" x=\"293.0\" y=\"166\">100</text><rect class=\"f1 grow gd0\" x=\"20.0\" y=\"127.5\" width=\"37.0\" height=\"22.5\"></rect><text class=\"num\" x=\"39.0\" y=\"123.5\">3</text><rect class=\"f1 grow gd1\" x=\"59.0\" y=\"97.5\" width=\"37.0\" height=\"52.5\"></rect><text class=\"num\" x=\"78.0\" y=\"93.5\">7</text><rect class=\"f1 grow gd2\" x=\"98.0\" y=\"60.0\" width=\"37.0\" height=\"90.0\"></rect><text class=\"num\" x=\"117.0\" y=\"56.0\">12</text><rect class=\"f1 grow gd3\" x=\"137.0\" y=\"37.5\" width=\"37.0\" height=\"112.5\"></rect><text class=\"num\" x=\"156.0\" y=\"33.5\">15</text><rect class=\"f1 grow gd4\" x=\"176.0\" y=\"90.0\" width=\"37.0\" height=\"60.0\"></rect><text class=\"num\" x=\"195.0\" y=\"86.0\">8</text><rect class=\"f1 grow gd5\" x=\"215.0\" y=\"127.5\" width=\"37.0\" height=\"22.5\"></rect><text class=\"num\" x=\"234.0\" y=\"123.5\">3</text><rect class=\"f1 grow gd6\" x=\"254.0\" y=\"135.0\" width=\"37.0\" height=\"15.0\"></rect><text class=\"num\" x=\"273.0\" y=\"131.0\">2</text><rect class=\"ns3 fx d4\" x=\"89.5\" y=\"30\" width=\"110.6\" height=\"120\"></rect><line class=\"c2 fx d4\" x1=\"144.8\" y1=\"24\" x2=\"144.8\" y2=\"150\"></line><text class=\"t2 fx d4\" x=\"144.8\" y=\"18\" text-anchor=\"middle\">x̄ = 62</text><text class=\"t3 fx d5\" x=\"144.8\" y=\"46\" text-anchor=\"middle\">x̄ ± σ  (47.8 to 76.2)</text></svg><div class=\"eq fx d5\"><p>Mid-points 35, 45, …, 95. Σfx = 3100, N = 50 → <b>x̄ = 62</b>. Σf(x − x̄)² = 10050 → <b>variance = 201</b>, <b>σ = √201 ≈ 14.18</b>.</p><p>Most of the data lies within x̄ ± σ (the shaded band). σ has the same unit as the data; variance has the square of the unit.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .grow{transform-box:fill-box;transform-origin:50% 100%;animation:gr 1s ease-out both}@keyframes gr{from{transform:scaleY(0)}to{transform:scaleY(1)}}.pp .gd0{animation-delay:0.2s}.pp .gd1{animation-delay:0.3s}.pp .gd2{animation-delay:0.4s}.pp .gd3{animation-delay:0.5s}.pp .gd4{animation-delay:0.6s}.pp .gd5{animation-delay:0.7s}.pp .gd6{animation-delay:0.8s}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .grow{transform-box:fill-box;transform-origin:50% 100%;animation:gr 1s ease-out both}@keyframes gr{from{transform:scaleY(0)}to{transform:scaleY(1)}}.pp .gd0{animation-delay:0.2s}.pp .gd1{animation-delay:0.3s}.pp .gd2{animation-delay:0.4s}.pp .gd3{animation-delay:0.5s}.pp .gd4{animation-delay:0.6s}.pp .gd5{animation-delay:0.7s}.pp .gd6{animation-delay:0.8s}"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 11: N = 48, Σfx = 614 and Σfx² = 9652. Find the standard deviation.",
+      "definition": "σ = (1/N)√(NΣfx² − (Σfx)²) = √(463296 − 376996)/48 = √86300/48 = <span style=\"color:#f08c00\">6.12</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Shortcut method for variance and SD?",
+      "definition": "Let y = (x − A)/h. Then <span style=\"color:#3b82f6\">σ² = h²[Σfy²/N − (Σfy/N)²]</span>, σ = h·√(Σfy²/N − (Σfy/N)²), and x̄ = A + h·Σfy/N",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12 (shortcut): A = 65, h = 10, N = 50, Σfy = −15, Σfy² = 105 for the data of Example 10. Find mean, variance, SD.",
+      "definition": "x̄ = 65 + 10(−15/50) = <span style=\"color:#f08c00\">62</span>; σ² = 100[105/50 − (−0.3)²] = <span style=\"color:#f08c00\">201</span>; σ = <span style=\"color:#f08c00\">14.18</span>. Same as Example 10",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 13.2 Q1: mean and variance of 6, 7, 10, 12, 13, 4, 8, 12.",
+      "definition": "x̄ = 9; Σ(x − 9)² = 74 → <span style=\"color:#f08c00\">σ² = 9.25</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 13.2 Q2–3: mean and variance of the first n natural numbers; of the first 10 multiples of 3.",
+      "definition": "Mean <span style=\"color:#f08c00\">(n + 1)/2</span>, variance <span style=\"color:#f08c00\">(n² − 1)/12</span>. Multiples of 3: mean 16.5, variance 9 × 99/12 = <span style=\"color:#f08c00\">74.25</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Variance of the first n terms of any A.P. with common difference d?",
+      "definition": "<span style=\"color:#f08c00\">d²(n² − 1)/12</span> (the general form of the previous card)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Interpretation: small vs large σ?",
+      "definition": "Small σ: data close to the mean (consistent, uniform). Large σ: data scattered. σ = 0 iff every observation equals the mean",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 13.2 Q9–10: what to do for the diameters 33–36, 37–40, …?",
+      "definition": "The classes have gaps: make them continuous (32.5–36.5, 36.5–40.5, …) using half the gap; then use mid-points and the shortcut method",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.5-variance-sd"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Effect of shift and scale on mean and variance",
+      "definition": "y=x+a: mean shifts by a, variance unchanged; y=kx: mean×k, variance×k², SD×|k|; y=ax+b gives SD |a|σ",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Change of origin and scale</p><h2>Add 4 to every observation; separately multiply every observation by 2. What happens to the mean and the variance?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"14\" y1=\"70\" x2=\"292\" y2=\"70\"></line><line class=\"ax\" x1=\"20.0\" y1=\"67\" x2=\"20.0\" y2=\"73\"></line><text class=\"num\" x=\"20.0\" y=\"84\">0</text><line class=\"ax\" x1=\"42.0\" y1=\"67\" x2=\"42.0\" y2=\"73\"></line><text class=\"num\" x=\"42.0\" y=\"84\">1</text><line class=\"ax\" x1=\"64.0\" y1=\"67\" x2=\"64.0\" y2=\"73\"></line><text class=\"num\" x=\"64.0\" y=\"84\">2</text><line class=\"ax\" x1=\"86.0\" y1=\"67\" x2=\"86.0\" y2=\"73\"></line><text class=\"num\" x=\"86.0\" y=\"84\">3</text><line class=\"ax\" x1=\"108.0\" y1=\"67\" x2=\"108.0\" y2=\"73\"></line><text class=\"num\" x=\"108.0\" y=\"84\">4</text><line class=\"ax\" x1=\"130.0\" y1=\"67\" x2=\"130.0\" y2=\"73\"></line><text class=\"num\" x=\"130.0\" y=\"84\">5</text><line class=\"ax\" x1=\"152.0\" y1=\"67\" x2=\"152.0\" y2=\"73\"></line><text class=\"num\" x=\"152.0\" y=\"84\">6</text><line class=\"ax\" x1=\"174.0\" y1=\"67\" x2=\"174.0\" y2=\"73\"></line><text class=\"num\" x=\"174.0\" y=\"84\">7</text><line class=\"ax\" x1=\"196.0\" y1=\"67\" x2=\"196.0\" y2=\"73\"></line><text class=\"num\" x=\"196.0\" y=\"84\">8</text><line class=\"ax\" x1=\"218.0\" y1=\"67\" x2=\"218.0\" y2=\"73\"></line><text class=\"num\" x=\"218.0\" y=\"84\">9</text><line class=\"ax\" x1=\"240.0\" y1=\"67\" x2=\"240.0\" y2=\"73\"></line><text class=\"num\" x=\"240.0\" y=\"84\">10</text><line class=\"ax\" x1=\"262.0\" y1=\"67\" x2=\"262.0\" y2=\"73\"></line><text class=\"num\" x=\"262.0\" y=\"84\">11</text><line class=\"ax\" x1=\"284.0\" y1=\"67\" x2=\"284.0\" y2=\"73\"></line><text class=\"num\" x=\"284.0\" y=\"84\">12</text><line class=\"ax\" x1=\"14\" y1=\"170\" x2=\"292\" y2=\"170\"></line><line class=\"ax\" x1=\"20.0\" y1=\"167\" x2=\"20.0\" y2=\"173\"></line><text class=\"num\" x=\"20.0\" y=\"184\">0</text><line class=\"ax\" x1=\"42.0\" y1=\"167\" x2=\"42.0\" y2=\"173\"></line><text class=\"num\" x=\"42.0\" y=\"184\">1</text><line class=\"ax\" x1=\"64.0\" y1=\"167\" x2=\"64.0\" y2=\"173\"></line><text class=\"num\" x=\"64.0\" y=\"184\">2</text><line class=\"ax\" x1=\"86.0\" y1=\"167\" x2=\"86.0\" y2=\"173\"></line><text class=\"num\" x=\"86.0\" y=\"184\">3</text><line class=\"ax\" x1=\"108.0\" y1=\"167\" x2=\"108.0\" y2=\"173\"></line><text class=\"num\" x=\"108.0\" y=\"184\">4</text><line class=\"ax\" x1=\"130.0\" y1=\"167\" x2=\"130.0\" y2=\"173\"></line><text class=\"num\" x=\"130.0\" y=\"184\">5</text><line class=\"ax\" x1=\"152.0\" y1=\"167\" x2=\"152.0\" y2=\"173\"></line><text class=\"num\" x=\"152.0\" y=\"184\">6</text><line class=\"ax\" x1=\"174.0\" y1=\"167\" x2=\"174.0\" y2=\"173\"></line><text class=\"num\" x=\"174.0\" y=\"184\">7</text><line class=\"ax\" x1=\"196.0\" y1=\"167\" x2=\"196.0\" y2=\"173\"></line><text class=\"num\" x=\"196.0\" y=\"184\">8</text><line class=\"ax\" x1=\"218.0\" y1=\"167\" x2=\"218.0\" y2=\"173\"></line><text class=\"num\" x=\"218.0\" y=\"184\">9</text><line class=\"ax\" x1=\"240.0\" y1=\"167\" x2=\"240.0\" y2=\"173\"></line><text class=\"num\" x=\"240.0\" y=\"184\">10</text><line class=\"ax\" x1=\"262.0\" y1=\"167\" x2=\"262.0\" y2=\"173\"></line><text class=\"num\" x=\"262.0\" y=\"184\">11</text><line class=\"ax\" x1=\"284.0\" y1=\"167\" x2=\"284.0\" y2=\"173\"></line><text class=\"num\" x=\"284.0\" y=\"184\">12</text><text class=\"lbl\" x=\"14\" y=\"30\">data 1, 2, 3   (x̄ = 2, σ² = 2/3)</text><text class=\"lbl\" x=\"14\" y=\"130\">data 1, 2, 3   (x̄ = 2, σ² = 2/3)</text><circle class=\"d1s\" cx=\"42.0\" cy=\"60\" r=\"5\"></circle><circle class=\"d1s\" cx=\"64.0\" cy=\"60\" r=\"5\"></circle><circle class=\"d1s\" cx=\"86.0\" cy=\"60\" r=\"5\"></circle><circle class=\"d2s\" cx=\"42.0\" cy=\"160\" r=\"5\"></circle><circle class=\"d2s\" cx=\"64.0\" cy=\"160\" r=\"5\"></circle><circle class=\"d2s\" cx=\"86.0\" cy=\"160\" r=\"5\"></circle></svg><p class=\"hint\">Does the spread change when everything slides?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Change of origin and scale</p><h2>Add 4 to every observation; separately multiply every observation by 2. What happens to the mean and the variance?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"14\" y1=\"70\" x2=\"292\" y2=\"70\"></line><line class=\"ax\" x1=\"20.0\" y1=\"67\" x2=\"20.0\" y2=\"73\"></line><text class=\"num\" x=\"20.0\" y=\"84\">0</text><line class=\"ax\" x1=\"42.0\" y1=\"67\" x2=\"42.0\" y2=\"73\"></line><text class=\"num\" x=\"42.0\" y=\"84\">1</text><line class=\"ax\" x1=\"64.0\" y1=\"67\" x2=\"64.0\" y2=\"73\"></line><text class=\"num\" x=\"64.0\" y=\"84\">2</text><line class=\"ax\" x1=\"86.0\" y1=\"67\" x2=\"86.0\" y2=\"73\"></line><text class=\"num\" x=\"86.0\" y=\"84\">3</text><line class=\"ax\" x1=\"108.0\" y1=\"67\" x2=\"108.0\" y2=\"73\"></line><text class=\"num\" x=\"108.0\" y=\"84\">4</text><line class=\"ax\" x1=\"130.0\" y1=\"67\" x2=\"130.0\" y2=\"73\"></line><text class=\"num\" x=\"130.0\" y=\"84\">5</text><line class=\"ax\" x1=\"152.0\" y1=\"67\" x2=\"152.0\" y2=\"73\"></line><text class=\"num\" x=\"152.0\" y=\"84\">6</text><line class=\"ax\" x1=\"174.0\" y1=\"67\" x2=\"174.0\" y2=\"73\"></line><text class=\"num\" x=\"174.0\" y=\"84\">7</text><line class=\"ax\" x1=\"196.0\" y1=\"67\" x2=\"196.0\" y2=\"73\"></line><text class=\"num\" x=\"196.0\" y=\"84\">8</text><line class=\"ax\" x1=\"218.0\" y1=\"67\" x2=\"218.0\" y2=\"73\"></line><text class=\"num\" x=\"218.0\" y=\"84\">9</text><line class=\"ax\" x1=\"240.0\" y1=\"67\" x2=\"240.0\" y2=\"73\"></line><text class=\"num\" x=\"240.0\" y=\"84\">10</text><line class=\"ax\" x1=\"262.0\" y1=\"67\" x2=\"262.0\" y2=\"73\"></line><text class=\"num\" x=\"262.0\" y=\"84\">11</text><line class=\"ax\" x1=\"284.0\" y1=\"67\" x2=\"284.0\" y2=\"73\"></line><text class=\"num\" x=\"284.0\" y=\"84\">12</text><line class=\"ax\" x1=\"14\" y1=\"170\" x2=\"292\" y2=\"170\"></line><line class=\"ax\" x1=\"20.0\" y1=\"167\" x2=\"20.0\" y2=\"173\"></line><text class=\"num\" x=\"20.0\" y=\"184\">0</text><line class=\"ax\" x1=\"42.0\" y1=\"167\" x2=\"42.0\" y2=\"173\"></line><text class=\"num\" x=\"42.0\" y=\"184\">1</text><line class=\"ax\" x1=\"64.0\" y1=\"167\" x2=\"64.0\" y2=\"173\"></line><text class=\"num\" x=\"64.0\" y=\"184\">2</text><line class=\"ax\" x1=\"86.0\" y1=\"167\" x2=\"86.0\" y2=\"173\"></line><text class=\"num\" x=\"86.0\" y=\"184\">3</text><line class=\"ax\" x1=\"108.0\" y1=\"167\" x2=\"108.0\" y2=\"173\"></line><text class=\"num\" x=\"108.0\" y=\"184\">4</text><line class=\"ax\" x1=\"130.0\" y1=\"167\" x2=\"130.0\" y2=\"173\"></line><text class=\"num\" x=\"130.0\" y=\"184\">5</text><line class=\"ax\" x1=\"152.0\" y1=\"167\" x2=\"152.0\" y2=\"173\"></line><text class=\"num\" x=\"152.0\" y=\"184\">6</text><line class=\"ax\" x1=\"174.0\" y1=\"167\" x2=\"174.0\" y2=\"173\"></line><text class=\"num\" x=\"174.0\" y=\"184\">7</text><line class=\"ax\" x1=\"196.0\" y1=\"167\" x2=\"196.0\" y2=\"173\"></line><text class=\"num\" x=\"196.0\" y=\"184\">8</text><line class=\"ax\" x1=\"218.0\" y1=\"167\" x2=\"218.0\" y2=\"173\"></line><text class=\"num\" x=\"218.0\" y=\"184\">9</text><line class=\"ax\" x1=\"240.0\" y1=\"167\" x2=\"240.0\" y2=\"173\"></line><text class=\"num\" x=\"240.0\" y=\"184\">10</text><line class=\"ax\" x1=\"262.0\" y1=\"167\" x2=\"262.0\" y2=\"173\"></line><text class=\"num\" x=\"262.0\" y=\"184\">11</text><line class=\"ax\" x1=\"284.0\" y1=\"167\" x2=\"284.0\" y2=\"173\"></line><text class=\"num\" x=\"284.0\" y=\"184\">12</text><text class=\"lbl\" x=\"14\" y=\"30\">data 1, 2, 3   (x̄ = 2, σ² = 2/3)</text><text class=\"lbl\" x=\"14\" y=\"130\">data 1, 2, 3   (x̄ = 2, σ² = 2/3)</text><g class=\"sh\"><circle class=\"d1s\" cx=\"42.0\" cy=\"60\" r=\"5\"></circle><circle class=\"d1s\" cx=\"64.0\" cy=\"60\" r=\"5\"></circle><circle class=\"d1s\" cx=\"86.0\" cy=\"60\" r=\"5\"></circle></g><g class=\"s1\"><circle class=\"d2s\" cx=\"42.0\" cy=\"160\" r=\"5\"></circle></g><g class=\"s2\"><circle class=\"d2s\" cx=\"64.0\" cy=\"160\" r=\"5\"></circle></g><g class=\"s3\"><circle class=\"d2s\" cx=\"86.0\" cy=\"160\" r=\"5\"></circle></g><text class=\"t3 fx d5\" x=\"14\" y=\"52\">+4 →  x̄ = 6, σ² = 2/3 (unchanged)</text><text class=\"t2 fx d5\" x=\"14\" y=\"112\">×2 →  x̄ = 4, σ² = 8/3 (×4)</text></svg><div class=\"eq fx d5\"><p><b>Shift (x + a):</b> mean + a, <b>variance unchanged</b> (spread unaffected). <b>Scale (kx):</b> mean × k, variance × <b>k²</b>, SD × |k|.</p><p>Together: for y = ax + b, ȳ = a x̄ + b, σ_y = |a| σ_x. (Examples 13 and 15.)</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .sh{animation:shf 2.2s ease-in-out .6s both}@keyframes shf{from{transform:translateX(0)}to{transform:translateX(88px)}}.pp .s1{animation:sc1 2.2s ease-in-out .6s both}@keyframes sc1{from{transform:translateX(0)}to{transform:translateX(22px)}}.pp .s2{animation:sc2 2.2s ease-in-out .6s both}@keyframes sc2{from{transform:translateX(0)}to{transform:translateX(44px)}}.pp .s3{animation:sc3 2.2s ease-in-out .6s both}@keyframes sc3{from{transform:translateX(0)}to{transform:translateX(66px)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .sh{animation:shf 2.2s ease-in-out .6s both}@keyframes shf{from{transform:translateX(0)}to{transform:translateX(88px)}}.pp .s1{animation:sc1 2.2s ease-in-out .6s both}@keyframes sc1{from{transform:translateX(0)}to{transform:translateX(22px)}}.pp .s2{animation:sc2 2.2s ease-in-out .6s both}@keyframes sc2{from{transform:translateX(0)}to{transform:translateX(44px)}}.pp .s3{animation:sc3 2.2s ease-in-out .6s both}@keyframes sc3{from{transform:translateX(0)}to{transform:translateX(66px)}}"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13: the variance of 20 observations is 5. Each is multiplied by 2. New variance?",
+      "definition": "<span style=\"color:#f08c00\">20</span> (variance × 2² = 5 × 4). SD becomes 2σ",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 15: each observation is increased by a. Effect on variance?",
+      "definition": "<span style=\"color:#f08c00\">None</span>: variance unchanged (mean also shifts by a, so deviations stay the same)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of y = ax + b on mean, variance, SD?",
+      "definition": "<span style=\"color:#3b82f6\">ȳ = a x̄ + b</span>,  <span style=\"color:#3b82f6\">σ_y² = a²σ_x²</span>,  <span style=\"color:#3b82f6\">σ_y = |a|σ_x</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 14: mean of 5 observations is 4.4, variance 8.24; three are 1, 2, 6. Find the others.",
+      "definition": "x + y = 13 and x² + y² = 97 → (x − y)² = 25 → <span style=\"color:#f08c00\">4 and 9</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 16: 100 observations, mean 40 and σ = 5.1, but one value 40 was recorded as 50. Correct mean and σ.",
+      "definition": "Correct sum 4000 − 50 + 40 = 3990 → mean <span style=\"color:#f08c00\">39.9</span>; Σx² = 162601 − 2500 + 1600 = 161701 → σ = <span style=\"color:#f08c00\">5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: correcting a wrong observation.",
+      "definition": "Recompute Σx and Σx² by removing the wrong value and adding the right one: Σx² = n(σ² + x̄²) gives the old sum of squares",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: 8 observations, mean 9, variance 9.25; six are 6, 7, 10, 12, 12, 13. Find the other two.",
+      "definition": "x + y = 12 and x² + y² = 80 → <span style=\"color:#f08c00\">4 and 8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: 7 observations, mean 8, variance 16; five are 2, 4, 10, 12, 14. Find the other two.",
+      "definition": "x + y = 14 and x² + y² = 100 → <span style=\"color:#f08c00\">6 and 8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: mean 8 and SD 4 for six observations, each multiplied by 3. New mean and SD?",
+      "definition": "<span style=\"color:#f08c00\">24</span> and <span style=\"color:#f08c00\">12</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: prove that ax₁, …, axₙ have mean a x̄ and variance a²σ².",
+      "definition": "Mean = Σax/n = a x̄; deviations become a(x − x̄), so squares × a²: variance a²σ² ✓",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: 20 observations, mean 10, σ = 2; one value 8 was wrong. Correct mean and σ if (i) omitted (ii) replaced by 12.",
+      "definition": "(i) 19 values: sum 192, Σx² = 2016 → mean <span style=\"color:#f08c00\">10.11</span>, σ ≈ <span style=\"color:#f08c00\">2.0</span>. (ii) sum 204, Σx² = 2160 → mean <span style=\"color:#f08c00\">10.2</span>, σ ≈ <span style=\"color:#f08c00\">1.99</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q6: 100 observations, mean 20, σ = 3; three incorrect values 21, 21, 18 are omitted. New mean and σ?",
+      "definition": "Sum 2000 − 60 = 1940 over 97 values → mean <span style=\"color:#f08c00\">20</span>; Σx² = 40900 − 1206 = 39694 → σ ≈ <span style=\"color:#f08c00\">3.04</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Coefficient of variation (compare consistency of two data sets)?",
+      "definition": "\\(\\mathrm{C.V.} = \\dfrac{\\sigma}{\\bar{x}}\\times 100\\%\\). The set with the <span style=\"color:#3b82f6\">smaller C.V.</span> is more consistent",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Series A: mean 50, σ = 5. Series B: mean 80, σ = 6. Which is more consistent?",
+      "definition": "C.V.(A) = 10%, C.V.(B) = 7.5% → <span style=\"color:#f08c00\">B</span> is more consistent (its σ is smaller relative to its mean)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Combined mean and variance of two groups (n₁, x̄₁, σ₁²), (n₂, x̄₂, σ₂²)?",
+      "definition": "Combined mean <span style=\"color:#3b82f6\">(n₁x̄₁ + n₂x̄₂)/(n₁ + n₂)</span>. Combined variance <span style=\"color:#3b82f6\">[n₁(σ₁² + d₁²) + n₂(σ₂² + d₂²)]/(n₁ + n₂)</span>, with dᵢ = x̄ᵢ − x̄_combined",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Empirical relation between mean, median, mode?",
+      "definition": "<span style=\"color:#3b82f6\">Mode ≈ 3 Median − 2 Mean</span> (for moderately skewed data)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Weighted mean?",
+      "definition": "\\(\\dfrac{\\sum w_ix_i}{\\sum w_i}\\): e.g. exam components with weights 20%, 30%, 50%",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mean of an A.P. and of the first n natural numbers?",
+      "definition": "The mean of an A.P. is the average of its first and last terms (= the middle term); first n natural numbers: (n + 1)/2",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Sum of squared deviations from a: which a minimises Σ(x − a)²? Which minimises Σ|x − a|?",
+      "definition": "Σ(x − a)² is minimum at <span style=\"color:#3b82f6\">a = mean</span> (and the minimum value is nσ²). Σ|x − a| is minimum at <span style=\"color:#3b82f6\">a = median</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Variance of n identical observations? Of two values a and b?",
+      "definition": "<span style=\"color:#f08c00\">0</span> and <span style=\"color:#f08c00\">((b − a)/2)²</span> (SD = half the difference)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation: Σ(xᵢ − a)² = Σ(xᵢ − x̄)² + n(x̄ − a)². Why useful?",
+      "definition": "It shows the sum of squares about any a exceeds the one about the mean by n(x̄ − a)². Handy for the assumed-mean method and for proving that the mean minimises it",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-beyond-text"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The range of 3, 8, 12, 5, 20, 15 is<br>(a) 12 (b) 17 (c) 20 (d) 3",
+      "definition": "20 − 3 = <span style=\"color:#22a35a\">(b) 17</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The mean deviation about the mean of 2, 4, 6, 8, 10 is<br>(a) 2.4 (b) 2 (c) 3 (d) 6",
+      "definition": "Mean 6; |dev| 4, 2, 0, 2, 4 = 12 → 12/5 = <span style=\"color:#22a35a\">(a) 2.4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The variance of 2, 4, 6, 8, 10 is<br>(a) 6 (b) 8 (c) 10 (d) 40",
+      "definition": "Σ(x − 6)² = 40 → <span style=\"color:#22a35a\">(b) 8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: If the SD of a set is 4, the variance is<br>(a) 2 (b) 4 (c) 8 (d) 16",
+      "definition": "<span style=\"color:#22a35a\">(d) 16</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: If each observation is multiplied by 3, the SD becomes<br>(a) σ (b) 3σ (c) 9σ (d) σ + 3",
+      "definition": "<span style=\"color:#22a35a\">(b) 3σ</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: Each observation is increased by 5. Then the variance<br>(a) increases by 5 (b) increases by 25 (c) is unchanged (d) is multiplied by 5",
+      "definition": "<span style=\"color:#22a35a\">(c)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The standard deviation of the first 10 natural numbers is<br>(a) √8.25 (b) 2.87 (c) 3.03 (d) both (a) and (b)",
+      "definition": "√((100 − 1)/12) = √8.25 ≈ 2.87 → <span style=\"color:#22a35a\">(d)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The sum of deviations of the observations from their mean is<br>(a) always positive (b) always negative (c) zero (d) depends on n",
+      "definition": "<span style=\"color:#22a35a\">(c) zero</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): the variance of the first 10 natural numbers is σ². Find 12σ².",
+      "definition": "σ² = (n² − 1)/12 = 99/12 → 12σ² = <span style=\"color:#f08c00\">99</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: mean of 5 observations is 6 and Σx² = 200. Find 5 × variance.",
+      "definition": "σ² = 200/5 − 36 = 4 → 5σ² = <span style=\"color:#f08c00\">20</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> The standard deviation is never negative.<br><b>R:</b> It is the positive square root of the variance.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> Adding 10 to every observation leaves the standard deviation unchanged.<br><b>R:</b> Dispersion depends only on the deviations from the mean, not on the location of the mean.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: the mean deviation about the mean is always less than or equal to the standard deviation.",
+      "definition": "<span style=\"color:#22a35a\">True</span>: M.D. ≤ σ (by the Cauchy–Schwarz inequality). Equality only if all |deviations| are equal",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find the variance of 5, 12, 3, 18, 45, 9.",
+      "definition": "Sum 92, mean 15.33; Σx² = 2608; σ² = 2608/6 − (15.33)² = 434.67 − 235.11 = <span style=\"color:#f08c00\">≈ 199.6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: two firms: A pays mean ₹520 with σ = ₹100; B pays mean ₹495 with σ = ₹80. Which has more uniform wages?",
+      "definition": "C.V.(A) = 100/520 × 100 ≈ 19.2%; C.V.(B) = 80/495 × 100 ≈ 16.2% → <span style=\"color:#f08c00\">B is more uniform</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: test scores of a class: mean 62, standard deviation 14.18 (Example 10). About which range do most students lie?",
+      "definition": "About x̄ ± σ = <span style=\"color:#f08c00\">47.8 to 76.2</span> (roughly two-thirds of students for bell-shaped data)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-13",
+        "13.z-how-its-asked"
+      ]
+    }
+  ]
+}
