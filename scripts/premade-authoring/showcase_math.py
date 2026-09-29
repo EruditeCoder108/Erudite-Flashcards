@@ -1149,3 +1149,159 @@ def distance_to_line(deck):
           '<p class="no">Trap: the absolute value, and √(A² + B²) not A² + B².</p>',
           'Distance from a point to a line', 'd = |Ax1+By1+C|/√(A²+B²); origin to 3x+4y−10=0 is 2 with foot (6/5, 8/5)',
           vb=f'0 0 300 {h}', hint='Which quantity goes in the numerator?')
+
+
+# ================================================================ Maths 11 Ch 10 Conic sections
+def cone_sections(deck):
+    a = math.radians(28)          # generator angle with the axis
+    def panel(ox, oy, lab, ang_deg, cut_dx, name, cls):
+        """Cone side view (vertex at top), with a cutting-plane line whose angle with the axis is ang_deg."""
+        H, V = 52, 0
+        cx = ox + 60
+        o = (f'<line class="c0" x1="{cx}" y1="{oy}" x2="{cx - H * math.tan(a):.1f}" y2="{oy + H}"></line><line class="c0" x1="{cx}" y1="{oy}" x2="{cx + H * math.tan(a):.1f}" y2="{oy + H}"></line>'
+             f'<line class="c0" x1="{cx}" y1="{oy}" x2="{cx - H * math.tan(a):.1f}" y2="{oy - H}"></line><line class="c0" x1="{cx}" y1="{oy}" x2="{cx + H * math.tan(a):.1f}" y2="{oy - H}"></line>'
+             f'<line class="ghost" x1="{cx}" y1="{oy - H - 6}" x2="{cx}" y2="{oy + H + 6}"></line>')
+        # plane: line through point (cx + cut_dx, oy + 22) making angle ang with the axis (vertical)
+        px, py = cx + cut_dx, oy + 24
+        t = math.radians(ang_deg)
+        dx, dy = math.sin(t) * 50, math.cos(t) * 50
+        o += f'<line class="{cls}" x1="{px - dx:.1f}" y1="{py + dy:.1f}" x2="{px + dx:.1f}" y2="{py - dy:.1f}"></line>'
+        return o
+    front, back = '', ''
+    specs = [(0, 0, 'a', 90, 0, 'Circle', 'c1'), (150, 0, 'b', 62, 0, 'Ellipse', 'c3'), (0, 160, 'c', 28, 6, 'Parabola', 'c4'), (150, 160, 'd', 10, 0, 'Hyperbola', 'c2')]
+    for ox, oy, lab, ang, dx_, name, cls in specs:
+        front += panel(ox, oy + 52, lab, ang, dx_, name, cls)
+        col = {'c1': 't1', 'c3': 't3', 'c4': 't4', 'c2': 't2'}[cls]
+        back += f'<text class="{col} fx d2" x="{ox + 60}" y="{oy + 132}" text-anchor="middle">{name}</text>'
+    conds = ['β = 90°', 'α < β < 90°', 'β = α', 'β < α']
+    for (ox, oy, *_r), c in zip(specs, conds):
+        back += f'<text class="sm fx d3" x="{ox + 60}" y="{oy + 146}" text-anchor="middle">{c}</text>'
+    mcard(deck, 'Conic sections · cone slices', 'A plane cuts a double cone. Name the curve in each of the four cases.', front, back,
+          '<p>α = half-angle of the cone; β = angle the plane makes with the axis.</p>'
+          '<p><b>β = 90°</b> → circle. <b>α &lt; β &lt; 90°</b> → ellipse. <b>β = α</b> (parallel to a generator) → parabola. <b>β &lt; α</b> (cuts both nappes) → hyperbola.</p>'
+          '<p>Through the vertex you get degenerate cases: a point, a line, or a pair of lines.</p>',
+          'Conic sections from a cone: circle, ellipse, parabola, hyperbola', 'Plane at β to the axis of a cone of half-angle α: β=90° circle; α<β<90° ellipse; β=α parabola; β<α hyperbola; through the vertex: point, line, two lines',
+          vb='0 0 300 320', hint='Compare the tilt of the plane with the generator of the cone.')
+
+
+def parabola_focus_directrix(deck):
+    P, h = eqplane(-2.4, 6.2, -4.6, 4.6, pad=(12, 6, 10, 6))
+    base = (P.axes(labels=False) + P.curve(lambda x: math.sqrt(4 * x) if x >= 0 else None, 'c1', 0, 5.8, clip=(-9, 9)) + P.curve(lambda x: -math.sqrt(4 * x) if x >= 0 else None, 'c1', 0, 5.8, clip=(-9, 9)) +
+            P.dot(1, 0, 'd2s', 5) + P.text(1, 0, 'F(a, 0)', 't2', dx=6, dy=16) + P.line(-1, -4.5, -1, 4.5, 'c4') + P.text(-1, 4.2, 'x = −a', 't4', dx=-6, anchor='end'))
+    back = ''
+    for k, (px, py) in enumerate([(1, 2), (4, 4), (2.25, 3)]):
+        py = math.sqrt(4 * px) if k != 2 else 3.0
+        px = py * py / 4
+        back += (P.line(px, py, -1, py, 'c4 fx d' + str(k + 2)) + P.line(px, py, 1, 0, 'c2 fx d' + str(k + 2)) + P.dot(px, py, 'd1s', 4.5, 'fx d' + str(k + 2)))
+    mcard(deck, 'Parabola · focus and directrix', 'y² = 4ax with a = 1. For any point P on it compare PF (to the focus) with the perpendicular PD to the directrix.', base, back,
+          '<p><b>PF = PD</b> for every point (red = orange in length). That is the definition.</p>'
+          '<p>Derivation: √((x − a)² + y²) = x + a ⇒ <b>y² = 4ax</b>. The vertex is midway between focus and directrix; latus rectum <b>4a</b>.</p>',
+          'Parabola: every point is equidistant from focus and directrix', 'Parabola y²=4ax: PF = PD for all P; focus (a,0), directrix x=−a, vertex origin, latus rectum 4a',
+          vb=f'0 0 300 {h}', hint='Measure from P to F and from P to the line.')
+
+
+def ellipse_string(deck):
+    P, h = eqplane(-6.4, 6.4, -3.8, 3.8, pad=(8, 6, 8, 6))
+    base = (P.axes(labels=False) + P.curve(lambda x: 3 * math.sqrt(max(0, 1 - x * x / 25)), 'c1', -5, 5, clip=(-9, 9), n=200) +
+            P.curve(lambda x: -3 * math.sqrt(max(0, 1 - x * x / 25)), 'c1', -5, 5, clip=(-9, 9), n=200) +
+            P.dot(-4, 0, 'd2s', 5) + P.dot(4, 0, 'd2s', 5) + P.text(-4, 0, 'F₁', 't2', dx=-6, dy=16, anchor='end') + P.text(4, 0, 'F₂', 't2', dx=6, dy=16))
+    back = ''
+    for k, (px, py, d1, d2) in enumerate([(0, 3, 5, 5), (3, 2.4, 7.4, 2.6), (-5, 0, 1, 9)]):
+        back += (P.line(px, py, -4, 0, 'c3 fx d' + str(k + 2)) + P.line(px, py, 4, 0, 'c4 fx d' + str(k + 2)) + P.dot(px, py, 'd1s', 4.5, 'fx d' + str(k + 2)))
+    lab = (P.text(0.2, 3, '5 + 5', 't3 fx d2', dx=6, dy=-8) + P.text(3, 2.4, '7.4 + 2.6', 't3 fx d3', dx=6, dy=-8) + P.text(-5, 0, '1 + 9', 't3 fx d4', dx=8, dy=-8))
+    mcard(deck, 'Ellipse · sum of distances', 'x²/25 + y²/9 = 1 has foci (±4, 0). Check PF₁ + PF₂ at (0, 3), (3, 2.4) and (−5, 0).', base, back + lab,
+          '<p>Every point gives the <b>same sum 10 = 2a</b>: a piece of string of length 2a pinned at the foci traces the ellipse.</p>'
+          '<p>Relation: <b>c² = a² − b²</b>, here 16 = 25 − 9. Eccentricity e = c/a = 4/5 (&lt; 1). The sum must exceed the distance between the foci (2c = 8).</p>',
+          'Ellipse: PF1 + PF2 = 2a', 'Ellipse x²/25+y²/9=1: foci (±4,0), PF1+PF2 = 10 = 2a at every point; c² = a² − b², e = c/a = 4/5',
+          vb=f'0 0 300 {h}', hint='Add the two focal distances at three points.')
+
+
+def hyperbola_difference(deck):
+    P, h = eqplane(-8.6, 8.6, -6.4, 6.4, pad=(8, 6, 8, 6))
+    f = lambda x: 4 * math.sqrt(max(0, x * x / 9 - 1))
+    base = (P.axes(labels=False) + P.curve(f, 'c1', 3, 8.4, clip=(-9, 9), n=200) + P.curve(lambda x: -f(x), 'c1', 3, 8.4, clip=(-9, 9), n=200) +
+            P.curve(f, 'c1', -8.4, -3, clip=(-9, 9), n=200) + P.curve(lambda x: -f(x), 'c1', -8.4, -3, clip=(-9, 9), n=200) +
+            P.line(-8, -32 / 3, 8, 32 / 3, 'guide') + P.line(-8, 32 / 3, 8, -32 / 3, 'guide') +
+            P.dot(-5, 0, 'd2s', 5) + P.dot(5, 0, 'd2s', 5) + P.text(5, 0, 'F₂', 't2', dx=6, dy=16) + P.text(-5, 0, 'F₁', 't2', dx=-6, dy=16, anchor='end'))
+    back = ''
+    for k, (px, py) in enumerate([(3, 0), (5, 16 / 3)]):
+        back += (P.line(px, py, -5, 0, 'c3 fx d' + str(k + 2)) + P.line(px, py, 5, 0, 'c4 fx d' + str(k + 2)) + P.dot(px, py, 'd1s', 4.5, 'fx d' + str(k + 2)))
+    back += P.text(5, 16 / 3, '11.33 − 5.33 = 6', 't3 fx d3', dx=-8, dy=-8, anchor='end') + P.text(3, 0, '8 − 2 = 6', 't3 fx d2', dx=8, dy=-8)
+    mcard(deck, 'Hyperbola · difference of distances', 'x²/9 − y²/16 = 1 has foci (±5, 0). Find |PF₁ − PF₂| at (3, 0) and (5, 16/3).', base, back,
+          '<p>The <b>difference is constant = 2a = 6</b> at every point (farther minus nearer).</p>'
+          '<p>Relation: <b>c² = a² + b²</b> (25 = 9 + 16), e = c/a = 5/3 &gt; 1. The dashed lines y = ±(b/a)x are the asymptotes.</p>',
+          'Hyperbola: |PF1 − PF2| = 2a', 'Hyperbola x²/9−y²/16=1: foci (±5,0), |PF1−PF2| = 6 = 2a; c² = a² + b²; e = 5/3; asymptotes y = ±(4/3)x',
+          vb=f'0 0 300 {h}', hint='Farther distance minus nearer distance.')
+
+
+def eccentricity_line(deck):
+    X = lambda e: 16 + e * 64
+    zones = ('<rect class="ns1" x="16" y="56" width="4" height="26"></rect>'
+             f'<rect class="ns3 fx d2" x="20" y="56" width="{X(1) - 20:.1f}" height="26"></rect>'
+             f'<rect class="ns2 fx d3" x="{X(1) + 3:.1f}" y="56" width="{X(4) - X(1) - 3:.1f}" height="26"></rect>')
+    axis = ('<line class="ax" x1="10" y1="82" x2="290" y2="82" marker-end="url(#pk)"></line>'
+            + ''.join(f'<line class="ax" x1="{X(e):.1f}" y1="78" x2="{X(e):.1f}" y2="86"></line><text class="num" x="{X(e):.1f}" y="100">{e}</text>' for e in (0, 1, 2, 3)))
+    labs = ('<text class="t1 fx d1" x="16" y="46">e = 0 circle</text><text class="t3 fx d2" x="80" y="72">ellipse</text>'
+            f'<text class="t4 fx d3" x="{X(1) - 6:.1f}" y="46" text-anchor="middle">e = 1 parabola</text><text class="t2 fx d3" x="{X(2):.1f}" y="72" text-anchor="middle">hyperbola  e &gt; 1</text>')
+    mcard(deck, 'Eccentricity · the whole family', 'Place the circle, ellipse, parabola and hyperbola on an eccentricity scale.', axis, zones + labs,
+          '<p><b>e = c/a</b> measures how stretched the curve is. <b>e = 0</b> circle (foci coincide). <b>0 &lt; e &lt; 1</b> ellipse. <b>e = 1</b> parabola. <b>e &gt; 1</b> hyperbola.</p>'
+          '<p>Unified definition: distance to the focus = e × distance to the directrix.</p>',
+          'Eccentricity: circle 0, ellipse <1, parabola 1, hyperbola >1', 'e=0 circle, 0<e<1 ellipse, e=1 parabola, e>1 hyperbola; PF = e·PD for a conic with focus and directrix',
+          vb='0 0 300 120', hint='What is c/a for each curve?')
+
+
+def abc_triangles(deck):
+    def tri(ox, oy, p, q, r, labs, cls):
+        s = 22
+        x0, y0 = ox, oy
+        return (f'<polygon class="{cls}" points="{x0},{y0} {x0 + q * s},{y0} {x0 + q * s},{y0 - p * s}"></polygon>'
+                f'<text class="lbl" x="{x0 + q * s / 2}" y="{y0 + 14}" text-anchor="middle">{labs[1]}</text>'
+                f'<text class="lbl" x="{x0 + q * s + 6}" y="{y0 - p * s / 2}">{labs[0]}</text>'
+                f'<text class="t2" x="{x0 + q * s / 2 - 14}" y="{y0 - p * s / 2 - 6}" text-anchor="middle">{labs[2]}</text>')
+    base = ('<text class="sm" x="80" y="30" text-anchor="middle">Ellipse</text><text class="sm" x="225" y="30" text-anchor="middle">Hyperbola</text>')
+    back = (tri(30, 130, 3, 4, 5, ('b = 3', 'c = 4', 'a = 5'), 'f3 fx d2') + tri(170, 130, 4, 3, 5, ('b = 4', 'a = 3', 'c = 5'), 'f2 fx d3') +
+            '<text class="t3 fx d2" x="80" y="168" text-anchor="middle">a² = b² + c²</text><text class="t2 fx d3" x="225" y="168" text-anchor="middle">c² = a² + b²</text>')
+    mcard(deck, 'Conics · which is the hypotenuse?', 'Ellipse: a² = b² + c². Hyperbola: c² = a² + b². Draw a right triangle for each with the numbers 3, 4, 5.', base, back,
+          '<p>Ellipse: the <b>semi-major axis a</b> is the hypotenuse (a is the largest): 5² = 3² + 4², e = c/a = 4/5.</p>'
+          '<p>Hyperbola: the <b>focal distance c</b> is the hypotenuse (c is the largest): 5² = 3² + 4², e = c/a = 5/3.</p>'
+          '<p>Memory: in both, the biggest of a, c is the hypotenuse, and b is the leftover leg.</p>',
+          'a, b, c triangles for ellipse and hyperbola', 'Ellipse a²=b²+c² (a hypotenuse, e=c/a<1); hyperbola c²=a²+b² (c hypotenuse, e=c/a>1)',
+          vb='0 0 300 180', hint='Which of a, c is the largest in each conic?')
+
+
+def parabola_reflector(deck):
+    P, h = eqplane(-0.4, 6.2, -3.8, 3.8, pad=(10, 6, 10, 6))
+    base = (P.axes(labels=False) + P.curve(lambda x: 2 * math.sqrt(x) if x >= 0 else None, 'c1', 0, 3.4, clip=(-9, 9), n=160) +
+            P.curve(lambda x: -2 * math.sqrt(x) if x >= 0 else None, 'c1', 0, 3.4, clip=(-9, 9), n=160) + P.dot(1, 0, 'd2s', 5) + P.text(1, 0, 'F', 't2', dx=6, dy=16))
+    back = ''
+    for k, y in enumerate([2.6, 1.6, 0.8, -0.8, -1.6, -2.6]):
+        x = y * y / 4
+        dl = 'fx d' + str(2 + k % 3)
+        back += P.line(6, y, x, y, 'c4 ' + dl) + P.line(x, y, 1, 0, 'c2 ' + dl) + P.dot(x, y, 'd1s', 3.5, dl)
+    mcard(deck, 'Parabola · reflecting property', 'Rays parallel to the axis hit the parabola y² = 4x. Where do they go after reflecting?', base, back,
+          '<p>All reflect through the <b>focus</b>. Reversed, a source at the focus sends a parallel beam: headlights and torches. Incoming parallel signals concentrate at the focus: satellite dishes, telescopes, solar cookers.</p>'
+          '<p>Example 17: focus 5 cm from the vertex, mirror 45 cm deep: y² = 20x, at x = 45, y = ±30, so AB = <b>60 cm</b>.</p>',
+          'Reflecting property of the parabola', 'Rays parallel to the axis of a parabola reflect through the focus; used in headlights, dishes, telescopes; y²=20x at depth 45 gives width 60',
+          vb=f'0 0 300 {h}', hint='Where would all the rays meet?')
+
+
+def ladder_ellipse(deck):
+    P, h = eqplane(-1, 16, -1, 15.5, pad=(8, 6, 8, 8))
+    base = (P.axes(labels=False) + P.line(15, 0, 0, 0, 'c0'))
+    curve = ''.join(P.line(9 * math.cos(math.radians(t)), 6 * math.sin(math.radians(t)), 9 * math.cos(math.radians(t + 3)), 6 * math.sin(math.radians(t + 3)), 'c1') for t in range(0, 360, 3))
+    quarter = ''.join(P.line(9 * math.cos(math.radians(t)), 6 * math.sin(math.radians(t)), 9 * math.cos(math.radians(t + 3)), 6 * math.sin(math.radians(t + 3)), 'c1') for t in range(0, 90, 3))
+    back = quarter
+    for k, th in enumerate([25, 45, 70]):
+        t = math.radians(th)
+        A = (15 * math.cos(t) - 0, 0)
+        A = (15 * math.cos(t), 0)
+        B = (0, 15 * math.sin(t))
+        Px, Py = 9 * math.cos(t), 6 * math.sin(t)
+        # rod from A(x-axis) to B(y-axis); P is 6 from A: A + 6*(B-A)/15
+        Px, Py = A[0] + 6 * (B[0] - A[0]) / 15, 6 * B[1] / 15
+        back += P.line(A[0], 0, 0, B[1], 'c3 fx d' + str(k + 2)) + P.dot(Px, Py, 'd2s', 4, 'fx d' + str(k + 2))
+    mcard(deck, 'Locus · sliding rod (Example 19)', 'A rod AB of length 15 slides with A on the x-axis and B on the y-axis. P is on it with AP = 6. Find the path of P.', '', back + P.axes(labels=False),
+          '<p>If AB makes angle θ with OX: <b>x = PB cos θ = 9cos θ</b> and <b>y = AP sin θ = 6 sin θ</b>. Eliminating θ: <b>x²/81 + y²/36 = 1</b>, an ellipse.</p>'
+          '<p>Only when P is the midpoint (AP = PB) does it become a circle. Each end of the rod traces a line; an interior point traces an ellipse.</p>',
+          'Sliding ladder: an interior point traces an ellipse', 'Rod of length 15 with AP=6, PB=9 sliding on the axes: P=(9cosθ, 6sinθ), so x²/81 + y²/36 = 1, an ellipse',
+          vb=f'0 0 300 {h}', hint='Express x and y using the angle the rod makes with the axis.')

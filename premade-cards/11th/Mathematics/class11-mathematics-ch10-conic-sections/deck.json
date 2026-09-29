@@ -1,0 +1,1564 @@
+{
+  "version": 1,
+  "name": "Chapter 10: Conic Sections",
+  "className": "Class 11",
+  "description": "Cone sections, circle, parabola, ellipse, hyperbola: definitions, standard equations, eccentricity, latus rectum, applications and exam patterns.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Why are circles, ellipses, parabolas and hyperbolas called conic sections?",
+      "definition": "They are the curves obtained by <span style=\"color:#3b82f6\">cutting a double-napped right circular cone with a plane</span>. Named by Apollonius",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.2-cone-sections"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Conic sections from a cone: circle, ellipse, parabola, hyperbola",
+      "definition": "Plane at β to the axis of a cone of half-angle α: β=90° circle; α<β<90° ellipse; β=α parabola; β<α hyperbola; through the vertex: point, line, two lines",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Conic sections · cone slices</p><h2>A plane cuts a double cone. Name the curve in each of the four cases.</h2><svg viewBox=\"0 0 300 320\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"c0\" x1=\"60\" y1=\"52\" x2=\"32.4\" y2=\"104\"></line><line class=\"c0\" x1=\"60\" y1=\"52\" x2=\"87.6\" y2=\"104\"></line><line class=\"c0\" x1=\"60\" y1=\"52\" x2=\"32.4\" y2=\"0\"></line><line class=\"c0\" x1=\"60\" y1=\"52\" x2=\"87.6\" y2=\"0\"></line><line class=\"ghost\" x1=\"60\" y1=\"-6\" x2=\"60\" y2=\"110\"></line><line class=\"c1\" x1=\"10.0\" y1=\"76.0\" x2=\"110.0\" y2=\"76.0\"></line><line class=\"c0\" x1=\"210\" y1=\"52\" x2=\"182.4\" y2=\"104\"></line><line class=\"c0\" x1=\"210\" y1=\"52\" x2=\"237.6\" y2=\"104\"></line><line class=\"c0\" x1=\"210\" y1=\"52\" x2=\"182.4\" y2=\"0\"></line><line class=\"c0\" x1=\"210\" y1=\"52\" x2=\"237.6\" y2=\"0\"></line><line class=\"ghost\" x1=\"210\" y1=\"-6\" x2=\"210\" y2=\"110\"></line><line class=\"c3\" x1=\"165.9\" y1=\"99.5\" x2=\"254.1\" y2=\"52.5\"></line><line class=\"c0\" x1=\"60\" y1=\"212\" x2=\"32.4\" y2=\"264\"></line><line class=\"c0\" x1=\"60\" y1=\"212\" x2=\"87.6\" y2=\"264\"></line><line class=\"c0\" x1=\"60\" y1=\"212\" x2=\"32.4\" y2=\"160\"></line><line class=\"c0\" x1=\"60\" y1=\"212\" x2=\"87.6\" y2=\"160\"></line><line class=\"ghost\" x1=\"60\" y1=\"154\" x2=\"60\" y2=\"270\"></line><line class=\"c4\" x1=\"42.5\" y1=\"280.1\" x2=\"89.5\" y2=\"191.9\"></line><line class=\"c0\" x1=\"210\" y1=\"212\" x2=\"182.4\" y2=\"264\"></line><line class=\"c0\" x1=\"210\" y1=\"212\" x2=\"237.6\" y2=\"264\"></line><line class=\"c0\" x1=\"210\" y1=\"212\" x2=\"182.4\" y2=\"160\"></line><line class=\"c0\" x1=\"210\" y1=\"212\" x2=\"237.6\" y2=\"160\"></line><line class=\"ghost\" x1=\"210\" y1=\"154\" x2=\"210\" y2=\"270\"></line><line class=\"c2\" x1=\"201.3\" y1=\"285.2\" x2=\"218.7\" y2=\"186.8\"></line></svg><p class=\"hint\">Compare the tilt of the plane with the generator of the cone.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Conic sections · cone slices</p><h2>A plane cuts a double cone. Name the curve in each of the four cases.</h2><svg viewBox=\"0 0 300 320\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"c0\" x1=\"60\" y1=\"52\" x2=\"32.4\" y2=\"104\"></line><line class=\"c0\" x1=\"60\" y1=\"52\" x2=\"87.6\" y2=\"104\"></line><line class=\"c0\" x1=\"60\" y1=\"52\" x2=\"32.4\" y2=\"0\"></line><line class=\"c0\" x1=\"60\" y1=\"52\" x2=\"87.6\" y2=\"0\"></line><line class=\"ghost\" x1=\"60\" y1=\"-6\" x2=\"60\" y2=\"110\"></line><line class=\"c1\" x1=\"10.0\" y1=\"76.0\" x2=\"110.0\" y2=\"76.0\"></line><line class=\"c0\" x1=\"210\" y1=\"52\" x2=\"182.4\" y2=\"104\"></line><line class=\"c0\" x1=\"210\" y1=\"52\" x2=\"237.6\" y2=\"104\"></line><line class=\"c0\" x1=\"210\" y1=\"52\" x2=\"182.4\" y2=\"0\"></line><line class=\"c0\" x1=\"210\" y1=\"52\" x2=\"237.6\" y2=\"0\"></line><line class=\"ghost\" x1=\"210\" y1=\"-6\" x2=\"210\" y2=\"110\"></line><line class=\"c3\" x1=\"165.9\" y1=\"99.5\" x2=\"254.1\" y2=\"52.5\"></line><line class=\"c0\" x1=\"60\" y1=\"212\" x2=\"32.4\" y2=\"264\"></line><line class=\"c0\" x1=\"60\" y1=\"212\" x2=\"87.6\" y2=\"264\"></line><line class=\"c0\" x1=\"60\" y1=\"212\" x2=\"32.4\" y2=\"160\"></line><line class=\"c0\" x1=\"60\" y1=\"212\" x2=\"87.6\" y2=\"160\"></line><line class=\"ghost\" x1=\"60\" y1=\"154\" x2=\"60\" y2=\"270\"></line><line class=\"c4\" x1=\"42.5\" y1=\"280.1\" x2=\"89.5\" y2=\"191.9\"></line><line class=\"c0\" x1=\"210\" y1=\"212\" x2=\"182.4\" y2=\"264\"></line><line class=\"c0\" x1=\"210\" y1=\"212\" x2=\"237.6\" y2=\"264\"></line><line class=\"c0\" x1=\"210\" y1=\"212\" x2=\"182.4\" y2=\"160\"></line><line class=\"c0\" x1=\"210\" y1=\"212\" x2=\"237.6\" y2=\"160\"></line><line class=\"ghost\" x1=\"210\" y1=\"154\" x2=\"210\" y2=\"270\"></line><line class=\"c2\" x1=\"201.3\" y1=\"285.2\" x2=\"218.7\" y2=\"186.8\"></line><text class=\"t1 fx d2\" x=\"60\" y=\"132\" text-anchor=\"middle\">Circle</text><text class=\"t3 fx d2\" x=\"210\" y=\"132\" text-anchor=\"middle\">Ellipse</text><text class=\"t4 fx d2\" x=\"60\" y=\"292\" text-anchor=\"middle\">Parabola</text><text class=\"t2 fx d2\" x=\"210\" y=\"292\" text-anchor=\"middle\">Hyperbola</text><text class=\"sm fx d3\" x=\"60\" y=\"146\" text-anchor=\"middle\">β = 90°</text><text class=\"sm fx d3\" x=\"210\" y=\"146\" text-anchor=\"middle\">α < β < 90°</text><text class=\"sm fx d3\" x=\"60\" y=\"306\" text-anchor=\"middle\">β = α</text><text class=\"sm fx d3\" x=\"210\" y=\"306\" text-anchor=\"middle\">β < α</text></svg><div class=\"eq fx d5\"><p>α = half-angle of the cone; β = angle the plane makes with the axis.</p><p><b>β = 90°</b> → circle. <b>α &lt; β &lt; 90°</b> → ellipse. <b>β = α</b> (parallel to a generator) → parabola. <b>β &lt; α</b> (cuts both nappes) → hyperbola.</p><p>Through the vertex you get degenerate cases: a point, a line, or a pair of lines.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.2-cone-sections"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cone terms: vertex, axis, generator, nappes, α, β.",
+      "definition": "Vertex V; axis l (fixed line); generator m (rotating line inclined at α to the axis); the vertex splits the cone into two <span style=\"color:#3b82f6\">nappes</span>; β = angle of the cutting plane with the axis",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.2-cone-sections"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Degenerate conics (plane through the vertex)?",
+      "definition": "α < β ≤ 90°: a <span style=\"color:#3b82f6\">point</span>. β = α: a <span style=\"color:#3b82f6\">straight line</span> (degenerate parabola). 0 ≤ β < α: a <span style=\"color:#3b82f6\">pair of intersecting lines</span> (degenerate hyperbola)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.2-cone-sections"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define a circle.",
+      "definition": "The set of all points of a plane <span style=\"color:#3b82f6\">equidistant from a fixed point</span> (centre); the common distance is the radius",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Equation of a circle with centre (h, k) and radius r?",
+      "definition": "\\((x - h)^2 + (y - k)^2 = r^2\\). Centre at the origin: x² + y² = r²",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 2: circle with centre (−3, 2) and radius 4.",
+      "definition": "<span style=\"color:#f08c00\">(x + 3)² + (y − 2)² = 16</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "General equation of a circle? Its centre and radius?",
+      "definition": "\\(x^2 + y^2 + 2gx + 2fy + c = 0\\): centre <span style=\"color:#3b82f6\">(−g, −f)</span>, radius <span style=\"color:#3b82f6\">√(g² + f² − c)</span> (real only if g² + f² − c > 0)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conditions for Ax² + Bxy + Cy² + Dx + Ey + F = 0 to be a circle?",
+      "definition": "<span style=\"color:#3b82f6\">A = C ≠ 0 and B = 0</span> (then divide by A). Also need positive radius²",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 3: centre and radius of x² + y² + 8x + 10y − 8 = 0.",
+      "definition": "Complete squares: (x + 4)² + (y + 5)² = 49 → centre <span style=\"color:#f08c00\">(−4, −5)</span>, radius <span style=\"color:#f08c00\">7</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: centre and radius from a general equation.",
+      "definition": "Group x and y terms, <span style=\"color:#3b82f6\">complete the square</span> on each, move constants right. (Or use (−g, −f) and √(g² + f² − c).) Check the coefficients of x² and y² are 1 first",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q1–5: circles with centre (0, 2) r = 2; (−2, 3) r = 4; (1/2, 1/4) r = 1/12; (1, 1) r = √2; (−a, −b) r = √(a² − b²).",
+      "definition": "x² + (y − 2)² = 4;  (x + 2)² + (y − 3)² = 16;  (x − ½)² + (y − ¼)² = 1/144;  (x − 1)² + (y − 1)² = 2;  (x + a)² + (y + b)² = a² − b²",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q6–7: centre and radius of (x + 5)² + (y − 3)² = 36 and x² + y² − 4x − 8y − 45 = 0.",
+      "definition": "<span style=\"color:#f08c00\">(−5, 3), r = 6</span>;  (x − 2)² + (y − 4)² = 65 → <span style=\"color:#f08c00\">(2, 4), r = √65</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q8–9: centre and radius of x² + y² − 8x + 10y − 12 = 0 and 2x² + 2y² − x = 0.",
+      "definition": "<span style=\"color:#f08c00\">(4, −5), r = √53</span>;  x² + y² − x/2 = 0 → <span style=\"color:#f08c00\">(¼, 0), r = ¼</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 4: circle through (2, −2) and (3, 4) with centre on x + y = 2.",
+      "definition": "Equate the two squared radii and use h + k = 2: h = 0.7, k = 1.3, r² = 12.58 → <span style=\"color:#f08c00\">(x − 0.7)² + (y − 1.3)² = 12.58</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: circle through two points with centre on a line.",
+      "definition": "Let the centre be (h, k). Use <span style=\"color:#3b82f6\">equal distance to both points</span> (or the perpendicular bisector of the chord) together with the line equation; solve for h, k; then r² = distance²",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q10: circle through (4, 1), (6, 5) with centre on 4x + y = 16.",
+      "definition": "Centre (h, 16 − 4h): equal distances give h = 3, k = 4, r² = 10 → <span style=\"color:#f08c00\">(x − 3)² + (y − 4)² = 10</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q11: circle through (2, 3), (−1, 1) with centre on x − 3y = 11.",
+      "definition": "Centre (3k + 11, k): k = −5/2, h = 7/2, r² = 65/2 → <span style=\"color:#f08c00\">(x − 7/2)² + (y + 5/2)² = 65/2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q12: radius 5, centre on the x-axis, through (2, 3).",
+      "definition": "(2 − h)² + 9 = 25 → h = 6 or −2: <span style=\"color:#f08c00\">(x − 6)² + y² = 25</span> or <span style=\"color:#f08c00\">(x + 2)² + y² = 25</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q13: circle through the origin with intercepts a and b on the axes.",
+      "definition": "<span style=\"color:#f08c00\">x² + y² − ax − by = 0</span> (centre (a/2, b/2))",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q14: centre (2, 2), through (4, 5).",
+      "definition": "r² = 4 + 9 = 13 → <span style=\"color:#f08c00\">(x − 2)² + (y − 2)² = 13</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.1 Q15: is (−2.5, 3.5) inside, outside or on x² + y² = 25?",
+      "definition": "6.25 + 12.25 = 18.5 < 25 → <span style=\"color:#f08c00\">inside</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Point versus circle: how do you decide inside/on/outside?",
+      "definition": "Compute S = x₁² + y₁² + 2gx₁ + 2fy₁ + c. <span style=\"color:#3b82f6\">S < 0 inside; S = 0 on; S > 0 outside</span> (equivalent to comparing distance from the centre with r)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Circle with diameter endpoints (x₁, y₁) and (x₂, y₂)?",
+      "definition": "<span style=\"color:#3b82f6\">(x − x₁)(x − x₂) + (y − y₁)(y − y₂) = 0</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Circle through three non-collinear points: method?",
+      "definition": "Put the three points into x² + y² + 2gx + 2fy + c = 0 to get three linear equations in g, f, c and solve",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Tangent condition: the line y = mx + c touches x² + y² = r² when?",
+      "definition": "\\(c^2 = r^2(1 + m^2)\\) (distance from the centre to the line equals r)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.3-circle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define a parabola.",
+      "definition": "The set of points equidistant from a fixed <span style=\"color:#3b82f6\">line (directrix)</span> and a fixed <span style=\"color:#3b82f6\">point (focus)</span> not on the line",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Degenerate parabola?",
+      "definition": "If the focus lies on the directrix, the locus is the <span style=\"color:#e5484d\">straight line through the focus perpendicular to the directrix</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Axis and vertex of a parabola?",
+      "definition": "Axis: the line through the focus perpendicular to the directrix. Vertex: where the parabola meets its axis (midpoint of focus and directrix)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Parabola: every point is equidistant from focus and directrix",
+      "definition": "Parabola y²=4ax: PF = PD for all P; focus (a,0), directrix x=−a, vertex origin, latus rectum 4a",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Parabola · focus and directrix</p><h2>y² = 4ax with a = 1. For any point P on it compare PF (to the focus) with the perpendicular PD to the directrix.</h2><svg viewBox=\"0 0 300 309\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"12.0\" y1=\"154.7\" x2=\"290.0\" y2=\"154.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"89.6\" y1=\"303.4\" x2=\"89.6\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"89.6,154.7 90.8,142.4 91.9,137.3 93.1,133.4 94.3,130.1 95.4,127.2 96.6,124.5 97.8,122.1 99.0,119.9 100.1,117.8 101.3,115.8 102.5,113.9 103.6,112.1 104.8,110.3 106.0,108.6 107.2,107.0 108.3,105.5 109.5,103.9 110.7,102.5 111.8,101.0 113.0,99.6 114.2,98.3 115.4,97.0 116.5,95.7 117.7,94.4 118.9,93.2 120.0,91.9 121.2,90.7 122.4,89.6 123.6,88.4 124.7,87.3 125.9,86.2 127.1,85.1 128.3,84.0 129.4,82.9 130.6,81.9 131.8,80.8 132.9,79.8 134.1,78.8 135.3,77.8 136.5,76.8 137.6,75.9 138.8,74.9 140.0,74.0 141.1,73.0 142.3,72.1 143.5,71.2 144.7,70.3 145.8,69.4 147.0,68.5 148.2,67.7 149.3,66.8 150.5,65.9 151.7,65.1 152.9,64.2 154.0,63.4 155.2,62.6 156.4,61.8 157.5,61.0 158.7,60.1 159.9,59.4 161.1,58.6 162.2,57.8 163.4,57.0 164.6,56.2 165.7,55.5 166.9,54.7 168.1,53.9 169.3,53.2 170.4,52.4 171.6,51.7 172.8,51.0 174.0,50.3 175.1,49.5 176.3,48.8 177.5,48.1 178.6,47.4 179.8,46.7 181.0,46.0 182.2,45.3 183.3,44.6 184.5,43.9 185.7,43.2 186.8,42.6 188.0,41.9 189.2,41.2 190.4,40.5 191.5,39.9 192.7,39.2 193.9,38.6 195.0,37.9 196.2,37.3 197.4,36.6 198.6,36.0 199.7,35.4 200.9,34.7 202.1,34.1 203.2,33.5 204.4,32.8 205.6,32.2 206.8,31.6 207.9,31.0 209.1,30.4 210.3,29.8 211.4,29.2 212.6,28.6 213.8,28.0 215.0,27.4 216.1,26.8 217.3,26.2 218.5,25.6 219.7,25.0 220.8,24.4 222.0,23.8 223.2,23.3 224.3,22.7 225.5,22.1 226.7,21.6 227.9,21.0 229.0,20.4 230.2,19.9 231.4,19.3 232.5,18.7 233.7,18.2 234.9,17.6 236.1,17.1 237.2,16.5 238.4,16.0 239.6,15.4 240.7,14.9 241.9,14.4 243.1,13.8 244.3,13.3 245.4,12.7 246.6,12.2 247.8,11.7 248.9,11.1 250.1,10.6 251.3,10.1 252.5,9.6 253.6,9.1 254.8,8.5 256.0,8.0 257.1,7.5 258.3,7.0 259.5,6.5 260.7,6.0 261.8,5.5 263.0,4.9 264.2,4.4 265.4,3.9 266.5,3.4 267.7,2.9 268.9,2.4 270.0,1.9 271.2,1.4 272.4,1.0 273.6,0.5 274.7,-0.0 275.9,-0.5 277.1,-1.0\"></polyline><polyline class=\"c1\"  points=\"89.6,154.7 90.8,167.0 91.9,172.1 93.1,176.0 94.3,179.3 95.4,182.2 96.6,184.8 97.8,187.3 99.0,189.5 100.1,191.6 101.3,193.6 102.5,195.5 103.6,197.3 104.8,199.1 106.0,200.8 107.2,202.4 108.3,203.9 109.5,205.4 110.7,206.9 111.8,208.4 113.0,209.7 114.2,211.1 115.4,212.4 116.5,213.7 117.7,215.0 118.9,216.2 120.0,217.5 121.2,218.7 122.4,219.8 123.6,221.0 124.7,222.1 125.9,223.2 127.1,224.3 128.3,225.4 129.4,226.5 130.6,227.5 131.8,228.6 132.9,229.6 134.1,230.6 135.3,231.6 136.5,232.5 137.6,233.5 138.8,234.5 140.0,235.4 141.1,236.3 142.3,237.3 143.5,238.2 144.7,239.1 145.8,240.0 147.0,240.9 148.2,241.7 149.3,242.6 150.5,243.5 151.7,244.3 152.9,245.2 154.0,246.0 155.2,246.8 156.4,247.6 157.5,248.4 158.7,249.2 159.9,250.0 161.1,250.8 162.2,251.6 163.4,252.4 164.6,253.2 165.7,253.9 166.9,254.7 168.1,255.5 169.3,256.2 170.4,256.9 171.6,257.7 172.8,258.4 174.0,259.1 175.1,259.9 176.3,260.6 177.5,261.3 178.6,262.0 179.8,262.7 181.0,263.4 182.2,264.1 183.3,264.8 184.5,265.5 185.7,266.2 186.8,266.8 188.0,267.5 189.2,268.2 190.4,268.8 191.5,269.5 192.7,270.2 193.9,270.8 195.0,271.5 196.2,272.1 197.4,272.8 198.6,273.4 199.7,274.0 200.9,274.7 202.1,275.3 203.2,275.9 204.4,276.6 205.6,277.2 206.8,277.8 207.9,278.4 209.1,279.0 210.3,279.6 211.4,280.2 212.6,280.8 213.8,281.4 215.0,282.0 216.1,282.6 217.3,283.2 218.5,283.8 219.7,284.4 220.8,285.0 222.0,285.5 223.2,286.1 224.3,286.7 225.5,287.3 226.7,287.8 227.9,288.4 229.0,289.0 230.2,289.5 231.4,290.1 232.5,290.7 233.7,291.2 234.9,291.8 236.1,292.3 237.2,292.9 238.4,293.4 239.6,294.0 240.7,294.5 241.9,295.0 243.1,295.6 244.3,296.1 245.4,296.7 246.6,297.2 247.8,297.7 248.9,298.2 250.1,298.8 251.3,299.3 252.5,299.8 253.6,300.3 254.8,300.9 256.0,301.4 257.1,301.9 258.3,302.4 259.5,302.9 260.7,303.4 261.8,303.9 263.0,304.4 264.2,305.0 265.4,305.5 266.5,306.0 267.7,306.5 268.9,307.0 270.0,307.5 271.2,307.9 272.4,308.4 273.6,308.9 274.7,309.4 275.9,309.9 277.1,310.4\"></polyline><circle class=\"d2s \" cx=\"121.9\" cy=\"154.7\" r=\"5\"></circle><text class=\"t2 \" x=\"127.9\" y=\"170.7\" text-anchor=\"start\">F(a, 0)</text><line class=\"c4\" x1=\"57.3\" y1=\"300.2\" x2=\"57.3\" y2=\"9.2\"></line><text class=\"t4 \" x=\"51.3\" y=\"18.9\" text-anchor=\"end\">x = −a</text></svg><p class=\"hint\">Measure from P to F and from P to the line.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Parabola · focus and directrix</p><h2>y² = 4ax with a = 1. For any point P on it compare PF (to the focus) with the perpendicular PD to the directrix.</h2><svg viewBox=\"0 0 300 309\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"12.0\" y1=\"154.7\" x2=\"290.0\" y2=\"154.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"89.6\" y1=\"303.4\" x2=\"89.6\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"89.6,154.7 90.8,142.4 91.9,137.3 93.1,133.4 94.3,130.1 95.4,127.2 96.6,124.5 97.8,122.1 99.0,119.9 100.1,117.8 101.3,115.8 102.5,113.9 103.6,112.1 104.8,110.3 106.0,108.6 107.2,107.0 108.3,105.5 109.5,103.9 110.7,102.5 111.8,101.0 113.0,99.6 114.2,98.3 115.4,97.0 116.5,95.7 117.7,94.4 118.9,93.2 120.0,91.9 121.2,90.7 122.4,89.6 123.6,88.4 124.7,87.3 125.9,86.2 127.1,85.1 128.3,84.0 129.4,82.9 130.6,81.9 131.8,80.8 132.9,79.8 134.1,78.8 135.3,77.8 136.5,76.8 137.6,75.9 138.8,74.9 140.0,74.0 141.1,73.0 142.3,72.1 143.5,71.2 144.7,70.3 145.8,69.4 147.0,68.5 148.2,67.7 149.3,66.8 150.5,65.9 151.7,65.1 152.9,64.2 154.0,63.4 155.2,62.6 156.4,61.8 157.5,61.0 158.7,60.1 159.9,59.4 161.1,58.6 162.2,57.8 163.4,57.0 164.6,56.2 165.7,55.5 166.9,54.7 168.1,53.9 169.3,53.2 170.4,52.4 171.6,51.7 172.8,51.0 174.0,50.3 175.1,49.5 176.3,48.8 177.5,48.1 178.6,47.4 179.8,46.7 181.0,46.0 182.2,45.3 183.3,44.6 184.5,43.9 185.7,43.2 186.8,42.6 188.0,41.9 189.2,41.2 190.4,40.5 191.5,39.9 192.7,39.2 193.9,38.6 195.0,37.9 196.2,37.3 197.4,36.6 198.6,36.0 199.7,35.4 200.9,34.7 202.1,34.1 203.2,33.5 204.4,32.8 205.6,32.2 206.8,31.6 207.9,31.0 209.1,30.4 210.3,29.8 211.4,29.2 212.6,28.6 213.8,28.0 215.0,27.4 216.1,26.8 217.3,26.2 218.5,25.6 219.7,25.0 220.8,24.4 222.0,23.8 223.2,23.3 224.3,22.7 225.5,22.1 226.7,21.6 227.9,21.0 229.0,20.4 230.2,19.9 231.4,19.3 232.5,18.7 233.7,18.2 234.9,17.6 236.1,17.1 237.2,16.5 238.4,16.0 239.6,15.4 240.7,14.9 241.9,14.4 243.1,13.8 244.3,13.3 245.4,12.7 246.6,12.2 247.8,11.7 248.9,11.1 250.1,10.6 251.3,10.1 252.5,9.6 253.6,9.1 254.8,8.5 256.0,8.0 257.1,7.5 258.3,7.0 259.5,6.5 260.7,6.0 261.8,5.5 263.0,4.9 264.2,4.4 265.4,3.9 266.5,3.4 267.7,2.9 268.9,2.4 270.0,1.9 271.2,1.4 272.4,1.0 273.6,0.5 274.7,-0.0 275.9,-0.5 277.1,-1.0\"></polyline><polyline class=\"c1\"  points=\"89.6,154.7 90.8,167.0 91.9,172.1 93.1,176.0 94.3,179.3 95.4,182.2 96.6,184.8 97.8,187.3 99.0,189.5 100.1,191.6 101.3,193.6 102.5,195.5 103.6,197.3 104.8,199.1 106.0,200.8 107.2,202.4 108.3,203.9 109.5,205.4 110.7,206.9 111.8,208.4 113.0,209.7 114.2,211.1 115.4,212.4 116.5,213.7 117.7,215.0 118.9,216.2 120.0,217.5 121.2,218.7 122.4,219.8 123.6,221.0 124.7,222.1 125.9,223.2 127.1,224.3 128.3,225.4 129.4,226.5 130.6,227.5 131.8,228.6 132.9,229.6 134.1,230.6 135.3,231.6 136.5,232.5 137.6,233.5 138.8,234.5 140.0,235.4 141.1,236.3 142.3,237.3 143.5,238.2 144.7,239.1 145.8,240.0 147.0,240.9 148.2,241.7 149.3,242.6 150.5,243.5 151.7,244.3 152.9,245.2 154.0,246.0 155.2,246.8 156.4,247.6 157.5,248.4 158.7,249.2 159.9,250.0 161.1,250.8 162.2,251.6 163.4,252.4 164.6,253.2 165.7,253.9 166.9,254.7 168.1,255.5 169.3,256.2 170.4,256.9 171.6,257.7 172.8,258.4 174.0,259.1 175.1,259.9 176.3,260.6 177.5,261.3 178.6,262.0 179.8,262.7 181.0,263.4 182.2,264.1 183.3,264.8 184.5,265.5 185.7,266.2 186.8,266.8 188.0,267.5 189.2,268.2 190.4,268.8 191.5,269.5 192.7,270.2 193.9,270.8 195.0,271.5 196.2,272.1 197.4,272.8 198.6,273.4 199.7,274.0 200.9,274.7 202.1,275.3 203.2,275.9 204.4,276.6 205.6,277.2 206.8,277.8 207.9,278.4 209.1,279.0 210.3,279.6 211.4,280.2 212.6,280.8 213.8,281.4 215.0,282.0 216.1,282.6 217.3,283.2 218.5,283.8 219.7,284.4 220.8,285.0 222.0,285.5 223.2,286.1 224.3,286.7 225.5,287.3 226.7,287.8 227.9,288.4 229.0,289.0 230.2,289.5 231.4,290.1 232.5,290.7 233.7,291.2 234.9,291.8 236.1,292.3 237.2,292.9 238.4,293.4 239.6,294.0 240.7,294.5 241.9,295.0 243.1,295.6 244.3,296.1 245.4,296.7 246.6,297.2 247.8,297.7 248.9,298.2 250.1,298.8 251.3,299.3 252.5,299.8 253.6,300.3 254.8,300.9 256.0,301.4 257.1,301.9 258.3,302.4 259.5,302.9 260.7,303.4 261.8,303.9 263.0,304.4 264.2,305.0 265.4,305.5 266.5,306.0 267.7,306.5 268.9,307.0 270.0,307.5 271.2,307.9 272.4,308.4 273.6,308.9 274.7,309.4 275.9,309.9 277.1,310.4\"></polyline><circle class=\"d2s \" cx=\"121.9\" cy=\"154.7\" r=\"5\"></circle><text class=\"t2 \" x=\"127.9\" y=\"170.7\" text-anchor=\"start\">F(a, 0)</text><line class=\"c4\" x1=\"57.3\" y1=\"300.2\" x2=\"57.3\" y2=\"9.2\"></line><text class=\"t4 \" x=\"51.3\" y=\"18.9\" text-anchor=\"end\">x = −a</text><line class=\"c4 fx d2\" x1=\"121.9\" y1=\"90.0\" x2=\"57.3\" y2=\"90.0\"></line><line class=\"c2 fx d2\" x1=\"121.9\" y1=\"90.0\" x2=\"121.9\" y2=\"154.7\"></line><circle class=\"d1s fx d2\" cx=\"121.9\" cy=\"90.0\" r=\"4.5\"></circle><line class=\"c4 fx d3\" x1=\"218.9\" y1=\"25.4\" x2=\"57.3\" y2=\"25.4\"></line><line class=\"c2 fx d3\" x1=\"218.9\" y1=\"25.4\" x2=\"121.9\" y2=\"154.7\"></line><circle class=\"d1s fx d3\" cx=\"218.9\" cy=\"25.4\" r=\"4.5\"></circle><line class=\"c4 fx d4\" x1=\"162.3\" y1=\"57.7\" x2=\"57.3\" y2=\"57.7\"></line><line class=\"c2 fx d4\" x1=\"162.3\" y1=\"57.7\" x2=\"121.9\" y2=\"154.7\"></line><circle class=\"d1s fx d4\" cx=\"162.3\" cy=\"57.7\" r=\"4.5\"></circle></svg><div class=\"eq fx d5\"><p><b>PF = PD</b> for every point (red = orange in length). That is the definition.</p><p>Derivation: √((x − a)² + y²) = x + a ⇒ <b>y² = 4ax</b>. The vertex is midway between focus and directrix; latus rectum <b>4a</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Four standard parabolas",
+      "definition": "y² = 4ax: right; focus (a, 0); directrix x = −a; y² = −4ax: left; focus (−a, 0); directrix x = a; x² = 4ay: up; focus (0, a); directrix y = −a; x² = −4ay: down; focus (0, −a); directrix y = a",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">10.4 · Standard parabolas</p><h2>Opens which way? Focus, directrix?</h2><table><tr><td>y² = 4ax</td><td class=\"q\">?</td></tr><tr><td>y² = −4ax</td><td class=\"q\">?</td></tr><tr><td>x² = 4ay</td><td class=\"q\">?</td></tr><tr><td>x² = −4ay</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">10.4 · Standard parabolas</p><h2>Opens which way? Focus, directrix?</h2><table><tr><td>y² = 4ax</td><td class=\"a\">right; focus (a, 0); directrix x = −a</td></tr><tr><td>y² = −4ax</td><td class=\"a\">left; focus (−a, 0); directrix x = a</td></tr><tr><td>x² = 4ay</td><td class=\"a\">up; focus (0, a); directrix y = −a</td></tr><tr><td>x² = −4ay</td><td class=\"a\">down; focus (0, −a); directrix y = a</td></tr></table><p class=\"note\">Latus rectum = 4a in every case. The squared variable tells the axis.</p></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Length of the latus rectum of y² = 4ax and its end points?",
+      "definition": "<span style=\"color:#f08c00\">4a</span>; endpoints <span style=\"color:#3b82f6\">(a, ±2a)</span> (AF = 2a, by PF = PD)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Reading a parabola from its equation.",
+      "definition": "The squared variable names the axis: y² → axis along the x-axis. The sign of the linear-term coefficient gives the direction: positive → right/up, negative → left/down. Then 4a = |coefficient|",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: focus, axis, directrix and latus rectum of y² = 8x.",
+      "definition": "a = 2: <span style=\"color:#f08c00\">focus (2, 0)</span>, axis the x-axis, <span style=\"color:#f08c00\">directrix x = −2</span>, latus rectum <span style=\"color:#f08c00\">8</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6–7: parabola with focus (2, 0), directrix x = −2; vertex (0,0), focus (0, 2).",
+      "definition": "<span style=\"color:#f08c00\">y² = 8x</span> and <span style=\"color:#f08c00\">x² = 8y</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 8: parabola symmetric about the y-axis through (2, −3).",
+      "definition": "Point in quadrant IV → opens downward: x² = −4ay: 4 = 12a → a = 1/3 → <span style=\"color:#f08c00\">3x² = −4y</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q1–2: y² = 12x and x² = 6y: focus, directrix, latus rectum.",
+      "definition": "a = 3: <span style=\"color:#f08c00\">(3, 0), x = −3, 12</span>. a = 3/2: <span style=\"color:#f08c00\">(0, 3/2), y = −3/2, 6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q3–4: y² = −8x and x² = −16y.",
+      "definition": "a = 2: <span style=\"color:#f08c00\">(−2, 0), x = 2, 8</span>. a = 4: <span style=\"color:#f08c00\">(0, −4), y = 4, 16</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q5–6: y² = 10x and x² = −9y.",
+      "definition": "a = 5/2: <span style=\"color:#f08c00\">(5/2, 0), x = −5/2, 10</span>. a = 9/4: <span style=\"color:#f08c00\">(0, −9/4), y = 9/4, 9</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q7–10: focus (6,0), directrix x = −6; focus (0,−3), directrix y = 3; vertex (0,0) focus (3,0); focus (−2,0).",
+      "definition": "<span style=\"color:#f08c00\">y² = 24x</span>;  <span style=\"color:#f08c00\">x² = −12y</span>;  <span style=\"color:#f08c00\">y² = 12x</span>;  <span style=\"color:#f08c00\">y² = −8x</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.2 Q11–12: vertex (0,0) through (2, 3) with axis along the x-axis; through (5, 2) symmetric about the y-axis.",
+      "definition": "y² = 4ax: 9 = 8a → <span style=\"color:#f08c00\">y² = (9/2)x</span>. x² = 4ay: 25 = 8a → <span style=\"color:#f08c00\">2x² = 25y</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Parabola not at the origin: (y − k)² = 4a(x − h). Vertex, focus, directrix?",
+      "definition": "Vertex (h, k); focus (h + a, k); directrix x = h − a. (Complete the square to bring y² + Dx + Ey + F = 0 to this form)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Focal distance of a point (x₁, y₁) on y² = 4ax?",
+      "definition": "<span style=\"color:#f08c00\">x₁ + a</span> (distance to the directrix)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Parametric form of y² = 4ax?",
+      "definition": "<span style=\"color:#3b82f6\">(at², 2at)</span>. For x² = 4ay: (2at, at²)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Tangent condition: y = mx + c touches y² = 4ax when?",
+      "definition": "<span style=\"color:#3b82f6\">c = a/m</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A chord through the focus of y² = 4ax with ends (at₁², 2at₁), (at₂², 2at₂): relation?",
+      "definition": "<span style=\"color:#3b82f6\">t₁t₂ = −1</span> (focal chord). Its length is a(t + 1/t)² (with t₁ = t, t₂ = −1/t)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Reflecting property of the parabola",
+      "definition": "Rays parallel to the axis of a parabola reflect through the focus; used in headlights, dishes, telescopes; y²=20x at depth 45 gives width 60",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Parabola · reflecting property</p><h2>Rays parallel to the axis hit the parabola y² = 4x. Where do they go after reflecting?</h2><svg viewBox=\"0 0 300 334\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"167.2\" x2=\"290.0\" y2=\"167.2\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"27.0\" y1=\"328.4\" x2=\"27.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"27.0,167.2 27.9,154.8 28.8,149.7 29.7,145.8 30.6,142.5 31.5,139.6 32.4,136.9 33.3,134.5 34.2,132.2 35.1,130.1 36.0,128.1 36.9,126.2 37.8,124.4 38.7,122.6 39.6,120.9 40.5,119.3 41.4,117.7 42.3,116.2 43.2,114.7 44.1,113.3 45.0,111.9 45.9,110.5 46.8,109.2 47.7,107.9 48.6,106.6 49.5,105.4 50.4,104.1 51.3,102.9 52.2,101.8 53.1,100.6 54.0,99.5 54.9,98.3 55.8,97.2 56.7,96.2 57.6,95.1 58.5,94.0 59.4,93.0 60.3,92.0 61.2,91.0 62.1,90.0 63.0,89.0 63.9,88.0 64.8,87.1 65.7,86.1 66.6,85.2 67.5,84.2 68.4,83.3 69.3,82.4 70.2,81.5 71.1,80.6 72.0,79.8 72.9,78.9 73.8,78.0 74.8,77.2 75.7,76.3 76.6,75.5 77.5,74.7 78.4,73.8 79.3,73.0 80.2,72.2 81.1,71.4 82.0,70.6 82.9,69.8 83.8,69.0 84.7,68.3 85.6,67.5 86.5,66.7 87.4,66.0 88.3,65.2 89.2,64.5 90.1,63.7 91.0,63.0 91.9,62.3 92.8,61.5 93.7,60.8 94.6,60.1 95.5,59.4 96.4,58.7 97.3,58.0 98.2,57.3 99.1,56.6 100.0,55.9 100.9,55.2 101.8,54.5 102.7,53.9 103.6,53.2 104.5,52.5 105.4,51.8 106.3,51.2 107.2,50.5 108.1,49.9 109.0,49.2 109.9,48.6 110.8,47.9 111.7,47.3 112.6,46.7 113.5,46.0 114.4,45.4 115.3,44.8 116.2,44.1 117.1,43.5 118.0,42.9 118.9,42.3 119.8,41.7 120.7,41.1 121.6,40.5 122.5,39.9 123.4,39.3 124.3,38.7 125.2,38.1 126.1,37.5 127.0,36.9 127.9,36.3 128.8,35.7 129.7,35.2 130.6,34.6 131.5,34.0 132.4,33.4 133.3,32.9 134.2,32.3 135.2,31.7 136.1,31.2 137.0,30.6 137.9,30.0 138.8,29.5 139.7,28.9 140.6,28.4 141.5,27.8 142.4,27.3 143.3,26.7 144.2,26.2 145.1,25.6 146.0,25.1 146.9,24.6 147.8,24.0 148.7,23.5 149.6,23.0 150.5,22.4 151.4,21.9 152.3,21.4 153.2,20.9 154.1,20.3 155.0,19.8 155.9,19.3 156.8,18.8 157.7,18.3 158.6,17.8 159.5,17.2 160.4,16.7 161.3,16.2 162.2,15.7 163.1,15.2 164.0,14.7 164.9,14.2 165.8,13.7 166.7,13.2 167.6,12.7 168.5,12.2 169.4,11.7 170.3,11.2 171.2,10.8\"></polyline><polyline class=\"c1\"  points=\"27.0,167.2 27.9,179.6 28.8,184.7 29.7,188.6 30.6,191.9 31.5,194.9 32.4,197.5 33.3,199.9 34.2,202.2 35.1,204.3 36.0,206.3 36.9,208.2 37.8,210.1 38.7,211.8 39.6,213.5 40.5,215.1 41.4,216.7 42.3,218.2 43.2,219.7 44.1,221.1 45.0,222.5 45.9,223.9 46.8,225.2 47.7,226.5 48.6,227.8 49.5,229.1 50.4,230.3 51.3,231.5 52.2,232.7 53.1,233.8 54.0,235.0 54.9,236.1 55.8,237.2 56.7,238.3 57.6,239.3 58.5,240.4 59.4,241.4 60.3,242.4 61.2,243.5 62.1,244.5 63.0,245.4 63.9,246.4 64.8,247.4 65.7,248.3 66.6,249.3 67.5,250.2 68.4,251.1 69.3,252.0 70.2,252.9 71.1,253.8 72.0,254.7 72.9,255.5 73.8,256.4 74.8,257.3 75.7,258.1 76.6,258.9 77.5,259.8 78.4,260.6 79.3,261.4 80.2,262.2 81.1,263.0 82.0,263.8 82.9,264.6 83.8,265.4 84.7,266.2 85.6,266.9 86.5,267.7 87.4,268.5 88.3,269.2 89.2,270.0 90.1,270.7 91.0,271.4 91.9,272.2 92.8,272.9 93.7,273.6 94.6,274.3 95.5,275.0 96.4,275.7 97.3,276.4 98.2,277.1 99.1,277.8 100.0,278.5 100.9,279.2 101.8,279.9 102.7,280.6 103.6,281.2 104.5,281.9 105.4,282.6 106.3,283.2 107.2,283.9 108.1,284.6 109.0,285.2 109.9,285.8 110.8,286.5 111.7,287.1 112.6,287.8 113.5,288.4 114.4,289.0 115.3,289.7 116.2,290.3 117.1,290.9 118.0,291.5 118.9,292.1 119.8,292.7 120.7,293.3 121.6,294.0 122.5,294.6 123.4,295.2 124.3,295.8 125.2,296.3 126.1,296.9 127.0,297.5 127.9,298.1 128.8,298.7 129.7,299.3 130.6,299.9 131.5,300.4 132.4,301.0 133.3,301.6 134.2,302.1 135.2,302.7 136.1,303.3 137.0,303.8 137.9,304.4 138.8,304.9 139.7,305.5 140.6,306.1 141.5,306.6 142.4,307.1 143.3,307.7 144.2,308.2 145.1,308.8 146.0,309.3 146.9,309.9 147.8,310.4 148.7,310.9 149.6,311.5 150.5,312.0 151.4,312.5 152.3,313.0 153.2,313.6 154.1,314.1 155.0,314.6 155.9,315.1 156.8,315.6 157.7,316.2 158.6,316.7 159.5,317.2 160.4,317.7 161.3,318.2 162.2,318.7 163.1,319.2 164.0,319.7 164.9,320.2 165.8,320.7 166.7,321.2 167.6,321.7 168.5,322.2 169.4,322.7 170.3,323.2 171.2,323.7\"></polyline><circle class=\"d2s \" cx=\"69.4\" cy=\"167.2\" r=\"5\"></circle><text class=\"t2 \" x=\"75.4\" y=\"183.2\" text-anchor=\"start\">F</text></svg><p class=\"hint\">Where would all the rays meet?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Parabola · reflecting property</p><h2>Rays parallel to the axis hit the parabola y² = 4x. Where do they go after reflecting?</h2><svg viewBox=\"0 0 300 334\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"167.2\" x2=\"290.0\" y2=\"167.2\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"27.0\" y1=\"328.4\" x2=\"27.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"27.0,167.2 27.9,154.8 28.8,149.7 29.7,145.8 30.6,142.5 31.5,139.6 32.4,136.9 33.3,134.5 34.2,132.2 35.1,130.1 36.0,128.1 36.9,126.2 37.8,124.4 38.7,122.6 39.6,120.9 40.5,119.3 41.4,117.7 42.3,116.2 43.2,114.7 44.1,113.3 45.0,111.9 45.9,110.5 46.8,109.2 47.7,107.9 48.6,106.6 49.5,105.4 50.4,104.1 51.3,102.9 52.2,101.8 53.1,100.6 54.0,99.5 54.9,98.3 55.8,97.2 56.7,96.2 57.6,95.1 58.5,94.0 59.4,93.0 60.3,92.0 61.2,91.0 62.1,90.0 63.0,89.0 63.9,88.0 64.8,87.1 65.7,86.1 66.6,85.2 67.5,84.2 68.4,83.3 69.3,82.4 70.2,81.5 71.1,80.6 72.0,79.8 72.9,78.9 73.8,78.0 74.8,77.2 75.7,76.3 76.6,75.5 77.5,74.7 78.4,73.8 79.3,73.0 80.2,72.2 81.1,71.4 82.0,70.6 82.9,69.8 83.8,69.0 84.7,68.3 85.6,67.5 86.5,66.7 87.4,66.0 88.3,65.2 89.2,64.5 90.1,63.7 91.0,63.0 91.9,62.3 92.8,61.5 93.7,60.8 94.6,60.1 95.5,59.4 96.4,58.7 97.3,58.0 98.2,57.3 99.1,56.6 100.0,55.9 100.9,55.2 101.8,54.5 102.7,53.9 103.6,53.2 104.5,52.5 105.4,51.8 106.3,51.2 107.2,50.5 108.1,49.9 109.0,49.2 109.9,48.6 110.8,47.9 111.7,47.3 112.6,46.7 113.5,46.0 114.4,45.4 115.3,44.8 116.2,44.1 117.1,43.5 118.0,42.9 118.9,42.3 119.8,41.7 120.7,41.1 121.6,40.5 122.5,39.9 123.4,39.3 124.3,38.7 125.2,38.1 126.1,37.5 127.0,36.9 127.9,36.3 128.8,35.7 129.7,35.2 130.6,34.6 131.5,34.0 132.4,33.4 133.3,32.9 134.2,32.3 135.2,31.7 136.1,31.2 137.0,30.6 137.9,30.0 138.8,29.5 139.7,28.9 140.6,28.4 141.5,27.8 142.4,27.3 143.3,26.7 144.2,26.2 145.1,25.6 146.0,25.1 146.9,24.6 147.8,24.0 148.7,23.5 149.6,23.0 150.5,22.4 151.4,21.9 152.3,21.4 153.2,20.9 154.1,20.3 155.0,19.8 155.9,19.3 156.8,18.8 157.7,18.3 158.6,17.8 159.5,17.2 160.4,16.7 161.3,16.2 162.2,15.7 163.1,15.2 164.0,14.7 164.9,14.2 165.8,13.7 166.7,13.2 167.6,12.7 168.5,12.2 169.4,11.7 170.3,11.2 171.2,10.8\"></polyline><polyline class=\"c1\"  points=\"27.0,167.2 27.9,179.6 28.8,184.7 29.7,188.6 30.6,191.9 31.5,194.9 32.4,197.5 33.3,199.9 34.2,202.2 35.1,204.3 36.0,206.3 36.9,208.2 37.8,210.1 38.7,211.8 39.6,213.5 40.5,215.1 41.4,216.7 42.3,218.2 43.2,219.7 44.1,221.1 45.0,222.5 45.9,223.9 46.8,225.2 47.7,226.5 48.6,227.8 49.5,229.1 50.4,230.3 51.3,231.5 52.2,232.7 53.1,233.8 54.0,235.0 54.9,236.1 55.8,237.2 56.7,238.3 57.6,239.3 58.5,240.4 59.4,241.4 60.3,242.4 61.2,243.5 62.1,244.5 63.0,245.4 63.9,246.4 64.8,247.4 65.7,248.3 66.6,249.3 67.5,250.2 68.4,251.1 69.3,252.0 70.2,252.9 71.1,253.8 72.0,254.7 72.9,255.5 73.8,256.4 74.8,257.3 75.7,258.1 76.6,258.9 77.5,259.8 78.4,260.6 79.3,261.4 80.2,262.2 81.1,263.0 82.0,263.8 82.9,264.6 83.8,265.4 84.7,266.2 85.6,266.9 86.5,267.7 87.4,268.5 88.3,269.2 89.2,270.0 90.1,270.7 91.0,271.4 91.9,272.2 92.8,272.9 93.7,273.6 94.6,274.3 95.5,275.0 96.4,275.7 97.3,276.4 98.2,277.1 99.1,277.8 100.0,278.5 100.9,279.2 101.8,279.9 102.7,280.6 103.6,281.2 104.5,281.9 105.4,282.6 106.3,283.2 107.2,283.9 108.1,284.6 109.0,285.2 109.9,285.8 110.8,286.5 111.7,287.1 112.6,287.8 113.5,288.4 114.4,289.0 115.3,289.7 116.2,290.3 117.1,290.9 118.0,291.5 118.9,292.1 119.8,292.7 120.7,293.3 121.6,294.0 122.5,294.6 123.4,295.2 124.3,295.8 125.2,296.3 126.1,296.9 127.0,297.5 127.9,298.1 128.8,298.7 129.7,299.3 130.6,299.9 131.5,300.4 132.4,301.0 133.3,301.6 134.2,302.1 135.2,302.7 136.1,303.3 137.0,303.8 137.9,304.4 138.8,304.9 139.7,305.5 140.6,306.1 141.5,306.6 142.4,307.1 143.3,307.7 144.2,308.2 145.1,308.8 146.0,309.3 146.9,309.9 147.8,310.4 148.7,310.9 149.6,311.5 150.5,312.0 151.4,312.5 152.3,313.0 153.2,313.6 154.1,314.1 155.0,314.6 155.9,315.1 156.8,315.6 157.7,316.2 158.6,316.7 159.5,317.2 160.4,317.7 161.3,318.2 162.2,318.7 163.1,319.2 164.0,319.7 164.9,320.2 165.8,320.7 166.7,321.2 167.6,321.7 168.5,322.2 169.4,322.7 170.3,323.2 171.2,323.7\"></polyline><circle class=\"d2s \" cx=\"69.4\" cy=\"167.2\" r=\"5\"></circle><text class=\"t2 \" x=\"75.4\" y=\"183.2\" text-anchor=\"start\">F</text><line class=\"c4 fx d2\" x1=\"281.5\" y1=\"56.9\" x2=\"98.7\" y2=\"56.9\"></line><line class=\"c2 fx d2\" x1=\"98.7\" y1=\"56.9\" x2=\"69.4\" y2=\"167.2\"></line><circle class=\"d1s fx d2\" cx=\"98.7\" cy=\"56.9\" r=\"3.5\"></circle><line class=\"c4 fx d3\" x1=\"281.5\" y1=\"99.3\" x2=\"54.1\" y2=\"99.3\"></line><line class=\"c2 fx d3\" x1=\"54.1\" y1=\"99.3\" x2=\"69.4\" y2=\"167.2\"></line><circle class=\"d1s fx d3\" cx=\"54.1\" cy=\"99.3\" r=\"3.5\"></circle><line class=\"c4 fx d4\" x1=\"281.5\" y1=\"133.3\" x2=\"33.8\" y2=\"133.3\"></line><line class=\"c2 fx d4\" x1=\"33.8\" y1=\"133.3\" x2=\"69.4\" y2=\"167.2\"></line><circle class=\"d1s fx d4\" cx=\"33.8\" cy=\"133.3\" r=\"3.5\"></circle><line class=\"c4 fx d2\" x1=\"281.5\" y1=\"201.2\" x2=\"33.8\" y2=\"201.2\"></line><line class=\"c2 fx d2\" x1=\"33.8\" y1=\"201.2\" x2=\"69.4\" y2=\"167.2\"></line><circle class=\"d1s fx d2\" cx=\"33.8\" cy=\"201.2\" r=\"3.5\"></circle><line class=\"c4 fx d3\" x1=\"281.5\" y1=\"235.1\" x2=\"54.1\" y2=\"235.1\"></line><line class=\"c2 fx d3\" x1=\"54.1\" y1=\"235.1\" x2=\"69.4\" y2=\"167.2\"></line><circle class=\"d1s fx d3\" cx=\"54.1\" cy=\"235.1\" r=\"3.5\"></circle><line class=\"c4 fx d4\" x1=\"281.5\" y1=\"277.5\" x2=\"98.7\" y2=\"277.5\"></line><line class=\"c2 fx d4\" x1=\"98.7\" y1=\"277.5\" x2=\"69.4\" y2=\"167.2\"></line><circle class=\"d1s fx d4\" cx=\"98.7\" cy=\"277.5\" r=\"3.5\"></circle></svg><div class=\"eq fx d5\"><p>All reflect through the <b>focus</b>. Reversed, a source at the focus sends a parallel beam: headlights and torches. Incoming parallel signals concentrate at the focus: satellite dishes, telescopes, solar cookers.</p><p>Example 17: focus 5 cm from the vertex, mirror 45 cm deep: y² = 20x, at x = 45, y = ±30, so AB = <b>60 cm</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 17: a parabolic mirror with focus 5 cm from the vertex is 45 cm deep. Width AB?",
+      "definition": "y² = 20x; at x = 45: y = ±30 → <span style=\"color:#f08c00\">60 cm</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 18: a 12 m beam sags 3 cm at the centre in a parabola. How far from the centre is the sag 1 cm (measured from the ends)?",
+      "definition": "x² = 4ay with (6)² = 4a(3/100) → a = 300. At height 2 cm above the lowest point: x² = 4·300·(2/100) = 24 → <span style=\"color:#f08c00\">x = 2√6 m</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: parabolic reflector 20 cm across and 5 cm deep. Focus?",
+      "definition": "y² = 4ax through (5, 10): 100 = 20a → a = 5. <span style=\"color:#f08c00\">Focus 5 cm from the vertex</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: parabolic arch 10 m high and 5 m wide at the base. Width 2 m from the vertex?",
+      "definition": "x² = −4ay through (2.5, −10): a = 5/32, 4a = 5/8. At depth 2: x² = 5/4 → width 2x = <span style=\"color:#f08c00\">√5 ≈ 2.23 m</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: suspension-bridge cable, roadway 100 m long, longest wire 30 m, shortest 6 m. Wire 18 m from the middle?",
+      "definition": "Vertex at height 6: x² = 4a(y − 6) through (50, 30): 4a = 2500/24. At x = 18: y − 6 = 324·24/2500 ≈ 3.11 → <span style=\"color:#f08c00\">≈ 9.11 m</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q6: area of the triangle formed by the vertex of x² = 12y and the ends of its latus rectum.",
+      "definition": "LR at y = 3: ends (±6, 3). Area = ½ · 12 · 3 = <span style=\"color:#f08c00\">18</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q8: an equilateral triangle in y² = 4ax with one vertex at the vertex of the parabola. Side?",
+      "definition": "Vertices (0,0), (at², ±2at) with tan 30° = 2at/at² → t = 2√3: side = <span style=\"color:#f08c00\">8√3 a</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.4-parabola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define an ellipse.",
+      "definition": "The set of points whose distances from two fixed points (<span style=\"color:#3b82f6\">foci</span>) have a <span style=\"color:#3b82f6\">constant sum</span>, greater than the distance between the foci",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Ellipse: PF1 + PF2 = 2a",
+      "definition": "Ellipse x²/25+y²/9=1: foci (±4,0), PF1+PF2 = 10 = 2a at every point; c² = a² − b², e = c/a = 4/5",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Ellipse · sum of distances</p><h2>x²/25 + y²/9 = 1 has foci (±4, 0). Check PF₁ + PF₂ at (0, 3), (3, 2.4) and (−5, 0).</h2><svg viewBox=\"0 0 300 181\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"90.3\" x2=\"292.0\" y2=\"90.3\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"174.6\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"39.1,90.3 40.2,80.9 41.3,77.1 42.4,74.1 43.5,71.7 44.6,69.5 45.7,67.6 46.8,65.8 47.9,64.2 49.0,62.7 50.2,61.3 51.3,60.0 52.4,58.7 53.5,57.5 54.6,56.3 55.7,55.2 56.8,54.2 57.9,53.2 59.0,52.2 60.1,51.3 61.3,50.4 62.4,49.5 63.5,48.7 64.6,47.8 65.7,47.1 66.8,46.3 67.9,45.5 69.0,44.8 70.1,44.1 71.2,43.4 72.3,42.8 73.5,42.1 74.6,41.5 75.7,40.9 76.8,40.3 77.9,39.7 79.0,39.2 80.1,38.6 81.2,38.1 82.3,37.6 83.4,37.1 84.5,36.6 85.7,36.1 86.8,35.6 87.9,35.2 89.0,34.7 90.1,34.3 91.2,33.9 92.3,33.5 93.4,33.1 94.5,32.7 95.6,32.3 96.8,31.9 97.9,31.6 99.0,31.2 100.1,30.9 101.2,30.5 102.3,30.2 103.4,29.9 104.5,29.6 105.6,29.3 106.7,29.0 107.8,28.7 109.0,28.5 110.1,28.2 111.2,28.0 112.3,27.7 113.4,27.5 114.5,27.3 115.6,27.0 116.7,26.8 117.8,26.6 118.9,26.4 120.0,26.2 121.2,26.0 122.3,25.9 123.4,25.7 124.5,25.5 125.6,25.4 126.7,25.2 127.8,25.1 128.9,25.0 130.0,24.8 131.1,24.7 132.2,24.6 133.4,24.5 134.5,24.4 135.6,24.3 136.7,24.2 137.8,24.2 138.9,24.1 140.0,24.0 141.1,24.0 142.2,23.9 143.3,23.9 144.5,23.8 145.6,23.8 146.7,23.8 147.8,23.8 148.9,23.8 150.0,23.8 151.1,23.8 152.2,23.8 153.3,23.8 154.4,23.8 155.5,23.8 156.7,23.9 157.8,23.9 158.9,24.0 160.0,24.0 161.1,24.1 162.2,24.2 163.3,24.2 164.4,24.3 165.5,24.4 166.6,24.5 167.8,24.6 168.9,24.7 170.0,24.8 171.1,25.0 172.2,25.1 173.3,25.2 174.4,25.4 175.5,25.5 176.6,25.7 177.7,25.9 178.8,26.0 180.0,26.2 181.1,26.4 182.2,26.6 183.3,26.8 184.4,27.0 185.5,27.3 186.6,27.5 187.7,27.7 188.8,28.0 189.9,28.2 191.0,28.5 192.2,28.7 193.3,29.0 194.4,29.3 195.5,29.6 196.6,29.9 197.7,30.2 198.8,30.5 199.9,30.9 201.0,31.2 202.1,31.6 203.2,31.9 204.4,32.3 205.5,32.7 206.6,33.1 207.7,33.5 208.8,33.9 209.9,34.3 211.0,34.7 212.1,35.2 213.2,35.6 214.3,36.1 215.5,36.6 216.6,37.1 217.7,37.6 218.8,38.1 219.9,38.6 221.0,39.2 222.1,39.7 223.2,40.3 224.3,40.9 225.4,41.5 226.5,42.1 227.7,42.8 228.8,43.4 229.9,44.1 231.0,44.8 232.1,45.5 233.2,46.3 234.3,47.1 235.4,47.8 236.5,48.7 237.6,49.5 238.8,50.4 239.9,51.3 241.0,52.2 242.1,53.2 243.2,54.2 244.3,55.2 245.4,56.3 246.5,57.5 247.6,58.7 248.7,60.0 249.8,61.3 251.0,62.7 252.1,64.2 253.2,65.8 254.3,67.6 255.4,69.5 256.5,71.7 257.6,74.1 258.7,77.1 259.8,80.9 260.9,90.3\"></polyline><polyline class=\"c1\"  points=\"39.1,90.3 40.2,99.7 41.3,103.6 42.4,106.5 43.5,109.0 44.6,111.1 45.7,113.0 46.8,114.8 47.9,116.4 49.0,117.9 50.2,119.3 51.3,120.7 52.4,121.9 53.5,123.1 54.6,124.3 55.7,125.4 56.8,126.4 57.9,127.4 59.0,128.4 60.1,129.3 61.3,130.2 62.4,131.1 63.5,132.0 64.6,132.8 65.7,133.6 66.8,134.3 67.9,135.1 69.0,135.8 70.1,136.5 71.2,137.2 72.3,137.8 73.5,138.5 74.6,139.1 75.7,139.7 76.8,140.3 77.9,140.9 79.0,141.5 80.1,142.0 81.2,142.5 82.3,143.1 83.4,143.6 84.5,144.1 85.7,144.5 86.8,145.0 87.9,145.5 89.0,145.9 90.1,146.3 91.2,146.8 92.3,147.2 93.4,147.6 94.5,148.0 95.6,148.3 96.8,148.7 97.9,149.1 99.0,149.4 100.1,149.8 101.2,150.1 102.3,150.4 103.4,150.7 104.5,151.0 105.6,151.3 106.7,151.6 107.8,151.9 109.0,152.2 110.1,152.4 111.2,152.7 112.3,152.9 113.4,153.1 114.5,153.4 115.6,153.6 116.7,153.8 117.8,154.0 118.9,154.2 120.0,154.4 121.2,154.6 122.3,154.8 123.4,154.9 124.5,155.1 125.6,155.2 126.7,155.4 127.8,155.5 128.9,155.7 130.0,155.8 131.1,155.9 132.2,156.0 133.4,156.1 134.5,156.2 135.6,156.3 136.7,156.4 137.8,156.5 138.9,156.5 140.0,156.6 141.1,156.7 142.2,156.7 143.3,156.8 144.5,156.8 145.6,156.8 146.7,156.8 147.8,156.9 148.9,156.9 150.0,156.9 151.1,156.9 152.2,156.9 153.3,156.8 154.4,156.8 155.5,156.8 156.7,156.8 157.8,156.7 158.9,156.7 160.0,156.6 161.1,156.5 162.2,156.5 163.3,156.4 164.4,156.3 165.5,156.2 166.6,156.1 167.8,156.0 168.9,155.9 170.0,155.8 171.1,155.7 172.2,155.5 173.3,155.4 174.4,155.2 175.5,155.1 176.6,154.9 177.7,154.8 178.8,154.6 180.0,154.4 181.1,154.2 182.2,154.0 183.3,153.8 184.4,153.6 185.5,153.4 186.6,153.1 187.7,152.9 188.8,152.7 189.9,152.4 191.0,152.2 192.2,151.9 193.3,151.6 194.4,151.3 195.5,151.0 196.6,150.7 197.7,150.4 198.8,150.1 199.9,149.8 201.0,149.4 202.1,149.1 203.2,148.7 204.4,148.3 205.5,148.0 206.6,147.6 207.7,147.2 208.8,146.8 209.9,146.3 211.0,145.9 212.1,145.5 213.2,145.0 214.3,144.5 215.5,144.1 216.6,143.6 217.7,143.1 218.8,142.5 219.9,142.0 221.0,141.5 222.1,140.9 223.2,140.3 224.3,139.7 225.4,139.1 226.5,138.5 227.7,137.8 228.8,137.2 229.9,136.5 231.0,135.8 232.1,135.1 233.2,134.3 234.3,133.6 235.4,132.8 236.5,132.0 237.6,131.1 238.8,130.2 239.9,129.3 241.0,128.4 242.1,127.4 243.2,126.4 244.3,125.4 245.4,124.3 246.5,123.1 247.6,121.9 248.7,120.7 249.8,119.3 251.0,117.9 252.1,116.4 253.2,114.8 254.3,113.0 255.4,111.1 256.5,108.9 257.6,106.5 258.7,103.6 259.8,99.7 260.9,90.3\"></polyline><circle class=\"d2s \" cx=\"61.3\" cy=\"90.3\" r=\"5\"></circle><circle class=\"d2s \" cx=\"238.8\" cy=\"90.3\" r=\"5\"></circle><text class=\"t2 \" x=\"55.3\" y=\"106.3\" text-anchor=\"end\">F₁</text><text class=\"t2 \" x=\"244.8\" y=\"106.3\" text-anchor=\"start\">F₂</text></svg><p class=\"hint\">Add the two focal distances at three points.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Ellipse · sum of distances</p><h2>x²/25 + y²/9 = 1 has foci (±4, 0). Check PF₁ + PF₂ at (0, 3), (3, 2.4) and (−5, 0).</h2><svg viewBox=\"0 0 300 181\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"90.3\" x2=\"292.0\" y2=\"90.3\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"174.6\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"39.1,90.3 40.2,80.9 41.3,77.1 42.4,74.1 43.5,71.7 44.6,69.5 45.7,67.6 46.8,65.8 47.9,64.2 49.0,62.7 50.2,61.3 51.3,60.0 52.4,58.7 53.5,57.5 54.6,56.3 55.7,55.2 56.8,54.2 57.9,53.2 59.0,52.2 60.1,51.3 61.3,50.4 62.4,49.5 63.5,48.7 64.6,47.8 65.7,47.1 66.8,46.3 67.9,45.5 69.0,44.8 70.1,44.1 71.2,43.4 72.3,42.8 73.5,42.1 74.6,41.5 75.7,40.9 76.8,40.3 77.9,39.7 79.0,39.2 80.1,38.6 81.2,38.1 82.3,37.6 83.4,37.1 84.5,36.6 85.7,36.1 86.8,35.6 87.9,35.2 89.0,34.7 90.1,34.3 91.2,33.9 92.3,33.5 93.4,33.1 94.5,32.7 95.6,32.3 96.8,31.9 97.9,31.6 99.0,31.2 100.1,30.9 101.2,30.5 102.3,30.2 103.4,29.9 104.5,29.6 105.6,29.3 106.7,29.0 107.8,28.7 109.0,28.5 110.1,28.2 111.2,28.0 112.3,27.7 113.4,27.5 114.5,27.3 115.6,27.0 116.7,26.8 117.8,26.6 118.9,26.4 120.0,26.2 121.2,26.0 122.3,25.9 123.4,25.7 124.5,25.5 125.6,25.4 126.7,25.2 127.8,25.1 128.9,25.0 130.0,24.8 131.1,24.7 132.2,24.6 133.4,24.5 134.5,24.4 135.6,24.3 136.7,24.2 137.8,24.2 138.9,24.1 140.0,24.0 141.1,24.0 142.2,23.9 143.3,23.9 144.5,23.8 145.6,23.8 146.7,23.8 147.8,23.8 148.9,23.8 150.0,23.8 151.1,23.8 152.2,23.8 153.3,23.8 154.4,23.8 155.5,23.8 156.7,23.9 157.8,23.9 158.9,24.0 160.0,24.0 161.1,24.1 162.2,24.2 163.3,24.2 164.4,24.3 165.5,24.4 166.6,24.5 167.8,24.6 168.9,24.7 170.0,24.8 171.1,25.0 172.2,25.1 173.3,25.2 174.4,25.4 175.5,25.5 176.6,25.7 177.7,25.9 178.8,26.0 180.0,26.2 181.1,26.4 182.2,26.6 183.3,26.8 184.4,27.0 185.5,27.3 186.6,27.5 187.7,27.7 188.8,28.0 189.9,28.2 191.0,28.5 192.2,28.7 193.3,29.0 194.4,29.3 195.5,29.6 196.6,29.9 197.7,30.2 198.8,30.5 199.9,30.9 201.0,31.2 202.1,31.6 203.2,31.9 204.4,32.3 205.5,32.7 206.6,33.1 207.7,33.5 208.8,33.9 209.9,34.3 211.0,34.7 212.1,35.2 213.2,35.6 214.3,36.1 215.5,36.6 216.6,37.1 217.7,37.6 218.8,38.1 219.9,38.6 221.0,39.2 222.1,39.7 223.2,40.3 224.3,40.9 225.4,41.5 226.5,42.1 227.7,42.8 228.8,43.4 229.9,44.1 231.0,44.8 232.1,45.5 233.2,46.3 234.3,47.1 235.4,47.8 236.5,48.7 237.6,49.5 238.8,50.4 239.9,51.3 241.0,52.2 242.1,53.2 243.2,54.2 244.3,55.2 245.4,56.3 246.5,57.5 247.6,58.7 248.7,60.0 249.8,61.3 251.0,62.7 252.1,64.2 253.2,65.8 254.3,67.6 255.4,69.5 256.5,71.7 257.6,74.1 258.7,77.1 259.8,80.9 260.9,90.3\"></polyline><polyline class=\"c1\"  points=\"39.1,90.3 40.2,99.7 41.3,103.6 42.4,106.5 43.5,109.0 44.6,111.1 45.7,113.0 46.8,114.8 47.9,116.4 49.0,117.9 50.2,119.3 51.3,120.7 52.4,121.9 53.5,123.1 54.6,124.3 55.7,125.4 56.8,126.4 57.9,127.4 59.0,128.4 60.1,129.3 61.3,130.2 62.4,131.1 63.5,132.0 64.6,132.8 65.7,133.6 66.8,134.3 67.9,135.1 69.0,135.8 70.1,136.5 71.2,137.2 72.3,137.8 73.5,138.5 74.6,139.1 75.7,139.7 76.8,140.3 77.9,140.9 79.0,141.5 80.1,142.0 81.2,142.5 82.3,143.1 83.4,143.6 84.5,144.1 85.7,144.5 86.8,145.0 87.9,145.5 89.0,145.9 90.1,146.3 91.2,146.8 92.3,147.2 93.4,147.6 94.5,148.0 95.6,148.3 96.8,148.7 97.9,149.1 99.0,149.4 100.1,149.8 101.2,150.1 102.3,150.4 103.4,150.7 104.5,151.0 105.6,151.3 106.7,151.6 107.8,151.9 109.0,152.2 110.1,152.4 111.2,152.7 112.3,152.9 113.4,153.1 114.5,153.4 115.6,153.6 116.7,153.8 117.8,154.0 118.9,154.2 120.0,154.4 121.2,154.6 122.3,154.8 123.4,154.9 124.5,155.1 125.6,155.2 126.7,155.4 127.8,155.5 128.9,155.7 130.0,155.8 131.1,155.9 132.2,156.0 133.4,156.1 134.5,156.2 135.6,156.3 136.7,156.4 137.8,156.5 138.9,156.5 140.0,156.6 141.1,156.7 142.2,156.7 143.3,156.8 144.5,156.8 145.6,156.8 146.7,156.8 147.8,156.9 148.9,156.9 150.0,156.9 151.1,156.9 152.2,156.9 153.3,156.8 154.4,156.8 155.5,156.8 156.7,156.8 157.8,156.7 158.9,156.7 160.0,156.6 161.1,156.5 162.2,156.5 163.3,156.4 164.4,156.3 165.5,156.2 166.6,156.1 167.8,156.0 168.9,155.9 170.0,155.8 171.1,155.7 172.2,155.5 173.3,155.4 174.4,155.2 175.5,155.1 176.6,154.9 177.7,154.8 178.8,154.6 180.0,154.4 181.1,154.2 182.2,154.0 183.3,153.8 184.4,153.6 185.5,153.4 186.6,153.1 187.7,152.9 188.8,152.7 189.9,152.4 191.0,152.2 192.2,151.9 193.3,151.6 194.4,151.3 195.5,151.0 196.6,150.7 197.7,150.4 198.8,150.1 199.9,149.8 201.0,149.4 202.1,149.1 203.2,148.7 204.4,148.3 205.5,148.0 206.6,147.6 207.7,147.2 208.8,146.8 209.9,146.3 211.0,145.9 212.1,145.5 213.2,145.0 214.3,144.5 215.5,144.1 216.6,143.6 217.7,143.1 218.8,142.5 219.9,142.0 221.0,141.5 222.1,140.9 223.2,140.3 224.3,139.7 225.4,139.1 226.5,138.5 227.7,137.8 228.8,137.2 229.9,136.5 231.0,135.8 232.1,135.1 233.2,134.3 234.3,133.6 235.4,132.8 236.5,132.0 237.6,131.1 238.8,130.2 239.9,129.3 241.0,128.4 242.1,127.4 243.2,126.4 244.3,125.4 245.4,124.3 246.5,123.1 247.6,121.9 248.7,120.7 249.8,119.3 251.0,117.9 252.1,116.4 253.2,114.8 254.3,113.0 255.4,111.1 256.5,108.9 257.6,106.5 258.7,103.6 259.8,99.7 260.9,90.3\"></polyline><circle class=\"d2s \" cx=\"61.3\" cy=\"90.3\" r=\"5\"></circle><circle class=\"d2s \" cx=\"238.8\" cy=\"90.3\" r=\"5\"></circle><text class=\"t2 \" x=\"55.3\" y=\"106.3\" text-anchor=\"end\">F₁</text><text class=\"t2 \" x=\"244.8\" y=\"106.3\" text-anchor=\"start\">F₂</text><line class=\"c3 fx d2\" x1=\"150.0\" y1=\"23.8\" x2=\"61.3\" y2=\"90.3\"></line><line class=\"c4 fx d2\" x1=\"150.0\" y1=\"23.8\" x2=\"238.8\" y2=\"90.3\"></line><circle class=\"d1s fx d2\" cx=\"150.0\" cy=\"23.8\" r=\"4.5\"></circle><line class=\"c3 fx d3\" x1=\"216.6\" y1=\"37.1\" x2=\"61.3\" y2=\"90.3\"></line><line class=\"c4 fx d3\" x1=\"216.6\" y1=\"37.1\" x2=\"238.8\" y2=\"90.3\"></line><circle class=\"d1s fx d3\" cx=\"216.6\" cy=\"37.1\" r=\"4.5\"></circle><line class=\"c3 fx d4\" x1=\"39.1\" y1=\"90.3\" x2=\"61.3\" y2=\"90.3\"></line><line class=\"c4 fx d4\" x1=\"39.1\" y1=\"90.3\" x2=\"238.8\" y2=\"90.3\"></line><circle class=\"d1s fx d4\" cx=\"39.1\" cy=\"90.3\" r=\"4.5\"></circle><text class=\"t3 fx d2 \" x=\"160.4\" y=\"15.8\" text-anchor=\"start\">5 + 5</text><text class=\"t3 fx d3 \" x=\"222.6\" y=\"29.1\" text-anchor=\"start\">7.4 + 2.6</text><text class=\"t3 fx d4 \" x=\"47.1\" y=\"82.3\" text-anchor=\"start\">1 + 9</text></svg><div class=\"eq fx d5\"><p>Every point gives the <b>same sum 10 = 2a</b>: a piece of string of length 2a pinned at the foci traces the ellipse.</p><p>Relation: <b>c² = a² − b²</b>, here 16 = 25 − 9. Eccentricity e = c/a = 4/5 (&lt; 1). The sum must exceed the distance between the foci (2c = 8).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ellipse terms: centre, major axis, minor axis, vertices, a, b, c?",
+      "definition": "Centre = midpoint of the foci. Major axis (through the foci) length <span style=\"color:#3b82f6\">2a</span>, minor axis length <span style=\"color:#3b82f6\">2b</span>, focal distance <span style=\"color:#3b82f6\">2c</span>. Vertices = ends of the major axis",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between a, b, c for an ellipse?",
+      "definition": "<span style=\"color:#f08c00\">a² = b² + c²</span> (c² = a² − b²): a is the hypotenuse, and a > b",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Eccentricity of an ellipse?",
+      "definition": "<span style=\"color:#f08c00\">e = c/a</span>, with <span style=\"color:#3b82f6\">0 < e < 1</span>. Foci at distance ae from the centre; b² = a²(1 − e²)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Standard equation of an ellipse with foci on the x-axis? On the y-axis?",
+      "definition": "\\(\\dfrac{x^2}{a^2} + \\dfrac{y^2}{b^2} = 1\\) (a > b) and \\(\\dfrac{x^2}{b^2} + \\dfrac{y^2}{a^2} = 1\\)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you tell the major axis from the equation?",
+      "definition": "The variable under the <span style=\"color:#3b82f6\">larger denominator</span> gives the major axis (x² over the larger number → along the x-axis)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ellipse symmetry and extent?",
+      "definition": "Symmetric about both axes; lies in the rectangle −a ≤ x ≤ a, −b ≤ y ≤ b, touching its sides",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Length of the latus rectum of the ellipse?",
+      "definition": "\\(\\dfrac{2b^2}{a}\\) (end points (±c, ± b²/a))",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Derivation: latus rectum of an ellipse.",
+      "definition": "At x = ae: y² = b²(1 − e²) = b⁴/a², so y = b²/a. Two ends → length 2b²/a",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9: foci, vertices, axes, e and latus rectum of x²/25 + y²/9 = 1.",
+      "definition": "a = 5, b = 3, c = 4: foci <span style=\"color:#f08c00\">(±4, 0)</span>, vertices <span style=\"color:#f08c00\">(±5, 0)</span>, major 10, minor 6, <span style=\"color:#f08c00\">e = 4/5</span>, LR <span style=\"color:#f08c00\">18/5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10: 9x² + 4y² = 36.",
+      "definition": "x²/4 + y²/9 = 1: major axis along y, a = 3, b = 2, c = √5: foci <span style=\"color:#f08c00\">(0, ±√5)</span>, vertices (0, ±3), major 6, minor 4, <span style=\"color:#f08c00\">e = √5/3</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 11: vertices (±13, 0), foci (±5, 0).",
+      "definition": "a = 13, c = 5 → b² = 144: <span style=\"color:#f08c00\">x²/169 + y²/144 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12: major axis 20 and foci (0, ±5).",
+      "definition": "a = 10, c = 5 → b² = 75: <span style=\"color:#f08c00\">x²/75 + y²/100 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 13: major axis along x through (4, 3) and (−1, 4).",
+      "definition": "16/a² + 9/b² = 1 and 1/a² + 16/b² = 1 → a² = 247/7, b² = 247/15 → <span style=\"color:#f08c00\">7x² + 15y² = 247</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q1–2: x²/36 + y²/16 = 1 and x²/4 + y²/25 = 1.",
+      "definition": "First: foci (±2√5, 0), vertices (±6, 0), 12, 8, e = √5/3, LR 16/3. Second: foci (0, ±√21), vertices (0, ±5), 10, 4, e = √21/5, LR 8/5",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q3–4: x²/16 + y²/9 = 1 and x²/25 + y²/100 = 1.",
+      "definition": "First: foci (±√7, 0), vertices (±4, 0), 8, 6, e = √7/4, LR 9/2. Second: foci (0, ±5√3), vertices (0, ±10), 20, 10, e = √3/2, LR 5",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q5–6: x²/49 + y²/36 = 1 and x²/100 + y²/400 = 1.",
+      "definition": "First: foci (±√13, 0), vertices (±7, 0), 14, 12, e = √13/7, LR 72/7. Second: foci (0, ±10√3), vertices (0, ±20), 40, 20, e = √3/2, LR 10",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q7–9: 36x² + 4y² = 144; 16x² + y² = 16; 4x² + 9y² = 36.",
+      "definition": "(7) x²/4 + y²/36 = 1: foci (0, ±4√2), e = 2√2/3, LR 4/3.  (8) x² + y²/16 = 1: foci (0, ±√15), e = √15/4, LR 1/2.  (9) x²/9 + y²/4 = 1: foci (±√5, 0), e = √5/3, LR 8/3",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q10–12: vertices (±5,0) foci (±4,0); vertices (0,±13) foci (0,±5); vertices (±6,0) foci (±4,0).",
+      "definition": "<span style=\"color:#f08c00\">x²/25 + y²/9 = 1</span>;  <span style=\"color:#f08c00\">x²/144 + y²/169 = 1</span>;  b² = 20: <span style=\"color:#f08c00\">x²/36 + y²/20 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q13–14: ends of the major axis (±3, 0), minor (0, ±2); major axis ends (0, ±√5), minor ends (±1, 0).",
+      "definition": "<span style=\"color:#f08c00\">x²/9 + y²/4 = 1</span>;  <span style=\"color:#f08c00\">x² + y²/5 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q15–18: 2a = 26, foci (±5,0); 2b = 16, foci (0,±6); foci (±3,0), a = 4; b = 3, c = 4.",
+      "definition": "<span style=\"color:#f08c00\">x²/169 + y²/144 = 1</span>;  a² = 100: <span style=\"color:#f08c00\">x²/64 + y²/100 = 1</span>;  b² = 7: <span style=\"color:#f08c00\">x²/16 + y²/7 = 1</span>;  a = 5: <span style=\"color:#f08c00\">x²/25 + y²/9 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q19: centre at the origin, major axis on the y-axis, through (3, 2) and (1, 6).",
+      "definition": "9/b² + 4/a² = 1 and 1/b² + 36/a² = 1 → a² = 40, b² = 10: <span style=\"color:#f08c00\">x²/10 + y²/40 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.3 Q20: major axis on the x-axis, through (4, 3) and (6, 2).",
+      "definition": "16/a² + 9/b² = 1 and 36/a² + 4/b² = 1 → a² = 52, b² = 13: <span style=\"color:#f08c00\">x²/52 + y²/13 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: finding an ellipse or hyperbola through given points.",
+      "definition": "Write the standard form with unknowns a², b² (choose the axis from the data), substitute each point to get two <span style=\"color:#3b82f6\">linear equations in 1/a² and 1/b²</span>, solve, then invert",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ellipse not at the origin: ((x − h)²/a²) + ((y − k)²/b²) = 1. Centre and foci?",
+      "definition": "Centre (h, k); foci (h ± c, k) if a is under x (major axis horizontal)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Parametric form and focal distances of x²/a² + y²/b² = 1?",
+      "definition": "<span style=\"color:#3b82f6\">(a cos θ, b sin θ)</span>; focal distances a ± e x₁ (sum 2a)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Tangent condition: y = mx + c touches x²/a² + y²/b² = 1 when?",
+      "definition": "<span style=\"color:#3b82f6\">c² = a²m² + b²</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Area of the ellipse x²/a² + y²/b² = 1 and the auxiliary circle?",
+      "definition": "<span style=\"color:#f08c00\">πab</span>; auxiliary circle x² + y² = a² (radius = semi-major axis)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Sliding ladder: an interior point traces an ellipse",
+      "definition": "Rod of length 15 with AP=6, PB=9 sliding on the axes: P=(9cosθ, 6sinθ), so x²/81 + y²/36 = 1, an ellipse",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Locus · sliding rod (Example 19)</p><h2>A rod AB of length 15 slides with A on the x-axis and B on the y-axis. P is on it with AP = 6. Find the path of P.</h2><svg viewBox=\"0 0 300 290\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs></svg><p class=\"hint\">Express x and y using the angle the rod makes with the axis.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Locus · sliding rod (Example 19)</p><h2>A rod AB of length 15 slides with A on the x-axis and B on the y-axis. P is on it with AP = 6. Find the path of P.</h2><svg viewBox=\"0 0 300 290\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"c1\" x1=\"175.1\" y1=\"264.9\" x2=\"174.9\" y2=\"259.7\"></line><line class=\"c1\" x1=\"174.9\" y1=\"259.7\" x2=\"174.2\" y2=\"254.5\"></line><line class=\"c1\" x1=\"174.2\" y1=\"254.5\" x2=\"173.2\" y2=\"249.3\"></line><line class=\"c1\" x1=\"173.2\" y1=\"249.3\" x2=\"171.8\" y2=\"244.1\"></line><line class=\"c1\" x1=\"171.8\" y1=\"244.1\" x2=\"169.9\" y2=\"239.0\"></line><line class=\"c1\" x1=\"169.9\" y1=\"239.0\" x2=\"167.7\" y2=\"234.0\"></line><line class=\"c1\" x1=\"167.7\" y1=\"234.0\" x2=\"165.1\" y2=\"229.0\"></line><line class=\"c1\" x1=\"165.1\" y1=\"229.0\" x2=\"162.1\" y2=\"224.2\"></line><line class=\"c1\" x1=\"162.1\" y1=\"224.2\" x2=\"158.7\" y2=\"219.4\"></line><line class=\"c1\" x1=\"158.7\" y1=\"219.4\" x2=\"154.9\" y2=\"214.8\"></line><line class=\"c1\" x1=\"154.9\" y1=\"214.8\" x2=\"150.8\" y2=\"210.3\"></line><line class=\"c1\" x1=\"150.8\" y1=\"210.3\" x2=\"146.3\" y2=\"206.0\"></line><line class=\"c1\" x1=\"146.3\" y1=\"206.0\" x2=\"141.6\" y2=\"201.9\"></line><line class=\"c1\" x1=\"141.6\" y1=\"201.9\" x2=\"136.4\" y2=\"197.9\"></line><line class=\"c1\" x1=\"136.4\" y1=\"197.9\" x2=\"131.0\" y2=\"194.1\"></line><line class=\"c1\" x1=\"131.0\" y1=\"194.1\" x2=\"125.3\" y2=\"190.5\"></line><line class=\"c1\" x1=\"125.3\" y1=\"190.5\" x2=\"119.3\" y2=\"187.0\"></line><line class=\"c1\" x1=\"119.3\" y1=\"187.0\" x2=\"113.1\" y2=\"183.8\"></line><line class=\"c1\" x1=\"113.1\" y1=\"183.8\" x2=\"106.6\" y2=\"180.9\"></line><line class=\"c1\" x1=\"106.6\" y1=\"180.9\" x2=\"99.9\" y2=\"178.1\"></line><line class=\"c1\" x1=\"99.9\" y1=\"178.1\" x2=\"93.0\" y2=\"175.6\"></line><line class=\"c1\" x1=\"93.0\" y1=\"175.6\" x2=\"85.9\" y2=\"173.4\"></line><line class=\"c1\" x1=\"85.9\" y1=\"173.4\" x2=\"78.6\" y2=\"171.4\"></line><line class=\"c1\" x1=\"78.6\" y1=\"171.4\" x2=\"71.2\" y2=\"169.6\"></line><line class=\"c1\" x1=\"71.2\" y1=\"169.6\" x2=\"63.6\" y2=\"168.1\"></line><line class=\"c1\" x1=\"63.6\" y1=\"168.1\" x2=\"56.0\" y2=\"166.9\"></line><line class=\"c1\" x1=\"56.0\" y1=\"166.9\" x2=\"48.2\" y2=\"165.9\"></line><line class=\"c1\" x1=\"48.2\" y1=\"165.9\" x2=\"40.4\" y2=\"165.3\"></line><line class=\"c1\" x1=\"40.4\" y1=\"165.3\" x2=\"32.6\" y2=\"164.8\"></line><line class=\"c1\" x1=\"32.6\" y1=\"164.8\" x2=\"24.7\" y2=\"164.7\"></line><line class=\"c3 fx d2\" x1=\"251.8\" y1=\"264.9\" x2=\"24.7\" y2=\"159.0\"></line><circle class=\"d2s fx d2\" cx=\"161.0\" cy=\"222.6\" r=\"4\"></circle><line class=\"c3 fx d3\" x1=\"201.9\" y1=\"264.9\" x2=\"24.7\" y2=\"87.7\"></line><circle class=\"d2s fx d3\" cx=\"131.0\" cy=\"194.1\" r=\"4\"></circle><line class=\"c3 fx d4\" x1=\"110.4\" y1=\"264.9\" x2=\"24.7\" y2=\"29.5\"></line><circle class=\"d2s fx d4\" cx=\"76.1\" cy=\"170.8\" r=\"4\"></circle><line class=\"ax\" x1=\"8.0\" y1=\"264.9\" x2=\"292.0\" y2=\"264.9\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"24.7\" y1=\"281.6\" x2=\"24.7\" y2=\"6.0\" marker-end=\"url(#pk)\"></line></svg><div class=\"eq fx d5\"><p>If AB makes angle θ with OX: <b>x = PB cos θ = 9cos θ</b> and <b>y = AP sin θ = 6 sin θ</b>. Eliminating θ: <b>x²/81 + y²/36 = 1</b>, an ellipse.</p><p>Only when P is the midpoint (AP = PB) does it become a circle. Each end of the rod traces a line; an interior point traces an ellipse.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: a semi-elliptical arch is 8 m wide and 2 m high at the centre. Height 1.5 m from one end?",
+      "definition": "x²/16 + y²/4 = 1; at x = 4 − 1.5 = 2.5: y² = 4(1 − 6.25/16) = 2.4375 → <span style=\"color:#f08c00\">y ≈ 1.56 m</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: a rod of 12 cm slides on the axes; P is 3 cm from the end on the x-axis. Locus of P?",
+      "definition": "x = 9 cos θ, y = 3 sin θ → <span style=\"color:#f08c00\">x²/81 + y²/9 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: two flag posts 8 m apart; a runner keeps the sum of distances 10 m. Path?",
+      "definition": "2a = 10, 2c = 8 → b = 3: <span style=\"color:#f08c00\">x²/25 + y²/9 = 1</span> (an ellipse)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Planet orbits: which conic and where is the Sun?",
+      "definition": "Ellipses with the Sun at <span style=\"color:#3b82f6\">one focus</span> (Kepler’s first law; Physics 11 Ch 7). Eccentricity of Earth’s orbit ≈ 0.017 (nearly a circle)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.5-ellipse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define a hyperbola.",
+      "definition": "The set of points whose distances from two fixed points (foci) have a <span style=\"color:#3b82f6\">constant difference</span> (farther minus nearer)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Hyperbola: |PF1 − PF2| = 2a",
+      "definition": "Hyperbola x²/9−y²/16=1: foci (±5,0), |PF1−PF2| = 6 = 2a; c² = a² + b²; e = 5/3; asymptotes y = ±(4/3)x",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Hyperbola · difference of distances</p><h2>x²/9 − y²/16 = 1 has foci (±5, 0). Find |PF₁ − PF₂| at (3, 0) and (5, 16/3).</h2><svg viewBox=\"0 0 300 223\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"111.7\" x2=\"292.0\" y2=\"111.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"217.3\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"199.5,111.7 200.0,102.8 200.4,99.1 200.9,96.2 201.3,93.8 201.8,91.6 202.2,89.7 202.7,87.9 203.1,86.2 203.5,84.6 204.0,83.0 204.4,81.6 204.9,80.2 205.3,78.8 205.8,77.5 206.2,76.2 206.7,75.0 207.1,73.8 207.6,72.6 208.0,71.4 208.5,70.3 208.9,69.2 209.3,68.1 209.8,67.0 210.2,66.0 210.7,64.9 211.1,63.9 211.6,62.9 212.0,61.9 212.5,60.9 212.9,60.0 213.4,59.0 213.8,58.1 214.2,57.1 214.7,56.2 215.1,55.3 215.6,54.4 216.0,53.5 216.5,52.6 216.9,51.7 217.4,50.8 217.8,49.9 218.3,49.1 218.7,48.2 219.2,47.3 219.6,46.5 220.0,45.6 220.5,44.8 220.9,44.0 221.4,43.1 221.8,42.3 222.3,41.5 222.7,40.7 223.2,39.9 223.6,39.1 224.1,38.3 224.5,37.5 224.9,36.7 225.4,35.9 225.8,35.1 226.3,34.3 226.7,33.5 227.2,32.8 227.6,32.0 228.1,31.2 228.5,30.5 229.0,29.7 229.4,28.9 229.9,28.2 230.3,27.4 230.7,26.7 231.2,25.9 231.6,25.2 232.1,24.4 232.5,23.7 233.0,22.9 233.4,22.2 233.9,21.4 234.3,20.7 234.8,20.0 235.2,19.2 235.6,18.5 236.1,17.8 236.5,17.1 237.0,16.3 237.4,15.6 237.9,14.9 238.3,14.2 238.8,13.5 239.2,12.7 239.7,12.0 240.1,11.3 240.5,10.6 241.0,9.9 241.4,9.2 241.9,8.5 242.3,7.8 242.8,7.1 243.2,6.4 243.7,5.7 244.1,5.0 244.6,4.3 245.0,3.6 245.5,2.9 245.9,2.2 246.3,1.5 246.8,0.8 247.2,0.1 247.7,-0.6 248.1,-1.3 248.6,-2.0 249.0,-2.6 249.5,-3.3 249.9,-4.0 250.4,-4.7 250.8,-5.4 251.2,-6.1 251.7,-6.7 252.1,-7.4 252.6,-8.1 253.0,-8.8 253.5,-9.5 253.9,-10.1 254.4,-10.8 254.8,-11.5 255.3,-12.2 255.7,-12.8 256.2,-13.5 256.6,-14.2 257.0,-14.9 257.5,-15.5 257.9,-16.2 258.4,-16.9 258.8,-17.5 259.3,-18.2 259.7,-18.9 260.2,-19.5 260.6,-20.2 261.1,-20.9 261.5,-21.5 261.9,-22.2 262.4,-22.8 262.8,-23.5 263.3,-24.2 263.7,-24.8 264.2,-25.5 264.6,-26.1 265.1,-26.8 265.5,-27.5 266.0,-28.1 266.4,-28.8 266.9,-29.4 267.3,-30.1 267.7,-30.7 268.2,-31.4 268.6,-32.1 269.1,-32.7 269.5,-33.4 270.0,-34.0 270.4,-34.7 270.9,-35.3 271.3,-36.0 271.8,-36.6\"></polyline><polyline class=\"c1\"  points=\"199.5,111.7 200.0,120.6 200.4,124.3 200.9,127.1 201.3,129.6 201.8,131.7 202.2,133.7 202.7,135.5 203.1,137.2 203.5,138.8 204.0,140.3 204.4,141.8 204.9,143.2 205.3,144.5 205.8,145.9 206.2,147.1 206.7,148.4 207.1,149.6 207.6,150.8 208.0,151.9 208.5,153.0 208.9,154.2 209.3,155.2 209.8,156.3 210.2,157.4 210.7,158.4 211.1,159.4 211.6,160.4 212.0,161.4 212.5,162.4 212.9,163.4 213.4,164.3 213.8,165.3 214.2,166.2 214.7,167.2 215.1,168.1 215.6,169.0 216.0,169.9 216.5,170.8 216.9,171.7 217.4,172.6 217.8,173.4 218.3,174.3 218.7,175.2 219.2,176.0 219.6,176.9 220.0,177.7 220.5,178.5 220.9,179.4 221.4,180.2 221.8,181.0 222.3,181.8 222.7,182.7 223.2,183.5 223.6,184.3 224.1,185.1 224.5,185.9 224.9,186.7 225.4,187.5 225.8,188.2 226.3,189.0 226.7,189.8 227.2,190.6 227.6,191.4 228.1,192.1 228.5,192.9 229.0,193.7 229.4,194.4 229.9,195.2 230.3,195.9 230.7,196.7 231.2,197.4 231.6,198.2 232.1,198.9 232.5,199.7 233.0,200.4 233.4,201.2 233.9,201.9 234.3,202.6 234.8,203.4 235.2,204.1 235.6,204.8 236.1,205.6 236.5,206.3 237.0,207.0 237.4,207.7 237.9,208.5 238.3,209.2 238.8,209.9 239.2,210.6 239.7,211.3 240.1,212.0 240.5,212.7 241.0,213.4 241.4,214.2 241.9,214.9 242.3,215.6 242.8,216.3 243.2,217.0 243.7,217.7 244.1,218.4 244.6,219.1 245.0,219.8 245.5,220.5 245.9,221.2 246.3,221.9 246.8,222.5 247.2,223.2 247.7,223.9 248.1,224.6 248.6,225.3 249.0,226.0 249.5,226.7 249.9,227.4 250.4,228.0 250.8,228.7 251.2,229.4 251.7,230.1 252.1,230.8 252.6,231.5 253.0,232.1 253.5,232.8 253.9,233.5 254.4,234.2 254.8,234.8 255.3,235.5 255.7,236.2 256.2,236.9 256.6,237.5 257.0,238.2 257.5,238.9 257.9,239.5 258.4,240.2 258.8,240.9 259.3,241.5 259.7,242.2 260.2,242.9 260.6,243.5 261.1,244.2 261.5,244.9 261.9,245.5 262.4,246.2 262.8,246.9 263.3,247.5 263.7,248.2 264.2,248.8 264.6,249.5 265.1,250.2 265.5,250.8 266.0,251.5 266.4,252.1 266.9,252.8 267.3,253.4 267.7,254.1 268.2,254.8 268.6,255.4 269.1,256.1 269.5,256.7 270.0,257.4 270.4,258.0 270.9,258.7 271.3,259.3 271.8,260.0\"></polyline><polyline class=\"c1\"  points=\"28.2,-36.6 28.7,-36.0 29.1,-35.3 29.6,-34.7 30.0,-34.0 30.5,-33.4 30.9,-32.7 31.4,-32.1 31.8,-31.4 32.3,-30.7 32.7,-30.1 33.1,-29.4 33.6,-28.8 34.0,-28.1 34.5,-27.5 34.9,-26.8 35.4,-26.1 35.8,-25.5 36.3,-24.8 36.7,-24.2 37.2,-23.5 37.6,-22.8 38.1,-22.2 38.5,-21.5 38.9,-20.9 39.4,-20.2 39.8,-19.5 40.3,-18.9 40.7,-18.2 41.2,-17.5 41.6,-16.9 42.1,-16.2 42.5,-15.5 43.0,-14.9 43.4,-14.2 43.8,-13.5 44.3,-12.8 44.7,-12.2 45.2,-11.5 45.6,-10.8 46.1,-10.1 46.5,-9.5 47.0,-8.8 47.4,-8.1 47.9,-7.4 48.3,-6.7 48.8,-6.1 49.2,-5.4 49.6,-4.7 50.1,-4.0 50.5,-3.3 51.0,-2.6 51.4,-2.0 51.9,-1.3 52.3,-0.6 52.8,0.1 53.2,0.8 53.7,1.5 54.1,2.2 54.5,2.9 55.0,3.6 55.4,4.3 55.9,5.0 56.3,5.7 56.8,6.4 57.2,7.1 57.7,7.8 58.1,8.5 58.6,9.2 59.0,9.9 59.5,10.6 59.9,11.3 60.3,12.0 60.8,12.7 61.2,13.5 61.7,14.2 62.1,14.9 62.6,15.6 63.0,16.3 63.5,17.1 63.9,17.8 64.4,18.5 64.8,19.2 65.2,20.0 65.7,20.7 66.1,21.4 66.6,22.2 67.0,22.9 67.5,23.7 67.9,24.4 68.4,25.2 68.8,25.9 69.3,26.7 69.7,27.4 70.1,28.2 70.6,28.9 71.0,29.7 71.5,30.5 71.9,31.2 72.4,32.0 72.8,32.8 73.3,33.5 73.7,34.3 74.2,35.1 74.6,35.9 75.1,36.7 75.5,37.5 75.9,38.3 76.4,39.1 76.8,39.9 77.3,40.7 77.7,41.5 78.2,42.3 78.6,43.1 79.1,44.0 79.5,44.8 80.0,45.6 80.4,46.5 80.8,47.3 81.3,48.2 81.7,49.1 82.2,49.9 82.6,50.8 83.1,51.7 83.5,52.6 84.0,53.5 84.4,54.4 84.9,55.3 85.3,56.2 85.8,57.1 86.2,58.1 86.6,59.0 87.1,60.0 87.5,60.9 88.0,61.9 88.4,62.9 88.9,63.9 89.3,64.9 89.8,66.0 90.2,67.0 90.7,68.1 91.1,69.2 91.5,70.3 92.0,71.4 92.4,72.6 92.9,73.8 93.3,75.0 93.8,76.2 94.2,77.5 94.7,78.8 95.1,80.2 95.6,81.6 96.0,83.0 96.5,84.6 96.9,86.2 97.3,87.9 97.8,89.7 98.2,91.6 98.7,93.8 99.1,96.2 99.6,99.1 100.0,102.8 100.5,111.7\"></polyline><polyline class=\"c1\"  points=\"28.2,260.0 28.7,259.3 29.1,258.7 29.6,258.0 30.0,257.4 30.5,256.7 30.9,256.1 31.4,255.4 31.8,254.8 32.3,254.1 32.7,253.4 33.1,252.8 33.6,252.1 34.0,251.5 34.5,250.8 34.9,250.2 35.4,249.5 35.8,248.8 36.3,248.2 36.7,247.5 37.2,246.9 37.6,246.2 38.1,245.5 38.5,244.9 38.9,244.2 39.4,243.5 39.8,242.9 40.3,242.2 40.7,241.5 41.2,240.9 41.6,240.2 42.1,239.5 42.5,238.9 43.0,238.2 43.4,237.5 43.8,236.9 44.3,236.2 44.7,235.5 45.2,234.8 45.6,234.2 46.1,233.5 46.5,232.8 47.0,232.1 47.4,231.5 47.9,230.8 48.3,230.1 48.8,229.4 49.2,228.7 49.6,228.0 50.1,227.4 50.5,226.7 51.0,226.0 51.4,225.3 51.9,224.6 52.3,223.9 52.8,223.2 53.2,222.5 53.7,221.9 54.1,221.2 54.5,220.5 55.0,219.8 55.4,219.1 55.9,218.4 56.3,217.7 56.8,217.0 57.2,216.3 57.7,215.6 58.1,214.9 58.6,214.2 59.0,213.4 59.5,212.7 59.9,212.0 60.3,211.3 60.8,210.6 61.2,209.9 61.7,209.2 62.1,208.5 62.6,207.7 63.0,207.0 63.5,206.3 63.9,205.6 64.4,204.8 64.8,204.1 65.2,203.4 65.7,202.6 66.1,201.9 66.6,201.2 67.0,200.4 67.5,199.7 67.9,198.9 68.4,198.2 68.8,197.4 69.3,196.7 69.7,195.9 70.1,195.2 70.6,194.4 71.0,193.7 71.5,192.9 71.9,192.1 72.4,191.4 72.8,190.6 73.3,189.8 73.7,189.0 74.2,188.2 74.6,187.5 75.1,186.7 75.5,185.9 75.9,185.1 76.4,184.3 76.8,183.5 77.3,182.7 77.7,181.8 78.2,181.0 78.6,180.2 79.1,179.4 79.5,178.5 80.0,177.7 80.4,176.9 80.8,176.0 81.3,175.2 81.7,174.3 82.2,173.4 82.6,172.6 83.1,171.7 83.5,170.8 84.0,169.9 84.4,169.0 84.9,168.1 85.3,167.2 85.8,166.2 86.2,165.3 86.6,164.3 87.1,163.4 87.5,162.4 88.0,161.4 88.4,160.4 88.9,159.4 89.3,158.4 89.8,157.4 90.2,156.3 90.7,155.2 91.1,154.2 91.5,153.0 92.0,151.9 92.4,150.8 92.9,149.6 93.3,148.4 93.8,147.1 94.2,145.9 94.7,144.5 95.1,143.2 95.6,141.8 96.0,140.3 96.5,138.8 96.9,137.2 97.3,135.5 97.8,133.7 98.2,131.7 98.7,129.6 99.1,127.1 99.6,124.3 100.0,120.6 100.5,111.7\"></polyline><line class=\"guide\" x1=\"17.9\" y1=\"287.8\" x2=\"282.1\" y2=\"-64.4\"></line><line class=\"guide\" x1=\"17.9\" y1=\"-64.4\" x2=\"282.1\" y2=\"287.8\"></line><circle class=\"d2s \" cx=\"67.4\" cy=\"111.7\" r=\"5\"></circle><circle class=\"d2s \" cx=\"232.6\" cy=\"111.7\" r=\"5\"></circle><text class=\"t2 \" x=\"238.6\" y=\"127.7\" text-anchor=\"start\">F₂</text><text class=\"t2 \" x=\"61.4\" y=\"127.7\" text-anchor=\"end\">F₁</text></svg><p class=\"hint\">Farther distance minus nearer distance.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Hyperbola · difference of distances</p><h2>x²/9 − y²/16 = 1 has foci (±5, 0). Find |PF₁ − PF₂| at (3, 0) and (5, 16/3).</h2><svg viewBox=\"0 0 300 223\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"111.7\" x2=\"292.0\" y2=\"111.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"217.3\" x2=\"150.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"199.5,111.7 200.0,102.8 200.4,99.1 200.9,96.2 201.3,93.8 201.8,91.6 202.2,89.7 202.7,87.9 203.1,86.2 203.5,84.6 204.0,83.0 204.4,81.6 204.9,80.2 205.3,78.8 205.8,77.5 206.2,76.2 206.7,75.0 207.1,73.8 207.6,72.6 208.0,71.4 208.5,70.3 208.9,69.2 209.3,68.1 209.8,67.0 210.2,66.0 210.7,64.9 211.1,63.9 211.6,62.9 212.0,61.9 212.5,60.9 212.9,60.0 213.4,59.0 213.8,58.1 214.2,57.1 214.7,56.2 215.1,55.3 215.6,54.4 216.0,53.5 216.5,52.6 216.9,51.7 217.4,50.8 217.8,49.9 218.3,49.1 218.7,48.2 219.2,47.3 219.6,46.5 220.0,45.6 220.5,44.8 220.9,44.0 221.4,43.1 221.8,42.3 222.3,41.5 222.7,40.7 223.2,39.9 223.6,39.1 224.1,38.3 224.5,37.5 224.9,36.7 225.4,35.9 225.8,35.1 226.3,34.3 226.7,33.5 227.2,32.8 227.6,32.0 228.1,31.2 228.5,30.5 229.0,29.7 229.4,28.9 229.9,28.2 230.3,27.4 230.7,26.7 231.2,25.9 231.6,25.2 232.1,24.4 232.5,23.7 233.0,22.9 233.4,22.2 233.9,21.4 234.3,20.7 234.8,20.0 235.2,19.2 235.6,18.5 236.1,17.8 236.5,17.1 237.0,16.3 237.4,15.6 237.9,14.9 238.3,14.2 238.8,13.5 239.2,12.7 239.7,12.0 240.1,11.3 240.5,10.6 241.0,9.9 241.4,9.2 241.9,8.5 242.3,7.8 242.8,7.1 243.2,6.4 243.7,5.7 244.1,5.0 244.6,4.3 245.0,3.6 245.5,2.9 245.9,2.2 246.3,1.5 246.8,0.8 247.2,0.1 247.7,-0.6 248.1,-1.3 248.6,-2.0 249.0,-2.6 249.5,-3.3 249.9,-4.0 250.4,-4.7 250.8,-5.4 251.2,-6.1 251.7,-6.7 252.1,-7.4 252.6,-8.1 253.0,-8.8 253.5,-9.5 253.9,-10.1 254.4,-10.8 254.8,-11.5 255.3,-12.2 255.7,-12.8 256.2,-13.5 256.6,-14.2 257.0,-14.9 257.5,-15.5 257.9,-16.2 258.4,-16.9 258.8,-17.5 259.3,-18.2 259.7,-18.9 260.2,-19.5 260.6,-20.2 261.1,-20.9 261.5,-21.5 261.9,-22.2 262.4,-22.8 262.8,-23.5 263.3,-24.2 263.7,-24.8 264.2,-25.5 264.6,-26.1 265.1,-26.8 265.5,-27.5 266.0,-28.1 266.4,-28.8 266.9,-29.4 267.3,-30.1 267.7,-30.7 268.2,-31.4 268.6,-32.1 269.1,-32.7 269.5,-33.4 270.0,-34.0 270.4,-34.7 270.9,-35.3 271.3,-36.0 271.8,-36.6\"></polyline><polyline class=\"c1\"  points=\"199.5,111.7 200.0,120.6 200.4,124.3 200.9,127.1 201.3,129.6 201.8,131.7 202.2,133.7 202.7,135.5 203.1,137.2 203.5,138.8 204.0,140.3 204.4,141.8 204.9,143.2 205.3,144.5 205.8,145.9 206.2,147.1 206.7,148.4 207.1,149.6 207.6,150.8 208.0,151.9 208.5,153.0 208.9,154.2 209.3,155.2 209.8,156.3 210.2,157.4 210.7,158.4 211.1,159.4 211.6,160.4 212.0,161.4 212.5,162.4 212.9,163.4 213.4,164.3 213.8,165.3 214.2,166.2 214.7,167.2 215.1,168.1 215.6,169.0 216.0,169.9 216.5,170.8 216.9,171.7 217.4,172.6 217.8,173.4 218.3,174.3 218.7,175.2 219.2,176.0 219.6,176.9 220.0,177.7 220.5,178.5 220.9,179.4 221.4,180.2 221.8,181.0 222.3,181.8 222.7,182.7 223.2,183.5 223.6,184.3 224.1,185.1 224.5,185.9 224.9,186.7 225.4,187.5 225.8,188.2 226.3,189.0 226.7,189.8 227.2,190.6 227.6,191.4 228.1,192.1 228.5,192.9 229.0,193.7 229.4,194.4 229.9,195.2 230.3,195.9 230.7,196.7 231.2,197.4 231.6,198.2 232.1,198.9 232.5,199.7 233.0,200.4 233.4,201.2 233.9,201.9 234.3,202.6 234.8,203.4 235.2,204.1 235.6,204.8 236.1,205.6 236.5,206.3 237.0,207.0 237.4,207.7 237.9,208.5 238.3,209.2 238.8,209.9 239.2,210.6 239.7,211.3 240.1,212.0 240.5,212.7 241.0,213.4 241.4,214.2 241.9,214.9 242.3,215.6 242.8,216.3 243.2,217.0 243.7,217.7 244.1,218.4 244.6,219.1 245.0,219.8 245.5,220.5 245.9,221.2 246.3,221.9 246.8,222.5 247.2,223.2 247.7,223.9 248.1,224.6 248.6,225.3 249.0,226.0 249.5,226.7 249.9,227.4 250.4,228.0 250.8,228.7 251.2,229.4 251.7,230.1 252.1,230.8 252.6,231.5 253.0,232.1 253.5,232.8 253.9,233.5 254.4,234.2 254.8,234.8 255.3,235.5 255.7,236.2 256.2,236.9 256.6,237.5 257.0,238.2 257.5,238.9 257.9,239.5 258.4,240.2 258.8,240.9 259.3,241.5 259.7,242.2 260.2,242.9 260.6,243.5 261.1,244.2 261.5,244.9 261.9,245.5 262.4,246.2 262.8,246.9 263.3,247.5 263.7,248.2 264.2,248.8 264.6,249.5 265.1,250.2 265.5,250.8 266.0,251.5 266.4,252.1 266.9,252.8 267.3,253.4 267.7,254.1 268.2,254.8 268.6,255.4 269.1,256.1 269.5,256.7 270.0,257.4 270.4,258.0 270.9,258.7 271.3,259.3 271.8,260.0\"></polyline><polyline class=\"c1\"  points=\"28.2,-36.6 28.7,-36.0 29.1,-35.3 29.6,-34.7 30.0,-34.0 30.5,-33.4 30.9,-32.7 31.4,-32.1 31.8,-31.4 32.3,-30.7 32.7,-30.1 33.1,-29.4 33.6,-28.8 34.0,-28.1 34.5,-27.5 34.9,-26.8 35.4,-26.1 35.8,-25.5 36.3,-24.8 36.7,-24.2 37.2,-23.5 37.6,-22.8 38.1,-22.2 38.5,-21.5 38.9,-20.9 39.4,-20.2 39.8,-19.5 40.3,-18.9 40.7,-18.2 41.2,-17.5 41.6,-16.9 42.1,-16.2 42.5,-15.5 43.0,-14.9 43.4,-14.2 43.8,-13.5 44.3,-12.8 44.7,-12.2 45.2,-11.5 45.6,-10.8 46.1,-10.1 46.5,-9.5 47.0,-8.8 47.4,-8.1 47.9,-7.4 48.3,-6.7 48.8,-6.1 49.2,-5.4 49.6,-4.7 50.1,-4.0 50.5,-3.3 51.0,-2.6 51.4,-2.0 51.9,-1.3 52.3,-0.6 52.8,0.1 53.2,0.8 53.7,1.5 54.1,2.2 54.5,2.9 55.0,3.6 55.4,4.3 55.9,5.0 56.3,5.7 56.8,6.4 57.2,7.1 57.7,7.8 58.1,8.5 58.6,9.2 59.0,9.9 59.5,10.6 59.9,11.3 60.3,12.0 60.8,12.7 61.2,13.5 61.7,14.2 62.1,14.9 62.6,15.6 63.0,16.3 63.5,17.1 63.9,17.8 64.4,18.5 64.8,19.2 65.2,20.0 65.7,20.7 66.1,21.4 66.6,22.2 67.0,22.9 67.5,23.7 67.9,24.4 68.4,25.2 68.8,25.9 69.3,26.7 69.7,27.4 70.1,28.2 70.6,28.9 71.0,29.7 71.5,30.5 71.9,31.2 72.4,32.0 72.8,32.8 73.3,33.5 73.7,34.3 74.2,35.1 74.6,35.9 75.1,36.7 75.5,37.5 75.9,38.3 76.4,39.1 76.8,39.9 77.3,40.7 77.7,41.5 78.2,42.3 78.6,43.1 79.1,44.0 79.5,44.8 80.0,45.6 80.4,46.5 80.8,47.3 81.3,48.2 81.7,49.1 82.2,49.9 82.6,50.8 83.1,51.7 83.5,52.6 84.0,53.5 84.4,54.4 84.9,55.3 85.3,56.2 85.8,57.1 86.2,58.1 86.6,59.0 87.1,60.0 87.5,60.9 88.0,61.9 88.4,62.9 88.9,63.9 89.3,64.9 89.8,66.0 90.2,67.0 90.7,68.1 91.1,69.2 91.5,70.3 92.0,71.4 92.4,72.6 92.9,73.8 93.3,75.0 93.8,76.2 94.2,77.5 94.7,78.8 95.1,80.2 95.6,81.6 96.0,83.0 96.5,84.6 96.9,86.2 97.3,87.9 97.8,89.7 98.2,91.6 98.7,93.8 99.1,96.2 99.6,99.1 100.0,102.8 100.5,111.7\"></polyline><polyline class=\"c1\"  points=\"28.2,260.0 28.7,259.3 29.1,258.7 29.6,258.0 30.0,257.4 30.5,256.7 30.9,256.1 31.4,255.4 31.8,254.8 32.3,254.1 32.7,253.4 33.1,252.8 33.6,252.1 34.0,251.5 34.5,250.8 34.9,250.2 35.4,249.5 35.8,248.8 36.3,248.2 36.7,247.5 37.2,246.9 37.6,246.2 38.1,245.5 38.5,244.9 38.9,244.2 39.4,243.5 39.8,242.9 40.3,242.2 40.7,241.5 41.2,240.9 41.6,240.2 42.1,239.5 42.5,238.9 43.0,238.2 43.4,237.5 43.8,236.9 44.3,236.2 44.7,235.5 45.2,234.8 45.6,234.2 46.1,233.5 46.5,232.8 47.0,232.1 47.4,231.5 47.9,230.8 48.3,230.1 48.8,229.4 49.2,228.7 49.6,228.0 50.1,227.4 50.5,226.7 51.0,226.0 51.4,225.3 51.9,224.6 52.3,223.9 52.8,223.2 53.2,222.5 53.7,221.9 54.1,221.2 54.5,220.5 55.0,219.8 55.4,219.1 55.9,218.4 56.3,217.7 56.8,217.0 57.2,216.3 57.7,215.6 58.1,214.9 58.6,214.2 59.0,213.4 59.5,212.7 59.9,212.0 60.3,211.3 60.8,210.6 61.2,209.9 61.7,209.2 62.1,208.5 62.6,207.7 63.0,207.0 63.5,206.3 63.9,205.6 64.4,204.8 64.8,204.1 65.2,203.4 65.7,202.6 66.1,201.9 66.6,201.2 67.0,200.4 67.5,199.7 67.9,198.9 68.4,198.2 68.8,197.4 69.3,196.7 69.7,195.9 70.1,195.2 70.6,194.4 71.0,193.7 71.5,192.9 71.9,192.1 72.4,191.4 72.8,190.6 73.3,189.8 73.7,189.0 74.2,188.2 74.6,187.5 75.1,186.7 75.5,185.9 75.9,185.1 76.4,184.3 76.8,183.5 77.3,182.7 77.7,181.8 78.2,181.0 78.6,180.2 79.1,179.4 79.5,178.5 80.0,177.7 80.4,176.9 80.8,176.0 81.3,175.2 81.7,174.3 82.2,173.4 82.6,172.6 83.1,171.7 83.5,170.8 84.0,169.9 84.4,169.0 84.9,168.1 85.3,167.2 85.8,166.2 86.2,165.3 86.6,164.3 87.1,163.4 87.5,162.4 88.0,161.4 88.4,160.4 88.9,159.4 89.3,158.4 89.8,157.4 90.2,156.3 90.7,155.2 91.1,154.2 91.5,153.0 92.0,151.9 92.4,150.8 92.9,149.6 93.3,148.4 93.8,147.1 94.2,145.9 94.7,144.5 95.1,143.2 95.6,141.8 96.0,140.3 96.5,138.8 96.9,137.2 97.3,135.5 97.8,133.7 98.2,131.7 98.7,129.6 99.1,127.1 99.6,124.3 100.0,120.6 100.5,111.7\"></polyline><line class=\"guide\" x1=\"17.9\" y1=\"287.8\" x2=\"282.1\" y2=\"-64.4\"></line><line class=\"guide\" x1=\"17.9\" y1=\"-64.4\" x2=\"282.1\" y2=\"287.8\"></line><circle class=\"d2s \" cx=\"67.4\" cy=\"111.7\" r=\"5\"></circle><circle class=\"d2s \" cx=\"232.6\" cy=\"111.7\" r=\"5\"></circle><text class=\"t2 \" x=\"238.6\" y=\"127.7\" text-anchor=\"start\">F₂</text><text class=\"t2 \" x=\"61.4\" y=\"127.7\" text-anchor=\"end\">F₁</text><line class=\"c3 fx d2\" x1=\"199.5\" y1=\"111.7\" x2=\"67.4\" y2=\"111.7\"></line><line class=\"c4 fx d2\" x1=\"199.5\" y1=\"111.7\" x2=\"232.6\" y2=\"111.7\"></line><circle class=\"d1s fx d2\" cx=\"199.5\" cy=\"111.7\" r=\"4.5\"></circle><line class=\"c3 fx d3\" x1=\"232.6\" y1=\"23.6\" x2=\"67.4\" y2=\"111.7\"></line><line class=\"c4 fx d3\" x1=\"232.6\" y1=\"23.6\" x2=\"232.6\" y2=\"111.7\"></line><circle class=\"d1s fx d3\" cx=\"232.6\" cy=\"23.6\" r=\"4.5\"></circle><text class=\"t3 fx d3 \" x=\"224.6\" y=\"15.6\" text-anchor=\"end\">11.33 − 5.33 = 6</text><text class=\"t3 fx d2 \" x=\"207.5\" y=\"103.7\" text-anchor=\"start\">8 − 2 = 6</text></svg><div class=\"eq fx d5\"><p>The <b>difference is constant = 2a = 6</b> at every point (farther minus nearer).</p><p>Relation: <b>c² = a² + b²</b> (25 = 9 + 16), e = c/a = 5/3 &gt; 1. The dashed lines y = ±(b/a)x are the asymptotes.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Hyperbola terms: transverse axis, conjugate axis, vertices, a, b, c?",
+      "definition": "Transverse axis (through the foci, meets the curve at the vertices) length <span style=\"color:#3b82f6\">2a</span>; conjugate axis length <span style=\"color:#3b82f6\">2b</span>; distance between foci <span style=\"color:#3b82f6\">2c</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between a, b, c for a hyperbola?",
+      "definition": "<span style=\"color:#f08c00\">c² = a² + b²</span> (b² = c² − a²): c is the hypotenuse, so c > a",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "a, b, c triangles for ellipse and hyperbola",
+      "definition": "Ellipse a²=b²+c² (a hypotenuse, e=c/a<1); hyperbola c²=a²+b² (c hypotenuse, e=c/a>1)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Conics · which is the hypotenuse?</p><h2>Ellipse: a² = b² + c². Hyperbola: c² = a² + b². Draw a right triangle for each with the numbers 3, 4, 5.</h2><svg viewBox=\"0 0 300 180\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><text class=\"sm\" x=\"80\" y=\"30\" text-anchor=\"middle\">Ellipse</text><text class=\"sm\" x=\"225\" y=\"30\" text-anchor=\"middle\">Hyperbola</text></svg><p class=\"hint\">Which of a, c is the largest in each conic?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Conics · which is the hypotenuse?</p><h2>Ellipse: a² = b² + c². Hyperbola: c² = a² + b². Draw a right triangle for each with the numbers 3, 4, 5.</h2><svg viewBox=\"0 0 300 180\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><text class=\"sm\" x=\"80\" y=\"30\" text-anchor=\"middle\">Ellipse</text><text class=\"sm\" x=\"225\" y=\"30\" text-anchor=\"middle\">Hyperbola</text><polygon class=\"f3 fx d2\" points=\"30,130 118,130 118,64\"></polygon><text class=\"lbl\" x=\"74.0\" y=\"144\" text-anchor=\"middle\">c = 4</text><text class=\"lbl\" x=\"124\" y=\"97.0\">b = 3</text><text class=\"t2\" x=\"60.0\" y=\"91.0\" text-anchor=\"middle\">a = 5</text><polygon class=\"f2 fx d3\" points=\"170,130 236,130 236,42\"></polygon><text class=\"lbl\" x=\"203.0\" y=\"144\" text-anchor=\"middle\">a = 3</text><text class=\"lbl\" x=\"242\" y=\"86.0\">b = 4</text><text class=\"t2\" x=\"189.0\" y=\"80.0\" text-anchor=\"middle\">c = 5</text><text class=\"t3 fx d2\" x=\"80\" y=\"168\" text-anchor=\"middle\">a² = b² + c²</text><text class=\"t2 fx d3\" x=\"225\" y=\"168\" text-anchor=\"middle\">c² = a² + b²</text></svg><div class=\"eq fx d5\"><p>Ellipse: the <b>semi-major axis a</b> is the hypotenuse (a is the largest): 5² = 3² + 4², e = c/a = 4/5.</p><p>Hyperbola: the <b>focal distance c</b> is the hypotenuse (c is the largest): 5² = 3² + 4², e = c/a = 5/3.</p><p>Memory: in both, the biggest of a, c is the hypotenuse, and b is the leftover leg.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Eccentricity of a hyperbola?",
+      "definition": "<span style=\"color:#f08c00\">e = c/a > 1</span> (never less than 1). Foci at distance ae from the centre; b² = a²(e² − 1)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Standard equations of hyperbolas?",
+      "definition": "\\(\\dfrac{x^2}{a^2} - \\dfrac{y^2}{b^2} = 1\\) (transverse axis along x) and \\(\\dfrac{y^2}{a^2} - \\dfrac{x^2}{b^2} = 1\\) (along y)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you find the transverse axis from the equation?",
+      "definition": "It lies along the variable with the <span style=\"color:#3b82f6\">positive term</span>: x²/9 − y²/16 = 1 has it along x (length 6); y²/25 − x²/9 = 1 along y (length 10). Note: a² is under the positive term, not necessarily the larger denominator",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: in ellipses a > b always. In hyperbolas?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. For a hyperbola a can be smaller than, equal to, or larger than b. Only the sign decides the transverse axis. If a = b it is an <span style=\"color:#3b82f6\">equilateral (rectangular) hyperbola</span> with e = √2",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Extent of the hyperbola x²/a² − y²/b² = 1?",
+      "definition": "x²/a² ≥ 1, so <span style=\"color:#3b82f6\">x ≤ −a or x ≥ a</span>: no part between x = −a and x = a (no y-intercepts)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Length of the latus rectum of a hyperbola? Asymptotes?",
+      "definition": "<span style=\"color:#f08c00\">2b²/a</span>; asymptotes <span style=\"color:#3b82f6\">y = ±(b/a)x</span> (for x²/a² − y²/b² = 1)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 14: foci, vertices, e, LR of x²/9 − y²/16 = 1 and y² − 16x² = 16.",
+      "definition": "(i) a = 3, b = 4, c = 5: <span style=\"color:#f08c00\">foci (±5, 0), vertices (±3, 0), e = 5/3, LR 32/3</span>. (ii) y²/16 − x² = 1: a = 4, b = 1, c = √17: <span style=\"color:#f08c00\">foci (0, ±√17), vertices (0, ±4), e = √17/4, LR 1/2</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 15: foci (0, ±3), vertices (0, ±√11/2).",
+      "definition": "a² = 11/4, c = 3 → b² = 25/4: <span style=\"color:#f08c00\">100y² − 44x² = 275</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 16: foci (0, ±12) and latus rectum 36.",
+      "definition": "2b²/a = 36 → b² = 18a; 144 = a² + 18a → a = 6, b² = 108: <span style=\"color:#f08c00\">3y² − x² = 108</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q1–2: x²/16 − y²/9 = 1 and y²/9 − x²/27 = 1.",
+      "definition": "First: foci (±5, 0), vertices (±4, 0), e = 5/4, LR 9/2. Second: a = 3, b² = 27, c = 6: foci (0, ±6), vertices (0, ±3), e = 2, LR 18",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q3–4: 9y² − 4x² = 36 and 16x² − 9y² = 576.",
+      "definition": "First: y²/4 − x²/9 = 1: foci (0, ±√13), vertices (0, ±2), e = √13/2, LR 9. Second: x²/36 − y²/64 = 1: foci (±10, 0), vertices (±6, 0), e = 5/3, LR 64/3",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q5–6: 5y² − 9x² = 36 and 49y² − 16x² = 784.",
+      "definition": "First: y²/(36/5) − x²/4 = 1: foci (0, ±2√70/5), vertices (0, ±6/√5), e = √14/3, LR 4√5/3. Second: y²/16 − x²/49 = 1: foci (0, ±√65), vertices (0, ±4), e = √65/4, LR 49/2",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q7–9: vertices (±2,0), foci (±3,0); vertices (0,±5), foci (0,±8); vertices (0,±3), foci (0,±5).",
+      "definition": "<span style=\"color:#f08c00\">x²/4 − y²/5 = 1</span>;  <span style=\"color:#f08c00\">y²/25 − x²/39 = 1</span>;  <span style=\"color:#f08c00\">y²/9 − x²/16 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q10–11: foci (±5,0) with transverse axis 8; foci (0,±13) with conjugate axis 24.",
+      "definition": "<span style=\"color:#f08c00\">x²/16 − y²/9 = 1</span>;  b = 12, a² = 25: <span style=\"color:#f08c00\">y²/25 − x²/144 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q12–13: foci (±3√5, 0), LR 8; foci (±4, 0), LR 12.",
+      "definition": "b² = 4a, a² + 4a = 45 → a = 5: <span style=\"color:#f08c00\">x²/25 − y²/20 = 1</span>. b² = 6a, a² + 6a = 16 → a = 2: <span style=\"color:#f08c00\">x²/4 − y²/12 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 10.4 Q14–15: vertices (±7, 0), e = 4/3; foci (0, ±√10) through (2, 3).",
+      "definition": "c = 28/3, b² = 784/9 − 49 = 343/9: <span style=\"color:#f08c00\">x²/49 − 9y²/343 = 1</span>. Second: a² + b² = 10, 9/a² − 4/b² = 1 → a² = b² = 5: <span style=\"color:#f08c00\">y² − x² = 5</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Hyperbola not at the origin: (x − h)²/a² − (y − k)²/b² = 1. Centre, foci?",
+      "definition": "Centre (h, k); foci (h ± c, k). Asymptotes (y − k) = ±(b/a)(x − h)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Conjugate hyperbola of x²/a² − y²/b² = 1?",
+      "definition": "<span style=\"color:#3b82f6\">x²/a² − y²/b² = −1</span> (same asymptotes; transverse and conjugate axes swap)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Parametric form of x²/a² − y²/b² = 1?",
+      "definition": "<span style=\"color:#3b82f6\">(a sec θ, b tan θ)</span>. Tangent condition y = mx + c: <span style=\"color:#3b82f6\">c² = a²m² − b²</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rectangular hyperbola xy = c²: asymptotes, e, parametric form?",
+      "definition": "Axes are the asymptotes; <span style=\"color:#f08c00\">e = √2</span>; parametric (ct, c/t)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.6-hyperbola"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Eccentricity: circle 0, ellipse <1, parabola 1, hyperbola >1",
+      "definition": "e=0 circle, 0<e<1 ellipse, e=1 parabola, e>1 hyperbola; PF = e·PD for a conic with focus and directrix",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Eccentricity · the whole family</p><h2>Place the circle, ellipse, parabola and hyperbola on an eccentricity scale.</h2><svg viewBox=\"0 0 300 120\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10\" y1=\"82\" x2=\"290\" y2=\"82\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"16.0\" y1=\"78\" x2=\"16.0\" y2=\"86\"></line><text class=\"num\" x=\"16.0\" y=\"100\">0</text><line class=\"ax\" x1=\"80.0\" y1=\"78\" x2=\"80.0\" y2=\"86\"></line><text class=\"num\" x=\"80.0\" y=\"100\">1</text><line class=\"ax\" x1=\"144.0\" y1=\"78\" x2=\"144.0\" y2=\"86\"></line><text class=\"num\" x=\"144.0\" y=\"100\">2</text><line class=\"ax\" x1=\"208.0\" y1=\"78\" x2=\"208.0\" y2=\"86\"></line><text class=\"num\" x=\"208.0\" y=\"100\">3</text></svg><p class=\"hint\">What is c/a for each curve?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Eccentricity · the whole family</p><h2>Place the circle, ellipse, parabola and hyperbola on an eccentricity scale.</h2><svg viewBox=\"0 0 300 120\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10\" y1=\"82\" x2=\"290\" y2=\"82\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"16.0\" y1=\"78\" x2=\"16.0\" y2=\"86\"></line><text class=\"num\" x=\"16.0\" y=\"100\">0</text><line class=\"ax\" x1=\"80.0\" y1=\"78\" x2=\"80.0\" y2=\"86\"></line><text class=\"num\" x=\"80.0\" y=\"100\">1</text><line class=\"ax\" x1=\"144.0\" y1=\"78\" x2=\"144.0\" y2=\"86\"></line><text class=\"num\" x=\"144.0\" y=\"100\">2</text><line class=\"ax\" x1=\"208.0\" y1=\"78\" x2=\"208.0\" y2=\"86\"></line><text class=\"num\" x=\"208.0\" y=\"100\">3</text><rect class=\"ns1\" x=\"16\" y=\"56\" width=\"4\" height=\"26\"></rect><rect class=\"ns3 fx d2\" x=\"20\" y=\"56\" width=\"60.0\" height=\"26\"></rect><rect class=\"ns2 fx d3\" x=\"83.0\" y=\"56\" width=\"189.0\" height=\"26\"></rect><text class=\"t1 fx d1\" x=\"16\" y=\"46\">e = 0 circle</text><text class=\"t3 fx d2\" x=\"80\" y=\"72\">ellipse</text><text class=\"t4 fx d3\" x=\"74.0\" y=\"46\" text-anchor=\"middle\">e = 1 parabola</text><text class=\"t2 fx d3\" x=\"144.0\" y=\"72\" text-anchor=\"middle\">hyperbola  e &gt; 1</text></svg><div class=\"eq fx d5\"><p><b>e = c/a</b> measures how stretched the curve is. <b>e = 0</b> circle (foci coincide). <b>0 &lt; e &lt; 1</b> ellipse. <b>e = 1</b> parabola. <b>e &gt; 1</b> hyperbola.</p><p>Unified definition: distance to the focus = e × distance to the directrix.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-comparison"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Conics comparison table",
+      "definition": "Ellipse: x²/a² + y²/b² = 1;  c² = a² − b²;  e < 1;  LR 2b²/a; Hyperbola: x²/a² − y²/b² = 1;  c² = a² + b²;  e > 1;  LR 2b²/a; Parabola: y² = 4ax;  e = 1;  LR 4a; Circle: x² + y² = r²;  e = 0",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Conics at a glance</p><h2>Compare (centre at the origin, foci on the x-axis).</h2><table><tr><td>Ellipse</td><td class=\"q\">?</td></tr><tr><td>Hyperbola</td><td class=\"q\">?</td></tr><tr><td>Parabola</td><td class=\"q\">?</td></tr><tr><td>Circle</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Conics at a glance</p><h2>Compare (centre at the origin, foci on the x-axis).</h2><table><tr><td>Ellipse</td><td class=\"a\">x²/a² + y²/b² = 1;  c² = a² − b²;  e < 1;  LR 2b²/a</td></tr><tr><td>Hyperbola</td><td class=\"a\">x²/a² − y²/b² = 1;  c² = a² + b²;  e > 1;  LR 2b²/a</td></tr><tr><td>Parabola</td><td class=\"a\">y² = 4ax;  e = 1;  LR 4a</td></tr><tr><td>Circle</td><td class=\"a\">x² + y² = r²;  e = 0</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-comparison"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Identify the conic from the general equation Ax² + Bxy + Cy² + … = 0 (B = 0)?",
+      "definition": "A = C: <span style=\"color:#3b82f6\">circle</span>. A, C same sign, A ≠ C: <span style=\"color:#3b82f6\">ellipse</span>. A, C opposite signs: <span style=\"color:#3b82f6\">hyperbola</span>. One of A, C zero: <span style=\"color:#3b82f6\">parabola</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-comparison"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Focus–directrix definition for all conics?",
+      "definition": "<span style=\"color:#3b82f6\">PF = e · PD</span>: e < 1 ellipse, e = 1 parabola, e > 1 hyperbola",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-comparison"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Latus rectum of ellipse and hyperbola: same formula?",
+      "definition": "<span style=\"color:#22a35a\">Yes</span>: <span style=\"color:#f08c00\">2b²/a</span> for both (with a = semi-major / semi-transverse). Parabola: 4a",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-comparison"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Compare focus-to-centre distance: ellipse, hyperbola?",
+      "definition": "Ellipse: c = ae < a. Hyperbola: c = ae > a",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-comparison"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The centre and radius of x² + y² − 6x + 4y − 12 = 0 are<br>(a) (3, −2), 5 (b) (−3, 2), 5 (c) (3, −2), 25 (d) (3, 2), 5",
+      "definition": "(x − 3)² + (y + 2)² = 25 → <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The focus of the parabola y² = 16x is<br>(a) (4, 0) (b) (0, 4) (c) (16, 0) (d) (2, 0)",
+      "definition": "a = 4 → <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The length of the latus rectum of x² = −12y is<br>(a) 3 (b) 6 (c) 12 (d) 24",
+      "definition": "<span style=\"color:#22a35a\">(c) 12</span> = 4a with a = 3",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The eccentricity of x²/25 + y²/16 = 1 is<br>(a) 3/5 (b) 4/5 (c) 5/3 (d) 9/25",
+      "definition": "c = 3, e = 3/5 → <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The eccentricity of x²/9 − y²/16 = 1 is<br>(a) 5/3 (b) 5/4 (c) 3/5 (d) 4/3",
+      "definition": "c = 5, e = 5/3 → <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The equation 4x² + 9y² = 36 represents<br>(a) a circle (b) an ellipse (c) a parabola (d) a hyperbola",
+      "definition": "x²/9 + y²/4 = 1 → <span style=\"color:#22a35a\">(b) ellipse</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: The distance between the foci of x²/16 + y²/7 = 1 is<br>(a) 3 (b) 6 (c) 8 (d) 2√7",
+      "definition": "c² = 16 − 7 = 9, 2c = <span style=\"color:#22a35a\">(b) 6</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: Foci of 16x² − 9y² = 144 are<br>(a) (±5, 0) (b) (±4, 0) (c) (0, ±5) (d) (±3, 0)",
+      "definition": "x²/9 − y²/16 = 1: c = 5 → <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): if the vertex of y² = 4ax is (0, 0) and it passes through (1, 2), find 4a.",
+      "definition": "4 = 4a·1 → <span style=\"color:#f08c00\">4</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the length of the major axis of x²/49 + y²/25 = 1 is?",
+      "definition": "<span style=\"color:#f08c00\">14</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> The eccentricity of every ellipse is less than 1.<br><b>R:</b> In an ellipse c < a.<br>(a) Both true, R explains A (b) Both true, R does not explain A (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> x² + y² + 2x + 2y + 5 = 0 is a circle.<br><b>R:</b> Every equation with A = C and B = 0 is a circle.<br>(a) Both true (b) A true, R false (c) A false, R true (d) Both false",
+      "definition": "g² + f² − c = 1 + 1 − 5 < 0: no real circle; R also fails for the same reason: <span style=\"color:#22a35a\">(d)</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: the parabola y² = 4ax has eccentricity 1.",
+      "definition": "<span style=\"color:#22a35a\">True</span>: PF = PD, e = 1",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find the equation of the ellipse with foci (±2, 0) and eccentricity 1/2.",
+      "definition": "c = 2, e = c/a = 1/2 → a = 4, b² = 12: <span style=\"color:#f08c00\">x²/16 + y²/12 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: find the equation of the hyperbola with foci (0, ±5) and eccentricity 5/3.",
+      "definition": "c = 5, a = 3, b² = 16: <span style=\"color:#f08c00\">y²/9 − x²/16 = 1</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a satellite dish is a paraboloid 2 m across and 0.5 m deep. Where is the receiver?",
+      "definition": "Section y² = 4ax through (0.5, 1): 1 = 2a → a = 0.5: the receiver is <span style=\"color:#f08c00\">0.5 m from the vertex</span> (at the focus)",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: an elliptical park has major axis 100 m and minor axis 60 m. Distance between the two focus lamps?",
+      "definition": "a = 50, b = 30, c = 40: <span style=\"color:#f08c00\">80 m</span>",
+      "tags": [
+        "class-11",
+        "mathematics",
+        "ch-10",
+        "10.z-how-its-asked"
+      ]
+    }
+  ]
+}
