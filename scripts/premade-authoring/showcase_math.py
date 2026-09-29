@@ -922,3 +922,65 @@ def gaps_method(deck):
           '<p>Total 5! × ⁶P₃ = <b>14400</b>. Method for “not together”: arrange the others first, then insert.</p>',
           'Gaps method: no two boys together (Example 24)', '5 girls in 5! ways create 6 gaps; choose and order 3 gaps for the boys: 6P3; total 5!·6P3 = 14400',
           vb='0 0 300 184', hint='Seat the girls first. How many gaps do they make?')
+
+
+# ================================================================ Maths 11 Ch 7 Binomial theorem
+def expansion_choices(deck):
+    import itertools
+    groups = []
+    for k in range(4):
+        groups.append([''.join('b' if i in pos else 'a' for i in range(3)) for pos in itertools.combinations(range(3), k)])
+    rows = ''
+    for k, g in enumerate(groups):
+        chips = ''.join(f'<span class="ch">{w}</span>' for w in g)
+        rows += (f'<div class="row fx d{k + 1}"><div class="chs">{chips}</div><div class="res">{len(g)} × a<sup>{3 - k}</sup>b<sup>{k}</sup></div></div>')
+    css = ('.pp .chs{display:flex;gap:6px;flex-wrap:wrap;flex:1}.pp .ch{padding:4px 9px;border-radius:9px;background:#fff;border:1px solid #e8e1d2;'
+           'font:600 15px Georgia,serif;color:#1d5fd6;letter-spacing:.06em}.pp .row{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px dashed #e3dac6}'
+           '.pp .res{font-weight:700;color:#c77700;min-width:88px;text-align:right}')
+    q = 'Why is the coefficient of aⁿ⁻ʳbʳ in (a + b)ⁿ equal to ⁿCᵣ? Expand (a + b)³ by choosing a letter from each bracket.'
+    front = (f'<div class="w pp"><p class="tag">Binomial theorem · why ⁿCᵣ</p><h2>{q}</h2>'
+             '<p class="lbl">(a + b)(a + b)(a + b): from each bracket you pick <b>a</b> or <b>b</b>. List all 2 × 2 × 2 = 8 picks and group them by how many b’s you picked.</p>'
+             '<p class="hint">Count the picks in each group.</p></div>')
+    back = (f'<div class="w pp"><p class="tag">Binomial theorem · why ⁿCᵣ</p><h2>{q}</h2>{rows}'
+            '<div class="eq fx d5"><p>Picks with r b’s = ways to choose <b>which r brackets</b> give b = <b>ⁿCᵣ</b>.</p>'
+            '<p>(a + b)³ = a³ + 3a²b + 3ab² + b³ and the 8 picks split as 1 + 3 + 3 + 1.</p></div></div>')
+    _card(deck, 'Why the binomial coefficient is ⁿCᵣ (choose which brackets give b)',
+          'In (a+b)^n each term aⁿ⁻ʳbʳ arises by choosing b from r of the n brackets, in nCr ways', PAPER + css, front, back)
+
+
+def coefficient_bars(deck):
+    from math import comb
+    n = 10
+    vals = [comb(n, k) for k in range(n + 1)]
+    mx = max(vals)
+    base_y = 150
+    bars, labs = '', ''
+    for k, v in enumerate(vals):
+        h = 110 * v / mx
+        x = 10 + k * 26
+        cls = 'f4' if k == n // 2 else 'f1'
+        bars += (f'<rect class="{cls} grow gd{k}" x="{x}" y="{base_y - h:.1f}" width="22" height="{h:.1f}" rx="3"></rect>')
+        labs += f'<text class="num" x="{x + 11}" y="{base_y - h - 4:.1f}">{v}</text><text class="sm" x="{x + 11}" y="{base_y + 13}" text-anchor="middle">{k}</text>'
+    css = ('.pp .grow{transform-box:fill-box;transform-origin:50% 100%;animation:gr 1.2s ease-out both}@keyframes gr{from{transform:scaleY(0)}to{transform:scaleY(1)}}'
+           + ''.join(f'.pp .gd{k}{{animation-delay:{0.3 + 0.12 * min(k, n - k):.2f}s}}' for k in range(n + 1)))
+    axis = f'<line class="ax" x1="6" y1="{base_y}" x2="296" y2="{base_y}"></line><text class="sm" x="150" y="176" text-anchor="middle">r  (coefficient of xʳ in (1 + x)¹⁰)</text>'
+    mcard(deck, 'Binomial coefficients · shape', 'Sketch ¹⁰C₀ … ¹⁰C₁₀. Which is the greatest, and what is the pattern?', axis,
+          bars + labs,
+          '<p>Symmetric bell: ¹⁰Cᵣ = ¹⁰C₁₀₋ᵣ. Rising to the <b>middle coefficient ¹⁰C₅ = 252</b>, then falling. Total 2¹⁰ = 1024.</p>'
+          '<p>Rule: n even → one middle coefficient ⁿCₙ/₂; n odd → two equal middle ones, ⁿC₍ₙ₋₁₎/₂ = ⁿC₍ₙ₊₁₎/₂.</p>',
+          'Greatest binomial coefficient is the middle one', 'ⁿCr is largest at r = n/2 (n even) or r=(n±1)/2 (n odd, two equal); symmetric; ¹⁰C₅ = 252 is the greatest for n = 10',
+          css=css, vb='0 0 300 184', hint='Compare ¹⁰C₄, ¹⁰C₅, ¹⁰C₆.')
+
+
+def small_x_approx(deck):
+    P = Plane(-0.32, 0.36, -0.3, 4.4, 300, 200, (26, 10, 12, 20))
+    xt = [(-0.2, '−0.2'), (0.2, '0.2')]
+    yt = [(1, '1'), (2, '2'), (3, '3'), (4, '4')]
+    base = P.axes(xt, yt, grid=True, xl='x', yl='y') + P.curve(lambda x: (1 + x) ** 5, 'c1', -0.3, 0.34)
+    back = (P.curve(lambda x: 1 + 5 * x, 'c2 fx d2', -0.3, 0.34, clip=(-0.3, 4.4)) + P.curve(lambda x: 1 + 5 * x + 10 * x * x, 'c3 fx d3', -0.3, 0.34, clip=(-0.3, 4.4)) +
+            P.text(-0.3, 4.15, '(1 + x)⁵', 't1 fx d2', dx=30) + P.text(-0.3, 3.6, '1 + 5x', 't2 fx d2', dx=30) + P.text(-0.3, 3.05, '1 + 5x + 10x²', 't3 fx d3', dx=30))
+    mcard(deck, 'Binomial approximation', 'For small x, approximate (1 + x)⁵ using the first few terms. Which is closer?', base, back,
+          '<p>(1 + x)⁵ = 1 + 5x + 10x² + 10x³ + … Near x = 0 the higher powers shrink fast, so <b>(1 + x)ⁿ ≈ 1 + nx</b>; one more term gives 1 + nx + n(n − 1)x²/2 (even closer).</p>'
+          '<p>Example (Misc Q4): (0.99)⁵ = (1 − 0.01)⁵ ≈ 1 − 0.05 + 0.001 = <b>0.951</b> (true value 0.95099…).</p>',
+          '(1 + x)ⁿ ≈ 1 + nx for small x', 'For small x, (1+x)^n ≈ 1 + nx (tangent) and ≈ 1 + nx + n(n−1)x²/2 (better); (0.99)^5 ≈ 1 − 0.05 + 0.001 = 0.951',
+          vb='0 0 300 200', hint='Which powers of x matter near 0?')
