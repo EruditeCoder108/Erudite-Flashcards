@@ -1,0 +1,1964 @@
+{
+  "version": 1,
+  "name": "Chapter 6: Applications of Derivatives",
+  "className": "Class 12",
+  "description": "Rate of change and related rates, marginal cost and revenue, increasing and decreasing functions, local and absolute maxima and minima, derivative tests, and optimisation problems with exam-style questions.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What does dy/dx represent?",
+      "definition": "<span style=\"color:#3b82f6\">The rate of change of y with respect to x</span>. At x = x₀ it is dy/dx at x₀, the instantaneous rate (slope of the tangent). Positive: y increases as x increases; negative: it decreases",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If x = f(t) and y = g(t), how are dy/dt, dx/dt and dy/dx related?",
+      "definition": "<span style=\"color:#3b82f6\">dy/dx = (dy/dt)/(dx/dt)</span> (dx/dt ≠ 0), or dy/dt = (dy/dx)(dx/dt), the chain rule",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "dA/dr = 2πr and dA/dt = 2πr dr/dt",
+      "definition": "A = pi r^2 gives dA/dr = 2 pi r (circumference); with time: dA/dt = 2 pi r dr/dt; related rates use the chain rule; derivative = rate of change",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Rate of change</p><h2>The radius of a circle grows. Why is dA/dr = 2πr? Picture the extra area when r increases by a little.</h2><svg viewBox=\"0 0 300 238\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"119.1\" x2=\"292.0\" y2=\"119.1\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"230.3\" x2=\"150.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><circle class=\"c1\" cx=\"150.0\" cy=\"119.1\" r=\"61.7\"></circle><line class=\"c0\" x1=\"150.0\" y1=\"119.1\" x2=\"211.7\" y2=\"119.1\"></line><text class=\"lbi \" x=\"180.9\" y=\"113.1\" text-anchor=\"middle\">r</text></svg><p class=\"hint\">Draw r and r + Δr.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Rate of change</p><h2>The radius of a circle grows. Why is dA/dr = 2πr? Picture the extra area when r increases by a little.</h2><svg viewBox=\"0 0 300 238\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"119.1\" x2=\"292.0\" y2=\"119.1\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"230.3\" x2=\"150.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><circle class=\"c1\" cx=\"150.0\" cy=\"119.1\" r=\"61.7\"></circle><line class=\"c0\" x1=\"150.0\" y1=\"119.1\" x2=\"211.7\" y2=\"119.1\"></line><text class=\"lbi \" x=\"180.9\" y=\"113.1\" text-anchor=\"middle\">r</text><path class=\"ns4 fx d2\" d=\"M74.4,119.1 a75.6,75.6 0 1,0 151.3,0 a75.6,75.6 0 1,0 -151.3,0 Z M88.3,119.1 a61.7,61.7 0 1,0 123.5,0 a61.7,61.7 0 1,0 -123.5,0 Z\" fill-rule=\"evenodd\"></path><circle class=\"c4 fx d2\" cx=\"150.0\" cy=\"119.1\" r=\"75.6\"></circle><text class=\"t4 fx d3 \" x=\"150.0\" y=\"29.6\" text-anchor=\"middle\">ring area ≈ 2πr · Δr</text><text class=\"t1 fx d4 \" x=\"150.0\" y=\"213.3\" text-anchor=\"middle\">dA/dr = 2πr</text></svg><div class=\"eq fx d5\"><p>When r grows by Δr, the new area is a thin ring of length 2πr (the circumference) and width Δr, so ΔA ≈ 2πr · Δr and <b>dA/dr = 2πr</b>. Ex 6.1 Q1: at r = 3 the rate is 6π cm²/cm, at r = 4 it is 8π cm²/cm.</p><p>In a related-rates problem the radius changes with time, so <b>dA/dt = 2πr · dr/dt</b> (chain rule): with r = 10 and dr/dt = 3 cm/s, dA/dt = 60π cm²/s (Q3).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Related rates: general method.",
+      "definition": "1) Draw a figure and name the variables. 2) Write an equation linking them that is true at <span style=\"color:#3b82f6\">all times</span> (do not substitute numbers yet). 3) <span style=\"color:#3b82f6\">Differentiate with respect to t</span>. 4) Substitute the instant’s values. 5) State the answer with units and sign",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: substituting the instant’s values before differentiating.",
+      "definition": "<span style=\"color:#e5484d\">Wrong</span>: a constant has zero derivative. For a ladder with x = 4 fixed in the equation you would lose the term. Differentiate first, then plug in numbers (except for quantities that really stay constant)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Related rates: differentiate the constraint with respect to time",
+      "definition": "Ladder 5: x^2 + y^2 = 25 gives x dx/dt + y dy/dt = 0; at x=4, y=3, dx/dt=2: dy/dt = -8/3 cm/s; related rates: relate, differentiate w.r.t. t, substitute",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Related rates · ladder</p><h2>A 5 m ladder slides away from a wall at 2 cm/s. How fast is its top sliding down when the foot is 4 m from the wall?</h2><svg viewBox=\"0 0 300 300\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"263.4\" x2=\"294.0\" y2=\"263.4\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"36.6\" y1=\"290.0\" x2=\"36.6\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polygon class=\"f0\" points=\"10.0,290.0 36.6,290.0 36.6,6.0 10.0,6.0\"></polygon><line class=\"c1\" x1=\"214.1\" y1=\"263.4\" x2=\"36.6\" y2=\"130.2\"></line><circle class=\"d1s \" cx=\"214.1\" cy=\"263.4\" r=\"4\"></circle><circle class=\"d1s \" cx=\"36.6\" cy=\"130.2\" r=\"4\"></circle></svg><p class=\"hint\">Write the relation between x and y first.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Related rates · ladder</p><h2>A 5 m ladder slides away from a wall at 2 cm/s. How fast is its top sliding down when the foot is 4 m from the wall?</h2><svg viewBox=\"0 0 300 300\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"263.4\" x2=\"294.0\" y2=\"263.4\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"36.6\" y1=\"290.0\" x2=\"36.6\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polygon class=\"f0\" points=\"10.0,290.0 36.6,290.0 36.6,6.0 10.0,6.0\"></polygon><line class=\"c1\" x1=\"214.1\" y1=\"263.4\" x2=\"36.6\" y2=\"130.2\"></line><circle class=\"d1s \" cx=\"214.1\" cy=\"263.4\" r=\"4\"></circle><circle class=\"d1s \" cx=\"36.6\" cy=\"130.2\" r=\"4\"></circle><line class=\"guide fx d2\" x1=\"103.2\" y1=\"263.4\" x2=\"36.6\" y2=\"51.7\"></line><line class=\"guide fx d3\" x1=\"169.8\" y1=\"263.4\" x2=\"36.6\" y2=\"85.9\"></line><line class=\"guide fx d4\" x1=\"240.8\" y1=\"263.4\" x2=\"36.6\" y2=\"176.4\"></line><line class=\"guide fx d5\" x1=\"254.1\" y1=\"263.4\" x2=\"36.6\" y2=\"219.2\"></line><text class=\"t1 fx d2 \" x=\"214.1\" y=\"279.4\" text-anchor=\"middle\">x = 4</text><text class=\"t1 fx d2 \" x=\"44.6\" y=\"134.2\" text-anchor=\"start\">y = 3</text><text class=\"t4 fx d3 \" x=\"152.0\" y=\"50.4\" text-anchor=\"middle\">x² + y² = 25</text></svg><div class=\"eq fx d5\"><p>x² + y² = 25. Differentiate with respect to t: <b>2x dx/dt + 2y dy/dt = 0</b>, so dy/dt = −(x/y) dx/dt. With x = 4, y = 3, dx/dt = 2: dy/dt = −(4/3)·2 = <b>−8/3 cm/s</b>; the top slides down at 8/3 cm/s (Ex 6.1 Q10).</p><p>Steps: relate the variables, differentiate w.r.t. time, substitute the instant values.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Useful formulas for related-rates problems.",
+      "definition": "Circle: A = πr², C = 2πr. Sphere: V = (4/3)πr³, S = 4πr². Cube: V = x³, S = 6x². Cone: V = (1/3)πr²h. Cylinder: V = πr²h. Pythagoras for ladders and shadows; similar triangles for cones and shadows",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: rate of change of the area of a circle with respect to its radius when r = 5 cm.",
+      "definition": "dA/dr = 2πr = <span style=\"color:#f08c00\">10π cm²/cm</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Marginal cost and marginal revenue: definitions.",
+      "definition": "<span style=\"color:#3b82f6\">Marginal cost</span> = dC/dx, the rate of change of total cost with output. <span style=\"color:#3b82f6\">Marginal revenue</span> = dR/dx. Each approximates the cost (revenue) of the next unit",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: C(x) = 0.005x³ − 0.02x² + 30x + 5000. Marginal cost at x = 3?",
+      "definition": "C′(x) = 0.015x² − 0.04x + 30. At x = 3: 0.135 − 0.12 + 30 = <span style=\"color:#f08c00\">₹30.015 ≈ ₹30.02</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 6: R(x) = 3x² + 36x + 5. Marginal revenue at x = 5?",
+      "definition": "R′(x) = 6x + 36 = 6(5) + 36 = <span style=\"color:#f08c00\">₹66</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-rate-of-change"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q1: rate of change of the area of a circle with respect to r when (a) r = 3 cm (b) r = 4 cm.",
+      "definition": "2πr: (a) <span style=\"color:#f08c00\">6π cm²/cm</span>, (b) <span style=\"color:#f08c00\">8π cm²/cm</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q2: the volume of a cube increases at 8 cm³/s. How fast is the surface area increasing when the edge is 12 cm?",
+      "definition": "V = x³: 3x² dx/dt = 8, so dx/dt = 8/432 = 1/54. S = 6x²: dS/dt = 12x dx/dt = 144/54 = <span style=\"color:#f08c00\">8/3 cm²/s</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q3: the radius of a circle increases uniformly at 3 cm/s. Rate of change of area when r = 10 cm?",
+      "definition": "dA/dt = 2πr dr/dt = 2π · 10 · 3 = <span style=\"color:#f08c00\">60π cm²/s</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q4: an edge of a cube increases at 3 cm/s. How fast does the volume increase when the edge is 10 cm?",
+      "definition": "dV/dt = 3x² dx/dt = 3 · 100 · 3 = <span style=\"color:#f08c00\">900 cm³/s</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q5: waves in a lake spread as circles at 5 cm/s. How fast is the enclosed area increasing when r = 8 cm?",
+      "definition": "dA/dt = 2πr dr/dt = 2π · 8 · 5 = <span style=\"color:#f08c00\">80π cm²/s</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q6: the radius of a circle grows at 0.7 cm/s. Rate of change of its circumference?",
+      "definition": "C = 2πr: dC/dt = 2π · 0.7 = <span style=\"color:#f08c00\">1.4π cm/s</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q7: rectangle length x decreases at 5 cm/min, width y increases at 4 cm/min. When x = 8 and y = 6, rates of change of (a) perimeter (b) area?",
+      "definition": "(a) P = 2(x + y): 2(−5 + 4) = <span style=\"color:#f08c00\">−2 cm/min</span>. (b) A = xy: y dx/dt + x dy/dt = 6(−5) + 8(4) = <span style=\"color:#f08c00\">2 cm²/min</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q8: a spherical balloon is inflated at 900 cm³/s. How fast does the radius grow when r = 15 cm?",
+      "definition": "V = (4/3)πr³: dV/dt = 4πr² dr/dt → dr/dt = 900/(4π · 225) = <span style=\"color:#f08c00\">1/π cm/s</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q9: rate of change of the volume of a sphere with respect to its radius when r = 10 cm?",
+      "definition": "dV/dr = 4πr² = <span style=\"color:#f08c00\">400π cm³/cm</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q10: a 5 m ladder slides away from a wall at 2 cm/s. How fast does the top slide down when the foot is 4 m away?",
+      "definition": "x² + y² = 25, y = 3: 2x x′ + 2y y′ = 0 → y′ = −(4/3)(2) = <span style=\"color:#f08c00\">−8/3: down at 8/3 cm/s</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q11: a particle moves on 6y = x³ + 2. Find the points where the y-coordinate changes 8 times as fast as the x-coordinate.",
+      "definition": "6 dy/dt = 3x² dx/dt and dy/dt = 8 dx/dt → 48 = 3x² → x = ±4. Points <span style=\"color:#f08c00\">(4, 11)</span> and <span style=\"color:#f08c00\">(−4, −31/3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q12: the radius of an air bubble increases at ½ cm/s. Rate of increase of the volume when r = 1 cm?",
+      "definition": "dV/dt = 4πr² dr/dt = 4π · 1 · ½ = <span style=\"color:#f08c00\">2π cm³/s</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q13: a balloon has diameter (3/2)(2x + 1). Find dV/dx.",
+      "definition": "r = (3/4)(2x + 1), dr/dx = 3/2. V = (4/3)πr³: dV/dx = 4πr² dr/dx = 4π · (9/16)(2x + 1)² · (3/2) = <span style=\"color:#f08c00\">(27/8)π (2x + 1)²</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q14: sand pours at 12 cm³/s into a cone whose height is always one-sixth of the base radius. How fast is the height increasing when h = 4 cm?",
+      "definition": "r = 6h, V = (1/3)π(6h)²h = 12πh³. dV/dt = 36πh² dh/dt = 12 → dh/dt = 12/(36π · 16) = <span style=\"color:#f08c00\">1/(48π) cm/s</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q15: C(x) = 0.007x³ − 0.003x² + 15x + 4000. Marginal cost when 17 units are produced?",
+      "definition": "C′(x) = 0.021x² − 0.006x + 15; at x = 17: 6.069 − 0.102 + 15 = <span style=\"color:#f08c00\">₹20.967</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q16: R(x) = 13x² + 26x + 15. Marginal revenue at x = 7?",
+      "definition": "R′ = 26x + 26 = <span style=\"color:#f08c00\">₹208</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q17: the rate of change of the area of a circle with respect to r at r = 6 cm is (A) 10π (B) 12π (C) 8π (D) 11π",
+      "definition": "2π · 6 = <span style=\"color:#22a35a\">(B) 12π</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.1 Q18: R(x) = 3x² + 36x + 5. Marginal revenue at x = 15? (A) 116 (B) 96 (C) 90 (D) 126",
+      "definition": "6 · 15 + 36 = <span style=\"color:#22a35a\">(D) 126</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 30: distance x = t²(2 − t/3) metres. When does the car stop, and how far has it gone?",
+      "definition": "v = dx/dt = 4t − t² = t(4 − t) = 0 at t = 0 and t = 4. So it stops after <span style=\"color:#f08c00\">4 s</span> having covered 16(2 − 4/3) = <span style=\"color:#f08c00\">32/3 m</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.2-exercise-6-1"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define increasing, decreasing, constant on an interval I.",
+      "definition": "<span style=\"color:#3b82f6\">Increasing</span>: x₁ < x₂ ⇒ f(x₁) ≤ f(x₂). <span style=\"color:#3b82f6\">Decreasing</span>: x₁ < x₂ ⇒ f(x₁) ≥ f(x₂). <span style=\"color:#3b82f6\">Strictly</span> increasing/decreasing: replace ≤, ≥ by <, >. Constant: f(x) = c on I",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 1: the derivative test for monotonicity.",
+      "definition": "Let f be continuous on [a, b] and differentiable on (a, b). <span style=\"color:#3b82f6\">f′(x) > 0 on (a, b) ⇒ strictly increasing</span>; <span style=\"color:#3b82f6\">f′(x) < 0 ⇒ strictly decreasing</span>; f′(x) = 0 ⇒ constant. (f′ ≥ 0 gives increasing, f′ ≤ 0 decreasing)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: find where f is increasing or decreasing.",
+      "definition": "1) Find f′. 2) Solve f′ = 0 and mark the points where f′ is undefined. 3) These split the domain into intervals. 4) Check the sign of f′ on each interval (test point or factorisation). 5) Write the intervals (open at the split points)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does the derivative test need the Mean Value Theorem?",
+      "definition": "f(x₂) − f(x₁) = f′(c)(x₂ − x₁) for some c between x₁ and x₂. So the sign of f′ decides the sign of the difference. (The MVT is the bridge between slope and function values.)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7: show f(x) = 7x − 3 is increasing on R.",
+      "definition": "f′(x) = 7 > 0 for all x: <span style=\"color:#22a35a\">increasing on R</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10: intervals of f(x) = x² − 4x + 6.",
+      "definition": "f′ = 2x − 4 = 0 at x = 2. Increasing on <span style=\"color:#f08c00\">(2, ∞)</span>, decreasing on <span style=\"color:#f08c00\">(−∞, 2)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 11: intervals of f(x) = 4x³ − 6x² − 72x + 30.",
+      "definition": "f′ = 12x² − 12x − 72 = 12(x − 3)(x + 2). Increasing on <span style=\"color:#f08c00\">(−∞, −2) ∪ (3, ∞)</span>, decreasing on <span style=\"color:#f08c00\">(−2, 3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 9: is cos x increasing or decreasing on (0, π)? On (π, 2π)?",
+      "definition": "f′ = −sin x < 0 on (0, π): <span style=\"color:#f08c00\">decreasing</span>. On (π, 2π), −sin x > 0: <span style=\"color:#f08c00\">increasing</span>. Neither on (0, 2π)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 12: intervals of sin 3x on (0, π/2).",
+      "definition": "f′ = 3 cos 3x = 0 at x = π/6. Increasing on <span style=\"color:#f08c00\">(0, π/6)</span> and decreasing on <span style=\"color:#f08c00\">(π/6, π/2)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "First derivative test: sign change of f′",
+      "definition": "f increasing where f'>0, decreasing where f'<0; f' changes + to - at a local max, - to + at a local min; f = x^3 - 3x has local max 2 at x=-1 and local min -2 at x=1",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">First derivative test</p><h2>f(x) = x³ − 3x. Where is it increasing and where decreasing? Where are its local maximum and minimum?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"92.8\" y1=\"170.0\" x2=\"92.8\" y2=\"8.0\"></line><line class=\"gd\" x1=\"191.2\" y1=\"170.0\" x2=\"191.2\" y2=\"8.0\"></line><line class=\"gd\" x1=\"14.0\" y1=\"46.1\" x2=\"270.0\" y2=\"46.1\"></line><line class=\"gd\" x1=\"14.0\" y1=\"141.4\" x2=\"270.0\" y2=\"141.4\"></line><line class=\"ax\" x1=\"14.0\" y1=\"93.8\" x2=\"270.0\" y2=\"93.8\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"142.0\" y1=\"170.0\" x2=\"142.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"92.8\" y1=\"90.8\" x2=\"92.8\" y2=\"96.8\"></line><text class=\"num\" x=\"92.8\" y=\"107.8\">−1</text><line class=\"ax\" x1=\"191.2\" y1=\"90.8\" x2=\"191.2\" y2=\"96.8\"></line><text class=\"num\" x=\"191.2\" y=\"107.8\">1</text><line class=\"ax\" x1=\"139.0\" y1=\"46.1\" x2=\"145.0\" y2=\"46.1\"></line><text class=\"num\" x=\"136.0\" y=\"49.6\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"139.0\" y1=\"141.4\" x2=\"145.0\" y2=\"141.4\"></line><text class=\"num\" x=\"136.0\" y=\"144.9\" text-anchor=\"end\">−2</text><polyline class=\"c0\"  points=\"38.6,164.3 40.1,157.1 41.6,150.2 43.0,143.6 44.5,137.2 46.0,131.0 47.5,125.2 49.0,119.5 50.4,114.1 51.9,109.0 53.4,104.1 54.9,99.4 56.3,94.9 57.8,90.7 59.3,86.7 60.8,82.9 62.2,79.3 63.7,75.9 65.2,72.7 66.7,69.7 68.2,67.0 69.6,64.4 71.1,62.0 72.6,59.8 74.1,57.7 75.5,55.9 77.0,54.2 78.5,52.7 80.0,51.4 81.4,50.2 82.9,49.2 84.4,48.3 85.9,47.6 87.4,47.0 88.8,46.6 90.3,46.3 91.8,46.1 93.3,46.1 94.7,46.2 96.2,46.5 97.7,46.8 99.2,47.3 100.6,47.8 102.1,48.5 103.6,49.3 105.1,50.2 106.6,51.2 108.0,52.3 109.5,53.4 111.0,54.7 112.5,56.0 113.9,57.4 115.4,58.9 116.9,60.5 118.4,62.1 119.8,63.8 121.3,65.5 122.8,67.3 124.3,69.1 125.8,71.0 127.2,73.0 128.7,74.9 130.2,76.9 131.7,79.0 133.1,81.0 134.6,83.1 136.1,85.2 137.6,87.3 139.0,89.5 140.5,91.6 142.0,93.8 143.5,95.9 145.0,98.0 146.4,100.2 147.9,102.3 149.4,104.4 150.9,106.5 152.3,108.6 153.8,110.6 155.3,112.6 156.8,114.6 158.2,116.5 159.7,118.4 161.2,120.2 162.7,122.0 164.2,123.8 165.6,125.4 167.1,127.1 168.6,128.6 170.1,130.1 171.5,131.5 173.0,132.8 174.5,134.1 176.0,135.3 177.4,136.3 178.9,137.3 180.4,138.2 181.9,139.0 183.4,139.7 184.8,140.3 186.3,140.7 187.8,141.1 189.3,141.3 190.7,141.4 192.2,141.4 193.7,141.2 195.2,140.9 196.6,140.5 198.1,139.9 199.6,139.2 201.1,138.4 202.6,137.3 204.0,136.2 205.5,134.8 207.0,133.3 208.5,131.6 209.9,129.8 211.4,127.8 212.9,125.5 214.4,123.2 215.8,120.6 217.3,117.8 218.8,114.8 220.3,111.6 221.8,108.3 223.2,104.7 224.7,100.9 226.2,96.9 227.7,92.6 229.1,88.2 230.6,83.5 232.1,78.6 233.6,73.4 235.0,68.0 236.5,62.4 238.0,56.5 239.5,50.3 241.0,44.0 242.4,37.3 243.9,30.4 245.4,23.2 246.9,15.8 248.3,8.1\"></polyline></svg><p class=\"hint\">Find f′ and check its sign on each interval.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">First derivative test</p><h2>f(x) = x³ − 3x. Where is it increasing and where decreasing? Where are its local maximum and minimum?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"92.8\" y1=\"170.0\" x2=\"92.8\" y2=\"8.0\"></line><line class=\"gd\" x1=\"191.2\" y1=\"170.0\" x2=\"191.2\" y2=\"8.0\"></line><line class=\"gd\" x1=\"14.0\" y1=\"46.1\" x2=\"270.0\" y2=\"46.1\"></line><line class=\"gd\" x1=\"14.0\" y1=\"141.4\" x2=\"270.0\" y2=\"141.4\"></line><line class=\"ax\" x1=\"14.0\" y1=\"93.8\" x2=\"270.0\" y2=\"93.8\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"142.0\" y1=\"170.0\" x2=\"142.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"92.8\" y1=\"90.8\" x2=\"92.8\" y2=\"96.8\"></line><text class=\"num\" x=\"92.8\" y=\"107.8\">−1</text><line class=\"ax\" x1=\"191.2\" y1=\"90.8\" x2=\"191.2\" y2=\"96.8\"></line><text class=\"num\" x=\"191.2\" y=\"107.8\">1</text><line class=\"ax\" x1=\"139.0\" y1=\"46.1\" x2=\"145.0\" y2=\"46.1\"></line><text class=\"num\" x=\"136.0\" y=\"49.6\" text-anchor=\"end\">2</text><line class=\"ax\" x1=\"139.0\" y1=\"141.4\" x2=\"145.0\" y2=\"141.4\"></line><text class=\"num\" x=\"136.0\" y=\"144.9\" text-anchor=\"end\">−2</text><polyline class=\"c0\"  points=\"38.6,164.3 40.1,157.1 41.6,150.2 43.0,143.6 44.5,137.2 46.0,131.0 47.5,125.2 49.0,119.5 50.4,114.1 51.9,109.0 53.4,104.1 54.9,99.4 56.3,94.9 57.8,90.7 59.3,86.7 60.8,82.9 62.2,79.3 63.7,75.9 65.2,72.7 66.7,69.7 68.2,67.0 69.6,64.4 71.1,62.0 72.6,59.8 74.1,57.7 75.5,55.9 77.0,54.2 78.5,52.7 80.0,51.4 81.4,50.2 82.9,49.2 84.4,48.3 85.9,47.6 87.4,47.0 88.8,46.6 90.3,46.3 91.8,46.1 93.3,46.1 94.7,46.2 96.2,46.5 97.7,46.8 99.2,47.3 100.6,47.8 102.1,48.5 103.6,49.3 105.1,50.2 106.6,51.2 108.0,52.3 109.5,53.4 111.0,54.7 112.5,56.0 113.9,57.4 115.4,58.9 116.9,60.5 118.4,62.1 119.8,63.8 121.3,65.5 122.8,67.3 124.3,69.1 125.8,71.0 127.2,73.0 128.7,74.9 130.2,76.9 131.7,79.0 133.1,81.0 134.6,83.1 136.1,85.2 137.6,87.3 139.0,89.5 140.5,91.6 142.0,93.8 143.5,95.9 145.0,98.0 146.4,100.2 147.9,102.3 149.4,104.4 150.9,106.5 152.3,108.6 153.8,110.6 155.3,112.6 156.8,114.6 158.2,116.5 159.7,118.4 161.2,120.2 162.7,122.0 164.2,123.8 165.6,125.4 167.1,127.1 168.6,128.6 170.1,130.1 171.5,131.5 173.0,132.8 174.5,134.1 176.0,135.3 177.4,136.3 178.9,137.3 180.4,138.2 181.9,139.0 183.4,139.7 184.8,140.3 186.3,140.7 187.8,141.1 189.3,141.3 190.7,141.4 192.2,141.4 193.7,141.2 195.2,140.9 196.6,140.5 198.1,139.9 199.6,139.2 201.1,138.4 202.6,137.3 204.0,136.2 205.5,134.8 207.0,133.3 208.5,131.6 209.9,129.8 211.4,127.8 212.9,125.5 214.4,123.2 215.8,120.6 217.3,117.8 218.8,114.8 220.3,111.6 221.8,108.3 223.2,104.7 224.7,100.9 226.2,96.9 227.7,92.6 229.1,88.2 230.6,83.5 232.1,78.6 233.6,73.4 235.0,68.0 236.5,62.4 238.0,56.5 239.5,50.3 241.0,44.0 242.4,37.3 243.9,30.4 245.4,23.2 246.9,15.8 248.3,8.1\"></polyline><polyline class=\"c3 fx d2\"  points=\"37.6,169.2 38.1,167.1 38.5,164.9 38.9,162.8 39.4,160.7 39.8,158.6 40.2,156.5 40.6,154.5 41.1,152.5 41.5,150.5 41.9,148.5 42.4,146.6 42.8,144.7 43.2,142.8 43.7,140.9 44.1,139.0 44.5,137.2 45.0,135.4 45.4,133.6 45.8,131.8 46.2,130.0 46.7,128.3 47.1,126.6 47.5,124.9 48.0,123.3 48.4,121.6 48.8,120.0 49.3,118.4 49.7,116.8 50.1,115.2 50.6,113.7 51.0,112.2 51.4,110.7 51.8,109.2 52.3,107.7 52.7,106.3 53.1,104.9 53.6,103.5 54.0,102.1 54.4,100.7 54.9,99.4 55.3,98.0 55.7,96.7 56.2,95.5 56.6,94.2 57.0,92.9 57.4,91.7 57.9,90.5 58.3,89.3 58.7,88.1 59.2,87.0 59.6,85.8 60.0,84.7 60.5,83.6 60.9,82.5 61.3,81.5 61.8,80.4 62.2,79.4 62.6,78.4 63.0,77.4 63.5,76.4 63.9,75.5 64.3,74.5 64.8,73.6 65.2,72.7 65.6,71.8 66.1,71.0 66.5,70.1 66.9,69.3 67.4,68.4 67.8,67.6 68.2,66.9 68.6,66.1 69.1,65.3 69.5,64.6 69.9,63.9 70.4,63.2 70.8,62.5 71.2,61.8 71.7,61.1 72.1,60.5 72.5,59.9 73.0,59.2 73.4,58.7 73.8,58.1 74.2,57.5 74.7,57.0 75.1,56.4 75.5,55.9 76.0,55.4 76.4,54.9 76.8,54.4 77.3,54.0 77.7,53.5 78.1,53.1 78.6,52.7 79.0,52.2 79.4,51.9 79.8,51.5 80.3,51.1 80.7,50.8 81.1,50.4 81.6,50.1 82.0,49.8 82.4,49.5 82.9,49.2 83.3,48.9 83.7,48.7 84.2,48.4 84.6,48.2 85.0,48.0 85.4,47.8 85.9,47.6 86.3,47.4 86.7,47.2 87.2,47.1 87.6,46.9 88.0,46.8 88.5,46.7 88.9,46.6 89.3,46.5 89.8,46.4 90.2,46.3 90.6,46.3 91.0,46.2 91.5,46.2 91.9,46.1 92.3,46.1 92.8,46.1\"></polyline><polyline class=\"c2 fx d3\"  points=\"92.8,46.1 93.4,46.1 94.0,46.2 94.6,46.2 95.2,46.3 95.8,46.4 96.5,46.5 97.1,46.6 97.7,46.8 98.3,47.0 98.9,47.2 99.5,47.4 100.2,47.6 100.8,47.9 101.4,48.2 102.0,48.5 102.6,48.8 103.2,49.1 103.8,49.5 104.5,49.8 105.1,50.2 105.7,50.6 106.3,51.0 106.9,51.5 107.5,51.9 108.2,52.4 108.8,52.8 109.4,53.3 110.0,53.9 110.6,54.4 111.2,54.9 111.8,55.5 112.5,56.0 113.1,56.6 113.7,57.2 114.3,57.8 114.9,58.4 115.5,59.0 116.2,59.7 116.8,60.3 117.4,61.0 118.0,61.7 118.6,62.4 119.2,63.1 119.8,63.8 120.5,64.5 121.1,65.2 121.7,66.0 122.3,66.7 122.9,67.5 123.5,68.2 124.2,69.0 124.8,69.8 125.4,70.6 126.0,71.4 126.6,72.2 127.2,73.0 127.8,73.8 128.5,74.6 129.1,75.4 129.7,76.3 130.3,77.1 130.9,78.0 131.5,78.8 132.2,79.7 132.8,80.5 133.4,81.4 134.0,82.3 134.6,83.1 135.2,84.0 135.8,84.9 136.5,85.8 137.1,86.6 137.7,87.5 138.3,88.4 138.9,89.3 139.5,90.2 140.2,91.1 140.8,92.0 141.4,92.9 142.0,93.8 142.6,94.7 143.2,95.6 143.8,96.4 144.5,97.3 145.1,98.2 145.7,99.1 146.3,100.0 146.9,100.9 147.5,101.8 148.2,102.7 148.8,103.5 149.4,104.4 150.0,105.3 150.6,106.1 151.2,107.0 151.8,107.9 152.5,108.7 153.1,109.6 153.7,110.4 154.3,111.3 154.9,112.1 155.5,112.9 156.2,113.7 156.8,114.6 157.4,115.4 158.0,116.2 158.6,117.0 159.2,117.8 159.8,118.5 160.5,119.3 161.1,120.1 161.7,120.8 162.3,121.6 162.9,122.3 163.5,123.0 164.2,123.8 164.8,124.5 165.4,125.2 166.0,125.8 166.6,126.5 167.2,127.2 167.8,127.8 168.5,128.5 169.1,129.1 169.7,129.7 170.3,130.3 170.9,130.9 171.5,131.5 172.2,132.1 172.8,132.6 173.4,133.2 174.0,133.7 174.6,134.2 175.2,134.7 175.8,135.2 176.5,135.6 177.1,136.1 177.7,136.5 178.3,136.9 178.9,137.3 179.5,137.7 180.2,138.1 180.8,138.4 181.4,138.7 182.0,139.1 182.6,139.4 183.2,139.6 183.8,139.9 184.5,140.1 185.1,140.3 185.7,140.5 186.3,140.7 186.9,140.9 187.5,141.0 188.2,141.1 188.8,141.2 189.4,141.3 190.0,141.4 190.6,141.4 191.2,141.4\"></polyline><polyline class=\"c3 fx d4\"  points=\"191.2,141.4 191.7,141.4 192.1,141.4 192.5,141.4 193.0,141.3 193.4,141.3 193.8,141.2 194.2,141.1 194.7,141.1 195.1,141.0 195.5,140.8 196.0,140.7 196.4,140.6 196.8,140.5 197.3,140.3 197.7,140.1 198.1,139.9 198.6,139.8 199.0,139.5 199.4,139.3 199.8,139.1 200.3,138.9 200.7,138.6 201.1,138.3 201.6,138.0 202.0,137.7 202.4,137.4 202.9,137.1 203.3,136.8 203.7,136.4 204.2,136.1 204.6,135.7 205.0,135.3 205.4,134.9 205.9,134.5 206.3,134.0 206.7,133.6 207.2,133.1 207.6,132.6 208.0,132.1 208.5,131.6 208.9,131.1 209.3,130.6 209.8,130.0 210.2,129.5 210.6,128.9 211.0,128.3 211.5,127.7 211.9,127.0 212.3,126.4 212.8,125.7 213.2,125.1 213.6,124.4 214.1,123.7 214.5,122.9 214.9,122.2 215.4,121.4 215.8,120.7 216.2,119.9 216.6,119.1 217.1,118.3 217.5,117.4 217.9,116.6 218.4,115.7 218.8,114.8 219.2,113.9 219.7,113.0 220.1,112.0 220.5,111.1 221.0,110.1 221.4,109.1 221.8,108.1 222.2,107.1 222.7,106.0 223.1,105.0 223.5,103.9 224.0,102.8 224.4,101.7 224.8,100.5 225.3,99.4 225.7,98.2 226.1,97.0 226.6,95.8 227.0,94.6 227.4,93.3 227.8,92.1 228.3,90.8 228.7,89.5 229.1,88.2 229.6,86.8 230.0,85.5 230.4,84.1 230.9,82.7 231.3,81.2 231.7,79.8 232.2,78.3 232.6,76.9 233.0,75.4 233.4,73.8 233.9,72.3 234.3,70.7 234.7,69.1 235.2,67.5 235.6,65.9 236.0,64.3 236.5,62.6 236.9,60.9 237.3,59.2 237.8,57.5 238.2,55.7 238.6,54.0 239.0,52.2 239.5,50.3 239.9,48.5 240.3,46.7 240.8,44.8 241.2,42.9 241.6,40.9 242.1,39.0 242.5,37.0 242.9,35.0 243.4,33.0 243.8,31.0 244.2,28.9 244.6,26.8 245.1,24.7 245.5,22.6 245.9,20.5 246.4,18.3 246.8,16.1 247.2,13.9 247.7,11.6 248.1,9.4\"></polyline><circle class=\"d1s fx d3\" cx=\"92.8\" cy=\"46.1\" r=\"4.8\"></circle><circle class=\"d1s fx d4\" cx=\"191.2\" cy=\"141.4\" r=\"4.8\"></circle><text class=\"t1 fx d3 \" x=\"98.8\" y=\"38.1\" text-anchor=\"start\">local max</text><text class=\"t1 fx d4 \" x=\"185.2\" y=\"157.4\" text-anchor=\"end\">local min</text><text class=\"t3 fx d2\" x=\"48.5\" y=\"15.1\" text-anchor=\"middle\">f′ +</text><text class=\"t2 fx d3\" x=\"142.0\" y=\"15.1\" text-anchor=\"middle\">f′ −</text><text class=\"t3 fx d4\" x=\"235.5\" y=\"15.1\" text-anchor=\"middle\">f′ +</text></svg><div class=\"eq fx d5\"><p>f′(x) = 3x² − 3 = 3(x − 1)(x + 1). <b>f′ &gt; 0</b> on (−∞, −1) and (1, ∞): increasing. <b>f′ &lt; 0</b> on (−1, 1): decreasing.</p><p><b>First derivative test:</b> where f′ changes from + to −, there is a <b>local maximum</b> (x = −1, value 2); from − to +, a <b>local minimum</b> (x = 1, value −2). No sign change ⇒ neither (a point of inflexion).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: “f′(c) = 0 means f has a local extremum at c”?",
+      "definition": "<span style=\"color:#e5484d\">False</span>. For f(x) = x³, f′(0) = 0 but f is increasing on both sides: a point of inflexion, not an extremum. You must check the sign change of f′",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Is f(x) = x³ strictly increasing on R even though f′(0) = 0?",
+      "definition": "<span style=\"color:#22a35a\">Yes</span>. f′ ≥ 0 with equality only at isolated points, so f is still strictly increasing. Strictness fails only if f′ = 0 on a whole interval",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-increasing-decreasing"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q1–Q2: show 3x + 17 and e^(2x) are increasing on R.",
+      "definition": "f′ = 3 > 0. For e^(2x): f′ = 2e^(2x) > 0. <span style=\"color:#22a35a\">✓</span> (exponentials are always increasing)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q3: show sin x is (a) increasing on (0, π/2) (b) decreasing on (π/2, π) (c) neither on (0, π).",
+      "definition": "f′ = cos x: positive on (0, π/2), negative on (π/2, π), so on (0, π) it changes sign: <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q4: intervals for f(x) = 2x² − 3x.",
+      "definition": "f′ = 4x − 3. (a) increasing on <span style=\"color:#f08c00\">(3/4, ∞)</span>; (b) decreasing on <span style=\"color:#f08c00\">(−∞, 3/4)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q5: intervals for f(x) = 2x³ − 3x² − 36x + 7.",
+      "definition": "f′ = 6(x − 3)(x + 2). (a) increasing on <span style=\"color:#f08c00\">(−∞, −2) and (3, ∞)</span>; (b) decreasing on <span style=\"color:#f08c00\">(−2, 3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q6(a): strictly monotone intervals of x² + 2x − 5.",
+      "definition": "f′ = 2x + 2: <span style=\"color:#f08c00\">decreasing for x < −1, increasing for x > −1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q6(b): 10 − 6x − 2x².",
+      "definition": "f′ = −6 − 4x: <span style=\"color:#f08c00\">increasing for x < −3/2, decreasing for x > −3/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q6(c): −2x³ − 9x² − 12x + 1.",
+      "definition": "f′ = −6(x + 1)(x + 2): <span style=\"color:#f08c00\">increasing for −2 < x < −1; decreasing for x < −2 and for x > −1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q6(d): 6 − 9x − x².",
+      "definition": "f′ = −9 − 2x: <span style=\"color:#f08c00\">increasing for x < −9/2, decreasing for x > −9/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q6(e): (x + 1)³(x − 3)³.",
+      "definition": "f′ = 3[(x + 1)(x − 3)]²(2x − 2), sign of (x − 1): <span style=\"color:#f08c00\">increasing on (1, 3) and (3, ∞); decreasing on (−∞, −1) and (−1, 1)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q7: show y = log(1 + x) − 2x/(2 + x) is increasing for x > −1.",
+      "definition": "y′ = 1/(1 + x) − 4/(2 + x)² = x²/((1 + x)(2 + x)²) ≥ 0 for x > −1 (zero only at 0). <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q8: for which x is y = [x(x − 2)]² increasing?",
+      "definition": "y′ = 2x(x − 2)(2x − 2) = 4x(x − 1)(x − 2). Positive for <span style=\"color:#f08c00\">0 < x < 1 and x > 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q9: show y = 4 sin θ/(2 + cos θ) − θ is increasing on [0, π/2].",
+      "definition": "y′ = (8 cos θ + 4)/(2 + cos θ)² − 1 = cos θ (4 − cos θ)/(2 + cos θ)² ≥ 0 when cos θ ≥ 0. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q10: show the logarithmic function is increasing on (0, ∞).",
+      "definition": "f = log x, f′ = 1/x > 0 for x > 0. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q11: show f(x) = x² − x + 1 is neither strictly increasing nor decreasing on (−1, 1).",
+      "definition": "f′ = 2x − 1 is negative for x < ½ and positive for x > ½: <span style=\"color:#22a35a\">✓</span> (f is decreasing then increasing)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q12: which functions are decreasing on (0, π/2)? (A) cos x (B) cos 2x (C) cos 3x (D) tan x",
+      "definition": "cos x and cos 2x decrease on (0, π/2); cos 3x rises after x = π/3; tan x increases. <span style=\"color:#22a35a\">(A) and (B)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q13: f(x) = x¹⁰⁰ + sin x − 1 is decreasing on (A) (0, 1) (B) (π/2, π) (C) (0, π/2) (D) none",
+      "definition": "f′ = 100x⁹⁹ + cos x. On (0, 1) and (0, π/2) it starts positive (cos x near 1) and stays so; on (π/2, π), 100x⁹⁹ is huge. It is never negative: <span style=\"color:#22a35a\">(D) none of these</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q14: for what values of a is f(x) = x² + ax + 1 increasing on [1, 2]?",
+      "definition": "f′ = 2x + a ≥ 0 on [1, 2] needs 2 + a > 0 (strict): <span style=\"color:#f08c00\">a > −2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q15: show f(x) = x + 1/x is increasing on any interval I disjoint from [−1, 1].",
+      "definition": "f′ = 1 − 1/x² > 0 when |x| > 1, and I lies inside |x| > 1. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q16: show f(x) = log sin x is increasing on (0, π/2) and decreasing on (π/2, π).",
+      "definition": "f′ = cot x: positive on (0, π/2), negative on (π/2, π). <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q17: show f(x) = log|cos x| is decreasing on (0, π/2) and increasing on (3π/2, 2π).",
+      "definition": "f′ = −tan x: negative on (0, π/2); tan x < 0 on (3π/2, 2π) so f′ > 0. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q18: show f(x) = x³ − 3x² + 3x − 100 is increasing on R.",
+      "definition": "f′ = 3(x − 1)² ≥ 0, zero only at x = 1. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.2 Q19: y = x²e^(−x) is increasing on (A) (−∞, ∞) (B) (−2, 0) (C) (2, ∞) (D) (0, 2)",
+      "definition": "y′ = x(2 − x)e^(−x) > 0 for 0 < x < 2: <span style=\"color:#22a35a\">(D) (0, 2)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.3-exercise-6-2"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Definitions: local maximum, local minimum, absolute maximum.",
+      "definition": "<span style=\"color:#3b82f6\">Local max at c</span>: f(c) ≥ f(x) for x near c. <span style=\"color:#3b82f6\">Local min</span>: f(c) ≤ f(x) near c. <span style=\"color:#3b82f6\">Absolute (global) max</span>: f(c) ≥ f(x) for every x in the domain. A local max need not be the highest value overall",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a critical point?",
+      "definition": "A point c in the domain where <span style=\"color:#3b82f6\">f′(c) = 0</span> or <span style=\"color:#3b82f6\">f′ does not exist</span>. Extremes occur only at critical points (interior) or end-points",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 2 (necessary condition): if f has a local extremum at an interior c and f is differentiable there, then?",
+      "definition": "<span style=\"color:#3b82f6\">f′(c) = 0</span>. The converse is false (x³ at 0)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "First derivative test: statement.",
+      "definition": "At a critical point c: if f′ changes <span style=\"color:#3b82f6\">+ to −</span> (left to right), c is a <span style=\"color:#3b82f6\">local maximum</span>; if <span style=\"color:#3b82f6\">− to +</span>, a <span style=\"color:#3b82f6\">local minimum</span>; if it does not change sign, c is a point of inflexion (neither)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Second derivative test: statement.",
+      "definition": "If f′(c) = 0: <span style=\"color:#3b82f6\">f″(c) < 0</span> ⇒ local maximum; <span style=\"color:#3b82f6\">f″(c) > 0</span> ⇒ local minimum; <span style=\"color:#3b82f6\">f″(c) = 0</span> ⇒ test fails (use the first derivative test)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Second derivative test and when it fails",
+      "definition": "f'(c)=0 and f''(c)>0 gives local minimum, f''(c)<0 local maximum, f''(c)=0 inconclusive (x^3, x^4); use first derivative test",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Second derivative test</p><h2>At x = 0 all three curves have f′(0) = 0. Use f″ to classify (a) x², (b) −x², (c) x³.</h2><svg viewBox=\"0 0 300 160\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><g transform=\"translate(0,6)\"><line class=\"ax\" x1=\"6.0\" y1=\"81.4\" x2=\"94.0\" y2=\"81.4\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"50.0\" y1=\"94.0\" x2=\"50.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"6.0,10.7 6.6,12.5 7.1,14.2 7.6,15.9 8.2,17.6 8.8,19.3 9.3,20.9 9.9,22.5 10.4,24.1 10.9,25.7 11.5,27.3 12.1,28.8 12.6,30.3 13.1,31.8 13.7,33.3 14.2,34.7 14.8,36.2 15.4,37.6 15.9,39.0 16.4,40.3 17.0,41.7 17.6,43.0 18.1,44.3 18.6,45.5 19.2,46.8 19.8,48.0 20.3,49.2 20.8,50.4 21.4,51.6 21.9,52.7 22.5,53.8 23.1,54.9 23.6,56.0 24.2,57.0 24.7,58.0 25.2,59.1 25.8,60.0 26.3,61.0 26.9,61.9 27.4,62.9 28.0,63.8 28.6,64.6 29.1,65.5 29.6,66.3 30.2,67.1 30.8,67.9 31.3,68.7 31.9,69.4 32.4,70.1 32.9,70.8 33.5,71.5 34.1,72.1 34.6,72.8 35.1,73.4 35.7,74.0 36.2,74.5 36.8,75.1 37.4,75.6 37.9,76.1 38.4,76.6 39.0,77.0 39.6,77.4 40.1,77.8 40.6,78.2 41.2,78.6 41.8,78.9 42.3,79.3 42.9,79.6 43.4,79.8 43.9,80.1 44.5,80.3 45.1,80.5 45.6,80.7 46.1,80.9 46.7,81.0 47.2,81.2 47.8,81.3 48.4,81.3 48.9,81.4 49.4,81.4 50.0,81.4 50.5,81.4 51.1,81.4 51.6,81.3 52.2,81.3 52.8,81.2 53.3,81.0 53.9,80.9 54.4,80.7 55.0,80.5 55.5,80.3 56.0,80.1 56.6,79.8 57.1,79.6 57.7,79.3 58.2,78.9 58.8,78.6 59.4,78.2 59.9,77.8 60.5,77.4 61.0,77.0 61.5,76.6 62.1,76.1 62.6,75.6 63.2,75.1 63.8,74.5 64.3,74.0 64.9,73.4 65.4,72.8 66.0,72.1 66.5,71.5 67.0,70.8 67.6,70.1 68.1,69.4 68.7,68.7 69.2,67.9 69.8,67.1 70.4,66.3 70.9,65.5 71.5,64.6 72.0,63.8 72.5,62.9 73.1,61.9 73.6,61.0 74.2,60.0 74.8,59.1 75.3,58.0 75.9,57.0 76.4,56.0 77.0,54.9 77.5,53.8 78.0,52.7 78.6,51.6 79.1,50.4 79.7,49.2 80.2,48.0 80.8,46.8 81.4,45.5 81.9,44.3 82.5,43.0 83.0,41.7 83.5,40.3 84.1,39.0 84.6,37.6 85.2,36.2 85.8,34.7 86.3,33.3 86.9,31.8 87.4,30.3 88.0,28.8 88.5,27.3 89.0,25.7 89.6,24.1 90.1,22.5 90.7,20.9 91.2,19.3 91.8,17.6 92.4,15.9 92.9,14.2 93.5,12.5 94.0,10.7\"></polyline><circle class=\"d1s \" cx=\"50.0\" cy=\"81.4\" r=\"4\"></circle></g><g transform=\"translate(100,6)\"><line class=\"ax\" x1=\"6.0\" y1=\"18.6\" x2=\"94.0\" y2=\"18.6\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"50.0\" y1=\"94.0\" x2=\"50.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"6.0,89.3 6.6,87.5 7.1,85.8 7.6,84.1 8.2,82.4 8.8,80.7 9.3,79.1 9.9,77.5 10.4,75.9 10.9,74.3 11.5,72.7 12.1,71.2 12.6,69.7 13.1,68.2 13.7,66.7 14.2,65.3 14.8,63.8 15.4,62.4 15.9,61.0 16.4,59.7 17.0,58.3 17.6,57.0 18.1,55.7 18.6,54.5 19.2,53.2 19.8,52.0 20.3,50.8 20.8,49.6 21.4,48.4 21.9,47.3 22.5,46.2 23.1,45.1 23.6,44.0 24.2,43.0 24.7,42.0 25.2,40.9 25.8,40.0 26.3,39.0 26.9,38.1 27.4,37.1 28.0,36.2 28.6,35.4 29.1,34.5 29.6,33.7 30.2,32.9 30.8,32.1 31.3,31.3 31.9,30.6 32.4,29.9 32.9,29.2 33.5,28.5 34.1,27.9 34.6,27.2 35.1,26.6 35.7,26.0 36.2,25.5 36.8,24.9 37.4,24.4 37.9,23.9 38.4,23.4 39.0,23.0 39.6,22.6 40.1,22.2 40.6,21.8 41.2,21.4 41.8,21.1 42.3,20.7 42.9,20.4 43.4,20.2 43.9,19.9 44.5,19.7 45.1,19.5 45.6,19.3 46.1,19.1 46.7,19.0 47.2,18.8 47.8,18.7 48.4,18.7 48.9,18.6 49.4,18.6 50.0,18.6 50.5,18.6 51.1,18.6 51.6,18.7 52.2,18.7 52.8,18.8 53.3,19.0 53.9,19.1 54.4,19.3 55.0,19.5 55.5,19.7 56.0,19.9 56.6,20.2 57.1,20.4 57.7,20.7 58.2,21.1 58.8,21.4 59.4,21.8 59.9,22.2 60.5,22.6 61.0,23.0 61.5,23.4 62.1,23.9 62.6,24.4 63.2,24.9 63.8,25.5 64.3,26.0 64.9,26.6 65.4,27.2 66.0,27.9 66.5,28.5 67.0,29.2 67.6,29.9 68.1,30.6 68.7,31.3 69.2,32.1 69.8,32.9 70.4,33.7 70.9,34.5 71.5,35.4 72.0,36.2 72.5,37.1 73.1,38.1 73.6,39.0 74.2,40.0 74.8,40.9 75.3,42.0 75.9,43.0 76.4,44.0 77.0,45.1 77.5,46.2 78.0,47.3 78.6,48.4 79.1,49.6 79.7,50.8 80.2,52.0 80.8,53.2 81.4,54.5 81.9,55.7 82.5,57.0 83.0,58.3 83.5,59.7 84.1,61.0 84.6,62.4 85.2,63.8 85.8,65.3 86.3,66.7 86.9,68.2 87.4,69.7 88.0,71.2 88.5,72.7 89.0,74.3 89.6,75.9 90.1,77.5 90.7,79.1 91.2,80.7 91.8,82.4 92.4,84.1 92.9,85.8 93.5,87.5 94.0,89.3\"></polyline><circle class=\"d1s \" cx=\"50.0\" cy=\"18.6\" r=\"4\"></circle></g><g transform=\"translate(200,6)\"><line class=\"ax\" x1=\"6.0\" y1=\"50.0\" x2=\"94.0\" y2=\"50.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"50.0\" y1=\"94.0\" x2=\"50.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"6.0,90.3 6.6,88.8 7.1,87.3 7.7,85.9 8.2,84.5 8.8,83.2 9.3,81.9 9.9,80.6 10.4,79.4 10.9,78.2 11.5,77.0 12.0,75.8 12.6,74.7 13.1,73.7 13.7,72.6 14.2,71.6 14.8,70.6 15.3,69.7 15.9,68.7 16.4,67.9 17.0,67.0 17.6,66.2 18.1,65.3 18.7,64.6 19.2,63.8 19.8,63.1 20.3,62.4 20.8,61.7 21.4,61.1 22.0,60.4 22.5,59.8 23.1,59.3 23.6,58.7 24.1,58.2 24.7,57.7 25.2,57.2 25.8,56.7 26.4,56.3 26.9,55.8 27.4,55.4 28.0,55.0 28.5,54.7 29.1,54.3 29.6,54.0 30.2,53.7 30.8,53.4 31.3,53.1 31.9,52.8 32.4,52.6 33.0,52.3 33.5,52.1 34.0,51.9 34.6,51.7 35.1,51.5 35.7,51.4 36.2,51.2 36.8,51.1 37.4,51.0 37.9,50.8 38.4,50.7 39.0,50.6 39.5,50.5 40.1,50.5 40.7,50.4 41.2,50.3 41.7,50.3 42.3,50.2 42.9,50.2 43.4,50.1 44.0,50.1 44.5,50.1 45.0,50.1 45.6,50.0 46.1,50.0 46.7,50.0 47.2,50.0 47.8,50.0 48.4,50.0 48.9,50.0 49.4,50.0 50.0,50.0 50.5,50.0 51.1,50.0 51.7,50.0 52.2,50.0 52.8,50.0 53.3,50.0 53.8,50.0 54.4,50.0 55.0,49.9 55.5,49.9 56.0,49.9 56.6,49.9 57.1,49.8 57.7,49.8 58.2,49.7 58.8,49.7 59.4,49.6 59.9,49.5 60.5,49.5 61.0,49.4 61.5,49.3 62.1,49.2 62.7,49.0 63.2,48.9 63.8,48.8 64.3,48.6 64.8,48.5 65.4,48.3 66.0,48.1 66.5,47.9 67.1,47.7 67.6,47.4 68.2,47.2 68.7,46.9 69.2,46.6 69.8,46.3 70.3,46.0 70.9,45.7 71.5,45.3 72.0,45.0 72.5,44.6 73.1,44.2 73.6,43.7 74.2,43.3 74.8,42.8 75.3,42.3 75.8,41.8 76.4,41.3 77.0,40.7 77.5,40.2 78.0,39.6 78.6,38.9 79.1,38.3 79.7,37.6 80.2,36.9 80.8,36.2 81.3,35.4 81.9,34.7 82.5,33.8 83.0,33.0 83.6,32.1 84.1,31.3 84.6,30.3 85.2,29.4 85.8,28.4 86.3,27.4 86.8,26.3 87.4,25.3 88.0,24.2 88.5,23.0 89.1,21.8 89.6,20.6 90.2,19.4 90.7,18.1 91.2,16.8 91.8,15.5 92.3,14.1 92.9,12.7 93.5,11.2 94.0,9.7\"></polyline><circle class=\"d1s \" cx=\"50.0\" cy=\"50.0\" r=\"4\"></circle></g><text class=\"lbi\" x=\"50\" y=\"118\" text-anchor=\"middle\">(a)</text><text class=\"lbi\" x=\"150\" y=\"118\" text-anchor=\"middle\">(b)</text><text class=\"lbi\" x=\"250\" y=\"118\" text-anchor=\"middle\">(c)</text></svg><p class=\"hint\">Sign of f″ tells you whether the curve bends up or down.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Second derivative test</p><h2>At x = 0 all three curves have f′(0) = 0. Use f″ to classify (a) x², (b) −x², (c) x³.</h2><svg viewBox=\"0 0 300 160\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><g transform=\"translate(0,6)\"><line class=\"ax\" x1=\"6.0\" y1=\"81.4\" x2=\"94.0\" y2=\"81.4\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"50.0\" y1=\"94.0\" x2=\"50.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"6.0,10.7 6.6,12.5 7.1,14.2 7.6,15.9 8.2,17.6 8.8,19.3 9.3,20.9 9.9,22.5 10.4,24.1 10.9,25.7 11.5,27.3 12.1,28.8 12.6,30.3 13.1,31.8 13.7,33.3 14.2,34.7 14.8,36.2 15.4,37.6 15.9,39.0 16.4,40.3 17.0,41.7 17.6,43.0 18.1,44.3 18.6,45.5 19.2,46.8 19.8,48.0 20.3,49.2 20.8,50.4 21.4,51.6 21.9,52.7 22.5,53.8 23.1,54.9 23.6,56.0 24.2,57.0 24.7,58.0 25.2,59.1 25.8,60.0 26.3,61.0 26.9,61.9 27.4,62.9 28.0,63.8 28.6,64.6 29.1,65.5 29.6,66.3 30.2,67.1 30.8,67.9 31.3,68.7 31.9,69.4 32.4,70.1 32.9,70.8 33.5,71.5 34.1,72.1 34.6,72.8 35.1,73.4 35.7,74.0 36.2,74.5 36.8,75.1 37.4,75.6 37.9,76.1 38.4,76.6 39.0,77.0 39.6,77.4 40.1,77.8 40.6,78.2 41.2,78.6 41.8,78.9 42.3,79.3 42.9,79.6 43.4,79.8 43.9,80.1 44.5,80.3 45.1,80.5 45.6,80.7 46.1,80.9 46.7,81.0 47.2,81.2 47.8,81.3 48.4,81.3 48.9,81.4 49.4,81.4 50.0,81.4 50.5,81.4 51.1,81.4 51.6,81.3 52.2,81.3 52.8,81.2 53.3,81.0 53.9,80.9 54.4,80.7 55.0,80.5 55.5,80.3 56.0,80.1 56.6,79.8 57.1,79.6 57.7,79.3 58.2,78.9 58.8,78.6 59.4,78.2 59.9,77.8 60.5,77.4 61.0,77.0 61.5,76.6 62.1,76.1 62.6,75.6 63.2,75.1 63.8,74.5 64.3,74.0 64.9,73.4 65.4,72.8 66.0,72.1 66.5,71.5 67.0,70.8 67.6,70.1 68.1,69.4 68.7,68.7 69.2,67.9 69.8,67.1 70.4,66.3 70.9,65.5 71.5,64.6 72.0,63.8 72.5,62.9 73.1,61.9 73.6,61.0 74.2,60.0 74.8,59.1 75.3,58.0 75.9,57.0 76.4,56.0 77.0,54.9 77.5,53.8 78.0,52.7 78.6,51.6 79.1,50.4 79.7,49.2 80.2,48.0 80.8,46.8 81.4,45.5 81.9,44.3 82.5,43.0 83.0,41.7 83.5,40.3 84.1,39.0 84.6,37.6 85.2,36.2 85.8,34.7 86.3,33.3 86.9,31.8 87.4,30.3 88.0,28.8 88.5,27.3 89.0,25.7 89.6,24.1 90.1,22.5 90.7,20.9 91.2,19.3 91.8,17.6 92.4,15.9 92.9,14.2 93.5,12.5 94.0,10.7\"></polyline><circle class=\"d1s \" cx=\"50.0\" cy=\"81.4\" r=\"4\"></circle></g><g transform=\"translate(100,6)\"><line class=\"ax\" x1=\"6.0\" y1=\"18.6\" x2=\"94.0\" y2=\"18.6\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"50.0\" y1=\"94.0\" x2=\"50.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"6.0,89.3 6.6,87.5 7.1,85.8 7.6,84.1 8.2,82.4 8.8,80.7 9.3,79.1 9.9,77.5 10.4,75.9 10.9,74.3 11.5,72.7 12.1,71.2 12.6,69.7 13.1,68.2 13.7,66.7 14.2,65.3 14.8,63.8 15.4,62.4 15.9,61.0 16.4,59.7 17.0,58.3 17.6,57.0 18.1,55.7 18.6,54.5 19.2,53.2 19.8,52.0 20.3,50.8 20.8,49.6 21.4,48.4 21.9,47.3 22.5,46.2 23.1,45.1 23.6,44.0 24.2,43.0 24.7,42.0 25.2,40.9 25.8,40.0 26.3,39.0 26.9,38.1 27.4,37.1 28.0,36.2 28.6,35.4 29.1,34.5 29.6,33.7 30.2,32.9 30.8,32.1 31.3,31.3 31.9,30.6 32.4,29.9 32.9,29.2 33.5,28.5 34.1,27.9 34.6,27.2 35.1,26.6 35.7,26.0 36.2,25.5 36.8,24.9 37.4,24.4 37.9,23.9 38.4,23.4 39.0,23.0 39.6,22.6 40.1,22.2 40.6,21.8 41.2,21.4 41.8,21.1 42.3,20.7 42.9,20.4 43.4,20.2 43.9,19.9 44.5,19.7 45.1,19.5 45.6,19.3 46.1,19.1 46.7,19.0 47.2,18.8 47.8,18.7 48.4,18.7 48.9,18.6 49.4,18.6 50.0,18.6 50.5,18.6 51.1,18.6 51.6,18.7 52.2,18.7 52.8,18.8 53.3,19.0 53.9,19.1 54.4,19.3 55.0,19.5 55.5,19.7 56.0,19.9 56.6,20.2 57.1,20.4 57.7,20.7 58.2,21.1 58.8,21.4 59.4,21.8 59.9,22.2 60.5,22.6 61.0,23.0 61.5,23.4 62.1,23.9 62.6,24.4 63.2,24.9 63.8,25.5 64.3,26.0 64.9,26.6 65.4,27.2 66.0,27.9 66.5,28.5 67.0,29.2 67.6,29.9 68.1,30.6 68.7,31.3 69.2,32.1 69.8,32.9 70.4,33.7 70.9,34.5 71.5,35.4 72.0,36.2 72.5,37.1 73.1,38.1 73.6,39.0 74.2,40.0 74.8,40.9 75.3,42.0 75.9,43.0 76.4,44.0 77.0,45.1 77.5,46.2 78.0,47.3 78.6,48.4 79.1,49.6 79.7,50.8 80.2,52.0 80.8,53.2 81.4,54.5 81.9,55.7 82.5,57.0 83.0,58.3 83.5,59.7 84.1,61.0 84.6,62.4 85.2,63.8 85.8,65.3 86.3,66.7 86.9,68.2 87.4,69.7 88.0,71.2 88.5,72.7 89.0,74.3 89.6,75.9 90.1,77.5 90.7,79.1 91.2,80.7 91.8,82.4 92.4,84.1 92.9,85.8 93.5,87.5 94.0,89.3\"></polyline><circle class=\"d1s \" cx=\"50.0\" cy=\"18.6\" r=\"4\"></circle></g><g transform=\"translate(200,6)\"><line class=\"ax\" x1=\"6.0\" y1=\"50.0\" x2=\"94.0\" y2=\"50.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"50.0\" y1=\"94.0\" x2=\"50.0\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"6.0,90.3 6.6,88.8 7.1,87.3 7.7,85.9 8.2,84.5 8.8,83.2 9.3,81.9 9.9,80.6 10.4,79.4 10.9,78.2 11.5,77.0 12.0,75.8 12.6,74.7 13.1,73.7 13.7,72.6 14.2,71.6 14.8,70.6 15.3,69.7 15.9,68.7 16.4,67.9 17.0,67.0 17.6,66.2 18.1,65.3 18.7,64.6 19.2,63.8 19.8,63.1 20.3,62.4 20.8,61.7 21.4,61.1 22.0,60.4 22.5,59.8 23.1,59.3 23.6,58.7 24.1,58.2 24.7,57.7 25.2,57.2 25.8,56.7 26.4,56.3 26.9,55.8 27.4,55.4 28.0,55.0 28.5,54.7 29.1,54.3 29.6,54.0 30.2,53.7 30.8,53.4 31.3,53.1 31.9,52.8 32.4,52.6 33.0,52.3 33.5,52.1 34.0,51.9 34.6,51.7 35.1,51.5 35.7,51.4 36.2,51.2 36.8,51.1 37.4,51.0 37.9,50.8 38.4,50.7 39.0,50.6 39.5,50.5 40.1,50.5 40.7,50.4 41.2,50.3 41.7,50.3 42.3,50.2 42.9,50.2 43.4,50.1 44.0,50.1 44.5,50.1 45.0,50.1 45.6,50.0 46.1,50.0 46.7,50.0 47.2,50.0 47.8,50.0 48.4,50.0 48.9,50.0 49.4,50.0 50.0,50.0 50.5,50.0 51.1,50.0 51.7,50.0 52.2,50.0 52.8,50.0 53.3,50.0 53.8,50.0 54.4,50.0 55.0,49.9 55.5,49.9 56.0,49.9 56.6,49.9 57.1,49.8 57.7,49.8 58.2,49.7 58.8,49.7 59.4,49.6 59.9,49.5 60.5,49.5 61.0,49.4 61.5,49.3 62.1,49.2 62.7,49.0 63.2,48.9 63.8,48.8 64.3,48.6 64.8,48.5 65.4,48.3 66.0,48.1 66.5,47.9 67.1,47.7 67.6,47.4 68.2,47.2 68.7,46.9 69.2,46.6 69.8,46.3 70.3,46.0 70.9,45.7 71.5,45.3 72.0,45.0 72.5,44.6 73.1,44.2 73.6,43.7 74.2,43.3 74.8,42.8 75.3,42.3 75.8,41.8 76.4,41.3 77.0,40.7 77.5,40.2 78.0,39.6 78.6,38.9 79.1,38.3 79.7,37.6 80.2,36.9 80.8,36.2 81.3,35.4 81.9,34.7 82.5,33.8 83.0,33.0 83.6,32.1 84.1,31.3 84.6,30.3 85.2,29.4 85.8,28.4 86.3,27.4 86.8,26.3 87.4,25.3 88.0,24.2 88.5,23.0 89.1,21.8 89.6,20.6 90.2,19.4 90.7,18.1 91.2,16.8 91.8,15.5 92.3,14.1 92.9,12.7 93.5,11.2 94.0,9.7\"></polyline><circle class=\"d1s \" cx=\"50.0\" cy=\"50.0\" r=\"4\"></circle></g><text class=\"lbi\" x=\"50\" y=\"118\" text-anchor=\"middle\">(a)</text><text class=\"lbi\" x=\"150\" y=\"118\" text-anchor=\"middle\">(b)</text><text class=\"lbi\" x=\"250\" y=\"118\" text-anchor=\"middle\">(c)</text><text class=\"t3 fx d2\" x=\"50\" y=\"134\" text-anchor=\"middle\">f″ = 2 &gt; 0</text><text class=\"sm fx d2\" x=\"50\" y=\"148\" text-anchor=\"middle\">local min</text><text class=\"t2 fx d3\" x=\"150\" y=\"134\" text-anchor=\"middle\">f″ = −2 &lt; 0</text><text class=\"sm fx d3\" x=\"150\" y=\"148\" text-anchor=\"middle\">local max</text><text class=\"t4 fx d4\" x=\"250\" y=\"134\" text-anchor=\"middle\">f″(0) = 0</text><text class=\"sm fx d4\" x=\"250\" y=\"148\" text-anchor=\"middle\">test fails</text></svg><div class=\"eq fx d5\"><p><b>Second derivative test:</b> if f′(c) = 0 and <b>f″(c) &gt; 0</b>, c is a local <b>minimum</b> (curve is a cup, concave up); if <b>f″(c) &lt; 0</b>, a local <b>maximum</b> (concave down).</p><p>If f″(c) = 0 the test is <b>inconclusive</b>: x³ has f″(0) = 0 and no extremum, while x⁴ has f″(0) = 0 but a minimum. Then go back to the sign of f′.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which test should you use?",
+      "definition": "Second derivative test is faster if f″ is easy and non-zero at c. Use the <span style=\"color:#3b82f6\">first derivative test</span> when f″(c) = 0, when f′ does not exist at c, or when f″ is messy",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a point of inflexion?",
+      "definition": "A point where the <span style=\"color:#3b82f6\">concavity changes</span> (f″ changes sign). Typically f″ = 0 there. It may or may not have f′ = 0 (x³ at 0 does; at a general inflexion the slope need not be 0)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Absolute extrema on [a, b]: procedure.",
+      "definition": "f continuous on [a, b]: 1) find critical points inside; 2) evaluate f at those points and at <span style=\"color:#3b82f6\">both end-points</span>; 3) the largest is the absolute max, the smallest the absolute min. (A continuous function on a closed interval attains both.)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Absolute extrema: compare critical points and end-points",
+      "definition": "On [a,b] absolute max/min occur at critical points or end-points: f=4x-x^2/2 on [-2,9/2]: f(4)=8 max, f(-2)=-10 min, f(9/2)=7.875",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Absolute extrema on [a, b]</p><h2>Find the absolute maximum and minimum of f(x) = 4x − x²/2 on [−2, 9/2].</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"43.4\" y1=\"170.0\" x2=\"43.4\" y2=\"8.0\"></line><line class=\"gd\" x1=\"180.4\" y1=\"170.0\" x2=\"180.4\" y2=\"8.0\"></line><line class=\"gd\" x1=\"248.9\" y1=\"170.0\" x2=\"248.9\" y2=\"8.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"155.3\" x2=\"290.0\" y2=\"155.3\"></line><line class=\"gd\" x1=\"16.0\" y1=\"118.5\" x2=\"290.0\" y2=\"118.5\"></line><line class=\"gd\" x1=\"16.0\" y1=\"44.8\" x2=\"290.0\" y2=\"44.8\"></line><line class=\"ax\" x1=\"16.0\" y1=\"81.6\" x2=\"290.0\" y2=\"81.6\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"111.9\" y1=\"170.0\" x2=\"111.9\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"43.4\" y1=\"78.6\" x2=\"43.4\" y2=\"84.6\"></line><text class=\"num\" x=\"43.4\" y=\"95.6\">−2</text><line class=\"ax\" x1=\"180.4\" y1=\"78.6\" x2=\"180.4\" y2=\"84.6\"></line><text class=\"num\" x=\"180.4\" y=\"95.6\">2</text><line class=\"ax\" x1=\"248.9\" y1=\"78.6\" x2=\"248.9\" y2=\"84.6\"></line><text class=\"num\" x=\"248.9\" y=\"95.6\">4</text><line class=\"ax\" x1=\"108.9\" y1=\"155.3\" x2=\"114.9\" y2=\"155.3\"></line><text class=\"num\" x=\"105.9\" y=\"158.8\" text-anchor=\"end\">−10</text><line class=\"ax\" x1=\"108.9\" y1=\"118.5\" x2=\"114.9\" y2=\"118.5\"></line><text class=\"num\" x=\"105.9\" y=\"122.0\" text-anchor=\"end\">−5</text><line class=\"ax\" x1=\"108.9\" y1=\"44.8\" x2=\"114.9\" y2=\"44.8\"></line><text class=\"num\" x=\"105.9\" y=\"48.3\" text-anchor=\"end\">5</text><polyline class=\"c1\"  points=\"43.4,155.3 44.8,153.5 46.2,151.7 47.6,149.9 49.0,148.2 50.4,146.5 51.7,144.7 53.1,143.0 54.5,141.3 55.9,139.6 57.3,137.9 58.7,136.3 60.1,134.6 61.5,133.0 62.9,131.3 64.3,129.7 65.7,128.1 67.1,126.5 68.4,124.9 69.8,123.4 71.2,121.8 72.6,120.3 74.0,118.7 75.4,117.2 76.8,115.7 78.2,114.2 79.6,112.7 81.0,111.2 82.4,109.8 83.8,108.3 85.1,106.9 86.5,105.5 87.9,104.1 89.3,102.7 90.7,101.3 92.1,99.9 93.5,98.5 94.9,97.2 96.3,95.8 97.7,94.5 99.1,93.2 100.4,91.9 101.8,90.6 103.2,89.3 104.6,88.1 106.0,86.8 107.4,85.6 108.8,84.3 110.2,83.1 111.6,81.9 113.0,80.7 114.4,79.5 115.8,78.4 117.1,77.2 118.5,76.1 119.9,74.9 121.3,73.8 122.7,72.7 124.1,71.6 125.5,70.5 126.9,69.5 128.3,68.4 129.7,67.3 131.1,66.3 132.4,65.3 133.8,64.3 135.2,63.3 136.6,62.3 138.0,61.3 139.4,60.4 140.8,59.4 142.2,58.5 143.6,57.5 145.0,56.6 146.4,55.7 147.8,54.8 149.1,54.0 150.5,53.1 151.9,52.2 153.3,51.4 154.7,50.6 156.1,49.8 157.5,49.0 158.9,48.2 160.3,47.4 161.7,46.6 163.1,45.9 164.5,45.1 165.8,44.4 167.2,43.7 168.6,43.0 170.0,42.3 171.4,41.6 172.8,40.9 174.2,40.2 175.6,39.6 177.0,39.0 178.4,38.3 179.8,37.7 181.1,37.1 182.5,36.5 183.9,36.0 185.3,35.4 186.7,34.9 188.1,34.3 189.5,33.8 190.9,33.3 192.3,32.8 193.7,32.3 195.1,31.8 196.5,31.4 197.8,30.9 199.2,30.5 200.6,30.0 202.0,29.6 203.4,29.2 204.8,28.8 206.2,28.5 207.6,28.1 209.0,27.7 210.4,27.4 211.8,27.1 213.2,26.7 214.5,26.4 215.9,26.1 217.3,25.9 218.7,25.6 220.1,25.3 221.5,25.1 222.9,24.9 224.3,24.6 225.7,24.4 227.1,24.2 228.5,24.0 229.8,23.9 231.2,23.7 232.6,23.6 234.0,23.4 235.4,23.3 236.8,23.2 238.2,23.1 239.6,23.0 241.0,22.9 242.4,22.9 243.8,22.8 245.2,22.8 246.5,22.7 247.9,22.7 249.3,22.7 250.7,22.7 252.1,22.8 253.5,22.8 254.9,22.8 256.3,22.9 257.7,23.0 259.1,23.1 260.5,23.1 261.9,23.3 263.2,23.4 264.6,23.5 266.0,23.6\"></polyline><circle class=\"d1s \" cx=\"43.4\" cy=\"155.3\" r=\"4.5\"></circle><circle class=\"d1s \" cx=\"266.0\" cy=\"23.6\" r=\"4.5\"></circle></svg><p class=\"hint\">Check the critical point and both ends.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Absolute extrema on [a, b]</p><h2>Find the absolute maximum and minimum of f(x) = 4x − x²/2 on [−2, 9/2].</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"gd\" x1=\"43.4\" y1=\"170.0\" x2=\"43.4\" y2=\"8.0\"></line><line class=\"gd\" x1=\"180.4\" y1=\"170.0\" x2=\"180.4\" y2=\"8.0\"></line><line class=\"gd\" x1=\"248.9\" y1=\"170.0\" x2=\"248.9\" y2=\"8.0\"></line><line class=\"gd\" x1=\"16.0\" y1=\"155.3\" x2=\"290.0\" y2=\"155.3\"></line><line class=\"gd\" x1=\"16.0\" y1=\"118.5\" x2=\"290.0\" y2=\"118.5\"></line><line class=\"gd\" x1=\"16.0\" y1=\"44.8\" x2=\"290.0\" y2=\"44.8\"></line><line class=\"ax\" x1=\"16.0\" y1=\"81.6\" x2=\"290.0\" y2=\"81.6\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"111.9\" y1=\"170.0\" x2=\"111.9\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"43.4\" y1=\"78.6\" x2=\"43.4\" y2=\"84.6\"></line><text class=\"num\" x=\"43.4\" y=\"95.6\">−2</text><line class=\"ax\" x1=\"180.4\" y1=\"78.6\" x2=\"180.4\" y2=\"84.6\"></line><text class=\"num\" x=\"180.4\" y=\"95.6\">2</text><line class=\"ax\" x1=\"248.9\" y1=\"78.6\" x2=\"248.9\" y2=\"84.6\"></line><text class=\"num\" x=\"248.9\" y=\"95.6\">4</text><line class=\"ax\" x1=\"108.9\" y1=\"155.3\" x2=\"114.9\" y2=\"155.3\"></line><text class=\"num\" x=\"105.9\" y=\"158.8\" text-anchor=\"end\">−10</text><line class=\"ax\" x1=\"108.9\" y1=\"118.5\" x2=\"114.9\" y2=\"118.5\"></line><text class=\"num\" x=\"105.9\" y=\"122.0\" text-anchor=\"end\">−5</text><line class=\"ax\" x1=\"108.9\" y1=\"44.8\" x2=\"114.9\" y2=\"44.8\"></line><text class=\"num\" x=\"105.9\" y=\"48.3\" text-anchor=\"end\">5</text><polyline class=\"c1\"  points=\"43.4,155.3 44.8,153.5 46.2,151.7 47.6,149.9 49.0,148.2 50.4,146.5 51.7,144.7 53.1,143.0 54.5,141.3 55.9,139.6 57.3,137.9 58.7,136.3 60.1,134.6 61.5,133.0 62.9,131.3 64.3,129.7 65.7,128.1 67.1,126.5 68.4,124.9 69.8,123.4 71.2,121.8 72.6,120.3 74.0,118.7 75.4,117.2 76.8,115.7 78.2,114.2 79.6,112.7 81.0,111.2 82.4,109.8 83.8,108.3 85.1,106.9 86.5,105.5 87.9,104.1 89.3,102.7 90.7,101.3 92.1,99.9 93.5,98.5 94.9,97.2 96.3,95.8 97.7,94.5 99.1,93.2 100.4,91.9 101.8,90.6 103.2,89.3 104.6,88.1 106.0,86.8 107.4,85.6 108.8,84.3 110.2,83.1 111.6,81.9 113.0,80.7 114.4,79.5 115.8,78.4 117.1,77.2 118.5,76.1 119.9,74.9 121.3,73.8 122.7,72.7 124.1,71.6 125.5,70.5 126.9,69.5 128.3,68.4 129.7,67.3 131.1,66.3 132.4,65.3 133.8,64.3 135.2,63.3 136.6,62.3 138.0,61.3 139.4,60.4 140.8,59.4 142.2,58.5 143.6,57.5 145.0,56.6 146.4,55.7 147.8,54.8 149.1,54.0 150.5,53.1 151.9,52.2 153.3,51.4 154.7,50.6 156.1,49.8 157.5,49.0 158.9,48.2 160.3,47.4 161.7,46.6 163.1,45.9 164.5,45.1 165.8,44.4 167.2,43.7 168.6,43.0 170.0,42.3 171.4,41.6 172.8,40.9 174.2,40.2 175.6,39.6 177.0,39.0 178.4,38.3 179.8,37.7 181.1,37.1 182.5,36.5 183.9,36.0 185.3,35.4 186.7,34.9 188.1,34.3 189.5,33.8 190.9,33.3 192.3,32.8 193.7,32.3 195.1,31.8 196.5,31.4 197.8,30.9 199.2,30.5 200.6,30.0 202.0,29.6 203.4,29.2 204.8,28.8 206.2,28.5 207.6,28.1 209.0,27.7 210.4,27.4 211.8,27.1 213.2,26.7 214.5,26.4 215.9,26.1 217.3,25.9 218.7,25.6 220.1,25.3 221.5,25.1 222.9,24.9 224.3,24.6 225.7,24.4 227.1,24.2 228.5,24.0 229.8,23.9 231.2,23.7 232.6,23.6 234.0,23.4 235.4,23.3 236.8,23.2 238.2,23.1 239.6,23.0 241.0,22.9 242.4,22.9 243.8,22.8 245.2,22.8 246.5,22.7 247.9,22.7 249.3,22.7 250.7,22.7 252.1,22.8 253.5,22.8 254.9,22.8 256.3,22.9 257.7,23.0 259.1,23.1 260.5,23.1 261.9,23.3 263.2,23.4 264.6,23.5 266.0,23.6\"></polyline><circle class=\"d1s \" cx=\"43.4\" cy=\"155.3\" r=\"4.5\"></circle><circle class=\"d1s \" cx=\"266.0\" cy=\"23.6\" r=\"4.5\"></circle><circle class=\"d2s fx d2\" cx=\"248.9\" cy=\"22.7\" r=\"5.5\"></circle><text class=\"t2 fx d2 \" x=\"242.9\" y=\"14.7\" text-anchor=\"end\">max 8</text><text class=\"t1 fx d3 \" x=\"51.4\" y=\"159.3\" text-anchor=\"start\">min −10</text><text class=\"sm fx d3 \" x=\"260.0\" y=\"39.6\" text-anchor=\"end\">7.875</text><line class=\"guide fx d3\" x1=\"43.4\" y1=\"170.0\" x2=\"43.4\" y2=\"22.7\"></line><line class=\"guide fx d3\" x1=\"266.0\" y1=\"170.0\" x2=\"266.0\" y2=\"22.7\"></line></svg><div class=\"eq fx d5\"><p>On a closed interval, the extremes occur at <b>critical points or end-points</b>. f′(x) = 4 − x = 0 at x = 4: f(4) = 8. End-points: f(−2) = −10, f(9/2) = 7.875.</p><p>Compare: <b>absolute maximum 8 (at x = 4)</b> and <b>absolute minimum −10 (at x = −2)</b>. (Ex 6.3 Q5(iii).) A continuous function on [a, b] always attains both.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Do continuous functions on open or infinite intervals always have extrema?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: eˣ, log x, x³ + x² + x + 1 have neither maximum nor minimum on R (or (0, ∞)); f(x) = x on (−1, 1) has none either",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-maxima-and-minima"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q1(i)–(ii): extrema of f(x) = (2x − 1)² + 3 and 9x² + 12x + 2.",
+      "definition": "(i) (2x − 1)² ≥ 0: <span style=\"color:#f08c00\">minimum 3</span>, no maximum. (ii) (3x + 2)² − 2: <span style=\"color:#f08c00\">minimum −2</span>, no maximum",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q1(iii)–(iv): f(x) = −(x − 1)² + 10 and g(x) = x³ + 1.",
+      "definition": "(iii) <span style=\"color:#f08c00\">maximum 10</span>, no minimum. (iv) g is strictly increasing and unbounded: <span style=\"color:#f08c00\">neither maximum nor minimum</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q2(i),(ii): f(x) = |x + 2| − 1 and g(x) = −|x + 1| + 3.",
+      "definition": "(i) |x + 2| ≥ 0: <span style=\"color:#f08c00\">minimum −1</span>, no maximum. (ii) −|x + 1| ≤ 0: <span style=\"color:#f08c00\">maximum 3</span>, no minimum",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q2(iii),(iv): h(x) = sin 2x + 5 and f(x) = |sin 4x + 3|.",
+      "definition": "(iii) sin 2x ∈ [−1, 1]: <span style=\"color:#f08c00\">min 4, max 6</span>. (iv) sin 4x + 3 ∈ [2, 4]: <span style=\"color:#f08c00\">min 2, max 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q2(v): h(x) = x + 1 on (−1, 1).",
+      "definition": "h is strictly increasing on an open interval; its values fill (0, 2) but 0 and 2 are never attained: <span style=\"color:#f08c00\">neither minimum nor maximum</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q3(i),(ii): local extrema of x² and x³ − 3x.",
+      "definition": "(i) local minimum at x = 0, value 0. (ii) g′ = 3x² − 3: local max at x = −1 (value 2), local min at x = 1 (value −2)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q3(iii): local extrema of h(x) = sin x + cos x on (0, π/2).",
+      "definition": "h′ = cos x − sin x = 0 at π/4; h″ = −(sin x + cos x) < 0: <span style=\"color:#f08c00\">local maximum √2 at x = π/4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q3(iv): local extrema of f(x) = sin x − cos x on (0, 2π).",
+      "definition": "f′ = cos x + sin x = 0 at 3π/4 and 7π/4. <span style=\"color:#f08c00\">Local max √2 at 3π/4</span>, <span style=\"color:#f08c00\">local min −√2 at 7π/4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q3(v): local extrema of f(x) = x³ − 6x² + 9x + 15.",
+      "definition": "f′ = 3(x − 1)(x − 3). <span style=\"color:#f08c00\">Local max 19 at x = 1</span>, <span style=\"color:#f08c00\">local min 15 at x = 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q3(vi): local extrema of g(x) = x/2 + 2/x, x > 0.",
+      "definition": "g′ = ½ − 2/x² = 0 at x = 2; g″ = 4/x³ > 0: <span style=\"color:#f08c00\">local minimum 2 at x = 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q3(vii): local extrema of g(x) = 1/(x² + 2).",
+      "definition": "g′ = −2x/(x² + 2)² = 0 at x = 0, sign + to −: <span style=\"color:#f08c00\">local maximum 1/2 at x = 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q3(viii): local extrema of f(x) = x√(1 − x), 0 < x < 1.",
+      "definition": "f′ = (2 − 3x)/(2√(1 − x)) = 0 at x = 2/3: <span style=\"color:#f08c00\">local maximum 2√3/9 at x = 2/3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q4: prove eˣ, log x and x³ + x² + x + 1 have no maxima or minima.",
+      "definition": "eˣ and log x have f′ ≠ 0 for all x in their domains. For h = x³ + x² + x + 1: h′ = 3x² + 2x + 1 has discriminant 4 − 12 < 0, so h′ > 0 always. <span style=\"color:#22a35a\">No critical points ⇒ no extrema</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q5(i): absolute extrema of x³ on [−2, 2].",
+      "definition": "f′ = 3x² = 0 at 0 (f = 0); ends f(−2) = −8, f(2) = 8: <span style=\"color:#f08c00\">min −8, max 8</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q5(ii): absolute extrema of sin x + cos x on [0, π].",
+      "definition": "Critical π/4: √2. Ends f(0) = 1, f(π) = −1: <span style=\"color:#f08c00\">min −1, max √2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q5(iii): absolute extrema of 4x − x²/2 on [−2, 9/2].",
+      "definition": "Critical x = 4: 8. Ends: f(−2) = −10, f(9/2) = 7.875: <span style=\"color:#f08c00\">min −10, max 8</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q5(iv): absolute extrema of (x − 1)² + 3 on [−3, 1].",
+      "definition": "f(1) = 3 (the vertex, at the right end) and f(−3) = 19. So <span style=\"color:#f08c00\">min 3, max 19</span> (the printed key lists these two values in the opposite order; recomputing gives min 3 at x = 1 and max 19 at x = −3)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q6: the profit function is p(x) = 41 − 72x − 18x². Find the maximum profit.",
+      "definition": "p′ = −72 − 36x = 0 → x = −2; p″ = −36 < 0. p(−2) = 41 + 144 − 72 = <span style=\"color:#f08c00\">113</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q7: absolute max and min of 3x⁴ − 8x³ + 12x² − 48x + 25 on [0, 3].",
+      "definition": "f′ = 12(x − 2)(x² + 2) = 0 at x = 2. f(0) = 25, f(2) = −39, f(3) = 16: <span style=\"color:#f08c00\">min −39 at x = 2; max 25 at x = 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q8: at which points of [0, 2π] does sin 2x attain its maximum?",
+      "definition": "sin 2x = 1 when 2x = π/2 or 5π/2: <span style=\"color:#f08c00\">x = π/4 and 5π/4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q9: maximum value of sin x + cos x?",
+      "definition": "sin x + cos x = √2 sin(x + π/4): <span style=\"color:#f08c00\">√2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q10: maximum of 2x³ − 24x + 107 on [1, 3], and on [−3, −1].",
+      "definition": "f′ = 6(x² − 4), critical ±2. On [1, 3]: f(1) = 85, f(2) = 75, f(3) = 89 → <span style=\"color:#f08c00\">89 at x = 3</span>. On [−3, −1]: f(−3) = 125, f(−2) = 139, f(−1) = 129 → <span style=\"color:#f08c00\">139 at x = −2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q11: x⁴ − 62x² + ax + 9 attains its maximum at x = 1 on [0, 2]. Find a.",
+      "definition": "f′(1) = 4 − 124 + a = 0 → <span style=\"color:#f08c00\">a = 120</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q12: max and min of x + sin 2x on [0, 2π].",
+      "definition": "f′ = 1 + 2 cos 2x = 0 at x = π/3, 2π/3, 4π/3, 5π/3. Compare with f(0) = 0 and f(2π) = 2π: <span style=\"color:#f08c00\">max 2π at x = 2π; min 0 at x = 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-exercise-6-3"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Optimisation: general method.",
+      "definition": "1) Identify the quantity to maximise or minimise. 2) Express it in <span style=\"color:#3b82f6\">one variable</span> using the constraint. 3) Find the domain. 4) Set the derivative to 0. 5) Verify max/min (second derivative or end-points). 6) Answer the question asked, with units",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Maximum volume of an open box from a square sheet",
+      "definition": "V = x(18-2x)^2, V' = (18-2x)(18-6x) = 0 gives x = 3, V'' < 0, maximum V = 432 cm^3; optimisation: one variable, derivative zero, verify, answer",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Optimisation · open box</p><h2>Squares of side x are cut from the corners of an 18 cm square tin sheet and the flaps folded up. Which x gives the maximum volume?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f0\" x=\"10\" y=\"48\" width=\"84\" height=\"84\" rx=\"2\"></rect><rect class=\"f2\" x=\"10\" y=\"48\" width=\"18\" height=\"18\"></rect><rect class=\"f2\" x=\"76\" y=\"48\" width=\"18\" height=\"18\"></rect><rect class=\"f2\" x=\"10\" y=\"114\" width=\"18\" height=\"18\"></rect><rect class=\"f2\" x=\"76\" y=\"114\" width=\"18\" height=\"18\"></rect><text class=\"lbl\" x=\"52\" y=\"150\" text-anchor=\"middle\">18 cm sheet</text><text class=\"t2\" x=\"19\" y=\"44\" text-anchor=\"middle\">x</text><g transform=\"translate(106,0)\"><line class=\"gd\" x1=\"72.0\" y1=\"168.0\" x2=\"72.0\" y2=\"12.0\"></line><line class=\"gd\" x1=\"122.0\" y1=\"168.0\" x2=\"122.0\" y2=\"12.0\"></line><line class=\"gd\" x1=\"172.0\" y1=\"168.0\" x2=\"172.0\" y2=\"12.0\"></line><line class=\"gd\" x1=\"22.0\" y1=\"98.0\" x2=\"182.0\" y2=\"98.0\"></line><line class=\"gd\" x1=\"22.0\" y1=\"34.3\" x2=\"182.0\" y2=\"34.3\"></line><line class=\"ax\" x1=\"22.0\" y1=\"161.6\" x2=\"182.0\" y2=\"161.6\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"22.0\" y1=\"168.0\" x2=\"22.0\" y2=\"12.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"72.0\" y1=\"158.6\" x2=\"72.0\" y2=\"164.6\"></line><text class=\"num\" x=\"72.0\" y=\"175.6\">3</text><line class=\"ax\" x1=\"122.0\" y1=\"158.6\" x2=\"122.0\" y2=\"164.6\"></line><text class=\"num\" x=\"122.0\" y=\"175.6\">6</text><line class=\"ax\" x1=\"172.0\" y1=\"158.6\" x2=\"172.0\" y2=\"164.6\"></line><text class=\"num\" x=\"172.0\" y=\"175.6\">9</text><line class=\"ax\" x1=\"19.0\" y1=\"98.0\" x2=\"25.0\" y2=\"98.0\"></line><text class=\"num\" x=\"16.0\" y=\"101.5\" text-anchor=\"end\">200</text><line class=\"ax\" x1=\"19.0\" y1=\"34.3\" x2=\"25.0\" y2=\"34.3\"></line><text class=\"num\" x=\"16.0\" y=\"37.8\" text-anchor=\"end\">400</text><polyline class=\"c1\"  points=\"22.0,161.6 22.9,155.9 23.9,150.3 24.8,144.9 25.8,139.6 26.7,134.4 27.6,129.4 28.6,124.5 29.5,119.7 30.4,115.1 31.4,110.6 32.3,106.3 33.2,102.1 34.2,98.0 35.1,94.0 36.1,90.2 37.0,86.4 37.9,82.8 38.9,79.4 39.8,76.0 40.8,72.8 41.7,69.7 42.6,66.7 43.6,63.8 44.5,61.0 45.4,58.4 46.4,55.8 47.3,53.4 48.2,51.1 49.2,48.8 50.1,46.7 51.1,44.7 52.0,42.8 52.9,41.0 53.9,39.3 54.8,37.7 55.8,36.2 56.7,34.8 57.6,33.4 58.6,32.2 59.5,31.1 60.4,30.0 61.4,29.1 62.3,28.2 63.2,27.4 64.2,26.7 65.1,26.1 66.1,25.6 67.0,25.2 67.9,24.8 68.9,24.5 69.8,24.3 70.8,24.2 71.7,24.1 72.6,24.1 73.6,24.2 74.5,24.4 75.4,24.6 76.4,24.9 77.3,25.2 78.2,25.6 79.2,26.1 80.1,26.7 81.1,27.3 82.0,27.9 82.9,28.7 83.9,29.5 84.8,30.3 85.8,31.2 86.7,32.1 87.6,33.1 88.6,34.2 89.5,35.3 90.4,36.4 91.4,37.6 92.3,38.8 93.3,40.1 94.2,41.4 95.1,42.8 96.1,44.2 97.0,45.6 97.9,47.1 98.9,48.6 99.8,50.1 100.8,51.7 101.7,53.3 102.6,54.9 103.6,56.6 104.5,58.2 105.4,59.9 106.4,61.7 107.3,63.4 108.2,65.2 109.2,67.0 110.1,68.8 111.1,70.7 112.0,72.5 112.9,74.4 113.9,76.3 114.8,78.1 115.8,80.0 116.7,81.9 117.6,83.9 118.6,85.8 119.5,87.7 120.4,89.6 121.4,91.6 122.3,93.5 123.2,95.4 124.2,97.4 125.1,99.3 126.1,101.2 127.0,103.1 127.9,105.1 128.9,107.0 129.8,108.9 130.8,110.7 131.7,112.6 132.6,114.5 133.6,116.3 134.5,118.1 135.4,119.9 136.4,121.7 137.3,123.5 138.2,125.2 139.2,126.9 140.1,128.6 141.1,130.3 142.0,131.9 142.9,133.5 143.9,135.1 144.8,136.7 145.8,138.2 146.7,139.7 147.6,141.1 148.6,142.5 149.5,143.9 150.4,145.2 151.4,146.5 152.3,147.7 153.2,148.9 154.2,150.1 155.1,151.2 156.1,152.3 157.0,153.3 157.9,154.2 158.9,155.1 159.8,156.0 160.8,156.8 161.7,157.5 162.6,158.2 163.6,158.9 164.5,159.4 165.4,159.9 166.4,160.4 167.3,160.8 168.3,161.1 169.2,161.3 170.1,161.5 171.1,161.6 172.0,161.6\"></polyline></g></svg><p class=\"hint\">Write V in terms of x, then find where V′ = 0.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Optimisation · open box</p><h2>Squares of side x are cut from the corners of an 18 cm square tin sheet and the flaps folded up. Which x gives the maximum volume?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f0\" x=\"10\" y=\"48\" width=\"84\" height=\"84\" rx=\"2\"></rect><rect class=\"f2\" x=\"10\" y=\"48\" width=\"18\" height=\"18\"></rect><rect class=\"f2\" x=\"76\" y=\"48\" width=\"18\" height=\"18\"></rect><rect class=\"f2\" x=\"10\" y=\"114\" width=\"18\" height=\"18\"></rect><rect class=\"f2\" x=\"76\" y=\"114\" width=\"18\" height=\"18\"></rect><text class=\"lbl\" x=\"52\" y=\"150\" text-anchor=\"middle\">18 cm sheet</text><text class=\"t2\" x=\"19\" y=\"44\" text-anchor=\"middle\">x</text><g transform=\"translate(106,0)\"><line class=\"gd\" x1=\"72.0\" y1=\"168.0\" x2=\"72.0\" y2=\"12.0\"></line><line class=\"gd\" x1=\"122.0\" y1=\"168.0\" x2=\"122.0\" y2=\"12.0\"></line><line class=\"gd\" x1=\"172.0\" y1=\"168.0\" x2=\"172.0\" y2=\"12.0\"></line><line class=\"gd\" x1=\"22.0\" y1=\"98.0\" x2=\"182.0\" y2=\"98.0\"></line><line class=\"gd\" x1=\"22.0\" y1=\"34.3\" x2=\"182.0\" y2=\"34.3\"></line><line class=\"ax\" x1=\"22.0\" y1=\"161.6\" x2=\"182.0\" y2=\"161.6\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"22.0\" y1=\"168.0\" x2=\"22.0\" y2=\"12.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"72.0\" y1=\"158.6\" x2=\"72.0\" y2=\"164.6\"></line><text class=\"num\" x=\"72.0\" y=\"175.6\">3</text><line class=\"ax\" x1=\"122.0\" y1=\"158.6\" x2=\"122.0\" y2=\"164.6\"></line><text class=\"num\" x=\"122.0\" y=\"175.6\">6</text><line class=\"ax\" x1=\"172.0\" y1=\"158.6\" x2=\"172.0\" y2=\"164.6\"></line><text class=\"num\" x=\"172.0\" y=\"175.6\">9</text><line class=\"ax\" x1=\"19.0\" y1=\"98.0\" x2=\"25.0\" y2=\"98.0\"></line><text class=\"num\" x=\"16.0\" y=\"101.5\" text-anchor=\"end\">200</text><line class=\"ax\" x1=\"19.0\" y1=\"34.3\" x2=\"25.0\" y2=\"34.3\"></line><text class=\"num\" x=\"16.0\" y=\"37.8\" text-anchor=\"end\">400</text><polyline class=\"c1\"  points=\"22.0,161.6 22.9,155.9 23.9,150.3 24.8,144.9 25.8,139.6 26.7,134.4 27.6,129.4 28.6,124.5 29.5,119.7 30.4,115.1 31.4,110.6 32.3,106.3 33.2,102.1 34.2,98.0 35.1,94.0 36.1,90.2 37.0,86.4 37.9,82.8 38.9,79.4 39.8,76.0 40.8,72.8 41.7,69.7 42.6,66.7 43.6,63.8 44.5,61.0 45.4,58.4 46.4,55.8 47.3,53.4 48.2,51.1 49.2,48.8 50.1,46.7 51.1,44.7 52.0,42.8 52.9,41.0 53.9,39.3 54.8,37.7 55.8,36.2 56.7,34.8 57.6,33.4 58.6,32.2 59.5,31.1 60.4,30.0 61.4,29.1 62.3,28.2 63.2,27.4 64.2,26.7 65.1,26.1 66.1,25.6 67.0,25.2 67.9,24.8 68.9,24.5 69.8,24.3 70.8,24.2 71.7,24.1 72.6,24.1 73.6,24.2 74.5,24.4 75.4,24.6 76.4,24.9 77.3,25.2 78.2,25.6 79.2,26.1 80.1,26.7 81.1,27.3 82.0,27.9 82.9,28.7 83.9,29.5 84.8,30.3 85.8,31.2 86.7,32.1 87.6,33.1 88.6,34.2 89.5,35.3 90.4,36.4 91.4,37.6 92.3,38.8 93.3,40.1 94.2,41.4 95.1,42.8 96.1,44.2 97.0,45.6 97.9,47.1 98.9,48.6 99.8,50.1 100.8,51.7 101.7,53.3 102.6,54.9 103.6,56.6 104.5,58.2 105.4,59.9 106.4,61.7 107.3,63.4 108.2,65.2 109.2,67.0 110.1,68.8 111.1,70.7 112.0,72.5 112.9,74.4 113.9,76.3 114.8,78.1 115.8,80.0 116.7,81.9 117.6,83.9 118.6,85.8 119.5,87.7 120.4,89.6 121.4,91.6 122.3,93.5 123.2,95.4 124.2,97.4 125.1,99.3 126.1,101.2 127.0,103.1 127.9,105.1 128.9,107.0 129.8,108.9 130.8,110.7 131.7,112.6 132.6,114.5 133.6,116.3 134.5,118.1 135.4,119.9 136.4,121.7 137.3,123.5 138.2,125.2 139.2,126.9 140.1,128.6 141.1,130.3 142.0,131.9 142.9,133.5 143.9,135.1 144.8,136.7 145.8,138.2 146.7,139.7 147.6,141.1 148.6,142.5 149.5,143.9 150.4,145.2 151.4,146.5 152.3,147.7 153.2,148.9 154.2,150.1 155.1,151.2 156.1,152.3 157.0,153.3 157.9,154.2 158.9,155.1 159.8,156.0 160.8,156.8 161.7,157.5 162.6,158.2 163.6,158.9 164.5,159.4 165.4,159.9 166.4,160.4 167.3,160.8 168.3,161.1 169.2,161.3 170.1,161.5 171.1,161.6 172.0,161.6\"></polyline></g><g transform=\"translate(106,0)\"><circle class=\"d2s fx d2\" cx=\"72.0\" cy=\"24.1\" r=\"5\"></circle><line class=\"guide fx d2\" x1=\"72.0\" y1=\"161.6\" x2=\"72.0\" y2=\"24.1\"></line><text class=\"t2 fx d3 \" x=\"80.0\" y=\"20.1\" text-anchor=\"start\">max: x = 3, V = 432</text></g></svg><div class=\"eq fx d5\"><p>V(x) = x(18 − 2x)². <b>V′(x) = (18 − 2x)(18 − 6x) = 0</b> gives x = 9 (no box) or x = 3. V″(x) = 24x − 144 &lt; 0 at x = 3: a <b>maximum</b>, V = 3 · 12² = 432 cm³ (Ex 6.3 Q17).</p><p>Method: 1) write the quantity in one variable, 2) set the derivative to 0, 3) verify max/min (second derivative or end-points), 4) answer with units.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q13: two numbers with sum 24 and product as large as possible.",
+      "definition": "x(24 − x): derivative 24 − 2x = 0 → <span style=\"color:#f08c00\">12 and 12</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q14: positive x, y with x + y = 60 and xy³ maximum.",
+      "definition": "f = x(60 − x)³ (y = 60 − x). f′ = (60 − x)²(60 − 4x) = 0 → <span style=\"color:#f08c00\">x = 15, y = 45</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q15: positive x, y with x + y = 35 and x²y⁵ maximum.",
+      "definition": "f = x²(35 − x)⁵: f′ = x(35 − x)⁴(70 − 7x) = 0 → <span style=\"color:#f08c00\">x = 10, y = 25</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q16: two positive numbers with sum 16 and the sum of cubes minimum.",
+      "definition": "x³ + (16 − x)³: derivative 3x² − 3(16 − x)² = 0 → x = 8: <span style=\"color:#f08c00\">8 and 8</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q17: an 18 cm square tin sheet; squares cut from the corners; open box of maximum volume. Side of the square?",
+      "definition": "V = x(18 − 2x)²: <span style=\"color:#f08c00\">x = 3 cm</span> (V = 432 cm³)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q18: a 45 cm × 24 cm sheet; squares cut at the corners; maximum volume.",
+      "definition": "V = x(45 − 2x)(24 − 2x); V′ = 12x² − 276x + 1080 = 12(x − 5)(x − 18). x = 18 is outside the domain (x < 12): <span style=\"color:#f08c00\">x = 5 cm</span> (V = 5 · 35 · 14 = 2450 cm³)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q19: show that of all rectangles inscribed in a fixed circle, the square has maximum area.",
+      "definition": "Rectangle with sides 2R cos θ, 2R sin θ: area = 2R² sin 2θ, maximal when sin 2θ = 1 → θ = π/4 → <span style=\"color:#22a35a\">a square</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q20: show the right circular cylinder of given surface area and maximum volume has height equal to the diameter of its base.",
+      "definition": "S = 2πr² + 2πrh fixed; V = πr²h = r(S − 2πr²)/2. V′ = 0 → S = 6πr² → h = 2r. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q21: closed cylindrical can of volume 100 cm³ with least surface area. Dimensions?",
+      "definition": "S = 2πr² + 200/r; S′ = 4πr − 200/r² = 0 → r³ = 50/π. <span style=\"color:#f08c00\">r = (50/π)^(1/3) cm, h = 2r = 2(50/π)^(1/3) cm</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q22: a 28 m wire is cut into a square and a circle. How to cut for minimum total area?",
+      "definition": "Square side a, circle radius r, 4a + 2πr = 28. Area A = a² + πr²: minimum when a = 2r. Square wire <span style=\"color:#f08c00\">112/(π + 4) m</span>, circle wire <span style=\"color:#f08c00\">28π/(π + 4) m</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q23: show the largest cone inscribed in a sphere of radius R has volume 8/27 of the sphere.",
+      "definition": "Height h = 4R/3 at the maximum. V = (1/3)πr²h with r² = h(2R − h): maximise → h = 4R/3, V = 32πR³/81 = (8/27)(4πR³/3). <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q24: the right circular cone of least curved surface area and given volume has altitude √2 times the base radius.",
+      "definition": "Minimise S² ∝ r²(r² + h²) with r²h constant: derivative gives h² = 2r². <span style=\"color:#22a35a\">h = √2 r ✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q25: show the semi-vertical angle of the cone of maximum volume with given slant height is tan⁻¹√2.",
+      "definition": "r = l sin α, h = l cos α, V = (1/3)π l³ sin²α cos α. V′ = 0 → tan²α = 2. <span style=\"color:#22a35a\">α = tan⁻¹√2 ✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q26: show the semi-vertical angle of the cone of given surface area and maximum volume is sin⁻¹(1/3).",
+      "definition": "Maximise V with S = πr(r + l) fixed: leads to l = 3r, so sin α = r/l = 1/3. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q27: the point on x² = 2y nearest to (0, 5) is (A) (2√2, 4) (B) (2√2, 0) (C) (0, 0) (D) (2, 2)",
+      "definition": "D = x² + (y − 5)² = y² − 8y + 25, minimum at y = 4: <span style=\"color:#22a35a\">(A) (2√2, 4)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Nearest point: shrink a circle until it touches the curve",
+      "definition": "Minimise squared distance x^2+(y-5)^2 on x^2=2y: y=4, x=+-2sqrt2, distance 3; circle centered at the point touches the parabola at the nearest point",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Nearest point on a curve</p><h2>Find the point on the parabola x² = 2y that is nearest to (0, 5).</h2><svg viewBox=\"0 0 300 244\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"211.7\" x2=\"292.0\" y2=\"211.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"236.4\" x2=\"150.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"45.0,33.3 46.4,37.7 47.7,42.1 49.0,46.4 50.3,50.7 51.6,54.9 52.9,59.1 54.2,63.2 55.5,67.2 56.9,71.2 58.2,75.1 59.5,79.0 60.8,82.8 62.1,86.6 63.4,90.3 64.7,94.0 66.0,97.5 67.3,101.1 68.7,104.6 70.0,108.0 71.3,111.4 72.6,114.7 73.9,118.0 75.2,121.2 76.5,124.3 77.8,127.4 79.2,130.4 80.5,133.4 81.8,136.4 83.1,139.2 84.4,142.0 85.7,144.8 87.0,147.5 88.3,150.2 89.6,152.7 91.0,155.3 92.3,157.8 93.6,160.2 94.9,162.6 96.2,164.9 97.5,167.1 98.8,169.3 100.1,171.5 101.5,173.6 102.8,175.6 104.1,177.6 105.4,179.5 106.7,181.4 108.0,183.2 109.3,184.9 110.6,186.6 112.0,188.3 113.3,189.9 114.6,191.4 115.9,192.9 117.2,194.3 118.5,195.7 119.8,197.0 121.1,198.2 122.4,199.4 123.8,200.6 125.1,201.7 126.4,202.7 127.7,203.7 129.0,204.6 130.3,205.5 131.6,206.3 132.9,207.0 134.3,207.7 135.6,208.4 136.9,209.0 138.2,209.5 139.5,210.0 140.8,210.4 142.1,210.7 143.4,211.0 144.8,211.3 146.1,211.5 147.4,211.6 148.7,211.7 150.0,211.7 151.3,211.7 152.6,211.6 153.9,211.5 155.2,211.3 156.6,211.0 157.9,210.7 159.2,210.4 160.5,210.0 161.8,209.5 163.1,209.0 164.4,208.4 165.7,207.7 167.1,207.0 168.4,206.3 169.7,205.5 171.0,204.6 172.3,203.7 173.6,202.7 174.9,201.7 176.2,200.6 177.6,199.4 178.9,198.2 180.2,197.0 181.5,195.7 182.8,194.3 184.1,192.9 185.4,191.4 186.7,189.9 188.0,188.3 189.4,186.6 190.7,184.9 192.0,183.2 193.3,181.4 194.6,179.5 195.9,177.6 197.2,175.6 198.5,173.6 199.9,171.5 201.2,169.3 202.5,167.1 203.8,164.9 205.1,162.6 206.4,160.2 207.7,157.8 209.0,155.3 210.3,152.7 211.7,150.2 213.0,147.5 214.3,144.8 215.6,142.0 216.9,139.2 218.2,136.4 219.5,133.4 220.8,130.4 222.2,127.4 223.5,124.3 224.8,121.2 226.1,118.0 227.4,114.7 228.7,111.4 230.0,108.0 231.3,104.6 232.7,101.1 234.0,97.5 235.3,94.0 236.6,90.3 237.9,86.6 239.2,82.8 240.5,79.0 241.8,75.1 243.1,71.2 244.5,67.2 245.8,63.2 247.1,59.1 248.4,54.9 249.7,50.7 251.0,46.4 252.3,42.1 253.6,37.7 255.0,33.3\"></polyline><circle class=\"d2s \" cx=\"150.0\" cy=\"57.4\" r=\"4.5\"></circle><text class=\"t2 \" x=\"158.0\" y=\"51.4\" text-anchor=\"start\">(0, 5)</text></svg><p class=\"hint\">Write the squared distance as a function of y.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Nearest point on a curve</p><h2>Find the point on the parabola x² = 2y that is nearest to (0, 5).</h2><svg viewBox=\"0 0 300 244\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"8.0\" y1=\"211.7\" x2=\"292.0\" y2=\"211.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"150.0\" y1=\"236.4\" x2=\"150.0\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><polyline class=\"c1\"  points=\"45.0,33.3 46.4,37.7 47.7,42.1 49.0,46.4 50.3,50.7 51.6,54.9 52.9,59.1 54.2,63.2 55.5,67.2 56.9,71.2 58.2,75.1 59.5,79.0 60.8,82.8 62.1,86.6 63.4,90.3 64.7,94.0 66.0,97.5 67.3,101.1 68.7,104.6 70.0,108.0 71.3,111.4 72.6,114.7 73.9,118.0 75.2,121.2 76.5,124.3 77.8,127.4 79.2,130.4 80.5,133.4 81.8,136.4 83.1,139.2 84.4,142.0 85.7,144.8 87.0,147.5 88.3,150.2 89.6,152.7 91.0,155.3 92.3,157.8 93.6,160.2 94.9,162.6 96.2,164.9 97.5,167.1 98.8,169.3 100.1,171.5 101.5,173.6 102.8,175.6 104.1,177.6 105.4,179.5 106.7,181.4 108.0,183.2 109.3,184.9 110.6,186.6 112.0,188.3 113.3,189.9 114.6,191.4 115.9,192.9 117.2,194.3 118.5,195.7 119.8,197.0 121.1,198.2 122.4,199.4 123.8,200.6 125.1,201.7 126.4,202.7 127.7,203.7 129.0,204.6 130.3,205.5 131.6,206.3 132.9,207.0 134.3,207.7 135.6,208.4 136.9,209.0 138.2,209.5 139.5,210.0 140.8,210.4 142.1,210.7 143.4,211.0 144.8,211.3 146.1,211.5 147.4,211.6 148.7,211.7 150.0,211.7 151.3,211.7 152.6,211.6 153.9,211.5 155.2,211.3 156.6,211.0 157.9,210.7 159.2,210.4 160.5,210.0 161.8,209.5 163.1,209.0 164.4,208.4 165.7,207.7 167.1,207.0 168.4,206.3 169.7,205.5 171.0,204.6 172.3,203.7 173.6,202.7 174.9,201.7 176.2,200.6 177.6,199.4 178.9,198.2 180.2,197.0 181.5,195.7 182.8,194.3 184.1,192.9 185.4,191.4 186.7,189.9 188.0,188.3 189.4,186.6 190.7,184.9 192.0,183.2 193.3,181.4 194.6,179.5 195.9,177.6 197.2,175.6 198.5,173.6 199.9,171.5 201.2,169.3 202.5,167.1 203.8,164.9 205.1,162.6 206.4,160.2 207.7,157.8 209.0,155.3 210.3,152.7 211.7,150.2 213.0,147.5 214.3,144.8 215.6,142.0 216.9,139.2 218.2,136.4 219.5,133.4 220.8,130.4 222.2,127.4 223.5,124.3 224.8,121.2 226.1,118.0 227.4,114.7 228.7,111.4 230.0,108.0 231.3,104.6 232.7,101.1 234.0,97.5 235.3,94.0 236.6,90.3 237.9,86.6 239.2,82.8 240.5,79.0 241.8,75.1 243.1,71.2 244.5,67.2 245.8,63.2 247.1,59.1 248.4,54.9 249.7,50.7 251.0,46.4 252.3,42.1 253.6,37.7 255.0,33.3\"></polyline><circle class=\"d2s \" cx=\"150.0\" cy=\"57.4\" r=\"4.5\"></circle><text class=\"t2 \" x=\"158.0\" y=\"51.4\" text-anchor=\"start\">(0, 5)</text><circle class=\"c2 fx d2\" cx=\"150.0\" cy=\"57.4\" r=\"92.6\"></circle><circle class=\"d1s fx d3\" cx=\"237.3\" cy=\"88.3\" r=\"5\"></circle><circle class=\"d1s fx d3\" cx=\"62.7\" cy=\"88.3\" r=\"5\"></circle><line class=\"guide fx d3\" x1=\"150.0\" y1=\"57.4\" x2=\"237.3\" y2=\"88.3\"></line><text class=\"t1 fx d3 \" x=\"243.3\" y=\"104.3\" text-anchor=\"start\">(2√2, 4)</text><text class=\"t2 fx d3 \" x=\"177.8\" y=\"65.1\" text-anchor=\"middle\">3</text></svg><div class=\"eq fx d5\"><p>Minimise the squared distance D = x² + (y − 5)² with x² = 2y: D = y² − 8y + 25 (y ≥ 0). D′ = 2y − 8 = 0 gives <b>y = 4</b>, x = ±2√2, D = 9 so the least distance is 3.</p><p>Geometrically the circle centred at (0, 5) with radius 3 just <b>touches</b> the parabola: the nearest point is where the circle is tangent, and the line to the centre is the normal (Ex 6.3 Q27: (A) (2√2, 4)).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q28: for all real x, the minimum value of (1 − x + x²)/(1 + x + x²) is (A) 0 (B) 1 (C) 3 (D) 1/3",
+      "definition": "f′ = 2(x² − 1)/(1 + x + x²)²: minimum at x = 1: f(1) = 1/3. <span style=\"color:#22a35a\">(D) 1/3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 6.3 Q29: the maximum value of [x(x − 1) + 1]^(1/3), 0 ≤ x ≤ 1, is (A) (1/3)^(1/3) (B) 1/2 (C) 1 (D) 0",
+      "definition": "x² − x + 1 has vertex at ½ (value ¾, the minimum); on [0, 1] its maximum is 1 at the ends. <span style=\"color:#22a35a\">(C) 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 29: an enemy helicopter flies along y = x² + 7. A soldier at (3, 7). Nearest distance?",
+      "definition": "D² = (x − 3)² + x⁴; derivative 2(x − 3) + 4x³ = 2(x − 1)(2x² + 2x + 3) = 0 gives x = 1. D = √5 = <span style=\"color:#f08c00\">√5</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 37: a manufacturer sells x items at (5 − x/100) each; cost of x items is x/5 + 500. Maximise profit.",
+      "definition": "P = 5x − x²/100 − x/5 − 500 = (24/5)x − x²/100 − 500. P′ = 24/5 − x/50 = 0 → <span style=\"color:#f08c00\">x = 240 items</span> (P″ = −1/50 < 0)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.4-optimisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: show f(x) = (log x)/x has its maximum at x = e.",
+      "definition": "f′ = (1 − log x)/x² = 0 at x = e, positive before, negative after. <span style=\"color:#22a35a\">✓</span> Maximum value 1/e",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: an isosceles triangle has fixed base b; the two equal sides shrink at 3 cm/s. How fast is the area decreasing when they equal the base?",
+      "definition": "A = (b/4)√(4x² − b²). dA/dt = (b/4)(4x/√(4x² − b²)) dx/dt. At x = b: (b/4)(4b/(b√3))(−3) = <span style=\"color:#f08c00\">−b√3 cm²/s</span> (decreasing at b√3 cm²/s)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: intervals for f(x) = (4 sin x − 2x − x cos x)/(2 + cos x).",
+      "definition": "f′ = cos x (4 − cos x)/(2 + cos x)², the sign of cos x. (i) increasing on <span style=\"color:#f08c00\">[0, π/2] and (3π/2, 2π)</span>; (ii) decreasing on <span style=\"color:#f08c00\">(π/2, 3π/2)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: intervals for f(x) = x³ + 1/x³, x ≠ 0.",
+      "definition": "f′ = 3(x⁶ − 1)/x⁴. (i) increasing for <span style=\"color:#f08c00\">x < −1 and x > 1</span>; (ii) decreasing for <span style=\"color:#f08c00\">−1 < x < 1 (x ≠ 0)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: maximum area of an isosceles triangle inscribed in x²/a² + y²/b² = 1 with a vertex at one end of the major axis.",
+      "definition": "Base points (x, ±y) on the ellipse, vertex (a, 0): area = y(a − x) is maximised at x = −a/2. <span style=\"color:#f08c00\">Maximum area = 3√3 ab/4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q6: open tank with base a rectangle, depth 2 m, volume 8 m³; base costs ₹70/m², sides ₹45/m². Cost of the least expensive tank?",
+      "definition": "Base area 4: l·w = 4. Cost = 70 · 4 + 45 · 2(l + w) · 2 = 280 + 180(l + w). Minimum when l = w = 2: <span style=\"color:#f08c00\">₹1000</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: perimeter of a circle plus perimeter of a square is k. Show the total area is least when the square’s side is twice the circle’s radius.",
+      "definition": "2πr + 4a = k; A = πr² + a². Substituting r = (k − 4a)/(2π) and A′(a) = 0 gives a = 2r. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q8: a window is a rectangle topped by a semicircle, perimeter 10 m. Dimensions for maximum light?",
+      "definition": "A = 10r − 2r² − πr²/2, A′ = 0 → r = 10/(4 + π); the height of the rectangle equals r. <span style=\"color:#f08c00\">Width 20/(π + 4) m, height 10/(π + 4) m</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q9: a point on the hypotenuse of a right triangle is at distances a and b from the two legs. Show the minimum hypotenuse is (a^(2/3) + b^(2/3))^(3/2).",
+      "definition": "A line through the point meeting the legs at angle θ has length L = a/sin θ + b/cos θ. L′ = 0 gives tan³θ = a/b, and then L = (a^(2/3) + b^(2/3))^(3/2). <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q10: f(x) = (x − 2)⁴(x + 1)³. Find the points of (i) local maxima (ii) local minima (iii) inflexion.",
+      "definition": "f′ = (x − 2)³(x + 1)²(7x − 2). Sign change + to − at x = 2/7: <span style=\"color:#f08c00\">local max at 2/7</span>; − to + at x = 2: <span style=\"color:#f08c00\">local min at 2</span>; no sign change at −1 (from (x + 1)²): <span style=\"color:#f08c00\">point of inflexion at −1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q11: absolute max and min of cos²x + sin x on [0, π].",
+      "definition": "With s = sin x ∈ [0, 1]: f = 1 + s − s². Vertex at s = ½: f = 5/4. At s = 0 or 1: f = 1. <span style=\"color:#f08c00\">Max 5/4, min 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q12: show the altitude of the right circular cone of maximum volume inscribed in a sphere of radius r is 4r/3.",
+      "definition": "V = (π/3)h²(2r − h) (base radius² = h(2r − h)). V′ = (π/3)(4rh − 3h²) = 0 → <span style=\"color:#22a35a\">h = 4r/3 ✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q13: f′(x) > 0 for all x ∈ (a, b). Prove f is increasing on (a, b).",
+      "definition": "By the Mean Value Theorem, for x₁ < x₂ there is c with f(x₂) − f(x₁) = f′(c)(x₂ − x₁) > 0. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q14: the cylinder of maximum volume inscribed in a sphere of radius R has height 2R/√3. Find its volume.",
+      "definition": "V = πr²h with r² = R² − h²/4: V = πh(R² − h²/4); V′ = 0 → h = 2R/√3, r² = 2R²/3. <span style=\"color:#f08c00\">V = 4πR³/(3√3)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q15: the cylinder of greatest volume in a cone of height h and semi-vertical angle α has height h/3; the volume is (4/27)πh³ tan²α.",
+      "definition": "With cylinder radius r, height H: r = (h − H) tan α. V = π(h − H)²tan²α · H; V′ = 0 → H = h/3. V = π(2h/3)²(tan²α)(h/3) = (4/27)πh³tan²α. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q16: a cylindrical tank of radius 10 m is filled with wheat at 314 m³/h. Rate of increase of depth? (A) 1 m/h (B) 0.1 m/h (C) 1.1 m/h (D) 0.5 m/h",
+      "definition": "V = π r² h: dh/dt = 314/(π · 100) = 314/314 = <span style=\"color:#22a35a\">(A) 1 m/h</span> (π = 3.14)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.5-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rolle’s theorem: statement (a JEE favourite).",
+      "definition": "If f is continuous on [a, b], differentiable on (a, b) and f(a) = f(b), then ∃ c ∈ (a, b) with <span style=\"color:#3b82f6\">f′(c) = 0</span>. Example: x² − 4x + 3 on [1, 3] gives c = 2",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mean value theorem: statement.",
+      "definition": "If f is continuous on [a, b] and differentiable on (a, b): ∃ c with <span style=\"color:#3b82f6\">f′(c) = (f(b) − f(a))/(b − a)</span> (some point has the average slope). Example: f = x² on [1, 3]: 2c = 4, c = 2",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Number of real roots of x³ − 3x + 1 = 0?",
+      "definition": "f = x³ − 3x + 1, local max f(−1) = 3 and local min f(1) = −1 have opposite signs: <span style=\"color:#f08c00\">3 real roots</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Minimum value of x + 1/x for x > 0?",
+      "definition": "f′ = 1 − 1/x² = 0 at x = 1, f″ = 2/x³ > 0: <span style=\"color:#f08c00\">2</span> (also AM–GM)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Maximum value of sin x + cos x, and of a sin x + b cos x?",
+      "definition": "<span style=\"color:#f08c00\">√2</span> and <span style=\"color:#f08c00\">√(a² + b²)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Minimum of 4x + 9/x for x > 0?",
+      "definition": "f′ = 4 − 9/x² = 0 at x = 3/2: f = 6 + 6 = <span style=\"color:#f08c00\">12</span> (also AM–GM: 4x + 9/x ≥ 2√36)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "The sum of two numbers is 20. Minimise the sum of their squares.",
+      "definition": "x² + (20 − x)²: derivative 4x − 40 = 0 → x = 10: <span style=\"color:#f08c00\">10, 10; minimum sum of squares = 200</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fence problem: 100 m of fencing encloses a rectangle. Maximum area?",
+      "definition": "Perimeter 2(l + w) = 100. Area l(50 − l) maximal at l = 25: <span style=\"color:#f08c00\">625 m² (a square)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Shortest distance from the point (1, 0) to the parabola y² = 4x?",
+      "definition": "D² = (x − 1)² + 4x = (x + 1)² for x ≥ 0: minimum at x = 0. <span style=\"color:#f08c00\">Distance 1, at the vertex (0, 0)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A closed box with a square base has volume 1000 cm³. Minimum surface area?",
+      "definition": "S = 2x² + 4·1000/x; S′ = 0 → x = 10: <span style=\"color:#f08c00\">600 cm² (a cube)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Tangent slope at the maximum of a smooth function?",
+      "definition": "Zero: at a local extremum of a differentiable function the tangent is <span style=\"color:#3b82f6\">horizontal</span> (f′ = 0). At a corner (like |x| at 0) the minimum has no tangent",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If the sum of a positive number and its reciprocal is at least 2, why?",
+      "definition": "x + 1/x ≥ 2 for x > 0, with equality at x = 1 (minimum from calculus; or AM–GM). It appears in many optimisation problems",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-exam-patterns"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the function f(x) = x³ − 3x is decreasing in<br>(a) (−∞, −1) (b) (−1, 1) (c) (1, ∞) (d) R",
+      "definition": "f′ = 3(x − 1)(x + 1) < 0 on (−1, 1): <span style=\"color:#22a35a\">(b)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the maximum value of f(x) = sin x + cos x on [0, π/2] is<br>(a) 1 (b) √2 (c) 2 (d) 1/√2",
+      "definition": "<span style=\"color:#22a35a\">(b) √2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the minimum value of x² + 16/x for x > 0 is<br>(a) 12 (b) 8 (c) 16 (d) 24",
+      "definition": "f′ = 2x − 16/x² = 0 at x = 2: f(2) = 4 + 8 = <span style=\"color:#22a35a\">(a) 12</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: f(x) = x² e^(−x) has a local maximum at x =<br>(a) 0 (b) 1 (c) 2 (d) −2",
+      "definition": "f′ = x(2 − x)e^(−x), sign + to − at 2: <span style=\"color:#22a35a\">(c) 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the radius of a circle grows at 2 cm/s. When r = 5 cm the area grows at<br>(a) 10π (b) 20π (c) 25π (d) 5π cm²/s",
+      "definition": "2πr dr/dt = 20π: <span style=\"color:#22a35a\">(b)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the total revenue is R(x) = 5x² + 3x. The marginal revenue at x = 2 is<br>(a) 23 (b) 20 (c) 13 (d) 26",
+      "definition": "R′ = 10x + 3 = <span style=\"color:#22a35a\">(a) 23</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: f(x) = |x| has at x = 0<br>(a) local maximum (b) local minimum (c) point of inflexion (d) no extremum",
+      "definition": "Minimum value 0, f′ changes − to +: <span style=\"color:#22a35a\">(b) local minimum</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the function f(x) = x³ has at x = 0<br>(a) a local maximum (b) a local minimum (c) a point of inflexion (d) none",
+      "definition": "f′ = 3x² does not change sign: <span style=\"color:#22a35a\">(c) point of inflexion</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: for the function y = x + 4/x, the local minimum value is<br>(a) 2 (b) 4 (c) 8 (d) −4",
+      "definition": "y′ = 1 − 4/x² = 0 at x = 2: y = <span style=\"color:#22a35a\">(b) 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: two positive numbers with sum 8 and maximum product are<br>(a) 4, 4 (b) 5, 3 (c) 6, 2 (d) 7, 1",
+      "definition": "<span style=\"color:#22a35a\">(a) 4, 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): the number of critical points of f(x) = x³ − 3x is?",
+      "definition": "f′ = 3x² − 3 = 0: x = ±1: <span style=\"color:#f08c00\">2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the maximum value of f(x) = 12x − x³ on [−3, 3] is?",
+      "definition": "f′ = 12 − 3x² = 0 at x = ±2: f(2) = 16, f(−2) = −16, f(±3) = ±9: <span style=\"color:#f08c00\">16</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: if the area of a square increases at 4 cm²/s, how fast does its side increase (in cm/s) when the side is 2 cm?",
+      "definition": "A = s²: 2s ds/dt = 4 → ds/dt = 4/(2 · 2) = <span style=\"color:#f08c00\">1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> f′(c) = 0 implies f has an extremum at c.<br><b>R:</b> f(x) = x³ has f′(0) = 0 and no extremum at 0.<br>(a) Both true, R explains A (b) A false, R true (c) A true, R false (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(b)</span>: R is a counterexample to A",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> a continuous function on a closed interval attains its maximum.<br><b>R:</b> the maximum occurs at a critical point or an end-point.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(b)</span>: both are true statements; R tells where to look, it does not explain existence",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: if f″(c) = 0 then c is a point of inflexion.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: x⁴ has f″(0) = 0 and a minimum at 0. It needs f″ to change sign",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: an absolute maximum on a closed interval can occur at an end-point.",
+      "definition": "<span style=\"color:#22a35a\">True</span>: for example x on [0, 1] has its maximum at x = 1",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: find the rate of change of the volume of a sphere with respect to its radius when r = 2 cm.",
+      "definition": "4πr² = <span style=\"color:#f08c00\">16π cm³/cm</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: show f(x) = 2x + 5 is strictly increasing on R.",
+      "definition": "f′ = 2 > 0 for all x: <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find the intervals in which f(x) = x² − 6x + 5 is increasing or decreasing.",
+      "definition": "f′ = 2x − 6 = 0 at 3: <span style=\"color:#f08c00\">decreasing on (−∞, 3), increasing on (3, ∞)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find two positive numbers whose sum is 30 and whose product is maximum.",
+      "definition": "x(30 − x): derivative 30 − 2x = 0 → <span style=\"color:#f08c00\">15 and 15</span> (product 225)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: find the local maxima and minima of f(x) = x³ − 12x + 5.",
+      "definition": "f′ = 3(x − 2)(x + 2). f″ = 6x: f″(−2) < 0, f″(2) > 0. <span style=\"color:#f08c00\">Local max 21 at x = −2</span>, <span style=\"color:#f08c00\">local min −11 at x = 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: a rectangular field with a river on one side needs fencing on three sides, 200 m in total. Maximum area?",
+      "definition": "x sides perpendicular, 200 − 2x along: A = x(200 − 2x); A′ = 200 − 4x = 0 → x = 50: <span style=\"color:#f08c00\">5000 m²</span> (50 m by 100 m)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: a ball is thrown upward: h(t) = 20t − 5t² metres. Find the maximum height and when it is reached.",
+      "definition": "h′ = 20 − 10t = 0 → t = 2 s; h(2) = 40 − 20 = <span style=\"color:#f08c00\">20 m</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: the profit of a firm is P(x) = −x² + 60x − 500 (x units). How many units maximise profit and what is the maximum?",
+      "definition": "P′ = −2x + 60 = 0 → x = 30; P(30) = −900 + 1800 − 500 = <span style=\"color:#f08c00\">₹400 at 30 units</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-6",
+        "6.z-how-its-asked"
+      ]
+    }
+  ]
+}

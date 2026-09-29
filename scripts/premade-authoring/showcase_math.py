@@ -2366,3 +2366,131 @@ def cycloid_parametric(deck):
           'Derivative of a parametric curve: dy/dx = (dy/dt)/(dx/dt)',
           'Parametric: dy/dx = (dy/dt)/(dx/dt); cycloid x=a(t-sin t), y=a(1-cos t) gives dy/dx = cot(t/2); Ex 5.6 Q6 variant y=a(1+cos t) gives -cot(t/2)',
           css=css, vb=f'0 0 300 {h}', hint='Differentiate x and y with respect to θ first.')
+
+
+# ================================================================ Maths 12 Ch 6 Applications of derivatives
+def rate_area_ring(deck):
+    P, h = eqplane(-4.6, 4.6, -3.6, 3.6, pad=(8, 8, 8, 8))
+    ox, oy = P.X(0), P.Y(0)
+    u = P.X(1) - ox
+    r1, r2 = 2.0, 2.45
+    base = (P.axes(labels=False) + f'<circle class="c1" cx="{ox:.1f}" cy="{oy:.1f}" r="{r1 * u:.1f}"></circle>'
+            + P.line(0, 0, r1, 0, 'c0') + P.text(1.0, 0, 'r', 'lbi', dy=-6, anchor='middle'))
+    ring = f'M{ox - r2 * u:.1f},{oy:.1f} a{r2 * u:.1f},{r2 * u:.1f} 0 1,0 {2 * r2 * u:.1f},0 a{r2 * u:.1f},{r2 * u:.1f} 0 1,0 {-2 * r2 * u:.1f},0 Z M{ox - r1 * u:.1f},{oy:.1f} a{r1 * u:.1f},{r1 * u:.1f} 0 1,0 {2 * r1 * u:.1f},0 a{r1 * u:.1f},{r1 * u:.1f} 0 1,0 {-2 * r1 * u:.1f},0 Z'
+    back = (f'<path class="ns4 fx d2" d="{ring}" fill-rule="evenodd"></path>' + f'<circle class="c4 fx d2" cx="{ox:.1f}" cy="{oy:.1f}" r="{r2 * u:.1f}"></circle>'
+            + P.text(0, 2.9, 'ring area ≈ 2πr · Δr', 't4 fx d3', anchor='middle') + P.text(0, -3.05, 'dA/dr = 2πr', 't1 fx d4', anchor='middle'))
+    mcard(deck, 'Rate of change', 'The radius of a circle grows. Why is dA/dr = 2πr? Picture the extra area when r increases by a little.', base, back,
+          '<p>When r grows by Δr, the new area is a thin ring of length 2πr (the circumference) and width Δr, so ΔA ≈ 2πr · Δr and <b>dA/dr = 2πr</b>. Ex 6.1 Q1: at r = 3 the rate is 6π cm²/cm, at r = 4 it is 8π cm²/cm.</p>'
+          '<p>In a related-rates problem the radius changes with time, so <b>dA/dt = 2πr · dr/dt</b> (chain rule): with r = 10 and dr/dt = 3 cm/s, dA/dt = 60π cm²/s (Q3).</p>',
+          'dA/dr = 2πr and dA/dt = 2πr dr/dt',
+          'A = pi r^2 gives dA/dr = 2 pi r (circumference); with time: dA/dt = 2 pi r dr/dt; related rates use the chain rule; derivative = rate of change',
+          vb=f'0 0 300 {h}', hint='Draw r and r + Δr.')
+
+
+def ladder_frames(deck):
+    P, h = eqplane(-0.6, 5.8, -0.6, 5.8, pad=(10, 6, 6, 10))
+    base = P.axes(labels=False) + f'<polygon class="f0" points="{P.X(-0.6):.1f},{P.Y(-0.6):.1f} {P.X(0):.1f},{P.Y(-0.6):.1f} {P.X(0):.1f},{P.Y(5.8):.1f} {P.X(-0.6):.1f},{P.Y(5.8):.1f}"></polygon>'
+    base += P.line(3, 4, 0, 0, 'c0') if False else ''
+    xs = [1.5, 3.0, 4.0, 4.6]
+    base += P.line(4.0, 0, 0, 3.0, 'c1') + P.dot(4.0, 0, 'd1s', 4) + P.dot(0, 3.0, 'd1s', 4)
+    back = ''
+    for k, x in enumerate([1.5, 3.0, 4.6, 4.9]):
+        y = math.sqrt(25 - x * x)
+        back += P.line(x, 0, 0, y, 'guide fx d' + str(k + 2))
+    back += (P.text(4.0, 0, 'x = 4', 't1 fx d2', anchor='middle', dy=16) + P.text(0, 3.0, 'y = 3', 't1 fx d2', dx=8, dy=4)
+             + P.text(2.6, 4.8, 'x² + y² = 25', 't4 fx d3', anchor='middle'))
+    mcard(deck, 'Related rates · ladder', 'A 5 m ladder slides away from a wall at 2 cm/s. How fast is its top sliding down when the foot is 4 m from the wall?', base, back,
+          '<p>x² + y² = 25. Differentiate with respect to t: <b>2x dx/dt + 2y dy/dt = 0</b>, so dy/dt = −(x/y) dx/dt. With x = 4, y = 3, dx/dt = 2: dy/dt = −(4/3)·2 = <b>−8/3 cm/s</b>; the top slides down at 8/3 cm/s (Ex 6.1 Q10).</p>'
+          '<p>Steps: relate the variables, differentiate w.r.t. time, substitute the instant values.</p>',
+          'Related rates: differentiate the constraint with respect to time',
+          'Ladder 5: x^2 + y^2 = 25 gives x dx/dt + y dy/dt = 0; at x=4, y=3, dx/dt=2: dy/dt = -8/3 cm/s; related rates: relate, differentiate w.r.t. t, substitute',
+          vb=f'0 0 300 {h}', hint='Write the relation between x and y first.')
+
+
+def sign_strip_cubic(deck):
+    P = Plane(-2.6, 2.6, -3.2, 3.6, 300, 190, (14, 8, 30, 20))
+    f = lambda x: x ** 3 - 3 * x
+    base = P.axes([(-1, '−1'), (1, '1')], [(2, '2'), (-2, '−2')], grid=True, labels=False) + P.curve(f, 'c0', -2.4, 2.4, clip=(-3.2, 3.6))
+    y0 = P.Y(-3.2) + 14
+    back = (P.curve(f, 'c3 fx d2', -2.4, -1, clip=(-3.2, 3.6)) + P.curve(f, 'c2 fx d3', -1, 1, clip=(-3.2, 3.6)) + P.curve(f, 'c3 fx d4', 1, 2.4, clip=(-3.2, 3.6))
+            + P.dot(-1, 2, 'd1s', 4.8, 'fx d3') + P.dot(1, -2, 'd1s', 4.8, 'fx d4')
+            + P.text(-1, 2, 'local max', 't1 fx d3', dx=6, dy=-8) + P.text(1, -2, 'local min', 't1 fx d4', dx=-6, dy=16, anchor='end')
+            + '<text class="t3 fx d2" x="%.1f" y="%.1f" text-anchor="middle">f′ +</text>' % (P.X(-1.9), P.Y(3.3))
+            + '<text class="t2 fx d3" x="%.1f" y="%.1f" text-anchor="middle">f′ −</text>' % (P.X(0), P.Y(3.3))
+            + '<text class="t3 fx d4" x="%.1f" y="%.1f" text-anchor="middle">f′ +</text>' % (P.X(1.9), P.Y(3.3)))
+    mcard(deck, 'First derivative test', 'f(x) = x³ − 3x. Where is it increasing and where decreasing? Where are its local maximum and minimum?', base, back,
+          '<p>f′(x) = 3x² − 3 = 3(x − 1)(x + 1). <b>f′ &gt; 0</b> on (−∞, −1) and (1, ∞): increasing. <b>f′ &lt; 0</b> on (−1, 1): decreasing.</p>'
+          '<p><b>First derivative test:</b> where f′ changes from + to −, there is a <b>local maximum</b> (x = −1, value 2); from − to +, a <b>local minimum</b> (x = 1, value −2). No sign change ⇒ neither (a point of inflexion).</p>',
+          'First derivative test: sign change of f′',
+          'f increasing where f\'>0, decreasing where f\'<0; f\' changes + to - at a local max, - to + at a local min; f = x^3 - 3x has local max 2 at x=-1 and local min -2 at x=1',
+          vb='0 0 300 190', hint='Find f′ and check its sign on each interval.')
+
+
+def concavity_second_test(deck):
+    def cell(ox, fn, rng, yr, lab, cls):
+        P = Plane(rng[0], rng[1], yr[0], yr[1], 100, 100, (6, 6, 6, 6))
+        return f'<g transform="translate({ox},6)">{P.axes(labels=False)}{P.curve(fn, cls, rng[0], rng[1], clip=yr)}{P.dot(0, fn(0), "d1s", 4)}</g>'
+    a = cell(0, lambda x: x * x, (-1.5, 1.5), (-0.4, 2.4), 'min', 'c1')
+    bb = cell(100, lambda x: -x * x, (-1.5, 1.5), (-2.4, 0.4), 'max', 'c1')
+    c = cell(200, lambda x: x ** 3, (-1.3, 1.3), (-2.4, 2.4), 'flat', 'c1')
+    base = a + bb + c + ''.join(f'<text class="lbi" x="{x}" y="118" text-anchor="middle">({l})</text>' for x, l in [(50, 'a'), (150, 'b'), (250, 'c')])
+    back = ('<text class="t3 fx d2" x="50" y="134" text-anchor="middle">f″ = 2 &gt; 0</text><text class="sm fx d2" x="50" y="148" text-anchor="middle">local min</text>'
+            '<text class="t2 fx d3" x="150" y="134" text-anchor="middle">f″ = −2 &lt; 0</text><text class="sm fx d3" x="150" y="148" text-anchor="middle">local max</text>'
+            '<text class="t4 fx d4" x="250" y="134" text-anchor="middle">f″(0) = 0</text><text class="sm fx d4" x="250" y="148" text-anchor="middle">test fails</text>')
+    mcard(deck, 'Second derivative test', 'At x = 0 all three curves have f′(0) = 0. Use f″ to classify (a) x², (b) −x², (c) x³.', base, back,
+          '<p><b>Second derivative test:</b> if f′(c) = 0 and <b>f″(c) &gt; 0</b>, c is a local <b>minimum</b> (curve is a cup, concave up); if <b>f″(c) &lt; 0</b>, a local <b>maximum</b> (concave down).</p>'
+          '<p>If f″(c) = 0 the test is <b>inconclusive</b>: x³ has f″(0) = 0 and no extremum, while x⁴ has f″(0) = 0 but a minimum. Then go back to the sign of f′.</p>',
+          'Second derivative test and when it fails',
+          'f\'(c)=0 and f\'\'(c)>0 gives local minimum, f\'\'(c)<0 local maximum, f\'\'(c)=0 inconclusive (x^3, x^4); use first derivative test',
+          vb='0 0 300 160', hint='Sign of f″ tells you whether the curve bends up or down.')
+
+
+def box_volume_opt(deck):
+    P = Plane(0, 9.6, -20, 470, 190, 190, (22, 12, 8, 22))
+    V = lambda x: x * (18 - 2 * x) ** 2
+    left = ('<rect class="f0" x="10" y="48" width="84" height="84" rx="2"></rect>'
+            '<rect class="f2" x="10" y="48" width="18" height="18"></rect><rect class="f2" x="76" y="48" width="18" height="18"></rect><rect class="f2" x="10" y="114" width="18" height="18"></rect><rect class="f2" x="76" y="114" width="18" height="18"></rect>'
+            '<text class="lbl" x="52" y="150" text-anchor="middle">18 cm sheet</text><text class="t2" x="19" y="44" text-anchor="middle">x</text>')
+    gr = f'<g transform="translate(106,0)">{P.axes([(3, "3"), (6, "6"), (9, "9")], [(200, "200"), (400, "400")], grid=True, labels=False)}{P.curve(V, "c1", 0, 9)}</g>'
+    base = left + gr
+    back = (f'<g transform="translate(106,0)">{P.dot(3, 432, "d2s", 5, "fx d2")}{P.line(3, 0, 3, 432, "guide fx d2")}'
+            f'{P.text(3, 432, "max: x = 3, V = 432", "t2 fx d3", dx=8, dy=-4)}</g>')
+    mcard(deck, 'Optimisation · open box', 'Squares of side x are cut from the corners of an 18 cm square tin sheet and the flaps folded up. Which x gives the maximum volume?', base, back,
+          '<p>V(x) = x(18 − 2x)². <b>V′(x) = (18 − 2x)(18 − 6x) = 0</b> gives x = 9 (no box) or x = 3. V″(x) = 24x − 144 &lt; 0 at x = 3: a <b>maximum</b>, V = 3 · 12² = 432 cm³ (Ex 6.3 Q17).</p>'
+          '<p>Method: 1) write the quantity in one variable, 2) set the derivative to 0, 3) verify max/min (second derivative or end-points), 4) answer with units.</p>',
+          'Maximum volume of an open box from a square sheet',
+          'V = x(18-2x)^2, V\' = (18-2x)(18-6x) = 0 gives x = 3, V\'\' < 0, maximum V = 432 cm^3; optimisation: one variable, derivative zero, verify, answer',
+          vb='0 0 300 190', hint='Write V in terms of x, then find where V′ = 0.')
+
+
+def closed_interval_extrema(deck):
+    P = Plane(-2.8, 5.2, -12, 10, 300, 190, (16, 8, 10, 20))
+    f = lambda x: 4 * x - x * x / 2
+    base = P.axes([(-2, '−2'), (2, '2'), (4, '4')], [(-10, '−10'), (-5, '−5'), (5, '5')], grid=True, labels=False) + P.curve(f, 'c1', -2, 4.5, clip=(-12, 10))
+    base += P.dot(-2, f(-2), 'd1s', 4.5) + P.dot(4.5, f(4.5), 'd1s', 4.5)
+    back = (P.dot(4, 8, 'd2s', 5.5, 'fx d2') + P.text(4, 8, 'max 8', 't2 fx d2', dx=-6, dy=-8, anchor='end') + P.text(-2, f(-2), 'min −10', 't1 fx d3', dx=8, dy=4)
+            + P.text(4.5, f(4.5), '7.875', 'sm fx d3', dx=-6, dy=16, anchor='end')
+            + P.line(-2, -12, -2, 8, 'guide fx d3') + P.line(4.5, -12, 4.5, 8, 'guide fx d3'))
+    mcard(deck, 'Absolute extrema on [a, b]', 'Find the absolute maximum and minimum of f(x) = 4x − x²/2 on [−2, 9/2].', base, back,
+          '<p>On a closed interval, the extremes occur at <b>critical points or end-points</b>. f′(x) = 4 − x = 0 at x = 4: f(4) = 8. End-points: f(−2) = −10, f(9/2) = 7.875.</p>'
+          '<p>Compare: <b>absolute maximum 8 (at x = 4)</b> and <b>absolute minimum −10 (at x = −2)</b>. (Ex 6.3 Q5(iii).) A continuous function on [a, b] always attains both.</p>',
+          'Absolute extrema: compare critical points and end-points',
+          'On [a,b] absolute max/min occur at critical points or end-points: f=4x-x^2/2 on [-2,9/2]: f(4)=8 max, f(-2)=-10 min, f(9/2)=7.875',
+          vb='0 0 300 190', hint='Check the critical point and both ends.')
+
+
+def nearest_point_circle(deck):
+    P, h = eqplane(-4.6, 4.6, -0.8, 6.6, pad=(8, 8, 8, 8))
+    ox = P.X(0)
+    base = P.axes(labels=False) + P.curve(lambda x: x * x / 2, 'c1', -3.4, 3.4, clip=(-0.8, 6.6)) + P.dot(0, 5, 'd2s', 4.5) + P.text(0, 5, '(0, 5)', 't2', dx=8, dy=-6)
+    r = 3.0
+    back = (f'<circle class="c2 fx d2" cx="{ox:.1f}" cy="{P.Y(5):.1f}" r="{r * (P.X(1) - ox):.1f}"></circle>'
+            + P.dot(2 * math.sqrt(2), 4, 'd1s', 5, 'fx d3') + P.dot(-2 * math.sqrt(2), 4, 'd1s', 5, 'fx d3')
+            + P.line(0, 5, 2 * math.sqrt(2), 4, 'guide fx d3') + P.text(2 * math.sqrt(2), 4, '(2√2, 4)', 't1 fx d3', dx=6, dy=16)
+            + P.text(0.9, 4.75, '3', 't2 fx d3', anchor='middle'))
+    mcard(deck, 'Nearest point on a curve', 'Find the point on the parabola x² = 2y that is nearest to (0, 5).', base, back,
+          '<p>Minimise the squared distance D = x² + (y − 5)² with x² = 2y: D = y² − 8y + 25 (y ≥ 0). D′ = 2y − 8 = 0 gives <b>y = 4</b>, x = ±2√2, D = 9 so the least distance is 3.</p>'
+          '<p>Geometrically the circle centred at (0, 5) with radius 3 just <b>touches</b> the parabola: the nearest point is where the circle is tangent, and the line to the centre is the normal (Ex 6.3 Q27: (A) (2√2, 4)).</p>',
+          'Nearest point: shrink a circle until it touches the curve',
+          'Minimise squared distance x^2+(y-5)^2 on x^2=2y: y=4, x=+-2sqrt2, distance 3; circle centered at the point touches the parabola at the nearest point',
+          vb=f'0 0 300 {h}', hint='Write the squared distance as a function of y.')
