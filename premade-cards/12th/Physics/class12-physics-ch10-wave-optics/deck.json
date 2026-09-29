@@ -1,0 +1,1227 @@
+{
+  "version": 1,
+  "name": "Chapter 10: Wave Optics",
+  "className": "Class 12",
+  "description": "Huygens principle, interference, Young’s double slit, single-slit diffraction, polarisation and Malus’s law",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Corpuscular vs wave model: what does each predict for the speed of light in water?",
+      "definition": "Corpuscular (Descartes/Newton): light is <span style=\"color:#e5484d\">faster</span> in the denser medium. Wave (Huygens): <span style=\"color:#3b82f6\">slower</span>. Foucault (1850) measured slower in water, so the wave model won",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Who proposed the wave theory of light and when? Who firmly established it?",
+      "definition": "<span style=\"color:#3b82f6\">Huygens</span> (1678); <span style=\"color:#3b82f6\">Young’s</span> interference experiment (1801) established it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why was the wave theory accepted slowly?",
+      "definition": "Newton’s authority, and the belief that a wave needs a <span style=\"color:#3b82f6\">medium</span> (light crosses vacuum). Maxwell’s EM theory removed the difficulty",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is geometrical optics?",
+      "definition": "The branch that neglects the <span style=\"color:#3b82f6\">finite wavelength</span> (λ → 0); a ray is the path of energy propagation in that limit",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can light be treated as rays in mirrors and lenses?",
+      "definition": "λ ≈ <span style=\"color:#f08c00\">0.6 µm</span> (yellow) is tiny compared with the dimensions of typical mirrors and lenses",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Wave optics covers which phenomena?",
+      "definition": "<span style=\"color:#3b82f6\">Interference</span>, <span style=\"color:#3b82f6\">diffraction</span> and <span style=\"color:#3b82f6\">polarisation</span> (plus derivation of reflection and refraction by Huygens’ principle)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define a wavefront.",
+      "definition": "A surface of <span style=\"color:#3b82f6\">constant phase</span> (all points oscillate in phase). Energy travels <span style=\"color:#3b82f6\">perpendicular</span> to the wavefront (along rays)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.2-huygens-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Shape of wavefronts: point source, line source, very distant source?",
+      "definition": "Point source: <span style=\"color:#3b82f6\">spherical</span>. Line (slit) source: <span style=\"color:#3b82f6\">cylindrical</span>. Very distant source: <span style=\"color:#3b82f6\">plane</span> (a small piece of a huge sphere)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.2-huygens-principle"
+      ],
+      "definitionImage": "media/fig_10_1a_spherical.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Plane wavefront: rays and wavefronts?",
+      "definition": "Rays are <span style=\"color:#3b82f6\">parallel straight lines perpendicular</span> to the parallel plane wavefronts",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.2-huygens-principle"
+      ],
+      "definitionImage": "media/fig_10_1b_plane.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "State Huygens’ principle.",
+      "definition": "Every point of a wavefront is a source of <span style=\"color:#3b82f6\">secondary wavelets</span> spreading with the speed of the wave; the new wavefront is the <span style=\"color:#3b82f6\">forward envelope</span> (common tangent) of the wavelets after time t",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.2-huygens-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Huygens’ construction for a spherical wavefront: how do you find the wavefront after time t?",
+      "definition": "Draw spheres of radius <span style=\"color:#3b82f6\">vt</span> from every point of the old wavefront; draw their common tangent (G₁G₂)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.2-huygens-principle"
+      ],
+      "definitionImage": "media/fig_10_2_huygens.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does Huygens’ principle seem to give a “backwave”? How was it dealt with?",
+      "definition": "The envelope also gives D₁D₂ going backwards. Huygens assumed ad hoc that wavelet amplitude is <span style=\"color:#3b82f6\">maximum forward, zero backward</span>; a rigorous wave theory justifies its absence",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.2-huygens-principle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Huygens’ construction for a plane wave?",
+      "definition": "The new wavefront is another plane parallel to the old one, at distance <span style=\"color:#3b82f6\">vt</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.2-huygens-principle"
+      ],
+      "definitionImage": "media/fig_10_3_plane_huygens.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Huygens’ derivation of Snell’s law: setup and result?",
+      "definition": "Wavefront AB reaches the surface at C after time τ: BC = v₁τ. From A a wavelet radius v₂τ; tangent CE is the refracted wavefront. sin i = v₁τ/AC, sin r = v₂τ/AC → \\( \\dfrac{\\sin i}{\\sin r} = \\dfrac{v_1}{v_2} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ],
+      "definitionImage": "media/fig_10_4_refraction.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "With n = c/v, what form does Snell’s law take?",
+      "definition": "<span style=\"color:#3b82f6\">n₁ sin i = n₂ sin r</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the wave theory conclude if the ray bends towards the normal?",
+      "definition": "<span style=\"color:#3b82f6\">v₂ < v₁</span>: the light is slower in the second medium. The corpuscular model predicted the opposite",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What changes and what stays the same on refraction: speed, wavelength, frequency?",
+      "definition": "Speed and wavelength <span style=\"color:#3b82f6\">decrease</span> entering a denser medium; <span style=\"color:#3b82f6\">frequency stays the same</span>: \\( \\dfrac{v_1}{v_2} = \\dfrac{\\lambda_1}{\\lambda_2} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Refraction into a rarer medium: what does the wavefront construction show?",
+      "definition": "The ray bends <span style=\"color:#3b82f6\">away</span> from the normal; critical angle \\( \\sin i_c = \\dfrac{n_2}{n_1} \\); beyond it, total internal reflection",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ],
+      "definitionImage": "media/fig_10_5_rarer.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive the law of reflection with Huygens’ principle.",
+      "definition": "Triangles EAC and BAC are congruent (AE = BC = vt, common AC, right angles), so <span style=\"color:#3b82f6\">∠i = ∠r</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ],
+      "definitionImage": "media/fig_10_6_reflection.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a thin prism tilt a plane wavefront?",
+      "definition": "Light is slower in glass, so the part crossing more glass is <span style=\"color:#3b82f6\">delayed more</span> and the emerging wavefront tilts",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ],
+      "definitionImage": "media/fig_10_7_wavefronts.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a convex lens turn a plane wavefront into a spherical one?",
+      "definition": "The centre traverses the thickest glass and is <span style=\"color:#3b82f6\">delayed most</span>; the emerging front is depressed at the centre, converging spherically to F",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "A concave mirror reflects a plane wave. Emerging wavefront?",
+      "definition": "A <span style=\"color:#3b82f6\">spherical wave converging to F</span> (radius of curvature R/2)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fermat-type conclusion from Huygens’ construction?",
+      "definition": "The <span style=\"color:#3b82f6\">time of travel is the same along every ray</span> from an object point to its image point (the slower path through the thick centre of a lens compensates for its shorter length)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10.1(a): why do reflected and refracted light have the same frequency as the incident light?",
+      "definition": "Atoms act as <span style=\"color:#3b82f6\">forced oscillators</span> and re-radiate at the driving frequency",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10.1(b): light slows on entering a denser medium. Does it lose energy?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: energy depends on amplitude (and frequency), not on the speed of propagation",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10.1(c): what fixes intensity in the photon picture?",
+      "definition": "The <span style=\"color:#3b82f6\">number of photons</span> crossing unit area per unit time (for a given frequency)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.3-refraction-and-reflection-of-plane-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "State the principle of superposition.",
+      "definition": "At a point, the resultant displacement is the <span style=\"color:#3b82f6\">sum of the displacements</span> produced by each wave",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When are two sources coherent?",
+      "definition": "When the <span style=\"color:#3b82f6\">phase difference between them stays constant in time</span> (same frequency needed)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ],
+      "definitionImage": "media/fig_10_8b_ripple.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Two coherent sources in phase: what happens at a point equidistant from both?",
+      "definition": "y = 2a cos ωt, so I = <span style=\"color:#f08c00\">4I₀</span> (constructive interference)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Path difference for constructive interference?",
+      "definition": "\\( \\Delta x = n\\lambda,\\ n = 0, 1, 2, \\dots \\); phase difference φ = 0, 2π, 4π, …",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ],
+      "definitionImage": "media/fig_10_9a_constructive.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Path difference for destructive interference?",
+      "definition": "\\( \\Delta x = \\left(n+\\tfrac12\\right)\\lambda \\); φ = π, 3π, 5π, …; resultant intensity zero",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ],
+      "definitionImage": "media/fig_10_9b_destructive.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Relation between path difference and phase difference?",
+      "definition": "\\( \\phi = \\dfrac{2\\pi}{\\lambda}\\,\\Delta x \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Resultant intensity for a general phase difference φ (equal amplitudes)?",
+      "definition": "\\( I = 4I_0\\cos^2\\!\\dfrac{\\phi}{2} \\) (resultant amplitude 2a cos(φ/2))",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Resultant of two waves as the phase difference grows",
+      "definition": "I = 4 I0 cos²(φ/2); φ = 0 gives 4I0, φ = π gives zero; path difference λ/2 corresponds to φ = π; the average intensity is 2 I0",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Interference · phase difference</p><h2>Two coherent waves of equal amplitude meet with an increasing phase difference φ. How does the resultant intensity change?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"20\" y1=\"100\" x2=\"280\" y2=\"100\"></line><polyline class=\"c2\" points=\"20.0,100.0 22.2,98.2 24.3,96.5 26.5,94.7 28.7,93.1 30.8,91.5 33.0,90.0 35.2,88.6 37.3,87.4 39.5,86.2 41.7,85.3 43.8,84.5 46.0,83.8 48.2,83.4 50.3,83.1 52.5,83.0 54.7,83.1 56.8,83.4 59.0,83.8 61.2,84.5 63.3,85.3 65.5,86.2 67.7,87.4 69.8,88.6 72.0,90.0 74.2,91.5 76.3,93.1 78.5,94.7 80.7,96.5 82.8,98.2 85.0,100.0 87.2,101.8 89.3,103.5 91.5,105.3 93.7,106.9 95.8,108.5 98.0,110.0 100.2,111.4 102.3,112.6 104.5,113.8 106.7,114.7 108.8,115.5 111.0,116.2 113.2,116.6 115.3,116.9 117.5,117.0 119.7,116.9 121.8,116.6 124.0,116.2 126.2,115.5 128.3,114.7 130.5,113.8 132.7,112.6 134.8,111.4 137.0,110.0 139.2,108.5 141.3,106.9 143.5,105.3 145.7,103.5 147.8,101.8 150.0,100.0 152.2,98.2 154.3,96.5 156.5,94.7 158.7,93.1 160.8,91.5 163.0,90.0 165.2,88.6 167.3,87.4 169.5,86.2 171.7,85.3 173.8,84.5 176.0,83.8 178.2,83.4 180.3,83.1 182.5,83.0 184.7,83.1 186.8,83.4 189.0,83.8 191.2,84.5 193.3,85.3 195.5,86.2 197.7,87.4 199.8,88.6 202.0,90.0 204.2,91.5 206.3,93.1 208.5,94.7 210.7,96.5 212.8,98.2 215.0,100.0 217.2,101.8 219.3,103.5 221.5,105.3 223.7,106.9 225.8,108.5 228.0,110.0 230.2,111.4 232.3,112.6 234.5,113.8 236.7,114.7 238.8,115.5 241.0,116.2 243.2,116.6 245.3,116.9 247.5,117.0 249.7,116.9 251.8,116.6 254.0,116.2 256.2,115.5 258.3,114.7 260.5,113.8 262.7,112.6 264.8,111.4 267.0,110.0 269.2,108.5 271.3,106.9 273.5,105.3 275.7,103.5 277.8,101.8 280.0,100.0\"></polyline><text class=\"gr\" x=\"22\" y=\"48\">wave 1 (amplitude a)</text></svg><p class=\"hint\">Watch the red resultant.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Interference · phase difference</p><h2>Two coherent waves of equal amplitude meet with an increasing phase difference φ. How does the resultant intensity change?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><line class=\"ax\" x1=\"20\" y1=\"100\" x2=\"280\" y2=\"100\"></line><polyline class=\"c2\" points=\"20.0,100.0 22.2,98.2 24.3,96.5 26.5,94.7 28.7,93.1 30.8,91.5 33.0,90.0 35.2,88.6 37.3,87.4 39.5,86.2 41.7,85.3 43.8,84.5 46.0,83.8 48.2,83.4 50.3,83.1 52.5,83.0 54.7,83.1 56.8,83.4 59.0,83.8 61.2,84.5 63.3,85.3 65.5,86.2 67.7,87.4 69.8,88.6 72.0,90.0 74.2,91.5 76.3,93.1 78.5,94.7 80.7,96.5 82.8,98.2 85.0,100.0 87.2,101.8 89.3,103.5 91.5,105.3 93.7,106.9 95.8,108.5 98.0,110.0 100.2,111.4 102.3,112.6 104.5,113.8 106.7,114.7 108.8,115.5 111.0,116.2 113.2,116.6 115.3,116.9 117.5,117.0 119.7,116.9 121.8,116.6 124.0,116.2 126.2,115.5 128.3,114.7 130.5,113.8 132.7,112.6 134.8,111.4 137.0,110.0 139.2,108.5 141.3,106.9 143.5,105.3 145.7,103.5 147.8,101.8 150.0,100.0 152.2,98.2 154.3,96.5 156.5,94.7 158.7,93.1 160.8,91.5 163.0,90.0 165.2,88.6 167.3,87.4 169.5,86.2 171.7,85.3 173.8,84.5 176.0,83.8 178.2,83.4 180.3,83.1 182.5,83.0 184.7,83.1 186.8,83.4 189.0,83.8 191.2,84.5 193.3,85.3 195.5,86.2 197.7,87.4 199.8,88.6 202.0,90.0 204.2,91.5 206.3,93.1 208.5,94.7 210.7,96.5 212.8,98.2 215.0,100.0 217.2,101.8 219.3,103.5 221.5,105.3 223.7,106.9 225.8,108.5 228.0,110.0 230.2,111.4 232.3,112.6 234.5,113.8 236.7,114.7 238.8,115.5 241.0,116.2 243.2,116.6 245.3,116.9 247.5,117.0 249.7,116.9 251.8,116.6 254.0,116.2 256.2,115.5 258.3,114.7 260.5,113.8 262.7,112.6 264.8,111.4 267.0,110.0 269.2,108.5 271.3,106.9 273.5,105.3 275.7,103.5 277.8,101.8 280.0,100.0\"></polyline><text class=\"gr\" x=\"22\" y=\"48\">wave 1 (amplitude a)</text><g class=\"sg0\"><polyline class=\"c4\" points=\"20.0,100.0 22.2,98.2 24.3,96.5 26.5,94.7 28.7,93.1 30.8,91.5 33.0,90.0 35.2,88.6 37.3,87.4 39.5,86.2 41.7,85.3 43.8,84.5 46.0,83.8 48.2,83.4 50.3,83.1 52.5,83.0 54.7,83.1 56.8,83.4 59.0,83.8 61.2,84.5 63.3,85.3 65.5,86.2 67.7,87.4 69.8,88.6 72.0,90.0 74.2,91.5 76.3,93.1 78.5,94.7 80.7,96.5 82.8,98.2 85.0,100.0 87.2,101.8 89.3,103.5 91.5,105.3 93.7,106.9 95.8,108.5 98.0,110.0 100.2,111.4 102.3,112.6 104.5,113.8 106.7,114.7 108.8,115.5 111.0,116.2 113.2,116.6 115.3,116.9 117.5,117.0 119.7,116.9 121.8,116.6 124.0,116.2 126.2,115.5 128.3,114.7 130.5,113.8 132.7,112.6 134.8,111.4 137.0,110.0 139.2,108.5 141.3,106.9 143.5,105.3 145.7,103.5 147.8,101.8 150.0,100.0 152.2,98.2 154.3,96.5 156.5,94.7 158.7,93.1 160.8,91.5 163.0,90.0 165.2,88.6 167.3,87.4 169.5,86.2 171.7,85.3 173.8,84.5 176.0,83.8 178.2,83.4 180.3,83.1 182.5,83.0 184.7,83.1 186.8,83.4 189.0,83.8 191.2,84.5 193.3,85.3 195.5,86.2 197.7,87.4 199.8,88.6 202.0,90.0 204.2,91.5 206.3,93.1 208.5,94.7 210.7,96.5 212.8,98.2 215.0,100.0 217.2,101.8 219.3,103.5 221.5,105.3 223.7,106.9 225.8,108.5 228.0,110.0 230.2,111.4 232.3,112.6 234.5,113.8 236.7,114.7 238.8,115.5 241.0,116.2 243.2,116.6 245.3,116.9 247.5,117.0 249.7,116.9 251.8,116.6 254.0,116.2 256.2,115.5 258.3,114.7 260.5,113.8 262.7,112.6 264.8,111.4 267.0,110.0 269.2,108.5 271.3,106.9 273.5,105.3 275.7,103.5 277.8,101.8 280.0,100.0\"></polyline><polyline class=\"c3\" points=\"20.0,100.0 22.2,96.4 24.3,92.9 26.5,89.5 28.7,86.2 30.8,83.0 33.0,80.0 35.2,77.2 37.3,74.7 39.5,72.5 41.7,70.6 43.8,68.9 46.0,67.7 48.2,66.7 50.3,66.2 52.5,66.0 54.7,66.2 56.8,66.7 59.0,67.7 61.2,68.9 63.3,70.6 65.5,72.5 67.7,74.7 69.8,77.2 72.0,80.0 74.2,83.0 76.3,86.2 78.5,89.5 80.7,92.9 82.8,96.4 85.0,100.0 87.2,103.6 89.3,107.1 91.5,110.5 93.7,113.8 95.8,117.0 98.0,120.0 100.2,122.8 102.3,125.3 104.5,127.5 106.7,129.4 108.8,131.1 111.0,132.3 113.2,133.3 115.3,133.8 117.5,134.0 119.7,133.8 121.8,133.3 124.0,132.3 126.2,131.1 128.3,129.4 130.5,127.5 132.7,125.3 134.8,122.8 137.0,120.0 139.2,117.0 141.3,113.8 143.5,110.5 145.7,107.1 147.8,103.6 150.0,100.0 152.2,96.4 154.3,92.9 156.5,89.5 158.7,86.2 160.8,83.0 163.0,80.0 165.2,77.2 167.3,74.7 169.5,72.5 171.7,70.6 173.8,68.9 176.0,67.7 178.2,66.7 180.3,66.2 182.5,66.0 184.7,66.2 186.8,66.7 189.0,67.7 191.2,68.9 193.3,70.6 195.5,72.5 197.7,74.7 199.8,77.2 202.0,80.0 204.2,83.0 206.3,86.2 208.5,89.5 210.7,92.9 212.8,96.4 215.0,100.0 217.2,103.6 219.3,107.1 221.5,110.5 223.7,113.8 225.8,117.0 228.0,120.0 230.2,122.8 232.3,125.3 234.5,127.5 236.7,129.4 238.8,131.1 241.0,132.3 243.2,133.3 245.3,133.8 247.5,134.0 249.7,133.8 251.8,133.3 254.0,132.3 256.2,131.1 258.3,129.4 260.5,127.5 262.7,125.3 264.8,122.8 267.0,120.0 269.2,117.0 271.3,113.8 273.5,110.5 275.7,107.1 277.8,103.6 280.0,100.0\"></polyline><text class=\"pu\" x=\"22\" y=\"64\">wave 2, phase difference φ = 0</text><text class=\"yl\" x=\"22\" y=\"158\">Δx = 0:  I = 4I₀ (fully constructive)</text></g><g class=\"sg1\"><polyline class=\"c4\" points=\"20.0,85.3 22.2,84.5 24.3,83.8 26.5,83.4 28.7,83.1 30.8,83.0 33.0,83.1 35.2,83.4 37.3,83.8 39.5,84.5 41.7,85.3 43.8,86.2 46.0,87.4 48.2,88.6 50.3,90.0 52.5,91.5 54.7,93.1 56.8,94.7 59.0,96.5 61.2,98.2 63.3,100.0 65.5,101.8 67.7,103.5 69.8,105.3 72.0,106.9 74.2,108.5 76.3,110.0 78.5,111.4 80.7,112.6 82.8,113.8 85.0,114.7 87.2,115.5 89.3,116.2 91.5,116.6 93.7,116.9 95.8,117.0 98.0,116.9 100.2,116.6 102.3,116.2 104.5,115.5 106.7,114.7 108.8,113.8 111.0,112.6 113.2,111.4 115.3,110.0 117.5,108.5 119.7,106.9 121.8,105.3 124.0,103.5 126.2,101.8 128.3,100.0 130.5,98.2 132.7,96.5 134.8,94.7 137.0,93.1 139.2,91.5 141.3,90.0 143.5,88.6 145.7,87.4 147.8,86.2 150.0,85.3 152.2,84.5 154.3,83.8 156.5,83.4 158.7,83.1 160.8,83.0 163.0,83.1 165.2,83.4 167.3,83.8 169.5,84.5 171.7,85.3 173.8,86.2 176.0,87.4 178.2,88.6 180.3,90.0 182.5,91.5 184.7,93.1 186.8,94.7 189.0,96.5 191.2,98.2 193.3,100.0 195.5,101.8 197.7,103.5 199.8,105.3 202.0,106.9 204.2,108.5 206.3,110.0 208.5,111.4 210.7,112.6 212.8,113.8 215.0,114.7 217.2,115.5 219.3,116.2 221.5,116.6 223.7,116.9 225.8,117.0 228.0,116.9 230.2,116.6 232.3,116.2 234.5,115.5 236.7,114.7 238.8,113.8 241.0,112.6 243.2,111.4 245.3,110.0 247.5,108.5 249.7,106.9 251.8,105.3 254.0,103.5 256.2,101.8 258.3,100.0 260.5,98.2 262.7,96.5 264.8,94.7 267.0,93.1 269.2,91.5 271.3,90.0 273.5,88.6 275.7,87.4 277.8,86.2 280.0,85.3\"></polyline><polyline class=\"c3\" points=\"20.0,85.3 22.2,82.7 24.3,80.3 26.5,78.1 28.7,76.2 30.8,74.5 33.0,73.1 35.2,72.0 37.3,71.2 39.5,70.7 41.7,70.6 43.8,70.7 46.0,71.2 48.2,72.0 50.3,73.1 52.5,74.5 54.7,76.2 56.8,78.1 59.0,80.3 61.2,82.7 63.3,85.3 65.5,88.0 67.7,90.9 69.8,93.9 72.0,96.9 74.2,100.0 76.3,103.1 78.5,106.1 80.7,109.1 82.8,112.0 85.0,114.7 87.2,117.3 89.3,119.7 91.5,121.9 93.7,123.8 95.8,125.5 98.0,126.9 100.2,128.0 102.3,128.8 104.5,129.3 106.7,129.4 108.8,129.3 111.0,128.8 113.2,128.0 115.3,126.9 117.5,125.5 119.7,123.8 121.8,121.9 124.0,119.7 126.2,117.3 128.3,114.7 130.5,112.0 132.7,109.1 134.8,106.1 137.0,103.1 139.2,100.0 141.3,96.9 143.5,93.9 145.7,90.9 147.8,88.0 150.0,85.3 152.2,82.7 154.3,80.3 156.5,78.1 158.7,76.2 160.8,74.5 163.0,73.1 165.2,72.0 167.3,71.2 169.5,70.7 171.7,70.6 173.8,70.7 176.0,71.2 178.2,72.0 180.3,73.1 182.5,74.5 184.7,76.2 186.8,78.1 189.0,80.3 191.2,82.7 193.3,85.3 195.5,88.0 197.7,90.9 199.8,93.9 202.0,96.9 204.2,100.0 206.3,103.1 208.5,106.1 210.7,109.1 212.8,112.0 215.0,114.7 217.2,117.3 219.3,119.7 221.5,121.9 223.7,123.8 225.8,125.5 228.0,126.9 230.2,128.0 232.3,128.8 234.5,129.3 236.7,129.4 238.8,129.3 241.0,128.8 243.2,128.0 245.3,126.9 247.5,125.5 249.7,123.8 251.8,121.9 254.0,119.7 256.2,117.3 258.3,114.7 260.5,112.0 262.7,109.1 264.8,106.1 267.0,103.1 269.2,100.0 271.3,96.9 273.5,93.9 275.7,90.9 277.8,88.0 280.0,85.3\"></polyline><text class=\"pu\" x=\"22\" y=\"64\">wave 2, phase difference φ = π/3</text><text class=\"yl\" x=\"22\" y=\"158\">Δx = λ/6:  I = 3I₀</text></g><g class=\"sg2\"><polyline class=\"c4\" points=\"20.0,83.0 22.2,83.1 24.3,83.4 26.5,83.8 28.7,84.5 30.8,85.3 33.0,86.2 35.2,87.4 37.3,88.6 39.5,90.0 41.7,91.5 43.8,93.1 46.0,94.7 48.2,96.5 50.3,98.2 52.5,100.0 54.7,101.8 56.8,103.5 59.0,105.3 61.2,106.9 63.3,108.5 65.5,110.0 67.7,111.4 69.8,112.6 72.0,113.8 74.2,114.7 76.3,115.5 78.5,116.2 80.7,116.6 82.8,116.9 85.0,117.0 87.2,116.9 89.3,116.6 91.5,116.2 93.7,115.5 95.8,114.7 98.0,113.8 100.2,112.6 102.3,111.4 104.5,110.0 106.7,108.5 108.8,106.9 111.0,105.3 113.2,103.5 115.3,101.8 117.5,100.0 119.7,98.2 121.8,96.5 124.0,94.7 126.2,93.1 128.3,91.5 130.5,90.0 132.7,88.6 134.8,87.4 137.0,86.2 139.2,85.3 141.3,84.5 143.5,83.8 145.7,83.4 147.8,83.1 150.0,83.0 152.2,83.1 154.3,83.4 156.5,83.8 158.7,84.5 160.8,85.3 163.0,86.2 165.2,87.4 167.3,88.6 169.5,90.0 171.7,91.5 173.8,93.1 176.0,94.7 178.2,96.5 180.3,98.2 182.5,100.0 184.7,101.8 186.8,103.5 189.0,105.3 191.2,106.9 193.3,108.5 195.5,110.0 197.7,111.4 199.8,112.6 202.0,113.8 204.2,114.7 206.3,115.5 208.5,116.2 210.7,116.6 212.8,116.9 215.0,117.0 217.2,116.9 219.3,116.6 221.5,116.2 223.7,115.5 225.8,114.7 228.0,113.8 230.2,112.6 232.3,111.4 234.5,110.0 236.7,108.5 238.8,106.9 241.0,105.3 243.2,103.5 245.3,101.8 247.5,100.0 249.7,98.2 251.8,96.5 254.0,94.7 256.2,93.1 258.3,91.5 260.5,90.0 262.7,88.6 264.8,87.4 267.0,86.2 269.2,85.3 271.3,84.5 273.5,83.8 275.7,83.4 277.8,83.1 280.0,83.0\"></polyline><polyline class=\"c3\" points=\"20.0,83.0 22.2,81.3 24.3,79.8 26.5,78.6 28.7,77.6 30.8,76.8 33.0,76.3 35.2,76.0 37.3,76.0 39.5,76.3 41.7,76.8 43.8,77.6 46.0,78.6 48.2,79.8 50.3,81.3 52.5,83.0 54.7,84.9 56.8,86.9 59.0,89.1 61.2,91.4 63.3,93.8 65.5,96.2 67.7,98.7 69.8,101.3 72.0,103.8 74.2,106.2 76.3,108.6 78.5,110.9 80.7,113.1 82.8,115.1 85.0,117.0 87.2,118.7 89.3,120.2 91.5,121.4 93.7,122.4 95.8,123.2 98.0,123.7 100.2,124.0 102.3,124.0 104.5,123.7 106.7,123.2 108.8,122.4 111.0,121.4 113.2,120.2 115.3,118.7 117.5,117.0 119.7,115.1 121.8,113.1 124.0,110.9 126.2,108.6 128.3,106.2 130.5,103.8 132.7,101.3 134.8,98.7 137.0,96.2 139.2,93.8 141.3,91.4 143.5,89.1 145.7,86.9 147.8,84.9 150.0,83.0 152.2,81.3 154.3,79.8 156.5,78.6 158.7,77.6 160.8,76.8 163.0,76.3 165.2,76.0 167.3,76.0 169.5,76.3 171.7,76.8 173.8,77.6 176.0,78.6 178.2,79.8 180.3,81.3 182.5,83.0 184.7,84.9 186.8,86.9 189.0,89.1 191.2,91.4 193.3,93.8 195.5,96.2 197.7,98.7 199.8,101.3 202.0,103.8 204.2,106.2 206.3,108.6 208.5,110.9 210.7,113.1 212.8,115.1 215.0,117.0 217.2,118.7 219.3,120.2 221.5,121.4 223.7,122.4 225.8,123.2 228.0,123.7 230.2,124.0 232.3,124.0 234.5,123.7 236.7,123.2 238.8,122.4 241.0,121.4 243.2,120.2 245.3,118.7 247.5,117.0 249.7,115.1 251.8,113.1 254.0,110.9 256.2,108.6 258.3,106.2 260.5,103.8 262.7,101.3 264.8,98.7 267.0,96.2 269.2,93.8 271.3,91.4 273.5,89.1 275.7,86.9 277.8,84.9 280.0,83.0\"></polyline><text class=\"pu\" x=\"22\" y=\"64\">wave 2, phase difference φ = π/2</text><text class=\"yl\" x=\"22\" y=\"158\">Δx = λ/4:  I = 2I₀ (= incoherent average)</text></g><g class=\"sg3\"><polyline class=\"c4\" points=\"20.0,85.3 22.2,86.2 24.3,87.4 26.5,88.6 28.7,90.0 30.8,91.5 33.0,93.1 35.2,94.7 37.3,96.5 39.5,98.2 41.7,100.0 43.8,101.8 46.0,103.5 48.2,105.3 50.3,106.9 52.5,108.5 54.7,110.0 56.8,111.4 59.0,112.6 61.2,113.8 63.3,114.7 65.5,115.5 67.7,116.2 69.8,116.6 72.0,116.9 74.2,117.0 76.3,116.9 78.5,116.6 80.7,116.2 82.8,115.5 85.0,114.7 87.2,113.8 89.3,112.6 91.5,111.4 93.7,110.0 95.8,108.5 98.0,106.9 100.2,105.3 102.3,103.5 104.5,101.8 106.7,100.0 108.8,98.2 111.0,96.5 113.2,94.7 115.3,93.1 117.5,91.5 119.7,90.0 121.8,88.6 124.0,87.4 126.2,86.2 128.3,85.3 130.5,84.5 132.7,83.8 134.8,83.4 137.0,83.1 139.2,83.0 141.3,83.1 143.5,83.4 145.7,83.8 147.8,84.5 150.0,85.3 152.2,86.2 154.3,87.4 156.5,88.6 158.7,90.0 160.8,91.5 163.0,93.1 165.2,94.7 167.3,96.5 169.5,98.2 171.7,100.0 173.8,101.8 176.0,103.5 178.2,105.3 180.3,106.9 182.5,108.5 184.7,110.0 186.8,111.4 189.0,112.6 191.2,113.8 193.3,114.7 195.5,115.5 197.7,116.2 199.8,116.6 202.0,116.9 204.2,117.0 206.3,116.9 208.5,116.6 210.7,116.2 212.8,115.5 215.0,114.7 217.2,113.8 219.3,112.6 221.5,111.4 223.7,110.0 225.8,108.5 228.0,106.9 230.2,105.3 232.3,103.5 234.5,101.8 236.7,100.0 238.8,98.2 241.0,96.5 243.2,94.7 245.3,93.1 247.5,91.5 249.7,90.0 251.8,88.6 254.0,87.4 256.2,86.2 258.3,85.3 260.5,84.5 262.7,83.8 264.8,83.4 267.0,83.1 269.2,83.0 271.3,83.1 273.5,83.4 275.7,83.8 277.8,84.5 280.0,85.3\"></polyline><polyline class=\"c3\" points=\"20.0,85.3 22.2,84.5 24.3,83.8 26.5,83.4 28.7,83.1 30.8,83.0 33.0,83.1 35.2,83.4 37.3,83.8 39.5,84.5 41.7,85.3 43.8,86.2 46.0,87.4 48.2,88.6 50.3,90.0 52.5,91.5 54.7,93.1 56.8,94.7 59.0,96.5 61.2,98.2 63.3,100.0 65.5,101.8 67.7,103.5 69.8,105.3 72.0,106.9 74.2,108.5 76.3,110.0 78.5,111.4 80.7,112.6 82.8,113.8 85.0,114.7 87.2,115.5 89.3,116.2 91.5,116.6 93.7,116.9 95.8,117.0 98.0,116.9 100.2,116.6 102.3,116.2 104.5,115.5 106.7,114.7 108.8,113.8 111.0,112.6 113.2,111.4 115.3,110.0 117.5,108.5 119.7,106.9 121.8,105.3 124.0,103.5 126.2,101.8 128.3,100.0 130.5,98.2 132.7,96.5 134.8,94.7 137.0,93.1 139.2,91.5 141.3,90.0 143.5,88.6 145.7,87.4 147.8,86.2 150.0,85.3 152.2,84.5 154.3,83.8 156.5,83.4 158.7,83.1 160.8,83.0 163.0,83.1 165.2,83.4 167.3,83.8 169.5,84.5 171.7,85.3 173.8,86.2 176.0,87.4 178.2,88.6 180.3,90.0 182.5,91.5 184.7,93.1 186.8,94.7 189.0,96.5 191.2,98.2 193.3,100.0 195.5,101.8 197.7,103.5 199.8,105.3 202.0,106.9 204.2,108.5 206.3,110.0 208.5,111.4 210.7,112.6 212.8,113.8 215.0,114.7 217.2,115.5 219.3,116.2 221.5,116.6 223.7,116.9 225.8,117.0 228.0,116.9 230.2,116.6 232.3,116.2 234.5,115.5 236.7,114.7 238.8,113.8 241.0,112.6 243.2,111.4 245.3,110.0 247.5,108.5 249.7,106.9 251.8,105.3 254.0,103.5 256.2,101.8 258.3,100.0 260.5,98.2 262.7,96.5 264.8,94.7 267.0,93.1 269.2,91.5 271.3,90.0 273.5,88.6 275.7,87.4 277.8,86.2 280.0,85.3\"></polyline><text class=\"pu\" x=\"22\" y=\"64\">wave 2, phase difference φ = 2π/3</text><text class=\"yl\" x=\"22\" y=\"158\">Δx = λ/3:  I = I₀</text></g><g class=\"sg4\"><polyline class=\"c4\" points=\"20.0,100.0 22.2,101.8 24.3,103.5 26.5,105.3 28.7,106.9 30.8,108.5 33.0,110.0 35.2,111.4 37.3,112.6 39.5,113.8 41.7,114.7 43.8,115.5 46.0,116.2 48.2,116.6 50.3,116.9 52.5,117.0 54.7,116.9 56.8,116.6 59.0,116.2 61.2,115.5 63.3,114.7 65.5,113.8 67.7,112.6 69.8,111.4 72.0,110.0 74.2,108.5 76.3,106.9 78.5,105.3 80.7,103.5 82.8,101.8 85.0,100.0 87.2,98.2 89.3,96.5 91.5,94.7 93.7,93.1 95.8,91.5 98.0,90.0 100.2,88.6 102.3,87.4 104.5,86.2 106.7,85.3 108.8,84.5 111.0,83.8 113.2,83.4 115.3,83.1 117.5,83.0 119.7,83.1 121.8,83.4 124.0,83.8 126.2,84.5 128.3,85.3 130.5,86.2 132.7,87.4 134.8,88.6 137.0,90.0 139.2,91.5 141.3,93.1 143.5,94.7 145.7,96.5 147.8,98.2 150.0,100.0 152.2,101.8 154.3,103.5 156.5,105.3 158.7,106.9 160.8,108.5 163.0,110.0 165.2,111.4 167.3,112.6 169.5,113.8 171.7,114.7 173.8,115.5 176.0,116.2 178.2,116.6 180.3,116.9 182.5,117.0 184.7,116.9 186.8,116.6 189.0,116.2 191.2,115.5 193.3,114.7 195.5,113.8 197.7,112.6 199.8,111.4 202.0,110.0 204.2,108.5 206.3,106.9 208.5,105.3 210.7,103.5 212.8,101.8 215.0,100.0 217.2,98.2 219.3,96.5 221.5,94.7 223.7,93.1 225.8,91.5 228.0,90.0 230.2,88.6 232.3,87.4 234.5,86.2 236.7,85.3 238.8,84.5 241.0,83.8 243.2,83.4 245.3,83.1 247.5,83.0 249.7,83.1 251.8,83.4 254.0,83.8 256.2,84.5 258.3,85.3 260.5,86.2 262.7,87.4 264.8,88.6 267.0,90.0 269.2,91.5 271.3,93.1 273.5,94.7 275.7,96.5 277.8,98.2 280.0,100.0\"></polyline><polyline class=\"c3\" points=\"20.0,100.0 22.2,100.0 24.3,100.0 26.5,100.0 28.7,100.0 30.8,100.0 33.0,100.0 35.2,100.0 37.3,100.0 39.5,100.0 41.7,100.0 43.8,100.0 46.0,100.0 48.2,100.0 50.3,100.0 52.5,100.0 54.7,100.0 56.8,100.0 59.0,100.0 61.2,100.0 63.3,100.0 65.5,100.0 67.7,100.0 69.8,100.0 72.0,100.0 74.2,100.0 76.3,100.0 78.5,100.0 80.7,100.0 82.8,100.0 85.0,100.0 87.2,100.0 89.3,100.0 91.5,100.0 93.7,100.0 95.8,100.0 98.0,100.0 100.2,100.0 102.3,100.0 104.5,100.0 106.7,100.0 108.8,100.0 111.0,100.0 113.2,100.0 115.3,100.0 117.5,100.0 119.7,100.0 121.8,100.0 124.0,100.0 126.2,100.0 128.3,100.0 130.5,100.0 132.7,100.0 134.8,100.0 137.0,100.0 139.2,100.0 141.3,100.0 143.5,100.0 145.7,100.0 147.8,100.0 150.0,100.0 152.2,100.0 154.3,100.0 156.5,100.0 158.7,100.0 160.8,100.0 163.0,100.0 165.2,100.0 167.3,100.0 169.5,100.0 171.7,100.0 173.8,100.0 176.0,100.0 178.2,100.0 180.3,100.0 182.5,100.0 184.7,100.0 186.8,100.0 189.0,100.0 191.2,100.0 193.3,100.0 195.5,100.0 197.7,100.0 199.8,100.0 202.0,100.0 204.2,100.0 206.3,100.0 208.5,100.0 210.7,100.0 212.8,100.0 215.0,100.0 217.2,100.0 219.3,100.0 221.5,100.0 223.7,100.0 225.8,100.0 228.0,100.0 230.2,100.0 232.3,100.0 234.5,100.0 236.7,100.0 238.8,100.0 241.0,100.0 243.2,100.0 245.3,100.0 247.5,100.0 249.7,100.0 251.8,100.0 254.0,100.0 256.2,100.0 258.3,100.0 260.5,100.0 262.7,100.0 264.8,100.0 267.0,100.0 269.2,100.0 271.3,100.0 273.5,100.0 275.7,100.0 277.8,100.0 280.0,100.0\"></polyline><text class=\"pu\" x=\"22\" y=\"64\">wave 2, phase difference φ = π</text><text class=\"yl\" x=\"22\" y=\"158\">Δx = λ/2:  I = 0 (fully destructive)</text></g><text class=\"rd\" x=\"22\" y=\"176\">resultant (red): amplitude 2a cos(φ/2)</text></svg><div class=\"eq fx d5\"><p>The resultant amplitude is <b>2a cos(φ/2)</b>, so <b>I = 4I₀ cos²(φ/2)</b>: 4I₀ at φ = 0, I₀ at 2π/3, <b>zero at φ = π</b>.</p><p>Path difference Δx = λ/2 is a phase difference π: light + light can give darkness. Averaged over all φ the intensity is 2I₀: energy is only <b>redistributed</b>.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .sg0{opacity:0;animation:sg0 10.0s linear infinite .2s}@keyframes sg0{0%{opacity:1}19.50%{opacity:1}20.00%{opacity:0}100%{opacity:0}}.bp .sg1{opacity:0;animation:sg1 10.0s linear infinite .2s}@keyframes sg1{0%{opacity:0}19.50%{opacity:0}20.00%{opacity:1}39.50%{opacity:1}40.00%{opacity:0}100%{opacity:0}}.bp .sg2{opacity:0;animation:sg2 10.0s linear infinite .2s}@keyframes sg2{0%{opacity:0}39.50%{opacity:0}40.00%{opacity:1}59.50%{opacity:1}60.00%{opacity:0}100%{opacity:0}}.bp .sg3{opacity:0;animation:sg3 10.0s linear infinite .2s}@keyframes sg3{0%{opacity:0}59.50%{opacity:0}60.00%{opacity:1}79.50%{opacity:1}80.00%{opacity:0}100%{opacity:0}}.bp .sg4{opacity:0;animation:sg4 10.0s linear infinite .2s}@keyframes sg4{0%{opacity:0}79.50%{opacity:0}80.00%{opacity:1}99.50%{opacity:1}100.00%{opacity:0}100%{opacity:0}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .sg0{opacity:0;animation:sg0 10.0s linear infinite .2s}@keyframes sg0{0%{opacity:1}19.50%{opacity:1}20.00%{opacity:0}100%{opacity:0}}.bp .sg1{opacity:0;animation:sg1 10.0s linear infinite .2s}@keyframes sg1{0%{opacity:0}19.50%{opacity:0}20.00%{opacity:1}39.50%{opacity:1}40.00%{opacity:0}100%{opacity:0}}.bp .sg2{opacity:0;animation:sg2 10.0s linear infinite .2s}@keyframes sg2{0%{opacity:0}39.50%{opacity:0}40.00%{opacity:1}59.50%{opacity:1}60.00%{opacity:0}100%{opacity:0}}.bp .sg3{opacity:0;animation:sg3 10.0s linear infinite .2s}@keyframes sg3{0%{opacity:0}59.50%{opacity:0}60.00%{opacity:1}79.50%{opacity:1}80.00%{opacity:0}100%{opacity:0}}.bp .sg4{opacity:0;animation:sg4 10.0s linear infinite .2s}@keyframes sg4{0%{opacity:0}79.50%{opacity:0}80.00%{opacity:1}99.50%{opacity:1}100.00%{opacity:0}100%{opacity:0}}"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Incoherent sources: resultant intensity?",
+      "definition": "Intensities just add: \\( I = 2I_0 \\) everywhere (no stable pattern)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Interference and energy conservation?",
+      "definition": "Energy is only <span style=\"color:#3b82f6\">redistributed</span>: dark fringes lose what bright fringes gain; average intensity is still 2I₀",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Locus of points with constant path difference from two sources?",
+      "definition": "<span style=\"color:#3b82f6\">Hyperbolas</span> with the sources as foci; n = 0 is the perpendicular bisector",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ],
+      "definitionImage": "media/fig_10_10_hyperbolas.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: resultant intensity for two waves of amplitudes a₁, a₂ with phase difference φ?",
+      "definition": "\\( I = I_1 + I_2 + 2\\sqrt{I_1I_2}\\cos\\phi \\), so \\( \\dfrac{I_{max}}{I_{min}} = \\left(\\dfrac{a_1+a_2}{a_1-a_2}\\right)^2 \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: intensity ratio 9:1 for two sources. I_max/I_min?",
+      "definition": "a₁/a₂ = 3/1: \\( \\dfrac{(3+1)^2}{(3-1)^2} = 4 \\), i.e. 16:4 = <span style=\"color:#f08c00\">4:1</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: how does slit width relate to intensity and amplitude?",
+      "definition": "Intensity ∝ slit width w; amplitude ∝ √w. Slits of widths 4w and w give I ratio 4:1, amplitude ratio 2:1, fringe visibility \\( \\dfrac{I_{max}-I_{min}}{I_{max}+I_{min}} = \\dfrac{2\\sqrt{I_1I_2}}{I_1+I_2} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exam trap: can two independent sodium lamps produce fringes? Why not?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: ordinary sources change phase abruptly in about <span style=\"color:#f08c00\">10⁻¹⁰ s</span>, so two lamps are <span style=\"color:#3b82f6\">incoherent</span> and intensities add",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.4-coherent-and-incoherent-addition-of-waves"
+      ],
+      "definitionImage": "media/fig_10_11_two_lamps.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "How did Young make two coherent light sources?",
+      "definition": "Two pinholes/slits S₁ and S₂ illuminated by the <span style=\"color:#3b82f6\">same source S</span>: phase changes in S appear identically in both, so they are locked in phase",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ],
+      "definitionImage": "media/fig_10_12_young.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Young’s double slit: position of the nth bright fringe?",
+      "definition": "\\( x_n = \\dfrac{n\\lambda D}{d},\\ n = 0, \\pm1, \\pm2, \\dots \\) (d = slit separation, D = screen distance)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Position of the nth dark fringe?",
+      "definition": "\\( x_n = \\left(n+\\tfrac12\\right)\\dfrac{\\lambda D}{d} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive x_n = nλD/d.",
+      "definition": "Path difference to point P at height x: <span style=\"color:#3b82f6\">Δ = S₂P − S₁P ≈ xd/D</span> (for d ≪ D). Set Δ = nλ for bright fringes and (n + ½)λ for dark ones",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fringe width β?",
+      "definition": "\\( \\beta = \\dfrac{\\lambda D}{d} \\): bright and dark fringes are <span style=\"color:#3b82f6\">equally spaced</span>, each of width β",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ],
+      "definitionImage": "media/fig_10_13_fringes.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Fringe width: effect of increasing d, D, λ?",
+      "definition": "β ∝ λD/d: <span style=\"color:#3b82f6\">increases with λ and D</span>, <span style=\"color:#3b82f6\">decreases with d</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angular fringe width?",
+      "definition": "\\( \\theta = \\dfrac{\\beta}{D} = \\dfrac{\\lambda}{d} \\) (independent of D)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Fringe width if the whole apparatus is immersed in a liquid of index n?",
+      "definition": "\\( \\beta' = \\dfrac{\\beta}{n} \\): λ shrinks to λ/n, so fringes get <span style=\"color:#3b82f6\">narrower</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: red vs blue light in the same setup?",
+      "definition": "β_red > β_blue (λ_red is longer): the <span style=\"color:#3b82f6\">red fringes are wider</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: white light in Young’s experiment?",
+      "definition": "<span style=\"color:#3b82f6\">Central fringe white</span> (all colours in phase); the first fringes are coloured with violet nearest the centre and red farthest; only a few fringes are visible before they overlap",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: a thin transparent sheet (thickness t, index μ) covers one slit. Fringe shift?",
+      "definition": "Extra path (μ − 1)t: pattern shifts by \\( \\Delta x = \\dfrac{(\\mu-1)tD}{d} \\) towards the covered slit (= (μ − 1)t/λ fringes)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: the central maximum when the source S moves off the axis?",
+      "definition": "The fringe pattern shifts <span style=\"color:#3b82f6\">in the opposite direction</span> to keep the total path difference zero",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: conditions for sustained interference?",
+      "definition": "Coherent sources, same frequency, comparable amplitudes, slit separation d ≪ D, and narrow (point/line) slits",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: what happens to the fringes if one slit is closed?",
+      "definition": "Fringes disappear; a broad <span style=\"color:#3b82f6\">single-slit diffraction</span> pattern remains",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: intensity at a point where path difference = λ/4 if the maximum intensity is I_max?",
+      "definition": "φ = π/2 → I = I_max cos²(π/4) = <span style=\"color:#f08c00\">I_max/2</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Young’s double slit, λ from fringes (Exercise 10.4)",
+      "definition": "λ = 600 nm",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 10.4 · finding λ</p><h2>Find the missing step.</h2><div class=\"prob\">Slits 0.28 mm apart, screen 1.4 m away. Distance between the central bright fringe and the 4th bright fringe = 1.2 cm. Find λ.</div><ol><li>x₄ = 4λD/d → λ = x₄ d/(4D)</li><li>λ = (1.2 × 10⁻² × 0.28 × 10⁻³)/(4 × 1.4)</li><li class=\"h\">?</li><li>λ = <b>600 nm</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 10.4 · finding λ</p><h2>Find the missing step.</h2><div class=\"prob\">Slits 0.28 mm apart, screen 1.4 m away. Distance between the central bright fringe and the 4th bright fringe = 1.2 cm. Find λ.</div><ol><li>x₄ = 4λD/d → λ = x₄ d/(4D)</li><li>λ = (1.2 × 10⁻² × 0.28 × 10⁻³)/(4 × 1.4)</li><li class=\"r\">λ = 3.36 × 10⁻⁶/5.6 = <b>6.0 × 10⁻⁷ m</b></li><li>λ = <b>600 nm</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Intensity at different path differences (Exercise 10.5)",
+      "definition": "I = K/4",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 10.5 · intensity at λ/3</p><h2>Find the missing step.</h2><div class=\"prob\">Intensity at a point where the path difference is λ is K. Find the intensity where it is λ/3.</div><ol><li>Path difference λ → φ = 2π: I = 4I₀ cos²(π) = 4I₀ = K, so <b>I₀ = K/4</b></li><li class=\"h\">?</li><li>I = 4I₀ cos²(π/3) = 4I₀ × (1/4) = I₀</li><li><b>I = K/4</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 10.5 · intensity at λ/3</p><h2>Find the missing step.</h2><div class=\"prob\">Intensity at a point where the path difference is λ is K. Find the intensity where it is λ/3.</div><ol><li>Path difference λ → φ = 2π: I = 4I₀ cos²(π) = 4I₀ = K, so <b>I₀ = K/4</b></li><li class=\"r\">Path difference λ/3 → φ = 2π/3</li><li>I = 4I₀ cos²(π/3) = 4I₀ × (1/4) = I₀</li><li><b>I = K/4</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Coinciding fringes of two colours (Exercise 10.6)",
+      "definition": "(a) 1.17 mm, (b) 1.56 mm",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 10.6 · two wavelengths</p><h2>Find the missing step.</h2><div class=\"prob\">Wavelengths 650 nm and 520 nm are used in Young’s experiment. (a) Third bright fringe of 650 nm from the centre. (b) Least distance where bright fringes of both coincide. (Key uses D/d = 600.)</div><ol><li>(a) x₃ = 3λD/d = 3 × 650 × 10⁻⁹ × 600 = <b>1.17 mm</b></li><li class=\"h\">?</li><li>Least common fringe: n₁ = 4 for 650 nm (n₂ = 5 for 520 nm)</li><li>x = 4 × 650 × 10⁻⁹ × 600 = <b>1.56 mm</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 10.6 · two wavelengths</p><h2>Find the missing step.</h2><div class=\"prob\">Wavelengths 650 nm and 520 nm are used in Young’s experiment. (a) Third bright fringe of 650 nm from the centre. (b) Least distance where bright fringes of both coincide. (Key uses D/d = 600.)</div><ol><li>(a) x₃ = 3λD/d = 3 × 650 × 10⁻⁹ × 600 = <b>1.17 mm</b></li><li class=\"r\">(b) Coincide when n₁ × 650 = n₂ × 520 → n₁ : n₂ = 4 : 5</li><li>Least common fringe: n₁ = 4 for 650 nm (n₂ = 5 for 520 nm)</li><li>x = 4 × 650 × 10⁻⁹ × 600 = <b>1.56 mm</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Note on Exercise 10.6: the printed question gives no D or d. What does the key assume?",
+      "definition": "The key’s answers (1.17 mm, 1.56 mm) correspond to <span style=\"color:#3b82f6\">D/d = 600</span> (e.g. d = 2 mm and D = 1.2 m, as in earlier editions). Use β = λD/d and the LCM method",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.5-interference-of-light-waves-and-youngs-experiment"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is diffraction?",
+      "definition": "Bending of waves around obstacles and apertures into the geometrical shadow, producing bright and dark bands; it happens for <span style=\"color:#3b82f6\">all types of waves</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When is diffraction of light noticeable?",
+      "definition": "When the obstacle or aperture size is <span style=\"color:#3b82f6\">comparable to λ</span>. Everyday objects are much larger than λ, so we rarely notice it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where does diffraction limit us?",
+      "definition": "The <span style=\"color:#3b82f6\">resolution of the eye, telescopes and microscopes</span>; also CD colours are due to diffraction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Single slit (width a), monochromatic light: what pattern appears?",
+      "definition": "A broad <span style=\"color:#3b82f6\">central maximum</span> with weaker alternate dark and bright bands on both sides",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ],
+      "definitionImage": "media/fig_10_15_diffraction.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Single-slit diffraction: conditions for minima?",
+      "definition": "\\( a\\sin\\theta = n\\lambda \\), i.e. θ ≈ nλ/a, n = ±1, ±2, … (zero intensity)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ],
+      "definitionImage": "media/fig_10_14_single_slit.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Single-slit diffraction: secondary maxima?",
+      "definition": "Approximately at \\( \\theta \\approx \\left(n+\\tfrac12\\right)\\dfrac{\\lambda}{a} \\), getting weaker with n",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does a single slit give minima? (path-difference argument)",
+      "definition": "Divide the slit into two halves: pairs of points a/2 apart have path difference (a/2) sin θ. When this is λ/2 (i.e. a sin θ = λ) every pair cancels, giving the <span style=\"color:#3b82f6\">first minimum</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Angular width of the central maximum of a single slit?",
+      "definition": "<span style=\"color:#3b82f6\">2λ/a</span> (from −λ/a to +λ/a); linear width on a screen at D: \\( \\dfrac{2\\lambda D}{a} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Single slit: effect of narrowing the slit or increasing λ?",
+      "definition": "Central maximum <span style=\"color:#3b82f6\">widens</span> (λ/a grows): more diffraction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: relative intensities of the secondary maxima in a single slit?",
+      "definition": "Central 1 : first secondary ≈ 0.047 : second ≈ 0.017: most energy is in the <span style=\"color:#3b82f6\">central maximum</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: interference vs diffraction (single slit) in a table?",
+      "definition": "<span style=\"color:#3b82f6\">Interference</span>: two/few coherent sources, equal fringe widths, all bright fringes similar intensity. <span style=\"color:#3b82f6\">Diffraction</span>: a single wavefront (many secondary sources), unequal widths (central twice as wide), intensity falls quickly",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Feynman on interference vs diffraction (quoted in NCERT)?",
+      "definition": "No specific important physical difference: with <span style=\"color:#3b82f6\">few sources</span> it is called interference, with a <span style=\"color:#3b82f6\">large number</span> of sources diffraction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "The double-slit pattern actually is what?",
+      "definition": "The <span style=\"color:#3b82f6\">double-slit interference</span> pattern multiplied by the <span style=\"color:#3b82f6\">single-slit diffraction envelope</span> of each slit",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: number of interference fringes within the central diffraction maximum (slit separation d, slit width a)?",
+      "definition": "Central maximum width 2λD/a; fringe width λD/d: about \\( \\dfrac{2d}{a} \\) fringes (e.g. d = 5a gives about 10, with missing orders at multiples of d/a)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: Fresnel distance and Rayleigh’s criterion?",
+      "definition": "Ray optics holds for distances up to \\( z_F = \\dfrac{a^2}{\\lambda} \\). Two points are just resolved when their angular separation is \\( 1.22\\,\\dfrac{\\lambda}{D} \\) (aperture D)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Seeing single-slit diffraction at home?",
+      "definition": "Two <span style=\"color:#3b82f6\">razor blades</span> held to form a narrow slit parallel to a straight bulb filament; a red filter gives wider fringes than blue",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ],
+      "definitionImage": "media/fig_10_16_blades.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can’t you see fringes with direct sunlight (Young’s demonstration at home)?",
+      "definition": "The Sun subtends about <span style=\"color:#f08c00\">½°</span> at the eye: it is not a point/line source, and direct sunlight can damage the eye",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Diffraction and energy conservation?",
+      "definition": "Light energy is <span style=\"color:#3b82f6\">redistributed</span>: what disappears at dark bands appears in bright bands",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.6-diffraction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Wave on a string vibrating in one plane: what is it called?",
+      "definition": "<span style=\"color:#3b82f6\">Plane (linearly) polarised</span> transverse wave, e.g. y = a sin(kx − ωt) is y-polarised",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ],
+      "definitionImage": "media/fig_10_17a_string.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What is an unpolarised wave?",
+      "definition": "The plane of vibration changes <span style=\"color:#3b82f6\">randomly and rapidly</span> while always staying ⟂ to the propagation direction",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which waves can be polarised, and what does this show about light?",
+      "definition": "Only <span style=\"color:#3b82f6\">transverse</span> waves. Light can be polarised, so light is transverse (E ⟂ direction of travel); sound in air is longitudinal and cannot be",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a polaroid?",
+      "definition": "A thin plastic sheet of <span style=\"color:#3b82f6\">long-chain molecules aligned in one direction</span> that absorb the E-component along their length; the perpendicular direction is the <span style=\"color:#3b82f6\">pass axis</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Unpolarised light through one polaroid: what happens to intensity? Does rotating the polaroid matter?",
+      "definition": "Intensity falls to <span style=\"color:#3b82f6\">half (I₀/2)</span> and is linearly polarised; rotating the polaroid changes nothing",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Two polaroids P₂ then P₁ (the analyser) rotated: what is seen?",
+      "definition": "Transmitted intensity varies from maximum to zero and back: <span style=\"color:#3b82f6\">two maxima and two minima</span> per full turn; crossed (90°) gives zero",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ],
+      "definitionImage": "media/fig_10_18a_polaroids.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "State Malus’s law.",
+      "definition": "\\( I = I_0\\cos^2\\theta \\) (I₀ = intensity of polarised light incident on the analyser; θ = angle between pass axes)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ],
+      "definitionImage": "media/fig_10_18b_polaroids.webp"
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Transmitted intensity through a rotated analyser",
+      "definition": "Malus’s law: I = I0 cos²θ; maximum at 0° and 180°, zero when crossed at 90°; unpolarised light through a polaroid drops to half",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w bp\"><p class=\"tag\">Polarisation · Malus’s law</p><h2>Plane-polarised light (intensity I₀) hits a second polaroid whose axis is turned by θ. How does the transmitted intensity vary?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><text class=\"sm\" x=\"14\" y=\"184\">unpolarised → P₁ → P₂ (analyser)</text><rect class=\"lens\" x=\"40\" y=\"55\" width=\"10\" height=\"90\"></rect><text class=\"sm\" x=\"16\" y=\"160\">P₁ (pass axis ↕)</text><line class=\"ax\" x1=\"10\" y1=\"100\" x2=\"290\" y2=\"100\" marker-end=\"url(#ah)\"></line><rect class=\"zone\" x=\"222\" y=\"30\" width=\"28\" height=\"140\" fill=\"none\"></rect><text class=\"sm\" x=\"236\" y=\"14\" text-anchor=\"middle\">I after P₂</text></svg><p class=\"hint\">Watch the bar.</p></div>",
+        "backHtml": "<div class=\"w bp\"><p class=\"tag\">Polarisation · Malus’s law</p><h2>Plane-polarised light (intensity I₀) hits a second polaroid whose axis is turned by θ. How does the transmitted intensity vary?</h2><svg viewBox=\"0 0 300 190\"><defs><marker id=\"ah\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#cfe0f7\"></path></marker><marker id=\"am\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ff8a80\"></path></marker><marker id=\"an\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#80e8a8\"></path></marker><marker id=\"af\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#ffd166\"></path></marker><marker id=\"aa\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c9a7ff\"></path></marker></defs><text class=\"sm\" x=\"14\" y=\"184\">unpolarised → P₁ → P₂ (analyser)</text><rect class=\"lens\" x=\"40\" y=\"55\" width=\"10\" height=\"90\"></rect><text class=\"sm\" x=\"16\" y=\"160\">P₁ (pass axis ↕)</text><line class=\"ax\" x1=\"10\" y1=\"100\" x2=\"290\" y2=\"100\" marker-end=\"url(#ah)\"></line><rect class=\"zone\" x=\"222\" y=\"30\" width=\"28\" height=\"140\" fill=\"none\"></rect><text class=\"sm\" x=\"236\" y=\"14\" text-anchor=\"middle\">I after P₂</text><rect class=\"lens\" x=\"118\" y=\"60\" width=\"24\" height=\"80\" rx=\"2\"></rect><g class=\"sg0\"><line class=\"c2\" x1=\"130.0\" y1=\"122.0\" x2=\"130.0\" y2=\"78.0\"></line><rect class=\"obj2\" x=\"222\" y=\"30.0\" width=\"28\" height=\"140.0\"></rect><text class=\"yl\" x=\"150\" y=\"24\" text-anchor=\"middle\">θ = 0°: I = I₀ cos²θ = 1.00 I₀</text></g><g class=\"sg1\"><line class=\"c2\" x1=\"119.0\" y1=\"119.1\" x2=\"141.0\" y2=\"80.9\"></line><rect class=\"obj2\" x=\"222\" y=\"65.0\" width=\"28\" height=\"105.0\"></rect><text class=\"yl\" x=\"150\" y=\"24\" text-anchor=\"middle\">θ = 30°: I = I₀ cos²θ = 0.75 I₀</text></g><g class=\"sg2\"><line class=\"c2\" x1=\"114.4\" y1=\"115.6\" x2=\"145.6\" y2=\"84.4\"></line><rect class=\"obj2\" x=\"222\" y=\"100.0\" width=\"28\" height=\"70.0\"></rect><text class=\"yl\" x=\"150\" y=\"24\" text-anchor=\"middle\">θ = 45°: I = I₀ cos²θ = 0.50 I₀</text></g><g class=\"sg3\"><line class=\"c2\" x1=\"110.9\" y1=\"111.0\" x2=\"149.1\" y2=\"89.0\"></line><rect class=\"obj2\" x=\"222\" y=\"135.0\" width=\"28\" height=\"35.0\"></rect><text class=\"yl\" x=\"150\" y=\"24\" text-anchor=\"middle\">θ = 60°: I = I₀ cos²θ = 0.25 I₀</text></g><g class=\"sg4\"><line class=\"c2\" x1=\"108.0\" y1=\"100.0\" x2=\"152.0\" y2=\"100.0\"></line><rect class=\"obj2\" x=\"222\" y=\"170.0\" width=\"28\" height=\"1.0\"></rect><text class=\"yl\" x=\"150\" y=\"24\" text-anchor=\"middle\">θ = 90°: I = I₀ cos²θ = 0.00 I₀</text></g><text class=\"gr\" x=\"150\" y=\"44\" text-anchor=\"middle\">P₂ (axis drawn in green)</text></svg><div class=\"eq fx d5\"><p>Only the component <b>E cos θ</b> along the pass axis gets through, so <b>I = I₀ cos²θ</b> (Malus’s law).</p><p>θ = 0°: full I₀; 45°: I₀/2; 90° (crossed): <b>zero</b>. One full turn of the analyser gives two maxima and two minima.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .sg0{opacity:0;animation:sg0 10.0s linear infinite .2s}@keyframes sg0{0%{opacity:1}19.50%{opacity:1}20.00%{opacity:0}100%{opacity:0}}.bp .sg1{opacity:0;animation:sg1 10.0s linear infinite .2s}@keyframes sg1{0%{opacity:0}19.50%{opacity:0}20.00%{opacity:1}39.50%{opacity:1}40.00%{opacity:0}100%{opacity:0}}.bp .sg2{opacity:0;animation:sg2 10.0s linear infinite .2s}@keyframes sg2{0%{opacity:0}39.50%{opacity:0}40.00%{opacity:1}59.50%{opacity:1}60.00%{opacity:0}100%{opacity:0}}.bp .sg3{opacity:0;animation:sg3 10.0s linear infinite .2s}@keyframes sg3{0%{opacity:0}59.50%{opacity:0}60.00%{opacity:1}79.50%{opacity:1}80.00%{opacity:0}100%{opacity:0}}.bp .sg4{opacity:0;animation:sg4 10.0s linear infinite .2s}@keyframes sg4{0%{opacity:0}79.50%{opacity:0}80.00%{opacity:1}99.50%{opacity:1}100.00%{opacity:0}100%{opacity:0}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.bp{color:#e7f0ff;background:\n  linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,\n  linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/18px 18px,#0e2a47}\n.bp .tag{color:#7fb4ff}.bp h2{color:#fff}\n.bp .ax{stroke:#9fc2ee;stroke-width:1.4;fill:none}\n.bp .lbl{fill:#cfe0f7;font-size:11px}\n.bp .hi{fill:#ffd166;font-size:12px;font-weight:700}\n.bp .curve{stroke:#ffd166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .guide{stroke:#7fb4ff;stroke-width:1;stroke-dasharray:4 4;fill:none}\n.bp .road{stroke:#cfe0f7;stroke-width:2.5;fill:none}\n.bp .car{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .f-mg{stroke:#ff8a80;stroke-width:3}.bp .f-n{stroke:#80e8a8;stroke-width:3}.bp .f-f{stroke:#ffd166;stroke-width:3}\n.bp .f-a{stroke:#c9a7ff;stroke-width:2;stroke-dasharray:5 4}\n.bp .t-mg{fill:#ff8a80;font-weight:700;font-size:13px}.bp .t-n{fill:#80e8a8;font-weight:700;font-size:13px}\n.bp .t-f{fill:#ffd166;font-weight:700;font-size:13px}.bp .t-a{fill:#c9a7ff;font-size:11px}\n.bp .eq{margin-top:10px;padding:10px 12px;border:1px solid rgba(127,180,255,.45);border-radius:12px;\n  background:rgba(8,24,44,.65);font-size:14px}\n.bp .eq b{color:#ffd166;font-weight:650}.bp .eq p{margin:2px 0}\n.bp .hint{margin-top:10px;color:#9fc2ee;font-size:12.5px}\n\n.bp .obj{fill:#3aa0ff;stroke:#e7f0ff;stroke-width:1.2}\n.bp .obj2{fill:#ffd166;stroke:#fff3c4;stroke-width:1.2}\n.bp .obj3{fill:#80e8a8;stroke:#e7fff0;stroke-width:1.2}\n.bp .ghost{fill:none;stroke:#9fc2ee;stroke-width:1;stroke-dasharray:3 3;opacity:.7}\n.bp .tk{stroke:#cfe0f7;stroke-width:1}.bp .tkb{stroke:#fff;stroke-width:1.6}\n.bp .num{fill:#e7f0ff;font-size:11px;text-anchor:middle}\n.bp .sm{fill:#9fc2ee;font-size:10.5px}\n.bp .yl{fill:#ffd166;font-size:12px;font-weight:700}.bp .gr{fill:#80e8a8;font-size:12px;font-weight:700}\n.bp .rd{fill:#ff8a80;font-size:12px;font-weight:700}.bp .pu{fill:#c9a7ff;font-size:12px;font-weight:700}\n.bp .c2{stroke:#80e8a8;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c3{stroke:#ff8a80;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .c4{stroke:#c9a7ff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.bp .zone{fill:rgba(255,209,102,.16);stroke:#ffd166;stroke-width:1.2}\n.bp .zone2{fill:rgba(128,232,168,.14);stroke:#80e8a8;stroke-width:1.2}\n.bp .lens{fill:rgba(14,42,71,.92);stroke:#ffd166;stroke-width:2}\n.bp .dot{fill:#ffd166}.bp .dot2{fill:#80e8a8}.bp .dot3{fill:#ff8a80}\n.bp .grid{stroke:rgba(159,194,238,.25);stroke-width:1}\n.bp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.bp .chips span{padding:4px 9px;border-radius:999px;background:rgba(255,209,102,.14);color:#ffe7a3;font-size:12px;font-weight:650}\n.bp .loop{animation-iteration-count:infinite}\n.bp .slide{animation:slide 1.4s cubic-bezier(.2,.8,.2,1) both .2s}\n@keyframes slide{from{transform:translateX(-150px);opacity:.2}to{transform:none;opacity:1}}\n.bp .sg0{opacity:0;animation:sg0 10.0s linear infinite .2s}@keyframes sg0{0%{opacity:1}19.50%{opacity:1}20.00%{opacity:0}100%{opacity:0}}.bp .sg1{opacity:0;animation:sg1 10.0s linear infinite .2s}@keyframes sg1{0%{opacity:0}19.50%{opacity:0}20.00%{opacity:1}39.50%{opacity:1}40.00%{opacity:0}100%{opacity:0}}.bp .sg2{opacity:0;animation:sg2 10.0s linear infinite .2s}@keyframes sg2{0%{opacity:0}39.50%{opacity:0}40.00%{opacity:1}59.50%{opacity:1}60.00%{opacity:0}100%{opacity:0}}.bp .sg3{opacity:0;animation:sg3 10.0s linear infinite .2s}@keyframes sg3{0%{opacity:0}59.50%{opacity:0}60.00%{opacity:1}79.50%{opacity:1}80.00%{opacity:0}100%{opacity:0}}.bp .sg4{opacity:0;animation:sg4 10.0s linear infinite .2s}@keyframes sg4{0%{opacity:0}79.50%{opacity:0}80.00%{opacity:1}99.50%{opacity:1}100.00%{opacity:0}100%{opacity:0}}"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive Malus’s law.",
+      "definition": "Polarised light has E along P₂’s pass axis. The component along P₁’s axis is <span style=\"color:#3b82f6\">E cos θ</span>; intensity ∝ E², so I = I₀ cos²θ",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Unpolarised light I₀ passes through two polaroids with axes at angle θ. Final intensity?",
+      "definition": "\\( I = \\dfrac{I_0}{2}\\cos^2\\theta \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 10.2: a polaroid P₂ rotated between crossed polaroids P₁ and P₃. Transmitted intensity?",
+      "definition": "I = I₀ cos²θ cos²(π/2 − θ) = \\( \\dfrac{I_0}{4}\\sin^2 2\\theta \\): maximum <span style=\"color:#f08c00\">I₀/4</span> at θ = <span style=\"color:#f08c00\">45°</span>, zero at 0° and 90°",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exam pattern: unpolarised light of intensity I passes through three polaroids at 0°, 45°, 90°. Output?",
+      "definition": "After P₁: I/2. After P₂ (45°): I/2 × ½ = I/4. After P₃ (45° again): I/4 × ½ = <span style=\"color:#f08c00\">I/8</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: polarisation by reflection: Brewster’s law?",
+      "definition": "At the polarising angle \\( \\tan i_B = n \\) the reflected light is completely plane-polarised (E ⟂ plane of incidence) and the reflected and refracted rays are at <span style=\"color:#3b82f6\">90°</span> to each other",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: Brewster angle for glass n = 1.5 (in air)?",
+      "definition": "tan i_B = 1.5 → <span style=\"color:#f08c00\">i_B ≈ 56.3°</span> (Exercise 10.8 in older editions)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: other ways to polarise light?",
+      "definition": "Scattering (blue sky light is partly polarised), double refraction (calcite, Huygens explained it), selective absorption (polaroids)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Uses of polaroids?",
+      "definition": "Sunglasses and windowpanes (cut glare and control intensity), photographic filters, <span style=\"color:#3b82f6\">3D movies</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why do polarised sunglasses reduce glare from a road or water?",
+      "definition": "Glare is <span style=\"color:#3b82f6\">partly polarised by reflection</span> (horizontal E); the vertical pass axis blocks most of it",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "10.7-polarisation"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "The crucial new feature of waves compared with particles?",
+      "definition": "<span style=\"color:#3b82f6\">Interference of amplitudes</span> from different sources, constructive or destructive (Young)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What sets the limit of microscopes and telescopes?",
+      "definition": "<span style=\"color:#3b82f6\">Diffraction</span>: the wavelength of light limits how close two objects can be and still be distinguished",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which effects exist for longitudinal waves, and which are exclusive to transverse waves?",
+      "definition": "Interference and diffraction exist for sound too; <span style=\"color:#3b82f6\">polarisation</span> is special to transverse waves",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Reflection and refraction at water (Exercise 10.1)",
+      "definition": "ν = 5.09 × 10¹⁴ Hz; refracted v = 2.26 × 10⁸ m/s, λ ≈ 444 nm",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 10.1 · light meets water</p><h2>Find the missing step.</h2><div class=\"prob\">589 nm light in air strikes water (n = 1.33). Wavelength, frequency and speed of (a) reflected, (b) refracted light.</div><ol><li>ν = c/λ = 3 × 10⁸/589 × 10⁻⁹ = <b>5.09 × 10¹⁴ Hz</b> (same for both)</li><li>(a) Reflected: λ = <b>589 nm</b>, speed <b>3 × 10⁸ m/s</b></li><li>(b) Refracted: v = c/n = <b>2.26 × 10⁸ m/s</b></li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 10.1 · light meets water</p><h2>Find the missing step.</h2><div class=\"prob\">589 nm light in air strikes water (n = 1.33). Wavelength, frequency and speed of (a) reflected, (b) refracted light.</div><ol><li>ν = c/λ = 3 × 10⁸/589 × 10⁻⁹ = <b>5.09 × 10¹⁴ Hz</b> (same for both)</li><li>(a) Reflected: λ = <b>589 nm</b>, speed <b>3 × 10⁸ m/s</b></li><li>(b) Refracted: v = c/n = <b>2.26 × 10⁸ m/s</b></li><li class=\"r\">λ = v/ν = 2.26 × 10⁸/5.09 × 10¹⁴ ≈ <b>444 nm</b> (= 589/1.33 ≈ 443 nm)</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.2: shape of the wavefront for (a) a point source (b) a point source at the focus of a convex lens (c) starlight intercepted by Earth?",
+      "definition": "(a) <span style=\"color:#3b82f6\">Spherical</span>. (b) <span style=\"color:#3b82f6\">Plane</span> (parallel beam emerges). (c) <span style=\"color:#3b82f6\">Plane</span> (tiny part of a huge sphere)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 10.3: speed of light in glass (n = 1.5)? Is it colour-independent?",
+      "definition": "v = c/n = <span style=\"color:#f08c00\">2.0 × 10⁸ m/s</span>. <span style=\"color:#e5484d\">No</span>: n depends on wavelength; n_violet > n_red, so <span style=\"color:#3b82f6\">violet travels slower</span> in glass",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 10 formula sheet",
+      "definition": "Snell from Huygens: sin i/sin r = v₁/v₂ = n₂/n₁; Interference intensity: I = 4I₀ cos²(φ/2); Bright / dark path difference: nλ / (n + ½)λ; Bright fringe position: x_n = nλD/d; Fringe width: β = λD/d; Single-slit minima: a sin θ = nλ; Central maximum width: 2λD/a; Malus’s law: I = I₀ cos²θ; Brewster’s law: tan i_B = n",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Snell from Huygens</td><td class=\"q\">?</td></tr><tr><td>Interference intensity</td><td class=\"q\">?</td></tr><tr><td>Bright / dark path difference</td><td class=\"q\">?</td></tr><tr><td>Bright fringe position</td><td class=\"q\">?</td></tr><tr><td>Fringe width</td><td class=\"q\">?</td></tr><tr><td>Single-slit minima</td><td class=\"q\">?</td></tr><tr><td>Central maximum width</td><td class=\"q\">?</td></tr><tr><td>Malus’s law</td><td class=\"q\">?</td></tr><tr><td>Brewster’s law</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>Snell from Huygens</td><td class=\"a\">sin i/sin r = v₁/v₂ = n₂/n₁</td></tr><tr><td>Interference intensity</td><td class=\"a\">I = 4I₀ cos²(φ/2)</td></tr><tr><td>Bright / dark path difference</td><td class=\"a\">nλ / (n + ½)λ</td></tr><tr><td>Bright fringe position</td><td class=\"a\">x_n = nλD/d</td></tr><tr><td>Fringe width</td><td class=\"a\">β = λD/d</td></tr><tr><td>Single-slit minima</td><td class=\"a\">a sin θ = nλ</td></tr><tr><td>Central maximum width</td><td class=\"a\">2λD/a</td></tr><tr><td>Malus’s law</td><td class=\"a\">I = I₀ cos²θ</td></tr><tr><td>Brewster’s law</td><td class=\"a\">tan i_B = n</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Interference and diffraction at a glance",
+      "definition": "Sources: Interference: two coherent sources. Diffraction: one wavefront (many secondary sources); Fringe widths: Interference: equal. Diffraction: central twice the others; Intensity of bright fringes: Interference: nearly equal. Diffraction: falls rapidly; Dark fringes: Interference: usually zero intensity. Diffraction: not always exactly zero in practice",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Interference vs diffraction</p><h2>Compare.</h2><table><tr><td>Sources</td><td class=\"q\">?</td></tr><tr><td>Fringe widths</td><td class=\"q\">?</td></tr><tr><td>Intensity of bright fringes</td><td class=\"q\">?</td></tr><tr><td>Dark fringes</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Interference vs diffraction</p><h2>Compare.</h2><table><tr><td>Sources</td><td class=\"a\">Interference: two coherent sources. Diffraction: one wavefront (many secondary sources)</td></tr><tr><td>Fringe widths</td><td class=\"a\">Interference: equal. Diffraction: central twice the others</td></tr><tr><td>Intensity of bright fringes</td><td class=\"a\">Interference: nearly equal. Diffraction: falls rapidly</td></tr><tr><td>Dark fringes</td><td class=\"a\">Interference: usually zero intensity. Diffraction: not always exactly zero in practice</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 10 concept checks",
+      "definition": "Frequency of light changes on entering water: False (λ and v change); Two sodium lamps give clear fringes: False (incoherent); In Young’s experiment fringe width increases with λ: True; Sound waves can be polarised: False (longitudinal); Unpolarised light through a polaroid: intensity halves: True; Central maximum of a single slit is as wide as the others: False (twice as wide)",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>Frequency of light changes on entering water</td><td class=\"q\">?</td></tr><tr><td>Two sodium lamps give clear fringes</td><td class=\"q\">?</td></tr><tr><td>In Young’s experiment fringe width increases with λ</td><td class=\"q\">?</td></tr><tr><td>Sound waves can be polarised</td><td class=\"q\">?</td></tr><tr><td>Unpolarised light through a polaroid: intensity halves</td><td class=\"q\">?</td></tr><tr><td>Central maximum of a single slit is as wide as the others</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>Frequency of light changes on entering water</td><td class=\"a no\">False (λ and v change)</td></tr><tr><td>Two sodium lamps give clear fringes</td><td class=\"a no\">False (incoherent)</td></tr><tr><td>In Young’s experiment fringe width increases with λ</td><td class=\"a\">True</td></tr><tr><td>Sound waves can be polarised</td><td class=\"a no\">False (longitudinal)</td></tr><tr><td>Unpolarised light through a polaroid: intensity halves</td><td class=\"a\">True</td></tr><tr><td>Central maximum of a single slit is as wide as the others</td><td class=\"a no\">False (twice as wide)</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-10",
+        "summary"
+      ]
+    }
+  ]
+}

@@ -757,3 +757,64 @@ def tir_angle_sweep(deck):
          'Refraction to total internal reflection as i increases',
          'Denser to rarer: refracted ray bends away from normal; at i = ic, r = 90°; for i > ic total internal reflection; sin ic = 1/n',
          css, hint='Watch the red refracted ray.', vb='0 0 300 200')
+
+
+# ---------------------------------------------------------------- Physics 12 Ch 10 Wave optics
+def interference_phase_stages(deck):
+    import math
+    x0, x1, cy, amp, T = 20, 280, 100, 34, 10.0
+    phis = [0, math.pi / 3, math.pi / 2, 2 * math.pi / 3, math.pi]
+    inten = ['4I₀ (fully constructive)', '3I₀', '2I₀ (= incoherent average)', 'I₀', '0 (fully destructive)']
+    path = ['Δx = 0', 'Δx = λ/6', 'Δx = λ/4', 'Δx = λ/3', 'Δx = λ/2']
+    pts = lambda f: ' '.join(f'{x0 + (x1 - x0) * i / 120:.1f},{cy - f(2 * math.pi * 2 * i / 120):.1f}' for i in range(121))
+    css = _stage_css('sg', len(phis), T)
+    base = (f'<line class="ax" x1="{x0}" y1="{cy}" x2="{x1}" y2="{cy}"></line>'
+            f'<polyline class="c2" points="{pts(lambda t: amp * 0.5 * math.sin(t))}"></polyline>'
+            '<text class="gr" x="22" y="48">wave 1 (amplitude a)</text>')
+    stages = ''
+    for k, ph in enumerate(phis):
+        w2 = pts(lambda t, ph=ph: amp * 0.5 * math.sin(t + ph))
+        rs = pts(lambda t, ph=ph: amp * 0.5 * (math.sin(t) + math.sin(t + ph)))
+        stages += (f'<g class="sg{k}"><polyline class="c4" points="{w2}"></polyline>'
+                   f'<polyline class="c3" points="{rs}"></polyline>'
+                   f'<text class="pu" x="22" y="64">wave 2, phase difference φ = {["0", "π/3", "π/2", "2π/3", "π"][k]}</text>'
+                   f'<text class="yl" x="22" y="158">{path[k]}:  I = {inten[k]}</text></g>')
+    back = stages + '<text class="rd" x="22" y="176">resultant (red): amplitude 2a cos(φ/2)</text>'
+    anim(deck, 'Interference · phase difference',
+         'Two coherent waves of equal amplitude meet with an increasing phase difference φ. How does the resultant intensity change?',
+         base, back,
+         '<p>The resultant amplitude is <b>2a cos(φ/2)</b>, so <b>I = 4I₀ cos²(φ/2)</b>: 4I₀ at φ = 0, I₀ at 2π/3, <b>zero at φ = π</b>.</p>'
+         '<p>Path difference Δx = λ/2 is a phase difference π: light + light can give darkness. Averaged over all φ the intensity is 2I₀: energy is only <b>redistributed</b>.</p>',
+         'Resultant of two waves as the phase difference grows',
+         'I = 4 I0 cos²(φ/2); φ = 0 gives 4I0, φ = π gives zero; path difference λ/2 corresponds to φ = π; the average intensity is 2 I0',
+         css, hint='Watch the red resultant.', vb='0 0 300 190')
+
+
+def malus_law_stages(deck):
+    import math
+    T = 10.0
+    ths = [0, 30, 45, 60, 90]
+    css = _stage_css('sg', len(ths), T)
+    base = ('<text class="sm" x="14" y="184">unpolarised → P₁ → P₂ (analyser)</text>'
+            '<rect class="lens" x="40" y="55" width="10" height="90"></rect><text class="sm" x="16" y="160">P₁ (pass axis ↕)</text>'
+            '<line class="ax" x1="10" y1="100" x2="290" y2="100" marker-end="url(#ah)"></line>'
+            '<rect class="zone" x="222" y="30" width="28" height="140" fill="none"></rect>'
+            '<text class="sm" x="236" y="14" text-anchor="middle">I after P₂</text>')
+    stages = ''
+    for k, th in enumerate(ths):
+        I = math.cos(math.radians(th)) ** 2
+        h = 140 * I
+        dx, dy = 22 * math.sin(math.radians(th)), 22 * math.cos(math.radians(th))
+        stages += (f'<g class="sg{k}"><line class="c2" x1="{130 - dx:.1f}" y1="{100 + dy:.1f}" x2="{130 + dx:.1f}" y2="{100 - dy:.1f}"></line>'
+                   f'<rect class="obj2" x="222" y="{170 - h:.1f}" width="28" height="{max(h, 1):.1f}"></rect>'
+                   f'<text class="yl" x="150" y="24" text-anchor="middle">θ = {th}°: I = I₀ cos²θ = {I:.2f} I₀</text></g>')
+    back = ('<rect class="lens" x="118" y="60" width="24" height="80" rx="2"></rect>' + stages +
+            '<text class="gr" x="150" y="44" text-anchor="middle">P₂ (axis drawn in green)</text>')
+    anim(deck, 'Polarisation · Malus’s law',
+         'Plane-polarised light (intensity I₀) hits a second polaroid whose axis is turned by θ. How does the transmitted intensity vary?',
+         base, back,
+         '<p>Only the component <b>E cos θ</b> along the pass axis gets through, so <b>I = I₀ cos²θ</b> (Malus’s law).</p>'
+         '<p>θ = 0°: full I₀; 45°: I₀/2; 90° (crossed): <b>zero</b>. One full turn of the analyser gives two maxima and two minima.</p>',
+         'Transmitted intensity through a rotated analyser',
+         'Malus’s law: I = I0 cos²θ; maximum at 0° and 180°, zero when crossed at 90°; unpolarised light through a polaroid drops to half',
+         css, hint='Watch the bar.', vb='0 0 300 190')
