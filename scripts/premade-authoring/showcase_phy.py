@@ -925,3 +925,67 @@ def bohr_transitions(deck):
          'Photon emitted in a Bohr transition',
          'hν = Ei − Ef = 13.6(1/nf² − 1/ni²) eV; transitions to n = 1 are Lyman (UV), to n = 2 Balmer (visible), to n = 3 Paschen (IR)',
          css, hint='Watch the dashed start orbit.', vb='0 0 300 200')
+
+
+# ---------------------------------------------------------------- Physics 12 Ch 13 Nuclei
+def half_life_dots(deck):
+    T = 12.0
+    cols, rows = 8, 4
+    order = [5, 26, 12, 19, 3, 30, 22, 9, 16, 1, 28, 7, 24, 14, 20, 11, 31, 2, 17, 27, 6, 13, 23, 4, 29, 10, 18, 0, 25, 8, 21, 15]
+    keep = [32, 16, 8, 4]
+    labels = ['t = 0: N₀ nuclei', 't = T½: N₀/2 left', 't = 2T½: N₀/4 left', 't = 3T½: N₀/8 left']
+    css = _stage_css('sg', 4, T)
+    x0, y0, dx, dy = 44, 60, 30, 30
+    stages = ''
+    for k in range(4):
+        alive = set(order[:keep[k]])
+        s = f'<g class="sg{k}">'
+        for i in range(32):
+            cx, cy = x0 + (i % cols) * dx, y0 + (i // cols) * dy
+            if i in alive:
+                s += f'<circle class="dot2" cx="{cx}" cy="{cy}" r="8"></circle>'
+            else:
+                s += f'<circle class="ghost" cx="{cx}" cy="{cy}" r="8"></circle>'
+        s += f'<text class="yl" x="150" y="28" text-anchor="middle">{labels[k]}</text></g>'
+        stages += s
+    base = '<text class="sm" x="150" y="192" text-anchor="middle">green = undecayed nuclei, dashed = decayed</text>'
+    anim(deck, 'Radioactive decay · half-life',
+         'A sample has N₀ radioactive nuclei. How many are left after one, two and three half-lives?',
+         base, stages,
+         '<p>Each half-life halves the number left: <b>N = N₀ (½)<sup>t/T</sup></b> = N₀e<sup>−λt</sup> with <b>T = 0.693/λ</b>.</p>'
+         '<p>The pattern is statistical: <b>which</b> nucleus decays is random, but the fraction decaying per half-life is fixed. Activity R = λN falls in the same way.</p>',
+         'Number of nuclei left after n half-lives',
+         'N = N0 (1/2)^(t/T½) = N0 exp(−λt), half-life T½ = 0.693/λ; each half-life halves the remaining nuclei and the activity',
+         css, hint='Watch the green dots.', vb='0 0 300 200')
+
+
+def binding_energy_curve(deck):
+    import math
+    pts = [(0, 0), (2, 1.1), (3, 2.6), (4, 7.07), (12, 7.68), (16, 7.98), (30, 8.5), (56, 8.79), (100, 8.6), (150, 8.2), (200, 7.85), (238, 7.6)]
+    X = lambda a: 30 + a * 1.05
+    Y = lambda e: 170 - e * 14
+    line = ' '.join(f'{X(a):.1f},{Y(e):.1f}' for a, e in pts)
+    T = 8.0
+    css = (f'.bp .fis1{{animation:fis1 {T}s ease-in-out infinite .3s}}@keyframes fis1{{0%,15%{{transform:translate(0,0)}}55%,100%{{transform:translate({X(120) - X(238):.1f}px,{Y(8.5) - Y(7.6):.1f}px)}}}}'
+           f'.bp .fis2{{animation:fis2 {T}s ease-in-out infinite .3s}}@keyframes fis2{{0%,15%{{transform:translate(0,0)}}55%,100%{{transform:translate({X(120) - X(238) + 12:.1f}px,{Y(8.5) - Y(7.6):.1f}px)}}}}'
+           f'.bp .fus{{animation:fus {T}s ease-in-out infinite .3s}}@keyframes fus{{0%,15%{{transform:translate(0,0)}}55%,100%{{transform:translate({X(16) - X(3):.1f}px,{Y(7.98) - Y(2.6):.1f}px)}}}}'
+           '.bp .glow{opacity:0;animation:glow 8s ease-in-out infinite .3s}@keyframes glow{0%,50%{opacity:0}62%{opacity:1}100%{opacity:0}}')
+    base = (f'<line class="ax" x1="30" y1="170" x2="290" y2="170"></line><line class="ax" x1="30" y1="170" x2="30" y2="30"></line>'
+            f'<polyline class="c2" points="{line}"></polyline>'
+            '<text class="sm" x="290" y="184" text-anchor="end">mass number A</text>'
+            '<text class="sm" x="34" y="26">B/A (MeV)</text>'
+            f'<text class="yl" x="{X(56)}" y="{Y(8.79) - 8}" text-anchor="middle">⁵⁶Fe ≈ 8.8 (peak)</text>')
+    back = (f'<g class="fus"><circle class="dot" cx="{X(3):.1f}" cy="{Y(2.6):.1f}" r="5"></circle></g>'
+            f'<g class="fis1"><circle class="dot3" cx="{X(238):.1f}" cy="{Y(7.6):.1f}" r="5"></circle></g>'
+            f'<g class="fis2"><circle class="dot3" cx="{X(238) - 6:.1f}" cy="{Y(7.6):.1f}" r="4"></circle></g>'
+            '<text class="rd" x="285" y="118" text-anchor="end">fission: A ≈ 240 splits, B/A rises</text>'
+            '<text class="yl" x="40" y="100">fusion: light nuclei join, B/A rises</text>'
+            '<g class="glow"><text class="gr" x="150" y="148" text-anchor="middle">energy released (Q = ΔB)</text></g>')
+    anim(deck, 'Binding energy per nucleon · fission and fusion',
+         'On the binding energy curve, why does splitting a heavy nucleus and joining two light nuclei both release energy?',
+         base, back,
+         '<p>Nuclei move <b>up the curve</b> toward iron (A ≈ 56, B/A ≈ 8.8 MeV): fission of A ≈ 240 (7.6 → 8.5 MeV/nucleon) gains ≈ 0.9 MeV × 240 ≈ <b>216 MeV</b>; fusion of light nuclei gains even more per nucleon.</p>'
+         '<p>The more tightly bound the final system, the smaller its total mass; the mass difference appears as energy: <b>Q = Δm c²</b>.</p>',
+         'Why fission and fusion release energy',
+         'Both fission of heavy nuclei and fusion of light nuclei increase binding energy per nucleon, moving towards the peak near A = 56; the gain appears as released energy Q = Δm c²',
+         css, hint='Watch the dots climb the curve.', vb='0 0 300 200')
