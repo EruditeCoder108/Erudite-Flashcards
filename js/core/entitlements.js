@@ -206,7 +206,8 @@
   }
 
   function couponUrl() {
-    const base = String(root.ERUDITE_PREMADE_CONTENT?.baseUrl || '').replace(/\/+$/, '');
+    const content = root.ERUDITE_PREMADE_CONTENT || {};
+    const base = String(content.couponBaseUrl || content.baseUrl || '').replace(/\/+$/, '');
     return /^https:\/\//i.test(base) ? `${base}/api/redeem-coupon` : '';
   }
 
