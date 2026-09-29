@@ -1408,11 +1408,11 @@ def left_right_limits(deck):
     yt = [(1, '1'), (2, '2'), (3, '3')]
     base = (P.axes(xt, yt, grid=True) + P.line(-3.2, 1, 0, 1, 'c1') + P.dot(0, 1, 'd1s', 5) + P.line(0, 2, 3.4, 2, 'c1') + P.hole(0, 2, 'c1', 5))
     back = (P.text(-1.5, 1, 'left limit = 1', 't3 fx d2', 'middle', dy=-12) + P.text(1.8, 2, 'right limit = 2', 't2 fx d2', 'middle', dy=-12) +
-            P.text(0, 3.2, 'limit does not exist', 't2 fx d3', 'middle'))
+            P.text(0, 3.2, 'no limit', 't2 fx d3', 'middle'))
     mcard(deck, 'One-sided limits', 'f(x) = 1 for x ≤ 0 and f(x) = 2 for x > 0. What are the left and right limits at 0? Does the limit exist?', base, back,
           '<p>Left-hand limit (x → 0⁻) = <b>1</b>; right-hand limit (x → 0⁺) = <b>2</b>. They differ, so <b>lim x→0 f(x) does not exist</b>, even though f(0) = 1 is defined.</p>'
           '<p>Rule: <b>the limit exists ⟺ left limit = right limit</b> (both finite).</p>',
-          'Left and right limits differ: the limit does not exist', 'lim exists iff left and right limits are equal; step function 1 (x≤0), 2 (x>0) has LHL 1, RHL 2 at 0, so no limit though f(0)=1',
+          'Left and right limits differ: the no limit', 'lim exists iff left and right limits are equal; step function 1 (x≤0), 2 (x>0) has LHL 1, RHL 2 at 0, so no limit though f(0)=1',
           vb='0 0 300 180', hint='Approach 0 from each side separately.')
 
 
@@ -2236,3 +2236,133 @@ def consistency_lines(deck):
           'Consistency test: |A| and (adj A)B',
           'AX=B: |A|!=0 unique solution X = A^-1 B; |A|=0 and (adj A)B != O inconsistent (no solution); |A|=0 and (adj A)B = O: infinitely many solutions or none (check); lines intersect / parallel / coincide',
           vb='0 0 300 172', hint='Unique, none, or infinitely many?')
+
+
+# ================================================================ Maths 12 Ch 5 Continuity and differentiability
+def _mini(ox, oy, xr, yr, size=(96, 96)):
+    return Plane(xr[0], xr[1], yr[0], yr[1], size[0], size[1], (4, 4, 4, 4)), (ox, oy)
+
+
+def discontinuity_types(deck):
+    def wrap(P, o, body):
+        return f'<g transform="translate({o[0]},{o[1]})">{P.axes(labels=False)}{body}</g>'
+    # (a) hole: f(x) = (x^2 - 1)/(x - 1), f(1) = 3
+    Pa, oa = _mini(2, 6, (-1, 3.5), (-1, 4))
+    a = wrap(Pa, oa, Pa.curve(lambda x: x + 1, 'c1', -1, 3.4) + Pa.hole(1, 2, 'c1', 4))
+    # (b) jump: f(x) = x (x <= 1), 5 (x > 1) scaled
+    Pb, ob = _mini(102, 6, (-1, 3.5), (-1, 6))
+    b = wrap(Pb, ob, Pb.curve(lambda x: x, 'c1', -1, 1) + Pb.curve(lambda x: 5, 'c1', 1, 3.4) + Pb.dot(1, 1, 'd1s', 3.6) + Pb.hole(1, 5, 'c1', 4))
+    # (c) infinite: 1/(x - 1)
+    Pc, oc = _mini(202, 6, (-1, 3.5), (-3, 3))
+    c = wrap(Pc, oc, Pc.curve(lambda x: 1 / (x - 1), 'c1', -1, 0.66, clip=(-3, 3)) + Pc.curve(lambda x: 1 / (x - 1), 'c1', 1.34, 3.4, clip=(-3, 3)))
+    base = a + b + c + ''.join(f'<text class="lbi" x="{x}" y="116" text-anchor="middle">({l})</text>' for x, l in [(50, 'a'), (150, 'b'), (250, 'c')])
+    back = (f'<g transform="translate({oa[0]},{oa[1]})">' + Pa.dot(1, 3, 'd2s', 4, 'fx d2') + '</g>' + '<text class="t1 fx d2" x="50" y="132" text-anchor="middle">removable</text><text class="sm fx d2" x="50" y="146" text-anchor="middle">limit ≠ f(c)</text>'
+            '<text class="t2 fx d3" x="150" y="132" text-anchor="middle">jump</text><text class="sm fx d3" x="150" y="146" text-anchor="middle">left ≠ right</text>'
+            '<text class="t4 fx d4" x="250" y="132" text-anchor="middle">infinite</text><text class="sm fx d4" x="250" y="146" text-anchor="middle">no limit</text>')
+    mcard(deck, 'Kinds of discontinuity', 'Each graph is discontinuous at x = 1. Name the three kinds of discontinuity.', base, back,
+          '<p>f is continuous at c iff <b>lim x→c⁻ f(x) = lim x→c⁺ f(x) = f(c)</b>. Break any one link and the graph tears:</p>'
+          '<p>(a) <b>removable</b>: the limit exists but f(1) is missing or wrong; (b) <b>jump</b>: the two one-sided limits differ (Ex 5.1 Q5, Q6); (c) <b>infinite</b>: the function blows up (Ex 5.1 Q3(b), f = 1/(x − 5)).</p>',
+          'Three types of discontinuity',
+          'Continuous at c iff left limit = right limit = f(c); removable (limit exists, differs from f(c)), jump (one-sided limits differ), infinite (no limit)',
+          vb='0 0 300 160', hint='Where does the graph break: a hole, a gap, or a blow-up?')
+
+
+def sawtooth_fractional(deck):
+    P = Plane(-2.6, 3.6, -0.6, 1.7, 300, 170, (16, 10, 10, 20))
+    xt = [(v, str(v).replace('-', '−')) for v in (-2, -1, 1, 2, 3)]
+    base = P.axes(xt, [(1, '1')], grid=True)
+    back = ''
+    for n in range(-3, 4):
+        x0, x1 = n, n + 1
+        if x1 < -2.6 or x0 > 3.6: continue
+        a, bb = max(x0, -2.6), min(x1, 3.6)
+        back += P.curve(lambda x, n=n: x - n, 'c1 fx d2', a, bb, n=40)
+        if x0 >= -2.6: back += P.dot(x0, 0, 'd1s', 3.8, 'fx d2')
+        if x1 <= 3.6: back += P.hole(x1, 1, 'c1', 3.8).replace('class="f0 c1 "', 'class="f0 c1 fx d3"')
+    mcard(deck, 'Ex 5.1 Q19 · g(x) = x − [x]', 'Sketch g(x) = x − [x] (the fractional part). Where is it continuous?', base, back,
+          '<p>On each interval [n, n + 1) we have [x] = n, so g(x) = x − n: a slope-1 segment from height 0 up to (but not reaching) 1, then it drops back to 0.</p>'
+          '<p>At every integer n: left limit = <b>1</b>, right limit = g(n) = <b>0</b>. So g is <b>discontinuous at all integers</b> and continuous elsewhere. The sawtooth has period 1.</p>',
+          'Fractional part function x − [x] is discontinuous at integers',
+          'g(x) = x - [x] has left limit 1 and right limit 0 at each integer: discontinuous at all integers, continuous elsewhere; period 1 sawtooth',
+          vb='0 0 300 170', hint='Work out g on [0, 1), then repeat.')
+
+
+def smooth_vs_corner(deck):
+    def wrap(P, o, body):
+        return f'<g transform="translate({o[0]},{o[1]})">{P.axes(labels=False)}{body}</g>'
+    Pa, oa = _mini(2, 6, (-2, 2), (-0.5, 3))
+    a = wrap(Pa, oa, Pa.curve(lambda x: 0.75 * x * x, 'c1', -2, 2, clip=(-0.5, 3)))
+    Pb, ob = _mini(102, 6, (-1, 3), (-0.5, 2.5))
+    b = wrap(Pb, ob, Pb.curve(lambda x: abs(x - 1), 'c1', -1, 3))
+    Pc, oc = _mini(202, 6, (-2, 2), (-1.6, 1.6))
+    c = wrap(Pc, oc, Pc.curve(lambda x: math.copysign(abs(x) ** (1 / 3), x), 'c1', -2, 2, n=200))
+    base = a + b + c + ''.join(f'<text class="lbi" x="{x}" y="116" text-anchor="middle">({l})</text>' for x, l in [(50, 'a'), (150, 'b'), (250, 'c')])
+    # tangent hints on the back
+    back = (f'<g transform="translate({oa[0]},{oa[1]})">' + Pa.line(-1, 0, 1, 0, 'c3 fx d2').replace('<line ', '<line ') + '</g>'
+            + f'<g transform="translate({ob[0]},{ob[1]})">' + Pb.line(0.2, 1.8, 1, 1, 'c2 fx d2') + Pb.line(1, 1, 1.8, 1.8, 'c4 fx d2') + '</g>'
+            + f'<g transform="translate({oc[0]},{oc[1]})">' + Pc.line(0, -1.6, 0, 1.6, 'c2 fx d2') + '</g>')
+    back += ('<text class="t3 fx d2" x="50" y="132" text-anchor="middle">differentiable</text><text class="sm fx d2" x="50" y="146" text-anchor="middle">one tangent</text>'
+             '<text class="t2 fx d3" x="150" y="132" text-anchor="middle">corner at x = 1</text><text class="sm fx d3" x="150" y="146" text-anchor="middle">LHD −1, RHD +1</text>'
+             '<text class="t4 fx d4" x="250" y="132" text-anchor="middle">vertical tangent</text><text class="sm fx d4" x="250" y="146" text-anchor="middle">slope → ∞</text>')
+    mcard(deck, 'Differentiable or not?', 'Which of these graphs is differentiable everywhere shown? Where does it fail, and why?', base, back,
+          '<p>Differentiable at c means the <b>tangent exists</b> (and is not vertical): the left and right derivatives at c are equal and finite.</p>'
+          '<p>(a) y = x² is smooth. (b) f(x) = |x − 1| has a <b>corner</b> at x = 1: LHD = −1, RHD = +1 (Ex 5.2 Q9). (c) y = ∛x has a <b>vertical tangent</b> at 0, where the derivative is infinite. All of these are still continuous.</p>',
+          'Corners and vertical tangents are where derivatives fail',
+          'Differentiable at c iff left derivative = right derivative (finite): corner (|x-1| at 1) and vertical tangent (cube root at 0) are not differentiable though continuous',
+          vb='0 0 300 160', hint='Can you draw one unique non-vertical tangent everywhere?')
+
+
+def diff_implies_cont(deck):
+    def ell(cx, cy, rx, ry):
+        return f'M{cx - rx},{cy} a{rx},{ry} 0 1,0 {2 * rx},0 a{rx},{ry} 0 1,0 {-2 * rx},0 Z'
+    base = ('<ellipse class="f0" cx="150" cy="96" rx="140" ry="88"></ellipse><ellipse class="f0" cx="150" cy="112" rx="108" ry="62"></ellipse><ellipse class="f0" cx="150" cy="128" rx="68" ry="32"></ellipse>'
+            '<text class="lbl" x="150" y="22" text-anchor="middle">all functions</text><text class="lbl" x="150" y="64" text-anchor="middle">continuous</text><text class="lbl" x="150" y="112" text-anchor="middle">differentiable</text>')
+    back = (f'<path class="ns1 fx d2" d="{ell(150, 128, 68, 32)}"></path>'
+            f'<path class="ns4 fx d3" d="{ell(150, 112, 108, 62)} {ell(150, 128, 68, 32)}" fill-rule="evenodd"></path>'
+            '<text class="t1 fx d2" x="150" y="138" text-anchor="middle">x², sin x, eˣ</text><text class="t4 fx d3" x="150" y="84" text-anchor="middle">|x| at 0, ∛x at 0</text>'
+            '<text class="sm fx d4" x="150" y="196" text-anchor="middle">differentiable ⇒ continuous, not the converse</text>')
+    mcard(deck, 'Theorem 3', 'How are “differentiable at c” and “continuous at c” related? Give an example that separates them.', base, back,
+          '<p><b>Differentiable ⇒ continuous.</b> If f′(c) exists then f(x) − f(c) = [(f(x) − f(c))/(x − c)]·(x − c) → f′(c)·0 = 0, so f(x) → f(c).</p>'
+          '<p><b>The converse is false:</b> f(x) = |x| is continuous at 0 but has a corner there, so it is not differentiable. Hence: not continuous ⇒ not differentiable.</p>',
+          'Differentiable implies continuous (not conversely)',
+          'If f is differentiable at c then f is continuous at c (Theorem 3); converse false, e.g. |x| at 0; discontinuous implies not differentiable',
+          vb='0 0 300 206', hint='Which set sits inside which?')
+
+
+def exp_slope_equals_height(deck):
+    P = Plane(-2.6, 2.4, -1, 8.5, 300, 190, (16, 10, 10, 20))
+    base = P.axes([(v, str(v).replace('-', '−')) for v in (-2, -1, 1, 2)], [(2, '2'), (4, '4'), (6, '6'), (8, '8')], grid=True) + P.curve(math.exp, 'c1', -2.6, 2.1, clip=(-1, 8.5))
+    back = ''
+    for k, x in enumerate([-1, 0, 1, 2]):
+        y = math.exp(x)
+        dx = 0.55 if x < 2 else 0.35
+        back += P.line(x - dx, y - y * dx, x + dx, y + y * dx, 'c2 fx d' + str(k + 2)) + P.dot(x, y, 'd2s', 4, 'fx d' + str(k + 2))
+        back += P.text(-2.5, 8.1 - k * 0.85, f'x = {x}: slope {y:.2f}'.replace('-', '−'), 't2 fx d' + str(k + 2))
+    mcard(deck, 'Slope of eˣ', 'At each point of y = eˣ, compare the slope of the tangent with the height of the curve. What do you notice?', base, back,
+          '<p>At x = 0 the height is 1 and the slope is 1; at x = 1 the height is e ≈ 2.72 and so is the slope; at x = 2, both are e² ≈ 7.39.</p>'
+          '<p><b>d/dx (eˣ) = eˣ</b>: the slope equals the height everywhere. That is why eˣ is the only function (up to a constant multiple) that equals its own derivative, and why it models growth proportional to size.</p>',
+          'The exponential function equals its own derivative',
+          'd/dx e^x = e^x: the slope of y = e^x at any point equals its height; e^x is its own derivative; d/dx a^x = a^x log a',
+          vb='0 0 300 190', hint='Read the height, then the steepness.')
+
+
+def cycloid_parametric(deck):
+    a = 1.0
+    P, h = eqplane(-1.3, 6.9, -0.3, 2.5, pad=(10, 6, 6, 10))
+    ox = P.X(0)
+    curve_pts = ' '.join(f'{P.X(a * (t - math.sin(t))):.1f},{P.Y(a * (1 - math.cos(t))):.1f}' for t in [i * 2 * math.pi / 100 for i in range(101)])
+    base = P.axes(labels=False) + f'<circle class="c0" cx="{P.X(0):.1f}" cy="{P.Y(1):.1f}" r="{P.X(1) - P.X(0):.1f}"></circle><circle class="d2s" cx="{P.X(0):.1f}" cy="{P.Y(0):.1f}" r="4"></circle>'
+    back = f'<polyline class="c2 draw" pathLength="100" points="{curve_pts}"></polyline>'
+    # moving rolling circle + tracer
+    n = 40
+    ctr = [(P.X(a * t) - P.X(0), 0) for t in [i * 2 * math.pi / n for i in range(n + 1)]]
+    tr = [(P.X(a * (t - math.sin(t))) - P.X(0), P.Y(a * (1 - math.cos(t))) - P.Y(0)) for t in [i * 2 * math.pi / n for i in range(n + 1)]]
+    css = (mkeyframes('rc', ctr, 6, 'linear', 0.3) + mkeyframes('rt', tr, 6, 'linear', 0.3))
+    back += (f'<g class="rc"><circle class="c1" cx="{P.X(0):.1f}" cy="{P.Y(1):.1f}" r="{P.X(1) - P.X(0):.1f}"></circle></g>'
+             f'<g class="rt"><circle class="d2s" cx="{P.X(0):.1f}" cy="{P.Y(0):.1f}" r="4.5"></circle></g>')
+    mcard(deck, 'Parametric derivative · cycloid', 'A point on a rolling circle traces x = a(θ − sin θ), y = a(1 − cos θ). Find dy/dx.', base, back,
+          '<p>dx/dθ = a(1 − cos θ) and dy/dθ = a sin θ, so <b>dy/dx = (dy/dθ)/(dx/dθ) = sin θ/(1 − cos θ) = cot(θ/2)</b>.</p>'
+          '<p>Parametric rule: <b>dy/dx = (dy/dt)/(dx/dt)</b>, provided dx/dt ≠ 0. (Ex 5.6 Q6 uses y = a(1 + cos θ), which gives −cot(θ/2).) At θ = 0 the denominator vanishes: the cusp where the curve touches the ground.</p>',
+          'Derivative of a parametric curve: dy/dx = (dy/dt)/(dx/dt)',
+          'Parametric: dy/dx = (dy/dt)/(dx/dt); cycloid x=a(t-sin t), y=a(1-cos t) gives dy/dx = cot(t/2); Ex 5.6 Q6 variant y=a(1+cos t) gives -cot(t/2)',
+          css=css, vb=f'0 0 300 {h}', hint='Differentiate x and y with respect to θ first.')
