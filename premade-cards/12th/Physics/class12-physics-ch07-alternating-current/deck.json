@@ -1,0 +1,1310 @@
+{
+  "version": 1,
+  "name": "Chapter 7: Alternating Current",
+  "className": "Class 12",
+  "description": "rms values, phasors, R, L, C in ac, series LCR, resonance, power factor, transformers and power transmission",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "Main reason ac is preferred over dc for power supply?",
+      "definition": "Ac voltage can be <span style=\"color:#3b82f6\">easily and efficiently stepped up or down with transformers</span>, and transmitted economically over long distances",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Form of the mains ac voltage?",
+      "definition": "A <span style=\"color:#3b82f6\">sinusoidal</span> function of time: v = v_m sin ωt",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Everyday use of a special property of ac circuits, named by NCERT?",
+      "definition": "Tuning a radio: <span style=\"color:#3b82f6\">resonance</span> in an LCR circuit",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.1-introduction"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ac voltage v = v_m sin ωt across a pure resistor. Current?",
+      "definition": "\\( i = i_m\\sin\\omega t,\\quad i_m = \\dfrac{v_m}{R} \\): Ohm’s law holds for ac too",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ],
+      "definitionImage": "media/fig_7_1_resistor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Phase relation between v and i in a pure resistor?",
+      "definition": "<span style=\"color:#3b82f6\">In phase</span> (phase difference 0): both peak and vanish together",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ],
+      "definitionImage": "media/fig_7_2_vi_resistor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Average current over a full cycle? Is there still heating?",
+      "definition": "Average i = <span style=\"color:#f08c00\">0</span>, but heating goes as <span style=\"color:#3b82f6\">i²R</span> (always positive), so energy is dissipated",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Instantaneous power in a resistor and its average?",
+      "definition": "p = i_m²R sin²ωt; average \\( \\bar p = \\tfrac12 i_m^2R \\), because ⟨sin²ωt⟩ = ½",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define rms current and rms voltage.",
+      "definition": "\\( I = \\dfrac{i_m}{\\sqrt2} = 0.707\\,i_m,\\quad V = \\dfrac{v_m}{\\sqrt2} = 0.707\\,v_m \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ],
+      "definitionImage": "media/fig_7_3_rms.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "What does the rms current mean physically?",
+      "definition": "The <span style=\"color:#3b82f6\">dc that gives the same average heating</span> in the same resistor",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Average power of ac in a resistor using rms values?",
+      "definition": "\\( P = I^2R = IV = \\dfrac{V^2}{R} \\): same form as dc",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Household supply “220 V”: is that rms or peak? Peak value?",
+      "definition": "<span style=\"color:#3b82f6\">rms</span>. Peak v_m = √2 × 220 ≈ <span style=\"color:#f08c00\">311 V</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: NCERT’s “Points to ponder” quotes 240 V for the room outlet. What do exams use?",
+      "definition": "Use the value given; NCERT’s examples use <span style=\"color:#3b82f6\">220 V</span> (India’s nominal supply is now 230 V). Peak of 240 V rms ≈ 340 V",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: what does an ac ammeter or voltmeter read? A dc moving-coil meter?",
+      "definition": "Ac meters (hot-wire type) read <span style=\"color:#3b82f6\">rms</span>. A moving-coil dc meter reads the <span style=\"color:#e5484d\">average = 0</span> and would not deflect on ac",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: mean value of ac over a half cycle?",
+      "definition": "\\( \\dfrac{2i_m}{\\pi} = 0.637\\,i_m \\) (over a full cycle it is 0)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: rms value of a general periodic current?",
+      "definition": "Square root of the <span style=\"color:#3b82f6\">mean of i²</span> over a period. The 1/√2 factor is only for a <span style=\"color:#3b82f6\">sinusoid</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "A 100 W, 220 V bulb (Example 7.1)",
+      "definition": "R = 484 Ω, v_m = 311 V, I = 0.454 A",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.1 · bulb</p><h2>Find the missing step.</h2><div class=\"prob\">Bulb rated 100 W, 220 V. Find R, peak voltage and rms current.</div><ol><li class=\"h\">?</li><li>Peak voltage v_m = √2 V = <b>311 V</b></li><li>I = P/V = 100/220 = <b>0.454 A</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.1 · bulb</p><h2>Find the missing step.</h2><div class=\"prob\">Bulb rated 100 W, 220 V. Find R, peak voltage and rms current.</div><ol><li class=\"r\">R = V²/P = 220²/100 = <b>484 Ω</b></li><li>Peak voltage v_m = √2 V = <b>311 V</b></li><li>I = P/V = 100/220 = <b>0.454 A</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: resistance of a 100 W, 220 V bulb when operated on 110 V?",
+      "definition": "R stays <span style=\"color:#f08c00\">484 Ω</span>. Power drops to V²/R = 110²/484 = <span style=\"color:#f08c00\">25 W</span> (quarter)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.2-ac-voltage-applied-to-a-resistor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a phasor?",
+      "definition": "A vector rotating about the origin with angular speed <span style=\"color:#3b82f6\">ω</span>; its length is the <span style=\"color:#3b82f6\">amplitude</span> and its vertical component is the instantaneous value",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.3-representation-by-rotating-vectors-phasors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Phasor diagram of a resistor: angle between V and I phasors?",
+      "definition": "<span style=\"color:#f08c00\">0</span>: they point along the same line at all times",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.3-representation-by-rotating-vectors-phasors"
+      ],
+      "definitionImage": "media/fig_7_4_phasor_R.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Are voltage and current in ac really vectors?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: they are scalars; phasors are only a device so harmonic quantities add by the <span style=\"color:#3b82f6\">vector addition rule</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.3-representation-by-rotating-vectors-phasors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why use phasors?",
+      "definition": "To show <span style=\"color:#3b82f6\">phase relations</span> between v and i and to add voltages across R, L, C easily",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.3-representation-by-rotating-vectors-phasors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: how must voltages across R and C in series be added?",
+      "definition": "As <span style=\"color:#3b82f6\">phasors</span>: \\( V = \\sqrt{V_R^2 + V_C^2} \\), not V_R + V_C, because they are 90° out of phase",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.3-representation-by-rotating-vectors-phasors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Pure inductor, v = v_m sin ωt. Current?",
+      "definition": "\\( i = i_m\\sin(\\omega t - \\pi/2),\\quad i_m = \\dfrac{v_m}{\\omega L} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.4-ac-voltage-applied-to-an-inductor"
+      ],
+      "definitionImage": "media/fig_7_5_inductor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive the current in a pure inductor.",
+      "definition": "v = L di/dt → di/dt = (v_m/L) sin ωt. Integrate: <span style=\"color:#3b82f6\">i = −(v_m/ωL) cos ωt</span> (integration constant 0 as no dc component) = i_m sin(ωt − π/2)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.4-ac-voltage-applied-to-an-inductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Inductive reactance: formula, unit, dependence?",
+      "definition": "\\( X_L = \\omega L = 2\\pi\\nu L \\); ohm; <span style=\"color:#3b82f6\">∝ frequency</span> and ∝ L. Zero for dc",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.4-ac-voltage-applied-to-an-inductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Phase relation in a pure inductor?",
+      "definition": "Current <span style=\"color:#3b82f6\">lags</span> the voltage by <span style=\"color:#f08c00\">π/2</span> (one quarter cycle)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.4-ac-voltage-applied-to-an-inductor"
+      ],
+      "definitionImage": "media/fig_7_6_phasor_L.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Average power absorbed by a pure inductor over a cycle?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span>: p = −½ i_m v_m sin 2ωt averages to 0; energy is stored and returned",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.4-ac-voltage-applied-to-an-inductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does an inductor pass low frequencies more easily?",
+      "definition": "X_L = 2πνL is <span style=\"color:#3b82f6\">small for small ν</span>; for dc X_L = 0",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.4-ac-voltage-applied-to-an-inductor"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Reactance and current in an inductor (Example 7.2)",
+      "definition": "X_L = 7.85 Ω, I ≈ 28 A",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.2 · pure inductor</p><h2>Find the missing step.</h2><div class=\"prob\">25.0 mH inductor on a 220 V, 50 Hz source. Find X_L and rms current.</div><ol><li>X_L = 2πνL = 2 × 3.14 × 50 × 25 × 10⁻³</li><li class=\"h\">?</li><li>I = V/X_L = 220/7.85 ≈ <b>28 A</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.2 · pure inductor</p><h2>Find the missing step.</h2><div class=\"prob\">25.0 mH inductor on a 220 V, 50 Hz source. Find X_L and rms current.</div><ol><li>X_L = 2πνL = 2 × 3.14 × 50 × 25 × 10⁻³</li><li class=\"r\">X_L = <b>7.85 Ω</b></li><li>I = V/X_L = 220/7.85 ≈ <b>28 A</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.4-ac-voltage-applied-to-an-inductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.5: iron rod pushed into a coil in series with a bulb on ac. Bulb glow?",
+      "definition": "<span style=\"color:#3b82f6\">Decreases</span>: L rises (μᵣ), so X_L rises and more of the supply voltage falls across the coil",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.4-ac-voltage-applied-to-an-inductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: choke coil?",
+      "definition": "An inductor used to <span style=\"color:#3b82f6\">reduce ac current without wasting power</span>, unlike a series resistor (which dissipates I²R); its power factor is nearly zero",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.4-ac-voltage-applied-to-an-inductor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does a capacitor pass dc? Ac?",
+      "definition": "dc: current only during charging, then <span style=\"color:#e5484d\">zero</span>. Ac: it charges and discharges every half cycle, so current <span style=\"color:#3b82f6\">flows</span> (limited)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.5-ac-voltage-applied-to-a-capacitor"
+      ],
+      "definitionImage": "media/fig_7_7_capacitor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Capacitor, v = v_m sin ωt. Current?",
+      "definition": "\\( i = i_m\\sin(\\omega t + \\pi/2),\\quad i_m = \\omega C v_m \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.5-ac-voltage-applied-to-a-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive the current in a capacitor.",
+      "definition": "q = Cv = Cv_m sin ωt; i = dq/dt = <span style=\"color:#3b82f6\">ωCv_m cos ωt</span> = ωCv_m sin(ωt + π/2)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.5-ac-voltage-applied-to-a-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Capacitive reactance: formula, unit, dependence?",
+      "definition": "\\( X_C = \\dfrac{1}{\\omega C} = \\dfrac{1}{2\\pi\\nu C} \\); ohm; <span style=\"color:#3b82f6\">inversely</span> proportional to ν and C. Infinite for dc",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.5-ac-voltage-applied-to-a-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Phase relation in a pure capacitor?",
+      "definition": "Current <span style=\"color:#3b82f6\">leads</span> the voltage by <span style=\"color:#f08c00\">π/2</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.5-ac-voltage-applied-to-a-capacitor"
+      ],
+      "definitionImage": "media/fig_7_8_phasor_C.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Average power absorbed by a pure capacitor?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span> over a cycle: p = ½ i_m v_m sin 2ωt averages to 0",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.5-ac-voltage-applied-to-a-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mnemonic for phase in L and C?",
+      "definition": "“<span style=\"color:#3b82f6\">CIVIL</span>”: in a <span style=\"color:#3b82f6\">C</span> the <span style=\"color:#3b82f6\">I</span> leads <span style=\"color:#3b82f6\">V</span>; in an <span style=\"color:#3b82f6\">L</span> the <span style=\"color:#3b82f6\">V</span> leads <span style=\"color:#3b82f6\">I</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.5-ac-voltage-applied-to-a-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.3: lamp in series with a capacitor: dc source, then ac source; C reduced?",
+      "definition": "dc: lamp does <span style=\"color:#e5484d\">not</span> glow (no steady current). Ac: lamp glows; smaller C → larger X_C → <span style=\"color:#3b82f6\">dimmer</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.5-ac-voltage-applied-to-a-capacitor"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Reactance and current in a capacitor (Example 7.4)",
+      "definition": "X_C = 212 Ω, I = 1.04 A, i_m = 1.47 A; current doubles",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.4 · capacitor</p><h2>Find the missing step.</h2><div class=\"prob\">15.0 μF capacitor on 220 V, 50 Hz. Find X_C, rms and peak current. What if ν doubles?</div><ol><li>X_C = 1/(2π × 50 × 15 × 10⁻⁶) ≈ <b>212 Ω</b></li><li class=\"h\">?</li><li>Peak i_m = √2 I = <b>1.47 A</b>, leading V by π/2</li><li>ν doubled: X_C halves → current <b>doubles</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.4 · capacitor</p><h2>Find the missing step.</h2><div class=\"prob\">15.0 μF capacitor on 220 V, 50 Hz. Find X_C, rms and peak current. What if ν doubles?</div><ol><li>X_C = 1/(2π × 50 × 15 × 10⁻⁶) ≈ <b>212 Ω</b></li><li class=\"r\">I = V/X_C = 220/212 = <b>1.04 A</b></li><li>Peak i_m = √2 I = <b>1.47 A</b>, leading V by π/2</li><li>ν doubled: X_C halves → current <b>doubles</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.5-ac-voltage-applied-to-a-capacitor"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Pure R, L and C in ac",
+      "definition": "Resistor: R; i in phase with v; power dissipated; Inductor: X_L = ωL; i lags v by π/2; P = 0; Capacitor: X_C = 1/ωC; i leads v by π/2; P = 0; Effect of raising ν: R same; X_L up; X_C down",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">R, L, C in ac</p><h2>Compare.</h2><table><tr><td>Resistor</td><td class=\"q\">?</td></tr><tr><td>Inductor</td><td class=\"q\">?</td></tr><tr><td>Capacitor</td><td class=\"q\">?</td></tr><tr><td>Effect of raising ν</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">R, L, C in ac</p><h2>Compare.</h2><table><tr><td>Resistor</td><td class=\"a\">R; i in phase with v; power dissipated</td></tr><tr><td>Inductor</td><td class=\"a\">X_L = ωL; i lags v by π/2; P = 0</td></tr><tr><td>Capacitor</td><td class=\"a\">X_C = 1/ωC; i leads v by π/2; P = 0</td></tr><tr><td>Effect of raising ν</td><td class=\"a\">R same; X_L up; X_C down</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.5-ac-voltage-applied-to-a-capacitor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Loop equation of a series LCR circuit?",
+      "definition": "\\( L\\dfrac{di}{dt} + iR + \\dfrac{q}{C} = v \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ],
+      "definitionImage": "media/fig_7_10_lcr.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "In a series LCR circuit, what is common to R, L and C?",
+      "definition": "The <span style=\"color:#3b82f6\">current</span> (same amplitude and phase). Voltages differ in phase",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Phases of V_R, V_L, V_C relative to I?",
+      "definition": "V_R <span style=\"color:#3b82f6\">in phase</span> with I; V_L leads I by <span style=\"color:#f08c00\">π/2</span>; V_C lags I by <span style=\"color:#f08c00\">π/2</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Amplitudes of the three voltages?",
+      "definition": "v_Rm = i_m R, v_Lm = i_m X_L, v_Cm = i_m X_C",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why can V_L and V_C be combined into one phasor?",
+      "definition": "They lie along the same line in <span style=\"color:#3b82f6\">opposite directions</span>: net magnitude |v_Cm − v_Lm|",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ],
+      "definitionImage": "media/fig_7_11_phasors.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Impedance of a series LCR circuit?",
+      "definition": "\\( Z = \\sqrt{R^2 + (X_L - X_C)^2},\\quad i_m = \\dfrac{v_m}{Z} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ],
+      "definitionImage": "media/fig_7_12_impedance.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Phase angle φ of the current in a series LCR circuit (i = i_m sin(ωt + φ))?",
+      "definition": "\\( \\tan\\phi = \\dfrac{X_C - X_L}{R} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If X_C > X_L: nature of circuit, sign of φ, current?",
+      "definition": "Predominantly <span style=\"color:#3b82f6\">capacitive</span>; φ positive; current <span style=\"color:#3b82f6\">leads</span> the source voltage",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ],
+      "definitionImage": "media/fig_7_13_lcr_phasor.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "If X_L > X_C: nature of circuit, sign of φ, current?",
+      "definition": "Predominantly <span style=\"color:#3b82f6\">inductive</span>; φ negative; current <span style=\"color:#3b82f6\">lags</span> the source voltage",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: with φ defined as “angle of current relative to voltage”, sign of φ?",
+      "definition": "NCERT uses \\( \\tan\\phi = \\dfrac{X_C - X_L}{R} \\) (angle of i). Many books define φ = angle of v, giving X_L − X_C. Check the definition in the question",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: Z for an RL circuit and an RC circuit?",
+      "definition": "RL: \\( Z = \\sqrt{R^2 + X_L^2} \\), current lags. RC: \\( Z = \\sqrt{R^2 + X_C^2} \\), current leads",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Limitation of the phasor method?",
+      "definition": "Gives only the <span style=\"color:#3b82f6\">steady-state</span> solution (no initial conditions); the <span style=\"color:#3b82f6\">transient</span> part dies out after some time",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Voltages in an RC circuit (Example 7.6)",
+      "definition": "I = 0.755 A, V_R = 151 V, V_C = 160.3 V, quadrature sum = 220 V",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.6 · RC series</p><h2>Find the missing step.</h2><div class=\"prob\">200 Ω resistor and 15.0 μF capacitor in series on 220 V, 50 Hz. Find I and the voltage across each. Why do the two voltages add to more than 220 V?</div><ol><li>X_C = 212.3 Ω; Z = √(200² + 212.3²) ≈ <b>291.7 Ω</b></li><li>I = V/Z = 220/291.7 = <b>0.755 A</b></li><li>V_R = IR = <b>151 V</b>, V_C = IX_C = <b>160.3 V</b> (sum 311 V > 220 V)</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.6 · RC series</p><h2>Find the missing step.</h2><div class=\"prob\">200 Ω resistor and 15.0 μF capacitor in series on 220 V, 50 Hz. Find I and the voltage across each. Why do the two voltages add to more than 220 V?</div><ol><li>X_C = 212.3 Ω; Z = √(200² + 212.3²) ≈ <b>291.7 Ω</b></li><li>I = V/Z = 220/291.7 = <b>0.755 A</b></li><li>V_R = IR = <b>151 V</b>, V_C = IX_C = <b>160.3 V</b> (sum 311 V > 220 V)</li><li class=\"r\">They are 90° out of phase: V = √(V_R² + V_C²) = <b>220 V</b> ✓</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6-ac-voltage-applied-to-a-series-lcr-circuit"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Resonance in a series LCR circuit: condition and frequency?",
+      "definition": "<span style=\"color:#3b82f6\">X_L = X_C</span> → \\( \\omega_0 = \\dfrac{1}{\\sqrt{LC}},\\ \\nu_0 = \\dfrac{1}{2\\pi\\sqrt{LC}} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6.2-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What happens at resonance?",
+      "definition": "Z is minimum (<span style=\"color:#f08c00\">Z = R</span>); current is maximum, \\( i_m = v_m/R \\); φ = 0 (current in phase with v); V_L and V_C cancel",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6.2-resonance"
+      ],
+      "definitionImage": "media/fig_7_14_resonance.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of increasing R on the resonance curve?",
+      "definition": "Peak height <span style=\"color:#3b82f6\">falls</span> (i_m = v_m/R) and the curve gets <span style=\"color:#3b82f6\">broader</span> (less sharp). R = 100 Ω gives twice the peak of R = 200 Ω",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6.2-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can resonance occur in an RL or RC circuit? Why?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: needs both L and C so that V_L and V_C can cancel",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6.2-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Mechanical analogy for resonance?",
+      "definition": "A child on a swing pushed at its <span style=\"color:#3b82f6\">natural frequency</span>: amplitude grows large",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6.2-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How does a radio tune to a station?",
+      "definition": "Vary <span style=\"color:#3b82f6\">C</span> so that ω₀ = 1/√LC matches the station’s frequency: current at that frequency is maximum",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6.2-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.10: how does an airport metal detector work?",
+      "definition": "Walk-through coil + capacitor tuned to <span style=\"color:#3b82f6\">resonance</span>; metal changes L, so impedance and current change, triggering the alarm",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6.2-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: quality factor Q of a series LCR circuit?",
+      "definition": "\\( Q = \\dfrac{\\omega_0 L}{R} = \\dfrac{1}{\\omega_0 CR} = \\dfrac{1}{R}\\sqrt{\\dfrac{L}{C}} \\): measures the <span style=\"color:#3b82f6\">sharpness</span> of resonance (dimensionless)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6.2-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: bandwidth and its link to Q?",
+      "definition": "Half-power bandwidth \\( \\Delta\\omega = \\dfrac{R}{L} = \\dfrac{\\omega_0}{Q} \\): <span style=\"color:#3b82f6\">higher Q → narrower, sharper</span> resonance",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6.2-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: voltage across L or C at resonance compared with the source?",
+      "definition": "V_L = V_C = <span style=\"color:#3b82f6\">Q × V</span>, which can be far larger than the source voltage (while V_L and V_C cancel each other)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.6.2-resonance"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Average power in a series LCR circuit?",
+      "definition": "\\( P = VI\\cos\\phi = I^2Z\\cos\\phi \\); cos φ = <span style=\"color:#3b82f6\">power factor</span> = R/Z",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Derive P = VI cos φ.",
+      "definition": "p = vi = ½ v_m i_m [cos φ − cos(2ωt + φ)]; the second term averages to 0, so P = ½ v_m i_m cos φ = <span style=\"color:#3b82f6\">V I cos φ</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Power factor of a purely resistive circuit? Power?",
+      "definition": "cos φ = <span style=\"color:#f08c00\">1</span>: maximum power dissipation",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Power factor and average power of a pure L or pure C?",
+      "definition": "φ = π/2 → cos φ = <span style=\"color:#f08c00\">0</span>, no power, though current flows: <span style=\"color:#3b82f6\">wattless current</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "In an LCR circuit, in which element is power dissipated?",
+      "definition": "Only in the <span style=\"color:#3b82f6\">resistor</span>: P = I²R",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Power and power factor at resonance?",
+      "definition": "cos φ = 1 and P = I²R = <span style=\"color:#3b82f6\">V²/R</span>, the maximum",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7.7: why does a low power factor cause large transmission loss?",
+      "definition": "P = IV cos φ: for fixed P and V, small cos φ needs <span style=\"color:#3b82f6\">larger I</span>, so the <span style=\"color:#3b82f6\">I²R</span> loss in the lines rises",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is the power factor improved?",
+      "definition": "Connect a suitable <span style=\"color:#3b82f6\">capacitor in parallel</span>: its leading wattless current cancels the lagging wattless component I_q",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ],
+      "definitionImage": "media/fig_7_15_power_comp.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Power component and wattless component of current?",
+      "definition": "I_p = I cos φ (along V, gives power). I_q = I sin φ (⊥ V, <span style=\"color:#3b82f6\">wattless</span>)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Series LCR calculation (Example 7.8)",
+      "definition": "Z = 5 Ω, φ = −53.1°, P = 4800 W, power factor 0.6",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.8 · LCR numbers</p><h2>Find the missing step.</h2><div class=\"prob\">v_m = 283 V, ν = 50 Hz, R = 3 Ω, L = 25.48 mH, C = 796 μF in series. Find Z, φ, P and power factor.</div><ol><li>X_L = 2πνL = <b>8 Ω</b>, X_C = 1/2πνC = <b>4 Ω</b></li><li>Z = √(3² + (8 − 4)²) = <b>5 Ω</b></li><li class=\"h\">?</li><li>I = 283/(√2 × 5) = 40 A; P = I²R = <b>4800 W</b>; cos φ = <b>0.6</b></li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.8 · LCR numbers</p><h2>Find the missing step.</h2><div class=\"prob\">v_m = 283 V, ν = 50 Hz, R = 3 Ω, L = 25.48 mH, C = 796 μF in series. Find Z, φ, P and power factor.</div><ol><li>X_L = 2πνL = <b>8 Ω</b>, X_C = 1/2πνC = <b>4 Ω</b></li><li>Z = √(3² + (8 − 4)²) = <b>5 Ω</b></li><li class=\"r\">tan φ = (X_C − X_L)/R = −4/3 → φ = <b>−53.1°</b> (current lags)</li><li>I = 283/(√2 × 5) = 40 A; P = I²R = <b>4800 W</b>; cos φ = <b>0.6</b></li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Resonance of the LCR circuit (Example 7.9)",
+      "definition": "ν₀ = 35.4 Hz, Z = 3 Ω, I = 66.7 A, P = 13.35 kW",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.9 · resonance</p><h2>Find the missing step.</h2><div class=\"prob\">Same circuit, frequency now variable. Find ν₀, and Z, I, P at resonance.</div><ol><li class=\"h\">?</li><li>ν₀ = ω₀/2π = <b>35.4 Hz</b></li><li>Z = R = <b>3 Ω</b>; I = (283/√2)/3 = <b>66.7 A</b></li><li>P = I²R = <b>13.35 kW</b> (more than at 50 Hz)</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Example 7.9 · resonance</p><h2>Find the missing step.</h2><div class=\"prob\">Same circuit, frequency now variable. Find ν₀, and Z, I, P at resonance.</div><ol><li class=\"r\">ω₀ = 1/√(LC) = 1/√(25.48 × 10⁻³ × 796 × 10⁻⁶) = <b>222.1 rad/s</b></li><li>ν₀ = ω₀/2π = <b>35.4 Hz</b></li><li>Z = R = <b>3 Ω</b>; I = (283/√2)/3 = <b>66.7 A</b></li><li>P = I²R = <b>13.35 kW</b> (more than at 50 Hz)</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: a series LCR at 50 Hz has X_L = X_C. What is I?",
+      "definition": "V/R (resonance at 50 Hz), and V_R = V (whole source across R)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.7-power-in-ac-circuit-the-power-factor"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Principle and parts of a transformer?",
+      "definition": "<span style=\"color:#3b82f6\">Mutual induction</span>. Primary (N_p turns) and secondary (N_s turns) on a <span style=\"color:#3b82f6\">soft-iron core</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ],
+      "definitionImage": "media/fig_7_16_transformer.webp"
+    },
+    {
+      "noteType": "basic",
+      "term": "Voltage ratio of an ideal transformer?",
+      "definition": "\\( \\dfrac{V_s}{V_p} = \\dfrac{N_s}{N_p} \\)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Current ratio of an ideal transformer?",
+      "definition": "\\( \\dfrac{I_s}{I_p} = \\dfrac{N_p}{N_s} = \\dfrac{V_p}{V_s} \\) (from V_pI_p = V_sI_s)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Step-up vs step-down transformer?",
+      "definition": "Step-up: <span style=\"color:#3b82f6\">N_s > N_p</span>, V rises, I falls. Step-down: <span style=\"color:#3b82f6\">N_s < N_p</span>, V falls, I rises",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Does a step-up transformer violate energy conservation?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: voltage rises but current falls in the same ratio; power in = power out (ideal)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assumptions behind V_s/V_p = N_s/N_p?",
+      "definition": "Negligible primary resistance and current; <span style=\"color:#3b82f6\">all flux links both coils</span>; small secondary current",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is e_p = v_p in an ideal transformer?",
+      "definition": "Else the primary current would be <span style=\"color:#e5484d\">infinite</span> (zero resistance); the back emf equals the applied voltage",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example: primary 100 turns, secondary 200 turns, 220 V at 10 A input. Output?",
+      "definition": "<span style=\"color:#3b82f6\">440 V at 5.0 A</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Efficiency of a transformer?",
+      "definition": "\\( \\eta = \\dfrac{P_{out}}{P_{in}} = \\dfrac{V_sI_s}{V_pI_p} \\); well-designed ones exceed <span style=\"color:#f08c00\">95%</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "List the four energy losses in a real transformer and remedy for each.",
+      "definition": "(i) <span style=\"color:#3b82f6\">Flux leakage</span>: wind coils over one another. (ii) <span style=\"color:#3b82f6\">Resistance of windings</span> (I²R): thick wire. (iii) <span style=\"color:#3b82f6\">Eddy currents</span>: laminated core. (iv) <span style=\"color:#3b82f6\">Hysteresis</span>: low-loss soft magnetic material",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is the core laminated?",
+      "definition": "Insulated thin sheets break up <span style=\"color:#3b82f6\">eddy current</span> loops in the iron, reducing heating",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why is transmission done at high voltage?",
+      "definition": "For fixed power P = VI, high V means <span style=\"color:#3b82f6\">small I</span>, so the <span style=\"color:#3b82f6\">I²R</span> loss in the lines is small",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Steps in power transmission, per NCERT?",
+      "definition": "Generator voltage stepped <span style=\"color:#3b82f6\">up</span> → long-distance lines → area sub-station steps <span style=\"color:#3b82f6\">down</span> → distribution sub-stations and poles → about 240 V at homes",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: power loss in a line of resistance R carrying P at voltage V?",
+      "definition": "\\( P_{loss} = I^2R = \\dfrac{P^2R}{V^2} \\): raising V tenfold cuts loss <span style=\"color:#f08c00\">100×</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: can a transformer work on dc? Why?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: needs changing flux; a steady primary current gives no induced secondary emf",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Teacher addition: does a transformer change the frequency?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: output has the same frequency as the input",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "7.8-transformers"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Rating of an ac appliance (e.g. 60 W)?",
+      "definition": "Refers to <span style=\"color:#3b82f6\">average power</span> (rms based)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Can power consumed in an ac circuit be negative on average?",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the average power P = VI cos φ is never negative (instantaneous power in L and C can be)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How is the ac ampere defined?",
+      "definition": "1 A rms = the alternating current producing the <span style=\"color:#3b82f6\">same average heating</span> as 1 A dc (the force between wires averages to zero for ac)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Generator vs motor?",
+      "definition": "Generator: mechanical → electrical. Motor: <span style=\"color:#3b82f6\">electrical → mechanical</span>. Both just transform energy",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Where are the losses in an ac circuit?",
+      "definition": "Only in <span style=\"color:#3b82f6\">resistive</span> elements; pure L and C have none",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Why does the power factor matter?",
+      "definition": "It measures how close the circuit is to using the <span style=\"color:#3b82f6\">maximum power</span> for the given V and I",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 7 quantities",
+      "definition": "rms voltage V: V; [ML²T⁻³A⁻¹]; rms current I: A; [A]; Reactance X_L, X_C: Ω; [ML²T⁻³A⁻²]; Impedance Z: Ω; [ML²T⁻³A⁻²]; Resonant frequency ω₀: 1/√LC; [T⁻¹]; Quality factor Q: ω₀L/R = 1/ω₀CR; dimensionless; Power factor: cos φ; dimensionless",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">NCERT quantity table</p><h2>Symbol, dimensions?</h2><table><tr><td>rms voltage V</td><td class=\"q\">?</td></tr><tr><td>rms current I</td><td class=\"q\">?</td></tr><tr><td>Reactance X_L, X_C</td><td class=\"q\">?</td></tr><tr><td>Impedance Z</td><td class=\"q\">?</td></tr><tr><td>Resonant frequency ω₀</td><td class=\"q\">?</td></tr><tr><td>Quality factor Q</td><td class=\"q\">?</td></tr><tr><td>Power factor</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">NCERT quantity table</p><h2>Symbol, dimensions?</h2><table><tr><td>rms voltage V</td><td class=\"a\">V; [ML²T⁻³A⁻¹]</td></tr><tr><td>rms current I</td><td class=\"a\">A; [A]</td></tr><tr><td>Reactance X_L, X_C</td><td class=\"a\">Ω; [ML²T⁻³A⁻²]</td></tr><tr><td>Impedance Z</td><td class=\"a\">Ω; [ML²T⁻³A⁻²]</td></tr><tr><td>Resonant frequency ω₀</td><td class=\"a\">1/√LC; [T⁻¹]</td></tr><tr><td>Quality factor Q</td><td class=\"a\">ω₀L/R = 1/ω₀CR; dimensionless</td></tr><tr><td>Power factor</td><td class=\"a\">cos φ; dimensionless</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "points-to-ponder"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Correction: Exercise 7.1 says “A 100 W resistor”. What is meant?",
+      "definition": "<span style=\"color:#e5484d\">Typo</span>: a <span style=\"color:#3b82f6\">100 Ω</span> resistor (W is the unit of power, not resistance)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.1: 100 Ω resistor on 220 V, 50 Hz. (a) rms current (b) net power over a cycle?",
+      "definition": "(a) I = V/R = <span style=\"color:#f08c00\">2.20 A</span>. (b) P = V²/R = <span style=\"color:#f08c00\">484 W</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.2: (a) peak 300 V, rms? (b) rms 10 A, peak?",
+      "definition": "(a) 300/√2 = <span style=\"color:#f08c00\">212.1 V</span>. (b) 10√2 = <span style=\"color:#f08c00\">14.1 A</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.3: 44 mH inductor on 220 V, 50 Hz. rms current?",
+      "definition": "X_L = 2π × 50 × 0.044 = 13.8 Ω; I = 220/13.8 = <span style=\"color:#f08c00\">15.9 A</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.4: 60 μF capacitor on 110 V, 60 Hz. rms current?",
+      "definition": "X_C = 1/(2π × 60 × 60 × 10⁻⁶) = 44.2 Ω; I = 110/44.2 = <span style=\"color:#f08c00\">2.49 A</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.5: net power absorbed in Exercises 7.3 and 7.4 over a cycle?",
+      "definition": "<span style=\"color:#f08c00\">Zero</span> in each: pure L and C have φ = 90°, so cos φ = 0 (energy stored and returned)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.6: charged 30 μF capacitor joined to a 27 mH inductor. Angular frequency of free oscillations?",
+      "definition": "ω = 1/√(LC) = 1/√(27 × 10⁻³ × 30 × 10⁻⁶) = <span style=\"color:#f08c00\">1.1 × 10³ s⁻¹</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.7: R = 20 Ω, L = 1.5 H, C = 35 μF, 200 V supply at the natural frequency. Average power?",
+      "definition": "At resonance Z = R, so P = V²/R = 200²/20 = <span style=\"color:#f08c00\">2000 W</span>",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Resonating series LCR circuit (Exercise 7.8)",
+      "definition": "ω₀ = 50 rad/s, Z = 40 Ω, i_m = 8.1 A, V_L = V_C = 1437.5 V, V_R = 230 V",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 7.8 · resonating LCR</p><h2>Find the missing step.</h2><div class=\"prob\">L = 5.0 H, C = 80 μF, R = 40 Ω, 230 V source. (a) ω₀ (b) Z and current amplitude (c) rms voltage across each element.</div><ol><li>ω₀ = 1/√(LC) = 1/√(5 × 80 × 10⁻⁶) = <b>50 rad/s</b></li><li>Z = R = <b>40 Ω</b>; i_m = √2 × 230/40 = <b>8.1 A</b></li><li>I_rms = 230/40 = 5.75 A; X_L = X_C = 250 Ω</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Exercise 7.8 · resonating LCR</p><h2>Find the missing step.</h2><div class=\"prob\">L = 5.0 H, C = 80 μF, R = 40 Ω, 230 V source. (a) ω₀ (b) Z and current amplitude (c) rms voltage across each element.</div><ol><li>ω₀ = 1/√(LC) = 1/√(5 × 80 × 10⁻⁶) = <b>50 rad/s</b></li><li>Z = R = <b>40 Ω</b>; i_m = √2 × 230/40 = <b>8.1 A</b></li><li>I_rms = 230/40 = 5.75 A; X_L = X_C = 250 Ω</li><li class=\"r\">V_L = V_C = 5.75 × 250 = <b>1437.5 V</b>, V_R = <b>230 V</b>; V_L − V_C = 0</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Exercise 7.8: how can V_L = 1437.5 V exist with a 230 V source?",
+      "definition": "V_L and V_C are <span style=\"color:#3b82f6\">180° out of phase</span> and cancel exactly; each is Q times the source (Q = 6.25)",
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "exercises"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 7 formula sheet",
+      "definition": "rms current, voltage: I = i_m/√2, V = v_m/√2; Average power (resistor): P = I²R = IV; Inductive reactance: X_L = ωL; Capacitive reactance: X_C = 1/ωC; Impedance (LCR): Z = √(R² + (X_L − X_C)²); Phase angle: tan φ = (X_C − X_L)/R; Resonant frequency: ω₀ = 1/√LC; Average power: P = VI cos φ; Quality factor: Q = ω₀L/R = 1/ω₀CR; Transformer: V_s/V_p = N_s/N_p = I_p/I_s",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>rms current, voltage</td><td class=\"q\">?</td></tr><tr><td>Average power (resistor)</td><td class=\"q\">?</td></tr><tr><td>Inductive reactance</td><td class=\"q\">?</td></tr><tr><td>Capacitive reactance</td><td class=\"q\">?</td></tr><tr><td>Impedance (LCR)</td><td class=\"q\">?</td></tr><tr><td>Phase angle</td><td class=\"q\">?</td></tr><tr><td>Resonant frequency</td><td class=\"q\">?</td></tr><tr><td>Average power</td><td class=\"q\">?</td></tr><tr><td>Quality factor</td><td class=\"q\">?</td></tr><tr><td>Transformer</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Summary</p><h2>Formula?</h2><table><tr><td>rms current, voltage</td><td class=\"a\">I = i_m/√2, V = v_m/√2</td></tr><tr><td>Average power (resistor)</td><td class=\"a\">P = I²R = IV</td></tr><tr><td>Inductive reactance</td><td class=\"a\">X_L = ωL</td></tr><tr><td>Capacitive reactance</td><td class=\"a\">X_C = 1/ωC</td></tr><tr><td>Impedance (LCR)</td><td class=\"a\">Z = √(R² + (X_L − X_C)²)</td></tr><tr><td>Phase angle</td><td class=\"a\">tan φ = (X_C − X_L)/R</td></tr><tr><td>Resonant frequency</td><td class=\"a\">ω₀ = 1/√LC</td></tr><tr><td>Average power</td><td class=\"a\">P = VI cos φ</td></tr><tr><td>Quality factor</td><td class=\"a\">Q = ω₀L/R = 1/ω₀CR</td></tr><tr><td>Transformer</td><td class=\"a\">V_s/V_p = N_s/N_p = I_p/I_s</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "summary"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Chapter 7 concept checks",
+      "definition": "Average ac current over a full cycle is 0.707 i_m: False (it is 0; rms is 0.707 i_m); In a pure inductor, current leads voltage: False (lags by π/2); A pure capacitor dissipates no average power: True; Resonance can occur in an RL circuit: False (needs L and C); Power factor is 1 at resonance: True; A transformer works on dc: False",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>Average ac current over a full cycle is 0.707 i_m</td><td class=\"q\">?</td></tr><tr><td>In a pure inductor, current leads voltage</td><td class=\"q\">?</td></tr><tr><td>A pure capacitor dissipates no average power</td><td class=\"q\">?</td></tr><tr><td>Resonance can occur in an RL circuit</td><td class=\"q\">?</td></tr><tr><td>Power factor is 1 at resonance</td><td class=\"q\">?</td></tr><tr><td>A transformer works on dc</td><td class=\"q\">?</td></tr></table></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Concept checks</p><h2>True or false?</h2><table><tr><td>Average ac current over a full cycle is 0.707 i_m</td><td class=\"a no\">False (it is 0; rms is 0.707 i_m)</td></tr><tr><td>In a pure inductor, current leads voltage</td><td class=\"a no\">False (lags by π/2)</td></tr><tr><td>A pure capacitor dissipates no average power</td><td class=\"a\">True</td></tr><tr><td>Resonance can occur in an RL circuit</td><td class=\"a no\">False (needs L and C)</td></tr><tr><td>Power factor is 1 at resonance</td><td class=\"a\">True</td></tr><tr><td>A transformer works on dc</td><td class=\"a no\">False</td></tr></table></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n"
+      },
+      "tags": [
+        "class-12",
+        "physics",
+        "ch-7",
+        "summary"
+      ]
+    }
+  ]
+}
