@@ -745,7 +745,7 @@ PAPER = BASE + """
 """
 
 PAPER_ARROWS = ('<defs>'
-                + ''.join(f'<marker id="{i}" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">'
+                + ''.join(f'<marker id="{i}" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">'
                           f'<path d="M0 0 L8 4 L0 8 Z" fill="{c}"></path></marker>'
                           for i, c in [('pk', '#1f2430'), ('pb', '#1d5fd6'), ('pr', '#c93b3f'), ('pg', '#1f8a4c'), ('po', '#c77700')])
                 + '</defs>')

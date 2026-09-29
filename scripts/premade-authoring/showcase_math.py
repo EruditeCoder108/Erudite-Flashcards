@@ -255,3 +255,241 @@ def inclusion_exclusion3(deck):
           'n(A ∪ B ∪ C) by inclusion–exclusion',
           'n(A∪B∪C) = n(A)+n(B)+n(C) − n(A∩B) − n(B∩C) − n(A∩C) + n(A∩B∩C); each region ends up counted once',
           css=css, vb='0 0 300 290', hint='Track how many times the middle region is counted.', front_only=front)
+
+
+# ================================================================ Maths 11 Ch 2 Relations and functions
+def _plane(xmin, xmax, ymin, ymax, pad=(26, 12, 14, 22), h=190):
+    return Plane(xmin, xmax, ymin, ymax, 300, h, pad)
+
+
+def cartesian_grid(deck):
+    P = _plane(0, 5, 0, 5, pad=(28, 14, 14, 26), h=200)
+    xt = [(v, str(v)) for v in range(1, 5)]
+    base = P.axes(xt, xt, grid=True, xl='first', yl='second')
+    ab = [(1, 3), (1, 4), (2, 3), (2, 4), (3, 3), (3, 4)]
+    ba = [(3, 1), (3, 2), (3, 3), (4, 1), (4, 2), (4, 3)]
+    dots_ab = ''.join(P.dot(x, y, 'd1s', 5.5) for x, y in ab)
+    lab_ab = ''.join(P.text(x, y, f'({x},{y})', 't1', 'middle', dy=-9) for x, y in ab if (x, y) != (3, 3))
+    back = ''.join(P.dot(x, y, 'd2s', 5.5, 'fx d2') for x, y in ba if (x, y) != (3, 3))
+    back += ''.join(P.text(x, y, f'({x},{y})', 't2', 'middle', dy=-9, extra='fx d3') for x, y in ba if (x, y) != (3, 3) and x == 4 or (x, y) in [(3, 1), (3, 2)])
+    back += P.hole(3, 3, 'c4', 7.5) + P.text(3, 3, '(3,3)', 't4', 'middle', dy=-11)
+    mcard(deck, 'Cartesian product · order matters',
+          'A = {1, 2, 3}, B = {3, 4}. Plot A × B (blue). Where would B × A fall, and how many points do they share?',
+          base + dots_ab + lab_ab, back,
+          '<p>A × B (blue) and B × A (red): 6 points each, but only <b>(3, 3)</b> is common.</p>'
+          '<p>So <b>A × B ≠ B × A</b> unless A = B (or one is empty). Same count, different points.</p>',
+          'A × B vs B × A on the plane: only (3,3) is common',
+          'A×B ≠ B×A in general: with A={1,2,3}, B={3,4} both have 6 points but share only (3,3); n(A×B) = n(B×A) = 6',
+          vb='0 0 300 200', hint='Swap the coordinates of every point.')
+
+
+def arrow_diagrams(deck):
+    def panel(ox, oy, arrows, nl=3, nr=3, cls='c0', tag=''):
+        o = f'<g transform="translate({ox},{oy})">'
+        ly = lambda i, n: 14 + i * (72 / max(n - 1, 1)) if n > 1 else 50
+        o += '<ellipse class="ghost" cx="22" cy="50" rx="16" ry="46"></ellipse><ellipse class="ghost" cx="98" cy="50" rx="16" ry="46"></ellipse>'
+        for i in range(nl):
+            o += f'<circle class="d0s" cx="22" cy="{ly(i, nl)}" r="3.5"></circle><text class="sm" x="6" y="{ly(i, nl) + 4}" text-anchor="end">{i + 1}</text>'
+        for j in range(nr):
+            o += f'<circle class="d0s" cx="98" cy="{ly(j, nr)}" r="3.5"></circle><text class="sm" x="114" y="{ly(j, nr) + 4}">{"abc"[j]}</text>'
+        for (i, j) in arrows:
+            o += f'<line class="{cls}" x1="26" y1="{ly(i, nl)}" x2="93" y2="{ly(j, nr)}" marker-end="url(#pk)"></line>'
+        return o + '</g>'
+    panels = [
+        (10, 6, [(0, 0), (1, 1), (2, 1)]),
+        (160, 6, [(0, 0), (0, 1), (1, 2)]),
+        (10, 138, [(0, 0), (1, 1)]),
+        (160, 138, [(0, 0), (1, 1), (2, 2)]),
+    ]
+    base = ''.join(panel(ox, oy, arr) for ox, oy, arr in panels)
+    marks = [(10, 6, 'ok', 'many → one is fine'), (160, 6, 'no', '1 has two images'), (10, 138, 'no', '3 has no image'), (160, 138, 'ok', 'one → one')]
+    back = ''
+    for k, (ox, oy, kind, why) in enumerate(marks):
+        back += (f'<text class="{"t3" if kind == "ok" else "t2"} fx d{k + 1}" x="{ox + 60}" y="{oy + 116}" text-anchor="middle">'
+                 f'{"✓ function" if kind == "ok" else "✗ not a function"}</text>'
+                 f'<text class="sm fx d{k + 1}" x="{ox + 60}" y="{oy + 128}" text-anchor="middle">{why}</text>')
+    labels = ''.join(f'<text class="lbi" x="{ox + 2}" y="{oy + 8}">({"abcd"[k]})</text>' for k, (ox, oy, _) in enumerate(panels))
+    mcard(deck, 'Functions · arrow diagrams', 'Which of these arrow diagrams (left set → right set) are functions?', base + labels, back,
+          '<p><b>Every</b> element of the left set needs <b>exactly one</b> arrow.</p>'
+          '<p>(b) fails: two arrows from one element. (c) fails: an element with no arrow. Two elements sharing one image (a) is allowed. An unused element on the right is allowed too.</p>',
+          'Which arrow diagrams are functions?', '(a) function (many-to-one allowed); (b) not: 1 has two images; (c) not: 3 has no image; (d) function',
+          vb='0 0 300 288', hint='Check each left-hand element.')
+
+
+def vertical_line_test(deck):
+    P1 = Plane(-3, 3, -1.2, 5.5, 300, 190, (16, 10, 10, 16))
+    left = (P1.axes(labels=False) + P1.curve(lambda x: x * x, 'c1', -2.3, 2.3))
+    P2 = Plane(-1.2, 5.5, -3, 3, 300, 190, (16, 10, 10, 16))
+    # sideways parabola x = y^2 drawn point by point
+    pts = ' '.join(f'{P2.X(t * t):.1f},{P2.Y(t):.1f}' for t in [i / 20 * 2.3 - 2.3 + 0 for i in range(0, 41)])
+    right = P2.axes(labels=False) + f'<polyline class="c1" points="{pts}"></polyline>'
+    base = (f'<g transform="translate(0,4) scale(.5)">{left}</g><g transform="translate(150,4) scale(.5)">{right}</g>'
+            '<text class="lbl" x="75" y="122" text-anchor="middle">(a) y = x²</text><text class="lbl" x="225" y="122" text-anchor="middle">(b) x = y²</text>')
+    # vertical line sweeping across each panel (one hit on a, two on b)
+    sweep_a = f'<g transform="translate(0,4) scale(.5)"><line class="c2 sw" x1="{P1.X(0):.1f}" y1="{P1.Y(5.5):.1f}" x2="{P1.X(0):.1f}" y2="{P1.Y(-1.2):.1f}"></line></g>'
+    xb = P2.X(2.2)
+    sweep_b = f'<g transform="translate(150,4) scale(.5)"><line class="c2 sw" x1="{xb:.1f}" y1="{P2.Y(3):.1f}" x2="{xb:.1f}" y2="{P2.Y(-3):.1f}"></line></g>'
+    hits_b = (f'<g transform="translate(150,4) scale(.5)"><circle class="d2s" cx="{xb:.1f}" cy="{P2.Y(math.sqrt(2.2)):.1f}" r="6"></circle>'
+              f'<circle class="d2s" cx="{xb:.1f}" cy="{P2.Y(-math.sqrt(2.2)):.1f}" r="6"></circle></g>')
+    back = ('<text class="t3 fx d2" x="75" y="140" text-anchor="middle">✓ function</text><text class="sm fx d2" x="75" y="154" text-anchor="middle">each vertical line hits once</text>'
+            '<text class="t2 fx d3" x="225" y="140" text-anchor="middle">✗ not a function</text><text class="sm fx d3" x="225" y="154" text-anchor="middle">a vertical line hits twice</text>'
+            + hits_b.replace('class="d2s"', 'class="d2s fx d3"'))
+    css = '.pp .sw{animation:swp 3.6s ease-in-out .3s infinite alternate both}@keyframes swp{from{transform:translateX(-52px)}to{transform:translateX(52px)}}'
+    mcard(deck, 'Functions · vertical line test', 'Which curve is the graph of a function y = f(x)?', base, back,
+          '<p><b>Vertical line test:</b> a curve is a function’s graph if every vertical line cuts it <b>at most once</b>.</p>'
+          '<p>x = y² gives two y-values (±√x) for one x, so it fails.</p>',
+          'Vertical line test: y = x² passes, x = y² fails',
+          'Vertical line test: a curve is a function of x if each vertical line meets it at most once; y=x² passes, x=y² fails (two y for one x)',
+          css=css, vb='0 0 300 180', front_only=sweep_a + sweep_b, hint='Imagine a vertical line sliding left to right.')
+
+
+def graph_id(deck, fn, x_rng, y_rng, name, dom, rng, note, term, cls_pad=(26, 12, 14, 22), xt=None, yt=None, clip=None, asym=False):
+    P = Plane(x_rng[0], x_rng[1], y_rng[0], y_rng[1], 300, 190, cls_pad)
+    xt = xt if xt is not None else [(v, str(v)) for v in range(int(x_rng[0]) + 1, int(x_rng[1])) if v]
+    yt = yt if yt is not None else [(v, str(v)) for v in range(int(y_rng[0]) + 1, int(y_rng[1])) if v]
+    base = P.axes(xt, yt, grid=True) + P.curve(fn, 'c1', clip=clip)
+    back = ''
+    if asym:
+        back += P.line(0, y_rng[0], 0, y_rng[1], 'guide') + P.line(x_rng[0], 0, x_rng[1], 0, 'guide')
+        back = back.replace('class="guide"', 'class="guide fx d2"')
+    mcard(deck, 'Standard graphs · name it', 'Name this function. What are its domain and range?', base, back,
+          f'<p><b>{name}</b></p><p>Domain: <b>{dom}</b> &nbsp; Range: <b>{rng}</b></p><p>{note}</p>', term,
+          f'{name}; domain {dom}; range {rng}. {note}', vb='0 0 300 190', hint='Read the shape, then the extent along each axis.')
+
+
+def standard_graphs(deck):
+    graph_id(deck, lambda x: x, (-4, 4), (-4, 4), 'Identity  f(x) = x', 'R', 'R',
+             'A straight line through the origin at 45°; every input is its own output.', 'Graph: identity function y = x')
+    graph_id(deck, lambda x: 3, (-4, 4), (-1, 5), 'Constant  f(x) = 3', 'R', '{3}',
+             'A horizontal line: one output value only, so the range is a single point.', 'Graph: constant function',
+             xt=[(v, str(v)) for v in (-3, -2, -1, 1, 2, 3)], yt=[(v, str(v)) for v in (1, 2, 3, 4)])
+    graph_id(deck, lambda x: x * x, (-3, 3), (-1, 9), 'Square  f(x) = x²', 'R', '[0, ∞)',
+             'Parabola opening up, symmetric about the y-axis (even function). Never below 0.', 'Graph: y = x²',
+             xt=[(v, str(v)) for v in (-2, -1, 1, 2)], yt=[(v, str(v)) for v in (2, 4, 6, 8)])
+    graph_id(deck, lambda x: x ** 3, (-2.2, 2.2), (-9, 9), 'Cube  f(x) = x³', 'R', 'R',
+             'Odd function: symmetric about the origin; rises from bottom-left to top-right, flat at 0.', 'Graph: y = x³',
+             xt=[(v, str(v)) for v in (-2, -1, 1, 2)], yt=[(v, str(v)) for v in (-8, -4, 4, 8)])
+    graph_id(deck, lambda x: 1 / x, (-4, 4), (-4, 4), 'Reciprocal  f(x) = 1/x', 'R − {0}', 'R − {0}',
+             'Two branches; the axes are asymptotes: x = 0 is not allowed and y = 0 is never reached. Odd function.', 'Graph: y = 1/x',
+             clip=(-4, 4), asym=True)
+    graph_id(deck, lambda x: abs(x), (-4, 4), (-1, 4), 'Modulus  f(x) = |x|', 'R', '[0, ∞)',
+             'A V with vertex at the origin; the negative half of y = x is reflected upward. Even function.', 'Graph: modulus function',
+             xt=[(v, str(v)) for v in (-3, -2, -1, 1, 2, 3)], yt=[(v, str(v)) for v in (1, 2, 3)])
+
+
+def modulus_flip(deck):
+    P = Plane(-4, 4, -4, 4, 300, 190, (26, 12, 14, 22))
+    xt = [(v, str(v)) for v in (-3, -2, -1, 1, 2, 3)]
+    yt = [(v, str(v)) for v in (-3, -2, -1, 1, 2, 3)]
+    y0 = P.Y(0)
+    base = P.axes(xt, yt, grid=True) + P.curve(lambda x: x, 'c1', 0, 4)
+    left = P.curve(lambda x: x, 'c2 flip', -4, 0)
+    css = (f'.pp .flip{{transform-box:view-box;transform-origin:0px {y0:.1f}px;animation:flp 2.4s ease-in-out .5s both}}'
+           '@keyframes flp{from{transform:scaleY(1)}to{transform:scaleY(-1)}}')
+    ghost = P.curve(lambda x: x, 'ghost', -4, 0)
+    back = ghost + left + '<text class="t2 fx d3" x="196" y="150">negative half flips up ↑</text>'
+    mcard(deck, 'Modulus · intuition', 'Start from y = x. What does taking |x| do to the part where x < 0?', base, back,
+          '<p><b>|x|</b> keeps the x ≥ 0 part and <b>reflects the x &lt; 0 part in the x-axis</b>.</p>'
+          '<p>Output is never negative → range [0, ∞). In general y = |f(x)| flips every below-axis part of y = f(x) upward.</p>',
+          'y = |x| by reflecting y = x', 'Taking modulus reflects the part of the graph below the x-axis upward; |x| turns y = x into a V; range [0, ∞)',
+          css=css, hint='Which half of the line is below the x-axis?', front_only=P.curve(lambda x: x, 'c1', -4, 0))
+
+
+def greatest_integer_graph(deck):
+    P = Plane(-3, 4, -3.5, 4.5, 300, 200, (26, 12, 14, 22))
+    xt = [(v, str(v)) for v in (-2, -1, 1, 2, 3)]
+    yt = [(v, str(v)) for v in (-3, -2, -1, 1, 2, 3, 4)]
+    base = P.axes(xt, yt, grid=True)
+    back = ''
+    for k, n in enumerate(range(-3, 4)):
+        d = min(k // 2 + 1, 6)
+        back += (P.line(n, n, n + 1, n, 'c1').replace('class="c1"', f'class="c1 fx d{d}"') +
+                 P.dot(n, n, 'd1s', 4.2, f'fx d{d}') + P.hole(n + 1, n, 'c1', 4.2).replace('class="f0 c1"', f'class="f0 c1 fx d{d}"'))
+    mcard(deck, 'Greatest integer function', 'Sketch y = [x] (greatest integer ≤ x). What are [2.7], [−2.7] and [3]?', base, back,
+          '<p>[2.7] = <b>2</b>, [3] = <b>3</b>, [−2.7] = <b>−3</b> (greatest integer not exceeding −2.7 is −3, <span class="no">not −2</span>).</p>'
+          '<p>Steps: [x] = n for n ≤ x &lt; n + 1: <b>closed dot on the left, open on the right</b>. Range = Z.</p>',
+          'Graph of the greatest integer function [x]',
+          '[x] = n for n ≤ x < n+1: step graph, closed dot left end, open dot right end; domain R, range Z; [2.7]=2, [−2.7]=−3',
+          vb='0 0 300 200', hint='For each interval [n, n+1), what is [x]?')
+
+
+def signum_graph(deck):
+    P = Plane(-4, 4, -2.5, 2.5, 300, 170, (26, 12, 14, 22))
+    xt = [(v, str(v)) for v in (-3, -2, -1, 1, 2, 3)]
+    yt = [(-1, '−1'), (1, '1')]
+    base = P.axes(xt, yt, grid=True)
+    back = (P.line(0, 1, 4, 1, 'c1 fx d2') + P.hole(0, 1, 'c1', 4.5).replace('class="f0 c1"', 'class="f0 c1 fx d2"') +
+            P.line(-4, -1, 0, -1, 'c2 fx d3') + P.hole(0, -1, 'c2', 4.5).replace('class="f0 c2"', 'class="f0 c2 fx d3"') +
+            P.dot(0, 0, 'd0s', 4.5, 'fx d4') +
+            P.text(2, 1, 'x > 0 → 1', 't1 fx d2', 'middle', dy=-9) + P.text(-2, -1, 'x < 0 → −1', 't2 fx d3', 'middle', dy=16) +
+            P.text(0.15, 0, 'f(0) = 0', 'lbl fx d4', dx=6, dy=-8))
+    mcard(deck, 'Signum function', 'Sketch the signum function f(x) = 1 (x > 0), 0 (x = 0), −1 (x < 0). Domain and range?', base, back,
+          '<p>Domain <b>R</b>; range <b>{−1, 0, 1}</b> (only three values).</p><p>It records only the <b>sign</b> of x. Note sgn(x) = x/|x| for x ≠ 0.</p>',
+          'Graph of the signum function', 'Signum: 1 for x>0, 0 at 0, −1 for x<0; domain R, range {−1,0,1}; sgn(x) = x/|x| for x≠0',
+          vb='0 0 300 170', hint='Two rays with open ends, and one isolated point.')
+
+
+def shift_parabola(deck):
+    P = Plane(-3, 5, -1.5, 7, 300, 200, (26, 12, 14, 22))
+    xt = [(v, str(v)) for v in (-2, -1, 1, 2, 3, 4)]
+    yt = [(v, str(v)) for v in (2, 4, 6)]
+    base = P.axes(xt, yt, grid=True) + P.curve(lambda x: x * x, 'c1', -2.6, 2.6)
+    dx, dy = P.X(2) - P.X(0), P.Y(1) - P.Y(0)
+    css = (f'.pp .slide{{animation:shp 2.4s ease-in-out .6s both}}@keyframes shp{{from{{transform:translate(0,0)}}to{{transform:translate({dx:.1f}px,{dy:.1f}px)}}}}')
+    moved = P.curve(lambda x: x * x, 'c2 slide', -2.6, 2.6)
+    back = (moved + P.dot(2, 1, 'd2s', 4.5, 'fx d5') + P.text(2, 1, 'vertex (2, 1)', 't2 fx d5', 'middle', dy=22))
+    mcard(deck, 'Graph shifts · intuition', 'Given the graph of y = x² (blue), sketch y = (x − 2)² + 1.', base, back,
+          '<p><b>y = f(x − h) + k</b> slides the graph <b>h right</b> and <b>k up</b>.</p>'
+          '<p>Trap: f(x − 2) moves right, not left: the input must be 2 larger to get the same output.</p>',
+          'Shift y = x² to y = (x−2)² + 1', 'y = f(x−h)+k shifts the graph h units right and k units up; (x−2)²+1 has vertex (2,1)',
+          css=css, hint='Where does the vertex go?')
+
+
+def piecewise_v(deck):
+    P = Plane(-4, 4, -1, 5.5, 300, 190, (26, 12, 14, 22))
+    xt = [(v, str(v)) for v in (-3, -2, -1, 1, 2, 3)]
+    yt = [(v, str(v)) for v in (1, 2, 3, 4, 5)]
+    base = P.axes(xt, yt, grid=True)
+    back = (P.curve(lambda x: 1 - x, 'c2 fx d2', -4, 0) + P.curve(lambda x: 1 + x, 'c1 fx d3', 0, 4) +
+            P.dot(0, 1, 'd0s', 4.5, 'fx d4') + P.text(0, 1, '(0, 1)', 'lbl fx d4', dx=8, dy=16) +
+            P.text(-2.6, 3.6, '1 − x', 't2 fx d2', 'middle', dx=-20, dy=-4) + P.text(2.6, 3.6, 'x + 1', 't1 fx d3', 'middle', dx=20, dy=-4))
+    mcard(deck, 'Piecewise functions (Ex. 22)', 'Sketch f(x) = 1 − x for x < 0, f(0) = 1, f(x) = x + 1 for x > 0. What single formula is it?', base, back,
+          '<p>Both pieces meet at (0, 1), giving a V: <b>f(x) = |x| + 1</b>.</p>'
+          '<p>Method for piecewise graphs: plot each piece on its own interval, then check the join points (open or closed dot).</p>',
+          'Ex 22: piecewise graph is |x| + 1', 'f(x)=1−x (x<0), 1 (x=0), x+1 (x>0) is the graph of |x|+1, a V with vertex (0,1)',
+          hint='Evaluate each piece near x = 0.')
+
+
+def sum_of_graphs(deck):
+    P = Plane(-3, 3, -3.5, 6.5, 300, 200, (26, 12, 14, 22))
+    xt = [(v, str(v)) for v in (-2, -1, 1, 2)]
+    yt = [(v, str(v)) for v in (-2, 2, 4, 6)]
+    base = P.axes(xt, yt, grid=True) + P.curve(lambda x: x, 'c1', -3, 3) + P.curve(lambda x: abs(x), 'c2', -3, 3)
+    back = (P.curve(lambda x: x + abs(x), 'c3 fx d2', -3, 3) +
+            P.line(2, 2, 2, 4, 'guide fx d3') + P.dot(2, 4, 'd3s', 4.5, 'fx d3') + P.text(2, 4, '2 + 2 = 4', 't3 fx d3', dx=-8, dy=-8, anchor='end') +
+            P.text(-2.9, 6.1, 'f + g: 0 for x &lt; 0, 2x for x ≥ 0', 't3 fx d4', dy=0))
+    mcard(deck, 'Algebra of functions', 'f(x) = x (blue) and g(x) = |x| (red). Sketch (f + g)(x) by adding heights.', base, back,
+          '<p><b>(f + g)(x) = f(x) + g(x)</b>: add the two heights at each x.</p>'
+          '<p>For x ≥ 0: x + x = <b>2x</b>. For x &lt; 0: x + (−x) = <b>0</b>.</p>',
+          '(f+g)(x) for f = x, g = |x|', '(f+g)(x)=f(x)+g(x) pointwise; for f=x, g=|x|: 2x when x≥0 and 0 when x<0',
+          hint='Read f and g at x = 2, then at x = −2.')
+
+
+def relation_arrow(deck):
+    ly = lambda i: 18 + i * 28
+    o = '<ellipse class="ghost" cx="80" cy="102" rx="34" ry="96"></ellipse><ellipse class="ghost" cx="220" cy="102" rx="34" ry="96"></ellipse>'
+    o += '<text class="lbi" x="80" y="10" text-anchor="middle">A</text><text class="lbi" x="220" y="10" text-anchor="middle">A (codomain)</text>'
+    for i in range(6):
+        o += (f'<circle class="d0s" cx="80" cy="{ly(i)}" r="4"></circle><text class="lbl" x="60" y="{ly(i) + 4}" text-anchor="end">{i + 1}</text>'
+              f'<circle class="d0s" cx="220" cy="{ly(i)}" r="4"></circle><text class="lbl" x="240" y="{ly(i) + 4}">{i + 1}</text>')
+    back = ''
+    for i in range(5):
+        back += (f'<line class="c1 fx d{min(i // 2 + 1, 4)}" x1="85" y1="{ly(i)}" x2="215" y2="{ly(i + 1)}" marker-end="url(#pb)"></line>')
+    back += ('<text class="t2 fx d5" x="80" y="196" text-anchor="middle">6 has no image</text>'
+             '<text class="t3 fx d5" x="220" y="196" text-anchor="middle">1 is not an image</text>')
+    mcard(deck, 'Relations · domain, range, codomain', 'A = {1, …, 6}, R = {(x, y) : y = x + 1} from A to A. Draw it; find domain, range, codomain.', o, back,
+          '<p>Domain = <b>{1, 2, 3, 4, 5}</b> (first elements). Range = <b>{2, 3, 4, 5, 6}</b> (second elements). Codomain = <b>{1, …, 6}</b> (the whole target set).</p>'
+          '<p>Range ⊂ codomain. Because 6 has no arrow, this R is <b>not a function</b>.</p>',
+          'Arrow diagram of y = x + 1 on {1..6}: domain, range, codomain',
+          'R={(1,2),(2,3),(3,4),(4,5),(5,6)}: domain {1..5}, range {2..6}, codomain {1..6}; not a function since 6 has no image',
+          vb='0 0 300 204', hint='Domain = starts of arrows. Range = ends of arrows.')
