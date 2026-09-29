@@ -2138,3 +2138,101 @@ def inverse_2x2(deck):
           'Inverse of a 2 × 2 matrix',
           'A^-1 = 1/(ad-bc) [[d,-b],[-c,a]]: swap diagonal, negate off-diagonal, divide by determinant; needs ad-bc != 0',
           vb='0 0 300 216', hint='Swap the diagonal, flip the other two signs.')
+
+
+# ================================================================ Maths 12 Ch 4 Determinants
+def det_area_morph(deck):
+    """Unit square is carried by A = [[3, 1], [1, 2]] to a parallelogram of area |det A| = 5."""
+    P, h = eqplane(-0.8, 4.6, -0.8, 3.6, pad=(10, 8, 8, 10))
+    ox, oy = P.X(0), P.Y(0)
+    a, b, c, d = 3, 1, 1, 2
+    base = P.axes(labels=False) + P.poly([(0, 0), (1, 0), (1, 1), (0, 1)], 'f1')
+    base += vec(P, 0, 0, 1, 0, 'c1') + vec(P, 0, 0, 0, 1, 'c3') + P.text(1, 0, 'e₁', 't1', dx=4, dy=14) + P.text(0, 1, 'e₂', 't3', dx=-14, dy=4)
+    tr = f'matrix({a},{-c},{-b},{d},0,0)'
+    css = (f'.pp .mo{{transform-box:view-box;transform-origin:{ox:.1f}px {oy:.1f}px;animation:mo 4s ease-in-out .3s infinite alternate both}}'
+           f'@keyframes mo{{from{{transform:matrix(1,0,0,1,0,0)}}to{{transform:{tr}}}}}')
+    par = [(0, 0), (a, c), (a + b, c + d), (b, d)]
+    sq = " ".join(f"{P.X(x):.1f},{P.Y(y):.1f}" for x, y in [(0, 0), (1, 0), (1, 1), (0, 1)])
+    back = (f'<polygon class="mo f4" points="{sq}"></polygon>'
+            + vec(P, 0, 0, a, c, 'c1', 'fx d2') + vec(P, 0, 0, b, d, 'c3', 'fx d2')
+            + P.text(a, c, 'A e₁ = (3, 1)', 't1 fx d2', dx=6, dy=4) + P.text(b, d, 'A e₂ = (1, 2)', 't3 fx d2', dx=-6, dy=-6, anchor='end')
+            + P.text(2.0, 1.5, 'area 5', 't4 fx d3', anchor='middle'))
+    mcard(deck, 'Determinant as area', 'A = [[3, 1], [1, 2]] sends the unit square to a parallelogram. What is its area, and how does it relate to |A|?', base, back,
+          '<p>The columns of A are the images of e₁ = (1, 0) and e₂ = (0, 1): (3, 1) and (1, 2). The unit square becomes the parallelogram they span, with area <b>|ad − bc| = |3·2 − 1·1| = 5 = |A|</b>.</p>'
+          '<p>So <b>|det A| is the factor by which A scales areas</b>. If det A &lt; 0 the picture is also flipped (orientation reverses); if det A = 0 the square is squashed onto a line (no inverse).</p>',
+          'Determinant is the area scale factor',
+          '|det A| is the factor by which A scales areas (volumes in 3D); det A = 0 collapses the plane onto a line; sign of det gives orientation; unit square -> parallelogram of area |ad-bc|',
+          css=css, vb=f'0 0 300 {h}',
+          hint='Follow where the two unit vectors go.')
+
+
+def triangle_det_area(deck):
+    P, h = eqplane(-5.5, 6.5, -0.5, 9.5, pad=(10, 6, 8, 10))
+    pts = [(3, 8), (-4, 2), (5, 1)]
+    base = P.axes(labels=False) + P.poly(pts, 'f0')
+    for (x, y), lab in zip(pts, ['(3, 8)', '(−4, 2)', '(5, 1)']):
+        base += P.dot(x, y, 'd1s', 4.5) + P.text(x, y, lab, 't1', dx=8 if x > 0 else -8, dy=-6 if y > 5 else 14, anchor='start' if x > 0 else 'end')
+    back = P.poly(pts, 'f4 fx d2') + P.text(0.7, 3.8, 'Δ = 61/2', 't4 fx d3', anchor='middle')
+    mcard(deck, 'Area of a triangle', 'Find the area of the triangle with vertices (3, 8), (−4, 2) and (5, 1) using a determinant.', base, back,
+          '<p><b>Δ = ½ |x₁ y₁ 1; x₂ y₂ 1; x₃ y₃ 1|</b>. Expanding: ½ [3(2 − 1) − 8(−4 − 5) + 1(−4 − 10)] = ½ (3 + 72 − 14) = <b>61/2 square units</b>.</p>'
+          '<p>Take the absolute value for an area. If the area is given, use both ±. If the three points are collinear the determinant is 0.</p>',
+          'Area of a triangle from vertices by determinant',
+          'Area = 1/2 |det [x1 y1 1; x2 y2 1; x3 y3 1]|, absolute value; use +- when area is given; zero for collinear points; (3,8),(-4,2),(5,1) gives 61/2',
+          vb=f'0 0 300 {h}', hint='Put the coordinates in the determinant with a column of 1s.')
+
+
+def collinear_line(deck):
+    P, h = eqplane(-1.0, 7.0, -1.0, 7.0, pad=(10, 6, 8, 10))
+    s = 6.0
+    pts = [(1, 5), (2.5, 3.5), (4.5, 1.5)]
+    base = P.axes(labels=False) + ''.join(P.dot(x, y, 'd1s', 4.8) for x, y in pts)
+    base += P.text(1, 5, 'A(a, b + c)', 't1', dx=8, dy=-8) + P.text(2.5, 3.5, 'B(b, c + a)', 't1', dx=8, dy=-8) + P.text(4.5, 1.5, 'C(c, a + b)', 't1', dx=8, dy=-8)
+    back = P.line(-0.5, s + 0.5, s + 0.5, -0.5, 'c2 fx d2') + P.text(4.6, 6.4, 'x + y = a + b + c', 't2 fx d3', anchor='middle')
+    mcard(deck, 'Collinear points', 'Show that A(a, b + c), B(b, c + a), C(c, a + b) are collinear.', base, back,
+          '<p>The area determinant is ½ |a b+c 1; b c+a 1; c a+b 1|. Add column 1 to column 2: the second column becomes (a+b+c, a+b+c, a+b+c), a multiple of the third column, so the determinant is <b>0</b>.</p>'
+          '<p>Geometrically all three points satisfy <b>x + y = a + b + c</b>: they lie on one line. <b>Three points are collinear ⇔ the area determinant is 0.</b></p>',
+          'Collinearity test with a determinant',
+          'Three points are collinear iff |x1 y1 1; x2 y2 1; x3 y3 1| = 0; A(a,b+c), B(b,c+a), C(c,a+b) all lie on x+y=a+b+c',
+          vb=f'0 0 300 {h}', hint='What do x + y equal at each point?')
+
+
+def cofactor_minor(deck):
+    cw, ch, x0, y0 = 46, 34, 20, 44
+    grid = ''.join(f'<rect class="f0" x="{x0 + j * cw}" y="{y0 + i * ch}" width="{cw - 2}" height="{ch - 2}" rx="4"></rect>'
+                   f'<text class="lbi" x="{x0 + j * cw + cw / 2 - 1}" y="{y0 + i * ch + ch / 2 + 3}" text-anchor="middle">a{i + 1}{j + 1}</text>' for i in range(3) for j in range(3))
+    base = grid + '<text class="lbl" x="12" y="25">A = [aᵢⱼ], find the minor and cofactor of a₁₂</text>'
+    back = (f'<rect class="f2 fx d2" x="{x0}" y="{y0}" width="{3 * cw - 2}" height="{ch - 2}" rx="4"></rect><rect class="f2 fx d2" x="{x0 + cw}" y="{y0}" width="{cw - 2}" height="{3 * ch - 2}" rx="4"></rect>'
+            + ''.join(f'<rect class="f1 fx d3" x="{x0 + j * cw}" y="{y0 + i * ch}" width="{cw - 2}" height="{ch - 2}" rx="4"></rect>' for i in (1, 2) for j in (0, 2))
+            + '<text class="t2 fx d2" x="176" y="60">delete row 1, col 2</text><text class="t1 fx d3" x="176" y="82">M₁₂ = det of blue part</text>'
+            '<text class="t4 fx d4" x="176" y="106">A₁₂ = −M₁₂ (sign −)</text>'
+            '<text class="sm fx d4" x="176" y="128">sign pattern:</text><text class="lbl fx d4" x="176" y="146">+ − +</text><text class="lbl fx d4" x="176" y="162">− + −</text><text class="lbl fx d4" x="176" y="178">+ − +</text>')
+    mcard(deck, 'Minors and cofactors', 'For a 3 × 3 determinant, how do you find the minor and the cofactor of a₁₂?', base, back,
+          '<p><b>Minor Mᵢⱼ</b>: cross out row i and column j, and take the determinant of what remains (here a 2 × 2).</p>'
+          '<p><b>Cofactor Aᵢⱼ = (−1)ⁱ⁺ʲ Mᵢⱼ</b>: attach the checkerboard sign (+ at a₁₁, − at a₁₂, …). Then |A| = Σⱼ aᵢⱼ Aᵢⱼ along any row or column; but multiplying a row by the cofactors of <b>another</b> row gives 0.</p>',
+          'Minor and cofactor: delete row and column, then sign',
+          'Minor M_ij = determinant after deleting row i and column j; cofactor A_ij = (-1)^(i+j) M_ij; |A| = sum a_ij A_ij along any row or column; a row times another row cofactors = 0',
+          vb='0 0 300 200', hint='Delete the row and column of a₁₂.')
+
+
+def consistency_lines(deck):
+    def panel(ox, lines, cls, extra=''):
+        P = Plane(-3, 5, -2, 5, 100, 100, (4, 4, 4, 4))
+        s = f'<g transform="translate({ox},4)">' + P.axes(labels=False)
+        for (m, k), c in zip(lines, cls):
+            s += P.line(-3, m * -3 + k, 5, m * 5 + k, c + extra)
+        return s + '</g>'
+    # each system as y = m x + k
+    A = [(-0.5, 1), (-2 / 3, 1)]                # x+2y=2, 2x+3y=3
+    B = [(-1 / 3, 5 / 3), (-1 / 3, 4 / 3)]       # x+3y=5, 2x+6y=8
+    C = [(-1 / 3, 5 / 3), (-1 / 3, 5 / 3)]       # x+3y=5, 2x+6y=10
+    base = panel(0, A, ['c1', 'c2']) + panel(100, B, ['c1', 'c2']) + panel(200, C, ['c1', 'c2'])
+    base += ''.join(f'<text class="lbi" x="{x}" y="118" text-anchor="middle">({l})</text>' for x, l in [(50, 'a'), (150, 'b'), (250, 'c')])
+    back = ('<text class="t3 fx d2" x="50" y="134" text-anchor="middle">|A| ≠ 0</text><text class="sm fx d2" x="50" y="148" text-anchor="middle">unique solution</text>'
+            '<text class="t2 fx d3" x="150" y="134" text-anchor="middle">|A| = 0</text><text class="t2 fx d3" x="150" y="148" text-anchor="middle">(adj A)B ≠ O</text><text class="sm fx d3" x="150" y="162" text-anchor="middle">no solution</text>'
+            '<text class="t4 fx d4" x="250" y="134" text-anchor="middle">|A| = 0</text><text class="t4 fx d4" x="250" y="148" text-anchor="middle">(adj A)B = O</text><text class="sm fx d4" x="250" y="162" text-anchor="middle">infinitely many</text>')
+    mcard(deck, 'Consistency of linear systems', 'Match the tests “|A| ≠ 0”, “|A| = 0 and (adj A)B ≠ O”, “|A| = 0 and (adj A)B = O” with these three pairs of lines.', base, back,
+          '<p>(a) x + 2y = 2 and 2x + 3y = 3 meet at one point: <b>consistent, unique</b> (|A| = −1 ≠ 0). (b) x + 3y = 5 and 2x + 6y = 8 are parallel: <b>inconsistent</b> (Ex 4.5 Q3). (c) The same line twice: <b>consistent with infinitely many solutions</b>.</p>'
+          '<p>In 3 variables the same test works: |A| ≠ 0 ⇒ unique solution X = A⁻¹B; |A| = 0 ⇒ compute (adj A)B.</p>',
+          'Consistency test: |A| and (adj A)B',
+          'AX=B: |A|!=0 unique solution X = A^-1 B; |A|=0 and (adj A)B != O inconsistent (no solution); |A|=0 and (adj A)B = O: infinitely many solutions or none (check); lines intersect / parallel / coincide',
+          vb='0 0 300 172', hint='Unique, none, or infinitely many?')

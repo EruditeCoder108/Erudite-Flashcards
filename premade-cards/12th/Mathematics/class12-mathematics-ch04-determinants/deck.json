@@ -1,0 +1,1716 @@
+{
+  "version": 1,
+  "name": "Chapter 4: Determinants",
+  "className": "Class 12",
+  "description": "Determinants of order 2 and 3, area of a triangle, minors and cofactors, adjoint and inverse, solving linear systems, plus determinant properties and exam-style problems.",
+  "cards": [
+    {
+      "noteType": "basic",
+      "term": "What is the determinant of a square matrix?",
+      "definition": "A <span style=\"color:#3b82f6\">single number</span> attached to a square matrix A, written det A or |A|. It exists only for square matrices; |A| is a number, A is an array",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Determinant of a 1 × 1 and a 2 × 2 matrix?",
+      "definition": "|[a]| = <span style=\"color:#3b82f6\">a</span>. For A = [[a, b], [c, d]]: <span style=\"color:#3b82f6\">|A| = ad − bc</span> (main diagonal minus the other diagonal)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 1: evaluate |2 4; −1 2|. Ex 4.1 Q1: |2 4; −5 −1|.",
+      "definition": "2·2 − 4(−1) = <span style=\"color:#f08c00\">8</span>. For Ex 4.1 Q1: 2(−1) − 4(−5) = −2 + 20 = <span style=\"color:#f08c00\">18</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.1 Q2: evaluate (i) |cos θ −sin θ; sin θ cos θ| and (ii) |x² − x + 1, x − 1; x + 1, x + 1|.",
+      "definition": "(i) cos²θ + sin²θ = <span style=\"color:#f08c00\">1</span>. (ii) (x² − x + 1)(x + 1) − (x − 1)(x + 1) = (x³ + 1) − (x² − 1) = <span style=\"color:#f08c00\">x³ − x² + 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Determinant is the area scale factor",
+      "definition": "|det A| is the factor by which A scales areas (volumes in 3D); det A = 0 collapses the plane onto a line; sign of det gives orientation; unit square -> parallelogram of area |ad-bc|",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Determinant as area</p><h2>A = [[3, 1], [1, 2]] sends the unit square to a parallelogram. What is its area, and how does it relate to |A|?</h2><svg viewBox=\"0 0 300 248\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"196.0\" x2=\"292.0\" y2=\"196.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"51.8\" y1=\"237.8\" x2=\"51.8\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><polygon class=\"f1 \" points=\"51.8,196.0 104.0,196.0 104.0,143.8 51.8,143.8\"></polygon><line class=\"c1 \" x1=\"51.8\" y1=\"196.0\" x2=\"104.0\" y2=\"196.0\" marker-end=\"url(#pb)\"></line><line class=\"c3 \" x1=\"51.8\" y1=\"196.0\" x2=\"51.8\" y2=\"143.8\" marker-end=\"url(#pg)\"></line><text class=\"t1 \" x=\"108.0\" y=\"210.0\" text-anchor=\"start\">e₁</text><text class=\"t3 \" x=\"37.8\" y=\"147.8\" text-anchor=\"start\">e₂</text></svg><p class=\"hint\">Follow where the two unit vectors go.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Determinant as area</p><h2>A = [[3, 1], [1, 2]] sends the unit square to a parallelogram. What is its area, and how does it relate to |A|?</h2><svg viewBox=\"0 0 300 248\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"196.0\" x2=\"292.0\" y2=\"196.0\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"51.8\" y1=\"237.8\" x2=\"51.8\" y2=\"8.0\" marker-end=\"url(#pk)\"></line><polygon class=\"f1 \" points=\"51.8,196.0 104.0,196.0 104.0,143.8 51.8,143.8\"></polygon><line class=\"c1 \" x1=\"51.8\" y1=\"196.0\" x2=\"104.0\" y2=\"196.0\" marker-end=\"url(#pb)\"></line><line class=\"c3 \" x1=\"51.8\" y1=\"196.0\" x2=\"51.8\" y2=\"143.8\" marker-end=\"url(#pg)\"></line><text class=\"t1 \" x=\"108.0\" y=\"210.0\" text-anchor=\"start\">e₁</text><text class=\"t3 \" x=\"37.8\" y=\"147.8\" text-anchor=\"start\">e₂</text><polygon class=\"mo f4\" points=\"51.8,196.0 104.0,196.0 104.0,143.8 51.8,143.8\"></polygon><line class=\"c1 fx d2\" x1=\"51.8\" y1=\"196.0\" x2=\"208.4\" y2=\"143.8\" marker-end=\"url(#pb)\"></line><line class=\"c3 fx d2\" x1=\"51.8\" y1=\"196.0\" x2=\"104.0\" y2=\"91.6\" marker-end=\"url(#pg)\"></line><text class=\"t1 fx d2 \" x=\"214.4\" y=\"147.8\" text-anchor=\"start\">A e₁ = (3, 1)</text><text class=\"t3 fx d2 \" x=\"98.0\" y=\"85.6\" text-anchor=\"end\">A e₂ = (1, 2)</text><text class=\"t4 fx d3 \" x=\"156.2\" y=\"117.7\" text-anchor=\"middle\">area 5</text></svg><div class=\"eq fx d5\"><p>The columns of A are the images of e₁ = (1, 0) and e₂ = (0, 1): (3, 1) and (1, 2). The unit square becomes the parallelogram they span, with area <b>|ad − bc| = |3·2 − 1·1| = 5 = |A|</b>.</p><p>So <b>|det A| is the factor by which A scales areas</b>. If det A &lt; 0 the picture is also flipped (orientation reverses); if det A = 0 the square is squashed onto a line (no inverse).</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .mo{transform-box:view-box;transform-origin:51.8px 196.0px;animation:mo 4s ease-in-out .3s infinite alternate both}@keyframes mo{from{transform:matrix(1,0,0,1,0,0)}to{transform:matrix(3,-1,-1,2,0,0)}}",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n.pp .mo{transform-box:view-box;transform-origin:51.8px 196.0px;animation:mo 4s ease-in-out .3s infinite alternate both}@keyframes mo{from{transform:matrix(1,0,0,1,0,0)}to{transform:matrix(3,-1,-1,2,0,0)}}"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do you expand a 3 × 3 determinant along the first row?",
+      "definition": "|A| = a₁₁ |a₂₂ a₂₃; a₃₂ a₃₃| − a₁₂ |a₂₁ a₂₃; a₃₁ a₃₃| + a₁₃ |a₂₁ a₂₂; a₃₁ a₃₂|. Signs alternate + − +. You can expand along <span style=\"color:#3b82f6\">any row or column</span> with the sign pattern (−1)ⁱ⁺ʲ",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which row or column should you expand along?",
+      "definition": "The one with the <span style=\"color:#3b82f6\">most zeros</span> (each zero kills a whole 2 × 2 term). Ex 4.1 Q5(i): expand along the second row [0 0 −1]: only one term survives",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.1 Q3: A = [[1, 2], [4, 2]]. Show |2A| = 4|A|.",
+      "definition": "|A| = 2 − 8 = −6. 2A = [[2, 4], [8, 4]] has determinant 8 − 32 = −24 = 4(−6). <span style=\"color:#22a35a\">✓</span> In general |kA| = kⁿ|A| for an n × n matrix",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.1 Q4: A = [[1, 0, 1], [0, 1, 2], [0, 0, 4]]. Show |3A| = 27|A|.",
+      "definition": "A is upper triangular: |A| = 1·1·4 = 4. 3A has diagonal 3, 3, 12, so |3A| = 108 = 27 · 4. <span style=\"color:#22a35a\">✓</span> (3³ = 27 because n = 3)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Determinant of a triangular or diagonal matrix?",
+      "definition": "The <span style=\"color:#3b82f6\">product of the diagonal entries</span> (all zeros on one side of the diagonal). So |I| = 1",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.1 Q5(i): |3 −1 −2; 0 0 −1; 3 −5 0|.",
+      "definition": "Expand along row 1: 3(0 − 5) + 1(0 + 3) − 2(0 − 0) = −15 + 3 = <span style=\"color:#f08c00\">−12</span>. (Row 2 has two zeros, so expanding along it is quicker: only −1 survives.)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.1 Q5(ii): |3 −4 5; 1 1 −2; 2 3 1|.",
+      "definition": "3(1 + 6) + 4(1 + 4) + 5(3 − 2) = 21 + 20 + 5 = <span style=\"color:#f08c00\">46</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.1 Q5(iii): |0 1 2; −1 0 −3; −2 3 0|.",
+      "definition": "0 − 1(0 − 6) + 2(−3 − 0) = 6 − 6 = <span style=\"color:#f08c00\">0</span>. The matrix is skew-symmetric of odd order (a skew-symmetric matrix of odd order always has determinant 0)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.1 Q5(iv): |2 −1 −2; 0 2 −1; 3 −5 0|.",
+      "definition": "2(0 − 5) + 1(0 + 3) − 2(0 − 6) = −10 + 3 + 12 = <span style=\"color:#f08c00\">5</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.1 Q6: A = [[1, 1, −2], [2, 1, −3], [5, 4, −9]]. Find |A|.",
+      "definition": "1(−9 + 12) − 1(−18 + 15) − 2(8 − 5) = 3 + 3 − 6 = <span style=\"color:#f08c00\">0</span> (so A is singular)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5 / Ex 4.1 Q7(i): find x if |2 4; 5 1| = |2x 4; 6 x|.",
+      "definition": "2 − 20 = 2x² − 24 → 2x² = 6 → <span style=\"color:#f08c00\">x = ±√3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.1 Q7(ii): find x if |2 3; 4 5| = |x 3; 2x 5|.",
+      "definition": "10 − 12 = −2 = 5x − 6x = −x → <span style=\"color:#f08c00\">x = 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.1 Q8: if |x 2; 18 x| = |6 2; 18 6|, then x = (A) 6 (B) ±6 (C) −6 (D) 0",
+      "definition": "x² − 36 = 36 − 36 = 0 → x² = 36 → <span style=\"color:#22a35a\">(B) ±6</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 5: find x for which |3 x; x 1| = |3 2; 4 1|.",
+      "definition": "3 − x² = 3 − 8 → x² = 8 → <span style=\"color:#f08c00\">x = ±2√2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.2-determinant"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Area of a triangle with vertices (x₁, y₁), (x₂, y₂), (x₃, y₃) as a determinant?",
+      "definition": "<span style=\"color:#3b82f6\">Δ = ½ |x₁ y₁ 1; x₂ y₂ 1; x₃ y₃ 1|</span>. Take the <span style=\"color:#3b82f6\">absolute value</span>; the determinant itself can be negative",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Area of a triangle from vertices by determinant",
+      "definition": "Area = 1/2 |det [x1 y1 1; x2 y2 1; x3 y3 1]|, absolute value; use +- when area is given; zero for collinear points; (3,8),(-4,2),(5,1) gives 61/2",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Area of a triangle</p><h2>Find the area of the triangle with vertices (3, 8), (−4, 2) and (5, 1) using a determinant.</h2><svg viewBox=\"0 0 300 251\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"229.2\" x2=\"292.0\" y2=\"229.2\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"139.2\" y1=\"241.0\" x2=\"139.2\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polygon class=\"f0 \" points=\"209.8,41.2 45.2,182.2 256.8,205.8\"></polygon><circle class=\"d1s \" cx=\"209.8\" cy=\"41.2\" r=\"4.5\"></circle><text class=\"t1 \" x=\"217.8\" y=\"35.2\" text-anchor=\"start\">(3, 8)</text><circle class=\"d1s \" cx=\"45.2\" cy=\"182.2\" r=\"4.5\"></circle><text class=\"t1 \" x=\"37.2\" y=\"196.2\" text-anchor=\"end\">(−4, 2)</text><circle class=\"d1s \" cx=\"256.8\" cy=\"205.8\" r=\"4.5\"></circle><text class=\"t1 \" x=\"264.8\" y=\"219.8\" text-anchor=\"start\">(5, 1)</text></svg><p class=\"hint\">Put the coordinates in the determinant with a column of 1s.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Area of a triangle</p><h2>Find the area of the triangle with vertices (3, 8), (−4, 2) and (5, 1) using a determinant.</h2><svg viewBox=\"0 0 300 251\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"229.2\" x2=\"292.0\" y2=\"229.2\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"139.2\" y1=\"241.0\" x2=\"139.2\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><polygon class=\"f0 \" points=\"209.8,41.2 45.2,182.2 256.8,205.8\"></polygon><circle class=\"d1s \" cx=\"209.8\" cy=\"41.2\" r=\"4.5\"></circle><text class=\"t1 \" x=\"217.8\" y=\"35.2\" text-anchor=\"start\">(3, 8)</text><circle class=\"d1s \" cx=\"45.2\" cy=\"182.2\" r=\"4.5\"></circle><text class=\"t1 \" x=\"37.2\" y=\"196.2\" text-anchor=\"end\">(−4, 2)</text><circle class=\"d1s \" cx=\"256.8\" cy=\"205.8\" r=\"4.5\"></circle><text class=\"t1 \" x=\"264.8\" y=\"219.8\" text-anchor=\"start\">(5, 1)</text><polygon class=\"f4 fx d2 \" points=\"209.8,41.2 45.2,182.2 256.8,205.8\"></polygon><text class=\"t4 fx d3 \" x=\"155.7\" y=\"139.9\" text-anchor=\"middle\">Δ = 61/2</text></svg><div class=\"eq fx d5\"><p><b>Δ = ½ |x₁ y₁ 1; x₂ y₂ 1; x₃ y₃ 1|</b>. Expanding: ½ [3(2 − 1) − 8(−4 − 5) + 1(−4 − 10)] = ½ (3 + 72 − 14) = <b>61/2 square units</b>.</p><p>Take the absolute value for an area. If the area is given, use both ±. If the three points are collinear the determinant is 0.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If the area is given, how do you use the determinant?",
+      "definition": "Set <span style=\"color:#3b82f6\">½ |...| = ±(area)</span>, i.e. use both signs, and solve for the unknown (Example 7: two values of k)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Collinearity test with a determinant",
+      "definition": "Three points are collinear iff |x1 y1 1; x2 y2 1; x3 y3 1| = 0; A(a,b+c), B(b,c+a), C(c,a+b) all lie on x+y=a+b+c",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Collinear points</p><h2>Show that A(a, b + c), B(b, c + a), C(c, a + b) are collinear.</h2><svg viewBox=\"0 0 300 298\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"252.8\" x2=\"292.0\" y2=\"252.8\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"45.2\" y1=\"288.0\" x2=\"45.2\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><circle class=\"d1s \" cx=\"80.5\" cy=\"76.5\" r=\"4.8\"></circle><circle class=\"d1s \" cx=\"133.4\" cy=\"129.4\" r=\"4.8\"></circle><circle class=\"d1s \" cx=\"203.9\" cy=\"199.9\" r=\"4.8\"></circle><text class=\"t1 \" x=\"88.5\" y=\"68.5\" text-anchor=\"start\">A(a, b + c)</text><text class=\"t1 \" x=\"141.4\" y=\"121.4\" text-anchor=\"start\">B(b, c + a)</text><text class=\"t1 \" x=\"211.9\" y=\"191.9\" text-anchor=\"start\">C(c, a + b)</text></svg><p class=\"hint\">What do x + y equal at each point?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Collinear points</p><h2>Show that A(a, b + c), B(b, c + a), C(c, a + b) are collinear.</h2><svg viewBox=\"0 0 300 298\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><line class=\"ax\" x1=\"10.0\" y1=\"252.8\" x2=\"292.0\" y2=\"252.8\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"45.2\" y1=\"288.0\" x2=\"45.2\" y2=\"6.0\" marker-end=\"url(#pk)\"></line><circle class=\"d1s \" cx=\"80.5\" cy=\"76.5\" r=\"4.8\"></circle><circle class=\"d1s \" cx=\"133.4\" cy=\"129.4\" r=\"4.8\"></circle><circle class=\"d1s \" cx=\"203.9\" cy=\"199.9\" r=\"4.8\"></circle><text class=\"t1 \" x=\"88.5\" y=\"68.5\" text-anchor=\"start\">A(a, b + c)</text><text class=\"t1 \" x=\"141.4\" y=\"121.4\" text-anchor=\"start\">B(b, c + a)</text><text class=\"t1 \" x=\"211.9\" y=\"191.9\" text-anchor=\"start\">C(c, a + b)</text><line class=\"c2 fx d2\" x1=\"27.6\" y1=\"23.6\" x2=\"274.4\" y2=\"270.4\"></line><text class=\"t2 fx d3 \" x=\"207.4\" y=\"27.1\" text-anchor=\"middle\">x + y = a + b + c</text></svg><div class=\"eq fx d5\"><p>The area determinant is ½ |a b+c 1; b c+a 1; c a+b 1|. Add column 1 to column 2: the second column becomes (a+b+c, a+b+c, a+b+c), a multiple of the third column, so the determinant is <b>0</b>.</p><p>Geometrically all three points satisfy <b>x + y = a + b + c</b>: they lie on one line. <b>Three points are collinear ⇔ the area determinant is 0.</b></p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Condition for three points to be collinear?",
+      "definition": "<span style=\"color:#3b82f6\">|x₁ y₁ 1; x₂ y₂ 1; x₃ y₃ 1| = 0</span> (area zero). The same trick gives the equation of a line through two points: put P(x, y) as the third vertex",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 7: find the equation of the line through A(1, 3) and B(0, 0) using determinants; find k if D(k, 0) makes area ABD = 3.",
+      "definition": "|0 0 1; 1 3 1; x y 1| = 0 → y − 3x = 0: <span style=\"color:#f08c00\">y = 3x</span>. Area: ½ |1 3 1; 0 0 1; k 0 1| = ½ |−3k| = 3 → <span style=\"color:#f08c00\">k = ±2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.2 Q1(i): area of (1, 0), (6, 0), (4, 3).",
+      "definition": "½ |1 0 1; 6 0 1; 4 3 1| = ½ [1(0 − 3) − 0 + 1(18 − 0)] = ½ · 15 = <span style=\"color:#f08c00\">15/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.2 Q1(ii): area of (2, 7), (1, 1), (10, 8).",
+      "definition": "½ [2(1 − 8) − 7(1 − 10) + 1(8 − 10)] = ½ (−14 + 63 − 2) = <span style=\"color:#f08c00\">47/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.2 Q1(iii): area of (−2, −3), (3, 2), (−1, −8).",
+      "definition": "½ [−2(2 + 8) + 3(−8 + 3) − 1(−3 − 2)] = ½ (−20 − 15 + 5) = ½ (−30). Area is the absolute value: <span style=\"color:#f08c00\">15</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.2 Q2: show A(a, b + c), B(b, c + a), C(c, a + b) are collinear.",
+      "definition": "Add column 1 to column 2: column 2 becomes (a + b + c) in every row, a multiple of column 3 (all 1s). Two proportional columns ⇒ determinant <span style=\"color:#f08c00\">0</span>. <span style=\"color:#22a35a\">Collinear</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.2 Q3(i): find k if the triangle (k, 0), (4, 0), (0, 2) has area 4.",
+      "definition": "Area = ½ · |k − 4| · 2 = |k − 4| = 4 → <span style=\"color:#f08c00\">k = 0 or 8</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.2 Q3(ii): find k if the triangle (−2, 0), (0, 4), (0, k) has area 4.",
+      "definition": "Base on the y-axis |4 − k|, height 2: ½ · 2 · |4 − k| = 4 → <span style=\"color:#f08c00\">k = 0 or 8</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.2 Q4: equation of the line through (i) (1, 2) and (3, 6); (ii) (3, 1) and (9, 3), using determinants.",
+      "definition": "(i) |x y 1; 1 2 1; 3 6 1| = x(2 − 6) − y(1 − 3) + (6 − 6) = −4x + 2y = 0 → <span style=\"color:#f08c00\">y = 2x</span>. (ii) x(1 − 3) − y(3 − 9) + (9 − 9) = −2x + 6y = 0 → <span style=\"color:#f08c00\">x − 3y = 0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.2 Q5: area 35 sq units with vertices (2, −6), (5, 4), (k, 4). Then k = (A) 12 (B) −2 (C) −12, −2 (D) 12, −2",
+      "definition": "Base (5, 4) to (k, 4) has length |k − 5|, height 10: ½ · 10 · |k − 5| = 35 → |k − 5| = 7 → <span style=\"color:#22a35a\">(D) 12, −2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.3-area-of-a-triangle"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the minor of an element aᵢⱼ.",
+      "definition": "<span style=\"color:#3b82f6\">Mᵢⱼ</span> = the determinant left after deleting the i-th row and j-th column",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the cofactor of aᵢⱼ.",
+      "definition": "<span style=\"color:#3b82f6\">Aᵢⱼ = (−1)ⁱ⁺ʲ Mᵢⱼ</span>. Sign pattern for 3 × 3: + − + / − + − / + − +",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Minor and cofactor: delete row and column, then sign",
+      "definition": "Minor M_ij = determinant after deleting row i and column j; cofactor A_ij = (-1)^(i+j) M_ij; |A| = sum a_ij A_ij along any row or column; a row times another row cofactors = 0",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Minors and cofactors</p><h2>For a 3 × 3 determinant, how do you find the minor and the cofactor of a₁₂?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f0\" x=\"20\" y=\"44\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"42.0\" y=\"64.0\" text-anchor=\"middle\">a11</text><rect class=\"f0\" x=\"66\" y=\"44\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"88.0\" y=\"64.0\" text-anchor=\"middle\">a12</text><rect class=\"f0\" x=\"112\" y=\"44\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"134.0\" y=\"64.0\" text-anchor=\"middle\">a13</text><rect class=\"f0\" x=\"20\" y=\"78\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"42.0\" y=\"98.0\" text-anchor=\"middle\">a21</text><rect class=\"f0\" x=\"66\" y=\"78\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"88.0\" y=\"98.0\" text-anchor=\"middle\">a22</text><rect class=\"f0\" x=\"112\" y=\"78\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"134.0\" y=\"98.0\" text-anchor=\"middle\">a23</text><rect class=\"f0\" x=\"20\" y=\"112\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"42.0\" y=\"132.0\" text-anchor=\"middle\">a31</text><rect class=\"f0\" x=\"66\" y=\"112\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"88.0\" y=\"132.0\" text-anchor=\"middle\">a32</text><rect class=\"f0\" x=\"112\" y=\"112\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"134.0\" y=\"132.0\" text-anchor=\"middle\">a33</text><text class=\"lbl\" x=\"12\" y=\"25\">A = [aᵢⱼ], find the minor and cofactor of a₁₂</text></svg><p class=\"hint\">Delete the row and column of a₁₂.</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Minors and cofactors</p><h2>For a 3 × 3 determinant, how do you find the minor and the cofactor of a₁₂?</h2><svg viewBox=\"0 0 300 200\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><rect class=\"f0\" x=\"20\" y=\"44\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"42.0\" y=\"64.0\" text-anchor=\"middle\">a11</text><rect class=\"f0\" x=\"66\" y=\"44\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"88.0\" y=\"64.0\" text-anchor=\"middle\">a12</text><rect class=\"f0\" x=\"112\" y=\"44\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"134.0\" y=\"64.0\" text-anchor=\"middle\">a13</text><rect class=\"f0\" x=\"20\" y=\"78\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"42.0\" y=\"98.0\" text-anchor=\"middle\">a21</text><rect class=\"f0\" x=\"66\" y=\"78\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"88.0\" y=\"98.0\" text-anchor=\"middle\">a22</text><rect class=\"f0\" x=\"112\" y=\"78\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"134.0\" y=\"98.0\" text-anchor=\"middle\">a23</text><rect class=\"f0\" x=\"20\" y=\"112\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"42.0\" y=\"132.0\" text-anchor=\"middle\">a31</text><rect class=\"f0\" x=\"66\" y=\"112\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"88.0\" y=\"132.0\" text-anchor=\"middle\">a32</text><rect class=\"f0\" x=\"112\" y=\"112\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"lbi\" x=\"134.0\" y=\"132.0\" text-anchor=\"middle\">a33</text><text class=\"lbl\" x=\"12\" y=\"25\">A = [aᵢⱼ], find the minor and cofactor of a₁₂</text><rect class=\"f2 fx d2\" x=\"20\" y=\"44\" width=\"136\" height=\"32\" rx=\"4\"></rect><rect class=\"f2 fx d2\" x=\"66\" y=\"44\" width=\"44\" height=\"100\" rx=\"4\"></rect><rect class=\"f1 fx d3\" x=\"20\" y=\"78\" width=\"44\" height=\"32\" rx=\"4\"></rect><rect class=\"f1 fx d3\" x=\"112\" y=\"78\" width=\"44\" height=\"32\" rx=\"4\"></rect><rect class=\"f1 fx d3\" x=\"20\" y=\"112\" width=\"44\" height=\"32\" rx=\"4\"></rect><rect class=\"f1 fx d3\" x=\"112\" y=\"112\" width=\"44\" height=\"32\" rx=\"4\"></rect><text class=\"t2 fx d2\" x=\"176\" y=\"60\">delete row 1, col 2</text><text class=\"t1 fx d3\" x=\"176\" y=\"82\">M₁₂ = det of blue part</text><text class=\"t4 fx d4\" x=\"176\" y=\"106\">A₁₂ = −M₁₂ (sign −)</text><text class=\"sm fx d4\" x=\"176\" y=\"128\">sign pattern:</text><text class=\"lbl fx d4\" x=\"176\" y=\"146\">+ − +</text><text class=\"lbl fx d4\" x=\"176\" y=\"162\">− + −</text><text class=\"lbl fx d4\" x=\"176\" y=\"178\">+ − +</text></svg><div class=\"eq fx d5\"><p><b>Minor Mᵢⱼ</b>: cross out row i and column j, and take the determinant of what remains (here a 2 × 2).</p><p><b>Cofactor Aᵢⱼ = (−1)ⁱ⁺ʲ Mᵢⱼ</b>: attach the checkerboard sign (+ at a₁₁, − at a₁₂, …). Then |A| = Σⱼ aᵢⱼ Aᵢⱼ along any row or column; but multiplying a row by the cofactors of <b>another</b> row gives 0.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Expansion by cofactors: what is |A| in terms of aᵢⱼ and Aᵢⱼ? What if the cofactors belong to another row?",
+      "definition": "<span style=\"color:#3b82f6\">|A| = Σⱼ aᵢⱼ Aᵢⱼ</span> (any fixed row i or column j). But <span style=\"color:#3b82f6\">Σⱼ aᵢⱼ Aₖⱼ = 0 for k ≠ i</span>: a row times the cofactors of another row is 0",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.3 Q5: if Δ = |aᵢⱼ| and Aᵢⱼ is the cofactor of aᵢⱼ, then Δ = (A) a₁₁A₃₁ + a₁₂A₃₂ + a₁₃A₃₃ (B) a₁₁A₁₁ + a₁₂A₂₁ + a₁₃A₃₁ (C) a₂₁A₁₁ + a₂₂A₁₂ + a₂₃A₁₃ (D) a₁₁A₁₁ + a₂₁A₂₁ + a₃₁A₃₁",
+      "definition": "Row or column of elements with the SAME row/column of cofactors: (D) is the first column with its own cofactors. <span style=\"color:#22a35a\">(D)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.3 Q1(i): minors and cofactors of |2 −4; 0 3|.",
+      "definition": "M₁₁ = 3, M₁₂ = 0, M₂₁ = −4, M₂₂ = 2. Cofactors: A₁₁ = <span style=\"color:#f08c00\">3</span>, A₁₂ = <span style=\"color:#f08c00\">0</span>, A₂₁ = <span style=\"color:#f08c00\">4</span>, A₂₂ = <span style=\"color:#f08c00\">2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.3 Q1(ii): minors and cofactors of |a c; b d|.",
+      "definition": "M₁₁ = d, M₁₂ = b, M₂₁ = c, M₂₂ = a. Cofactors: <span style=\"color:#f08c00\">A₁₁ = d, A₁₂ = −b, A₂₁ = −c, A₂₂ = a</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.3 Q2(i): minors and cofactors of the 3 × 3 identity.",
+      "definition": "M₁₁ = M₂₂ = M₃₃ = 1 and all other minors 0; cofactors: A₁₁ = A₂₂ = A₃₃ = <span style=\"color:#f08c00\">1</span>, others 0 (so the cofactor matrix is I)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.3 Q2(ii): cofactors of |1 0 4; 3 5 −1; 0 1 2|.",
+      "definition": "A₁₁ = 11, A₁₂ = −6, A₁₃ = 3; A₂₁ = 4, A₂₂ = 2, A₂₃ = −1; A₃₁ = −20, A₃₂ = 13, A₃₃ = 5. Check: |A| = 1·11 + 0 + 4·3 = <span style=\"color:#f08c00\">23</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.3 Q3: using cofactors of the second row, evaluate |5 3 8; 2 0 1; 1 2 3|.",
+      "definition": "A₂₁ = −(9 − 16) = 7, A₂₂ = 15 − 8 = 7, A₂₃ = −(10 − 3) = −7. Δ = 2·7 + 0·7 + 1·(−7) = <span style=\"color:#f08c00\">7</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.3 Q4: using cofactors of the third column, evaluate |1 x yz; 1 y zx; 1 z xy|.",
+      "definition": "<span style=\"color:#f08c00\">(x − y)(y − z)(z − x)</span>. Check with x, y, z = 2, 3, 5: |1 2 15; 1 3 10; 1 5 6| = 6 and (2 − 3)(3 − 5)(5 − 2) = 6 ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.4-minors-and-cofactors"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define the adjoint of a square matrix.",
+      "definition": "<span style=\"color:#3b82f6\">adj A = transpose of the cofactor matrix [Aᵢⱼ]</span>. So (adj A)ᵢⱼ = Aⱼᵢ (note the swap)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Shortcut for adj A when A is 2 × 2?",
+      "definition": "For A = [[a, b], [c, d]]: <span style=\"color:#3b82f6\">adj A = [[d, −b], [−c, a]]</span> (swap the diagonal, negate the others). Example 12: A = [[2, 3], [1, 4]] gives [[4, −3], [−1, 2]]",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 1: A (adj A) = ?",
+      "definition": "<span style=\"color:#3b82f6\">(adj A) A = A (adj A) = |A| I</span>. Reason: a row times its own cofactors gives |A|, times another row’s cofactors gives 0",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Define singular and non-singular matrices.",
+      "definition": "<span style=\"color:#3b82f6\">Singular</span>: |A| = 0 (e.g. [[1, 2], [4, 8]]). <span style=\"color:#3b82f6\">Non-singular</span>: |A| ≠ 0",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Theorem 4: when is a square matrix invertible? Formula?",
+      "definition": "Iff it is <span style=\"color:#3b82f6\">non-singular</span> (|A| ≠ 0), and then <span style=\"color:#3b82f6\">A⁻¹ = (1/|A|) adj A</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Determinant of a product: |AB| = ?",
+      "definition": "<span style=\"color:#3b82f6\">|AB| = |A||B|</span> (Theorem 3). So AB is non-singular iff both A and B are",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "|adj A| for an n × n matrix?",
+      "definition": "<span style=\"color:#3b82f6\">|adj A| = |A|ⁿ⁻¹</span>. For n = 3: |A|². For n = 2: |A|. (Ex 4.4 Q17: answer (B) |A|²)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If A is invertible, |A⁻¹| = ?",
+      "definition": "<span style=\"color:#3b82f6\">1/|A|</span> since |A||A⁻¹| = |I| = 1 (Ex 4.4 Q18: (B))",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q17: A is a non-singular 3 × 3 matrix; |adj A| = (A) |A| (B) |A|² (C) |A|³ (D) 3|A|",
+      "definition": "<span style=\"color:#22a35a\">(B) |A|²</span> (from |adj A||A| = |A|³)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q18: A invertible of order 2; det(A⁻¹) = (A) det A (B) 1/det A (C) 1 (D) 0",
+      "definition": "<span style=\"color:#22a35a\">(B) 1/det A</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: find A⁻¹ using the adjoint (3 × 3).",
+      "definition": "1) |A| ≠ 0? 2) all nine cofactors Aᵢⱼ. 3) adj A = transpose of the cofactor matrix. 4) A⁻¹ = adj A / |A|. Verify with A A⁻¹ = I",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Inverse by the adjoint method",
+      "definition": "A^-1 = adj A / |A|: compute |A|, cofactors, transpose, divide; Example 13: |A| = 1, A^-1 = [[7,-3,-3],[-1,1,0],[-1,0,1]]",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"k\"><p class=\"eyebrow\">Adjoint method · Example 13</p><h2>Find A⁻¹ for A = [[1, 3, 3], [1, 4, 3], [1, 3, 4]].</h2><div class=\"prob\">A = [[1, 3, 3], [1, 4, 3], [1, 3, 4]]</div><ol><li>|A| = 1(16 − 9) − 3(4 − 3) + 3(3 − 4) = 7 − 3 − 3 = 1 ≠ 0</li><li>Cofactors: A₁₁ = 7, A₁₂ = −1, A₁₃ = −1, A₂₁ = −3, A₂₂ = 1, A₂₃ = 0, A₃₁ = −3, A₃₂ = 0, A₃₃ = 1</li><li>adj A = transpose = [[7, −3, −3], [−1, 1, 0], [−1, 0, 1]]</li><li class=\"h\">?</li></ol></div>",
+        "backHtml": "<div class=\"k\"><p class=\"eyebrow\">Adjoint method · Example 13</p><h2>Find A⁻¹ for A = [[1, 3, 3], [1, 4, 3], [1, 3, 4]].</h2><div class=\"prob\">A = [[1, 3, 3], [1, 4, 3], [1, 3, 4]]</div><ol><li>|A| = 1(16 − 9) − 3(4 − 3) + 3(3 − 4) = 7 − 3 − 3 = 1 ≠ 0</li><li>Cofactors: A₁₁ = 7, A₁₂ = −1, A₁₃ = −1, A₂₁ = −3, A₂₂ = 1, A₂₃ = 0, A₃₁ = −3, A₃₂ = 0, A₃₃ = 1</li><li>adj A = transpose = [[7, −3, −3], [−1, 1, 0], [−1, 0, 1]]</li><li class=\"r\">A⁻¹ = adj A / 1 = [[7, −3, −3], [−1, 1, 0], [−1, 0, 1]]</li></ol></div>",
+        "frontCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n",
+        "backCss": "\n.k{box-sizing:border-box;min-height:470px;padding:20px 16px;background:#fbf8f1;color:#1f2430;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif;border-radius:18px}\n.k .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7466;margin:0 0 6px}\n.k h2{font-size:19px;line-height:1.25;margin:0 0 14px;font-weight:700}\n.k table{width:100%;border-collapse:separate;border-spacing:0 6px}\n.k td{padding:9px 10px;vertical-align:top;background:#fff;border:1px solid #e8e1d2}\n.k td:first-child{border-radius:10px 0 0 10px;font-weight:650;width:38%;border-right:0}\n.k td:last-child{border-radius:0 10px 10px 0}\n.k .q{color:#b8ae99;font-weight:700;letter-spacing:.2em}\n.k .a{color:#1d5fd6;font-weight:600}\n.k .a.no{color:#c93b3f}\n.k .note{margin-top:12px;font-size:12px;color:#7a7466}\n.k td.a{animation:pop .45s ease both}\n.k tr:nth-child(2) td.a{animation-delay:.06s}.k tr:nth-child(3) td.a{animation-delay:.12s}\n.k tr:nth-child(4) td.a{animation-delay:.18s}.k tr:nth-child(5) td.a{animation-delay:.24s}\n@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.k .prob{background:#fff;border:1px solid #e8e1d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:0 0 10px}\n.k ol{margin:0;padding:0;list-style:none;counter-reset:s}\n.k li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #e3dac6;font-size:14px}\n.k li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#efe7d6;color:#7a7466;\n  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}\n.k li.h{color:#b8ae99;font-weight:700;letter-spacing:.15em}\n.k li.h:before,.k li.r:before{background:#1d5fd6;color:#fff}\n.k li.r{color:#1d5fd6;font-weight:650;animation:pop .45s ease both}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 15: A = [[2, 3], [1, 2]]. Show A² − 4A + I = O and find A⁻¹.",
+      "definition": "A² = [[7, 12], [4, 7]]; A² − 4A + I = O. Multiply by A⁻¹: A − 4I + A⁻¹ = O so <span style=\"color:#f08c00\">A⁻¹ = 4I − A = [[2, −3], [−1, 2]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-adjoint-and-inverse"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q1: adj of [[1, 2], [3, 4]].",
+      "definition": "Swap the diagonal, negate the rest: <span style=\"color:#f08c00\">[[4, −2], [−3, 1]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q2: adj of [[1, −1, 2], [2, 3, 5], [−2, 0, 1]].",
+      "definition": "Cofactor matrix then transpose: <span style=\"color:#f08c00\">[[3, 1, −11], [−12, 5, −1], [6, 2, 5]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q3: verify A(adj A) = |A| I for A = [[2, 3], [−4, −6]].",
+      "definition": "adj A = [[−6, −3], [4, 2]]. A(adj A) = [[−12 + 12, −6 + 6], [24 − 24, 12 − 12]] = O and |A| = −12 + 12 = 0, so |A|I = O. <span style=\"color:#22a35a\">✓</span> (A is singular)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q4: verify A(adj A) = |A| I for A = [[1, −1, 2], [3, 0, −2], [1, 0, 3]].",
+      "definition": "|A| = 11. Compute adj A (cofactors) and multiply: every diagonal entry is 11 and every off-diagonal entry 0, i.e. <span style=\"color:#f08c00\">11 I</span>. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q5: inverse of [[2, −2], [4, 3]].",
+      "definition": "|A| = 6 + 8 = 14. A⁻¹ = (1/14)[[3, 2], [−4, 2]] = <span style=\"color:#f08c00\">(1/14)[[3, 2], [−4, 2]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q6: inverse of [[−1, 5], [−3, 2]].",
+      "definition": "|A| = −2 + 15 = 13. <span style=\"color:#f08c00\">A⁻¹ = (1/13)[[2, −5], [3, −1]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q7: inverse of [[1, 2, 3], [0, 2, 4], [0, 0, 5]].",
+      "definition": "|A| = 1·2·5 = 10 (triangular). <span style=\"color:#f08c00\">A⁻¹ = (1/10)[[10, −10, 2], [0, 5, −4], [0, 0, 2]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q8: inverse of [[1, 0, 0], [3, 3, 0], [5, 2, −1]].",
+      "definition": "|A| = 1 · 3 · (−1) = −3. <span style=\"color:#f08c00\">A⁻¹ = (−1/3)[[−3, 0, 0], [3, −1, 0], [−9, −2, 3]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q9: inverse of [[2, 1, 3], [4, −1, 0], [−7, 2, 1]].",
+      "definition": "|A| = 2(−1) − 1(4) + 3(8 − 7) = −3. <span style=\"color:#f08c00\">A⁻¹ = (−1/3)[[−1, 5, 3], [−4, 23, 12], [1, −11, −6]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q10: inverse of [[1, −1, 2], [0, 2, −3], [3, −2, 4]].",
+      "definition": "|A| = 1(8 − 6) + 1(0 + 9) + 2(0 − 6) = −1. <span style=\"color:#f08c00\">A⁻¹ = [[−2, 0, 1], [9, 2, −3], [6, 1, −2]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q11: inverse of [[1, 0, 0], [0, cos α, sin α], [0, sin α, −cos α]].",
+      "definition": "|A| = −cos²α − sin²α = −1. The matrix equals its own inverse: <span style=\"color:#f08c00\">A⁻¹ = A</span> (A² = I)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q12: A = [[3, 7], [2, 5]], B = [[6, 8], [7, 9]]. Verify (AB)⁻¹ = B⁻¹A⁻¹.",
+      "definition": "AB = [[67, 87], [47, 61]], |AB| = 4087 − 4089 = −2, so (AB)⁻¹ = −½[[61, −87], [−47, 67]]. Also A⁻¹ = [[5, −7], [−2, 3]] and B⁻¹ = −½[[9, −8], [−7, 6]]; the product B⁻¹A⁻¹ gives the same matrix. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q13: A = [[3, 1], [−1, 2]]. Show A² − 5A + 7I = O and find A⁻¹.",
+      "definition": "A² = [[8, 5], [−5, 3]]. From A² − 5A + 7I = O: A − 5I + 7A⁻¹ = O so <span style=\"color:#f08c00\">A⁻¹ = (1/7)(5I − A) = (1/7)[[2, −1], [1, 3]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q14: A = [[3, 2], [1, 1]]. Find a, b with A² + aA + bI = O.",
+      "definition": "For 2 × 2: A² − (tr A)A + (det A)I = O with tr A = 4, det A = 1. So <span style=\"color:#f08c00\">a = −4, b = 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q15: A = [[1, 1, 1], [1, 2, −3], [2, −1, 3]]. Show A³ − 6A² + 5A + 11I = O and find A⁻¹.",
+      "definition": "Multiply by A⁻¹: A² − 6A + 5I + 11A⁻¹ = O, so A⁻¹ = −(1/11)(A² − 6A + 5I). <span style=\"color:#f08c00\">A⁻¹ = (1/11)[[−3, 4, 5], [9, −1, −4], [5, −3, −1]]</span> (|A| = −11)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.4 Q16: A = [[2, −1, 1], [−1, 2, −1], [1, −1, 2]]. Verify A³ − 6A² + 9A − 4I = O and find A⁻¹.",
+      "definition": "Multiply by A⁻¹: A² − 6A + 9I = 4A⁻¹. <span style=\"color:#f08c00\">A⁻¹ = (1/4)[[3, 1, −1], [1, 3, 1], [−1, 1, 3]]</span> (|A| = 4)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Method: find A⁻¹ from a matrix equation like A² − 4A + I = O.",
+      "definition": "Multiply the whole equation by A⁻¹ (allowed since |A| ≠ 0), simplify A·A⁻¹ = I, and isolate A⁻¹. This is how Example 15 and Ex 4.4 Q13, Q15, Q16 work",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cayley–Hamilton for a 2 × 2 matrix: what equation does A satisfy?",
+      "definition": "<span style=\"color:#3b82f6\">A² − (tr A) A + (det A) I = O</span>. Example: A = [[2, 3], [1, 2]]: tr 4, det 1, so A² − 4A + I = O ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.5-exercise-4-4"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What is a consistent / inconsistent system?",
+      "definition": "<span style=\"color:#3b82f6\">Consistent</span>: at least one solution exists. <span style=\"color:#3b82f6\">Inconsistent</span>: no solution",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-solving-systems"
+      ]
+    },
+    {
+      "noteType": "advanced-html",
+      "term": "Consistency test: |A| and (adj A)B",
+      "definition": "AX=B: |A|!=0 unique solution X = A^-1 B; |A|=0 and (adj A)B != O inconsistent (no solution); |A|=0 and (adj A)B = O: infinitely many solutions or none (check); lines intersect / parallel / coincide",
+      "advancedHtml": {
+        "frontHtml": "<div class=\"w pp\"><p class=\"tag\">Consistency of linear systems</p><h2>Match the tests “|A| ≠ 0”, “|A| = 0 and (adj A)B ≠ O”, “|A| = 0 and (adj A)B = O” with these three pairs of lines.</h2><svg viewBox=\"0 0 300 172\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><g transform=\"translate(0,4)\"><line class=\"ax\" x1=\"4.0\" y1=\"69.7\" x2=\"96.0\" y2=\"69.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"38.5\" y1=\"96.0\" x2=\"38.5\" y2=\"4.0\" marker-end=\"url(#pk)\"></line><line class=\"c1\" x1=\"4.0\" y1=\"36.9\" x2=\"96.0\" y2=\"89.4\"></line><line class=\"c2\" x1=\"4.0\" y1=\"30.3\" x2=\"96.0\" y2=\"100.4\"></line></g><g transform=\"translate(100,4)\"><line class=\"ax\" x1=\"4.0\" y1=\"69.7\" x2=\"96.0\" y2=\"69.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"38.5\" y1=\"96.0\" x2=\"38.5\" y2=\"4.0\" marker-end=\"url(#pk)\"></line><line class=\"c1\" x1=\"4.0\" y1=\"34.7\" x2=\"96.0\" y2=\"69.7\"></line><line class=\"c2\" x1=\"4.0\" y1=\"39.0\" x2=\"96.0\" y2=\"74.1\"></line></g><g transform=\"translate(200,4)\"><line class=\"ax\" x1=\"4.0\" y1=\"69.7\" x2=\"96.0\" y2=\"69.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"38.5\" y1=\"96.0\" x2=\"38.5\" y2=\"4.0\" marker-end=\"url(#pk)\"></line><line class=\"c1\" x1=\"4.0\" y1=\"34.7\" x2=\"96.0\" y2=\"69.7\"></line><line class=\"c2\" x1=\"4.0\" y1=\"34.7\" x2=\"96.0\" y2=\"69.7\"></line></g><text class=\"lbi\" x=\"50\" y=\"118\" text-anchor=\"middle\">(a)</text><text class=\"lbi\" x=\"150\" y=\"118\" text-anchor=\"middle\">(b)</text><text class=\"lbi\" x=\"250\" y=\"118\" text-anchor=\"middle\">(c)</text></svg><p class=\"hint\">Unique, none, or infinitely many?</p></div>",
+        "backHtml": "<div class=\"w pp\"><p class=\"tag\">Consistency of linear systems</p><h2>Match the tests “|A| ≠ 0”, “|A| = 0 and (adj A)B ≠ O”, “|A| = 0 and (adj A)B = O” with these three pairs of lines.</h2><svg viewBox=\"0 0 300 172\"><defs><marker id=\"pk\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f2430\"></path></marker><marker id=\"pb\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1d5fd6\"></path></marker><marker id=\"pr\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c93b3f\"></path></marker><marker id=\"pg\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#1f8a4c\"></path></marker><marker id=\"po\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#c77700\"></path></marker></defs><g transform=\"translate(0,4)\"><line class=\"ax\" x1=\"4.0\" y1=\"69.7\" x2=\"96.0\" y2=\"69.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"38.5\" y1=\"96.0\" x2=\"38.5\" y2=\"4.0\" marker-end=\"url(#pk)\"></line><line class=\"c1\" x1=\"4.0\" y1=\"36.9\" x2=\"96.0\" y2=\"89.4\"></line><line class=\"c2\" x1=\"4.0\" y1=\"30.3\" x2=\"96.0\" y2=\"100.4\"></line></g><g transform=\"translate(100,4)\"><line class=\"ax\" x1=\"4.0\" y1=\"69.7\" x2=\"96.0\" y2=\"69.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"38.5\" y1=\"96.0\" x2=\"38.5\" y2=\"4.0\" marker-end=\"url(#pk)\"></line><line class=\"c1\" x1=\"4.0\" y1=\"34.7\" x2=\"96.0\" y2=\"69.7\"></line><line class=\"c2\" x1=\"4.0\" y1=\"39.0\" x2=\"96.0\" y2=\"74.1\"></line></g><g transform=\"translate(200,4)\"><line class=\"ax\" x1=\"4.0\" y1=\"69.7\" x2=\"96.0\" y2=\"69.7\" marker-end=\"url(#pk)\"></line><line class=\"ax\" x1=\"38.5\" y1=\"96.0\" x2=\"38.5\" y2=\"4.0\" marker-end=\"url(#pk)\"></line><line class=\"c1\" x1=\"4.0\" y1=\"34.7\" x2=\"96.0\" y2=\"69.7\"></line><line class=\"c2\" x1=\"4.0\" y1=\"34.7\" x2=\"96.0\" y2=\"69.7\"></line></g><text class=\"lbi\" x=\"50\" y=\"118\" text-anchor=\"middle\">(a)</text><text class=\"lbi\" x=\"150\" y=\"118\" text-anchor=\"middle\">(b)</text><text class=\"lbi\" x=\"250\" y=\"118\" text-anchor=\"middle\">(c)</text><text class=\"t3 fx d2\" x=\"50\" y=\"134\" text-anchor=\"middle\">|A| ≠ 0</text><text class=\"sm fx d2\" x=\"50\" y=\"148\" text-anchor=\"middle\">unique solution</text><text class=\"t2 fx d3\" x=\"150\" y=\"134\" text-anchor=\"middle\">|A| = 0</text><text class=\"t2 fx d3\" x=\"150\" y=\"148\" text-anchor=\"middle\">(adj A)B ≠ O</text><text class=\"sm fx d3\" x=\"150\" y=\"162\" text-anchor=\"middle\">no solution</text><text class=\"t4 fx d4\" x=\"250\" y=\"134\" text-anchor=\"middle\">|A| = 0</text><text class=\"t4 fx d4\" x=\"250\" y=\"148\" text-anchor=\"middle\">(adj A)B = O</text><text class=\"sm fx d4\" x=\"250\" y=\"162\" text-anchor=\"middle\">infinitely many</text></svg><div class=\"eq fx d5\"><p>(a) x + 2y = 2 and 2x + 3y = 3 meet at one point: <b>consistent, unique</b> (|A| = −1 ≠ 0). (b) x + 3y = 5 and 2x + 6y = 8 are parallel: <b>inconsistent</b> (Ex 4.5 Q3). (c) The same line twice: <b>consistent with infinitely many solutions</b>.</p><p>In 3 variables the same test works: |A| ≠ 0 ⇒ unique solution X = A⁻¹B; |A| = 0 ⇒ compute (adj A)B.</p></div></div>",
+        "frontCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n",
+        "backCss": "\n.w{box-sizing:border-box;min-height:470px;padding:18px 16px 16px;border-radius:18px;\n  font:14px/1.4 system-ui,-apple-system,\"Segoe UI\",sans-serif}\n.w svg{display:block;width:100%;height:auto;overflow:visible}\n.w h2{margin:4px 0 12px;font-size:19px;line-height:1.25;font-weight:700}\n.w .tag{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase}\n.w .fx{opacity:0;animation:fade .5s ease forwards}\n.w .d1{animation-delay:.25s}.w .d2{animation-delay:.6s}.w .d3{animation-delay:.95s}\n.w .d4{animation-delay:1.3s}.w .d5{animation-delay:1.65s}.w .d6{animation-delay:2s}\n.w .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.8s ease forwards .2s}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n@keyframes draw{to{stroke-dashoffset:0}}\n\n.w.pp{color:#1f2430;background:#fbf8f1;border:1px solid #e8e1d2}\n.pp .tag{color:#7a7466}.pp h2{color:#1f2430}\n.pp .ax{stroke:#1f2430;stroke-width:1.4;fill:none}\n.pp .gd{stroke:#e3dac6;stroke-width:1;fill:none}\n.pp .lbl{fill:#1f2430;font-size:11.5px}.pp .lbi{fill:#1f2430;font-size:12px;font-style:italic;font-family:Georgia,serif}\n.pp .sm{fill:#7a7466;font-size:10.5px}.pp .num{fill:#4a4538;font-size:10.5px;text-anchor:middle}\n.pp .c0{stroke:#1f2430;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c1{stroke:#1d5fd6;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c2{stroke:#c93b3f;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c3{stroke:#1f8a4c;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .c4{stroke:#c77700;stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}\n.pp .f0{fill:#fff;stroke:#1f2430;stroke-width:1.6}\n.pp .f1{fill:rgba(29,95,214,.22);stroke:#1d5fd6;stroke-width:1.6}\n.pp .f2{fill:rgba(201,59,63,.22);stroke:#c93b3f;stroke-width:1.6}\n.pp .f3{fill:rgba(31,138,76,.24);stroke:#1f8a4c;stroke-width:1.6}\n.pp .f4{fill:rgba(199,119,0,.24);stroke:#c77700;stroke-width:1.6}\n.pp .ns1{fill:rgba(29,95,214,.22)}.pp .ns2{fill:rgba(201,59,63,.22)}.pp .ns3{fill:rgba(31,138,76,.24)}.pp .ns4{fill:rgba(199,119,0,.26)}\n.pp .t1{fill:#1d5fd6;font-size:12.5px;font-weight:700}.pp .t2{fill:#c93b3f;font-size:12.5px;font-weight:700}\n.pp .t3{fill:#1f8a4c;font-size:12.5px;font-weight:700}.pp .t4{fill:#c77700;font-size:12.5px;font-weight:700}\n.pp .d1s{fill:#1d5fd6}.pp .d2s{fill:#c93b3f}.pp .d3s{fill:#1f8a4c}.pp .d4s{fill:#c77700}.pp .d0s{fill:#1f2430}\n.pp .guide{stroke:#7a7466;stroke-width:1.1;stroke-dasharray:4 4;fill:none}\n.pp .ghost{fill:none;stroke:#b8ae99;stroke-width:1.2;stroke-dasharray:3 3}\n.pp .eq{margin-top:10px;padding:10px 12px;border:1px solid #e8e1d2;border-radius:12px;background:#fff;font-size:14px}\n.pp .eq b{color:#1d5fd6;font-weight:650}.pp .eq p{margin:2px 0}.pp .eq .no{color:#c93b3f;font-weight:700}\n.pp .hint{margin-top:10px;color:#7a7466;font-size:12.5px}\n.pp .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}\n.pp .chips span{padding:4px 9px;border-radius:999px;background:#efe7d6;color:#4a4538;font-size:12px;font-weight:650}\n.pp .loop{animation-iteration-count:infinite}\n"
+      },
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-solving-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Matrix method for AX = B when |A| ≠ 0?",
+      "definition": "<span style=\"color:#3b82f6\">X = A⁻¹ B</span> (unique solution). Set A = coefficients, X = unknowns, B = constants",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-solving-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "When |A| = 0 for AX = B, what do you check?",
+      "definition": "Compute <span style=\"color:#3b82f6\">(adj A)B</span>. If it is ≠ O: <span style=\"color:#e5484d\">inconsistent</span>. If it is = O: the system has either infinitely many solutions or none",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-solving-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Cramer’s rule (beyond the textbook, used in JEE): xᵢ = ?",
+      "definition": "<span style=\"color:#3b82f6\">xᵢ = Δᵢ/Δ</span>, where Δ = |A| ≠ 0 and Δᵢ replaces the i-th column of A by B. Faster than the inverse for one unknown",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-solving-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Homogeneous system AX = O: when does it have a non-trivial solution?",
+      "definition": "Iff <span style=\"color:#3b82f6\">|A| = 0</span>. If |A| ≠ 0 the only solution is x = y = z = 0. (JEE: “find λ so the system has non-trivial solutions” ⇒ set the determinant to 0)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-solving-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 16: solve 2x + 5y = 1, 3x + 2y = 7.",
+      "definition": "|A| = −11, X = A⁻¹B = (−1/11)[[2, −5], [−3, 2]][1, 7]ᵀ = (−1/11)[−33, 11]ᵀ: <span style=\"color:#f08c00\">x = 3, y = −1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-solving-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 17: solve 3x − 2y + 3z = 8, 2x + y − z = 1, 4x − 3y + 2z = 4.",
+      "definition": "|A| = −17. Cofactors and A⁻¹ = (−1/17) adj A give <span style=\"color:#f08c00\">x = 1, y = 2, z = 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-solving-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 18: the sum of three numbers is 6; three times the third plus the second is 11; the first plus the third is double the second. Find them.",
+      "definition": "x + y + z = 6, y + 3z = 11, x − 2y + z = 0. |A| = 9, and X = A⁻¹B gives <span style=\"color:#f08c00\">1, 2, 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-solving-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Example 19: use the product [[1, −1, 2], [0, 2, −3], [3, −2, 4]] · [[−2, 0, 1], [9, 2, −3], [6, 1, −2]] to solve x − y + 2z = 1, 2y − 3z = 1, 3x − 2y + 4z = 2.",
+      "definition": "The product is I, so the second matrix is A⁻¹. X = A⁻¹B = [−2 + 0 + 2, 9 + 2 − 6, 6 + 1 − 4]ᵀ: <span style=\"color:#f08c00\">x = 0, y = 5, z = 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-solving-systems"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q1: is x + 2y = 2, 2x + 3y = 3 consistent?",
+      "definition": "|A| = 3 − 4 = −1 ≠ 0: <span style=\"color:#22a35a\">consistent</span> (unique solution x = 0, y = 1)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q2: is 2x − y = 5, x + y = 4 consistent?",
+      "definition": "|A| = 2 + 1 = 3 ≠ 0: <span style=\"color:#22a35a\">consistent</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q3: is x + 3y = 5, 2x + 6y = 8 consistent?",
+      "definition": "|A| = 6 − 6 = 0; adj A = [[6, −3], [−2, 1]], (adj A)B = [30 − 24, −10 + 8]ᵀ = [6, −2]ᵀ ≠ O: <span style=\"color:#e5484d\">inconsistent</span> (parallel lines)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q4: is x + y + z = 1, 2x + 3y + 2z = 2, ax + ay + 2az = 4 consistent?",
+      "definition": "|A| = 1(6a − 2a) − 1(4a − 2a) + 1(2a − 3a) = 4a − 2a − a = a ≠ 0, so <span style=\"color:#22a35a\">consistent</span> with a unique solution (for a ≠ 0)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q5: is 3x − y − 2z = 2, 2y − z = −1, 3x − 5y = 3 consistent?",
+      "definition": "|A| = 0 and (adj A)B ≠ O: <span style=\"color:#e5484d\">inconsistent</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q6: is 5x − y + 4z = 5, 2x + 3y + 5z = 2, 5x − 2y + 6z = −1 consistent?",
+      "definition": "|A| = 5(18 + 10) + 1(12 − 25) + 4(−4 − 15) = 140 − 13 − 76 = 51 ≠ 0: <span style=\"color:#22a35a\">consistent</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q7: solve 5x + 2y = 4, 7x + 3y = 5.",
+      "definition": "|A| = 1: <span style=\"color:#f08c00\">x = 2, y = −3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q8: solve 2x − y = −2, 3x + 4y = 3.",
+      "definition": "|A| = 11: <span style=\"color:#f08c00\">x = −5/11, y = 12/11</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q9: solve 4x − 3y = 3, 3x − 5y = 7.",
+      "definition": "|A| = −11: <span style=\"color:#f08c00\">x = −6/11, y = −19/11</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q10: solve 5x + 2y = 3, 3x + 2y = 5.",
+      "definition": "Subtract: 2x = −2: <span style=\"color:#f08c00\">x = −1, y = 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q11: solve 2x + y + z = 1, x − 2y − z = 3/2, 3y − 5z = 9.",
+      "definition": "|A| = 2(10 + 3) − 1(−5 − 0) + 1(3 − 0) = 34 ≠ 0. Matrix method gives <span style=\"color:#f08c00\">x = 1, y = 1/2, z = −3/2</span> (check: 2 + ½ − 3/2 = 1 ✓)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q12: solve x − y + z = 4, 2x + y − 3z = 0, x + y + z = 2.",
+      "definition": "<span style=\"color:#f08c00\">x = 2, y = −1, z = 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q13: solve 2x + 3y + 3z = 5, x − 2y + z = −4, 3x − y − 2z = 3.",
+      "definition": "<span style=\"color:#f08c00\">x = 1, y = 2, z = −1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q14: solve x − y + 2z = 7, 3x + 4y − 5z = −5, 2x − y + 3z = 12.",
+      "definition": "<span style=\"color:#f08c00\">x = 2, y = 1, z = 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q15: A = [[2, −3, 5], [3, 2, −4], [1, 1, −2]]. Find A⁻¹ and solve 2x − 3y + 5z = 11, 3x + 2y − 4z = −5, x + y − 2z = −3.",
+      "definition": "A⁻¹ = [[0, 1, −2], [−2, 9, −23], [−1, 5, −13]]. Then X = A⁻¹[11, −5, −3]ᵀ gives <span style=\"color:#f08c00\">x = 1, y = 2, z = 3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Ex 4.5 Q16: 4 kg onion + 3 kg wheat + 2 kg rice = ₹60; 2 + 4 + 6 = ₹90; 6 + 2 + 3 = ₹70. Find the price per kg.",
+      "definition": "Solve 4x + 3y + 2z = 60, 2x + 4y + 6z = 90, 6x + 2y + 3z = 70: <span style=\"color:#f08c00\">onion ₹5, wheat ₹8, rice ₹8</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.6-exercise-4-5"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q1: prove |x sin θ cos θ; −sin θ −x 1; cos θ 1 x| is independent of θ.",
+      "definition": "Expanding: x(−x² − 1) − sin θ(−x sin θ − cos θ) + cos θ(−sin θ + x cos θ) = −x³ − x + x sin²θ + sin θ cos θ − sin θ cos θ + x cos²θ = <span style=\"color:#f08c00\">−x³ − x + x = −x³</span>, free of θ",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q2: evaluate |cos α cos β, cos α sin β, −sin α; −sin β, cos β, 0; sin α cos β, sin α sin β, cos α|.",
+      "definition": "Expand along the second row (it has a zero): the two surviving terms combine to sin²β + cos²β = <span style=\"color:#f08c00\">1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q3: A⁻¹ = [[3, −1, 1], [−15, 6, −5], [5, −2, 2]] and B = [[1, 2, −2], [−1, 3, 0], [0, −2, 1]]. Find (AB)⁻¹.",
+      "definition": "(AB)⁻¹ = B⁻¹A⁻¹. B⁻¹ = [[3, 2, 6], [1, 1, 2], [2, 2, 5]]. Multiplying: <span style=\"color:#f08c00\">[[9, −3, 5], [−2, 1, 0], [1, 0, 2]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q4: A = [[1, 2, 1], [2, 3, 1], [1, 1, 5]]. Verify (i) [adj A]⁻¹ = adj(A⁻¹), (ii) (A⁻¹)⁻¹ = A.",
+      "definition": "Here |A| = −5. Since adj A = |A| A⁻¹, we get [adj A]⁻¹ = A/|A|, and adj(A⁻¹) = |A⁻¹| (A⁻¹)⁻¹ = A/|A|: equal. (ii) is the fact that inverting twice returns A. <span style=\"color:#22a35a\">✓</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q5: evaluate |x y x+y; y x+y x; x+y x y|.",
+      "definition": "Add all columns into column 1: (2x + 2y) times a column of 1s, factor it out, then reduce: <span style=\"color:#f08c00\">−2(x³ + y³)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q6: evaluate |1 x y; 1 x+y y; 1 x x+y|.",
+      "definition": "R₂ − R₁ and R₃ − R₁: |1 x y; 0 y 0; 0 0 x| = 1 · y · x = <span style=\"color:#f08c00\">xy</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q7: solve 2/x + 3/y + 10/z = 4, 4/x − 6/y + 5/z = 1, 6/x + 9/y − 20/z = 2.",
+      "definition": "Put p = 1/x, q = 1/y, r = 1/z: 2p + 3q + 10r = 4, 4p − 6q + 5r = 1, 6p + 9q − 20r = 2. Then p = 1/2, q = 1/3, r = 1/5: <span style=\"color:#f08c00\">x = 2, y = 3, z = 5</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q8: the inverse of diag(x, y, z) (non-zero x, y, z) is (A) diag(1/x, 1/y, 1/z) (B) xyz · diag(1/x, 1/y, 1/z) (C) (1/xyz) diag(x, y, z) (D) (1/xyz) I",
+      "definition": "Invert each diagonal entry: <span style=\"color:#22a35a\">(A)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Misc Q9: A = [[1, sin θ, 1], [−sin θ, 1, sin θ], [−1, −sin θ, 1]], 0 ≤ θ ≤ 2π. Then Det A ∈ (A) {0} (B) (2, ∞) (C) (2, 4) (D) [2, 4]",
+      "definition": "|A| = 2 + 2 sin²θ. With sin²θ ∈ [0, 1] this covers <span style=\"color:#22a35a\">(D) [2, 4]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.7-miscellaneous"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Effect of transposing: |Aᵀ| = ?",
+      "definition": "<span style=\"color:#3b82f6\">|Aᵀ| = |A|</span>. So anything true for rows is true for columns",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What happens to |A| if two rows (or columns) are interchanged?",
+      "definition": "It <span style=\"color:#3b82f6\">changes sign</span>. So an even number of swaps leaves it unchanged",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What if two rows (or columns) are identical or proportional?",
+      "definition": "<span style=\"color:#3b82f6\">|A| = 0</span> (swapping the equal rows must change the sign but does not change the matrix, so |A| = −|A|)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "What if a row is multiplied by k?",
+      "definition": "<span style=\"color:#3b82f6\">|A|</span> is multiplied by k. So a common factor of a row can be taken outside; for the whole matrix |kA| = kⁿ|A|",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Which row operation does not change the determinant?",
+      "definition": "<span style=\"color:#3b82f6\">Rᵢ → Rᵢ + kRⱼ</span> (add a multiple of another row); same for columns. Use it to create zeros before expanding",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If every element of a row is a sum of two terms, what can you do?",
+      "definition": "Split into a sum of two determinants (the other rows unchanged): |a+p, b+q; c, d| = |a b; c d| + |p q; c d|",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Trap: is |A + B| = |A| + |B|?",
+      "definition": "<span style=\"color:#e5484d\">No</span>. The determinant is not additive. It is multiplicative: |AB| = |A||B|. Only the “one row is a sum” splitting works",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "How do row operations help evaluate a determinant quickly? Example: |1 2 3; 4 5 6; 7 8 9|.",
+      "definition": "R₂ − R₁ = (3, 3, 3) and R₃ − R₂ = (3, 3, 3): two equal rows, so <span style=\"color:#f08c00\">0</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Determinant of a skew-symmetric matrix of odd order?",
+      "definition": "<span style=\"color:#f08c00\">0</span>. |A| = |Aᵀ| = |−A| = (−1)ⁿ|A| = −|A| for odd n",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If A is n × n with A² = I, what are the possible values of |A|?",
+      "definition": "|A|² = 1 so <span style=\"color:#f08c00\">|A| = ±1</span>. Same if AAᵀ = I (orthogonal)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If A is 3 × 3 with |A| = 2, find |3A|, |adj A|, |A⁻¹|, |A²|, |Aᵀ|.",
+      "definition": "|3A| = 27 · 2 = <span style=\"color:#f08c00\">54</span>; |adj A| = |A|² = <span style=\"color:#f08c00\">4</span>; |A⁻¹| = <span style=\"color:#f08c00\">1/2</span>; |A²| = <span style=\"color:#f08c00\">4</span>; |Aᵀ| = <span style=\"color:#f08c00\">2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "If A is 3 × 3, |A| = 4, find |adj(adj A)|.",
+      "definition": "|adj A| = |A|² = 16 and |adj(adj A)| = 16² = <span style=\"color:#f08c00\">256 = |A|⁴</span> (general: |adj(adj A)| = |A|^((n−1)²))",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Vandermonde determinant |1 a a²; 1 b b²; 1 c c²| = ?",
+      "definition": "<span style=\"color:#f08c00\">(b − a)(c − a)(c − b)</span>. It vanishes iff two of a, b, c are equal. Ex 4.3 Q4 is the similar (x − y)(y − z)(z − x)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Circulant/symmetric trick: |a b c; b c a; c a b| = ?",
+      "definition": "<span style=\"color:#f08c00\">−(a³ + b³ + c³ − 3abc)</span> = −(a + b + c)(a² + b² + c² − ab − bc − ca)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Determinant of a triangular 4 × 4 matrix with diagonal 1, 2, 3, 4?",
+      "definition": "Product of the diagonal entries: <span style=\"color:#f08c00\">24</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For which k is [[k, 2], [3, k + 1]] singular?",
+      "definition": "k(k + 1) − 6 = 0 → k² + k − 6 = 0 → <span style=\"color:#f08c00\">k = 2 or −3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Solve |x + 1, 3; 5, x + 3| = 0.",
+      "definition": "(x + 1)(x + 3) − 15 = x² + 4x − 12 = 0 → <span style=\"color:#f08c00\">x = 2 or x = −6</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "For which λ does x + y + z = 0, x + 2y + 3z = 0, 2x + 3y + λz = 0 have non-trivial solutions?",
+      "definition": "Determinant |1 1 1; 1 2 3; 2 3 λ| = (2λ − 9) − (λ − 6) + (3 − 4) = λ − 4 = 0 → <span style=\"color:#f08c00\">λ = 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Area of the triangle with vertices (0, 0), (a, 0), (0, b) using the determinant?",
+      "definition": "½ |0 0 1; a 0 1; 0 b 1| = ½ · |ab| = <span style=\"color:#f08c00\">ab/2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-properties-of-determinants"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: |2 −3; 4 5| =<br>(a) −2 (b) 22 (c) −22 (d) 2",
+      "definition": "10 + 12 = <span style=\"color:#22a35a\">(b) 22</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if A is a 3 × 3 matrix with |A| = 5, then |2A| =<br>(a) 10 (b) 40 (c) 25 (d) 125",
+      "definition": "2³ · 5 = <span style=\"color:#22a35a\">(b) 40</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if A is a square matrix of order 3 with |A| = −4, then |adj A| =<br>(a) −4 (b) 4 (c) 16 (d) −16",
+      "definition": "|A|² = <span style=\"color:#22a35a\">(c) 16</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the value of |1 2 3; 4 5 6; 7 8 9| is<br>(a) 0 (b) 1 (c) −1 (d) 3",
+      "definition": "<span style=\"color:#22a35a\">(a) 0</span> (rows in arithmetic progression)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the area of the triangle with vertices (0, 0), (4, 0), (0, 3) is<br>(a) 12 (b) 6 (c) 3 (d) 7",
+      "definition": "½ · 4 · 3 = <span style=\"color:#22a35a\">(b) 6</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: for what value of k are the points (k, 2), (3, 4), (5, 6) collinear?<br>(a) 1 (b) 2 (c) 3 (d) 4",
+      "definition": "Slope between the last two is 1, so (k, 2) lies on y = x + 1: k = 1: <span style=\"color:#22a35a\">(a) 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if A is invertible and |A| = 3, then |A⁻¹| =<br>(a) 3 (b) 1/3 (c) −3 (d) 9",
+      "definition": "<span style=\"color:#22a35a\">(b) 1/3</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if A = [[2, 3], [1, 4]], then A⁻¹ = <br>(a) (1/5)[[4, −3], [−1, 2]] (b) [[4, −3], [−1, 2]] (c) (1/5)[[2, 3], [1, 4]] (d) (1/5)[[4, 3], [1, 2]]",
+      "definition": "|A| = 5: <span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: the system x + y = 2, 2x + 2y = 5 is<br>(a) consistent, unique (b) inconsistent (c) consistent, infinitely many (d) none",
+      "definition": "|A| = 0 and the equations are parallel: <span style=\"color:#22a35a\">(b) inconsistent</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "MCQ: if the system 2x + 3y = 5, kx + 6y = 10 has infinitely many solutions, k =<br>(a) 4 (b) 6 (c) 2 (d) 3",
+      "definition": "The second is twice the first: <span style=\"color:#22a35a\">(a) 4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer (JEE Main): if A is 3 × 3 with |A| = 2, the value of |adj(2A)| is?",
+      "definition": "|2A| = 8·2 = 16, |adj(2A)| = 16² = <span style=\"color:#f08c00\">256</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: the number of values of k for which [[k, 1], [1, k]] is singular is?",
+      "definition": "k² − 1 = 0 gives k = ±1: <span style=\"color:#f08c00\">2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Integer answer: if |x 2; 3 4| = 10, the value of x is?",
+      "definition": "4x − 6 = 10, so x = <span style=\"color:#f08c00\">4</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> |A| = 0 implies A has no inverse.<br><b>R:</b> A⁻¹ = adj A / |A| requires division by |A|.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "definition": "<span style=\"color:#22a35a\">(a)</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Assertion–Reason.<br><b>A:</b> |A + B| = |A| + |B|.<br><b>R:</b> |AB| = |A||B|.<br>(a) Both true, R explains A (b) Both true, R does not (c) A false, R true (d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(c)</span>: R is true; A is false in general",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: interchanging two rows of a determinant does not change its value.",
+      "definition": "<span style=\"color:#e5484d\">False</span>: the sign changes",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "True/False: |A| ≠ 0 means the system AX = B has a unique solution.",
+      "definition": "<span style=\"color:#22a35a\">True</span>: X = A⁻¹B",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "2-mark: find the area of the triangle with vertices (1, 1), (3, 5), (−2, 4).",
+      "definition": "½ |1 1 1; 3 5 1; −2 4 1| = ½ [1(5 − 4) − 1(3 + 2) + 1(12 + 10)] = ½ · 18 = <span style=\"color:#f08c00\">9</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: find the adjoint of A = [[1, 2], [3, 4]] and verify A(adj A) = |A| I.",
+      "definition": "adj A = [[4, −2], [−3, 1]], |A| = −2. A(adj A) = [[4 − 6, −2 + 2], [12 − 12, −6 + 4]] = <span style=\"color:#f08c00\">−2 I</span> ✓",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "3-mark: solve x + y = 3, 2x − y = 0 by the matrix method.",
+      "definition": "A = [[1, 1], [2, −1]], |A| = −3, A⁻¹ = (−1/3)[[−1, −1], [−2, 1]]. X = A⁻¹[3, 0]ᵀ = [1, 2]ᵀ: <span style=\"color:#f08c00\">x = 1, y = 2</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: solve x − y + z = 4, 2x + y − 3z = 0, x + y + z = 2 by the matrix method.",
+      "definition": "|A| = 1(1 + 3) + 1(2 + 3) + 1(2 − 1) = 10. Solving via A⁻¹B: <span style=\"color:#f08c00\">x = 2, y = −1, z = 1</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "4-mark: if A = [[3, 1], [−1, 2]], show A² − 5A + 7I = O and hence find A⁻¹.",
+      "definition": "A² = [[8, 5], [−5, 3]]; A² − 5A + 7I = O. Multiply by A⁻¹: A − 5I + 7A⁻¹ = O, so <span style=\"color:#f08c00\">A⁻¹ = (1/7)(5I − A) = (1/7)[[2, −1], [1, 3]]</span>",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    },
+    {
+      "noteType": "basic",
+      "term": "Case-based: 2 pens + 3 pencils + 1 eraser cost ₹19; 1 pen + 2 pencils + 2 erasers cost ₹14; 3 pens + 1 pencil + 1 eraser cost ₹17. Find the prices.",
+      "definition": "Solve 2x + 3y + z = 19, x + 2y + 2z = 14, 3x + y + z = 17. |A| = 10 ≠ 0 and the matrix method gives <span style=\"color:#f08c00\">pen ₹4, pencil ₹3, eraser ₹2</span> (check: 8 + 9 + 2 = 19 ✓)",
+      "tags": [
+        "class-12",
+        "mathematics",
+        "ch-4",
+        "4.z-how-its-asked"
+      ]
+    }
+  ]
+}
