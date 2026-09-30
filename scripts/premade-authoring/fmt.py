@@ -212,8 +212,8 @@ def per_line(fn, text):
 
 def tidy_display(t):
     """Display math is a block: drop the punctuation/space/newline hugging it so no stray '.' or blank line shows."""
-    t = re.sub(r'(\\](?:</span>)?)[.;,:]?[ \n]+', r'\1', t)
-    t = re.sub(r'(\\](?:</span>)?)[.:]$', r'\1', t)
+    t = re.sub(r'(\\](?:</span>)?)[ ]*[.;,:—]?[ \n]+', r'\1', t)
+    t = re.sub(r'(\\](?:</span>)?)[ ]*[.:]$', r'\1', t)
     return re.sub(r'[ \n]+((?:<span[^>]*>)?\\\[)', r'\1', t)
 
 
@@ -350,6 +350,24 @@ def tidy_spaces(t):
     return ''.join(parts)
 
 
+INLINE = re.compile(r'\\\((.+?)\\\)', re.S)
+
+
+def inline_to_display(text):
+    """A lone inline formula that leads or ends an answer becomes a display block (tinted box on the card)."""
+    if '\\[' in text or '{{' in text:
+        return text
+    ms = list(INLINE.finditer(text))
+    if len(ms) != 1 or len(ms[0].group(1).strip()) < 14:
+        return text
+    m = ms[0]
+    pre = re.sub(r'<[^>]+>', '', text[:m.start()]).strip()
+    post = re.sub(r'<[^>]+>', '', text[m.end():]).strip()
+    if (not pre and len(post) <= 100) or (not post and len(pre) <= 180) or (len(post) <= 40 and len(pre) <= 180):
+        return text[:m.start()] + '\\[' + m.group(1).strip() + '\\]' + text[m.end():]
+    return text
+
+
 def format_text(text, cloze=False, answer=False, subject=None):
     if not text or not isinstance(text, str):
         return text
@@ -366,6 +384,7 @@ def format_text(text, cloze=False, answer=False, subject=None):
         t = derivation_chains(t)
         t = long_answer(t)
         t = per_line(semicolon_lists, t)
+        t = inline_to_display(t)
         if subject == 'mathematics':
             t = result_equations(t)
     t = tidy_display(t) if '\\[' in t else t
