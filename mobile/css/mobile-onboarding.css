@@ -57,7 +57,7 @@
   z-index: 50;
   pointer-events: none;
   background-image: var(--onboarding-grain, none);
-  background-size: 160px 160px;
+  background-size: 200px 200px;
   opacity: 0.5;
 }
 
@@ -883,7 +883,8 @@ html.onboarding-pending #onboarding-shell.hidden {
 .onboarding-demo-card:active .onboarding-demo-card-inner { transform: scale(0.985); }
 .onboarding-flip-demo.is-flipped .onboarding-demo-card:active .onboarding-demo-card-inner { transform: rotateY(180deg) scale(0.985); }
 
-/* A 5 x 3 index card: red margin line, blue rules, a little shadow. */
+/* A plain 5 x 3 card with a little shadow. No ruled lines: the text did not
+   sit on them, so they read as misaligned rather than as paper. */
 .onboarding-demo-face {
   grid-area: 1 / 1;
   display: flex;
@@ -891,10 +892,7 @@ html.onboarding-pending #onboarding-shell.hidden {
   gap: 0.75rem;
   padding: 1.1rem 1.25rem 1.25rem 1.5rem;
   border-radius: 0.35rem;
-  background:
-    linear-gradient(var(--ob-card-margin), var(--ob-card-margin)) 0 2.6rem / 100% 1.5px no-repeat,
-    repeating-linear-gradient(180deg, transparent 0 1.75rem, var(--ob-card-rule) 1.75rem calc(1.75rem + 1px)) 0 2.6rem / 100% calc(100% - 2.6rem) no-repeat,
-    var(--ob-card);
+  background: var(--ob-card);
   color: var(--ob-card-ink);
   box-shadow:
     0 1px 1px rgba(20, 15, 5, 0.12),

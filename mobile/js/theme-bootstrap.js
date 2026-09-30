@@ -43,11 +43,15 @@
   // bitmap on a fixed layer costs almost nothing per frame, unlike an SVG
   // filter or a blend mode.
   let grainUrl = '';
+  // One tile of GRAIN_TILE CSS pixels, drawn at device resolution. Two layers:
+  // a faint one-pixel base, and scattered soft specks one to three points
+  // wide, which is the scale real paper grain reads at on a phone.
+  const GRAIN_TILE = 200;
   function grainTile() {
     if (grainUrl) return grainUrl;
     try {
-      // Drawn at device resolution so each speck is one physical pixel.
-      const size = Math.round(160 * Math.min(3, Math.max(1, window.devicePixelRatio || 1)));
+      const scale = Math.min(3, Math.max(1, window.devicePixelRatio || 1));
+      const size = Math.round(GRAIN_TILE * scale);
       const canvas = document.createElement('canvas');
       canvas.width = size;
       canvas.height = size;
@@ -60,10 +64,22 @@
         data[index] = shade;
         data[index + 1] = shade;
         data[index + 2] = shade;
-        // Most pixels stay nearly clear; a few carry the fibre-like speckle.
-        data[index + 3] = Math.round(Math.pow(Math.abs(value - 0.5) * 2, 1.6) * 34);
+        data[index + 3] = Math.round(Math.pow(Math.abs(value - 0.5) * 2, 2.2) * 18);
       }
       context.putImageData(image, 0, 0);
+      const specks = Math.round(GRAIN_TILE * GRAIN_TILE * 0.05);
+      for (let count = 0; count < specks; count += 1) {
+        const x = Math.random() * size;
+        const y = Math.random() * size;
+        const radius = (0.5 + Math.pow(Math.random(), 2.4) * 1.1) * scale;
+        const light = Math.random() > 0.55;
+        const alpha = 0.025 + Math.random() * 0.06;
+        context.fillStyle = light ? `rgba(255,255,255,${alpha})` : `rgba(0,0,0,${alpha * 1.15})`;
+        context.beginPath();
+        // Slightly stretched specks look like fibres rather than dots.
+        context.ellipse(x, y, radius * (1 + Math.random() * 0.8), radius, Math.random() * Math.PI, 0, Math.PI * 2);
+        context.fill();
+      }
       grainUrl = canvas.toDataURL('image/png');
     } catch (_) {
       grainUrl = '';
