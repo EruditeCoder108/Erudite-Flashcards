@@ -1407,10 +1407,12 @@ html.reduce-motion .study-card-inner {
   color: #fff;
 }
 
+/* A surface button in the theme's text colour. It used --ink, which is near
+   black in every theme, so light themes got blue text on a black slab. */
 .secondary-action {
-  background: color-mix(in srgb, var(--ink) 86%, transparent);
+  background: var(--surface-2, color-mix(in srgb, var(--text) 8%, transparent));
   border: 1px solid var(--line);
-  color: var(--primary-text);
+  color: var(--text);
 }
 
 .primary-action.is-busy,
