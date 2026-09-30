@@ -20,7 +20,7 @@ d.basic('Why is energy released step by step, not all at once?', 'So that small 
 d.basic('Why is ATP called the energy currency of the cell?', 'Energy from respiration is stored in ATP, which is broken down ' + T('whenever and wherever') + ' energy is needed')
 d.basic('Besides ATP, what else does respiration provide?', T('Carbon skeletons') + ' used as precursors for biosynthesis')
 d.basic('Where does respiration occur in eukaryotic cells?', 'In the ' + T('cytoplasm') + ' (glycolysis) and ' + T('mitochondria'))
-d.basic('Why do non-green plant parts need food translocated to them?', 'Only chloroplast-containing (usually superficial) cells photosynthesise; all other cells must oxidise food for energy')
+d.basic('Why do non-green plant parts need food translocated to them?', 'Only chloroplast-containing (usually superficial) cells photosynthesise.<br>All other cells must oxidise food for energy')
 
 # ---------------------------------------------------------------- 12.1 Do plants breathe
 d.sec('12.1-do-plants-breathe')
@@ -45,7 +45,7 @@ d.basic('End product of glycolysis?', T('Two') + ' molecules of ' + T('pyruvic a
 d.basic('Source of glucose for glycolysis in plants?', T('Sucrose') + ' (end product of photosynthesis) or storage carbohydrates')
 d.basic('Which enzyme converts sucrose to glucose and fructose?', T('Invertase'))
 d.basic('Which enzyme phosphorylates glucose to glucose-6-phosphate?', T('Hexokinase'))
-d.basic('Correction: NCERT says glucose and fructose are both phosphorylated "to glucose-6-phosphate". What is precise?', 'Hexokinase makes ' + T('glucose-6-phosphate') + ' from glucose and ' + T('fructose-6-phosphate') + ' from fructose; both then follow the same path.')
+d.basic('Correction: NCERT says glucose and fructose are both phosphorylated "to glucose-6-phosphate". What is precise?', 'Hexokinase makes ' + T('glucose-6-phosphate') + ' from glucose<br>and ' + T('fructose-6-phosphate') + ' from fructose.<br>Both then follow the same path')
 d.basic('How many reactions in glycolysis?', 'A chain of ' + N('ten') + ' enzyme-controlled reactions')
 d.basic('At which two steps is ATP used in glycolysis?', 'Glucose → ' + T('glucose-6-phosphate') + '; fructose-6-phosphate → ' + T('fructose-1,6-bisphosphate'))
 d.basic('Fructose-1,6-bisphosphate splits into?', T('Dihydroxyacetone phosphate (DHAP)') + ' and ' + T('3-phosphoglyceraldehyde (PGAL)'))
@@ -70,7 +70,7 @@ d.basic('Two enzymes of alcoholic fermentation?', T('Pyruvic acid decarboxylase'
 d.basic('Which enzyme reduces pyruvic acid to lactic acid?', T('Lactate dehydrogenase'))
 d.basic('When do animal muscles make lactic acid?', 'During exercise, when ' + T('O₂ is inadequate'))
 d.basic('What is the reducing agent in fermentation?', T('NADH + H⁺') + ', reoxidised to NAD⁺')
-d.basic('Why is regenerating NAD⁺ the real purpose of fermentation?', 'Glycolysis needs NAD⁺ at the PGAL step; without O₂, turning pyruvate into lactate or ethanol is the only way to ' + T('recycle NADH') + ' so glycolysis keeps making ATP')
+d.basic('Why is regenerating NAD⁺ the real purpose of fermentation?', 'Glycolysis needs NAD⁺ at the PGAL step.<br>Without O₂, turning pyruvate into lactate or ethanol is the only way to ' + T('recycle NADH') + ' so glycolysis keeps making ATP')
 d.basic('How much of glucose\'s energy does fermentation release?', 'Less than ' + N('7%') + ', and not all of it is trapped as ATP')
 d.basic('Net ATP from fermentation of one glucose?', N('2 ATP') + ' (from glycolysis)')
 d.basic('Why is fermentation hazardous?', 'It produces ' + T('acid or alcohol'))
@@ -82,7 +82,7 @@ d.basic('Fermentation vs aerobic respiration?', 'Fermentation: ' + T('partial') 
 # ---------------------------------------------------------------- 12.4 Aerobic respiration
 d.sec('12.4-aerobic')
 d.basic('What is aerobic respiration?', 'Complete oxidation of organic substances in the presence of ' + T('O₂') + ', releasing CO₂, water and much energy')
-d.basic('Two crucial events of aerobic respiration, and where?', '(1) Complete oxidation of pyruvate by removing H atoms, leaving 3 CO₂: ' + T('matrix') + '. (2) Passing electrons to O₂ with ATP synthesis: ' + T('inner membrane') + '.')
+d.basic('Two crucial events of aerobic respiration, and where?', '(1) Complete oxidation of pyruvate by removing H atoms, leaving 3 CO₂: ' + T('matrix') + '<br>(2) Passing electrons to O₂ with ATP synthesis: ' + T('inner membrane'))
 d.basic('What happens to pyruvate in the mitochondrial matrix?', T('Oxidative decarboxylation') + ' to acetyl CoA, by ' + T('pyruvic dehydrogenase'))
 d.basic('Link reaction equation?', 'Pyruvic acid + CoA + NAD⁺ → acetyl CoA + CO₂ + NADH + H⁺ (Mg²⁺, pyruvate dehydrogenase)')
 d.basic('Coenzymes needed by pyruvate dehydrogenase?', T('NAD⁺') + ' and ' + T('coenzyme A') + ' (and Mg²⁺)')
@@ -106,7 +106,7 @@ d.occlusion('Figure 12.3 · Citric acid cycle', M + 'fig_12_3_krebs.webp', K, [
     ('Oxaloacetic acid (4C)', wbox(179, 382, 453, 449, K), True), ('α-ketoglutaric acid (5C)', wbox(620, 570, 934, 652, K), True),
     ('Succinic acid (4C)', wbox(373, 833, 596, 907, K), True), ('Malic acid (4C)', wbox(123, 624, 293, 698, K), True),
     ('GTP', wbox(720, 890, 788, 924, K), True), ('FADH₂', wbox(69, 768, 182, 806, K), True)], guess='hide-one')
-d.basic('Why are O₂ and big ATP yields still missing after the Krebs cycle?', 'The energy is held in ' + T('NADH and FADH₂') + '; it is released only when they are oxidised through the ETS, with O₂ as the final acceptor')
+d.basic('Why are O₂ and big ATP yields still missing after the Krebs cycle?', 'The energy is held in ' + T('NADH and FADH₂') + '.<br>It is released only when they are oxidised through the ETS, with O₂ as the final acceptor')
 
 d.sec('12.4.2-ets')
 d.basic('Where is the ETS located?', 'In the ' + T('inner mitochondrial membrane'))
@@ -155,7 +155,7 @@ d.basic('RQ of carbohydrates?', N('1') + ' (6 CO₂ / 6 O₂)')
 d.basic('RQ of fats? Example?', 'Less than 1: tripalmitin ' + N('102 CO₂ / 145 O₂ ≈ 0.7'))
 d.basic('Tripalmitin oxidation equation?', '2(C₅₁H₉₈O₆) + 145O₂ → 102CO₂ + 98H₂O + energy')
 d.basic('RQ of proteins?', 'About ' + N('0.9'))
-d.basic('Why is fat RQ below 1? (intuition)', 'Fats contain little oxygen, so extra O₂ is needed to oxidise their many H atoms to water; more O₂ used than CO₂ given out')
+d.basic('Why is fat RQ below 1? (intuition)', 'Fats contain little oxygen, so extra O₂ is needed to oxidise their many H atoms to water.<br>More O₂ is used than CO₂ given out')
 d.basic('Beyond NCERT: RQ of organic acids and anaerobic respiration?', 'Organic acids (e.g. malic acid): ' + N('> 1') + '. Anaerobic respiration: ' + N('∞') + ' (CO₂ released, no O₂ used).')
 d.basic('Are pure fats or proteins used as respiratory substrates?', X('Never') + '. Usually more than one substrate is used.')
 
@@ -163,7 +163,7 @@ d.sec('summary')
 table_card(d, 'Respiration map', 'Where does it happen?', [
     ('Glycolysis', 'Cytoplasm', False), ('Fermentation', 'Cytoplasm', False), ('Pyruvate → acetyl CoA', 'Mitochondrial matrix', False),
     ('Krebs cycle', 'Mitochondrial matrix', False), ('ETS, oxidative phosphorylation', 'Inner mitochondrial membrane', False)], term='Location of respiratory steps')
-d.basic('Glycolysis vs Krebs cycle?', 'Glycolysis: ' + T('cytoplasm') + ', glucose → 2 pyruvate, anaerobic, net 2 ATP. Krebs: ' + T('matrix') + ', acetyl CoA → CO₂, needs aerobic conditions, makes NADH/FADH₂.')
+d.basic('Glycolysis vs Krebs cycle?', 'Glycolysis: ' + T('cytoplasm') + ', glucose → 2 pyruvate, anaerobic, net 2 ATP<br>Krebs: ' + T('matrix') + ', acetyl CoA → CO₂, needs aerobic conditions, makes NADH/FADH₂')
 
 os.makedirs(OUT, exist_ok=True)
 print('notes', d.write(os.path.join(OUT, 'deck.json')))

@@ -76,7 +76,7 @@ d.sec('5.3.2-types-of-leaves')
 d.basic('When is a leaf simple?', 'Lamina entire, or incisions ' + X('do not touch') + ' the midrib')
 d.basic('When is a leaf compound?', 'Incisions reach the midrib, breaking it into ' + T('leaflets'))
 d.basic('How do you tell a compound leaf from a branch with simple leaves?', 'A ' + T('bud') + ' is in the axil of the petiole, ' + X('never') + ' in the axil of leaflets')
-d.basic('Pinnate vs palmate compound leaf? Examples?', T('Pinnate') + ': leaflets on a common axis, the ' + T('rachis') + ' (' + E('neem') + '). ' + T('Palmate') + ': leaflets at one point, tip of the petiole (' + E('silk cotton') + ').', **img('fig_5_5_compound_leaves'))
+d.basic('Pinnate vs palmate compound leaf? Examples?', T('Pinnate') + ': leaflets on a common axis, the ' + T('rachis') + ' (' + E('neem') + ')<br>' + T('Palmate') + ': leaflets at one point, tip of the petiole (' + E('silk cotton') + ')', **img('fig_5_5_compound_leaves'))
 d.basic('What does the rachis represent?', 'The ' + T('midrib') + ' of the leaf')
 
 d.sec('5.3.3-phyllotaxy')
@@ -86,7 +86,7 @@ d.cloze('Alternate phyllotaxy: {{c1::one}} leaf per node (china rose, mustard, s
 
 # ---------------------------------------------------------------- 5.4 Inflorescence
 d.sec('5.4-inflorescence')
-d.basic('Why is a flower called a modified shoot?', 'The shoot apical meristem becomes a ' + T('floral meristem') + '; internodes do not elongate, and floral appendages form at successive nodes instead of leaves')
+d.basic('Why is a flower called a modified shoot?', 'The shoot apical meristem becomes a ' + T('floral meristem') + '.<br>Internodes do not elongate, and floral appendages form at successive nodes instead of leaves')
 d.basic('What is an inflorescence?', 'The arrangement of ' + T('flowers') + ' on the floral axis')
 d.basic('Racemose inflorescence: axis growth and flower order?', 'Main axis ' + T('continues to grow') + '; flowers lateral, in ' + T('acropetal') + ' succession (older below)', **img('fig_5_7_racemose'))
 d.basic('Cymose inflorescence: axis growth and flower order?', 'Main axis ' + T('ends in a flower') + ' (limited growth); flowers in ' + T('basipetal') + ' order', **img('fig_5_8_cymose'))
@@ -111,7 +111,7 @@ d.basic('What are bracteate and ebracteate flowers?', 'Bracteate: with ' + T('br
 d.sec('5.5-position-of-ovary')
 d.basic('Hypogynous flower: ovary position? Examples?', 'Gynoecium ' + T('highest') + ', others below: ovary ' + T('superior') + '. ' + E('Mustard, china rose, brinjal'))
 d.basic('Perigynous flower: ovary position? Examples?', 'Other parts on the rim of the thalamus at about the same level: ovary ' + T('half inferior') + '. ' + E('Plum, rose, peach'))
-d.basic('Epigynous flower: ovary position? Examples?', 'Thalamus encloses and fuses with the ovary; other parts arise above it: ovary ' + T('inferior') + '. ' + E('Guava, cucumber, ray florets of sunflower'))
+d.basic('Epigynous flower: ovary position? Examples?', 'Thalamus encloses and fuses with the ovary; other parts arise above it: ovary ' + T('inferior') + '<br>' + E('Guava, cucumber, ray florets of sunflower'))
 d.occlusion('Figure 5.9 · Position of floral parts on the thalamus', M + 'fig_5_9_thalamus.webp', (1001, 399), [
     ('Hypogynous', P((146, 378, 26, 20))), ('Perigynous', P((383, 378, 26, 20))), ('Perigynous', P((618, 378, 24, 20))), ('Epigynous', P((817, 382, 26, 20)))])
 d.basic('Mnemonic: hypo-, peri-, epi-gynous?', '<i>hypo</i> = below (other parts ' + T('below') + ' the ovary), <i>peri</i> = around, <i>epi</i> = upon (other parts ' + T('on top') + ' of the ovary)')
@@ -154,7 +154,7 @@ d.basic('Axile placentation: description and examples?', 'Placenta ' + T('axial'
 d.basic('Parietal placentation: description and examples?', 'Ovules on the ' + T('inner wall') + '; one-chambered ovary becomes two-chambered by a ' + T('false septum') + ': ' + E('mustard, <i>Argemone</i>'))
 d.basic('Free central placentation: description and examples?', 'Ovules on a central axis, ' + X('septa absent') + ': ' + E('<i>Dianthus</i>, primrose'))
 d.basic('Basal placentation: description and examples?', 'Placenta at the ' + T('base') + ', a ' + N('single') + ' ovule: ' + E('sunflower, marigold'))
-d.basic('Mnemonic for placentation examples?', '<b>M</b>arginal: <b>P</b>ea · <b>A</b>xile: <b>T</b>omato, china rose, lemon · <b>P</b>arietal: <b>M</b>ustard, <i>Argemone</i> · <b>F</b>ree central: <b>D</b>ianthus, primrose · <b>B</b>asal: <b>S</b>unflower, marigold')
+d.basic('Mnemonic for placentation examples?', '<b>M</b>arginal: <b>P</b>ea<br><b>A</b>xile: <b>T</b>omato, china rose, lemon<br><b>P</b>arietal: <b>M</b>ustard, <i>Argemone</i><br><b>F</b>ree central: <b>D</b>ianthus, primrose<br><b>B</b>asal: <b>S</b>unflower, marigold')
 
 # ---------------------------------------------------------------- 5.6 Fruit, 5.7 Seed
 d.sec('5.6-fruit')
@@ -174,7 +174,7 @@ d.basic('What is the micropyle of a seed?', 'A small pore ' + T('above the hilum
 d.occlusion('Figure 5.14 · Structure of a dicot seed', M + 'fig_5_14_dicot_seed.webp', (1001, 514), [
     ('Seed coat', P((49, 24, 191, 41))), ('Cotyledon', P((435, 48, 198, 41))), ('Plumule', P((774, 92, 164, 41))),
     ('Hilum', P((306, 376, 123, 41))), ('Radicle', P((710, 418, 145, 41))), ('Micropyle', P((196, 465, 192, 41)))], printed=True)
-d.basic('Endospermic vs non-endospermous seeds? Examples?', T('Endospermic') + ': endosperm stores food in the mature seed (' + E('castor') + '). ' + T('Non-endospermous') + ': endosperm used up (' + E('bean, gram, pea') + ').')
+d.basic('Endospermic vs non-endospermous seeds? Examples?', T('Endospermic') + ': endosperm stores food in the mature seed (' + E('castor') + ')<br>' + T('Non-endospermous') + ': endosperm used up (' + E('bean, gram, pea') + ')')
 d.basic('Are monocot seeds endospermic?', 'Generally ' + T('yes') + '; some, as in ' + X('orchids') + ', are non-endospermic')
 d.basic('In maize, how are the seed coat and fruit wall related?', 'Seed coat is membranous and ' + T('fused') + ' with the fruit wall')
 d.basic('What is the aleurone layer?', 'A ' + T('proteinous') + ' layer, the outer covering of the endosperm, separating it from the embryo')
@@ -188,11 +188,11 @@ d.occlusion('Figure 5.15 · Structure of a monocot seed (maize)', M + 'fig_5_15_
 
 # ---------------------------------------------------------------- 5.8 Floral formula
 d.sec('5.8-floral-formula')
-d.basic('In what order is a flowering plant described?', 'Habit → vegetative (root, stem, leaves) → floral (inflorescence, flower parts) → floral diagram and floral formula')
+d.basic('In what order is a flowering plant described?', '1) Habit<br>2) Vegetative characters (root, stem, leaves)<br>3) Floral characters (inflorescence, flower parts)<br>4) Floral diagram and floral formula')
 d.basic('Floral formula symbols: Br, K, C, P, A, G?', 'Br: bracteate. K: calyx. C: corolla. P: perianth. A: androecium. G: gynoecium.')
 d.basic('How are superior and inferior ovaries written in a floral formula?', 'Superior: line ' + T('below') + ' G (G̲). Inferior: line ' + T('above') + ' G (Ḡ).')
 d.basic('Which symbols show actinomorphic and zygomorphic flowers?', '⊕ actinomorphic; % (or ↑) zygomorphic')
-d.basic('How are fusion and adhesion shown in a floral formula?', T('Fusion') + ' (cohesion): number in brackets, e.g. C<sub>(5)</sub>. ' + T('Adhesion') + ': a line drawn above the symbols of the joined whorls.')
+d.basic('How are fusion and adhesion shown in a floral formula?', T('Fusion') + ' (cohesion): number in brackets, e.g. C<sub>(5)</sub><br>' + T('Adhesion') + ': a line drawn above the symbols of the joined whorls')
 d.basic('What does the dot at the top of a floral diagram show?', 'The position of the ' + T('mother axis'))
 d.basic('Which family does this floral diagram (⊕ ⚥ K<sub>2+2</sub> C<sub>4</sub> A<sub>2+4</sub> G<sub>(2)</sub>) represent?', T('Brassicaceae') + ' (mustard)', **img('fig_5_16_floral_diagram'))
 d.basic('Read the mustard formula: ⊕ ⚥ K<sub>2+2</sub> C<sub>4</sub> A<sub>2+4</sub> G<sub>(2)</sub>.', 'Actinomorphic, bisexual; 4 sepals in 2 whorls; 4 free petals; 6 stamens (2 + 4, tetradynamous); ovary of 2 fused carpels, superior')
@@ -205,7 +205,7 @@ d.basic('Solanaceae: habit and stem?', 'Mostly herbs, shrubs, rarely small trees
 d.basic('Solanaceae: leaves?', 'Alternate, simple (rarely pinnately compound), ' + T('exstipulate') + ', reticulate venation')
 d.basic('Solanaceae: calyx and corolla?', 'Calyx: ' + N('5') + ' united, ' + T('persistent') + ', valvate. Corolla: ' + N('5') + ' united, valvate.')
 d.basic('Solanaceae: androecium?', N('Five') + ' stamens, ' + T('epipetalous'))
-d.basic('Solanaceae: gynoecium?', T('Bicarpellary') + ', obliquely placed, syncarpous; ovary ' + T('superior') + ', bilocular, placenta swollen with many ovules, ' + T('axile'))
+d.basic('Solanaceae: gynoecium?', T('Bicarpellary') + ', obliquely placed, syncarpous<br>Ovary ' + T('superior') + ', bilocular<br>Placenta swollen with many ovules, ' + T('axile'))
 d.basic('NCERT prints "obligately placed" carpels in Solanaceae. What is meant?', X('Obliquely') + ' placed: the two carpels sit at an angle to the median plane. "Obligately" is a misprint.')
 d.basic('Solanaceae: fruit and seeds?', 'Fruit: ' + T('berry or capsule') + '. Seeds: many, ' + T('endospermous') + '.')
 d.basic('Floral formula of Solanaceae?', '⊕ ⚥ K<sub>(5)</sub> C<sub>(5)</sub> A<sub>5</sub> G<sub>(2)</sub>, with a line joining C and A (epipetalous) and the ovary superior')

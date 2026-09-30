@@ -13,7 +13,7 @@ img = lambda name: {'termImage': M + name + '.webp'}
 # ---------------------------------------------------------------- 4.1 Basis of classification
 d.sec('4.1-basis')
 d.basic('About how many animal species have been described?', 'Over a ' + N('million'))
-d.basic('Name the fundamental features used as the basis of animal classification.', 'Arrangement of cells, body symmetry, nature of coelom, and patterns of digestive, circulatory or reproductive systems')
+d.basic('Name the fundamental features used as the basis of animal classification.', 'Arrangement of cells<br>Body symmetry<br>Nature of coelom<br>Patterns of digestive, circulatory or reproductive systems')
 
 d.sec('4.1.1-levels-of-organisation')
 d.cloze('Levels of organisation: sponges show {{c1::cellular}} level, coelenterates {{c2::tissue}} level, Platyhelminthes {{c3::organ}} level, and annelids to chordates {{c4::organ system}} level.')
@@ -41,14 +41,14 @@ d.occlusion('Figure 4.2 · Germinal layers: (a) diploblastic, (b) triploblastic'
 d.sec('4.1.4-coelom')
 d.basic('What is a coelom?', 'A body cavity between body wall and gut wall, ' + T('lined by mesoderm'))
 d.basic('Name the coelomate phyla.', 'Annelids, molluscs, arthropods, echinoderms, hemichordates, chordates')
-d.basic('What is a pseudocoelom? Example?', 'A body cavity ' + X('not lined') + ' by mesoderm; mesoderm lies as scattered pouches between ectoderm and endoderm. e.g. ' + E('Aschelminthes'))
+d.basic('What is a pseudocoelom? Example?', 'A body cavity ' + X('not lined') + ' by mesoderm; mesoderm lies as scattered pouches between ectoderm and endoderm.<br>e.g. ' + E('Aschelminthes'))
 d.basic('Which animals are acoelomates?', 'Those with no body cavity, e.g. ' + E('Platyhelminthes'))
 d.occlusion('Figure 4.3 · Sectional view: name each body plan', M + 'fig_4_3_coelom.webp', (965, 1001), [
     ('Coelom', [80, 30, 155, 55], True), ('Pseudocoelom', [352, 36, 282, 55], True),
     ('Coelomate', [205, 512, 76, 52]), ('Pseudocoelomate', [705, 516, 76, 52]), ('Acoelomate', [448, 942, 76, 54])])
 
 d.sec('4.1.5-segmentation-notochord')
-d.basic('What is metameric segmentation? Example?', 'Body divided externally and internally into segments with serial repetition of some organs, e.g. ' + E('earthworm') + '. The phenomenon is ' + T('metamerism') + '.')
+d.basic('What is metameric segmentation? Example?', 'Body divided externally and internally into segments with serial repetition of some organs, e.g. ' + E('earthworm') + '<br>The phenomenon is ' + T('metamerism'))
 d.basic('In which phylum is segmentation first seen?', T('Annelida'))
 d.basic('What is the notochord?', 'A ' + T('mesodermally') + ' derived rod-like structure formed on the ' + T('dorsal') + ' side during embryonic development')
 d.basic('Which phyla are non-chordates?', E('Porifera to Echinodermata') + ' (and Hemichordata)')
@@ -165,7 +165,7 @@ table_card(d, 'Table 4.2 · Respiratory system', 'Present or absent?', [
     ('Porifera to Annelida', 'Absent', True), ('Arthropoda to Chordata', 'Present', False)], term='Table 4.2: respiratory system')
 table_card(d, 'Table 4.2 · Segmentation', 'Which phyla are segmented?', [
     ('Annelida', 'Present', False), ('Arthropoda', 'Present', False), ('Chordata', 'Present', False), ('All others', 'Absent', True)], term='Table 4.2: segmentation')
-d.basic('Match: operculum, parapodia, comb plates, radula, choanocytes.', 'Operculum: ' + T('Osteichthyes') + '. Parapodia: ' + T('Annelida') + '. Comb plates: ' + T('Ctenophora') + '. Radula: ' + T('Mollusca') + '. Choanocytes: ' + T('Porifera') + '.')
+d.basic('Match: operculum, parapodia, comb plates, radula, choanocytes.', 'Operculum: ' + T('Osteichthyes') + '<br>Parapodia: ' + T('Annelida') + '<br>Comb plates: ' + T('Ctenophora') + '<br>Radula: ' + T('Mollusca') + '<br>Choanocytes: ' + T('Porifera'))
 
 # ---------------------------------------------------------------- 4.2.11 Chordata
 d.sec('4.2.11-chordata')
@@ -184,7 +184,7 @@ d.basic('Where is the notochord in Urochordata and in Cephalochordata?', 'Urocho
 d.basic('Name three urochordates and one cephalochordate.', 'Urochordata: ' + EI('Ascidia, Salpa, Doliolum') + '. Cephalochordata: ' + EI('Branchiostoma') + ' (Amphioxus / lancelet).')
 d.basic('Which protochordate is this?', EI('Ascidia') + ' (Urochordata)', **img('fig_4_17_ascidia'))
 d.basic('What replaces the notochord in adult vertebrates?', 'A ' + T('cartilaginous or bony vertebral column'))
-d.basic('Justify: all vertebrates are chordates but all chordates are not vertebrates.', 'Vertebrates have a notochord only in the ' + T('embryo') + ', replaced by a vertebral column; protochordates keep the notochord and have ' + X('no vertebral column'))
+d.basic('Justify: all vertebrates are chordates but all chordates are not vertebrates.', 'Vertebrates have a notochord only in the ' + T('embryo') + ', replaced by a vertebral column.<br>Protochordates keep the notochord and have ' + X('no vertebral column'))
 d.basic('Features of vertebrates besides the basic chordate ones?', 'Ventral muscular heart (2, 3 or 4 chambers), ' + T('kidneys') + ', paired appendages (fins or limbs)')
 d.occlusion('Classification of subphylum Vertebrata', M + 'vertebrata_chart.webp', (1001, 614), [
     ('Agnatha (lacks jaw)', P((114, 178, 139, 59))), ('Gnathostomata (bears jaw)', P((558, 173, 205, 59))),

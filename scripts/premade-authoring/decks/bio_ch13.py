@@ -37,7 +37,7 @@ d.basic('Parameters used to measure growth?', 'Fresh weight, dry weight, length,
 d.basic('Maize root apical meristem produces how many cells per hour?', 'More than ' + N('17,500'))
 d.basic('Watermelon cells may increase in size by up to?', N('3,50,000 times'))
 d.cloze('Growth is measured as increase in {{c1::length}} for a pollen tube and increase in {{c2::surface area}} for a dorsiventral leaf.')
-d.basic('Why is no single parameter good enough for growth through a plant\'s whole life?', 'Different organs and stages grow differently (cell number, cell size, length, area), so one parameter misses the others')
+d.basic('Why is no single parameter good enough for growth through a plant\'s whole life?', 'Different organs and stages grow differently (cell number, cell size, length, area).<br>So one parameter misses the others')
 
 d.sec('13.1.3-phases')
 d.cloze('Three phases of growth: {{c1::meristematic}} → {{c2::elongation}} → {{c3::maturation}}.')
@@ -82,7 +82,7 @@ d.basic('Examples of redifferentiated tissues in a woody dicot?', E('Secondary x
 d.basic('What is a callus in tissue culture an example of?', T('Dedifferentiation') + ': parenchyma made to divide in controlled conditions')
 d.cloze('Differentiation → {{c1::dedifferentiation}} (regain division, e.g. cork cambium) → {{c2::redifferentiation}} (mature again, e.g. cork).')
 d.basic('Why is differentiation in plants called "open"?', 'Cells from the same meristem have ' + T('different structures') + ' at maturity, decided by their position')
-d.basic('Example of position deciding a cell\'s fate?', 'Cells pushed away from the root apical meristem become ' + T('root cap') + '; those pushed to the periphery become ' + T('epidermis'))
+d.basic('Example of position deciding a cell\'s fate?', 'Cells pushed away from the root apical meristem become ' + T('root cap') + '<br>Those pushed to the periphery become ' + T('epidermis'))
 
 # ---------------------------------------------------------------- 13.3 Development
 d.sec('13.3-development')
@@ -91,15 +91,15 @@ d.occlusion('Figure 13.8 · Development of a plant cell', M + 'fig_13_8_developm
     ('Plasmatic growth', wbox(273, 158, 459, 180, DV), True), ('Differentiation', wbox(540, 155, 696, 177, DV), True),
     ('Expansion (elongation)', wbox(406, 262, 535, 310, DV), True), ('Maturation', wbox(646, 260, 767, 282, DV), True),
     ('Senescence', wbox(776, 56, 934, 78, DV), True)])
-d.basic('What is plasticity?', 'Ability of plants to follow ' + T('different pathways') + ' in response to environment or life phase, forming different structures')
+d.basic('What is plasticity?', 'Ability of plants to follow ' + T('different pathways') + ' in response to environment or life phase.<br>Different structures form')
 d.basic('What is heterophylly?', 'Different ' + T('leaf shapes') + ' on the same plant: an example of plasticity')
 d.basic('Heterophylly due to life phase: examples?', E('Cotton, coriander, larkspur') + ': juvenile leaves differ from adult leaves', **fig('fig_13_9_heterophylly'))
 d.basic('Heterophylly due to environment: example?', E('Buttercup') + ': leaves in air differ from leaves in water')
-d.basic('Intrinsic vs extrinsic factors controlling development?', T('Intrinsic') + ': genetic (intracellular) and PGRs (intercellular). ' + T('Extrinsic') + ': light, temperature, water, oxygen, nutrition.')
+d.basic('Intrinsic vs extrinsic factors controlling development?', T('Intrinsic') + ': genetic (intracellular) and PGRs (intercellular)<br>' + T('Extrinsic') + ': light, temperature, water, oxygen, nutrition')
 
 # ---------------------------------------------------------------- 13.4 PGRs
 d.sec('13.4.1-pgr-characteristics')
-d.basic('What are plant growth regulators (PGRs)?', 'Small, simple molecules of diverse chemistry; also called plant growth substances, plant hormones or ' + T('phytohormones'))
+d.basic('What are plant growth regulators (PGRs)?', 'Small, simple molecules of diverse chemistry.<br>Also called plant growth substances, plant hormones or ' + T('phytohormones'))
 table_card(d, 'PGR chemistry', 'Chemical nature?', [
     ('Auxin (IAA)', 'Indole compound', False), ('Cytokinin (kinetin)', 'Adenine derivative (N⁶-furfurylamino purine)', False),
     ('Abscisic acid', 'Carotenoid derivative', False), ('Gibberellic acid (GA₃)', 'Terpene', False), ('Ethylene', 'Gas (C₂H₄)', False)],
@@ -111,7 +111,7 @@ d.basic('Roles of inhibitor PGRs?', 'Responses to ' + T('wounds and stresses') +
 
 d.sec('13.4.2-discovery')
 d.basic('Were PGR discoveries planned?', X('No') + '. All five major groups were discovered ' + T('accidentally') + '.')
-d.basic('What did Charles and Francis Darwin observe?', 'Coleoptiles of ' + E('canary grass') + ' bend towards unilateral light (' + T('phototropism') + '); the ' + T('tip') + ' is the source of the influence', **fig('fig_13_10_coleoptile'))
+d.basic('What did Charles and Francis Darwin observe?', 'Coleoptiles of ' + E('canary grass') + ' bend towards unilateral light (' + T('phototropism') + ').<br>The ' + T('tip') + ' is the source of the influence', **fig('fig_13_10_coleoptile'))
 d.basic('Who isolated auxin, and from what?', T('F.W. Went') + ', from coleoptile tips of ' + E('oat') + ' seedlings')
 d.basic('What is bakanae disease?', '"Foolish seedling" disease of ' + T('rice') + ', caused by the fungus ' + EI('Gibberella fujikuroi') + ': seedlings grow abnormally tall')
 d.basic('Who linked bakanae to a fungal substance, and when?', T('E. Kurosawa') + ' (' + N('1926') + '): sterile fungal filtrates caused the symptoms; the substance was gibberellic acid')

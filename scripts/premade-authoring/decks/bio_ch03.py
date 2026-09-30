@@ -19,10 +19,10 @@ d.basic('What characters did the earliest (artificial) classification systems us
 d.basic("On which structure was Linnaeus' artificial system mainly based?", 'The ' + T('androecium') + ' (and vegetative characters)')
 d.basic('Give two drawbacks of artificial systems.', '<ul><li>They ' + X('separated closely related species') + ', being based on a few characters</li>'
         '<li>They gave ' + X('equal weightage') + ' to vegetative and sexual characters, though vegetative characters are more easily affected by environment</li></ul>')
-d.basic('On what are natural classification systems based?', 'Natural ' + T('affinities') + ': external and internal features such as ultrastructure, anatomy, embryology and phytochemistry')
+d.basic('On what are natural classification systems based?', 'Natural ' + T('affinities') + ':<br>external and internal features such as ultrastructure, anatomy, embryology and phytochemistry')
 d.basic('Who gave a natural classification for flowering plants?', T('George Bentham') + ' and ' + T('Joseph Dalton Hooker'))
 d.basic('On what are phylogenetic classification systems based?', T('Evolutionary relationships') + '; organisms of the same taxa are assumed to have a common ancestor')
-d.basic('What is numerical taxonomy?', 'Classification using ' + T('all observable characters') + ', coded as numbers and processed by computer; each character gets equal importance')
+d.basic('What is numerical taxonomy?', 'Classification using ' + T('all observable characters') + ', coded as numbers and processed by computer.<br>Each character gets equal importance')
 d.basic('What is cytotaxonomy based on?', T('Cytological') + ' information: chromosome number, structure and behaviour')
 d.basic('What does chemotaxonomy use?', 'The ' + T('chemical constituents') + ' of the plant')
 
@@ -53,7 +53,7 @@ d.occlusion('Figure 3.1 · <i>Fucus</i>', M + 'fig_3_1_fucus.webp', (909, 1001),
 
 d.sec('3.1-algae-uses')
 d.basic('How much of the total CO<sub>2</sub> fixation on earth do algae carry out?', 'At least ' + N('half'))
-d.basic('Why are algae of paramount importance in water?', 'As ' + T('primary producers') + ' of energy-rich compounds, the basis of aquatic food cycles; they also raise dissolved oxygen')
+d.basic('Why are algae of paramount importance in water?', 'As ' + T('primary producers') + ' of energy-rich compounds, the basis of aquatic food cycles.<br>They also raise dissolved oxygen')
 d.basic('How many species of marine algae are used as food? Name three genera.', 'About ' + N('70') + ': ' + EI('Porphyra') + ', ' + EI('Laminaria') + ', ' + EI('Sargassum'))
 d.cloze('Hydrocolloids: {{c1::algin}} comes from brown algae and {{c2::carrageen}} from red algae.')
 d.basic('What are hydrocolloids?', T('Water holding') + ' substances, used commercially')

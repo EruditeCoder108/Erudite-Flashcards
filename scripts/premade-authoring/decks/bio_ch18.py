@@ -31,7 +31,7 @@ d.basic('Afferent vs efferent fibres?', T('Afferent') + ': tissues/organs → CN
 d.basic('Mnemonic: afferent vs efferent?', '"' + T('SAME') + '": Sensory = Afferent, Motor = Efferent')
 d.basic('Two divisions of the PNS?', T('Somatic') + ' (CNS → skeletal muscles) and ' + T('autonomic') + ' (CNS → involuntary organs, smooth muscles)')
 d.basic('Two divisions of the autonomic neural system?', T('Sympathetic') + ' and ' + T('parasympathetic'))
-d.basic('What is the visceral nervous system?', 'The part of the PNS (nerves, fibres, ganglia, plexuses) carrying impulses between the CNS and the ' + T('viscera') + ', both ways')
+d.basic('What is the visceral nervous system?', 'The part of the PNS (nerves, fibres, ganglia, plexuses)<br>carrying impulses between the CNS and the ' + T('viscera') + ', both ways')
 d.basic('Sympathetic vs parasympathetic in one line? (intuition)', T('Sympathetic') + ' = "fight or flight" (heart speeds up). ' + T('Parasympathetic') + ' = "rest and digest" (heart slows).')
 table_card(d, 'CNS vs PNS', 'Compare', [
     ('Parts', 'CNS: brain, spinal cord · PNS: cranial and spinal nerves', False),
@@ -58,7 +58,7 @@ d.basic('What forms the myelin sheath in the PNS?', T('Schwann cells'))
 d.basic('What are nodes of Ranvier?', 'Gaps between two adjacent ' + T('myelin sheaths'))
 d.basic('Where are myelinated fibres found?', 'In ' + T('spinal and cranial nerves'))
 d.basic('Where are unmyelinated fibres common?', 'In the ' + T('autonomous and somatic') + ' neural systems; the Schwann cell encloses the axon without forming myelin')
-d.basic('Myelinated vs unmyelinated conduction?', 'Myelinated: impulse ' + T('jumps') + ' from node to node (saltatory), much ' + T('faster') + '. Unmyelinated: slower, continuous along the membrane.')
+d.basic('Myelinated vs unmyelinated conduction?', 'Myelinated: impulse ' + T('jumps') + ' from node to node (saltatory), much ' + T('faster') + '<br>Unmyelinated: slower, continuous along the membrane')
 
 d.sec('18.3.1-impulse')
 d.basic('Why are neurons excitable?', 'Their membranes are ' + T('polarised'))
@@ -67,9 +67,9 @@ d.basic('Ion distribution across a resting axon?', 'Inside: high ' + T('K⁺') +
 d.basic('What does the sodium-potassium pump do?', 'Actively moves ' + N('3 Na⁺ out') + ' for every ' + N('2 K⁺ in'))
 d.basic('Charge on the resting membrane?', 'Outer surface ' + T('positive') + ', inner surface ' + T('negative') + ': polarised')
 d.basic('What is the resting potential?', 'The electrical potential difference across the ' + T('resting') + ' plasma membrane (about −70 mV)')
-d.basic('What happens when a stimulus is applied at site A?', 'Membrane becomes freely permeable to ' + T('Na⁺') + ' → rapid Na⁺ influx → polarity reversed (inside +, outside −): ' + T('depolarised'), **fig('fig_18_2_impulse'))
+d.basic('What happens when a stimulus is applied at site A?', 'Membrane becomes freely permeable to ' + T('Na⁺') + '<br>→ rapid Na⁺ influx<br>→ polarity reversed (inside +, outside −): ' + T('depolarised'), **fig('fig_18_2_impulse'))
 d.basic('What is the action potential?', 'The potential difference across the membrane at the depolarised site: the ' + T('nerve impulse'))
-d.basic('How is the impulse conducted from A to B?', 'Current flows on the ' + T('inner') + ' surface from A to B and on the ' + T('outer') + ' surface from B to A, depolarising B; this repeats along the axon')
+d.basic('How is the impulse conducted from A to B?', 'Current flows on the ' + T('inner') + ' surface from A to B and on the ' + T('outer') + ' surface from B to A, depolarising B.<br>This repeats along the axon')
 d.basic('How is the resting potential restored?', 'Na⁺ permeability quickly falls and ' + T('K⁺ permeability rises') + '; K⁺ diffuses out: repolarisation')
 d.basic('Role of Na⁺ in the action potential?', 'Rapid ' + T('influx of Na⁺') + ' reverses polarity and generates the action potential')
 table_card(d, 'Potentials', 'Resting vs action?', [
@@ -77,10 +77,10 @@ table_card(d, 'Potentials', 'Resting vs action?', [
     ('Key ion', 'Resting: K⁺ leak, Na⁺–K⁺ pump · Action: Na⁺ influx', False)], term='Resting vs action potential')
 
 d.sec('18.3.2-synapse')
-d.basic('What is a synapse?', 'A junction formed by membranes of a ' + T('pre-synaptic') + ' and a ' + T('post-synaptic') + ' neuron, which may or may not be separated by a synaptic cleft')
-d.basic('Electrical vs chemical synapse?', T('Electrical') + ': membranes very close, current flows directly, faster, rare. ' + T('Chemical') + ': fluid-filled cleft, uses neurotransmitters.')
+d.basic('What is a synapse?', 'A junction formed by membranes of a ' + T('pre-synaptic') + ' and a ' + T('post-synaptic') + ' neuron.<br>They may or may not be separated by a synaptic cleft')
+d.basic('Electrical vs chemical synapse?', T('Electrical') + ': membranes very close, current flows directly, faster, rare<br>' + T('Chemical') + ': fluid-filled cleft, uses neurotransmitters')
 d.basic('Which synapse is faster?', T('Electrical'))
-d.basic('Steps of transmission at a chemical synapse?', 'Impulse at axon terminal → vesicles move and ' + T('fuse') + ' with membrane → neurotransmitter released into cleft → binds ' + T('receptors') + ' on post-synaptic membrane → ion channels open → new potential')
+d.basic('Steps of transmission at a chemical synapse?', '1) Impulse at axon terminal<br>2) Vesicles move and ' + T('fuse') + ' with the membrane<br>3) Neurotransmitter released into the cleft<br>4) It binds ' + T('receptors') + ' on the post-synaptic membrane<br>5) Ion channels open → new potential')
 d.basic('The new potential in the post-synaptic neuron can be?', T('Excitatory or inhibitory'))
 d.occlusion('Figure 18.3 · Axon terminal and synapse', M + 'fig_18_3_synapse.webp', SY, [
     ('Axon', P(754, 57, 827, 87, SY)), ('Axon terminal', P(754, 150, 881, 217, SY)), ('Synaptic vesicles', P(761, 260, 888, 327, SY)),
@@ -91,7 +91,7 @@ d.basic('Why is conduction across a chemical synapse one-way? (intuition)', 'Onl
 
 # ---------------------------------------------------------------- 18.4 CNS
 d.sec('18.4-brain')
-d.basic('Functions of the brain?', 'Voluntary movement, balance, vital involuntary organs, thermoregulation, hunger, thirst, ' + T('circadian rhythms') + ', endocrine glands, behaviour; vision, hearing, speech, memory, emotions, thought')
+d.basic('Functions of the brain?', 'Voluntary movement, balance, vital involuntary organs, thermoregulation, hunger, thirst, ' + T('circadian rhythms') + ', endocrine glands, behaviour<br>Also vision, hearing, speech, memory, emotions, thought')
 d.cloze('Cranial meninges from outside in: {{c1::dura mater}} → {{c2::arachnoid}} → {{c3::pia mater}}.')
 d.basic('Mnemonic for meninges?', '"' + T('DAP') + '": Dura (tough, outer), Arachnoid (middle), Pia (thin, touches brain)')
 d.basic('Three major parts of the brain?', T('Forebrain, midbrain, hindbrain'))
@@ -116,7 +116,7 @@ d.basic('Function of the thalamus?', 'Major coordinating centre for ' + T('senso
 d.basic('Where is the hypothalamus, and what does it control?', 'At the base of the thalamus; controls ' + T('body temperature') + ', eating and drinking; neurosecretory cells secrete ' + T('hypothalamic hormones'))
 d.basic('Which part acts as the master clock?', 'The ' + T('hypothalamus') + ' (its suprachiasmatic nucleus sets circadian rhythms)')
 d.basic('What forms the limbic system?', 'Inner parts of the cerebral hemispheres and deep structures such as the ' + T('amygdala') + ' and ' + T('hippocampus'))
-d.basic('Functions of the limbic system (with hypothalamus)?', 'Sexual behaviour, ' + T('emotional reactions') + ' (excitement, pleasure, rage, fear), motivation; also olfaction and autonomic responses')
+d.basic('Functions of the limbic system (with hypothalamus)?', 'Sexual behaviour<br>' + T('Emotional reactions') + ' (excitement, pleasure, rage, fear)<br>Motivation<br>Also olfaction and autonomic responses')
 d.basic('Thalamus vs hypothalamus?', T('Thalamus') + ': relays sensory and motor signals. ' + T('Hypothalamus') + ': temperature, hunger, thirst, hormones.')
 
 d.sec('18.4.2-midbrain')

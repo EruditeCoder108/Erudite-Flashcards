@@ -32,7 +32,7 @@ d.basic('How many amino acids occur in proteins?', N('Twenty'))
 d.cloze('R group = hydrogen: {{c1::glycine}}; methyl: {{c2::alanine}}; hydroxy methyl: {{c3::serine}}.')
 d.basic('Give an acidic, a basic and a neutral amino acid.', 'Acidic: ' + E('glutamic acid') + '. Basic: ' + E('lysine') + '. Neutral: ' + E('valine') + '.')
 d.basic('Name the aromatic amino acids.', E('Tyrosine, phenylalanine, tryptophan'))
-d.basic('What is the zwitterionic form of an amino acid?', 'The form carrying both a ' + T('positive (–NH₃⁺)') + ' and a ' + T('negative (–COO⁻)') + ' charge; amino acid structure changes with pH because –NH₂ and –COOH ionise')
+d.basic('What is the zwitterionic form of an amino acid?', 'The form carrying both a ' + T('positive (–NH₃⁺)') + ' and a ' + T('negative (–COO⁻)') + ' charge.<br>Amino acid structure changes with pH because –NH₂ and –COOH ionise')
 d.basic('Why is the zwitterion called that? (intuition)', 'German ' + I('zwitter') + ' = hybrid: one molecule, both charges, net charge zero')
 
 d.sec('9.1-lipids')
@@ -48,13 +48,13 @@ d.sec('9.1-nucleotides')
 d.basic('Name the five nitrogen bases.', 'Adenine, guanine, cytosine, uracil, thymine')
 d.basic('Nucleoside vs nucleotide?', T('Nucleoside') + ' = base + sugar. ' + T('Nucleotide') + ' = base + sugar + ' + T('phosphate') + '.')
 d.basic('Is adenosine a nucleoside or nucleotide? Adenylic acid?', 'Adenosine: ' + T('nucleoside') + '. Adenylic acid: ' + T('nucleotide') + '.')
-d.basic('Figure 9.1: which classes of small biomolecules are shown?', 'Sugars (glucose, ribose), amino acids (glycine, alanine, serine), lipids (fatty acid, glycerol, triglyceride, lecithin, cholesterol), nitrogen bases, nucleosides, nucleotide', **fig('fig_9_1_small_biomolecules'))
+d.basic('Figure 9.1: which classes of small biomolecules are shown?', 'Sugars (glucose, ribose)<br>Amino acids (glycine, alanine, serine)<br>Lipids (fatty acid, glycerol, triglyceride, lecithin, cholesterol)<br>Nitrogen bases, nucleosides, nucleotide', **fig('fig_9_1_small_biomolecules'))
 d.basic('Purines vs pyrimidines?', T('Purines') + ': adenine, guanine. ' + T('Pyrimidines') + ': cytosine, uracil, thymine.')
 d.basic('Mnemonic for purines?', '"' + T('Pure As Gold') + '": purines are Adenine and Guanine. (Pyrimidines have the "y": c<b>y</b>tosine, th<b>y</b>mine, and uracil.)')
 
 # ---------------------------------------------------------------- 9.2-9.3
 d.sec('9.2-metabolites')
-d.basic('Primary vs secondary metabolites?', T('Primary') + ': identifiable roles in normal physiology (e.g. amino acids, sugars). ' + T('Secondary') + ': in plants, fungi, microbes; roles in the host often unknown.')
+d.basic('Primary vs secondary metabolites?', T('Primary') + ': identifiable roles in normal physiology (e.g. amino acids, sugars)<br>' + T('Secondary') + ': in plants, fungi, microbes; roles in the host often unknown')
 table_card(d, 'Table 9.3 · Secondary metabolites', 'Give the NCERT example(s).', [
     ('Pigments', 'Carotenoids, anthocyanins', False), ('Alkaloids', 'Morphine, codeine', False), ('Terpenoids', 'Monoterpenes, diterpenes', False),
     ('Essential oils', 'Lemon grass oil', False), ('Toxins', 'Abrin, ricin', False), ('Lectins', 'Concanavalin A', False),
@@ -66,7 +66,7 @@ d.sec('9.3-macromolecules')
 d.basic('Molecular weight range in the acid-soluble pool?', N('18 to ~800') + ' daltons')
 d.basic('Name the four organic compound classes of the acid-insoluble fraction.', 'Proteins, nucleic acids, polysaccharides, lipids')
 d.basic('Micromolecules vs macromolecules?', 'Micro: below ' + N('1000 Da') + '. Macro: in the acid-insoluble fraction (≥ ~10,000 Da, except lipids).')
-d.basic('Why do lipids (under 800 Da) appear in the acid-insoluble fraction?', 'They form ' + T('membranes') + '; grinding breaks membranes into insoluble ' + T('vesicles') + '. Lipids are ' + X('not strictly') + ' macromolecules.')
+d.basic('Why do lipids (under 800 Da) appear in the acid-insoluble fraction?', 'They form ' + T('membranes') + '; grinding breaks membranes into insoluble ' + T('vesicles') + '.<br>Lipids are ' + X('not strictly') + ' macromolecules')
 d.basic('What does the acid-soluble pool roughly represent?', 'The ' + T('cytoplasmic') + ' composition')
 table_card(d, 'Table 9.4 · Average cell composition', '% of total cellular mass?', [
     ('Water', '70–90', False), ('Proteins', '10–15', False), ('Nucleic acids', '5–7', False), ('Carbohydrates', '3', False),
@@ -128,7 +128,7 @@ d.basic('End product of the glucose pathway in muscle (anaerobic), aerobic cells
 d.basic('NCERT writes glucose → pyruvate with O₂. Does glycolysis need oxygen? (clarification)', X('No') + '. Glycolysis itself is anaerobic. The O₂ in NCERT\'s overall equation re-oxidises the NADH formed; the ten steps run without oxygen.')
 
 d.sec('9.8.2-activation-energy')
-d.basic('What is the ES complex?', 'The transient complex formed when the substrate binds the enzyme\'s ' + T('active site') + '; its formation is ' + T('obligatory') + ' for catalysis')
+d.basic('What is the ES complex?', 'The transient complex formed when the substrate binds the enzyme\'s ' + T('active site') + '.<br>Its formation is ' + T('obligatory') + ' for catalysis')
 d.basic('What is the transition state?', 'An unstable, high-energy structure the substrate passes through on its way to product')
 d.basic('What is activation energy?', 'The difference in energy between the ' + T('substrate') + ' and the ' + T('transition state'))
 d.basic('How do enzymes speed up reactions?', 'By ' + T('lowering the activation energy'))

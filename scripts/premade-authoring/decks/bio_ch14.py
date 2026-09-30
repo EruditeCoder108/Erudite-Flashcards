@@ -28,7 +28,7 @@ d.basic('What is cutaneous respiration? Example?', 'Respiration through moist ' 
 d.basic('Site of gas exchange in an insect?', 'The fine ends of the ' + T('tracheal tubes') + ' (tracheoles), in direct contact with tissues')
 
 d.sec('14.1.1-human-system')
-d.basic('Path of air from nostrils to lungs?', 'External nostrils → nasal passage → nasal chamber → ' + T('pharynx') + ' → ' + T('larynx') + ' → ' + T('trachea') + ' → bronchi → bronchioles → ' + T('alveoli'))
+d.basic('Path of air from nostrils to lungs?', 'External nostrils<br>→ nasal passage<br>→ nasal chamber<br>→ ' + T('pharynx') + '<br>→ ' + T('larynx') + '<br>→ ' + T('trachea') + '<br>→ bronchi<br>→ bronchioles<br>→ ' + T('alveoli'))
 d.basic('What is the common passage for food and air?', 'Part of the ' + T('pharynx'))
 d.basic('Why is the larynx called the sound box?', 'It is a ' + T('cartilaginous box') + ' that helps in sound production')
 d.basic('What is the epiglottis?', 'A thin elastic cartilaginous flap that covers the ' + T('glottis') + ' during swallowing, stopping food entering the larynx')
@@ -61,8 +61,8 @@ d.basic('When does expiration occur?', 'When intra-pulmonary pressure is ' + T('
 d.basic('Which muscles create the pressure gradients?', 'The ' + T('diaphragm') + ' and ' + T('external and internal intercostals'))
 d.basic('What does contraction of the diaphragm do?', 'Increases thoracic volume in the ' + T('antero-posterior') + ' axis')
 d.basic('What does contraction of external intercostals do?', 'Lifts ribs and sternum: increases thoracic volume in the ' + T('dorso-ventral') + ' axis')
-d.basic('Explain inspiration in steps.', 'Diaphragm and external intercostals ' + T('contract') + ' → thoracic and pulmonary volume ↑ → intra-pulmonary pressure ↓ below atmospheric → air rushes in', **fig('fig_14_2_breathing'))
-d.basic('Explain normal expiration.', 'Diaphragm and intercostals ' + T('relax') + ' → thoracic volume ↓ → pressure rises slightly above atmospheric → air is expelled')
+d.basic('Explain inspiration in steps.', '1) Diaphragm and external intercostals ' + T('contract') + '<br>2) Thoracic and pulmonary volume ↑<br>3) Intra-pulmonary pressure ↓ below atmospheric<br>4) Air rushes in', **fig('fig_14_2_breathing'))
+d.basic('Explain normal expiration.', '1) Diaphragm and intercostals ' + T('relax') + '<br>2) Thoracic volume ↓<br>3) Pressure rises slightly above atmospheric<br>4) Air is expelled')
 d.basic('Is normal expiration active or passive?', T('Passive') + ' (muscle relaxation). Forceful breathing uses abdominal muscles.')
 d.basic('Which muscles increase the strength of breathing?', 'Additional muscles in the ' + T('abdomen'))
 d.basic('Normal breathing rate of a healthy human?', N('12–16') + ' times per minute')
@@ -82,7 +82,7 @@ d.basic('Define vital capacity.', 'Maximum air a person can breathe ' + T('in af
 d.basic('Significance of vital capacity?', 'It indicates lung fitness: higher in ' + E('athletes, mountain dwellers, swimmers') + ', lower in smokers and lung disease')
 d.basic('Volume of air in the lungs after a normal expiration?', T('FRC') + ' = ERV + RV ≈ ' + N('2100–2300 mL'))
 d.basic('Which volume cannot be measured by a spirometer?', T('Residual volume') + ' (and so FRC and TLC). It never leaves the lungs.')
-d.basic('Mnemonic: volumes vs capacities?', 'Volumes are single blocks (TV, IRV, ERV, RV). ' + T('Capacities = sum of 2+ volumes') + '. Any capacity with "residual" or "total" includes RV.')
+d.basic('Mnemonic: volumes vs capacities?', 'Volumes are single blocks (TV, IRV, ERV, RV)<br>' + T('Capacities = sum of 2+ volumes') + '<br>Any capacity with "residual" or "total" includes RV')
 table_card(d, 'Lung volumes (NCERT)', 'Approximate value?', [
     ('TV', '500 mL', False), ('IRV', '2500–3000 mL', False), ('ERV', '1000–1100 mL', False), ('RV', '1100–1200 mL', False),
     ('VC', '≈ 4000–4600 mL', False), ('TLC', '≈ 5100–5800 mL', False)], term='Lung volumes and capacities')
@@ -102,7 +102,7 @@ d.basic('Atmospheric air vs alveolar air: pO₂ and pCO₂?', 'Atmospheric air h
 d.basic('Why is alveolar pO₂ (104) lower than atmospheric (159)?', 'Fresh air mixes with the ' + T('residual air') + ' in the lungs, which is poorer in O₂ (and water vapour adds pressure)')
 d.basic('How much more soluble is CO₂ than O₂?', N('20–25 times'))
 d.basic('Why does CO₂ diffuse well despite a small gradient (45 → 40)?', 'Its ' + T('solubility') + ' is 20–25 times that of O₂')
-d.basic('Three layers of the diffusion membrane?', 'Thin ' + T('squamous epithelium') + ' of alveoli, ' + T('endothelium') + ' of alveolar capillaries, and the ' + T('basement substance') + ' between them')
+d.basic('Three layers of the diffusion membrane?', 'Thin ' + T('squamous epithelium') + ' of alveoli<br>' + T('Endothelium') + ' of alveolar capillaries<br>The ' + T('basement substance') + ' between them')
 d.basic('Total thickness of the diffusion membrane?', 'Much ' + T('less than a millimetre'))
 d.occlusion('Figure 14.4 · Alveolus with pulmonary capillary', M + 'fig_14_4_alveolus.webp', AL, [
     ('Squamous epithelium of alveolar wall', [17, 122, 322, 122]), ('Basement substance', [702, 122, 176, 90]),
@@ -118,7 +118,7 @@ d.basic('What is haemoglobin?', 'A red, ' + T('iron-containing') + ' pigment in 
 d.basic('Maximum O₂ molecules per haemoglobin?', N('Four'))
 d.basic('Main factor in O₂ binding to haemoglobin?', T('Partial pressure of O₂') + '; pCO₂, H⁺ and temperature also interfere')
 d.basic('What is the oxygen dissociation curve?', 'Percentage saturation of haemoglobin with O₂ plotted against ' + T('pO₂') + '; it is ' + T('sigmoid'), **fig('fig_14_5_odc'))
-d.basic('Why is the oxygen dissociation curve sigmoid?', 'Binding of one O₂ makes the next bind more easily (' + T('cooperative binding') + '), so saturation rises steeply in the middle range')
+d.basic('Why is the oxygen dissociation curve sigmoid?', 'Binding of one O₂ makes the next bind more easily (' + T('cooperative binding') + ').<br>So saturation rises steeply in the middle range')
 d.basic('Conditions in alveoli favouring oxyhaemoglobin formation?', T('High pO₂') + ', low pCO₂, fewer H⁺, lower temperature')
 d.basic('Conditions in tissues favouring O₂ release?', T('Low pO₂') + ', high pCO₂, high H⁺, higher temperature')
 d.basic('Effect of pCO₂ on oxygen transport?', 'High pCO₂ (and H⁺) ' + T('lowers') + ' haemoglobin\'s O₂ affinity: curve shifts right, O₂ released to tissues (Bohr effect)')
