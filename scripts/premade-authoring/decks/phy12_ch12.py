@@ -13,7 +13,7 @@ img = lambda name: {'termImage': M + name + '.webp'}
 
 # ---------------------------------------------------------------- 12.1 Introduction
 d.sec('12.1-introduction')
-d.basic('Thomson’s atom model (1898)?', T('Plum-pudding model') + ': positive charge spread uniformly through the atom, with electrons embedded like seeds in a watermelon')
+d.basic('Thomson’s atom model (1898)?', T('Plum-pudding model') + ':<br>positive charge spread uniformly through the atom,<br>with electrons embedded like seeds in a watermelon')
 d.basic('Why is Thomson’s model unstable?', T('Electrostatically') + ' unstable: charges cannot sit in stable equilibrium (Earnshaw). It also cannot give large-angle α-scattering')
 d.basic('Continuous vs line spectra: what emits which?', 'Hot solids, liquids and dense gases: ' + T('continuous') + ' spectrum (interacting atoms). Rarefied excited gases: ' + T('line') + ' spectrum from isolated atoms')
 d.basic('Why is a line spectrum called an atom’s “fingerprint”?', 'Each element emits a ' + T('characteristic set of wavelengths') + ' with fixed relative positions, linked to its internal structure')
@@ -21,13 +21,13 @@ d.basic('Balmer’s contribution (1885)?', 'An ' + T('empirical formula') + ' fo
 
 # ---------------------------------------------------------------- 12.2 Rutherford
 d.sec('12.2-alpha-particle-scattering-and-rutherfords-nuclear-model')
-d.basic('Geiger–Marsden experiment (1911): source, target and detector?', T('5.5 MeV α-particles') + ' from Bi-214 collimated by lead bricks hit a ' + T('gold foil (2.1 × 10⁻⁷ m)') + '; scattered particles are seen as scintillations on a ' + T('ZnS screen') + ' with a rotatable microscope', **fig('fig_12_2_schematic'))
+d.basic('Geiger–Marsden experiment (1911): source, target and detector?', 'Source: ' + T('5.5 MeV α-particles') + ' from Bi-214, collimated by lead bricks<br>Target: ' + T('gold foil (2.1 × 10⁻⁷ m)') + '<br>Detector: scattered particles seen as scintillations on a ' + T('ZnS screen') + ' with a rotatable microscope', **fig('fig_12_2_schematic'))
 d.occlusion('Figure 12.2 · Geiger–Marsden set-up', M + 'fig_12_2_schematic.webp', (1001, 564), [
     ('Lead bricks', [140, 62, 145, 30], True), ('Thin gold foil', [470, 15, 170, 35], True), ('ZnS screen', [752, 358, 140, 30], True),
     ('Detector (Microscope)', [770, 495, 160, 60], True), ('Source of α-particles', [0, 240, 128, 62], True)], guess='hide-all')
 d.basic('Why is the experiment performed in a vacuum with a very thin foil?', 'Vacuum: no scattering by air. Thin foil: each α-particle suffers ' + T('at most one scattering') + ', so one nucleus explains each path')
 d.basic('Observations of the scattering experiment?', 'Most α-particles ' + T('pass straight through') + '; ~' + N('0.14%') + ' scatter by more than 1°; about ' + N('1 in 8000') + ' deflect by more than 90°', **fig('fig_12_3_scattering_data'))
-d.basic('What did the results imply?', 'The atom is mostly ' + T('empty space') + '; all the positive charge and most of the mass sit in a tiny ' + T('nucleus') + ' (10⁻¹⁵–10⁻¹⁴ m vs atom 10⁻¹⁰ m)')
+d.basic('What did the results imply?', 'The atom is mostly ' + T('empty space') + '.<br>All the positive charge and most of the mass sit in a tiny ' + T('nucleus') + ' (10⁻¹⁵–10⁻¹⁴ m vs atom 10⁻¹⁰ m)')
 d.basic('Ratio of atomic size to nuclear size?', 'About ' + N('10⁴ to 10⁵') + ' (10⁻¹⁰ m / 10⁻¹⁴–10⁻¹⁵ m)')
 d.basic('Why do atomic electrons hardly affect α-particles?', 'They are ' + T('7300 times lighter') + ' than an α-particle; scattering comes from the massive nucleus')
 d.basic('Why is Rutherford credited with the discovery of the nucleus?', 'Backward deflection needs a large repulsive force: possible only if the positive charge and mass are ' + T('concentrated in a tiny centre'))
@@ -36,17 +36,17 @@ d.basic('Why can the gold nucleus be assumed stationary?', 'It is about ' + T('5
 d.basic('Define the impact parameter b.', 'The ' + T('perpendicular distance') + ' of the initial velocity vector of the α-particle from the centre of the nucleus', **fig('fig_12_4_trajectories'))
 d.basic('Impact parameter and scattering angle?', 'Small b → ' + T('large θ') + '; head-on (b ≈ 0) → θ ≈ 180° (rebound); large b → θ ≈ 0')
 sp.rutherford_scattering(d)
-d.basic('Why do so few α-particles rebound?', 'Head-on collisions (very small b) are rare because the nucleus occupies a tiny area: it gives an ' + T('upper limit on nuclear size'))
+d.basic('Why do so few α-particles rebound?', 'Head-on collisions (very small b) are rare because the nucleus occupies a tiny area.<br>This gives an ' + T('upper limit on nuclear size'))
 d.basic('Distance of closest approach in a head-on collision?', 'K = electrostatic PE at the turning point: ' + r'\( \dfrac{1}{2}mv^2 = \dfrac{1}{4\pi\varepsilon_0}\dfrac{2Ze^2}{d} \)' + ', so ' + r'\( d = \dfrac{2Ze^2}{4\pi\varepsilon_0 K} \)')
 steps_card(d, 'Example 12.2 · closest approach', 'Find the missing step.', 'A 7.7 MeV α-particle (K = 1.2 × 10⁻¹² J) is fired head-on at a gold nucleus (Z = 79). Find the distance of closest approach.',
            ['At the turning point K = U: K = (1/4πε₀)(2e)(Ze)/d', 'd = 2Ze²/(4πε₀K) = (2 × 9 × 10⁹ × (1.6 × 10⁻¹⁹)² Z)/(1.2 × 10⁻¹²)', 'd = 3.84 × 10⁻¹⁶ Z m', 'Z = 79: <b>d ≈ 3.0 × 10⁻¹⁴ m = 30 fm</b> (upper bound; actual radius ≈ 6 fm)'], 2,
            'Closest approach of a 7.7 MeV α-particle (Example 12.2)', 'd ≈ 3.0 × 10⁻¹⁴ m; the nucleus is smaller than this')
-d.basic('Why does the closest-approach value exceed the actual gold nuclear radius (6 fm)?', 'The α-particle turns back ' + T('without touching') + ' the nucleus: d is much larger than the sum of the radii (Coulomb repulsion acts at a distance)')
+d.basic('Why does the closest-approach value exceed the actual gold nuclear radius (6 fm)?', 'The α-particle turns back ' + T('without touching') + ' the nucleus.<br>d is much larger than the sum of the radii (Coulomb repulsion acts at a distance)')
 d.basic('Teacher addition: how does the closest-approach distance depend on the energy K and charge Z?', T('d ∝ Z/K') + ': doubling K halves d; a heavier nucleus (larger Z) repels more, so d is larger')
 d.basic('Teacher addition: Rutherford’s scattering formula?', 'The number of α-particles scattered at angle θ per unit area: ' + r'\( N \propto \dfrac{Z^2}{K^2\sin^4(\theta/2)} \)' + '. So N ∝ Z², N ∝ 1/K², and it falls steeply with θ (Fig 12.3)')
 d.basic('Teacher addition: impact parameter and angle?', r'\( b = \dfrac{Ze^2\cot(\theta/2)}{4\pi\varepsilon_0 K} \)' + ': b → 0 as θ → 180°')
-d.basic('Teacher addition: why can’t Thomson’s model explain 1 in 8000 backward scattering?', 'With charge spread over 10⁻¹⁰ m the field is weak, so the maximum deflection of a heavy, fast α-particle is tiny (< 0.01°); many small deflections never add up to 90°')
-d.basic('Example 12.1: if the solar system had the atom’s proportions (orbit/nucleus = 10⁵), how far would Earth be from the Sun?', 'Sun’s radius 7 × 10⁸ m × 10⁵ = 7 × 10¹³ m, more than ' + T('100 times') + ' the real 1.5 × 10¹¹ m: the atom is far emptier than the solar system')
+d.basic('Teacher addition: why can’t Thomson’s model explain 1 in 8000 backward scattering?', 'With charge spread over 10⁻¹⁰ m the field is weak, so the maximum deflection of a heavy, fast α-particle is tiny (< 0.01°).<br>Many small deflections never add up to 90°')
+d.basic('Example 12.1: if the solar system had the atom’s proportions (orbit/nucleus = 10⁵), how far would Earth be from the Sun?', 'Sun’s radius 7 × 10⁸ m × 10⁵ = 7 × 10¹³ m, more than ' + T('100 times') + ' the real 1.5 × 10¹¹ m.<br>The atom is far emptier than the solar system')
 
 d.sec('12.2.2-electron-orbits')
 d.basic('Condition for a stable circular orbit of the electron in hydrogen (Rutherford model)?', 'Coulomb force = centripetal force: ' + r'\( \dfrac{1}{4\pi\varepsilon_0}\dfrac{e^2}{r^2} = \dfrac{mv^2}{r} \)' + ', so ' + r'\( r = \dfrac{e^2}{4\pi\varepsilon_0 mv^2} \)')
@@ -59,8 +59,8 @@ steps_card(d, 'Example 12.3 · radius and speed', 'Find the missing step.', '13.
 
 # ---------------------------------------------------------------- 12.3 Atomic spectra
 d.sec('12.3-atomic-spectra')
-d.basic('Emission line spectrum: definition?', 'Bright lines on a dark background from an excited rarefied gas at low pressure, each line at a specific wavelength (the “fingerprint” of the element)')
-d.basic('Absorption spectrum?', 'Dark lines in a continuous spectrum seen when white light passes through a gas: the dark lines fall at exactly the ' + T('same wavelengths') + ' as the emission lines of that gas')
+d.basic('Emission line spectrum: definition?', 'Bright lines on a dark background from an excited rarefied gas at low pressure.<br>Each line is at a specific wavelength (the “fingerprint” of the element)')
+d.basic('Absorption spectrum?', 'Dark lines in a continuous spectrum seen when white light passes through a gas.<br>The dark lines fall at exactly the ' + T('same wavelengths') + ' as the emission lines of that gas')
 d.basic('Kirchhoff/Fraunhofer application?', 'Dark lines in sunlight (Fraunhofer lines) reveal the elements in the Sun’s atmosphere (helium was found this way)')
 
 # ---------------------------------------------------------------- 12.4 Bohr model
@@ -90,14 +90,14 @@ d.basic('What does E = 0 at n = ∞ mean? What about E > 0?', 'The electron is c
 d.basic('How do the level spacings vary with n?', 'Energies come ' + T('closer together as n increases') + ' (E ∝ 1/n²)')
 d.basic('As n increases, what happens to the energy needed to free the electron?', 'It ' + T('decreases') + ' (binding energy = 13.6/n² eV)')
 d.basic('At room temperature where are most hydrogen atoms?', 'In the ' + T('ground state') + ' (n = 1); excitation needs collisions or photon absorption')
-d.basic('Intuition: why do the levels crowd together near E = 0?', 'E = −13.6/n²: successive gaps 13.6(1/n² − 1/(n+1)²) shrink as ~ 27/n³, so high levels merge into the ' + T('ionisation continuum'))
+d.basic('Intuition: why do the levels crowd together near E = 0?', 'E = −13.6/n²: successive gaps 13.6(1/n² − 1/(n+1)²) shrink as ~ 27/n³.<br>So high levels merge into the ' + T('ionisation continuum'))
 
 # ---------------------------------------------------------------- 12.5 Line spectra of hydrogen
 d.sec('12.5-the-line-spectra-of-the-hydrogen-atom')
 d.basic('Frequency of the photon emitted in a jump from n_i to n_f?', r'\( h\nu = E_{n_i} - E_{n_f} = 13.6\left(\dfrac{1}{n_f^2} - \dfrac{1}{n_i^2}\right)\ \) eV'.replace(r'\ \)', r' \)'))
 d.basic('Rydberg formula for the wavelength?', r'\( \dfrac{1}{\lambda} = R\left(\dfrac{1}{n_f^2} - \dfrac{1}{n_i^2}\right) \)' + ', R = ' + N('1.097 × 10⁷ m⁻¹') + ' (Rydberg constant)')
 d.basic('Why is the spectrum discrete?', 'Only certain n exist, so ΔE takes discrete values, giving ' + T('discrete frequencies'))
-d.basic('Absorption in Bohr’s model?', 'A photon whose energy exactly equals E_f − E_i lifts the electron up: dark ' + T('absorption lines') + ' appear at the same frequencies as emission lines', **fig('fig_12_5_h_lines'))
+d.basic('Absorption in Bohr’s model?', 'A photon whose energy exactly equals E_f − E_i lifts the electron up.<br>Dark ' + T('absorption lines') + ' appear at the same frequencies as emission lines', **fig('fig_12_5_h_lines'))
 d.occlusion('Figure 12.5 · Hydrogen spectral series', M + 'fig_12_5_h_lines.webp', (1001, 264), [
     ('Lyman series', [0, 205, 98, 59], True), ('Balmer series', [150, 207, 195, 38], True), ('Paschen series', [600, 207, 210, 38], True)], guess='hide-all')
 table_card(d, 'Hydrogen series', 'Region and lower level n_f?', [
@@ -119,18 +119,18 @@ d.sec('12.6-de-broglies-explanation-of-bohrs-second-postulate')
 d.basic('De Broglie’s explanation of Bohr’s quantisation (1923)?', 'The electron orbit must hold a ' + T('whole number of de Broglie wavelengths') + ': 2πr_n = nλ (a circular standing wave)', **fig('fig_12_8_standing_wave'))
 d.basic('Derive L = nh/2π from the standing wave.', '2πr = nλ with λ = h/mv gives 2πr = nh/mv, so ' + T('mvr = nh/2π'))
 d.basic('Who verified the wave nature of electrons and when?', T('Davisson and Germer') + ' (1927)')
-d.basic('What happens to wavelengths that do not fit the orbit?', 'They ' + T('interfere destructively with themselves') + ' after each turn and their amplitude dies out; only resonant standing waves survive')
+d.basic('What happens to wavelengths that do not fit the orbit?', 'They ' + T('interfere destructively with themselves') + ' after each turn and their amplitude dies out.<br>Only resonant standing waves survive')
 d.basic('Teacher addition: de Broglie wavelength of the electron in the nth orbit?', r'\( \lambda_n = \dfrac{h}{mv_n} = \dfrac{2\pi r_n}{n} \)' + ', so ' + T('n wavelengths fit the nth orbit'))
 
 d.sec('12.6.1-limitations-of-the-bohr-model')
 d.basic('Limitations of Bohr’s model?', '(i) Works only for ' + T('hydrogenic (one-electron) atoms') + ', not even helium (electron–electron forces ignored). (ii) Cannot explain the ' + T('relative intensities') + ' of spectral lines')
 d.basic('Hydrogenic atoms: definition and examples?', 'A nucleus of charge +Ze with a single electron: ' + T('H, He⁺, Li²⁺') + '…')
 d.basic('Why can’t Bohr’s planet-like model be applied to many-electron atoms?', 'Electron–electron repulsion is ' + T('comparable') + ' to nucleus–electron attraction (unlike planet–planet forces compared to the Sun’s pull)')
-d.basic('Other limitations exams mention?', 'Inconsistent with the ' + T('uncertainty principle') + ' (fixed orbits with definite r and p); does not explain fine structure, Zeeman effect, or chemical bonding')
-d.basic('Why study Bohr’s model still?', 'Three simple postulates explain the main features of the hydrogen spectrum, use classical concepts, and show how physicists ' + T('build models and test them'))
-d.basic('Modern picture of Bohr orbits?', 'In quantum mechanics they become regions of ' + T('high probability') + ' of finding the electron; a state needs four quantum numbers (n, l, m, s) but for hydrogen E depends only on n')
+d.basic('Other limitations exams mention?', 'Inconsistent with the ' + T('uncertainty principle') + ' (fixed orbits with definite r and p)<br>Does not explain fine structure, the Zeeman effect, or chemical bonding')
+d.basic('Why study Bohr’s model still?', 'Three simple postulates explain the main features of the hydrogen spectrum.<br>It uses classical concepts.<br>It shows how physicists ' + T('build models and test them'))
+d.basic('Modern picture of Bohr orbits?', 'In quantum mechanics they become regions of ' + T('high probability') + ' of finding the electron.<br>A state needs four quantum numbers (n, l, m, s), but for hydrogen E depends only on n')
 d.basic('Why did Bohr quantise angular momentum specifically?', 'h has the ' + T('dimensions of angular momentum') + ', and angular momentum is the natural quantity for circular orbits')
-d.basic('Frequency of revolution vs frequency of the spectral line?', 'Not equal in Bohr’s model (line frequency = ΔE/h); they ' + T('coincide only for large n') + ' (n → n − 1), the correspondence principle')
+d.basic('Frequency of revolution vs frequency of the spectral line?', 'Not equal in Bohr’s model (line frequency = ΔE/h).<br>They ' + T('coincide only for large n') + ' (n → n − 1): the correspondence principle')
 
 # ---------------------------------------------------------------- Exam patterns
 d.sec('exam-patterns')
@@ -153,7 +153,7 @@ d.basic('What did the uncertainty principle do to Bohr’s orbits?', 'The exact 
 # ---------------------------------------------------------------- Exercises
 d.sec('exercises')
 d.basic('Exercise 12.1: complete: (a) The size of the atom in Thomson’s model is ___ the atomic size in Rutherford’s. (b) Ground-state stable equilibrium in ___, net force always in ___. (c) A classical atom based on ___ collapses. (d) Nearly continuous mass in ___, highly non-uniform in ___. (e) Positive part has most of the mass in ___.', '(a) ' + T('no different from') + '. (b) ' + T('Thomson’s model') + '; ' + T('Rutherford’s model') + '. (c) ' + T('Rutherford’s model') + '. (d) ' + T('Thomson’s') + '; ' + T('Rutherford’s') + '. (e) ' + T('both models'))
-d.basic('Exercise 12.2: repeat the α-scattering with solid hydrogen foil instead of gold. What results?', 'A proton is ' + T('lighter than the α-particle') + ' (1.67 × 10⁻²⁷ vs 6.64 × 10⁻²⁷ kg), so the α-particle cannot bounce back (like a football hitting a tennis ball): ' + T('no large-angle scattering') + '; the protons are knocked forward')
+d.basic('Exercise 12.2: repeat the α-scattering with solid hydrogen foil instead of gold. What results?', 'A proton is ' + T('lighter than the α-particle') + ' (1.67 × 10⁻²⁷ vs 6.64 × 10⁻²⁷ kg).<br>So the α-particle cannot bounce back (like a football hitting a tennis ball): ' + T('no large-angle scattering') + '.<br>The protons are knocked forward')
 d.basic('Exercise 12.3: two levels 2.3 eV apart. Frequency of the emitted radiation?', 'ν = ΔE/h = 2.3 × 1.6 × 10⁻¹⁹/6.63 × 10⁻³⁴ = ' + N('5.6 × 10¹⁴ Hz'))
 d.basic('Exercise 12.4: ground state of hydrogen is −13.6 eV. KE and PE of the electron?', 'K = −E = ' + N('+13.6 eV') + '; U = 2E = ' + N('−27.2 eV'))
 steps_card(d, 'Exercise 12.6 · speeds and periods', 'Find the missing step.', 'Bohr model: speed of the electron in hydrogen for n = 1, 2, 3 and the orbital period in each.',

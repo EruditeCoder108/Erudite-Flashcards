@@ -20,16 +20,16 @@ d.basic('When does ray optics fail?', 'When the sizes of obstacles or apertures 
 
 # ---------------------------------------------------------------- 9.2 Reflection by spherical mirrors
 d.sec('9.2-reflection-of-light-by-spherical-mirrors')
-d.basic('Laws of reflection?', T('∠i = ∠r') + ' and the incident ray, reflected ray and normal lie in the ' + T('same plane') + '. They hold at every point of any surface', **fig('fig_9_1_reflection'))
+d.basic('Laws of reflection?', T('∠i = ∠r') + '<br>The incident ray, reflected ray and normal lie in the ' + T('same plane') + '<br>Both hold at every point of any surface', **fig('fig_9_1_reflection'))
 d.basic('For a spherical mirror, what is the normal at the point of incidence?', 'The ' + T('radius') + ': the line joining the centre of curvature C to that point')
 d.basic('Define pole, centre of curvature, principal axis of a mirror.', 'Pole P: geometric centre of the mirror. Centre of curvature C: centre of the sphere it is part of. Principal axis: the line through P and C')
 
 d.sec('9.2.1-sign-convention')
-d.basic('State the Cartesian sign convention.', 'All distances from the ' + T('pole / optical centre') + '. Along the incident light: ' + T('positive') + '; against it: ' + X('negative') + '. Heights above the axis positive, below negative', **fig('fig_9_2_sign'))
+d.basic('State the Cartesian sign convention.', 'All distances are measured from the ' + T('pole / optical centre') + '.<br>Along the incident light: ' + T('positive') + '<br>Against it: ' + X('negative') + '<br>Heights above the axis positive, below negative', **fig('fig_9_2_sign'))
 d.basic('Sign of u, f, R for a concave mirror with a real object?', 'u ' + X('< 0') + ', f ' + X('< 0') + ', R ' + X('< 0') + ' (all measured against the incident light)')
 d.basic('Sign of f and R for a convex mirror?', T('Positive') + ' (focus and centre lie behind the mirror, along the direction of incident light)')
 d.basic('Exam trap: object distance and height for a real object in front of a mirror or lens?', 'u is ' + X('always negative') + ' (object on the incident side); height h is positive if the object stands upward')
-d.basic('Mnemonic: signs of f for the four devices?', T('Concave mirror −, convex mirror +, convex lens +, concave lens −') + '. Like “C-C-negative, x-x-positive” for mirrors; lenses are the opposite')
+d.basic('Mnemonic: signs of f for the four devices?', T('Concave mirror −, convex mirror +, convex lens +, concave lens −') + '<br>Like “C-C-negative, x-x-positive” for mirrors; lenses are the opposite')
 
 d.sec('9.2.2-focal-length-of-spherical-mirrors')
 d.basic('Paraxial rays: meaning?', 'Rays close to the principal axis, making ' + T('small angles') + ' with it (so tan θ ≈ θ)')
@@ -37,14 +37,14 @@ d.basic('Where does a parallel beam focus for a concave mirror?', 'Rays converge
 d.basic('Where does a parallel beam focus for a convex mirror?', 'Reflected rays appear to ' + T('diverge from F behind the mirror') + ' (virtual focus)', **fig('fig_9_3b_convex_focus'))
 d.basic('What is the focal plane?', 'The plane through F ⟂ the axis, where a parallel beam at an angle to the axis focuses', **fig('fig_9_3c_focal_plane'))
 d.basic('Relation between focal length and radius of curvature?', r'\( f = \dfrac{R}{2} \)')
-d.basic('Derive f = R/2.', 'Ray parallel to axis hits M; ∠MCP = θ so ∠MFP = 2θ. tan θ = MD/CD, tan 2θ = MD/FD → for small θ: FD = CD/2, i.e. ' + T('f = R/2'), **fig('fig_9_4a_geometry'))
+d.basic('Derive f = R/2.', 'Ray parallel to axis hits M; ∠MCP = θ so ∠MFP = 2θ.<br>tan θ = MD/CD, tan 2θ = MD/FD<br>For small θ: FD = CD/2, i.e. ' + T('f = R/2'), **fig('fig_9_4a_geometry'))
 
 d.sec('9.2.3-the-mirror-equation')
 d.basic('When is an image real, and when virtual?', 'Real: rays actually ' + T('converge') + ' at the point. Virtual: they only ' + T('appear to diverge') + ' from it (cannot be caught on a screen)')
 d.basic('Which two rays are easiest to draw for a mirror?', '(i) Parallel to axis → reflects through ' + T('F') + '. (ii) Through ' + T('C') + ' → retraces its path. (iii) Through F → reflects parallel. (iv) At P → reflects with i = r')
 d.basic('Mirror equation?', r'\( \dfrac{1}{v} + \dfrac{1}{u} = \dfrac{1}{f} \)' + ' (valid for concave and convex mirrors, real and virtual images)')
 d.basic('Linear magnification of a mirror?', r'\( m = \dfrac{h\prime}{h} = -\dfrac{v}{u} \)' + '. m < 0: real, inverted. m > 0: virtual, erect. |m| > 1: magnified', **fig('fig_9_5_concave_real'))
-d.basic('Derive the mirror equation (outline).', 'Similar triangles A′B′F ∼ MPF and A′B′P ∼ ABP give (B′P − FP)/FP = B′P/BP. With B′P = −v, FP = −f, BP = −u this becomes ' + T('1/v + 1/u = 1/f'))
+d.basic('Derive the mirror equation (outline).', 'Similar triangles A′B′F ∼ MPF and A′B′P ∼ ABP give (B′P − FP)/FP = B′P/BP.<br>With B′P = −v, FP = −f, BP = −u this becomes ' + T('1/v + 1/u = 1/f'))
 d.basic('Concave mirror, virtual image: object between P and F. Nature of image?', T('Virtual, erect, magnified') + ', behind the mirror (used in shaving mirrors)', **fig('fig_9_6a_concave_virtual'))
 d.basic('Convex mirror: nature of image for any object position?', T('Always virtual, erect, diminished') + ', between P and F', **fig('fig_9_6b_convex_virtual'))
 table_card(d, 'Concave mirror', 'Image formed for object at…?', [
@@ -62,13 +62,13 @@ steps_card(d, 'Example 9.3 · concave mirror', 'Find the missing step.', 'Concav
            'Position, nature, magnification (Example 9.3)', 'Case (i): v = −30 cm, m = −3; case (ii): v = +15 cm, m = +3 (virtual)')
 d.basic('Example 9.4: jogger approaches a convex side mirror (R = 2 m) at 5 m/s. How does the image speed change?', 'Image speed rises steeply as the jogger nears: 1/280, 1/150, 1/60, 1/10 m/s at 39, 29, 19, 9 m. Since ' + T('v = fu/(u − f)') + ' changes ever faster near the mirror (an “objects are closer than they appear” effect)')
 d.basic('Teacher addition: speed of the image relative to the mirror, in terms of the object’s speed?', r'\( v_I = -\dfrac{v^2}{u^2}\,v_O \)' + ' (differentiate 1/v + 1/u = 1/f). The longitudinal magnification is ' + T('m²'))
-d.basic('Teacher addition: object at 2f from a concave mirror moves 1 cm towards it. Image position and size change?', 'Longitudinal magnification = m² = 1, so the image moves 1 cm ' + T('away') + ' from the mirror (at C the image and object move equal distances)')
+d.basic('Teacher addition: object at 2f from a concave mirror moves 1 cm towards it. Image position and size change?', 'Longitudinal magnification = m² = 1, so the image moves 1 cm ' + T('away') + ' from the mirror.<br>(At C the image and object move equal distances)')
 d.basic('Teacher addition: plane mirror in this language?', 'R → ∞, so f → ∞: ' + T('v = −u') + ', m = +1 (virtual, erect, same size, as far behind as the object is in front)')
 d.basic('Teacher addition: a plane mirror rotates by θ. Rotation of the reflected ray?', T('2θ') + ' (used in galvanometer lamp-and-scale arrangements)')
 
 # ---------------------------------------------------------------- 9.3 Refraction
 d.sec('9.3-refraction')
-d.basic('What is refraction?', 'Change in the ' + T('direction') + ' of a ray as it passes obliquely into another transparent medium (speed changes; frequency does not)', **fig('fig_9_8_refraction'))
+d.basic('What is refraction?', 'Change in the ' + T('direction') + ' of a ray as it passes obliquely into another transparent medium.<br>Speed changes; frequency does not', **fig('fig_9_8_refraction'))
 d.basic('State Snell’s laws.', '(i) Incident ray, refracted ray and normal are coplanar. (ii) ' + r'\( \dfrac{\sin i}{\sin r} = n_{21} \)' + ' (constant for the pair of media and the wavelength)')
 d.basic('Meaning of n₂₁ and its relation to speeds?', 'Refractive index of medium 2 w.r.t. 1: ' + r'\( n_{21} = \dfrac{n_2}{n_1} = \dfrac{v_1}{v_2} \)')
 d.basic('Absolute refractive index?', r'\( n = \dfrac{c}{v} \)' + ' (medium’s index w.r.t. vacuum); for two media: n₂₁ = n₂/n₁')
@@ -85,7 +85,7 @@ d.basic('Exam trap: does the apparent depth depend on how deep the observer is a
 
 # ---------------------------------------------------------------- 9.4 TIR
 d.sec('9.4-total-internal-reflection')
-d.basic('What happens to a ray going from a denser to a rarer medium as i increases?', 'The refracted ray bends away from the normal until r = ' + N('90°') + ' at i = i_c; beyond that ' + T('no refraction: total internal reflection'), **fig('fig_9_11_tir'))
+d.basic('What happens to a ray going from a denser to a rarer medium as i increases?', 'The refracted ray bends away from the normal until r = ' + N('90°') + ' at i = i_c.<br>Beyond that: ' + T('no refraction, total internal reflection'), **fig('fig_9_11_tir'))
 d.basic('Define the critical angle.', 'The angle of incidence in the denser medium for which the angle of refraction is ' + T('90°'))
 d.basic('Critical angle formula?', r'\( \sin i_c = \dfrac{n_2}{n_1} = \dfrac{1}{n_{12}} \)' + ' (n₁ denser, n₂ rarer); against air: sin i_c = 1/n')
 d.basic('Two conditions for TIR?', '(1) light goes from a ' + T('denser to a rarer') + ' medium; (2) angle of incidence ' + T('> i_c'))
@@ -95,12 +95,12 @@ d.basic('Difference between ordinary reflection and TIR in intensity?', 'Ordinar
 sp.tir_angle_sweep(d)
 d.basic('Demonstrating TIR with a laser pointer and turbid water?', 'Milk makes the beam visible. Aiming it up at the surface: partial reflection and refraction; at a shallow angle: ' + T('TIR') + ' (same as light along a test tube or optical fibre)', **fig('fig_9_12b_laser'))
 d.basic('Prism that bends light by 90°: condition on i_c?', 'A right-angled isosceles prism (45°–45°–90°) works if ' + T('i_c < 45°') + ': true for crown and flint glass', **fig('fig_9_13a_prism90'))
-d.basic('Prism to turn light by 180° and to invert an image?', 'Two TIRs at the 45° faces reverse the beam (180°); the arrangement of Fig 9.13(c) ' + T('inverts the image') + ' without changing size (binoculars, periscopes)', **fig('fig_9_13b_prism180'))
+d.basic('Prism to turn light by 180° and to invert an image?', 'Two TIRs at the 45° faces reverse the beam (180°).<br>The arrangement of Fig 9.13(c) ' + T('inverts the image') + ' without changing size (binoculars, periscopes)', **fig('fig_9_13b_prism180'))
 d.basic('Optical fibre: structure and principle?', T('Core') + ' of high n inside a ' + T('cladding') + ' of lower n; light undergoes repeated ' + T('TIR') + ' along the length', **fig('fig_9_14_fibre'))
 d.basic('Why is there little loss in an optical fibre?', 'TIR at each reflection (no transmission) and very pure quartz: > 95% of light survives 1 km')
 d.basic('Uses of optical fibres?', 'Telecommunication signals, ' + T('endoscopy') + ' (light pipe for esophagus, stomach, intestine), decorative lamps, sensors')
 d.basic('Natural examples of TIR?', T('Mirage') + ', sparkle of diamond, shine of an air bubble in water, glittering of a cracked glass')
-d.basic('Exam trap: a fibre has core n = 1.5 and cladding n = 1.4. What condition ensures TIR inside?', 'Angle of incidence on the core–cladding boundary must exceed i_c = ' + N('sin⁻¹(1.4/1.5) ≈ 69°') + ', i.e. the ray stays close to the axis')
+d.basic('Exam trap: a fibre has core n = 1.5 and cladding n = 1.4. What condition ensures TIR inside?', 'Angle of incidence on the core–cladding boundary must exceed i_c = ' + N('sin⁻¹(1.4/1.5) ≈ 69°') + '<br>i.e. the ray stays close to the axis')
 d.basic('Teacher addition: numerical aperture / acceptance angle of a fibre?', r'\( \sin i_{max} = \sqrt{n_{core}^2 - n_{clad}^2} \)' + ' (light entering from air within this cone is guided)')
 
 # ---------------------------------------------------------------- 9.5 Spherical surfaces and lenses
@@ -156,7 +156,7 @@ d.basic('Teacher addition: object between two lenses, or a lens and a plane mirr
 # ---------------------------------------------------------------- 9.6 Prism
 d.sec('9.6-refraction-through-a-prism')
 d.basic('Prism relations for angle of deviation?', 'r₁ + r₂ = A and ' + T('δ = i + e − A'), **fig('fig_9_21_prism'))
-d.basic('How does δ vary with the angle of incidence?', 'It falls to a minimum ' + T('D_m') + ' at i = e and rises again; for a given δ (other than D_m) there are two values of i (i and e interchange)', **fig('fig_9_22_deviation_curve'))
+d.basic('How does δ vary with the angle of incidence?', 'It falls to a minimum ' + T('D_m') + ' at i = e and rises again.<br>For a given δ (other than D_m) there are two values of i (i and e interchange)', **fig('fig_9_22_deviation_curve'))
 d.basic('Condition and results at minimum deviation?', T('i = e') + ', r₁ = r₂ = A/2; the ray inside is parallel to the base. ' + r'\( D_m = 2i - A \)')
 d.basic('Prism formula for refractive index?', r'\( n_{21} = \dfrac{\sin[(A + D_m)/2]}{\sin(A/2)} \)')
 d.basic('Thin prism (small A): deviation?', r'\( \delta = (n-1)A \)' + ': a thin prism does not deviate light much; independent of i for small angles')
@@ -178,9 +178,9 @@ d.basic('Simple microscope: what is it and how is it used?', 'A ' + T('convex le
 d.basic('Magnifying power of a simple microscope: image at the near point?', r'\( m = 1 + \dfrac{D}{f} \)')
 d.basic('Magnifying power of a simple microscope: image at infinity?', r'\( m = \dfrac{D}{f} \)' + ' (relaxed eye; one less than the near-point value)', **fig('fig_9_23c_magnifier_inf'))
 d.basic('Derive m = 1 + D/f for the near-point image.', 'm = v/u = v(1/v − 1/f) = 1 − v/f. With v = −D: ' + T('m = 1 + D/f'))
-d.basic('How does a magnifier give angular magnification if image angle = object angle?', 'It lets you place the object ' + T('much closer than 25 cm') + ' so it subtends a larger angle; without it the object must stay at D (Exercise 9.25a)', **fig('fig_9_23b_magnifier_angle'))
+d.basic('How does a magnifier give angular magnification if image angle = object angle?', 'It lets you place the object ' + T('much closer than 25 cm') + ' so it subtends a larger angle.<br>Without it the object must stay at D (Exercise 9.25a)', **fig('fig_9_23b_magnifier_angle'))
 d.basic('Maximum magnification of a single simple microscope in practice?', 'About ' + T('≤ 9') + ' for realistic f (aberrations rise as f shrinks)')
-d.basic('Compound microscope: parts and image nature?', T('Objective') + ' (small f, near the object): real, inverted, magnified image near the focal plane of the ' + T('eyepiece') + ', which acts as a magnifier giving a final ' + T('virtual, inverted, enlarged') + ' image', **fig('fig_9_24_compound'))
+d.basic('Compound microscope: parts and image nature?', T('Objective') + ' (small f, near the object): real, inverted, magnified image near the focal plane of the eyepiece<br>' + T('Eyepiece') + ': acts as a magnifier, giving a final ' + T('virtual, inverted, enlarged') + ' image', **fig('fig_9_24_compound'))
 d.occlusion('Figure 9.24 · Compound microscope', M + 'fig_9_24_compound.webp', (1001, 692), [
     ('Objective', [190, 308, 135, 35], True), ('Eyepiece', [728, 148, 130, 32], True)], guess='hide-all')
 d.basic('Magnification due to the objective? Tube length?', r'\( m_o = \dfrac{L}{f_o} \)' + '; L = distance between the second focus of the objective and first focus of the eyepiece (tube length)')
@@ -188,7 +188,7 @@ d.basic('Magnifying power of a compound microscope, image at infinity?', r'\( m 
 d.basic('Magnifying power of a compound microscope, image at near point?', r'\( m = \dfrac{v_o}{|u_o|}\left(1 + \dfrac{D}{f_e}\right) \approx \dfrac{L}{f_o}\left(1 + \dfrac{D}{f_e}\right) \)')
 d.basic('Why must both lenses of a compound microscope have short focal lengths?', 'm ∝ 1/(f_o f_e): the objective must form a large image of a close object and the eyepiece must magnify strongly (Exercise 9.25d)')
 d.basic('Example: f_o = 1 cm, f_e = 2 cm, tube length 20 cm. Magnifying power (image at infinity)?', 'm = (20/1)(25/2) = ' + N('250'))
-d.basic('Why should the eye sit at the “eye-ring” and not touching the eyepiece?', 'The eye-ring is the ' + T('image of the objective formed by the eyepiece') + ': all refracted rays pass through it, so the pupil there collects all the light (Exercise 9.25e)')
+d.basic('Why should the eye sit at the “eye-ring” and not touching the eyepiece?', 'The eye-ring is the ' + T('image of the objective formed by the eyepiece') + '.<br>All refracted rays pass through it, so the pupil there collects all the light (Exercise 9.25e)')
 d.basic('Teacher addition: how do you increase resolving power of a microscope?', 'Use a smaller λ and larger numerical aperture: ' + r'\( R.P. = \dfrac{2\mu\sin\theta}{1.22\,\lambda} \)' + ' (oil immersion increases μ)')
 
 d.sec('9.7.2-telescope')
@@ -197,8 +197,8 @@ d.basic('Magnifying power of a telescope in normal adjustment (image at infinity
 d.basic('Telescope with the final image at the near point?', r'\( m = \dfrac{f_o}{f_e}\left(1 + \dfrac{f_e}{D}\right) \)' + ' and tube length f_o + u_e')
 d.basic('Terrestrial telescope: what is added?', 'A pair of inverting lenses (or a prism) to make the final image ' + T('erect'))
 d.basic('Two main considerations for an astronomical telescope?', T('Light-gathering power') + ' (∝ aperture area) and ' + T('resolving power') + ' (∝ aperture diameter)')
-d.basic('Why do modern telescopes use mirrors as objectives?', 'A mirror has ' + T('no chromatic aberration') + ', is lighter, can be supported over its whole back, and is easier to make large and free of distortion')
-d.basic('Cassegrain telescope: layout and advantages?', 'Concave primary + convex secondary sending light through a hole in the primary: ' + T('long focal length in a short tube') + ', observer not in the way', **fig('fig_9_26_cassegrain'))
+d.basic('Why do modern telescopes use mirrors as objectives?', 'A mirror has ' + T('no chromatic aberration') + '.<br>It is lighter and can be supported over its whole back.<br>It is easier to make large and free of distortion')
+d.basic('Cassegrain telescope: layout and advantages?', 'Concave primary + convex secondary sending light through a hole in the primary.<br>Advantages: ' + T('long focal length in a short tube') + ', and the observer is not in the way', **fig('fig_9_26_cassegrain'))
 d.occlusion('Figure 9.26 · Cassegrain telescope', M + 'fig_9_26_cassegrain.webp', (1001, 485), [
     ('Objective mirror', [725, 70, 130, 58], True), ('Secondary mirror', [90, 145, 145, 58], True), ('Eyepiece', [855, 315, 125, 38], True)], guess='hide-all')
 d.basic('Largest telescopes named in NCERT?', 'India’s largest: ' + T('2.34 m, Kavalur (Tamil Nadu)') + ', Cassegrain reflector. Largest lens: 1.02 m (Yerkes). Keck (Hawaii): 10 m; Mt. Palomar: 5.08 m')
@@ -221,7 +221,7 @@ d.basic('Pattern: telescope objective diameter doubled. Change in light-gatherin
 # ---------------------------------------------------------------- Points to ponder
 d.sec('points-to-ponder')
 d.basic('Do the laws of reflection and refraction hold for curved surfaces?', T('Yes') + ', at every point of incidence for any surface and any pair of media')
-d.basic('Is a real image still there when the screen is removed?', T('Yes') + ': rays converge to the image point and diverge beyond it; the screen only diffuses them so that the image can be seen (laser shows in air)')
+d.basic('Is a real image still there when the screen is removed?', T('Yes') + ': rays converge to the image point and diverge beyond it.<br>The screen only diffuses them so that the image can be seen (a laser shows in air)')
 d.basic('Why can’t you see your image in a page of a book?', 'A rough surface reflects irregularly: rays from a point do not reach one image point (' + T('diffuse') + ' instead of regular reflection)')
 d.basic('Why do thick lenses show coloured images?', T('Dispersion') + ' (chromatic aberration): different colours focus at different points')
 d.basic('Why do objects change colour under monochromatic light?', 'Colour perception depends on which ' + T('constituent wavelengths') + ' are present in the incident light')
@@ -241,7 +241,7 @@ steps_card(d, 'Exercise 9.5 · light from a bulb in a tank', 'Find the missing s
 d.basic('Exercise 9.6: D_m = 40° for a 60° prism. n? In water (1.33), new D_m?', 'n = sin 50°/sin 30° = ' + N('1.53') + '. In water: n_gw = 1.15; sin((60 + D)/2) = 1.15 × 0.5 → D ≈ ' + N('10°'))
 d.basic('Exercise 9.7: double-convex lens, both faces the same R, n = 1.55, f = 20 cm. R?', '1/f = (n − 1)(2/R) → R = 2(n − 1)f = 2 × 0.55 × 20 = ' + N('22 cm'))
 d.basic('Exercise 9.8: a convergent beam meets at P; a lens is placed 12 cm before P. Where does it converge for (a) f = +20 cm (b) f = −16 cm?', 'Object is virtual: u = +12 cm. (a) 1/v = 1/20 + 1/12 → ' + N('v = 7.5 cm') + ' (real, right). (b) 1/v = −1/16 + 1/12 → ' + N('v = 48 cm') + ' (real, right)')
-d.basic('Exercise 9.9: 3.0 cm object 14 cm from a concave lens (f = −21 cm). Image? As the object moves away?', '1/v = −1/21 − 1/14 → v = ' + N('−8.4 cm') + ', m = 0.6: virtual, erect, ' + N('1.8 cm') + '. As u → ∞, v → f (never beyond); at u = f the image is at 10.5 cm, not at infinity')
+d.basic('Exercise 9.9: 3.0 cm object 14 cm from a concave lens (f = −21 cm). Image? As the object moves away?', '1/v = −1/21 − 1/14 → v = ' + N('−8.4 cm') + ', m = 0.6: virtual, erect, ' + N('1.8 cm') + '<br>As u → ∞, v → f (never beyond)<br>At u = f the image is at 10.5 cm, not at infinity')
 d.basic('Exercise 9.11: compound microscope f_o = 2.0 cm, f_e = 6.25 cm, lenses 15 cm apart. Object distance and magnifying power for image at (a) 25 cm, (b) infinity?', '(a) u_e = −5 cm, v_o = 10 cm, ' + N('u_o = −2.5 cm') + ', m = (10/2.5)(1 + 25/6.25) = ' + N('20') + '. (b) v_o = 8.75, ' + N('u_o = −2.59 cm') + ', m = 3.38 × 4 = ' + N('13.5'))
 d.basic('Exercise 9.12: f_o = 8.0 mm, f_e = 2.5 cm, object at 9.0 mm from the objective, normal eye. Separation and magnifying power?', 'v_o = 7.2 cm; eyepiece object distance 2.27 cm: separation ' + N('9.47 cm') + '; m = (7.2/0.9)(1 + 25/2.5) = ' + N('88'))
 d.basic('Exercise 9.13: f_o = 144 cm, f_e = 6.0 cm. Magnifying power and separation?', 'm = 144/6 = ' + N('24') + '; separation f_o + f_e = ' + N('150 cm'))
@@ -250,23 +250,23 @@ d.basic('Exercise 9.15: use the mirror equation to show a convex mirror always g
 d.basic('Exercise 9.15(a),(d): concave mirror properties from the equation?', '(a) f < 0, u < 0 with |f| < |u| < 2|f|: v = fu/(u − f) has |v| > 2|f|, real and beyond C. (d) f < u < 0 (object inside F): u − f > 0 so v > 0: ' + T('virtual') + ', and m = f/(f − u) = ' + N('> 1') + ': enlarged')
 d.basic('Exercise 9.16: pin viewed from 50 cm above through a 15 cm glass slab (n = 1.5). Apparent raise? Depends on slab position?', 'Shift = t(1 − 1/n) = 15 × (1/3) = ' + N('5 cm') + '. ' + T('Independent') + ' of where the slab is (for small angles)')
 d.basic('Exercise 9.17(a): light pipe, core n = 1.68, cladding 1.44. Range of incidence angles that get totally reflected?', 'sin i′_c = 1.44/1.68 → i′_c = 59°; r_max = 31°; sin i_max = 1.68 sin 31° → ' + N('0 < i < 60°'), **img('fig_9_28_lightpipe'))
-d.basic('Exercise 9.17(b): with no cladding (n = 1.68 in air)?', 'i′_c = sin⁻¹(1/1.68) = 36.5°. Even i = 90° gives r = 36.5°, i′ = 53.5° > i′_c, so ' + T('all rays (0–90°) are totally reflected'))
+d.basic('Exercise 9.17(b): with no cladding (n = 1.68 in air)?', 'i′_c = sin⁻¹(1/1.68) = 36.5°<br>Even i = 90° gives r = 36.5°, i′ = 53.5° > i′_c, so ' + T('all rays (0–90°) are totally reflected'))
 d.basic('Exercise 9.18: image of a bulb on the opposite wall, 3 m away, by a convex lens. Maximum focal length?', 'Real image needs D ≥ 4f, so ' + N('f_max = 0.75 m'))
 d.basic('Exercise 9.19: object–screen 90 cm, two lens positions 20 cm apart. f?', 'f = (D² − d²)/4D = (8100 − 400)/360 = ' + N('21.4 cm'))
 steps_card(d, 'Exercise 9.20 · separated lenses', 'Find the missing step.', 'The 30 cm convex and 20 cm concave lenses are 8.0 cm apart. Effective focal length? Does it depend on the side of incidence? Magnification for a 1.5 cm object 40 cm from the convex lens?',
            ['Parallel beam from the convex side: v₁ = +30, then u₂ = +22 (virtual object): v₂ = <b>−220 cm</b>', 'From the concave side: v₁ = −20, u₂ = −28: v₂ = <b>−420 cm</b> (different!)', 'So the notion of effective focal length is <b>not useful</b> here (depends on the side)', 'Object 40 cm: v₁ = 120 (m₁ = 3); u₂ = +112, v₂ = −92 (m₂ = 20/92); <b>m = 0.652</b>, image size <b>0.98 cm</b>'], 3,
            'Two lenses 8 cm apart (Exercise 9.20)', 'Side-dependent; m = 0.652; image 0.98 cm')
-d.basic('Exercise 9.22: card of 1 mm² squares viewed through a magnifier held close to the eye, card at 9 cm. Magnification, area of each square, magnifying power?', 'Key: 1/v − 1/u with v = −90 cm gives ' + T('m = 10') + ', area = 10 × 10 × 1 mm² = ' + N('1 cm²') + ', magnifying power = 25/9 = ' + N('2.8') + '. They differ: m = |v/u| but MP = 25/|u|; equal only when the image is at 25 cm')
+d.basic('Exercise 9.22: card of 1 mm² squares viewed through a magnifier held close to the eye, card at 9 cm. Magnification, area of each square, magnifying power?', 'Key: 1/v − 1/u with v = −90 cm gives ' + T('m = 10') + '<br>Area = 10 × 10 × 1 mm² = ' + N('1 cm²') + '<br>Magnifying power = 25/9 = ' + N('2.8') + '<br>They differ: m = |v/u| but MP = 25/|u|; equal only when the image is at 25 cm')
 d.basic('Correction: Exercise 9.22 says f = 9 cm and the card is at 9 cm. Does the key match?', X('No') + ': the printed question says f = 9 cm, but the key’s v = −90 cm only works with ' + T('f = 10 cm') + ' (u = −9 cm). With f = 9 cm and u = 9 cm the image would be at infinity. The key’s numbers come from an older f = 10 cm version; the concept (m ≠ MP) is what is examined')
 d.basic('Exercise 9.23: viewing the squares distinctly with maximum magnifying power. Where to hold the lens? m? Is m = MP?', 'Image at 25 cm. Key (f = 10 cm): u = −7.14 cm, m = 3.5, and yes m = MP ' + T('when the image is at the near point') + '. Recomputed with f = 9 cm: u = −6.6 cm, m = 1 + 25/9 = ' + N('3.8'))
 d.basic('Exercise 9.24: how far should the card be to get a virtual square area of 6.25 mm² (m = 2.5)? Seen distinctly?', 'Key: u = −6 cm, |v| = 15 cm (f = 10 cm). With f = 9 cm: u = −5.4 cm, |v| = 13.5 cm. Either way the image is ' + X('closer than 25 cm') + ', so the eye cannot see it distinctly')
 d.basic('Exercise 9.25(a),(b): magnifier: angle of object = angle of image, so in what sense does it magnify? Effect of moving the eye back?', '(a) The object can be placed ' + T('much closer than 25 cm') + ', at a larger angle than at D. (b) Angular magnification decreases slightly as the angle subtended at the eye falls')
-d.basic('Exercise 9.25(c): why can’t we keep reducing the focal length of a simple lens to get more magnifying power?', 'Grinding very short f lenses is hard, and ' + T('spherical and chromatic aberrations') + ' grow; a simple lens is limited to about 3× (aberration-corrected systems reach 10× more)')
+d.basic('Exercise 9.25(c): why can’t we keep reducing the focal length of a simple lens to get more magnifying power?', 'Grinding very short f lenses is hard, and ' + T('spherical and chromatic aberrations') + ' grow.<br>A simple lens is limited to about 3× (aberration-corrected systems reach 10× more)')
 steps_card(d, 'Exercise 9.26 · setting up a compound microscope', 'Find the missing step.', 'Angular magnification 30× with f_o = 1.25 cm and f_e = 5 cm (image at 25 cm). How to set up the microscope?',
            ['Eyepiece magnification: 1 + 25/5 = <b>6</b>, so objective m_o = 30/6 = <b>5</b>', 'v_o/|u_o| = 5 and 1/v_o − 1/u_o = 1/1.25 → <b>u_o = −1.5 cm, v_o = 7.5 cm</b>', 'Eyepiece image at 25 cm: 1/u_e = −1/25 − 1/5 → |u_e| = <b>4.17 cm</b>', 'Separation = 7.5 + 4.17 = <b>11.67 cm</b>; object 1.5 cm from the objective'], 1,
            'Design for 30× (Exercise 9.26)', 'Object 1.5 cm from objective; lenses 11.67 cm apart')
 d.basic('Exercise 9.27: telescope with f_o = 140 cm, f_e = 5.0 cm. m for (a) normal adjustment (b) final image at 25 cm?', '(a) m = 140/5 = ' + N('28') + '. (b) m = (140/5)(1 + 5/25) = ' + N('33.6'))
-d.basic('Exercise 9.28: same telescope on a 100 m tower 3 km away: separation? Image height by the objective and final image height at 25 cm?', 'Separation ' + N('145 cm') + '. Angle = 1/30 rad → objective image = 140/30 = ' + N('4.7 cm') + '; eyepiece magnification 6 → final image ≈ ' + N('28 cm'))
+d.basic('Exercise 9.28: same telescope on a 100 m tower 3 km away: separation? Image height by the objective and final image height at 25 cm?', 'Separation ' + N('145 cm') + '<br>Angle = 1/30 rad → objective image = 140/30 = ' + N('4.7 cm') + '<br>Eyepiece magnification 6 → final image ≈ ' + N('28 cm'))
 d.basic('Exercise 9.29: Cassegrain with mirrors 20 mm apart, R = 220 mm (primary), 140 mm (secondary). Final image of a far object?', 'Primary f = 110 mm; image would form 90 mm beyond the secondary (virtual object). Secondary f = 70 mm: 1/v = 1/70 − 1/90 → ' + N('v = 315 mm') + ' from the secondary')
 d.basic('Exercise 9.30: mirror on a galvanometer coil deflects 3.5°. Shift of the reflected spot on a screen 1.5 m away?', 'Reflected ray turns by 2θ = 7°: d = 1.5 tan 7° = ' + N('18.4 cm'), **img('fig_9_29_galvo'))
 d.basic('Exercise 9.31: needle over a convex lens (n = 1.50) on a liquid layer on a plane mirror: image at needle position at 45.0 cm; without liquid at 30.0 cm. n_liquid?', 'Without liquid f = 30 cm, so R = 30 cm (biconvex). With liquid: 1/45 = 1/30 + 1/f_liq → f_liq = −90 cm (plano-concave liquid lens: −(n − 1)/30). So n − 1 = 1/3: ' + N('n = 1.33'), **img('fig_9_30_liquid_lens'))

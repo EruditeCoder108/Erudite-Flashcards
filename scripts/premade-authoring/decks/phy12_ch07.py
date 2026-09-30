@@ -12,7 +12,7 @@ img = lambda name: {'termImage': M + name + '.webp'}
 
 # ---------------------------------------------------------------- 7.1 Introduction
 d.sec('7.1-introduction')
-d.basic('Main reason ac is preferred over dc for power supply?', 'Ac voltage can be ' + T('easily and efficiently stepped up or down with transformers') + ', and transmitted economically over long distances')
+d.basic('Main reason ac is preferred over dc for power supply?', 'Ac voltage can be ' + T('easily and efficiently stepped up or down with transformers') + '.<br>It can also be transmitted economically over long distances')
 d.basic('Form of the mains ac voltage?', 'A ' + T('sinusoidal') + ' function of time: v = v_m sin ωt')
 d.basic('Everyday use of a special property of ac circuits, named by NCERT?', 'Tuning a radio: ' + T('resonance') + ' in an LCR circuit')
 
@@ -37,7 +37,7 @@ d.basic('Trap: resistance of a 100 W, 220 V bulb when operated on 110 V?', 'R st
 
 # ---------------------------------------------------------------- 7.3 Phasors
 d.sec('7.3-representation-by-rotating-vectors-phasors')
-d.basic('What is a phasor?', 'A vector rotating about the origin with angular speed ' + T('ω') + '; its length is the ' + T('amplitude') + ' and its vertical component is the instantaneous value')
+d.basic('What is a phasor?', 'A vector rotating about the origin with angular speed ' + T('ω') + '.<br>Its length is the ' + T('amplitude') + '.<br>Its vertical component is the instantaneous value')
 d.basic('Phasor diagram of a resistor: angle between V and I phasors?', N('0') + ': they point along the same line at all times', **fig('fig_7_4_phasor_R'))
 d.basic('Are voltage and current in ac really vectors?', X('No') + ': they are scalars; phasors are only a device so harmonic quantities add by the ' + T('vector addition rule'))
 d.basic('Why use phasors?', 'To show ' + T('phase relations') + ' between v and i and to add voltages across R, L, C easily')
@@ -55,11 +55,11 @@ steps_card(d, 'Example 7.2 · pure inductor', 'Find the missing step.', '25.0 mH
            ['X_L = 2πνL = 2 × 3.14 × 50 × 25 × 10⁻³', 'X_L = <b>7.85 Ω</b>', 'I = V/X_L = 220/7.85 ≈ <b>28 A</b>'], 1,
            'Reactance and current in an inductor (Example 7.2)', 'X_L = 7.85 Ω, I ≈ 28 A')
 d.basic('Example 7.5: iron rod pushed into a coil in series with a bulb on ac. Bulb glow?', T('Decreases') + ': L rises (μᵣ), so X_L rises and more of the supply voltage falls across the coil')
-d.basic('Teacher addition: choke coil?', 'An inductor used to ' + T('reduce ac current without wasting power') + ', unlike a series resistor (which dissipates I²R); its power factor is nearly zero')
+d.basic('Teacher addition: choke coil?', 'An inductor used to ' + T('reduce ac current without wasting power') + ', unlike a series resistor (which dissipates I²R).<br>Its power factor is nearly zero')
 
 # ---------------------------------------------------------------- 7.5 Capacitor
 d.sec('7.5-ac-voltage-applied-to-a-capacitor')
-d.basic('Does a capacitor pass dc? Ac?', 'dc: current only during charging, then ' + X('zero') + '. Ac: it charges and discharges every half cycle, so current ' + T('flows') + ' (limited)', **fig('fig_7_7_capacitor'))
+d.basic('Does a capacitor pass dc? Ac?', 'dc: current only during charging, then ' + X('zero') + '<br>Ac: it charges and discharges every half cycle, so current ' + T('flows') + ' (limited)', **fig('fig_7_7_capacitor'))
 d.basic('Capacitor, v = v_m sin ωt. Current?', r'\( i = i_m\sin(\omega t + \pi/2),\quad i_m = \omega C v_m \)')
 d.basic('Derive the current in a capacitor.', 'q = Cv = Cv_m sin ωt; i = dq/dt = ' + T('ωCv_m cos ωt') + ' = ωCv_m sin(ωt + π/2)')
 d.basic('Capacitive reactance: formula, unit, dependence?', r'\( X_C = \dfrac{1}{\omega C} = \dfrac{1}{2\pi\nu C} \)' + '; ohm; ' + T('inversely') + ' proportional to ν and C. Infinite for dc')
@@ -100,7 +100,7 @@ d.basic('Effect of increasing R on the resonance curve?', 'Peak height ' + T('fa
 d.basic('Can resonance occur in an RL or RC circuit? Why?', X('No') + ': needs both L and C so that V_L and V_C can cancel')
 d.basic('Mechanical analogy for resonance?', 'A child on a swing pushed at its ' + T('natural frequency') + ': amplitude grows large')
 d.basic('How does a radio tune to a station?', 'Vary ' + T('C') + ' so that ω₀ = 1/√LC matches the station’s frequency: current at that frequency is maximum')
-d.basic('Example 7.10: how does an airport metal detector work?', 'Walk-through coil + capacitor tuned to ' + T('resonance') + '; metal changes L, so impedance and current change, triggering the alarm')
+d.basic('Example 7.10: how does an airport metal detector work?', 'Walk-through coil + capacitor tuned to ' + T('resonance') + '.<br>Metal changes L, so impedance and current change, triggering the alarm')
 d.basic('Teacher addition: quality factor Q of a series LCR circuit?', r'\( Q = \dfrac{\omega_0 L}{R} = \dfrac{1}{\omega_0 CR} = \dfrac{1}{R}\sqrt{\dfrac{L}{C}} \)' + ': measures the ' + T('sharpness') + ' of resonance (dimensionless)')
 d.basic('Teacher addition: bandwidth and its link to Q?', 'Half-power bandwidth ' + r'\( \Delta\omega = \dfrac{R}{L} = \dfrac{\omega_0}{Q} \)' + ': ' + T('higher Q → narrower, sharper') + ' resonance')
 d.basic('Teacher addition: voltage across L or C at resonance compared with the source?', 'V_L = V_C = ' + T('Q × V') + ', which can be far larger than the source voltage (while V_L and V_C cancel each other)')
@@ -138,7 +138,7 @@ d.basic('Efficiency of a transformer?', r'\( \eta = \dfrac{P_{out}}{P_{in}} = \d
 d.basic('List the four energy losses in a real transformer and remedy for each.', '(i) ' + T('Flux leakage') + ': wind coils over one another. (ii) ' + T('Resistance of windings') + ' (I²R): thick wire. (iii) ' + T('Eddy currents') + ': laminated core. (iv) ' + T('Hysteresis') + ': low-loss soft magnetic material')
 d.basic('Why is the core laminated?', 'Insulated thin sheets break up ' + T('eddy current') + ' loops in the iron, reducing heating')
 d.basic('Why is transmission done at high voltage?', 'For fixed power P = VI, high V means ' + T('small I') + ', so the ' + T('I²R') + ' loss in the lines is small')
-d.basic('Steps in power transmission, per NCERT?', 'Generator voltage stepped ' + T('up') + ' → long-distance lines → area sub-station steps ' + T('down') + ' → distribution sub-stations and poles → about 240 V at homes')
+d.basic('Steps in power transmission, per NCERT?', '1) Generator voltage stepped ' + T('up') + '<br>2) Long-distance lines<br>3) Area sub-station steps ' + T('down') + '<br>4) Distribution sub-stations and poles<br>5) About 240 V at homes')
 d.basic('Teacher addition: power loss in a line of resistance R carrying P at voltage V?', r'\( P_{loss} = I^2R = \dfrac{P^2R}{V^2} \)' + ': raising V tenfold cuts loss ' + N('100×'))
 d.basic('Teacher addition: can a transformer work on dc? Why?', X('No') + ': needs changing flux; a steady primary current gives no induced secondary emf')
 d.basic('Teacher addition: does a transformer change the frequency?', X('No') + ': output has the same frequency as the input')
@@ -147,7 +147,7 @@ d.basic('Teacher addition: does a transformer change the frequency?', X('No') + 
 d.sec('points-to-ponder')
 d.basic('Rating of an ac appliance (e.g. 60 W)?', 'Refers to ' + T('average power') + ' (rms based)')
 d.basic('Can power consumed in an ac circuit be negative on average?', X('No') + ': the average power P = VI cos φ is never negative (instantaneous power in L and C can be)')
-d.basic('How is the ac ampere defined?', '1 A rms = the alternating current producing the ' + T('same average heating') + ' as 1 A dc (the force between wires averages to zero for ac)')
+d.basic('How is the ac ampere defined?', '1 A rms = the alternating current producing the ' + T('same average heating') + ' as 1 A dc.<br>(The force between wires averages to zero for ac)')
 d.basic('Generator vs motor?', 'Generator: mechanical → electrical. Motor: ' + T('electrical → mechanical') + '. Both just transform energy')
 d.basic('Where are the losses in an ac circuit?', 'Only in ' + T('resistive') + ' elements; pure L and C have none')
 d.basic('Why does the power factor matter?', 'It measures how close the circuit is to using the ' + T('maximum power') + ' for the given V and I')

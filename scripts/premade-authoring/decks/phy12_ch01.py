@@ -38,7 +38,7 @@ d.basic('Does rubbing transfer a large share of a body’s electrons?', X('No') 
 
 # ---------------------------------------------------------------- 1.3 Conductors and insulators
 d.sec('1.3-conductors-and-insulators')
-d.basic('Conductors vs insulators?', T('Conductors') + ': charges (electrons) move freely — ' + E('metals, human body, earth') + '. ' + T('Insulators') + ': high resistance — ' + E('glass, porcelain, plastic, nylon, wood'))
+d.basic('Conductors vs insulators?', T('Conductors') + ': charges (electrons) move freely — ' + E('metals, human body, earth') + '<br>' + T('Insulators') + ': high resistance — ' + E('glass, porcelain, plastic, nylon, wood'))
 d.basic('Charge given to a conductor vs an insulator: where does it go?', 'Conductor: spreads over the whole ' + T('surface') + '. Insulator: ' + T('stays where it was put'))
 d.basic('Why does a metal spoon held in the hand not get charged on rubbing?', 'The charge ' + T('leaks through your body to earth') + ' (both conductors); with an insulating handle it does charge')
 d.basic('What is the third category besides conductors and insulators?', T('Semiconductors') + ': resistance intermediate between the two')
@@ -50,7 +50,7 @@ d.basic('When can a charged body be treated as a point charge?', 'When its size 
 d.cloze('Three basic properties of electric charge: {{c1::additivity}}, {{c2::conservation}} and {{c3::quantisation}}.')
 d.basic('Additivity of charge: how is it like mass, and how is it unlike mass?', 'Like mass: a ' + T('scalar') + ' that adds algebraically. Unlike mass: charge can be ' + X('negative') + ', so signs matter')
 d.basic('Total charge of +1, +2, −3, +4, −5 (same units)?', N('−1'))
-d.basic('State conservation of charge.', 'The total charge of an ' + T('isolated system') + ' never changes; charge carriers can be created or destroyed only in equal and opposite pairs')
+d.basic('State conservation of charge.', 'The total charge of an ' + T('isolated system') + ' never changes.<br>Charge carriers can be created or destroyed only in equal and opposite pairs')
 d.basic('A neutron decays into a proton and an electron. Is charge conserved?', 'Yes: 0 = (+e) + (−e)')
 d.basic('State quantisation of charge.', r'\( q = ne \)' + ', n an integer: every free charge is an ' + T('integral multiple of e'))
 d.basic('Who suggested and who demonstrated quantisation of charge?', 'Suggested by ' + T('Faraday') + '’s laws of electrolysis; demonstrated by ' + T('Millikan') + ' (' + N('1912') + ', oil-drop experiment)')
@@ -69,7 +69,7 @@ d.basic('Exercise 1.5: glass rubbed with silk — how is charging consistent wit
 d.sec('1.5-coulombs-law')
 d.basic('State Coulomb’s law.', 'Force between two point charges ∝ ' + T('product of charges') + ', ∝ ' + T('1/r²') + ', along the line joining them: ' + r'\( F = \dfrac{1}{4\pi\varepsilon_0}\dfrac{|q_1 q_2|}{r^2} \)')
 d.basic('What instrument did Coulomb use? Who else used it?', 'A ' + T('torsion balance') + '; later ' + T('Cavendish') + ' used one to measure gravitational force')
-d.basic('Coulomb did not know the charges. How did he vary them?', 'By touching a charged sphere with an ' + T('identical uncharged sphere') + ': charge halves each time (q/2, q/4…) — relying on additivity and conservation')
+d.basic('Coulomb did not know the charges. How did he vary them?', 'By touching a charged sphere with an ' + T('identical uncharged sphere') + ': charge halves each time (q/2, q/4…)<br>This relies on additivity and conservation of charge')
 d.basic('Values of k and ε₀?', r'\( k = \dfrac{1}{4\pi\varepsilon_0} \approx 9\times10^{9} \)' + ' N m² C⁻²' + '; ε₀ = ' + N('8.854 × 10⁻¹² C² N⁻¹ m⁻²'))
 d.basic('What is ε₀ called?', T('Permittivity of free space'))
 d.basic('Force between two 1 C charges 1 m apart in vacuum?', N('9 × 10⁹ N') + ' — why 1 C is far too big for electrostatics (use μC, mC)')
@@ -90,12 +90,12 @@ steps_card(d, 'Exercise 1.12 · scaling', 'Find the missing step.', 'Two spheres
 d.basic('Exercise 1.1: 2 × 10⁻⁷ C and 3 × 10⁻⁷ C, 30 cm apart in air. Force?', N('6 × 10⁻³ N') + ', repulsive')
 d.basic('Exercise 1.2: 0.4 μC and −0.8 μC attract with 0.2 N. Separation? Force on the second?', 'r = ' + N('12 cm') + '; 0.2 N, ' + T('attractive') + ' (towards the first) — Newton’s third law')
 d.basic('Exercise 1.3: what does the dimensionless ratio ke²/(G mₑ mₚ) ≈ 2.3 × 10³⁹ signify?', 'Electric force between an electron and proton is ~10³⁹ times the ' + T('gravitational force') + ' between them, at any distance')
-d.basic('Points to ponder: why is k so large (why is 1 C so big)?', 'The coulomb is defined through the ' + T('ampere') + ' (magnetic effects, which are much weaker than electric ones); 1 A is sensible, 1 C = 1 A s is huge electrically')
-d.basic('Update: NCERT says the ampere is defined via the force between current-carrying wires. Still true?', X('Not since 2019') + ': the SI now fixes ' + T('e exactly') + '; the ampere (and coulomb) follow from e. k ≈ 8.99 × 10⁹ N m² C⁻² is unchanged')
+d.basic('Points to ponder: why is k so large (why is 1 C so big)?', 'The coulomb is defined through the ' + T('ampere') + ' (magnetic effects, which are much weaker than electric ones).<br>1 A is a sensible current, but 1 C = 1 A s is huge electrically')
+d.basic('Update: NCERT says the ampere is defined via the force between current-carrying wires. Still true?', X('Not since 2019') + ': the SI now fixes ' + T('e exactly') + '.<br>The ampere (and coulomb) follow from e.<br>k ≈ 8.99 × 10⁹ N m² C⁻² is unchanged')
 
 # ---------------------------------------------------------------- 1.6 Multiple charges
 d.sec('1.6-forces-between-multiple-charges')
-d.basic('State the principle of superposition (forces).', 'Force on a charge = ' + T('vector sum') + ' of the forces from each other charge taken ' + T('one at a time') + ', each unaffected by the others', **fig('fig_1_5_superposition'))
+d.basic('State the principle of superposition (forces).', 'Force on a charge = ' + T('vector sum') + ' of the forces from each other charge taken ' + T('one at a time') + '.<br>Each force is unaffected by the presence of the others', **fig('fig_1_5_superposition'))
 d.basic('Points to ponder: superposition says two things beyond “add vectors”. What?', '(1) Each pair force is ' + T('unaffected') + ' by other charges; (2) there are ' + X('no extra three-body') + ' (or more) forces')
 d.basic('“All of electrostatics is basically a consequence of…”?', T('Coulomb’s law') + ' and the ' + T('superposition principle'))
 d.basic('Example 1.5: equal charges q at the corners of an equilateral triangle. Force on Q at the centroid?', N('Zero') + ' — by symmetry (rotate the figure by 120°: the answer must not change)', **img('fig_1_6_triangle'))
@@ -112,7 +112,7 @@ d.basic('Source charge vs test charge?', T('Source') + ': produces the field. ' 
 d.basic('Does the field of Q depend on the test charge q?', X('No') + ': F ∝ q, so F/q is independent of q; E depends only on position')
 d.basic('What symmetry does the field of a point charge have?', T('Spherical') + ': |E| is the same everywhere on a sphere centred on the charge')
 d.basic('Field due to a system of charges?', 'Vector sum: ' + r'\( \vec E(\vec r) = \dfrac{1}{4\pi\varepsilon_0}\sum_i \dfrac{q_i}{r_{iP}^2}\hat r_{iP} \)', **fig('fig_1_9_system_field'))
-d.basic('Physical significance: why are fields “real” and not just a device?', 'Beyond electrostatics, effects travel at speed ' + T('c') + ': fields account for the ' + T('time delay') + ', carry energy and have their own dynamics')
+d.basic('Physical significance: why are fields “real” and not just a device?', 'Beyond electrostatics, effects travel at speed ' + T('c') + '.<br>Fields account for the ' + T('time delay') + ', carry energy and have their own dynamics')
 d.basic('Who introduced the concept of field?', T('Faraday'))
 d.basic('Example 1.7: electron and proton each fall 1.5 cm in a 2 × 10⁴ N/C field. Times of fall?', 'tₑ = ' + N('2.9 × 10⁻⁹ s') + ', tₚ = ' + N('1.3 × 10⁻⁷ s') + ' (t = √(2hm/eE))', **fig('fig_1_10_fall'))
 d.basic('Example 1.7: how does fall in an electric field differ from free fall under gravity?', 'Time depends on ' + T('mass') + ' (a = eE/m): the heavier proton takes longer. In free fall, time is independent of mass')
@@ -121,14 +121,14 @@ steps_card(d, 'Example 1.8 · two charges', 'Find the missing step.', '+10⁻⁸
            ['Each charge is 0.05 m from A', 'E from each = 9 × 10⁹ × 10⁻⁸ / 0.05² = 3.6 × 10⁴ N/C',
             'Both point from + towards −, so they add', 'E<sub>A</sub> = <b>7.2 × 10⁴ N/C</b>, towards the negative charge'], 2,
            'Field midway between +q and −q (Example 1.8)', 'Both fields point towards −q and add: 7.2 × 10⁴ N/C')
-d.basic('Example 1.8: fields at B (5 cm outside the + charge) and C (0.1 m from both)?', 'E_B = 3.6 × 10⁴ − 0.4 × 10⁴ = ' + N('3.2 × 10⁴ N/C') + ' away from the pair; E_C = ' + N('9 × 10³ N/C') + ' parallel to the line (+ to −)', **img('fig_1_11_example'))
+d.basic('Example 1.8: fields at B (5 cm outside the + charge) and C (0.1 m from both)?', 'E_B = 3.6 × 10⁴ − 0.4 × 10⁴ = ' + N('3.2 × 10⁴ N/C') + ' away from the pair<br>E_C = ' + N('9 × 10³ N/C') + ' parallel to the line (+ to −)', **img('fig_1_11_example'))
 d.basic('Exercise 1.8: +3 μC and −3 μC, 20 cm apart. Field at the midpoint? Force on −1.5 × 10⁻⁹ C there?', 'E = ' + N('5.4 × 10⁶ N/C') + ' towards the negative charge; F = ' + N('8.1 × 10⁻³ N') + ' towards the positive charge')
 
 # ---------------------------------------------------------------- 1.8 Field lines
 d.sec('1.8-electric-field-lines')
 d.basic('Define an electric field line.', 'A curve whose ' + T('tangent at each point') + ' gives the direction of the net field there (arrow gives the sense)')
 d.basic('How do field lines show field strength?', 'By their ' + T('density') + ' (lines per unit area normal to them): crowded = strong, spread out = weak', **fig('fig_1_13_density'))
-d.basic('Why is the number of field lines crossing any sphere around a point charge the same?', 'E ∝ 1/r² while the area ∝ r²: lines per area fall as 1/r² — the field lines picture ' + T('builds in the inverse-square law'))
+d.basic('Why is the number of field lines crossing any sphere around a point charge the same?', 'E ∝ 1/r² while the area ∝ r²: lines per area fall as 1/r².<br>The field-line picture ' + T('builds in the inverse-square law'))
 d.basic('Define solid angle.', r'\( \Delta\Omega = \Delta S/r^2 \)' + ' (area on a sphere ÷ radius²); unit steradian')
 d.basic('What did Faraday call field lines? Why is the modern name better?', '“' + T('Lines of force') + '” — misleading, especially for magnetic fields; “field lines” is preferred')
 d.cloze('Field lines start on {{c1::positive}} charges and end on {{c2::negative}} charges (or at infinity for a single charge).')
@@ -141,7 +141,7 @@ d.basic('Identify: field lines of which configuration?', T('Negative point charg
 d.basic('Identify: field lines of which configuration? What does it show?', T('Two equal positive charges') + ': lines bend away, a ' + T('neutral point') + ' midway — pictures repulsion', **img('fig_1_14c_like'))
 d.basic('Identify: field lines of which configuration? What does it show?', T('Electric dipole') + ' (+q, −q): lines go from + to −, picturing attraction', **img('fig_1_14d_dipole'))
 d.basic('Is a field line the path a charge follows?', X('Not in general') + ': it gives the direction of force (acceleration), not velocity. Only a charge released from rest in straight field lines follows the line')
-d.basic('Exercise 1.13 (Fig 1.30): signs of the three particles? Largest q/m?', '1 and 2 bend towards the + plate → ' + T('negative') + '; 3 bends towards − → ' + T('positive') + '. Particle ' + N('3') + ' deflects most → largest q/m', **img('fig_1_30_tracks'))
+d.basic('Exercise 1.13 (Fig 1.30): signs of the three particles? Largest q/m?', '1 and 2 bend towards the + plate → ' + T('negative') + '<br>3 bends towards − → ' + T('positive') + '<br>Particle ' + N('3') + ' deflects most → largest q/m', **img('fig_1_30_tracks'))
 
 # ---------------------------------------------------------------- 1.9 Electric flux
 d.sec('1.9-electric-flux')
@@ -162,9 +162,9 @@ d.basic('Total charge of a dipole is zero. Is its field zero?', X('No') + ': the
 d.basic('Dipole field on the axis (exact and r ≫ a)?', r'\( E = \dfrac{1}{4\pi\varepsilon_0}\dfrac{4qar}{(r^2-a^2)^2} \to \dfrac{1}{4\pi\varepsilon_0}\dfrac{2p}{r^3} \)' + ', along p', **fig('fig_1_17_dipole'))
 d.basic('Dipole field on the equatorial plane (exact and r ≫ a)?', r'\( E = \dfrac{1}{4\pi\varepsilon_0}\dfrac{p}{(r^2+a^2)^{3/2}} \to \dfrac{1}{4\pi\varepsilon_0}\dfrac{p}{r^3} \)' + ', ' + X('opposite to p'))
 d.basic('Mnemonic: axial vs equatorial dipole field at the same large r?', '“' + T('Axis is double, equator is reversed') + '”: E_axial = 2 E_equatorial, and the equatorial field points opposite to p')
-d.basic('Why does the dipole field fall as 1/r³ instead of 1/r²?', 'Far away the +q and −q fields ' + T('nearly cancel') + '; only their small difference (∝ separation/r) survives, adding one more power of r')
+d.basic('Why does the dipole field fall as 1/r³ instead of 1/r²?', 'Far away the +q and −q fields ' + T('nearly cancel') + '.<br>Only their small difference (∝ separation/r) survives, adding one more power of r')
 d.basic('What is a point dipole?', '2a → 0 and q → ∞ with p = 2qa finite; the r ≫ a formulas become ' + T('exact for all r'))
-d.basic('Polar vs non-polar molecules?', T('Polar') + ': permanent dipole moment, e.g. ' + E('H₂O') + '. ' + T('Non-polar') + ': centres of + and − coincide, e.g. ' + E('CO₂, CH₄') + ' (get induced dipoles in a field)')
+d.basic('Polar vs non-polar molecules?', T('Polar') + ': permanent dipole moment, e.g. ' + E('H₂O') + '<br>' + T('Non-polar') + ': centres of + and − coincide, e.g. ' + E('CO₂, CH₄') + ' (they get induced dipoles in a field)')
 d.basic('Example 1.9: ±10 μC, 5 mm apart. Field 15 cm away on the axis and on the equatorial line?', 'Axis: ' + N('2.6 × 10⁵ N/C') + ' along p. Equator: ' + N('1.33 × 10⁵ N/C') + ' opposite to p (exact and r ≫ a answers agree since r/a = 60)')
 d.basic('Exercise 1.9: +2.5 × 10⁻⁷ C at (0, 0, −15 cm), −2.5 × 10⁻⁷ C at (0, 0, +15 cm). Total charge and dipole moment?', 'Total ' + N('0') + '; p = 2.5 × 10⁻⁷ × 0.30 = ' + N('7.5 × 10⁻⁸ C m') + ' along ' + T('−z') + ' (− to +)')
 
@@ -173,7 +173,7 @@ d.sec('1.11-dipole-in-uniform-field')
 d.basic('Dipole in a uniform field: net force and torque?', 'Net force ' + N('zero') + '; torque ' + r'\( \vec\tau = \vec p\times\vec E \)' + ', |τ| = pE sin θ', **fig('fig_1_19_dipole_uniform'))
 d.basic('What does the torque on a dipole try to do? When is it zero?', 'Align ' + T('p along E') + '; zero when p ∥ E or antiparallel')
 d.basic('Dipole in a non-uniform field with p ∥ E or antiparallel: net force?', 'p ∥ E: force towards ' + T('increasing field') + '. p antiparallel: towards ' + T('decreasing field') + '. Torque zero in both', **fig('fig_1_20_dipole_nonuniform'))
-d.basic('Why does a charged comb attract uncharged bits of paper?', 'The comb ' + T('polarises') + ' the paper (induced dipole along E), and its field is ' + T('non-uniform') + ', so the dipole is pulled towards the stronger field — the comb')
+d.basic('Why does a charged comb attract uncharged bits of paper?', 'The comb ' + T('polarises') + ' the paper (induced dipole along E).<br>Its field is ' + T('non-uniform') + ', so the dipole is pulled towards the stronger field: the comb')
 d.basic('Exercise 1.10: p = 4 × 10⁻⁹ C m at 30° to E = 5 × 10⁴ N/C. Torque?', 'τ = pE sin 30° = ' + N('10⁻⁴ N m'))
 
 # ---------------------------------------------------------------- 1.12 Continuous distributions
@@ -182,7 +182,7 @@ table_card(d, 'Fig. 1.21 · charge densities', 'Definition and unit?', [
     ('Linear λ', 'ΔQ/Δl, C m⁻¹', False), ('Surface σ', 'ΔQ/ΔS, C m⁻²', False), ('Volume ρ', 'ΔQ/ΔV, C m⁻³', False)],
     term='Linear, surface and volume charge densities')
 d.basic('Identify the three kinds of charge distribution shown.', T('Line') + ' (ΔQ = λΔl), ' + T('surface') + ' (ΔQ = σΔS), ' + T('volume') + ' (ΔQ = ρΔV)', **img('fig_1_21_densities'))
-d.basic('How small is the element ΔS used to define σ?', 'Small ' + T('macroscopically') + ' but large enough to contain very many ' + T('microscopic') + ' charges: σ is a smoothed average that ignores quantisation')
+d.basic('How small is the element ΔS used to define σ?', 'Small ' + T('macroscopically') + ' but large enough to contain very many ' + T('microscopic') + ' charges.<br>σ is a smoothed average that ignores quantisation')
 d.basic('Field of a continuous distribution?', r"\( \vec E \approx \dfrac{1}{4\pi\varepsilon_0}\sum \dfrac{\rho\,\Delta V}{r'^2}\hat r' \)" + ' — Coulomb + superposition, an integral in the limit')
 d.basic('Points to ponder: where is the electric field undefined or discontinuous?', T('Undefined') + ' at the location of a point charge; ' + T('discontinuous') + ' across a surface charge; defined everywhere inside a volume distribution')
 
@@ -192,7 +192,7 @@ d.basic('Flux through a sphere of radius r around a point charge q at its centre
 d.basic('State Gauss’s law.', 'Flux through any closed surface = ' + r'\( \dfrac{q_{enc}}{\varepsilon_0} \)' + ', where q_enc is the total charge enclosed')
 d.basic('Uniform field through a closed cylinder with axis along E: net flux?', '−ES (entry face) + ES (exit face) + 0 (curved) = ' + N('0') + ': no enclosed charge', **fig('fig_1_23_cylinder'))
 d.basic('Gauss’s law: whose field appears in the flux, and whose charge on the right side?', 'E is due to ' + T('all charges, inside and outside') + '; q counts ' + T('only the charge inside'))
-d.basic('What is a Gaussian surface? One restriction on choosing it?', 'Any closed surface used to apply Gauss’s law; it must ' + X('not pass through a discrete point charge') + ' (field undefined there), though it may cut a continuous distribution')
+d.basic('What is a Gaussian surface? One restriction on choosing it?', 'Any closed surface used to apply Gauss’s law.<br>It must ' + X('not pass through a discrete point charge') + ' (field undefined there), though it may cut a continuous distribution')
 d.basic('When is Gauss’s law useful for finding E?', 'When the charge distribution has ' + T('symmetry') + ' (spherical, cylindrical, planar)')
 d.basic('On what property of Coulomb’s law does Gauss’s law rest?', 'The ' + T('inverse-square') + ' dependence; a violation of Gauss’s law would signal a departure from 1/r²')
 d.basic('Exercise 1.16(b): zero net flux out of a box. Is there no charge inside?', X('Not necessarily') + ': the ' + T('net') + ' charge is zero; equal + and − charges could be inside')
@@ -211,9 +211,9 @@ d.basic('Exercise 1.19: −1.0 × 10³ N m²/C through a 10 cm sphere. With radi
 d.sec('1.14-applications-of-gausss-law')
 d.basic('Field of an infinitely long line charge λ? Gaussian surface?', r'\( E = \dfrac{\lambda}{2\pi\varepsilon_0 r} \)' + ', radial; a ' + T('coaxial cylinder') + ' (flux only through the curved part)', **fig('drawn_line_charge_gauss'))
 d.basic('Why must the field of an infinite line charge be radial?', 'Pairs of elements on either side of P cancel each other’s ' + T('components along the wire') + '; only radial parts survive')
-d.basic('Why must the wire be “infinitely long” for E = λ/2πε₀r?', 'Otherwise ' + X('end effects') + ' spoil symmetry and E is not normal to the curved surface; the result holds near the middle of a long wire')
+d.basic('Why must the wire be “infinitely long” for E = λ/2πε₀r?', 'Otherwise ' + X('end effects') + ' spoil symmetry and E is not normal to the curved surface.<br>The result holds near the middle of a long wire')
 d.basic('Field of an infinite plane sheet σ? Gaussian surface?', r'\( E = \dfrac{\sigma}{2\varepsilon_0} \)' + ', normal to the sheet; a ' + T('box or cylinder') + ' piercing the sheet (flux 2EA)', **fig('fig_1_27_sheet'))
-d.basic('Intuition: why doesn’t the field of an infinite sheet weaken with distance?', 'Moving away, each patch is farther, but you ' + T('see more of the sheet') + ' at useful angles; the two effects cancel exactly — like a wall of light that never looks dimmer')
+d.basic('Intuition: why doesn’t the field of an infinite sheet weaken with distance?', 'Moving away, each patch is farther, but you ' + T('see more of the sheet') + ' at useful angles.<br>The two effects cancel exactly, like a wall of light that never looks dimmer')
 d.basic('Field of a uniformly charged thin spherical shell, outside?', r'\( E = \dfrac{1}{4\pi\varepsilon_0}\dfrac{q}{r^2} \)' + ' (r ≥ R): as if all charge were at the ' + T('centre'), **fig('fig_1_28_shell'))
 d.basic('Field inside a uniformly charged thin spherical shell?', N('Zero') + ' everywhere inside (Gaussian sphere encloses no charge)')
 d.basic('Sketch E versus r for a charged spherical shell.', '0 inside, jumps to ' + r'\( q/4\pi\varepsilon_0R^2 \)' + ' at r = R, then falls as 1/r²', **fig('drawn_shell_E_vs_r'))

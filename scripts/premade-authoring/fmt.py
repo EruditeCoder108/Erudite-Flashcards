@@ -368,10 +368,27 @@ def inline_to_display(text):
     return text
 
 
+SUBSCRIPT = re.compile(r'(?<=[A-Za-z0-9α-ωΔ)\]′])_(\{[^{}]+\}|[A-Za-z0-9]+)')
+SUPERSCRIPT = re.compile(r'\^(\{[^{}]+\}|[A-Za-z0-9+\-−]+)')
+
+
+def pseudo_scripts(text):
+    """x_g and e^{iθ} typed as plain text become real <sub>/<sup> (outside math blocks and tags)."""
+    if '_' not in text and '^' not in text:
+        return text
+    parts = KEEP.split(text)
+    for i in range(0, len(parts), 2):
+        p = parts[i]
+        p = SUBSCRIPT.sub(lambda m: '<sub>' + m.group(1).strip('{}') + '</sub>', p)
+        p = SUPERSCRIPT.sub(lambda m: '<sup>' + m.group(1).strip('{}') + '</sup>', p)
+        parts[i] = p
+    return ''.join(parts)
+
+
 def format_text(text, cloze=False, answer=False, subject=None):
     if not text or not isinstance(text, str):
         return text
-    t = tidy_spaces(text)   # normalise first so later rules see the same text a second pass would
+    t = pseudo_scripts(tidy_spaces(text))   # normalise first so later rules see the same text a second pass would
     if not cloze:
         t = matrices(t)
     elif '\n' not in t:

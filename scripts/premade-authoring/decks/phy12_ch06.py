@@ -65,7 +65,7 @@ d.basic('N-pole withdrawn from a coil. Induced current?', T('Clockwise') + ' (se
 d.basic('Quick rule for the coil face nearest an approaching or receding pole?', T('Approach → same pole (repel)') + '; ' + T('recede → opposite pole (attract)') + '. Both oppose the motion')
 d.basic('Intuition: how can you remember Lenz’s law?', 'Nature is “lazy”: it resists change. Flux up → induced field points ' + T('against') + ' B. Flux down → induced field points ' + T('along') + ' B')
 d.basic('Direction of the current in an open circuit?', 'None flows, but an ' + T('emf') + ' still appears across the open ends, with polarity given by Lenz’s law')
-d.basic('Why must Lenz’s law hold? (energy argument)', 'If the induced current aided the change, the magnet would accelerate itself: ' + X('perpetual motion') + ', violating ' + T('conservation of energy'))
+d.basic('Why must Lenz’s law hold? (energy argument)', 'If the induced current aided the change, the magnet would accelerate itself.<br>That is ' + X('perpetual motion') + ', violating ' + T('conservation of energy'))
 d.basic('Where does the work done pulling the magnet against repulsion go?', 'Into ' + T('Joule heating') + ' in the coil (I²R losses)')
 d.basic('Example 6.4: Fig 6.7(i): rectangular loop moving into a field pointing into the page. Direction of I?', 'Flux ' + T('increases') + ', so induced current is anticlockwise as needed: along ' + T('bcdab'), **fig('fig_6_7_loops'))
 d.basic('Example 6.4: triangular loop (ii) moving out of the field, and irregular loop (iii)?', 'Flux ' + T('decreases') + ' in both, so current supports it. (ii) along ' + T('bacb') + ', (iii) along ' + T('cdabc'), **img('fig_6_7_loops'))
@@ -82,7 +82,7 @@ d.basic('Motional emf from the Lorentz force?', 'Force on a charge = qvB along t
 d.basic('Condition for ε = Blv?', T('B, l and v mutually perpendicular') + '. In general ' + r'\( \varepsilon = (\vec v\times\vec B)\cdot\vec l \)')
 d.basic('Trap: rod moves parallel to B, or the rod is parallel to v. Emf?', N('Zero') + ': the rod does not cut field lines. Only the component ⊥ to both counts')
 d.basic('If the field is uniform and the rod slides, why is emf across it Blv even without a closed circuit?', 'Lorentz force separates charge to the ends until ' + T('qE = qvB') + '; the ends stay at potential difference Blv')
-d.basic('Which end of the rod is at higher potential?', 'The end towards which the ' + T('force on positive charges') + ' (q v × B) pushes; current inside the rod flows from low to high potential (source)')
+d.basic('Which end of the rod is at higher potential?', 'The end towards which the ' + T('force on positive charges') + ' (q v × B) pushes.<br>Current inside the rod flows from low to high potential (like inside a source)')
 d.basic('Teacher addition: rod PQ on rails of resistance R pulled at constant v. Current, force and power?', 'I = Blv/R; magnetic drag ' + r'\( F = BIl = \dfrac{B^2l^2v}{R} \)' + '; power = Fv = ' + r'\( \dfrac{B^2l^2v^2}{R} \)' + ' = I²R (' + T('mechanical → heat') + ')')
 d.basic('Why is there a magnetic force opposing the rod (Lenz’s law in disguise)?', 'The induced current in a field feels ' + T('F = I l × B') + ' opposing v; otherwise energy would be created')
 d.basic('Faraday’s law when the conductor is stationary and B changes: which force acts on the charges?', 'Only ' + T('qE') + ' (v = 0): a ' + T('time-varying magnetic field creates an electric field') + ', unlike an electrostatic one')
@@ -91,8 +91,8 @@ d.basic('Fundamental significance of Faraday’s discovery?', 'A moving magnet o
 d.basic('Example 6.6: rod of length R rotating at ω about one end in a field B ⊥ its plane. Emf between centre and rim?', r'\( \varepsilon = \tfrac12 B\omega R^2 \)' + ', from ' + r'\( \int_0^R B\omega r\,dr \)' + ' (mean speed ωR/2)', **fig('fig_6_11_rotating_rod'))
 d.basic('Example 6.6: second method for the rotating rod?', 'Rate of area swept: dA/dt = ½R²ω, so ' + r'\( \varepsilon = B\dfrac{dA}{dt} = \tfrac12 B\omega R^2 \)')
 d.basic('Example 6.6: R = 1 m, 50 rev/s, B = 1 T. Emf?', '½ × 1 × (2π × 50) × 1² = ' + N('≈ 157 V'))
-d.basic('Example 6.7: wheel with 10 spokes of 0.5 m, 120 rev/min, H_E = 0.4 G. Emf between axle and rim?', T('½ω B R²') + ' = ½ × 4π × 0.4 × 10⁻⁴ × 0.25 = ' + N('6.28 × 10⁻⁵ V') + '. The 10 spokes are ' + T('in parallel') + ', so their number does not matter')
-d.basic('Trap: which component of Earth’s field induces emf in a spinning wheel or falling wire?', 'The component ' + T('perpendicular to the plane of motion') + ' (vertical for a wheel in a horizontal plane; horizontal for a wire falling east–west)')
+d.basic('Example 6.7: wheel with 10 spokes of 0.5 m, 120 rev/min, H_E = 0.4 G. Emf between axle and rim?', T('½ω B R²') + ' = ½ × 4π × 0.4 × 10⁻⁴ × 0.25 = ' + N('6.28 × 10⁻⁵ V') + '<br>The 10 spokes are ' + T('in parallel') + ', so their number does not matter')
+d.basic('Trap: which component of Earth’s field induces emf in a spinning wheel or falling wire?', 'The component ' + T('perpendicular to the plane of motion') + '<br>Vertical for a wheel in a horizontal plane<br>Horizontal for a wire falling east–west')
 
 # ---------------------------------------------------------------- 6.7 Inductance
 d.sec('6.7-inductance')
@@ -126,7 +126,7 @@ d.basic('Two coils carrying currents together: emf in coil 1?', r'\( \varepsilon
 d.basic('Example 6.9(a): magnetic energy stored in a solenoid in terms of B, A, l?', r'\( U_B = \dfrac{1}{2}LI^2 = \dfrac{B^2}{2\mu_0}Al \)' + ', using I = B/μ₀n and L = μ₀n²Al')
 d.basic('Energy density of a magnetic field?', r'\( u_B = \dfrac{B^2}{2\mu_0} \)' + ', valid for ' + T('any region') + ' with a B-field, not just a solenoid')
 d.basic('Magnetic vs electric energy density?', T('u_B = B²/2μ₀') + ' and ' + T('u_E = ½ε₀E²') + ': both ∝ (field)²')
-d.basic('Teacher addition: why does a spark appear when a circuit with a big coil is broken?', 'Current falls fast: large dI/dt gives a big ' + T('back emf') + ' (L·dI/dt) that can exceed the supply and ionise air across the switch')
+d.basic('Teacher addition: why does a spark appear when a circuit with a big coil is broken?', 'Current falls fast: large dI/dt gives a big ' + T('back emf') + ' (L·dI/dt).<br>It can exceed the supply and ionise air across the switch')
 d.basic('Teacher addition: LR growth and decay in one line?', 'Current in an LR circuit changes over time constant ' + T('τ = L/R') + '; the inductor opposes an ' + T('instantaneous') + ' change. Not in NCERT text but often asked')
 d.basic('Teacher addition: inductors in series (no coupling) and in parallel?', 'Series: ' + T('L = L₁ + L₂') + '. Parallel: ' + T('1/L = 1/L₁ + 1/L₂'))
 
@@ -145,7 +145,7 @@ d.basic('What sets the frequency of the emf?', 'The coil’s ' + T('rotation fre
 d.basic('Three ways to raise ε₀?', 'Increase ' + T('N') + ', ' + T('B') + ', ' + T('A') + ' or ' + T('ω'))
 d.basic('Types of commercial generator by energy source?', T('Hydro-electric') + ' (falling water), ' + T('thermal') + ' (steam from coal etc.), ' + T('nuclear') + ' (nuclear fuel)')
 d.basic('In most large generators, which part rotates?', 'The ' + T('electromagnets') + '; the coils stay stationary. Modern units reach ~500 MW (about 5 million 100 W bulbs)')
-d.basic('Correction: NCERT calls Nikola Tesla “Yugoslav” and credits him with the machine. Better?', X('Loose') + ': Tesla (born in what is now Croatia) developed ' + T('polyphase ac systems and the induction motor') + '. Simple alternators go back to ' + T('Pixii (1832)') + '. Exams just say Tesla')
+d.basic('Correction: NCERT calls Nikola Tesla “Yugoslav” and credits him with the machine. Better?', X('Loose') + ': Tesla (born in what is now Croatia) developed ' + T('polyphase ac systems and the induction motor') + '.<br>Simple alternators go back to ' + T('Pixii (1832)') + '.<br>Exams just say Tesla')
 steps_card(d, 'Example 6.10 · peak emf', 'Find the missing step.', 'Coil of 100 turns, A = 0.10 m², rotating at 0.5 rev/s in B = 0.01 T ⊥ the axis. Maximum emf?',
            ['ε₀ = NBAω with ω = 2πν', 'ω = 2π × 0.5 = <b>π rad/s ≈ 3.14 rad/s</b>', 'ε₀ = 100 × 0.01 × 0.1 × 3.14 = <b>0.314 V</b>'], 1,
            'Kamla’s bicycle generator (Example 6.10)', 'ε₀ = 0.314 V')
@@ -156,7 +156,7 @@ d.basic('Points to ponder: which principle does the conservation of energy deman
 d.basic('Points to ponder: how is an open-circuit emf related to the flux change?', 'Still ' + T('ε = −dΦ/dt') + ' for the loop; just no current flows')
 d.basic('Points to ponder: moving charge in a static B vs static charge in a changing B?', 'Both give emf: a ' + T('symmetric situation') + ' hinting at the ' + T('principle of relativity') + ' behind Faraday’s law')
 d.basic('Correction: Points to Ponder refers to motional emf in “Section 6.5”. Which?', T('Section 6.6') + ' (6.5 is Lenz’s law)')
-d.basic('Note: eddy currents in this chapter now?', X('No') + ': removed from rationalised NCERT, but JEE, NEET and boards still ask them: currents induced in a bulk conductor by changing flux; used in induction furnaces, damping, magnetic braking')
+d.basic('Note: eddy currents in this chapter now?', X('No') + ': removed from rationalised NCERT, but JEE, NEET and boards still ask them.<br>Eddy currents: currents induced in a bulk conductor by changing flux.<br>Uses: induction furnaces, damping, magnetic braking')
 d.basic('Note: LR circuit and transformer here?', X('Not in this chapter') + ': the transformer comes in Ch 7; LR growth/decay is in JEE though')
 table_card(d, 'Summary table', 'Symbol, unit, dimensions?', [
     ('Magnetic flux Φ_B', 'Wb; [ML²T⁻²A⁻¹]', False), ('EMF ε', 'V; [ML²T⁻³A⁻¹]', False),

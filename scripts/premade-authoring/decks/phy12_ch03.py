@@ -20,7 +20,7 @@ d.basic('Name natural free charges and the charge carriers in solids and electro
 
 d.sec('3.3-currents-in-conductors')
 d.basic('With no field, why is there no current even though electrons move fast?', 'Thermal motion is ' + T('random') + ': as many electrons cross each way, so the net flow is zero')
-d.basic('Charges ±Q stuck on the ends of a metal cylinder: what current flows?', 'Only a ' + T('brief') + ' current until the charges are neutralised; a cell must ' + T('replenish') + ' them to keep a steady field and current', **fig('fig_3_1_cylinder'))
+d.basic('Charges ±Q stuck on the ends of a metal cylinder: what current flows?', 'Only a ' + T('brief') + ' current, until the charges are neutralised.<br>A cell must ' + T('replenish') + ' them to keep a steady field and current', **fig('fig_3_1_cylinder'))
 
 # ---------------------------------------------------------------- 3.4 Ohm's law
 d.sec('3.4-ohms-law')
@@ -31,7 +31,7 @@ d.basic('How does R depend on length and area? Show why.', r'\( R = \rho\dfrac{l
 d.basic('What is resistivity? Unit and dimensions?', 'Material constant ρ in R = ρl/A (depends on material and temperature, not size); Ω m, [ML³T⁻³A⁻²]')
 d.basic('Define current density. Unit?', r'\( j = I/A \)' + ' (area normal to the current), a vector along E; A m⁻²')
 d.basic('Ohm’s law in terms of E and j?', r'\( \vec E = \rho\,\vec j \)' + ' or ' + r'\( \vec j = \sigma\vec E \)' + ', with conductivity σ = 1/ρ')
-d.basic('Correction: NCERT’s table gives the unit of conductivity σ as “S”. Right unit?', T('S m⁻¹') + ' (siemens per metre) — the dimensions it lists, [M⁻¹L⁻³T³A²], are those of S m⁻¹; S alone is the unit of conductance (1/R)')
+d.basic('Correction: NCERT’s table gives the unit of conductivity σ as “S”. Right unit?', T('S m⁻¹') + ' (siemens per metre)<br>The dimensions it lists, [M⁻¹L⁻³T³A²], are those of S m⁻¹.<br>S alone is the unit of conductance (1/R)')
 d.basic('Points to ponder: is V = IR itself Ohm’s law?', X('No') + ': V = IR ' + T('defines') + ' R for any device. Ohm’s law is the claim that R is ' + T('independent of V') + ' (I–V plot linear)')
 d.basic('Stretching trap: a wire is stretched to n times its length (volume constant). New R?', N('n²R') + ': l → nl and A → A/n')
 
@@ -40,17 +40,17 @@ d.sec('3.5-drift-of-electrons')
 d.basic('Acceleration of a free electron in a field E?', r'\( \vec a = -\dfrac{e\vec E}{m} \)')
 d.basic('Define relaxation time τ.', 'Average time between ' + T('successive collisions') + ' of an electron')
 d.basic('Drift velocity formula?', r'\( \vec v_d = -\dfrac{e\vec E}{m}\tau \)' + ' — opposite to E for electrons')
-d.basic('Electrons accelerate, so why a constant drift velocity?', 'Each collision ' + T('randomises') + ' the velocity; between collisions the gain is eEt/m, averaging to eEτ/m — like a ball bouncing down a pin-board')
+d.basic('Electrons accelerate, so why a constant drift velocity?', 'Each collision ' + T('randomises') + ' the velocity.<br>Between collisions the gain is eEt/m, averaging to eEτ/m.<br>Like a ball bouncing down a pin-board')
 d.basic('Relation between current and drift speed?', r'\( I = neAv_d \)' + ' (charge in a cylinder of length v_d Δt crossing A per Δt)', **fig('fig_3_4_current_cylinder'))
-d.basic('Identify: what does this path show?', 'Random zig-zag of an electron between collisions (A → B); with a field it ends at ' + T('B′') + ' — a slight ' + T('drift opposite to E'), **img('fig_3_3_drift_path'))
+d.basic('Identify: what does this path show?', 'Random zig-zag of an electron between collisions (A → B).<br>With a field it ends at ' + T('B′') + ': a slight ' + T('drift opposite to E'), **img('fig_3_3_drift_path'))
 d.basic('Derive conductivity from the drift model.', r'\( j = \dfrac{ne^2\tau}{m}E \Rightarrow \sigma = \dfrac{ne^2\tau}{m},\ \rho = \dfrac{m}{ne^2\tau} \)' + ' — Ohm’s law, if n and τ don’t depend on E')
 steps_card(d, 'Example 3.1 · drift speed in copper', 'Find the missing step.', 'Cu wire, A = 1.0 × 10⁻⁷ m², I = 1.5 A, ρ(density) = 9.0 × 10³ kg/m³, 63.5 u, one free electron per atom. v_d?',
            ['n = (9.0 × 10⁶ g/m³ ÷ 63.5 g) × 6.0 × 10²³ = <b>8.5 × 10²⁸ m⁻³</b>', 'v<sub>d</sub> = I/(neA)',
             'v<sub>d</sub> = 1.5/(8.5 × 10²⁸ × 1.6 × 10⁻¹⁹ × 10⁻⁷) = <b>1.1 mm/s</b>'], 1,
            'Drift speed of electrons in copper (Example 3.1)', 'n = 8.5 × 10²⁸ m⁻³; v_d = I/neA ≈ 1.1 × 10⁻³ m/s')
 d.basic('Example 3.1(b): drift speed vs thermal speed of Cu atoms vs speed of the field signal?', 'v_d ~ 10⁻³ m/s; thermal speed of Cu atoms ~ ' + N('2 × 10² m/s') + ' (~10⁵ times more); field travels at ' + N('3 × 10⁸ m/s') + ' (~10¹¹ times more)')
-d.basic('Update: how fast do the conduction electrons themselves move at random?', 'About ' + N('10⁶ m/s') + ' (the Fermi speed, a quantum effect) — so v_d is ~10⁻⁹ of their random speed; NCERT compares with atoms’ thermal speed instead')
-d.basic('Example 3.2(a): drift is only mm/s. Why does a bulb light instantly?', 'The ' + T('electric field') + ' is set up in the whole circuit at nearly the speed of light; electrons everywhere start drifting at once')
+d.basic('Update: how fast do the conduction electrons themselves move at random?', 'About ' + N('10⁶ m/s') + ' (the Fermi speed, a quantum effect)<br>So v_d is ~10⁻⁹ of their random speed.<br>NCERT compares with atoms’ thermal speed instead')
+d.basic('Example 3.2(a): drift is only mm/s. Why does a bulb light instantly?', 'The ' + T('electric field') + ' is set up in the whole circuit at nearly the speed of light.<br>Electrons everywhere start drifting at once')
 d.basic('Example 3.2(c): tiny drift, tiny charge — how are currents large?', 'The ' + T('number density') + ' of free electrons is enormous, ~' + N('10²⁹ m⁻³'))
 d.basic('Example 3.2(d): do all free electrons move in the same direction?', X('No') + ': the small drift is ' + T('superposed') + ' on large random velocities')
 d.basic('Example 3.2(e): are electron paths straight between collisions?', 'Without a field: ' + T('straight') + '. With a field: ' + T('curved') + ' (parabolic), like projectiles')
@@ -164,7 +164,7 @@ d.basic('Exercise 3.7 (Fig 3.20): currents in the network with 10 V and a 10 Ω 
 
 # ---------------------------------------------------------------- Points to ponder / summary
 d.sec('points-to-ponder')
-d.basic('Points to ponder: why can j = ρv (charge density × velocity) not be applied to the total charge of a wire?', 'A current-carrying wire is ' + T('neutral') + ' (ρ₊ = −ρ₋, total ρ = 0), yet j ≠ 0; apply j = ρv to each carrier type separately (j = ρ₋v₋, as v₊ ≈ 0)')
+d.basic('Points to ponder: why can j = ρv (charge density × velocity) not be applied to the total charge of a wire?', 'A current-carrying wire is ' + T('neutral') + ' (ρ₊ = −ρ₋, total ρ = 0), yet j ≠ 0.<br>Apply j = ρv to each carrier type separately (j = ρ₋v₋, as v₊ ≈ 0)')
 d.basic('Kirchhoff’s rules: which conservation law does each express?', 'Junction: ' + T('charge') + '. Loop: ' + T('energy') + ' (potential is single-valued)')
 
 d.sec('summary')

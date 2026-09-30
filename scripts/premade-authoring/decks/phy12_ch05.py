@@ -23,7 +23,7 @@ d.basic('What are magnetic monopoles? Do they exist?', 'Isolated N or S poles; '
 # ---------------------------------------------------------------- 5.2 Bar magnet
 d.sec('5.2-the-bar-magnet')
 d.basic('What does the iron-filing pattern around a bar magnet suggest?', 'The magnet is a ' + T('magnetic dipole') + ' — two poles, like + and − of an electric dipole. A current-carrying solenoid gives the same pattern')
-d.basic('Compare the field lines of a bar magnet, a finite solenoid and an electric dipole.', 'Far away they look ' + T('almost identical') + '. Inside, the magnet’s and solenoid’s lines run S → N (closing the loops); the electric dipole’s run + → − (opposite)', **fig('fig_5_2_field_lines'))
+d.basic('Compare the field lines of a bar magnet, a finite solenoid and an electric dipole.', 'Far away they look ' + T('almost identical') + '.<br>Inside, the magnet’s and solenoid’s lines run S → N (closing the loops).<br>The electric dipole’s lines run + → − (opposite)', **fig('fig_5_2_field_lines'))
 
 d.sec('5.2.1-magnetic-field-lines')
 d.cloze('Magnetic field lines form {{c1::continuous closed loops}}; electric field lines {{c2::start on + charges and end on − charges (or at infinity)}}.')
@@ -31,7 +31,7 @@ d.basic('What does the tangent to a magnetic field line give?', 'The direction o
 d.basic('What does the density of field lines tell you?', 'Magnitude of B: more lines per unit area (normal to them) → ' + T('stronger field'))
 d.basic('Why can’t two magnetic field lines intersect?', 'At the crossing the field would have ' + T('two directions') + ' — B must be unique')
 d.basic('How can you plot field lines without iron filings?', 'Move a small ' + T('compass needle') + ' around and note its orientation at each point')
-d.basic('Why does NCERT avoid the term “magnetic lines of force”?', 'The force on a moving charge is ' + X('perpendicular to B') + ' (qv × B), not along the line — so the lines do not show the direction of force')
+d.basic('Why does NCERT avoid the term “magnetic lines of force”?', 'The force on a moving charge is ' + X('perpendicular to B') + ' (qv × B), not along the line.<br>So the lines do not show the direction of force')
 
 d.sec('5.2.2-bar-magnet-as-equivalent-solenoid')
 d.basic('Why can a bar magnet be treated as an equivalent solenoid?', 'Same field-line pattern; by ' + T('Ampere’s hypothesis') + ' a magnet is a large number of circulating currents. Cutting either gives two weaker ones')
@@ -45,9 +45,9 @@ d.basic('Potential energy of a magnetic dipole in B? Where is its zero?', r'\( U
 d.basic('Minimum and maximum potential energy of a dipole in B?', 'Minimum ' + N('−mB') + ' at θ = 0° (' + T('most stable') + '); maximum ' + N('+mB') + ' at θ = 180° (' + X('most unstable') + ')')
 d.basic('Work needed to turn a dipole from θ₁ to θ₂ in B?', r'\( W = mB(\cos\theta_1 - \cos\theta_2) \)' + '; from 0° to 180° it is ' + N('2mB'))
 d.basic('Teacher addition: period of small oscillations of a needle (moment of inertia 𝐼) in B?', r'\( T = 2\pi\sqrt{\dfrac{I}{mB}} \)' + ' — the Fig. 5.3(b) set-up; measure T to find B or m')
-d.basic('Intuition: why does a compass needle oscillate before settling?', 'Displaced from θ = 0, τ = −mB sin θ ≈ −mBθ acts like a ' + T('spring') + ' → SHM about the field direction, damped by friction')
+d.basic('Intuition: why does a compass needle oscillate before settling?', 'Displaced from θ = 0, τ = −mB sin θ ≈ −mBθ acts like a ' + T('spring') + '<br>→ SHM about the field direction, damped by friction')
 d.basic('Example 5.1(a): a bar magnet is cut (i) across its length, (ii) along its length. Result?', 'Either way, ' + T('two magnets') + ', each with a N and S pole')
-d.basic('Example 5.1(b): a needle in a uniform B feels only a torque, but an iron nail near a magnet is attracted. Why?', 'The magnet’s field is ' + T('non-uniform') + '. The nail gets an ' + T('induced moment') + '; its induced S pole is nearer the magnet’s N pole, so net attraction')
+d.basic('Example 5.1(b): a needle in a uniform B feels only a torque, but an iron nail near a magnet is attracted. Why?', 'The magnet’s field is ' + T('non-uniform') + '.<br>The nail gets an ' + T('induced moment') + '.<br>Its induced S pole is nearer the magnet’s N pole, so the net force is attraction')
 d.basic('Example 5.1(c): must every magnetic configuration have N and S poles?', X('No') + ': only if it has a net non-zero moment. A ' + T('toroid') + ' or a straight infinite wire has no poles')
 d.basic('Example 5.1(d): two identical iron bars, one surely a magnet. How to tell which, using only the bars?', 'Lower an end of A onto the end and then the middle of B. If the pull ' + T('vanishes at B’s middle') + ', B is the magnet; if no change, A is. (Repulsion anywhere → both magnetised)')
 
@@ -80,7 +80,7 @@ d.basic('Example 5.3(f): lines pouring out of a plate. Magnetic?', X('Wrong') + 
 d.basic('Example 5.3(g): perfectly straight lines between two pole pieces. Right?', X('Wrong') + ': some ' + T('fringing') + ' at the edges is inevitable (true for E between plates too)', **img('fig_5_6g'))
 d.basic('Example 5.4(a): are magnetic field lines lines of force on a moving charge?', X('No') + ': the force qv × B is always ' + T('normal to B'))
 d.basic('Example 5.4(b): Gauss’s law for magnetism if monopoles existed?', r'\( \oint \vec B\cdot d\vec S = \mu_0 q_m \)' + ', q_m = enclosed magnetic charge')
-d.basic('Example 5.4(c): does a magnet exert a torque on itself? Does one element of a wire push another element of the same wire?', 'No self-force or self-torque on an element from ' + T('its own field') + '. But one element does act on ' + T('another') + ' element of the same wire (zero for a straight wire)')
+d.basic('Example 5.4(c): does a magnet exert a torque on itself? Does one element of a wire push another element of the same wire?', 'No self-force or self-torque on an element from ' + T('its own field') + '.<br>But one element does act on ' + T('another') + ' element of the same wire (zero for a straight wire)')
 d.basic('Example 5.4(d): can a system with zero net charge have a magnetic moment?', T('Yes') + ': e.g. atoms of paramagnetic materials — neutral, but with net current loops')
 
 # ---------------------------------------------------------------- 5.4 M and H
@@ -114,7 +114,7 @@ table_card(d, 'Table 5.2', 'Range?', [
 d.sec('5.5.1-diamagnetism')
 d.basic('What are diamagnetic substances?', 'Substances that tend to move from ' + T('stronger to weaker') + ' parts of a field — they are ' + X('repelled') + ' by a magnet')
 d.basic('Field lines through a diamagnetic and a paramagnetic bar?', 'Diamagnetic (a): lines are ' + X('expelled') + ', field inside slightly reduced. Paramagnetic (b): lines ' + T('concentrate') + ', field inside slightly enhanced (about 1 part in 10⁵)', **fig('fig_5_7_dia_para'))
-d.basic('Explain diamagnetism.', 'Atoms have ' + T('zero net moment') + '. An applied field slows electrons whose orbital moment is along B and speeds up those opposite (' + T('Lenz’s law') + '), giving a net moment ' + X('opposite to B') + ' → repulsion')
+d.basic('Explain diamagnetism.', 'Atoms have ' + T('zero net moment') + '.<br>An applied field slows electrons whose orbital moment is along B and speeds up those opposite (' + T('Lenz’s law') + ').<br>This gives a net moment ' + X('opposite to B') + ' → repulsion')
 d.cloze('Diamagnetic examples: {{c1::bismuth, copper, lead, silicon, nitrogen (at STP), water and sodium chloride}}.')
 d.basic('Mnemonic: diamagnetic examples?', '“' + T('B') + 'right ' + T('C') + 'opper ' + T('L') + 'eads ' + T('Si') + 'lly ' + T('N') + 'ew ' + T('W') + 'orkers to ' + T('S') + 'alt” — Bi, Cu, Pb, Si, N₂, water, NaCl')
 d.basic('Is diamagnetism found in all substances?', T('Yes') + ', it is universal — but so weak that para- or ferromagnetism masks it')
@@ -140,11 +140,11 @@ d.basic('What is a magnetic domain? Typical size and atoms?', 'A region where at
 d.basic('What happens to domains in an external field B₀?', 'Domains ' + T('rotate') + ' towards B₀, and those along B₀ ' + T('grow') + ', merging into one giant domain', **fig('fig_5_8_domains'))
 d.basic('Why does an unmagnetised iron bar show no magnetisation?', 'Its domains point in ' + T('random directions') + ', so their moments cancel', **img('fig_5_8_domains'))
 d.basic('Are domains real? How are they seen?', T('Yes') + ': sprinkle a liquid suspension of ferromagnetic powder and watch its motion under a ' + T('microscope'))
-d.basic('Hard vs soft ferromagnets?', T('Hard') + ': magnetisation persists after the field is removed (permanent magnets). ' + T('Soft') + ': it disappears (electromagnet cores)')
+d.basic('Hard vs soft ferromagnets?', T('Hard') + ': magnetisation persists after the field is removed (permanent magnets)<br>' + T('Soft') + ': it disappears (electromagnet cores)')
 d.basic('Examples of hard and soft ferromagnetic materials?', 'Hard: ' + E('Alnico') + ' (Fe, Al, Ni, Co, Cu), ' + E('lodestone') + '. Soft: ' + E('soft iron'))
 d.basic('Use of hard ferromagnets named by NCERT?', 'Permanent magnets, e.g. a ' + T('compass needle'))
 d.cloze('Ferromagnetic elements: {{c1::iron, cobalt, nickel, gadolinium}}; their μᵣ is {{c2::> 1000}}.')
-d.basic('Effect of heating a ferromagnet?', 'Domains disintegrate and it becomes ' + T('paramagnetic') + ' at high enough temperature; the loss of magnetisation is gradual')
+d.basic('Effect of heating a ferromagnet?', 'Domains disintegrate and it becomes ' + T('paramagnetic') + ' at high enough temperature.<br>The loss of magnetisation is gradual')
 d.basic('Teacher addition: Curie temperature? Susceptibility above it?', 'T_C: temperature above which a ferromagnet turns paramagnetic; above it ' + r'\( \chi = \dfrac{C}{T - T_C} \)' + ' (Curie–Weiss). Iron ≈ ' + N('1043 K'))
 d.basic('Intuition: why do soft iron cores make strong electromagnets?', 'Huge μᵣ: domains line up with H and add μ₀M ≫ μ₀H; being soft, they ' + T('switch off') + ' when the current stops')
 quadrant_card(d, 'Classification', 'Fill each class.', [
@@ -154,7 +154,7 @@ quadrant_card(d, 'Classification', 'Fill each class.', [
 
 # ---------------------------------------------------------------- Points to ponder
 d.sec('points-to-ponder')
-d.basic('Points to ponder: what does the compass teach about science and engineering?', 'Magnets were used for ~' + N('2000 years') + ' before magnetism was understood (after 1800) — understanding is ' + X('not a precondition') + ' for applications')
+d.basic('Points to ponder: what does the compass teach about science and engineering?', 'Magnets were used for ~' + N('2000 years') + ' before magnetism was understood (after 1800).<br>Understanding is ' + X('not a precondition') + ' for applications')
 d.basic('Consequence of the non-existence of magnetic monopoles?', 'Magnetic field lines are ' + T('continuous closed loops'))
 d.basic('Typical χ of diamagnetic vs paramagnetic materials?', '≈ ' + N('−10⁻⁵') + ' vs ' + N('+10⁻⁵') + ' — a tiny difference, radically different behaviour')
 d.basic('Other magnetic classes beyond dia-, para- and ferro-?', T('Ferrimagnetic') + ', ' + T('antiferromagnetic') + ', spin glass, …')
@@ -168,7 +168,7 @@ d.basic('Note: are Earth’s magnetism and hysteresis in this chapter now?', X('
 d.sec('exercises')
 d.basic('Exercise 5.1: bar magnet at 30° to B = 0.25 T feels τ = 4.5 × 10⁻² J. m?', 'm = τ/(B sin 30°) = ' + N('0.36 J/T'))
 d.basic('Exercise 5.2: m = 0.32 J/T in B = 0.15 T. Stable and unstable orientations and energies?', 'Stable: m ∥ B, U = −mB = ' + N('−4.8 × 10⁻² J') + '. Unstable: m antiparallel, U = ' + N('+4.8 × 10⁻² J'))
-d.basic('Exercise 5.3: 800 turns, A = 2.5 × 10⁻⁴ m², 3.0 A. In what sense is it a bar magnet? m?', 'Same field pattern and it aligns with an external field, with m along the axis (right-hand rule); m = NIA = ' + N('0.60 J/T'))
+d.basic('Exercise 5.3: 800 turns, A = 2.5 × 10⁻⁴ m², 3.0 A. In what sense is it a bar magnet? m?', 'Same field pattern, and it aligns with an external field, with m along the axis (right-hand rule)<br>m = NIA = ' + N('0.60 J/T'))
 d.basic('Exercise 5.4: that solenoid at 30° to a horizontal B = 0.25 T. Torque?', 'τ = mB sin 30° = 0.6 × 0.25 × 0.5 = ' + N('7.5 × 10⁻² N m'))
 d.basic('Correction: NCERT Exercise 5.4 refers to “the solenoid in Exercise 5.5”. Which one?', T('Exercise 5.3') + ' (m = 0.60 J/T); 5.5 is about a bar magnet')
 steps_card(d, 'Exercise 5.5 · turning a magnet', 'Find the missing step.', 'm = 1.5 J/T aligned with B = 0.22 T. Work to turn it (i) normal to B, (ii) opposite to B; torque in each case?',

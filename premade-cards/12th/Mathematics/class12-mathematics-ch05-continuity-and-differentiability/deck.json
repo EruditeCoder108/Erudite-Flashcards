@@ -1192,7 +1192,7 @@
     {
       "noteType": "basic",
       "term": "When do you use logarithmic differentiation?",
-      "definition": "For <span style=\"color:#3b82f6\">y = u(x)^v(x)</span> (variable base and exponent) and for long products/quotients/roots.\nTake log, differentiate: (1/y) y′ = v′ log u + v u′/u, so <span style=\"color:#3b82f6\">y′ = y [v′ log u + v u′/u]</span>",
+      "definition": "For <span style=\"color:#3b82f6\">y = u(x)<sup>v</sup>(x)</span> (variable base and exponent) and for long products/quotients/roots.\nTake log, differentiate: (1/y) y′ = v′ log u + v u′/u, so <span style=\"color:#3b82f6\">y′ = y [v′ log u + v u′/u]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1274,8 +1274,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 5.5 Q4: differentiate x^x − 2^(sin x).",
-      "definition": "d/dx x^x = x^x(1 + log x); d/dx 2^(sin x) = 2^(sin x) log 2 cos x. <span style=\"color:#f08c00\">x^x (1 + log x) − 2^(sin x) cos x log 2</span>",
+      "term": "Ex 5.5 Q4: differentiate x<sup>x</sup> − 2^(sin x).",
+      "definition": "d/dx x<sup>x</sup> = x<sup>x</sup>(1 + log x); d/dx 2^(sin x) = 2^(sin x) log 2 cos x. <span style=\"color:#f08c00\">x<sup>x</sup> (1 + log x) − 2^(sin x) cos x log 2</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1296,8 +1296,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 5.5 Q6: differentiate (x + 1/x)^x + x^(1 + 1/x).",
-      "definition": "<span style=\"color:#f08c00\">(x + 1/x)^x [ (x² − 1)/(x² + 1) + log(x + 1/x) ] + x^(1 + 1/x) [ (x + 1 − log x)/x² ]</span>",
+      "term": "Ex 5.5 Q6: differentiate (x + 1/x)<sup>x</sup> + x^(1 + 1/x).",
+      "definition": "<span style=\"color:#f08c00\">(x + 1/x)<sup>x</sup> [ (x² − 1)/(x² + 1) + log(x + 1/x) ] + x^(1 + 1/x) [ (x + 1 − log x)/x² ]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1307,7 +1307,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 5.5 Q7: differentiate (log x)^x + x^(log x).",
+      "term": "Ex 5.5 Q7: differentiate (log x)<sup>x</sup> + x^(log x).",
       "definition": "<span style=\"color:#f08c00\">(log x)^(x−1) [1 + log x · log(log x)] + 2 x^(log x − 1) log x</span>",
       "tags": [
         "class-12",
@@ -1318,8 +1318,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 5.5 Q8: differentiate (sin x)^x + sin⁻¹√x.",
-      "definition": "<span style=\"color:#f08c00\">(sin x)^x [x cot x + log sin x] + 1/(2√(x − x²))</span>",
+      "term": "Ex 5.5 Q8: differentiate (sin x)<sup>x</sup> + sin⁻¹√x.",
+      "definition": "<span style=\"color:#f08c00\">(sin x)<sup>x</sup> [x cot x + log sin x] + 1/(2√(x − x²))</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1351,8 +1351,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 5.5 Q11: differentiate (x cos x)^x + (x sin x)^(1/x).",
-      "definition": "<span style=\"color:#f08c00\">(x cos x)^x [1 − x tan x + log(x cos x)] + (x sin x)^(1/x) [ (x cot x + 1 − log(x sin x))/x² ]</span>",
+      "term": "Ex 5.5 Q11: differentiate (x cos x)<sup>x</sup> + (x sin x)^(1/x).",
+      "definition": "<span style=\"color:#f08c00\">(x cos x)<sup>x</sup> [1 − x tan x + log(x cos x)] + (x sin x)^(1/x) [ (x cot x + 1 − log(x sin x))/x² ]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1362,8 +1362,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 5.5 Q12: dy/dx if x^y + y^x = 1.",
-      "definition": "Differentiate x^y and y^x by logs: <span style=\"color:#f08c00\">dy/dx = −(y x^(y−1) + y^x log y)/(x^y log x + x y^(x−1))</span>",
+      "term": "Ex 5.5 Q12: dy/dx if x<sup>y</sup> + y<sup>x</sup> = 1.",
+      "definition": "Differentiate x<sup>y</sup> and y<sup>x</sup> by logs: <span style=\"color:#f08c00\">dy/dx = −(y x^(y−1) + y<sup>x</sup> log y)/(x<sup>y</sup> log x + x y^(x−1))</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1373,7 +1373,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 5.5 Q13: dy/dx if y^x = x^y.",
+      "term": "Ex 5.5 Q13: dy/dx if y<sup>x</sup> = x<sup>y</sup>.",
       "definition": "x log y = y log x → <span style=\"color:#f08c00\">dy/dx = (y/x)(y − x log y)/(x − y log x)</span>",
       "tags": [
         "class-12",
@@ -1384,7 +1384,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 5.5 Q14: dy/dx if (cos x)^y = (cos y)^x.",
+      "term": "Ex 5.5 Q14: dy/dx if (cos x)<sup>y</sup> = (cos y)<sup>x</sup>.",
       "definition": "y log cos x = x log cos y → <span style=\"color:#f08c00\">dy/dx = (y tan x + log cos y)/(x tan y + log cos x)</span>",
       "tags": [
         "class-12",
@@ -1952,7 +1952,7 @@
     {
       "noteType": "basic",
       "term": "Misc Q9: differentiate (sin x − cos x)^(sin x − cos x), π/4 < x < 3π/4.",
-      "definition": "Base u = sin x − cos x > 0: y = u^u<br>y′ = u^u (1 + log u) u′, with u′ = cos x + sin x<br><span style=\"color:#f08c00\">(sin x − cos x)^(sin x − cos x) (cos x + sin x)(1 + log(sin x − cos x))</span>",
+      "definition": "Base u = sin x − cos x > 0: y = u<sup>u</sup><br>y′ = u<sup>u</sup> (1 + log u) u′, with u′ = cos x + sin x<br><span style=\"color:#f08c00\">(sin x − cos x)^(sin x − cos x) (cos x + sin x)(1 + log(sin x − cos x))</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1962,8 +1962,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q10: differentiate x^x + x^a + a^x + a^a (a > 0 fixed).",
-      "definition": "<span style=\"color:#f08c00\">x^x (1 + log x) + a x^(a−1) + a^x log a</span> (a^a is a constant, derivative 0)",
+      "term": "Misc Q10: differentiate x<sup>x</sup> + x<sup>a</sup> + a<sup>x</sup> + a<sup>a</sup> (a > 0 fixed).",
+      "definition": "<span style=\"color:#f08c00\">x<sup>x</sup> (1 + log x) + a x^(a−1) + a<sup>x</sup> log a</span> (a<sup>a</sup> is a constant, derivative 0)",
       "tags": [
         "class-12",
         "mathematics",
@@ -2215,8 +2215,8 @@
     },
     {
       "noteType": "basic",
-      "term": "If y = x^(x^x), find dy/dx at x = 1.",
-      "definition": "log y = x^x log x.\nAt x = 1: y = 1, x^x = 1. d/dx(x^x log x) = x^x(1 + log x) log x + x^x/x = (1)(1)(0) + 1 = 1.\nSo y′/y = 1 and <span style=\"color:#f08c00\">dy/dx = 1</span>",
+      "term": "If y = x^(x<sup>x</sup>), find dy/dx at x = 1.",
+      "definition": "log y = x<sup>x</sup> log x.\nAt x = 1: y = 1, x<sup>x</sup> = 1. d/dx(x<sup>x</sup> log x) = x<sup>x</sup>(1 + log x) log x + x<sup>x</sup>/x = (1)(1)(0) + 1 = 1.\nSo y′/y = 1 and <span style=\"color:#f08c00\">dy/dx = 1</span>",
       "tags": [
         "class-12",
         "mathematics",

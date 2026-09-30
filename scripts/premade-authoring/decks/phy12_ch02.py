@@ -12,7 +12,7 @@ img = lambda name: {'termImage': M + name + '.webp'}
 
 # ---------------------------------------------------------------- 2.1 Potential energy
 d.sec('2.1-introduction')
-d.basic('Why can we define electrostatic potential energy at all?', 'The Coulomb force between static charges is ' + T('conservative') + ': work done depends only on the end points, not the path', **fig('fig_2_2_path'))
+d.basic('Why can we define electrostatic potential energy at all?', 'The Coulomb force between static charges is ' + T('conservative') + '.<br>Work done depends only on the end points, not the path', **fig('fig_2_2_path'))
 d.basic('Define potential energy difference U(P) − U(R) of a charge q.', 'Work done by an ' + T('external force') + ' in moving q from R to P ' + T('without acceleration') + ' (F_ext = −F_E)')
 d.basic('Why must the charge be moved “without acceleration”?', 'Then no kinetic energy is gained: all the external work is ' + T('stored as potential energy'))
 d.basic('Work done by the field vs by the external agent (R → P)?', 'Equal and opposite: W_field = ' + X('−W_ext') + ' = −ΔU')
@@ -21,12 +21,12 @@ d.basic('Define potential energy of q at a point (U(∞) = 0).', 'Work done by a
 
 # ---------------------------------------------------------------- 2.2 Potential
 d.sec('2.2-electrostatic-potential')
-d.basic('Define electrostatic potential at a point.', 'Work done by an external force in bringing a ' + T('unit positive charge') + ' from infinity to the point, without acceleration: V = W/q')
+d.basic('Define electrostatic potential at a point.', 'Work done by an external force in bringing a ' + T('unit positive charge') + ' from infinity to the point, without acceleration<br>V = W/q')
 d.basic('Why divide work by q to define potential?', 'Work ∝ q, so W/q depends only on the ' + T('charge configuration') + ', not on the test charge')
 d.basic('Potential: scalar or vector? SI unit and dimensions?', T('Scalar') + '; volt, 1 V = 1 J C⁻¹; [ML²T⁻³A⁻¹]')
 d.basic('Potential difference V_P − V_R in terms of work?', r'\( V_P - V_R = \dfrac{U_P - U_R}{q} \)' + ' = work per unit positive charge from R to P')
-d.basic('Alessandro Volta: what did he show about Galvani’s “animal electricity”?', 'It was not special to animal tissue: any ' + T('wet body between dissimilar metals') + ' produces it → the first ' + T('voltaic pile') + ' (battery)')
-d.basic('Intuition: what is potential, in one picture?', 'Electric “height”. A + charge rolls ' + T('downhill') + ' from high V to low V (a − charge rolls uphill); V tells you energy per coulomb, like gh is energy per kg')
+d.basic('Alessandro Volta: what did he show about Galvani’s “animal electricity”?', 'It was not special to animal tissue.<br>Any ' + T('wet body between dissimilar metals') + ' produces it → the first ' + T('voltaic pile') + ' (battery)')
+d.basic('Intuition: what is potential, in one picture?', 'Electric “height”.<br>A + charge rolls ' + T('downhill') + ' from high V to low V (a − charge rolls uphill).<br>V tells you energy per coulomb, like gh is energy per kg')
 
 # ---------------------------------------------------------------- 2.3 Point charge
 d.sec('2.3-potential-due-to-point-charge')
@@ -69,7 +69,7 @@ d.basic('Identify: equipotentials of which two configurations?', '(a) An ' + T('
 d.basic('Why is E always normal to an equipotential surface?', 'A component along the surface would mean ' + T('work is done moving charge along it') + ' — contradicting ΔV = 0')
 d.basic('Work done moving a charge along an equipotential?', N('Zero'))
 d.basic('Can two equipotential surfaces intersect?', X('No') + ': the point of intersection would have two values of potential')
-d.basic('Exercise 2.3: 2 μC and −2 μC, 6 cm apart. An equipotential surface? Direction of E on it?', 'The ' + T('plane perpendicular to AB through its midpoint') + ' (V = 0); E is normal to it, pointing from the + charge towards the − charge')
+d.basic('Exercise 2.3: 2 μC and −2 μC, 6 cm apart. An equipotential surface? Direction of E on it?', 'The ' + T('plane perpendicular to AB through its midpoint') + ' (V = 0)<br>E is normal to it, pointing from the + charge towards the − charge')
 
 d.sec('2.6.1-relation-between-field-and-potential')
 d.basic('Relation between E and V?', r'\( E = -\dfrac{dV}{dl} \)' + ' (along the normal to equipotentials)', **fig('fig_2_12_E_from_V'))
@@ -116,16 +116,16 @@ d.basic('Points to ponder: a dipole released at an angle in a uniform field — 
 d.sec('2.9-electrostatics-of-conductors')
 d.basic('Free electrons in a metal: free to do what, and not to do what?', 'Free to move ' + T('within') + ' the metal (like a gas), ' + X('not free to leave') + ' it')
 d.cloze('In electrostatics, the field {{c1::inside a conductor is zero}}; just outside a charged conductor it is {{c2::normal to the surface}}.')
-d.basic('Why is E = 0 inside a conductor in the static situation?', 'Otherwise free charges would keep ' + T('drifting') + '; they rearrange until the field inside vanishes (this can be taken as the defining property of a conductor)')
+d.basic('Why is E = 0 inside a conductor in the static situation?', 'Otherwise free charges would keep ' + T('drifting') + '.<br>They rearrange until the field inside vanishes (this can be taken as the defining property of a conductor)')
 d.basic('Why is the field at a conductor’s surface normal to it?', 'A tangential component would ' + T('move surface charges') + ' — not static')
 d.basic('Where does excess charge on a conductor reside? Why?', 'Only on the ' + T('surface') + ': Gauss’s law on any tiny surface inside (E = 0) gives zero enclosed charge')
 d.basic('Potential of a conductor?', T('Same everywhere') + ' in its volume and on its surface (an equipotential)')
 d.basic('Field just outside a charged conductor?', r'\( \vec E = \dfrac{\sigma}{\varepsilon_0}\hat n \)' + ' — derived with a ' + T('pill-box') + ' Gaussian surface', **fig('fig_2_17_pillbox'))
-d.basic('Charged conductor surface: σ/ε₀. Infinite charged sheet: σ/2ε₀. Why the factor 2?', 'A conductor has ' + T('E = 0 inside') + ', so all the flux leaves through one face of the pill-box; a thin sheet sends flux out both sides')
-d.basic('State electrostatic shielding.', 'Field inside a ' + T('charge-free cavity') + ' of a conductor is zero, whatever the outside charges and fields; any charge sits on the outer surface', **fig('fig_2_18_cavity'))
+d.basic('Charged conductor surface: σ/ε₀. Infinite charged sheet: σ/2ε₀. Why the factor 2?', 'A conductor has ' + T('E = 0 inside') + ', so all the flux leaves through one face of the pill-box.<br>A thin sheet sends flux out of both sides')
+d.basic('State electrostatic shielding.', 'Field inside a ' + T('charge-free cavity') + ' of a conductor is zero, whatever the outside charges and fields.<br>Any charge sits on the outer surface', **fig('fig_2_18_cavity'))
 d.basic('Use of electrostatic shielding?', 'Protecting sensitive instruments; why you are safe inside a ' + E('car') + ' in a thunderstorm')
 d.basic('Points to ponder: does shielding work the other way round?', X('No') + ': charges placed inside the cavity do produce fields outside the conductor')
-d.basic('Identify: what does this figure summarise?', 'Electrostatic properties of conductors: E = 0 and V constant inside, E = σ/ε₀ normal at the surface, E = 0 in a cavity', **img('fig_2_19_properties'))
+d.basic('Identify: what does this figure summarise?', 'Electrostatic properties of conductors:<br>E = 0 and V constant inside<br>E = σ/ε₀, normal to the surface<br>E = 0 in a cavity', **img('fig_2_19_properties'))
 d.basic('Teacher addition: on an irregular conductor, where is σ largest?', 'At ' + T('sharp points') + ' (small radius of curvature) — hence corona discharge and lightning conductors')
 d.basic('Exercise 2.4: sphere (R = 12 cm) with 1.6 × 10⁻⁷ C. E inside, just outside, and at 18 cm?', N('0') + '; ' + N('10⁵ N/C') + '; ' + N('4.4 × 10⁴ N/C'))
 d.basic('Example 2.7: why are aircraft tyres slightly conducting, and fuel trucks fitted with ground-touching chains?', 'To ' + T('leak frictional charge to the ground') + ' before it builds up and sparks a fire')
@@ -136,9 +136,9 @@ d.basic('Example 2.7: why does a comb fail to pick up paper on a rainy day?', 'M
 d.sec('2.10-dielectrics-and-polarisation')
 d.basic('Conductor vs dielectric in an external field?', 'Conductor: induced field ' + T('cancels') + ' E₀ inside (net 0). Dielectric: induced field only ' + T('reduces') + ' it', **fig('fig_2_20_conductor_dielectric'))
 d.basic('Non-polar vs polar molecules? Examples?', T('Non-polar') + ': + and − centres coincide — ' + E('O₂, H₂') + '. ' + T('Polar') + ': permanent dipole — ' + E('HCl, H₂O'), **fig('fig_2_21_molecules'))
-d.basic('Correction: NCERT calls HCl “an ionic molecule”. Is it?', X('No') + ': HCl is a ' + T('polar covalent') + ' molecule (partial ionic character); the example of a polar molecule is still correct')
+d.basic('Correction: NCERT calls HCl “an ionic molecule”. Is it?', X('No') + ': HCl is a ' + T('polar covalent') + ' molecule (partial ionic character).<br>The example of a polar molecule is still correct')
 d.basic('How does a non-polar dielectric get polarised?', 'The field ' + T('displaces') + ' + and − charges oppositely → an ' + T('induced dipole moment') + ' along E')
-d.basic('How does a polar dielectric get polarised?', 'Permanent dipoles, randomly oriented by thermal agitation, partly ' + T('align') + ' with E; alignment competes with thermal energy', **fig('fig_2_22_polarisation'))
+d.basic('How does a polar dielectric get polarised?', 'Permanent dipoles, randomly oriented by thermal agitation, partly ' + T('align') + ' with E.<br>Alignment competes with thermal energy', **fig('fig_2_22_polarisation'))
 d.basic('Define polarisation P. Relation to E for a linear isotropic dielectric?', 'Dipole moment per unit volume: ' + r'\( \vec P = \varepsilon_0\chi_e\vec E \)' + ' (χₑ = electric susceptibility); unit C m⁻²')
 d.basic('Uniformly polarised slab: where is the net induced charge?', 'Only on the ' + T('surfaces normal to the field') + ' (±σₚ); the interior is neutral', **fig('fig_2_23_slab'))
 d.basic('Are the induced charges ±σₚ free or bound?', T('Bound') + ' charges of the dielectric')
@@ -183,7 +183,7 @@ d.basic('Exercise 2.9: mica (K = 6) fills the 17.7 pF capacitor of Ex 2.8. (a) s
 # ---------------------------------------------------------------- 2.14 Combinations
 d.sec('2.14-combination-of-capacitors')
 d.basic('Capacitors in series: what is common, what adds?', 'Same ' + T('charge Q') + ' on each; voltages add: ' + r'\( \dfrac1C = \dfrac1{C_1} + \dfrac1{C_2} + \dots \)', **fig('fig_2_26_series_two'))
-d.basic('Why do series capacitors all carry the same charge?', 'The inner plates plus connecting wire form an ' + T('isolated neutral conductor') + '; any imbalance would drive charge until each capacitor has ±Q', **fig('fig_2_27_series_n'))
+d.basic('Why do series capacitors all carry the same charge?', 'The inner plates plus connecting wire form an ' + T('isolated neutral conductor') + '.<br>Any imbalance would drive charge until each capacitor has ±Q', **fig('fig_2_27_series_n'))
 d.basic('Capacitors in parallel: what is common, what adds?', 'Same ' + T('voltage V') + '; charges add: ' + r'\( C = C_1 + C_2 + \dots \)', **fig('fig_2_28_parallel'))
 d.basic('Mnemonic: capacitors vs resistors?', 'Capacitors combine ' + T('opposite to resistors') + ': series uses reciprocals, parallel simply adds')
 d.basic('Series combination: bigger or smaller than the smallest C?', X('Smaller') + ' than the smallest; parallel is larger than the largest')
@@ -198,7 +198,7 @@ d.basic('Exercise 2.7: 2, 3, 4 pF in parallel on 100 V. C and charges?', N('9 pF
 # ---------------------------------------------------------------- 2.15 Energy
 d.sec('2.15-energy-stored-in-capacitor')
 d.basic('Energy stored in a capacitor (three forms)?', r'\( U = \dfrac{Q^2}{2C} = \dfrac12 CV^2 = \dfrac12 QV \)', **fig('fig_2_30_charging'))
-d.basic('Why is the energy ½QV and not QV?', 'Early charge moves across a ' + T('small V') + ', later charge across larger V; the average potential during charging is ' + T('V/2'))
+d.basic('Why is the energy ½QV and not QV?', 'Early charge moves across a ' + T('small V') + ', later charge across larger V.<br>The average potential during charging is ' + T('V/2'))
 d.basic('Energy density of an electric field?', r'\( u = \dfrac12\varepsilon_0E^2 \)' + ' — true for any field, not just capacitors (Ad = volume of the field)')
 d.basic('Where is a capacitor’s energy “stored”?', 'In the ' + T('electric field') + ' between the plates')
 steps_card(d, 'Example 2.10 · sharing charge', 'Find the missing step.', '900 pF charged to 100 V, then disconnected and joined to an uncharged 900 pF. Energies?',

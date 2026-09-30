@@ -13,8 +13,8 @@ img = lambda name: {'termImage': M + name + '.webp'}
 
 # ---------------------------------------------------------------- 11.1 Introduction
 d.sec('11.1-introduction')
-d.basic('Cathode rays: what are they, and who confirmed it?', 'Streams of fast, ' + T('negatively charged particles') + ' (electrons), seen in low-pressure gas discharge; ' + T('J. J. Thomson') + ' confirmed it with crossed E and B fields')
-d.basic('What did Thomson measure for cathode-ray particles?', 'Their speed (0.1–0.2 c) and the ' + T('specific charge e/m = 1.76 × 10¹¹ C/kg') + ', independent of cathode material and gas: the particles are universal')
+d.basic('Cathode rays: what are they, and who confirmed it?', 'Streams of fast, ' + T('negatively charged particles') + ' (electrons), seen in low-pressure gas discharge.<br>' + T('J. J. Thomson') + ' confirmed it with crossed E and B fields')
+d.basic('What did Thomson measure for cathode-ray particles?', 'Their speed (0.1–0.2 c) and the ' + T('specific charge e/m = 1.76 × 10¹¹ C/kg') + '.<br>Both are independent of cathode material and gas: the particles are universal')
 d.basic('Thomson and the electron: when and what prize?', 'Named the particles ' + T('electrons') + ' (1897); Nobel Prize in Physics ' + N('1906'))
 d.basic('Millikan’s oil-drop experiment (1913): what did it show?', 'The charge on a drop is always an ' + T('integral multiple of e = 1.602 × 10⁻¹⁹ C') + ': charge is quantised. With e/m, the electron mass follows')
 d.basic('Milestones near 1895–1897?', T('X-rays') + ' discovered by Röntgen (1895); ' + T('electron') + ' by Thomson (1897)')
@@ -22,20 +22,20 @@ d.basic('History note: NCERT credits Crookes with discovering cathode rays in 18
 
 # ---------------------------------------------------------------- 11.2 Electron emission
 d.sec('11.2-electron-emission')
-d.basic('Why can’t free electrons simply leave a metal?', 'A departing electron leaves the surface positively charged, which pulls it back: it needs a ' + T('minimum energy') + ' to escape')
-d.basic('Define work function φ₀. Unit?', 'The ' + T('minimum energy') + ' needed to remove an electron from the metal surface; measured in ' + T('eV') + ' (depends on the metal and its surface)')
+d.basic('Why can’t free electrons simply leave a metal?', 'A departing electron leaves the surface positively charged, which pulls it back.<br>It needs a ' + T('minimum energy') + ' to escape')
+d.basic('Define work function φ₀. Unit?', 'The ' + T('minimum energy') + ' needed to remove an electron from the metal surface.<br>Measured in ' + T('eV') + ' (depends on the metal and its surface)')
 d.basic('Define electron volt.', 'The energy gained by an electron accelerated through ' + T('1 V') + ': 1 eV = ' + N('1.602 × 10⁻¹⁹ J'))
-d.basic('Three ways to supply the energy for electron emission?', T('Thermionic') + ' (heating), ' + T('field') + ' (very strong E ~ 10⁸ V/m, as in a spark plug), ' + T('photoelectric') + ' (light of suitable frequency)')
+d.basic('Three ways to supply the energy for electron emission?', T('Thermionic') + ' (heating)<br>' + T('Field') + ' (very strong E ~ 10⁸ V/m, as in a spark plug)<br>' + T('Photoelectric') + ' (light of suitable frequency)')
 d.basic('Photoelectrons: definition?', 'Electrons ejected from a metal surface by ' + T('incident light of suitable frequency'))
 d.basic('Teacher addition: typical work functions (eV)?', 'Cs ' + N('2.1') + ', K 2.3, Na 2.3, Ca 2.9, Zn 4.3, Cu 4.7, Pt 5.6 (alkali metals have the smallest, so respond to visible light)')
 
 # ---------------------------------------------------------------- 11.3 Photoelectric effect (Hertz, Hallwachs, Lenard)
 d.sec('11.3-photoelectric-effect')
 d.basic('Who discovered photoelectric emission and how?', T('Hertz (1887)') + ': sparks in the detector loop were enhanced when the emitter plate was lit by UV light')
-d.basic('Hallwachs’ observation with a zinc plate and an electroscope?', 'A negatively charged zinc plate ' + T('lost its charge') + ' in UV; an uncharged one became ' + T('positively') + ' charged: negative particles are emitted')
-d.basic('Lenard’s observation in an evacuated tube?', 'UV falling on emitter C causes a current to flow to collector A; it ' + T('stops as soon as the UV stops') + ' (electrons attracted by the positive plate)')
+d.basic('Hallwachs’ observation with a zinc plate and an electroscope?', 'A negatively charged zinc plate ' + T('lost its charge') + ' in UV.<br>An uncharged one became ' + T('positively') + ' charged.<br>So negative particles are emitted')
+d.basic('Lenard’s observation in an evacuated tube?', 'UV falling on emitter C causes a current to flow to collector A.<br>It ' + T('stops as soon as the UV stops') + ' (electrons attracted by the positive plate)')
 d.basic('Which metals respond to visible light and which only to UV?', 'Alkali metals (Li, Na, K, Cs, Rb) respond even to ' + T('visible') + ' light; Zn, Cd, Mg need ' + T('UV'))
-d.basic('Threshold frequency: definition?', 'The ' + T('minimum frequency') + ' of incident light below which no photoemission occurs, whatever the intensity; depends on the material')
+d.basic('Threshold frequency: definition?', 'The ' + T('minimum frequency') + ' of incident light below which no photoemission occurs, whatever the intensity.<br>It depends on the material')
 
 # ---------------------------------------------------------------- 11.4 Experimental study
 d.sec('11.4-experimental-study-of-photoelectric-effect')
@@ -45,19 +45,19 @@ d.basic('Effect of intensity on photocurrent (potential fixed, ν > ν₀)?', 'P
 d.basic('Saturation current: definition and dependence?', 'The maximum current, when ' + T('all emitted electrons reach A') + '; ∝ intensity (for fixed ν)', **fig('fig_11_3_current_potential'))
 d.basic('Stopping (cut-off) potential V₀?', 'The minimum ' + T('negative (retarding) potential') + ' on A that reduces the photocurrent to zero')
 d.basic('Relation between stopping potential and maximum kinetic energy?', r'\( K_{max} = eV_0 = \tfrac12 mv_{max}^2 \)')
-d.basic('Effect of intensity on V₀ (same ν)?', 'None: V₀ is ' + T('independent of intensity') + ', so K_max is independent of intensity; curves for I₁ < I₂ < I₃ saturate at different heights but cut the axis at the same −V₀')
-d.basic('Effect of frequency on V₀, and on the saturation current?', 'V₀ ' + T('increases with ν') + ' (V₀₃ > V₀₂ > V₀₁ for ν₃ > ν₂ > ν₁); for the same intensity the saturation current is the same', **fig('fig_11_4_frequencies'))
+d.basic('Effect of intensity on V₀ (same ν)?', 'None: V₀ is ' + T('independent of intensity') + ', so K_max is independent of intensity.<br>Curves for I₁ < I₂ < I₃ saturate at different heights but cut the axis at the same −V₀')
+d.basic('Effect of frequency on V₀, and on the saturation current?', 'V₀ ' + T('increases with ν') + ' (V₀₃ > V₀₂ > V₀₁ for ν₃ > ν₂ > ν₁)<br>For the same intensity the saturation current is the same', **fig('fig_11_4_frequencies'))
 d.basic('V₀ vs ν graph: shape and meaning?', T('Straight line') + ' with slope h/e and intercept on the ν-axis = ν₀ (threshold). Different metals give ' + T('parallel lines') + ' (same slope) with different ν₀', **fig('fig_11_5_v0_vs_nu'))
 d.basic('Summarise the four experimental facts of photoemission.', '(i) I_photo ∝ intensity (ν > ν₀). (ii) Saturation current ∝ intensity; V₀ independent of intensity. (iii) ' + T('Threshold frequency') + ' exists; K_max rises linearly with ν. (iv) ' + T('Instantaneous') + ' (~ 10⁻⁹ s or less)')
 d.basic('Time lag between light hitting the metal and emission?', 'Essentially none: about ' + N('10⁻⁹ s') + ' or less, even for very dim light')
 d.basic('Teacher addition: photocurrent vs applied voltage: what is the shape for V positive and negative?', 'Current rises with accelerating V until ' + T('saturation') + '; for negative V it falls to zero at −V₀. At V = 0 the current is non-zero (fast electrons still reach A)')
-d.basic('Exam trap: which quantities depend on intensity, and which on frequency?', 'Intensity → ' + T('number of photoelectrons / saturation current') + '. Frequency → ' + T('K_max and stopping potential') + ' (and whether emission occurs at all)')
+d.basic('Exam trap: which quantities depend on intensity, and which on frequency?', 'Intensity → ' + T('number of photoelectrons / saturation current') + '<br>Frequency → ' + T('K_max and stopping potential') + ' (and whether emission occurs at all)')
 
 # ---------------------------------------------------------------- 11.5 Wave theory
 d.sec('11.5-photoelectric-effect-and-wave-theory-of-light')
 d.basic('Wave-theory expectation for K_max with increasing intensity?', 'K_max should ' + X('increase') + ' (larger E-field amplitude gives more energy per electron), contradicting observation')
 d.basic('Wave theory and the threshold frequency?', 'Predicts ' + X('no threshold') + ': a sufficiently intense beam over enough time should always free electrons')
-d.basic('Wave theory and the time lag?', 'Energy spreads over the wavefront, so an electron would need ' + T('hours') + ' to gather φ₀; observed emission is instantaneous')
+d.basic('Wave theory and the time lag?', 'Energy spreads over the wavefront, so an electron would need ' + T('hours') + ' to gather φ₀.<br>Observed emission is instantaneous')
 d.basic('Which three observations does wave theory fail to explain?', T('Independence of K_max from intensity') + ', ' + T('existence of ν₀') + ' and the ' + T('instantaneous emission'))
 
 # ---------------------------------------------------------------- 11.6 Einstein
@@ -66,14 +66,14 @@ d.basic('Einstein’s picture of radiation (1905)?', 'Radiation consists of disc
 d.basic('Einstein’s photoelectric equation?', r'\( K_{max} = h\nu - \phi_0 \)' + ', i.e. ' + r'\( eV_0 = h\nu - \phi_0 \)' + ' (more tightly bound electrons come out with less energy)')
 d.basic('Threshold frequency and wavelength in terms of φ₀?', r'\( \nu_0 = \dfrac{\phi_0}{h},\quad \lambda_0 = \dfrac{hc}{\phi_0} \)' + '; λ₀ (nm) = 1240/φ₀(eV)')
 d.basic('Equation of V₀ versus ν?', r'\( V_0 = \dfrac{h}{e}\,(\nu - \nu_0) \)' + ': slope h/e (same for all metals)')
-d.basic('How does Einstein’s equation explain the intensity-independence of K_max?', 'One photon is absorbed by one electron; intensity only changes ' + T('how many photons') + ' arrive (number of emitted electrons)')
+d.basic('How does Einstein’s equation explain the intensity-independence of K_max?', 'One photon is absorbed by one electron.<br>Intensity only changes ' + T('how many photons') + ' arrive (number of emitted electrons)')
 d.basic('How does it explain the threshold?', 'Need hν > φ₀ for K_max > 0: ' + T('below ν₀ a single photon is too weak') + ' and electrons cannot pool energy from several photons')
 d.basic('How does it explain instantaneous emission?', 'Absorption of one photon by one electron is ' + T('instantaneous') + ' regardless of the beam’s intensity')
 d.basic('Teacher addition: graph of K_max vs ν?', T('Straight line') + ', slope h (Planck’s constant), x-intercept ν₀, y-intercept −φ₀; all metals give parallel lines', )
 d.basic('Teacher addition: two metals with work functions φ₁ < φ₂ under the same light. Which gives more K_max?', 'Metal 1: K_max = hν − φ₁ is ' + T('larger') + ' (V₀ larger, ν₀ smaller)')
 d.basic('Teacher addition: if the frequency is doubled, does K_max double?', X('No') + ': K_max = hν − φ₀. It more than doubles: K₂ = 2hν − φ₀ = 2K₁ + φ₀')
 d.basic('Teacher addition: how is photocurrent related to intensity numerically?', 'If a fraction η of photons ejects an electron: ' + r'\( i = \eta\,\dfrac{P}{h\nu}\,e \)' + ' (P = power of light)')
-d.basic('Millikan and Einstein’s equation (1906–1916)?', 'Millikan set out to disprove it but his slope of V₀ vs ν gave ' + T('h = 6.6 × 10⁻³⁴ J s') + ', confirming it (1916); Nobel Prize 1923 (also for e)')
+d.basic('Millikan and Einstein’s equation (1906–1916)?', 'Millikan set out to disprove it, but his slope of V₀ vs ν gave ' + T('h = 6.6 × 10⁻³⁴ J s') + ', confirming it (1916).<br>Nobel Prize 1923 (also for e)')
 d.basic('Who got the Nobel Prize for the photoelectric effect and when?', T('Einstein, 1921') + ' (for the explanation of the photoelectric effect and contributions to theoretical physics)')
 
 # ---------------------------------------------------------------- 11.7 Photon
@@ -93,7 +93,7 @@ steps_card(d, 'Example 11.2 · caesium', 'Find the missing step.', 'Work functio
 
 # ---------------------------------------------------------------- 11.8 Wave nature of matter
 d.sec('11.8-wave-nature-of-matter')
-d.basic('Wave or particle: which description for what?', 'Interference, diffraction, polarisation: ' + T('wave') + '. Photoelectric and Compton effects (energy/momentum transfer): ' + T('particle') + '. Both matter, e.g. the eye’s lens (wave) and retina (photon)')
+d.basic('Wave or particle: which description for what?', 'Interference, diffraction, polarisation: ' + T('wave') + '<br>Photoelectric and Compton effects (energy/momentum transfer): ' + T('particle') + '<br>Both matter, e.g. the eye’s lens (wave) and retina (photon)')
 d.basic('De Broglie’s hypothesis (1924)?', 'Moving particles have waves associated with them: ' + r'\( \lambda = \dfrac{h}{p} = \dfrac{h}{mv} \)' + '. Reasoned from the symmetry of nature between matter and radiation')
 d.basic('Which quantity is the wave attribute and which the particle attribute in λ = h/p?', 'λ is the ' + T('wave') + ' attribute; p is the ' + T('particle') + ' attribute; Planck’s constant h links them')
 d.basic('Does the de Broglie relation hold for a photon?', T('Yes') + ': p = hν/c gives λ = h/p = c/ν, the wavelength of the radiation (Exercise 11.11)')
@@ -106,7 +106,7 @@ d.basic('Teacher addition: same kinetic energy: electron, proton, α-particle. O
 d.basic('Teacher addition: same de Broglie wavelength: photon energy vs electron kinetic energy?', 'Same p: photon E = pc; electron K = p²/2m. So ' + r'\( \dfrac{E_\gamma}{K_e} = \dfrac{2mc}{p} = \dfrac{2c}{v} \)' + ' (photon much more energetic)')
 d.basic('Teacher addition: de Broglie wavelength of a gas molecule at temperature T?', r'\( \lambda = \dfrac{h}{\sqrt{3mkT}} \)' + ' (using ½mv² = 3kT/2 for rms speed); for thermal neutrons, use ' + r'\( \dfrac{h}{\sqrt{2mkT}} \)')
 d.basic('Teacher addition: Davisson–Germer experiment (beyond the rationalised NCERT text)?', 'Electrons of 54 eV scattered from a nickel crystal show a strong peak at a scattering angle of ' + N('50°') + ' (Bragg glancing angle 65°): λ = 2d sin θ ≈ 1.65 Å from Bragg’s law matches h/√(2meV), confirming ' + T('electron diffraction'))
-d.basic('Teacher addition: uses of matter waves?', T('Electron microscope') + ' (λ ≪ light, so higher resolving power), neutron and electron diffraction for crystal structure')
+d.basic('Teacher addition: uses of matter waves?', T('Electron microscope') + ' (λ ≪ light, so higher resolving power)<br>Neutron and electron diffraction for crystal structure')
 d.basic('Points to ponder: what is physically meaningful for a matter wave?', 'Its ' + T('wavelength') + ' and its ' + T('group velocity') + ' (equals the particle’s speed); phase velocity has no physical meaning')
 steps_card(d, 'Example 11.3 · electron and ball', 'Find the missing step.', 'de Broglie wavelength of (a) an electron at 5.4 × 10⁶ m/s, (b) a 150 g ball at 30 m/s.',
            ['(a) p = 9.11 × 10⁻³¹ × 5.4 × 10⁶ = <b>4.92 × 10⁻²⁴ kg m/s</b>', 'λ = h/p = 6.63 × 10⁻³⁴/4.92 × 10⁻²⁴ = <b>0.135 nm</b> (X-ray size)', '(b) p = 0.150 × 30 = 4.50 kg m/s', 'λ = 6.63 × 10⁻³⁴/4.50 = <b>1.47 × 10⁻³⁴ m</b> (unmeasurably small)'], 1,
@@ -114,9 +114,9 @@ steps_card(d, 'Example 11.3 · electron and ball', 'Find the missing step.', 'de
 
 # ---------------------------------------------------------------- Points to ponder
 d.sec('points-to-ponder')
-d.basic('Are free electrons in a metal truly free?', 'Free inside the metal (constant potential, approximately) but ' + T('not free to leave') + ': they need extra energy to escape')
+d.basic('Are free electrons in a metal truly free?', 'Free inside the metal (constant potential, approximately) but ' + T('not free to leave') + '.<br>They need extra energy to escape')
 d.basic('Do all conduction electrons need the same energy to escape?', X('No') + ': they have an energy distribution (obeying Pauli’s principle). Work function is the ' + T('least') + ' energy for the most loosely bound electron')
-d.basic('What does the photoelectric effect strictly show about light?', 'That energy is ' + T('absorbed in discrete units hν') + ' in matter–light interaction; not quite the same as saying light is made of particles')
+d.basic('What does the photoelectric effect strictly show about light?', 'That energy is ' + T('absorbed in discrete units hν') + ' in matter–light interaction.<br>That is not quite the same as saying light is made of particles')
 d.basic('What is the crucial discriminator between wave and photon pictures?', 'The ' + T('stopping potential') + ': independent of intensity, dependent on frequency')
 table_card(d, 'NCERT quantity table', 'Symbol, unit, dimensions?', [
     ('Planck’s constant h', 'J s; [ML²T⁻¹]; E = hν', False), ('Stopping potential V₀', 'V; [ML²T⁻³A⁻¹]; eV₀ = K_max', False),
@@ -152,7 +152,7 @@ d.basic('Exercise 11.7: φ₀ = 4.2 eV, radiation of 330 nm. Photoemission?', 'E
 d.basic('Exercise 11.8: ν = 7.21 × 10¹⁴ Hz gives v_max = 6.0 × 10⁵ m/s. Threshold frequency?', 'hν₀ = hν − ½mv² = 4.78 × 10⁻¹⁹ − 1.64 × 10⁻¹⁹ = 3.14 × 10⁻¹⁹ J → ' + N('ν₀ = 4.73 × 10¹⁴ Hz'))
 d.basic('Exercise 11.9: 488 nm light, V₀ = 0.38 V. Work function?', 'hc/λ = 1240/488 = 2.54 eV; φ₀ = 2.54 − 0.38 = ' + N('2.16 eV') + ' (3.46 × 10⁻¹⁹ J)')
 d.basic('Exercise 11.10: de Broglie wavelength of (a) 0.040 kg bullet at 1 km/s, (b) 0.060 kg ball at 1 m/s, (c) 1.0 × 10⁻⁹ kg dust at 2.2 m/s?', '(a) ' + N('1.7 × 10⁻³⁵ m') + ' (b) ' + N('1.1 × 10⁻³² m') + ' (c) p = 2.2 × 10⁻⁹, so λ = ' + N('3.0 × 10⁻²⁵ m') + '. All immeasurably small')
-d.basic('Correction: NCERT’s key prints 3.0 × 10⁻²³ m for Exercise 11.10(c). Right?', X('Slip') + ': 6.63 × 10⁻³⁴/(1.0 × 10⁻⁹ × 2.2) = ' + T('3.0 × 10⁻²⁵ m') + '. (3.0 × 10⁻²³ m would need m = 10⁻¹¹ kg.) The conclusion is the same')
+d.basic('Correction: NCERT’s key prints 3.0 × 10⁻²³ m for Exercise 11.10(c). Right?', X('Slip') + ': 6.63 × 10⁻³⁴/(1.0 × 10⁻⁹ × 2.2) = ' + T('3.0 × 10⁻²⁵ m') + '<br>(3.0 × 10⁻²³ m would need m = 10⁻¹¹ kg.)<br>The conclusion is the same')
 d.basic('Exercise 11.11: show that the de Broglie wavelength of a photon equals the wavelength of the radiation.', 'λ = h/p, and p = hν/c for a photon, so λ = h/(hν/c) = ' + T('c/ν') + ' = the wavelength of the em wave')
 
 # ---------------------------------------------------------------- Summary
