@@ -1894,19 +1894,14 @@ html.reduce-motion .study-card-inner {
   max-width: 100%;
   margin: 0.72rem 0 !important;
   padding: 0.58rem 0.68rem;
-  overflow-x: auto !important;
+  /* Not a scroller: a formula box must never capture touches, so swipes on it behave like swipes on plain
+     card text. Wide formulas are shrunk to fit by fitMathBlocks() in mobile-study.js instead. */
+  overflow: visible !important;
   border-radius: 8px;
   background: color-mix(in srgb, var(--ink) 28%, transparent);
   font-size: clamp(1rem, 4.5vw, 1.35rem) !important;
   line-height: 1.55 !important;
   text-align: center !important;
-  overflow-x: auto !important;
-  scrollbar-width: none !important; /* Firefox */
-  -ms-overflow-style: none !important;  /* IE/Edge */
-  -webkit-overflow-scrolling: touch;
-  /* Horizontal gestures belong to the card swipe; an overflow-x scroller here made the
-     browser claim them (pointercancel) so a swipe that started on a formula did nothing. */
-  touch-action: pan-y;
 }
 
 .card-text-inline .katex-display::-webkit-scrollbar {
