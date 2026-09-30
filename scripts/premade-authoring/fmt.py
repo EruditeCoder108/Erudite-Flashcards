@@ -140,8 +140,10 @@ def _enum(text, seq, pat):
     """Break before each (x) marker when at least two consecutive markers exist."""
     ms = list(re.finditer(pat, text))
     found = [m.group(1) for m in ms]
-    if not any(found[i] == seq[0] and i + 1 < len(found) and found[i + 1] == seq[1] for i in range(len(found))):
-        return text
+    def follows(a, b):
+        return a in seq and b in seq and seq.index(b) == seq.index(a) + 1
+    if not any(follows(found[i], found[i + 1]) for i in range(len(found) - 1)):
+        return text   # (iii) (iv) (v) qualifies even when the list starts mid-way
     marks, prev_end = [], None
     for m in ms:
         # "(b) (c) simply have..." refers to labels; a marker with no content since the last one is not a list item
@@ -181,7 +183,7 @@ def leadins(text):
 
 
 ABBR = r'(?<!e\.g)(?<!i\.e)(?<!vs)(?<!Ex)(?<!Fig)(?<!No)(?<!Eq)(?<!etc)(?<!approx)'
-SENT = re.compile(ABBR + r'(?<=[a-z0-9\)\]²³₀-₉′%])\. (?=[A-Z])')
+SENT = re.compile(ABBR + r'(?<=[a-z0-9\)\]²³₀-₉′%])\. (?=[A-Z(])')
 RESULT = re.compile(r':\s+(<span style="color:#f08c00">(?:(?!</span>).)*</span>\.?)$')
 
 
@@ -191,12 +193,21 @@ def plain_len(t):
 
 
 def long_answer(text):
-    if '\n' in text or '{{' in text or plain_len(text) < 110:
+    """One sentence per line: 2+ sentences in a 110+ char answer, or 3+ sentences in a 60+ char answer."""
+    if '\n' in text or '{{' in text:
+        return text
+    n = len(SENT.findall(text))
+    if not n or not (plain_len(text) >= 110 or (n >= 2 and plain_len(text) >= 60)):
         return text
     t = SENT.sub('.\n', text)
     if plain_len(t) >= 70:
         t = RESULT.sub(lambda m: ':\n' + m.group(1), t)
     return t
+
+
+def per_line(fn, text):
+    """Apply a single-line rule to each line of the text."""
+    return '\n'.join(fn(line) for line in text.split('\n'))
 
 
 def tidy_display(t):
@@ -340,8 +351,8 @@ def format_text(text, cloze=False, answer=False, subject=None):
     t = leadins(t)
     if answer and not cloze:
         t = derivation_chains(t)
-        t = semicolon_lists(t)
         t = long_answer(t)
+        t = per_line(semicolon_lists, t)
         if subject == 'mathematics':
             t = result_equations(t)
     return tidy_display(t) if '\\[' in t else t

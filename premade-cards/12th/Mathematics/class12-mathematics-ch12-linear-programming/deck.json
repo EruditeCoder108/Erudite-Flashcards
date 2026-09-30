@@ -84,7 +84,7 @@
     {
       "noteType": "basic",
       "term": "Steps of the corner point method.",
-      "definition": "1) Graph the constraints and find the feasible region and its corners.\n2) Evaluate Z at each corner; let M be the largest, m the smallest.\n3) If R is bounded, M is the max and m the min.\n4) If R is unbounded: M is the max only if ax + by > M has no common point with R; m is the min only if ax + by < m has none; otherwise there is no such optimum",
+      "definition": "1) Graph the constraints and find the feasible region and its corners.\n2) Evaluate Z at each corner; let M be the largest, m the smallest.\n3) If R is bounded, M is the max and m the min.\n4) If R is unbounded: M is the max only if ax + by > M has no common point with R\nm is the min only if ax + by < m has none\notherwise there is no such optimum",
       "tags": [
         "class-12",
         "mathematics",
@@ -323,7 +323,7 @@
     {
       "noteType": "basic",
       "term": "Ex 12.1 Q4: minimise Z = 3x + 5y subject to x + 3y ≥ 3, x + y ≥ 2, x, y ≥ 0.",
-      "definition": "Unbounded region, corners: (0, 2) → 10; (3/2, 1/2) → 7; (3, 0) → 9.\nThe smallest is 7; the half-plane 3x + 5y < 7 has no point in common with the region, so <span style=\"color:#f08c00\">minimum Z = 7 at (3/2, 1/2)</span>",
+      "definition": "Unbounded region, corners: (0, 2) → 10\n(3/2, 1/2) → 7\n(3, 0) → 9.\nThe smallest is 7; the half-plane 3x + 5y < 7 has no point in common with the region, so <span style=\"color:#f08c00\">minimum Z = 7 at (3/2, 1/2)</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -378,7 +378,7 @@
     {
       "noteType": "basic",
       "term": "Ex 12.1 Q9: maximise Z = −x + 2y subject to x ≥ 3, x + y ≥ 5, x + 2y ≥ 6, y ≥ 0.",
-      "definition": "Unbounded region with corners: (3, 2) → 1; (4, 1) → -2; (6, 0) → -6.\nThe corner maximum is 1, but −x + 2y > 1 has points in the region (take y large). <span style=\"color:#f08c00\">Z has no maximum value</span>",
+      "definition": "Unbounded region with corners: (3, 2) → 1\n(4, 1) → -2\n(6, 0) → -6.\nThe corner maximum is 1, but −x + 2y > 1 has points in the region (take y large). <span style=\"color:#f08c00\">Z has no maximum value</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -433,7 +433,7 @@
     {
       "noteType": "basic",
       "term": "A dealer has ₹15 000 and space for 20 items. A fan costs ₹1500 and yields ₹300 profit; a heater costs ₹500 and yields ₹200. Maximise profit.",
-      "definition": "Maximise Z = 300x + 200y subject to 1500x + 500y ≤ 15 000 (3x + y ≤ 30), x + y ≤ 20, x, y ≥ 0.\nCorners: (0, 0) → 0; (0, 20) → 4000; (5, 15) → 4500; (10, 0) → 3000. <span style=\"color:#f08c00\">Maximum ₹4500 at (5, 15)</span>",
+      "definition": "Maximise Z = 300x + 200y subject to 1500x + 500y ≤ 15 000 (3x + y ≤ 30), x + y ≤ 20, x, y ≥ 0.\nCorners: (0, 0) → 0\n(0, 20) → 4000\n(5, 15) → 4500\n(10, 0) → 3000. <span style=\"color:#f08c00\">Maximum ₹4500 at (5, 15)</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -719,7 +719,7 @@
     {
       "noteType": "basic",
       "term": "4-mark: a manufacturer makes tables and chairs. A table needs 4 h of carpentry and 2 h of finishing; a chair needs 2 h and 2 h. Available: 40 h carpentry, 30 h finishing. Profit ₹100 per table, ₹60 per chair. Maximise profit.",
-      "definition": "Maximise Z = 100x + 60y subject to 4x + 2y ≤ 40, 2x + 2y ≤ 30, x, y ≥ 0.\nCorners: (0, 0) → 0; (0, 15) → 900; (5, 10) → 1100; (10, 0) → 1000. <span style=\"color:#f08c00\">Maximum ₹1100 at (5, 10)</span>",
+      "definition": "Maximise Z = 100x + 60y subject to 4x + 2y ≤ 40, 2x + 2y ≤ 30, x, y ≥ 0.\nCorners: (0, 0) → 0\n(0, 15) → 900\n(5, 10) → 1100\n(10, 0) → 1000. <span style=\"color:#f08c00\">Maximum ₹1100 at (5, 10)</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -741,7 +741,7 @@
     {
       "noteType": "basic",
       "term": "Case-based: a farmer has 50 acres and ₹4 000. Wheat costs ₹40/acre and gives ₹200 profit/acre; maize costs ₹100/acre and gives ₹400. How should he plant (fractions of an acre allowed)?",
-      "definition": "Maximise Z = 200x + 400y subject to x + y ≤ 50, 40x + 100y ≤ 4000 (2x + 5y ≤ 200), x, y ≥ 0.\nCorners: (0, 0) → 0; (0, 40) → 16000; (50/3, 100/3) → 50000/3; (50, 0) → 10000. <span style=\"color:#f08c00\">Maximum ₹50000/3 ≈ ₹16 667 at (50/3, 100/3)</span>",
+      "definition": "Maximise Z = 200x + 400y subject to x + y ≤ 50, 40x + 100y ≤ 4000 (2x + 5y ≤ 200), x, y ≥ 0.\nCorners: (0, 0) → 0\n(0, 40) → 16000\n(50/3, 100/3) → 50000/3\n(50, 0) → 10000. <span style=\"color:#f08c00\">Maximum ₹50000/3 ≈ ₹16 667 at (50/3, 100/3)</span>",
       "tags": [
         "class-12",
         "mathematics",
