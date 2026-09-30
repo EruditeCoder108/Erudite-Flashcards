@@ -55,7 +55,7 @@ d.basic('Order of Rate = k[A]¹ᐟ²[B]³ᐟ² and Rate = k[A]³ᐟ²[B]⁻¹? (
 d.basic('Order of r = k[A]¹ᐟ²[B]²? (Intext 3.3)', N('2.5'))
 d.basic('Second order in X; [X] tripled. Effect on rate? (Intext 3.4)', 'Rate × 3² = ' + N('9 times'))
 d.basic('Elementary vs complex reaction?', T('Elementary') + ': occurs in one step. ' + T('Complex') + ': a sequence of elementary steps (mechanism).')
-d.basic('Types of complex reactions (NCERT examples)?', 'Consecutive (ethane → alcohol → aldehyde → acid → CO₂), reverse, side reactions (phenol → o- and p-nitrophenol)')
+d.basic('Types of complex reactions (NCERT examples)?', 'Consecutive (ethane → alcohol → aldehyde → acid → CO₂)<br>Reverse<br>Side reactions (phenol → o- and p-nitrophenol)')
 d.basic('General unit of k for order n?', r'\( (mol \, L^{-1})^{1-n} \, s^{-1} \)')
 table_card(d, 'Units of k', 'Unit of k?', [
     ('Zero order', 'mol L⁻¹ s⁻¹', False), ('First order', 's⁻¹', False), ('Second order', 'L mol⁻¹ s⁻¹', False), ('Third order', 'L² mol⁻² s⁻¹', False)],
@@ -81,7 +81,7 @@ d.basic('Why integrate rate laws?', 'Instantaneous rates (tangents) are hard to 
 d.sec('3.3.1-zero-order')
 d.basic('Integrated zero-order rate law?', r'\( [R] = [R]_0 - kt \)' + ', so ' + r'\( k = \frac{[R]_0 - [R]}{t} \)')
 d.basic('Straight-line plot for zero order?', T('[R] vs t') + ': slope = −k, intercept = [R]₀', **fig('fig_3_3_zero_order'))
-d.basic('Examples of zero-order reactions?', 'Some ' + T('enzyme') + ' reactions and reactions on metal surfaces: 2NH₃ → N₂ + 3H₂ on hot ' + T('Pt') + ' (1130 K, high pressure); HI on ' + T('gold'))
+d.basic('Examples of zero-order reactions?', 'Some ' + T('enzyme') + ' reactions and reactions on metal surfaces:<br>2NH₃ → N₂ + 3H₂ on hot ' + T('Pt') + ' (1130 K, high pressure)<br>HI on ' + T('gold'))
 d.basic('Why is NH₃ decomposition on Pt zero order at high pressure?', 'The Pt ' + T('surface is saturated') + '; extra NH₃ can’t find sites, so rate is independent of [NH₃]')
 d.basic('Intuition: zero order is like…?', 'A ticket counter with one clerk: the queue length (concentration) doesn’t change how fast people are served')
 
@@ -109,7 +109,7 @@ d.basic('Integrated second-order law, 2A → P type with rate k[A]²? (teacher a
 d.basic('t½ for k = 5.5 × 10⁻¹⁴ s⁻¹? (Example 3.7)', '0.693/k = ' + N('1.26 × 10¹³ s'))
 d.basic('Show t(99.9%) = 10 t½ for first order. (Example 3.8)', 't = (2.303/k) log 1000 = 6.909/k; ÷ (0.693/k) = ' + N('10'))
 d.basic('First-order shortcuts: t(75%) and t(87.5%)?', T('2 t½') + ' and ' + T('3 t½') + ' (halve, halve, halve)')
-d.basic('Intuition: why is a first-order t½ constant?', 'A fixed ' + T('fraction') + ' reacts per unit time, however much is left: like radioactive atoms, each has the same chance to react each second')
+d.basic('Intuition: why is a first-order t½ constant?', 'A fixed ' + T('fraction') + ' reacts per unit time, however much is left.<br>Like radioactive atoms, each has the same chance to react each second')
 d.basic('After n half-lives, fraction left (first order)?', r'\( \left(\frac{1}{2}\right)^n \)')
 d.basic('5 g → 3 g, first order, k = 1.15 × 10⁻³ s⁻¹. Time? (Intext 3.5)', '(2.303/1.15 × 10⁻³) log(5/3) = ' + N('444 s'))
 d.basic('SO₂Cl₂ half-life 60 min (first order). k? (Intext 3.6)', '0.693/60 = ' + N('1.16 × 10⁻² min⁻¹') + ' (1.93 × 10⁻⁴ s⁻¹)')
@@ -140,7 +140,7 @@ d.basic('What does the Maxwell–Boltzmann curve show?', 'Fraction of molecules 
 d.basic('Effect of raising T on the distribution curve?', 'Peak shifts to ' + T('higher energy') + ' and the curve ' + T('broadens') + '; total area stays constant', **fig('fig_3_9_temperature_curve'))
 d.basic('Why does a 10° rise roughly double the rate?', 'The fraction of molecules with E ≥ Eₐ (tail area) ' + T('about doubles'))
 d.basic('Physical meaning of e^(−Eₐ/RT)?', 'Fraction of molecules with kinetic energy ' + T('≥ Eₐ'))
-d.basic('Intuition: why does rate rise so steeply with T?', 'Only the tail of the distribution reacts; a small shift of the curve adds many molecules to that thin tail (exponential, not linear)')
+d.basic('Intuition: why does rate rise so steeply with T?', 'Only the tail of the distribution reacts.<br>A small shift of the curve adds many molecules to that thin tail (exponential, not linear)')
 d.basic('Log form of Arrhenius and its plot?', r'\( \ln k = -\frac{E_a}{RT} + \ln A \)' + '; ln k vs 1/T: slope ' + T('−Eₐ/R') + ', intercept ' + T('ln A'), **fig('fig_3_10_arrhenius_plot'))
 d.basic('Two-temperature Arrhenius equation?', r'\( \log \frac{k_2}{k_1} = \frac{E_a}{2.303R}\left(\frac{T_2 - T_1}{T_1 T_2}\right) \)')
 d.basic('Trap: units in the two-temperature formula?', 'Eₐ in ' + T('J mol⁻¹') + ' with R = 8.314 J K⁻¹ mol⁻¹; T in ' + T('kelvin'))
@@ -157,7 +157,7 @@ d.basic('Intermediate complex theory?', 'Catalyst forms ' + T('temporary bonds')
 d.basic('How does a catalyst speed up a reaction?', 'Provides an alternate pathway of ' + T('lower activation energy'), **fig('fig_3_11_catalyst'))
 d.cloze('A catalyst does not change {{c1::ΔG}} or the {{c2::equilibrium constant}}; it speeds up forward and backward reactions {{c3::equally}}, so equilibrium is reached {{c4::faster}}.')
 d.basic('Can a catalyst make a non-spontaneous reaction occur?', X('No') + ': it only speeds up reactions that are already spontaneous')
-d.basic('Intuition: catalyst as a mountain tunnel?', 'Same start and end points (same ΔH, ΔG), but a ' + T('lower pass') + ' through the mountain, so far more travellers make it across per hour')
+d.basic('Intuition: catalyst as a mountain tunnel?', 'Same start and end points (same ΔH, ΔG), but a ' + T('lower pass') + ' through the mountain.<br>So far more travellers make it across per hour')
 
 # ---------------------------------------------------------------- 3.5 Collision theory
 d.sec('3.5-collision-theory')

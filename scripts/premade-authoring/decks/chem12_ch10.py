@@ -12,7 +12,7 @@ img = lambda name: {'termImage': M + name + '.webp'}
 
 # ---------------------------------------------------------------- 10.1 Carbohydrates
 d.sec('10.1-carbohydrates')
-d.basic('Origin of the name "carbohydrate", and why it fails?', 'Formula Cₓ(H₂O)ᵧ ("hydrates of carbon"); but ' + X('acetic acid') + ' fits and is not one, ' + X('rhamnose C₆H₁₂O₅') + ' is one but doesn’t fit')
+d.basic('Origin of the name "carbohydrate", and why it fails?', 'Formula Cₓ(H₂O)ᵧ ("hydrates of carbon"), but it fails:<br>' + X('acetic acid') + ' fits and is not one<br>' + X('rhamnose C₆H₁₂O₅') + ' is one but doesn’t fit')
 d.basic('Chemical definition of carbohydrates?', T('Optically active polyhydroxy aldehydes or ketones') + ', or compounds giving these on hydrolysis')
 d.basic('What are sugars and saccharides?', 'Sweet carbohydrates are sugars (sucrose in homes, ' + T('lactose') + ' in milk); saccharide from Greek ' + I('sakcharon') + ' = sugar')
 
@@ -50,7 +50,7 @@ d.basic('Haworth structures of fructose anomers?', 'α- and β-D-(–)-fructofur
 
 d.sec('10.1.3-disaccharides')
 d.basic('What is a glycosidic linkage?', 'Oxide linkage between two monosaccharides via O, with loss of water')
-d.basic('When is a disaccharide non-reducing?', 'When the reducing groups (–CHO / C=O) of both units are ' + T('bonded') + ' (sucrose); free ones → reducing (maltose, lactose)')
+d.basic('When is a disaccharide non-reducing?', 'When the reducing groups (–CHO / C=O) of both units are ' + T('bonded') + ' (sucrose)<br>Free ones → reducing (maltose, lactose)')
 d.basic('Sucrose: linkage and reducing nature?', 'C1 of ' + T('α-D-glucose') + ' to C2 of ' + T('β-D-fructose') + ': ' + X('non-reducing'), **fig('fig_sucrose'))
 d.basic('Why is hydrolysed sucrose called invert sugar?', 'Rotation changes from ' + T('dextro (+) to laevo (–)') + ': fructose (−92.4°) outweighs glucose (+52.5°)')
 d.basic('Maltose: composition, linkage, reducing?', 'Two ' + T('α-D-glucose') + ', ' + T('C1–C4') + '; free –CHO at C1 of second unit: ' + T('reducing'), **fig('fig_maltose'))
@@ -87,7 +87,7 @@ d.basic('Amphoteric nature of amino acids?', 'Zwitter ion reacts with both ' + T
 d.basic('Which natural α-amino acid is optically inactive?', T('Glycine') + ' (no asymmetric carbon); others mostly ' + T('L-configuration') + ' (–NH₂ on left)')
 
 d.sec('10.2.3-structure-of-proteins')
-d.basic('What is a peptide bond?', 'Amide –CO–NH– from –COOH of one amino acid and –NH₂ of another with loss of H₂O; glycine + alanine → ' + T('glycylalanine (Gly-Ala)'), **fig('fig_peptide_bond'))
+d.basic('What is a peptide bond?', 'Amide –CO–NH– from –COOH of one amino acid and –NH₂ of another, with loss of H₂O.<br>glycine + alanine → ' + T('glycylalanine (Gly-Ala)'), **fig('fig_peptide_bond'))
 d.basic('Dipeptide, tripeptide, polypeptide, protein?', '2, 3 amino acids; ' + T('> 10') + ' = polypeptide; ' + T('> 100') + ' residues, mass ' + T('> 10,000 u') + ' = protein (insulin, 51 residues, still called a protein)')
 d.basic('Fibrous proteins?', 'Parallel chains held by H-bonds and ' + T('disulphide') + ' bonds; water-' + X('insoluble') + '; ' + E('keratin (hair, wool, silk), myosin (muscles)'))
 d.basic('Globular proteins?', 'Chains coil into a sphere; usually water-' + T('soluble') + '; ' + E('insulin, albumins'))
@@ -156,7 +156,7 @@ d.cloze('Hormone types: steroids = {{c1::estrogens, androgens}}; polypeptides = 
 d.basic('Insulin vs glucagon?', T('Insulin') + ' lowers blood glucose; ' + T('glucagon') + ' raises it: together they regulate it')
 d.basic('Thyroxine: nature and disorders?', 'Iodinated derivative of ' + T('tyrosine') + '; low → hypothyroidism (lethargy, obesity, goitre); high → hyperthyroidism; iodised salt prevents it')
 d.basic('Adrenal cortex hormones?', T('Glucocorticoids') + ': carbohydrate metabolism, inflammation, stress. ' + T('Mineralocorticoids') + ': water and salt excretion.')
-d.basic('Addison’s disease?', 'Adrenal cortex failure: hypoglycaemia, weakness, stress susceptibility; treated with glucocorticoids + mineralocorticoids')
+d.basic('Addison’s disease?', 'Adrenal cortex failure: hypoglycaemia, weakness, stress susceptibility<br>Treated with glucocorticoids + mineralocorticoids')
 d.basic('Sex hormones?', T('Testosterone') + ' (male characters), ' + T('estradiol') + ' (female characters, menstrual cycle), ' + T('progesterone') + ' (prepares uterus)')
 
 # ---------------------------------------------------------------- summary

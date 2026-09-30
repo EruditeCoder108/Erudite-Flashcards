@@ -129,7 +129,7 @@ d.basic('Meaning of negative vs positive E°?', T('Negative') + ': stronger redu
 d.basic('Strongest oxidant and strongest reductant in Table 7.1?', 'Oxidant: ' + T('F₂') + ' (+2.87 V). Reductant: ' + T('Li') + ' (−3.05 V).', **fig('tab_7_1_electrode_potentials'))
 d.basic('E° of Cu²⁺/Cu and Zn²⁺/Zn?', N('+0.34 V') + ' and ' + N('−0.76 V'))
 d.basic('Why does Zn displace Cu²⁺ but not the reverse? (intuition)', 'Zn²⁺/Zn has a ' + T('more negative') + ' E°: zinc gives up electrons more readily, like water flowing downhill')
-d.basic('Mnemonic for reading the E° table? (intuition)', '"' + T('Top-left grabs, bottom-right gives') + '": high E° oxidised forms are strong oxidants; low E° reduced forms are strong reductants')
+d.basic('Mnemonic for reading the E° table? (intuition)', '"' + T('Top-left grabs, bottom-right gives') + '"<br>High E° oxidised forms are strong oxidants<br>Low E° reduced forms are strong reductants')
 
 # ---------------------------------------------------------------- summary
 d.sec('summary')

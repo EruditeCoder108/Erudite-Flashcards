@@ -35,7 +35,7 @@ d.basic('First law of thermodynamics?', r'\( \Delta U = q + w \)' + ': energy of
 d.basic('Problem 5.1: ΔU for (i) adiabatic, work done on; (ii) heat lost, no work; (iii) work by system, heat supplied?', '(i) ΔU = w_ad (adiabatic wall). (ii) ΔU = −q (conducting wall). (iii) ΔU = q − w (closed system).')
 d.basic('Work against constant external pressure?', r'\( w = -p_{ex} \Delta V = -p_{ex}(V_f - V_i) \)', **fig('fig_5_5a_compression'))
 d.basic('On a p-V plot, what does work on the gas equal?', 'The ' + T('shaded area') + ' under the curve', **fig('fig_5_5b_finite_steps'))
-d.basic('What is a reversible process?', 'One that can be reversed at any moment by an ' + T('infinitesimal change') + '; proceeds infinitely slowly through equilibrium states', **fig('fig_5_5c_reversible'))
+d.basic('What is a reversible process?', 'One that can be reversed at any moment by an ' + T('infinitesimal change') + '.<br>It proceeds infinitely slowly through equilibrium states', **fig('fig_5_5c_reversible'))
 d.basic('Reversible isothermal work for an ideal gas?', r'\( w_{rev} = -2.303 \, nRT \log \frac{V_f}{V_i} \)')
 d.basic('What is free expansion, and the work done?', 'Expansion into ' + T('vacuum') + ' (p_ex = 0): ' + T('w = 0') + ', reversible or not')
 d.basic('For isothermal expansion of an ideal gas, ΔU = ?', N('0') + ' (U depends only on T), so q = −w')
@@ -106,7 +106,7 @@ d.basic('ΔcH° of butane (LPG) and glucose?', 'Butane ' + N('−2658 kJ/mol') +
 steps_card(d, 'Problem 5.9', 'ΔcH(benzene) = −3267 kJ/mol. ΔfH(benzene)? (ΔfH CO₂ −393.5, H₂O −285.83)', 'C₆H₆ + 15/2 O₂ → 6CO₂ + 3H₂O',
            ['6(−393.5) + 3(−285.83) = −3218.5', 'ΔfH = −3218.5 − (−3267.0)', '= <b>+48.5 kJ mol⁻¹</b>'], 2, 'Enthalpy of formation of benzene', '+48.5 kJ/mol')
 d.basic('Correction: NCERT’s Problem 5.9 working prints the final ΔfH(benzene) with a minus sign. Right sign?', T('+48.5 kJ/mol') + ': −3218.5 − (−3267.0) is positive; reversing the combustion equation gives +3267, not −3267')
-d.basic('Define enthalpy of atomization.', 'Enthalpy change to break ' + T('one mole of bonds completely') + ' into gaseous atoms (e.g. H₂ → 2H, 435 kJ/mol; CH₄ → C + 4H, 1665 kJ/mol)')
+d.basic('Define enthalpy of atomization.', 'Enthalpy change to break ' + T('one mole of bonds completely') + ' into gaseous atoms.<br>e.g. H₂ → 2H, 435 kJ/mol<br>e.g. CH₄ → C + 4H, 1665 kJ/mol')
 d.basic('For Na(s) → Na(g), atomization enthalpy equals?', 'Enthalpy of ' + T('sublimation') + ' (108.4 kJ/mol)')
 d.basic('Bond dissociation enthalpy vs mean bond enthalpy?', T('Dissociation') + ': for a specific bond. ' + T('Mean') + ': average over identical bonds, e.g. C–H in CH₄ = 1665/4 = ' + N('416 kJ/mol') + '.')
 d.basic('Why do the 4 C–H bonds of CH₄ need different energies (427, 439, 452, 347)?', 'Each step breaks a bond in a ' + T('different fragment') + ' (CH₄, CH₃, CH₂, CH)')
@@ -131,7 +131,7 @@ d.basic('Is decrease in enthalpy enough for spontaneity?', X('No') + ': some end
 d.basic('Enthalpy diagram of an exothermic reaction?', 'Products lie ' + T('below') + ' reactants; ΔrH negative', **fig('fig_5_10a_exothermic'))
 d.basic('What drives diffusion of two gases when ΔH = 0?', 'Increase in ' + T('entropy') + ' (disorder)', **fig('fig_5_11_diffusion'))
 d.basic('Entropy change for a reversible process?', r'\( \Delta S = \frac{q_{rev}}{T} \)')
-d.basic('Why does heat added at low T raise entropy more? (intuition)', 'A cold system is ordered, so the same heat causes a ' + T('bigger relative increase') + ' in randomness (like a sneeze in a quiet library vs a busy street)')
+d.basic('Why does heat added at low T raise entropy more? (intuition)', 'A cold system is ordered, so the same heat causes a ' + T('bigger relative increase') + ' in randomness.<br>(Like a sneeze in a quiet library vs a busy street)')
 d.basic('Entropy order of solid, liquid, gas?', T('Solid < liquid < gas'))
 d.basic('Criterion for spontaneity in terms of entropy?', r'\( \Delta S_{total} = \Delta S_{sys} + \Delta S_{surr} > 0 \)' + '; at equilibrium ΔS_total = 0')
 d.basic('Does ΔU distinguish reversible from irreversible expansion?', X('No') + ' (ΔU = 0 for both isothermally); ' + T('ΔS_total') + ' does')
@@ -160,7 +160,7 @@ d.basic('ΔrG° for 3/2 O₂ → O₃ at 298 K, Kp = 2.47 × 10⁻²⁹? (Proble
 d.basic('K at 298 K if ΔrG° = −13.6 kJ/mol? (Problem 5.13)', 'log K = 2.38 → K = ' + N('2.4 × 10²'))
 steps_card(d, 'Problem 5.14', 'N₂O₄ ⇌ 2NO₂ is 50% dissociated at 60 °C, 1 atm. ΔG°?', 'Start with 1 mol N₂O₄.',
            ['Mol: N₂O₄ 0.5, NO₂ 1.0; total 1.5', 'Kp = (1/1.5)² / (0.5/1.5) = 1.33 atm', 'ΔG° = −2.303 × 8.314 × 333 × log 1.33', '= <b>≈ −790 J mol⁻¹ (−0.79 kJ mol⁻¹)</b>'], 3, 'ΔG° of N₂O₄ dissociation', '≈ −0.79 kJ/mol')
-d.basic('Correction: NCERT prints ΔG° = −763.8 kJ/mol in Problem 5.14. Right answer?', '2.303 × 8.314 × 333 × 0.1239 ≈ ' + T('790 J') + ', so ΔG° ≈ ' + N('−0.79 kJ/mol') + '. Sanity check: K ≈ 1 always means ΔG° ≈ 0, never hundreds of kJ.')
+d.basic('Correction: NCERT prints ΔG° = −763.8 kJ/mol in Problem 5.14. Right answer?', '2.303 × 8.314 × 333 × 0.1239 ≈ ' + T('790 J') + ', so ΔG° ≈ ' + N('−0.79 kJ/mol') + '<br>Sanity check: K ≈ 1 always means ΔG° ≈ 0, never hundreds of kJ')
 
 # ---------------------------------------------------------------- summary
 d.sec('summary')

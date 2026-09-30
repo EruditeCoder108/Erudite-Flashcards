@@ -110,7 +110,7 @@ table_card(d, 'Deviations', 'Sign?', [
     ('Positive deviation: ΔmixH', '> 0 (endothermic)', False), ('Positive deviation: ΔmixV', '> 0 (expands)', False),
     ('Negative deviation: ΔmixH', '< 0 (exothermic)', True), ('Negative deviation: ΔmixV', '< 0 (contracts)', True)],
     note='Teacher addition, standard in JEE/NEET: weaker A–B forces absorb heat and loosen packing.', term='ΔH and ΔV of mixing for non-ideal solutions')
-d.basic('What is an azeotrope?', 'A binary mixture with the ' + T('same composition in liquid and vapour') + ', boiling at constant T; cannot be separated by fractional distillation')
+d.basic('What is an azeotrope?', 'A binary mixture with the ' + T('same composition in liquid and vapour') + ', boiling at constant T.<br>It cannot be separated by fractional distillation')
 d.basic('Which deviation gives a minimum boiling azeotrope? Example?', T('Large positive') + ' deviation; ' + E('ethanol–water') + ' (~95% ethanol by volume)')
 d.basic('Which deviation gives a maximum boiling azeotrope? Example?', T('Large negative') + ' deviation; ' + E('HNO₃–water') + ' (68% HNO₃, 32% water, b.p. ' + N('393.5 K') + ')')
 d.basic('Why can’t fermentation + distillation give 100% ethanol? (intuition)', 'At ~95% the vapour has the same composition as the liquid, so distillation stops enriching it')
@@ -171,7 +171,7 @@ d.occlusion('Figure 1.9 · Osmosis in a thistle funnel', M + 'fig_1_9_thistle_fu
 d.basic('Define osmotic pressure (Π).', 'The ' + T('excess pressure') + ' that must be applied to the solution to just stop osmosis', **fig('fig_1_10_osmotic_pressure'))
 d.basic('Osmotic pressure formula?', r'\( \Pi = C R T = \frac{n_2}{V} R T \)' + ' (C = molarity)')
 d.basic('Molar mass from osmotic pressure?', r'\( M_2 = \frac{w_2 R T}{\Pi V} \)')
-d.basic('Why is osmotic pressure preferred for proteins and polymers?', 'Measured at ' + T('room temperature') + ', uses molarity, and Π is ' + T('large even for dilute solutions') + '; biomolecules are heat-sensitive')
+d.basic('Why is osmotic pressure preferred for proteins and polymers?', 'Measured at ' + T('room temperature') + '<br>Uses molarity<br>Π is ' + T('large even for dilute solutions') + '<br>Biomolecules are heat-sensitive')
 steps_card(d, 'Example 1.11', '1.26 g protein in 200 cm³; Π = 2.57 × 10⁻³ bar at 300 K. M₂?', 'R = 0.083 L bar/(mol K).',
            ['M₂ = w₂RT/(ΠV)', '= 1.26 × 0.083 × 300 / (2.57 × 10⁻³ × 0.200)', '= <b>61,022 g mol⁻¹</b>'], 2, 'Molar mass of a protein', '61,022 g/mol')
 d.basic('Osmotic pressure of 1.0 g polymer (M 185,000) in 450 mL water at 37 °C? (Intext 1.12)', 'C = 1.20 × 10⁻² mol m⁻³; Π = CRT = ' + N('30.9 Pa'))
@@ -181,7 +181,7 @@ d.basic('Hypertonic vs hypotonic for red cells?', T('Hypertonic') + ' (> 0.9%): 
 d.basic('Why do raw mangoes shrivel in brine?', 'They lose water to the concentrated salt solution by ' + T('osmosis'))
 d.basic('What is edema?', 'Puffiness from water retention in tissues after a lot of ' + T('salt') + ' (osmosis)')
 d.basic('Why does salting meat or sugaring fruit preserve it?', 'Bacteria lose water by osmosis, ' + T('shrivel and die'))
-d.basic('Intuition: why does solvent flow into the solution?', 'Pure solvent has higher ' + T('escaping tendency') + ' (chemical potential); like water vapour moving to a drier room, it moves to where it is "diluted"')
+d.basic('Intuition: why does solvent flow into the solution?', 'Pure solvent has higher ' + T('escaping tendency') + ' (chemical potential).<br>Like water vapour moving to a drier room, it moves to where it is "diluted"')
 
 d.sec('1.6.5-reverse-osmosis')
 d.basic('What is reverse osmosis?', 'Applying pressure ' + T('greater than Π') + ' on the solution side, so pure solvent flows out of the solution', **fig('fig_1_11_reverse_osmosis'))

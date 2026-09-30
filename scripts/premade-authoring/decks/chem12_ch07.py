@@ -12,7 +12,7 @@ img = lambda name: {'termImage': M + name + '.webp'}
 
 # ---------------------------------------------------------------- intro
 d.sec('7.0-introduction')
-d.basic('Alcohol vs phenol vs ether?', T('Alcohol') + ': –OH on an aliphatic carbon (CH₃OH). ' + T('Phenol') + ': –OH on an aromatic carbon (C₆H₅OH). ' + T('Ether') + ': R–O–R / Ar–O–R (CH₃OCH₃).')
+d.basic('Alcohol vs phenol vs ether?', T('Alcohol') + ': –OH on an aliphatic carbon (CH₃OH)<br>' + T('Phenol') + ': –OH on an aromatic carbon (C₆H₅OH)<br>' + T('Ether') + ': R–O–R / Ar–O–R (CH₃OCH₃)')
 d.basic('Everyday uses (chapter opener)?', 'Alcohols → detergents, phenols → ' + T('antiseptics') + ', ethers → ' + T('fragrances') + '; ethanol in wood-polishing spirit; sugar, cotton, paper contain –OH')
 
 # ---------------------------------------------------------------- 7.1 Classification
@@ -58,7 +58,7 @@ d.basic('Reducing carboxylic acids to alcohols?', T('LiAlH₄') + ' → 1° alco
 d.basic('Commercial route from acids to alcohols, and why?', 'LiAlH₄ is ' + X('expensive') + ': convert acid to ' + T('ester') + ', then catalytic hydrogenation', **fig('fig_ester_hydrogenation'))
 d.basic('Grignard + carbonyl: mechanism?', 'Nucleophilic addition of R–MgX to C=O → ' + T('adduct') + '; hydrolysis → alcohol + Mg(OH)X', **fig('fig_grignard_mechanism'))
 d.basic('Grignard product with HCHO, other aldehydes, ketones?', T('1°') + ', ' + T('2°') + ', ' + T('3°') + ' alcohol respectively', **fig('fig_grignard_overall'))
-d.basic('Mnemonic: Grignard + carbonyl → which alcohol?', 'Count the R groups the carbonyl carbon ends with: HCHO has 0 → R adds 1 → 1°. RCHO has 1 → 2°. R₂CO has 2 → 3°.')
+d.basic('Mnemonic: Grignard + carbonyl → which alcohol?', 'Count the R groups the carbonyl carbon ends with:<br>HCHO has 0 → R adds 1 → 1°<br>RCHO has 1 → 2°<br>R₂CO has 2 → 3°')
 d.basic('Products (Example 7.2): catalytic reduction of butanal; propene + dil. H₂SO₄; propanone + CH₃MgBr then H₂O?', T('Butan-1-ol') + '; ' + T('propan-2-ol') + '; ' + T('2-methylpropan-2-ol'))
 d.basic('Primary alcohols from HCHO + Grignard (Intext 7.4): (CH₃)₂CHCH₂OH and cyclohexylmethanol?', T('(CH₃)₂CHMgBr') + ' + HCHO; ' + T('cyclohexylmagnesium bromide') + ' + HCHO')
 
@@ -101,7 +101,7 @@ d.basic('Effect of –NO₂ and –CH₃ on phenol acidity?', '–NO₂ (EWG) ' 
 d.cloze('pKa values: o-nitrophenol {{c1::7.2}}; m-nitrophenol {{c2::8.3}}; p-nitrophenol {{c3::7.1}}; phenol {{c4::10.0}}; ethanol {{c5::15.9}}.')
 d.basic('Increasing acid strength (Example 7.4): propan-1-ol, 2,4,6-trinitrophenol, 3-nitrophenol, 3,5-dinitrophenol, phenol, 4-methylphenol?', 'Propan-1-ol < 4-methylphenol < phenol < 3-nitrophenol < 3,5-dinitrophenol < 2,4,6-trinitrophenol')
 d.basic('Why is picric acid a strong acid?', 'Three ' + T('–NO₂') + ' groups pull electrons and stabilise the phenoxide')
-d.basic('Intuition: why do EWGs at o/p help more than at m?', 'Phenoxide’s negative charge sits on o/p carbons; an NO₂ there can ' + T('soak up') + ' that charge by resonance, at meta only inductively')
+d.basic('Intuition: why do EWGs at o/p help more than at m?', 'Phenoxide’s negative charge sits on o/p carbons.<br>An NO₂ there can ' + T('soak up') + ' that charge by resonance; at meta only inductively')
 
 d.sec('7.4.4b-esterification')
 d.basic('Esterification of alcohols and phenols?', 'With RCOOH or (RCO)₂O (conc. H₂SO₄ catalyst) or RCOCl (' + T('pyridine') + ') → esters', **fig('fig_esterification'))
@@ -144,14 +144,14 @@ d.basic('Modern preparation of picric acid?', 'Phenol + conc. H₂SO₄ → ' + 
 d.basic('Phenol + Br₂ in CS₂/CHCl₃ at 273 K?', T('Monobromophenols') + ': p-bromophenol major, o- minor', **fig('fig_phenol_br2_cs2'))
 d.basic('Why does phenol brominate without FeBr₃?', 'Strongly activating –OH ' + T('polarises Br₂') + ' itself')
 d.basic('Phenol + bromine water?', T('2,4,6-Tribromophenol') + ': white precipitate', **fig('fig_tribromophenol'))
-d.basic('Intuition: why solvent decides mono- vs tribromination?', 'Water ionises phenol to the super-activated ' + T('phenoxide') + ' and polarises Br₂ further, so all o/p sites react; non-polar CS₂ keeps it gentle')
+d.basic('Intuition: why solvent decides mono- vs tribromination?', 'Water ionises phenol to the super-activated ' + T('phenoxide') + ' and polarises Br₂ further, so all o/p sites react.<br>Non-polar CS₂ keeps it gentle')
 d.basic('Kolbe’s reaction?', 'Phenol + NaOH → phenoxide; + ' + T('CO₂') + ' then H⁺ → ' + T('2-hydroxybenzoic acid (salicylic acid)'), **fig('fig_kolbe'))
 d.basic('Why does Kolbe’s reaction use phenoxide, not phenol?', 'Phenoxide is ' + T('more reactive') + ', enough to attack the weak electrophile CO₂')
 d.basic('Reimer–Tiemann reaction?', 'Phenol + ' + T('CHCl₃ + aq. NaOH') + ' → substituted benzal chloride intermediate → hydrolysis → ' + T('salicylaldehyde') + ' (–CHO at ortho)', **fig('fig_reimer_tiemann'))
 d.basic('Mnemonic: Kolbe vs Reimer–Tiemann?', T('K') + 'olbe adds ' + T('C') + 'O₂ → –COOH. ' + T('R') + 'eimer–Tiemann uses ' + T('CHCl₃') + ' → –CHO. Both go ortho.')
 d.basic('Phenol + zinc dust (heat)?', T('Benzene') + ' + ZnO', **fig('fig_phenol_zinc'))
 d.basic('Oxidation of phenol with chromic acid? In air?', T('Benzoquinone') + ' (conjugated diketone). Air: slowly → dark quinone mixtures.', **fig('fig_benzoquinone'))
-d.basic('Products with HCl–ZnCl₂, HBr, SOCl₂ (Intext 7.6): butan-1-ol; 2-methylbutan-2-ol?', '1-Chlorobutane, 1-bromobutane, 1-chlorobutane; 2-chloro-2-methylbutane, 2-bromo-2-methylbutane, 2-chloro-2-methylbutane')
+d.basic('Products with HCl–ZnCl₂, HBr, SOCl₂ (Intext 7.6): butan-1-ol; 2-methylbutan-2-ol?', 'Butan-1-ol: 1-chlorobutane, 1-bromobutane, 1-chlorobutane<br>2-Methylbutan-2-ol: 2-chloro-2-methylbutane, 2-bromo-2-methylbutane, 2-chloro-2-methylbutane')
 d.basic('Acid-catalysed dehydration (Intext 7.7): 1-methylcyclohexanol; butan-1-ol?', T('1-Methylcyclohexene') + '; ' + T('but-2-ene') + ' (major, Saytzeff after rearrangement)')
 
 # ---------------------------------------------------------------- 7.5 Commercial alcohols
@@ -162,7 +162,7 @@ d.basic('Fermentation: enzymes?', T('Invertase') + ': sucrose → glucose + fruc
 d.basic('Conditions and limit of fermentation?', T('Anaerobic') + '; zymase stops above ~' + N('14%') + ' alcohol; air oxidises ethanol to ethanoic acid (spoils taste)')
 d.basic('Ethanol: b.p. and uses?', N('351 K') + '; solvent in paint industry, making carbon compounds; modern industrial route: hydration of ethene')
 d.basic('What is denatured alcohol?', 'Commercial ethanol made undrinkable with ' + T('CuSO₄') + ' (colour) and ' + T('pyridine') + ' (foul smell)')
-d.basic('Effects of drinking ethanol?', 'Acts on the CNS: impairs judgment, lowers inhibitions; high amounts cause nausea, unconsciousness, can stop breathing')
+d.basic('Effects of drinking ethanol?', 'Acts on the CNS: impairs judgment, lowers inhibitions<br>High amounts cause nausea, unconsciousness, and can stop breathing')
 
 # ---------------------------------------------------------------- 7.6 Ethers
 d.sec('7.6.1-preparation-of-ethers')
