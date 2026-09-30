@@ -12,7 +12,7 @@ start = int(args[1]) if len(args) > 1 else 0
 count = int(args[2]) if len(args) > 2 else 8
 cards = [c for c in deck['cards'] if c.get('noteType') in ('basic', 'cloze')]
 if '--fmt' in sys.argv:
-    cards = [fmt.format_card(copy.deepcopy(c)) for c in cards]
+    cards = [fmt.format_card(copy.deepcopy(c), fmt.subject_of(args[0])) for c in cards]
 idx = next((a[6:] for a in sys.argv if a.startswith('--idx=')), '')
 cards = [cards[int(i)] for i in idx.split(',')] if idx else cards[start:start + count]
 

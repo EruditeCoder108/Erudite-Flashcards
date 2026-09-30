@@ -19,7 +19,7 @@ for f in sorted(glob.glob(os.path.join(ROOT, 'premade-cards', '*', '*', '*', 'de
             continue
         tot += 1
         c2 = copy.deepcopy(c)
-        fmt.format_card(c2)
+        fmt.format_card(c2, fmt.subject_of(f))
         if c2 == c:
             continue
         ch += 1

@@ -36,7 +36,7 @@ def to_tex(s):
     for g, t in GREEK.items():
         s = s.replace(g, t)
     s = re.sub(r'\b(sin|cos|tan|cot|sec|log|ln|det|adj)\b', r'\\\1 ', s)
-    s = re.sub(r'^(-?)(\d+|[a-zA-Z])/(\d+|[a-zA-Z])$', lambda m: m.group(1) + r'\frac{' + m.group(2) + '}{' + m.group(3) + '}', s)
+    s = re.sub(r'^(-?)(\d+|[a-zA-Z])/(\d+|[a-zA-Z])$', lambda m: m.group(1) + r'\dfrac{' + m.group(2) + '}{' + m.group(3) + '}', s)
     if re.search(r'[^\x00-\x7f]', s):
         return None
     return s.strip()
@@ -55,7 +55,8 @@ def matrix_tex(m):
         rows.append(cells)
     if len({len(r) for r in rows}) != 1:
         return None
-    return r'\begin{bmatrix}' + r' \\ '.join(' & '.join(r) for r in rows) + r'\end{bmatrix}'
+    gap = r' \\[0.7em] ' if any('frac' in c for r in rows for c in r) else r' \\ '   # tall fractions need room between rows
+    return r'\begin{bmatrix}' + gap.join(' & '.join(r) for r in rows) + r'\end{bmatrix}'
 
 
 TAG = re.compile(r'(<[^>]+>)')
@@ -88,6 +89,11 @@ def _run_tex(run):
 
 def matrices(text):
     """Replace matrix runs in the text nodes of an HTML fragment. Tags stay put; a run inside a span is fine."""
+    if 'bmatrix' in text:   # already converted: matrix fractions use \dfrac (\frac was tiny inside matrices)
+        text = text.replace('\\frac{', '\\dfrac{')
+        if 'dfrac' in text and '[0.7em]' not in text:
+            text = text.replace(' \\\\ ', ' \\\\[0.7em] ')
+        return text
     if '\\(' in text or '\\[' in text or '{{' in text:
         return text
     parts = TAG.split(text)
@@ -180,6 +186,7 @@ RESULT = re.compile(r':\s+(<span style="color:#f08c00">(?:(?!</span>).)*</span>\
 
 
 def plain_len(t):
+    t = re.sub(r'\\\[.*?\\\]|\\\(.*?\\\)', 'M', t)   # converted math counts as one char, so later passes never newly fire
     return len(re.sub(r'<[^>]+>', '', t))
 
 
@@ -200,38 +207,169 @@ def tidy_display(t):
 
 
 
-def format_text(text, cloze=False, answer=False):
+# -------------------------------------------------------------------- lists, chains, result equations
+def _holdtags(text):
+    tags = []
+    def hold(m):
+        tags.append(m.group(0)); return '\x00%d\x00' % (len(tags) - 1)
+    return TAG.sub(hold, text), tags
+
+
+def _release(p, tags):
+    return re.sub(r'\x00(\d+)\x00', lambda m: tags[int(m.group(1))], p)
+
+
+def numbered_paren(text):
+    """1) do this 2) do that  ->  one step per line (same idea as '1. 2.')."""
+    if '{{' in text:
+        return text
+    p, tags = _holdtags(text)
+    nums = [(m.start(), m.group(1)) for m in re.finditer(r'(?:(?<=\s)|^)(\d)\)(?=\s)', p)]
+    if [k for _, k in nums][:2] == ['1', '2']:
+        p = _break_before(p, [pos for pos, _k in nums])
+    return _release(p, tags)
+
+
+def semicolon_lists(text):
+    """a; b; c (3+ items, none inside brackets)  ->  one per line."""
+    if '\n' in text or '<br' in text or plain_len(text) < 60:
+        return text
+    p, tags = _holdtags(text)     # cloze braces {{c1::..}} raise the depth, so only outer semicolons split
+    depth, cuts = 0, []
+    for i, ch in enumerate(p):
+        if ch in '({[':
+            depth += 1
+        elif ch in ')}]':
+            depth = max(0, depth - 1)
+        elif ch == ';' and depth == 0 and p[i + 1:i + 2] == ' ':
+            cuts.append(i)
+    if len(cuts) < 2:
+        return text
+    items, last = [], 0
+    for i in cuts:
+        items.append(p[last:i]); last = i + 2
+    items.append(p[last:])
+    if any(len(PH.sub('', it).strip()) < 4 or len(PH.sub('', it)) > 110 for it in items):
+        return text
+    return _release('\n'.join(items), tags)
+
+
+def derivation_chains(text):
+    """Steps of a derivation joined by ' → ' where every step is an equation: one step per line, arrow leads the line."""
+    if '\n' in text or '{{' in text or '<br' in text or plain_len(text) < 60:
+        return text
+    p, tags = _holdtags(text)
+    segs = p.split(' → ')
+    if len(segs) < 3 or ';' in PH.sub('', p):
+        return text
+    if not all(re.search(r'[=≠≈≤≥<>]', PH.sub('', s)) for s in segs[:-1]):
+        return text
+    if any(re.search(r'[0-9a-z)]\. [A-Za-z]', PH.sub('', s)) for s in segs):
+        return text   # more than one derivation in the card
+    return _release('\n→ '.join(segs), tags)
+
+
+UNI = {'−': '-', '×': r'\times ', '·': r'\cdot ', '÷': r'\div ', '≤': r'\le ', '≥': r'\ge ', '≠': r'\ne ', '≈': r'\approx ',
+       '∈': r'\in ', '∉': r'\notin ', '⊂': r'\subset ', '⊆': r'\subseteq ', '∪': r'\cup ', '∩': r'\cap ', '⇒': r'\Rightarrow ',
+       '⇔': r'\Leftrightarrow ', '∞': r'\infty ', 'Σ': r'\sum ', '∑': r'\sum ', '∫': r'\int ', '°': r'^{\circ}', '′': "'",
+       '∴': r'\therefore ', '±': r'\pm ', '∠': r'\angle ', '⊥': r'\perp ', '∥': r'\parallel ', 'Δ': r'\Delta ', 'φ': r'\phi ',
+       'ϕ': r'\phi ', 'ε': r'\varepsilon ', 'δ': r'\delta ', 'σ': r'\sigma ', 'ρ': r'\rho ', 'τ': r'\tau ', 'ω': r'\omega ',
+       'Ω': r'\Omega ', '∂': r'\partial ', '→': r'\to ', '≡': r'\equiv ', '∼': r'\sim ', '…': r'\ldots ', '⋯': r'\cdots ',
+       '½': r'\tfrac{1}{2}', '¼': r'\tfrac{1}{4}', '¾': r'\tfrac{3}{4}'}
+SUB2 = {**SUB, 'ₐ': 'a', 'ₑ': 'e', 'ₒ': 'o', 'ₓ': 'x', 'ᵣ': 'r', 'ₚ': 'p', 'ₛ': 's', 'ₜ': 't', 'ₗ': 'l', '₊': '+', '₋': '-'}
+SUP2 = {**SUP, '⁺': '+', 'ᵀ': 'T', 'ᵐ': 'm', 'ˣ': 'x', 'ʸ': 'y', 'ᵃ': 'a', 'ᵇ': 'b'}
+WORDS = TRIG | {'lim', 'max', 'min', 'sup', 'inf', 'mod', 'gcd', 'exp'}
+
+
+def eq_tex(s):
+    """Whole-equation Unicode -> LaTeX, or None if anything is unsure. Only meaning-preserving substitutions."""
+    s = s.strip().rstrip('.')
+    if not 10 <= len(s) <= 28 or not re.search(r'[=≠≈≤≥]', s) or re.search(r'[&#_^\$~<>]', s):
+        return None   # display math cannot wrap, so only short equations become blocks
+    for w in re.findall(r'[A-Za-z]{2,}', s):
+        if w not in WORDS and not (w.isupper() and len(w) <= 4):
+            return None
+    if re.search(r'\d\s+[A-Za-z]\b', s):   # "2.23 m": a unit, not a variable
+        return None
+    s = re.sub(r'(∈|∉|⊂|⊆)\s*([NZQRC])\b', lambda m: m.group(1) + r' \mathbb{' + m.group(2) + '}', s)
+    s = s.replace('{', r'\{').replace('}', r'\}').replace('%', r'\%')
+    s = re.sub(r'√\(([^()]+)\)', lambda m: '\\sqrt{' + m.group(1) + '}', s)
+    s = re.sub(r'√(\w+)', lambda m: '\\sqrt{' + m.group(1) + '}', s)
+    s = re.sub(r'([₀-₉ᵢⱼₖₙₘₐₑₒₓᵣₚₛₜₗ₊₋]+)', lambda m: _script(m, SUB2, '_'), s)
+    s = re.sub(r'([⁰¹²³⁴⁵⁶⁷⁸⁹ⁿ⁻⁺ᵀᵐˣʸᵃᵇ]+)', lambda m: _script(m, SUP2, '^'), s)
+    for k, v in UNI.items():
+        s = s.replace(k, v)
+    for g, t in GREEK.items():
+        s = s.replace(g, t)
+    s = re.sub(r'\b(sin|cos|tan|cot|sec|log|ln|det|adj|lim|max|min)\b', lambda m: '\\' + m.group(1) + ' ', s)
+    if re.search(r'[^\x00-\x7f]', s):
+        return None
+    return s.strip()
+
+
+FINAL_SPAN = re.compile(r'(<span style="color:#[0-9a-f]{6}">)([^<>]+)(</span>)(\.?)$')
+
+
+def result_equations(text):
+    """A coloured result/formula that ends the text and is a clean equation -> display block (tinted box)."""
+    if '\\(' in text or '\\[' in text or '{{' in text or '<br' in text:
+        return text
+    m = FINAL_SPAN.search(text)
+    if not m:
+        return text
+    before = re.sub(r'<[^>]+>', '', text[:m.start()]).rstrip()
+    if before and not before.endswith(':'):   # the equation must begin at the span, e.g. "Result:" then the formula
+        return text
+    tex = eq_tex(m.group(2))
+    if tex is None:
+        return text
+    return text[:m.start()] + m.group(1) + '\\[' + tex + '\\]' + m.group(3)
+
+
+def format_text(text, cloze=False, answer=False, subject=None):
     if not text or not isinstance(text, str):
         return text
     t = text
     if not cloze:
         t = matrices(t)
+    elif '\n' not in t:
+        t = semicolon_lists(t)
     t = enumerations(t)
+    t = numbered_paren(t)
     t = re.sub(r'<br\s*/?>\n|\n<br\s*/?>', '<br>', t)
     t = leadins(t)
     if answer and not cloze:
+        t = derivation_chains(t)
+        t = semicolon_lists(t)
         t = long_answer(t)
+        if subject == 'mathematics':
+            t = result_equations(t)
     return tidy_display(t) if '\\[' in t else t
 
 
-def format_card(c):
+def format_card(c, subject=None):
     """Format a card dict in place (basic and cloze only; other types untouched)."""
     nt = c.get('noteType')
     if nt == 'basic':
         c['term'] = format_text(c.get('term'))
-        c['definition'] = format_text(c.get('definition'), answer=True)
+        c['definition'] = format_text(c.get('definition'), answer=True, subject=subject)
     elif nt == 'cloze':
         c['text'] = format_text(c.get('text'), cloze=True)
         if c.get('extra'):
-            c['extra'] = format_text(c['extra'], answer=True)
+            c['extra'] = format_text(c['extra'], answer=True, subject=subject)
     return c
+
+
+def subject_of(path):
+    return 'mathematics' if 'Mathematics' in path.replace('\\', '/') else None
 
 
 def format_deck_file(path, dry=False):
     d = json.load(open(path, encoding='utf8'))
     before = json.dumps(d['cards'], ensure_ascii=False)
+    sub = subject_of(path)
     for c in d['cards']:
-        format_card(c)
+        format_card(c, sub)
     changed = json.dumps(d['cards'], ensure_ascii=False) != before
     if changed and not dry:
         with open(path, 'w', encoding='utf8') as f:

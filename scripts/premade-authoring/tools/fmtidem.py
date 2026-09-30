@@ -12,7 +12,7 @@ for f in sorted(glob.glob(os.path.join(ROOT, 'premade-cards', '*', '*', '*', 'de
         if c['noteType'] not in ('basic', 'cloze'):
             continue
         c2 = copy.deepcopy(c)
-        fmt.format_card(c2)
+        fmt.format_card(c2, fmt.subject_of(f))
         if c2 != c:
             n += 1
             if shown < 6:

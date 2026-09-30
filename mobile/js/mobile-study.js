@@ -368,6 +368,24 @@
     return raw.includes('://') ? '' : raw;
   }
 
+  // Display math cannot wrap and the box no longer scrolls sideways (that stole card swipes),
+  // so shrink a block that is wider than its box until it fits, down to 60%.
+  function fitMathBlocks(root) {
+    if (!root) return;
+    root.querySelectorAll('.katex-display').forEach(block => {
+      const inner = block.querySelector('.katex');
+      if (!inner) return;
+      inner.style.removeProperty('font-size');
+      const available = block.clientWidth - 22;
+      // .katex is a block that always fills its box, so measure the formula itself: the inline .base runs inside it
+      let needed = 0;
+      inner.querySelectorAll('.katex-html > .base').forEach(base => { needed += base.offsetWidth; });
+      if (available > 0 && needed > available) {
+        inner.style.setProperty('font-size', `${Math.max(0.6, (available / needed) * 0.97).toFixed(3)}em`, 'important');
+      }
+    });
+  }
+
   function sanitizeRichText(value) {
     const raw = String(value || '').trim();
     if (!raw) return '';
@@ -2089,6 +2107,8 @@
       elements.definitionText.innerHTML = `<div class="card-text-inline">${cardData.sanitizedDefinition}</div>`;
       window.EruditeMath?.renderMath?.(elements.termText);
       window.EruditeMath?.renderMath?.(elements.definitionText);
+      fitMathBlocks(elements.termText);
+      fitMathBlocks(elements.definitionText);
       renderImage(elements.termImage, elements.termImageWrap, cardData.termImage, cardData, 'term');
       renderImage(elements.definitionImage, elements.definitionImageWrap, cardData.definitionImage, cardData, 'definition');
       renderCardBackground(elements.termBg, cardData, 'term');

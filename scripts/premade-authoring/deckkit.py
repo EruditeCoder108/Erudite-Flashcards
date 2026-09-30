@@ -71,7 +71,7 @@ class Deck:
 
     def write(self, path):
         for c in self.cards:
-            _fmt.format_card(c)   # readability pass: matrices, lists, lead-ins (idempotent)
+            _fmt.format_card(c, 'mathematics' if 'mathematics' in self.base_tags else None)   # readability pass: matrices, lists, lead-ins (idempotent)
         with open(path, 'w', encoding='utf8') as f:
             json.dump({'version': 1, 'name': self.name, 'className': self.class_name,
                        **({'description': self.description} if getattr(self, 'description', '') else {}),
