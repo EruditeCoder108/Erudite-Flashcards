@@ -101,7 +101,7 @@
     {
       "noteType": "basic",
       "term": "Example 3: L = lines in a plane, L₁ R L₂ iff L₁ ⟂ L₂. Which properties?",
-      "definition": "<span style=\"color:#3b82f6\">Symmetric only</span>. Not reflexive (a line is not ⟂ itself); not transitive (L₁ ⟂ L₂ ⟂ L₃ gives L₁ ∥ L₃, so (L₁, L₃) ∉ R)",
+      "definition": "<span style=\"color:#3b82f6\">Symmetric only</span>.<br><span style=\"color:#e5484d\">Not reflexive</span>: a line is not ⟂ to itself.<br><span style=\"color:#e5484d\">Not transitive</span>: L₁ ⟂ L₂ ⟂ L₃ gives L₁ ∥ L₃, so (L₁, L₃) ∉ R",
       "tags": [
         "class-12",
         "mathematics",
@@ -162,7 +162,7 @@
     {
       "noteType": "basic",
       "term": "Example 5: the classes of “2 divides a − b” on Z?",
-      "definition": "<span style=\"color:#3b82f6\">[0] = even integers</span> and <span style=\"color:#3b82f6\">[1] = odd integers</span>. [0] = [2r], [1] = [2r + 1], [0] ≠ [1], and Z = E ∪ O with E ∩ O = φ",
+      "definition": "<span style=\"color:#3b82f6\">[0] = even integers</span><br><span style=\"color:#3b82f6\">[1] = odd integers</span><br>[0] = [2r], [1] = [2r + 1], [0] ≠ [1]<br>Z = E ∪ O with E ∩ O = φ",
       "tags": [
         "class-12",
         "mathematics",
@@ -184,7 +184,7 @@
     {
       "noteType": "basic",
       "term": "Example 18: R₁, R₂ equivalence relations on A. Is R₁ ∩ R₂ an equivalence relation? R₁ ∪ R₂?",
-      "definition": "<span style=\"color:#22a35a\">R₁ ∩ R₂ is</span> (each property survives intersection). <span style=\"color:#e5484d\">R₁ ∪ R₂ need not be</span>: it can fail transitivity, e.g. R₁ = {1,2 together}, R₂ = {2,3 together} on {1,2,3} gives (1,2), (2,3) but not (1,3)",
+      "definition": "<span style=\"color:#22a35a\">R₁ ∩ R₂ is</span> an equivalence relation (each property survives intersection).<br><span style=\"color:#e5484d\">R₁ ∪ R₂ need not be</span>: it can fail transitivity.<br>Example on {1, 2, 3}: R₁ = {1, 2 together}, R₂ = {2, 3 together} give (1, 2) and (2, 3) but not (1, 3)",
       "tags": [
         "class-12",
         "mathematics",
@@ -217,7 +217,7 @@
     {
       "noteType": "basic",
       "term": "Example 20: R₁ = “x − y divisible by 3” on {1,...,9} equals R₂ = “x, y in the same one of {1,4,7}, {2,5,8}, {3,6,9}”. Why?",
-      "definition": "Each block is one residue class mod 3, so two numbers differ by a multiple of 3 exactly when they are in the same block:\n<span style=\"color:#f08c00\">R₁ = R₂</span>",
+      "definition": "Each block is one residue class mod 3, so two numbers differ by a multiple of 3 exactly when they are in the same block: <span style=\"color:#f08c00\">R₁ = R₂</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -250,7 +250,7 @@
     {
       "noteType": "basic",
       "term": "Ex 1.1 Q1(iii): R = {(x, y) : y is divisible by x} on {1, ..., 6}. Properties?",
-      "definition": "x | x: reflexive. 2 | 4 but 4 ∤ 2: not symmetric. x | y and y | z ⇒ x | z: transitive. <span style=\"color:#f08c00\">Reflexive and transitive, not symmetric</span>",
+      "definition": "<span style=\"color:#3b82f6\">Reflexive</span>: x | x.<br><span style=\"color:#e5484d\">Not symmetric</span>: 2 | 4 but 4 ∤ 2.<br><span style=\"color:#3b82f6\">Transitive</span>: x | y and y | z ⇒ x | z.<br><span style=\"color:#f08c00\">Reflexive and transitive, not symmetric</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -272,7 +272,7 @@
     {
       "noteType": "basic",
       "term": "Ex 1.1 Q1(v)(a),(b): “work at the same place”, “live in the same locality”?",
-      "definition": "<span style=\"color:#22a35a\">Both are equivalence relations</span>: same-place / same-locality is reflexive, symmetric and transitive (the classes are the workplaces / localities)",
+      "definition": "<span style=\"color:#22a35a\">Both are equivalence relations</span>.<br>“Same place” and “same locality” are reflexive, symmetric and transitive.<br>The classes are the workplaces / localities",
       "tags": [
         "class-12",
         "mathematics",
@@ -360,7 +360,7 @@
     {
       "noteType": "basic",
       "term": "Ex 1.1 Q7: R = {(x, y) : x and y books with the same number of pages}. Show equivalence.",
-      "definition": "Same page count: reflexive, symmetric (equality is symmetric), transitive (equality is transitive). <span style=\"color:#22a35a\">Equivalence ✓</span> (classes = books with a given page count)",
+      "definition": "Same page count:<br><span style=\"color:#3b82f6\">Reflexive</span> (a book has its own page count)<br><span style=\"color:#3b82f6\">Symmetric</span> (equality is symmetric)<br><span style=\"color:#3b82f6\">Transitive</span> (equality is transitive)<br><span style=\"color:#22a35a\">Equivalence ✓</span>: the classes are the books with a given page count",
       "tags": [
         "class-12",
         "mathematics",
@@ -470,7 +470,7 @@
     {
       "noteType": "basic",
       "term": "Ex 1.1 Q16: R = {(a, b) : a = b − 2, b > 6} on N. Which pair is in R?\n(A) (2,4)\n(B) (3,8)\n(C) (6,8)\n(D) (8,7)",
-      "definition": "Need b > 6 and a = b − 2: (6, 8): 8 > 6 and 6 = 8 − 2 ✓. (2,4) and (3,8) fail a = b − 2 or b > 6; (8,7) fails. <span style=\"color:#22a35a\">(C)</span>",
+      "definition": "Need b > 6 and a = b − 2.<br>(6, 8): 8 > 6 and 6 = 8 − 2 ✓<br>(2, 4) and (3, 8) fail a = b − 2 (and 4 is not above 6)<br>(8, 7) fails a = b − 2.<br><span style=\"color:#22a35a\">(C)</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -542,7 +542,7 @@
     {
       "noteType": "basic",
       "term": "How do you prove f is one-one? How do you prove it is onto?",
-      "definition": "<span style=\"color:#3b82f6\">One-one</span>: assume f(x₁) = f(x₂) and derive x₁ = x₂. <span style=\"color:#3b82f6\">Onto</span>: take any y in the codomain, solve y = f(x) for x, and check that x lies in the domain",
+      "definition": "<span style=\"color:#3b82f6\">One-one</span>:<br>1) Assume f(x₁) = f(x₂).<br>2) Derive x₁ = x₂.<br><span style=\"color:#3b82f6\">Onto</span>:<br>1) Take any y in the codomain.<br>2) Solve y = f(x) for x.<br>3) Check that x lies in the domain",
       "tags": [
         "class-12",
         "mathematics",
@@ -553,7 +553,7 @@
     {
       "noteType": "basic",
       "term": "How do you disprove one-one? Disprove onto?",
-      "definition": "<span style=\"color:#3b82f6\">Not one-one</span>: exhibit two different inputs with the same output (f(−1) = f(1)). <span style=\"color:#3b82f6\">Not onto</span>: exhibit one codomain element with no input (−2 = x² has no real x)",
+      "definition": "<span style=\"color:#3b82f6\">Not one-one</span>: exhibit two different inputs with the same output, e.g. f(−1) = f(1).<br><span style=\"color:#3b82f6\">Not onto</span>: exhibit one codomain element with no input, e.g. −2 = x² has no real x",
       "tags": [
         "class-12",
         "mathematics",
@@ -592,7 +592,7 @@
     {
       "noteType": "basic",
       "term": "Example 9: f : R → R, f(x) = 2x. One-one and onto?",
-      "definition": "<span style=\"color:#22a35a\">Both</span>. Given y ∈ R, x = y/2 ∈ R and f(y/2) = y. <span style=\"color:#3b82f6\">Same rule, bigger domain and codomain, now onto</span> (compare Example 8)",
+      "definition": "<span style=\"color:#22a35a\">Both</span>.<br>Given y ∈ R, x = y/2 ∈ R and f(y/2) = y.<br><span style=\"color:#3b82f6\">Same rule, bigger domain and codomain, now onto</span> (compare Example 8)",
       "tags": [
         "class-12",
         "mathematics",
@@ -603,7 +603,7 @@
     {
       "noteType": "basic",
       "term": "<b>Trap:</b> does a function’s rule alone decide one-one/onto?",
-      "definition": "<span style=\"color:#e5484d\">No</span>: the <span style=\"color:#3b82f6\">domain and codomain</span> matter. f(x) = 2x is not onto N → N but is onto R → R; x² is not one-one on R but is one-one on [0, ∞)",
+      "definition": "<span style=\"color:#e5484d\">No</span>: the <span style=\"color:#3b82f6\">domain and codomain</span> matter.<br>f(x) = 2x is not onto N → N but is onto R → R<br>x² is not one-one on R but is one-one on [0, ∞)",
       "tags": [
         "class-12",
         "mathematics",
@@ -702,7 +702,7 @@
     {
       "noteType": "basic",
       "term": "Ex 1.2 Q2(iii)–(v): f(x) = x² on R → R; x³ on N → N; x³ on Z → Z.",
-      "definition": "x² on R: <span style=\"color:#f08c00\">neither</span>. x³ on N: <span style=\"color:#f08c00\">one-one, not onto</span> (2 is not a cube). x³ on Z: <span style=\"color:#f08c00\">one-one, not onto</span> (2 is not a cube of an integer)",
+      "definition": "x² on R: <span style=\"color:#f08c00\">neither</span><br>x³ on N: <span style=\"color:#f08c00\">one-one, not onto</span> (2 is not a cube)<br>x³ on Z: <span style=\"color:#f08c00\">one-one, not onto</span> (2 is not a cube of an integer)",
       "tags": [
         "class-12",
         "mathematics",
@@ -956,7 +956,7 @@
     {
       "noteType": "basic",
       "term": "Method: find f⁻¹ of a bijection.",
-      "definition": "1) Write y = f(x).\n2) Solve for x in terms of y.\n3) Swap names: f⁻¹(x) = that expression.\n4) Check f⁻¹(f(x)) = x.\nThe domain of f⁻¹ is the range of f",
+      "definition": "1) Write y = f(x).\n2) Solve for x in terms of y.\n3) Swap names: f⁻¹(x) = that expression.\n4) Check f⁻¹(f(x)) = x. The domain of f⁻¹ is the range of f",
       "tags": [
         "class-12",
         "mathematics",
@@ -1099,7 +1099,7 @@
     {
       "noteType": "basic",
       "term": "Misc Q3: on P(X), ARB iff A ⊂ B. Equivalence relation?",
-      "definition": "Reflexive ✓ (A ⊂ A), transitive ✓, but <span style=\"color:#e5484d\">not symmetric</span>: {1} ⊂ {1, 2} but {1, 2} ⊄ {1}. <span style=\"color:#f08c00\">No</span> (it is a partial order)",
+      "definition": "<span style=\"color:#3b82f6\">Reflexive</span> ✓ (A ⊂ A)<br><span style=\"color:#3b82f6\">Transitive</span> ✓<br><span style=\"color:#e5484d\">Not symmetric</span>: {1} ⊂ {1, 2} but {1, 2} ⊄ {1}<br><span style=\"color:#f08c00\">No</span>, it is a partial order",
       "tags": [
         "class-12",
         "mathematics",
@@ -1121,7 +1121,7 @@
     {
       "noteType": "basic",
       "term": "Misc Q5: A = {−1,0,1,2}, B = {−4,−2,0,2}, f(x) = x² − x, g(x) = 2|x − ½| − 1. Are f = g?",
-      "definition": "f: 2, 0, 0, 2 at −1, 0, 1, 2. g: 2·1.5 − 1 = 2, 0, 0, 2. <span style=\"color:#22a35a\">Equal</span>: same domain, same codomain, same value at every point",
+      "definition": "f at −1, 0, 1, 2: 2, 0, 0, 2<br>g at −1, 0, 1, 2: 2·1.5 − 1 = 2, then 0, 0, 2<br><span style=\"color:#22a35a\">Equal</span>: same domain, same codomain, same value at every point",
       "tags": [
         "class-12",
         "mathematics",
@@ -1154,7 +1154,7 @@
     {
       "noteType": "basic",
       "term": "Two equal functions: what must match?",
-      "definition": "Same <span style=\"color:#3b82f6\">domain</span>, same <span style=\"color:#3b82f6\">codomain</span> and f(x) = g(x) for every x in the domain (Misc Q5). f(x) = x on R and f(x) = √(x²) are different functions",
+      "definition": "Same <span style=\"color:#3b82f6\">domain</span><br>Same <span style=\"color:#3b82f6\">codomain</span><br>f(x) = g(x) for every x in the domain (Misc Q5)<br><span style=\"color:#e5484d\">Trap</span>: f(x) = x on R and f(x) = √(x²) are different functions",
       "tags": [
         "class-12",
         "mathematics",
@@ -1187,7 +1187,7 @@
     {
       "noteType": "basic",
       "term": "Number of onto functions from an m-set onto an n-set?",
-      "definition": "Inclusion–exclusion: <span style=\"color:#3b82f6\">Σₖ (−1)ᵏ ⁿCₖ (n − k)ᵐ</span>. Two useful cases: onto from an m-set to a 2-set is <span style=\"color:#f08c00\">2ᵐ − 2</span>; onto from a 4-set to a 3-set is <span style=\"color:#f08c00\">36</span>",
+      "definition": "Inclusion–exclusion: <span style=\"color:#3b82f6\">Σₖ (−1)ᵏ ⁿCₖ (n − k)ᵐ</span><br>Two useful cases:<br>onto from an m-set to a 2-set is <span style=\"color:#f08c00\">2ᵐ − 2</span><br>onto from a 4-set to a 3-set is <span style=\"color:#f08c00\">36</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1220,7 +1220,7 @@
     {
       "noteType": "basic",
       "term": "Number of reflexive relations on an n-set? Of symmetric ones?",
-      "definition": "Reflexive: diagonal forced, other n² − n pairs free: <span style=\"color:#f08c00\">2^(n² − n)</span>. Symmetric: choose each unordered pair and each loop: <span style=\"color:#f08c00\">2^(n(n+1)/2)</span>. For n = 3 both are 64",
+      "definition": "<span style=\"color:#3b82f6\">Reflexive</span>: diagonal forced, the other n² − n pairs are free: <span style=\"color:#f08c00\">2^(n² − n)</span><br><span style=\"color:#3b82f6\">Symmetric</span>: choose each unordered pair and each loop: <span style=\"color:#f08c00\">2^(n(n+1)/2)</span><br>For n = 3 both are 64",
       "tags": [
         "class-12",
         "mathematics",
@@ -1572,7 +1572,7 @@
     {
       "noteType": "basic",
       "term": "Case-based: a school assigns each student in a class a roll number, f(x) = roll number, A = 40 students, codomain N. One-one? Onto? Make it a bijection.",
-      "definition": "<span style=\"color:#22a35a\">One-one</span> (no two share a roll number), <span style=\"color:#e5484d\">not onto N</span>. Restrict the codomain to {1, …, 40}: then f is a bijection and invertible",
+      "definition": "<span style=\"color:#22a35a\">One-one</span> (no two share a roll number), <span style=\"color:#e5484d\">not onto N</span>.<br>Restrict the codomain to {1, …, 40}: then f is a bijection and invertible",
       "tags": [
         "class-12",
         "mathematics",

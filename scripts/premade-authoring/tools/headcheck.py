@@ -1,7 +1,8 @@
 """Compare every changed deck against git HEAD: no letters or digits may be lost or added (whitespace, tags, punctuation
 joins and math markup are ignored; the check compares the sorted ASCII letters/digits of each changed field).
 Usage: python headcheck.py"""
-import os, re, json, subprocess, unicodedata
+import os, re, json, subprocess, unicodedata, collections
+LOSS_ONLY = '--loss' in __import__('sys').argv   # allow additions (rewritten cards), report only lost characters
 root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], text=True).strip()
 files = [l[3:].strip() for l in subprocess.check_output(['git', 'status', '--short', 'premade-cards'], cwd=root, text=True).splitlines()
          if l.endswith('deck.json')]
@@ -27,7 +28,8 @@ for f in files:
         for k in ('term', 'definition', 'text', 'extra'):
             if a.get(k) != b.get(k):
                 n += 1
-                if core(a.get(k)) != core(b.get(k)):
+                ca, cb = core(a.get(k)), core(b.get(k))
+                if (LOSS_ONLY and collections.Counter(ca) - collections.Counter(cb)) or (not LOSS_ONLY and ca != cb):
                     bad += 1
                     if bad <= 8:
                         print(f.split('/')[-2], '|', repr(a.get(k))[:220], '\n    ->', repr(b.get(k))[:220])

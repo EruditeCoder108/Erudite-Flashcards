@@ -16,7 +16,7 @@ b('Area bounded by x = g(y), the y-axis and the lines y = c, y = d?', T('A = ∫
 b('Which strips should you choose: vertical or horizontal?', 'Use ' + T('vertical strips') + ' when boundaries are naturally y = f(x); ' + T('horizontal strips') + ' when they are x = g(y) (e.g. y² = 4x). Pick the direction that lets you describe the region with one integral and no splitting')
 sm.horizontal_strips_parabola(d)
 b('What if the curve lies below the x-axis?', 'Then f(x) < 0 and ∫ₐᵇ f dx < 0. The area is its ' + T('absolute value') + ': A = |∫ₐᵇ f(x) dx|')
-b('What if the curve crosses the x-axis between a and b?', 'Split at the zeros: ' + T('A = |A₁| + A₂ + ...') + ', where each Aᵢ is the integral over a sub-interval where f does not change sign')
+b('What if the curve crosses the x-axis between a and b?', 'Split at the zeros:<br>' + T('A = |A₁| + A₂ + ...') + '<br>Each Aᵢ is the integral over a sub-interval where f does not change sign')
 b('Trap: is the area always equal to ∫ₐᵇ f(x) dx?', X('No') + ': only if f ≥ 0 on [a, b]. For y = sin x on [0, 2π] the integral is 0 but the area is 4')
 b('Steps for an area problem.', '1) Sketch the region and find intersection points. 2) Decide vertical or horizontal strips. 3) Write area = ∫ (upper − lower) or ∫ (right − left). 4) Split where the upper or lower curve changes. 5) Integrate and give the answer in square units')
 

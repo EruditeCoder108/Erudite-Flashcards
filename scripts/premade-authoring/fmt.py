@@ -62,7 +62,7 @@ def matrix_tex(m):
 TAG = re.compile(r'(<[^>]+>)')
 # A run of matrices joined by operators, with an optional short leading coefficient.
 SEP = r'(?:\s*(?:\+|−|-|=|≠|×|·)?\s*)'
-COEF = r'(?:(?:\d+|[a-zA-Z]|(?:sin|cos|tan)\s?[θαβ])\s*)?'   # short scalar in front of a matrix; "(iv)" list markers are not coefficients
+COEF = r'(?:(?:\(\d+/\d+\)|\d+/\d+|\d+|[a-zA-Z]|(?:sin|cos|tan)\s?[θαβ])\s*)?'   # short scalar in front of a matrix; "(iv)" list markers are not coefficients
 RUN = re.compile(r'(?<![A-Za-z0-9])' + COEF + MAT.pattern + r'(?:' + SEP + COEF + MAT.pattern + r')*')
 
 

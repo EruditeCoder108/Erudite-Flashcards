@@ -23,10 +23,10 @@ def ode_cards(prefix, verb='Solve'):
 
 # ---------------------------------------------------------------- 9.2 Basic concepts
 d.sec('9.2-basic-concepts')
-b('What is a differential equation?', 'An equation involving ' + T('derivatives of the dependent variable with respect to the independent variable(s)') + '. Example: dy/dx + y = eˣ. If only one independent variable it is an ordinary differential equation')
+b('What is a differential equation?', 'An equation involving ' + T('derivatives of the dependent variable with respect to the independent variable(s)') + '<br>Example: dy/dx + y = eˣ<br>With only one independent variable it is an ordinary differential equation')
 b('Order of a differential equation?', 'The order of the ' + T('highest order derivative') + ' present. d²y/dx² + y = 0 has order 2')
-b('Degree of a differential equation?', 'The power of the highest-order derivative, ' + T('when the equation is a polynomial in its derivatives') + '. If it is not a polynomial in the derivatives (e.g. contains sin(y′) or e^(y′)), the degree is ' + T('not defined'))
-b('Trap: is the degree the power of y or of the first derivative?', X('No') + '. Only the ' + T('highest-order derivative') + ' power counts, and only after the equation is a polynomial in derivatives (remove radicals and fractions of derivatives first)')
+b('Degree of a differential equation?', 'The power of the highest-order derivative, ' + T('when the equation is a polynomial in its derivatives') + '<br>If it is not a polynomial in the derivatives (e.g. it contains sin(y′) or e^(y′)), the degree is ' + T('not defined'))
+b('Trap: is the degree the power of y or of the first derivative?', X('No') + '.<br>Only the ' + T('highest-order derivative') + ' power counts,<br>and only after the equation is a polynomial in derivatives (remove radicals and fractions of derivatives first)')
 b('Example: (y″)² + (y′)³ + y = 0. Order and degree?', 'Highest derivative y″, its power 2: order ' + N('2') + ', degree ' + N('2'))
 b('Order and degree of (dy/dx) + 1/(dy/dx) = 3?', 'Multiply: (dy/dx)² + 1 = 3 dy/dx, a polynomial: order ' + N('1') + ', degree ' + N('2'))
 b('Order and degree of y = x (dy/dx) + √(1 + (dy/dx)²)?', 'Isolate the radical and square: (y − xy′)² = 1 + y′²: order ' + N('1') + ', degree ' + N('2'))
@@ -56,7 +56,7 @@ b('Example 1(iii): order and degree of y‴ + y² + e^(y′) = 0.', 'Order 3. Be
 
 # ---------------------------------------------------------------- 9.3 Verify solutions
 d.sec('9.3-solutions-exercise-9-2')
-b('How do you verify that a function is a solution?', 'Differentiate it as many times as needed, substitute the derivatives and the function into the equation, and check that ' + T('LHS = RHS') + ' (for an implicit relation, differentiate implicitly)')
+b('How do you verify that a function is a solution?', '1) Differentiate it as many times as needed.<br>2) Substitute the derivatives and the function into the equation.<br>3) Check that ' + T('LHS = RHS') + '.<br>For an implicit relation, differentiate implicitly')
 b('Ex 9.2 Q1: verify y = eˣ + 1 solves y″ − y′ = 0.', 'y′ = eˣ, y″ = eˣ: y″ − y′ = ' + N('0') + ' ✓')
 b('Ex 9.2 Q2: verify y = x² + 2x + C solves y′ − 2x − 2 = 0.', 'y′ = 2x + 2: ' + N('0') + ' ✓')
 b('Ex 9.2 Q3: verify y = cos x + C solves y′ + sin x = 0.', 'y′ = −sin x: ' + N('0') + ' ✓')
@@ -92,7 +92,7 @@ ode_cards('Ex 9.3 Q8')
 ode_cards('Ex 9.3 Q9')
 ode_cards('Ex 9.3 Q10')
 d.sec('9.4-exercise-9-3-particular')
-b('Particular solution: method.', 'Find the general solution with its constant C, then ' + T('substitute the given point (x₀, y₀)') + ' to find C. The answer must not contain C')
+b('Particular solution: method.', '1) Find the general solution with its constant C.<br>2) ' + T('Substitute the given point (x₀, y₀)') + ' to find C.<br>The answer must not contain C')
 for q in ['Ex 9.3 Q11', 'Ex 9.3 Q12', 'Ex 9.3 Q13', 'Ex 9.3 Q14', 'Ex 9.3 Q15', 'Ex 9.3 Q16', 'Ex 9.3 Q17', 'Ex 9.3 Q18']:
     ode_cards(q)
 b('Ex 9.3 Q19: a balloon’s volume changes at a constant rate; radius 3 initially, 6 after 3 s. Find the radius after t seconds.', 'dV/dt = k with V = (4/3)πr³, so r³ = r₀³ + Kt: 27 + 3K = 216 → K = 63. ' + N('r = (63t + 27)^(1/3)'))
@@ -181,7 +181,7 @@ b('How many independent arbitrary constants are in y = A e^(x + B)?', 'A e^(x + 
 # ---------------------------------------------------------------- How it is asked
 d.sec('9.z-how-its-asked')
 b('MCQ: the order and degree of (d²y/dx²)³ + (dy/dx)⁴ + y = 0 are<br>(a) 2, 3 (b) 3, 2 (c) 2, 4 (d) 4, 2', E('(a) order 2, degree 3'))
-b('MCQ: the degree of y′ + (y″)^(1/2) = x is<br>(a) 1 (b) 2 (c) 1/2 (d) not defined', 'Isolate and square: y″ = (x − y′)², a polynomial in the derivatives where the highest derivative y″ has power 1: ' + E('(a) 1'))
+b('MCQ: the degree of y′ + (y″)^(1/2) = x is<br>(a) 1 (b) 2 (c) 1/2 (d) not defined', 'Isolate and square: y″ = (x − y′)²<br>This is a polynomial in the derivatives, and the highest derivative y″ has power 1: ' + E('(a) 1'))
 b('MCQ: the general solution of dy/dx = y is<br>(a) y = Ceˣ (b) y = x + C (c) y = C/x (d) y = ln x + C', E('(a)'))
 b('MCQ: the solution of dy/dx = 2x with y(0) = 3 is<br>(a) y = x² + 3 (b) y = x² (c) y = 2x + 3 (d) y = x² − 3', E('(a) y = x² + 3'))
 b('MCQ: the integrating factor of dy/dx + y = e^(2x) is<br>(a) eˣ (b) e^(−x) (c) e^(2x) (d) x', 'e^(∫1 dx) = ' + E('(a) eˣ'))
@@ -202,7 +202,7 @@ b('2-mark: solve dy/dx = e^x.', N('y = eˣ + C'))
 b('3-mark: solve dy/dx = (1 + y²)/(1 + x²).', 'tan⁻¹y = tan⁻¹x + C: ' + N('(y − x)/(1 + xy) = C′'))
 b('3-mark: find the particular solution of dy/dx = 2xy with y(0) = 1.', 'dy/y = 2x dx: log y = x² + C, C = 0: ' + N('y = e^(x²)'))
 b('4-mark: solve x dy/dx = y + x², given y(1) = 0.', 'Linear: y′ − y/x = x, IF = 1/x: y/x = x + C; y(1) = 0 gives C = −1: ' + N('y = x² − x'))
-b('4-mark: show that (x² + y²) dx − 2xy dy = 0 is homogeneous and solve it.', 'y = vx: x dv/dx = (1 + v²)/(2v) − v = (1 − v²)/(2v). 2v/(1 − v²) dv = dx/x: −log|1 − v²| = log x + c. ' + N('x² − y² = Cx'))
+b('4-mark: show that (x² + y²) dx − 2xy dy = 0 is homogeneous and solve it.', 'y = vx: x dv/dx = (1 + v²)/(2v) − v = (1 − v²)/(2v)<br>2v/(1 − v²) dv = dx/x<br>−log|1 − v²| = log x + c<br>' + N('x² − y² = Cx'))
 b('Case-based: a culture has 500 bacteria, and its growth rate is proportional to its size. It doubles in 3 hours. Find the number after 9 hours.', 'P = P₀e^(kt) with e^(3k) = 2: after 9 h the population has doubled three times: 500 × 2³ = ' + N('4000'))
 b('Case-based: a body at 100°C is placed in a room at 20°C and cools to 60°C in 10 minutes. What is its temperature after another 10 minutes (Newton’s law)?', 'T − 20 = 80e^(−kt); at t = 10: 40 = 80e^(−10k), so e^(−10k) = ½. At t = 20: T − 20 = 80 × ¼ = 20, so ' + N('T = 40°C'))
 

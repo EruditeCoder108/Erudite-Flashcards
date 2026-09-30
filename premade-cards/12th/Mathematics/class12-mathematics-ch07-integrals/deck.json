@@ -18,7 +18,7 @@
     {
       "noteType": "basic",
       "term": "What is the “+ C”?",
-      "definition": "The <span style=\"color:#3b82f6\">constant of integration</span>: F(x) + C is also an antiderivative for every constant C. So an indefinite integral is a family of curves, all vertical translates of one another",
+      "definition": "The <span style=\"color:#3b82f6\">constant of integration</span>: F(x) + C is also an antiderivative for every constant C.<br>So an indefinite integral is a family of curves, all vertical translates of one another",
       "tags": [
         "class-12",
         "mathematics",
@@ -95,7 +95,7 @@
     {
       "noteType": "basic",
       "term": "Remark: does every function have an elementary antiderivative?",
-      "definition": "<span style=\"color:#e5484d\">No</span>: ∫ e^(−x²) dx, ∫ sin x/x dx, ∫ √(1 + x³) dx cannot be written with elementary functions, though the antiderivatives exist",
+      "definition": "<span style=\"color:#e5484d\">No</span>.<br>∫ e^(−x²) dx, ∫ sin x/x dx and ∫ √(1 + x³) dx cannot be written with elementary functions,<br>though the antiderivatives exist",
       "tags": [
         "class-12",
         "mathematics",
@@ -106,7 +106,7 @@
     {
       "noteType": "basic",
       "term": "Integration methods: overview.",
-      "definition": "1) Inspection/standard forms.\n2) <span style=\"color:#3b82f6\">Substitution</span> (when the integrand contains f(g(x)) g′(x)).\n3) <span style=\"color:#3b82f6\">Trigonometric identities</span>.\n4) <span style=\"color:#3b82f6\">Partial fractions</span> for rational functions.\n5) <span style=\"color:#3b82f6\">By parts</span> for products.\nSpecial forms: ∫ dx/(ax² + bx + c), ∫ (px + q)/(ax² + bx + c), ∫ √(ax² + bx + c)",
+      "definition": "1) Inspection/standard forms.\n2) <span style=\"color:#3b82f6\">Substitution</span> (when the integrand contains f(g(x)) g′(x)).\n3) <span style=\"color:#3b82f6\">Trigonometric identities</span>.\n4) <span style=\"color:#3b82f6\">Partial fractions</span> for rational functions.\n5) <span style=\"color:#3b82f6\">By parts</span> for products. Special forms: ∫ dx/(ax² + bx + c), ∫ (px + q)/(ax² + bx + c), ∫ √(ax² + bx + c)",
       "tags": [
         "class-12",
         "mathematics",
@@ -370,7 +370,7 @@
     {
       "noteType": "basic",
       "term": "Which substitution for which pattern?",
-      "definition": "<span style=\"color:#3b82f6\">f′(x)/f(x)</span> → log|f|. <span style=\"color:#3b82f6\">f′(x)[f(x)]ⁿ</span> → fⁿ⁺¹/(n + 1). <span style=\"color:#3b82f6\">e^(f)f′</span> → e^f. <span style=\"color:#3b82f6\">√(ax + b)</span> → t = ax + b or t² = ax + b. <span style=\"color:#3b82f6\">sinⁿ cos (odd power)</span> → t = the other function",
+      "definition": "<span style=\"color:#3b82f6\">f′(x)/f(x)</span> → log|f|<br><span style=\"color:#3b82f6\">f′(x)[f(x)]ⁿ</span> → fⁿ⁺¹/(n + 1)<br><span style=\"color:#3b82f6\">e^(f)f′</span> → e^f<br><span style=\"color:#3b82f6\">√(ax + b)</span> → t = ax + b or t² = ax + b<br><span style=\"color:#3b82f6\">sinⁿ cos (odd power)</span> → t = the other function",
       "tags": [
         "class-12",
         "mathematics",
@@ -1140,7 +1140,7 @@
     {
       "noteType": "basic",
       "term": "How do you integrate (px + q)/(ax² + bx + c) or (px + q)/√(ax² + bx + c)?",
-      "definition": "Write px + q = <span style=\"color:#3b82f6\">A (derivative of the denominator or radicand) + B</span>. The A-part gives log or a square root; the B-part is a standard form after completing the square",
+      "definition": "Write px + q = <span style=\"color:#3b82f6\">A (derivative of the denominator or radicand) + B</span><br>The A-part gives a log or a square root.<br>The B-part is a standard form after completing the square",
       "tags": [
         "class-12",
         "mathematics",
@@ -1454,7 +1454,7 @@
     {
       "noteType": "basic",
       "term": "Quick way to find A, B, C (cover-up).",
-      "definition": "For a simple factor (x − a): <span style=\"color:#3b82f6\">A = value of the rest of the fraction at x = a</span>. Otherwise equate coefficients or substitute convenient x values",
+      "definition": "For a simple factor (x − a): <span style=\"color:#3b82f6\">A = value of the rest of the fraction at x = a</span><br>Otherwise equate coefficients or substitute convenient x values",
       "tags": [
         "class-12",
         "mathematics",
@@ -2231,7 +2231,7 @@
     {
       "noteType": "basic",
       "term": "First fundamental theorem of calculus.",
-      "definition": "If f is continuous on [a, b] and A(x) = ∫ₐˣ f(t) dt then <span style=\"color:#3b82f6\">A′(x) = f(x)</span>. (Ex 7.9 Q10: if f(x) = ∫₀ˣ t sin t dt then f′(x) = x sin x.)",
+      "definition": "If f is continuous on [a, b] and A(x) = ∫ₐˣ f(t) dt, then <span style=\"color:#3b82f6\">A′(x) = f(x)</span><br>Ex 7.9 Q10: if f(x) = ∫₀ˣ t sin t dt then f′(x) = x sin x",
       "tags": [
         "class-12",
         "mathematics",
@@ -3481,7 +3481,7 @@
     {
       "noteType": "basic",
       "term": "Area under a curve as an integral (preview of Chapter 8).",
-      "definition": "Area between y = f(x), the x-axis, x = a and x = b (f ≥ 0) is <span style=\"color:#3b82f6\">∫ₐᵇ f(x) dx</span>. For instance the area under y = x² from 0 to 2 is 8/3",
+      "definition": "Area between y = f(x), the x-axis, x = a and x = b (f ≥ 0) is <span style=\"color:#3b82f6\">∫ₐᵇ f(x) dx</span><br>For instance, the area under y = x² from 0 to 2 is 8/3",
       "tags": [
         "class-12",
         "mathematics",
@@ -3503,7 +3503,7 @@
     {
       "noteType": "basic",
       "term": "∫₀^(π/2) log sin x dx?",
-      "definition": "<span style=\"color:#f08c00\">−(π/2) log 2</span> (I = ∫ log sin = ∫ log cos by King; adding, 2I = ∫ log(sin 2x/2) = ½∫₀^π log sin u du − (π/2) log 2 = I − (π/2) log 2)",
+      "definition": "<span style=\"color:#f08c00\">−(π/2) log 2</span><br>I = ∫ log sin x dx = ∫ log cos x dx (by King’s property)<br>Adding: 2I = ∫ log(sin 2x/2) = ½∫₀^π log sin u du − (π/2) log 2 = I − (π/2) log 2",
       "tags": [
         "class-12",
         "mathematics",
@@ -3811,7 +3811,7 @@
     {
       "noteType": "basic",
       "term": "Case-based: velocity v(t) = t² − 4t + 3 m/s. Find the displacement from t = 0 to 3 and the distance travelled.",
-      "definition": "Displacement ∫₀³ v dt = [t³/3 − 2t² + 3t]₀³ = <span style=\"color:#f08c00\">0 m</span>. v changes sign at t = 1 and 3: distance = ∫₀¹ v + |∫₁³ v| = 4/3 + 4/3 = <span style=\"color:#f08c00\">8/3 m</span>",
+      "definition": "Displacement ∫₀³ v dt = [t³/3 − 2t² + 3t]₀³ = <span style=\"color:#f08c00\">0 m</span><br>v changes sign at t = 1 and 3, so distance = ∫₀¹ v + |∫₁³ v| = 4/3 + 4/3 = <span style=\"color:#f08c00\">8/3 m</span>",
       "tags": [
         "class-12",
         "mathematics",

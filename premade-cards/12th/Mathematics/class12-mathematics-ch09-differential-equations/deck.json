@@ -7,7 +7,7 @@
     {
       "noteType": "basic",
       "term": "What is a differential equation?",
-      "definition": "An equation involving <span style=\"color:#3b82f6\">derivatives of the dependent variable with respect to the independent variable(s)</span>. Example: dy/dx + y = eˣ. If only one independent variable it is an ordinary differential equation",
+      "definition": "An equation involving <span style=\"color:#3b82f6\">derivatives of the dependent variable with respect to the independent variable(s)</span><br>Example: dy/dx + y = eˣ<br>With only one independent variable it is an ordinary differential equation",
       "tags": [
         "class-12",
         "mathematics",
@@ -29,7 +29,7 @@
     {
       "noteType": "basic",
       "term": "Degree of a differential equation?",
-      "definition": "The power of the highest-order derivative, <span style=\"color:#3b82f6\">when the equation is a polynomial in its derivatives</span>. If it is not a polynomial in the derivatives (e.g. contains sin(y′) or e^(y′)), the degree is <span style=\"color:#3b82f6\">not defined</span>",
+      "definition": "The power of the highest-order derivative, <span style=\"color:#3b82f6\">when the equation is a polynomial in its derivatives</span><br>If it is not a polynomial in the derivatives (e.g. it contains sin(y′) or e^(y′)), the degree is <span style=\"color:#3b82f6\">not defined</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -40,7 +40,7 @@
     {
       "noteType": "basic",
       "term": "<b>Trap:</b> is the degree the power of y or of the first derivative?",
-      "definition": "<span style=\"color:#e5484d\">No</span>. Only the <span style=\"color:#3b82f6\">highest-order derivative</span> power counts, and only after the equation is a polynomial in derivatives (remove radicals and fractions of derivatives first)",
+      "definition": "<span style=\"color:#e5484d\">No</span>.<br>Only the <span style=\"color:#3b82f6\">highest-order derivative</span> power counts,<br>and only after the equation is a polynomial in derivatives (remove radicals and fractions of derivatives first)",
       "tags": [
         "class-12",
         "mathematics",
@@ -223,7 +223,7 @@
     {
       "noteType": "basic",
       "term": "How do you verify that a function is a solution?",
-      "definition": "Differentiate it as many times as needed, substitute the derivatives and the function into the equation, and check that <span style=\"color:#3b82f6\">LHS = RHS</span> (for an implicit relation, differentiate implicitly)",
+      "definition": "1) Differentiate it as many times as needed.<br>2) Substitute the derivatives and the function into the equation.<br>3) Check that <span style=\"color:#3b82f6\">LHS = RHS</span>.<br>For an implicit relation, differentiate implicitly",
       "tags": [
         "class-12",
         "mathematics",
@@ -526,7 +526,7 @@
     {
       "noteType": "basic",
       "term": "Particular solution: method.",
-      "definition": "Find the general solution with its constant C, then <span style=\"color:#3b82f6\">substitute the given point (x₀, y₀)</span> to find C. The answer must not contain C",
+      "definition": "1) Find the general solution with its constant C.<br>2) <span style=\"color:#3b82f6\">Substitute the given point (x₀, y₀)</span> to find C.<br>The answer must not contain C",
       "tags": [
         "class-12",
         "mathematics",
@@ -1287,7 +1287,7 @@
     {
       "noteType": "basic",
       "term": "Misc Q3: prove x² − y² = c(x² + y²)² is the general solution of (x³ − 3xy²) dx = (y³ − 3x²y) dy.",
-      "definition": "Let u = x² − y², w = x² + y²: c = u/w².\nDifferentiate: (2x − 2y y′)w² − u · 2w(2x + 2y y′) = 0 → (x − y y′)(x² + y²) − 2(x² − y²)(x + y y′) = 0 → y′(y³ − 3x²y) = x³ − 3xy². <span style=\"color:#22a35a\">✓</span>",
+      "definition": "Let u = x² − y², w = x² + y²: c = u/w². Differentiate: (2x − 2y y′)w² − u · 2w(2x + 2y y′) = 0\n→ (x − y y′)(x² + y²) − 2(x² − y²)(x + y y′) = 0\n→ y′(y³ − 3x²y) = x³ − 3xy². <span style=\"color:#22a35a\">✓</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1573,7 +1573,7 @@
     {
       "noteType": "basic",
       "term": "MCQ: the degree of y′ + (y″)^(1/2) = x is<br>(a) 1\n(b) 2\n(c) 1/2\n(d) not defined",
-      "definition": "Isolate and square: y″ = (x − y′)², a polynomial in the derivatives where the highest derivative y″ has power 1: <span style=\"color:#22a35a\">(a) 1</span>",
+      "definition": "Isolate and square: y″ = (x − y′)²<br>This is a polynomial in the derivatives, and the highest derivative y″ has power 1: <span style=\"color:#22a35a\">(a) 1</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1804,7 +1804,7 @@
     {
       "noteType": "basic",
       "term": "4-mark: show that (x² + y²) dx − 2xy dy = 0 is homogeneous and solve it.",
-      "definition": "y = vx: x dv/dx = (1 + v²)/(2v) − v = (1 − v²)/(2v). 2v/(1 − v²) dv = dx/x: −log|1 − v²| = log x + c. <span style=\"color:#f08c00\">x² − y² = Cx</span>",
+      "definition": "y = vx: x dv/dx = (1 + v²)/(2v) − v = (1 − v²)/(2v)<br>2v/(1 − v²) dv = dx/x<br>−log|1 − v²| = log x + c<br><span style=\"color:#f08c00\">x² − y² = Cx</span>",
       "tags": [
         "class-12",
         "mathematics",

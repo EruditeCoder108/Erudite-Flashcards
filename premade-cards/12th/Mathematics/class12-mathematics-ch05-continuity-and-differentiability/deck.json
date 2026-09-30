@@ -7,7 +7,7 @@
     {
       "noteType": "basic",
       "term": "Definition of continuity of f at x = c.",
-      "definition": "f is continuous at c if <span style=\"color:#3b82f6\">lim x→c f(x) = f(c)</span>. That means the left limit, the right limit and f(c) all exist and are equal",
+      "definition": "f is continuous at c if <span style=\"color:#3b82f6\">lim x→c f(x) = f(c)</span><br>That means the left limit, the right limit and f(c) all exist and are equal",
       "tags": [
         "class-12",
         "mathematics",
@@ -46,7 +46,7 @@
     {
       "noteType": "basic",
       "term": "What does “f is continuous” mean for a function on an interval [a, b]?",
-      "definition": "Continuous at every interior point, <span style=\"color:#3b82f6\">right-continuous at a</span> (lim x→a⁺ f(x) = f(a)) and <span style=\"color:#3b82f6\">left-continuous at b</span> (lim x→b⁻ f(x) = f(b))",
+      "definition": "Continuous at every interior point<br><span style=\"color:#3b82f6\">Right-continuous at a</span>: lim x→a⁺ f(x) = f(a)<br><span style=\"color:#3b82f6\">Left-continuous at b</span>: lim x→b⁻ f(x) = f(b)",
       "tags": [
         "class-12",
         "mathematics",
@@ -79,7 +79,7 @@
     {
       "noteType": "basic",
       "term": "Example 3: is f(x) = |x| continuous at 0? Everywhere?",
-      "definition": "Left limit lim(−x) = 0, right limit 0, f(0) = 0: <span style=\"color:#22a35a\">continuous at 0</span>. It is continuous at every real number (Example 7)",
+      "definition": "Left limit lim(−x) = 0, right limit 0, f(0) = 0: <span style=\"color:#22a35a\">continuous at 0</span><br>It is continuous at every real number (Example 7)",
       "tags": [
         "class-12",
         "mathematics",
@@ -123,7 +123,7 @@
     {
       "noteType": "basic",
       "term": "Example 12: f(x) = x + 2 (x < 0), −x + 2 (x > 0). Continuous?",
-      "definition": "f is not defined at 0, so 0 is not in the domain; f is continuous at every point of its domain. <span style=\"color:#22a35a\">Yes, continuous</span>",
+      "definition": "f is not defined at 0, so 0 is not in the domain.<br>f is continuous at every point of its domain. <span style=\"color:#22a35a\">Yes, continuous</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -156,7 +156,7 @@
     {
       "noteType": "basic",
       "term": "Which functions are continuous everywhere on their domains?",
-      "definition": "<span style=\"color:#3b82f6\">Polynomials</span>, <span style=\"color:#3b82f6\">rational functions</span> (except where the denominator is 0), <span style=\"color:#3b82f6\">|x|, sin x, cos x, tan x</span> (tan on its domain), exponentials, logarithms (x > 0), inverse trig on their domains",
+      "definition": "<span style=\"color:#3b82f6\">Polynomials</span><br><span style=\"color:#3b82f6\">Rational functions</span> (except where the denominator is 0)<br><span style=\"color:#3b82f6\">|x|, sin x, cos x, tan x</span> (tan on its domain)<br>Exponentials, logarithms (x > 0)<br>Inverse trig functions on their domains",
       "tags": [
         "class-12",
         "mathematics",
@@ -178,7 +178,7 @@
     {
       "noteType": "basic",
       "term": "Theorem 2: continuity of a composite function.",
-      "definition": "If g is continuous at c and f is continuous at g(c), then <span style=\"color:#3b82f6\">f∘g is continuous at c</span>. Example 19: sin(x²) is continuous; Example 20: |1 − x + |x|| is continuous",
+      "definition": "If g is continuous at c and f is continuous at g(c), then <span style=\"color:#3b82f6\">f∘g is continuous at c</span><br>Example 19: sin(x²) is continuous<br>Example 20: |1 − x + |x|| is continuous",
       "tags": [
         "class-12",
         "mathematics",
@@ -189,7 +189,7 @@
     {
       "noteType": "basic",
       "term": "Example 17: how is the continuity of sin x proved?",
-      "definition": "x = c + h, so lim x→c sin x = lim h→0 [sin c cos h + cos c sin h] = sin c · 1 + cos c · 0 = <span style=\"color:#f08c00\">sin c</span>, using cos h → 1 and sin h → 0",
+      "definition": "Put x = c + h:<br>lim x→c sin x = lim h→0 [sin c cos h + cos c sin h]<br>= sin c · 1 + cos c · 0 = <span style=\"color:#f08c00\">sin c</span><br>using cos h → 1 and sin h → 0",
       "tags": [
         "class-12",
         "mathematics",
@@ -244,7 +244,7 @@
     {
       "noteType": "basic",
       "term": "Ex 5.1 Q5: f(x) = x (x ≤ 1), 5 (x > 1). Continuous at 0? at 1? at 2?",
-      "definition": "At 0: f = x near 0, <span style=\"color:#22a35a\">continuous</span>. At 1: left limit 1, right limit 5: <span style=\"color:#e5484d\">not continuous</span>. At 2: f = 5 near 2: <span style=\"color:#22a35a\">continuous</span>",
+      "definition": "At 0: f = x near 0, <span style=\"color:#22a35a\">continuous</span><br>At 1: left limit 1, right limit 5: <span style=\"color:#e5484d\">not continuous</span><br>At 2: f = 5 near 2: <span style=\"color:#22a35a\">continuous</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -387,7 +387,7 @@
     {
       "noteType": "basic",
       "term": "Ex 5.1 Q18: f(x) = λ(x² − 2x) (x ≤ 0), 4x + 1 (x > 0). Continuity at 0 and at 1?",
-      "definition": "At 0: left limit 0, right limit 1. <span style=\"color:#f08c00\">No value of λ makes it continuous at 0</span>. At 1: f = 4x + 1 nearby, continuous for any λ",
+      "definition": "At 0: left limit 0, right limit 1. <span style=\"color:#f08c00\">No value of λ makes it continuous at 0</span><br>At 1: f = 4x + 1 nearby, so it is continuous for any λ",
       "tags": [
         "class-12",
         "mathematics",
@@ -437,7 +437,7 @@
     {
       "noteType": "basic",
       "term": "Ex 5.1 Q22: discuss the continuity of cos x, cosec x, sec x, cot x.",
-      "definition": "<span style=\"color:#3b82f6\">cos x</span> continuous for all x. <span style=\"color:#3b82f6\">cosec x</span> and <span style=\"color:#3b82f6\">cot x</span> continuous except x = nπ. <span style=\"color:#3b82f6\">sec x</span> continuous except x = (2n + 1)π/2 (n ∈ Z)",
+      "definition": "<span style=\"color:#3b82f6\">cos x</span> continuous for all x<br><span style=\"color:#3b82f6\">cosec x</span> and <span style=\"color:#3b82f6\">cot x</span> continuous except x = nπ<br><span style=\"color:#3b82f6\">sec x</span> continuous except x = (2n + 1)π/2 (n ∈ Z)",
       "tags": [
         "class-12",
         "mathematics",
@@ -525,7 +525,7 @@
     {
       "noteType": "basic",
       "term": "Ex 5.1 Q30: find a, b so that f = 5 (x ≤ 2), ax + b (2 < x < 10), 21 (x ≥ 10) is continuous.",
-      "definition": "At 2: 2a + b = 5. At 10: 10a + b = 21. Subtract: 8a = 16:<span style=\"color:#f08c00\">\\[a = 2, b = 1\\]</span>",
+      "definition": "At 2: 2a + b = 5.\nAt 10: 10a + b = 21.\nSubtract: 8a = 16:<span style=\"color:#f08c00\">\\[a = 2, b = 1\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -547,7 +547,7 @@
     {
       "noteType": "basic",
       "term": "Ex 5.1 Q34: find all points of discontinuity of f(x) = |x| − |x + 1|.",
-      "definition": "A difference of continuous functions: <span style=\"color:#f08c00\">no point of discontinuity</span> (f = 1 for x < −1, −2x − 1 for −1 ≤ x < 0, −1 for x ≥ 0)",
+      "definition": "A difference of continuous functions: <span style=\"color:#f08c00\">no point of discontinuity</span><br>f = 1 for x < −1<br>f = −2x − 1 for −1 ≤ x < 0<br>f = −1 for x ≥ 0",
       "tags": [
         "class-12",
         "mathematics",
@@ -569,7 +569,7 @@
     {
       "noteType": "basic",
       "term": "<b>Trap:</b> does a formula like f(x) = (x² − 1)/(x − 1) have a discontinuity at 1?",
-      "definition": "It is undefined at 1: a <span style=\"color:#3b82f6\">removable discontinuity</span>. Defining f(1) = 2 makes it continuous (it equals x + 1 elsewhere)",
+      "definition": "It is undefined at 1: a <span style=\"color:#3b82f6\">removable discontinuity</span>.<br>Defining f(1) = 2 makes it continuous (it equals x + 1 elsewhere)",
       "tags": [
         "class-12",
         "mathematics",
@@ -591,7 +591,7 @@
     {
       "noteType": "basic",
       "term": "When is f differentiable at c? What are LHD and RHD?",
-      "definition": "When the <span style=\"color:#3b82f6\">left derivative (LHD)</span> lim h→0⁻ [f(c + h) − f(c)]/h equals the <span style=\"color:#3b82f6\">right derivative (RHD)</span> lim h→0⁺ [...]/h and both are finite",
+      "definition": "When the <span style=\"color:#3b82f6\">left derivative (LHD)</span> lim h→0⁻ [f(c + h) − f(c)]/h<br>equals the <span style=\"color:#3b82f6\">right derivative (RHD)</span> lim h→0⁺ [f(c + h) − f(c)]/h<br>and both are finite",
       "tags": [
         "class-12",
         "mathematics",
@@ -658,7 +658,7 @@
     {
       "noteType": "basic",
       "term": "Ex 5.2 Q10: show [x] is not differentiable at x = 1 and x = 2.",
-      "definition": "[x] is not even continuous at integers (left limit c − 1, right limit c), so it cannot be differentiable there. <span style=\"color:#e5484d\">Not differentiable</span>",
+      "definition": "[x] is not even continuous at integers (left limit c − 1, right limit c),<br>so it cannot be differentiable there. <span style=\"color:#e5484d\">Not differentiable</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -702,7 +702,7 @@
     {
       "noteType": "basic",
       "term": "Standard derivatives of inverse trig functions.",
-      "definition": "sin⁻¹x → <span style=\"color:#3b82f6\">1/√(1 − x²)</span>, cos⁻¹x → <span style=\"color:#3b82f6\">−1/√(1 − x²)</span>, tan⁻¹x → <span style=\"color:#3b82f6\">1/(1 + x²)</span>, cot⁻¹x → −1/(1 + x²), sec⁻¹x → 1/(|x|√(x² − 1)), cosec⁻¹x → −1/(|x|√(x² − 1))",
+      "definition": "sin⁻¹x → <span style=\"color:#3b82f6\">1/√(1 − x²)</span><br>cos⁻¹x → <span style=\"color:#3b82f6\">−1/√(1 − x²)</span><br>tan⁻¹x → <span style=\"color:#3b82f6\">1/(1 + x²)</span><br>cot⁻¹x → −1/(1 + x²)<br>sec⁻¹x → 1/(|x|√(x² − 1))<br>cosec⁻¹x → −1/(|x|√(x² − 1))",
       "tags": [
         "class-12",
         "mathematics",
@@ -1253,7 +1253,7 @@
     {
       "noteType": "basic",
       "term": "Ex 5.5 Q2: differentiate √((x − 1)(x − 2)/((x − 3)(x − 4)(x − 5))).",
-      "definition": "log y = ½[log(x−1) + log(x−2) − log(x−3) − log(x−4) − log(x−5)]. <span style=\"color:#f08c00\">y′ = ½ y [1/(x−1) + 1/(x−2) − 1/(x−3) − 1/(x−4) − 1/(x−5)]</span>",
+      "definition": "Take logs: log y = ½[log(x−1) + log(x−2) − log(x−3) − log(x−4) − log(x−5)]<br><span style=\"color:#f08c00\">y′ = ½ y [1/(x−1) + 1/(x−2) − 1/(x−3) − 1/(x−4) − 1/(x−5)]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1611,7 +1611,7 @@
     {
       "noteType": "basic",
       "term": "For a parametric curve, is d²y/dx² = (d²y/dt²)/(d²x/dt²)?",
-      "definition": "<span style=\"color:#e5484d\">No</span>. Differentiate dy/dx (a function of t) with respect to t and divide by dx/dt again: <span style=\"color:#3b82f6\">d²y/dx² = [d(dy/dx)/dt]/(dx/dt)</span>",
+      "definition": "<span style=\"color:#e5484d\">No</span>.<br>Differentiate dy/dx (a function of t) with respect to t, then divide by dx/dt again:<br><span style=\"color:#3b82f6\">d²y/dx² = [d(dy/dx)/dt]/(dx/dt)</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1633,7 +1633,7 @@
     {
       "noteType": "basic",
       "term": "Example 37: y = 3e^(2x) + 2e^(3x). Show y″ − 5y′ + 6y = 0.",
-      "definition": "y′ = 6e^(2x) + 6e^(3x), y″ = 12e^(2x) + 18e^(3x). y″ − 5y′ + 6y = (12 − 30 + 18)e^(2x) + (18 − 30 + 12)e^(3x) = 0. <span style=\"color:#22a35a\">✓</span>",
+      "definition": "y′ = 6e^(2x) + 6e^(3x)<br>y″ = 12e^(2x) + 18e^(3x)<br>y″ − 5y′ + 6y = (12 − 30 + 18)e^(2x) + (18 − 30 + 12)e^(3x) = 0. <span style=\"color:#22a35a\">✓</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1853,7 +1853,7 @@
     {
       "noteType": "basic",
       "term": "Example 43: differentiate sin²x with respect to e^(cos x).",
-      "definition": "du/dv = (du/dx)/(dv/dx) = 2 sin x cos x/(−sin x e^(cos x)) = <span style=\"color:#f08c00\">−2 cos x/e^(cos x)</span>. Differentiating one function with respect to another: divide their derivatives",
+      "definition": "du/dv = (du/dx)/(dv/dx) = 2 sin x cos x/(−sin x e^(cos x)) = <span style=\"color:#f08c00\">−2 cos x/e^(cos x)</span><br>Method: to differentiate one function with respect to another, divide their derivatives",
       "tags": [
         "class-12",
         "mathematics",
@@ -1952,7 +1952,7 @@
     {
       "noteType": "basic",
       "term": "Misc Q9: differentiate (sin x − cos x)^(sin x − cos x), π/4 < x < 3π/4.",
-      "definition": "Base u = sin x − cos x > 0: y = u^u, y′ = u^u (1 + log u) u′ with u′ = cos x + sin x. <span style=\"color:#f08c00\">(sin x − cos x)^(sin x − cos x) (cos x + sin x)(1 + log(sin x − cos x))</span>",
+      "definition": "Base u = sin x − cos x > 0: y = u^u<br>y′ = u^u (1 + log u) u′, with u′ = cos x + sin x<br><span style=\"color:#f08c00\">(sin x − cos x)^(sin x − cos x) (cos x + sin x)(1 + log(sin x − cos x))</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -2139,7 +2139,7 @@
     {
       "noteType": "basic",
       "term": "Find f′(0) for f(x) = x² sin(1/x) (x ≠ 0), f(0) = 0.",
-      "definition": "From the definition: (h² sin(1/h))/h = h sin(1/h) → <span style=\"color:#f08c00\">0</span>. But f′(x) = 2x sin(1/x) − cos(1/x) is not continuous at 0",
+      "definition": "From the definition: (h² sin(1/h))/h = h sin(1/h) → <span style=\"color:#f08c00\">0</span><br><span style=\"color:#e5484d\">But</span> f′(x) = 2x sin(1/x) − cos(1/x) is not continuous at 0",
       "tags": [
         "class-12",
         "mathematics",

@@ -7,7 +7,7 @@
     {
       "noteType": "basic",
       "term": "What is the determinant of a square matrix?",
-      "definition": "A <span style=\"color:#3b82f6\">single number</span> attached to a square matrix A, written det A or |A|. It exists only for square matrices; |A| is a number, A is an array",
+      "definition": "A <span style=\"color:#3b82f6\">single number</span> attached to a square matrix A, written det A or |A|.<br>It exists only for square matrices.<br>|A| is a number, A is an array",
       "tags": [
         "class-12",
         "mathematics",
@@ -101,7 +101,7 @@
     {
       "noteType": "basic",
       "term": "Ex 4.1 Q4: A =\\[\\begin{bmatrix}1 & 0 & 1 \\\\ 0 & 1 & 2 \\\\ 0 & 0 & 4\\end{bmatrix}\\]Show |3A| = 27|A|.",
-      "definition": "A is upper triangular: |A| = 1·1·4 = 4. 3A has diagonal 3, 3, 12, so |3A| = 108 = 27 · 4. <span style=\"color:#22a35a\">✓</span> (3³ = 27 because n = 3)",
+      "definition": "A is upper triangular: |A| = 1·1·4 = 4.<br>3A has diagonal 3, 3, 12, so |3A| = 108 = 27 · 4. <span style=\"color:#22a35a\">✓</span><br>(3³ = 27 because n = 3)",
       "tags": [
         "class-12",
         "mathematics",
@@ -123,7 +123,7 @@
     {
       "noteType": "basic",
       "term": "Ex 4.1 Q5(i): |3 −1 −2; 0 0 −1; 3 −5 0|.",
-      "definition": "Expand along row 1: 3(0 − 5) + 1(0 + 3) − 2(0 − 0) = −15 + 3 = <span style=\"color:#f08c00\">−12</span>. (Row 2 has two zeros, so expanding along it is quicker: only −1 survives.)",
+      "definition": "Expand along row 1: 3(0 − 5) + 1(0 + 3) − 2(0 − 0) = −15 + 3 = <span style=\"color:#f08c00\">−12</span><br>Shortcut: row 2 has two zeros, so expanding along it is quicker: only −1 survives",
       "tags": [
         "class-12",
         "mathematics",
@@ -145,7 +145,7 @@
     {
       "noteType": "basic",
       "term": "Ex 4.1 Q5(iii): |0 1 2; −1 0 −3; −2 3 0|.",
-      "definition": "0 − 1(0 − 6) + 2(−3 − 0) = 6 − 6 = <span style=\"color:#f08c00\">0</span>. The matrix is skew-symmetric of odd order (a skew-symmetric matrix of odd order always has determinant 0)",
+      "definition": "0 − 1(0 − 6) + 2(−3 − 0) = 6 − 6 = <span style=\"color:#f08c00\">0</span><br>The matrix is skew-symmetric of odd order, and such a matrix always has determinant 0",
       "tags": [
         "class-12",
         "mathematics",
@@ -438,7 +438,7 @@
     {
       "noteType": "basic",
       "term": "Ex 4.3 Q5: if Δ = |aᵢⱼ| and Aᵢⱼ is the cofactor of aᵢⱼ, then Δ =\n(A) a₁₁A₃₁ + a₁₂A₃₂ + a₁₃A₃₃\n(B) a₁₁A₁₁ + a₁₂A₂₁ + a₁₃A₃₁\n(C) a₂₁A₁₁ + a₂₂A₁₂ + a₂₃A₁₃\n(D) a₁₁A₁₁ + a₂₁A₂₁ + a₃₁A₃₁",
-      "definition": "Row or column of elements with the SAME row/column of cofactors: (D) is the first column with its own cofactors. <span style=\"color:#22a35a\">(D)</span>",
+      "definition": "Elements times the cofactors of the same row or column.<br>(D) is the first column with its own cofactors. <span style=\"color:#22a35a\">(D)</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -471,7 +471,7 @@
     {
       "noteType": "basic",
       "term": "Ex 4.3 Q2(i): minors and cofactors of the 3 × 3 identity.",
-      "definition": "M₁₁ = M₂₂ = M₃₃ = 1 and all other minors 0; cofactors: A₁₁ = A₂₂ = A₃₃ = <span style=\"color:#f08c00\">1</span>, others 0 (so the cofactor matrix is I)",
+      "definition": "Minors: M₁₁ = M₂₂ = M₃₃ = 1, all others 0<br>Cofactors: A₁₁ = A₂₂ = A₃₃ = <span style=\"color:#f08c00\">1</span>, others 0<br>So the cofactor matrix is I",
       "tags": [
         "class-12",
         "mathematics",
@@ -526,7 +526,7 @@
     {
       "noteType": "basic",
       "term": "Shortcut for adj A when A is 2 × 2?",
-      "definition": "For A =\\[\\begin{bmatrix}a & b \\\\ c & d\\end{bmatrix}\\]<span style=\"color:#3b82f6\">adj A =\\[\\begin{bmatrix}d & -b \\\\ -c & a\\end{bmatrix}\\]</span>(swap the diagonal, negate the others).\nExample 12: A =\\[\\begin{bmatrix}2 & 3 \\\\ 1 & 4\\end{bmatrix}\\]gives\\[\\begin{bmatrix}4 & -3 \\\\ -1 & 2\\end{bmatrix}\\]",
+      "definition": "For A =\\[\\begin{bmatrix}a & b \\\\ c & d\\end{bmatrix}\\]<span style=\"color:#3b82f6\">adj A =\\[\\begin{bmatrix}d & -b \\\\ -c & a\\end{bmatrix}\\]</span>(swap the diagonal, negate the others). Example 12: A =\\[\\begin{bmatrix}2 & 3 \\\\ 1 & 4\\end{bmatrix}\\]gives\\[\\begin{bmatrix}4 & -3 \\\\ -1 & 2\\end{bmatrix}\\]",
       "tags": [
         "class-12",
         "mathematics",
@@ -537,7 +537,7 @@
     {
       "noteType": "basic",
       "term": "Theorem 1: A (adj A) = ?",
-      "definition": "<span style=\"color:#3b82f6\">(adj A) A = A (adj A) = |A| I</span>. Reason: a row times its own cofactors gives |A|, times another row’s cofactors gives 0",
+      "definition": "<span style=\"color:#3b82f6\">(adj A) A = A (adj A) = |A| I</span><br>Reason: a row times its own cofactors gives |A|; a row times another row’s cofactors gives 0",
       "tags": [
         "class-12",
         "mathematics",
@@ -708,7 +708,7 @@
     {
       "noteType": "basic",
       "term": "Ex 4.4 Q5: inverse of\\[\\begin{bmatrix}2 & -2 \\\\ 4 & 3\\end{bmatrix}\\]",
-      "definition": "|A| = 6 + 8 = 14.\nA⁻¹ =\\[(1/14) \\begin{bmatrix}3 & 2 \\\\ -4 & 2\\end{bmatrix}\\]=<span style=\"color:#f08c00\">\\[(1/14) \\begin{bmatrix}3 & 2 \\\\ -4 & 2\\end{bmatrix}\\]</span>",
+      "definition": "|A| = 6 + 8 = 14. A⁻¹ =\\[(1/14) \\begin{bmatrix}3 & 2 \\\\ -4 & 2\\end{bmatrix}\\]=<span style=\"color:#f08c00\">\\[(1/14) \\begin{bmatrix}3 & 2 \\\\ -4 & 2\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -741,7 +741,7 @@
     {
       "noteType": "basic",
       "term": "Ex 4.4 Q8: inverse of\\[\\begin{bmatrix}1 & 0 & 0 \\\\ 3 & 3 & 0 \\\\ 5 & 2 & -1\\end{bmatrix}\\]",
-      "definition": "|A| = 1 · 3 · (−1) = −3. <span style=\"color:#f08c00\">A⁻¹ =\\[(-1/3) \\begin{bmatrix}-3 & 0 & 0 \\\\ 3 & -1 & 0 \\\\ -9 & -2 & 3\\end{bmatrix}\\]</span>",
+      "definition": "|A| = 1 · 3 · (−1) = −3. <span style=\"color:#f08c00\">A⁻¹ = (−1/3)\\[\\begin{bmatrix}-3 & 0 & 0 \\\\ 3 & -1 & 0 \\\\ -9 & -2 & 3\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -752,7 +752,7 @@
     {
       "noteType": "basic",
       "term": "Ex 4.4 Q9: inverse of\\[\\begin{bmatrix}2 & 1 & 3 \\\\ 4 & -1 & 0 \\\\ -7 & 2 & 1\\end{bmatrix}\\]",
-      "definition": "|A| = 2(−1) − 1(4) + 3(8 − 7) = −3. <span style=\"color:#f08c00\">A⁻¹ =\\[(-1/3) \\begin{bmatrix}-1 & 5 & 3 \\\\ -4 & 23 & 12 \\\\ 1 & -11 & -6\\end{bmatrix}\\]</span>",
+      "definition": "|A| = 2(−1) − 1(4) + 3(8 − 7) = −3. <span style=\"color:#f08c00\">A⁻¹ = (−1/3)\\[\\begin{bmatrix}-1 & 5 & 3 \\\\ -4 & 23 & 12 \\\\ 1 & -11 & -6\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -840,7 +840,7 @@
     {
       "noteType": "basic",
       "term": "Method: find A⁻¹ from a matrix equation like A² − 4A + I = O.",
-      "definition": "Multiply the whole equation by A⁻¹ (allowed since |A| ≠ 0), simplify A·A⁻¹ = I, and isolate A⁻¹. This is how Example 15 and Ex 4.4 Q13, Q15, Q16 work",
+      "definition": "1) Multiply the whole equation by A⁻¹ (allowed since |A| ≠ 0).<br>2) Simplify A·A⁻¹ = I.<br>3) Isolate A⁻¹.<br>This is how Example 15 and Ex 4.4 Q13, Q15, Q16 work",
       "tags": [
         "class-12",
         "mathematics",
@@ -901,7 +901,7 @@
     {
       "noteType": "basic",
       "term": "When |A| = 0 for AX = B, what do you check?",
-      "definition": "Compute <span style=\"color:#3b82f6\">(adj A)B</span>. If it is ≠ O: <span style=\"color:#e5484d\">inconsistent</span>. If it is = O: the system has either infinitely many solutions or none",
+      "definition": "Compute <span style=\"color:#3b82f6\">(adj A)B</span>.<br>If it is ≠ O: <span style=\"color:#e5484d\">inconsistent</span>.<br>If it is = O: the system has either infinitely many solutions or none",
       "tags": [
         "class-12",
         "mathematics",
@@ -912,7 +912,7 @@
     {
       "noteType": "basic",
       "term": "Cramer’s rule (beyond the textbook, used in JEE): xᵢ = ?",
-      "definition": "<span style=\"color:#3b82f6\">xᵢ = Δᵢ/Δ</span>, where Δ = |A| ≠ 0 and Δᵢ replaces the i-th column of A by B. Faster than the inverse for one unknown",
+      "definition": "<span style=\"color:#3b82f6\">xᵢ = Δᵢ/Δ</span><br>Δ = |A| ≠ 0, and Δᵢ replaces the i-th column of A by B.<br>Faster than the inverse when you need just one unknown",
       "tags": [
         "class-12",
         "mathematics",
@@ -934,7 +934,7 @@
     {
       "noteType": "basic",
       "term": "Example 16: solve 2x + 5y = 1, 3x + 2y = 7.",
-      "definition": "|A| = −11, X = A⁻¹B =\\[(-1/11) \\begin{bmatrix}2 & -5 \\\\ -3 & 2\\end{bmatrix}\\][1, 7]ᵀ = (−1/11)[−33, 11]ᵀ:\n<span style=\"color:#f08c00\">x = 3, y = −1</span>",
+      "definition": "|A| = −11, X = A⁻¹B = (−1/11)\\[\\begin{bmatrix}2 & -5 \\\\ -3 & 2\\end{bmatrix}\\][1, 7]ᵀ = (−1/11)[−33, 11]ᵀ: <span style=\"color:#f08c00\">x = 3, y = −1</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1011,7 +1011,7 @@
     {
       "noteType": "basic",
       "term": "Ex 4.5 Q4: is x + y + z = 1, 2x + 3y + 2z = 2, ax + ay + 2az = 4 consistent?",
-      "definition": "|A| = 1(6a − 2a) − 1(4a − 2a) + 1(2a − 3a) = 4a − 2a − a = a ≠ 0, so <span style=\"color:#22a35a\">consistent</span> with a unique solution (for a ≠ 0)",
+      "definition": "|A| = 1(6a − 2a) − 1(4a − 2a) + 1(2a − 3a) = 4a − 2a − a = a ≠ 0<br>So <span style=\"color:#22a35a\">consistent</span>, with a unique solution (for a ≠ 0)",
       "tags": [
         "class-12",
         "mathematics",
@@ -1154,7 +1154,7 @@
     {
       "noteType": "basic",
       "term": "Misc Q1: prove |x sin θ cos θ; −sin θ −x 1; cos θ 1 x| is independent of θ.",
-      "definition": "Expanding: x(−x² − 1) − sin θ(−x sin θ − cos θ) + cos θ(−sin θ + x cos θ) = −x³ − x + x sin²θ + sin θ cos θ − sin θ cos θ + x cos²θ = <span style=\"color:#f08c00\">−x³ − x + x = −x³</span>, free of θ",
+      "definition": "Expanding:<br>x(−x² − 1) − sin θ(−x sin θ − cos θ) + cos θ(−sin θ + x cos θ)<br>= −x³ − x + x sin²θ + sin θ cos θ − sin θ cos θ + x cos²θ<br>= <span style=\"color:#f08c00\">−x³ − x + x = −x³</span>, free of θ",
       "tags": [
         "class-12",
         "mathematics",
@@ -1187,7 +1187,7 @@
     {
       "noteType": "basic",
       "term": "Misc Q4: A =\\[\\begin{bmatrix}1 & 2 & 1 \\\\ 2 & 3 & 1 \\\\ 1 & 1 & 5\\end{bmatrix}\\]Verify\n(i) [adj A]⁻¹ = adj(A⁻¹)\n(ii) (A⁻¹)⁻¹ = A.",
-      "definition": "Here |A| = −5.\nSince adj A = |A| A⁻¹, we get [adj A]⁻¹ = A/|A|, and adj(A⁻¹) = |A⁻¹| (A⁻¹)⁻¹ = A/|A|: equal. (ii) is the fact that inverting twice returns A. <span style=\"color:#22a35a\">✓</span>",
+      "definition": "Here |A| = −5.\nSince adj A = |A| A⁻¹, we get [adj A]⁻¹ = A/|A|, and adj(A⁻¹) = |A⁻¹| (A⁻¹)⁻¹ = A/|A|: equal.\n(ii) is the fact that inverting twice returns A. <span style=\"color:#22a35a\">✓</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1538,7 +1538,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: if A =\\[\\begin{bmatrix}2 & 3 \\\\ 1 & 4\\end{bmatrix}\\]then A⁻¹ = <br>(a)\\[(1/5) \\begin{bmatrix}4 & -3 \\\\ -1 & 2\\end{bmatrix}\n(b) \\begin{bmatrix}4 & -3 \\\\ -1 & 2\\end{bmatrix}\\](c)\\[(1/5) \\begin{bmatrix}2 & 3 \\\\ 1 & 4\\end{bmatrix}\\](d)\\[(1/5) \\begin{bmatrix}4 & 3 \\\\ 1 & 2\\end{bmatrix}\\]",
+      "term": "MCQ: if A =\\[\\begin{bmatrix}2 & 3 \\\\ 1 & 4\\end{bmatrix}\\]then A⁻¹ = <br>(a)\\[(1/5) \\begin{bmatrix}4 & -3 \\\\ -1 & 2\\end{bmatrix}\\](b)\\[\\begin{bmatrix}4 & -3 \\\\ -1 & 2\\end{bmatrix}\\](c)\\[(1/5) \\begin{bmatrix}2 & 3 \\\\ 1 & 4\\end{bmatrix}\\](d)\\[(1/5) \\begin{bmatrix}4 & 3 \\\\ 1 & 2\\end{bmatrix}\\]",
       "definition": "|A| = 5: <span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-12",
@@ -1660,7 +1660,7 @@
     {
       "noteType": "basic",
       "term": "3-mark: find the adjoint of A =\\[\\begin{bmatrix}1 & 2 \\\\ 3 & 4\\end{bmatrix}\\]and verify A(adj A) = |A| I.",
-      "definition": "adj A =\\[\\begin{bmatrix}4 & -2 \\\\ -3 & 1\\end{bmatrix}\\]|A| = −2.\nA(adj A) =\\[\\begin{bmatrix}4 - 6 & -2 + 2 \\\\ 12 - 12 & -6 + 4\\end{bmatrix}\\]= <span style=\"color:#f08c00\">−2 I</span> ✓",
+      "definition": "adj A =\\[\\begin{bmatrix}4 & -2 \\\\ -3 & 1\\end{bmatrix}\\]|A| = −2. A(adj A) =\\[\\begin{bmatrix}4 - 6 & -2 + 2 \\\\ 12 - 12 & -6 + 4\\end{bmatrix}\\]= <span style=\"color:#f08c00\">−2 I</span> ✓",
       "tags": [
         "class-12",
         "mathematics",
@@ -1671,7 +1671,7 @@
     {
       "noteType": "basic",
       "term": "3-mark: solve x + y = 3, 2x − y = 0 by the matrix method.",
-      "definition": "A =\\[\\begin{bmatrix}1 & 1 \\\\ 2 & -1\\end{bmatrix}\\]|A| = −3, A⁻¹ =\\[(-1/3) \\begin{bmatrix}-1 & -1 \\\\ -2 & 1\\end{bmatrix}\\]X = A⁻¹[3, 0]ᵀ = [1, 2]ᵀ:\n<span style=\"color:#f08c00\">x = 1, y = 2</span>",
+      "definition": "A =\\[\\begin{bmatrix}1 & 1 \\\\ 2 & -1\\end{bmatrix}\\]|A| = −3, A⁻¹ = (−1/3)\\[\\begin{bmatrix}-1 & -1 \\\\ -2 & 1\\end{bmatrix}\\]X = A⁻¹[3, 0]ᵀ = [1, 2]ᵀ: <span style=\"color:#f08c00\">x = 1, y = 2</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1704,7 +1704,7 @@
     {
       "noteType": "basic",
       "term": "Case-based: 2 pens + 3 pencils + 1 eraser cost ₹19; 1 pen + 2 pencils + 2 erasers cost ₹14; 3 pens + 1 pencil + 1 eraser cost ₹17. Find the prices.",
-      "definition": "Solve 2x + 3y + z = 19, x + 2y + 2z = 14, 3x + y + z = 17. |A| = 10 ≠ 0 and the matrix method gives <span style=\"color:#f08c00\">pen ₹4, pencil ₹3, eraser ₹2</span> (check: 8 + 9 + 2 = 19 ✓)",
+      "definition": "Solve 2x + 3y + z = 19, x + 2y + 2z = 14, 3x + y + z = 17.<br>|A| = 10 ≠ 0, and the matrix method gives<br><span style=\"color:#f08c00\">pen ₹4, pencil ₹3, eraser ₹2</span><br>Check: 8 + 9 + 2 = 19 ✓",
       "tags": [
         "class-12",
         "mathematics",
