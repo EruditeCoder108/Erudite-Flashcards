@@ -167,7 +167,7 @@
   }
 
   /* More room: every queued deck shows, even on short tablets. */
-  .today-next .deck-stack > .deck-row:nth-child(n + 3) {
+  .today-next .deck-stack > .deck-row.fit-hidden {
     display: grid;
   }
 
@@ -208,4 +208,115 @@
   #library-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+/* Keyboard up: the tab bar would float over it and cover the field. */
+/* !important: other code sets an inline display on the tab bar. */
+body.keyboard-open .mobile-tabbar,
+body.keyboard-open .mobile-tab-indicator {
+  display: none !important;
+}
+
+body.keyboard-open .mobile-tabbar-gradient-shim {
+  height: var(--space-4);
+}
+
+/* ------------------------------------------------------------------ */
+/* Card editor toolbar: slimmer, with a fade where more tools are      */
+/* hidden off the edge (fade-start / fade-end are set on scroll).      */
+/* ------------------------------------------------------------------ */
+
+.creator-toolbar {
+  gap: 0.15rem;
+  padding: 0.15rem;
+}
+
+.creator-toolbar .format-button {
+  width: 2.6rem;
+  height: 2.5rem;
+}
+
+.creator-toolbar.fade-end,
+.filter-strip.fade-end {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2.75rem), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 2.75rem), transparent);
+}
+
+.creator-toolbar.fade-start,
+.filter-strip.fade-start {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 2.75rem);
+  mask-image: linear-gradient(to right, transparent, #000 2.75rem);
+}
+
+.creator-toolbar.fade-start.fade-end,
+.filter-strip.fade-start.fade-end {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 2.75rem, #000 calc(100% - 2.75rem), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 2.75rem, #000 calc(100% - 2.75rem), transparent);
+}
+
+/* Card type chips (Reverse, Cloze, Occlusion, HTML): icon above the label,
+   so all four labels fit across a phone even at larger text sizes. */
+.creator-generate-row,
+.creator-generate-row:has(button.active) {
+  /* !important: older rules widen the active chip, cutting the others off. */
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0.35rem;
+}
+
+.creator-generate-row button,
+.creator-generate-row:has(button.active) button:not(.active) {
+  flex-direction: column;
+  gap: 0.2rem;
+  min-height: 3.15rem;
+  padding: 0.35rem 0.2rem;
+  font-size: 0.72rem;
+  line-height: 1.1;
+}
+
+.creator-generate-row button i {
+  font-size: 1rem;
+}
+
+.creator-generate-row span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Library header: scrolled chips and labels showed through the glass. */
+.library-sticky-header {
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
+}
+
+/* Premade chapter names can be long: two lines rather than an ellipsis. */
+.premade-row .deck-title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+}
+
+/* AI Deck Maker steps: four labels fit across a phone at any text size. */
+.ai-flow-steps-indicator {
+  gap: 0.25rem;
+  padding-inline: var(--space-4);
+}
+
+.ai-flow-steps-indicator .step-dot {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  padding: 0.2rem 0.45rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ai-flow-steps-indicator .step-line {
+  flex: 1 1 0.5rem;
+  min-width: 0.35rem;
+  margin: 0;
 }

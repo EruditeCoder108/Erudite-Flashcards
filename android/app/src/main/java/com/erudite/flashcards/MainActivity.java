@@ -40,6 +40,10 @@ public class MainActivity extends BridgeActivity {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING)) {
                     WebSettingsCompat.setAlgorithmicDarkeningAllowed(webView.getSettings(), false);
                 }
+                // Text-only zoom from the system font size enlarges text inside
+                // fixed-size boxes (rings, chips, buttons). The page scales its
+                // whole layout from SystemChrome.getFontScale instead.
+                webView.getSettings().setTextZoom(100);
             }
         } catch (Exception e) {
             // Non-critical: if WebView isn't ready yet, the theme fix alone should help

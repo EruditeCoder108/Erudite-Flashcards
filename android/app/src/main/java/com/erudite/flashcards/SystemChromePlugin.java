@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Window;
 import android.webkit.WebView;
+import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
@@ -39,5 +40,17 @@ public class SystemChromePlugin extends Plugin {
             if (webView != null) webView.setBackgroundColor(color);
             call.resolve();
         });
+    }
+
+    /**
+     * The phone's font-size setting (1.0 = default). The WebView no longer
+     * scales text on its own (see MainActivity), so the page scales its whole
+     * rem-based layout by this instead and nothing overflows its container.
+     */
+    @PluginMethod
+    public void getFontScale(PluginCall call) {
+        JSObject result = new JSObject();
+        result.put("scale", getContext().getResources().getConfiguration().fontScale);
+        call.resolve(result);
     }
 }

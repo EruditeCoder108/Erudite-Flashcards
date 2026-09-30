@@ -52,7 +52,7 @@
       : `<span class="goal-value">${value}</span><span class="goal-unit">%</span>`;
     const ticks = Array.from({ length: TICKS }, (_, index) => tickPath(index)).join('');
     return `
-      <div class="goal-ring${done ? ' is-complete' : ''}${hasCount ? ' shows-count' : ''}" data-progress="${value}" data-count="${hasCount ? Math.round(count) : ''}" role="img" aria-label="${hasCount ? `${Math.round(count)} of ${Math.round(goal)} cards today` : `${value}% of today's goal`}">
+      <div class="goal-ring${done ? ' is-complete' : ''}${hasCount ? ' shows-count' : ''}" data-progress="${value}" data-count="${hasCount ? Math.round(count) : ''}" data-len="${hasCount ? `${Math.round(count)}/${Math.round(goal)}`.length : 0}" role="img" aria-label="${hasCount ? `${Math.round(count)} of ${Math.round(goal)} cards today` : `${value}% of today's goal`}">
         <svg class="goal-ring-art" viewBox="0 0 120 120" aria-hidden="true">
           <g class="goal-ticks">${ticks}</g>
           <circle class="goal-track" cx="60" cy="60" r="43" />
@@ -206,6 +206,25 @@
     }
   }
 
+  /**
+   * Keep the centre text inside the ring. Android's font-size setting scales
+   * text but not layout, so a long count ("121/30") at 115% text can spill
+   * over the arc; measure the final text and shrink it only when needed.
+   */
+  function fitGoalCopy(ring) {
+    const copy = ring?.querySelector('.goal-ring-copy');
+    if (!copy) return;
+    copy.style.transform = '';
+    // Measure the final number, not whatever the count-up is showing now.
+    const valueEl = copy.querySelector('.goal-value');
+    const shown = valueEl?.textContent;
+    if (valueEl && ring.dataset.count) valueEl.textContent = ring.dataset.count;
+    const room = ring.clientWidth * 0.64;
+    const width = Math.max(copy.scrollWidth, ...Array.from(copy.children, child => child.scrollWidth));
+    if (valueEl && shown !== undefined) valueEl.textContent = shown;
+    if (room > 0 && width > room) copy.style.transform = `scale(${(room / width).toFixed(3)})`;
+  }
+
   // ------------------------------------------------------------------
   // Session complete: a check that draws itself and a burst of tiny cards
   // ------------------------------------------------------------------
@@ -315,6 +334,7 @@
   root.EruditeSignature = {
     goalRingMarkup,
     animateGoalRing,
+    fitGoalCopy,
     lastShownProgress,
     drawCheck,
     cardBurst,

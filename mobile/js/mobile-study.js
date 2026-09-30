@@ -103,6 +103,9 @@
   let prevCardIndex = 0;
 
   let srsReviewedCardIds = new Set();
+  // Cards rated at least once this session. A new card rated Good comes back
+  // after its learning step, so it is not "done" yet but the bar still moves.
+  let srsTouchedCardIds = new Set();
   let srsUndoStack = [];
   const studySessionId = 'session-mobile-' + Date.now() + '-' + Math.random().toString(36).substring(2, 7);
 
@@ -503,8 +506,8 @@
     // than the card (touch-action is set per card in updateCardScrollability).
     const interactionCss = 'overflow:auto;-webkit-overflow-scrolling:touch;user-select:none;-webkit-user-select:none;';
     return `<style>
-      :host{all:initial;display:block;width:100%;height:100%;background:transparent;color:#e5edf8;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-wrap:anywhere;${interactionCss}}
-      *,*::before,*::after{box-sizing:border-box}.erudite-html-card{display:block;min-width:100%;min-height:100%;padding:0;line-height:1.45;overflow:visible;color:inherit;font-family:inherit}.erudite-html-card img{max-width:100%;height:auto;border-radius:8px}.erudite-html-card table{border-collapse:collapse}.erudite-html-card th,.erudite-html-card td{padding:6px;border:1px solid rgba(148,163,184,.25)}.empty-card-copy{display:grid;min-height:100%;place-items:center;color:#94a3b8;font-weight:800;text-align:center}
+      :host{all:initial;display:block;width:100%;height:100%;background:transparent;color:var(--text,#e5edf8);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-wrap:anywhere;${interactionCss}}
+      *,*::before,*::after{box-sizing:border-box}.erudite-html-card{display:block;min-width:100%;min-height:100%;padding:0;line-height:1.45;overflow:visible;color:inherit;font-family:inherit}.erudite-html-card img{max-width:100%;height:auto;border-radius:8px}.erudite-html-card table{border-collapse:collapse}.erudite-html-card th,.erudite-html-card td{padding:6px;border:1px solid rgba(148,163,184,.25)}.empty-card-copy{display:grid;min-height:100%;place-items:center;color:var(--subtle,#94a3b8);font-weight:800;text-align:center}
       ${css}
     </style><div class="erudite-html-card">${content}</div>`;
   }
@@ -2242,12 +2245,18 @@
       ? Math.max(Number(state.srsSessionTotal || 0) || 0, state.activeCards.length + srsReviewedCardIds.size)
       : state.activeCards.length;
     const completed = state.srsMode ? Math.min(total, srsReviewedCardIds.size) : 0;
-    const index = state.srsMode
-      ? (total ? Math.min(total, completed + (state.activeCards.length ? 1 : 0)) : 0)
-      : (total ? activeIndex() + 1 : 0);
+    // SRS: the counter shows cards finished for today; the bar also gives half
+    // credit to cards still in a learning step, so every rating moves it.
+    const inLearning = state.srsMode
+      ? [...srsTouchedCardIds].filter(key => !srsReviewedCardIds.has(key)).length
+      : 0;
+    const index = state.srsMode ? completed : (total ? activeIndex() + 1 : 0);
+    const fraction = state.srsMode
+      ? (total ? (completed + inLearning * 0.5) / total : 0)
+      : (total ? index / total : 0);
     els.current.textContent = String(index);
     els.total.textContent = String(total);
-    els.fill.style.setProperty('--progress', total ? String(Math.min(1, index / total)) : '0');
+    els.fill.style.setProperty('--progress', String(Math.min(1, Math.max(0, fraction))));
     els.modeLabel.textContent = state.filteredMode
       ? (state.previewMode ? 'Preview Study' : 'Filtered Study')
       : (state.srsMode ? 'SRS Review' : 'Study');
@@ -2528,6 +2537,7 @@
       // Successfully reviewed (passed) and graduated: mark it completed in this session
       srsReviewedCardIds.add(cardKey(current));
     }
+    srsTouchedCardIds.add(cardKey(current));
 
     if (current.noteId && String(current.noteType || '').toLowerCase() !== 'image-occlusion') {
       state.activeCards = state.activeCards.filter(card => (

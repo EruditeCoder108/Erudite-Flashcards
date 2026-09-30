@@ -43,20 +43,21 @@
   // bitmap on a fixed layer costs almost nothing per frame, unlike an SVG
   // filter or a blend mode.
   let grainUrl = '';
-  // One tile of GRAIN_TILE CSS pixels, drawn at device resolution. Two layers:
-  // a faint one-pixel base, and scattered soft specks one to three points
-  // wide, which is the scale real paper grain reads at on a phone.
-  const GRAIN_TILE = 200;
+  // The original matte noise (random light and dark pixels, mostly clear),
+  // drawn at half resolution and scaled up smoothly, so each grain covers
+  // about two device pixels instead of one: the same feel, slightly coarser.
+  const GRAIN_TILE = 160;
+  const GRAIN_CELL = 2;
   function grainTile() {
     if (grainUrl) return grainUrl;
     try {
-      const scale = Math.min(3, Math.max(1, window.devicePixelRatio || 1));
-      const size = Math.round(GRAIN_TILE * scale);
-      const canvas = document.createElement('canvas');
-      canvas.width = size;
-      canvas.height = size;
-      const context = canvas.getContext('2d');
-      const image = context.createImageData(size, size);
+      const size = Math.round(GRAIN_TILE * Math.min(3, Math.max(1, window.devicePixelRatio || 1)));
+      const small = Math.ceil(size / GRAIN_CELL);
+      const noise = document.createElement('canvas');
+      noise.width = small;
+      noise.height = small;
+      const noiseContext = noise.getContext('2d');
+      const image = noiseContext.createImageData(small, small);
       const data = image.data;
       for (let index = 0; index < data.length; index += 4) {
         const value = Math.random();
@@ -64,22 +65,16 @@
         data[index] = shade;
         data[index + 1] = shade;
         data[index + 2] = shade;
-        data[index + 3] = Math.round(Math.pow(Math.abs(value - 0.5) * 2, 2.2) * 18);
+        // Most pixels stay nearly clear; a few carry the fibre-like speckle.
+        data[index + 3] = Math.round(Math.pow(Math.abs(value - 0.5) * 2, 1.6) * 34);
       }
-      context.putImageData(image, 0, 0);
-      const specks = Math.round(GRAIN_TILE * GRAIN_TILE * 0.05);
-      for (let count = 0; count < specks; count += 1) {
-        const x = Math.random() * size;
-        const y = Math.random() * size;
-        const radius = (0.5 + Math.pow(Math.random(), 2.4) * 1.1) * scale;
-        const light = Math.random() > 0.55;
-        const alpha = 0.025 + Math.random() * 0.06;
-        context.fillStyle = light ? `rgba(255,255,255,${alpha})` : `rgba(0,0,0,${alpha * 1.15})`;
-        context.beginPath();
-        // Slightly stretched specks look like fibres rather than dots.
-        context.ellipse(x, y, radius * (1 + Math.random() * 0.8), radius, Math.random() * Math.PI, 0, Math.PI * 2);
-        context.fill();
-      }
+      noiseContext.putImageData(image, 0, 0);
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const context = canvas.getContext('2d');
+      context.imageSmoothingEnabled = true;
+      context.drawImage(noise, 0, 0, size, size);
       grainUrl = canvas.toDataURL('image/png');
     } catch (_) {
       grainUrl = '';
@@ -128,6 +123,46 @@
     });
   }
   window.EruditeSystemChrome = { sync: syncSystemChrome };
+
+  // Phone font size: scale the root font size, so every rem-based size (text
+  // and the boxes around it) grows together. Clamped so very large settings
+  // still leave a usable layout. The last value is cached so later launches
+  // apply it before the first frame.
+  const FONT_SCALE_KEY = 'erudite-font-scale';
+  function applyFontScale(scale) {
+    const value = Math.min(1.3, Math.max(0.85, Number(scale) || 1));
+    root.style.fontSize = value === 1 ? '' : `${(value * 100).toFixed(1)}%`;
+    root.style.setProperty('--font-scale', String(value));
+    fontScaleNow = value;
+    markShortScreen();
+    return value;
+  }
+  // "Short" in layout terms: the height left after scaling up the text. CSS
+  // media queries cannot see the root font size, so this class stands in.
+  let fontScaleNow = 1;
+  function markShortScreen() {
+    const height = window.innerHeight / fontScaleNow;
+    root.classList.toggle('is-short-screen', height < 760);
+    root.classList.toggle('is-very-short-screen', height < 640);
+  }
+  window.addEventListener('resize', markShortScreen);
+  markShortScreen();
+  try {
+    const cached = Number(window.localStorage.getItem(FONT_SCALE_KEY));
+    if (cached) applyFontScale(cached);
+  } catch (_) {}
+  function syncFontScale() {
+    const plugin = window.Capacitor?.Plugins?.SystemChrome;
+    if (!plugin?.getFontScale) return;
+    plugin.getFontScale().then(result => {
+      const value = applyFontScale(result?.scale);
+      try {
+        window.localStorage.setItem(FONT_SCALE_KEY, String(value));
+      } catch (_) {}
+    }).catch(() => {});
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncFontScale, { once: true });
+  else syncFontScale();
 
   try {
     if (window.localStorage.getItem('erudite-paper') === 'on') applyPaper(true);

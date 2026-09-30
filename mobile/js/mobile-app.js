@@ -2009,6 +2009,7 @@
     } else if (nextRing) {
       signature?.animateGoalRing(nextRing, ringProgress, { remember: false, count: studiedToday, goal });
     }
+    signature?.fitGoalCopy?.(selectors.todayHero.querySelector('.goal-ring'));
 
     // Insights and focused practice live in their own sheets; only redraw
     // them while one is open.
@@ -2029,6 +2030,7 @@
     selectors.continueList.innerHTML = continueSets.length
       ? continueSets.map(set => deckRow(set, { compact: true })).join('')
       : emptyPanel('fa-layer-group', 'No decks yet', 'Create your first flashcard set or import a backup from desktop.');
+    fitTodayToScreen();
 
     if (isPageSheetOpen('insights-sheet')) {
       selectors.activityList.innerHTML = renderActivity();
@@ -2039,10 +2041,95 @@
     });
   }
 
+  /**
+   * Today should fit one phone screen whatever the phone's size or text
+   * setting. After drawing, drop decks from the end of Up next (keeping at
+   * least one) until the last card clears the floating tab bar.
+   */
+  function fitTodayToScreen() {
+    const rows = [...(selectors.continueList?.querySelectorAll(':scope > .deck-row') || [])];
+    rows.forEach(row => row.classList.remove('fit-hidden'));
+    if (state.activeTab !== 'today' || rows.length < 2) return;
+    if (window.matchMedia?.(TABLET_QUERY)?.matches) return;
+    const tabbar = document.querySelector('.mobile-tabbar');
+    const last = selectors.todayLinks?.lastElementChild || selectors.continueList;
+    if (!tabbar || !last) return;
+    const limit = () => tabbar.getBoundingClientRect().top - 8 + window.scrollY;
+    const bottom = () => last.getBoundingClientRect().bottom + window.scrollY;
+    for (let index = rows.length - 1; index >= 1 && bottom() > limit(); index -= 1) {
+      rows[index].classList.add('fit-hidden');
+    }
+  }
+
   // Tablets have a second column for the deck queue, so they list more.
   const TABLET_QUERY = '(min-width: 768px)';
   function upNextCount() {
     return window.matchMedia?.(TABLET_QUERY)?.matches ? 6 : 3;
+  }
+
+  /**
+   * The on-screen keyboard shrinks the WebView. While it is up, the floating
+   * tab bar would sit on top of the keyboard and cover the field being typed
+   * in, so it is hidden (body.keyboard-open) until the keyboard goes away.
+   */
+  function watchSoftKeyboard() {
+    let fullHeight = window.innerHeight;
+    let timer = 0;
+    const isTextField = element => Boolean(element && (
+      element.isContentEditable
+      || element.tagName === 'TEXTAREA'
+      || (element.tagName === 'INPUT' && !['checkbox', 'radio', 'range', 'button', 'submit', 'color', 'file'].includes(element.type))
+    ));
+    // Depending on how Android reports the keyboard, either the viewport
+    // shrinks or the bottom safe-area inset grows by the keyboard height.
+    const bottomInset = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-bottom')) || 0;
+    const update = () => {
+      const typing = isTextField(document.activeElement);
+      const height = window.visualViewport?.height || window.innerHeight;
+      if (!typing || height > fullHeight) fullHeight = Math.max(height, window.innerHeight);
+      const open = typing && (height < fullHeight * 0.8 || bottomInset() > 150);
+      document.body.classList.toggle('keyboard-open', open);
+    };
+    window.visualViewport?.addEventListener('resize', update);
+    window.addEventListener('resize', update);
+    // Inset changes fire no event, so check briefly while a field has focus.
+    document.addEventListener('focusin', () => {
+      window.clearInterval(timer);
+      let checks = 0;
+      timer = window.setInterval(() => {
+        update();
+        checks += 1;
+        if (checks > 12 || !isTextField(document.activeElement)) window.clearInterval(timer);
+      }, 150);
+    });
+    document.addEventListener('focusout', () => window.setTimeout(update, 200));
+  }
+
+  // Editor toolbars and filter chip rows scroll sideways; fade whichever end
+  // still hides items, so it is clear there is more.
+  const EDGE_FADE_SCROLLERS = '.creator-toolbar, .filter-strip';
+  function updateToolbarFade(toolbar) {
+    const max = toolbar.scrollWidth - toolbar.clientWidth;
+    toolbar.classList.toggle('fade-start', max > 2 && toolbar.scrollLeft > 2);
+    toolbar.classList.toggle('fade-end', max > 2 && toolbar.scrollLeft < max - 2);
+  }
+
+  function watchToolbarFades() {
+    document.addEventListener('scroll', event => {
+      if (event.target?.matches?.(EDGE_FADE_SCROLLERS)) updateToolbarFade(event.target);
+    }, true);
+    let pending = 0;
+    const refreshAll = () => {
+      if (pending) return;
+      pending = window.requestAnimationFrame(() => {
+        pending = 0;
+        document.querySelectorAll(EDGE_FADE_SCROLLERS).forEach(updateToolbarFade);
+      });
+    };
+    const main = document.getElementById('mobile-main');
+    if (main) new MutationObserver(refreshAll).observe(main, { childList: true, subtree: true });
+    window.addEventListener('resize', refreshAll);
+    refreshAll();
   }
 
   // Settings groups remember whether they were open (a per-device convenience).
@@ -2189,7 +2276,7 @@
         <span class="today-link-icon"><i class="fas fa-bell"></i></span>
         <span class="today-link-copy">
           <strong>Daily study reminder</strong>
-          <small>Every day at 7 PM</small>
+          <small>Daily at 7 PM</small>
         </span>
         <button type="button" class="reminder-prompt-yes" data-action="enable-reminder-quick">Turn on</button>
         <button type="button" class="reminder-prompt-close" data-action="dismiss-reminder-prompt" aria-label="Not now"><i class="fas fa-xmark"></i></button>
@@ -2576,13 +2663,20 @@
       : (html.frontHtml || '');
   }
 
+  // Plain HTML cards take the theme's text colour (the preview is a separate
+  // document, so it cannot inherit it). A fixed light grey vanished on light themes.
+  function themeTextColor() {
+    const value = getComputedStyle(document.documentElement).getPropertyValue('--text').trim();
+    return /^#[0-9a-f]{3,8}$|^rgba?\([\d\s.,%]+\)$/i.test(value) ? value : '#e5edf8';
+  }
+
   function advancedHtmlSrcdoc(card = {}, side = 'front') {
     const html = sanitizeAdvancedHtml(advancedHtmlSide(card, side));
     const normalized = normalizeAdvancedHtml(advancedHtmlPayload(card));
     const css = sanitizeAdvancedCss(side === 'back' ? normalized.backCss : normalized.frontCss);
     const content = html || `<div class="empty-card-copy">${side === 'back' ? 'Back HTML preview' : 'Front HTML preview'}</div>`;
     return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>
-      *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;background:transparent;color:#e5edf8;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:auto;overflow-wrap:anywhere}
+      *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;background:transparent;color:${themeTextColor()};font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:auto;overflow-wrap:anywhere}
       body{display:block;min-width:100%;min-height:100%}.erudite-html-card{display:block;min-width:100%;min-height:100%;padding:12px;line-height:1.45;overflow:visible}.erudite-html-card img{max-width:100%;height:auto;border-radius:8px}.erudite-html-card table{border-collapse:collapse}.erudite-html-card th,.erudite-html-card td{padding:6px;border:1px solid rgba(148,163,184,.25)}.empty-card-copy{display:grid;min-height:220px;place-items:center;color:#94a3b8;font-weight:800;text-align:center}
       ${css}
     </style></head><body><div class="erudite-html-card">${content}</div></body></html>`;
@@ -6969,6 +7063,18 @@
     }
   }
 
+  // Card text for list previews: formatting markup removed, whitespace
+  // collapsed. DOMParser builds an inert document, so nothing runs or loads.
+  const previewParser = typeof DOMParser === 'function' ? new DOMParser() : null;
+  function browserPreviewText(value) {
+    const raw = String(value || '');
+    if (!/[<&]/.test(raw)) return raw.trim();
+    const text = previewParser
+      ? previewParser.parseFromString(raw, 'text/html').body.textContent || ''
+      : raw.replace(/<[^>]*>/g, ' ');
+    return text.replace(/\s+/g, ' ').trim();
+  }
+
   function browserCardRow(card) {
     const id = String(card.id);
     const selected = state.browserSelectedCards?.has(id);
@@ -6992,8 +7098,8 @@
             <span>${escapeHtml(card.deck)}</span>
             <small>${escapeHtml(card.className)}</small>
           </div>
-          <strong>${escapeHtml(card.term || 'Empty term')}</strong>
-          <p>${escapeHtml(card.definition || 'Empty definition')}</p>
+          <strong>${escapeHtml(browserPreviewText(card.term) || 'Empty term')}</strong>
+          <p>${escapeHtml(browserPreviewText(card.definition) || 'Empty definition')}</p>
           <div class="deck-subline browser-card-meta">
             <span>${escapeHtml(browserStateLabel(card))}</span>
             <span>${escapeHtml(browserDueLabel(card))}</span>
@@ -13163,11 +13269,14 @@ Every media/... reference in deck.json must exist inside media/.`;
     configureSystemBars().catch(() => {});
     installEvents();
     restoreSettingsGroups();
+    watchSoftKeyboard();
+    watchToolbarFades();
     // Rotating a tablet (or resizing) crosses the tablet breakpoint: redraw Today
     // so the deck queue length matches the layout.
     window.matchMedia?.(TABLET_QUERY)?.addEventListener?.('change', () => {
       if (state.activeTab === 'today') renderToday();
     });
+    window.addEventListener('resize', () => window.requestAnimationFrame(fitTodayToScreen));
     const onboardingPrepared = document.documentElement.classList.contains('onboarding-pending');
     if (onboardingPrepared) maybeShowOnboarding({ immediate: true });
     initSwipeNavigation();

@@ -95,6 +95,26 @@ body[data-active-tab="today"] .mobile-topbar {
   font-size: 0.58em;
 }
 
+/* Long counts ("121/30", "150/150") shrink so they stay inside the ring. */
+.today-hero .goal-ring[data-len="6"] .goal-ring-copy strong {
+  font-size: 1.25rem;
+}
+
+.today-hero .goal-ring[data-len="7"] .goal-ring-copy strong,
+.today-hero .goal-ring[data-len="8"] .goal-ring-copy strong,
+.today-hero .goal-ring[data-len="9"] .goal-ring-copy strong {
+  font-size: 1.05rem;
+}
+
+.today-hero .goal-ring-copy {
+  max-width: 78%;
+  text-align: center;
+}
+
+.today-hero .goal-label {
+  white-space: nowrap;
+}
+
 .today-hero .goal-label {
   font-size: 0.625rem;
   letter-spacing: 0.06em;
@@ -118,6 +138,13 @@ body[data-active-tab="today"] .mobile-topbar {
 
 .today-hero .stack-face {
   min-height: 3.5rem;
+  padding-block: 0.7rem;
+  padding-inline: 1.15rem 0.7rem;
+}
+
+.today-hero .stack-copy {
+  display: grid;
+  gap: 0.15rem;
 }
 
 /* The plan line may take two lines; it never gets cut mid-sentence. */
@@ -184,21 +211,14 @@ body[data-active-tab="today"] .mobile-topbar {
 }
 
 /* Short phones: show two decks so the week card still fits above the tab bar. */
-@media (max-height: 760px) {
-  .today-next .deck-stack > .deck-row:nth-child(n + 3) {
-    display: none;
-  }
+/* Set by fitTodayToScreen when a deck would push the week card under the tab bar. */
+.today-next .deck-stack > .deck-row.fit-hidden {
+  display: none;
 }
 
-@media (max-height: 640px) {
-  .today-hero .goal-ring {
-    width: 5.75rem;
-    height: 5.75rem;
-  }
-
-  .today-hero .goal-ring-copy strong {
-    font-size: 1.3rem;
-  }
+html.is-very-short-screen .today-hero .goal-ring {
+  width: 5.75rem;
+  height: 5.75rem;
 }
 
 /* One-tap reminder offer, shown after the first study session. One row. */
@@ -236,4 +256,25 @@ body[data-active-tab="today"] .mobile-topbar {
 
 .reminder-prompt-close:active {
   background: var(--surface-2);
+}
+
+/* With no top bar on Today, scrolled content would slide under the status
+   bar. This strip covers the status-bar area in the page colour. */
+body[data-active-tab="today"] .mobile-main::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 25;
+  height: var(--safe-top);
+  opacity: 1;
+  background: var(--bg);
+  pointer-events: none;
+}
+
+/* The due count already shows in the stats beside the ring; the badge on
+   the button only repeated it and squeezed the plan line. */
+.today-hero .stack-count {
+  display: none;
 }
