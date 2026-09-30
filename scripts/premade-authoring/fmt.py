@@ -62,7 +62,7 @@ def matrix_tex(m):
 TAG = re.compile(r'(<[^>]+>)')
 # A run of matrices joined by operators, with an optional short leading coefficient.
 SEP = r'(?:\s*(?:\+|−|-|=|≠|×|·)?\s*)'
-COEF = r'(?:(?:\d+|[a-zA-Z]|(?:sin|cos|tan)\s?[θαβ]|\([^()\[\]]{1,14}\))\s*)?'
+COEF = r'(?:(?:\d+|[a-zA-Z]|(?:sin|cos|tan)\s?[θαβ])\s*)?'   # short scalar in front of a matrix; "(iv)" list markers are not coefficients
 RUN = re.compile(r'(?<![A-Za-z0-9])' + COEF + MAT.pattern + r'(?:' + SEP + COEF + MAT.pattern + r')*')
 
 
@@ -212,8 +212,8 @@ def per_line(fn, text):
 
 def tidy_display(t):
     """Display math is a block: drop the punctuation/space/newline hugging it so no stray '.' or blank line shows."""
-    t = re.sub(r'(\\](?:</span>)?)[.;,]?[ \n]+', r'\1', t)
-    t = re.sub(r'(\\](?:</span>)?)\.$', r'\1', t)
+    t = re.sub(r'(\\](?:</span>)?)[.;,:]?[ \n]+', r'\1', t)
+    t = re.sub(r'(\\](?:</span>)?)[.:]$', r'\1', t)
     return re.sub(r'[ \n]+((?:<span[^>]*>)?\\\[)', r'\1', t)
 
 
@@ -337,6 +337,19 @@ def result_equations(text):
     return text[:m.start()] + m.group(1) + '\\[' + tex + '\\]' + m.group(3)
 
 
+KEEP = re.compile(r'(\\\[.*?\\\]|\\\(.*?\\\)|<[^>]+>)', re.S)
+
+
+def tidy_spaces(t):
+    """Collapse runs of spaces and drop spaces before a line break (never inside math or tags)."""
+    parts = KEEP.split(t)
+    for i in range(0, len(parts), 2):
+        parts[i] = re.sub(r' {2,}', ' ', parts[i])
+        parts[i] = re.sub(r' +\n', '\n', parts[i])
+        parts[i] = re.sub(r'\n +', '\n', parts[i])
+    return ''.join(parts)
+
+
 def format_text(text, cloze=False, answer=False, subject=None):
     if not text or not isinstance(text, str):
         return text
@@ -355,7 +368,8 @@ def format_text(text, cloze=False, answer=False, subject=None):
         t = per_line(semicolon_lists, t)
         if subject == 'mathematics':
             t = result_equations(t)
-    return tidy_display(t) if '\\[' in t else t
+    t = tidy_display(t) if '\\[' in t else t
+    return tidy_spaces(t)
 
 
 def format_card(c, subject=None):

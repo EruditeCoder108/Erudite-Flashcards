@@ -375,8 +375,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q2(iii),(iv):\\[\\begin{bmatrix}-1 & 4 & -6 \\\\ 8 & 5 & 16 \\\\ 2 & 8 & 5\\end{bmatrix} + \\begin{bmatrix}12 & 7 & 6 \\\\ 8 & 0 & 5 \\\\ 3 & 2 & 4\\end{bmatrix}\\]and the cos²/sin² matrices.",
-      "definition": "(iii)<span style=\"color:#f08c00\">\\[\\begin{bmatrix}11 & 11 & 0 \\\\ 16 & 5 & 21 \\\\ 5 & 10 & 9\\end{bmatrix}\\]</span>(iv) [[cos²x + sin²x, sin²x + cos²x], [same, same]] =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & 1 \\\\ 1 & 1\\end{bmatrix}\\]</span>",
+      "term": "Ex 3.2 Q2(iii),(iv):\n(iii)\\[\\begin{bmatrix}-1 & 4 & -6 \\\\ 8 & 5 & 16 \\\\ 2 & 8 & 5\\end{bmatrix} + \\begin{bmatrix}12 & 7 & 6 \\\\ 8 & 0 & 5 \\\\ 3 & 2 & 4\\end{bmatrix}\\](iv)\\[\\begin{bmatrix}\\cos ^{2}x & \\sin ^{2}x \\\\ \\sin ^{2}x & \\cos ^{2}x\\end{bmatrix} + \\begin{bmatrix}\\sin ^{2}x & \\cos ^{2}x \\\\ \\cos ^{2}x & \\sin ^{2}x\\end{bmatrix}\\]",
+      "definition": "(iii)<span style=\"color:#f08c00\">\\[\\begin{bmatrix}11 & 11 & 0 \\\\ 16 & 5 & 21 \\\\ 5 & 10 & 9\\end{bmatrix}\\]</span>(iv) every entry is cos²x + sin²x = 1:<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & 1 \\\\ 1 & 1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -409,7 +409,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.2 Q6: simplify\\[\\cos  \\theta \\begin{bmatrix}\\cos  \\theta & \\sin  \\theta \\\\ -\\sin  \\theta & \\cos  \\theta\\end{bmatrix} + \\sin  \\theta \\begin{bmatrix}\\sin  \\theta & -\\cos  \\theta \\\\ \\cos  \\theta & \\sin  \\theta\\end{bmatrix}\\]",
-      "definition": "Top-left cos²θ + sin²θ = 1, top-right cosθ sinθ − sinθ cosθ = 0, and so on:\n<span style=\"color:#f08c00\">I =\\[\\begin{bmatrix}1 & 0 \\\\ 0 & 1\\end{bmatrix}\\]</span>",
+      "definition": "Top-left cos²θ + sin²θ = 1, top-right cosθ sinθ − sinθ cosθ = 0, and so on: <span style=\"color:#f08c00\">I =\\[\\begin{bmatrix}1 & 0 \\\\ 0 & 1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -442,7 +442,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.2 Q8: Y =\\[\\begin{bmatrix}3 & 2 \\\\ 1 & 4\\end{bmatrix}\\]and 2X + Y =\\[\\begin{bmatrix}1 & 0 \\\\ -3 & 2\\end{bmatrix}\\]Find X.",
-      "definition": "2X =\\[\\begin{bmatrix}1 - 3 & 0 - 2 \\\\ -3 - 1 & 2 - 4\\end{bmatrix} = \\begin{bmatrix}-2 & -2 \\\\ -4 & -2\\end{bmatrix}\\]:\n<span style=\"color:#f08c00\">X =\\[\\begin{bmatrix}-1 & -1 \\\\ -2 & -1\\end{bmatrix}\\]</span>",
+      "definition": "2X =\\[\\begin{bmatrix}1 - 3 & 0 - 2 \\\\ -3 - 1 & 2 - 4\\end{bmatrix} = \\begin{bmatrix}-2 & -2 \\\\ -4 & -2\\end{bmatrix}\\]<span style=\"color:#f08c00\">X =\\[\\begin{bmatrix}-1 & -1 \\\\ -2 & -1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -575,7 +575,7 @@
     {
       "noteType": "basic",
       "term": "Is matrix multiplication commutative?",
-      "definition": "<span style=\"color:#e5484d\">No</span>: AB ≠ BA in general (they may even have different orders).\nExample 14: A =\\[\\begin{bmatrix}1 & 0 \\\\ 0 & -1\\end{bmatrix}\\]B =\\[\\begin{bmatrix}0 & 1 \\\\ 1 & 0\\end{bmatrix}\\]give AB =\\[\\begin{bmatrix}0 & 1 \\\\ -1 & 0\\end{bmatrix}\\]but BA =\\[\\begin{bmatrix}0 & -1 \\\\ 1 & 0\\end{bmatrix}\\]",
+      "definition": "<span style=\"color:#e5484d\">No</span>: AB ≠ BA in general (they may even have different orders). Example 14: A =\\[\\begin{bmatrix}1 & 0 \\\\ 0 & -1\\end{bmatrix}\\]B =\\[\\begin{bmatrix}0 & 1 \\\\ 1 & 0\\end{bmatrix}\\]give AB =\\[\\begin{bmatrix}0 & 1 \\\\ -1 & 0\\end{bmatrix}\\]but BA =\\[\\begin{bmatrix}0 & -1 \\\\ 1 & 0\\end{bmatrix}\\]",
       "tags": [
         "class-12",
         "mathematics",
@@ -762,7 +762,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.2 Q14(ii): the 3 × 3 non-commutativity example.",
-      "definition": "One order gives\\[\\begin{bmatrix}5 & 8 & 14 \\\\ 0 & -1 & 1 \\\\ -1 & 0 & 1\\end{bmatrix}\\]the other\\[\\begin{bmatrix}-1 & -1 & -3 \\\\ 1 & 0 & 0 \\\\ 6 & 11 & 6\\end{bmatrix}\\]: <span style=\"color:#e5484d\">not equal</span>",
+      "definition": "One order gives\\[\\begin{bmatrix}5 & 8 & 14 \\\\ 0 & -1 & 1 \\\\ -1 & 0 & 1\\end{bmatrix}\\]the other\\[\\begin{bmatrix}-1 & -1 & -3 \\\\ 1 & 0 & 0 \\\\ 6 & 11 & 6\\end{bmatrix}\\]<span style=\"color:#e5484d\">not equal</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -795,7 +795,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.2 Q17: A =\\[\\begin{bmatrix}3 & -2 \\\\ 4 & -2\\end{bmatrix}\\]Find k with A² = kA − 2I.",
-      "definition": "A² =\\[\\begin{bmatrix}1 & -2 \\\\ 4 & -4\\end{bmatrix}\\]and kA − 2I =\\[\\begin{bmatrix}3k - 2 & -2k \\\\ 4k & -2k - 2\\end{bmatrix}\\]Then k = 1 fits every entry:\n<span style=\"color:#f08c00\">k = 1</span>",
+      "definition": "A² =\\[\\begin{bmatrix}1 & -2 \\\\ 4 & -4\\end{bmatrix}\\]and kA − 2I =\\[\\begin{bmatrix}3k - 2 & -2k \\\\ 4k & -2k - 2\\end{bmatrix}\\]Then k = 1 fits every entry: <span style=\"color:#f08c00\">k = 1</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -805,7 +805,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q18: A =\\[\\begin{bmatrix}0 & -\\tan (\\alpha /2) \\\\ \\tan (\\alpha /2) & 0\\end{bmatrix}\\]Show I + A =\\[(I - A) \\begin{bmatrix}\\cos  \\alpha & -\\sin  \\alpha \\\\ \\sin  \\alpha & \\cos  \\alpha\\end{bmatrix}\\]",
+      "term": "Ex 3.2 Q18: A =\\[\\begin{bmatrix}0 & -\\tan (\\alpha /2) \\\\ \\tan (\\alpha /2) & 0\\end{bmatrix}\\]Show I + A = (I − A)\\[\\begin{bmatrix}\\cos  \\alpha & -\\sin  \\alpha \\\\ \\sin  \\alpha & \\cos  \\alpha\\end{bmatrix}\\]",
       "definition": "With t = tan(α/2): cos α = (1 − t²)/(1 + t²), sin α = 2t/(1 + t²).\nMultiply out (I − A)(rotation) =\\[\\begin{bmatrix}1 & t \\\\ -t & 1\\end{bmatrix} \\cdot \\begin{bmatrix}\\cos  \\alpha & -\\sin  \\alpha \\\\ \\sin  \\alpha & \\cos  \\alpha\\end{bmatrix}\\]and simplify to\\[\\begin{bmatrix}1 & -t \\\\ t & 1\\end{bmatrix}\\]= I + A. <span style=\"color:#22a35a\">✓</span>",
       "tags": [
         "class-12",
@@ -1308,7 +1308,7 @@
     {
       "noteType": "basic",
       "term": "Misc Q3: A =\\[\\begin{bmatrix}0 & 2y & z \\\\ x & y & -z \\\\ x & -y & z\\end{bmatrix}\\]satisfies A′A = I. Find x, y, z.",
-      "definition": "Columns must be orthonormal: 2x² = 1, 6y² = 1, 3z² = 1 (and the cross terms vanish):\n<span style=\"color:#f08c00\">x = ±1/√2, y = ±1/√6, z = ±1/√3</span>",
+      "definition": "Columns must be orthonormal: 2x² = 1, 6y² = 1, 3z² = 1 (and the cross terms vanish): <span style=\"color:#f08c00\">x = ±1/√2, y = ±1/√6, z = ±1/√3</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1330,7 +1330,7 @@
     {
       "noteType": "basic",
       "term": "Misc Q5: A =\\[\\begin{bmatrix}3 & 1 \\\\ -1 & 2\\end{bmatrix}\\]Show A² − 5A + 7I = O.",
-      "definition": "A² =\\[\\begin{bmatrix}8 & 5 \\\\ -5 & 3\\end{bmatrix}\\]5A =\\[\\begin{bmatrix}15 & 5 \\\\ -5 & 10\\end{bmatrix}\\]: 8 − 15 + 7 = 0, 5 − 5 = 0, −5 + 5 = 0, 3 − 10 + 7 = 0. <span style=\"color:#22a35a\">✓</span> (Here tr A = 5 and det A = 7: A² − (tr A)A + (det A)I = O)",
+      "definition": "A² =\\[\\begin{bmatrix}8 & 5 \\\\ -5 & 3\\end{bmatrix}\\]5A =\\[\\begin{bmatrix}15 & 5 \\\\ -5 & 10\\end{bmatrix}\\]8 − 15 + 7 = 0, 5 − 5 = 0, −5 + 5 = 0, 3 − 10 + 7 = 0. <span style=\"color:#22a35a\">✓</span> (Here tr A = 5 and det A = 7: A² − (tr A)A + (det A)I = O)",
       "tags": [
         "class-12",
         "mathematics",
@@ -1418,7 +1418,7 @@
     {
       "noteType": "basic",
       "term": "Idempotent, involutory and nilpotent matrices?",
-      "definition": "<span style=\"color:#3b82f6\">Idempotent</span>: A² = A. <span style=\"color:#3b82f6\">Involutory</span>: A² = I. <span style=\"color:#3b82f6\">Nilpotent</span>: Aᵏ = O for some k.\nExample:\\[\\begin{bmatrix}0 & 1 \\\\ 0 & 0\\end{bmatrix}\\]is nilpotent (A² = O)",
+      "definition": "<span style=\"color:#3b82f6\">Idempotent</span>: A² = A. <span style=\"color:#3b82f6\">Involutory</span>: A² = I. <span style=\"color:#3b82f6\">Nilpotent</span>: Aᵏ = O for some k. Example:\\[\\begin{bmatrix}0 & 1 \\\\ 0 & 0\\end{bmatrix}\\]is nilpotent (A² = O)",
       "tags": [
         "class-12",
         "mathematics",
@@ -1451,7 +1451,7 @@
     {
       "noteType": "basic",
       "term": "Find A⁻¹ for A =\\[\\begin{bmatrix}1 & 2 \\\\ 3 & 4\\end{bmatrix}\\]with the shortcut.",
-      "definition": "ad − bc = 4 − 6 = −2.\nA⁻¹ =\\[(1/-2) \\begin{bmatrix}4 & -2 \\\\[0.7em] -3 & 1\\end{bmatrix}\\]=<span style=\"color:#f08c00\">\\[\\begin{bmatrix}-2 & 1 \\\\[0.7em] \\dfrac{3}{2} & -\\dfrac{1}{2}\\end{bmatrix}\\]</span>",
+      "definition": "ad − bc = 4 − 6 = −2. A⁻¹ = (1/−2)\\[\\begin{bmatrix}4 & -2 \\\\ -3 & 1\\end{bmatrix}\\]=<span style=\"color:#f08c00\">\\[\\begin{bmatrix}-2 & 1 \\\\[0.7em] \\dfrac{3}{2} & -\\dfrac{1}{2}\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1549,8 +1549,8 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: if A =\\[\\begin{bmatrix}1 & 2 \\\\ 3 & 4\\end{bmatrix}\\]and B =\\[\\begin{bmatrix}0 & 1 \\\\ 1 & 0\\end{bmatrix}\\]AB =<br>\\[\n(a) \\begin{bmatrix}2 & 1 \\\\ 4 & 3\\end{bmatrix}\n(b) \\begin{bmatrix}3 & 4 \\\\ 1 & 2\\end{bmatrix}\n(c) \\begin{bmatrix}0 & 2 \\\\ 3 & 0\\end{bmatrix}\n(d) \\begin{bmatrix}1 & 3 \\\\ 2 & 4\\end{bmatrix}\\]",
-      "definition": "Multiplying by B on the right swaps the columns:<span style=\"color:#22a35a\">\\[(a) \\begin{bmatrix}2 & 1 \\\\ 4 & 3\\end{bmatrix}\\]</span>",
+      "term": "MCQ: if A =\\[\\begin{bmatrix}1 & 2 \\\\ 3 & 4\\end{bmatrix}\\]and B =\\[\\begin{bmatrix}0 & 1 \\\\ 1 & 0\\end{bmatrix}\\]AB =<br>(a)\\[\\begin{bmatrix}2 & 1 \\\\ 4 & 3\\end{bmatrix}\\](b)\\[\\begin{bmatrix}3 & 4 \\\\ 1 & 2\\end{bmatrix}\\](c)\\[\\begin{bmatrix}0 & 2 \\\\ 3 & 0\\end{bmatrix}\\](d)\\[\\begin{bmatrix}1 & 3 \\\\ 2 & 4\\end{bmatrix}\\]",
+      "definition": "Multiplying by B on the right swaps the columns: <span style=\"color:#22a35a\">(a)\\[\\begin{bmatrix}2 & 1 \\\\ 4 & 3\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1571,7 +1571,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: if A =\\[\\begin{bmatrix}\\cos  \\theta & -\\sin  \\theta \\\\ \\sin  \\theta & \\cos  \\theta\\end{bmatrix}\\]then A² =<br>\\[\n(a) \\begin{bmatrix}\\cos  2\\theta & -\\sin  2\\theta \\\\ \\sin  2\\theta & \\cos  2\\theta\\end{bmatrix}\n(b) \\begin{bmatrix}\\cos ^{2}\\theta & -\\sin ^{2}\\theta \\\\ \\sin ^{2}\\theta & \\cos ^{2}\\theta\\end{bmatrix}\\](c) I\n(d) 2A",
+      "term": "MCQ: if A =\\[\\begin{bmatrix}\\cos  \\theta & -\\sin  \\theta \\\\ \\sin  \\theta & \\cos  \\theta\\end{bmatrix}\\]then A² =<br>(a)\\[\\begin{bmatrix}\\cos  2\\theta & -\\sin  2\\theta \\\\ \\sin  2\\theta & \\cos  2\\theta\\end{bmatrix}\\](b)\\[\\begin{bmatrix}\\cos ^{2}\\theta & -\\sin ^{2}\\theta \\\\ \\sin ^{2}\\theta & \\cos ^{2}\\theta\\end{bmatrix}\\](c) I\n(d) 2A",
       "definition": "Rotation by θ twice is rotation by 2θ: <span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-12",
@@ -1737,7 +1737,7 @@
     {
       "noteType": "basic",
       "term": "3-mark: A =\\[\\begin{bmatrix}1 & 2 \\\\ 2 & 1\\end{bmatrix}\\]Show A² − 2A − 3I = O and hence find A⁻¹.",
-      "definition": "A² =\\[\\begin{bmatrix}5 & 4 \\\\ 4 & 5\\end{bmatrix}\\]so A² − 2A − 3I = O. Then A(A − 2I) = 3I, so <span style=\"color:#f08c00\">A⁻¹ = (1/3)(A − 2I) =\\[(1/3) \\begin{bmatrix}-1 & 2 \\\\ 2 & -1\\end{bmatrix}\\]</span>",
+      "definition": "A² =\\[\\begin{bmatrix}5 & 4 \\\\ 4 & 5\\end{bmatrix}\\]so A² − 2A − 3I = O. Then A(A − 2I) = 3I, so <span style=\"color:#f08c00\">A⁻¹ = (1/3)(A − 2I) = (1/3)\\[\\begin{bmatrix}-1 & 2 \\\\ 2 & -1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
