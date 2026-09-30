@@ -6,7 +6,7 @@
   // project exists: the app then shows Pro as "coming soon" and keeps every
   // purchase button disabled.
   window.ERUDITE_BILLING = Object.freeze({
-    revenueCatAndroidKey: '',
+    revenueCatAndroidKey: 'goog_bhdPpCsAAQjrFzvVHcYXMvDFEeV',
     // Entitlement identifier configured in the RevenueCat dashboard.
     entitlementId: 'erudite_flashcards_pro',
     // Cards of each premade chapter that free users can import. A deck in the
