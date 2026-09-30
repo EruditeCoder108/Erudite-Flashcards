@@ -8,7 +8,7 @@
   window.ERUDITE_BILLING = Object.freeze({
     revenueCatAndroidKey: '',
     // Entitlement identifier configured in the RevenueCat dashboard.
-    entitlementId: 'pro',
+    entitlementId: 'erudite_flashcards_pro',
     // Cards of each premade chapter that free users can import. A deck in the
     // premade manifest can override this with "freeCards", or set
     // "tier": "free" to stay fully free.
