@@ -1,0 +1,239 @@
+/*
+ * Today: a single screen. Greeting, goal, stats, the next action, three decks
+ * and the week all fit on a phone without scrolling. Loaded after
+ * signature.css so the ring and stack button sizes here win.
+ */
+
+/* The greeting row is the header on Today, so the shared top bar is not
+   repeated above it. */
+body[data-active-tab="today"] .mobile-topbar {
+  display: none;
+}
+
+#view-today {
+  padding-top: var(--space-2);
+}
+
+.today-greeting {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0 var(--space-1) var(--space-3);
+}
+
+.today-logo {
+  flex: 0 0 auto;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.6rem;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.today-greeting-copy {
+  min-width: 0;
+}
+
+.today-greeting h2 {
+  overflow: hidden;
+  font-size: var(--text-lg);
+  font-weight: 620;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.today-greeting .today-date {
+  margin: 0.1rem 0 0;
+  color: var(--subtle);
+  font-size: var(--text-xs);
+  font-weight: 550;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* Hero: ring and three stats side by side, the next action below. */
+.today-hero {
+  padding: var(--space-4);
+}
+
+.hero-dashboard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.goal-ring-button {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--dur-spring) var(--spring-snappy);
+}
+
+.goal-ring-button:active {
+  transform: scale(0.96);
+}
+
+.today-hero .goal-ring {
+  width: 6.75rem;
+  height: 6.75rem;
+}
+
+/* "12/30": the count stays readable, the goal is quieter. */
+.today-hero .goal-ring-copy strong {
+  font-size: 1.5rem;
+}
+
+.today-hero .goal-ring.shows-count .goal-unit {
+  font-size: 0.58em;
+}
+
+.today-hero .goal-label {
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+}
+
+.today-hero .stat-row {
+  padding: 0.4rem 0;
+}
+
+.today-hero .stat-value {
+  font-size: var(--text-md);
+}
+
+.stat-streak.is-active i {
+  color: var(--amber);
+}
+
+.today-hero .hero-actions {
+  margin-top: var(--space-3);
+}
+
+.today-hero .stack-face {
+  min-height: 3.5rem;
+}
+
+/* The plan line may take two lines; it never gets cut mid-sentence. */
+.today-hero .stack-copy small {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+}
+
+/* Up next: tighter rows. */
+.today-next {
+  margin-top: var(--space-4);
+}
+
+.today-next .section-title-row {
+  margin-bottom: var(--space-2);
+}
+
+.today-next .section-title-row h2 {
+  font-size: var(--text-md);
+}
+
+.today-next .deck-stack {
+  gap: var(--space-2);
+}
+
+.deck-row.compact {
+  padding: 0.6rem var(--space-3);
+  row-gap: 0.1rem;
+}
+
+.deck-row.compact .deck-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.deck-row.compact .progress-track {
+  margin-top: 0.15rem;
+}
+
+/* This week: one compact card. */
+.today-links {
+  margin-top: var(--space-3);
+}
+
+.week-card {
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+}
+
+.week-days {
+  gap: var(--space-1);
+}
+
+.week-day {
+  gap: 0.2rem;
+}
+
+.week-day i {
+  max-width: 1.6rem;
+  border-radius: 0.45rem;
+}
+
+/* Short phones: show two decks so the week card still fits above the tab bar. */
+@media (max-height: 760px) {
+  .today-next .deck-stack > .deck-row:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+@media (max-height: 640px) {
+  .today-hero .goal-ring {
+    width: 5.75rem;
+    height: 5.75rem;
+  }
+
+  .today-hero .goal-ring-copy strong {
+    font-size: 1.3rem;
+  }
+}
+
+/* One-tap reminder offer, shown after the first study session. One row. */
+.reminder-prompt {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--amber) 8%, var(--surface));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--amber) 22%, transparent);
+}
+
+.reminder-prompt-yes {
+  min-height: 2.5rem;
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 600;
+}
+
+.reminder-prompt-close {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--subtle);
+}
+
+.reminder-prompt-close:active {
+  background: var(--surface-2);
+}

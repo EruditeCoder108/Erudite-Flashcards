@@ -820,10 +820,14 @@
 
   async function configureSystemBars() {
     const SystemBars = window.Capacitor?.Plugins?.SystemBars;
-    if (!SystemBars) return;
+    if (!SystemBars) {
+      window.EruditeSystemChrome?.sync();
+      return;
+    }
     const isLight = state.settings?.theme === 'light';
     await SystemBars.setStyle?.({ style: isLight ? 'LIGHT' : 'DARK' }).catch(() => {});
     await SystemBars.setAnimation?.({ animation: 'NONE' }).catch(() => {});
+    window.EruditeSystemChrome?.sync();
     // The launch theme and Capacitor config already keep both system bars visible.
     // Calling show() after the first web frame makes Android recalculate WebView
     // insets, which visibly shifts startup surfaces such as onboarding and loader.
@@ -1928,13 +1932,19 @@
     const progressLabel = hasDecks ? `${studiedToday} of ${goal}` : 'Start';
     const reviewAction = state.srsMode && totals.dueCards > 0 ? 'review-due-smart' : (hasDecks ? 'tab-library' : 'open-create');
     const reviewLabel = state.srsMode && totals.dueCards > 0 ? `Review ${totals.dueCards} Left` : (hasDecks ? 'Study Decks' : 'Create Deck');
-    const middleMetricValue = studiedToday;
-    const middleMetricLabel = 'Studied';
     const hasDue = state.srsMode && totals.dueCards > 0;
-    const ctaTitle = hasDue ? 'Review' : (hasDecks ? 'Study Decks' : 'Create Deck');
-    const ctaCopy = hasDue
-      ? `${totals.dueCards === 1 ? 'card' : 'cards'} left today`
-      : (hasDecks ? 'You are caught up. Keep going?' : 'Start with your first deck');
+    const leftToGoal = Math.max(0, goal - studiedToday);
+    // Middle stat: what is still waiting today. Reviews when spaced repetition
+    // is on, otherwise the cards left to reach the daily goal.
+    const goalMet = hasDecks && leftToGoal === 0;
+    const middleMetricValue = state.srsMode ? totals.dueCards : (goalMet ? studiedToday : leftToGoal);
+    const middleMetricLabel = state.srsMode ? 'Due' : (goalMet ? 'Studied' : 'To goal');
+    const ctaTitle = hasDue ? 'Review now' : (hasDecks ? 'Study Decks' : 'Create Deck');
+    // The plan for today (how long reviews take, or what is left) rides on the
+    // button itself instead of a separate line above the dashboard.
+    const ctaCopy = hasDecks
+      ? todayGreetingLine({ totals, hasDecks, hasDue, activity })
+      : 'Start with your first deck';
     // Card layers behind the button show roughly how much is waiting.
     const stackDepth = hasDue ? (totals.dueCards >= 10 ? 2 : 1) : 0;
     const signature = window.EruditeSignature;
@@ -1943,32 +1953,34 @@
     const statsReady = state.setStatsReady || !state.sets.length;
     const ringProgress = statsReady || !signature ? progress : signature.lastShownProgress();
     const ringMarkup = signature
-      ? signature.goalRingMarkup({ progress: ringProgress, label: ringProgress >= 100 ? 'Done' : progressLabel })
-      : `<div class="goal-ring" data-progress="${progress}"><div class="goal-ring-copy"><strong>${progress}%</strong><span>${progressLabel}</span></div></div>`;
+      ? signature.goalRingMarkup({ progress: ringProgress, count: studiedToday, goal, label: hasDecks ? 'today' : 'Start' })
+      : `<div class="goal-ring" data-progress="${progress}"><div class="goal-ring-copy"><strong>${studiedToday}</strong><span>${progressLabel}</span></div></div>`;
     const previousRing = selectors.todayHero.querySelector('.goal-ring');
     selectors.todayHero.innerHTML = `
       <div class="hero-dashboard">
-        ${ringMarkup}
+        <button type="button" class="goal-ring-button" data-action="select-daily-goal" aria-label="Daily goal: ${studiedToday} of ${goal} cards today. Change goal">
+          ${ringMarkup}
+        </button>
         <div class="hero-stats-list">
-          <div class="stat-row">
-            <i class="fas fa-layer-group"></i>
+          <div class="stat-row stat-streak${streak > 0 ? ' is-active' : ''}">
+            <i class="fas fa-fire"></i>
             <div class="stat-details">
-              <span class="stat-value">${totals.setCount}</span>
-              <span class="stat-label">Decks</span>
+              <span class="stat-value">${streak}</span>
+              <span class="stat-label">Day streak</span>
             </div>
           </div>
           <div class="stat-row">
-            <i class="fas fa-circle-check"></i>
+            <i class="fas ${state.srsMode ? 'fa-clock-rotate-left' : 'fa-bullseye'}"></i>
             <div class="stat-details">
               <span class="stat-value">${middleMetricValue}</span>
               <span class="stat-label">${middleMetricLabel}</span>
             </div>
           </div>
           <div class="stat-row">
-            <i class="fas fa-fire"></i>
+            <i class="fas fa-layer-group"></i>
             <div class="stat-details">
-              <span class="stat-value">${streak}</span>
-              <span class="stat-label">Streak</span>
+              <span class="stat-value">${totals.setCount}</span>
+              <span class="stat-label">${totals.setCount === 1 ? 'Deck' : 'Decks'}</span>
             </div>
           </div>
         </div>
@@ -1989,13 +2001,13 @@
       </div>
     `;
     const nextRing = selectors.todayHero.querySelector('.goal-ring');
-    if (previousRing && nextRing && previousRing.dataset.progress === nextRing.dataset.progress) {
+    if (previousRing && nextRing && previousRing.dataset.progress === nextRing.dataset.progress && previousRing.dataset.count === nextRing.dataset.count) {
       // Same value: keep the existing ring so an animation in flight is not cut off.
       nextRing.replaceWith(previousRing);
     } else if (nextRing && statsReady) {
-      signature?.animateGoalRing(nextRing, progress);
+      signature?.animateGoalRing(nextRing, progress, { count: studiedToday, goal });
     } else if (nextRing) {
-      signature?.animateGoalRing(nextRing, ringProgress, { remember: false });
+      signature?.animateGoalRing(nextRing, ringProgress, { remember: false, count: studiedToday, goal });
     }
 
     // Insights and focused practice live in their own sheets; only redraw
@@ -2009,7 +2021,7 @@
         if (state.srsMode && dueDiff !== 0) return dueDiff;
         return normalizeTimestamp(b.lastOpened || b.lastModified) - normalizeTimestamp(a.lastOpened || a.lastModified);
       })
-      .slice(0, 3);
+      .slice(0, upNextCount());
 
     renderTodayGreeting({ totals, hasDecks, hasDue, activity });
     renderTodayLinks({ totals, streak, activity });
@@ -2024,6 +2036,32 @@
     perf?.end(span, {
       cardCount: totals.cardCount,
       dueCount: totals.dueCards
+    });
+  }
+
+  // Tablets have a second column for the deck queue, so they list more.
+  const TABLET_QUERY = '(min-width: 768px)';
+  function upNextCount() {
+    return window.matchMedia?.(TABLET_QUERY)?.matches ? 6 : 3;
+  }
+
+  // Settings groups remember whether they were open (a per-device convenience).
+  const SETTINGS_GROUPS_KEY = 'erudite-settings-groups-open';
+  function restoreSettingsGroups() {
+    let saved = null;
+    try {
+      saved = JSON.parse(localStorage.getItem(SETTINGS_GROUPS_KEY) || 'null');
+    } catch (_) {
+      saved = null;
+    }
+    document.querySelectorAll('.settings-group[data-settings-group]').forEach(group => {
+      if (Array.isArray(saved)) group.open = saved.includes(group.dataset.settingsGroup);
+      group.addEventListener('toggle', () => {
+        const open = [...document.querySelectorAll('.settings-group[open]')].map(item => item.dataset.settingsGroup);
+        try {
+          localStorage.setItem(SETTINGS_GROUPS_KEY, JSON.stringify(open));
+        } catch (_) {}
+      });
     });
   }
 
@@ -2048,7 +2086,7 @@
       const left = dailyGoal() - cardsStudiedToday();
       return left > 0
         ? `${plural(left, 'card')} to today's goal.`
-        : 'Goal done for today. Anything more is a bonus.';
+        : 'Goal done. Extra cards are a bonus.';
     }
     if (state.analyticsLoaded) {
       const tomorrow = buildForecast(state.analyticsCards || [], 2)[1]?.count || 0;
@@ -2064,9 +2102,11 @@
     const name = readPreferredName();
     const date = new Date().toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
     selectors.todayGreeting.innerHTML = `
-      <p class="today-date">${escapeHtml(date)}</p>
-      <h2 id="today-greeting-title">${escapeHtml(timeOfDayGreeting())}${name ? `, ${escapeHtml(name)}` : ''}</h2>
-      <p class="today-line">${escapeHtml(todayGreetingLine(context))}</p>
+      <img src="assets/icons/icon.png" alt="" class="today-logo" draggable="false">
+      <div class="today-greeting-copy">
+        <h2 id="today-greeting-title">${escapeHtml(timeOfDayGreeting())}${name ? `, ${escapeHtml(name)}` : ''}</h2>
+        <p class="today-date">${escapeHtml(date)}</p>
+      </div>
     `;
   }
 
@@ -2119,6 +2159,7 @@
     }
 
     selectors.todayLinks.innerHTML = `
+      ${reminderPromptMarkup(activity, streak)}
       <button type="button" class="week-card" data-action="open-insights" aria-label="This week: ${escapeAttr(facts.join(', '))}. Open insights">
         <span class="week-card-head">
           <strong>This week</strong>
@@ -2129,6 +2170,68 @@
       </button>
       ${focus}
     `;
+  }
+
+  // A one-tap offer to turn on the daily reminder, shown once someone has
+  // actually studied (so it lands as help, not as a first-launch nag), until
+  // they accept or wave it away for two weeks.
+  const REMINDER_PROMPT_KEY = 'erudite-reminder-prompt-dismissed';
+  function reminderPromptMarkup(activity, streak) {
+    if (!localNotifications() || reminderSettings().enabled) return '';
+    const hasStudied = streak > 0 || cardsStudiedToday() > 0 || Number(activity?.weekStudyMs || 0) > 0;
+    if (!hasStudied) return '';
+    try {
+      const dismissedAt = Number(localStorage.getItem(REMINDER_PROMPT_KEY) || 0);
+      if (dismissedAt && Date.now() - dismissedAt < 14 * 24 * 60 * 60 * 1000) return '';
+    } catch (_) {}
+    return `
+      <div class="reminder-prompt">
+        <span class="today-link-icon"><i class="fas fa-bell"></i></span>
+        <span class="today-link-copy">
+          <strong>Daily study reminder</strong>
+          <small>Every day at 7 PM</small>
+        </span>
+        <button type="button" class="reminder-prompt-yes" data-action="enable-reminder-quick">Turn on</button>
+        <button type="button" class="reminder-prompt-close" data-action="dismiss-reminder-prompt" aria-label="Not now"><i class="fas fa-xmark"></i></button>
+      </div>`;
+  }
+
+  async function enableReminderQuick() {
+    const plugin = localNotifications();
+    if (!plugin) return;
+    try {
+      const current = await plugin.checkPermissions();
+      const result = current?.display === 'granted' ? current : await plugin.requestPermissions();
+      if (result?.display !== 'granted') {
+        showToast('Allow notifications for Erudite in Android settings to get reminders');
+        return;
+      }
+    } catch (_) {
+      showToast('Could not turn on reminders');
+      return;
+    }
+    const previous = reminderSettings();
+    state.settings = {
+      ...(state.settings || {}),
+      reminder: { enabled: true, hour: previous.hour, minute: previous.minute }
+    };
+    try {
+      await window.flashcardStore.saveSettings(state.settings);
+      await scheduleStudyReminders();
+      showToast(`Reminder set for ${formatReminderTime(previous.hour, previous.minute)}. Change it in Settings.`);
+    } catch (error) {
+      console.error('Could not save reminder:', error);
+      showToast('Could not save reminder');
+    }
+    updateReminderLabel();
+    renderToday();
+  }
+
+  function dismissReminderPrompt() {
+    try {
+      localStorage.setItem(REMINDER_PROMPT_KEY, String(Date.now()));
+    } catch (_) {}
+    renderToday();
   }
 
   function isPageSheetOpen(id) {
@@ -7867,6 +7970,7 @@
     resetOnboardingExperiment();
     shell.classList.remove('hidden', 'is-closing', 'is-guide-reveal');
     shell.classList.toggle('is-opening', !immediate);
+    window.EruditeSystemChrome?.sync();
     resetOnboardingGreeting();
     const hasGreeting = Boolean(shell.querySelector('[data-onboarding-step="0"]'));
     updateOnboardingStep(hasGreeting ? 0 : 1, { focus: false });
@@ -7893,6 +7997,7 @@
     await new Promise(resolve => window.setTimeout(resolve, 180));
     shell.classList.add('hidden');
     shell.classList.remove('is-closing', 'is-opening', 'is-final');
+    window.EruditeSystemChrome?.sync();
     document.body.classList.remove('onboarding-open');
     const mobileShell = document.getElementById('mobile-shell');
     if (mobileShell) {
@@ -8735,6 +8840,9 @@
   // and today's reminder is dropped once the learner has finished.
   const REMINDER_BASE_ID = 7100;
   const REMINDER_DAYS = 7;
+  // Come-back notes, in days after the last time the app was opened.
+  const COMEBACK_BASE_ID = 7120;
+  const COMEBACK_DAYS = [10, 14, 21, 30];
   const REMINDER_CHANNEL_ID = 'study-reminders';
   let reminderChannelReady = false;
   let reminderScheduleTimer = null;
@@ -8758,24 +8866,55 @@
     return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
   }
 
-  function reminderMessages(dueCount, studiedToday) {
+  /**
+   * What each reminder says. Today's names the real work (due cards, a streak
+   * at risk); the next six days get gentler to firmer nudges in case the app
+   * is not opened; then four spaced "come back" notes, and nothing after that.
+   * Every app open rebuilds the plan, so someone who studies daily only ever
+   * sees today's message.
+   */
+  function reminderPlan({ dueCount, studiedToday, streak, leftToGoal = 0 }) {
     const name = readPreferredName();
-    const greeting = name ? `${name}, ` : '';
-    const today = dueCount > 0
-      ? {
-          title: `${plural(dueCount, 'card')} ready for review`,
-          body: `${greeting}a few minutes now keeps them from piling up tomorrow.`
-        }
-      : {
-          title: 'Keep your streak going',
-          body: `${greeting}learn a few new cards today.`
-        };
+    const lead = name ? `${name}, ` : '';
+    let today = null;
+    if (!studiedToday && streak > 0) {
+      today = {
+        title: `🔥 Keep your ${streak}-day streak alive`,
+        body: dueCount > 0
+          ? `${lead}${plural(dueCount, 'card')} ${dueCount === 1 ? 'is' : 'are'} due. A few minutes keeps the streak going.`
+          : `${lead}study a few cards before midnight to keep it going.`
+      };
+    } else if (dueCount > 0) {
+      today = {
+        title: `${plural(dueCount, 'card')} ready for review`,
+        body: `${lead}a few minutes now keeps them from piling up tomorrow.`
+      };
+    } else if (!studiedToday) {
+      today = {
+        title: 'Ten cards before bed?',
+        body: `${lead}a short session today beats a long one next week.`
+      };
+    } else if (leftToGoal > 0) {
+      today = {
+        title: `${plural(leftToGoal, 'card')} to today's goal 🎯`,
+        body: `${lead}finish it off and the ring closes for the day.`
+      };
+    }
     const later = [
-      { title: 'Time for today\'s review', body: 'Short daily sessions beat long cramming ones.' },
-      { title: 'Your cards are waiting', body: 'Reviewing on time is what makes them stick.' },
-      { title: 'A quick session?', body: 'Five minutes today saves twenty next week.' }
+      { title: 'Your cards miss you 👋', body: 'A quick review now makes tomorrow easier.' },
+      { title: 'Forgetting has already started', body: 'Memory fades fastest in the first few days after learning. Five minutes of recall stops the slide.' },
+      { title: 'Three days off. That is fine.', body: `${lead}no need for hours. Ten cards today gets you going again.` },
+      { title: 'Small sessions win', body: 'Toppers do not cram. They review a little, every day.' },
+      { title: 'Your future self says thanks', body: 'Five minutes of recall today saves an hour of re-reading before the exam.' },
+      { title: 'Still preparing for your exams?', body: `${lead}pick one chapter and do ten cards. That is the whole plan.` }
     ];
-    return { today: studiedToday && dueCount === 0 ? null : today, later };
+    const comeback = [
+      { title: name ? `Still there, ${name}?` : 'Still there?', body: 'Your decks are right where you left them. One short session to restart?' },
+      { title: 'Start small', body: 'One deck, ten cards, five minutes. That is all it takes to get back on track.' },
+      { title: 'Your progress is saved', body: 'Everything you studied is waiting. Pick up where you left off.' },
+      { title: 'Last nudge from us', body: 'We will stop reminding you after this. Your cards will be here whenever you are ready.' }
+    ];
+    return { today, later, comeback };
   }
 
   async function ensureReminderChannel(plugin) {
@@ -8796,7 +8935,10 @@
 
   async function cancelStudyReminders(plugin = localNotifications()) {
     if (!plugin) return;
-    const notifications = Array.from({ length: REMINDER_DAYS }, (_, index) => ({ id: REMINDER_BASE_ID + index }));
+    const notifications = [
+      ...Array.from({ length: REMINDER_DAYS }, (_, index) => ({ id: REMINDER_BASE_ID + index })),
+      ...COMEBACK_DAYS.map((_, index) => ({ id: COMEBACK_BASE_ID + index }))
+    ];
     try {
       await plugin.cancel({ notifications });
     } catch (_) {}
@@ -8826,27 +8968,39 @@
 
     const dueCount = state.srsMode ? Number(totalStats({ forceDue: true }).dueCards || 0) : 0;
     const studiedToday = reviewsToday() > 0 || studyActivitySummary().todayCardsViewed > 0;
-    const messages = reminderMessages(dueCount, studiedToday);
+    const plan = reminderPlan({
+      dueCount,
+      studiedToday,
+      streak: streakDays(),
+      leftToGoal: Math.max(0, dailyGoal() - cardsStudiedToday())
+    });
     const now = Date.now();
     const notifications = [];
-    for (let offset = 0; offset < REMINDER_DAYS + 1 && notifications.length < REMINDER_DAYS; offset += 1) {
+    const atDay = offset => {
       const at = new Date();
       at.setDate(at.getDate() + offset);
       at.setHours(reminder.hour, reminder.minute, 0, 0);
+      return at;
+    };
+    const push = (id, message, at) => notifications.push({
+      id,
+      title: message.title,
+      body: message.body,
+      channelId: REMINDER_CHANNEL_ID,
+      smallIcon: 'ic_stat_erudite',
+      schedule: { at, allowWhileIdle: true },
+      isExactNotification: false
+    });
+    let dailyCount = 0;
+    for (let offset = 0; offset < REMINDER_DAYS; offset += 1) {
+      const at = atDay(offset);
       if (at.getTime() <= now + 60 * 1000) continue;
-      const isToday = offset === 0;
-      const message = isToday ? messages.today : messages.later[offset % messages.later.length];
+      const message = offset === 0 ? plan.today : plan.later[offset - 1];
       if (!message) continue;
-      notifications.push({
-        id: REMINDER_BASE_ID + notifications.length,
-        title: message.title,
-        body: message.body,
-        channelId: REMINDER_CHANNEL_ID,
-        smallIcon: 'ic_stat_erudite',
-        schedule: { at, allowWhileIdle: true },
-        isExactNotification: false
-      });
+      push(REMINDER_BASE_ID + dailyCount, message, at);
+      dailyCount += 1;
     }
+    COMEBACK_DAYS.forEach((days, index) => push(COMEBACK_BASE_ID + index, plan.comeback[index], atDay(days)));
     if (!notifications.length) return;
     try {
       await plugin.schedule({ notifications });
@@ -10788,6 +10942,12 @@
         break;
       case 'toggle-paper':
         await togglePaper();
+        break;
+      case 'enable-reminder-quick':
+        await enableReminderQuick();
+        break;
+      case 'dismiss-reminder-prompt':
+        dismissReminderPrompt();
         break;
       case 'open-pro':
         await openProSheet();
@@ -13002,6 +13162,12 @@ Every media/... reference in deck.json must exist inside media/.`;
     document.documentElement.classList.add('is-capacitor', 'is-mobile-shell', 'mobile-app-shell');
     configureSystemBars().catch(() => {});
     installEvents();
+    restoreSettingsGroups();
+    // Rotating a tablet (or resizing) crosses the tablet breakpoint: redraw Today
+    // so the deck queue length matches the layout.
+    window.matchMedia?.(TABLET_QUERY)?.addEventListener?.('change', () => {
+      if (state.activeTab === 'today') renderToday();
+    });
     const onboardingPrepared = document.documentElement.classList.contains('onboarding-pending');
     if (onboardingPrepared) maybeShowOnboarding({ immediate: true });
     initSwipeNavigation();

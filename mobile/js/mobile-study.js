@@ -815,10 +815,14 @@
 
   async function configureSystemBars() {
     const SystemBars = window.Capacitor?.Plugins?.SystemBars;
-    if (!SystemBars) return;
+    if (!SystemBars) {
+      window.EruditeSystemChrome?.sync();
+      return;
+    }
     const isLight = state.settings?.theme === 'light';
     await SystemBars.setStyle?.({ style: isLight ? 'LIGHT' : 'DARK' }).catch(() => {});
     await SystemBars.setAnimation?.({ animation: 'NONE' }).catch(() => {});
+    window.EruditeSystemChrome?.sync();
     // Visibility is fixed by the native launch theme and Capacitor config.
     // Avoid re-showing visible bars: it can recalculate insets and jump the UI.
   }

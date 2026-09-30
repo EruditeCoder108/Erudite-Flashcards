@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="mobile/css/mobile-app.css">
   <link rel="stylesheet" href="mobile/css/shell.css">
   <link rel="stylesheet" href="mobile/css/signature.css">
+  <link rel="stylesheet" href="mobile/css/today.css">
+  <link rel="stylesheet" href="mobile/css/layout.css">
   <link rel="stylesheet" href="mobile/css/mobile-onboarding.css">
   <link rel="stylesheet" href="mobile/css/tour.css">
   <link rel="stylesheet" href="css/color-picker.css">
@@ -461,7 +463,7 @@
       <section class="mobile-view" id="view-more" aria-labelledby="more-heading">
         <div class="section-block first">
           <p class="mobile-eyebrow">Settings</p>
-          <h2 id="more-heading">App tools</h2>
+          <h2 id="more-heading">Settings</h2>
         </div>
         <button type="button" class="pro-row" data-action="open-pro">
           <span class="pro-row-mark" aria-hidden="true"><svg class="pro-gem"><use href="#pro-gem"/></svg></span>
@@ -471,8 +473,13 @@
           </span>
           <i class="fas fa-chevron-right" aria-hidden="true"></i>
         </button>
-        <p class="settings-group-title">Study</p>
-        <div class="settings-list">
+        <details class="settings-group" data-settings-group="study" open>
+          <summary class="settings-group-summary">
+            <span class="settings-group-icon"><i class="fas fa-graduation-cap"></i></span>
+            <span class="settings-group-copy"><strong>Study</strong><small>Spaced repetition, reminder, daily goal</small></span>
+            <i class="fas fa-chevron-down settings-group-chevron" aria-hidden="true"></i>
+          </summary>
+          <div class="settings-list">
           <button type="button" class="settings-row" data-action="toggle-srs">
             <span class="settings-icon brain"><i class="fas fa-brain"></i></span>
             <span>
@@ -514,8 +521,14 @@
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
-        <p class="settings-group-title">Look &amp; feel</p>
-        <div class="settings-list">
+        </details>
+        <details class="settings-group" data-settings-group="look">
+          <summary class="settings-group-summary">
+            <span class="settings-group-icon"><i class="fas fa-palette"></i></span>
+            <span class="settings-group-copy"><strong>Look &amp; feel</strong><small>Theme, paper texture, sound, haptics</small></span>
+            <i class="fas fa-chevron-down settings-group-chevron" aria-hidden="true"></i>
+          </summary>
+          <div class="settings-list">
           <button type="button" class="settings-row" data-action="select-theme">
             <span class="settings-icon"><i class="fas fa-palette"></i></span>
             <span>
@@ -552,8 +565,14 @@
             <span class="switch" id="haptics-switch"><span></span></span>
           </button>
         </div>
-        <p class="settings-group-title">Cards</p>
-        <div class="settings-list">
+        </details>
+        <details class="settings-group" data-settings-group="cards">
+          <summary class="settings-group-summary">
+            <span class="settings-group-icon"><i class="fas fa-clone"></i></span>
+            <span class="settings-group-copy"><strong>Cards</strong><small>Typography, background, card browser</small></span>
+            <i class="fas fa-chevron-down settings-group-chevron" aria-hidden="true"></i>
+          </summary>
+          <div class="settings-list">
           <button type="button" class="settings-row" data-action="select-typography">
             <span class="settings-icon"><i class="fas fa-font"></i></span>
             <span>
@@ -576,8 +595,14 @@
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
-        <p class="settings-group-title">Create &amp; import</p>
-        <div class="settings-list">
+        </details>
+        <details class="settings-group" data-settings-group="create">
+          <summary class="settings-group-summary">
+            <span class="settings-group-icon"><i class="fas fa-wand-magic-sparkles"></i></span>
+            <span class="settings-group-copy"><strong>Create &amp; import</strong><small>Guides, paste import, separators</small></span>
+            <i class="fas fa-chevron-down settings-group-chevron" aria-hidden="true"></i>
+          </summary>
+          <div class="settings-list">
           <button type="button" class="settings-row highlighted" data-action="import-help">
             <span class="settings-icon"><i class="fas fa-circle-question"></i></span>
             <span><strong>Create & import flashcards</strong><small>Creator guide, AI format guide, and custom AI prompt</small></span>
@@ -610,8 +635,14 @@
             <input type="text" id="mobile-import-card-sep" class="mobile-settings-input" value="@" style="width: 3.5rem; text-align: center; background: var(--theme-input, rgba(255, 255, 255, 0.05)); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-family: inherit; padding: 0.25rem;">
           </div>
         </div>
-        <p class="settings-group-title">Your data</p>
-        <div class="settings-list">
+        </details>
+        <details class="settings-group" data-settings-group="data">
+          <summary class="settings-group-summary">
+            <span class="settings-group-icon"><i class="fas fa-database"></i></span>
+            <span class="settings-group-copy"><strong>Your data</strong><small>Backup, restore, privacy</small></span>
+            <i class="fas fa-chevron-down settings-group-chevron" aria-hidden="true"></i>
+          </summary>
+          <div class="settings-list">
           <button type="button" class="settings-row" data-action="export-backup">
             <span class="settings-icon"><i class="fas fa-file-export"></i></span>
             <span><strong>Export Backup</strong><small>Share a full local JSON backup</small></span>
@@ -633,8 +664,14 @@
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
-        <p class="settings-group-title">Help</p>
-        <div class="settings-list">
+        </details>
+        <details class="settings-group" data-settings-group="help">
+          <summary class="settings-group-summary">
+            <span class="settings-group-icon"><i class="fas fa-circle-question"></i></span>
+            <span class="settings-group-copy"><strong>Help</strong><small>Introduction, troubleshooting</small></span>
+            <i class="fas fa-chevron-down settings-group-chevron" aria-hidden="true"></i>
+          </summary>
+          <div class="settings-list">
           <button type="button" class="settings-row" data-action="replay-onboarding">
             <span class="settings-icon"><i class="fas fa-compass"></i></span>
             <span><strong>Replay introduction</strong><small>See how active recall, Smart Review, and AI deck creation work</small></span>
@@ -665,6 +702,7 @@
             </div>
           </details>
         </div>
+        </details>
       </section>
     </main>
 
@@ -1718,7 +1756,7 @@ If you cannot attach a ZIP file:
   <div class="mobile-modal-overlay hidden" id="daily-goal-overlay" role="dialog" aria-modal="true" aria-labelledby="daily-goal-title">
     <div class="mobile-modal-card">
       <h3 id="daily-goal-title" class="modal-title"><i class="fas fa-bullseye"></i> Daily Goal</h3>
-      <p class="mobile-modal-hint">Cards to study each day. Every review counts, and so does every card you go through in normal study, including a second pass. The ring on Today fills as you go.</p>
+      <p class="mobile-modal-hint">How many cards you want to go through each day. Every card you rate in a review counts, and so does every card you flip through in normal study. The ring on Today shows your count, like 12/30, and fills as you go.</p>
       <div class="mobile-modal-list">
         <button type="button" class="mobile-modal-option-btn" data-value="20">
           <span class="option-icon option-number" aria-hidden="true">20</span>

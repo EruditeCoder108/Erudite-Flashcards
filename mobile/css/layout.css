@@ -1,0 +1,211 @@
+/*
+ * Layout polish: collapsible Settings groups, and tablet layouts (portrait and
+ * landscape). Loaded last among the app stylesheets.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Settings: one card per group, folded to a title and a summary line.  */
+/* ------------------------------------------------------------------ */
+
+.settings-group {
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.settings-group-summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 4rem;
+  padding: 0.75rem var(--space-4);
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.settings-group-summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-group-summary:active {
+  background: var(--surface-2);
+}
+
+.settings-group-icon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--primary) 14%, var(--surface-2));
+  color: var(--primary-text);
+  font-size: 1.05rem;
+}
+
+.settings-group-copy strong,
+.settings-group-copy small {
+  display: block;
+}
+
+.settings-group-copy strong {
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.settings-group-copy small {
+  margin-top: 0.1rem;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.settings-group-chevron {
+  color: var(--subtle);
+  transition: transform var(--dur-2, 200ms) var(--ease-out, ease);
+}
+
+.settings-group[open] .settings-group-chevron {
+  transform: rotate(180deg);
+}
+
+/* The list sits inside the group card, so it drops its own card styling. */
+.settings-group > .settings-list {
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.settings-group[open] > .settings-list {
+  animation: settings-group-open 220ms var(--ease-out, ease) both;
+}
+
+@keyframes settings-group-open {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* The diagnostics fold already sits inside Help; keep it flat there. */
+.settings-group .settings-diagnostics {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Wide screens: the column and the fixed bars must share one centre.   */
+/* ------------------------------------------------------------------ */
+
+@media (min-width: 620px) {
+  /* Older rules centred these with left: 50% and a transform while later
+     rules pinned left/right, which pushed the tab bar half off screen. */
+  .mobile-tabbar {
+    left: 0;
+    right: 0;
+    width: auto;
+    max-width: 26rem;
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .mobile-topbar {
+    left: auto;
+    width: auto;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Tablets                                                             */
+/* ------------------------------------------------------------------ */
+
+@media (min-width: 768px) {
+  .mobile-shell {
+    max-width: 64rem;
+    --content-x: max(2rem, var(--safe-left), var(--safe-right));
+  }
+
+  .mobile-topbar,
+  .selection-bar,
+  .browser-selection-bar {
+    width: auto;
+  }
+
+  /* Today: goal and week on the left, the deck queue on the right. */
+  #view-today.active {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    /* The last row is flexible, so the tall deck queue stretches it rather
+       than pushing the week card away from the goal card. */
+    grid-template-rows: auto auto auto minmax(0, 1fr);
+    grid-template-areas:
+      "greet greet"
+      "hero next"
+      "links next"
+      ". next";
+    align-content: start;
+    column-gap: var(--space-6);
+  }
+
+  #view-today .today-greeting { grid-area: greet; }
+  #view-today .today-hero { grid-area: hero; align-self: start; }
+  #view-today .today-next { grid-area: next; margin-top: 0; }
+  #view-today .today-links { grid-area: links; align-self: start; }
+
+  .today-hero .goal-ring {
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+
+  /* More room: every queued deck shows, even on short tablets. */
+  .today-next .deck-stack > .deck-row:nth-child(n + 3) {
+    display: grid;
+  }
+
+  /* Library: two columns of decks. */
+  #library-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    align-items: start;
+  }
+
+  #library-list > :not(.deck-row):not(.class-card) {
+    grid-column: 1 / -1;
+  }
+
+  /* Settings: groups in two columns. */
+  #view-more.active {
+    column-count: 2;
+    column-gap: var(--space-4);
+  }
+
+  #view-more .section-block,
+  #view-more .pro-row {
+    column-span: all;
+  }
+
+  #view-more .settings-group {
+    break-inside: avoid;
+  }
+}
+
+/* Tablet landscape: a wider column and a larger study card. */
+@media (min-width: 1024px) and (orientation: landscape) {
+  .mobile-shell {
+    max-width: 72rem;
+  }
+
+  #library-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

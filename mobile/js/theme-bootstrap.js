@@ -83,7 +83,35 @@
       // Storage is optional; the saved setting is applied again after load.
     }
   }
-  window.EruditePaper = { apply: applyPaper };
+  window.EruditePaper = {
+    apply(enabled) {
+      applyPaper(enabled);
+      syncSystemChrome();
+    }
+  };
+
+  // The Android window and system bars take the colour of whatever fills the
+  // screen: onboarding while it is showing, otherwise the theme background.
+  // Otherwise the native launch colour shows as a band above and below.
+  function toHex(color) {
+    const match = String(color || '').match(/rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)/i);
+    if (!match) return /^#[0-9a-f]{6}$/i.test(String(color).trim()) ? String(color).trim() : '';
+    return '#' + match.slice(1, 4).map(value => Number(value).toString(16).padStart(2, '0')).join('');
+  }
+
+  function syncSystemChrome() {
+    const plugin = window.Capacitor?.Plugins?.SystemChrome;
+    if (!plugin?.setColor) return;
+    window.requestAnimationFrame(() => {
+      const onboarding = document.getElementById('onboarding-shell');
+      const source = onboarding && !onboarding.classList.contains('hidden') && onboarding.offsetParent !== null
+        ? getComputedStyle(onboarding).backgroundColor
+        : getComputedStyle(root).getPropertyValue('--bg');
+      const color = toHex(source);
+      if (color) plugin.setColor({ color }).catch(() => {});
+    });
+  }
+  window.EruditeSystemChrome = { sync: syncSystemChrome };
 
   try {
     if (window.localStorage.getItem('erudite-paper') === 'on') applyPaper(true);

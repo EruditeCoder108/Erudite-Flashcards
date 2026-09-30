@@ -1,5 +1,7 @@
 package com.erudite.flashcards;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.webkit.WebView;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -14,7 +16,9 @@ public class MainActivity extends BridgeActivity {
         
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         registerPlugin(TactilePlugin.class);
+        registerPlugin(SystemChromePlugin.class);
         super.onCreate(savedInstanceState);
+        applyOrientationPolicy(getResources().getConfiguration());
 
         // Smoothly fade out the native splash screen over 250ms
         splashScreen.setOnExitAnimationListener(splashScreenViewProvider -> {
@@ -40,5 +44,25 @@ public class MainActivity extends BridgeActivity {
         } catch (Exception e) {
             // Non-critical: if WebView isn't ready yet, the theme fix alone should help
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // A foldable opened or closed changes the smallest width without
+        // recreating the activity (see configChanges in the manifest).
+        applyOrientationPolicy(newConfig);
+    }
+
+    /**
+     * Phones stay in portrait: the layouts are built for a tall screen and
+     * break in landscape. Tablets and unfolded foldables (smallest width of
+     * 600dp or more) follow the device and have their own landscape layout.
+     */
+    private void applyOrientationPolicy(Configuration config) {
+        int wanted = config.smallestScreenWidthDp >= 600
+            ? ActivityInfo.SCREEN_ORIENTATION_FULL_USER
+            : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        if (getRequestedOrientation() != wanted) setRequestedOrientation(wanted);
     }
 }

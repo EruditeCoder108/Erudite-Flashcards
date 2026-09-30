@@ -38,11 +38,21 @@
   }
 
   /** Static markup; animateGoalRing brings it to life. */
-  function goalRingMarkup({ progress = 0, label = 'Goal' } = {}) {
+  /**
+   * The ring fills by percentage, but its centre shows the cards studied today
+   * against the goal ("12/30"), which says what the goal is without a legend.
+   * Without a count it falls back to the percentage.
+   */
+  function goalRingMarkup({ progress = 0, label = 'Goal', count = null, goal = null } = {}) {
     const value = clamp(Math.round(progress), 0, 100);
+    const hasCount = Number.isFinite(count) && Number.isFinite(goal);
+    const done = value >= 100;
+    const centre = hasCount
+      ? `<span class="goal-value">${Math.max(0, Math.round(count))}</span><span class="goal-unit">/${Math.round(goal)}</span>`
+      : `<span class="goal-value">${value}</span><span class="goal-unit">%</span>`;
     const ticks = Array.from({ length: TICKS }, (_, index) => tickPath(index)).join('');
     return `
-      <div class="goal-ring${value >= 100 ? ' is-complete' : ''}" data-progress="${value}" role="img" aria-label="${value}% of today's goal">
+      <div class="goal-ring${done ? ' is-complete' : ''}${hasCount ? ' shows-count' : ''}" data-progress="${value}" data-count="${hasCount ? Math.round(count) : ''}" role="img" aria-label="${hasCount ? `${Math.round(count)} of ${Math.round(goal)} cards today` : `${value}% of today's goal`}">
         <svg class="goal-ring-art" viewBox="0 0 120 120" aria-hidden="true">
           <g class="goal-ticks">${ticks}</g>
           <circle class="goal-track" cx="60" cy="60" r="43" />
@@ -54,8 +64,8 @@
           </g>
         </svg>
         <div class="goal-ring-copy">
-          <strong><span class="goal-value">${value}</span><span class="goal-unit">%</span></strong>
-          <span class="goal-label">${label}</span>
+          <strong>${centre}</strong>
+          <span class="goal-label">${done ? 'Goal met' : label}</span>
         </div>
       </div>
     `;
@@ -66,18 +76,22 @@
     return `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
   }
 
-  function lastShownProgress() {
+  function lastShown() {
     try {
       const saved = JSON.parse(root.localStorage.getItem(GOAL_STORE_KEY) || 'null');
-      return saved && saved.day === dayToken() ? Number(saved.value) || 0 : 0;
+      return saved && saved.day === dayToken() ? saved : null;
     } catch (_) {
-      return 0;
+      return null;
     }
   }
 
-  function rememberProgress(value) {
+  function lastShownProgress() {
+    return Number(lastShown()?.value) || 0;
+  }
+
+  function rememberProgress(value, count) {
     try {
-      root.localStorage.setItem(GOAL_STORE_KEY, JSON.stringify({ day: dayToken(), value }));
+      root.localStorage.setItem(GOAL_STORE_KEY, JSON.stringify({ day: dayToken(), value, count }));
     } catch (_) {
       // Optional: without storage the ring animates from zero.
     }
@@ -98,7 +112,7 @@
     return 1;
   }
 
-  function countUp(element, from, to, curve) {
+  function countUp(element, from, to, curve, max = 100) {
     if (!element) return;
     const start = performance.now();
     const { points, duration } = curve;
@@ -108,7 +122,7 @@
       const lower = Math.floor(position);
       const upper = Math.min(points.length - 1, lower + 1);
       const eased = points[lower] + (points[upper] - points[lower]) * (position - lower);
-      element.textContent = String(clamp(Math.round(from + (to - from) * eased), 0, 100));
+      element.textContent = String(clamp(Math.round(from + (to - from) * eased), 0, max));
       if (t < 1) root.requestAnimationFrame(step);
     };
     root.requestAnimationFrame(step);
@@ -143,7 +157,11 @@
     if (!ring) return;
     const to = clamp(Math.round(progress), 0, 100);
     const from = clamp(lastShownProgress(), 0, 100);
-    if (options.remember !== false) rememberProgress(to);
+    const hasCount = Number.isFinite(options.count);
+    const toCount = hasCount ? Math.max(0, Math.round(options.count)) : to;
+    const savedCount = Number(lastShown()?.count);
+    const fromCount = hasCount ? (Number.isFinite(savedCount) ? Math.min(savedCount, toCount) : 0) : from;
+    if (options.remember !== false) rememberProgress(to, hasCount ? toCount : undefined);
     const arc = ring.querySelector('.goal-arc');
     const tip = ring.querySelector('.goal-tip');
     const valueEl = ring.querySelector('.goal-value');
@@ -159,12 +177,12 @@
     const toTicks = litTicks(to);
     ring.classList.toggle('is-complete', from >= 100);
     setTicks(ring, fromTicks);
-    valueEl.textContent = String(from);
+    valueEl.textContent = String(fromCount);
 
     const timing = { duration: curve.duration, easing: curve.easing, fill: 'both' };
     arc.animate([{ strokeDashoffset: 100 - from }, { strokeDashoffset: 100 - to }], timing);
     tip?.animate([{ transform: `rotate(${from * 3.6}deg)` }, { transform: `rotate(${to * 3.6}deg)` }], timing);
-    countUp(valueEl, from, to, curve);
+    countUp(valueEl, fromCount, toCount, curve, hasCount ? Number.MAX_SAFE_INTEGER : 100);
 
     const low = Math.min(fromTicks, toTicks);
     const high = Math.max(fromTicks, toTicks);
@@ -180,7 +198,7 @@
       root.setTimeout(() => {
         ring.classList.add('is-complete');
         const label = ring.querySelector('.goal-label');
-        if (label) label.textContent = 'Done';
+        if (label) label.textContent = 'Goal met';
         bloom(ring);
       }, curve.duration * 0.55);
     } else if (to < 100) {

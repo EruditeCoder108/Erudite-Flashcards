@@ -2057,3 +2057,17 @@ html.reduce-motion .study-card-inner {
   color: var(--text);
   font-weight: 600;
 }
+
+/* Tablet landscape: a wide card that uses the width instead of a tall one
+   floating in the middle of the screen. */
+@media (min-width: 900px) and (orientation: landscape) {
+  .study-shell {
+    max-width: 64rem;
+  }
+
+  .study-card {
+    width: min(100%, 46rem);
+    height: min(100%, 30rem);
+    min-height: 18rem;
+  }
+}
