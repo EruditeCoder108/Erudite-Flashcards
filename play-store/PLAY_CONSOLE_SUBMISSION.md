@@ -65,23 +65,24 @@ Upload the assets in this order:
 2. Use `assets/2026/feature-graphic-1024x500.png` as the 1024 × 500 feature graphic.
 3. Upload the phone screenshots in this order:
    1. `assets/2026/phone-01-today.png`
-   2. `assets/2026/phone-02-swipe.png`
-   3. `assets/2026/phone-03-library.png`
-   4. `assets/2026/phone-04-occlusion.png`
-   5. `assets/2026/phone-05-insights.png`
-   6. `assets/2026/phone-06-ai.png`
-   7. `assets/2026/phone-07-complete.png`
+   2. `assets/2026/phone-02-premade.png`
+   3. `assets/2026/phone-03-swipe.png`
+   4. `assets/2026/phone-04-library.png`
+   5. `assets/2026/phone-05-occlusion.png`
+   6. `assets/2026/phone-06-insights.png`
+   7. `assets/2026/phone-07-ai.png`
    8. `assets/2026/phone-08-paper.png`
+4. Video: the landscape showreel `showreel/out/erudite-showreel-v3-1920x1080.mp4`, uploaded to YouTube (public or unlisted, embedding allowed). Paste its `https://www.youtube.com/watch?v=…` link into **Graphics → Video**. The thumbnail is `youtube/thumbnail-1280x720.png`.
 
 Use these screenshot alt-text descriptions in the same order:
 
-1. `Today screen with a daily goal ring at 38 percent, a 63-day streak, and a Review button showing 21 cards left.`
-2. `Flashcard being swiped right mid-review, labelled Good, showing the answer about lysosomes.`
-3. `Library of decks grouped into classes such as NEET Biology and JEE Chemistry.`
-4. `Image occlusion card hiding one label on an animal cell diagram.`
-5. `Insights showing 96 percent retention, due load, weak cards, and a rating breakdown.`
-6. `AI Deck Maker offering study goals such as Quick Revision and Competitive Exam.`
-7. `Session complete screen with a check mark, cards reviewed, percent remembered, and next due date.`
+1. `Today screen with a goal ring at 17 of 30 cards, a 63-day streak, 22 cards due, and a Review now button.`
+2. `A ready-made NCERT Physics card with an animated diagram of a stone dropped from an accelerating train.`
+3. `Flashcard being swiped right mid-review, labelled Good, showing the answer about lysosomes.`
+4. `Library of decks sorted into colour-coded classes such as NEET Biology and JEE Chemistry, each with a progress ring.`
+5. `Image occlusion card hiding one label on an animal cell diagram.`
+6. `Insights showing retention, due load, weak cards, and a rating breakdown.`
+7. `AI Deck Maker offering study goals such as Quick Revision and Competitive Exam.`
 8. `Today screen in the light theme with the paper texture turned on.`
 
 The images in `assets/` from July 2026 show the previous design; keep them only for reference.

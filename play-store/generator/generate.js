@@ -23,14 +23,18 @@ const MIME = {
 // Order matches the Play listing. Headlines stay short enough for two lines.
 const SHOTS = [
   { id: '01-today', eyebrow: 'Daily goal', title: 'Know exactly what to study today', copy: 'Your goal ring fills as you review.' },
-  { id: '02-swipe', eyebrow: 'Spaced repetition', title: 'Swipe to rate. It schedules the rest.', copy: 'FSRS brings each card back just before you forget it.' },
-  { id: '03-library', eyebrow: 'Your library', title: 'Every chapter in one place', copy: 'Decks and classes for NEET, JEE, boards, and more.' },
-  { id: '04-occlusion', eyebrow: 'Image occlusion', title: 'Label diagrams from memory', copy: 'One figure becomes a card for every label.', shift: 150 },
-  { id: '05-insights', eyebrow: 'Insights', title: 'Watch your memory get stronger', copy: 'Retention, streaks, and your upcoming workload.' },
-  { id: '06-ai', eyebrow: 'Create faster', title: 'Turn any PDF into flashcards', copy: 'Build a precise prompt for your AI, then import in one tap.' },
-  { id: '07-complete', eyebrow: 'Every session', title: 'Finish with a clear picture', copy: 'See what you remembered and when cards come back.' },
+  { id: '02-premade', eyebrow: 'Ready-made NCERT chapters', title: 'Every chapter, built card by card', copy: 'Class 11 and 12 Physics, Chemistry, Biology and Maths, with animated diagrams.' },
+  { id: '03-swipe', eyebrow: 'Spaced repetition', title: 'Swipe to rate. It schedules the rest.', copy: 'FSRS brings each card back just before you forget it.' },
+  { id: '04-library', eyebrow: 'Your library', title: 'Every subject in its own place', copy: 'Chapters sort into classes, each with its colour and icon.' },
+  { id: '05-occlusion', eyebrow: 'Image occlusion', title: 'Label diagrams from memory', copy: 'One figure becomes a card for every label.', shift: 150 },
+  { id: '06-insights', eyebrow: 'Insights', title: 'Watch your memory get stronger', copy: 'Retention, streaks, and your upcoming workload.' },
+  { id: '07-ai', eyebrow: 'Create faster', title: 'Turn any PDF into flashcards', copy: 'Build a precise prompt for your AI, then import in one tap.' },
   { id: '08-paper', eyebrow: 'Comfortable', title: 'Easy on the eyes', copy: 'Dark, light, and a paper texture for long sessions.', light: true }
 ];
+
+// The premade shot uses real cards from a published chapter.
+const PREMADE_DECK = path.join(repo, 'premade-cards/11th/Physics/class11-physics-ch04-laws-of-motion/deck.json');
+const PREMADE_CARDS = String(process.env.PREMADE_CARDS || '32').split(',').map(Number);
 
 // In-memory file store for the Capacitor shim. The seeded library is larger
 // than the ~5 MB localStorage limit the smoke tests use.
@@ -146,20 +150,20 @@ async function captureApp(browser, base) {
 
   await page.locator('[data-action="open-insights"]').click();
   await page.waitForTimeout(900);
-  await capture(page, '05-insights');
+  await capture(page, '06-insights');
   await page.locator('#insights-sheet [data-action="close-page-sheet"]').click();
   await page.waitForTimeout(300);
 
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.locator('.tab-button[data-tab="library"]').click();
   await page.waitForTimeout(900);
-  await capture(page, '03-library');
+  await capture(page, '04-library');
 
   await page.locator('.tab-button[data-tab="create"]').click();
   await page.waitForTimeout(500);
   await page.locator('#header-creator-ai-btn').click();
   await page.waitForTimeout(900);
-  await capture(page, '06-ai');
+  await capture(page, '07-ai');
 
   await page.addScriptTag({ url: `${base}/generator/seed.js` });
   await page.evaluate(async () => {
@@ -182,7 +186,7 @@ async function captureApp(browser, base) {
     await page.waitForTimeout(16);
   }
   await page.waitForTimeout(160);
-  await capture(page, '02-swipe');
+  await capture(page, '03-swipe');
   await page.mouse.move(x, y);
   await page.mouse.up();
   await page.waitForTimeout(700);
@@ -197,13 +201,31 @@ async function captureApp(browser, base) {
     await page.waitForTimeout(500);
   }
   await page.waitForSelector('#completion-modal:not(.hidden)', { timeout: 10000 }).catch(() => {});
-  await page.waitForTimeout(760);
-  await capture(page, '07-complete');
+
+  // NCERT chapter: an animated premade card, caught mid-animation.
+  if (want('02-premade')) {
+    const deck = JSON.parse(fs.readFileSync(PREMADE_DECK, 'utf8'));
+    for (const index of PREMADE_CARDS) {
+      await page.goto(`${base}/index.html`);
+      await ready(page);
+      await page.addScriptTag({ url: `${base}/generator/seed.js` });
+      await page.evaluate(({ name, cards }) => window.EruditeStoreSeed.seedPremade(name, cards), { name: deck.name, cards: [deck.cards[index]] });
+      await page.goto(`${base}/mobile/study.html?setId=premade-showcase&srs=false&from=library`);
+      await page.waitForSelector('#card-stage .study-card.slot-active', { timeout: 30000 });
+      if (process.env.PREMADE_FLIP !== '0') {
+        await page.locator('#card-stage .study-card.slot-active').click();
+        await page.waitForTimeout(400);
+      }
+      await page.waitForTimeout(Number(process.env.PREMADE_WAIT || 2200));
+      const id = PREMADE_CARDS.length > 1 ? `02-premade-${index}` : '02-premade';
+      await page.screenshot({ path: path.join(rawDir, `${id}.png`) });
+    }
+  }
 
   await page.goto(`${base}/mobile/study.html?setId=cell-diagram&srs=false&from=library`);
   await page.waitForSelector('#card-stage .study-card.slot-active .occlusion-mask-layer.is-positioned', { timeout: 30000 });
   await page.waitForTimeout(900);
-  await capture(page, '04-occlusion');
+  await capture(page, '05-occlusion');
   if (process.env.DEBUG_STORE) {
     console.log(await page.evaluate(() => {
       const wrap = document.querySelector('#card-stage .study-card.slot-active .card-face.front .occlusion-study-canvas');
@@ -222,6 +244,7 @@ async function captureApp(browser, base) {
     await window.flashcardStore.saveSettings({ ...settings, theme: 'light', paperTexture: true });
     await window.flashcardStore.deleteSet('showcase');
     await window.flashcardStore.deleteSet('cell-diagram');
+    await window.flashcardStore.deleteSet('premade-showcase');
     await window.flashcardStore.flush?.();
     localStorage.setItem('erudite-theme', 'light');
     localStorage.setItem('erudite-goal-ring-last', 'null');
@@ -263,7 +286,7 @@ async function frame(browser, base) {
   await page.evaluate(({ name, today, swipe }) => window.renderFeature({ name, today, swipe }), {
     name: APP_NAME,
     today: dataUrl(path.join(rawDir, '01-today.png')),
-    swipe: dataUrl(path.join(rawDir, '02-swipe.png'))
+    swipe: dataUrl(path.join(rawDir, '03-swipe.png'))
   });
   await page.waitForTimeout(300);
   await page.screenshot({ path: path.join(outDir, 'feature-graphic-1024x500.png') });
@@ -278,7 +301,7 @@ async function main() {
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
   try {
     if (!process.env.FRAME_ONLY) await captureApp(browser, base);
-    await frame(browser, base);
+    if (!process.env.CAPTURE_ONLY) await frame(browser, base);
   } finally {
     await browser.close();
     server.close();

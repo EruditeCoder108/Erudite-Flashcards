@@ -377,5 +377,21 @@
     await window.flashcardStore.flush?.();
   }
 
-  window.EruditeStoreSeed = { seedStoreData, seedOcclusion, seedShowcaseStudy };
+  // Real premade cards (passed in from the deck's JSON), for the NCERT shot.
+  async function seedPremade(name, cards) {
+    await window.flashcardStore.saveSet({
+      id: 'premade-showcase',
+      name,
+      classId: 'physics',
+      srsSettings: { newCardsPerDay: 20 },
+      cards: cards.map((card, index) => ({
+        ...card,
+        id: `premade-${index}`,
+        cardTemplate: card.noteType === 'advanced-html' ? 'advanced-html' : card.cardTemplate
+      }))
+    });
+    await window.flashcardStore.flush?.();
+  }
+
+  window.EruditeStoreSeed = { seedStoreData, seedOcclusion, seedShowcaseStudy, seedPremade };
 }());
