@@ -29,7 +29,7 @@ sm.sign_flip(d)
 b('Trap: solve −2x < 4.', 'Divide by −2 and ' + X('flip') + ': ' + N('x > −2') + '. Forgetting the flip is the most common mistake')
 b('Trap: if 0 < a < b, compare 1/a and 1/b.', N('1/a > 1/b') + '. Taking reciprocals of positive numbers reverses the order (1/2 > 1/3). If a < 0 < b, then 1/a < 1/b')
 b('Can you square both sides of an inequality?', 'Only when both sides are ' + T('non-negative') + '. −3 < 2 but (−3)² = 9 > 4. Safe form: a² < b² ⟺ |a| < |b|')
-b('Trap: solve (x + 1)/(x − 2) ≥ 0 by cross-multiplying?', X('Never multiply by an expression of unknown sign') + '. Use signs instead: the answer is x ≤ −1 or x > 2 (the point 2 is excluded because it makes the denominator 0)')
+b('Trap: solve (x + 1)/(x − 2) ≥ 0 by cross-multiplying?', X('Never multiply by an expression of unknown sign') + '.<br>Use signs instead: the answer is x ≤ −1 or x > 2<br>The point 2 is excluded because it makes the denominator 0')
 b('Example 1: solve 30x < 200 for (i) natural x, (ii) integer x.', 'x < 20/3 ≈ 6.67. (i) ' + N('{1, 2, 3, 4, 5, 6}') + ' (ii) ' + N('{…, −2, −1, 0, 1, 2, 3, 4, 5, 6}'))
 b('Ex 5.1 Q1: solve 24x < 100 for natural and integer x.', 'x < 25/6 ≈ 4.17: natural ' + N('{1, 2, 3, 4}') + '; integers ' + N('{…, −1, 0, 1, 2, 3, 4}'))
 b('Ex 5.1 Q2: solve −12x > 30 for natural and integer x.', 'Divide by −12 and flip: x < −5/2. Natural: ' + N('no solution (φ)') + '; integers: ' + N('{…, −4, −3}'))
@@ -66,12 +66,12 @@ b('Ex 5.1 Q26: board of 91 cm cut into x, x + 3, 2x; the third must be at least 
 
 # ---------------------------------------------------------------- Double inequalities and systems
 d.sec('5.x-double-and-systems')
-b('Method: solve a double inequality like a ≤ f(x) < b.', 'Apply every operation to ' + T('all three parts') + ' at once (add, multiply, flip if negative), leaving x alone in the middle')
+b('Method: solve a double inequality like a ≤ f(x) < b.', 'Apply every operation to ' + T('all three parts') + ' at once<br>(add, multiply, flip the signs if you multiply by a negative)<br>until x is alone in the middle')
 b('Example 9: solve −8 ≤ 5x − 3 < 7.', '−5 ≤ 5x < 10 → ' + N('−1 ≤ x < 2'))
 b('Example 10: solve −5 ≤ (5 − 3x)/2 ≤ 8.', '−10 ≤ 5 − 3x ≤ 16 → −15 ≤ −3x ≤ 11 → divide by −3 (flip both): ' + N('−11/3 ≤ x ≤ 5'))
-b('Trap: after dividing a double inequality by a negative number, what changes?', X('Both signs flip and the two end values swap places') + ': −15 ≤ −3x ≤ 11 becomes 5 ≥ x ≥ −11/3, written −11/3 ≤ x ≤ 5')
+b('Trap: after dividing a double inequality by a negative number, what changes?', X('Both signs flip and the two end values swap places') + '<br>−15 ≤ −3x ≤ 11 becomes 5 ≥ x ≥ −11/3<br>written −11/3 ≤ x ≤ 5')
 b('Misc Q1 and Q2: solve 2 ≤ 3x − 4 ≤ 5 and 6 ≤ −3(2x − 4) < 12.', '6 ≤ 3x ≤ 9 → ' + N('[2, 3]') + '. Second: 6 ≤ −6x + 12 < 12 → −6 ≤ −6x < 0 → ' + N('0 < x ≤ 1'))
-b('Method: solving a system of inequalities in one variable.', 'Solve each inequality separately, graph both on one number line, and take the ' + T('overlap (intersection)') + ' of the solution sets')
+b('Method: solving a system of inequalities in one variable.', '1) Solve each inequality separately.<br>2) Graph both on one number line.<br>3) Take the ' + T('overlap (intersection)') + ' of the solution sets')
 b('Example 11: solve 3x − 7 < 5 + x and 11 − 5x ≤ 1.', 'x < 6 and x ≥ 2 → common part ' + N('[2, 6)'))
 sm.nl_answer(d, 'Example 11: show the solution of {3x − 7 < 5 + x, 11 − 5x ≤ 1} on the number line.', [(2, 6, True, False, 'c3')],
              '<p>x &lt; 6 and x ≥ 2. The bold stretch where both hold: <b>2 ≤ x &lt; 6</b>.</p>', 'Example 11: system solution on the number line',
@@ -111,7 +111,7 @@ b('(x − a)(x − b) < 0 with a < b: solution?', T('a < x < b') + ' (between th
 b('Solve x² − 5x + 6 < 0.', '(x − 2)(x − 3) < 0 → ' + N('2 < x < 3'))
 b('Solve x² − 5x + 6 > 0.', N('x < 2 or x > 3') + ' (outside the roots)')
 b('Solve x² − 4 ≥ 0 and x² ≤ 9.', 'x² ≥ 4 → ' + N('x ≤ −2 or x ≥ 2') + '. x² ≤ 9 → ' + N('−3 ≤ x ≤ 3'))
-b('Solve x² + x + 1 > 0.', 'D = 1 − 4 < 0 and a > 0, so the parabola is always above the axis: ' + N('all real x') + '. If D < 0: ax² + bx + c has the sign of a for every x')
+b('Solve x² + x + 1 > 0.', 'D = 1 − 4 < 0 and a > 0, so the parabola is always above the axis: ' + N('all real x') + '<br>General rule: if D < 0, ax² + bx + c has the sign of a for every x')
 sm.wavy_curve(d)
 b('Method: solve a rational inequality such as (x + 1)/(x − 2) ≥ 0.', 'Critical points = zeros of numerator and denominator (−1, 2). Sign chart: + on the far right, alternate. Include numerator zeros only if ≥ or ≤; ' + X('always exclude denominator zeros') + '. Answer: (−∞, −1] ∪ (2, ∞)')
 b('Solve (x − 3)/(x + 2) < 0.', 'Critical points −2, 3; the quotient is negative between them: ' + N('−2 < x < 3'))

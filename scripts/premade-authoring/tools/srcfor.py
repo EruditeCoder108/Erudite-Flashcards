@@ -11,3 +11,7 @@ for i in sys.argv[3].split(','):
         print(f'#{i}: NOT FOUND for {key!r}')
     for n in hits[:2]:
         print(f'#{i} L{n + 1}: {src[n][:1100]}')
+        k = n
+        while src[k].rstrip().endswith(',') and k + 1 < len(src) and k - n < 4:   # call continues on the next line
+            k += 1
+            print(f'      L{k + 1}: {src[k][:1100]}')

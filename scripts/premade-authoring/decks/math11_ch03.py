@@ -91,7 +91,7 @@ d.basic(r'\(\cot(x - y) = ?\)', r'\(\dfrac{\cot x\cot y + 1}{\cot y - \cot x}\)'
 
 d.sec('3.4-allied-angles')
 d.basic('Quick rule for allied angles like (π/2 ± x), (π ± x), (3π/2 ± x)?',
-        'Odd multiple of π/2: ' + T('sin ↔ cos, tan ↔ cot') + '. Even multiple: ' + T('same function') + '. Sign: the original function in that quadrant')
+        'Odd multiple of π/2: ' + T('sin ↔ cos, tan ↔ cot') + '<br>Even multiple: ' + T('same function') + '<br>Sign: that of the original function in that quadrant')
 table_card(d, '3.4 · Allied angles', 'Simplify each.', [
     ('cos(π/2 − x)', 'sin x', False), ('sin(π/2 + x)', 'cos x', False), ('cos(π/2 + x)', '−sin x', True),
     ('sin(π − x)', 'sin x', False), ('cos(π − x)', '−cos x', True), ('sin(π + x)', '−sin x', True),
@@ -146,10 +146,10 @@ b('Trap: sin²x is (sin x)², but sin x² means?', T('sin(x²)') + '. Also sin�
 d.sec('3.z-triangle-identities')
 b('If A + B + C = π, then tan A + tan B + tan C = ?', T('tan A tan B tan C') + '. Because tan(A + B) = −tan C. Also cot A cot B + cot B cot C + cot C cot A = 1')
 b('If A + B + C = π: sin 2A + sin 2B + sin 2C = ? and cos A + cos B + cos C = ?', T('4 sin A sin B sin C') + ' and ' + T('1 + 4 sin(A/2) sin(B/2) sin(C/2)'))
-b('Product of cosines: cos 20° cos 40° cos 60° cos 80° = ?', 'cos 20° cos 40° cos 80° = 1/8 (using cos x cos(60° − x) cos(60° + x) = ¼ cos 3x with x = 20°: ¼ · ½ = 1/8); × cos 60° = ' + N('1/16'))
+b('Product of cosines: cos 20° cos 40° cos 60° cos 80° = ?', 'cos 20° cos 40° cos 80° = 1/8<br>(using cos x cos(60° − x) cos(60° + x) = ¼ cos 3x with x = 20°: ¼ · ½ = 1/8)<br>Multiply by cos 60° = ½: ' + N('1/16'))
 b('sin 10° sin 30° sin 50° sin 70° = ?', 'sin 10° sin 50° sin 70° = ¼ sin 30° = 1/8; × sin 30° = ' + N('1/16'))
 b('Prove tan 20° + tan 40° + √3 tan 20° tan 40° = √3.', 'tan 60° = (tan 20° + tan 40°)/(1 − tan 20° tan 40°) = √3 → tan 20° + tan 40° = √3(1 − tan 20° tan 40°) ✓')
-b('Sum of a series of cosines: cos x + cos 2x + … + cos nx (idea)?', 'Multiply by 2 sin(x/2) and use 2 sin(x/2) cos kx = sin((k + ½)x) − sin((k − ½)x): the terms telescope to ' + T('sin(nx/2) cos((n + 1)x/2) / sin(x/2)'))
+b('Sum of a series of cosines: cos x + cos 2x + … + cos nx (idea)?', 'Multiply by 2 sin(x/2) and use 2 sin(x/2) cos kx = sin((k + ½)x) − sin((k − ½)x).<br>The terms telescope to<br>' + T('sin(nx/2) cos((n + 1)x/2) / sin(x/2)'))
 b('Express sin x + cos x as a single sine. Range?', r'\(\sqrt2\sin\!\left(x + \dfrac{\pi}{4}\right)\)' + ', range ' + N('[−√2, √2]'))
 b('Range of 3 sin x + 4 cos x? Of sin²x + cos⁴x?', N('[−5, 5]') + ' and ' + N('[3/4, 1]') + ' (sin²x + cos⁴x = 1 − cos²x + cos⁴x = (cos²x − ½)² + ¾)')
 b('Minimum of sec²x + cosec²x?', 'sec²x + cosec²x = 4/sin²2x ≥ ' + N('4'))
@@ -165,7 +165,7 @@ b('Solve 2 sin²x + sin x − 1 = 0.', '(2 sin x − 1)(sin x + 1) = 0 → sin x
 b('Solve cos 2x = cos x.', '2x = 2nπ ± x → ' + N('x = 2nπ/3') + ' (n ∈ Z) (from + : x = 2nπ; from − : 3x = 2nπ)')
 b('Solve tan x = √3 and sin x = −1/2 in [0, 2π).', N('x = π/3, 4π/3') + ' and ' + N('x = 7π/6, 11π/6'))
 b('Solve sin x + cos x = 1.', 'Divide by √2: sin(x + π/4) = 1/√2 → x + π/4 = nπ + (−1)ⁿπ/4 → ' + N('x = 2nπ or x = 2nπ + π/2'))
-b('Trap: solving sin x cos x = sin x by dividing by sin x.', X('You lose the roots of sin x = 0') + '. Factorise instead: sin x (cos x − 1) = 0 → x = nπ or x = 2nπ (so x = nπ overall)')
+b('Trap: solving sin x cos x = sin x by dividing by sin x.', X('You lose the roots of sin x = 0') + '.<br>Factorise instead: sin x (cos x − 1) = 0<br>→ x = nπ or x = 2nπ, so x = nπ overall')
 b('Method: solving trig equations.', '1) Reduce to one function (identities). 2) Factorise (never cancel a factor that can be 0). 3) Use the general solution formulas. 4) Restrict to the required interval by choosing integer n')
 b('Number of real solutions of sin x = x/10?', 'The graphs y = sin x and y = x/10 can meet only for |x| ≤ 10: 3 crossings for x > 0, 3 for x < 0 and x = 0, so ' + N('7'))
 

@@ -23,7 +23,7 @@ b('Ex 9.1 Q4: a point on the x-axis equidistant from (7, 6) and (3, 4)?', '(x �
 
 # ---------------------------------------------------------------- 9.2 Slope
 d.sec('9.2-slope')
-b('Define the inclination and slope of a line.', 'Inclination θ = angle the line makes with the positive x-axis, measured anticlockwise, 0° ≤ θ < 180°. Slope ' + T('m = tan θ') + ' (θ ≠ 90°)')
+b('Define the inclination and slope of a line.', 'Inclination θ = angle the line makes with the positive x-axis, measured anticlockwise, 0° ≤ θ < 180°<br>Slope ' + T('m = tan θ') + ' (θ ≠ 90°)')
 b('Slope of the x-axis, of a horizontal line, of a vertical line?', N('0') + ', ' + N('0') + ', ' + X('undefined') + ' (θ = 90°)')
 sm.slope_sweep(d)
 b('Slope of the line through (x₁, y₁) and (x₂, y₂)?', r'\(m = \dfrac{y_2 - y_1}{x_2 - x_1}\)' + ', x₁ ≠ x₂ (if x₁ = x₂ the line is vertical)')
@@ -43,7 +43,7 @@ b('Ex 9.1 Q10: one slope is double the other; tan of the angle between them is 1
 b('Ex 9.3 Q8: angle between √3x + y = 1 and x + √3y = 1.', 'm₁ = −√3, m₂ = −1/√3: tan θ = |(−√3 + 1/√3)/(1 + 1)| = 1/√3 → ' + N('30°') + ' (and 150°)')
 b('Ex 9.3 Q9: line through (h, 3), (4, 1) is ⟂ to 7x − 9y − 19 = 0. Find h.', 'Slope needed −9/7: (1 − 3)/(4 − h) = −9/7 → ' + N('h = 22/9'))
 b('Ex 9.3 Q11: two lines through (2, 3) meet at 60°; one has slope 2. The other?', '|(m − 2)/(1 + 2m)| = √3 → ' + N('m = −(8 + 5√3)/11') + ' or ' + N('m = (5√3 − 8)/11') + ' (two lines, one each side)')
-b('Misc Q18: y = 3x + 1 and 2y = x + 3 are equally inclined to y = mx + 4. Find m.', 'Equal angles: |(m − 3)/(1 + 3m)| = |(m − ½)/(1 + m/2)|; the non-trivial case gives 7m² − 2m − 7 = 0 → ' + N('m = (1 ± 5√2)/7'))
+b('Misc Q18: y = 3x + 1 and 2y = x + 3 are equally inclined to y = mx + 4. Find m.', 'Equal angles: |(m − 3)/(1 + 3m)| = |(m − ½)/(1 + m/2)|<br>The non-trivial case gives 7m² − 2m − 7 = 0 →<br>' + N('m = (1 ± 5√2)/7'))
 b('Misc Q12: line through the origin at angle θ to y = mx + c?', N('y = ((m ± tan θ)/(1 ∓ m tan θ)) x'))
 
 # ---------------------------------------------------------------- 9.3 Forms of the equation
@@ -95,7 +95,7 @@ b('Ex 9.3 Q3: distance of (−1, 1) from 12(x + 6) = 5(y − 2).', '12x − 5y +
 b('Ex 9.3 Q4: points on the x-axis at distance 4 from x/3 + y/4 = 1.', '4x + 3y − 12 = 0: |4x − 12|/5 = 4 → ' + N('(8, 0) and (−2, 0)'))
 b('Ex 9.3 Q5: distance between 15x + 8y − 34 = 0 and 15x + 8y + 31 = 0; and between l(x + y) + p = 0 and l(x + y) − r = 0.', '65/17 = ' + N('65/17') + ';  |p + r|/(|l|√2) = ' + N('|p + r|/(|l|√2)'))
 b('Ex 9.3 Q13: foot of the perpendicular from (−1, 3) to 3x − 4y − 16 = 0.', 'Move by t = (−3 − 12 − 16)/25 = −31/25 along (3, −4): ' + N('(68/25, −49/25)'))
-b('Ex 9.3 Q15: p, q are perpendiculars from the origin to x cos θ − y sin θ = k cos 2θ and x sec θ + y cosec θ = k. Show p² + 4q² = k².', 'p = |k cos 2θ|; q = k/√(sec²θ + cosec²θ) = k sinθ cosθ = (k/2) sin 2θ. Then p² + 4q² = k²(cos²2θ + sin²2θ) = k² ✓')
+b('Ex 9.3 Q15: p, q are perpendiculars from the origin to x cos θ − y sin θ = k cos 2θ and x sec θ + y cosec θ = k. Show p² + 4q² = k².', 'p = |k cos 2θ|<br>q = k/√(sec²θ + cosec²θ) = k sinθ cosθ = (k/2) sin 2θ<br>Then p² + 4q² = k²(cos²2θ + sin²2θ) = k² ✓')
 b('Misc Q3: points on the y-axis at distance 4 from x/3 + y/4 = 1.', '|3y − 12|/5 = 4 → ' + N('(0, 32/3) and (0, −8/3)'))
 b('Misc Q4: perpendicular distance from the origin to the line joining (cos θ, sin θ) and (cos φ, sin φ).', N('|cos((θ − φ)/2)|') + ' (a chord of the unit circle)')
 b('Misc Q20: the line equidistant from the parallels 9x + 6y − 7 = 0 and 3x + 2y + 6 = 0.', 'Rewrite the second as 9x + 6y + 18 = 0. Middle constant: (−7 + 18)/2 = 11/2 → ' + N('18x + 12y + 11 = 0'))
@@ -116,7 +116,7 @@ b('Misc Q7: area of the triangle formed by y = x, y = −x, x = k.', 'Vertices (
 b('Example 14: area of the triangle from y = m₁x + c₁, y = m₂x + c₂, x = 0.', N('(c₁ − c₂)² / (2|m₁ − m₂|)'))
 b('Example 15: a line whose segment between 5x − y + 4 = 0 and 3x + 4y − 4 = 0 is bisected at (1, 5).', 'Endpoints (α₁, 5α₁ + 4), (α₂, (4 − 3α₂)/4) with α₁ + α₂ = 2 gives α₁ = 26/23: ' + N('107x − 3y − 92 = 0'))
 b('Example 16: path of a point equidistant from 3x − 2y = 5 and 3x + 2y = 5.', 'Equal distances give k = 0 or h = 5/3: the ' + T('angle bisectors') + ' y = 0 and x = 5/3, both straight lines')
-b('Angle bisectors of a₁x + b₁y + c₁ = 0 and a₂x + b₂y + c₂ = 0?', T('(a₁x + b₁y + c₁)/√(a₁² + b₁²) = ±(a₂x + b₂y + c₂)/√(a₂² + b₂²)') + ': two perpendicular bisectors (make c₁, c₂ same sign to pick the one containing the origin)')
+b('Angle bisectors of a₁x + b₁y + c₁ = 0 and a₂x + b₂y + c₂ = 0?', T('(a₁x + b₁y + c₁)/√(a₁² + b₁²) = ±(a₂x + b₂y + c₂)/√(a₂² + b₂²)') + '<br>Two perpendicular bisectors.<br>Make c₁, c₂ the same sign to pick the one containing the origin')
 b('Misc Q19: the sum of the distances of P(x, y) from x + y − 5 = 0 and 3x − 2y + 7 = 0 is always 10. Locus?', 'Removing the modulus in each region gives a linear equation, so P moves on a ' + T('line (segment)'))
 b('Misc Q23: a person at the meeting point of 2x − 3y + 4 = 0 and 3x + 4y − 5 = 0 wants to reach 6x − 7y + 8 = 0 fastest.', 'The shortest path is the perpendicular from (−1/17, 22/17): ' + N('119x + 102y − 125 = 0'))
 

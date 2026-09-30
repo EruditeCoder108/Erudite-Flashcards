@@ -353,7 +353,7 @@ def tidy_spaces(t):
 def format_text(text, cloze=False, answer=False, subject=None):
     if not text or not isinstance(text, str):
         return text
-    t = text
+    t = tidy_spaces(text)   # normalise first so later rules see the same text a second pass would
     if not cloze:
         t = matrices(t)
     elif '\n' not in t:

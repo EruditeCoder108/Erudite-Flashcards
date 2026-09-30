@@ -46,7 +46,7 @@
     {
       "noteType": "basic",
       "term": "Why are measures of central tendency not enough?",
-      "definition": "Two data sets can have the same mean and median but very different <span style=\"color:#3b82f6\">scatter</span>. We need a number for the spread: a <span style=\"color:#3b82f6\">measure of dispersion</span>",
+      "definition": "Two data sets can have the same mean and median but very different <span style=\"color:#3b82f6\">scatter</span>.<br>We need a number for the spread: a <span style=\"color:#3b82f6\">measure of dispersion</span>",
       "tags": [
         "class-11",
         "mathematics",
@@ -79,7 +79,7 @@
     {
       "noteType": "basic",
       "term": "Limitation of the range?",
-      "definition": "It uses only the two extreme values, so one outlier changes it hugely, and it says nothing about how the data spread <span style=\"color:#3b82f6\">around a central value</span>",
+      "definition": "It uses only the two extreme values, so one outlier changes it hugely.<br>It says nothing about how the data spread <span style=\"color:#3b82f6\">around a central value</span>",
       "tags": [
         "class-11",
         "mathematics",
@@ -101,7 +101,7 @@
     {
       "noteType": "basic",
       "term": "Why do we take absolute values of the deviations?",
-      "definition": "Positive and negative deviations cancel (Σ(xᵢ − x̄) = 0). |x − a| is the actual <span style=\"color:#3b82f6\">distance</span> on the number line, so it does not cancel",
+      "definition": "Positive and negative deviations cancel: Σ(xᵢ − x̄) = 0<br>|x − a| is the actual <span style=\"color:#3b82f6\">distance</span> on the number line, so it does not cancel",
       "tags": [
         "class-11",
         "mathematics",
@@ -200,7 +200,7 @@
     {
       "noteType": "basic",
       "term": "Mean deviation for a discrete frequency distribution?",
-      "definition": "\\(\\mathrm{M.D.}(\\bar{x}) = \\dfrac{\\sum f_i|x_i - \\bar{x}|}{N},\\quad \\bar{x} = \\dfrac{\\sum f_ix_i}{N},\\quad N = \\sum f_i\\).\nAbout the median: replace x̄ by M",
+      "definition": "\\(\\mathrm{M.D.}(\\bar{x}) = \\dfrac{\\sum f_i|x_i - \\bar{x}|}{N},\\quad \\bar{x} = \\dfrac{\\sum f_ix_i}{N},\\quad N = \\sum f_i\\). About the median: replace x̄ by M",
       "tags": [
         "class-11",
         "mathematics",
@@ -222,7 +222,7 @@
     {
       "noteType": "basic",
       "term": "Method: mean deviation for a discrete distribution.",
-      "definition": "Build a table: xᵢ, fᵢ, fᵢxᵢ (to get x̄ = Σfx/N), |xᵢ − x̄|, fᵢ|xᵢ − x̄|. Then M.D. = Σf|x − x̄|/N. Check Σf = N and that the mean lies inside the data range",
+      "definition": "1) Build a table: xᵢ, fᵢ, fᵢxᵢ (to get x̄ = Σfx/N), |xᵢ − x̄|, fᵢ|xᵢ − x̄|.<br>2) M.D. = Σf|x − x̄|/N.<br>3) Check Σf = N and that the mean lies inside the data range",
       "tags": [
         "class-11",
         "mathematics",
@@ -288,7 +288,7 @@
     {
       "noteType": "basic",
       "term": "Step-deviation (shortcut) for the mean?",
-      "definition": "Take an assumed mean a and class width h: d = (x − a)/h, then <span style=\"color:#3b82f6\">x̄ = a + h·(Σfd/N)</span>. Only the mean uses it; the M.D. still uses |x − x̄|",
+      "definition": "Take an assumed mean a and class width h: d = (x − a)/h, then<br><span style=\"color:#3b82f6\">x̄ = a + h·(Σfd/N)</span><br>Only the mean uses it; the M.D. still uses |x − x̄|",
       "tags": [
         "class-11",
         "mathematics",
@@ -299,7 +299,7 @@
     {
       "noteType": "basic",
       "term": "Ex 13.1 Q12: age data is given as 16–20, 21–25, …. What must you do first?",
-      "definition": "Make the classes continuous: subtract 0.5 from each lower limit and add 0.5 to each upper limit (15.5–20.5, 20.5–25.5, …) before using the median formula",
+      "definition": "Make the classes continuous before using the median formula:<br>subtract 0.5 from each lower limit and add 0.5 to each upper limit<br>(15.5–20.5, 20.5–25.5, …)",
       "tags": [
         "class-11",
         "mathematics",
@@ -365,7 +365,7 @@
     {
       "noteType": "basic",
       "term": "Computational formula for variance?",
-      "definition": "\\(\\sigma^2 = \\dfrac{\\sum x_i^2}{n} - \\bar{x}^2\\): mean of squares minus square of the mean.\nFaster and less error-prone",
+      "definition": "\\(\\sigma^2 = \\dfrac{\\sum x_i^2}{n} - \\bar{x}^2\\): mean of squares minus square of the mean. Faster and less error-prone",
       "tags": [
         "class-11",
         "mathematics",
@@ -525,7 +525,7 @@
     {
       "noteType": "basic",
       "term": "Ex 13.2 Q9–10: what to do for the diameters 33–36, 37–40, …?",
-      "definition": "The classes have gaps: make them continuous (32.5–36.5, 36.5–40.5, …) using half the gap; then use mid-points and the shortcut method",
+      "definition": "The classes have gaps.<br>1) Make them continuous using half the gap (32.5–36.5, 36.5–40.5, …).<br>2) Use mid-points and the shortcut method",
       "tags": [
         "class-11",
         "mathematics",
@@ -608,7 +608,7 @@
     {
       "noteType": "basic",
       "term": "Method: correcting a wrong observation.",
-      "definition": "Recompute Σx and Σx² by removing the wrong value and adding the right one: Σx² = n(σ² + x̄²) gives the old sum of squares",
+      "definition": "Recompute Σx and Σx² by removing the wrong value and adding the right one.<br>Σx² = n(σ² + x̄²) gives the old sum of squares",
       "tags": [
         "class-11",
         "mathematics",
@@ -707,7 +707,7 @@
     {
       "noteType": "basic",
       "term": "Combined mean and variance of two groups (n₁, x̄₁, σ₁²), (n₂, x̄₂, σ₂²)?",
-      "definition": "Combined mean <span style=\"color:#3b82f6\">(n₁x̄₁ + n₂x̄₂)/(n₁ + n₂)</span>. Combined variance <span style=\"color:#3b82f6\">[n₁(σ₁² + d₁²) + n₂(σ₂² + d₂²)]/(n₁ + n₂)</span>, with dᵢ = x̄ᵢ − x̄_combined",
+      "definition": "Combined mean <span style=\"color:#3b82f6\">(n₁x̄₁ + n₂x̄₂)/(n₁ + n₂)</span><br>Combined variance <span style=\"color:#3b82f6\">[n₁(σ₁² + d₁²) + n₂(σ₂² + d₂²)]/(n₁ + n₂)</span><br>with dᵢ = x̄ᵢ − x̄_combined",
       "tags": [
         "class-11",
         "mathematics",
@@ -740,7 +740,7 @@
     {
       "noteType": "basic",
       "term": "Mean of an A.P. and of the first n natural numbers?",
-      "definition": "The mean of an A.P. is the average of its first and last terms (= the middle term); first n natural numbers: (n + 1)/2",
+      "definition": "The mean of an A.P. is the average of its first and last terms (= the middle term)<br>First n natural numbers: (n + 1)/2",
       "tags": [
         "class-11",
         "mathematics",

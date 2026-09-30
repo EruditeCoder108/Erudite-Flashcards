@@ -89,11 +89,11 @@ b('Read: A ⊂ B, A ⊄ B, ⇒, ⇔.', 'A is a subset of B; A is not a subset of
 b('Every set is a subset of itself. True?', E('True') + ': A ⊂ A')
 b('Is the empty set a subset of every set?', E('Yes') + ': φ ⊂ A for every A (agreed by definition)')
 b('Intuition: why is φ a subset of every set?',
-  'To fail, φ would need an element that is not in A. φ has ' + T('no elements') + ', so nothing can fail: the condition holds ' + T('vacuously'))
+  'To fail, φ would need an element that is not in A.<br>φ has ' + T('no elements') + ', so nothing can fail:<br>the condition holds ' + T('vacuously'))
 b('A ⊂ B and B ⊂ A implies?', T('A = B') + '. This is how equality is proved in set problems: show both inclusions')
 b('Proper subset and superset?', 'A ⊂ B and A ≠ B: A is a ' + T('proper subset') + ' of B, and B is a ' + T('superset') + ' of A')
 b('What is a singleton set?', 'A set with exactly one element, like {a}')
-b('Notation note: ⊂ or ⊆?', 'NCERT writes ' + T('⊂') + ' for “subset (may be equal)”. Many books and JEE papers use ⊆ for that and reserve ⊂ for ' + T('proper') + ' subset; read the context')
+b('Notation note: ⊂ or ⊆?', 'NCERT writes ' + T('⊂') + ' for “subset (may be equal)”.<br>Many books and JEE papers use ⊆ for that and reserve ⊂ for ' + T('proper') + ' subsets.<br>Read the context')
 b('Relations among N, Z, Q, R, T?', r'\(\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}\)' + ',  T ⊂ R,  ' + X('N ⊄ T'))
 b('Define Q (rational numbers) in set-builder form.', r'\(\mathbb{Q} = \left\{x : x = \dfrac{p}{q},\ p, q \in \mathbb{Z},\ q \neq 0\right\}\)')
 b('Define the set T of irrational numbers.', r'\(T = \{x : x \in \mathbb{R},\ x \notin \mathbb{Q}\} = \mathbb{R} - \mathbb{Q}\)' + '; e.g. √2, √5, π')
@@ -148,7 +148,7 @@ b('What is a universal set?', 'The ' + T('basic set') + ' in a given context of 
 b('Suggest a universal set for right triangles and for isosceles triangles.', 'The set of ' + T('all triangles') + ' in a plane (both are subsets of it)')
 b('Is the universal set unique?', X('No') + ': for integers, U can be Q or R. Any set that contains all the sets in the problem will do')
 b('A = {1, 3, 5}, B = {2, 4, 6}, C = {0, 2, 4, 6, 8}. Which is a valid universal set: (i) {0..6}, (iii) {0..10}, (iv) {1..8}?',
-  E('Only (iii) {0, 1, …, 10}') + '. It must contain 0 (from C) and 8 (from C), and 1, 3, 5, 2, 4, 6: (i) lacks 8, (iv) lacks 0')
+  E('Only (iii) {0, 1, …, 10}') + '.<br>It must contain 0 and 8 (from C), and 1, 3, 5, 2, 4, 6.<br>(i) lacks 8; (iv) lacks 0')
 
 # ---------------------------------------------------------------- 1.8 Venn diagrams
 d.sec('1.8-venn-diagrams')
@@ -251,7 +251,7 @@ steps_card(d, 'Survey problem', 'In a class of 100, 60 like tea, 45 like coffee,
             'Only tea = 60 − 25 = 35; only coffee = 45 − 25 = 20'], hide=1,
            term='Survey problem: neither tea nor coffee', definition='n(T∪C) = 80, so neither = 20 (only tea 35, only coffee 20)')
 b('In the same survey, how many like exactly one drink?', N('55') + ': (60 − 25) + (45 − 25) = 35 + 20')
-b('Method: a survey problem with 2 or 3 groups?', 'Start from the ' + T('innermost overlap') + ', work outwards by subtraction, fill each Venn region, and check that the regions add up to n(U)')
+b('Method: a survey problem with 2 or 3 groups?', '1) Start from the ' + T('innermost overlap') + '.<br>2) Work outwards by subtraction.<br>3) Fill each Venn region.<br>4) Check that the regions add up to n(U)')
 b('JEE style: number of subsets of {1, 2, …, 10} that contain 1 and 2 but not 3?', 'Fix three elements; the other 7 are free: ' + N('2⁷ = 128'))
 b('Number of subsets of a set with n elements that contain a given element?', N('2ⁿ⁻¹') + ': that element is fixed “in”, the rest are free')
 b(r'Number of subsets of \(\{1, 2, \ldots, n\}\) with exactly \(k\) elements?', r'\(\binom{n}{k}\)' + ' (Chapter 6)')
