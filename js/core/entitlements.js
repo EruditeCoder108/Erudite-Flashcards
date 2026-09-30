@@ -152,7 +152,8 @@
           id: item.identifier,
           period: periodLabel(item),
           type: String(item.packageType || '').toUpperCase(),
-          price: item.product?.priceString || '',
+          // Play sends whole-rupee prices as "₹399.00"; show them as "₹399".
+          price: String(item.product?.priceString || '').replace(/([0-9])[.,]00(?![0-9])/, '$1'),
           amount: Number(item.product?.price) || 0,
           title: item.product?.title || '',
           raw: item
