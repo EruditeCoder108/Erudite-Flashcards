@@ -1904,6 +1904,9 @@ html.reduce-motion .study-card-inner {
   scrollbar-width: none !important; /* Firefox */
   -ms-overflow-style: none !important;  /* IE/Edge */
   -webkit-overflow-scrolling: touch;
+  /* Horizontal gestures belong to the card swipe; an overflow-x scroller here made the
+     browser claim them (pointercancel) so a swipe that started on a formula did nothing. */
+  touch-action: pan-y;
 }
 
 .card-text-inline .katex-display::-webkit-scrollbar {
