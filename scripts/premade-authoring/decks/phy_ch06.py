@@ -49,7 +49,7 @@ d.basic('Useful split of kinetic energy of a system (Points to ponder)?', r"\( K
 
 # ---------------------------------------------------------------- 6.5 Vector product
 d.sec('6.5-vector-product')
-d.basic('Define the vector (cross) product a × b.', 'Magnitude ' + r'\( ab\sin\theta \)' + ', direction ⟂ to both a and b by the ' + T('right-hand rule') + ' (curl fingers from a to b; thumb gives c)', **fig('fig_6_15_screw_rule'))
+d.basic('Define the vector (cross) product a × b.', 'Magnitude ' + r'\( ab\sin\theta \)' + '<br>Direction ⟂ to both a and b by the ' + T('right-hand rule') + ' (curl fingers from a to b; thumb gives c)', **fig('fig_6_15_screw_rule'))
 d.basic('Is the cross product commutative?', X('No') + ': ' + r'\( \vec b \times \vec a = -\vec a \times \vec b \)')
 d.basic('a × a = ?', 'The ' + T('null vector') + ' (sin 0 = 0)')
 d.cloze('î × ĵ = {{c1::k̂}}, ĵ × k̂ = {{c2::î}}, k̂ × î = {{c3::ĵ}}; in reverse order the sign is negative.')
@@ -109,7 +109,7 @@ d.basic('Exercise 6.8: bar hung by strings at 36.9° and 53.1° to the vertical,
 d.sec('6.9-moment-of-inertia')
 d.basic('Define moment of inertia.', r'\( I = \sum m_i r_i^2 \)' + ' (rᵢ = perpendicular distance from the axis); unit ' + N('kg m²'))
 d.basic('Rotational kinetic energy?', r'\( K = \tfrac12 I\omega^2 \)')
-d.basic('Why is I the rotational analogue of mass?', 'It measures ' + T('resistance to change') + ' in rotational motion, just as mass does for translation (compare ½Iω² with ½mv²)')
+d.basic('Why is I the rotational analogue of mass?', 'It measures ' + T('resistance to change') + ' in rotational motion, just as mass does for translation.<br>(Compare ½Iω² with ½mv²)')
 d.basic('Does a body have a fixed moment of inertia like its mass?', X('No') + ': I depends on the ' + T('axis') + ' and on how mass is distributed about it')
 d.basic('I of a pair of masses M/2 on a light rod of length l, about the perpendicular axis through the centre?', r'\( \dfrac{Ml^2}{4} \)', **fig('fig_6_28_dumbbell'))
 table_card(d, 'Table 6.1 · moments of inertia', 'I about the given axis?', [
@@ -121,7 +121,7 @@ table_card(d, 'Table 6.1 · moments of inertia', 'I about the given axis?', [
     ('Solid sphere, diameter', '2MR²/5', False), ('Teacher addition: hollow sphere, diameter', '2MR²/3', False),
     ('Teacher addition: rod about one end', 'ML²/3', False)], term='Moments of inertia (Table 6.1, part 2)')
 d.basic('Identify: which shapes in Table 6.1 have the largest and smallest I for the same M and R?', 'Largest: ' + T('ring / hollow cylinder (MR²)') + '; smallest: ' + T('disc about a diameter (MR²/4)'), **img('tab_6_1_moment_of_inertia'))
-d.basic('Mnemonic: why does a ring have more I than a disc of the same mass and radius?', 'All the ring’s mass sits at the ' + T('rim') + ' (distance R); the disc’s mass is spread inwards: "mass far out, spin hard to start"')
+d.basic('Mnemonic: why does a ring have more I than a disc of the same mass and radius?', 'All the ring’s mass sits at the ' + T('rim') + ' (distance R); the disc’s mass is spread inwards.<br>"Mass far out, spin hard to start"')
 d.basic('Define radius of gyration.', r'\( I = Mk^2 \)' + ': k is the distance at which the whole mass, as a point, would give the same I')
 d.basic('Radius of gyration of a rod (⟂ axis at centre) and a disc (about a diameter)?', r'\( k = \dfrac{L}{\sqrt{12}} \)' + ' and ' + r'\( k = \dfrac{R}{2} \)')
 d.basic('What is a flywheel and why is it used?', 'A disc with ' + T('large I') + ' in engines; it resists sudden changes of speed, giving smooth motion', **fig('fig_6_31_flywheel'))
@@ -140,7 +140,7 @@ d.basic('Trap: converting rpm to rad/s?', 'Multiply by ' + N('2π/60') + ': 1200
 
 # ---------------------------------------------------------------- 6.11 Dynamics
 d.sec('6.11-rotational-dynamics')
-d.basic('Which forces matter for rotation about a fixed axis?', 'Only components in planes ⟂ to the axis, with position vectors ⟂ to the axis; the rest are cancelled by the ' + T('constraint forces') + ' of the bearings')
+d.basic('Which forces matter for rotation about a fixed axis?', 'Only components in planes ⟂ to the axis, with position vectors ⟂ to the axis.<br>The rest are cancelled by the ' + T('constraint forces') + ' of the bearings')
 d.basic('Work and power of a torque?', r'\( dW = \tau\,d\theta,\quad P = \tau\omega \)')
 d.basic('Newton’s second law for rotation about a fixed axis?', r'\( \tau = I\alpha \)')
 table_card(d, 'Table 6.2 · linear vs rotational', 'Rotational analogue?', [

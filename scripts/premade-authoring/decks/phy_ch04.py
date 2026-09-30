@@ -14,7 +14,7 @@ img = lambda name: {'termImage': M + name + '.webp'}
 # ---------------------------------------------------------------- 4.1-4.3 Aristotle, Galileo, inertia
 d.sec('4.2-aristotle')
 d.basic('Aristotle’s law of motion?', 'An external force is needed to ' + X('keep') + ' a body moving (e.g. air behind an arrow "pushes" it)')
-d.basic('What was the flaw in Aristotle’s argument?', 'He ignored ' + T('friction') + '. A toy car stops because the floor’s friction opposes it; the pull only cancels friction, so the net force in uniform motion is zero')
+d.basic('What was the flaw in Aristotle’s argument?', 'He ignored ' + T('friction') + '.<br>A toy car stops because the floor’s friction opposes it.<br>The pull only cancels friction, so the net force in uniform motion is zero')
 d.basic('Is a force needed to keep a body in uniform motion if there is no friction?', X('No') + ': a force is needed only to change the motion, or in practice to cancel friction')
 
 d.sec('4.3-law-of-inertia')
@@ -33,12 +33,12 @@ d.cloze('Newton’s first law: every body continues in its state of {{c1::rest o
 d.basic('First law in one line?', 'If the net external force is ' + N('zero') + ', the acceleration is ' + N('zero') + ' (and vice versa)')
 d.basic('A spaceship in interstellar space has all rockets off. What is its motion?', 'Zero net force → zero acceleration: it moves with ' + T('uniform velocity') + ' (or stays at rest)')
 d.basic('A book rests on a table. Which statement is the correct reasoning: "W = R, so the book is at rest", or "the book is at rest, so R = W"?',
-        T('The book is at rest, so the net force is zero, so R = W') + '. We infer the force from the observed state; R is self-adjusting', **fig('fig_4_15_fbd'))
+        T('The book is at rest, so the net force is zero, so R = W') + '<br>We infer the force from the observed state; R is self-adjusting', **fig('fig_4_15_fbd'))
 d.basic('A car speeds up from rest. Which external force accelerates it?', T('Friction') + ' from the road on the tyres. ' + X('Internal forces') + ' (engine, pistons) cannot accelerate the car as a whole')
 d.basic('A bus starts suddenly. Why are standing passengers thrown backward?', 'Friction carries the ' + T('feet') + ' forward with the bus; the upper body stays behind by ' + T('inertia') + ' (the body is not rigid)')
 d.basic('A speeding bus stops suddenly. Why are passengers thrown forward? (Exercise 4.23 b)', 'Friction stops the feet with the bus; the upper body ' + T('keeps moving') + ' by inertia')
 d.basic('Example 4.1: an astronaut slips out of a spaceship accelerating at 100 m/s² in deep space. His acceleration just after?', N('Zero') + ': once outside, no force acts on him (no stars nearby; the ship’s gravity is negligible)')
-d.basic('Intuition: why does a tablecloth jerked fast leave the dishes in place?', 'The friction acts for a ' + T('very short time') + ', so it gives the dishes only a tiny momentum; their inertia keeps them almost at rest')
+d.basic('Intuition: why does a tablecloth jerked fast leave the dishes in place?', 'The friction acts for a ' + T('very short time') + ', so it gives the dishes only a tiny momentum.<br>Their inertia keeps them almost at rest')
 
 # ---------------------------------------------------------------- 4.5 Second law, momentum
 d.sec('4.5-second-law')
@@ -58,7 +58,7 @@ d.basic('What does "the second law is a local relation" mean?', 'Force ' + T('he
 sp.train_drop(d)
 d.basic('Example 4.2: a 0.04 kg bullet at 90 m/s stops in 60 cm of wood. Average resistive force?', 'a = −90²/(2 × 0.6) = −6750 m/s² → F = 0.04 × 6750 = ' + N('270 N') + ' (average; the real force need not be uniform)')
 d.basic('Example 4.3: y = ut + ½gt². Force on the particle?', 'a = d²y/dt² = g → ' + T('F = mg') + ': motion under gravity with y along g')
-d.basic('Trap: is "ma" a force acting on the body?', X('No') + '. F is the net force from external agencies; ma is its ' + T('effect') + '. Never draw ma on a free-body diagram as an extra force')
+d.basic('Trap: is "ma" a force acting on the body?', X('No') + '.<br>F is the net force from external agencies; ma is its ' + T('effect') + '.<br>Never draw ma on a free-body diagram as an extra force')
 d.basic('Trap: a ball thrown up is momentarily at rest at the top. Is the force on it zero there?', X('No') + ': v = 0 but the force is still ' + T('mg') + ' and a = g (Points to ponder 2)')
 d.basic('Is force always along the velocity?', X('No') + ': it can be along, opposite, perpendicular or at any angle to v, but it is always along the ' + T('acceleration'))
 
@@ -85,7 +85,7 @@ d.basic('Trap: a book on a table. Are its weight and the normal force an action�
 d.basic('Example 4.12: before the floor yields, name the two action–reaction pairs for the 2 kg block.', '(i) Earth pulls the block 20 N down ↔ block pulls the Earth 20 N up. (ii) Block pushes the floor 20 N down ↔ floor pushes the block 20 N up', **fig('fig_4_15_fbd'))
 d.basic('Example 4.12: a 25 kg cylinder is placed on the 2 kg block and both sink at 0.1 m/s². Force of the block on the floor?', '270 − R′ = 27 × 0.1 → R′ = ' + N('267.3 N') + ' downward (less than the weight 270 N, since they accelerate)')
 d.basic('Exercise 4.23 (a): why can a horse not pull a cart and run in empty space?', 'The horse moves forward only because the ' + T('ground pushes it') + ' (friction, by the third law). In empty space there is nothing to push against, and internal forces cannot move the horse–cart system')
-d.basic('How do we walk?', 'The foot pushes the ground ' + T('backward') + '; static friction from the ground pushes us ' + T('forward') + ' (no friction, no walking)')
+d.basic('How do we walk?', 'The foot pushes the ground ' + T('backward') + '.<br>Static friction from the ground pushes us ' + T('forward') + '.<br>(No friction, no walking)')
 d.basic('Why is it hard to walk on ice or step out of a boat onto a bank?', 'Ice: little ' + T('friction') + ' to push you. Boat: your push sends the ' + T('boat backward') + ' (third law), so you move forward less')
 
 # ---------------------------------------------------------------- Example 4.5
@@ -169,7 +169,7 @@ d.basic('Where is friction essential?', T('Walking') + ', ' + T('brakes') + ', a
 d.sec('4.10-circular-motion')
 d.basic('Centripetal force?', r'\( f_c = \dfrac{mv^2}{R} \)' + ', directed ' + T('towards the centre'))
 d.basic('Correction: NCERT 4.10 says the centripetal acceleration v²/R was seen "in Chapter 4". Where was it?', 'In ' + T('Chapter 3') + ' (Motion in a Plane); the reference is left over from the old chapter numbering')
-d.basic('Trap: is centripetal force a new kind of force?', X('No') + ': it is a name for whatever real force points to the centre: ' + T('tension, gravity, friction, normal force') + ' (Points to ponder 5)')
+d.basic('Trap: is centripetal force a new kind of force?', X('No') + ': it is a name for whatever real force points to the centre:<br>' + T('tension, gravity, friction, normal force') + '<br>(Points to ponder 5)')
 table_card(d, '4.10 · who supplies mv²/R?', 'Which real force is the centripetal force?', [
     ('Stone whirled on a string', 'tension', False), ('Planet round the Sun', 'gravity', False),
     ('Car turning on a level road', 'static friction', False), ('Car on a smooth banked road', 'horizontal component of N', False),
@@ -188,7 +188,7 @@ d.basic('NEET/JEE addition: maximum speed over a convex bridge (hump) of radius 
 d.basic('Exercise 4.4: a particle on a smooth table circles a peg on a string of tension T. Net force towards the centre?', T('T') + ' (option i). Gravity and the normal force cancel vertically')
 d.basic('Exercise 4.21: a 0.25 kg stone on a 1.5 m string makes 40 rev/min. Tension? Max speed if the string can take 200 N?', 'v = 2π × 1.5 × 40/60 = 6.28 m/s → T = mv²/r ≈ ' + N('6.6 N') + '. 200 = 0.25v²/1.5 → vₘₐₓ ≈ ' + N('35 m/s'))
 d.basic('Exercise 4.22: the string breaks while a stone is whirled. Its path?', T('Tangential') + ' from the instant the string breaks (option b): no force → straight line along the velocity it had')
-d.basic('Trap: on a merry-go-round you feel pushed outward. Is there an outward force?', X('No') + ': every part of you gets an ' + T('inward') + ' force; the "outward push" is the feeling of the impending motion (Points to ponder 11)')
+d.basic('Trap: on a merry-go-round you feel pushed outward. Is there an outward force?', X('No') + ': every part of you gets an ' + T('inward') + ' force.<br>The "outward push" is the feeling of the impending motion (Points to ponder 11)')
 
 # ---------------------------------------------------------------- 4.11 Solving problems
 d.sec('4.11-solving-problems')
@@ -200,7 +200,7 @@ table_card(d, '4.11 · method', 'Step?', [
     ('5', 'Repeat for another part, using −F by the third law', False)], term='Steps for solving mechanics problems')
 d.basic('In a free-body diagram of a system of two blocks, do you draw the forces between them?', X('No') + ': they are ' + T('internal') + ' and cancel. Draw them only when each block is taken separately')
 d.basic('Every force should be read as…?', '"Force ' + T('on A by B') + '": friction, normal reaction, tension, thrust, buoyancy, weight are all just forces (Points to ponder 9)')
-d.basic('Trap: is mg = N for a body on a floor a consequence of the third law?', X('No') + ': it holds only if the body is in ' + T('equilibrium') + ' (e.g. not in an accelerating lift). mg and N act on the same body (Points to ponder 7)')
+d.basic('Trap: is mg = N for a body on a floor a consequence of the third law?', X('No') + ': it holds only if the body is in ' + T('equilibrium') + ' (e.g. not in an accelerating lift).<br>mg and N act on the same body (Points to ponder 7)')
 
 # ---------------------------------------------------------------- Lifts, pulleys, connected bodies
 d.sec('lifts-and-pulleys')

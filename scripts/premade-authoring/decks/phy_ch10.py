@@ -18,7 +18,7 @@ d.basic('Any energy transfer without a temperature difference: is it heat?', X('
 
 # ---------------------------------------------------------------- 10.3 Measurement
 d.sec('10.3-measurement-of-temperature')
-d.basic('Why does a temperature scale need fixed points?', 'All substances expand, so there is no absolute reference; we use phenomena that always happen at the ' + T('same temperature') + ' (ice point, steam point)')
+d.basic('Why does a temperature scale need fixed points?', 'All substances expand, so there is no absolute reference.<br>We use phenomena that always happen at the ' + T('same temperature') + ' (ice point, steam point)')
 d.basic('Ice and steam points on the Celsius and Fahrenheit scales?', 'Celsius: ' + N('0 °C, 100 °C') + ' (100 divisions). Fahrenheit: ' + N('32 °F, 212 °F') + ' (180 divisions)', **fig('fig_10_1_f_vs_c'))
 d.basic('Celsius–Fahrenheit conversion?', r'\( \dfrac{t_F - 32}{180} = \dfrac{t_C}{100} \)' + ', i.e. ' + r'\( t_F = \tfrac95 t_C + 32 \)')
 d.basic('At what temperature do Celsius and Fahrenheit readings agree?', N('−40°') + ' (solve x = 9x/5 + 32)')
@@ -55,7 +55,7 @@ d.basic('Identify: which strips make up the extra area in Fig. 10.8?', 'ΔA₁ =
 d.basic('Which have very low expansion: name two.', T('Invar') + ' (iron–nickel alloy, αV ≈ 2 × 10⁻⁶ K⁻¹) and ' + T('pyrex glass'))
 d.basic('Which expands more for the same rise: alcohol or mercury?', T('Alcohol') + ' (αV ≈ 110 × 10⁻⁵ vs 18.2 × 10⁻⁵ K⁻¹)')
 d.basic('Anomalous expansion of water?', 'Water ' + X('contracts') + ' on heating from 0 °C to 4 °C; density is ' + T('maximum at 4 °C'), **fig('fig_10_7_water_anomaly'))
-d.basic('Why do lakes freeze from the top, and why does it matter?', 'Water below 4 °C is less dense and stays on top where it freezes; the water underneath stays near 4 °C, so ' + T('aquatic life survives'))
+d.basic('Why do lakes freeze from the top, and why does it matter?', 'Water below 4 °C is less dense and stays on top where it freezes.<br>The water underneath stays near 4 °C, so ' + T('aquatic life survives'))
 d.basic('Volume expansivity of an ideal gas at constant pressure?', r'\( \alpha_V = \dfrac1T \)' + ' (≈ 3.7 × 10⁻³ K⁻¹ at 0 °C) — far larger than for solids and liquids')
 d.basic('What is thermal stress?', 'Stress in a body ' + T('prevented from expanding') + ': strain = αΔT, stress = YαΔT')
 d.basic('Steel rail (40 cm², α = 1.2 × 10⁻⁵ K⁻¹, Y = 2 × 10¹¹ Pa) fixed at both ends, heated 10 °C. Thermal stress and force?', 'Stress = ' + N('2.4 × 10⁷ Pa') + '; force ≈ ' + N('10⁵ N') + ' — enough to bend rails (hence gaps between rails)')
@@ -80,7 +80,7 @@ d.basic('Exercise 10.15: why are Cᵥ values of diatomic gases (~5 cal/mol K) hi
 # ---------------------------------------------------------------- 10.7 Calorimetry
 d.sec('10.7-calorimetry')
 d.cloze('Principle of calorimetry: in an isolated system, {{c1::heat lost by the hotter part = heat gained by the colder part}}.')
-d.basic('Construction of a calorimeter?', 'Copper/aluminium vessel and stirrer inside a wooden jacket with insulating material (glass wool); thermometer through the lid')
+d.basic('Construction of a calorimeter?', 'Copper/aluminium vessel and stirrer<br>inside a wooden jacket with insulating material (glass wool)<br>Thermometer through the lid')
 steps_card(d, 'Example 10.3 · aluminium sphere', 'Find the missing step.', '0.047 kg Al at 100 °C dropped into 0.25 kg water + 0.14 kg copper calorimeter at 20 °C; final 23 °C. s(Al)?',
            ['Heat lost by Al = 0.047 × s × 77', 'Heat gained = (0.25 × 4180 + 0.14 × 386) × 3', '≈ 3297 J', 's(Al) = 3297 / (0.047 × 77) ≈ <b>911 J kg⁻¹ K⁻¹</b>'], 1,
            'Specific heat of aluminium by mixtures', 'Heat lost by Al = heat gained by water + calorimeter → s ≈ 0.911 kJ kg⁻¹ K⁻¹')
@@ -129,9 +129,9 @@ d.basic('Exercise 10.19(b): why does a brass tumbler feel colder than a wooden t
 
 d.sec('10.9.2-convection')
 d.basic('What is convection? Where is it possible?', 'Heat transfer by ' + T('actual bulk motion') + ' of matter; only in ' + T('fluids'))
-d.basic('Natural vs forced convection? Examples?', T('Natural') + ': driven by gravity/buoyancy (sea breeze). ' + T('Forced') + ': by a pump or fan (house heating, blood circulation, car cooling system)')
+d.basic('Natural vs forced convection? Examples?', T('Natural') + ': driven by gravity/buoyancy (sea breeze)<br>' + T('Forced') + ': by a pump or fan (house heating, blood circulation, car cooling system)')
 d.basic('Sea breeze and land breeze?', 'Day: land heats faster, warm air rises over land, cool air flows in from the sea (' + T('sea breeze') + '). Night: reversed (' + T('land breeze') + ')', **fig('fig_10_17_convection'))
-d.basic('What are trade winds?', 'Steady surface winds blowing from the north-east towards the equator: convection modified by Earth’s ' + T('rotation') + '; air descends near 30° N')
+d.basic('What are trade winds?', 'Steady surface winds blowing from the north-east towards the equator.<br>Convection modified by Earth’s ' + T('rotation') + '; air descends near 30° N')
 d.basic('A hot bar under a running tap loses heat mainly by…?', T('Conduction') + ' between the bar and water, not convection within the water')
 d.basic('Exercise 10.19(e): why is steam heating more efficient than hot-water heating?', 'Condensing steam releases a large ' + T('latent heat') + ' per kg')
 

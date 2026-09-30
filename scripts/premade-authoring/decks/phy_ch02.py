@@ -21,7 +21,7 @@ d.basic('Exercise 2.1: which are point objects? (a) carriage between stations (b
         T('(a) and (b)') + '. In (c) and (d) the size matters compared with the distance moved')
 
 d.sec('2.1-displacement-and-velocity')
-d.basic('Path length vs displacement?', T('Path length') + ': total distance travelled (scalar, never decreases). ' + T('Displacement') + ': change in position Δx = x₂ − x₁ (vector, can be 0 or negative)')
+d.basic('Path length vs displacement?', T('Path length') + ': total distance travelled (scalar, never decreases)<br>' + T('Displacement') + ': change in position Δx = x₂ − x₁ (vector, can be 0 or negative)')
 d.basic('Can displacement be larger than path length?', X('Never') + '. |displacement| ≤ path length; equal only for motion in ' + T('one direction') + ' without turning back')
 d.basic('Define average velocity and average speed.', 'Average velocity = ' + r'\( \dfrac{\Delta x}{\Delta t} \)' + '; average speed = ' + T('total path length') + ' ÷ time')
 d.basic('A man walks 2.5 km to a market in 30 min and returns home in 20 min. Average velocity and average speed for the full 50 min?',
@@ -44,7 +44,7 @@ d.basic('Why is instantaneous speed always equal to |instantaneous velocity|, wh
 
 # ---------------------------------------------------------------- 2.3 Acceleration
 d.sec('2.3-acceleration')
-d.basic('Galileo: is change of velocity constant per unit time or per unit distance in free fall?', 'Per unit ' + T('time') + ' (constant); per unit distance it ' + X('decreases') + '. Hence acceleration = rate of change of velocity with time')
+d.basic('Galileo: is change of velocity constant per unit time or per unit distance in free fall?', 'Per unit ' + T('time') + ': constant<br>Per unit distance: it ' + X('decreases') + '<br>Hence acceleration = rate of change of velocity with time')
 d.basic('Define average and instantaneous acceleration.', r'\( \bar a = \dfrac{v_2 - v_1}{t_2 - t_1} \)' + ' ; ' + r'\( a = \dfrac{dv}{dt} \)' + '. SI unit ' + N('m s⁻²'))
 d.basic('How do you read acceleration from a v–t graph?', 'The ' + T('slope') + ' of the v–t graph (tangent for instantaneous, chord for average)')
 d.basic('Can acceleration arise without a change in speed?', T('Yes') + ': a change in ' + T('direction') + ' alone is an acceleration')
@@ -75,7 +75,7 @@ d.basic('Exercise 2.7(c): must a particle with constant speed have zero accelera
 # ---------------------------------------------------------------- 2.4 Kinematic equations
 d.sec('2.4-equations-of-motion')
 d.cloze('Equations of motion for constant acceleration: {{c1::v = v₀ + at}},  {{c2::x = v₀t + ½at²}},  {{c3::v² = v₀² + 2ax}}.')
-d.basic('Which quantity is missing from each equation of motion?', r'\( v = v_0 + at \)' + ': x.  ' + r'\( x = v_0t + \tfrac12 at^2 \)' + ': v.  ' + r'\( v^2 = v_0^2 + 2ax \)' + ': t.  ' + r'\( x = \tfrac{v_0 + v}{2}t \)' + ': a')
+d.basic('Which quantity is missing from each equation of motion?', r'\( v = v_0 + at \)' + ' lacks x<br>' + r'\( x = v_0t + \tfrac12 at^2 \)' + ' lacks v<br>' + r'\( v^2 = v_0^2 + 2ax \)' + ' lacks t<br>' + r'\( x = \tfrac{v_0 + v}{2}t \)' + ' lacks a')
 d.basic('How to pick the right equation fast?', 'Find the one quantity the question neither gives nor asks for, and use the equation ' + T('without it'))
 d.basic('Average velocity under constant acceleration?', r'\( \bar v = \dfrac{v_0 + v}{2} \)' + ' (true ' + X('only') + ' for constant acceleration)')
 steps_card(d, 'Derivation · area of v–t graph', 'Find the missing step.', 'Derive x = v₀t + ½at² from the v–t graph of v = v₀ + at.',
@@ -136,7 +136,7 @@ d.basic('Why does the relative speed matter for damage in Exercise 2.14?', 'The 
 # ---------------------------------------------------------------- Graph exercises
 d.sec('exercises-graphs')
 d.basic('Exercise 2.2 (Fig. 2.9): who lives closer, who starts earlier, who walks faster?', T('A') + ' lives closer; ' + T('A') + ' starts earlier; ' + T('B') + ' walks faster (steeper), overtakes A once', **fig('fig_2_9_children'))
-d.basic('Exercise 2.15(a): suggest a situation for this x–t graph.', 'A ball at rest on a smooth floor is kicked, rebounds from a wall with ' + T('reduced speed') + ' and is stopped by the opposite wall', **img('fig_2_12_situations'))
+d.basic('Exercise 2.15(a): suggest a situation for this x–t graph.', 'A ball at rest on a smooth floor is kicked.<br>It rebounds from a wall with ' + T('reduced speed') + '.<br>It is stopped by the opposite wall', **img('fig_2_12_situations'))
 d.basic('Exercise 2.15(b), (c): situations for the v–t and a–t graphs?', '(b) A ball thrown up that rebounds from the floor with ' + T('less speed each time') + '. (c) A cricket ball moving uniformly, hit back by a bat for a ' + T('very short time'), **img('fig_2_12_situations'))
 d.basic('Exercise 2.16 (SHM x–t): signs of x, v, a at t = 0.3 s?', 'x < 0, v < 0, a > 0. (In SHM, a is always opposite to x)', **img('fig_2_13_shm'))
 d.basic('Exercise 2.17 (Fig. 2.14): which interval has the greatest and least average speed?', 'Greatest in ' + N('3') + ' (steepest), least in ' + N('2') + '; v > 0 in 1 and 2, v < 0 in 3', **img('fig_2_14_xt'))

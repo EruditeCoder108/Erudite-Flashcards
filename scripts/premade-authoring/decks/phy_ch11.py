@@ -13,7 +13,7 @@ img = lambda name: {'termImage': M + name + '.webp'}
 # ---------------------------------------------------------------- 11.1 Introduction
 d.sec('11.1-introduction')
 d.basic('What was the caloric theory of heat?', 'Heat as an invisible ' + X('fluid') + ' ("caloric") filling the pores of matter, flowing until "caloric levels" equalised')
-d.basic('How did Count Rumford (1798) disprove caloric theory?', 'Boring a cannon produced heat that depended on the ' + T('work done') + ' (by horses), not on the drill’s sharpness → heat is a form of ' + T('energy'))
+d.basic('How did Count Rumford (1798) disprove caloric theory?', 'Boring a cannon produced heat that depended on the ' + T('work done') + ' (by horses), not on the drill’s sharpness.<br>So heat is a form of ' + T('energy'))
 d.basic('Thermodynamics vs mechanics?', 'Mechanics: motion of the body as a whole. Thermodynamics: the ' + T('internal macroscopic state') + ' (P, V, T, U) — a bullet is not hotter because it is fast')
 d.basic('Is thermodynamics a microscopic or macroscopic science?', T('Macroscopic') + ': it uses bulk variables (P, V, T, mass, composition) and ignores molecules')
 
@@ -27,7 +27,7 @@ d.basic('Who formulated the zeroth law, and why is it called "zeroth"?', T('R. H
 
 # ---------------------------------------------------------------- 11.4 Heat, internal energy, work
 d.sec('11.4-heat-internal-energy-work')
-d.basic('Define internal energy.', 'Sum of molecular ' + T('kinetic and potential energies') + ' in the frame where the centre of mass is at rest; excludes KE of the body as a whole', **fig('fig_11_3_internal_energy'))
+d.basic('Define internal energy.', 'Sum of molecular ' + T('kinetic and potential energies') + ' in the frame where the centre of mass is at rest.<br>It excludes the KE of the body as a whole', **fig('fig_11_3_internal_energy'))
 d.basic('Is internal energy a state variable? Heat? Work?', 'U: ' + T('yes') + ' (depends only on the state). Heat and work: ' + X('no') + ' — they are energy in transit and depend on the path')
 d.basic('Heat vs work as ways to change U?', T('Heat') + ': transfer due to a temperature difference. ' + T('Work') + ': transfer by other means (e.g. moving a piston)', **fig('fig_11_4_heat_work'))
 d.basic('Why is "a gas has a certain amount of heat" meaningless?', 'Heat is energy ' + T('in transit') + ', not a property of a state; the state has internal energy')
@@ -69,13 +69,13 @@ d.basic('Exercise 11.3(d): why is a harbour town’s climate milder than a deser
 d.sec('11.7-state-variables')
 d.basic('What is an equation of state? Example?', 'A relation among state variables; for an ideal gas ' + r'\( PV = \mu RT \)' + ' (only two of P, V, T independent)')
 d.basic('Can a gas in free expansion or an explosion be described by state variables?', X('No') + ': it is not in equilibrium; P and T are not uniform', **fig('fig_11_6_non_equilibrium'))
-d.basic('Extensive vs intensive variables? Test?', 'Divide the system in two: variables that ' + T('halve') + ' are extensive (U, V, mass); those ' + T('unchanged') + ' are intensive (P, T, ρ)')
+d.basic('Extensive vs intensive variables? Test?', 'Divide the system in two:<br>variables that ' + T('halve') + ' are extensive (U, V, mass)<br>variables that stay ' + T('unchanged') + ' are intensive (P, T, ρ)')
 d.basic('Is ΔQ = ΔU + PΔV consistent in extensive/intensive terms?', T('Yes') + ': every term is extensive (P × ΔV is intensive × extensive)')
 d.basic('What is an isotherm?', 'The P–V curve at fixed temperature')
 
 # ---------------------------------------------------------------- 11.8 Processes
 d.sec('11.8-thermodynamic-processes')
-d.basic('What is a quasi-static process?', 'An ' + T('infinitely slow') + ' process: the system stays in equilibrium, differing from the surroundings only infinitesimally in P and T', **fig('fig_11_7_quasi_static'))
+d.basic('What is a quasi-static process?', 'An ' + T('infinitely slow') + ' process.<br>The system stays in equilibrium, differing from the surroundings only infinitesimally in P and T', **fig('fig_11_7_quasi_static'))
 table_card(d, 'Table 11.2', 'What is kept fixed?', [
     ('Isothermal', 'temperature', False), ('Isobaric', 'pressure', False), ('Isochoric', 'volume', False), ('Adiabatic', 'no heat flow (ΔQ = 0)', False)],
     term='Special thermodynamic processes (Table 11.2)')
@@ -98,10 +98,10 @@ d.basic('Correction: NCERT Exercise 11.8 refers to "Fig. (11.13)". Which figure?
 
 # ---------------------------------------------------------------- 11.9-11.10 Second law, reversibility
 d.sec('11.9-second-law')
-d.basic('Why is the first law not enough?', 'Many energy-conserving events never happen (a book jumping up by cooling the table); the ' + T('second law') + ' forbids them')
+d.basic('Why is the first law not enough?', 'Many energy-conserving events never happen (a book jumping up by cooling the table).<br>The ' + T('second law') + ' forbids them')
 d.cloze('Kelvin–Planck statement: no process is possible whose sole result is the absorption of heat from a reservoir and its {{c1::complete conversion into work}}.')
 d.cloze('Clausius statement: no process is possible whose sole result is the transfer of heat from a {{c1::colder}} object to a {{c2::hotter}} object.')
-d.basic('What do the two statements rule out?', 'A heat engine with efficiency ' + X('1') + ' and a refrigerator with infinite coefficient of performance; the statements are equivalent')
+d.basic('What do the two statements rule out?', 'A heat engine with efficiency ' + X('1') + '<br>A refrigerator with infinite coefficient of performance<br>The two statements are equivalent')
 d.basic('Teacher addition: efficiency of a heat engine?', r'\( \eta = \dfrac{W}{Q_1} = 1 - \dfrac{Q_2}{Q_1} \)', **fig('drawn_engine_fridge'))
 d.basic('Teacher addition: coefficient of performance of a refrigerator?', r'\( \beta = \dfrac{Q_2}{W} = \dfrac{Q_2}{Q_1 - Q_2} \)' + '; for a Carnot fridge ' + r'\( \dfrac{T_2}{T_1 - T_2} \)', **fig('drawn_engine_fridge'))
 
@@ -114,13 +114,13 @@ d.basic('Example of a (nearly) reversible process?', 'Quasi-static isothermal ex
 
 # ---------------------------------------------------------------- 11.11 Carnot
 d.sec('11.11-carnot-engine')
-d.basic('Why must a reversible engine between two temperatures use isothermal and adiabatic steps?', 'Heat must be exchanged with no finite temperature difference (' + T('isothermal') + '), and temperature changed without other reservoirs (' + T('adiabatic') + ')')
+d.basic('Why must a reversible engine between two temperatures use isothermal and adiabatic steps?', 'Heat must be exchanged with no finite temperature difference (' + T('isothermal') + ').<br>Temperature must be changed without other reservoirs (' + T('adiabatic') + ')')
 d.cloze('Carnot cycle: {{c1::isothermal expansion}} at T₁ → {{c2::adiabatic expansion}} to T₂ → {{c3::isothermal compression}} at T₂ → {{c4::adiabatic compression}} back to T₁.')
 d.basic('Identify: which parts of the Carnot cycle absorb and reject heat?', '1 → 2 (isothermal at T₁) absorbs Q₁; 3 → 4 (isothermal at T₂) rejects Q₂; the two adiabats exchange no heat', **img('fig_11_9_carnot'))
 d.basic('Efficiency of a Carnot engine?', r'\( \eta = 1 - \dfrac{T_2}{T_1} \)' + ' (kelvin temperatures)')
 d.basic('Key relation in a Carnot cycle (used to define temperature)?', r'\( \dfrac{Q_1}{Q_2} = \dfrac{T_1}{T_2} \)' + ' — independent of the working substance')
 d.basic('State Carnot’s theorem.', '(a) No engine between T₁ and T₂ is more efficient than a ' + T('Carnot') + ' engine. (b) Carnot efficiency is ' + T('independent of the working substance'))
-d.basic('How is Carnot’s theorem proved?', 'If an engine I beat a reversible engine R run as a refrigerator, the pair would turn heat from one reservoir fully into work, violating ' + T('Kelvin–Planck'), **fig('fig_11_10_engine_refrigerator'))
+d.basic('How is Carnot’s theorem proved?', 'If an engine I beat a reversible engine R run as a refrigerator,<br>the pair would turn heat from one reservoir fully into work,<br>violating ' + T('Kelvin–Planck'), **fig('fig_11_10_engine_refrigerator'))
 d.basic('Who first analysed the ideal heat engine?', T('Sadi Carnot') + ', French engineer, 1824')
 d.basic('Teacher addition: Carnot engine between 500 K and 300 K. Efficiency?', '1 − 300/500 = ' + N('40 %'))
 d.basic('Can a Carnot engine have 100 % efficiency?', 'Only if T₂ = ' + X('0 K') + ', which is unattainable')

@@ -13,8 +13,8 @@ img = lambda name: {'termImage': M + name + '.webp'}
 
 # ---------------------------------------------------------------- 3.2 Scalars and vectors
 d.sec('3.2-scalars-and-vectors')
-d.basic('Scalar vs vector?', T('Scalar') + ': magnitude only (mass, time, temperature). ' + T('Vector') + ': magnitude and direction, and it obeys the ' + T('triangle/parallelogram law') + ' of addition')
-d.basic('Is having magnitude and direction enough to be a vector?', X('No') + ': it must also add by the triangle law. ' + E('Electric current') + ' has a direction but adds like a scalar, so it is a scalar')
+d.basic('Scalar vs vector?', T('Scalar') + ': magnitude only (mass, time, temperature)<br>' + T('Vector') + ': magnitude and direction, and it obeys the ' + T('triangle/parallelogram law') + ' of addition')
+d.basic('Is having magnitude and direction enough to be a vector?', X('No') + ': it must also add by the triangle law.<br>' + E('Electric current') + ' has a direction but adds like a scalar, so it is a scalar')
 table_card(d, 'Exercises 3.1–3.3', 'Scalar or vector?', [
     ('Volume, mass, speed, density, moles', 'scalar', False), ('Angular frequency', 'scalar', False),
     ('Displacement, velocity, acceleration', 'vector', False), ('Angular velocity, impulse', 'vector', False),
@@ -23,7 +23,7 @@ d.basic('How is a vector written by hand and in print?', 'An arrow over the lett
 d.basic('Position vector vs displacement vector?', T('Position vector') + ' r: from the origin to the object. ' + T('Displacement') + ' PP′: from the initial to the final position', **fig('fig_3_1_position_paths'))
 d.basic('Does displacement depend on the path taken?', X('No') + ': only on the ' + T('end points') + '; every path from P to Q gives the same PQ', **fig('fig_3_1_position_paths'))
 d.basic('When are two vectors equal?', 'Same ' + T('magnitude') + ' and same ' + T('direction') + '. Shift one parallel to itself: the tails and tips coincide', **fig('fig_3_2_equal_vectors'))
-d.basic('Free vector vs localised vector?', T('Free') + ': can be shifted parallel to itself without change. ' + T('Localised') + ': its line of action matters (e.g. a force producing torque)')
+d.basic('Free vector vs localised vector?', T('Free') + ': can be shifted parallel to itself without change<br>' + T('Localised') + ': its line of action matters (e.g. a force producing torque)')
 d.basic('Exercise 3.8: three skaters go from P to Q across a circular rink of radius 200 m by different paths. Displacement of each?', N('400 m') + ' each; only ' + T('B') + ' (straight along the diameter) has path length = displacement', **fig('fig_3_19_skaters'))
 
 # ---------------------------------------------------------------- 3.3 Multiplication by a real number
@@ -127,7 +127,7 @@ d.basic('Trap: does a projectile’s path depend only on its acceleration?', X('
 
 # ---------------------------------------------------------------- Relative velocity in 2D
 d.sec('3.x-relative-velocity-2d')
-d.basic('Resultant velocity vs relative velocity?', T('Resultant') + ': an object with two velocities has v = v₁ + v₂. ' + T('Relative') + ': v₁₂ = v₁ − v₂ (velocity of 1 as seen from 2)')
+d.basic('Resultant velocity vs relative velocity?', T('Resultant') + ': an object with two velocities has v = v₁ + v₂<br>' + T('Relative') + ': v₁₂ = v₁ − v₂ (velocity of 1 as seen from 2)')
 d.basic('Rain falls vertically; you walk forward. Which way should you tilt the umbrella?', T('Forward') + ': the rain relative to you is v_rain − v_you, which slants towards you')
 d.basic('Crossing a river of width d in the least time: heading and time?', 'Head ' + T('perpendicular') + ' to the bank; t = d/vʙ; drift = vᵣd/vʙ', **fig('drawn_river'))
 d.basic('Crossing a river along the shortest path (straight across): heading?', 'Upstream at angle θ to the normal with ' + r'\( \sin\theta = \dfrac{v_r}{v_b} \)' + '; time ' + r'\( \dfrac{d}{\sqrt{v_b^2 - v_r^2}} \)', **fig('drawn_river'))

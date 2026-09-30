@@ -13,9 +13,9 @@ img = lambda name: {'termImage': M + name + '.webp'}
 
 # ---------------------------------------------------------------- 13.2 Periodic and oscillatory
 d.sec('13.2-periodic-and-oscillatory')
-d.basic('Periodic vs oscillatory motion?', T('Periodic') + ': repeats at regular intervals. ' + T('Oscillatory') + ': periodic to-and-fro motion about a mean (equilibrium) position', **fig('fig_13_1_periodic'))
+d.basic('Periodic vs oscillatory motion?', T('Periodic') + ': repeats at regular intervals<br>' + T('Oscillatory') + ': periodic to-and-fro motion about a mean (equilibrium) position', **fig('fig_13_1_periodic'))
 d.basic('Is every periodic motion oscillatory?', X('No') + ': every oscillation is periodic, but ' + E('uniform circular motion') + ' is periodic without being oscillatory')
-d.basic('Oscillation vs vibration?', 'No real difference: low frequency is usually called ' + T('oscillation') + ' (tree branch), high frequency ' + T('vibration') + ' (guitar string)')
+d.basic('Oscillation vs vibration?', 'No real difference.<br>Low frequency is usually called ' + T('oscillation') + ' (tree branch)<br>High frequency is called ' + T('vibration') + ' (guitar string)')
 d.basic('Why do real oscillations die out? How can they be kept going?', T('Damping') + ' (friction, dissipation); an external periodic force can keep them going (forced oscillations)')
 d.basic('How are waves related to oscillations?', 'A medium is a collection of coupled oscillators; their ' + T('collective oscillations') + ' are waves')
 d.basic('Define period and frequency. Unit of frequency?', T('Period') + ' T: smallest interval after which motion repeats. ' + T('Frequency') + ' ν = 1/T, in ' + N('hertz') + ' (1 Hz = 1 s⁻¹)')

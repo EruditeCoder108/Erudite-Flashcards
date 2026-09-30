@@ -13,13 +13,13 @@ img = lambda name: {'termImage': M + name + '.webp'}
 # ---------------------------------------------------------------- 12.1-12.2
 d.sec('12.1-introduction')
 d.basic('What is the basic idea of kinetic theory?', 'A gas is made of rapidly moving molecules with ' + T('negligible interactions') + ' except during collisions')
-d.basic('Who developed kinetic theory, and what does it explain?', T('Maxwell, Boltzmann') + ' and others (19th century): pressure, temperature, gas laws, Avogadro’s hypothesis, specific heats, viscosity, diffusion')
-d.basic('State Feynman’s "atomic hypothesis".', 'All things are made of atoms in perpetual motion, ' + T('attracting') + ' when a little apart and ' + T('repelling') + ' when squeezed together')
+d.basic('Who developed kinetic theory, and what does it explain?', T('Maxwell, Boltzmann') + ' and others (19th century)<br>It explains pressure, temperature, gas laws, Avogadro’s hypothesis, specific heats, viscosity, diffusion')
+d.basic('State Feynman’s "atomic hypothesis".', 'All things are made of atoms in perpetual motion,<br>' + T('attracting') + ' when a little apart and ' + T('repelling') + ' when squeezed together')
 
 d.sec('12.2-molecular-nature-of-matter')
 d.basic('Ancient atomic ideas: who in India and Greece?', T('Kanada') + ' (Vaiseshika school, ~6th century BC; paramanu) and ' + T('Democritus') + ' (4th century BC; "atom" = indivisible)')
 d.basic('Who is credited with the scientific atomic theory, and which laws did it explain?', T('John Dalton') + ': laws of definite and multiple proportions')
-d.basic('State Gay Lussac’s law and Avogadro’s law.', 'Gay Lussac: reacting gas volumes are in ' + T('small-integer ratios') + '. Avogadro: equal volumes of gases at the same T and P have the ' + T('same number of molecules'))
+d.basic('State Gay Lussac’s law and Avogadro’s law.', 'Gay Lussac: reacting gas volumes are in ' + T('small-integer ratios') + '<br>Avogadro: equal volumes of gases at the same T and P have the ' + T('same number of molecules'))
 table_card(d, '12.2 · molecular distances', 'Typical value?', [
     ('Size of an atom', '≈ 1 Å (10⁻¹⁰ m)', False), ('Spacing in solids and liquids', '≈ 2 Å', False),
     ('Spacing in gases', 'tens of Å', False), ('Mean free path in gases', 'thousands of Å', False)], term='Molecular sizes and spacings')
@@ -65,7 +65,7 @@ d.basic('Trap: is ⟨v²⟩ equal to ⟨v⟩²?', X('Not in general') + ': the m
 d.basic('Example 12.5: argon and chlorine (2 : 1 by mass) at 27 °C. Ratio of average KE per molecule and of rms speeds?', 'KE ' + N('1 : 1') + '; vᵣₘₛ(Ar)/vᵣₘₛ(Cl₂) = √(70.9/39.9) = ' + N('1.33') + ' (mass ratio irrelevant)')
 d.basic('Example 12.6: ²³⁵UF₆ vs ²³⁸UF₆. Which is faster and by how much?', '²³⁵UF₆, by √(352/349) − 1 ≈ ' + N('0.44 %') + ' — used for uranium enrichment by diffusion', **fig('fig_12_5_porous_wall'))
 d.basic('Graham’s law of diffusion (Exercise 12.12 idea)?', 'Rate of diffusion ∝ ' + T('1/√(molar mass)'))
-d.basic('Example 12.7: why does a gas heat up when compressed by a moving piston?', 'Molecules rebound from the ' + T('approaching piston faster') + ' (like a ball off a moving bat), so average KE and T rise; expansion cools it')
+d.basic('Example 12.7: why does a gas heat up when compressed by a moving piston?', 'Molecules rebound from the ' + T('approaching piston faster') + ' (like a ball off a moving bat), so average KE and T rise.<br>Expansion cools it')
 d.basic('Exercise 12.7: average thermal energy of a helium atom at 300 K, 6000 K, 10⁷ K?', N('6.2 × 10⁻²¹ J') + ', ' + N('1.24 × 10⁻¹⁹ J') + ', ' + N('2.1 × 10⁻¹⁶ J') + ' (3/2 kT)')
 d.basic('Exercise 12.8: equal vessels of Ne, Cl₂, UF₆ at the same T, P. Same number of molecules? Largest vᵣₘₛ?', T('Yes') + ' (Avogadro); vᵣₘₛ largest for ' + T('neon') + ' (lightest)')
 d.basic('Exercise 12.9: at what temperature is vᵣₘₛ of argon equal to that of helium at −20 °C?', 'T = 253 × 39.9/4.0 ≈ ' + N('2.52 × 10³ K'))

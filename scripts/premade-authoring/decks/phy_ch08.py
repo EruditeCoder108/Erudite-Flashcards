@@ -46,7 +46,7 @@ d.basic('Stress–strain curve, A to B?', 'Not proportional, but the body ' + T(
 d.basic('What is a permanent set?', 'Loaded beyond B and unloaded (e.g. at C), the strain does not return to zero: ' + T('plastic deformation'))
 d.basic('Ultimate tensile strength and fracture point?', T('D') + ': maximum stress (σᵤ); beyond it strain grows even with less force, fracture at ' + T('E'))
 d.basic('Brittle vs ductile from the stress–strain curve?', T('Brittle') + ': D and E close together (e.g. glass). ' + T('Ductile') + ': D and E far apart (e.g. copper, mild steel)')
-d.basic('What are elastomers? Example?', 'Materials stretched to ' + T('large strains') + ' that still return, without obeying Hooke’s law and with no clear plastic region: ' + E('rubber, aorta tissue'), **fig('fig_8_3_aorta'))
+d.basic('What are elastomers? Example?', 'Materials stretched to ' + T('large strains') + ' that still return.<br>They do not obey Hooke’s law and have no clear plastic region.<br>Examples: ' + E('rubber, aorta tissue'), **fig('fig_8_3_aorta'))
 d.basic('Exercise 8.2: from the given graph, stress 150 × 10⁶ Pa gives strain 0.002. Young’s modulus and yield strength?', 'Y = ' + N('7.5 × 10¹⁰ Pa') + '; yield strength ≈ ' + N('3 × 10⁸ Pa'), **fig('fig_8_9_ex_curve'))
 d.basic('Exercise 8.3: A’s curve is steeper and goes higher than B’s. Greater Young’s modulus? Stronger?', T('A') + ' for both: steeper slope → larger Y; higher breaking stress → stronger', **img('fig_8_10_two_materials'))
 
@@ -56,7 +56,7 @@ d.basic('Define Young’s modulus.', r'\( Y = \dfrac{\sigma}{\varepsilon} = \dfr
 d.basic('Unit of Young’s modulus?', 'Same as stress: ' + N('N m⁻² (Pa)'))
 d.basic('Table 8.1: Young’s modulus of steel, copper, aluminium, bone?', 'Steel ' + N('200 GPa') + ', copper ' + N('110 GPa') + ', aluminium ' + N('70 GPa') + ', bone ' + N('9.4 GPa'), **fig('tab_8_1_youngs_moduli'))
 d.basic('Force to stretch a 0.1 cm² wire by 0.1 %: steel vs aluminium, brass, copper?', 'Steel ' + N('2000 N') + '; Al 690 N, brass 900 N, Cu 1100 N')
-d.basic('Why is steel called "more elastic" than rubber?', 'Elasticity is about ' + T('resisting deformation') + ': steel stretches far less for the same stress (larger Y). "Stretches more = more elastic" is a misconception')
+d.basic('Why is steel called "more elastic" than rubber?', 'Elasticity is about ' + T('resisting deformation') + ': steel stretches far less for the same stress (larger Y).<br>"Stretches more = more elastic" is a misconception')
 d.basic('Exercise 8.4(a): is Young’s modulus of rubber greater than that of steel?', X('False') + ': steel’s is far greater')
 d.basic('Exercise 8.4(b): the stretching of a coil spring is determined by which modulus?', T('Shear modulus') + ' (true): the wire of a spring twists rather than stretches')
 steps_card(d, 'Example 8.1 · steel rod', 'Find the missing step.', 'Steel rod, r = 10 mm, L = 1.0 m, pulled by 100 kN; Y = 2.0 × 10¹¹ Pa. Stress, elongation, strain?',
@@ -92,7 +92,7 @@ table_card(d, 'Table 8.4 · summary of moduli', 'Change in shape / volume?', [
     ('Young’s modulus Y (tensile/compressive)', 'shape: yes, volume: no', False),
     ('Shear modulus G', 'shape: yes, volume: no', False),
     ('Bulk modulus B (hydraulic)', 'shape: no, volume: yes', False)], term='Stress, strain and moduli at a glance (Table 8.4)')
-d.basic('Exercise 8.12: 100.0 L of water compressed by 0.5 L under 100 atm. Bulk modulus? Compare with air.', N('2.0 × 10⁹ Pa') + ', about ' + N('2 × 10⁴') + ' times that of air (B = p ≈ 10⁵ Pa at constant T): molecules in a liquid are tightly packed')
+d.basic('Exercise 8.12: 100.0 L of water compressed by 0.5 L under 100 atm. Bulk modulus? Compare with air.', N('2.0 × 10⁹ Pa') + ', about ' + N('2 × 10⁴') + ' times that of air (B = p ≈ 10⁵ Pa at constant T)<br>Molecules in a liquid are tightly packed')
 d.basic('Exercise 8.16: pressure change to compress a litre of water by 0.10 %?', 'Δp = B × 0.001 = ' + N('2.2 × 10⁶ Pa'))
 d.basic('Exercise 8.13: density of water at 80.0 atm if 1.03 × 10³ kg/m³ at the surface?', r'\( \rho = \dfrac{\rho_0}{1 - p/B} \approx \)' + ' ' + N('1.034 × 10³ kg/m³'))
 
@@ -116,7 +116,7 @@ d.basic('Why are beams given an I-shaped cross-section?', 'Enough depth to resis
 d.basic('Pillar with rounded ends vs distributed (flared) ends?', 'The one with ' + T('distributed ends') + ' supports more load', **fig('fig_8_8_pillars'))
 d.basic('Why can mountains on Earth not be much higher than ~10 km?', 'At height h the base shear stress ≈ hρg; rock flows beyond ~3 × 10⁸ Pa: h ≈ 3 × 10⁸ / (3 × 10³ × 10) = ' + N('10 km'))
 d.basic('Exercise 8.7: four hollow steel columns (radii 30 and 60 cm) share 50 000 kg. Compressional strain of each?', 'F = 50 000 × 9.8 / 4, A = π(0.6² − 0.3²) = 0.848 m² → strain ≈ ' + N('7.2 × 10⁻⁷') + ' (Y = 2 × 10¹¹ Pa)')
-d.basic('Correction: NCERT’s key gives 2.8 × 10⁻⁶ for Exercise 8.7. Check.', 'That equals the strain if ' + X('one column carried the whole load') + '. Shared by four columns, as the question says: ' + T('7.2 × 10⁻⁷'))
+d.basic('Correction: NCERT’s key gives 2.8 × 10⁻⁶ for Exercise 8.7. Check.', 'That equals the strain if ' + X('one column carried the whole load') + '.<br>Shared by four columns, as the question says: ' + T('7.2 × 10⁻⁷'))
 
 d.sec('summary')
 table_card(d, 'Points to ponder', 'True or false?', [

@@ -111,7 +111,7 @@ sp.spring_energy_bars(d)
 d.basic('Block on a spring released from xₘ: maximum speed, and where?', r'\( v_m = x_m\sqrt{\dfrac{k}{m}} \)' + ' at the ' + T('equilibrium position') + ' x = 0', **fig('drawn_spring'))
 d.basic('Exercise 5.4: V = ½kx², k = 0.5 N/m, total energy 1 J. Where does the particle turn back?', 'Where V = E: ½ × 0.5 × x² = 1 → ' + N('x = ±2 m') + ' (KE would be negative beyond)')
 d.basic('Example 5.8 (NCERT): a 1000 kg car at 18 km/h hits a spring, k = 5.25 × 10³ N/m. NCERT’s maximum compression?', N('2.00 m') + ' (½mv² = ½kxₘ², K = 1.25 × 10⁴ J)', **fig('fig_5_9_car_spring'))
-d.basic('Correction: recompute Example 5.8 with k = 5.25 × 10³ N/m as printed.', 'xₘ = √(2 × 12500 / 5250) = ' + T('2.18 m') + '. NCERT’s 2.00 m (and 1.35 m in Example 5.9) fit ' + T('k = 6.25 × 10³ N/m') + '; the printed k is a typo')
+d.basic('Correction: recompute Example 5.8 with k = 5.25 × 10³ N/m as printed.', 'xₘ = √(2 × 12500 / 5250) = ' + T('2.18 m') + '<br>NCERT’s 2.00 m (and 1.35 m in Example 5.9) fit ' + T('k = 6.25 × 10³ N/m') + '<br>The printed k is a typo')
 d.basic('Example 5.9: the same car with friction μ = 0.5. Equation for xₘ?', r'\( \tfrac12 mv^2 = \tfrac12 kx_m^2 + \mu mg\,x_m \)' + ' → with k = 6.25 × 10³: ' + N('1.35 m') + ' (less than without friction)')
 d.basic('Useful conversion from Example 5.8?', N('36 km/h = 10 m/s') + ' (multiply km/h by 5/18)')
 d.basic('What can energy conservation NOT tell you in the car–spring problem?', 'The ' + X('time') + ' taken to compress; that needs Newton’s second law')
@@ -146,7 +146,7 @@ table_card(d, '5.11.2 · special cases (elastic, m₂ at rest)', 'Result?', [
     ('m₁ = m₂', 'm₁ stops, m₂ moves off with v₁ᵢ (velocities exchange)', False),
     ('m₂ ≫ m₁ (ball on a wall)', 'm₁ bounces back with −v₁ᵢ; m₂ stays at rest', False),
     ('m₁ ≫ m₂', 'm₁ barely slows; m₂ flies off at ≈ 2v₁ᵢ', False)], term='Special cases of elastic collisions')
-d.basic('Example 5.11: why are heavy water or graphite used as moderators?', 'A neutron loses most of its KE to a ' + T('light') + ' nucleus: deuterium takes 8/9 of it per head-on collision, carbon 28.4 %')
+d.basic('Example 5.11: why are heavy water or graphite used as moderators?', 'A neutron loses most of its KE to a ' + T('light') + ' nucleus.<br>Deuterium takes 8/9 of it per head-on collision, carbon 28.4 %')
 d.basic('Fraction of KE a neutron keeps after a head-on elastic collision with a nucleus of mass m₂?', r'\( f_1 = \left(\dfrac{m_1 - m_2}{m_1 + m_2}\right)^2 \)' + '; deuterium: 1/9, carbon: 71.6 %')
 d.basic('What is a head-on (1D) collision?', 'Initial and final velocities lie on one line: the path of body 1 passes through the ' + T('centre') + ' of body 2')
 d.basic('2D collision, m₂ at rest: momentum equations?', r'\( m_1v_{1i} = m_1v_{1f}\cos\theta_1 + m_2v_{2f}\cos\theta_2;\ \ 0 = m_1v_{1f}\sin\theta_1 - m_2v_{2f}\sin\theta_2 \)', **fig('fig_5_10_collision_2d'))

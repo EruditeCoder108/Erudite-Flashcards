@@ -25,12 +25,12 @@ d.basic('What plays the role of the spring’s extension in a sound wave?', 'The
 
 # ---------------------------------------------------------------- 14.2 Transverse and longitudinal
 d.sec('14.2-transverse-and-longitudinal')
-d.basic('Transverse vs longitudinal wave?', T('Transverse') + ': particles oscillate ⟂ to the direction of travel (string). ' + T('Longitudinal') + ': particles oscillate along it (sound)', **fig('fig_14_3_harmonic_wave'))
+d.basic('Transverse vs longitudinal wave?', T('Transverse') + ': particles oscillate ⟂ to the direction of travel (string)<br>' + T('Longitudinal') + ': particles oscillate along it (sound)', **fig('fig_14_3_harmonic_wave'))
 d.basic('A single jerk on a string produces…?', 'A transverse ' + T('pulse'), **fig('fig_14_2_pulse'))
 d.basic('How is a longitudinal wave produced in a pipe?', 'A piston pushed and pulled creates ' + T('compressions and rarefactions') + ' travelling along the air', **fig('fig_14_4_sound_pipe'))
 d.basic('Why can’t transverse waves travel through fluids?', 'They need a medium that resists ' + T('shear') + '; fluids cannot sustain shearing stress. Longitudinal waves need only compressibility (all media)')
 d.basic('Which waves can travel in steel? In air?', 'Steel: ' + T('both') + ' transverse and longitudinal. Air: ' + T('only longitudinal'))
-d.basic('Capillary vs gravity water waves?', T('Capillary') + ': ripples of a few cm, restoring force surface tension. ' + T('Gravity') + ': metres to hundreds of metres, restoring force gravity')
+d.basic('Capillary vs gravity water waves?', T('Capillary') + ': ripples of a few cm; restoring force is surface tension<br>' + T('Gravity') + ': metres to hundreds of metres; restoring force is gravity')
 d.basic('Ocean waves: transverse or longitudinal?', 'A ' + T('combination') + ': water particles move up–down and back–forth')
 d.basic('Wind vs sound wave?', 'Wind is ' + T('motion of air as a whole') + '; a sound wave is a moving pattern of compressions with no net flow')
 table_card(d, 'Example 14.1', 'Transverse, longitudinal or both?', [
@@ -85,14 +85,14 @@ d.basic('Constructive vs destructive interference?', T('Constructive') + ': φ =
 # ---------------------------------------------------------------- 14.6 Reflection, standing waves
 d.sec('14.6-reflection')
 d.basic('Reflection at a rigid boundary vs an open (free) boundary?', T('Rigid') + ': phase change of ' + N('π') + ' (pulse inverted). ' + T('Free') + ': no phase change', **fig('fig_14_11_reflection'))
-d.basic('Why is a pulse inverted at a rigid wall?', 'The end cannot move, so incident + reflected must cancel there; also the wall pulls back on the string (third law)')
+d.basic('Why is a pulse inverted at a rigid wall?', 'The end cannot move, so incident + reflected must cancel there.<br>Also the wall pulls back on the string (third law)')
 d.basic('Correction: NCERT Eqs. (14.35)–(14.36) write the reflected wave as a sin(kx − ωt ± …). What is right?', 'A reflected wave travels the ' + T('other way') + ': ' + r'\( y_r = -a\sin(kx + \omega t) \)' + ' (rigid) or ' + r'\( +a\sin(kx + \omega t) \)' + ' (open), as NCERT’s own summary states')
 d.basic('Examples of rigid and open reflection?', 'Rigid: echo, string tied to a wall. Open: string on a freely sliding ring, open end of an organ pipe')
 
 d.sec('14.6.1-standing-waves')
 d.basic('Equation of a stationary wave?', r'\( y = 2a\sin kx\,\cos\omega t \)' + ': kx and ωt appear ' + T('separately'), **fig('fig_14_12_stationary'))
 sp.standing_wave_string(d)
-d.basic('Positions of nodes and antinodes?', 'Nodes: ' + r'\( x = \dfrac{n\lambda}{2} \)' + '; antinodes: ' + r'\( x = \left(n + \tfrac12\right)\dfrac{\lambda}{2} \)' + '; each set is λ/2 apart')
+d.basic('Positions of nodes and antinodes?', 'Nodes: ' + r'\( x = \dfrac{n\lambda}{2} \)' + '<br>Antinodes: ' + r'\( x = \left(n + \tfrac12\right)\dfrac{\lambda}{2} \)' + '<br>Each set is λ/2 apart')
 table_card(d, 'Points to ponder', 'Same or different for all particles?', [
     ('Progressive wave: amplitude', 'same', False), ('Progressive wave: phase', 'different', True),
     ('Stationary wave: amplitude', 'different (0 at nodes)', True), ('Stationary wave: phase (within a loop)', 'same', False)], term='Progressive vs stationary waves')
@@ -122,7 +122,7 @@ d.basic('Resultant of two nearly equal frequencies?', r'\( s = [2a\cos\omega_b t
 d.basic('How do musicians use beats?', 'To ' + T('tune') + ' instruments: adjust until the beats disappear')
 d.basic('Example 14.6: A (427 Hz) and B give 5 beats/s; tightening B reduces beats to 3/s. Original frequency of B?', 'Tightening raises ν_B and beats fall, so ν_B < ν_A: '.replace('ν_B', 'νB').replace('ν_A', 'νA') + N('422 Hz'))
 d.basic('Exercise 14.18: A (324 Hz) and B give 6 beats/s; loosening A reduces beats to 3/s. Frequency of B?', 'Loosening lowers A and beats fall, so A > B: ' + N('318 Hz'))
-d.basic('What are the musical pillars of the Nellaiappar temple?', 'Stone pillars (7th century, Tamil Nadu) that give the ' + T('notes of Indian music') + ' when tapped; their vibrations depend on elasticity, density and shape', **fig('fig_14_pillars'))
+d.basic('What are the musical pillars of the Nellaiappar temple?', 'Stone pillars (7th century, Tamil Nadu) that give the ' + T('notes of Indian music') + ' when tapped.<br>Their vibrations depend on elasticity, density and shape', **fig('fig_14_pillars'))
 
 # ---------------------------------------------------------------- Exercises / summary
 d.sec('exercises')

@@ -14,7 +14,7 @@ img = lambda name: {'termImage': M + name + '.webp'}
 # ---------------------------------------------------------------- 7.1 Introduction
 d.sec('7.1-introduction')
 d.basic('Who first recognised that all bodies fall with the same constant acceleration?', T('Galileo') + ' (1564–1642), using bodies rolling down inclined planes')
-d.basic('Geocentric vs heliocentric model: who proposed each?', T('Ptolemy') + ': geocentric (~2000 years ago). ' + T('Aryabhatta') + ' (5th century AD) mentioned a heliocentric model; ' + T('Copernicus') + ' (1473–1543) gave the definitive one')
+d.basic('Geocentric vs heliocentric model: who proposed each?', T('Ptolemy') + ': geocentric (~2000 years ago)<br>' + T('Aryabhatta') + ' (5th century AD) mentioned a heliocentric model<br>' + T('Copernicus') + ' (1473–1543) gave the definitive one')
 d.basic('Whose observations did Kepler analyse?', 'Those of his master ' + T('Tycho Brahe') + ' (1546–1601), made with the naked eye')
 
 # ---------------------------------------------------------------- 7.2 Kepler's laws
@@ -38,7 +38,7 @@ d.sec('7.3-universal-law')
 d.basic('Newton’s moon test: ratio g / a(moon)?', r'\( \dfrac{g}{a_m} = \dfrac{R_m^2}{R_E^2} \approx 3600 \)' + ': gravity falls as ' + T('1/r²'))
 d.basic('State Newton’s universal law of gravitation.', 'Every body attracts every other with a force ' + r'\( F = G\dfrac{m_1m_2}{r^2} \)' + ', along the line joining them')
 d.basic('Vector form of the law?', r'\( \vec F = -G\dfrac{m_1m_2}{r^2}\hat r \)' + ' ; force on m₁ due to m₂ and on m₂ due to m₁ are equal and opposite')
-d.basic('Principle of superposition for gravity?', 'The net force on a mass is the ' + T('vector sum') + ' of the forces from each other mass, each acting as if the others were absent', **fig('fig_7_4_superposition'))
+d.basic('Principle of superposition for gravity?', 'The net force on a mass is the ' + T('vector sum') + ' of the forces from each other mass.<br>Each acts as if the others were absent', **fig('fig_7_4_superposition'))
 d.basic('Example 7.2: equal masses m at the corners of an equilateral triangle, 2m at the centroid. Net force on 2m? And if the mass at A is doubled?', N('Zero') + ' (symmetry); with 2m at A: ' + r'\( 2Gm^2\,\hat j \)' + ' (towards A, AG = 1 m)', **fig('fig_7_5_triangle'))
 d.basic('Force between a uniform spherical shell and a point mass outside it?', 'As if the whole mass were at the ' + T('centre'))
 d.basic('Force on a point mass inside a uniform spherical shell?', N('Zero') + ': pulls from different parts cancel')
@@ -118,7 +118,7 @@ d.basic('Exercise 7.19: 200 kg satellite at 400 km height. Energy to escape?', N
 steps_card(d, 'Example 7.8', 'Find the missing step.', '400 kg satellite moved from orbit radius 2R_E to 4R_E. Energy needed and changes in K and U?',
            ['Eᵢ = −GMm/4R, E𝒻 = −GMm/8R', 'ΔE = GMm/8R = gmR/8 = 3.13 × 10⁹ J', 'ΔK = −ΔE = −3.13 × 10⁹ J', 'ΔU = 2ΔE = <b>+6.25 × 10⁹ J</b>'], 3,
            'Raising a satellite from 2R to 4R', 'ΔE = +3.13 × 10⁹ J; ΔK = −3.13 × 10⁹ J; ΔU = +6.25 × 10⁹ J')
-d.basic('Correction: NCERT Example 7.8 prints ΔV = −6.25 × 10⁹ J. What is the correct sign?', T('Positive') + ': Uᵢ = −GMm/2R, U𝒻 = −GMm/4R, so U rises (becomes less negative) by +6.25 × 10⁹ J. Check: ΔK + ΔU = ΔE = +3.13 × 10⁹ J')
+d.basic('Correction: NCERT Example 7.8 prints ΔV = −6.25 × 10⁹ J. What is the correct sign?', T('Positive') + ': Uᵢ = −GMm/2R, U𝒻 = −GMm/4R, so U rises (becomes less negative) by +6.25 × 10⁹ J.<br>Check: ΔK + ΔU = ΔE = +3.13 × 10⁹ J')
 d.basic('A satellite loses energy to air drag. What happens to its speed?', 'It ' + T('increases') + ': E falls, r shrinks, K = −E rises (Exercise 5.5c)')
 
 # ---------------------------------------------------------------- Exercises and ponder

@@ -14,7 +14,7 @@ img = lambda name: {'termImage': M + name + '.webp'}
 # ---------------------------------------------------------------- 9.1 Introduction
 d.sec('9.1-introduction')
 d.basic('What makes a substance a fluid?', 'It can ' + T('flow') + ': liquids and gases')
-d.basic('Key mechanical difference between fluids and solids?', 'Fluids offer very little resistance to ' + T('shear stress') + ' (about a million times less than solids); they have no shape of their own')
+d.basic('Key mechanical difference between fluids and solids?', 'Fluids offer very little resistance to ' + T('shear stress') + ' (about a million times less than solids).<br>They have no shape of their own')
 d.basic('Liquid vs gas: volume?', 'A liquid has a fixed volume and a free surface; a gas fills its container and is highly ' + T('compressible'))
 
 # ---------------------------------------------------------------- 9.2 Pressure
@@ -29,13 +29,13 @@ d.basic('Exercise 9.5: a 50 kg girl balances on one circular heel of diameter 1.
 
 d.sec('9.2.1-pascals-law')
 d.cloze('Pascal’s law: in a fluid at rest, pressure is the {{c1::same in all directions}} and the same at all points at the {{c2::same height}}.')
-d.basic('How is Pascal’s law proved with a small prism?', 'Balance forces on a tiny right-angled prism: Fb sin θ = Fc, Fb cos θ = Fa with Ab sin θ = Ac, Ab cos θ = Aa → ' + T('Pa = Pb = Pc'), **fig('fig_9_2_pascal_prism'))
+d.basic('How is Pascal’s law proved with a small prism?', 'Balance forces on a tiny right-angled prism:<br>Fb sin θ = Fc, Fb cos θ = Fa<br>with Ab sin θ = Ac, Ab cos θ = Aa<br>→ ' + T('Pa = Pb = Pc'), **fig('fig_9_2_pascal_prism'))
 d.basic('Why must pressure be equal at points on the same horizontal level?', 'Otherwise a horizontal fluid bar would have a net force and ' + T('flow'))
 
 d.sec('9.2.2-variation-with-depth')
 d.basic('Pressure difference between two points h apart vertically?', r'\( P_2 - P_1 = \rho g h \)', **fig('fig_9_3_fluid_column'))
 d.basic('Pressure at depth h in a liquid open to the air?', r'\( P = P_a + \rho g h \)' + '; P − Pₐ is the ' + T('gauge pressure'))
-d.basic('What is the hydrostatic paradox?', 'Vessels of different shapes joined at the bottom fill to the ' + T('same height') + ': pressure depends only on depth, not on shape or amount of liquid', **fig('fig_9_4_hydrostatic_paradox'))
+d.basic('What is the hydrostatic paradox?', 'Vessels of different shapes joined at the bottom fill to the ' + T('same height') + '.<br>Pressure depends only on depth, not on shape or amount of liquid', **fig('fig_9_4_hydrostatic_paradox'))
 d.basic('Example 9.2: pressure on a swimmer 10 m below a lake surface?', N('2.01 × 10⁵ Pa ≈ 2 atm') + ' (a 100 % increase)')
 d.basic('Example 9.4: at 1000 m in the sea (ρ = 1.03 × 10³): absolute and gauge pressure; force on a 20 cm × 20 cm submarine window?', N('≈ 104 atm') + ' and ' + N('≈ 103 atm') + '; F = gauge pressure × 0.04 m² = ' + N('4.12 × 10⁵ N'))
 d.basic('Exercise 9.1(a): why is blood pressure greater at the feet than at the brain?', 'The blood column above the feet is taller: extra ' + T('ρgh'))
@@ -122,7 +122,7 @@ d.basic('Exercise 9.13: glycerine through a 1.5 m tube (r = 1.0 cm), 4.0 × 10�
 
 # ---------------------------------------------------------------- 9.6 Surface tension
 d.sec('9.6-surface-tension')
-d.basic('Why do surface molecules have extra energy?', 'They have neighbours on only one side, so less (negative) binding energy — about ' + T('half') + ' that of a molecule inside', **fig('fig_9_14_surface_molecules'))
+d.basic('Why do surface molecules have extra energy?', 'They have neighbours on only one side, so less (negative) binding energy.<br>About ' + T('half') + ' that of a molecule inside', **fig('fig_9_14_surface_molecules'))
 d.basic('Why does a liquid tend to minimise its surface area?', 'Creating surface costs energy; the liquid takes the ' + T('least area') + ' that conditions allow')
 d.basic('Define surface tension (two ways).', 'Force per unit length in the surface, or ' + T('surface energy per unit area') + '; unit N/m = J/m²')
 d.basic('A film on a wire frame with a slider of length l needs force F. Surface tension?', r'\( S = \dfrac{F}{2l} \)' + ' — the film has ' + T('two surfaces'), **fig('fig_9_15_film'))
@@ -137,7 +137,7 @@ d.basic('Exercise 9.18: a film supports 4.5 × 10⁻² N in (a). In the other fr
 d.sec('9.6.3-angle-of-contact')
 d.basic('Define angle of contact.', 'Angle between the ' + T('tangent to the liquid surface') + ' at the point of contact and the solid surface, measured inside the liquid', **fig('fig_9_17_contact_angle'))
 d.basic('Equilibrium of interfacial tensions at the contact line?', r'\( S_{la}\cos\theta + S_{sl} = S_{sa} \)')
-d.basic('Acute vs obtuse angle of contact: wetting?', T('Acute') + ' (water on glass, kerosene on anything): liquid wets and spreads. ' + T('Obtuse') + ' (water on lotus leaf, mercury on glass): forms drops')
+d.basic('Acute vs obtuse angle of contact: wetting?', T('Acute') + ' (water on glass, kerosene on anything): liquid wets and spreads<br>' + T('Obtuse') + ' (water on lotus leaf, mercury on glass): forms drops')
 d.basic('Why is mercury’s contact angle with glass obtuse?', 'Mercury molecules attract ' + T('each other') + ' more strongly than they attract glass')
 d.basic('Why do detergents help cleaning, and waterproofing agents do the opposite?', 'Detergents make the contact angle ' + T('small') + ' (penetrate fibres); waterproofing makes it ' + T('large'))
 
@@ -153,7 +153,7 @@ d.basic('Exercise 9.20: soap bubble, r = 5.00 mm, S = 2.50 × 10⁻² N/m. Exces
 
 d.sec('9.6.5-capillary-rise')
 d.basic('Height of capillary rise?', r'\( h = \dfrac{2S\cos\theta}{\rho g a} \)' + ' (a = tube radius)', **fig('fig_9_19_capillary'))
-d.basic('Why does water rise in a capillary tube?', 'The meniscus is ' + T('concave') + ', so the pressure just under it is below atmospheric; water rises until ρgh makes up the difference')
+d.basic('Why does water rise in a capillary tube?', 'The meniscus is ' + T('concave') + ', so the pressure just under it is below atmospheric.<br>Water rises until ρgh makes up the difference')
 d.basic('Capillary rise of water in a tube of radius 0.05 cm?', N('≈ 2.98 cm') + ' — larger for thinner tubes (h ∝ 1/a)')
 d.basic('What happens to mercury in a glass capillary?', 'It is ' + X('depressed') + ' below the outside level (θ obtuse, cos θ < 0)')
 d.basic('Everyday examples of capillarity?', 'Oil rising up a ' + E('lamp wick') + ', sap and water rising in ' + E('plants') + ', paint-brush hairs forming a tip when wet')
