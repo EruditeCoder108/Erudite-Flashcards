@@ -183,8 +183,33 @@
     due: 'Due'
   };
 
-  const classColorChoices = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444', '#06B6D4', '#EC4899', '#64748B'];
-  const classIconChoices = ['fa-graduation-cap', 'fa-book', 'fa-calculator', 'fa-flask', 'fa-dna', 'fa-landmark', 'fa-globe', 'fa-palette', 'fa-music', 'fa-code', 'fa-quote-left'];
+  const classColorChoices = ['#3B82F6', '#6366F1', '#8B5CF6', '#EC4899', '#F43F5E', '#EF4444', '#F97316', '#F59E0B', '#84CC16', '#10B981', '#14B8A6', '#06B6D4', '#64748B'];
+  const classIconChoices = [
+    'fa-graduation-cap', 'fa-book', 'fa-book-open-reader', 'fa-notebook-pen', 'fa-lightbulb', 'fa-brain',
+    'fa-atom', 'fa-magnet', 'fa-bolt', 'fa-orbit', 'fa-telescope', 'fa-rocket',
+    'fa-flask', 'fa-vial', 'fa-microscope', 'fa-dna', 'fa-leaf', 'fa-seedling', 'fa-heart-pulse', 'fa-stethoscope', 'fa-bone', 'fa-bug',
+    'fa-calculator', 'fa-square-root-variable', 'fa-sigma', 'fa-pi', 'fa-infinity', 'fa-shapes', 'fa-ruler', 'fa-percent',
+    'fa-language', 'fa-feather', 'fa-pen-nib', 'fa-quote-left', 'fa-masks-theater',
+    'fa-scroll', 'fa-hourglass-half', 'fa-landmark', 'fa-scale-balanced', 'fa-gavel', 'fa-globe', 'fa-earth-asia', 'fa-map', 'fa-mountain',
+    'fa-coins', 'fa-briefcase', 'fa-chart-line', 'fa-microchip', 'fa-code', 'fa-laptop-code',
+    'fa-palette', 'fa-music', 'fa-dumbbell', 'fa-trophy'
+  ];
+  // Premade decks go into a class per subject and grade ("Physics 11"), with
+  // the subject's own colour and icon, so a library of NCERT chapters is not a
+  // wall of identical "General" rows.
+  const PREMADE_SUBJECT_STYLES = {
+    physics: { color: '#3B82F6', icon: 'fa-atom' },
+    chemistry: { color: '#F59E0B', icon: 'fa-flask' },
+    biology: { color: '#10B981', icon: 'fa-dna' },
+    mathematics: { color: '#8B5CF6', icon: 'fa-square-root-variable', short: 'Maths' },
+    maths: { color: '#8B5CF6', icon: 'fa-square-root-variable', short: 'Maths' },
+    english: { color: '#EC4899', icon: 'fa-book-open-reader' },
+    hindi: { color: '#F97316', icon: 'fa-language' },
+    history: { color: '#F43F5E', icon: 'fa-scroll' },
+    geography: { color: '#06B6D4', icon: 'fa-earth-asia' },
+    politics: { color: '#6366F1', icon: 'fa-landmark' },
+    economics: { color: '#14B8A6', icon: 'fa-coins' }
+  };
   const STUDY_SESSION_MIN_MS = 5 * 1000;
   const DAY_MS = 24 * 60 * 60 * 1000;
   const STUDY_SESSION_LOOKBACK_MS = 365 * 24 * 60 * 60 * 1000;
@@ -546,7 +571,13 @@
     if (!orphaned.length) return;
     orphanRepairTimer = window.setTimeout(async () => {
       try {
+        // Re-read the classes first: a class saved just after the data was
+        // loaded (premade decks create theirs) is not missing.
+        const liveIds = new Set((await window.flashcardStore.listClasses()).map(item => String(item.id)));
+        const storedSets = await window.flashcardStore.listSets();
         for (const set of orphaned) {
+          const stored = storedSets.find(item => String(item.id) === String(set.id));
+          if (stored?.classId && liveIds.has(String(stored.classId))) continue;
           await window.flashcardStore.saveSet({ id: set.id, classId: null, __metaOnly: true });
         }
         await flushStore(900);
@@ -949,6 +980,7 @@
     });
     state.progressBySet = new Map(progressEntries.filter(([, progress]) => Boolean(progress)));
     scheduleOrphanClassRepair();
+    window.setTimeout(() => { migratePremadeDeckClasses(); }, 0);
       perf?.end(span, {
         status: 'ok',
         deckCount: state.sets.length,
@@ -1146,9 +1178,15 @@
     perf?.end(span, { status: 'ok' });
   }
 
+  /**
+   * One deck: the class icon inside a ring showing how much of the deck has
+   * been studied, the title, and one line of plain metadata. Tapping the row
+   * studies the deck; everything else (edit, star, settings) is in the ⋮ menu
+   * or on long press, so each row has a single obvious action.
+   */
   function deckRow(set, options = {}) {
     const currentClass = getClassForSet(set);
-    const color = validColor(currentClass?.color, '#3b82f6');
+    const color = currentClass ? validColor(currentClass.color, '#3B82F6') : 'var(--primary)';
     const stats = setStats(set);
     const due = dueCountForSet(set);
     const percent = progressPercent(set);
@@ -1157,39 +1195,40 @@
     const classLabel = currentClass ? currentClass.name : 'General';
     const icon = iconClass(currentClass?.icon, 'fa-layer-group');
     const lastActivity = set.lastOpened || set.lastModified || set.created;
+    const sample = set.premadeSource?.sample
+      ? `<button type="button" class="sample-note" data-action="open-pro" aria-label="Sample deck. Unlock the full chapter with Erudite Pro"><i class="fas fa-lock" aria-hidden="true"></i>Sample · Unlock all</button>`
+      : '';
 
     const isSelected = state.selectMode && state.selectedDecks && state.selectedDecks.has(String(set.id));
     const isSelectMode = state.selectMode;
+    // On Today the whole row is the study button; in the Library the
+    // long-press handler opens the deck on tap and the menu on hold.
+    const rowAction = options.compact
+      ? ` role="button" tabindex="0" data-action="study-set" data-set-id="${escapeAttr(set.id)}" aria-label="Study ${title}"`
+      : '';
 
     return `
-      <article class="deck-row ${options.compact ? 'compact' : ''} ${isSelected ? 'selected' : ''}" data-set-card="${escapeAttr(set.id)}">
-        <div class="deck-icon" style="background:${color}24;color:${color}">
-          <i class="${escapeAttr(icon)}"></i>
+      <article class="deck-row ${options.compact ? 'compact' : ''} ${isSelected ? 'selected' : ''}" data-set-card="${escapeAttr(set.id)}" style="--deck-color:${color}"${rowAction}>
+        <div class="deck-icon" style="--progress:${percent}" role="img" aria-label="${percent}% studied">
+          <i class="${escapeAttr(icon)}" aria-hidden="true"></i>
         </div>
         <div class="deck-main">
           <div class="deck-title-line">
-            <h3 class="deck-title">${title}</h3>
+            <h3 class="deck-title">${title}${set.pinned ? '<i class="fas fa-star deck-star" aria-label="Starred"></i>' : ''}</h3>
           </div>
           <div class="deck-subline">
             <span>${plural(stats.totalCards || 0, 'card')}</span>
-            <span class="class-pill" style="background:${color}1f;color:${color}">${escapeHtml(classLabel)}</span>
-            ${showDue ? `<span>${due} due</span>` : `<span>${escapeHtml(relativeTime(lastActivity))}</span>`}
-            ${set.premadeSource?.sample ? `<button type="button" class="sample-pill" data-action="open-pro" aria-label="Sample deck. Unlock the full chapter with Erudite Pro"><i class="fas fa-lock" aria-hidden="true"></i>Sample ${Number(set.premadeSource.sampleNotes) || 0}/${Number(set.premadeSource.totalNotes) || 0}</button>` : ''}
+            <span class="deck-class">${escapeHtml(classLabel)}</span>
+            ${showDue ? `<span class="deck-due">${due} due</span>` : `<span class="deck-time">${escapeHtml(relativeTime(lastActivity))}</span>`}
           </div>
-          <div class="progress-track" style="--progress:${percent}%"><span></span></div>
+          ${sample && !options.compact ? `<div class="deck-sample">${sample}</div>` : ''}
         </div>
         <div class="deck-actions" style="${isSelectMode ? 'display:none;' : ''}">
-          ${options.compact ? '' : `
-            <button type="button" class="small-icon-button ${set.pinned ? 'starred' : ''}" data-action="toggle-pin" data-set-id="${escapeAttr(set.id)}" aria-label="${set.pinned ? 'Unpin' : 'Pin'} deck">
-              <i class="${set.pinned ? 'fas' : 'far'} fa-star"></i>
-            </button>
-            <button type="button" class="small-icon-button" data-action="edit-set" data-set-id="${escapeAttr(set.id)}" aria-label="Edit ${title}">
-              <i class="fas fa-pen"></i>
-            </button>
-          `}
-          <button type="button" class="small-icon-button primary" data-action="study-set" data-set-id="${escapeAttr(set.id)}" aria-label="Study ${title}">
-            <i class="fas fa-play"></i>
-          </button>
+          ${options.compact
+            ? '<i class="fas fa-chevron-right deck-chevron" aria-hidden="true"></i>'
+            : `<button type="button" class="small-icon-button deck-more" data-action="deck-menu" data-set-id="${escapeAttr(set.id)}" aria-label="Options for ${title}">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>`}
         </div>
       </article>
     `;
@@ -2506,7 +2545,7 @@
       const preview = sets.slice(0, 4).map(set => `<span>${escapeHtml(set.name || 'Untitled')}</span>`).join('');
       const extra = sets.length > 4 ? `<span>+${sets.length - 4} more</span>` : '';
       const due = state.srsMode ? sets.reduce((total, set) => total + dueCountForSet(set), 0) : 0;
-      const totalCards = sets.reduce((sum, set) => sum + (Array.isArray(set.cards) ? set.cards.length : 0), 0);
+      const totalCards = sets.reduce((sum, set) => sum + setCardCount(set), 0);
       return `
         <div class="class-card" style="--class-color:${color}; position: relative;">
           <button type="button" class="class-card-click-area" data-action="open-class" data-class-id="${escapeAttr(classItem.id)}">
@@ -6150,6 +6189,77 @@
     return premadeSubjectLabels[`${classId}/${subject}`] || subjectLabel(subject);
   }
 
+  /** The class a premade chapter belongs in: "Physics 11", in the subject's colour and icon. */
+  function premadeClassSpec(premadeClassId, subjectId) {
+    const subjectName = premadeSubjectLabel(premadeClassId, subjectId);
+    const style = PREMADE_SUBJECT_STYLES[String(subjectId || '').toLowerCase()]
+      || PREMADE_SUBJECT_STYLES[subjectName.toLowerCase()]
+      || { color: '#3B82F6', icon: 'fa-book' };
+    const grade = premadeClasses.find(item => item.id === premadeClassId);
+    const gradeNumber = String(premadeClassId || '').match(/^\d+/)?.[0] || String(grade?.name || '').match(/\d+/)?.[0];
+    const base = style.short || subjectName;
+    return {
+      name: gradeNumber ? `${base} ${gradeNumber}` : `${base} · ${grade?.name || subjectLabel(premadeClassId)}`,
+      color: style.color,
+      icon: style.icon,
+      premadeKey: `${premadeClassId}/${subjectId}`
+    };
+  }
+
+  function findPremadeClass(spec) {
+    const name = spec.name.toLowerCase();
+    return state.classes.find(item => item.premadeKey === spec.premadeKey)
+      || state.classes.find(item => String(item.name || '').trim().toLowerCase() === name)
+      || null;
+  }
+
+  /** Returns the id of the class for this premade subject, creating it the first time. */
+  async function ensurePremadeClass(spec) {
+    const existing = findPremadeClass(spec);
+    if (existing) return existing.id;
+    const classData = schema?.normalizeClass
+      ? schema.normalizeClass(spec)
+      : { ...spec, id: `class-${Date.now()}`, created: Date.now(), lastModified: Date.now() };
+    const saved = await window.flashcardStore.saveClass(classData);
+    state.classes = await window.flashcardStore.listClasses();
+    return saved?.id || classData.id;
+  }
+
+  // Decks taken before premade classes existed sit in General. Move them into
+  // their subject class once; after that the learner's own choice stands.
+  const PREMADE_CLASS_MIGRATION_KEY = 'erudite-premade-classes-v1';
+
+  let premadeClassMigration = null;
+
+  function migratePremadeDeckClasses() {
+    premadeClassMigration = premadeClassMigration || runPremadeClassMigration()
+      .finally(() => { premadeClassMigration = null; });
+    return premadeClassMigration;
+  }
+
+  async function runPremadeClassMigration() {
+    try {
+      if (localStorage.getItem(PREMADE_CLASS_MIGRATION_KEY)) return;
+    } catch (_) {
+      return;
+    }
+    const pending = state.sets.filter(set => !set.classId && set.premadeSource?.classId && set.premadeSource?.subjectId);
+    try {
+      for (const set of pending) {
+        const classId = await ensurePremadeClass(premadeClassSpec(set.premadeSource.classId, set.premadeSource.subjectId));
+        await window.flashcardStore.saveSet({ id: set.id, classId, __metaOnly: true });
+        set.classId = classId;
+      }
+      localStorage.setItem(PREMADE_CLASS_MIGRATION_KEY, String(Date.now()));
+      if (pending.length) {
+        await flushStore(900);
+        await refresh();
+      }
+    } catch (error) {
+      console.warn('[mobile] Could not sort premade decks into classes:', error);
+    }
+  }
+
   function normalizePremadeCatalog(catalog) {
     const classes = Array.isArray(catalog?.classes) ? catalog.classes : [];
     const nextClasses = [];
@@ -6319,12 +6429,13 @@
       </button>
     `).join('');
 
+    const subjectColor = premadeClassSpec(state.premadeClass, state.premadeSubject).color;
     selectors.premadeList.innerHTML = state.premadeSets.length
       ? state.premadeSets.map(item => {
           const file = item.fileName || item.filename || item.file || item.path || '';
           const icon = safePremadeIcon(item.icon);
           return `
-            <article class="premade-row">
+            <article class="premade-row" style="--deck-color:${subjectColor}">
               <div class="deck-icon"><i class="fas ${icon}" aria-hidden="true"></i></div>
               <div class="deck-main">
                 <h3 class="deck-title">${escapeHtml(item.name || item.title || file || 'Premade Deck')}</h3>
@@ -6340,7 +6451,7 @@
                   })()}
                 </div>
               </div>
-              <button type="button" class="small-icon-button primary" data-action="import-premade" data-file="${escapeAttr(file)}" aria-label="Import premade deck">
+              <button type="button" class="row-action" data-action="import-premade" data-file="${escapeAttr(file)}" aria-label="Add this chapter to your decks">
                 <i class="fas fa-plus"></i>
               </button>
             </article>
@@ -6809,13 +6920,20 @@
     const cancelBtn = document.getElementById('mobile-take-deck-cancel');
     const confirmBtn = document.getElementById('mobile-take-deck-confirm');
 
+    // The chapter goes into its subject class ("Physics 11") unless the
+    // learner picks another. PREMADE_CLASS means "that class, created on save".
+    const PREMADE_CLASS = '__premade__';
+    const classSpec = premadeClassSpec(premadeClassId, premadeSubjectId);
+    const matchingClass = findPremadeClass(classSpec);
     let selectedClassId = '';
 
     const updateClassLabel = (classId) => {
       selectedClassId = classId;
       const label = document.getElementById('mobile-take-deck-class-label');
       if (label) {
-        if (!classId) {
+        if (classId === PREMADE_CLASS) {
+          label.textContent = classSpec.name;
+        } else if (!classId) {
           label.textContent = 'General';
         } else {
           const cls = state.classes.find(c => String(c.id) === String(classId));
@@ -6828,7 +6946,7 @@
       nameInput.value = imported.name || zipFileName.replace(/\.zip$/i, '');
     }
 
-    updateClassLabel('');
+    updateClassLabel(matchingClass ? matchingClass.id : PREMADE_CLASS);
 
     overlay?.classList.remove('hidden');
 
@@ -6867,10 +6985,11 @@
 
     const onConfirm = async () => {
       const targetName = nameInput?.value.trim() || imported.name || zipFileName.replace(/\.zip$/i, '');
-      const targetClassId = selectedClassId || null;
-
       showMicroLoader('Saving deck...');
       try {
+        const targetClassId = selectedClassId === PREMADE_CLASS
+          ? await ensurePremadeClass(classSpec)
+          : (selectedClassId || null);
         const syncedCards = processImportedNotes(sampleNotes);
 
         const saved = await window.flashcardStore.saveSet({
@@ -11127,6 +11246,9 @@
       case 'edit-set':
         await loadSetIntoCreator(target.dataset.setId);
         break;
+      case 'deck-menu':
+        openDeckContextModal(target.dataset.setId);
+        break;
       case 'open-class':
         state.libraryFilter = `class:${target.dataset.classId}`;
         state.activeTab = 'library';
@@ -11259,6 +11381,7 @@
       
       if (!isLongPress && !state.selectMode) {
         const setId = selectedDeck.dataset.setCard;
+        if (tourCurrentStep === 7) endTour('completed');
         showAppLoader('Opening Study', 'Preparing your cards');
         await new Promise(resolve => setTimeout(resolve, 50));
         await flushStore(1200);
@@ -11304,6 +11427,11 @@
     const titleLabel = document.getElementById('context-deck-title');
     if (modal && titleLabel) {
       titleLabel.textContent = set.name || 'Untitled Set';
+      const pinRow = document.getElementById('context-opt-pin');
+      if (pinRow) {
+        pinRow.querySelector('i').className = `${set.pinned ? 'fas' : 'far'} fa-star`;
+        pinRow.querySelector('span').textContent = set.pinned ? 'Unstar Deck' : 'Star Deck';
+      }
       modal.style.display = 'flex';
       playClick();
     }
@@ -11989,6 +12117,20 @@
           const setId = activeContextDeckId;
           closeDeckContextModal();
           await deleteSet(setId);
+        }
+        return;
+      }
+
+      // 7b. Context options - Edit cards, Star
+      const ctxEdit = event.target.closest('#context-opt-edit');
+      const ctxPin = event.target.closest('#context-opt-pin');
+      if (ctxEdit || ctxPin) {
+        event.preventDefault();
+        if (activeContextDeckId) {
+          const setId = activeContextDeckId;
+          closeDeckContextModal();
+          if (ctxEdit) await loadSetIntoCreator(setId);
+          else await togglePin(setId);
         }
         return;
       }
@@ -13445,8 +13587,8 @@ Every media/... reference in deck.json must exist inside media/.`;
       },
       {
         step: 7,
-        target: () => document.querySelector('.small-icon-button[data-action="study-set"]'),
-        text: "Congratulations! Click the blue <strong>Study</strong> button on your new deck to start practicing with active recall!",
+        target: () => document.querySelector('#library-list .deck-row'),
+        text: "Congratulations! <strong>Tap your new deck</strong> to start practising with active recall. Hold it, or tap <strong>⋮</strong>, for edit and more.",
         arrow: 'arrow-top'
       }
     ];

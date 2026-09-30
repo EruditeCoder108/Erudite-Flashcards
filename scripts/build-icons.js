@@ -49,7 +49,15 @@ const MAP = {
   times: 'x', 'trash': 'trash', 'trash-can': 'trash-2', 'trash-restore': 'archive-restore', 'triangle-exclamation': 'triangle-alert',
   trophy: 'trophy', underline: 'underline', undo: 'undo-2', 'user-shield': 'shield-user', 'vector-square': 'square-dashed',
   crosshairs: 'crosshair', vial: 'test-tube', vibrate: 'vibrate', 'volume-high': 'volume-2', 'volume-up': 'volume-2', 'vote-yea': 'vote',
-  'wand-magic-sparkles': 'wand-sparkles', 'wifi-slash': 'wifi-off', xmark: 'x'
+  'wand-magic-sparkles': 'wand-sparkles', 'wifi-slash': 'wifi-off', xmark: 'x',
+  // Class icons: one per subject, so decks in different classes look different.
+  magnet: 'magnet', orbit: 'orbit', bolt: 'zap', telescope: 'telescope', rocket: 'rocket', 'wave-square': 'waves',
+  leaf: 'leaf', 'heart-pulse': 'heart-pulse', stethoscope: 'stethoscope', bone: 'bone', pills: 'pill', bug: 'bug', tree: 'tree-pine',
+  sigma: 'sigma', pi: 'pi', infinity: 'infinity', percent: 'percent', ruler: 'ruler', shapes: 'shapes', 'square-function': 'square-function',
+  'book-open-reader': 'book-open-text', feather: 'feather', 'pen-nib': 'pen-tool', 'masks-theater': 'drama', 'book-bookmark': 'library',
+  scroll: 'scroll-text', 'earth-asia': 'earth', map: 'map', mountain: 'mountain', gavel: 'gavel', 'scale-balanced': 'scale',
+  coins: 'coins', briefcase: 'briefcase', 'building-columns': 'building-2', lightbulb: 'lightbulb', microchip: 'cpu',
+  'laptop-code': 'binary', dumbbell: 'dumbbell', 'notebook-pen': 'notebook-pen', 'ellipsis-v': 'ellipsis-vertical'
 };
 // Icons whose Font Awesome version is solid and reads better filled.
 const FILLED = new Set(['play', 'pause', 'stop', 'circle', 'star-filled']);

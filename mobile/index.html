@@ -326,7 +326,7 @@
             <div class="search-row">
               <label class="mobile-search">
                 <i class="fas fa-magnifying-glass"></i>
-                <input id="mobile-search-input" type="search" placeholder="Search decks and classes">
+                <input id="mobile-search-input" type="search" placeholder="Search decks">
               </label>
               <button type="button" class="icon-button" id="mobile-sort-button" data-action="cycle-sort" aria-label="Change sort">
                 <i class="fas fa-arrow-down-wide-short"></i>
@@ -750,9 +750,13 @@
           <h3 id="context-deck-title">Deck Options</h3>
         </div>
         <div class="context-modal-body">
-          <button type="button" class="context-option-row delete" id="context-opt-delete">
-            <i class="fas fa-trash-can"></i>
-            <span>Delete Deck</span>
+          <button type="button" class="context-option-row" id="context-opt-edit">
+            <i class="fas fa-pen"></i>
+            <span>Edit Cards</span>
+          </button>
+          <button type="button" class="context-option-row" id="context-opt-pin">
+            <i class="far fa-star"></i>
+            <span>Star Deck</span>
           </button>
           <button type="button" class="context-option-row select" id="context-opt-select">
             <i class="fas fa-square-check"></i>
@@ -769,6 +773,10 @@
           <button type="button" class="context-option-row delete" id="context-opt-reset-srs">
             <i class="fas fa-trash-restore"></i>
             <span>Reset SRS Data</span>
+          </button>
+          <button type="button" class="context-option-row delete" id="context-opt-delete">
+            <i class="fas fa-trash-can"></i>
+            <span>Delete Deck</span>
           </button>
           <button type="button" class="context-option-row cancel" id="context-opt-cancel">
             <i class="fas fa-xmark"></i>

@@ -320,3 +320,286 @@ body.keyboard-open .mobile-tabbar-gradient-shim {
   min-width: 0.35rem;
   margin: 0;
 }
+
+/* ------------------------------------------------------------------ */
+/* Deck rows: the class icon sits in a ring showing how much of the    */
+/* deck has been studied; one line of plain metadata; tap to study,    */
+/* ⋮ (or long press) for everything else.                              */
+/* ------------------------------------------------------------------ */
+
+.deck-row {
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  grid-template-areas: "icon main actions";
+  column-gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-3) var(--space-1) var(--space-3) var(--space-4);
+}
+
+.deck-row .deck-main {
+  grid-area: main;
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.deck-row .deck-main > * {
+  grid-area: auto;
+}
+
+.deck-row .deck-icon {
+  grid-area: icon;
+  position: relative;
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--deck-color, var(--primary)) 13%, transparent);
+  color: var(--deck-color, var(--primary));
+  font-size: 1.15rem;
+}
+
+/* The ring: studied share in the class colour over a faint track. */
+.deck-row .deck-icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--deck-color, var(--primary)) calc(var(--progress, 0) * 1%),
+    color-mix(in srgb, var(--deck-color, var(--primary)) 22%, transparent) 0
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.5px));
+}
+
+.deck-row .deck-title {
+  font-size: var(--text-md);
+}
+
+.deck-star {
+  margin-left: 0.4rem;
+  color: var(--amber);
+  font-size: 0.8em;
+  vertical-align: 0.02em;
+}
+
+/* "22 cards · Physics 11 · 34m ago": text, not pills. */
+.deck-row .deck-subline {
+  gap: 0.15rem 0;
+}
+
+.deck-row .deck-subline > span + span::before {
+  content: "·";
+  margin: 0 0.4rem;
+  color: var(--subtle);
+}
+
+.deck-row .deck-class {
+  color: color-mix(in srgb, var(--deck-color, var(--primary)) 72%, var(--text));
+  font-weight: 550;
+}
+
+.deck-row .deck-due {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.sample-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 1.6rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: color-mix(in srgb, var(--amber) 85%, var(--text));
+  font-size: var(--text-xs);
+  font-weight: 600;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sample-note i {
+  font-size: 0.72rem;
+}
+
+.deck-row .deck-actions {
+  grid-area: actions;
+  align-self: center;
+}
+
+.deck-more {
+  color: var(--subtle);
+}
+
+.deck-chevron {
+  margin-right: var(--space-2);
+  color: var(--subtle);
+  font-size: 1rem;
+}
+
+/* Today's Up next: the same row, smaller, with a chevron. */
+.deck-row.compact {
+  grid-template-columns: 2.6rem minmax(0, 1fr) auto;
+  grid-template-areas: "icon main actions";
+  padding: 0.65rem var(--space-2) 0.65rem var(--space-3);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.deck-row.compact:active {
+  transform: scale(0.985);
+  background: var(--surface-2);
+}
+
+.deck-row.compact .deck-icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  font-size: 1rem;
+}
+
+/* Selecting decks: the ring turns into a filled check. */
+.deck-row.selected .deck-icon::before {
+  background: var(--primary);
+  -webkit-mask: none;
+  mask: none;
+}
+
+.deck-row.selected .deck-icon::after {
+  position: relative;
+  color: var(--on-primary, #fff);
+  font-family: inherit;
+}
+
+/* Premade chapters: the subject's colour, and a quiet add button. */
+.premade-row .deck-icon {
+  background: color-mix(in srgb, var(--deck-color, var(--primary)) 14%, transparent);
+  color: var(--deck-color, var(--primary));
+}
+
+.premade-row .row-action,
+.row-action {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 1px var(--line);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.row-action:active {
+  transform: scale(0.94);
+  background: var(--surface-3);
+}
+
+/* Filters: the active chip is tinted, not a white slab. */
+.filter-chip.active {
+  background: color-mix(in srgb, var(--primary) 16%, var(--surface-2));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 45%, transparent);
+  color: var(--text);
+}
+
+/* Library header: the Your decks / Premade switch fills the row. */
+.library-header-top-row .deck-source-switch {
+  flex: 1 1 auto;
+  width: auto;
+  max-width: 22rem;
+  margin-left: auto;
+}
+
+.library-header-top-row .mobile-brand-logo {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.premade-row .deck-icon {
+  border-radius: 50%;
+}
+
+.premade-row .deck-subline {
+  gap: 0.15rem 0;
+}
+
+.premade-row .deck-subline > span + span::before {
+  content: "·";
+  margin: 0 0.4rem;
+  color: var(--subtle);
+}
+
+/* "20 free" is a note, not a badge. */
+.premade-row .sample-pill {
+  min-height: 0;
+  padding: 0;
+  background: none;
+  color: color-mix(in srgb, var(--amber) 85%, var(--text));
+}
+
+.class-card .class-icon {
+  border-radius: 50%;
+}
+
+/* Class editor: 13 colours and ~55 icons. Icons scroll inside the sheet. */
+.class-color-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.class-icon-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.4rem;
+  max-height: 13.5rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.15rem;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 1.5rem), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 1.5rem), transparent);
+}
+
+.class-color-choice,
+.class-color-custom,
+.class-icon-choice {
+  min-height: 2.6rem;
+}
+
+.class-color-choice::before {
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+}
+
+/* Metadata stays on one line at any text size: the class name shortens
+   first, and on narrow rows (big text, small phones) the time is dropped. */
+.deck-row {
+  container-type: inline-size;
+}
+
+.deck-row .deck-subline {
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.deck-row .deck-subline > * {
+  flex: none;
+}
+
+.deck-row .deck-subline > .deck-class {
+  flex: 0 1 auto;
+  min-width: 2.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@container (max-width: 20rem) {
+  .deck-row .deck-time {
+    display: none;
+  }
+}
+
+.sample-note {
+  text-align: left;
+}
