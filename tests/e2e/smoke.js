@@ -346,17 +346,21 @@ async function checkReminder(page, base, check) {
   await page.locator('#reminder-time').fill('21:30');
   await page.locator('#reminder-save').click();
   // Scheduling re-runs after the stats refresh that saving triggers; wait for it to settle.
-  await page.waitForFunction(() => window.Capacitor.Plugins.LocalNotifications.scheduled.length === 7, null, { timeout: 5000 }).catch(() => {});
+  await page.waitForFunction(() => window.Capacitor.Plugins.LocalNotifications.scheduled.length === 11, null, { timeout: 5000 }).catch(() => {});
   const scheduled = await page.evaluate(() => window.Capacitor.Plugins.LocalNotifications.scheduled.map(item => ({
+    id: item.id,
     title: item.title,
     hour: new Date(item.schedule.at).getHours(),
     minute: new Date(item.schedule.at).getMinutes(),
     exact: item.isExactNotification
   })));
   const allAtTime = scheduled.every(item => item.hour === 21 && item.minute === 30 && item.exact === false);
-  check('daily reminder schedules a week of inexact notifications', scheduled.length === 7 && allAtTime, `${scheduled.length} ${scheduled[0]?.title || ''}`);
+  // Today plus six daily nudges, then four spaced come-back notes (days 10-30).
+  const daily = scheduled.filter(item => item.id < 7120).length;
+  const comeback = scheduled.filter(item => item.id >= 7120).length;
+  check('daily reminder schedules a week of inexact notifications plus come-back notes', daily === 7 && comeback === 4 && allAtTime, `${daily}+${comeback} ${scheduled[0]?.title || ''}`);
   const label = await page.locator('#more-reminder-label').innerText();
-  check('reminder label shows the time', /9:30/.test(label), label);
+  check('reminder label shows the time', /9:30|21:30/.test(label), label);
 }
 
 // Free users import the first 20 cards of a premade chapter; Pro fills in the
@@ -370,7 +374,8 @@ async function checkPremadeSample(page, base, check) {
     cards: Array.from({ length: 30 }, (_, index) => ({ type: 'basic', term: `Premade Q${index + 1}`, definition: `A${index + 1}` }))
   }));
   const zipBuffer = await zip.generateAsync({ type: 'nodebuffer' });
-  await page.route('https://erudite-flashcards.netlify.app/**', route => {
+  // Decks are served from Cloudflare Pages (the coupon function stays on Netlify).
+  await page.route(/^https:\/\/erudite-flashcards\.(pages\.dev|netlify\.app)\//, route => {
     const url = route.request().url();
     if (url.endsWith('premade-catalog.json')) {
       return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ classes: [{ id: '10th', name: 'Class 10', subjects: [{ id: 'Biology', name: 'Biology' }] }] }) });
@@ -394,13 +399,20 @@ async function checkPremadeSample(page, base, check) {
   await page.locator('[data-action="import-premade"]').first().click();
   await page.waitForSelector('#take-deck-overlay:not(.hidden) #take-deck-sample:not(.hidden)', { timeout: 10000 });
   await page.locator('#mobile-take-deck-confirm').click();
-  await page.waitForTimeout(1500);
-  const sampled = await page.evaluate(async () => {
-    const sets = await window.flashcardStore.listSets();
-    const set = sets.find(item => item.premadeSource?.fileName === 'ch1.zip');
-    return { cards: set?.cards.length || 0, source: set?.premadeSource || null };
-  });
+  let sampled = null;
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    await page.waitForTimeout(500);
+    sampled = await page.evaluate(async () => {
+      const sets = await window.flashcardStore.listSets();
+      const set = sets.find(item => item.premadeSource?.fileName === 'ch1.zip');
+      const classes = await window.flashcardStore.listClasses();
+      const cls = classes.find(item => String(item.id) === String(set?.classId));
+      return { cards: set?.cards.length || 0, source: set?.premadeSource || null, className: cls?.name || null };
+    });
+    if (sampled.cards) break;
+  }
   check('free import keeps the first 20 cards', sampled.cards === 20 && sampled.source?.sample === true, JSON.stringify(sampled));
+  check('premade chapter goes into its subject class', sampled.className === 'Biology 10', String(sampled.className));
 
   // Pro preview in a browser build, then the sample fills in on next launch.
   await page.evaluate(async () => {
@@ -422,7 +434,7 @@ async function checkPremadeSample(page, base, check) {
   }
   check('Pro fills in the rest of a sample deck', unlocked.cards === 30 && unlocked.sample === false && /Premade Q1\b/.test(unlocked.first), JSON.stringify(unlocked));
   await page.evaluate(() => localStorage.removeItem('erudite-pro-debug'));
-  await page.unroute('https://erudite-flashcards.netlify.app/**');
+  await page.unroute(/^https:\/\/erudite-flashcards\.(pages\.dev|netlify\.app)\//);
 }
 
 main().catch(error => {
