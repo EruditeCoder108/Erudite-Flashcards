@@ -2071,3 +2071,19 @@ html.reduce-motion .study-card-inner {
     min-height: 18rem;
   }
 }
+
+/* Text with a figure: one group, centred, instead of the answer floating in
+   the middle and the figure pinned to the bottom edge. "safe" keeps a long
+   answer scrollable from its first line. */
+.card-face:not(.image-occlusion-card-face) .card-scroll:has(.card-text:not(:empty)):has(.card-image-wrap:not(.hidden)) {
+  justify-content: safe center;
+}
+
+.card-face:not(.image-occlusion-card-face) .card-scroll:has(.card-text:not(:empty)):has(.card-image-wrap:not(.hidden)) .card-text {
+  flex: 0 0 auto;
+}
+
+.card-face:not(.image-occlusion-card-face) .card-scroll:has(.card-text:not(:empty)) .card-image-wrap:not(.hidden) {
+  flex-basis: auto;
+  margin-top: var(--space-3, 0.75rem);
+}

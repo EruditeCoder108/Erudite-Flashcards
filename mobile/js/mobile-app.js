@@ -6794,8 +6794,12 @@
     if (sampleHint) {
       const isSample = sampleNotes.length < imported.cards.length;
       sampleHint.classList.toggle('hidden', !isSample);
+      // Count study cards (a cloze note with two gaps is two cards), the same
+      // unit as the store listing and the "Imported N cards" message.
+      const sampleCardCount = isSample ? processImportedNotes(sampleNotes).length : 0;
+      const totalCardCount = isSample ? processImportedNotes(imported.cards).length : 0;
       sampleHint.innerHTML = isSample
-        ? `<i class="fas fa-lock" aria-hidden="true"></i><span>You get the first <b>${sampleNotes.length}</b> of ${imported.cards.length} cards. <button type="button" class="text-button" data-action="open-pro">Erudite Pro</button> unlocks the whole chapter and keeps your progress.</span>`
+        ? `<i class="fas fa-lock" aria-hidden="true"></i><span>You get the first <b>${sampleCardCount}</b> of ${totalCardCount} cards. <button type="button" class="text-button" data-action="open-pro">Erudite Pro</button> unlocks the whole chapter and keeps your progress.</span>`
         : '';
     }
 
