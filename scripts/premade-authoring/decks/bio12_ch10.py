@@ -52,12 +52,12 @@ d.basic('Why are different cry genes used for different crops?', 'Most Bt toxins
 d.basic('Cotton boll (Figure 10.1): (a) vs (b)?', '(a) ' + X('destroyed by bollworms') + '; (b) fully mature boll', **img('fig_10_1_cotton_boll'))
 d.basic('Nematode infecting tobacco roots?', EI('Meloidogyne incognita'))
 d.basic('Correction: NCERT spells it "Meloidegyne incognitia". Correct?', EI('Meloidogyne incognita') + ' (root-knot nematode)')
-d.basic('What is RNA interference (RNAi)?', 'Silencing of a specific ' + T('mRNA') + ' by a complementary ' + T('dsRNA') + ' that prevents its translation; a cellular defence in all eukaryotes')
+d.basic('What is RNA interference (RNAi)?', 'Silencing of a specific ' + T('mRNA') + ' by a complementary ' + T('dsRNA') + ' that prevents its translation.<br>A cellular defence in all eukaryotes')
 d.basic('Natural sources of dsRNA for RNAi?', 'Viruses with RNA genomes, or ' + T('transposons') + ' replicating via RNA')
-d.basic('How was tobacco made nematode-resistant?', 'Nematode-specific genes introduced via ' + T('Agrobacterium') + ' to make ' + T('sense and antisense RNA') + ' → dsRNA → RNAi silences the nematode’s mRNA', **fig('fig_10_2_rnai_roots'))
+d.basic('How was tobacco made nematode-resistant?', 'Nematode-specific genes introduced via ' + T('Agrobacterium') + '<br>make ' + T('sense and antisense RNA') + '<br>→ dsRNA<br>→ RNAi silences the nematode’s mRNA', **fig('fig_10_2_rnai_roots'))
 d.basic('Figure 10.2: (a) vs (b) roots?', '(a) Control plant roots infested; (b) ' + T('transgenic') + ' roots protected 5 days after infection', **img('fig_10_2_rnai_roots'))
 d.basic('Why does sense + antisense RNA silence a gene? (intuition)', 'They pair into dsRNA, which the cell treats as an ' + T('invader') + ' and uses as a guide to destroy matching mRNA')
-d.basic('Advantages vs disadvantages of GM crops (Exercise 6)?', T('Pros') + ': higher yield, pest resistance, less pesticide, nutrition. ' + T('Cons') + ': possible ecological harm, resistant pests, gene flow to weeds, allergy concerns, biopiracy/patents.')
+d.basic('Advantages vs disadvantages of GM crops (Exercise 6)?', T('Pros') + ': higher yield, pest resistance, less pesticide, nutrition<br>' + T('Cons') + ': possible ecological harm, resistant pests, gene flow to weeds, allergy concerns, biopiracy/patents')
 
 # ---------------------------------------------------------------- 10.2 Medicine
 d.sec('10.2-medicine')
@@ -73,7 +73,7 @@ d.occlusion('Figure 10.3 · Maturation of proinsulin', M + 'fig_10_3_proinsulin.
     ('Insulin', wbox(520, 512, 715, 570, PI), True), ('B peptide', wbox(520, 598, 780, 655, PI), True),
     ('Free C peptide', wbox(278, 742, 650, 797, PI), True)])
 d.basic('Main challenge of rDNA insulin?', 'Getting insulin ' + T('assembled into mature form'))
-d.basic('How did Eli Lilly make human insulin (1983)?', 'Two DNA sequences for chains ' + T('A and B') + ' put into ' + T('E. coli plasmids') + '; chains made separately, extracted and joined by disulphide bonds')
+d.basic('How did Eli Lilly make human insulin (1983)?', 'Two DNA sequences for chains ' + T('A and B') + ' put into ' + T('E. coli plasmids') + '.<br>Chains made separately, extracted and joined by disulphide bonds')
 d.basic('Why can’t insulin be taken orally?', 'It is a protein; ' + X('digested') + ' by proteases in the gut')
 d.basic('Transgenic bacteria example (Exercise 5)?', EI('E. coli') + ' carrying human insulin A/B chain genes, producing human insulin')
 d.sec('10.2.2-gene-therapy')
@@ -117,7 +117,7 @@ d.basic('Varieties of rice in India?', 'About ' + N('2,00,000') + '; ' + N('27')
 d.basic('Basmati patent controversy?', 'In ' + N('1997') + ' an American company got a US patent on Basmati derived from Indian farmers’ varieties crossed with semi-dwarf varieties')
 d.basic('Other Indian resources targeted for patents?', 'Traditional herbal medicines: ' + E('turmeric, neem'))
 d.basic('Define biopiracy.', 'Use of bio-resources by multinational companies/organisations ' + X('without authorisation') + ' and ' + X('without compensatory payment'))
-d.basic('Why is biopiracy one-sided?', 'Industrialised nations are rich financially but ' + T('poor in biodiversity') + '; developing nations are rich in biodiversity and traditional knowledge')
+d.basic('Why is biopiracy one-sided?', 'Industrialised nations are rich financially but ' + T('poor in biodiversity') + '.<br>Developing nations are rich in biodiversity and traditional knowledge')
 d.basic('India’s legal response to biopiracy?', 'Second amendment of the ' + T('Indian Patents Bill'))
 
 # ---------------------------------------------------------------- summary

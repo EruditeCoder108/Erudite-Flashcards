@@ -32,10 +32,10 @@ table_card(d, 'Table 4.1', 'Dominant / recessive?', [
     ('Pod colour', 'Green / yellow', False), ('Seed shape', 'Round / wrinkled', False),
     ('Seed colour', 'Yellow / green', False)], term='Seven pairs of contrasting traits (Table 4.1)')
 d.basic('Identify: seven pairs of traits Mendel studied.', 'Figure 4.1: seed shape, seed colour, flower colour, pod shape, pod colour, flower position, stem height', **img('fig_4_1_seven_traits'))
-d.basic('Mnemonic for the 7 pea characters?', '"' + T('Short Silly Flowers Fly Past Poor Seeds') + '": Stem height, Seed shape, Flower colour, Flower position, Pod shape, Pod colour, Seed colour')
+d.basic('Mnemonic for the 7 pea characters?', '"' + T('Short Silly Flowers Fly Past Poor Seeds') + '":<br>Stem height, Seed shape, Flower colour, Flower position, Pod shape, Pod colour, Seed colour')
 d.basic('Pod colour trap: which is dominant?', T('Green') + ' pod is dominant over yellow (opposite of seed colour, where ' + T('yellow') + ' is dominant)')
-d.basic('Advantages of pea for Mendel’s experiments? (Exercise 1)', 'Many ' + T('contrasting traits') + ', naturally ' + T('self-pollinating') + ', easy to cross-pollinate artificially, short life cycle, many seeds')
-d.basic('Steps in making a cross in pea (Figure 4.2)?', 'Remove anthers (' + T('emasculation') + ') from the female parent → transfer pollen from the male parent (pollination) → seeds → progeny', **fig('fig_4_2_making_cross'))
+d.basic('Advantages of pea for Mendel’s experiments? (Exercise 1)', 'Many ' + T('contrasting traits') + '<br>Naturally ' + T('self-pollinating') + '<br>Easy to cross-pollinate artificially<br>Short life cycle<br>Many seeds')
+d.basic('Steps in making a cross in pea (Figure 4.2)?', '1) Remove anthers (' + T('emasculation') + ') from the female parent<br>2) Transfer pollen from the male parent (pollination)<br>3) Seeds<br>4) Progeny', **fig('fig_4_2_making_cross'))
 
 # ---------------------------------------------------------------- 4.2 One gene
 d.sec('4.2-inheritance-of-one-gene')
@@ -74,7 +74,7 @@ d.basic('Example of incomplete dominance?', 'Flower colour in dog flower (' + T(
 d.basic('Snapdragon RR × rr: F₁ and F₂?', 'F₁ all ' + T('pink (Rr)') + '. F₂ ' + N('1 red : 2 pink : 1 white') + '.')
 d.basic('Why is incomplete dominance special in ratios?', 'Phenotypic ratio = genotypic ratio = ' + N('1:2:1'))
 d.basic('Molecular view: three possible products of a modified allele?', '(i) normal or less efficient enzyme, (ii) ' + T('non-functional') + ' enzyme, (iii) ' + T('no enzyme'))
-d.basic('Why is the modified allele usually recessive?', 'It makes a non-functional or no enzyme; phenotype then depends on the ' + T('unmodified (functioning) allele') + ', which is dominant')
+d.basic('Why is the modified allele usually recessive?', 'It makes a non-functional or no enzyme.<br>The phenotype then depends on the ' + T('unmodified (functioning) allele') + ', which is dominant')
 d.basic('When is a modified allele "equivalent"?', 'When it still makes a normal/less efficient enzyme: same phenotype (very common)')
 
 d.sec('4.2.2.2-co-dominance')
@@ -135,7 +135,7 @@ d.basic('When two genes are on the same chromosome, which combinations dominate?
 d.cloze('White and yellow genes: {{c1::1.3}}% recombination (tightly linked); white and miniature wing: {{c2::37.2}}% (loosely linked).')
 d.basic('Tight vs loose linkage?', T('Tight') + ': genes close, very low recombination. ' + T('Loose') + ': genes far apart, higher recombination.')
 d.basic('Who made the first genetic map, and how?', T('Alfred Sturtevant') + ' (Morgan’s student): used ' + T('recombination frequency') + ' as a measure of gene distance')
-d.basic('Why does recombination frequency measure distance? (intuition)', 'Crossing over can happen anywhere; the farther apart two genes are, the more likely a crossover falls ' + T('between') + ' them')
+d.basic('Why does recombination frequency measure distance? (intuition)', 'Crossing over can happen anywhere.<br>The farther apart two genes are, the more likely a crossover falls ' + T('between') + ' them')
 d.basic('Use of genetic maps today?', 'Starting point for ' + T('whole-genome sequencing') + ' (e.g. Human Genome Project)')
 d.basic('Morgan’s contribution to genetics? (Exercise 9)', 'Verified chromosomal theory; discovered ' + T('linkage, recombination') + ' and sex-linked inheritance in Drosophila')
 d.basic('Two heterozygous parents, loci completely linked: F₁ ratio? (Exercise 8)', 'Like a monohybrid: ' + N('3 : 1') + ' (only parental combinations; with some recombination, parental types exceed recombinants)')
@@ -149,7 +149,7 @@ d.basic('Skin colour model with A, B, C: darkest and lightest?', T('AABBCC') + '
 d.sec('4.5-pleiotropy')
 d.basic('What is a pleiotropic gene?', 'A single gene with ' + T('multiple phenotypic expressions'))
 d.basic('Usual mechanism of pleiotropy?', 'The gene affects a ' + T('metabolic pathway') + ' contributing to different phenotypes')
-d.basic('Example of pleiotropy?', T('Phenylketonuria') + ': mutation in phenylalanine hydroxylase gene → mental retardation + reduced hair and skin pigmentation')
+d.basic('Example of pleiotropy?', T('Phenylketonuria') + ':<br>mutation in phenylalanine hydroxylase gene → mental retardation + reduced hair and skin pigmentation')
 d.basic('Polygenic vs pleiotropy? (mnemonic)', T('Poly-genic') + ' = many genes → one trait. ' + T('Pleio-tropy') + ' = one gene → many traits.')
 
 # ---------------------------------------------------------------- 4.6 Sex determination
@@ -235,7 +235,7 @@ d.basic('What is polyploidy, and its cause?', 'Increase in a ' + T('whole set') 
 d.basic('Trisomy vs monosomy?', T('Trisomy') + ': an extra copy of a chromosome (2n+1). ' + T('Monosomy') + ': one chromosome of a pair missing (2n−1).')
 d.basic('Cause of Down’s syndrome?', T('Trisomy of chromosome 21') + ' (47 chromosomes)')
 d.basic('Who first described Down’s syndrome?', T('Langdon Down') + ' (' + N('1866') + ')')
-d.basic('Features of Down’s syndrome?', 'Short stature, small round head, ' + T('furrowed tongue') + ', partially open mouth, broad palm with ' + T('palm crease') + ', retarded physical, psychomotor and mental development', **fig('fig_4_16_down_syndrome'))
+d.basic('Features of Down’s syndrome?', 'Short stature<br>Small round head<br>' + T('Furrowed tongue') + ', partially open mouth<br>Broad palm with ' + T('palm crease') + '<br>Retarded physical, psychomotor and mental development', **fig('fig_4_16_down_syndrome'))
 d.basic('Karyotype of Klinefelter’s syndrome?', T('47, XXY'))
 d.basic('Features of Klinefelter’s syndrome?', 'Masculine development with feminine traits (' + T('gynaecomastia') + '), tall; ' + X('sterile'))
 d.basic('Karyotype of Turner’s syndrome?', T('45, XO'))

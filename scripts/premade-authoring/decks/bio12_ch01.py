@@ -24,7 +24,7 @@ d.occlusion('Figure 1.1 · L.S. of a flower', M + 'fig_1_1_flower_ls.webp', FL, 
 
 # ---------------------------------------------------------------- 1.2 Pre-fertilisation
 d.sec('1.2-pre-fertilisation')
-d.basic('What happens in a plant long before a flower is seen?', 'The decision to flower is taken; ' + T('hormonal and structural changes') + ' lead to differentiation of the ' + T('floral primordium'))
+d.basic('What happens in a plant long before a flower is seen?', 'The decision to flower is taken.<br>' + T('Hormonal and structural changes') + ' lead to differentiation of the ' + T('floral primordium'))
 d.cloze('The {{c1::androecium}} (whorl of stamens) is the male reproductive organ; the {{c2::gynoecium}} is the female reproductive organ.')
 
 d.sec('1.2.1-stamen-anther')
@@ -39,7 +39,7 @@ d.basic('Function of the outer three wall layers of the microsporangium?', T('Pr
 d.basic('Innermost wall layer of the microsporangium, and its function?', T('Tapetum') + ': ' + T('nourishes') + ' the developing pollen grains')
 d.basic('Features of tapetal cells?', T('Dense cytoplasm') + ' and generally ' + T('more than one nucleus'))
 d.basic('How can tapetal cells become binucleate? (think)', 'Nuclear division (mitosis) ' + X('without') + ' cytokinesis (or endomitosis/nuclear fusion)')
-d.basic('Role of the tapetum in forming the pollen wall? (Exercise 17)', 'It secretes ' + T('sporopollenin') + ' precursors (and enzymes, Ubisch bodies) that build the ' + T('exine') + '; also nourishes microspores')
+d.basic('Role of the tapetum in forming the pollen wall? (Exercise 17)', 'It secretes ' + T('sporopollenin') + ' precursors (and enzymes, Ubisch bodies) that build the ' + T('exine') + '.<br>It also nourishes microspores')
 d.basic('What occupies the centre of a young microsporangium?', T('Sporogenous tissue') + ': compactly arranged homogenous cells')
 d.occlusion('Figure 1.3 · T.S. of young anther and one microsporangium', M + 'fig_1_3ab_anther_ts.webp', AT, [
     ('Connective', wbox(460, 176, 540, 198, AT), True), ('Epidermis', wbox(460, 213, 532, 236, AT), True),
@@ -61,13 +61,13 @@ d.basic('What do pollen grains represent?', 'The ' + T('male gametophytes'))
 d.basic('Shape and size of pollen grains?', 'Generally ' + T('spherical') + ', about ' + N('25–50 µm') + ' in diameter', **fig('fig_1_4_pollen_sem'))
 d.basic('Identify: scanning electron micrographs of these structures.', T('Pollen grains') + ' of different species (Figure 1.4); note the varied exine patterns', **img('fig_1_4_pollen_sem'))
 d.basic('Outer wall layer of pollen, and what it is made of?', T('Exine') + ', made of ' + T('sporopollenin'))
-d.basic('Why is sporopollenin remarkable?', 'One of the most resistant organic materials: withstands ' + T('high temperature, strong acids and alkali') + '; ' + X('no enzyme') + ' is known to degrade it')
+d.basic('Why is sporopollenin remarkable?', 'One of the most resistant organic materials.<br>It withstands ' + T('high temperature, strong acids and alkali') + '.<br>' + X('No enzyme') + ' is known to degrade it')
 d.basic('What are germ pores?', 'Prominent apertures in the exine where ' + X('sporopollenin is absent') + '; the pollen tube emerges through one')
 d.basic('Why are pollen grains well-preserved as fossils?', 'Because of ' + T('sporopollenin') + ' in the exine')
 d.basic('Why should the exine be hard? (think)', 'To protect the male gametophyte from ' + T('drying, UV and damage') + ' during transfer')
 d.basic('Inner wall of pollen, and its composition?', T('Intine') + ': thin, continuous, made of ' + T('cellulose and pectin'))
 d.basic('Two cells of a mature pollen grain?', T('Vegetative cell') + ' and ' + T('generative cell'), **fig('fig_1_5_pollen_maturation'))
-d.basic('Vegetative cell vs generative cell?', T('Vegetative') + ': bigger, abundant food reserve, large irregular nucleus. ' + T('Generative') + ': small, spindle-shaped, dense cytoplasm, floats in the vegetative cell.')
+d.basic('Vegetative cell vs generative cell?', T('Vegetative') + ': bigger, abundant food reserve, large irregular nucleus<br>' + T('Generative') + ': small, spindle-shaped, dense cytoplasm, floats in the vegetative cell')
 d.basic('In what % of angiosperms is pollen shed at the 2-celled stage?', 'Over ' + N('60%'))
 d.basic('What is the 3-celled pollen stage?', 'Generative cell has divided ' + T('mitotically') + ' into ' + N('two male gametes') + ' before shedding')
 d.basic('Health problem caused by pollen of many species?', T('Allergies') + ' and bronchial afflictions: asthma, bronchitis')
@@ -130,7 +130,7 @@ d.occlusion('Figure 1.8c · Mature embryo sac', M + 'fig_1_8_embryo_sac.webp', E
     ('Polar nuclei', wbox(870, 597, 992, 620, ES), True), ('Central cell', wbox(872, 626, 990, 650, ES), True),
     ('Egg', wbox(872, 654, 912, 676, ES), True), ('Synergids', wbox(872, 720, 974, 742, ES), True),
     ('Filiform apparatus', wbox(864, 776, 970, 822, ES), True), ('Micropylar end', wbox(666, 814, 816, 836, ES), True)])
-d.basic('Mnemonic for the embryo sac (micropylar → chalazal)?', '"' + T('2-1-2-3') + '": 2 synergids + 1 egg at the micropyle, 2 polar nuclei in the middle, 3 antipodals at the chalaza = 8 nuclei')
+d.basic('Mnemonic for the embryo sac (micropylar → chalazal)?', '"' + T('2-1-2-3') + '":<br>2 synergids + 1 egg at the micropyle<br>2 polar nuclei in the middle<br>3 antipodals at the chalaza<br>= 8 nuclei')
 
 d.sec('1.2.3-pollination')
 d.basic('Why do flowering plants need pollination?', 'Both male and female gametes are ' + X('non-motile') + ', so they must be brought together')
@@ -154,7 +154,7 @@ d.basic('How common is water pollination?', 'Rare: about ' + N('30 genera') + ',
 d.basic('Examples of water-pollinated plants?', EI('Vallisneria') + ', ' + EI('Hydrilla') + ' (fresh water); sea-grass ' + EI('Zostera') + ' (marine)')
 d.basic('Why is distribution of some bryophytes and pteridophytes limited?', 'They need ' + T('water') + ' for transport of male gametes and fertilisation')
 d.basic('Do water hyacinth and water lily use water for pollination?', X('No') + '. Flowers emerge above water and are pollinated by ' + T('insects or wind'))
-d.basic('How is Vallisneria pollinated?', 'Female flower reaches the surface on a ' + T('long stalk') + '; male flowers/pollen released on the surface are carried passively by currents', **fig('fig_1_11a_vallisneria'))
+d.basic('How is Vallisneria pollinated?', 'Female flower reaches the surface on a ' + T('long stalk') + '.<br>Male flowers/pollen released on the surface are carried passively by currents', **fig('fig_1_11a_vallisneria'))
 d.basic('How are sea-grasses pollinated?', 'Female flowers stay ' + T('submerged') + '; long, ' + T('ribbon-like') + ' pollen is carried inside the water')
 d.basic('How is pollen of water-pollinated species protected from wetting?', 'A ' + T('mucilaginous covering'))
 d.basic('Why are wind/water-pollinated flowers not colourful and lack nectar?', 'They ' + X('need not attract animals') + '; making colour and nectar would waste energy')
@@ -166,7 +166,7 @@ d.basic('Why do flowers pollinated by flies and beetles smell foul?', 'To ' + T(
 d.basic('Usual floral rewards?', T('Nectar') + ' and ' + T('pollen grains'))
 d.basic('How does an animal bring about pollination?', 'While harvesting rewards it touches anthers, gets coated in (sticky) pollen, then touches a ' + T('stigma'))
 d.basic('Tallest flower, and its reward?', EI('Amorphophallus') + ' (~' + N('6 ft') + '); reward is a safe place to ' + T('lay eggs'))
-d.basic('Describe the Yucca–moth relationship.', 'Moth lays eggs in the ovary locule and pollinates the flower; larvae feed on developing seeds. ' + T('Neither can complete its life cycle without the other.'))
+d.basic('Describe the Yucca–moth relationship.', 'Moth lays eggs in the ovary locule and pollinates the flower.<br>Larvae feed on developing seeds.<br>' + T('Neither can complete its life cycle without the other'))
 d.basic('What are pollen/nectar robbers?', 'Floral visitors that consume pollen/nectar ' + X('without pollinating') + ' the flower')
 
 d.basic('Why do plants avoid continued self-pollination?', 'It leads to ' + T('inbreeding depression'))
@@ -176,8 +176,8 @@ table_card(d, 'Outbreeding devices', 'Prevents?', [
     ('Self-incompatibility', 'Self-fertilisation (autogamy + geitonogamy)', False),
     ('Monoecy (castor, maize)', 'Autogamy only, not geitonogamy', True),
     ('Dioecy (papaya)', 'Both autogamy and geitonogamy', False)], term='Outbreeding devices')
-d.basic('What is self-incompatibility?', 'A ' + T('genetic mechanism') + ' preventing self-pollen from fertilising ovules by inhibiting ' + T('pollen germination or pollen-tube growth') + ' in the pistil')
-d.basic('Monoecious vs dioecious, with examples?', T('Monoecious') + ': male and female flowers on the same plant (' + E('castor, maize') + '). ' + T('Dioecious') + ': on different plants (' + E('papaya') + ').')
+d.basic('What is self-incompatibility?', 'A ' + T('genetic mechanism') + ' preventing self-pollen from fertilising ovules.<br>It inhibits ' + T('pollen germination or pollen-tube growth') + ' in the pistil')
+d.basic('Monoecious vs dioecious, with examples?', T('Monoecious') + ': male and female flowers on the same plant (' + E('castor, maize') + ')<br>' + T('Dioecious') + ': on different plants (' + E('papaya') + ')')
 
 d.basic('Can a pistil tell right pollen from wrong pollen?', 'Yes. It recognises ' + T('compatible') + ' pollen and accepts it; rejects ' + T('incompatible') + ' pollen')
 d.basic('How does the pistil reject wrong pollen?', 'Prevents ' + T('pollen germination') + ' on the stigma or ' + T('pollen-tube growth') + ' in the style')
@@ -258,7 +258,7 @@ d.basic('What are false fruits?', 'Fruits where the ' + T('thalamus') + ' also c
 d.basic('Why is apple a false fruit? (Exercise 14)', 'The fleshy edible part develops from the ' + T('thalamus') + ', not only the ovary')
 d.basic('What are true fruits?', 'Fruits that develop ' + T('only from the ovary'))
 d.basic('What are parthenocarpic fruits?', 'Fruits developed ' + X('without fertilisation') + ': seedless, e.g. ' + E('banana') + '; inducible with growth hormones')
-d.basic('Which fruits would you choose for induced parthenocarpy? (Exercise 16)', 'Fruits eaten for their flesh with many/hard seeds: ' + E('orange, lemon, watermelon, grapes, guava') + ' (seedless is preferred)')
+d.basic('Which fruits would you choose for induced parthenocarpy? (Exercise 16)', 'Fruits eaten for their flesh with many/hard seeds:<br>' + E('orange, lemon, watermelon, grapes, guava') + '<br>(seedless is preferred)')
 d.basic('Advantages of seeds to angiosperms?', T('Pollination and fertilisation independent of water') + '; better dispersal; food reserve for seedlings; hard coat protects embryo; new genetic combinations')
 d.basic('Why are dehydration and dormancy crucial for agriculture?', 'They allow ' + T('storage') + ' of seeds as food all year and for the next crop')
 d.basic('Oldest recorded viable seed?', EI('Lupinus arcticus') + ' from Arctic tundra: germinated after ~' + N('10,000 years'))

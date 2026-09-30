@@ -30,7 +30,7 @@ d.basic('How fast could we lose biodiversity?', 'In less than ' + N('two centuri
 
 d.sec('13.1.1-how-many-species')
 d.basic('Species described so far (IUCN 2004)?', 'Slightly more than ' + N('1.5 million'))
-d.basic('How do ecologists estimate total species? (Exercise 2)', 'Compare ' + T('temperate–tropical species richness') + ' of a well-studied insect group and extrapolate the ratio to other groups')
+d.basic('How do ecologists estimate total species? (Exercise 2)', 'Compare ' + T('temperate–tropical species richness') + ' of a well-studied insect group,<br>and extrapolate the ratio to other groups')
 d.basic('Robert May’s estimate of global species?', 'About ' + N('7 million') + ' (extreme estimates: 20–50 million)')
 d.basic('Share of animals and plants among recorded species?', T('Animals') + ' > ' + N('70%') + '; ' + T('plants') + ' (incl. algae, fungi, bryophytes, gymnosperms, angiosperms) ≤ ' + N('22%'))
 d.basic('Most species-rich animal group?', T('Insects') + ': > 70% of animals (7 of every 10 animals)')
@@ -81,7 +81,7 @@ d.sec('13.1.3-importance-of-diversity')
 d.basic('Features of a stable community?', 'Little year-to-year variation in productivity; ' + T('resistant or resilient') + ' to disturbance; resistant to ' + T('alien invasions'))
 d.basic('Tilman’s findings?', 'Plots with more species had ' + T('less year-to-year biomass variation') + ' and ' + T('higher productivity'))
 d.basic('Rivet popper hypothesis: who and analogy?', T('Paul Ehrlich') + ': airplane = ecosystem; rivets = species')
-d.basic('Lessons of the rivet popper hypothesis?', 'Losing a few rivets may not matter at first, but many weakens the plane; losing ' + T('key rivets on wings') + ' (key species) is most dangerous')
+d.basic('Lessons of the rivet popper hypothesis?', 'Losing a few rivets may not matter at first, but losing many weakens the plane.<br>Losing ' + T('key rivets on wings') + ' (key species) is most dangerous')
 d.basic('How is biodiversity important for ecosystems (Exercise 6)?', 'More species → stability, productivity, resistance to invasion and disturbance, ecosystem services')
 
 d.sec('13.1.4-loss-of-biodiversity')
@@ -120,7 +120,7 @@ d.basic('Major causes of species loss in a region (Exercise 5)?', 'The Evil Quar
 # ---------------------------------------------------------------- 13.2 Conservation
 d.sec('13.2.1-why-conserve')
 d.cloze('Reasons to conserve biodiversity: {{c1::narrowly utilitarian}}, {{c2::broadly utilitarian}}, and {{c3::ethical}}.')
-d.basic('Narrowly utilitarian reasons?', 'Direct economic benefits: food, firewood, fibre, construction, industrial products (tannins, lubricants, dyes, resins, perfumes), medicines')
+d.basic('Narrowly utilitarian reasons?', 'Direct economic benefits:<br>food, firewood, fibre, construction<br>industrial products (tannins, lubricants, dyes, resins, perfumes)<br>medicines')
 d.basic('Drugs derived from plants?', 'More than ' + N('25%') + ' of drugs sold worldwide; ' + N('25,000') + ' plant species in traditional medicine')
 d.basic('What is bioprospecting?', 'Exploring molecular, genetic and species-level diversity for products of ' + T('economic importance'))
 d.basic('Broadly utilitarian reasons?', 'Ecosystem services: ' + T('oxygen') + ' (Amazon ~20%), ' + T('pollination') + ', aesthetic pleasures')
@@ -138,14 +138,14 @@ d.basic('Three hotspots covering India?', T('Western Ghats and Sri Lanka, Indo-B
 d.basic('Land area and impact of hotspots?', 'Less than ' + N('2%') + ' of land; strict protection could reduce mass extinctions by ~' + N('30%'))
 d.basic('India’s protected areas (NCERT)?', N('14') + ' biosphere reserves, ' + N('90') + ' national parks, ' + N('448') + ' wildlife sanctuaries')
 d.basic('Update: India’s protected areas now?', 'About ' + N('18') + ' biosphere reserves, ' + N('106') + ' national parks and over ' + N('570') + ' sanctuaries (numbers keep growing)')
-d.basic('What are sacred groves? Role? (Exercise 7)', 'Forest tracts set aside by religious/cultural tradition where all trees and wildlife are ' + T('venerated and protected') + '; refuges for rare species')
+d.basic('What are sacred groves? Role? (Exercise 7)', 'Forest tracts set aside by religious/cultural tradition where all trees and wildlife are ' + T('venerated and protected') + '.<br>They are refuges for rare species')
 table_card(d, 'Sacred groves', 'Where?', [
     ('Meghalaya', 'Khasi and Jaintia Hills', False), ('Rajasthan', 'Aravalli Hills', False),
     ('Karnataka, Maharashtra', 'Western Ghats', False), ('Madhya Pradesh', 'Sarguja, Chanda, Bastar', False)], term='Sacred groves of India')
 d.basic('Importance of Meghalaya’s sacred groves?', 'Last refuges for many ' + T('rare and threatened plants'))
 d.basic('Ex situ conservation places?', T('Zoological parks, botanical gardens, wildlife safari parks'))
 d.basic('Modern ex situ techniques?', T('Cryopreservation') + ' of gametes, in vitro fertilisation, ' + T('tissue culture') + ', ' + T('seed banks'))
-d.basic('Mnemonic: in situ vs ex situ?', T('In situ') + ' = "in its site" (parks, reserves, sacred groves). ' + T('Ex situ') + ' = "exit the site" (zoos, gardens, seed banks).')
+d.basic('Mnemonic: in situ vs ex situ?', T('In situ') + ' = "in its site" (parks, reserves, sacred groves)<br>' + T('Ex situ') + ' = "exit the site" (zoos, gardens, seed banks)')
 d.basic('Earth Summit: name, place, year?', T('Convention on Biological Diversity') + ', ' + T('Rio de Janeiro') + ', ' + N('1992'))
 d.basic('World Summit on Sustainable Development?', N('2002') + ', Johannesburg: ' + N('190') + ' countries pledged significant reduction of biodiversity loss by ' + N('2010'))
 d.basic('Update: were the 2010 targets met, and what now?', X('No') + '; the 2022 ' + T('Kunming–Montreal') + ' framework aims to protect ' + T('30% of land and sea by 2030') + ' ("30×30")')
