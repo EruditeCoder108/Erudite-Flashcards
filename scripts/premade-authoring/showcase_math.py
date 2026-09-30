@@ -1412,7 +1412,7 @@ def left_right_limits(deck):
     mcard(deck, 'One-sided limits', 'f(x) = 1 for x ≤ 0 and f(x) = 2 for x > 0. What are the left and right limits at 0? Does the limit exist?', base, back,
           '<p>Left-hand limit (x → 0⁻) = <b>1</b>; right-hand limit (x → 0⁺) = <b>2</b>. They differ, so <b>lim x→0 f(x) does not exist</b>, even though f(0) = 1 is defined.</p>'
           '<p>Rule: <b>the limit exists ⟺ left limit = right limit</b> (both finite).</p>',
-          'Left and right limits differ: the no limit', 'lim exists iff left and right limits are equal; step function 1 (x≤0), 2 (x>0) has LHL 1, RHL 2 at 0, so no limit though f(0)=1',
+          'Left and right limits differ: the limit does not exist', 'lim exists iff left and right limits are equal; step function 1 (x≤0), 2 (x>0) has LHL 1, RHL 2 at 0, so no limit though f(0)=1',
           vb='0 0 300 180', hint='Approach 0 from each side separately.')
 
 
