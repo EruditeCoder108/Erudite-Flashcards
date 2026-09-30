@@ -896,6 +896,22 @@ html.reduce-motion .study-card-inner {
   background: color-mix(in srgb, var(--primary) 14%, transparent);
 }
 
+/* Premade notes (<small> under the answer) and chemical/maths sub- and superscripts. */
+.card-text small,
+.card-text-inline small {
+  font-size: 0.78em;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--text) 68%, transparent);
+}
+
+.card-text sub,
+.card-text sup,
+.card-text-inline sub,
+.card-text-inline sup {
+  font-size: 0.72em;
+  line-height: 0;
+}
+
 .card-text code,
 .card-text-inline code {
   padding: 0.08rem 0.28rem;

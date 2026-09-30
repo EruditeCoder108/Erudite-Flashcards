@@ -2585,7 +2585,7 @@
   function sanitizeEditorHtml(value) {
     const template = document.createElement('template');
     template.innerHTML = String(value || '').trim();
-    const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'DIV', 'P', 'UL', 'OL', 'LI', 'SPAN', 'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'HR']);
+    const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'DIV', 'P', 'UL', 'OL', 'LI', 'SPAN', 'MARK', 'CODE', 'PRE', 'BLOCKQUOTE', 'HR', 'SMALL', 'SUB', 'SUP']);
     const allowedHighlightClasses = new Set(['highlight-yellow', 'highlight-green', 'highlight-blue', 'highlight-pink', 'cloze-answer', 'cloze-blank']);
     // Only allow color: <hex|rgb|hsl|named> in style attributes — no JS injection
     const safeColorRe = /^color\s*:\s*(#[0-9a-fA-F]{3,8}|rgb\([^)]*\)|rgba\([^)]*\)|hsl\([^)]*\)|hsla\([^)]*\)|[a-zA-Z]{2,30})\s*;?\s*$/;
