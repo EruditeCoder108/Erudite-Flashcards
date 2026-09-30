@@ -61,7 +61,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.1 Q1: for A = [[2, 5, 19, −7], [35, −2, 5/2, 12], [√3, 1, −5, 17]] find the order, number of elements, a₁₃, a₂₁, a₃₃, a₂₄, a₂₃.",
+      "term": "Ex 3.1 Q1: for A =\\[\\begin{bmatrix}2 & 5 & 19 & -7 \\\\ 35 & -2 & \\frac{5}{2} & 12 \\\\ \\sqrt{3} & 1 & -5 & 17\\end{bmatrix}\\]find the order, number of elements, a₁₃, a₂₁, a₃₃, a₂₄, a₂₃.",
       "definition": "Order <span style=\"color:#f08c00\">3 × 4</span>, <span style=\"color:#f08c00\">12</span> elements. a₁₃ = 19, a₂₁ = 35, a₃₃ = −5, a₂₄ = 12, a₂₃ = 5/2",
       "tags": [
         "class-12",
@@ -95,7 +95,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.1 Q4(i): build the 2 × 2 matrix with aᵢⱼ = (i + j)²/2.",
-      "definition": "a₁₁ = 2, a₁₂ = 9/2, a₂₁ = 9/2, a₂₂ = 8: <span style=\"color:#f08c00\">[[2, 9/2], [9/2, 8]]</span>",
+      "definition": "a₁₁ = 2, a₁₂ = 9/2, a₂₁ = 9/2, a₂₂ = 8:<span style=\"color:#f08c00\">\\[\\begin{bmatrix}2 & \\frac{9}{2} \\\\ \\frac{9}{2} & 8\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -106,7 +106,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.1 Q4(ii),(iii): 2 × 2 with aᵢⱼ = i/j, and with aᵢⱼ = (i + 2j)²/2.",
-      "definition": "(ii) <span style=\"color:#f08c00\">[[1, 1/2], [2, 1]]</span>. (iii) a₁₁ = 9/2, a₁₂ = 25/2, a₂₁ = 8, a₂₂ = 18: <span style=\"color:#f08c00\">[[9/2, 25/2], [8, 18]]</span>",
+      "definition": "(ii)<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & \\frac{1}{2} \\\\ 2 & 1\\end{bmatrix}\\]</span>(iii) a₁₁ = 9/2, a₁₂ = 25/2, a₂₁ = 8, a₂₂ = 18:<span style=\"color:#f08c00\">\\[\\begin{bmatrix}\\frac{9}{2} & \\frac{25}{2} \\\\ 8 & 18\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -117,7 +117,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.1 Q5: build the 3 × 4 matrices with (i) aᵢⱼ = ½|−3i + j| and (ii) aᵢⱼ = 2i − j.",
-      "definition": "(i) rows: [1, 1/2, 0, 1/2], [5/2, 2, 3/2, 1], [4, 7/2, 3, 5/2]. (ii) rows: <span style=\"color:#f08c00\">[1, 0, −1, −2], [3, 2, 1, 0], [5, 4, 3, 2]</span>",
+      "definition": "(i) rows: [1, 1/2, 0, 1/2], [5/2, 2, 3/2, 1], [4, 7/2, 3, 5/2].\n(ii) rows: <span style=\"color:#f08c00\">[1, 0, −1, −2], [3, 2, 1, 0], [5, 4, 3, 2]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -128,7 +128,7 @@
     {
       "noteType": "basic",
       "term": "How are the vertices of a polygon written as a matrix?",
-      "definition": "Each vertex (x, y) is a row [x y] (or a column). ABCD with A(1,0), B(3,2), C(1,3), D(−1,2) is a <span style=\"color:#3b82f6\">4 × 2 matrix</span> with rows [1 0], [3 2], [1 3], [−1 2]. Transformations (rotation, reflection) are then matrix multiplications",
+      "definition": "Each vertex (x, y) is a row [x y] (or a column).\nABCD with A(1,0), B(3,2), C(1,3), D(−1,2) is a <span style=\"color:#3b82f6\">4 × 2 matrix</span> with rows [1 0], [3 2], [1 3], [−1 2].\nTransformations (rotation, reflection) are then matrix multiplications",
       "tags": [
         "class-12",
         "mathematics",
@@ -167,7 +167,7 @@
     {
       "noteType": "basic",
       "term": "Is a zero matrix a square matrix? Is it a diagonal matrix?",
-      "definition": "A zero matrix can have any order. If it is square it is also <span style=\"color:#3b82f6\">diagonal and scalar</span> (k = 0), but not an identity matrix",
+      "definition": "A zero matrix can have any order.\nIf it is square it is also <span style=\"color:#3b82f6\">diagonal and scalar</span> (k = 0), but not an identity matrix",
       "tags": [
         "class-12",
         "mathematics",
@@ -178,7 +178,7 @@
     {
       "noteType": "basic",
       "term": "Define equal matrices.",
-      "definition": "Same <span style=\"color:#3b82f6\">order</span> and <span style=\"color:#3b82f6\">aᵢⱼ = bᵢⱼ</span> for every position. [[2, 3], [0, 1]] ≠ [[2, 3, 0]] because the orders differ",
+      "definition": "Same <span style=\"color:#3b82f6\">order</span> and <span style=\"color:#3b82f6\">aᵢⱼ = bᵢⱼ</span> for every position.\\[\\begin{bmatrix}2 & 3 \\\\ 0 & 1\\end{bmatrix} \\neq \\begin{bmatrix}2 & 3 & 0\\end{bmatrix}\\]because the orders differ",
       "tags": [
         "class-12",
         "mathematics",
@@ -199,7 +199,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Example 5: [[2a + b, a − 2b], [5c − d, 4c + 3d]] = [[4, −3], [11, 24]]. Find a, b, c, d.",
+      "term": "Example 5:\\[\\begin{bmatrix}2a + b & a - 2b \\\\ 5c - d & 4c + 3d\\end{bmatrix} = \\begin{bmatrix}4 & -3 \\\\ 11 & 24\\end{bmatrix}\\]Find a, b, c, d.",
       "definition": "Two systems: 2a + b = 4, a − 2b = −3 give <span style=\"color:#f08c00\">a = 1, b = 2</span>; 5c − d = 11, 4c + 3d = 24 give <span style=\"color:#f08c00\">c = 3, d = 4</span>",
       "tags": [
         "class-12",
@@ -210,7 +210,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.1 Q6(i): [[4, 3], [x, 5]] = [[y, z], [1, 5]].",
+      "term": "Ex 3.1 Q6(i):\\[\\begin{bmatrix}4 & 3 \\\\ x & 5\\end{bmatrix} = \\begin{bmatrix}y & z \\\\ 1 & 5\\end{bmatrix}\\]",
       "definition": "Equal entries: <span style=\"color:#f08c00\">y = 4, z = 3, x = 1</span>",
       "tags": [
         "class-12",
@@ -221,7 +221,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.1 Q6(ii): [[x + y, 2], [5 + z, xy]] = [[6, 2], [5, 8]].",
+      "term": "Ex 3.1 Q6(ii):\\[\\begin{bmatrix}x + y & 2 \\\\ 5 + z & xy\\end{bmatrix} = \\begin{bmatrix}6 & 2 \\\\ 5 & 8\\end{bmatrix}\\]",
       "definition": "z = 0, x + y = 6, xy = 8: x, y are 2 and 4 in either order: <span style=\"color:#f08c00\">(x, y, z) = (2, 4, 0) or (4, 2, 0)</span>",
       "tags": [
         "class-12",
@@ -243,8 +243,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.1 Q7: [[a − b, 2a + c], [2a − b, 3c + d]] = [[−1, 5], [0, 13]].",
-      "definition": "a − b = −1 and 2a − b = 0 give a = 1, b = 2. Then 2 + c = 5 gives c = 3; 9 + d = 13 gives d = 4: <span style=\"color:#f08c00\">a = 1, b = 2, c = 3, d = 4</span>",
+      "term": "Ex 3.1 Q7:\\[\\begin{bmatrix}a - b & 2a + c \\\\ 2a - b & 3c + d\\end{bmatrix} = \\begin{bmatrix}-1 & 5 \\\\ 0 & 13\\end{bmatrix}\\]",
+      "definition": "a − b = −1 and 2a − b = 0 give a = 1, b = 2.\nThen 2 + c = 5 gives c = 3; 9 + d = 13 gives d = 4:\n<span style=\"color:#f08c00\">a = 1, b = 2, c = 3, d = 4</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -265,7 +265,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.1 Q9: for which x, y are [[3x + 7, 5], [y + 1, 2 − 3x]] and [[0, y − 2], [8, 4]] equal?",
+      "term": "Ex 3.1 Q9: for which x, y are\\[\\begin{bmatrix}3x + 7 & 5 \\\\ y + 1 & 2 - 3x\\end{bmatrix}\\]and\\[\\begin{bmatrix}0 & y - 2 \\\\ 8 & 4\\end{bmatrix}\\]equal?",
       "definition": "x = −7/3 and y = 7 from the first row and first column, but then 2 − 3x = 9 ≠ 4. <span style=\"color:#f08c00\">Not possible</span> (B)",
       "tags": [
         "class-12",
@@ -331,8 +331,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Example 9: X + Y = [[5, 2], [0, 9]] and X − Y = [[3, 6], [0, −1]]. Find X and Y.",
-      "definition": "Add: 2X = [[8, 8], [0, 8]], so X = <span style=\"color:#f08c00\">[[4, 4], [0, 4]]</span>. Subtract: 2Y = [[2, −4], [0, 10]], so Y = <span style=\"color:#f08c00\">[[1, −2], [0, 5]]</span>",
+      "term": "Example 9: X + Y =\\[\\begin{bmatrix}5 & 2 \\\\ 0 & 9\\end{bmatrix}\\]and X − Y =\\[\\begin{bmatrix}3 & 6 \\\\ 0 & -1\\end{bmatrix}\\]Find X and Y.",
+      "definition": "Add: 2X =\\[\\begin{bmatrix}8 & 8 \\\\ 0 & 8\\end{bmatrix}\\]so X =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}4 & 4 \\\\ 0 & 4\\end{bmatrix}\\]</span>Subtract: 2Y =\\[\\begin{bmatrix}2 & -4 \\\\ 0 & 10\\end{bmatrix}\\]so Y =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & -2 \\\\ 0 & 5\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -353,8 +353,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q1: A = [[2, 4], [3, 2]], B = [[1, 3], [−2, 5]], C = [[−2, 5], [3, 4]]. Find A + B, A − B, 3A − C.",
-      "definition": "A + B = <span style=\"color:#f08c00\">[[3, 7], [1, 7]]</span>, A − B = <span style=\"color:#f08c00\">[[1, 1], [5, −3]]</span>, 3A − C = [[6 + 2, 12 − 5], [9 − 3, 6 − 4]] = <span style=\"color:#f08c00\">[[8, 7], [6, 2]]</span>",
+      "term": "Ex 3.2 Q1: A =\\[\\begin{bmatrix}2 & 4 \\\\ 3 & 2\\end{bmatrix}\\]B =\\[\\begin{bmatrix}1 & 3 \\\\ -2 & 5\\end{bmatrix}\\]C =\\[\\begin{bmatrix}-2 & 5 \\\\ 3 & 4\\end{bmatrix}\\]Find A + B, A − B, 3A − C.",
+      "definition": "A + B =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}3 & 7 \\\\ 1 & 7\\end{bmatrix}\\]</span>A − B =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & 1 \\\\ 5 & -3\\end{bmatrix}\\]</span>3A − C =\\[\\begin{bmatrix}6 + 2 & 12 - 5 \\\\ 9 - 3 & 6 - 4\\end{bmatrix}\\]=<span style=\"color:#f08c00\">\\[\\begin{bmatrix}8 & 7 \\\\ 6 & 2\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -364,8 +364,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q2(i),(ii): [[a, b], [−b, a]] + [[a, b], [b, a]] and [[a² + b², b² + c²], [a² + c², a² + b²]] + [[2ab, 2bc], [−2ac, −2ab]].",
-      "definition": "(i) <span style=\"color:#f08c00\">[[2a, 2b], [0, 2a]]</span>. (ii) <span style=\"color:#f08c00\">[[(a + b)², (b + c)²], [(a − c)², (a − b)²]]</span>",
+      "term": "Ex 3.2 Q2(i),(ii):\\[\\begin{bmatrix}a & b \\\\ -b & a\\end{bmatrix} + \\begin{bmatrix}a & b \\\\ b & a\\end{bmatrix}\\]and\\[\\begin{bmatrix}a^{2} + b^{2} & b^{2} + c^{2} \\\\ a^{2} + c^{2} & a^{2} + b^{2}\\end{bmatrix} + \\begin{bmatrix}2ab & 2bc \\\\ -2ac & -2ab\\end{bmatrix}\\]",
+      "definition": "(i)<span style=\"color:#f08c00\">\\[\\begin{bmatrix}2a & 2b \\\\ 0 & 2a\\end{bmatrix}\\]</span>(ii)<span style=\"color:#f08c00\">\\[\\begin{bmatrix}(a + b)^{2} & (b + c)^{2} \\\\ (a - c)^{2} & (a - b)^{2}\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -375,8 +375,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q2(iii),(iv): [[−1, 4, −6], [8, 5, 16], [2, 8, 5]] + [[12, 7, 6], [8, 0, 5], [3, 2, 4]] and the cos²/sin² matrices.",
-      "definition": "(iii) <span style=\"color:#f08c00\">[[11, 11, 0], [16, 5, 21], [5, 10, 9]]</span>. (iv) [[cos²x + sin²x, sin²x + cos²x], [same, same]] = <span style=\"color:#f08c00\">[[1, 1], [1, 1]]</span>",
+      "term": "Ex 3.2 Q2(iii),(iv):\\[\\begin{bmatrix}-1 & 4 & -6 \\\\ 8 & 5 & 16 \\\\ 2 & 8 & 5\\end{bmatrix} + \\begin{bmatrix}12 & 7 & 6 \\\\ 8 & 0 & 5 \\\\ 3 & 2 & 4\\end{bmatrix}\\]and the cos²/sin² matrices.",
+      "definition": "(iii)<span style=\"color:#f08c00\">\\[\\begin{bmatrix}11 & 11 & 0 \\\\ 16 & 5 & 21 \\\\ 5 & 10 & 9\\end{bmatrix}\\]</span>(iv) [[cos²x + sin²x, sin²x + cos²x], [same, same]] =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & 1 \\\\ 1 & 1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -386,8 +386,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q4: A = [[1, 2, −3], [5, 0, 2], [1, −1, 1]], B = [[3, −1, 2], [4, 2, 5], [2, 0, 3]], C = [[4, 1, 2], [0, 3, 2], [1, −2, 3]]. Find A + B and B − C.",
-      "definition": "A + B = <span style=\"color:#f08c00\">[[4, 1, −1], [9, 2, 7], [3, −1, 4]]</span>, B − C = <span style=\"color:#f08c00\">[[−1, −2, 0], [4, −1, 3], [1, 2, 0]]</span>. Then A + (B − C) = (A + B) − C by associativity",
+      "term": "Ex 3.2 Q4: A =\\[\\begin{bmatrix}1 & 2 & -3 \\\\ 5 & 0 & 2 \\\\ 1 & -1 & 1\\end{bmatrix}\\]B =\\[\\begin{bmatrix}3 & -1 & 2 \\\\ 4 & 2 & 5 \\\\ 2 & 0 & 3\\end{bmatrix}\\]C =\\[\\begin{bmatrix}4 & 1 & 2 \\\\ 0 & 3 & 2 \\\\ 1 & -2 & 3\\end{bmatrix}\\]Find A + B and B − C.",
+      "definition": "A + B =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}4 & 1 & -1 \\\\ 9 & 2 & 7 \\\\ 3 & -1 & 4\\end{bmatrix}\\]</span>B − C =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}-1 & -2 & 0 \\\\ 4 & -1 & 3 \\\\ 1 & 2 & 0\\end{bmatrix}\\]</span>Then A + (B − C) = (A + B) − C by associativity",
       "tags": [
         "class-12",
         "mathematics",
@@ -397,7 +397,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q5: A = [[2/3, 1, 5/3], [1/3, 2/3, 4/3], [7/3, 2, 2/3]], B = [[2/5, 3/5, 1], [1/5, 2/5, 4/5], [7/5, 6/5, 2/5]]. Compute 3A − 5B.",
+      "term": "Ex 3.2 Q5: A =\\[\\begin{bmatrix}\\frac{2}{3} & 1 & \\frac{5}{3} \\\\ \\frac{1}{3} & \\frac{2}{3} & \\frac{4}{3} \\\\ \\frac{7}{3} & 2 & \\frac{2}{3}\\end{bmatrix}\\]B =\\[\\begin{bmatrix}\\frac{2}{5} & \\frac{3}{5} & 1 \\\\ \\frac{1}{5} & \\frac{2}{5} & \\frac{4}{5} \\\\ \\frac{7}{5} & \\frac{6}{5} & \\frac{2}{5}\\end{bmatrix}\\]Compute 3A − 5B.",
       "definition": "Each entry: 3aᵢⱼ − 5bᵢⱼ = 0 (for example 3·2/3 − 5·2/5 = 0): <span style=\"color:#f08c00\">the 3 × 3 zero matrix</span>",
       "tags": [
         "class-12",
@@ -408,8 +408,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q6: simplify cos θ [[cos θ, sin θ], [−sin θ, cos θ]] + sin θ [[sin θ, −cos θ], [cos θ, sin θ]].",
-      "definition": "Top-left cos²θ + sin²θ = 1, top-right cosθ sinθ − sinθ cosθ = 0, and so on: <span style=\"color:#f08c00\">I = [[1, 0], [0, 1]]</span>",
+      "term": "Ex 3.2 Q6: simplify\\[\\cos  \\theta \\begin{bmatrix}\\cos  \\theta & \\sin  \\theta \\\\ -\\sin  \\theta & \\cos  \\theta\\end{bmatrix} + \\sin  \\theta \\begin{bmatrix}\\sin  \\theta & -\\cos  \\theta \\\\ \\cos  \\theta & \\sin  \\theta\\end{bmatrix}\\]",
+      "definition": "Top-left cos²θ + sin²θ = 1, top-right cosθ sinθ − sinθ cosθ = 0, and so on:\n<span style=\"color:#f08c00\">I =\\[\\begin{bmatrix}1 & 0 \\\\ 0 & 1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -419,8 +419,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q7(i): X + Y = [[7, 0], [2, 5]] and X − Y = [[3, 0], [0, 3]]. Find X, Y.",
-      "definition": "X = ½(sum + difference) = <span style=\"color:#f08c00\">[[5, 0], [1, 4]]</span>, Y = ½(sum − difference) = <span style=\"color:#f08c00\">[[2, 0], [1, 1]]</span>",
+      "term": "Ex 3.2 Q7(i): X + Y =\\[\\begin{bmatrix}7 & 0 \\\\ 2 & 5\\end{bmatrix}\\]and X − Y =\\[\\begin{bmatrix}3 & 0 \\\\ 0 & 3\\end{bmatrix}\\]Find X, Y.",
+      "definition": "X = ½(sum + difference) =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}5 & 0 \\\\ 1 & 4\\end{bmatrix}\\]</span>Y = ½(sum − difference) =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}2 & 0 \\\\ 1 & 1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -430,8 +430,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q7(ii): 2X + 3Y = [[2, 3], [4, 0]] and 3X + 2Y = [[2, −2], [−1, 5]]. Find X, Y.",
-      "definition": "Eliminate: X = (3Q − 2P)/5 and Y = (3P − 2Q)/5 where P, Q are the two right-hand sides. That gives <span style=\"color:#f08c00\">X = [[2/5, −12/5], [−11/5, 3]]</span> and <span style=\"color:#f08c00\">Y = [[2/5, 13/5], [14/5, −2]]</span>. Check: 2X + 3Y top-left = 4/5 + 6/5 = 2 ✓",
+      "term": "Ex 3.2 Q7(ii): 2X + 3Y =\\[\\begin{bmatrix}2 & 3 \\\\ 4 & 0\\end{bmatrix}\\]and 3X + 2Y =\\[\\begin{bmatrix}2 & -2 \\\\ -1 & 5\\end{bmatrix}\\]Find X, Y.",
+      "definition": "Eliminate: X = (3Q − 2P)/5 and Y = (3P − 2Q)/5 where P, Q are the two right-hand sides.\nThat gives <span style=\"color:#f08c00\">X =\\[\\begin{bmatrix}\\frac{2}{5} & -\\frac{12}{5} \\\\ -\\frac{11}{5} & 3\\end{bmatrix}\\]</span>and <span style=\"color:#f08c00\">Y =\\[\\begin{bmatrix}\\frac{2}{5} & \\frac{13}{5} \\\\ \\frac{14}{5} & -2\\end{bmatrix}\\]</span>Check: 2X + 3Y top-left = 4/5 + 6/5 = 2 ✓",
       "tags": [
         "class-12",
         "mathematics",
@@ -441,8 +441,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q8: Y = [[3, 2], [1, 4]] and 2X + Y = [[1, 0], [−3, 2]]. Find X.",
-      "definition": "2X = [[1 − 3, 0 − 2], [−3 − 1, 2 − 4]] = [[−2, −2], [−4, −2]]: <span style=\"color:#f08c00\">X = [[−1, −1], [−2, −1]]</span>",
+      "term": "Ex 3.2 Q8: Y =\\[\\begin{bmatrix}3 & 2 \\\\ 1 & 4\\end{bmatrix}\\]and 2X + Y =\\[\\begin{bmatrix}1 & 0 \\\\ -3 & 2\\end{bmatrix}\\]Find X.",
+      "definition": "2X =\\[\\begin{bmatrix}1 - 3 & 0 - 2 \\\\ -3 - 1 & 2 - 4\\end{bmatrix} = \\begin{bmatrix}-2 & -2 \\\\ -4 & -2\\end{bmatrix}\\]:\n<span style=\"color:#f08c00\">X =\\[\\begin{bmatrix}-1 & -1 \\\\ -2 & -1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -452,8 +452,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q9: 2[[1, 3], [0, x]] + [[y, 0], [1, 2]] = [[5, 6], [1, 8]]. Find x, y.",
-      "definition": "LHS = [[2 + y, 6], [1, 2x + 2]]. So y = 3 and 2x + 2 = 8: <span style=\"color:#f08c00\">x = 3, y = 3</span>",
+      "term": "Ex 3.2 Q9:\\[2 \\begin{bmatrix}1 & 3 \\\\ 0 & x\\end{bmatrix} + \\begin{bmatrix}y & 0 \\\\ 1 & 2\\end{bmatrix} = \\begin{bmatrix}5 & 6 \\\\ 1 & 8\\end{bmatrix}\\]Find x, y.",
+      "definition": "LHS =\\[\\begin{bmatrix}2 + y & 6 \\\\ 1 & 2x + 2\\end{bmatrix}\\]So y = 3 and 2x + 2 = 8: <span style=\"color:#f08c00\">x = 3, y = 3</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -463,7 +463,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q10: 2[[x, z], [y, t]] + 3[[1, −1], [0, 2]] = 3[[3, 5], [4, 6]]. Solve.",
+      "term": "Ex 3.2 Q10:\\[2 \\begin{bmatrix}x & z \\\\ y & t\\end{bmatrix} + 3 \\begin{bmatrix}1 & -1 \\\\ 0 & 2\\end{bmatrix} = 3 \\begin{bmatrix}3 & 5 \\\\ 4 & 6\\end{bmatrix}\\]Solve.",
       "definition": "2x + 3 = 9, 2z − 3 = 15, 2y = 12, 2t + 6 = 18: <span style=\"color:#f08c00\">x = 3, y = 6, z = 9, t = 6</span>",
       "tags": [
         "class-12",
@@ -485,7 +485,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q12: 3[[x, y], [z, w]] = [[x, 6], [−1, 2w]] + [[4, x + y], [z + w, 3]].",
+      "term": "Ex 3.2 Q12:\\[3 \\begin{bmatrix}x & y \\\\ z & w\\end{bmatrix} = \\begin{bmatrix}x & 6 \\\\ -1 & 2w\\end{bmatrix} + \\begin{bmatrix}4 & x + y \\\\ z + w & 3\\end{bmatrix}\\]",
       "definition": "3x = x + 4, 3y = 6 + x + y, 3z = −1 + z + w, 3w = 2w + 3: <span style=\"color:#f08c00\">x = 2, y = 4, w = 3, z = 1</span>",
       "tags": [
         "class-12",
@@ -552,8 +552,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Example 12: A = [[6, 9], [2, 3]], B = [[2, 6, 0], [7, 9, 8]]. Find AB. Is BA defined?",
-      "definition": "AB is 2 × 3: <span style=\"color:#f08c00\">[[75, 117, 72], [25, 39, 24]]</span>. BA: B has 3 columns but A has 2 rows: <span style=\"color:#e5484d\">not defined</span>",
+      "term": "Example 12: A =\\[\\begin{bmatrix}6 & 9 \\\\ 2 & 3\\end{bmatrix}\\]B =\\[\\begin{bmatrix}2 & 6 & 0 \\\\ 7 & 9 & 8\\end{bmatrix}\\]Find AB. Is BA defined?",
+      "definition": "AB is 2 × 3:<span style=\"color:#f08c00\">\\[\\begin{bmatrix}75 & 117 & 72 \\\\ 25 & 39 & 24\\end{bmatrix}\\]</span>BA: B has 3 columns but A has 2 rows: <span style=\"color:#e5484d\">not defined</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -564,7 +564,7 @@
     {
       "noteType": "basic",
       "term": "If AB is defined, is BA defined? When are both defined?",
-      "definition": "<span style=\"color:#e5484d\">Not necessarily</span>. For A (m × n), B (k × l): both AB and BA exist iff n = k and l = m. For square matrices of the same order both always exist",
+      "definition": "<span style=\"color:#e5484d\">Not necessarily</span>. For A (m × n), B (k × l): both AB and BA exist iff n = k and l = m.\nFor square matrices of the same order both always exist",
       "tags": [
         "class-12",
         "mathematics",
@@ -575,7 +575,7 @@
     {
       "noteType": "basic",
       "term": "Is matrix multiplication commutative?",
-      "definition": "<span style=\"color:#e5484d\">No</span>: AB ≠ BA in general (they may even have different orders). Example 14: A = [[1, 0], [0, −1]], B = [[0, 1], [1, 0]] give AB = [[0, 1], [−1, 0]] but BA = [[0, −1], [1, 0]]",
+      "definition": "<span style=\"color:#e5484d\">No</span>: AB ≠ BA in general (they may even have different orders).\nExample 14: A =\\[\\begin{bmatrix}1 & 0 \\\\ 0 & -1\\end{bmatrix}\\]B =\\[\\begin{bmatrix}0 & 1 \\\\ 1 & 0\\end{bmatrix}\\]give AB =\\[\\begin{bmatrix}0 & 1 \\\\ -1 & 0\\end{bmatrix}\\]but BA =\\[\\begin{bmatrix}0 & -1 \\\\ 1 & 0\\end{bmatrix}\\]",
       "tags": [
         "class-12",
         "mathematics",
@@ -586,7 +586,7 @@
     {
       "noteType": "basic",
       "term": "When is AB = BA guaranteed?",
-      "definition": "Diagonal matrices of the same order commute. Also A commutes with <span style=\"color:#3b82f6\">I, O, and any scalar matrix kI</span>, with itself and its powers, and with polynomials in A",
+      "definition": "Diagonal matrices of the same order commute.\nAlso A commutes with <span style=\"color:#3b82f6\">I, O, and any scalar matrix kI</span>, with itself and its powers, and with polynomials in A",
       "tags": [
         "class-12",
         "mathematics",
@@ -596,7 +596,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Example 15: A = [[0, −1], [0, 2]], B = [[3, 5], [0, 0]]. Find AB. What does it show?",
+      "term": "Example 15: A =\\[\\begin{bmatrix}0 & -1 \\\\ 0 & 2\\end{bmatrix}\\]B =\\[\\begin{bmatrix}3 & 5 \\\\ 0 & 0\\end{bmatrix}\\]Find AB. What does it show?",
       "definition": "AB = <span style=\"color:#f08c00\">O</span>. So <span style=\"color:#e5484d\">AB = O does not imply A = O or B = O</span> (real numbers behave differently)",
       "tags": [
         "class-12",
@@ -607,8 +607,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Trap: does AB = AC imply B = C?",
-      "definition": "<span style=\"color:#e5484d\">No</span> (no cancellation law). A(B − C) = O does not force B = C when A ≠ O. Example: A = [[1, 1], [1, 1]], B = [[1, 0], [0, 1]], C = [[0, 1], [1, 0]] give AB = AC",
+      "term": "<b>Trap:</b> does AB = AC imply B = C?",
+      "definition": "<span style=\"color:#e5484d\">No</span> (no cancellation law).\nA(B − C) = O does not force B = C when A ≠ O. Example: A =\\[\\begin{bmatrix}1 & 1 \\\\ 1 & 1\\end{bmatrix}\\]B =\\[\\begin{bmatrix}1 & 0 \\\\ 0 & 1\\end{bmatrix}\\]C =\\[\\begin{bmatrix}0 & 1 \\\\ 1 & 0\\end{bmatrix}\\]give AB = AC",
       "tags": [
         "class-12",
         "mathematics",
@@ -629,7 +629,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Trap: (A + B)² = A² + 2AB + B²?",
+      "term": "<b>Trap:</b> (A + B)² = A² + 2AB + B²?",
       "definition": "<span style=\"color:#e5484d\">Not in general</span>. (A + B)² = A² + AB + BA + B², and AB ≠ BA. True only when AB = BA. Likewise (AB)² ≠ A²B² in general and A² − B² ≠ (A − B)(A + B)",
       "tags": [
         "class-12",
@@ -651,8 +651,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Example 18: A = [[1, 2, 3], [3, −2, 1], [4, 2, 1]]. Show A³ − 23A − 40I = O.",
-      "definition": "A² = [[19, 4, 8], [1, 12, 8], [14, 6, 15]], A³ = [[63, 46, 69], [69, −6, 23], [92, 46, 63]]. Then A³ − 23A − 40I = O entry by entry. (Cayley–Hamilton: a matrix satisfies its own characteristic equation)",
+      "term": "Example 18: A =\\[\\begin{bmatrix}1 & 2 & 3 \\\\ 3 & -2 & 1 \\\\ 4 & 2 & 1\\end{bmatrix}\\]Show A³ − 23A − 40I = O.",
+      "definition": "A² =\\[\\begin{bmatrix}19 & 4 & 8 \\\\ 1 & 12 & 8 \\\\ 14 & 6 & 15\\end{bmatrix}\\]A³ =\\[\\begin{bmatrix}63 & 46 & 69 \\\\ 69 & -6 & 23 \\\\ 92 & 46 & 63\\end{bmatrix}\\]Then A³ − 23A − 40I = O entry by entry. (Cayley–Hamilton: a matrix satisfies its own characteristic equation)",
       "tags": [
         "class-12",
         "mathematics",
@@ -662,8 +662,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q1(iv),(v): AB and BA for A = [[2, 4], [3, 2]], B = [[1, 3], [−2, 5]].",
-      "definition": "AB = <span style=\"color:#f08c00\">[[−6, 26], [−1, 19]]</span> and BA = <span style=\"color:#f08c00\">[[11, 10], [11, 2]]</span>. Different, so AB ≠ BA",
+      "term": "Ex 3.2 Q1(iv),(v): AB and BA for A =\\[\\begin{bmatrix}2 & 4 \\\\ 3 & 2\\end{bmatrix}\\]B =\\[\\begin{bmatrix}1 & 3 \\\\ -2 & 5\\end{bmatrix}\\]",
+      "definition": "AB =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}-6 & 26 \\\\ -1 & 19\\end{bmatrix}\\]</span>and BA =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}11 & 10 \\\\ 11 & 2\\end{bmatrix}\\]</span>Different, so AB ≠ BA",
       "tags": [
         "class-12",
         "mathematics",
@@ -673,7 +673,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q3(i): [[a, b], [−b, a]] [[a, −b], [b, a]].",
+      "term": "Ex 3.2 Q3(i):\\[\\begin{bmatrix}a & b \\\\ -b & a\\end{bmatrix} \\begin{bmatrix}a & -b \\\\ b & a\\end{bmatrix}\\]",
       "definition": "Top-left a² + b², top-right −ab + ab = 0, bottom-left −ab + ab = 0, bottom-right b² + a²: <span style=\"color:#f08c00\">(a² + b²) I</span>",
       "tags": [
         "class-12",
@@ -685,7 +685,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.2 Q3(ii): the column [1, 2, 3]ᵀ times the row [2, 3, 4].",
-      "definition": "A 3 × 1 times a 1 × 3 gives a 3 × 3 (outer product): <span style=\"color:#f08c00\">[[2, 3, 4], [4, 6, 8], [6, 9, 12]]</span>",
+      "definition": "A 3 × 1 times a 1 × 3 gives a 3 × 3 (outer product):<span style=\"color:#f08c00\">\\[\\begin{bmatrix}2 & 3 & 4 \\\\ 4 & 6 & 8 \\\\ 6 & 9 & 12\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -695,8 +695,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q3(iii): [[1, −2], [2, 3]] [[1, 2, 3], [2, 3, 1]].",
-      "definition": "2 × 2 by 2 × 3 is 2 × 3: <span style=\"color:#f08c00\">[[−3, −4, 1], [8, 13, 9]]</span>",
+      "term": "Ex 3.2 Q3(iii):\\[\\begin{bmatrix}1 & -2 \\\\ 2 & 3\\end{bmatrix} \\begin{bmatrix}1 & 2 & 3 \\\\ 2 & 3 & 1\\end{bmatrix}\\]",
+      "definition": "2 × 2 by 2 × 3 is 2 × 3:<span style=\"color:#f08c00\">\\[\\begin{bmatrix}-3 & -4 & 1 \\\\ 8 & 13 & 9\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -706,8 +706,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q3(iv): [[2, 3, 4], [3, 4, 5], [4, 5, 6]] [[1, −3, 5], [0, 2, 4], [3, 0, 5]].",
-      "definition": "<span style=\"color:#f08c00\">[[14, 0, 42], [18, −1, 56], [22, −2, 70]]</span>",
+      "term": "Ex 3.2 Q3(iv):\\[\\begin{bmatrix}2 & 3 & 4 \\\\ 3 & 4 & 5 \\\\ 4 & 5 & 6\\end{bmatrix} \\begin{bmatrix}1 & -3 & 5 \\\\ 0 & 2 & 4 \\\\ 3 & 0 & 5\\end{bmatrix}\\]",
+      "definition": "<span style=\"color:#f08c00\">\\[\\begin{bmatrix}14 & 0 & 42 \\\\ 18 & -1 & 56 \\\\ 22 & -2 & 70\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -717,8 +717,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q3(v): [[2, 1], [3, 2], [−1, 1]] [[1, 0, 1], [−1, 2, 1]].",
-      "definition": "3 × 2 by 2 × 3 is 3 × 3: <span style=\"color:#f08c00\">[[1, 2, 3], [1, 4, 5], [−2, 2, 0]]</span>",
+      "term": "Ex 3.2 Q3(v):\\[\\begin{bmatrix}2 & 1 \\\\ 3 & 2 \\\\ -1 & 1\\end{bmatrix} \\begin{bmatrix}1 & 0 & 1 \\\\ -1 & 2 & 1\\end{bmatrix}\\]",
+      "definition": "3 × 2 by 2 × 3 is 3 × 3:<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & 2 & 3 \\\\ 1 & 4 & 5 \\\\ -2 & 2 & 0\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -728,8 +728,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q3(vi): [[3, −1, 3], [−1, 0, 2]] [[2, −3], [1, 0], [3, 1]].",
-      "definition": "2 × 3 by 3 × 2 is 2 × 2: <span style=\"color:#f08c00\">[[14, −6], [4, 5]]</span>",
+      "term": "Ex 3.2 Q3(vi):\\[\\begin{bmatrix}3 & -1 & 3 \\\\ -1 & 0 & 2\\end{bmatrix} \\begin{bmatrix}2 & -3 \\\\ 1 & 0 \\\\ 3 & 1\\end{bmatrix}\\]",
+      "definition": "2 × 3 by 3 × 2 is 2 × 2:<span style=\"color:#f08c00\">\\[\\begin{bmatrix}14 & -6 \\\\ 4 & 5\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -739,7 +739,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q13: F(x) = [[cos x, −sin x, 0], [sin x, cos x, 0], [0, 0, 1]]. Show F(x)F(y) = F(x + y).",
+      "term": "Ex 3.2 Q13: F(x) =\\[\\begin{bmatrix}\\cos  x & -\\sin  x & 0 \\\\ \\sin  x & \\cos  x & 0 \\\\ 0 & 0 & 1\\end{bmatrix}\\]Show F(x)F(y) = F(x + y).",
       "definition": "Top-left: cos x cos y − sin x sin y = cos(x + y); top-right: −cos x sin y − sin x cos y = −sin(x + y); and so on. <span style=\"color:#22a35a\">Rotations about the z-axis compose by adding angles</span>",
       "tags": [
         "class-12",
@@ -750,8 +750,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q14(i): show [[5, −1], [6, 7]][[2, 1], [3, 4]] ≠ [[2, 1], [3, 4]][[5, −1], [6, 7]].",
-      "definition": "Left: [[7, 1], [33, 34]]. Right: [[16, 5], [39, 25]]. <span style=\"color:#e5484d\">Different</span>",
+      "term": "Ex 3.2 Q14(i): show\\[\\begin{bmatrix}5 & -1 \\\\ 6 & 7\\end{bmatrix} \\begin{bmatrix}2 & 1 \\\\ 3 & 4\\end{bmatrix} \\neq \\begin{bmatrix}2 & 1 \\\\ 3 & 4\\end{bmatrix} \\begin{bmatrix}5 & -1 \\\\ 6 & 7\\end{bmatrix}\\]",
+      "definition": "Left:\\[\\begin{bmatrix}7 & 1 \\\\ 33 & 34\\end{bmatrix}\\]Right:\\[\\begin{bmatrix}16 & 5 \\\\ 39 & 25\\end{bmatrix}\\]<span style=\"color:#e5484d\">Different</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -762,7 +762,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.2 Q14(ii): the 3 × 3 non-commutativity example.",
-      "definition": "One order gives [[5, 8, 14], [0, −1, 1], [−1, 0, 1]], the other [[−1, −1, −3], [1, 0, 0], [6, 11, 6]]: <span style=\"color:#e5484d\">not equal</span>",
+      "definition": "One order gives\\[\\begin{bmatrix}5 & 8 & 14 \\\\ 0 & -1 & 1 \\\\ -1 & 0 & 1\\end{bmatrix}\\]the other\\[\\begin{bmatrix}-1 & -1 & -3 \\\\ 1 & 0 & 0 \\\\ 6 & 11 & 6\\end{bmatrix}\\]: <span style=\"color:#e5484d\">not equal</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -772,8 +772,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q15: A = [[2, 0, 1], [2, 1, 3], [1, −1, 0]]. Find A² − 5A + 6I.",
-      "definition": "A² = [[5, −1, 2], [9, −2, 5], [0, −1, −2]]. Then A² − 5A + 6I = <span style=\"color:#f08c00\">[[1, −1, −3], [−1, −1, −10], [−5, 4, 4]]</span>",
+      "term": "Ex 3.2 Q15: A =\\[\\begin{bmatrix}2 & 0 & 1 \\\\ 2 & 1 & 3 \\\\ 1 & -1 & 0\\end{bmatrix}\\]Find A² − 5A + 6I.",
+      "definition": "A² =\\[\\begin{bmatrix}5 & -1 & 2 \\\\ 9 & -2 & 5 \\\\ 0 & -1 & -2\\end{bmatrix}\\]Then A² − 5A + 6I =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & -1 & -3 \\\\ -1 & -1 & -10 \\\\ -5 & 4 & 4\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -783,7 +783,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q16: A = [[1, 0, 2], [0, 2, 1], [2, 0, 3]]. Prove A³ − 6A² + 7A + 2I = O.",
+      "term": "Ex 3.2 Q16: A =\\[\\begin{bmatrix}1 & 0 & 2 \\\\ 0 & 2 & 1 \\\\ 2 & 0 & 3\\end{bmatrix}\\]Prove A³ − 6A² + 7A + 2I = O.",
       "definition": "Compute A² and A³, then combine entry by entry: every entry cancels to 0. <span style=\"color:#22a35a\">✓</span> (Cayley–Hamilton again)",
       "tags": [
         "class-12",
@@ -794,8 +794,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q17: A = [[3, −2], [4, −2]]. Find k with A² = kA − 2I.",
-      "definition": "A² = [[1, −2], [4, −4]] and kA − 2I = [[3k − 2, −2k], [4k, −2k − 2]]. Then k = 1 fits every entry: <span style=\"color:#f08c00\">k = 1</span>",
+      "term": "Ex 3.2 Q17: A =\\[\\begin{bmatrix}3 & -2 \\\\ 4 & -2\\end{bmatrix}\\]Find k with A² = kA − 2I.",
+      "definition": "A² =\\[\\begin{bmatrix}1 & -2 \\\\ 4 & -4\\end{bmatrix}\\]and kA − 2I =\\[\\begin{bmatrix}3k - 2 & -2k \\\\ 4k & -2k - 2\\end{bmatrix}\\]Then k = 1 fits every entry:\n<span style=\"color:#f08c00\">k = 1</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -805,8 +805,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q18: A = [[0, −tan(α/2)], [tan(α/2), 0]]. Show I + A = (I − A)[[cos α, −sin α], [sin α, cos α]].",
-      "definition": "With t = tan(α/2): cos α = (1 − t²)/(1 + t²), sin α = 2t/(1 + t²). Multiply out (I − A)(rotation) = [[1, t], [−t, 1]] · [[cos α, −sin α], [sin α, cos α]] and simplify to [[1, −t], [t, 1]] = I + A. <span style=\"color:#22a35a\">✓</span>",
+      "term": "Ex 3.2 Q18: A =\\[\\begin{bmatrix}0 & -\\tan (\\alpha /2) \\\\ \\tan (\\alpha /2) & 0\\end{bmatrix}\\]Show I + A =\\[(I - A) \\begin{bmatrix}\\cos  \\alpha & -\\sin  \\alpha \\\\ \\sin  \\alpha & \\cos  \\alpha\\end{bmatrix}\\]",
+      "definition": "With t = tan(α/2): cos α = (1 − t²)/(1 + t²), sin α = 2t/(1 + t²).\nMultiply out (I − A)(rotation) =\\[\\begin{bmatrix}1 & t \\\\ -t & 1\\end{bmatrix} \\cdot \\begin{bmatrix}\\cos  \\alpha & -\\sin  \\alpha \\\\ \\sin  \\alpha & \\cos  \\alpha\\end{bmatrix}\\]and simplify to\\[\\begin{bmatrix}1 & -t \\\\ t & 1\\end{bmatrix}\\]= I + A. <span style=\"color:#22a35a\">✓</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -816,8 +816,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q19: ₹30 000 is split between bonds paying 5% and 7%. How much in each to earn (a) ₹1800 (b) ₹2000?",
-      "definition": "Let x and 30 000 − x: 0.05x + 0.07(30 000 − x) = interest. (a) 2100 − 0.02x = 1800 gives <span style=\"color:#f08c00\">₹15 000 and ₹15 000</span>. (b) 2100 − 0.02x = 2000 gives <span style=\"color:#f08c00\">₹5 000 and ₹25 000</span>",
+      "term": "Ex 3.2 Q19: ₹30 000 is split between bonds paying 5% and 7%. How much in each to earn\n(a) ₹1800\n(b) ₹2000?",
+      "definition": "Let x and 30 000 − x: 0.05x + 0.07(30 000 − x) = interest.\n(a) 2100 − 0.02x = 1800 gives <span style=\"color:#f08c00\">₹15 000 and ₹15 000</span>.\n(b) 2100 − 0.02x = 2000 gives <span style=\"color:#f08c00\">₹5 000 and ₹25 000</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -839,7 +839,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.2 Q21: X is 2 × n, Y is 3 × k, Z is 2 × p, W is n × 3, P is p × k. When is PY + WY defined?",
-      "definition": "PY = (p × k)(3 × k) needs k = 3 and then has order p × 3. WY = (n × 3)(3 × k) has order n × 3. To add them the orders must agree: p = n. <span style=\"color:#22a35a\">(A) k = 3, p = n</span>",
+      "definition": "PY = (p × k)(3 × k) needs k = 3 and then has order p × 3.\nWY = (n × 3)(3 × k) has order n × 3.\nTo add them the orders must agree: p = n. <span style=\"color:#22a35a\">(A) k = 3, p = n</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -849,7 +849,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.2 Q22: if n = p, the order of 7X − 5Z is (A) p × 2 (B) 2 × n (C) n × 3 (D) p × n",
+      "term": "Ex 3.2 Q22: if n = p, the order of 7X − 5Z is\n(A) p × 2\n(B) 2 × n\n(C) n × 3\n(D) p × n",
       "definition": "X is 2 × n and Z is 2 × p = 2 × n, so the combination is <span style=\"color:#22a35a\">(B) 2 × n</span>",
       "tags": [
         "class-12",
@@ -882,7 +882,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Trap: (AB)′ = A′B′?",
+      "term": "<b>Trap:</b> (AB)′ = A′B′?",
       "definition": "<span style=\"color:#e5484d\">No</span>. It is <span style=\"color:#3b82f6\">B′A′</span>. A′B′ may not even be defined: A (2 × 3), B (3 × 4): AB′s transpose is 4 × 2 = (4 × 3)(3 × 2) = B′A′",
       "tags": [
         "class-12",
@@ -893,8 +893,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q1: transposes of the column [5, 1/2, −1]ᵀ, of [[1, −1], [2, 3]] and of [[−1, 5, 6], [√3, 5, 6], [2, 3, −1]].",
-      "definition": "(i) the row <span style=\"color:#f08c00\">[5, 1/2, −1]</span>. (ii) <span style=\"color:#f08c00\">[[1, 2], [−1, 3]]</span>. (iii) <span style=\"color:#f08c00\">[[−1, √3, 2], [5, 5, 3], [6, 6, −1]]</span>",
+      "term": "Ex 3.3 Q1: transposes of the column [5, 1/2, −1]ᵀ, of\\[\\begin{bmatrix}1 & -1 \\\\ 2 & 3\\end{bmatrix}\\]and of\\[\\begin{bmatrix}-1 & 5 & 6 \\\\ \\sqrt{3} & 5 & 6 \\\\ 2 & 3 & -1\\end{bmatrix}\\]",
+      "definition": "(i) the row <span style=\"color:#f08c00\">[5, 1/2, −1]</span>.\n(ii)<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & 2 \\\\ -1 & 3\\end{bmatrix}\\]</span>(iii)<span style=\"color:#f08c00\">\\[\\begin{bmatrix}-1 & \\sqrt{3} & 2 \\\\ 5 & 5 & 3 \\\\ 6 & 6 & -1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -904,8 +904,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q4: A′ = [[−2, 3], [1, 2]] and B = [[−1, 0], [1, 2]]. Find (A + 2B)′.",
-      "definition": "A = [[−2, 1], [3, 2]]; A + 2B = [[−4, 1], [5, 6]]; transpose <span style=\"color:#f08c00\">[[−4, 5], [1, 6]]</span>. Or use (A + 2B)′ = A′ + 2B′",
+      "term": "Ex 3.3 Q4: A′ =\\[\\begin{bmatrix}-2 & 3 \\\\ 1 & 2\\end{bmatrix}\\]and B =\\[\\begin{bmatrix}-1 & 0 \\\\ 1 & 2\\end{bmatrix}\\]Find (A + 2B)′.",
+      "definition": "A =\\[\\begin{bmatrix}-2 & 1 \\\\ 3 & 2\\end{bmatrix}\\]A + 2B =\\[\\begin{bmatrix}-4 & 1 \\\\ 5 & 6\\end{bmatrix}\\]transpose<span style=\"color:#f08c00\">\\[\\begin{bmatrix}-4 & 5 \\\\ 1 & 6\\end{bmatrix}\\]</span>Or use (A + 2B)′ = A′ + 2B′",
       "tags": [
         "class-12",
         "mathematics",
@@ -916,7 +916,7 @@
     {
       "noteType": "basic",
       "term": "Ex 3.3 Q5(i): A = [1, −4, 3]ᵀ, B = [−1, 2, 1]. Verify (AB)′ = B′A′.",
-      "definition": "AB = [[−1, 2, 1], [4, −8, −4], [−3, 6, 3]] (3 × 3); its transpose equals B′A′ = the column [−1, 2, 1]ᵀ times the row [1, −4, 3]. <span style=\"color:#22a35a\">✓</span>",
+      "definition": "AB =\\[\\begin{bmatrix}-1 & 2 & 1 \\\\ 4 & -8 & -4 \\\\ -3 & 6 & 3\\end{bmatrix}\\](3 × 3); its transpose equals B′A′ = the column [−1, 2, 1]ᵀ times the row [1, −4, 3]. <span style=\"color:#22a35a\">✓</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -926,8 +926,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q6: A = [[cos α, sin α], [−sin α, cos α]]. Verify A′A = I.",
-      "definition": "A′A = [[cos²α + sin²α, 0], [0, sin²α + cos²α]] = <span style=\"color:#f08c00\">I</span> (A is an orthogonal / rotation matrix: A′ = A⁻¹)",
+      "term": "Ex 3.3 Q6: A =\\[\\begin{bmatrix}\\cos  \\alpha & \\sin  \\alpha \\\\ -\\sin  \\alpha & \\cos  \\alpha\\end{bmatrix}\\]Verify A′A = I.",
+      "definition": "A′A =\\[\\begin{bmatrix}\\cos ^{2}\\alpha  + \\sin ^{2}\\alpha & 0 \\\\ 0 & \\sin ^{2}\\alpha  + \\cos ^{2}\\alpha\\end{bmatrix}\\]= <span style=\"color:#f08c00\">I</span> (A is an orthogonal / rotation matrix: A′ = A⁻¹)",
       "tags": [
         "class-12",
         "mathematics",
@@ -1009,8 +1009,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q7: show [[1, −1, 5], [−1, 2, 1], [5, 1, 3]] is symmetric and [[0, 1, −1], [−1, 0, 1], [1, −1, 0]] is skew-symmetric.",
-      "definition": "First: equals its transpose (mirror entries match: −1, 5, 1). Second: zero diagonal and mirror entries are opposites: 1 vs −1, −1 vs 1, 1 vs −1. <span style=\"color:#22a35a\">✓</span>",
+      "term": "Ex 3.3 Q7: show\\[\\begin{bmatrix}1 & -1 & 5 \\\\ -1 & 2 & 1 \\\\ 5 & 1 & 3\\end{bmatrix}\\]is symmetric and\\[\\begin{bmatrix}0 & 1 & -1 \\\\ -1 & 0 & 1 \\\\ 1 & -1 & 0\\end{bmatrix}\\]is skew-symmetric.",
+      "definition": "First: equals its transpose (mirror entries match: −1, 5, 1).\nSecond: zero diagonal and mirror entries are opposites: 1 vs −1, −1 vs 1, 1 vs −1. <span style=\"color:#22a35a\">✓</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1020,8 +1020,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q8: A = [[1, 5], [6, 7]]. Verify A + A′ is symmetric and A − A′ is skew-symmetric.",
-      "definition": "A + A′ = [[2, 11], [11, 14]] (symmetric); A − A′ = [[0, −1], [1, 0]] (skew-symmetric). <span style=\"color:#22a35a\">✓</span>",
+      "term": "Ex 3.3 Q8: A =\\[\\begin{bmatrix}1 & 5 \\\\ 6 & 7\\end{bmatrix}\\]Verify A + A′ is symmetric and A − A′ is skew-symmetric.",
+      "definition": "A + A′ =\\[\\begin{bmatrix}2 & 11 \\\\ 11 & 14\\end{bmatrix}\\](symmetric); A − A′ =\\[\\begin{bmatrix}0 & -1 \\\\ 1 & 0\\end{bmatrix}\\](skew-symmetric). <span style=\"color:#22a35a\">✓</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1031,7 +1031,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q9: find ½(A + A′) and ½(A − A′) for A = [[0, a, b], [−a, 0, c], [−b, −c, 0]].",
+      "term": "Ex 3.3 Q9: find ½(A + A′) and ½(A − A′) for A =\\[\\begin{bmatrix}0 & a & b \\\\ -a & 0 & c \\\\ -b & -c & 0\\end{bmatrix}\\]",
       "definition": "A is already skew-symmetric: ½(A + A′) = <span style=\"color:#f08c00\">O (zero matrix)</span> and ½(A − A′) = <span style=\"color:#f08c00\">A itself</span>",
       "tags": [
         "class-12",
@@ -1042,8 +1042,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q10(i): write [[3, 5], [1, −1]] as symmetric + skew-symmetric.",
-      "definition": "Symmetric part [[3, 3], [3, −1]], skew part [[0, 2], [−2, 0]]: <span style=\"color:#f08c00\">[[3, 3], [3, −1]] + [[0, 2], [−2, 0]]</span>",
+      "term": "Ex 3.3 Q10(i): write\\[\\begin{bmatrix}3 & 5 \\\\ 1 & -1\\end{bmatrix}\\]as symmetric + skew-symmetric.",
+      "definition": "Symmetric part\\[\\begin{bmatrix}3 & 3 \\\\ 3 & -1\\end{bmatrix}\\]skew part\\[\\begin{bmatrix}0 & 2 \\\\ -2 & 0\\end{bmatrix}\\]:<span style=\"color:#f08c00\">\\[\\begin{bmatrix}3 & 3 \\\\ 3 & -1\\end{bmatrix} + \\begin{bmatrix}0 & 2 \\\\ -2 & 0\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1053,7 +1053,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q10(ii): [[6, −2, 2], [−2, 3, −1], [2, −1, 3]].",
+      "term": "Ex 3.3 Q10(ii):\\[\\begin{bmatrix}6 & -2 & 2 \\\\ -2 & 3 & -1 \\\\ 2 & -1 & 3\\end{bmatrix}\\]",
       "definition": "It is already symmetric: <span style=\"color:#f08c00\">symmetric part = A, skew part = O</span>",
       "tags": [
         "class-12",
@@ -1064,8 +1064,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q10(iii): [[3, 3, −1], [−2, −2, 1], [−4, −5, 2]].",
-      "definition": "Symmetric ½(A + A′) = [[3, 1/2, −5/2], [1/2, −2, −2], [−5/2, −2, 2]]; skew ½(A − A′) = <span style=\"color:#f08c00\">[[0, 5/2, 3/2], [−5/2, 0, 3], [−3/2, −3, 0]]</span>",
+      "term": "Ex 3.3 Q10(iii):\\[\\begin{bmatrix}3 & 3 & -1 \\\\ -2 & -2 & 1 \\\\ -4 & -5 & 2\\end{bmatrix}\\]",
+      "definition": "Symmetric ½(A + A′) =\\[\\begin{bmatrix}3 & \\frac{1}{2} & -\\frac{5}{2} \\\\ \\frac{1}{2} & -2 & -2 \\\\ -\\frac{5}{2} & -2 & 2\\end{bmatrix}\\]skew ½(A − A′) =<span style=\"color:#f08c00\">\\[\\begin{bmatrix}0 & \\frac{5}{2} & \\frac{3}{2} \\\\ -\\frac{5}{2} & 0 & 3 \\\\ -\\frac{3}{2} & -3 & 0\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1075,8 +1075,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q10(iv): [[1, 5], [−1, 2]].",
-      "definition": "Symmetric [[1, 2], [2, 2]], skew [[0, 3], [−3, 0]]: <span style=\"color:#f08c00\">[[1, 2], [2, 2]] + [[0, 3], [−3, 0]]</span>",
+      "term": "Ex 3.3 Q10(iv):\\[\\begin{bmatrix}1 & 5 \\\\ -1 & 2\\end{bmatrix}\\]",
+      "definition": "Symmetric\\[\\begin{bmatrix}1 & 2 \\\\ 2 & 2\\end{bmatrix}\\]skew\\[\\begin{bmatrix}0 & 3 \\\\ -3 & 0\\end{bmatrix}\\]:<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & 2 \\\\ 2 & 2\\end{bmatrix} + \\begin{bmatrix}0 & 3 \\\\ -3 & 0\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1086,7 +1086,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q11: if A, B are symmetric of the same order, AB − BA is (A) skew-symmetric (B) symmetric (C) zero (D) identity",
+      "term": "Ex 3.3 Q11: if A, B are symmetric of the same order, AB − BA is\n(A) skew-symmetric\n(B) symmetric\n(C) zero\n(D) identity",
       "definition": "(AB − BA)′ = B′A′ − A′B′ = BA − AB = −(AB − BA): <span style=\"color:#22a35a\">(A) skew-symmetric</span>",
       "tags": [
         "class-12",
@@ -1097,7 +1097,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.3 Q12: A = [[cos α, −sin α], [sin α, cos α]] and A + A′ = I. Then α = ?",
+      "term": "Ex 3.3 Q12: A =\\[\\begin{bmatrix}\\cos  \\alpha & -\\sin  \\alpha \\\\ \\sin  \\alpha & \\cos  \\alpha\\end{bmatrix}\\]and A + A′ = I. Then α = ?",
       "definition": "A + A′ = 2 cos α · I = I so cos α = ½: <span style=\"color:#22a35a\">(B) π/3</span>",
       "tags": [
         "class-12",
@@ -1174,8 +1174,8 @@
     },
     {
       "noteType": "basic",
-      "term": "The book’s example: A = [[2, 3], [1, 2]] and B = [[2, −3], [−1, 2]]. Are they inverses?",
-      "definition": "AB = [[4 − 3, −6 + 6], [2 − 2, −3 + 4]] = <span style=\"color:#f08c00\">I</span> and BA = I. So B = A⁻¹",
+      "term": "The book’s example: A =\\[\\begin{bmatrix}2 & 3 \\\\ 1 & 2\\end{bmatrix}\\]and B =\\[\\begin{bmatrix}2 & -3 \\\\ -1 & 2\\end{bmatrix}\\]Are they inverses?",
+      "definition": "AB =\\[\\begin{bmatrix}4 - 3 & -6 + 6 \\\\ 2 - 2 & -3 + 4\\end{bmatrix}\\]= <span style=\"color:#f08c00\">I</span> and BA = I. So B = A⁻¹",
       "tags": [
         "class-12",
         "mathematics",
@@ -1214,7 +1214,7 @@
     {
       "noteType": "basic",
       "term": "Theorem 4: (AB)⁻¹ = ?",
-      "definition": "<span style=\"color:#3b82f6\">B⁻¹A⁻¹</span>: undo the last operation first. Proof: (AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹ = AA⁻¹ = I. Similarly (ABC)⁻¹ = C⁻¹B⁻¹A⁻¹",
+      "definition": "<span style=\"color:#3b82f6\">B⁻¹A⁻¹</span>: undo the last operation first.\nProof: (AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹ = AA⁻¹ = I. Similarly (ABC)⁻¹ = C⁻¹B⁻¹A⁻¹",
       "tags": [
         "class-12",
         "mathematics",
@@ -1235,7 +1235,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 3.4 Q1: matrices A and B are inverses of each other only if (A) AB = BA (B) AB = BA = O (C) AB = O, BA = I (D) AB = BA = I",
+      "term": "Ex 3.4 Q1: matrices A and B are inverses of each other only if\n(A) AB = BA\n(B) AB = BA = O\n(C) AB = O, BA = I\n(D) AB = BA = I",
       "definition": "<span style=\"color:#22a35a\">(D) AB = BA = I</span>",
       "tags": [
         "class-12",
@@ -1247,7 +1247,7 @@
     {
       "noteType": "basic",
       "term": "Which is true: AB = I ⇒ BA = I?",
-      "definition": "For <span style=\"color:#3b82f6\">square</span> matrices of the same order, yes (a one-sided inverse is two-sided). This can fail for non-square matrices",
+      "definition": "For <span style=\"color:#3b82f6\">square</span> matrices of the same order, yes (a one-sided inverse is two-sided).\nThis can fail for non-square matrices",
       "tags": [
         "class-12",
         "mathematics",
@@ -1296,8 +1296,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Example 23: A = [[cos θ, sin θ], [−sin θ, cos θ]]. Prove Aⁿ = [[cos nθ, sin nθ], [−sin nθ, cos nθ]] for n ∈ N.",
-      "definition": "Induction: true for n = 1. If it holds for k, A^(k+1) = A·Aᵏ has top-left cos θ cos kθ − sin θ sin kθ = cos(k + 1)θ and top-right cos θ sin kθ + sin θ cos kθ = sin(k + 1)θ, etc. <span style=\"color:#22a35a\">✓</span>",
+      "term": "Example 23: A =\\[\\begin{bmatrix}\\cos  \\theta & \\sin  \\theta \\\\ -\\sin  \\theta & \\cos  \\theta\\end{bmatrix}\\]Prove Aⁿ =\\[\\begin{bmatrix}\\cos  n\\theta & \\sin  n\\theta \\\\ -\\sin  n\\theta & \\cos  n\\theta\\end{bmatrix}\\]for n ∈ N.",
+      "definition": "Induction: true for n = 1.\nIf it holds for k, A^(k+1) = A·Aᵏ has top-left cos θ cos kθ − sin θ sin kθ = cos(k + 1)θ and top-right cos θ sin kθ + sin θ cos kθ = sin(k + 1)θ, etc. <span style=\"color:#22a35a\">✓</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1307,8 +1307,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q3: A = [[0, 2y, z], [x, y, −z], [x, −y, z]] satisfies A′A = I. Find x, y, z.",
-      "definition": "Columns must be orthonormal: 2x² = 1, 6y² = 1, 3z² = 1 (and the cross terms vanish): <span style=\"color:#f08c00\">x = ±1/√2, y = ±1/√6, z = ±1/√3</span>",
+      "term": "Misc Q3: A =\\[\\begin{bmatrix}0 & 2y & z \\\\ x & y & -z \\\\ x & -y & z\\end{bmatrix}\\]satisfies A′A = I. Find x, y, z.",
+      "definition": "Columns must be orthonormal: 2x² = 1, 6y² = 1, 3z² = 1 (and the cross terms vanish):\n<span style=\"color:#f08c00\">x = ±1/√2, y = ±1/√6, z = ±1/√3</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1318,7 +1318,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q4: for what x is [1 2 1] [[1, 2, 0], [2, 0, 1], [1, 0, 2]] [0, 2, x]ᵀ = O?",
+      "term": "Misc Q4: for what x is [1 2 1]\\[\\begin{bmatrix}1 & 2 & 0 \\\\ 2 & 0 & 1 \\\\ 1 & 0 & 2\\end{bmatrix}\\][0, 2, x]ᵀ = O?",
       "definition": "Middle product = [4, x, 2x]ᵀ; then 4 + 2x + 2x = 0: <span style=\"color:#f08c00\">x = −1</span>",
       "tags": [
         "class-12",
@@ -1329,8 +1329,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q5: A = [[3, 1], [−1, 2]]. Show A² − 5A + 7I = O.",
-      "definition": "A² = [[8, 5], [−5, 3]], 5A = [[15, 5], [−5, 10]]: 8 − 15 + 7 = 0, 5 − 5 = 0, −5 + 5 = 0, 3 − 10 + 7 = 0. <span style=\"color:#22a35a\">✓</span> (Here tr A = 5 and det A = 7: A² − (tr A)A + (det A)I = O)",
+      "term": "Misc Q5: A =\\[\\begin{bmatrix}3 & 1 \\\\ -1 & 2\\end{bmatrix}\\]Show A² − 5A + 7I = O.",
+      "definition": "A² =\\[\\begin{bmatrix}8 & 5 \\\\ -5 & 3\\end{bmatrix}\\]5A =\\[\\begin{bmatrix}15 & 5 \\\\ -5 & 10\\end{bmatrix}\\]: 8 − 15 + 7 = 0, 5 − 5 = 0, −5 + 5 = 0, 3 − 10 + 7 = 0. <span style=\"color:#22a35a\">✓</span> (Here tr A = 5 and det A = 7: A² − (tr A)A + (det A)I = O)",
       "tags": [
         "class-12",
         "mathematics",
@@ -1340,7 +1340,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q6: find x if [x, −5, −1] [[1, 0, 2], [0, 2, 1], [2, 0, 3]] [x, 4, 1]ᵀ = O.",
+      "term": "Misc Q6: find x if [x, −5, −1]\\[\\begin{bmatrix}1 & 0 & 2 \\\\ 0 & 2 & 1 \\\\ 2 & 0 & 3\\end{bmatrix}\\][x, 4, 1]ᵀ = O.",
       "definition": "Middle product = [x + 2, 9, 2x + 3]ᵀ, then x(x + 2) − 45 − (2x + 3) = x² − 48 = 0: <span style=\"color:#f08c00\">x = ±4√3</span>",
       "tags": [
         "class-12",
@@ -1363,7 +1363,7 @@
     {
       "noteType": "basic",
       "term": "Misc Q7(b): unit costs ₹2.00, ₹1.00, ₹0.50. Gross profit?",
-      "definition": "Costs: I: 20 000 + 2 000 + 9 000 = 31 000; II: 12 000 + 20 000 + 4 000 = 36 000. Profit: I <span style=\"color:#f08c00\">₹15 000</span>, II <span style=\"color:#f08c00\">₹17 000</span>, total ₹32 000",
+      "definition": "Costs: I: 20 000 + 2 000 + 9 000 = 31 000; II: 12 000 + 20 000 + 4 000 = 36 000.\nProfit: I <span style=\"color:#f08c00\">₹15 000</span>, II <span style=\"color:#f08c00\">₹17 000</span>, total ₹32 000",
       "tags": [
         "class-12",
         "mathematics",
@@ -1373,8 +1373,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q8: find X with X [[1, 2, 3], [4, 5, 6]] = [[−7, −8, −9], [2, 4, 6]].",
-      "definition": "X is 2 × 2. Row 1: a + 4b = −7, 2a + 5b = −8, so a = 1, b = −2. Row 2: c + 4d = 2, 2c + 5d = 4, so c = 2, d = 0: <span style=\"color:#f08c00\">X = [[1, −2], [2, 0]]</span>",
+      "term": "Misc Q8: find X with\\[X \\begin{bmatrix}1 & 2 & 3 \\\\ 4 & 5 & 6\\end{bmatrix} = \\begin{bmatrix}-7 & -8 & -9 \\\\ 2 & 4 & 6\\end{bmatrix}\\]",
+      "definition": "X is 2 × 2.\nRow 1: a + 4b = −7, 2a + 5b = −8, so a = 1, b = −2.\nRow 2: c + 4d = 2, 2c + 5d = 4, so c = 2, d = 0:\n<span style=\"color:#f08c00\">X =\\[\\begin{bmatrix}1 & -2 \\\\ 2 & 0\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1384,7 +1384,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q9: A = [[α, β], [γ, −α]] with A² = I. Then (A) 1 + α² + βγ = 0 (B) 1 − α² + βγ = 0 (C) 1 − α² − βγ = 0 (D) 1 + α² − βγ = 0",
+      "term": "Misc Q9: A =\\[\\begin{bmatrix}\\alpha & \\beta \\\\ \\gamma & -\\alpha\\end{bmatrix}\\]with A² = I. Then\n(A) 1 + α² + βγ = 0\n(B) 1 − α² + βγ = 0\n(C) 1 − α² − βγ = 0\n(D) 1 + α² − βγ = 0",
       "definition": "A² = (α² + βγ) I, so α² + βγ = 1: <span style=\"color:#22a35a\">(C)</span>",
       "tags": [
         "class-12",
@@ -1395,7 +1395,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q10: if A is both symmetric and skew-symmetric, then A is (A) diagonal (B) zero matrix (C) square (D) none",
+      "term": "Misc Q10: if A is both symmetric and skew-symmetric, then A is\n(A) diagonal\n(B) zero matrix\n(C) square\n(D) none",
       "definition": "<span style=\"color:#22a35a\">(B) zero matrix</span> (it is square and diagonal too, but zero is the precise answer)",
       "tags": [
         "class-12",
@@ -1406,7 +1406,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q11: A² = A, then (I + A)³ − 7A = (A) A (B) I − A (C) I (D) 3A",
+      "term": "Misc Q11: A² = A, then (I + A)³ − 7A =\n(A) A\n(B) I − A\n(C) I\n(D) 3A",
       "definition": "Aⁿ = A for all n ≥ 1: (I + A)³ = I + 3A + 3A² + A³ = I + 7A, so the expression is <span style=\"color:#22a35a\">(C) I</span>",
       "tags": [
         "class-12",
@@ -1418,7 +1418,7 @@
     {
       "noteType": "basic",
       "term": "Idempotent, involutory and nilpotent matrices?",
-      "definition": "<span style=\"color:#3b82f6\">Idempotent</span>: A² = A. <span style=\"color:#3b82f6\">Involutory</span>: A² = I. <span style=\"color:#3b82f6\">Nilpotent</span>: Aᵏ = O for some k. Example: [[0, 1], [0, 0]] is nilpotent (A² = O)",
+      "definition": "<span style=\"color:#3b82f6\">Idempotent</span>: A² = A. <span style=\"color:#3b82f6\">Involutory</span>: A² = I. <span style=\"color:#3b82f6\">Nilpotent</span>: Aᵏ = O for some k.\nExample:\\[\\begin{bmatrix}0 & 1 \\\\ 0 & 0\\end{bmatrix}\\]is nilpotent (A² = O)",
       "tags": [
         "class-12",
         "mathematics",
@@ -1428,8 +1428,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Find [[1, 1], [0, 1]]ⁿ.",
-      "definition": "Compute A², A³: [[1, 2], [0, 1]], [[1, 3], [0, 1]]. Pattern (by induction): <span style=\"color:#f08c00\">[[1, n], [0, 1]]</span>",
+      "term": "Find\\[\\begin{bmatrix}1 & 1 \\\\ 0 & 1\\end{bmatrix}\\]ⁿ.",
+      "definition": "Compute A², A³:\\[\\begin{bmatrix}1 & 2 \\\\ 0 & 1\\end{bmatrix}\\]\\[\\begin{bmatrix}1 & 3 \\\\ 0 & 1\\end{bmatrix}\\]Pattern (by induction):<span style=\"color:#f08c00\">\\[\\begin{bmatrix}1 & n \\\\ 0 & 1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1450,8 +1450,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Find A⁻¹ for A = [[1, 2], [3, 4]] with the shortcut.",
-      "definition": "ad − bc = 4 − 6 = −2. A⁻¹ = (1/−2)[[4, −2], [−3, 1]] = <span style=\"color:#f08c00\">[[−2, 1], [3/2, −1/2]]</span>",
+      "term": "Find A⁻¹ for A =\\[\\begin{bmatrix}1 & 2 \\\\ 3 & 4\\end{bmatrix}\\]with the shortcut.",
+      "definition": "ad − bc = 4 − 6 = −2.\nA⁻¹ =\\[(1/-2) \\begin{bmatrix}4 & -2 \\\\ -3 & 1\\end{bmatrix}\\]=<span style=\"color:#f08c00\">\\[\\begin{bmatrix}-2 & 1 \\\\ \\frac{3}{2} & -\\frac{1}{2}\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1495,7 +1495,7 @@
     {
       "noteType": "basic",
       "term": "If A and B are 3 × 3 with AB = BA, expand (A + B)³.",
-      "definition": "Only because they commute: A³ + 3A²B + 3AB² + B³. Same for (A + B)² = A² + 2AB + B² and A² − B² = (A − B)(A + B)",
+      "definition": "Only because they commute: A³ + 3A²B + 3AB² + B³.\nSame for (A + B)² = A² + 2AB + B² and A² − B² = (A − B)(A + B)",
       "tags": [
         "class-12",
         "mathematics",
@@ -1527,7 +1527,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: if a matrix has 12 elements, the number of possible orders is<br>(a) 4 (b) 6 (c) 8 (d) 12",
+      "term": "MCQ: if a matrix has 12 elements, the number of possible orders is<br>(a) 4\n(b) 6\n(c) 8\n(d) 12",
       "definition": "Divisor pairs of 12: 1, 2, 3, 4, 6, 12 → <span style=\"color:#22a35a\">(b) 6</span>",
       "tags": [
         "class-12",
@@ -1538,7 +1538,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: if A is 3 × 4 and B is 4 × 2, the order of AB is<br>(a) 3 × 2 (b) 4 × 4 (c) 2 × 3 (d) not defined",
+      "term": "MCQ: if A is 3 × 4 and B is 4 × 2, the order of AB is<br>(a) 3 × 2\n(b) 4 × 4\n(c) 2 × 3\n(d) not defined",
       "definition": "<span style=\"color:#22a35a\">(a) 3 × 2</span>",
       "tags": [
         "class-12",
@@ -1549,8 +1549,8 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: if A = [[1, 2], [3, 4]] and B = [[0, 1], [1, 0]], AB =<br>(a) [[2, 1], [4, 3]] (b) [[3, 4], [1, 2]] (c) [[0, 2], [3, 0]] (d) [[1, 3], [2, 4]]",
-      "definition": "Multiplying by B on the right swaps the columns: <span style=\"color:#22a35a\">(a) [[2, 1], [4, 3]]</span>",
+      "term": "MCQ: if A =\\[\\begin{bmatrix}1 & 2 \\\\ 3 & 4\\end{bmatrix}\\]and B =\\[\\begin{bmatrix}0 & 1 \\\\ 1 & 0\\end{bmatrix}\\]AB =<br>\\[\n(a) \\begin{bmatrix}2 & 1 \\\\ 4 & 3\\end{bmatrix}\n(b) \\begin{bmatrix}3 & 4 \\\\ 1 & 2\\end{bmatrix}\n(c) \\begin{bmatrix}0 & 2 \\\\ 3 & 0\\end{bmatrix}\n(d) \\begin{bmatrix}1 & 3 \\\\ 2 & 4\\end{bmatrix}\\]",
+      "definition": "Multiplying by B on the right swaps the columns:<span style=\"color:#22a35a\">\\[(a) \\begin{bmatrix}2 & 1 \\\\ 4 & 3\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1560,7 +1560,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: if A is a square matrix with A² = A, then (I + A)² =<br>(a) I + A (b) I + 2A (c) I + 3A (d) I − A",
+      "term": "MCQ: if A is a square matrix with A² = A, then (I + A)² =<br>(a) I + A\n(b) I + 2A\n(c) I + 3A\n(d) I − A",
       "definition": "I + 2A + A² = I + 3A: <span style=\"color:#22a35a\">(c)</span>",
       "tags": [
         "class-12",
@@ -1571,7 +1571,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: if A = [[cos θ, −sin θ], [sin θ, cos θ]], then A² =<br>(a) [[cos 2θ, −sin 2θ], [sin 2θ, cos 2θ]] (b) [[cos²θ, −sin²θ], [sin²θ, cos²θ]] (c) I (d) 2A",
+      "term": "MCQ: if A =\\[\\begin{bmatrix}\\cos  \\theta & -\\sin  \\theta \\\\ \\sin  \\theta & \\cos  \\theta\\end{bmatrix}\\]then A² =<br>\\[\n(a) \\begin{bmatrix}\\cos  2\\theta & -\\sin  2\\theta \\\\ \\sin  2\\theta & \\cos  2\\theta\\end{bmatrix}\n(b) \\begin{bmatrix}\\cos ^{2}\\theta & -\\sin ^{2}\\theta \\\\ \\sin ^{2}\\theta & \\cos ^{2}\\theta\\end{bmatrix}\\](c) I\n(d) 2A",
       "definition": "Rotation by θ twice is rotation by 2θ: <span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-12",
@@ -1582,7 +1582,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: the matrix [[0, 5, −7], [−5, 0, 11], [7, −11, 0]] is<br>(a) symmetric (b) skew-symmetric (c) diagonal (d) scalar",
+      "term": "MCQ: the matrix\\[\\begin{bmatrix}0 & 5 & -7 \\\\ -5 & 0 & 11 \\\\ 7 & -11 & 0\\end{bmatrix}\\]is<br>(a) symmetric\n(b) skew-symmetric\n(c) diagonal\n(d) scalar",
       "definition": "Zero diagonal and aⱼᵢ = −aᵢⱼ: <span style=\"color:#22a35a\">(b) skew-symmetric</span>",
       "tags": [
         "class-12",
@@ -1593,7 +1593,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: for a square matrix A, A + A′ is always<br>(a) skew-symmetric (b) symmetric (c) diagonal (d) identity",
+      "term": "MCQ: for a square matrix A, A + A′ is always<br>(a) skew-symmetric\n(b) symmetric\n(c) diagonal\n(d) identity",
       "definition": "<span style=\"color:#22a35a\">(b) symmetric</span>",
       "tags": [
         "class-12",
@@ -1604,7 +1604,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: if A is invertible, (A′)⁻¹ =<br>(a) A′ (b) (A⁻¹)′ (c) A (d) −A′",
+      "term": "MCQ: if A is invertible, (A′)⁻¹ =<br>(a) A′\n(b) (A⁻¹)′\n(c) A\n(d) −A′",
       "definition": "<span style=\"color:#22a35a\">(b) (A⁻¹)′</span>",
       "tags": [
         "class-12",
@@ -1615,7 +1615,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: if A = [[1, 0], [0, −1]], then A² =<br>(a) A (b) −A (c) I (d) O",
+      "term": "MCQ: if A =\\[\\begin{bmatrix}1 & 0 \\\\ 0 & -1\\end{bmatrix}\\]then A² =<br>(a) A\n(b) −A\n(c) I\n(d) O",
       "definition": "<span style=\"color:#22a35a\">(c) I</span>. A is involutory",
       "tags": [
         "class-12",
@@ -1626,7 +1626,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: the number of 2 × 2 matrices with entries from {0, 1} is<br>(a) 4 (b) 8 (c) 16 (d) 2",
+      "term": "MCQ: the number of 2 × 2 matrices with entries from {0, 1} is<br>(a) 4\n(b) 8\n(c) 16\n(d) 2",
       "definition": "2⁴ = <span style=\"color:#22a35a\">(c) 16</span>",
       "tags": [
         "class-12",
@@ -1637,8 +1637,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Integer answer (JEE Main): if A = [[1, 1], [0, 1]], the (1, 2) entry of A¹⁰⁰ is?",
-      "definition": "Aⁿ = [[1, n], [0, 1]], so <span style=\"color:#f08c00\">100</span>",
+      "term": "Integer answer (JEE Main): if A =\\[\\begin{bmatrix}1 & 1 \\\\ 0 & 1\\end{bmatrix}\\]the (1, 2) entry of A¹⁰⁰ is?",
+      "definition": "Aⁿ =\\[\\begin{bmatrix}1 & n \\\\ 0 & 1\\end{bmatrix}\\]so <span style=\"color:#f08c00\">100</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1648,8 +1648,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Integer answer: if A = [[2, 3], [1, 2]], the sum of the entries of A⁻¹ is?",
-      "definition": "ad − bc = 1, so A⁻¹ = [[2, −3], [−1, 2]]. Sum = 2 − 3 − 1 + 2 = <span style=\"color:#f08c00\">0</span>",
+      "term": "Integer answer: if A =\\[\\begin{bmatrix}2 & 3 \\\\ 1 & 2\\end{bmatrix}\\]the sum of the entries of A⁻¹ is?",
+      "definition": "ad − bc = 1, so A⁻¹ =\\[\\begin{bmatrix}2 & -3 \\\\ -1 & 2\\end{bmatrix}\\]Sum = 2 − 3 − 1 + 2 = <span style=\"color:#f08c00\">0</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1670,8 +1670,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Assertion–Reason.<br><b>A:</b> if AB = O then A = O or B = O.<br><b>R:</b> the product of two non-zero real numbers is non-zero.<br>(a) Both true, R explains A (b) Both true, R does not (c) A false, R true (d) Both false",
-      "definition": "<span style=\"color:#22a35a\">(c)</span>: R is true for numbers, but matrices can be zero divisors: A = [[0, −1], [0, 2]], B = [[3, 5], [0, 0]] have AB = O",
+      "term": "Assertion–Reason.<br><b>A:</b> if AB = O then A = O or B = O.<br><b>R:</b> the product of two non-zero real numbers is non-zero.<br>(a) Both true, R explains A\n(b) Both true, R does not\n(c) A false, R true\n(d) Both false",
+      "definition": "<span style=\"color:#22a35a\">(c)</span>: R is true for numbers, but matrices can be zero divisors: A =\\[\\begin{bmatrix}0 & -1 \\\\ 0 & 2\\end{bmatrix}\\]B =\\[\\begin{bmatrix}3 & 5 \\\\ 0 & 0\\end{bmatrix}\\]have AB = O",
       "tags": [
         "class-12",
         "mathematics",
@@ -1681,7 +1681,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Assertion–Reason.<br><b>A:</b> (AB)′ = A′B′ for all conformable A, B.<br><b>R:</b> (AB)′ = B′A′.<br>(a) Both true, R explains A (b) A false, R true (c) A true, R false (d) Both false",
+      "term": "Assertion–Reason.<br><b>A:</b> (AB)′ = A′B′ for all conformable A, B.<br><b>R:</b> (AB)′ = B′A′.<br>(a) Both true, R explains A\n(b) A false, R true\n(c) A true, R false\n(d) Both false",
       "definition": "<span style=\"color:#22a35a\">(b)</span>: the correct rule reverses the order, so A is false",
       "tags": [
         "class-12",
@@ -1693,7 +1693,7 @@
     {
       "noteType": "basic",
       "term": "True/False: every diagonal matrix commutes with every square matrix of the same order.",
-      "definition": "<span style=\"color:#e5484d\">False</span>. Only <span style=\"color:#3b82f6\">scalar matrices</span> commute with all matrices. diag(1, 2) does not commute with [[0, 1], [1, 0]]",
+      "definition": "<span style=\"color:#e5484d\">False</span>. Only <span style=\"color:#3b82f6\">scalar matrices</span> commute with all matrices. diag(1, 2) does not commute with\\[\\begin{bmatrix}0 & 1 \\\\ 1 & 0\\end{bmatrix}\\]",
       "tags": [
         "class-12",
         "mathematics",
@@ -1714,8 +1714,8 @@
     },
     {
       "noteType": "basic",
-      "term": "2-mark: if A = [[1, 2], [−1, 3]] find A′ and check (A′)′ = A.",
-      "definition": "A′ = [[1, −1], [2, 3]] and (A′)′ = [[1, 2], [−1, 3]] = A. <span style=\"color:#22a35a\">✓</span>",
+      "term": "2-mark: if A =\\[\\begin{bmatrix}1 & 2 \\\\ -1 & 3\\end{bmatrix}\\]find A′ and check (A′)′ = A.",
+      "definition": "A′ =\\[\\begin{bmatrix}1 & -1 \\\\ 2 & 3\\end{bmatrix}\\]and (A′)′ =\\[\\begin{bmatrix}1 & 2 \\\\ -1 & 3\\end{bmatrix}\\]= A. <span style=\"color:#22a35a\">✓</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1725,8 +1725,8 @@
     },
     {
       "noteType": "basic",
-      "term": "3-mark: express [[2, 4], [1, 3]] as the sum of a symmetric and a skew-symmetric matrix.",
-      "definition": "P = ½(A + A′) = [[2, 5/2], [5/2, 3]]; Q = ½(A − A′) = [[0, 3/2], [−3/2, 0]]. <span style=\"color:#f08c00\">A = P + Q</span>",
+      "term": "3-mark: express\\[\\begin{bmatrix}2 & 4 \\\\ 1 & 3\\end{bmatrix}\\]as the sum of a symmetric and a skew-symmetric matrix.",
+      "definition": "P = ½(A + A′) =\\[\\begin{bmatrix}2 & \\frac{5}{2} \\\\ \\frac{5}{2} & 3\\end{bmatrix}\\]Q = ½(A − A′) =\\[\\begin{bmatrix}0 & \\frac{3}{2} \\\\ -\\frac{3}{2} & 0\\end{bmatrix}\\]<span style=\"color:#f08c00\">A = P + Q</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1736,8 +1736,8 @@
     },
     {
       "noteType": "basic",
-      "term": "3-mark: A = [[1, 2], [2, 1]]. Show A² − 2A − 3I = O and hence find A⁻¹.",
-      "definition": "A² = [[5, 4], [4, 5]], so A² − 2A − 3I = O. Then A(A − 2I) = 3I, so <span style=\"color:#f08c00\">A⁻¹ = (1/3)(A − 2I) = (1/3)[[−1, 2], [2, −1]]</span>",
+      "term": "3-mark: A =\\[\\begin{bmatrix}1 & 2 \\\\ 2 & 1\\end{bmatrix}\\]Show A² − 2A − 3I = O and hence find A⁻¹.",
+      "definition": "A² =\\[\\begin{bmatrix}5 & 4 \\\\ 4 & 5\\end{bmatrix}\\]so A² − 2A − 3I = O. Then A(A − 2I) = 3I, so <span style=\"color:#f08c00\">A⁻¹ = (1/3)(A − 2I) =\\[(1/3) \\begin{bmatrix}-1 & 2 \\\\ 2 & -1\\end{bmatrix}\\]</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1747,8 +1747,8 @@
     },
     {
       "noteType": "basic",
-      "term": "4-mark: if A = [[1, 2], [3, 4]] and f(x) = x² − 5x − 2, find f(A).",
-      "definition": "A² = [[7, 10], [15, 22]]; A² − 5A − 2I = [[7 − 5 − 2, 10 − 10], [15 − 15, 22 − 20 − 2]] = <span style=\"color:#f08c00\">O</span> (this is Cayley–Hamilton: tr A = 5, det A = −2)",
+      "term": "4-mark: if A =\\[\\begin{bmatrix}1 & 2 \\\\ 3 & 4\\end{bmatrix}\\]and f(x) = x² − 5x − 2, find f(A).",
+      "definition": "A² =\\[\\begin{bmatrix}7 & 10 \\\\ 15 & 22\\end{bmatrix}\\]A² − 5A − 2I =\\[\\begin{bmatrix}7 - 5 - 2 & 10 - 10 \\\\ 15 - 15 & 22 - 20 - 2\\end{bmatrix}\\]= <span style=\"color:#f08c00\">O</span> (this is Cayley–Hamilton: tr A = 5, det A = −2)",
       "tags": [
         "class-12",
         "mathematics",
@@ -1758,8 +1758,8 @@
     },
     {
       "noteType": "basic",
-      "term": "4-mark: A = [[1, −1], [2, −1]], B = [[a, 1], [b, −1]] and (A + B)² = A² + B². Find a and b.",
-      "definition": "(A + B)² = A² + AB + BA + B², so we need AB + BA = O. AB = [[a − b, 2], [2a − b, 3]] and BA = [[a + 2, −a − 1], [b − 2, 1 − b]]. Entry (1, 2): 2 − a − 1 = 0 gives a = 1; entry (1, 1): 2a − b + 2 = 0 gives b = 4. <span style=\"color:#f08c00\">a = 1, b = 4</span>",
+      "term": "4-mark: A =\\[\\begin{bmatrix}1 & -1 \\\\ 2 & -1\\end{bmatrix}\\]B =\\[\\begin{bmatrix}a & 1 \\\\ b & -1\\end{bmatrix}\\]and (A + B)² = A² + B². Find a and b.",
+      "definition": "(A + B)² = A² + AB + BA + B², so we need AB + BA = O. AB =\\[\\begin{bmatrix}a - b & 2 \\\\ 2a - b & 3\\end{bmatrix}\\]and BA =\\[\\begin{bmatrix}a + 2 & -a - 1 \\\\ b - 2 & 1 - b\\end{bmatrix}\\]Entry (1, 2): 2 − a − 1 = 0 gives a = 1; entry (1, 1): 2a − b + 2 = 0 gives b = 4. <span style=\"color:#f08c00\">a = 1, b = 4</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -1780,7 +1780,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Case-based: coordinates of triangle vertices are the columns of [[0, 4, 2], [0, 0, 3]]. Multiplying on the left by [[1, 0], [0, −1]] does what?",
+      "term": "Case-based: coordinates of triangle vertices are the columns of\\[\\begin{bmatrix}0 & 4 & 2 \\\\ 0 & 0 & 3\\end{bmatrix}\\]Multiplying on the left by\\[\\begin{bmatrix}1 & 0 \\\\ 0 & -1\\end{bmatrix}\\]does what?",
       "definition": "It changes the sign of every y-coordinate: <span style=\"color:#f08c00\">reflection in the x-axis</span>. New vertices (0, 0), (4, 0), (2, −3)",
       "tags": [
         "class-12",

@@ -72,7 +72,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Trap: ∫ (fg) dx = (∫ f dx)(∫ g dx)?",
+      "term": "<b>Trap:</b> ∫ (fg) dx = (∫ f dx)(∫ g dx)?",
       "definition": "<span style=\"color:#e5484d\">False</span>. Example: ∫ x·x dx = x³/3 but (∫x dx)² = x⁴/4. Use substitution or parts for products",
       "tags": [
         "class-12",
@@ -84,7 +84,7 @@
     {
       "noteType": "basic",
       "term": "How do you check an integral?",
-      "definition": "<span style=\"color:#3b82f6\">Differentiate your answer</span>: it must give back the integrand. Every exercise card in this deck was checked that way by computer",
+      "definition": "<span style=\"color:#3b82f6\">Differentiate your answer</span>: it must give back the integrand.\nEvery exercise card in this deck was checked that way by computer",
       "tags": [
         "class-12",
         "mathematics",
@@ -106,7 +106,7 @@
     {
       "noteType": "basic",
       "term": "Integration methods: overview.",
-      "definition": "1) Inspection/standard forms. 2) <span style=\"color:#3b82f6\">Substitution</span> (when the integrand contains f(g(x)) g′(x)). 3) <span style=\"color:#3b82f6\">Trigonometric identities</span>. 4) <span style=\"color:#3b82f6\">Partial fractions</span> for rational functions. 5) <span style=\"color:#3b82f6\">By parts</span> for products. Special forms: ∫ dx/(ax² + bx + c), ∫ (px + q)/(ax² + bx + c), ∫ √(ax² + bx + c)",
+      "definition": "1) Inspection/standard forms. 2) <span style=\"color:#3b82f6\">Substitution</span> (when the integrand contains f(g(x)) g′(x)). 3) <span style=\"color:#3b82f6\">Trigonometric identities</span>. 4) <span style=\"color:#3b82f6\">Partial fractions</span> for rational functions. 5) <span style=\"color:#3b82f6\">By parts</span> for products.\nSpecial forms: ∫ dx/(ax² + bx + c), ∫ (px + q)/(ax² + bx + c), ∫ √(ax² + bx + c)",
       "tags": [
         "class-12",
         "mathematics",
@@ -336,7 +336,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 7.1 Q21: an antiderivative of (√x + 1/√x) is (A) ⅓x^(1/3) + 2x^(1/2) (B) ⅔x^(2/3) + ½x² (C) ⅔x^(3/2) + 2x^(1/2) (D) (3/2)x^(3/2) + ½x^(1/2)",
+      "term": "Ex 7.1 Q21: an antiderivative of (√x + 1/√x) is\n(A) ⅓x^(1/3) + 2x^(1/2)\n(B) ⅔x^(2/3) + ½x²\n(C) ⅔x^(3/2) + 2x^(1/2)\n(D) (3/2)x^(3/2) + ½x^(1/2)",
       "definition": "x^(1/2) → ⅔x^(3/2); x^(−1/2) → 2x^(1/2). <span style=\"color:#22a35a\">(C)</span>",
       "tags": [
         "class-12",
@@ -359,7 +359,7 @@
     {
       "noteType": "basic",
       "term": "Integration by substitution: idea.",
-      "definition": "Put <span style=\"color:#3b82f6\">t = g(x)</span>, dt = g′(x) dx, so ∫ f(g(x)) g′(x) dx = ∫ f(t) dt. Choose t as the “inside” whose derivative also appears (up to a constant). Return to x at the end",
+      "definition": "Put <span style=\"color:#3b82f6\">t = g(x)</span>, dt = g′(x) dx, so ∫ f(g(x)) g′(x) dx = ∫ f(t) dt.\nChoose t as the “inside” whose derivative also appears (up to a constant).\nReturn to x at the end",
       "tags": [
         "class-12",
         "mathematics",
@@ -1426,7 +1426,7 @@
     {
       "noteType": "basic",
       "term": "When do you use partial fractions?",
-      "definition": "For a rational function P(x)/Q(x). If deg P ≥ deg Q, <span style=\"color:#3b82f6\">divide first</span> (polynomial + proper fraction); then factor Q and split",
+      "definition": "For a rational function P(x)/Q(x).\nIf deg P ≥ deg Q, <span style=\"color:#3b82f6\">divide first</span> (polynomial + proper fraction); then factor Q and split",
       "tags": [
         "class-12",
         "mathematics",
@@ -1729,7 +1729,7 @@
     {
       "noteType": "basic",
       "term": "How do you choose u? (ILATE)",
-      "definition": "Order of priority for u: <span style=\"color:#3b82f6\">I</span>nverse trig, <span style=\"color:#3b82f6\">L</span>ogarithm, <span style=\"color:#3b82f6\">A</span>lgebraic, <span style=\"color:#3b82f6\">T</span>rigonometric, <span style=\"color:#3b82f6\">E</span>xponential. The first type in this list is u; the other is dv",
+      "definition": "Order of priority for u: <span style=\"color:#3b82f6\">I</span>nverse trig, <span style=\"color:#3b82f6\">L</span>ogarithm, <span style=\"color:#3b82f6\">A</span>lgebraic, <span style=\"color:#3b82f6\">T</span>rigonometric, <span style=\"color:#3b82f6\">E</span>xponential.\nThe first type in this list is u; the other is dv",
       "tags": [
         "class-12",
         "mathematics",
@@ -2242,7 +2242,7 @@
     {
       "noteType": "basic",
       "term": "Second fundamental theorem of calculus.",
-      "definition": "If F is any antiderivative of the continuous f: <span style=\"color:#3b82f6\">∫ₐᵇ f(x) dx = F(b) − F(a)</span> (written [F(x)]ₐᵇ). The constant C cancels",
+      "definition": "If F is any antiderivative of the continuous f: <span style=\"color:#3b82f6\">∫ₐᵇ f(x) dx = F(b) − F(a)</span> (written [F(x)]ₐᵇ).\nThe constant C cancels",
       "tags": [
         "class-12",
         "mathematics",
@@ -2527,7 +2527,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 7.8 Q21: ∫₁^(√3) dx/(1 + x²) = ?  (A) π/3 (B) 2π/3 (C) π/6 (D) π/12",
+      "term": "Ex 7.8 Q21: ∫₁^(√3) dx/(1 + x²) = ?\n(A) π/3\n(B) 2π/3\n(C) π/6\n(D) π/12",
       "definition": "<span style=\"color:#f08c00\">π/12  (D)</span><br><small>tan⁻¹√3 − tan⁻¹1 = π/3 − π/4</small>",
       "tags": [
         "class-12",
@@ -2538,7 +2538,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 7.8 Q22: ∫₀^(2/3) dx/(4 + 9x²) = ?  (A) π/6 (B) π/12 (C) π/24 (D) π/4",
+      "term": "Ex 7.8 Q22: ∫₀^(2/3) dx/(4 + 9x²) = ?\n(A) π/6\n(B) π/12\n(C) π/24\n(D) π/4",
       "definition": "<span style=\"color:#f08c00\">π/24  (C)</span><br><small>[(1/6) tan⁻¹(3x/2)]</small>",
       "tags": [
         "class-12",
@@ -2648,7 +2648,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 7.9 Q10: if f(x) = ∫₀ˣ t sin t dt, then f′(x) = (A) cos x + x sin x (B) x sin x (C) x cos x (D) sin x + x cos x",
+      "term": "Ex 7.9 Q10: if f(x) = ∫₀ˣ t sin t dt, then f′(x) =\n(A) cos x + x sin x\n(B) x sin x\n(C) x cos x\n(D) sin x + x cos x",
       "definition": "First fundamental theorem: f′(x) = x sin x. <span style=\"color:#22a35a\">(B)</span>",
       "tags": [
         "class-12",
@@ -2711,7 +2711,7 @@
     {
       "noteType": "basic",
       "term": "How to use P₃ (King) in practice?",
-      "definition": "Call the integral I, replace x by a + b − x to get a second expression, <span style=\"color:#3b82f6\">add the two</span>: if f(x) + f(a + b − x) is simple (often 1 or a constant), 2I = ∫(that) and I follows. Typical: ratios like sin/(sin + cos), log(1 + tan x)",
+      "definition": "Call the integral I, replace x by a + b − x to get a second expression, <span style=\"color:#3b82f6\">add the two</span>: if f(x) + f(a + b − x) is simple (often 1 or a constant), 2I = ∫(that) and I follows.\nTypical: ratios like sin/(sin + cos), log(1 + tan x)",
       "tags": [
         "class-12",
         "mathematics",
@@ -2721,8 +2721,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Trap: splitting an integral with |x − c| or [x].",
-      "definition": "Split at the point where the inside changes sign (or at each integer) and remove the modulus on each piece. Never integrate |f| by integrating f",
+      "term": "<b>Trap:</b> splitting an integral with |x − c| or [x].",
+      "definition": "Split at the point where the inside changes sign (or at each integer) and remove the modulus on each piece.\nNever integrate |f| by integrating f",
       "tags": [
         "class-12",
         "mathematics",
@@ -2733,7 +2733,7 @@
     {
       "noteType": "basic",
       "term": "Wallis-type shortcut (JEE): ∫₀^(π/2) sinⁿx dx = ∫₀^(π/2) cosⁿx dx = ?",
-      "definition": "n even: ((n − 1)/n)((n − 3)/(n − 2))···(1/2)(π/2). n odd: ((n − 1)/n)((n − 3)/(n − 2))···(2/3). Examples: n = 2: π/4; n = 3: 2/3; n = 4: 3π/16; n = 5: 8/15",
+      "definition": "n even: ((n − 1)/n)((n − 3)/(n − 2))···(1/2)(π/2). n odd: ((n − 1)/n)((n − 3)/(n − 2))···(2/3).\nExamples: n = 2: π/4; n = 3: 2/3; n = 4: 3π/16; n = 5: 8/15",
       "tags": [
         "class-12",
         "mathematics",
@@ -2941,7 +2941,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 7.10 Q20: ∫_(−π/2)^(π/2) (x³ + x cos x + tan⁵x + 1) dx = ?  (A) 0 (B) 2 (C) π (D) 1",
+      "term": "Ex 7.10 Q20: ∫_(−π/2)^(π/2) (x³ + x cos x + tan⁵x + 1) dx = ?\n(A) 0\n(B) 2\n(C) π (D) 1",
       "definition": "<span style=\"color:#f08c00\">π  (C)</span><br><small>the first three terms are odd; ∫1 = π</small>",
       "tags": [
         "class-12",
@@ -2952,7 +2952,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Ex 7.10 Q21: ∫₀^(π/2) log((4 + 3 sin x)/(4 + 3 cos x)) dx = ?  (A) 2 (B) 3/4 (C) 0 (D) −2",
+      "term": "Ex 7.10 Q21: ∫₀^(π/2) log((4 + 3 sin x)/(4 + 3 cos x)) dx = ?\n(A) 2\n(B) 3/4\n(C) 0\n(D) −2",
       "definition": "<span style=\"color:#f08c00\">0  (C)</span><br><small>King property: I = −I</small>",
       "tags": [
         "class-12",
@@ -2964,7 +2964,7 @@
     {
       "noteType": "basic",
       "term": "Ex 7.10 Q19: show ∫₀ᵃ f(x)g(x) dx = 2∫₀ᵃ f(x) dx if f(x) = f(a − x) and g(x) + g(a − x) = 4.",
-      "definition": "I = ∫ f(x)g(x) = ∫ f(a − x)g(a − x) = ∫ f(x)g(a − x). Add: 2I = ∫ f(x)[g(x) + g(a − x)] = 4∫f. So <span style=\"color:#22a35a\">I = 2∫₀ᵃ f ✓</span>",
+      "definition": "I = ∫ f(x)g(x) = ∫ f(a − x)g(a − x) = ∫ f(x)g(a − x).\nAdd: 2I = ∫ f(x)[g(x) + g(a − x)] = 4∫f.\nSo <span style=\"color:#22a35a\">I = 2∫₀ᵃ f ✓</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -3403,7 +3403,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q40: if f(a + b − x) = f(x), then ∫ₐᵇ x f(x) dx = (A) ((a + b)/2)∫ₐᵇ f(b − x) dx (B) ((a + b)/2)∫ₐᵇ f(b + x) dx (C) ((b − a)/2)∫ₐᵇ f(x) dx (D) ((a + b)/2)∫ₐᵇ f(x) dx",
+      "term": "Misc Q40: if f(a + b − x) = f(x), then ∫ₐᵇ x f(x) dx =\n(A) ((a + b)/2)∫ₐᵇ f(b − x) dx\n(B) ((a + b)/2)∫ₐᵇ f(b + x) dx\n(C) ((b − a)/2)∫ₐᵇ f(x) dx\n(D) ((a + b)/2)∫ₐᵇ f(x) dx",
       "definition": "King: I = ∫(a + b − x)f(x) dx, so 2I = (a + b)∫ f. <span style=\"color:#22a35a\">(D)</span>",
       "tags": [
         "class-12",
@@ -3546,7 +3546,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: ∫ (x + 1/x) dx =<br>(a) x²/2 + log|x| + C (b) x² + log x (c) 1 + 1/x² (d) x²/2 − 1/x²",
+      "term": "MCQ: ∫ (x + 1/x) dx =<br>(a) x²/2 + log|x| + C\n(b) x² + log x\n(c) 1 + 1/x²\n(d) x²/2 − 1/x²",
       "definition": "<span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-12",
@@ -3557,7 +3557,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: ∫ eˣ(tan x + sec²x) dx =<br>(a) eˣ tan x + C (b) eˣ sec x + C (c) eˣ + C (d) eˣ sec²x + C",
+      "term": "MCQ: ∫ eˣ(tan x + sec²x) dx =<br>(a) eˣ tan x + C\n(b) eˣ sec x + C\n(c) eˣ + C\n(d) eˣ sec²x + C",
       "definition": "form eˣ[f + f′] with f = tan x: <span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-12",
@@ -3568,7 +3568,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: ∫₋₁¹ dx/(1 + x²) =<br>(a) π/2 (b) π/4 (c) 0 (d) π",
+      "term": "MCQ: ∫₋₁¹ dx/(1 + x²) =<br>(a) π/2\n(b) π/4\n(c) 0\n(d) π",
       "definition": "tan⁻¹1 − tan⁻¹(−1) = π/4 + π/4 = <span style=\"color:#22a35a\">(a) π/2</span>",
       "tags": [
         "class-12",
@@ -3579,7 +3579,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: ∫₀^(π/2) sin x/(sin x + cos x) dx =<br>(a) π/4 (b) π/2 (c) 0 (d) 1",
+      "term": "MCQ: ∫₀^(π/2) sin x/(sin x + cos x) dx =<br>(a) π/4\n(b) π/2\n(c) 0\n(d) 1",
       "definition": "<span style=\"color:#22a35a\">(a) π/4</span>",
       "tags": [
         "class-12",
@@ -3590,7 +3590,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: ∫₋₂² |x| dx =<br>(a) 4 (b) 0 (c) 2 (d) 8",
+      "term": "MCQ: ∫₋₂² |x| dx =<br>(a) 4\n(b) 0\n(c) 2\n(d) 8",
       "definition": "2 × ∫₀² x dx = <span style=\"color:#22a35a\">(a) 4</span>",
       "tags": [
         "class-12",
@@ -3601,7 +3601,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: ∫ 1/(x log x) dx =<br>(a) log|log x| + C (b) 1/log x (c) log x (d) x log x",
+      "term": "MCQ: ∫ 1/(x log x) dx =<br>(a) log|log x| + C\n(b) 1/log x\n(c) log x\n(d) x log x",
       "definition": "t = log x: <span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-12",
@@ -3612,7 +3612,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: ∫ x e^(x²) dx =<br>(a) ½ e^(x²) + C (b) e^(x²) (c) 2e^(x²) (d) x e^(x²)/2",
+      "term": "MCQ: ∫ x e^(x²) dx =<br>(a) ½ e^(x²) + C\n(b) e^(x²)\n(c) 2e^(x²)\n(d) x e^(x²)/2",
       "definition": "<span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-12",
@@ -3623,7 +3623,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: d/dx ∫₀^(x²) sin t dt =<br>(a) 2x sin x² (b) sin x² (c) cos x² (d) 2x cos x²",
+      "term": "MCQ: d/dx ∫₀^(x²) sin t dt =<br>(a) 2x sin x²\n(b) sin x²\n(c) cos x²\n(d) 2x cos x²",
       "definition": "<span style=\"color:#22a35a\">(a)</span> (Leibniz)",
       "tags": [
         "class-12",
@@ -3634,7 +3634,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: ∫₀^π cos x dx =<br>(a) 0 (b) 1 (c) 2 (d) −1",
+      "term": "MCQ: ∫₀^π cos x dx =<br>(a) 0\n(b) 1\n(c) 2\n(d) −1",
       "definition": "sin π − sin 0 = <span style=\"color:#22a35a\">(a) 0</span>",
       "tags": [
         "class-12",
@@ -3645,7 +3645,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: ∫ tan²x dx =<br>(a) tan x − x + C (b) tan x + x (c) sec x (d) tan³x/3",
+      "term": "MCQ: ∫ tan²x dx =<br>(a) tan x − x + C\n(b) tan x + x\n(c) sec x\n(d) tan³x/3",
       "definition": "<span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-12",
@@ -3679,7 +3679,7 @@
     {
       "noteType": "basic",
       "term": "Integer answer: ∫₁⁴ (|x − 2| + |x − 3|) dx = ?",
-      "definition": "Piecewise: on [1, 2] the integrand is 5 − 2x (integral 2); on [2, 3] it is 1 (integral 1); on [3, 4] it is 2x − 5 (integral 2). Total <span style=\"color:#f08c00\">5</span>",
+      "definition": "Piecewise: on [1, 2] the integrand is 5 − 2x (integral 2); on [2, 3] it is 1 (integral 1); on [3, 4] it is 2x − 5 (integral 2).\nTotal <span style=\"color:#f08c00\">5</span>",
       "tags": [
         "class-12",
         "mathematics",
@@ -3689,7 +3689,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Assertion–Reason.<br><b>A:</b> ∫₋ₐᵃ x⁵ dx = 0.<br><b>R:</b> the integral of an odd function over [−a, a] is 0.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "term": "Assertion–Reason.<br><b>A:</b> ∫₋ₐᵃ x⁵ dx = 0.<br><b>R:</b> the integral of an odd function over [−a, a] is 0.<br>(a) Both true, R explains A\n(b) Both true, R does not\n(c) A true, R false\n(d) A false, R true",
       "definition": "<span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-12",
@@ -3700,7 +3700,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Assertion–Reason.<br><b>A:</b> ∫ (1/x) dx = log x + C for all x ≠ 0.<br><b>R:</b> d/dx log|x| = 1/x for x ≠ 0.<br>(a) Both true, R explains A (b) A false, R true (c) A true, R false (d) Both false",
+      "term": "Assertion–Reason.<br><b>A:</b> ∫ (1/x) dx = log x + C for all x ≠ 0.<br><b>R:</b> d/dx log|x| = 1/x for x ≠ 0.<br>(a) Both true, R explains A\n(b) A false, R true\n(c) A true, R false\n(d) Both false",
       "definition": "<span style=\"color:#22a35a\">(b)</span>: the correct antiderivative is log|x| + C (log x alone needs x > 0)",
       "tags": [
         "class-12",

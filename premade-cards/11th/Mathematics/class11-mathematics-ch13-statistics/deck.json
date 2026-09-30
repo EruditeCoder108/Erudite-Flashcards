@@ -18,7 +18,7 @@
     {
       "noteType": "basic",
       "term": "Mean and median rule (ungrouped data)?",
-      "definition": "\\(\\bar{x} = \\dfrac{\\sum x_i}{n}\\). Median: sort the data; odd n → the ((n + 1)/2)th value; even n → the mean of the (n/2)th and (n/2 + 1)th values",
+      "definition": "\\(\\bar{x} = \\dfrac{\\sum x_i}{n}\\).\nMedian: sort the data; odd n → the ((n + 1)/2)th value; even n → the mean of the (n/2)th and (n/2 + 1)th values",
       "tags": [
         "class-11",
         "mathematics",
@@ -90,7 +90,7 @@
     {
       "noteType": "basic",
       "term": "Deviation of x from a?",
-      "definition": "<span style=\"color:#3b82f6\">x − a</span> (signed distance). Deviations from the mean add to zero: Σ(xᵢ − x̄) = 0, so their plain average is useless as a spread",
+      "definition": "<span style=\"color:#3b82f6\">x − a</span> (signed distance).\nDeviations from the mean add to zero: Σ(xᵢ − x̄) = 0, so their plain average is useless as a spread",
       "tags": [
         "class-11",
         "mathematics",
@@ -200,7 +200,7 @@
     {
       "noteType": "basic",
       "term": "Mean deviation for a discrete frequency distribution?",
-      "definition": "\\(\\mathrm{M.D.}(\\bar{x}) = \\dfrac{\\sum f_i|x_i - \\bar{x}|}{N},\\quad \\bar{x} = \\dfrac{\\sum f_ix_i}{N},\\quad N = \\sum f_i\\). About the median: replace x̄ by M",
+      "definition": "\\(\\mathrm{M.D.}(\\bar{x}) = \\dfrac{\\sum f_i|x_i - \\bar{x}|}{N},\\quad \\bar{x} = \\dfrac{\\sum f_ix_i}{N},\\quad N = \\sum f_i\\).\nAbout the median: replace x̄ by M",
       "tags": [
         "class-11",
         "mathematics",
@@ -211,7 +211,7 @@
     {
       "noteType": "basic",
       "term": "Median of a discrete frequency distribution?",
-      "definition": "Make the cumulative frequencies. The median is the observation whose c.f. is first <span style=\"color:#3b82f6\">≥ N/2</span> (if N is even, average the N/2 th and (N/2 + 1)th observations, which are often the same value)",
+      "definition": "Make the cumulative frequencies.\nThe median is the observation whose c.f. is first <span style=\"color:#3b82f6\">≥ N/2</span> (if N is even, average the N/2 th and (N/2 + 1)th observations, which are often the same value)",
       "tags": [
         "class-11",
         "mathematics",
@@ -321,7 +321,7 @@
     {
       "noteType": "basic",
       "term": "Why not use Σ(xᵢ − x̄)² directly as the dispersion?",
-      "definition": "It grows with the number of observations: set A (6 values, spread 5–55) has sum of squares 1750 while set B (31 values, 15–45) has 2480, even though A is more scattered. So we take the <span style=\"color:#3b82f6\">mean</span>",
+      "definition": "It grows with the number of observations: set A (6 values, spread 5–55) has sum of squares 1750 while set B (31 values, 15–45) has 2480, even though A is more scattered.\nSo we take the <span style=\"color:#3b82f6\">mean</span>",
       "tags": [
         "class-11",
         "mathematics",
@@ -365,7 +365,7 @@
     {
       "noteType": "basic",
       "term": "Computational formula for variance?",
-      "definition": "\\(\\sigma^2 = \\dfrac{\\sum x_i^2}{n} - \\bar{x}^2\\): mean of squares minus square of the mean. Faster and less error-prone",
+      "definition": "\\(\\sigma^2 = \\dfrac{\\sum x_i^2}{n} - \\bar{x}^2\\): mean of squares minus square of the mean.\nFaster and less error-prone",
       "tags": [
         "class-11",
         "mathematics",
@@ -514,7 +514,7 @@
     {
       "noteType": "basic",
       "term": "Interpretation: small vs large σ?",
-      "definition": "Small σ: data close to the mean (consistent, uniform). Large σ: data scattered. σ = 0 iff every observation equals the mean",
+      "definition": "Small σ: data close to the mean (consistent, uniform).\nLarge σ: data scattered. σ = 0 iff every observation equals the mean",
       "tags": [
         "class-11",
         "mathematics",
@@ -662,8 +662,8 @@
     },
     {
       "noteType": "basic",
-      "term": "Misc Q5: 20 observations, mean 10, σ = 2; one value 8 was wrong. Correct mean and σ if (i) omitted (ii) replaced by 12.",
-      "definition": "(i) 19 values: sum 192, Σx² = 2016 → mean <span style=\"color:#f08c00\">10.11</span>, σ ≈ <span style=\"color:#f08c00\">2.0</span>. (ii) sum 204, Σx² = 2160 → mean <span style=\"color:#f08c00\">10.2</span>, σ ≈ <span style=\"color:#f08c00\">1.99</span>",
+      "term": "Misc Q5: 20 observations, mean 10, σ = 2; one value 8 was wrong. Correct mean and σ if\n(i) omitted\n(ii) replaced by 12.",
+      "definition": "(i) 19 values: sum 192, Σx² = 2016 → mean <span style=\"color:#f08c00\">10.11</span>, σ ≈ <span style=\"color:#f08c00\">2.0</span>.\n(ii) sum 204, Σx² = 2160 → mean <span style=\"color:#f08c00\">10.2</span>, σ ≈ <span style=\"color:#f08c00\">1.99</span>",
       "tags": [
         "class-11",
         "mathematics",
@@ -696,7 +696,7 @@
     {
       "noteType": "basic",
       "term": "Series A: mean 50, σ = 5. Series B: mean 80, σ = 6. Which is more consistent?",
-      "definition": "C.V.(A) = 10%, C.V.(B) = 7.5% → <span style=\"color:#f08c00\">B</span> is more consistent (its σ is smaller relative to its mean)",
+      "definition": "C.V.\n(A) = 10%, C.V.\n(B) = 7.5% → <span style=\"color:#f08c00\">B</span> is more consistent (its σ is smaller relative to its mean)",
       "tags": [
         "class-11",
         "mathematics",
@@ -773,7 +773,7 @@
     {
       "noteType": "basic",
       "term": "Relation: Σ(xᵢ − a)² = Σ(xᵢ − x̄)² + n(x̄ − a)². Why useful?",
-      "definition": "It shows the sum of squares about any a exceeds the one about the mean by n(x̄ − a)². Handy for the assumed-mean method and for proving that the mean minimises it",
+      "definition": "It shows the sum of squares about any a exceeds the one about the mean by n(x̄ − a)².\nHandy for the assumed-mean method and for proving that the mean minimises it",
       "tags": [
         "class-11",
         "mathematics",
@@ -783,7 +783,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: The range of 3, 8, 12, 5, 20, 15 is<br>(a) 12 (b) 17 (c) 20 (d) 3",
+      "term": "MCQ: The range of 3, 8, 12, 5, 20, 15 is<br>(a) 12\n(b) 17\n(c) 20\n(d) 3",
       "definition": "20 − 3 = <span style=\"color:#22a35a\">(b) 17</span>",
       "tags": [
         "class-11",
@@ -794,7 +794,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: The mean deviation about the mean of 2, 4, 6, 8, 10 is<br>(a) 2.4 (b) 2 (c) 3 (d) 6",
+      "term": "MCQ: The mean deviation about the mean of 2, 4, 6, 8, 10 is<br>(a) 2.4\n(b) 2\n(c) 3\n(d) 6",
       "definition": "Mean 6; |dev| 4, 2, 0, 2, 4 = 12 → 12/5 = <span style=\"color:#22a35a\">(a) 2.4</span>",
       "tags": [
         "class-11",
@@ -805,7 +805,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: The variance of 2, 4, 6, 8, 10 is<br>(a) 6 (b) 8 (c) 10 (d) 40",
+      "term": "MCQ: The variance of 2, 4, 6, 8, 10 is<br>(a) 6\n(b) 8\n(c) 10\n(d) 40",
       "definition": "Σ(x − 6)² = 40 → <span style=\"color:#22a35a\">(b) 8</span>",
       "tags": [
         "class-11",
@@ -816,7 +816,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: If the SD of a set is 4, the variance is<br>(a) 2 (b) 4 (c) 8 (d) 16",
+      "term": "MCQ: If the SD of a set is 4, the variance is<br>(a) 2\n(b) 4\n(c) 8\n(d) 16",
       "definition": "<span style=\"color:#22a35a\">(d) 16</span>",
       "tags": [
         "class-11",
@@ -827,7 +827,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: If each observation is multiplied by 3, the SD becomes<br>(a) σ (b) 3σ (c) 9σ (d) σ + 3",
+      "term": "MCQ: If each observation is multiplied by 3, the SD becomes<br>(a) σ (b) 3σ\n(c) 9σ\n(d) σ + 3",
       "definition": "<span style=\"color:#22a35a\">(b) 3σ</span>",
       "tags": [
         "class-11",
@@ -838,7 +838,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: Each observation is increased by 5. Then the variance<br>(a) increases by 5 (b) increases by 25 (c) is unchanged (d) is multiplied by 5",
+      "term": "MCQ: Each observation is increased by 5. Then the variance<br>(a) increases by 5\n(b) increases by 25\n(c) is unchanged\n(d) is multiplied by 5",
       "definition": "<span style=\"color:#22a35a\">(c)</span>",
       "tags": [
         "class-11",
@@ -849,7 +849,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: The standard deviation of the first 10 natural numbers is<br>(a) √8.25 (b) 2.87 (c) 3.03 (d) both (a) and (b)",
+      "term": "MCQ: The standard deviation of the first 10 natural numbers is<br>(a) √8.25\n(b) 2.87\n(c) 3.03\n(d) both (a) and (b)",
       "definition": "√((100 − 1)/12) = √8.25 ≈ 2.87 → <span style=\"color:#22a35a\">(d)</span>",
       "tags": [
         "class-11",
@@ -860,7 +860,7 @@
     },
     {
       "noteType": "basic",
-      "term": "MCQ: The sum of deviations of the observations from their mean is<br>(a) always positive (b) always negative (c) zero (d) depends on n",
+      "term": "MCQ: The sum of deviations of the observations from their mean is<br>(a) always positive\n(b) always negative\n(c) zero\n(d) depends on n",
       "definition": "<span style=\"color:#22a35a\">(c) zero</span>",
       "tags": [
         "class-11",
@@ -893,7 +893,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Assertion–Reason.<br><b>A:</b> The standard deviation is never negative.<br><b>R:</b> It is the positive square root of the variance.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "term": "Assertion–Reason.<br><b>A:</b> The standard deviation is never negative.<br><b>R:</b> It is the positive square root of the variance.<br>(a) Both true, R explains A\n(b) Both true, R does not\n(c) A true, R false\n(d) A false, R true",
       "definition": "<span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-11",
@@ -904,7 +904,7 @@
     },
     {
       "noteType": "basic",
-      "term": "Assertion–Reason.<br><b>A:</b> Adding 10 to every observation leaves the standard deviation unchanged.<br><b>R:</b> Dispersion depends only on the deviations from the mean, not on the location of the mean.<br>(a) Both true, R explains A (b) Both true, R does not (c) A true, R false (d) A false, R true",
+      "term": "Assertion–Reason.<br><b>A:</b> Adding 10 to every observation leaves the standard deviation unchanged.<br><b>R:</b> Dispersion depends only on the deviations from the mean, not on the location of the mean.<br>(a) Both true, R explains A\n(b) Both true, R does not\n(c) A true, R false\n(d) A false, R true",
       "definition": "<span style=\"color:#22a35a\">(a)</span>",
       "tags": [
         "class-11",
@@ -938,7 +938,7 @@
     {
       "noteType": "basic",
       "term": "4-mark: two firms: A pays mean ₹520 with σ = ₹100; B pays mean ₹495 with σ = ₹80. Which has more uniform wages?",
-      "definition": "C.V.(A) = 100/520 × 100 ≈ 19.2%; C.V.(B) = 80/495 × 100 ≈ 16.2% → <span style=\"color:#f08c00\">B is more uniform</span>",
+      "definition": "C.V.\n(A) = 100/520 × 100 ≈ 19.2%; C.V.\n(B) = 80/495 × 100 ≈ 16.2% → <span style=\"color:#f08c00\">B is more uniform</span>",
       "tags": [
         "class-11",
         "mathematics",

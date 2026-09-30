@@ -1,5 +1,6 @@
 """Shared helpers for writing premade deck.json files (colour code + card builders)."""
 import json, html as _html
+import fmt as _fmt
 
 # Colour code (brief section 4): blue terms, green examples, red exceptions/"not", orange numbers.
 # Mid-tone shades so they read on both the dark and the light theme.
@@ -69,6 +70,8 @@ class Deck:
                            'tags': self._tags()})
 
     def write(self, path):
+        for c in self.cards:
+            _fmt.format_card(c)   # readability pass: matrices, lists, lead-ins (idempotent)
         with open(path, 'w', encoding='utf8') as f:
             json.dump({'version': 1, 'name': self.name, 'className': self.class_name,
                        **({'description': self.description} if getattr(self, 'description', '') else {}),
